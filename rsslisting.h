@@ -47,6 +47,7 @@
 #include <QBuffer>
 #include <QXmlStreamReader>
 #include <QUrl>
+#include <QtWebKit>
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -68,6 +69,7 @@ public slots:
     void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
+    void go();
 
 private:
     void parseXml();
@@ -79,12 +81,16 @@ private:
     QString titleString;
     QString pubDate;
 
-    QNetworkAccessManager manager;
-    QNetworkReply *currentReply;
+    QNetworkProxy networkProxy_;
+    QNetworkAccessManager manager_;
+    QNetworkReply *currentReply_;
 
-    QLineEdit *lineEdit;
-    QTreeWidget *treeWidget;
-    QPushButton *fetchButton;
+    QLineEdit *feedEdit_;
+    QPushButton *fetchButton_;
+    QTreeWidget *treeWidget_;
+    QLineEdit *urlEdit_;
+    QPushButton *goButton_;
+    QWebView *webView_;
 
 };
 

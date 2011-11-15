@@ -73,42 +73,69 @@ its operation, and also allows very large data sources to be read.
 */
 
 RSSListing::RSSListing(QWidget *parent)
-    : QWidget(parent), currentReply(0)
+    : QWidget(parent), currentReply_(0)
 {
-    lineEdit = new QLineEdit(this);
-    lineEdit->setText("http://labs.qt.nokia.com/blogs/feed");
+    feedEdit_ = new QLineEdit();
+    feedEdit_->setText("http://labs.qt.nokia.com/blogs/feed");
 
-    fetchButton = new QPushButton(tr("Fetch"), this);
+    fetchButton_ = new QPushButton(tr("Fetch"));
 
-    treeWidget = new QTreeWidget(this);
-    connect(treeWidget, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+    treeWidget_ = new QTreeWidget();
+    connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
             this, SLOT(itemActivated(QTreeWidgetItem*)));
     QStringList headerLabels;
     headerLabels << tr("Title") << tr("Link") << tr("pubDate");
-    treeWidget->setHeaderLabels(headerLabels);
-    treeWidget->header()->setResizeMode(QHeaderView::ResizeToContents);
+    treeWidget_->setHeaderLabels(headerLabels);
+    treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
-    QNetworkProxy *networkProxy = new QNetworkProxy();
-    networkProxy->setType(QNetworkProxy::HttpProxy);
-    networkProxy->setHostName("10.0.0.172");
-    networkProxy->setPort(3150);
-    manager.setProxy(*networkProxy);
+    urlEdit_ = new QLineEdit();
+    goButton_ = new QPushButton(tr("Go"));
+    webView_ = new QWebView();
 
-    connect(&manager, SIGNAL(finished(QNetworkReply*)),
+    networkProxy_.setType(QNetworkProxy::HttpProxy);
+    networkProxy_.setHostName("10.0.0.172");
+    networkProxy_.setPort(3150);
+    manager_.setProxy(networkProxy_);
+    QNetworkProxy::setApplicationProxy(networkProxy_);
+
+    connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
-    connect(lineEdit, SIGNAL(returnPressed()), this, SLOT(fetch()));
-    connect(fetchButton, SIGNAL(clicked()), this, SLOT(fetch()));
+    connect(feedEdit_, SIGNAL(returnPressed()), this, SLOT(fetch()));
+    connect(fetchButton_, SIGNAL(clicked()), this, SLOT(fetch()));
+    connect(urlEdit_, SIGNAL(returnPressed()), this, SLOT(go()));
+    connect(goButton_, SIGNAL(clicked()), this, SLOT(go()));
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    QHBoxLayout *hboxLayout = new QHBoxLayout();
+    hboxLayout->addWidget(feedEdit_);
+    hboxLayout->addWidget(fetchButton_);
 
-    QHBoxLayout *hboxLayout = new QHBoxLayout;
+    QVBoxLayout *treeLayout = new QVBoxLayout();
+    treeLayout->addLayout(hboxLayout);
+    treeLayout->addWidget(treeWidget_);
 
-    hboxLayout->addWidget(lineEdit);
-    hboxLayout->addWidget(fetchButton);
+    QWidget *treeWidget = new QWidget();
+    treeWidget->setLayout(treeLayout);
 
-    layout->addLayout(hboxLayout);
-    layout->addWidget(treeWidget);
+    QHBoxLayout *webUpLayout = new QHBoxLayout();
+    webUpLayout->addWidget(urlEdit_);
+    webUpLayout->addWidget(goButton_);
+
+    QVBoxLayout *webLayout = new QVBoxLayout();
+    webLayout->addLayout(webUpLayout);
+    webLayout->addWidget(webView_);
+
+    QWidget *webWidget = new QWidget();
+    webWidget->setLayout(webLayout);
+
+    QSplitter *splitter = new QSplitter();
+    splitter->addWidget(treeWidget);
+    splitter->addWidget(webWidget);
+
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->setMargin(0);
+    layout->addWidget(splitter);
+    setLayout(layout);
 
     setWindowTitle(tr("RSS listing example"));
 }
@@ -119,14 +146,14 @@ RSSListing::RSSListing(QWidget *parent)
 void RSSListing::get(const QUrl &url)
 {
     QNetworkRequest request(url);
-    if (currentReply) {
-        currentReply->disconnect(this);
-        currentReply->deleteLater();
+    if (currentReply_) {
+        currentReply_->disconnect(this);
+        currentReply_->deleteLater();
     }
-    currentReply = manager.get(request);
-    connect(currentReply, SIGNAL(readyRead()), this, SLOT(readyRead()));
-    connect(currentReply, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
-    connect(currentReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+    currentReply_ = manager_.get(request);
+    connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
+    connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
+    connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
 }
 
 /*
@@ -145,19 +172,19 @@ void RSSListing::get(const QUrl &url)
 
 void RSSListing::fetch()
 {
-    lineEdit->setReadOnly(true);
-    fetchButton->setEnabled(false);
-    treeWidget->clear();
+    feedEdit_->setReadOnly(true);
+    fetchButton_->setEnabled(false);
+    treeWidget_->clear();
 
     xml.clear();
 
-    QUrl url(lineEdit->text());
+    QUrl url(feedEdit_->text());
     get(url);
 }
 
 void RSSListing::metaDataChanged()
 {
-    QUrl redirectionTarget = currentReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (redirectionTarget.isValid()) {
         get(redirectionTarget);
     }
@@ -172,9 +199,9 @@ void RSSListing::metaDataChanged()
 
 void RSSListing::readyRead()
 {
-    int statusCode = currentReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    int statusCode = currentReply_->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     if (statusCode >= 200 && statusCode < 300) {
-        QByteArray data = currentReply->readAll();
+        QByteArray data = currentReply_->readAll();
         xml.addData(data);
         parseXml();
     }
@@ -196,8 +223,8 @@ void RSSListing::readyRead()
 void RSSListing::finished(QNetworkReply *reply)
 {
     Q_UNUSED(reply);
-    lineEdit->setReadOnly(false);
-    fetchButton->setEnabled(true);
+    feedEdit_->setReadOnly(false);
+    fetchButton_->setEnabled(true);
 }
 
 
@@ -221,7 +248,7 @@ void RSSListing::parseXml()
                 item->setText(0, titleString);
                 item->setText(1, linkString);
                 item->setText(2, pubDate);
-                treeWidget->addTopLevelItem(item);
+                treeWidget_->addTopLevelItem(item);
 
                 titleString.clear();
                 linkString.clear();
@@ -247,13 +274,22 @@ void RSSListing::parseXml()
 */
 void RSSListing::itemActivated(QTreeWidgetItem * item)
 {
-    QDesktopServices::openUrl(QUrl(item->text(1)));
+//    QDesktopServices::openUrl(QUrl(item->text(1)));
+    webView_->load(QUrl(item->text(1)));
+    webView_->show();
 }
 
 void RSSListing::error(QNetworkReply::NetworkError)
 {
     qWarning("error retrieving RSS feed");
-    currentReply->disconnect(this);
-    currentReply->deleteLater();
-    currentReply = 0;
+    currentReply_->disconnect(this);
+    currentReply_->deleteLater();
+    currentReply_ = 0;
+}
+
+void RSSListing::go()
+{
+  //    QDesktopServices::openUrl(QUrl(item->text(1)));
+  webView_->load(QUrl(urlEdit_->text()));
+  webView_->show();
 }
