@@ -77,8 +77,10 @@ private:
 
     QXmlStreamReader xml;
     QString currentTag;
-    QString linkString;
+    QString itemString;
     QString titleString;
+    QString linkString;
+    QString commentsString;
     QString pubDate;
 
     QNetworkProxy networkProxy_;

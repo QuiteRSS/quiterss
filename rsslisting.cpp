@@ -84,7 +84,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
             this, SLOT(itemActivated(QTreeWidgetItem*)));
     QStringList headerLabels;
-    headerLabels << tr("Title") << tr("Link") << tr("pubDate");
+    headerLabels << tr("Item") << tr("Title") << tr("Link") << tr("Comments") << tr("pubDate");
     treeWidget_->setHeaderLabels(headerLabels);
     treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
@@ -245,21 +245,29 @@ void RSSListing::parseXml()
             if (xml.name() == "item") {
 
                 QTreeWidgetItem *item = new QTreeWidgetItem;
-                item->setText(0, titleString);
-                item->setText(1, linkString);
-                item->setText(2, pubDate);
+                item->setText(0, itemString);
+                item->setText(1, titleString);
+                item->setText(2, linkString);
+                item->setText(3, commentsString);
+                item->setText(4, pubDate);
                 treeWidget_->addTopLevelItem(item);
 
+                itemString.clear();
                 titleString.clear();
                 linkString.clear();
+                commentsString.clear();
                 pubDate.clear();
                 ++count;
             }
         } else if (xml.isCharacters() && !xml.isWhitespace()) {
-            if (currentTag == "title")
-                titleString += xml.text().toString();
+            if (currentTag == "item")
+                itemString += xml.text().toString();
+            else if (currentTag == "title")
+              titleString += xml.text().toString();
             else if (currentTag == "link")
                 linkString += xml.text().toString();
+            else if (currentTag == "comments")
+              commentsString += xml.text().toString();
             else if (currentTag == "pubDate")
               pubDate += xml.text().toString();
         }
