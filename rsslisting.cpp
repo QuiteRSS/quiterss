@@ -111,8 +111,9 @@ RSSListing::RSSListing(QWidget *parent)
     hboxLayout->addWidget(fetchButton_);
 
     QVBoxLayout *treeLayout = new QVBoxLayout();
+    treeLayout->setMargin(0);
     treeLayout->addLayout(hboxLayout);
-    treeLayout->addWidget(treeWidget_);
+    treeLayout->addWidget(new QTreeWidget);
 
     QWidget *treeWidget = new QWidget();
     treeWidget->setLayout(treeLayout);
@@ -122,19 +123,24 @@ RSSListing::RSSListing(QWidget *parent)
     webUpLayout->addWidget(goButton_);
 
     QVBoxLayout *webLayout = new QVBoxLayout();
+    webLayout->setMargin(0);
     webLayout->addLayout(webUpLayout);
     webLayout->addWidget(webView_);
 
     QWidget *webWidget = new QWidget();
     webWidget->setLayout(webLayout);
 
-    QSplitter *splitter = new QSplitter();
-    splitter->addWidget(treeWidget);
-    splitter->addWidget(webWidget);
+    QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
+    contentSplitter->addWidget(treeWidget_);
+    contentSplitter->addWidget(webWidget);
+
+    QSplitter *feedSplitter = new QSplitter();
+    feedSplitter->addWidget(treeWidget);
+    feedSplitter->addWidget(contentSplitter);
 
     QVBoxLayout *layout = new QVBoxLayout();
     layout->setMargin(0);
-    layout->addWidget(splitter);
+    layout->addWidget(feedSplitter);
     setLayout(layout);
 
     setWindowTitle(tr("RSS listing example"));
