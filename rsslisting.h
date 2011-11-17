@@ -44,10 +44,12 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QWidget>
+#include <QTreeView>
 #include <QBuffer>
 #include <QXmlStreamReader>
 #include <QUrl>
 #include <QtWebKit>
+#include <QtSql>
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -63,11 +65,14 @@ public:
     RSSListing(QWidget *widget = 0);
 
 public slots:
+    void addFeed();
+    void deleteFeed();
     void fetch();
     void finished(QNetworkReply *reply);
     void readyRead();
     void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
+    void itemDoubleClicked(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
     void go();
 
@@ -87,9 +92,16 @@ private:
     QNetworkAccessManager manager_;
     QNetworkReply *currentReply_;
 
+    QSqlDatabase db_;
+    QSqlTableModel *model_;
+
     QLineEdit *feedEdit_;
+    QPushButton *addButton_;
+    QPushButton *deleteButton_;
     QPushButton *fetchButton_;
+    QTreeView *feedTreeView_;
     QTreeWidget *treeWidget_;
+
     QLineEdit *urlEdit_;
     QPushButton *goButton_;
     QWebView *webView_;

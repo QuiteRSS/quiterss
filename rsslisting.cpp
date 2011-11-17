@@ -54,7 +54,7 @@ its operation, and also allows very large data sources to be read.
 */
 
 
-#include <QDebug>
+#include <QtDebug>
 #include <QtCore>
 #include <QtGui>
 #include <QtNetwork>
@@ -78,7 +78,27 @@ RSSListing::RSSListing(QWidget *parent)
     feedEdit_ = new QLineEdit();
     feedEdit_->setText("http://labs.qt.nokia.com/blogs/feed");
 
+    addButton_ = new QPushButton(tr("Add"));
+    deleteButton_ = new QPushButton(tr("Delete"));
     fetchButton_ = new QPushButton(tr("Fetch"));
+
+    db_ = QSqlDatabase::addDatabase("QSQLITE");
+    db_.setDatabaseName("feeds.sqlite");
+    if (QFile("feeds.sqlite").exists()) {
+      db_.open();
+    }
+    else {
+      db_.open();
+      db_.exec("create table feeds(id integer primary key, link varchar)");
+    }
+
+    model_ = new QSqlTableModel();
+    model_->setTable("feeds");
+    model_->select();
+
+    feedTreeView_ = new QTreeView();
+    feedTreeView_->setModel(model_);
+    feedTreeView_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
     treeWidget_ = new QTreeWidget();
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
@@ -101,19 +121,23 @@ RSSListing::RSSListing(QWidget *parent)
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
+    connect(addButton_, SIGNAL(clicked()), this, SLOT(addFeed()));
+    connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteFeed()));
     connect(feedEdit_, SIGNAL(returnPressed()), this, SLOT(fetch()));
     connect(fetchButton_, SIGNAL(clicked()), this, SLOT(fetch()));
     connect(urlEdit_, SIGNAL(returnPressed()), this, SLOT(go()));
     connect(goButton_, SIGNAL(clicked()), this, SLOT(go()));
 
     QHBoxLayout *hboxLayout = new QHBoxLayout();
-    hboxLayout->addWidget(feedEdit_);
+    hboxLayout->addWidget(addButton_);
+    hboxLayout->addWidget(deleteButton_);
     hboxLayout->addWidget(fetchButton_);
 
     QVBoxLayout *treeLayout = new QVBoxLayout();
     treeLayout->setMargin(0);
+    treeLayout->addWidget(feedEdit_);
     treeLayout->addLayout(hboxLayout);
-    treeLayout->addWidget(new QTreeWidget);
+    treeLayout->addWidget(feedTreeView_);
 
     QWidget *treeWidget = new QWidget();
     treeWidget->setLayout(treeLayout);
@@ -184,8 +208,25 @@ void RSSListing::fetch()
 
     xml.clear();
 
-    QUrl url(feedEdit_->text());
+    QUrl url(model_->record(feedTreeView_->currentIndex().row()).field("link").value().toString());
     get(url);
+}
+
+void RSSListing::addFeed()
+{
+  QSqlQuery q(db_);
+  q.exec("insert into feeds(link) values (\"" + feedEdit_->text() + "\")");
+  model_->select();
+}
+
+void RSSListing::deleteFeed()
+{
+  QSqlQuery q(db_);
+  QString str(("delete from feeds where link=\"")+
+      model_->record(feedTreeView_->currentIndex().row()).field("link").value().toString()+
+      "\"");
+  q.exec(str);
+  model_->select();
 }
 
 void RSSListing::metaDataChanged()
@@ -289,8 +330,14 @@ void RSSListing::parseXml()
 void RSSListing::itemActivated(QTreeWidgetItem * item)
 {
 //    QDesktopServices::openUrl(QUrl(item->text(1)));
-    webView_->load(QUrl(item->text(1)));
+    webView_->load(QUrl(item->text(2)));
     webView_->show();
+}
+
+void RSSListing::itemDoubleClicked(QTreeWidgetItem * item)
+{
+  feedEdit_->setText(item->text(0));
+  fetch();
 }
 
 void RSSListing::error(QNetworkReply::NetworkError)
