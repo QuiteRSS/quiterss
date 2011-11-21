@@ -85,8 +85,10 @@ private:
     QString itemString;
     QString titleString;
     QString linkString;
+    QString descriptionString;
     QString commentsString;
     QString pubDateString;
+    QString guidString;
 
     QNetworkProxy networkProxy_;
     QNetworkAccessManager manager_;

@@ -104,7 +104,8 @@ RSSListing::RSSListing(QWidget *parent)
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
             this, SLOT(itemActivated(QTreeWidgetItem*)));
     QStringList headerLabels;
-    headerLabels << tr("Item") << tr("Title") << tr("Link") << tr("Comments") << tr("pubDate");
+    headerLabels << tr("Item") << tr("Title") << tr("Link") << tr("Description")
+                 << tr("Comments") << tr("pubDate") << tr("guid");
     treeWidget_->setHeaderLabels(headerLabels);
     treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
@@ -295,28 +296,36 @@ void RSSListing::parseXml()
                 item->setText(0, itemString);
                 item->setText(1, titleString);
                 item->setText(2, linkString);
-                item->setText(3, commentsString);
-                item->setText(4, pubDate);
+                item->setText(3, descriptionString);
+                item->setText(4, commentsString);
+                item->setText(5, pubDateString);
+                item->setText(6, guidString);
                 treeWidget_->addTopLevelItem(item);
 
                 itemString.clear();
                 titleString.clear();
                 linkString.clear();
+                descriptionString.clear();
                 commentsString.clear();
-                pubDate.clear();
+                pubDateString.clear();
+                guidString.clear();
                 ++count;
             }
         } else if (xml.isCharacters() && !xml.isWhitespace()) {
             if (currentTag == "item")
-                itemString += xml.text().toString();
+              itemString += xml.text().toString();
             else if (currentTag == "title")
               titleString += xml.text().toString();
             else if (currentTag == "link")
-                linkString += xml.text().toString();
+              linkString += xml.text().toString();
+            else if (currentTag == "description")
+              descriptionString += xml.text().toString();
             else if (currentTag == "comments")
               commentsString += xml.text().toString();
             else if (currentTag == "pubDate")
-              pubDate += xml.text().toString();
+              pubDateString += xml.text().toString();
+            else if (currentTag == "guid")
+              guidString += xml.text().toString();
         }
     }
     if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
