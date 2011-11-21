@@ -44,6 +44,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QWidget>
+#include <QTextBrowser>
 #include <QTreeView>
 #include <QBuffer>
 #include <QXmlStreamReader>
@@ -106,6 +107,7 @@ private:
     QLineEdit *urlEdit_;
     QPushButton *goButton_;
     QWebView *webView_;
+    QTextBrowser *textBrowser_;
 
 };
 

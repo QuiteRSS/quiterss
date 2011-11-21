@@ -112,6 +112,7 @@ RSSListing::RSSListing(QWidget *parent)
     urlEdit_ = new QLineEdit();
     goButton_ = new QPushButton(tr("Go"));
     webView_ = new QWebView();
+    textBrowser_ = new QTextBrowser();
 
     networkProxy_.setType(QNetworkProxy::HttpProxy);
     networkProxy_.setHostName("10.0.0.172");
@@ -150,7 +151,7 @@ RSSListing::RSSListing(QWidget *parent)
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(0);
     webLayout->addLayout(webUpLayout);
-    webLayout->addWidget(webView_);
+    webLayout->addWidget(textBrowser_);
 
     QWidget *webWidget = new QWidget();
     webWidget->setLayout(webLayout);
@@ -339,8 +340,9 @@ void RSSListing::parseXml()
 void RSSListing::itemActivated(QTreeWidgetItem * item)
 {
 //    QDesktopServices::openUrl(QUrl(item->text(1)));
-    webView_->load(QUrl(item->text(2)));
-    webView_->show();
+//    webView_->load(QUrl(item->text(2)));
+//    webView_->show();
+    textBrowser_->setText(item->text(3));
 }
 
 void RSSListing::error(QNetworkReply::NetworkError)
