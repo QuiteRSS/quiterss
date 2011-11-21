@@ -73,7 +73,6 @@ public slots:
     void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
-    void go();
 
 private:
     void parseXml();
@@ -103,8 +102,6 @@ private:
     QTreeView *feedTreeView_;
     QTreeWidget *treeWidget_;
 
-    QLineEdit *urlEdit_;
-    QPushButton *goButton_;
     QWebView *webView_;
 };
 

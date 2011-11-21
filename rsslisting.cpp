@@ -109,8 +109,6 @@ RSSListing::RSSListing(QWidget *parent)
     treeWidget_->setHeaderLabels(headerLabels);
     treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
-    urlEdit_ = new QLineEdit();
-    goButton_ = new QPushButton(tr("Go"));
     webView_ = new QWebView();
 
     networkProxy_.setType(QNetworkProxy::HttpProxy);
@@ -126,8 +124,6 @@ RSSListing::RSSListing(QWidget *parent)
     connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteFeed()));
     connect(feedEdit_, SIGNAL(returnPressed()), this, SLOT(fetch()));
     connect(fetchButton_, SIGNAL(clicked()), this, SLOT(fetch()));
-    connect(urlEdit_, SIGNAL(returnPressed()), this, SLOT(go()));
-    connect(goButton_, SIGNAL(clicked()), this, SLOT(go()));
 
     QHBoxLayout *hboxLayout = new QHBoxLayout();
     hboxLayout->addWidget(addButton_);
@@ -143,16 +139,12 @@ RSSListing::RSSListing(QWidget *parent)
     QWidget *treeWidget = new QWidget();
     treeWidget->setLayout(treeLayout);
 
-    QHBoxLayout *webUpLayout = new QHBoxLayout();
-    webUpLayout->addWidget(urlEdit_);
-    webUpLayout->addWidget(goButton_);
-
     QVBoxLayout *webLayout = new QVBoxLayout();
-    webLayout->setMargin(0);
-    webLayout->addLayout(webUpLayout);
+    webLayout->setMargin(1);  // Чтобы было видно границу виджета
     webLayout->addWidget(webView_);
 
     QWidget *webWidget = new QWidget();
+    webWidget->setStyleSheet("border: 1px solid gray");
     webWidget->setLayout(webLayout);
 
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
@@ -351,11 +343,4 @@ void RSSListing::error(QNetworkReply::NetworkError)
     currentReply_->disconnect(this);
     currentReply_->deleteLater();
     currentReply_ = 0;
-}
-
-void RSSListing::go()
-{
-  //    QDesktopServices::openUrl(QUrl(item->text(1)));
-  webView_->load(QUrl(urlEdit_->text()));
-  webView_->show();
 }
