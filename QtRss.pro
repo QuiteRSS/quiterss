@@ -5,3 +5,7 @@ TEMPLATE = app
 
 HEADERS += rsslisting.h
 SOURCES += main.cpp rsslisting.cpp
+
+RESOURCES += \
+    qtrss.qrc
+
