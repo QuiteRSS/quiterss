@@ -72,7 +72,6 @@ public slots:
     void readyRead();
     void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
-    void itemDoubleClicked(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
     void go();
 

@@ -343,12 +343,6 @@ void RSSListing::itemActivated(QTreeWidgetItem * item)
     webView_->show();
 }
 
-void RSSListing::itemDoubleClicked(QTreeWidgetItem * item)
-{
-  feedEdit_->setText(item->text(0));
-  fetch();
-}
-
 void RSSListing::error(QNetworkReply::NetworkError)
 {
     qWarning("error retrieving RSS feed");
