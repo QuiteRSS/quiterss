@@ -86,7 +86,7 @@ private:
     QString titleString;
     QString linkString;
     QString commentsString;
-    QString pubDate;
+    QString pubDateString;
 
     QNetworkProxy networkProxy_;
     QNetworkAccessManager manager_;
