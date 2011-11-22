@@ -76,29 +76,41 @@ RSSListing::RSSListing(QWidget *parent)
     : QWidget(parent), currentReply_(0)
 {
     feedEdit_ = new QLineEdit();
-    feedEdit_->setText("http://labs.qt.nokia.com/blogs/feed");
-
     addButton_ = new QPushButton(tr("Add"));
     deleteButton_ = new QPushButton(tr("Delete"));
     fetchButton_ = new QPushButton(tr("Fetch"));
 
     db_ = QSqlDatabase::addDatabase("QSQLITE");
-    db_.setDatabaseName("feeds.sqlite");
-    if (QFile("feeds.sqlite").exists()) {
+    db_.setDatabaseName("data.db");
+    if (QFile("data.db").exists()) {
       db_.open();
-    }
-    else {
+    } else {  // Инициализация базы
       db_.open();
       db_.exec("create table feeds(id integer primary key, link varchar)");
+      db_.exec("insert into feeds(link) values ('http://labs.qt.nokia.com/blogs/feed')");
+      db_.exec("insert into feeds(link) values ('http://www.prog.org.ru/index.php?type=rss;action=.xml')");
+      db_.exec("create table info(id integer primary key, name varchar, value varchar)");
+      db_.exec("insert into info(name, value) values ('version', '1')");
+      db_.exec("create table feed_1(id integer primary key, description varchar, guid varchar)");
+      db_.exec("create table feed_2(id integer primary key, description varchar, guid varchar)");
     }
 
     model_ = new QSqlTableModel();
     model_->setTable("feeds");
     model_->select();
 
-    feedTreeView_ = new QTreeView();
-    feedTreeView_->setModel(model_);
-    feedTreeView_->header()->setResizeMode(QHeaderView::ResizeToContents);
+    feedsTreeView_ = new QTreeView();
+    feedsTreeView_->setModel(model_);
+    feedsTreeView_->header()->setResizeMode(QHeaderView::ResizeToContents);
+    connect(feedsTreeView_, SIGNAL(clicked(QModelIndex)),
+            this, SLOT(slotModelClicked(QModelIndex)));
+
+    feedModel_ = new QSqlTableModel();
+    feedView_ = new QTreeView();
+    feedView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    feedTabWidget_ = new QTabWidget();
+    feedTabWidget_->addTab(new QWidget(), "");
 
     treeWidget_ = new QTreeWidget();
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
@@ -117,6 +129,7 @@ RSSListing::RSSListing(QWidget *parent)
     manager_.setProxy(networkProxy_);
     QNetworkProxy::setApplicationProxy(networkProxy_);
 
+
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
@@ -125,16 +138,16 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedEdit_, SIGNAL(returnPressed()), this, SLOT(fetch()));
     connect(fetchButton_, SIGNAL(clicked()), this, SLOT(fetch()));
 
-    QHBoxLayout *hboxLayout = new QHBoxLayout();
-    hboxLayout->addWidget(addButton_);
-    hboxLayout->addWidget(deleteButton_);
-    hboxLayout->addWidget(fetchButton_);
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->addWidget(addButton_);
+    buttonLayout->addWidget(deleteButton_);
+    buttonLayout->addWidget(fetchButton_);
 
     QVBoxLayout *treeLayout = new QVBoxLayout();
     treeLayout->setMargin(0);
     treeLayout->addWidget(feedEdit_);
-    treeLayout->addLayout(hboxLayout);
-    treeLayout->addWidget(feedTreeView_);
+    treeLayout->addLayout(buttonLayout);
+    treeLayout->addWidget(feedsTreeView_);
 
     QWidget *treeWidget = new QWidget();
     treeWidget->setLayout(treeLayout);
@@ -149,6 +162,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
     contentSplitter->addWidget(treeWidget_);
+    contentSplitter->addWidget(feedTabWidget_);
+    contentSplitter->addWidget(feedView_);
     contentSplitter->addWidget(webWidget);
 
     QSplitter *feedSplitter = new QSplitter();
@@ -199,29 +214,37 @@ void RSSListing::get(const QUrl &url)
 void RSSListing::fetch()
 {
     feedEdit_->setReadOnly(true);
+    addButton_->setEnabled(false);
+    deleteButton_->setEnabled(false);
     fetchButton_->setEnabled(false);
+    feedsTreeView_->setEnabled(false);
     treeWidget_->clear();
 
     xml.clear();
 
-    QUrl url(model_->record(feedTreeView_->currentIndex().row()).field("link").value().toString());
+    QUrl url(model_->record(feedsTreeView_->currentIndex().row()).field("link").value().toString());
     get(url);
 }
 
 void RSSListing::addFeed()
 {
   QSqlQuery q(db_);
-  q.exec("insert into feeds(link) values (\"" + feedEdit_->text() + "\")");
+  QString qStr = "insert into feeds(link) values ('" + feedEdit_->text() + "')";
+  q.exec(qStr);
+  qStr = QString("create table feed_%1(id integer primary key, description varchar, guid varchar)").
+      arg(q.lastInsertId().toString());
+  q.exec(qStr);
   model_->select();
 }
 
 void RSSListing::deleteFeed()
 {
   QSqlQuery q(db_);
-  QString str(("delete from feeds where link=\"")+
-      model_->record(feedTreeView_->currentIndex().row()).field("link").value().toString()+
-      "\"");
+  QString str = QString("delete from feeds where link='%1'").
+      arg(model_->record(feedsTreeView_->currentIndex().row()).field("link").value().toString());
   q.exec(str);
+  q.exec(QString("drop table feed_%1").
+      arg(model_->record(feedsTreeView_->currentIndex().row()).field("id").value().toString()));
   model_->select();
 }
 
@@ -267,7 +290,10 @@ void RSSListing::finished(QNetworkReply *reply)
 {
     Q_UNUSED(reply);
     feedEdit_->setReadOnly(false);
+    addButton_->setEnabled(true);
+    deleteButton_->setEnabled(true);
     fetchButton_->setEnabled(true);
+    feedsTreeView_->setEnabled(true);
 }
 
 
@@ -296,6 +322,21 @@ void RSSListing::parseXml()
                 item->setText(5, pubDateString);
                 item->setText(6, guidString);
                 treeWidget_->addTopLevelItem(item);
+
+                QSqlQuery q(db_);
+                QString qStr = QString("select * from feed_%1 where guid == '%2'").
+                    arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString()).
+                    arg(guidString);
+                q.exec(qStr);
+                if (!q.next()) {
+                  qStr = QString("insert into feed_%1(description, guid) values(?, ?)").
+                      arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString());
+                  q.prepare(qStr);
+                  q.addBindValue(descriptionString);
+                  q.addBindValue(guidString);
+                  q.exec();
+                  qDebug() << q.lastError().number() << ": " << q.lastError().text();
+                }
 
                 itemString.clear();
                 titleString.clear();
@@ -326,6 +367,7 @@ void RSSListing::parseXml()
     if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
         qWarning() << "XML ERROR:" << xml.lineNumber() << ": " << xml.errorString();
     }
+    slotModelClicked(model_->index(feedsTreeView_->currentIndex().row(), 0));
 }
 
 /*
@@ -343,4 +385,13 @@ void RSSListing::error(QNetworkReply::NetworkError)
     currentReply_->disconnect(this);
     currentReply_->deleteLater();
     currentReply_ = 0;
+}
+
+void RSSListing::slotModelClicked(QModelIndex item)
+{
+  feedView_->setModel(0);
+  feedModel_->setTable(QString("feed_%1").arg(model_->index(item.row(), 0).data().toString()));
+  feedModel_->select();
+  feedView_->setModel(feedModel_);
+  feedTabWidget_->setTabText(0, model_->index(item.row(), 1).data().toString());
 }

@@ -73,6 +73,7 @@ public slots:
     void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
+    void slotModelClicked(QModelIndex item);
 
 private:
     void parseXml();
@@ -94,13 +95,16 @@ private:
 
     QSqlDatabase db_;
     QSqlTableModel *model_;
+    QSqlTableModel *feedModel_;
 
     QLineEdit *feedEdit_;
     QPushButton *addButton_;
     QPushButton *deleteButton_;
     QPushButton *fetchButton_;
-    QTreeView *feedTreeView_;
+    QTreeView *feedsTreeView_;
     QTreeWidget *treeWidget_;
+    QTabWidget *feedTabWidget_;
+    QTreeView *feedView_;
 
     QWebView *webView_;
 };
