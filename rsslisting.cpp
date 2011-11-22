@@ -109,9 +109,6 @@ RSSListing::RSSListing(QWidget *parent)
     feedView_ = new QTreeView();
     feedView_->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    feedTabWidget_ = new QTabWidget();
-    feedTabWidget_->addTab(new QWidget(), "");
-
     treeWidget_ = new QTreeWidget();
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
             this, SLOT(itemActivated(QTreeWidgetItem*)));
@@ -160,11 +157,18 @@ RSSListing::RSSListing(QWidget *parent)
     webWidget->setStyleSheet("border: 1px solid gray");
     webWidget->setLayout(webLayout);
 
+    QSplitter *feedTabSplitter = new QSplitter(Qt::Vertical);
+    feedTabSplitter->addWidget(feedView_);
+    feedTabSplitter->addWidget(webWidget);
+
+    feedTabWidget_ = new QTabWidget();
+    feedTabWidget_->addTab(feedTabSplitter, "");
+
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
     contentSplitter->addWidget(treeWidget_);
     contentSplitter->addWidget(feedTabWidget_);
-    contentSplitter->addWidget(feedView_);
-    contentSplitter->addWidget(webWidget);
+//    contentSplitter->addWidget(feedView_);
+//    contentSplitter->addWidget(webWidget);
 
     QSplitter *feedSplitter = new QSplitter();
     feedSplitter->addWidget(treeWidget);
