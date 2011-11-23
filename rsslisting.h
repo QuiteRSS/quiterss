@@ -61,13 +61,14 @@ public:
 public slots:
     void addFeed();
     void deleteFeed();
-    void fetch();
     void finished(QNetworkReply *reply);
     void readyRead();
     void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
-    void slotModelClicked(QModelIndex item);
+    void slotFeedsTreeClicked(QModelIndex index);
+    void slotFeedsTreeDoubleClicked(QModelIndex index);
+    void slotFeedViewClicked(QModelIndex index);
 
 private:
     void parseXml();
@@ -95,7 +96,6 @@ private:
     QLineEdit *feedEdit_;
     QPushButton *addButton_;
     QPushButton *deleteButton_;
-    QPushButton *fetchButton_;
     QTreeView *feedsTreeView_;
     QTreeWidget *treeWidget_;
     QTabWidget *feedTabWidget_;

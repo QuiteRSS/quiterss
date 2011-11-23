@@ -97,7 +97,6 @@ RSSListing::RSSListing(QWidget *parent)
     feedEdit_ = new QLineEdit();
     addButton_ = new QPushButton(tr("Add"));
     deleteButton_ = new QPushButton(tr("Delete"));
-    fetchButton_ = new QPushButton(tr("Fetch"));
 
     db_ = QSqlDatabase::addDatabase("QSQLITE");
     db_.setDatabaseName("data.db");
@@ -122,11 +121,15 @@ RSSListing::RSSListing(QWidget *parent)
     feedsTreeView_->setModel(model_);
     feedsTreeView_->header()->setResizeMode(QHeaderView::ResizeToContents);
     connect(feedsTreeView_, SIGNAL(clicked(QModelIndex)),
-            this, SLOT(slotModelClicked(QModelIndex)));
+            this, SLOT(slotFeedsTreeClicked(QModelIndex)));
+    connect(feedsTreeView_, SIGNAL(doubleClicked(QModelIndex)),
+            this, SLOT(slotFeedsTreeDoubleClicked(QModelIndex)));
 
     feedModel_ = new QSqlTableModel();
     feedView_ = new QTreeView();
     feedView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+    connect(feedView_, SIGNAL(clicked(QModelIndex)),
+            this, SLOT(slotFeedViewClicked(QModelIndex)));
 
     treeWidget_ = new QTreeWidget();
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
@@ -151,13 +154,10 @@ RSSListing::RSSListing(QWidget *parent)
 
     connect(addButton_, SIGNAL(clicked()), this, SLOT(addFeed()));
     connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteFeed()));
-    connect(feedEdit_, SIGNAL(returnPressed()), this, SLOT(fetch()));
-    connect(fetchButton_, SIGNAL(clicked()), this, SLOT(fetch()));
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(addButton_);
     buttonLayout->addWidget(deleteButton_);
-    buttonLayout->addWidget(fetchButton_);
 
     QVBoxLayout *treeLayout = new QVBoxLayout();
     treeLayout->setMargin(0);
@@ -239,35 +239,6 @@ void RSSListing::get(const QUrl &url)
     connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
 }
 
-/*
-    Starts fetching data from a news source specified in the line
-    edit widget.
-
-    The line edit is made read only to prevent the user from modifying its
-    contents during the fetch; this is only for cosmetic purposes.
-    The fetch button is disabled, the list view is cleared, and we
-    define the last list view item to be 0, meaning that there are no
-    existing items in the list.
-
-    A URL is created with the raw contents of the line edit and
-    a get is initiated.
-*/
-
-void RSSListing::fetch()
-{
-    feedEdit_->setReadOnly(true);
-    addButton_->setEnabled(false);
-    deleteButton_->setEnabled(false);
-    fetchButton_->setEnabled(false);
-    feedsTreeView_->setEnabled(false);
-    treeWidget_->clear();
-
-    xml.clear();
-
-    QUrl url(model_->record(feedsTreeView_->currentIndex().row()).field("link").value().toString());
-    get(url);
-}
-
 void RSSListing::addFeed()
 {
   QSqlQuery q(db_);
@@ -332,7 +303,6 @@ void RSSListing::finished(QNetworkReply *reply)
     feedEdit_->setReadOnly(false);
     addButton_->setEnabled(true);
     deleteButton_->setEnabled(true);
-    fetchButton_->setEnabled(true);
     feedsTreeView_->setEnabled(true);
 }
 
@@ -407,7 +377,7 @@ void RSSListing::parseXml()
     if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
         qWarning() << "XML ERROR:" << xml.lineNumber() << ": " << xml.errorString();
     }
-    slotModelClicked(model_->index(feedsTreeView_->currentIndex().row(), 0));
+    slotFeedsTreeClicked(model_->index(feedsTreeView_->currentIndex().row(), 0));
 }
 
 /*
@@ -427,11 +397,31 @@ void RSSListing::error(QNetworkReply::NetworkError)
     currentReply_ = 0;
 }
 
-void RSSListing::slotModelClicked(QModelIndex item)
+void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   feedView_->setModel(0);
-  feedModel_->setTable(QString("feed_%1").arg(model_->index(item.row(), 0).data().toString()));
+  feedModel_->setTable(QString("feed_%1").arg(model_->index(index.row(), 0).data().toString()));
   feedModel_->select();
   feedView_->setModel(feedModel_);
-  feedTabWidget_->setTabText(0, model_->index(item.row(), 1).data().toString());
+  feedTabWidget_->setTabText(0, model_->index(index.row(), 1).data().toString());
+}
+
+void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
+{
+  feedEdit_->setReadOnly(true);
+  addButton_->setEnabled(false);
+  deleteButton_->setEnabled(false);
+  feedsTreeView_->setEnabled(false);
+  treeWidget_->clear();
+
+  xml.clear();
+
+  QUrl url(model_->record(index.row()).field("link").value().toString());
+  get(url);
+}
+
+void RSSListing::slotFeedViewClicked(QModelIndex index)
+{
+  webView_->setHtml(
+      feedModel_->record(index.row()).field("description").value().toString());
 }
