@@ -72,6 +72,27 @@ its operation, and also allows very large data sources to be read.
     news.
 */
 
+const QString kCreateFeedTableQuery(
+    "create table feed_%1("
+        "id integer primary key, "
+        "guid varchar, "
+        "description varchar, "
+        "title varchar, "
+        "date varcher, "
+        "published varchar, "
+        "modified varchar, "
+        "received varchar, "
+        "author varchar, "
+        "category varchar, "
+        "label varchar, "
+        "status integer default 0, "
+        "sticky integer default 0, "
+        "attachment varchar, "
+        "feed varchar, "
+        "location varchar, "
+        "link varchar"
+    ")");
+
 RSSListing::RSSListing(QWidget *parent)
     : QWidget(parent), currentReply_(0)
 {
@@ -90,9 +111,9 @@ RSSListing::RSSListing(QWidget *parent)
       db_.exec("insert into feeds(link) values ('http://labs.qt.nokia.com/blogs/feed')");
       db_.exec("insert into feeds(link) values ('http://www.prog.org.ru/index.php?type=rss;action=.xml')");
       db_.exec("create table info(id integer primary key, name varchar, value varchar)");
-      db_.exec("insert into info(name, value) values ('version', '1')");
-      db_.exec("create table feed_1(id integer primary key, description varchar, guid varchar)");
-      db_.exec("create table feed_2(id integer primary key, description varchar, guid varchar)");
+      db_.exec("insert into info(name, value) values ('version', '1.0')");
+      db_.exec(kCreateFeedTableQuery.arg(1));
+      db_.exec(kCreateFeedTableQuery.arg(2));
     }
 
     model_ = new QSqlTableModel();
@@ -235,9 +256,7 @@ void RSSListing::addFeed()
   QSqlQuery q(db_);
   QString qStr = "insert into feeds(link) values ('" + feedEdit_->text() + "')";
   q.exec(qStr);
-  qStr = QString("create table feed_%1(id integer primary key, description varchar, guid varchar)").
-      arg(q.lastInsertId().toString());
-  q.exec(qStr);
+  q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
   model_->select();
 }
 
