@@ -56,8 +56,6 @@ its operation, and also allows very large data sources to be read.
 
 #include <QtDebug>
 #include <QtCore>
-#include <QtGui>
-#include <QtNetwork>
 
 #include "rsslisting.h"
 
@@ -94,7 +92,7 @@ const QString kCreateFeedTableQuery(
     ")");
 
 RSSListing::RSSListing(QWidget *parent)
-    : QWidget(parent), currentReply_(0)
+    : QMainWindow(parent), currentReply_(0)
 {
     feedEdit_ = new QLineEdit();
     addButton_ = new QPushButton(tr("Add"));
@@ -196,14 +194,33 @@ RSSListing::RSSListing(QWidget *parent)
     feedSplitter->addWidget(contentSplitter);
 
     QVBoxLayout *layout = new QVBoxLayout();
-    layout->setMargin(0);
+    layout->setMargin(4);
     layout->addWidget(feedSplitter);
-    setLayout(layout);
 
-    setWindowTitle(tr("RSS listing example"));
+    QWidget *centralWidget = new QWidget();
+    centralWidget->setLayout(layout);
+
+    setCentralWidget(centralWidget);
+
+    setWindowTitle(tr("QtRSS"));
+
+    createMenu();
+
+    statusBar()->setVisible(true);
 
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
+}
+
+void RSSListing::createMenu()
+{
+  menuBar()->addMenu(tr("&File"));
+  menuBar()->addMenu(tr("&Edit"));
+  menuBar()->addMenu(tr("&View"));
+  menuBar()->addMenu(tr("Fee&ds"));
+  menuBar()->addMenu(tr("&News"));
+  menuBar()->addMenu(tr("&Tools"));
+  menuBar()->addMenu(tr("&Help"));
 }
 
 /*

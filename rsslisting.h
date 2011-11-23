@@ -41,15 +41,9 @@
 #ifndef RSSLISTING_H
 #define RSSLISTING_H
 
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QWidget>
-#include <QTreeView>
-#include <QBuffer>
-#include <QXmlStreamReader>
-#include <QUrl>
-#include <QtWebKit>
+#include <QtGui>
 #include <QtSql>
+#include <QtWebKit>
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -58,7 +52,7 @@ class QTreeWidgetItem;
 class QPushButton;
 QT_END_NAMESPACE
 
-class RSSListing : public QWidget
+class RSSListing : public QMainWindow
 {
     Q_OBJECT
 public:
@@ -78,6 +72,7 @@ public slots:
 private:
     void parseXml();
     void get(const QUrl &url);
+    void createMenu();
 
     QXmlStreamReader xml;
     QString currentTag;
