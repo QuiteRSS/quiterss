@@ -105,7 +105,7 @@ private:
     QTreeView *feedsTreeView_;
     QTreeWidget *treeWidget_;
     QTabWidget *feedTabWidget_;
-    QTreeView *feedView_;
+    QTableView *feedView_;
 
     QWebView *webView_;
 };
