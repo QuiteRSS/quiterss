@@ -363,11 +363,12 @@ void RSSListing::parseXml()
                     arg(guidString);
                 q.exec(qStr);
                 if (!q.next()) {
-                  qStr = QString("insert into feed_%1(description, guid) values(?, ?)").
+                  qStr = QString("insert into feed_%1(description, guid, title) values(?, ?, ?)").
                       arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString());
                   q.prepare(qStr);
                   q.addBindValue(descriptionString);
                   q.addBindValue(guidString);
+                  q.addBindValue(titleString);
                   q.exec();
                   qDebug() << q.lastError().number() << ": " << q.lastError().text();
                 }
@@ -427,6 +428,22 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   feedModel_->setTable(QString("feed_%1").arg(model_->index(index.row(), 0).data().toString()));
   feedModel_->select();
   feedView_->setModel(feedModel_);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("id"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("guid"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("description"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("date"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("published"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("modified"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("received"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("author"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("category"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("label"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("status"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("sticky"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("attachment"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("feed"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("location"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("link"), true);
   feedTabWidget_->setTabText(0, model_->index(index.row(), 1).data().toString());
 }
 
