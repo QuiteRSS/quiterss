@@ -69,6 +69,11 @@ public slots:
     void slotFeedsTreeClicked(QModelIndex index);
     void slotFeedsTreeDoubleClicked(QModelIndex index);
     void slotFeedViewClicked(QModelIndex index);
+    void slotFeedsTreeKeyUpDownPressed();
+    void slotFeedKeyUpDownPressed();
+
+protected:
+     bool eventFilter(QObject *obj, QEvent *ev);
 
 private:
     void parseXml();
@@ -108,6 +113,10 @@ private:
     QTableView *feedView_;
 
     QWebView *webView_;
+
+signals:
+    void signalFeedsTreeKeyUpDownPressed();
+    void signalFeedKeyUpDownPressed();
 };
 
 #endif

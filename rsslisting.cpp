@@ -122,10 +122,11 @@ RSSListing::RSSListing(QWidget *parent)
     feedsTreeView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(feedsTreeView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
-    connect(feedsTreeView_, SIGNAL(activated(QModelIndex)),
-            this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(feedsTreeView_, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(slotFeedsTreeDoubleClicked(QModelIndex)));
+    connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
+            SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
+
 
     feedModel_ = new QSqlTableModel();
     feedView_ = new QTableView();
@@ -137,6 +138,8 @@ RSSListing::RSSListing(QWidget *parent)
     feedView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(feedView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedViewClicked(QModelIndex)));
+    connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
+            SLOT(slotFeedKeyUpDownPressed()), Qt::QueuedConnection);
 
     treeWidget_ = new QTreeWidget();
     connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
@@ -206,8 +209,41 @@ RSSListing::RSSListing(QWidget *parent)
 
     statusBar()->setVisible(true);
 
+    feedsTreeView_->installEventFilter(this);
+    feedView_->installEventFilter(this);
+
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
+}
+
+bool RSSListing::eventFilter(QObject *obj, QEvent *event)
+{
+  if (obj == feedsTreeView_) {
+    if (event->type() == QEvent::KeyPress) {
+      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+      if ((keyEvent->key() == Qt::Key_Up) ||
+          (keyEvent->key() == Qt::Key_Down)) {
+        emit signalFeedsTreeKeyUpDownPressed();
+      }
+      return false;
+    } else {
+      return false;
+    }
+  } else if (obj == feedView_) {
+    if (event->type() == QEvent::KeyPress) {
+      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+      if ((keyEvent->key() == Qt::Key_Up) ||
+          (keyEvent->key() == Qt::Key_Down)) {
+        emit signalFeedKeyUpDownPressed();
+      }
+      return false;
+    } else {
+      return false;
+    }
+  } else {
+    // pass the event on to the parent class
+    return QMainWindow::eventFilter(obj, event);
+  }
 }
 
 void RSSListing::createActions()
@@ -273,6 +309,7 @@ void RSSListing::addFeed()
   q.exec(qStr);
   q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
   model_->select();
+  feedEdit_->clear();
 }
 
 void RSSListing::deleteFeed()
@@ -468,4 +505,14 @@ void RSSListing::slotFeedViewClicked(QModelIndex index)
 {
   webView_->setHtml(
       feedModel_->record(index.row()).field("description").value().toString());
+}
+
+void RSSListing::slotFeedsTreeKeyUpDownPressed()
+{
+  slotFeedsTreeClicked(feedsTreeView_->currentIndex());
+}
+
+void RSSListing::slotFeedKeyUpDownPressed()
+{
+  slotFeedViewClicked(feedView_->currentIndex());
 }
