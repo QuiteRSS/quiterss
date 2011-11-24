@@ -122,6 +122,8 @@ RSSListing::RSSListing(QWidget *parent)
     feedsTreeView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(feedsTreeView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
+    connect(feedsTreeView_, SIGNAL(activated(QModelIndex)),
+            this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(feedsTreeView_, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(slotFeedsTreeDoubleClicked(QModelIndex)));
 
