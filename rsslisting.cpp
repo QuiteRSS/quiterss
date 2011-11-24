@@ -120,6 +120,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsTreeView_ = new QTreeView();
     feedsTreeView_->setModel(model_);
     feedsTreeView_->header()->setResizeMode(QHeaderView::ResizeToContents);
+    feedsTreeView_->setUniformRowHeights(true);
     connect(feedsTreeView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(feedsTreeView_, SIGNAL(doubleClicked(QModelIndex)),
@@ -128,6 +129,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedModel_ = new QSqlTableModel();
     feedView_ = new QTreeView();
     feedView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+    feedView_->setUniformRowHeights(true);
     connect(feedView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedViewClicked(QModelIndex)));
 
