@@ -73,7 +73,9 @@ public slots:
 private:
     void parseXml();
     void get(const QUrl &url);
+    void createActions();
     void createMenu();
+    void createToolBar();
 
     QXmlStreamReader xml;
     QString currentTag;
@@ -93,9 +95,13 @@ private:
     QSqlTableModel *model_;
     QSqlTableModel *feedModel_;
 
+    QAction *addFeedAct_;
+    QAction *deleteFeedAct_;
+    QMenu *fileMenu_;
+    QMenu *feedMenu_;
+    QToolBar *toolBar_;
+
     QLineEdit *feedEdit_;
-    QPushButton *addButton_;
-    QPushButton *deleteButton_;
     QTreeView *feedsTreeView_;
     QTreeWidget *treeWidget_;
     QTabWidget *feedTabWidget_;

@@ -95,8 +95,6 @@ RSSListing::RSSListing(QWidget *parent)
     : QMainWindow(parent), currentReply_(0)
 {
     feedEdit_ = new QLineEdit();
-    addButton_ = new QPushButton(tr("Add"));
-    deleteButton_ = new QPushButton(tr("Delete"));
 
     db_ = QSqlDatabase::addDatabase("QSQLITE");
     db_.setDatabaseName("data.db");
@@ -154,17 +152,8 @@ RSSListing::RSSListing(QWidget *parent)
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
-    connect(addButton_, SIGNAL(clicked()), this, SLOT(addFeed()));
-    connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteFeed()));
-
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->addWidget(addButton_);
-    buttonLayout->addWidget(deleteButton_);
-
     QVBoxLayout *treeLayout = new QVBoxLayout();
     treeLayout->setMargin(0);
-    treeLayout->addWidget(feedEdit_);
-    treeLayout->addLayout(buttonLayout);
     treeLayout->addWidget(feedsTreeView_);
 
     QWidget *treeWidget = new QWidget();
@@ -188,8 +177,6 @@ RSSListing::RSSListing(QWidget *parent)
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
     contentSplitter->addWidget(treeWidget_);
     contentSplitter->addWidget(feedTabWidget_);
-//    contentSplitter->addWidget(feedView_);
-//    contentSplitter->addWidget(webWidget);
 
     QSplitter *feedSplitter = new QSplitter();
     feedSplitter->addWidget(treeWidget);
@@ -206,7 +193,9 @@ RSSListing::RSSListing(QWidget *parent)
 
     setWindowTitle(tr("QtRSS"));
 
+    createActions();
     createMenu();
+    createToolBar();
 
     statusBar()->setVisible(true);
 
@@ -214,15 +203,44 @@ RSSListing::RSSListing(QWidget *parent)
     webView_->show();
 }
 
+void RSSListing::createActions()
+{
+  addFeedAct_ = new QAction(QIcon(":/images/add.png"), tr("&Add..."), this);
+  addFeedAct_->setStatusTip(tr("Add new feed"));
+  connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
+
+  deleteFeedAct_ = new QAction(QIcon(":/images/delete.png"), tr("&Delete..."), this);
+  deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
+  connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
+}
+
 void RSSListing::createMenu()
 {
-  menuBar()->addMenu(tr("&File"));
+  fileMenu_ = menuBar()->addMenu(tr("&File"));
+
+  fileMenu_->addAction(addFeedAct_);
+  fileMenu_->addAction(deleteFeedAct_);
+  fileMenu_->addSeparator();
+
+  QAction *exitAct_ = new QAction("E&xit", this);
+  connect(exitAct_, SIGNAL(triggered()), this, SLOT(close()));
+  fileMenu_->addAction(exitAct_);
+
   menuBar()->addMenu(tr("&Edit"));
   menuBar()->addMenu(tr("&View"));
-  menuBar()->addMenu(tr("Fee&ds"));
+  feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   menuBar()->addMenu(tr("&News"));
   menuBar()->addMenu(tr("&Tools"));
   menuBar()->addMenu(tr("&Help"));
+}
+
+void RSSListing::createToolBar()
+{
+  toolBar_ = addToolBar(tr("General"));
+  toolBar_->addWidget(feedEdit_);
+  toolBar_->addAction(addFeedAct_);
+  toolBar_->addAction(deleteFeedAct_);
+  toolBar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 }
 
 /*
@@ -303,8 +321,8 @@ void RSSListing::finished(QNetworkReply *reply)
 {
     Q_UNUSED(reply);
     feedEdit_->setReadOnly(false);
-    addButton_->setEnabled(true);
-    deleteButton_->setEnabled(true);
+    addFeedAct_->setEnabled(true);
+    deleteFeedAct_->setEnabled(true);
     feedsTreeView_->setEnabled(true);
 }
 
@@ -411,8 +429,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
 {
   feedEdit_->setReadOnly(true);
-  addButton_->setEnabled(false);
-  deleteButton_->setEnabled(false);
+  addFeedAct_->setEnabled(false);
+  deleteFeedAct_->setEnabled(false);
   feedsTreeView_->setEnabled(false);
   treeWidget_->clear();
 
