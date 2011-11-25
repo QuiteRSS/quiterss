@@ -58,6 +58,7 @@ its operation, and also allows very large data sources to be read.
 #include <QtCore>
 
 #include "rsslisting.h"
+#include "VersionNo.h"
 
 
 /*
@@ -201,7 +202,9 @@ RSSListing::RSSListing(QWidget *parent)
 
     setCentralWidget(centralWidget);
 
-    setWindowTitle(tr("QtRSS"));
+
+    setWindowTitle(QString("QtRSS v") +
+                   QString(STRFILEVER).left(QString(STRFILEVER).lastIndexOf('.')));
 
     createActions();
     createMenu();
