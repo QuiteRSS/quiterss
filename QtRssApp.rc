@@ -31,7 +31,7 @@ BEGIN
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "QtRSS\0"
 	    VALUE "OriginalFilename", "QtRSS.exe\0"
-            VALUE "LegalCopyright", "Aleksey Hohryakov\0"
+            VALUE "LegalCopyright", "Aleksey Khokhryakov\0"
             VALUE "ProductName", "QtRSS\0"
             VALUE "ProductVersion", STRPRODUCTVER
         END
