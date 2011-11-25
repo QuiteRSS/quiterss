@@ -86,6 +86,7 @@ const QString kCreateFeedTableQuery(
         "label varchar, "
         "status integer default 0, "
         "sticky integer default 0, "
+        "deleted integer default 0, "
         "attachment varchar, "
         "feed varchar, "
         "location varchar, "
