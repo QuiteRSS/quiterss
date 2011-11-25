@@ -214,11 +214,15 @@ RSSListing::RSSListing(QWidget *parent)
     createMenu();
     createToolBar();
 
-    statusBar()->setVisible(true);
-
     feedsView_->installEventFilter(this);
     newsView_->installEventFilter(this);
 
+    //! GIU tuning
+    treeWidgetToggle_->toggle();
+
+    statusBar()->setVisible(true);
+
+    //! testing
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
 }
@@ -262,12 +266,17 @@ void RSSListing::createActions()
   deleteFeedAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("&Delete..."), this);
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
+
+  treeWidgetToggle_ = new QAction(tr("&Query results"), this);
+  treeWidgetToggle_->setCheckable(true);
+  treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
+  connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
+
 }
 
 void RSSListing::createMenu()
 {
   fileMenu_ = menuBar()->addMenu(tr("&File"));
-
   fileMenu_->addAction(addFeedAct_);
   fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
@@ -277,7 +286,10 @@ void RSSListing::createMenu()
   fileMenu_->addAction(exitAct_);
 
   menuBar()->addMenu(tr("&Edit"));
-  menuBar()->addMenu(tr("&View"));
+
+  viewMenu_ = menuBar()->addMenu(tr("&View"));
+  viewMenu_->addAction(treeWidgetToggle_);
+
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   menuBar()->addMenu(tr("&News"));
   menuBar()->addMenu(tr("&Tools"));
@@ -517,4 +529,9 @@ void RSSListing::slotFeedsTreeKeyUpDownPressed()
 void RSSListing::slotFeedKeyUpDownPressed()
 {
   slotFeedViewClicked(newsView_->currentIndex());
+}
+
+void RSSListing::toggleQueryResults(bool checked)
+{
+  treeWidget_->setVisible(checked);
 }
