@@ -77,7 +77,6 @@ const QString kCreateFeedTableQuery(
         "guid varchar, "
         "description varchar, "
         "title varchar, "
-        "date varcher, "
         "published varchar, "
         "modified varchar, "
         "received varchar, "
@@ -164,10 +163,10 @@ RSSListing::RSSListing(QWidget *parent)
     manager_.setProxy(networkProxy_);
     QNetworkProxy::setApplicationProxy(networkProxy_);
 
-
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
+    //! Create layout
     QVBoxLayout *treeLayout = new QVBoxLayout();
     treeLayout->setMargin(0);
     treeLayout->addWidget(feedsView_);
@@ -405,13 +404,16 @@ void RSSListing::parseXml()
                 q.exec(qStr);
                 // если статей с таким giud нет, добавляем статью в базу
                 if (!q.next()) {
-                  qStr = QString("insert into feed_%1(description, guid, title, date) values(?, ?, ?, ?)").
+                  qStr = QString("insert into feed_%1("
+                                 "description, guid, title, published, received) "
+                                 "values(?, ?, ?, ?, ?)").
                       arg(model_->index(feedsView_->currentIndex().row(), 0).data().toString());
                   q.prepare(qStr);
                   q.addBindValue(descriptionString);
                   q.addBindValue(guidString);
                   q.addBindValue(titleString);
                   q.addBindValue(pubDateString);
+                  q.addBindValue(QDateTime::currentDateTime().toString());
                   q.exec();
                   qDebug() << q.lastError().number() << ": " << q.lastError().text();
                 }
@@ -471,9 +473,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(feedModel_->fieldIndex("id"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("guid"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("description"), true);
-  newsView_->setColumnHidden(feedModel_->fieldIndex("published"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("modified"), true);
-  newsView_->setColumnHidden(feedModel_->fieldIndex("received"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("author"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("category"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("label"), true);
@@ -484,6 +484,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(feedModel_->fieldIndex("feed"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("location"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("link"), true);
+  newsView_->setSortingEnabled(true);
+  newsView_->sortByColumn(feedModel_->fieldIndex("published"));
   newsTabWidget_->setTabText(0, model_->index(index.row(), 1).data().toString());
 }
 
