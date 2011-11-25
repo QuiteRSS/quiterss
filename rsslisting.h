@@ -107,10 +107,11 @@ private:
     QToolBar *toolBar_;
 
     QLineEdit *feedEdit_;
-    QTreeView *feedsTreeView_;
+    QTreeView *feedsView_;
+    QTabWidget *newsTabWidget_;
+    QTableView *newsView_;
+
     QTreeWidget *treeWidget_;
-    QTabWidget *feedTabWidget_;
-    QTableView *feedView_;
 
     QWebView *webView_;
 
