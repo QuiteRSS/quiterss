@@ -57,6 +57,7 @@ Provides the main function for the RSS news reader example.
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
+    app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
     RSSListing *rsslisting = new RSSListing;
     rsslisting->show();
     return app.exec();
