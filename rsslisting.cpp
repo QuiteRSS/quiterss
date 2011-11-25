@@ -290,9 +290,7 @@ void RSSListing::createToolBar()
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 }
 
-/*
-    Starts the network request and connects the needed signals
-*/
+/*! Starts the network request and connects the needed signals*/
 void RSSListing::get(const QUrl &url)
 {
     QNetworkRequest request(url);
@@ -341,7 +339,6 @@ void RSSListing::metaDataChanged()
     We read all the available data, and pass it to the XML
     stream reader. Then we call the XML parsing function.
 */
-
 void RSSListing::readyRead()
 {
     int statusCode = currentReply_->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -364,7 +361,6 @@ void RSSListing::readyRead()
     If the HTTP get request has finished, we make the
     user interface available to the user for further input.
 */
-
 void RSSListing::finished(QNetworkReply *reply)
 {
     Q_UNUSED(reply);
@@ -374,10 +370,6 @@ void RSSListing::finished(QNetworkReply *reply)
     feedsTreeView_->setEnabled(true);
 }
 
-
-/*
-    Parses the XML data and creates treeWidget items accordingly.
-*/
 void RSSListing::parseXml()
 {
     static int count = 0;
@@ -401,18 +393,21 @@ void RSSListing::parseXml()
                 item->setText(6, guidString);
                 treeWidget_->addTopLevelItem(item);
 
+                // поиск статей с giud в базе
                 QSqlQuery q(db_);
                 QString qStr = QString("select * from feed_%1 where guid == '%2'").
                     arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString()).
                     arg(guidString);
                 q.exec(qStr);
+                // если статей с таким giud нет, добавляем статью в базу
                 if (!q.next()) {
-                  qStr = QString("insert into feed_%1(description, guid, title) values(?, ?, ?)").
+                  qStr = QString("insert into feed_%1(description, guid, title, date) values(?, ?, ?, ?)").
                       arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString());
                   q.prepare(qStr);
                   q.addBindValue(descriptionString);
                   q.addBindValue(guidString);
                   q.addBindValue(titleString);
+                  q.addBindValue(pubDateString);
                   q.exec();
                   qDebug() << q.lastError().number() << ": " << q.lastError().text();
                 }
@@ -449,9 +444,6 @@ void RSSListing::parseXml()
     slotFeedsTreeClicked(model_->index(feedsTreeView_->currentIndex().row(), 0));
 }
 
-/*
-    Open the link in the browser
-*/
 void RSSListing::itemActivated(QTreeWidgetItem * item)
 {
 //    QDesktopServices::openUrl(QUrl(item->text(1)));
@@ -475,7 +467,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   feedView_->setColumnHidden(feedModel_->fieldIndex("id"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("guid"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("description"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("date"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("published"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("modified"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("received"), true);
@@ -484,6 +475,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   feedView_->setColumnHidden(feedModel_->fieldIndex("label"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("status"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("sticky"), true);
+  feedView_->setColumnHidden(feedModel_->fieldIndex("deleted"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("attachment"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("feed"), true);
   feedView_->setColumnHidden(feedModel_->fieldIndex("location"), true);
