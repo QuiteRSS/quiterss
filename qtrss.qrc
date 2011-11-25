@@ -2,4 +2,8 @@
     <qresource prefix="/html">
         <file>test1.html</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>add.png</file>
+        <file>delete.png</file>
+    </qresource>
 </RCC>
