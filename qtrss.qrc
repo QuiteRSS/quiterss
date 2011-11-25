@@ -7,4 +7,7 @@
         <file alias="deleteFeed">images/delete.png</file>
         <file>QtRSS.ico</file>
     </qresource>
+    <qresource prefix="/style">
+        <file alias="qstyle">style/QtRSS.qss</file>
+    </qresource>
 </RCC>

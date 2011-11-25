@@ -131,12 +131,16 @@ RSSListing::RSSListing(QWidget *parent)
 
     feedModel_ = new QSqlTableModel();
     feedView_ = new QTableView();
+    feedView_->setObjectName("feedView");
     feedView_->setSelectionBehavior(QAbstractItemView::SelectRows);
     feedView_->horizontalHeader()->setStretchLastSection(true);
     feedView_->verticalHeader()->setDefaultSectionSize(
         feedView_->verticalHeader()->minimumSectionSize());
     feedView_->verticalHeader()->setVisible(false);
     feedView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    feedView_->setShowGrid(false);
+//    feedView_->setFocusPolicy(Qt::NoFocus);
+
     connect(feedView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),

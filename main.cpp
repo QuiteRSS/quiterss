@@ -58,6 +58,15 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
+
+//    QString fileString = ":/style/qstyle";
+    QString dirString = app.applicationDirPath();
+    QString fileString = dirString + "/Style/QtRSS.qss";
+    QFile file(fileString);
+    file.open(QFile::ReadOnly);
+    QString strCSS = QLatin1String(file.readAll());
+    app.setStyleSheet(strCSS);
+
     RSSListing *rsslisting = new RSSListing;
     rsslisting->show();
     return app.exec();

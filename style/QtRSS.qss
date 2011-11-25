@@ -1,0 +1,65 @@
+/* Simple Style */
+QWidget {
+	font: normal 12px "Arial";
+}
+
+#feedView {
+
+}
+
+#feedView::item:selected {
+	color: #000000;
+	border: 1px solid #71A8FF;
+	border-radius: 3px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+								stop:0 #B3D9FF, 
+								stop:0.3 #DFEFFF, 
+								stop:1 #B3D9FF);
+}
+
+#feedView::item:hover {
+	border: 1px solid #71A8FF;
+	border-radius: 3px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
+								stop:0 #DFEFFF, 
+								stop:0.3 #F2F9FF, 
+								stop:1 #DFEFFF);
+}
+
+QTabWidget::pane { /* Рамка виджета со вкладками */
+	border-top: 0px solid #C2C7CB;
+}
+
+QTabWidget::tab-bar {
+	left: 5px; /* сдвигаем вправо на 5px */
+}
+
+/* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
+ оно читается как QTabBar, а _не_ QTabWidget */
+QTabBar::tab {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+								stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+	border: 1px solid #C4C4C3;
+	border-bottom: 0px;
+	/*border-bottom-color: #C2C7CB;*/ /* такой же цвет как у панели */
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	min-width: 8ex;
+	padding: 4px;
+}
+
+	QTabBar::tab:selected, QTabBar::tab:hover {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+}
+
+QTabBar::tab:selected {
+	border-color: #9B9B9B;
+	border-bottom-color: #C2C7CB; /* такой же цвет как у панели */
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px; /* делаем невыбранные вкладки меньше */
+}
