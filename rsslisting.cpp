@@ -248,11 +248,11 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 
 void RSSListing::createActions()
 {
-  addFeedAct_ = new QAction(QIcon(":/images/add.png"), tr("&Add..."), this);
+  addFeedAct_ = new QAction(QIcon(":/images/addFeed"), tr("&Add..."), this);
   addFeedAct_->setStatusTip(tr("Add new feed"));
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
-  deleteFeedAct_ = new QAction(QIcon(":/images/delete.png"), tr("&Delete..."), this);
+  deleteFeedAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("&Delete..."), this);
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 }

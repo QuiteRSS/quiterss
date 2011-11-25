@@ -3,7 +3,7 @@
         <file>test1.html</file>
     </qresource>
     <qresource prefix="/images">
-        <file>add.png</file>
-        <file>delete.png</file>
+        <file alias="addFeed">images/add.png</file>
+        <file alias="deleteFeed">images/delete.png</file>
     </qresource>
 </RCC>
