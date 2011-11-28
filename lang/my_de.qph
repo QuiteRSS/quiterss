@@ -1,0 +1,83 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="en_GB" language="de_DE">
+<phrase>
+    <source>Stop</source>
+    <target>Stop</target>
+</phrase>
+<phrase>
+    <source>Previous</source>
+    <target>Letzte Datei</target>
+</phrase>
+<phrase>
+    <source>Next</source>
+    <target>Nächste Datei</target>
+</phrase>
+<phrase>
+    <source>Pause</source>
+    <target>Pause</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>Geöffnet</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>Wiedergabe</target>
+</phrase>
+<phrase>
+    <source>Volume</source>
+    <target>Lautstärke</target>
+</phrase>
+<phrase>
+    <source>Playlist (show/hide)</source>
+    <target>Wiedergabeliste (anzeigen/verstecken)</target>
+</phrase>
+<phrase>
+    <source>Open File...</source>
+    <target>Datei öffnen...</target>
+</phrase>
+<phrase>
+    <source>Aspect ratio</source>
+    <target>Seitenverhältnis</target>
+</phrase>
+<phrase>
+    <source>Scale mode</source>
+    <target>Modus Skalieren</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>Standart</target>
+</phrase>
+<phrase>
+    <source>Stretch to window</source>
+    <target>Auf Fenstergröße strecken</target>
+</phrase>
+<phrase>
+    <source>Mute</source>
+    <target>Stummschaltung</target>
+</phrase>
+<phrase>
+    <source>Play/Pause</source>
+    <target>Wiedergabe/Pause</target>
+</phrase>
+<phrase>
+    <source>Full screen</source>
+    <target>Vollbild</target>
+</phrase>
+<phrase>
+    <source>Media files (all types)</source>
+    <target>Medien Dateien (Alle Formate)</target>
+</phrase>
+<phrase>
+    <source>Video files</source>
+    <target>Video Dateien</target>
+</phrase>
+<phrase>
+    <source>Audio files</source>
+    <target>Audio Dateien</target>
+</phrase>
+<phrase>
+    <source>All files</source>
+    <target>Alle Dateien</target>
+</phrase>
+</QPH>
