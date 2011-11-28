@@ -222,7 +222,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->installEventFilter(this);
 
     //! GIU tuning
-    treeWidgetToggle_->toggle();
+    toggleQueryResults(false);
 
     statusBar()->setVisible(true);
 
