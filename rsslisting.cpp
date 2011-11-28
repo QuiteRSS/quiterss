@@ -350,6 +350,15 @@ void RSSListing::addFeed()
 
 void RSSListing::deleteFeed()
 {
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Question);
+  msgBox.setText(QString("Are you sure to delete the feed '%1'?").
+                 arg(model_->record(feedsView_->currentIndex().row()).field("link").value().toString()));
+  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+  msgBox.setDefaultButton(QMessageBox::No);
+
+  if (msgBox.exec() == QMessageBox::No) return;
+
   QSqlQuery q(db_);
   QString str = QString("delete from feeds where link='%1'").
       arg(model_->record(feedsView_->currentIndex().row()).field("link").value().toString());
