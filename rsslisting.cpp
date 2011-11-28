@@ -222,13 +222,25 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->installEventFilter(this);
 
     //! GIU tuning
-    treeWidgetToggle_->toggle();
+    toggleQueryResults(false);
 
     statusBar()->setVisible(true);
 
     //! testing
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
+}
+
+RSSListing::~RSSListing()
+{
+  delete newsView_;
+  delete feedsView_;
+  delete feedModel_;
+  delete model_;
+
+  db_.close();
+
+  QSqlDatabase::removeDatabase(QString());
 }
 
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
@@ -331,18 +343,29 @@ void RSSListing::addFeed()
   QString qStr = "insert into feeds(link) values ('" + feedEdit_->text() + "')";
   q.exec(qStr);
   q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+  q.finish();
   model_->select();
   feedEdit_->clear();
 }
 
 void RSSListing::deleteFeed()
 {
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Question);
+  msgBox.setText(QString("Are you sure to delete the feed '%1'?").
+                 arg(model_->record(feedsView_->currentIndex().row()).field("link").value().toString()));
+  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+  msgBox.setDefaultButton(QMessageBox::No);
+
+  if (msgBox.exec() == QMessageBox::No) return;
+
   QSqlQuery q(db_);
   QString str = QString("delete from feeds where link='%1'").
       arg(model_->record(feedsView_->currentIndex().row()).field("link").value().toString());
   q.exec(str);
   q.exec(QString("drop table feed_%1").
       arg(model_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+  q.finish();
   model_->select();
 }
 
@@ -435,6 +458,7 @@ void RSSListing::parseXml()
                   q.exec();
                   qDebug() << q.lastError().number() << ": " << q.lastError().text();
                 }
+                q.finish();
 
                 itemString.clear();
                 titleString.clear();

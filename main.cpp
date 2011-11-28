@@ -38,21 +38,9 @@
 **
 ****************************************************************************/
 
-/*
-main.cpp
-
-Provides the main function for the RSS news reader example.
-*/
-
 #include <QtGui>
 
 #include "rsslisting.h"
-
-/*!
-    Create an application and a main widget. Open the main widget for
-    user input, and exit with an appropriate return value when it is
-    closed.
-*/
 
 void LoadLang (QString &lang){
     QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
@@ -82,5 +70,10 @@ int main(int argc, char **argv)
 
     RSSListing *rsslisting = new RSSListing();
     rsslisting->show();
-    return app.exec();
+
+    int result = app.exec();
+
+    delete rsslisting;
+
+    return result;
 }
