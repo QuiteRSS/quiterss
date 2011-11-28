@@ -68,12 +68,8 @@ int main(int argc, char **argv)
     translator.load(lang, app.applicationDirPath() + QString("/lang"));
     app.installTranslator(&translator);
 
-    RSSListing *rsslisting = new RSSListing();
-    rsslisting->show();
+    RSSListing rsslisting;
+    rsslisting.show();
 
-    int result = app.exec();
-
-    delete rsslisting;
-
-    return result;
+    return app.exec();
 }
