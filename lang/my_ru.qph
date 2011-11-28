@@ -1,0 +1,127 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="en_GB" language="ru_RU">
+<phrase>
+    <source>Pause</source>
+    <target>Пауза</target>
+</phrase>
+<phrase>
+    <source>Next</source>
+    <target>Следущий файл</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>Открыть</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>Воспроизвести</target>
+</phrase>
+<phrase>
+    <source>Stop</source>
+    <target>Остановить</target>
+</phrase>
+<phrase>
+    <source>Previous</source>
+    <target>Предыдущий файл</target>
+</phrase>
+<phrase>
+    <source>Volume</source>
+    <target>Громкость</target>
+</phrase>
+<phrase>
+    <source>Playlist (show/hide)</source>
+    <target>Показать/спрятать плейлист</target>
+</phrase>
+<phrase>
+    <source>Open File...</source>
+    <target>Открыть файл...</target>
+</phrase>
+<phrase>
+    <source>Aspect ratio</source>
+    <target>Пропорции</target>
+</phrase>
+<phrase>
+    <source>Scale mode</source>
+    <target>Режим масштабирования</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>По умолчанию</target>
+</phrase>
+<phrase>
+    <source>Stretch to window</source>
+    <target>Растянуть до размера окна</target>
+</phrase>
+<phrase>
+    <source>Mute</source>
+    <target>Отключить звук</target>
+</phrase>
+<phrase>
+    <source>Full screen</source>
+    <target>Во весь экран</target>
+</phrase>
+<phrase>
+    <source>Media files (all types)</source>
+    <target>Медиа файлы (все типы)</target>
+</phrase>
+<phrase>
+    <source>Video files</source>
+    <target>Видео файлы</target>
+</phrase>
+<phrase>
+    <source>Audio files</source>
+    <target>Аудио файлы</target>
+</phrase>
+<phrase>
+    <source>All files</source>
+    <target>Все файлы</target>
+</phrase>
+<phrase>
+    <source>&amp;File</source>
+    <target>&amp;Файл</target>
+</phrase>
+<phrase>
+    <source>&amp;Add...</source>
+    <target>&amp;Добавить...</target>
+</phrase>
+<phrase>
+    <source>&amp;Delete...</source>
+    <target>&amp;Удалить...</target>
+</phrase>
+<phrase>
+    <source>Delete selected feed</source>
+    <target>Удалить новостную ленту</target>
+</phrase>
+<phrase>
+    <source>Add new feed</source>
+    <target>Добавить новую новостную ленту</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>Отображение</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>Настройки</target>
+</phrase>
+<phrase>
+    <source>&amp;Help</source>
+    <target>Сп&amp;равка</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>&amp;Вид</target>
+</phrase>
+<phrase>
+    <source>&amp;Edit</source>
+    <target>&amp;Правка</target>
+</phrase>
+<phrase>
+    <source>E&amp;xit</source>
+    <target>В&amp;ыход</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>&amp;Настройки</target>
+</phrase>
+</QPH>

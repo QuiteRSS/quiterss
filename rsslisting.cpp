@@ -117,7 +117,8 @@ RSSListing::RSSListing(QWidget *parent)
     model_->select();
 
     feedsView_ = new QTreeView();
-    feedsView_->setModel(model_);
+    feedsView_->setObjectName("feedsTreeView_");
+    feedsView_->setModel(model_); 
     feedsView_->header()->setResizeMode(QHeaderView::ResizeToContents);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -187,6 +188,9 @@ RSSListing::RSSListing(QWidget *parent)
     feedTabSplitter->addWidget(webWidget);
 
     newsTabWidget_ = new QTabWidget();
+    QFont font_ = newsTabWidget_->font();
+    font_.setBold(true);
+    newsTabWidget_->setFont(font_);
     newsTabWidget_->addTab(feedTabSplitter, "");
 
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
@@ -292,7 +296,7 @@ void RSSListing::createMenu()
   fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
 
-  QAction *exitAct_ = new QAction("E&xit", this);
+  QAction *exitAct_ = new QAction(tr("E&xit"), this);
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(close()));
   fileMenu_->addAction(exitAct_);
 
@@ -303,7 +307,9 @@ void RSSListing::createMenu()
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   menuBar()->addMenu(tr("&News"));
-  menuBar()->addMenu(tr("&Tools"));
+
+  toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
+
   menuBar()->addMenu(tr("&Help"));
 }
 

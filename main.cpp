@@ -42,6 +42,16 @@
 
 #include "rsslisting.h"
 
+void LoadLang (QString &lang){
+    QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+    QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
+    QString strLocalLang = QLocale::system().name();
+
+    m_settings->beginGroup("/Settings");
+    lang = m_settings->value("/Lang", strLocalLang).toString();
+    m_settings->endGroup();
+}
+
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
@@ -55,7 +65,13 @@ int main(int argc, char **argv)
     QString strCSS = QLatin1String(file.readAll());
     app.setStyleSheet(strCSS);
 
-    RSSListing *rsslisting = new RSSListing;
+    QString lang;
+    LoadLang(lang);
+    QTranslator translator;
+    translator.load(lang, app.applicationDirPath() + QString("/lang"));
+    app.installTranslator(&translator);
+
+    RSSListing *rsslisting = new RSSListing();
     rsslisting->show();
 
     int result = app.exec();
