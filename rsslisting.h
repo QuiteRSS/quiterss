@@ -57,6 +57,7 @@ class RSSListing : public QMainWindow
     Q_OBJECT
 public:
     RSSListing(QWidget *widget = 0);
+    ~RSSListing();
 
 public slots:
     void addFeed();

@@ -227,6 +227,17 @@ RSSListing::RSSListing(QWidget *parent)
     webView_->show();
 }
 
+RSSListing::~RSSListing()
+{
+  QString dbConnectionName = db_.connectionName();
+  db_.close();
+
+  QSqlDatabase db = QSqlDatabase();
+  qDebug() << "BeforeDelete" << db_.connectionNames();
+  db.removeDatabase(dbConnectionName);
+  qDebug() << "AfterDelete" << db_.connectionNames();
+}
+
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
   if (obj == feedsView_) {
