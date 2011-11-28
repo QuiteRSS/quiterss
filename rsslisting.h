@@ -76,6 +76,7 @@ public slots:
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);
+     virtual void closeEvent(QCloseEvent*);
 
 private:
     void parseXml();
@@ -83,6 +84,8 @@ private:
     void createActions();
     void createMenu();
     void createToolBar();
+    void readSettings ();
+    void writeSettings();
 
     QXmlStreamReader xml;
     QString currentTag;

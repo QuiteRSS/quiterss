@@ -188,9 +188,6 @@ RSSListing::RSSListing(QWidget *parent)
     feedTabSplitter->addWidget(webWidget);
 
     newsTabWidget_ = new QTabWidget();
-    QFont font_ = newsTabWidget_->font();
-    font_.setBold(true);
-    newsTabWidget_->setFont(font_);
     newsTabWidget_->addTab(feedTabSplitter, "");
 
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
@@ -229,6 +226,13 @@ RSSListing::RSSListing(QWidget *parent)
     //! testing
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
+
+    readSettings();
+
+    //Установка шрифтов и их настроек для элементов
+    QFont font_ = newsTabWidget_->font();
+    font_.setBold(true);
+    newsTabWidget_->setFont(font_);
 }
 
 RSSListing::~RSSListing()
@@ -271,6 +275,11 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     // pass the event on to the parent class
     return QMainWindow::eventFilter(obj, event);
   }
+}
+
+/*virtual*/ void RSSListing::closeEvent(QCloseEvent* pe)
+{
+  writeSettings();
 }
 
 void RSSListing::createActions()
@@ -317,6 +326,7 @@ void RSSListing::createMenu()
 void RSSListing::createToolBar()
 {
   toolBar_ = addToolBar(tr("General"));
+  toolBar_->setObjectName("ToolBar_General");
   toolBar_->addWidget(feedEdit_);
   toolBar_->addAction(addFeedAct_);
   toolBar_->addAction(deleteFeedAct_);
@@ -335,6 +345,47 @@ void RSSListing::get(const QUrl &url)
     connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
     connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+}
+
+// ----------------------------------------------------------------------
+void RSSListing::readSettings()
+{
+  QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+  QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
+
+  m_settings->beginGroup("/Settings");
+
+  QString fontFamily = m_settings->value("/FontFamily", "Tahoma").toString();
+  int fontSize = m_settings->value("/FontSize", 8).toInt();
+  qApp->setFont(QFont(fontFamily, fontSize));
+
+  m_settings->endGroup();
+
+  restoreGeometry(m_settings->value("GeometryState").toByteArray());
+  restoreState(m_settings->value("ToolBarsState").toByteArray());
+}
+
+// ----------------------------------------------------------------------
+void RSSListing::writeSettings()
+{
+  QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+  QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
+
+  m_settings->beginGroup("/Settings");
+
+  QString strLocalLang = QLocale::system().name();
+  QString lang = m_settings->value("/Lang", strLocalLang).toString();
+  m_settings->setValue("/Lang", lang);
+
+  QString fontFamily = m_settings->value("/FontFamily", "Tahoma").toString();
+  m_settings->setValue("/FontFamily", fontFamily);
+  int fontSize = m_settings->value("/FontSize", 8).toInt();
+  m_settings->setValue("/FontSize", fontSize);
+
+  m_settings->endGroup();
+
+  m_settings->setValue("GeometryState", saveGeometry());
+  m_settings->setValue("ToolBarsState", saveState());
 }
 
 void RSSListing::addFeed()
