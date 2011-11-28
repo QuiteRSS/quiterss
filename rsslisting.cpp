@@ -233,13 +233,14 @@ RSSListing::RSSListing(QWidget *parent)
 
 RSSListing::~RSSListing()
 {
-  QString dbConnectionName = db_.connectionName();
+  delete newsView_;
+  delete feedsView_;
+  delete feedModel_;
+  delete model_;
+
   db_.close();
 
-  QSqlDatabase db = QSqlDatabase();
-  qDebug() << "BeforeDelete" << db_.connectionNames();
-  db.removeDatabase(dbConnectionName);
-  qDebug() << "AfterDelete" << db_.connectionNames();
+  QSqlDatabase::removeDatabase(QString());
 }
 
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
@@ -342,6 +343,7 @@ void RSSListing::addFeed()
   QString qStr = "insert into feeds(link) values ('" + feedEdit_->text() + "')";
   q.exec(qStr);
   q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+  q.finish();
   model_->select();
   feedEdit_->clear();
 }
@@ -354,6 +356,7 @@ void RSSListing::deleteFeed()
   q.exec(str);
   q.exec(QString("drop table feed_%1").
       arg(model_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+  q.finish();
   model_->select();
 }
 
@@ -446,6 +449,7 @@ void RSSListing::parseXml()
                   q.exec();
                   qDebug() << q.lastError().number() << ": " << q.lastError().text();
                 }
+                q.finish();
 
                 itemString.clear();
                 titleString.clear();
