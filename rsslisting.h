@@ -104,6 +104,7 @@ private:
     QAction *deleteFeedAct_;
     QMenu *fileMenu_;
     QMenu *feedMenu_;
+    QMenu *toolsMenu_;
     QToolBar *toolBar_;
 
     QLineEdit *feedEdit_;

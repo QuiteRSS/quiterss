@@ -1,29 +1,67 @@
 /* Simple Style */
 QWidget {
-	font: normal 12px "Arial";
+	/*font: normal 12px "Tahoma";*/
+	/*background-color: rgb(245, 245, 245);*/
 }
 
-#feedView {
-
+QMenuBar {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #d1eed1,
+										stop:0.2 #e0eee0,
+										stop:0.4 #e8eee8,
+										stop:0.6 #e0eee0,
+										stop:1 #d1eed1);
 }
 
-#feedView::item:selected {
-	color: #000000;
-	border: 1px solid #71A8FF;
+QMenuBar::item {
+	spacing: 1px;
+	padding: 3px 6px;
+	background: transparent;
 	border-radius: 3px;
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
-								stop:0 #B3D9FF, 
-								stop:0.3 #DFEFFF, 
-								stop:1 #B3D9FF);
 }
 
-#feedView::item:hover {
-	border: 1px solid #71A8FF;
+QMenuBar::item:selected {
+	border: 1px solid #84cc84;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #d1eed1,
+								stop:0.2 #f0fff0,
+								stop:0.6 #f0fff0,
+								stop:1 #d1eed1);
+}
+
+QMenuBar::item:pressed {
+	border: 1px solid #74bb74;
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #c1eec1,
+										stop:0.2 #d1eed1,
+										stop:0.4 #e0eee0,
+										stop:0.6 #d1eed1,
+										stop:1 #c1eec1);
+}
+
+QMenu {
+	background-color: #f0fff0;
+	padding: 5px 5px;
+}
+
+QMenu::item {
+	spacing: 10px;
+	padding: 3px 20px;;
+	background: transparent;
 	border-radius: 3px;
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1, 
-								stop:0 #DFEFFF, 
-								stop:0.3 #F2F9FF, 
-								stop:1 #DFEFFF);
+}
+
+QMenu::item:selected {
+	border: 1px solid #84cc84;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #d1eed1,
+								stop:0.2 #f0fff0,
+								stop:0.6 #f0fff0,
+								stop:1 #d1eed1);
+}
+
+#feedsTreeView_ {
+	background: #F9FFF9;
 }
 
 QTabWidget::pane { /* Рамка виджета со вкладками */
@@ -31,7 +69,7 @@ QTabWidget::pane { /* Рамка виджета со вкладками */
 }
 
 QTabWidget::tab-bar {
-	left: 5px; /* сдвигаем вправо на 5px */
+	/*left: 5px;*/ /* сдвигаем вправо на 5px */
 }
 
 /* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
@@ -49,7 +87,7 @@ QTabBar::tab {
 	padding: 4px;
 }
 
-	QTabBar::tab:selected, QTabBar::tab:hover {
+QTabBar::tab:selected, QTabBar::tab:hover {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);

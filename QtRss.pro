@@ -11,4 +11,6 @@ RESOURCES += \
     qtrss.qrc
 RC_FILE = QtRssApp.rc
 
-
+CODECFORTR  = UTF-8
+CODECFORSRC = UTF-8
+include(lang/lang.pri)
