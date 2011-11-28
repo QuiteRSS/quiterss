@@ -70,12 +70,9 @@ int main(int argc, char **argv)
     app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
 
 //    QString fileString = ":/style/qstyle";
-    QString dirString = app.applicationDirPath();
-    QString fileString = dirString + "/Style/QtRSS.qss";
-    QFile file(fileString);
+    QFile file(app.applicationDirPath() + "/Style/QtRSS.qss");
     file.open(QFile::ReadOnly);
-    QString strCSS = QLatin1String(file.readAll());
-    app.setStyleSheet(strCSS);
+    app.setStyleSheet(QLatin1String(file.readAll()));
 
     QString lang;
     LoadLang(lang);

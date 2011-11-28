@@ -124,4 +124,16 @@
     <source>&amp;Tools</source>
     <target>&amp;Настройки</target>
 </phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>&amp;Новостные ленты</target>
+</phrase>
+<phrase>
+    <source>&amp;News</source>
+    <target>Новос&amp;ти</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>Новостные &amp;ленты</target>
+</phrase>
 </QPH>
