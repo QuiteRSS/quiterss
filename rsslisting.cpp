@@ -77,7 +77,6 @@ const QString kCreateFeedTableQuery(
         "guid varchar, "
         "description varchar, "
         "title varchar, "
-        "date varcher, "
         "published varchar, "
         "modified varchar, "
         "received varchar, "
@@ -117,43 +116,43 @@ RSSListing::RSSListing(QWidget *parent)
     model_->setTable("feeds");
     model_->select();
 
-    feedsTreeView_ = new QTreeView();
-    feedsTreeView_->setObjectName("feedsTreeView_");
-    feedsTreeView_->setModel(model_);
-    feedsTreeView_->header()->setResizeMode(QHeaderView::ResizeToContents);
-    feedsTreeView_->setUniformRowHeights(true);
-    feedsTreeView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    connect(feedsTreeView_, SIGNAL(clicked(QModelIndex)),
+    feedsView_ = new QTreeView();
+    feedsView_->setObjectName("feedsTreeView_");
+    feedsView_->setModel(model_); 
+    feedsView_->header()->setResizeMode(QHeaderView::ResizeToContents);
+    feedsView_->setUniformRowHeights(true);
+    feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
-    connect(feedsTreeView_, SIGNAL(doubleClicked(QModelIndex)),
+    connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(slotFeedsTreeDoubleClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
 
     feedModel_ = new QSqlTableModel();
-    feedView_ = new QTableView();
-    feedView_->setObjectName("feedView");
-    feedView_->setSelectionBehavior(QAbstractItemView::SelectRows);
-    feedView_->horizontalHeader()->setStretchLastSection(true);
-    feedView_->verticalHeader()->setDefaultSectionSize(
-        feedView_->verticalHeader()->minimumSectionSize());
-    feedView_->verticalHeader()->setVisible(false);
-    feedView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    feedView_->setShowGrid(false);
+    newsView_ = new QTableView();
+    newsView_->setObjectName("feedView");
+    newsView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+    newsView_->horizontalHeader()->setStretchLastSection(true);
+    newsView_->verticalHeader()->setDefaultSectionSize(
+        newsView_->verticalHeader()->minimumSectionSize());
+    newsView_->verticalHeader()->setVisible(false);
+    newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    newsView_->setShowGrid(false);
 //    feedView_->setFocusPolicy(Qt::NoFocus);
 
-    connect(feedView_, SIGNAL(clicked(QModelIndex)),
+    connect(newsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotFeedKeyUpDownPressed()), Qt::QueuedConnection);
 
-    treeWidget_ = new QTreeWidget();
-    connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
-            this, SLOT(itemActivated(QTreeWidgetItem*)));
     QStringList headerLabels;
     headerLabels << tr("Item") << tr("Title") << tr("Link") << tr("Description")
                  << tr("Comments") << tr("pubDate") << tr("guid");
+    treeWidget_ = new QTreeWidget();
+    connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+            this, SLOT(itemActivated(QTreeWidgetItem*)));
     treeWidget_->setHeaderLabels(headerLabels);
     treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
@@ -165,13 +164,13 @@ RSSListing::RSSListing(QWidget *parent)
     manager_.setProxy(networkProxy_);
     QNetworkProxy::setApplicationProxy(networkProxy_);
 
-
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
+    //! Create layout
     QVBoxLayout *treeLayout = new QVBoxLayout();
     treeLayout->setMargin(0);
-    treeLayout->addWidget(feedsTreeView_);
+    treeLayout->addWidget(feedsView_);
 
     QWidget *treeWidget = new QWidget();
     treeWidget->setLayout(treeLayout);
@@ -185,18 +184,18 @@ RSSListing::RSSListing(QWidget *parent)
     webWidget->setLayout(webLayout);
 
     QSplitter *feedTabSplitter = new QSplitter(Qt::Vertical);
-    feedTabSplitter->addWidget(feedView_);
+    feedTabSplitter->addWidget(newsView_);
     feedTabSplitter->addWidget(webWidget);
 
-    feedTabWidget_ = new QTabWidget();
-    QFont font_ = feedTabWidget_->font();
+    newsTabWidget_ = new QTabWidget();
+    QFont font_ = newsTabWidget_->font();
     font_.setBold(true);
-    feedTabWidget_->setFont(font_);
-    feedTabWidget_->addTab(feedTabSplitter, "");
+    newsTabWidget_->setFont(font_);
+    newsTabWidget_->addTab(feedTabSplitter, "");
 
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
     contentSplitter->addWidget(treeWidget_);
-    contentSplitter->addWidget(feedTabWidget_);
+    contentSplitter->addWidget(newsTabWidget_);
 
     QSplitter *feedSplitter = new QSplitter();
     feedSplitter->addWidget(treeWidget);
@@ -219,18 +218,22 @@ RSSListing::RSSListing(QWidget *parent)
     createMenu();
     createToolBar();
 
+    feedsView_->installEventFilter(this);
+    newsView_->installEventFilter(this);
+
+    //! GIU tuning
+    treeWidgetToggle_->toggle();
+
     statusBar()->setVisible(true);
 
-    feedsTreeView_->installEventFilter(this);
-    feedView_->installEventFilter(this);
-
+    //! testing
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
 }
 
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
-  if (obj == feedsTreeView_) {
+  if (obj == feedsView_) {
     if (event->type() == QEvent::KeyPress) {
       QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
       if ((keyEvent->key() == Qt::Key_Up) ||
@@ -241,7 +244,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     } else {
       return false;
     }
-  } else if (obj == feedView_) {
+  } else if (obj == newsView_) {
     if (event->type() == QEvent::KeyPress) {
       QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
       if ((keyEvent->key() == Qt::Key_Up) ||
@@ -267,12 +270,17 @@ void RSSListing::createActions()
   deleteFeedAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("&Delete..."), this);
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
+
+  treeWidgetToggle_ = new QAction(tr("&Query results"), this);
+  treeWidgetToggle_->setCheckable(true);
+  treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
+  connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
+
 }
 
 void RSSListing::createMenu()
 {
   fileMenu_ = menuBar()->addMenu(tr("&File"));
-
   fileMenu_->addAction(addFeedAct_);
   fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
@@ -282,7 +290,10 @@ void RSSListing::createMenu()
   fileMenu_->addAction(exitAct_);
 
   menuBar()->addMenu(tr("&Edit"));
-  menuBar()->addMenu(tr("&View"));
+
+  viewMenu_ = menuBar()->addMenu(tr("&View"));
+  viewMenu_->addAction(treeWidgetToggle_);
+
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   menuBar()->addMenu(tr("&News"));
 
@@ -328,10 +339,10 @@ void RSSListing::deleteFeed()
 {
   QSqlQuery q(db_);
   QString str = QString("delete from feeds where link='%1'").
-      arg(model_->record(feedsTreeView_->currentIndex().row()).field("link").value().toString());
+      arg(model_->record(feedsView_->currentIndex().row()).field("link").value().toString());
   q.exec(str);
   q.exec(QString("drop table feed_%1").
-      arg(model_->record(feedsTreeView_->currentIndex().row()).field("id").value().toString()));
+      arg(model_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
   model_->select();
 }
 
@@ -377,7 +388,7 @@ void RSSListing::finished(QNetworkReply *reply)
     feedEdit_->setReadOnly(false);
     addFeedAct_->setEnabled(true);
     deleteFeedAct_->setEnabled(true);
-    feedsTreeView_->setEnabled(true);
+    feedsView_->setEnabled(true);
 }
 
 void RSSListing::parseXml()
@@ -406,18 +417,21 @@ void RSSListing::parseXml()
                 // поиск статей с giud в базе
                 QSqlQuery q(db_);
                 QString qStr = QString("select * from feed_%1 where guid == '%2'").
-                    arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString()).
+                    arg(model_->index(feedsView_->currentIndex().row(), 0).data().toString()).
                     arg(guidString);
                 q.exec(qStr);
                 // если статей с таким giud нет, добавляем статью в базу
                 if (!q.next()) {
-                  qStr = QString("insert into feed_%1(description, guid, title, date) values(?, ?, ?, ?)").
-                      arg(model_->index(feedsTreeView_->currentIndex().row(), 0).data().toString());
+                  qStr = QString("insert into feed_%1("
+                                 "description, guid, title, published, received) "
+                                 "values(?, ?, ?, ?, ?)").
+                      arg(model_->index(feedsView_->currentIndex().row(), 0).data().toString());
                   q.prepare(qStr);
                   q.addBindValue(descriptionString);
                   q.addBindValue(guidString);
                   q.addBindValue(titleString);
                   q.addBindValue(pubDateString);
+                  q.addBindValue(QDateTime::currentDateTime().toString());
                   q.exec();
                   qDebug() << q.lastError().number() << ": " << q.lastError().text();
                 }
@@ -451,7 +465,7 @@ void RSSListing::parseXml()
     if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
         qWarning() << "XML ERROR:" << xml.lineNumber() << ": " << xml.errorString();
     }
-    slotFeedsTreeClicked(model_->index(feedsTreeView_->currentIndex().row(), 0));
+    slotFeedsTreeClicked(model_->index(feedsView_->currentIndex().row(), 0));
 }
 
 void RSSListing::itemActivated(QTreeWidgetItem * item)
@@ -470,27 +484,27 @@ void RSSListing::error(QNetworkReply::NetworkError)
 
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  feedView_->setModel(0);
+  newsView_->setModel(0);
   feedModel_->setTable(QString("feed_%1").arg(model_->index(index.row(), 0).data().toString()));
   feedModel_->select();
-  feedView_->setModel(feedModel_);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("id"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("guid"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("description"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("published"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("modified"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("received"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("author"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("category"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("label"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("status"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("sticky"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("deleted"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("attachment"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("feed"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("location"), true);
-  feedView_->setColumnHidden(feedModel_->fieldIndex("link"), true);
-  feedTabWidget_->setTabText(0, model_->index(index.row(), 1).data().toString());
+  newsView_->setModel(feedModel_);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("id"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("guid"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("description"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("modified"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("author"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("category"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("label"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("status"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("sticky"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("deleted"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("attachment"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("feed"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("location"), true);
+  newsView_->setColumnHidden(feedModel_->fieldIndex("link"), true);
+  newsView_->setSortingEnabled(true);
+  newsView_->sortByColumn(feedModel_->fieldIndex("published"));
+  newsTabWidget_->setTabText(0, model_->index(index.row(), 1).data().toString());
 }
 
 void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
@@ -498,7 +512,7 @@ void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
   feedEdit_->setReadOnly(true);
   addFeedAct_->setEnabled(false);
   deleteFeedAct_->setEnabled(false);
-  feedsTreeView_->setEnabled(false);
+  feedsView_->setEnabled(false);
   treeWidget_->clear();
 
   xml.clear();
@@ -515,10 +529,15 @@ void RSSListing::slotFeedViewClicked(QModelIndex index)
 
 void RSSListing::slotFeedsTreeKeyUpDownPressed()
 {
-  slotFeedsTreeClicked(feedsTreeView_->currentIndex());
+  slotFeedsTreeClicked(feedsView_->currentIndex());
 }
 
 void RSSListing::slotFeedKeyUpDownPressed()
 {
-  slotFeedViewClicked(feedView_->currentIndex());
+  slotFeedViewClicked(newsView_->currentIndex());
+}
+
+void RSSListing::toggleQueryResults(bool checked)
+{
+  treeWidget_->setVisible(checked);
 }
