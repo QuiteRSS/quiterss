@@ -71,7 +71,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     newsModel_ = new QSqlTableModel();
     newsView_ = new QTableView();
-    newsView_->setObjectName("feedView");
+    newsView_->setObjectName("newsView_");
     newsView_->setModel(newsModel_);
     newsView_->setSelectionBehavior(QAbstractItemView::SelectRows);
     newsView_->horizontalHeader()->setStretchLastSection(true);
@@ -80,6 +80,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->verticalHeader()->setVisible(false);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setShowGrid(false);
+    newsView_->horizontalHeader()->setHighlightSections(false);
 //    feedView_->setFocusPolicy(Qt::NoFocus);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
