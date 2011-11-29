@@ -5,9 +5,17 @@ TEMPLATE = app
 
 HEADERS += rsslisting.h \
     VersionNo.h \
-    optionsdialog.h
+    optionsdialog.h \
+    qtsingleapplication/qtsingleapplication.h \
+    qtsingleapplication/qtlockedfile.h \
+    qtsingleapplication/qtlocalpeer.h
 SOURCES += main.cpp rsslisting.cpp \
-    optionsdialog.cpp
+    optionsdialog.cpp \
+    qtsingleapplication/qtsingleapplication.cpp \
+    qtsingleapplication/qtlockedfile_win.cpp \
+    qtsingleapplication/qtlockedfile_unix.cpp \
+    qtsingleapplication/qtlockedfile.cpp \
+    qtsingleapplication/qtlocalpeer.cpp
 
 RESOURCES += \
     qtrss.qrc
@@ -21,5 +29,7 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
 CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
 include(lang/lang.pri)
+
+
 
 

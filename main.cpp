@@ -40,6 +40,7 @@
 
 #include <QtGui>
 
+#include "qtsingleapplication/qtsingleapplication.h"
 #include "rsslisting.h"
 
 void LoadLang (QString &lang){
@@ -54,7 +55,12 @@ void LoadLang (QString &lang){
 
 int main(int argc, char **argv)
 {
-    QApplication app(argc, argv);
+    QtSingleApplication app(argc, argv);
+    if (app.isRunning()) {
+        app.sendMessage("-r "+app.arguments().value(1));
+        return 0;
+    }
+    app.setApplicationName("QtRss");
     app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
 
 //    QString fileString = ":/style/qstyle";
@@ -69,6 +75,10 @@ int main(int argc, char **argv)
     app.installTranslator(&translator);
 
     RSSListing rsslisting;
+
+    app.setActivationWindow(&rsslisting, true);
+    QObject::connect(&app, SIGNAL(messageReceived(const QString&)), &rsslisting, SLOT(receiveMessage(const QString&)));
+
     rsslisting.show();
 
     return app.exec();

@@ -619,3 +619,11 @@ void RSSListing::showOptionDlg()
   optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 }
+
+void RSSListing::receiveMessage(const QString& message)
+{
+  qDebug() << QString("Received message: %1").arg(message);
+  if (!message.isEmpty()){
+    activateWindow();
+  }
+}

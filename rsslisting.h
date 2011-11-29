@@ -74,6 +74,7 @@ public slots:
     void slotFeedKeyUpDownPressed();
     void toggleQueryResults(bool checked);
     void showOptionDlg();
+    void receiveMessage(const QString&);
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);
