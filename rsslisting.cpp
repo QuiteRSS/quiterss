@@ -31,6 +31,9 @@ const QString kCreateFeedTableQuery(
 RSSListing::RSSListing(QWidget *parent)
     : QMainWindow(parent), currentReply_(0)
 {
+    QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+    settings_ = new QSettings(AppFileName, QSettings::IniFormat);
+
     feedEdit_ = new QLineEdit();
 
     db_ = QSqlDatabase::addDatabase("QSQLITE");
@@ -311,19 +314,16 @@ void RSSListing::get(const QUrl &url)
  ******************************************************************************/
 void RSSListing::readSettings()
 {
-  QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
-  QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
+  settings_->beginGroup("/Settings");
 
-  m_settings->beginGroup("/Settings");
-
-  QString fontFamily = m_settings->value("/FontFamily", "Tahoma").toString();
-  int fontSize = m_settings->value("/FontSize", 8).toInt();
+  QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
+  int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
 
-  m_settings->endGroup();
+  settings_->endGroup();
 
-  restoreGeometry(m_settings->value("GeometryState").toByteArray());
-  restoreState(m_settings->value("ToolBarsState").toByteArray());
+  restoreGeometry(settings_->value("GeometryState").toByteArray());
+  restoreState(settings_->value("ToolBarsState").toByteArray());
 }
 
 /*! \fn void RSSListing::writeSettings() **************************************
@@ -331,24 +331,21 @@ void RSSListing::readSettings()
  ******************************************************************************/
 void RSSListing::writeSettings()
 {
-  QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
-  QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
-
-  m_settings->beginGroup("/Settings");
+  settings_->beginGroup("/Settings");
 
   QString strLocalLang = QLocale::system().name();
-  QString lang = m_settings->value("/Lang", strLocalLang).toString();
-  m_settings->setValue("/Lang", lang);
+  QString lang = settings_->value("/Lang", strLocalLang).toString();
+  settings_->setValue("/Lang", lang);
 
-  QString fontFamily = m_settings->value("/FontFamily", "Tahoma").toString();
-  m_settings->setValue("/FontFamily", fontFamily);
-  int fontSize = m_settings->value("/FontSize", 8).toInt();
-  m_settings->setValue("/FontSize", fontSize);
+  QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
+  settings_->setValue("/FontFamily", fontFamily);
+  int fontSize = settings_->value("/FontSize", 8).toInt();
+  settings_->setValue("/FontSize", fontSize);
 
-  m_settings->endGroup();
+  settings_->endGroup();
 
-  m_settings->setValue("GeometryState", saveGeometry());
-  m_settings->setValue("ToolBarsState", saveState());
+  settings_->setValue("GeometryState", saveGeometry());
+  settings_->setValue("ToolBarsState", saveState());
 }
 
 /*! \fn void RSSListing::addFeed() ********************************************
@@ -617,11 +614,8 @@ void RSSListing::toggleQueryResults(bool checked)
  ******************************************************************************/
 void RSSListing::showOptionDlg()
 {
-  QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
-  QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
-
   OptionsDialog *optionsDialog = new OptionsDialog(this);
-  optionsDialog->restoreGeometry(m_settings->value("options/geometry").toByteArray());
+  optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->exec();
-  m_settings->setValue("options/geometry", optionsDialog->saveGeometry());
+  settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 }

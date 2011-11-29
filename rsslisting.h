@@ -88,6 +88,7 @@ private:
     void readSettings ();
     void writeSettings();
 
+    QSettings *settings_;
     QXmlStreamReader xml;
     QString currentTag;
     QString itemString;
