@@ -105,8 +105,8 @@ private:
     QNetworkReply *currentReply_;
 
     QSqlDatabase db_;
-    QSqlTableModel *model_;
-    QSqlTableModel *feedModel_;
+    QSqlTableModel *feedsModel_;
+    QSqlTableModel *newsModel_;
 
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
