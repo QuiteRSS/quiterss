@@ -1,6 +1,7 @@
 #include <QtDebug>
 #include <QtCore>
 
+#include "addfeeddialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
@@ -33,8 +34,6 @@ RSSListing::RSSListing(QWidget *parent)
 {
     QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
     settings_ = new QSettings(AppFileName, QSettings::IniFormat);
-
-    feedEdit_ = new QLineEdit();
 
     db_ = QSqlDatabase::addDatabase("QSQLITE");
     db_.setDatabaseName("data.db");
@@ -289,10 +288,9 @@ void RSSListing::createToolBar()
 {
   toolBar_ = addToolBar(tr("General"));
   toolBar_->setObjectName("ToolBar_General");
-  toolBar_->addWidget(feedEdit_);
   toolBar_->addAction(addFeedAct_);
   toolBar_->addAction(deleteFeedAct_);
-  toolBar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+  toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
 
 /*! \fn void RSSListing::get(const QUrl &url) *********************************
@@ -355,13 +353,16 @@ void RSSListing::writeSettings()
  ******************************************************************************/
 void RSSListing::addFeed()
 {
+  AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
+  if (addFeedDialog->exec() == QDialog::Rejected) return;
+
   QSqlQuery q(db_);
-  QString qStr = "insert into feeds(link) values ('" + feedEdit_->text() + "')";
+  QString qStr = QString("insert into feeds(link) values (%1)").
+      arg(addFeedDialog->feedEdit_->text());
   q.exec(qStr);
   q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
   q.finish();
   feedsModel_->select();
-  feedEdit_->clear();
 }
 
 /*! \fn void RSSListing::deleteFeed() *****************************************
@@ -427,7 +428,6 @@ void RSSListing::readyRead()
 void RSSListing::finished(QNetworkReply *reply)
 {
     Q_UNUSED(reply);
-    feedEdit_->setReadOnly(false);
     addFeedAct_->setEnabled(true);
     deleteFeedAct_->setEnabled(true);
     feedsView_->setEnabled(true);
@@ -564,7 +564,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
  ******************************************************************************/
 void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
 {
-  feedEdit_->setReadOnly(true);
   addFeedAct_->setEnabled(false);
   deleteFeedAct_->setEnabled(false);
   feedsView_->setEnabled(false);

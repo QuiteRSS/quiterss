@@ -118,7 +118,6 @@ private:
     QMenu *toolsMenu_;
     QToolBar *toolBar_;
 
-    QLineEdit *feedEdit_;
     QTreeView *feedsView_;
     QTabWidget *newsTabWidget_;
     QTableView *newsView_;
