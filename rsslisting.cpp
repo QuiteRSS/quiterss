@@ -160,6 +160,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     //! GIU tuning
     toggleQueryResults(false);
+    toggleToolBar(false);
 
     statusBar()->setVisible(true);
 
@@ -242,6 +243,11 @@ void RSSListing::createActions()
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
+  toolBarToggle_ = new QAction(tr("&ToolBar"), this);
+  toolBarToggle_->setCheckable(true);
+  toolBarToggle_->setStatusTip(tr("Show ToolBar"));
+  connect(toolBarToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleToolBar(bool)));
+
   treeWidgetToggle_ = new QAction(tr("&Query results"), this);
   treeWidgetToggle_->setCheckable(true);
   treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
@@ -270,6 +276,7 @@ void RSSListing::createMenu()
   menuBar()->addMenu(tr("&Edit"));
 
   viewMenu_ = menuBar()->addMenu(tr("&View"));
+  viewMenu_->addAction(toolBarToggle_);
   viewMenu_->addAction(treeWidgetToggle_);
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
@@ -598,6 +605,14 @@ void RSSListing::slotFeedsTreeKeyUpDownPressed()
 void RSSListing::slotFeedKeyUpDownPressed()
 {
   slotFeedViewClicked(newsView_->currentIndex());
+}
+
+/*! \brief Обработка переключения отображения тулбара *************************
+ * \fn void RSSListing::toggleToolBar(bool checked)
+ ******************************************************************************/
+void RSSListing::toggleToolBar(bool checked)
+{
+  toolBar_->setVisible(checked);
 }
 
 /*! \fn void RSSListing::toggleQueryResults(bool checked) *********************

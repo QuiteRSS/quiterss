@@ -72,6 +72,7 @@ public slots:
     void slotFeedViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotFeedKeyUpDownPressed();
+    void toggleToolBar(bool checked);
     void toggleQueryResults(bool checked);
     void showOptionDlg();
     void receiveMessage(const QString&);
@@ -110,6 +111,7 @@ private:
 
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
+    QAction *toolBarToggle_;
     QAction *treeWidgetToggle_;
     QAction *optionsAct_;
     QMenu *fileMenu_;
