@@ -308,6 +308,10 @@ void RSSListing::createActions()
   treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
   connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
 
+  optionsAct_ = new QAction(tr("Options..."), this);
+  optionsAct_->setStatusTip(tr("Open options gialog"));
+  optionsAct_->setShortcut(Qt::Key_F8);
+  connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 }
 
 /*! \fn void RSSListing::createMenu() *****************************************
@@ -333,6 +337,7 @@ void RSSListing::createMenu()
   menuBar()->addMenu(tr("&News"));
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
+  toolsMenu_->addAction(optionsAct_);
 
   menuBar()->addMenu(tr("&Help"));
 }
@@ -670,4 +675,13 @@ void RSSListing::slotFeedKeyUpDownPressed()
 void RSSListing::toggleQueryResults(bool checked)
 {
   treeWidget_->setVisible(checked);
+}
+
+/*! \brief Вызов окна настроек ************************************************
+ * \fn void RSSListing::showOptionDlg()
+ ******************************************************************************/
+void RSSListing::showOptionDlg()
+{
+  QMessageBox::information(this, windowTitle(),
+              tr("Options is under construction"));
 }
