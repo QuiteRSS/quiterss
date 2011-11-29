@@ -72,6 +72,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedModel_ = new QSqlTableModel();
     newsView_ = new QTableView();
     newsView_->setObjectName("feedView");
+    newsView_->setModel(feedModel_);
     newsView_->setSelectionBehavior(QAbstractItemView::SelectRows);
     newsView_->horizontalHeader()->setStretchLastSection(true);
     newsView_->verticalHeader()->setDefaultSectionSize(
@@ -536,10 +537,8 @@ void RSSListing::error(QNetworkReply::NetworkError)
  ******************************************************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  newsView_->setModel(0);
   feedModel_->setTable(QString("feed_%1").arg(model_->index(index.row(), 0).data().toString()));
   feedModel_->select();
-  newsView_->setModel(feedModel_);
   newsView_->setColumnHidden(feedModel_->fieldIndex("id"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("guid"), true);
   newsView_->setColumnHidden(feedModel_->fieldIndex("description"), true);
