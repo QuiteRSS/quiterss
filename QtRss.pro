@@ -4,8 +4,10 @@ TARGET = QtRss
 TEMPLATE = app
 
 HEADERS += rsslisting.h \
-    VersionNo.h
-SOURCES += main.cpp rsslisting.cpp
+    VersionNo.h \
+    optionsdialog.h
+SOURCES += main.cpp rsslisting.cpp \
+    optionsdialog.cpp
 
 RESOURCES += \
     qtrss.qrc
@@ -19,3 +21,5 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
 CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
 include(lang/lang.pri)
+
+

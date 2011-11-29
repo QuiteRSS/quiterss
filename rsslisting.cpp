@@ -1,6 +1,7 @@
 #include <QtDebug>
 #include <QtCore>
 
+#include "optionsdialog.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
 
@@ -616,6 +617,11 @@ void RSSListing::toggleQueryResults(bool checked)
  ******************************************************************************/
 void RSSListing::showOptionDlg()
 {
-  QMessageBox::information(this, windowTitle(),
-              tr("Options is under construction"));
+  QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+  QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
+
+  OptionsDialog *optionsDialog = new OptionsDialog(this);
+  optionsDialog->restoreGeometry(m_settings->value("options/geometry").toByteArray());
+  optionsDialog->exec();
+  m_settings->setValue("options/geometry", optionsDialog->saveGeometry());
 }
