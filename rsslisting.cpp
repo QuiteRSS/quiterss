@@ -237,6 +237,7 @@ void RSSListing::createActions()
 {
   addFeedAct_ = new QAction(QIcon(":/images/addFeed"), tr("&Add..."), this);
   addFeedAct_->setStatusTip(tr("Add new feed"));
+  addFeedAct_->setShortcut(QKeySequence::New);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   deleteFeedAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("&Delete..."), this);
