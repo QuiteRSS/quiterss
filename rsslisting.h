@@ -120,6 +120,7 @@ private:
     QMenu *toolsMenu_;
     QToolBar *toolBar_;
 
+    QTabWidget *feedsTabWidget_;
     QTreeView *feedsView_;
     QTabWidget *newsTabWidget_;
     QTableView *newsView_;
