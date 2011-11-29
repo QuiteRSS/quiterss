@@ -517,7 +517,10 @@ void RSSListing::parseXml()
         }
     }
     if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
-        qWarning() << "XML ERROR:" << xml.lineNumber() << ": " << xml.errorString();
+      statusBar()->showMessage(QString("XML ERROR: Line=%1, ErrorString=%2").
+          arg(xml.lineNumber()).arg(xml.errorString()), 3000);
+    } else {
+      statusBar()->showMessage(QString("Fetching done"), 3000);
     }
     slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
 }
@@ -535,7 +538,7 @@ void RSSListing::itemActivated(QTreeWidgetItem * item)
  ******************************************************************************/
 void RSSListing::error(QNetworkReply::NetworkError)
 {
-    qWarning("error retrieving RSS feed");
+    statusBar()->showMessage("error retrieving RSS feed", 3000);
     currentReply_->disconnect(this);
     currentReply_->deleteLater();
     currentReply_ = 0;
