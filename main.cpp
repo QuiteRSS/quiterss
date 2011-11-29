@@ -57,8 +57,16 @@ int main(int argc, char **argv)
 {
     QtSingleApplication app(argc, argv);
     if (app.isRunning()) {
-        app.sendMessage("-r "+app.arguments().value(1));
-        return 0;
+      if (1 == argc) {
+        app.sendMessage("--show");
+      }
+      else {
+        QString message = app.arguments().value(1);
+        for (int i = 2; i < argc; ++i)
+          message += '\n' + app.arguments().value(i);
+        app.sendMessage(message);
+      }
+      return 0;
     }
     app.setApplicationName("QtRss");
     app.setWindowIcon(QIcon(":/images/QtRSS.ico"));

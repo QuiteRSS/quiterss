@@ -622,8 +622,12 @@ void RSSListing::showOptionDlg()
 
 void RSSListing::receiveMessage(const QString& message)
 {
-  qDebug() << QString("Received message: %1").arg(message);
+  qDebug() << QString("Received message: '%1'").arg(message);
   if (!message.isEmpty()){
-    activateWindow();
+    QStringList params = message.split('\n');
+    foreach (QString param, params) {
+      if (param == "--show") activateWindow();
+      if (param == "--exit") close();
+    }
   }
 }
