@@ -314,6 +314,10 @@ void RSSListing::createActions()
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
+  importFeedsAct_ = new QAction(tr("&Import feeds..."), this);
+  importFeedsAct_->setStatusTip(tr("Import feeds from OPML file"));
+  connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
+
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
@@ -338,6 +342,8 @@ void RSSListing::createMenu()
   fileMenu_ = menuBar()->addMenu(tr("&File"));
   fileMenu_->addAction(addFeedAct_);
   fileMenu_->addAction(deleteFeedAct_);
+  fileMenu_->addSeparator();
+  fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addSeparator();
 
   exitAct_ = new QAction(tr("E&xit"), this);
@@ -466,6 +472,20 @@ void RSSListing::deleteFeed()
       arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
   q.finish();
   feedsModel_->select();
+}
+
+/*! \brief Импорт лент из OPML-файла ******************************************
+ * \fn void RSSListing::deleteFeed()
+ ******************************************************************************/
+void RSSListing::importFeeds()
+{
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Information);
+  msgBox.setText(QString("Import is under construction"));
+  msgBox.setStandardButtons(QMessageBox::Ok);
+  msgBox.setDefaultButton(QMessageBox::Ok);
+
+  if (msgBox.exec() == QMessageBox::No) return;
 }
 
 void RSSListing::metaDataChanged()

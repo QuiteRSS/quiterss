@@ -62,6 +62,7 @@ public:
 public slots:
     void addFeed();
     void deleteFeed();
+    void importFeeds();
     void finished(QNetworkReply *reply);
     void readyRead();
     void metaDataChanged();
@@ -118,6 +119,7 @@ private:
 
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
+    QAction *importFeedsAct_;
     QAction *toolBarToggle_;
     QAction *treeWidgetToggle_;
     QAction *optionsAct_;
