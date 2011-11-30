@@ -136,4 +136,12 @@
     <source>Fee&amp;ds</source>
     <target>Новостные &amp;ленты</target>
 </phrase>
+<phrase>
+    <source>Options...</source>
+    <target>Настройки...</target>
+</phrase>
+<phrase>
+    <source>Show window</source>
+    <target>Показать окно</target>
+</phrase>
 </QPH>

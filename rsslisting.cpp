@@ -724,6 +724,13 @@ void RSSListing::receiveMessage(const QString& message)
 void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
+  QAction *showWindowAct_ = new QAction(tr("Show window"), this);
+  connect(showWindowAct_, SIGNAL(triggered()), this, SLOT(slotShowWindows()));
+  QFont font_ = showWindowAct_->font();
+  font_.setBold(true);
+  showWindowAct_->setFont(font_);
+  trayMenu_->addAction(showWindowAct_);
+  trayMenu_->addSeparator();
   trayMenu_->addAction(exitAct_);
   traySystem->setContextMenu(trayMenu_);
 }
