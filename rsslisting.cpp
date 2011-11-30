@@ -168,17 +168,28 @@ RSSListing::RSSListing(QWidget *parent)
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
 
+    traySystem = new QSystemTrayIcon(QIcon(":/images/images/QtRSS32.png"),this);
+    connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
+    connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
+    traySystem->setToolTip("QtRSS");
+    createTrayMenu();
+
+    connect(this, SIGNAL(signalCloseApp()),
+            SLOT(slotCloseApp()), Qt::QueuedConnection);
+
     readSettings();
 
     //Установка шрифтов и их настроек для элементов
-    QFont font_ = newsTabWidget_->font();
-    font_.setBold(true);
-    newsTabWidget_->setFont(font_);
+//    QFont font_ = newsTabWidget_->font();
+//    font_.setBold(true);
+//    newsTabWidget_->setFont(font_);
 }
 
 /*! \fn RSSListing::~RSSListing() *********************************************/
 RSSListing::~RSSListing()
 {
+  qDebug("App_Close");
   delete newsView_;
   delete feedsView_;
   delete newsModel_;
@@ -223,9 +234,70 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 /*! \fn void RSSListing::closeEvent(QCloseEvent* pe) **************************
  * \brief ОБработка событий закрытия окна
  ******************************************************************************/
-/*virtual*/ void RSSListing::closeEvent(QCloseEvent* pe)
+/*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
+  oldState = windowState();
+  event->ignore();
+  emit signalPlaceToTray();
+}
+
+void RSSListing::slotClose()
+{
+  traySystem->hide();
   writeSettings();
+  emit signalCloseApp();
+}
+
+void RSSListing::slotCloseApp()
+{
+  qApp->quit();
+}
+
+/*virtual*/ void RSSListing::changeEvent(QEvent *event)
+{
+  if(event->type() == QEvent::WindowStateChange) {
+    oldState = ((QWindowStateChangeEvent*)event)->oldState();
+    if(isMinimized()) {
+      event->ignore();
+      emit signalPlaceToTray();
+      return;
+    }
+  }
+  QMainWindow::changeEvent(event);
+}
+
+void RSSListing::slotPlaceToTray()
+{
+  traySystem->show();
+  hide();
+}
+
+void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
+{
+  switch (reason) {
+  case QSystemTrayIcon::Unknown:
+    break;
+  case QSystemTrayIcon::Context:
+    break;
+  case QSystemTrayIcon::DoubleClick:
+    slotShowWindows();
+    break;
+  case QSystemTrayIcon::Trigger:
+    break;
+  case QSystemTrayIcon::MiddleClick:
+    break;
+  }
+}
+
+void RSSListing::slotShowWindows()
+{
+  if (oldState == Qt::WindowMaximized) {
+    showMaximized();
+  } else {
+    showNormal();
+  }
+  activateWindow();
+  traySystem->hide();
 }
 
 /*! \fn void RSSListing::createActions() **************************************
@@ -270,8 +342,8 @@ void RSSListing::createMenu()
   fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
 
-  QAction *exitAct_ = new QAction(tr("E&xit"), this);
-  connect(exitAct_, SIGNAL(triggered()), this, SLOT(close()));
+  exitAct_ = new QAction(tr("E&xit"), this);
+  connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
   fileMenu_->addAction(exitAct_);
 
   menuBar()->addMenu(tr("&Edit"));
@@ -645,7 +717,14 @@ void RSSListing::receiveMessage(const QString& message)
     QStringList params = message.split('\n');
     foreach (QString param, params) {
       if (param == "--show") activateWindow();
-      if (param == "--exit") close();
+      if (param == "--exit") slotClose();
     }
   }
+}
+
+void RSSListing::createTrayMenu()
+{
+  trayMenu_ = new QMenu(this);
+  trayMenu_->addAction(exitAct_);
+  traySystem->setContextMenu(trayMenu_);
 }

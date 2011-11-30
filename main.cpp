@@ -70,6 +70,7 @@ int main(int argc, char **argv)
     }
     app.setApplicationName("QtRss");
     app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
+    app.setQuitOnLastWindowClosed(false);
 
 //    QString fileString = ":/style/qstyle";
     QFile file(app.applicationDirPath() + "/Style/QtRSS.qss");

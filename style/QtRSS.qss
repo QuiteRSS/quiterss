@@ -39,7 +39,7 @@ QMenuBar::item:pressed {
 										stop:1 #c1eec1);
 }
 
-QMenu {
+/*QMenu {
 	background-color: #f0fff0;
 	padding: 5px 5px;
 }
@@ -58,7 +58,7 @@ QMenu::item:selected {
 								stop:0.2 #f0fff0,
 								stop:0.6 #f0fff0,
 								stop:1 #d1eed1);
-}
+}*/
 
 #feedsTreeView_ {
 	background: #F9FFF9;

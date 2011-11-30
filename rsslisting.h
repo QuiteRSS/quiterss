@@ -76,10 +76,16 @@ public slots:
     void toggleQueryResults(bool checked);
     void showOptionDlg();
     void receiveMessage(const QString&);
+    void slotPlaceToTray();
+    void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
+    void slotShowWindows();
+    void slotClose();
+    void slotCloseApp();
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);
      virtual void closeEvent(QCloseEvent*);
+     virtual void changeEvent(QEvent*);
 
 private:
     void parseXml();
@@ -89,6 +95,7 @@ private:
     void createToolBar();
     void readSettings ();
     void writeSettings();
+    void createTrayMenu();
 
     QSettings *settings_;
     QXmlStreamReader xml;
@@ -114,10 +121,12 @@ private:
     QAction *toolBarToggle_;
     QAction *treeWidgetToggle_;
     QAction *optionsAct_;
+    QAction *exitAct_;
     QMenu *fileMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
     QMenu *toolsMenu_;
+    QMenu *trayMenu_;
     QToolBar *toolBar_;
 
     QTreeView *feedsView_;
@@ -128,9 +137,14 @@ private:
 
     QWebView *webView_;
 
+    QSystemTrayIcon *traySystem;
+    int oldState;
+
 signals:
     void signalFeedsTreeKeyUpDownPressed();
     void signalFeedKeyUpDownPressed();
+    void signalPlaceToTray();
+    void signalCloseApp();
 };
 
 #endif
