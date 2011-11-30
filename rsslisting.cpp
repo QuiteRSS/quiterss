@@ -240,6 +240,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   emit signalPlaceToTray();
 }
 
+/*! \brief Обработка события выхода из приложения *****************************/
 void RSSListing::slotClose()
 {
   traySystem->hide();
@@ -247,11 +248,13 @@ void RSSListing::slotClose()
   emit signalCloseApp();
 }
 
+/*! \brief Завершение приложения **********************************************/
 void RSSListing::slotCloseApp()
 {
   qApp->quit();
 }
 
+/*! \brief Обработка события изменения состояния окна *************************/
 /*virtual*/ void RSSListing::changeEvent(QEvent *event)
 {
   if(event->type() == QEvent::WindowStateChange) {
@@ -265,11 +268,13 @@ void RSSListing::slotCloseApp()
   QMainWindow::changeEvent(event);
 }
 
+/*! \brief Обработка события помещения программы в трей ***********************/
 void RSSListing::slotPlaceToTray()
 {
   hide();
 }
 
+/*! \brief Обработка событий трея *********************************************/
 void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 {
   switch (reason) {
@@ -288,6 +293,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
   }
 }
 
+/*! \brief Отображение окна по событию ****************************************/
 void RSSListing::slotShowWindows()
 {
   if (oldState == Qt::WindowMaximized) {
@@ -314,6 +320,10 @@ void RSSListing::createActions()
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
+  importFeedsAct_ = new QAction(tr("&Import feeds..."), this);
+  importFeedsAct_->setStatusTip(tr("Import feeds from OPML file"));
+  connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
+
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
@@ -338,6 +348,8 @@ void RSSListing::createMenu()
   fileMenu_ = menuBar()->addMenu(tr("&File"));
   fileMenu_->addAction(addFeedAct_);
   fileMenu_->addAction(deleteFeedAct_);
+  fileMenu_->addSeparator();
+  fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addSeparator();
 
   exitAct_ = new QAction(tr("E&xit"), this);
@@ -468,6 +480,21 @@ void RSSListing::deleteFeed()
   feedsModel_->select();
 }
 
+/*! \brief Импорт лент из OPML-файла ******************************************
+ * \fn void RSSListing::deleteFeed()
+ ******************************************************************************/
+void RSSListing::importFeeds()
+{
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Information);
+  msgBox.setText(QString("Import is under construction"));
+  msgBox.setStandardButtons(QMessageBox::Ok);
+  msgBox.setDefaultButton(QMessageBox::Ok);
+
+  if (msgBox.exec() == QMessageBox::No) return;
+}
+
+/*! \brief Обработка события изменения метаданных интернет-запроса ************/
 void RSSListing::metaDataChanged()
 {
     QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
@@ -709,6 +736,7 @@ void RSSListing::showOptionDlg()
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 }
 
+/*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
 void RSSListing::receiveMessage(const QString& message)
 {
   qDebug() << QString("Received message: '%1'").arg(message);
@@ -721,6 +749,7 @@ void RSSListing::receiveMessage(const QString& message)
   }
 }
 
+/*! \brief Создание меню трея *************************************************/
 void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
