@@ -240,6 +240,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   emit signalPlaceToTray();
 }
 
+/*! \brief Обработка события выхода из приложения *****************************/
 void RSSListing::slotClose()
 {
   traySystem->hide();
@@ -247,11 +248,13 @@ void RSSListing::slotClose()
   emit signalCloseApp();
 }
 
+/*! \brief Завершение приложения **********************************************/
 void RSSListing::slotCloseApp()
 {
   qApp->quit();
 }
 
+/*! \brief Обработка события изменения состояния окна *************************/
 /*virtual*/ void RSSListing::changeEvent(QEvent *event)
 {
   if(event->type() == QEvent::WindowStateChange) {
@@ -265,11 +268,13 @@ void RSSListing::slotCloseApp()
   QMainWindow::changeEvent(event);
 }
 
+/*! \brief Обработка события помещения программы в трей ***********************/
 void RSSListing::slotPlaceToTray()
 {
   hide();
 }
 
+/*! \brief Обработка событий трея *********************************************/
 void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 {
   switch (reason) {
@@ -288,6 +293,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
   }
 }
 
+/*! \brief Отображение окна по событию ****************************************/
 void RSSListing::slotShowWindows()
 {
   if (oldState == Qt::WindowMaximized) {
@@ -488,6 +494,7 @@ void RSSListing::importFeeds()
   if (msgBox.exec() == QMessageBox::No) return;
 }
 
+/*! \brief Обработка события изменения метаданных интернет-запроса ************/
 void RSSListing::metaDataChanged()
 {
     QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
@@ -729,6 +736,7 @@ void RSSListing::showOptionDlg()
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 }
 
+/*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
 void RSSListing::receiveMessage(const QString& message)
 {
   qDebug() << QString("Received message: '%1'").arg(message);
@@ -741,6 +749,7 @@ void RSSListing::receiveMessage(const QString& message)
   }
 }
 
+/*! \brief Создание меню трея *************************************************/
 void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
