@@ -15,6 +15,13 @@ public slots:
 signals:
 
 private:
+  QLabel *contentLabel_;
+  QStackedWidget *contentStack_;
+
+  QWidget *widgetZero_;
+  QWidget *widgetFirst_;
+  QWidget *widgetSecond_;
+
   QDialogButtonBox *buttonBox_;
 
 };

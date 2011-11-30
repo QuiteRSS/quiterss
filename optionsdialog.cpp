@@ -5,27 +5,35 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 {
   QTreeWidget *categoriesTree = new QTreeWidget();
   categoriesTree->setHeaderHidden(true);
+  categoriesTree->setColumnCount(2);
+  categoriesTree->setColumnHidden(0, true);
   QStringList treeItem;
-  treeItem << tr("First");
+  treeItem << "0" << tr("Zero");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << tr("Last");
+  treeItem << "1" << tr("First");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "2" << tr("Second");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
-  QWidget *widget1 = new QWidget();
-  widget1->setToolTip(tr("widget1"));
-  QWidget *widget2 = new QWidget();
-  widget1->setToolTip(tr("widget2"));
+  widgetZero_ = new QWidget();
+  widgetZero_->setToolTip(tr("widgetZero"));
+  widgetFirst_ = new QWidget();
+  widgetFirst_->setToolTip(tr("widgetFirst"));
+  widgetSecond_ = new QWidget();
+  widgetSecond_->setToolTip(tr("widgetSecond"));
 
-  QLabel *contentLabel = new QLabel(tr("ContentLabel"));
-  QStackedWidget *contentStack = new QStackedWidget();
-  contentStack->addWidget(widget1);
-  contentStack->addWidget(widget2);
+  contentLabel_ = new QLabel(tr("ContentLabel"));
+  contentStack_ = new QStackedWidget();
+  contentStack_->addWidget(widgetZero_);
+  contentStack_->addWidget(widgetFirst_);
+  contentStack_->addWidget(widgetSecond_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
   contentLayout->setMargin(4);
-  contentLayout->addWidget(contentLabel);
-  contentLayout->addWidget(contentStack);
+  contentLayout->addWidget(contentLabel_);
+  contentLayout->addWidget(contentStack_);
 
   QWidget *contentWidget = new QWidget();
   contentWidget->setLayout(contentLayout);
@@ -34,9 +42,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   splitter->setChildrenCollapsible(false);
   splitter->addWidget(categoriesTree);
   splitter->addWidget(contentWidget);
+  QList<int> sizes;
+  sizes << 150 << 600;
+  splitter->setSizes(sizes);
 
   connect(categoriesTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
-          contentStack, SLOT(slotcategoriesItemCLicked(QTreeWidgetItem*,int)));
+          this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
 
   buttonBox_ = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -49,9 +60,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   mainLayout->addWidget(buttonBox_);
 
   setLayout(mainLayout);
+
+  slotCategoriesItemCLicked(categoriesTree->topLevelItem(0), 0);
 }
 
 void OptionsDialog::slotCategoriesItemCLicked(QTreeWidgetItem* item, int column)
 {
-  qDebug() << "clicked" << item << column;
+  contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
+  contentStack_->setCurrentIndex(item->data(0, Qt::DisplayRole).toInt());
 }
