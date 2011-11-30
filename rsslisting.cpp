@@ -172,6 +172,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
     traySystem->setToolTip("QtRSS");
     createTrayMenu();
+    traySystem->show();
 
     connect(this, SIGNAL(signalCloseApp()),
             SLOT(slotCloseApp()), Qt::QueuedConnection);
@@ -266,7 +267,6 @@ void RSSListing::slotCloseApp()
 
 void RSSListing::slotPlaceToTray()
 {
-  traySystem->show();
   hide();
 }
 
@@ -276,6 +276,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
   case QSystemTrayIcon::Unknown:
     break;
   case QSystemTrayIcon::Context:
+    trayMenu_->activateWindow();
     break;
   case QSystemTrayIcon::DoubleClick:
     slotShowWindows();
@@ -295,7 +296,6 @@ void RSSListing::slotShowWindows()
     showNormal();
   }
   activateWindow();
-  traySystem->hide();
 }
 
 /*! \fn void RSSListing::createActions() **************************************
@@ -715,7 +715,7 @@ void RSSListing::receiveMessage(const QString& message)
   if (!message.isEmpty()){
     QStringList params = message.split('\n');
     foreach (QString param, params) {
-      if (param == "--show") activateWindow();
+      if (param == "--show") slotShowWindows();
       if (param == "--exit") slotClose();
     }
   }
