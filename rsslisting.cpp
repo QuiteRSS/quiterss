@@ -107,14 +107,11 @@ RSSListing::RSSListing(QWidget *parent)
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
-    //! Create layout
-    QVBoxLayout *treeLayout = new QVBoxLayout();
-    treeLayout->setMargin(0);
-    treeLayout->addWidget(feedsView_);
+    //! Create feed layout
+    feedsTabWidget_ = new QTabWidget();
+    feedsTabWidget_->addTab(feedsView_, tr("Feeds"));
 
-    QWidget *treeWidget = new QWidget();
-    treeWidget->setLayout(treeLayout);
-
+    //! Create news layout
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
     webLayout->addWidget(webView_);
@@ -134,8 +131,9 @@ RSSListing::RSSListing(QWidget *parent)
     contentSplitter->addWidget(treeWidget_);
     contentSplitter->addWidget(newsTabWidget_);
 
+    //! Combine layouts
     QSplitter *feedSplitter = new QSplitter();
-    feedSplitter->addWidget(treeWidget);
+    feedSplitter->addWidget(feedsTabWidget_);
     feedSplitter->addWidget(contentSplitter);
 
     QVBoxLayout *layout = new QVBoxLayout();
@@ -387,6 +385,7 @@ void RSSListing::get(const QUrl &url)
     connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
     connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+    statusBar()->showMessage(QString("Fetching start..."), 3000);
 }
 
 /*! \fn void RSSListing::readSettings() ***************************************
