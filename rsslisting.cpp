@@ -313,6 +313,7 @@ void RSSListing::get(const QUrl &url)
     connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
     connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+    statusBar()->showMessage(QString("Fetching start..."), 3000);
 }
 
 /*! \fn void RSSListing::readSettings() ***************************************
