@@ -488,13 +488,62 @@ void RSSListing::deleteFeed()
  ******************************************************************************/
 void RSSListing::importFeeds()
 {
-  QMessageBox msgBox;
-  msgBox.setIcon(QMessageBox::Information);
-  msgBox.setText(QString("Import is under construction"));
-  msgBox.setStandardButtons(QMessageBox::Ok);
-  msgBox.setDefaultButton(QMessageBox::Ok);
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
+      qApp->applicationDirPath(),
+      tr("OPML-files (*.opml)"));
 
-  if (msgBox.exec() == QMessageBox::No) return;
+  if (fileName.isNull()) {
+    statusBar()->showMessage(tr("Import canceled"), 3000);
+    return;
+  }
+
+  qDebug() << "process file:" << fileName;
+
+  QFile file(fileName);
+  if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    statusBar()->showMessage(tr("Import: can't open a file"), 3000);
+    return;
+  }
+
+  QXmlStreamReader xml(&file);
+
+  static int count = 0;
+  while (!xml.atEnd()) {
+    xml.readNext();
+    if (xml.isStartElement()) {
+      if (xml.name() == "item")
+        linkString = xml.attributes().value("rss:about").toString();
+      currentTag = xml.name().toString();
+      qDebug() << count << ":" << xml.namespaceUri().toString() << ": " << currentTag;
+    } else if (xml.isEndElement()) {
+      if (xml.name() == "item") {
+        ++count;
+      }
+    } else if (xml.isCharacters() && !xml.isWhitespace()) {
+      if (currentTag == "item")
+        itemString += xml.text().toString();
+      else if (currentTag == "title")
+        titleString += xml.text().toString();
+      else if (currentTag == "link")
+        linkString += xml.text().toString();
+      else if (currentTag == "description")
+        descriptionString += xml.text().toString();
+      else if (currentTag == "comments")
+        commentsString += xml.text().toString();
+      else if (currentTag == "pubDate")
+        pubDateString += xml.text().toString();
+      else if (currentTag == "guid")
+        guidString += xml.text().toString();
+    }
+  }
+  if (xml.error()) {
+    statusBar()->showMessage(QString("Import error: Line=%1, ErrorString=%2").
+        arg(xml.lineNumber()).arg(xml.errorString()), 3000);
+  } else {
+    statusBar()->showMessage(QString("Import: file read done"), 3000);
+  }
+
+//  statusBar()->showMessage(tr("Sorry. Import is under construction"), 3000);
 }
 
 /*! \brief Обработка события изменения метаданных интернет-запроса ************/
