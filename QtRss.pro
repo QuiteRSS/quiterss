@@ -1,4 +1,6 @@
 QT += core gui network xml webkit sql
+LIBS += f:/QtSDK/mingw/lib/libkernel32.a \
+        f:/QtSDK/mingw/lib/libpsapi.a
 
 TARGET = QtRss
 TEMPLATE = app

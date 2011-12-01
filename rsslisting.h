@@ -82,6 +82,7 @@ public slots:
     void slotShowWindows();
     void slotClose();
     void slotCloseApp();
+    void myEmptyWorkingSet();
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);

@@ -1,5 +1,7 @@
 #include <QtDebug>
 #include <QtCore>
+#include <windows.h>
+#include <Psapi.h>
 
 #include "addfeeddialog.h"
 #include "optionsdialog.h"
@@ -271,6 +273,7 @@ void RSSListing::slotCloseApp()
 /*! \brief Обработка события помещения программы в трей ***********************/
 void RSSListing::slotPlaceToTray()
 {
+  QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   hide();
 }
 
@@ -762,4 +765,10 @@ void RSSListing::createTrayMenu()
   trayMenu_->addSeparator();
   trayMenu_->addAction(exitAct_);
   traySystem->setContextMenu(trayMenu_);
+}
+
+/*! \brief Освобождение памяти ************************************************/
+void RSSListing::myEmptyWorkingSet()
+{
+  EmptyWorkingSet(GetCurrentProcess());
 }
