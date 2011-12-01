@@ -6,37 +6,40 @@ QWidget {
 
 QMenuBar {
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-										stop:0 #d1eed1,
-										stop:0.2 #e0eee0,
-										stop:0.4 #e8eee8,
-										stop:0.6 #e0eee0,
-										stop:1 #d1eed1);
+										stop:0 #e0eee0,
+										stop:0.4 #d8eed8,
+										stop:0.5 #cceecc,
+										stop:1 #e0eee0);
+	padding: 1px;
 }
 
 QMenuBar::item {
-	spacing: 1px;
 	padding: 3px 6px;
 	background: transparent;
-	border-radius: 3px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
 }
 
 QMenuBar::item:selected {
 	border: 1px solid #84cc84;
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #d1eed1,
-								stop:0.2 #f0fff0,
-								stop:0.6 #f0fff0,
-								stop:1 #d1eed1);
+								stop:0 #e9ffe9,
+								stop:0.4 #e1eee1,
+								stop:0.5 #d9eed9,
+								stop:1 #e9ffe9);
 }
 
 QMenuBar::item:pressed {
-	border: 1px solid #74bb74;
-	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-										stop:0 #c1eec1,
-										stop:0.2 #d1eed1,
-										stop:0.4 #e0eee0,
-										stop:0.6 #d1eed1,
-										stop:1 #c1eec1);
+	border-top: 1px solid #34aa34;
+	border-left: 1px solid #34aa34;
+	border-right: 1px solid #34aa34;
+	border-bottom: 0px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #7acc7a,
+								stop:0.4 #70c870,
+								stop:0.5 #60c460,
+								stop:1 #7acc7a);
+	color: white;
 }
 
 /*QMenu {
