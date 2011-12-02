@@ -43,9 +43,12 @@ RSSListing::RSSListing(QWidget *parent)
       db_.open();
     } else {  // Инициализация базы
       db_.open();
-      db_.exec("create table feeds(id integer primary key, link varchar)");
-      db_.exec("insert into feeds(link) values ('http://labs.qt.nokia.com/blogs/feed')");
-      db_.exec("insert into feeds(link) values ('http://www.prog.org.ru/index.php?type=rss;action=.xml')");
+      db_.exec("create table feeds(id integer primary key, text varchar,"
+          " title varchar, description varchar, xmlurl varchar, htmlurl varchar)");
+      db_.exec("insert into feeds(text, xmlurl) "
+          "values ('Qt Labs', 'http://labs.qt.nokia.com/blogs/feed')");
+      db_.exec("insert into feeds(text, xmlurl) "
+          "values ('Qt Russian Forum', 'http://www.prog.org.ru/index.php?type=rss;action=.xml')");
       db_.exec("create table info(id integer primary key, name varchar, value varchar)");
       db_.exec("insert into info(name, value) values ('version', '1.0')");
       db_.exec(kCreateFeedTableQuery.arg(1));
@@ -467,15 +470,15 @@ void RSSListing::deleteFeed()
   QMessageBox msgBox;
   msgBox.setIcon(QMessageBox::Question);
   msgBox.setText(QString("Are you sure to delete the feed '%1'?").
-                 arg(feedsModel_->record(feedsView_->currentIndex().row()).field("link").value().toString()));
+                 arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString()));
   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
   msgBox.setDefaultButton(QMessageBox::No);
 
   if (msgBox.exec() == QMessageBox::No) return;
 
   QSqlQuery q(db_);
-  QString str = QString("delete from feeds where link='%1'").
-      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("link").value().toString());
+  QString str = QString("delete from feeds where text='%1'").
+      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString());
   q.exec(str);
   q.exec(QString("drop table feed_%1").
       arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
@@ -507,18 +510,36 @@ void RSSListing::importFeeds()
 
   QXmlStreamReader xml(&file);
 
-  static int count = 0;
+  QString currentString;
+  int elementCount = 0;
+  int outlineCount = 0;
   while (!xml.atEnd()) {
     xml.readNext();
     if (xml.isStartElement()) {
-      if (xml.name() == "item")
-        linkString = xml.attributes().value("rss:about").toString();
-      currentTag = xml.name().toString();
-      qDebug() << count << ":" << xml.namespaceUri().toString() << ": " << currentTag;
-    } else if (xml.isEndElement()) {
-      if (xml.name() == "item") {
-        ++count;
+      statusBar()->showMessage(QVariant(elementCount).toString(), 3000);
+      // Выбираем одни outline'ы
+      if (xml.name() == "outline") {
+        currentTag = xml.name().toString();
+        qDebug() << outlineCount << "+:" << xml.prefix().toString() << ":" << currentTag;
+        QSqlQuery q(db_);
+        QString qStr = QString("insert into feeds(text, title, description, xmlurl, htmlurl) "
+                       "values(?, ?, ?, ?, ?)");
+        q.prepare(qStr);
+        q.addBindValue(xml.attributes().value("text").toString());
+        q.addBindValue(xml.attributes().value("title").toString());
+        q.addBindValue(xml.attributes().value("description").toString());
+        q.addBindValue(xml.attributes().value("xmlUrl").toString());
+        q.addBindValue(xml.attributes().value("htmlUrl").toString());
+        q.exec();
+        qDebug() << q.lastError().number() << ": " << q.lastError().text();
+        q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+        q.finish();
       }
+    } else if (xml.isEndElement()) {
+      if (xml.name() == "outline") {
+        ++outlineCount;
+      }
+      ++elementCount;
     } else if (xml.isCharacters() && !xml.isWhitespace()) {
       if (currentTag == "item")
         itemString += xml.text().toString();
@@ -534,6 +555,7 @@ void RSSListing::importFeeds()
         pubDateString += xml.text().toString();
       else if (currentTag == "guid")
         guidString += xml.text().toString();
+      else currentString += xml.text().toString();
     }
   }
   if (xml.error()) {
@@ -543,7 +565,7 @@ void RSSListing::importFeeds()
     statusBar()->showMessage(QString("Import: file read done"), 3000);
   }
 
-//  statusBar()->showMessage(tr("Sorry. Import is under construction"), 3000);
+  feedsModel_->select();
 }
 
 /*! \brief Обработка события изменения метаданных интернет-запроса ************/
@@ -732,7 +754,7 @@ void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
 
   xml.clear();
 
-  QUrl url(feedsModel_->record(index.row()).field("link").value().toString());
+  QUrl url(feedsModel_->record(index.row()).field("xmlurl").value().toString());
   get(url);
 }
 
