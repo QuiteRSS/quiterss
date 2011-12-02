@@ -65,6 +65,10 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->header()->setResizeMode(QHeaderView::ResizeToContents);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    feedsView_->hideColumn(feedsModel_->fieldIndex("title"));
+    feedsView_->hideColumn(feedsModel_->fieldIndex("description"));
+    feedsView_->hideColumn(feedsModel_->fieldIndex("xmlurl"));
+    feedsView_->hideColumn(feedsModel_->fieldIndex("htmlurl"));
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
@@ -79,12 +83,12 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setModel(newsModel_);
     newsView_->setSelectionBehavior(QAbstractItemView::SelectRows);
     newsView_->horizontalHeader()->setStretchLastSection(true);
+    newsView_->horizontalHeader()->setHighlightSections(false);
     newsView_->verticalHeader()->setDefaultSectionSize(
         newsView_->verticalHeader()->minimumSectionSize());
     newsView_->verticalHeader()->setVisible(false);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setShowGrid(false);
-    newsView_->horizontalHeader()->setHighlightSections(false);
 //    feedView_->setFocusPolicy(Qt::NoFocus);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
@@ -181,6 +185,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     connect(this, SIGNAL(signalCloseApp()),
             SLOT(slotCloseApp()), Qt::QueuedConnection);
+
+    slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
     readSettings();
 
