@@ -34,12 +34,15 @@ const QString kCreateFeedTableQuery(
 RSSListing::RSSListing(QWidget *parent)
     : QMainWindow(parent), currentReply_(0)
 {
-    QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+    QString AppFileName = qApp->applicationFilePath();
+    AppFileName.replace(".exe", ".ini");
     settings_ = new QSettings(AppFileName, QSettings::IniFormat);
 
+    QString dbFileName(qApp->applicationFilePath());
+    dbFileName.replace(".exe", ".db");
     db_ = QSqlDatabase::addDatabase("QSQLITE");
-    db_.setDatabaseName("data.db");
-    if (QFile("data.db").exists()) {
+    db_.setDatabaseName(dbFileName);
+    if (QFile(dbFileName).exists()) {
       db_.open();
     } else {  // Инициализация базы
       db_.open();
@@ -175,7 +178,7 @@ RSSListing::RSSListing(QWidget *parent)
     webView_->load(QUrl("qrc:/html/test1.html"));
     webView_->show();
 
-    traySystem = new QSystemTrayIcon(QIcon(":/images/images/QtRSS32.png"),this);
+    traySystem = new QSystemTrayIcon(QIcon(":/images/images/QtRSS16.png"),this);
     connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
     connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
