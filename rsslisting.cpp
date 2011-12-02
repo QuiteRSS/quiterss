@@ -520,6 +520,8 @@ void RSSListing::importFeeds()
     return;
   }
 
+  db_.transaction();
+
   QXmlStreamReader xml(&file);
 
   QString currentString;
@@ -576,7 +578,7 @@ void RSSListing::importFeeds()
   } else {
     statusBar()->showMessage(QString("Import: file read done"), 3000);
   }
-
+  db_.commit();
   feedsModel_->select();
 }
 
