@@ -395,6 +395,7 @@ void RSSListing::createToolBar()
  ******************************************************************************/
 void RSSListing::get(const QUrl &url)
 {
+    qDebug() << "get:" << url;
     QNetworkRequest request(url);
     if (currentReply_) {
         currentReply_->disconnect(this);
@@ -587,6 +588,7 @@ void RSSListing::metaDataChanged()
 {
     QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (redirectionTarget.isValid()) {
+        qDebug() << "get redirect...";
         get(redirectionTarget);
     }
 }
@@ -632,83 +634,100 @@ void RSSListing::finished(QNetworkReply *reply)
  ******************************************************************************/
 void RSSListing::parseXml()
 {
-    static int count = 0;
-    while (!xml.atEnd()) {
-        xml.readNext();
-        if (xml.isStartElement()) {
-            if (xml.name() == "item")
-                linkString = xml.attributes().value("rss:about").toString();
-            currentTag = xml.name().toString();
-            qDebug() << count << ": " << xml.namespaceUri().toString() << ": " << currentTag;
-        } else if (xml.isEndElement()) {
-            if (xml.name() == "item") {
+  // поиск идентификатора ленты с таблице лент
+  int parseFeedId = 0;
+  QSqlQuery q(db_);
+  q.exec(QString("select id from feeds where xmlurl like '%1'").
+      arg(currentUrl_.toString()));
+  while (q.next()) {
+    parseFeedId = q.value(q.record().indexOf("id")).toInt();
+  }
 
-                QTreeWidgetItem *item = new QTreeWidgetItem;
-                item->setText(0, itemString);
-                item->setText(1, titleString);
-                item->setText(2, linkString);
-                item->setText(3, descriptionString);
-                item->setText(4, commentsString);
-                item->setText(5, pubDateString);
-                item->setText(6, guidString);
-                treeWidget_->addTopLevelItem(item);
+  // идентификатор не найден (например, во время запроса удалили ленту)
+  if (0 == parseFeedId) {
+    qDebug() << QString("Feed '%1' not found").arg(currentUrl_.toString());
+    return;
+  }
 
-                // поиск статей с giud в базе
-                QSqlQuery q(db_);
-                QString qStr = QString("select * from feed_%1 where guid == '%2'").
-                    arg(feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toString()).
-                    arg(guidString);
-                q.exec(qStr);
-                // если статей с таким giud нет, добавляем статью в базу
-                if (!q.next()) {
-                  qStr = QString("insert into feed_%1("
-                                 "description, guid, title, published, received) "
-                                 "values(?, ?, ?, ?, ?)").
-                      arg(feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toString());
-                  q.prepare(qStr);
-                  q.addBindValue(descriptionString);
-                  q.addBindValue(guidString);
-                  q.addBindValue(titleString);
-                  q.addBindValue(pubDateString);
-                  q.addBindValue(QDateTime::currentDateTime().toString());
-                  q.exec();
-                  qDebug() << q.lastError().number() << ": " << q.lastError().text();
-                }
-                q.finish();
+  // собственно сам разбор
+  db_.transaction();
+  int itemCount = 0;
+  while (!xml.atEnd()) {
+    xml.readNext();
+    if (xml.isStartElement()) {
+      if (xml.name() == "item")
+        linkString = xml.attributes().value("rss:about").toString();
+      currentTag = xml.name().toString();
+      qDebug() << itemCount << ": " << xml.namespaceUri().toString() << ": " << currentTag;
+    } else if (xml.isEndElement()) {
+      if (xml.name() == "item") {
 
-                itemString.clear();
-                titleString.clear();
-                linkString.clear();
-                descriptionString.clear();
-                commentsString.clear();
-                pubDateString.clear();
-                guidString.clear();
-                ++count;
-            }
-        } else if (xml.isCharacters() && !xml.isWhitespace()) {
-            if (currentTag == "item")
-              itemString += xml.text().toString();
-            else if (currentTag == "title")
-              titleString += xml.text().toString();
-            else if (currentTag == "link")
-              linkString += xml.text().toString();
-            else if (currentTag == "description")
-              descriptionString += xml.text().toString();
-            else if (currentTag == "comments")
-              commentsString += xml.text().toString();
-            else if (currentTag == "pubDate")
-              pubDateString += xml.text().toString();
-            else if (currentTag == "guid")
-              guidString += xml.text().toString();
+        QTreeWidgetItem *item = new QTreeWidgetItem;
+        item->setText(0, itemString);
+        item->setText(1, titleString);
+        item->setText(2, linkString);
+        item->setText(3, descriptionString);
+        item->setText(4, commentsString);
+        item->setText(5, pubDateString);
+        item->setText(6, guidString);
+        treeWidget_->addTopLevelItem(item);
+
+        // поиск статей с giud в базе
+        QSqlQuery q(db_);
+        QString qStr = QString("select * from feed_%1 where guid == '%2'").
+            arg(parseFeedId).arg(guidString);
+        q.exec(qStr);
+        // если статей с таким giud нет, добавляем статью в базу
+        if (!q.next()) {
+          qStr = QString("insert into feed_%1("
+                         "description, guid, title, published, received) "
+                         "values(?, ?, ?, ?, ?)").
+              arg(parseFeedId);
+          q.prepare(qStr);
+          q.addBindValue(descriptionString);
+          q.addBindValue(guidString);
+          q.addBindValue(titleString);
+          q.addBindValue(pubDateString);
+          q.addBindValue(QDateTime::currentDateTime().toString());
+          q.exec();
+          qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
+        q.finish();
+
+        itemString.clear();
+        titleString.clear();
+        linkString.clear();
+        descriptionString.clear();
+        commentsString.clear();
+        pubDateString.clear();
+        guidString.clear();
+        ++itemCount;
+      }
+    } else if (xml.isCharacters() && !xml.isWhitespace()) {
+      if (currentTag == "item")
+        itemString += xml.text().toString();
+      else if (currentTag == "title")
+        titleString += xml.text().toString();
+      else if (currentTag == "link")
+        linkString += xml.text().toString();
+      else if (currentTag == "description")
+        descriptionString += xml.text().toString();
+      else if (currentTag == "comments")
+        commentsString += xml.text().toString();
+      else if (currentTag == "pubDate")
+        pubDateString += xml.text().toString();
+      else if (currentTag == "guid")
+        guidString += xml.text().toString();
     }
-    if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
-      statusBar()->showMessage(QString("XML ERROR: Line=%1, ErrorString=%2").
-          arg(xml.lineNumber()).arg(xml.errorString()), 3000);
-    } else {
-      statusBar()->showMessage(QString("Fetching done"), 3000);
-    }
-    slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
+  }
+  if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
+    statusBar()->showMessage(QString("XML ERROR: Line=%1, ErrorString=%2").
+                             arg(xml.lineNumber()).arg(xml.errorString()), 3000);
+  } else {
+    statusBar()->showMessage(QString("Fetching done"), 3000);
+  }
+  db_.commit();
+  slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
 }
 
 /*! \fn void RSSListing::itemActivated(QTreeWidgetItem * item) ****************
@@ -768,8 +787,8 @@ void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
 
   xml.clear();
 
-  QUrl url(feedsModel_->record(index.row()).field("xmlurl").value().toString());
-  get(url);
+  currentUrl_.setUrl(feedsModel_->record(index.row()).field("xmlurl").value().toString());
+  get(currentUrl_);
 }
 
 /*! \fn void RSSListing::slotFeedViewClicked(QModelIndex index) ***************

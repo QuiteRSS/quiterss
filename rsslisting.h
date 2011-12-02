@@ -112,6 +112,7 @@ private:
 
     QNetworkProxy networkProxy_;
     QNetworkAccessManager manager_;
+    QUrl currentUrl_;
     QNetworkReply *currentReply_;
 
     QSqlDatabase db_;
