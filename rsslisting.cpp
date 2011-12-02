@@ -422,6 +422,11 @@ void RSSListing::readSettings()
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
+
+  // Загрузка ширины столбцов таблицы
+  for (int i=0; i < newsModel_->columnCount(); ++i)
+    newsView_->setColumnWidth(i, settings_->value(
+         QString("newsView/columnWidth%1").arg(i), 100).toInt());
 }
 
 /*! \fn void RSSListing::writeSettings() **************************************
@@ -444,6 +449,12 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
+
+  // Сохранение ширины столбцов таблицы
+  for (int i=0; i < newsModel_->columnCount(); ++i)
+    settings_->setValue(QString("newsView/columnWidth%1").arg(i),
+        newsView_->columnWidth(i));
+
 }
 
 /*! \fn void RSSListing::addFeed() ********************************************
