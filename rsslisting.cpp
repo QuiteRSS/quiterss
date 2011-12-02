@@ -330,6 +330,10 @@ void RSSListing::createActions()
   importFeedsAct_->setStatusTip(tr("Import feeds from OPML file"));
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
 
+  exitAct_ = new QAction(tr("E&xit"), this);
+  exitAct_->setShortcut(QKeySequence::Quit);  // empty on windows :(
+  connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
+
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
@@ -357,9 +361,6 @@ void RSSListing::createMenu()
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addSeparator();
-
-  exitAct_ = new QAction(tr("E&xit"), this);
-  connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
   fileMenu_->addAction(exitAct_);
 
   menuBar()->addMenu(tr("&Edit"));
