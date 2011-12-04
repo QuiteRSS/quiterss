@@ -110,11 +110,11 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
 
-    networkProxy_.setType(QNetworkProxy::HttpProxy);
+//    networkProxy_.setType(QNetworkProxy::HttpProxy);
     networkProxy_.setHostName("10.0.0.172");
     networkProxy_.setPort(3150);
     manager_.setProxy(networkProxy_);
-    QNetworkProxy::setApplicationProxy(networkProxy_);
+//    QNetworkProxy::setApplicationProxy(networkProxy_);
 
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
@@ -428,7 +428,11 @@ void RSSListing::readSettings()
   int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
 
+  bool proxyOn = settings_->value("/Proxy", false).toBool();
   settings_->endGroup();
+
+  setProxyAct_->setChecked(proxyOn);
+  slotSetProxy();
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
@@ -876,12 +880,37 @@ void RSSListing::createTrayMenu()
   showWindowAct_->setFont(font_);
   trayMenu_->addAction(showWindowAct_);
   trayMenu_->addSeparator();
+
+  setProxyAct_ = new QAction(this);
+  setProxyAct_->setText(tr("Proxy enabled"));
+  setProxyAct_->setCheckable(true);
+  setProxyAct_->setChecked(false);
+  connect(setProxyAct_, SIGNAL(triggered(bool)), this, SLOT(slotSetProxy()));
+  trayMenu_->addAction(setProxyAct_);
+  trayMenu_->addSeparator();
+
   trayMenu_->addAction(exitAct_);
   traySystem->setContextMenu(trayMenu_);
+//  QNetworkProxy::NoProxy
 }
 
 /*! \brief Освобождение памяти ************************************************/
 void RSSListing::myEmptyWorkingSet()
 {
   EmptyWorkingSet(GetCurrentProcess());
+}
+
+void RSSListing::slotSetProxy()
+{
+  bool on = setProxyAct_->isChecked();
+  if (on) {
+    networkProxy_.setType(QNetworkProxy::HttpProxy);
+  } else {
+    networkProxy_.setType(QNetworkProxy::NoProxy);
+  }
+  QNetworkProxy::setApplicationProxy(networkProxy_);
+  settings_->beginGroup("/Settings");
+  settings_->setValue("/Proxy", on);
+  settings_->endGroup();
+
 }

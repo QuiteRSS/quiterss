@@ -126,6 +126,7 @@ private:
     QAction *treeWidgetToggle_;
     QAction *optionsAct_;
     QAction *exitAct_;
+    QAction *setProxyAct_;
     QMenu *fileMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
@@ -144,6 +145,8 @@ private:
 
     QSystemTrayIcon *traySystem;
     int oldState;
+private slots:
+    void slotSetProxy();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

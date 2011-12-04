@@ -144,4 +144,36 @@
     <source>Show window</source>
     <target>Показать окно</target>
 </phrase>
+<phrase>
+    <source>&amp;Import feeds...</source>
+    <target>&amp;Импортировать новостные ленты...</target>
+</phrase>
+<phrase>
+    <source>Import feeds from OPML file</source>
+    <target>Импортировать новостные ленты из OPML-файла</target>
+</phrase>
+<phrase>
+    <source>Proxy enabled</source>
+    <target>Прокси включен</target>
+</phrase>
+<phrase>
+    <source>Select OPML-file</source>
+    <target>Выберите OPML-файл</target>
+</phrase>
+<phrase>
+    <source>OPML-files (*.opml)</source>
+    <target>OPML-файлы (*.opml)</target>
+</phrase>
+<phrase>
+    <source>Import canceled</source>
+    <target>Отмена импортирования</target>
+</phrase>
+<phrase>
+    <source>Import: can&apos;t open a file</source>
+    <target>Импортирование: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>Feeds</source>
+    <target>Новостные ленты</target>
+</phrase>
 </QPH>
