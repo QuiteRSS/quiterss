@@ -347,12 +347,12 @@ void RSSListing::createActions()
   treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
   connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
 
-  updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update feed"), this);
+  updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update"), this);
   updateFeedAct_->setStatusTip(tr("Update current feed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotUpdateFeed()));
 
-  updateAllFeedsAct_ = new QAction(QIcon(":/images/updateAllFeeds"), tr("Update feeds"), this);
+  updateAllFeedsAct_ = new QAction(QIcon(":/images/updateAllFeeds"), tr("Update all"), this);
   updateAllFeedsAct_->setStatusTip(tr("Update all feeds"));
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateAllFeeds()));
