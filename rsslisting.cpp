@@ -30,7 +30,7 @@ const QString kCreateFeedTableQuery(
         "link varchar"
     ")");
 
-/*! \fn RSSListing::RSSListing() **********************************************/
+/*!****************************************************************************/
 RSSListing::RSSListing(QWidget *parent)
     : QMainWindow(parent), currentReply_(0)
 {
@@ -197,7 +197,7 @@ RSSListing::RSSListing(QWidget *parent)
 //    newsTabWidget_->setFont(font_);
 }
 
-/*! \fn RSSListing::~RSSListing() *********************************************/
+/*!****************************************************************************/
 RSSListing::~RSSListing()
 {
   qDebug("App_Close");
@@ -211,7 +211,7 @@ RSSListing::~RSSListing()
   QSqlDatabase::removeDatabase(QString());
 }
 
-/*! \ат RSSListing::eventFilter(QObject *obj, QEvent *event) ******************/
+/*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
   if (obj == feedsView_) {
@@ -242,9 +242,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   }
 }
 
-/*! \fn void RSSListing::closeEvent(QCloseEvent* pe) **************************
- * \brief ОБработка событий закрытия окна
- ******************************************************************************/
+/*! \brief ОБработка событий закрытия окна ************************************/
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
   oldState = windowState();
@@ -317,10 +315,8 @@ void RSSListing::slotShowWindows()
   activateWindow();
 }
 
-/*! \fn void RSSListing::createActions() **************************************
- * \brief Создание действий
-
-   Которые будут использоваться в главном меню и ToolBar
+/*! \brief Создание действий **************************************************
+ * \details Которые будут использоваться в главном меню и ToolBar
  ******************************************************************************/
 void RSSListing::createActions()
 {
@@ -357,9 +353,7 @@ void RSSListing::createActions()
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 }
 
-/*! \fn void RSSListing::createMenu() *****************************************
- * \brief Создание главного меню
- ******************************************************************************/
+/*! \brief Создание главного меню *********************************************/
 void RSSListing::createMenu()
 {
   fileMenu_ = menuBar()->addMenu(tr("&File"));
@@ -385,9 +379,7 @@ void RSSListing::createMenu()
   menuBar()->addMenu(tr("&Help"));
 }
 
-/*! \fn void RSSListing::createToolBar() **************************************
- * \brief Создание ToolBar
- ******************************************************************************/
+/*! \brief Создание ToolBar ***************************************************/
 void RSSListing::createToolBar()
 {
   toolBar_ = addToolBar(tr("General"));
@@ -397,9 +389,7 @@ void RSSListing::createToolBar()
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
 
-/*! \fn void RSSListing::get(const QUrl &url) *********************************
- * \brief Starts the network request and connects the needed signals
- ******************************************************************************/
+/*! \brief Starts the network request and connects the needed signals *********/
 void RSSListing::get(const QUrl &url)
 {
     qDebug() << "get:" << url;
@@ -415,9 +405,7 @@ void RSSListing::get(const QUrl &url)
     statusBar()->showMessage(QString("Fetching start..."), 3000);
 }
 
-/*! \fn void RSSListing::readSettings() ***************************************
- * \brief Чтение настроек из ini-файла
- ******************************************************************************/
+/*! \brief Чтение настроек из ini-файла ***************************************/
 void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
@@ -441,9 +429,7 @@ void RSSListing::readSettings()
          QString("newsView/columnWidth%1").arg(i), 100).toInt());
 }
 
-/*! \fn void RSSListing::writeSettings() **************************************
- * \brief Запись настроек в ini-файл
- ******************************************************************************/
+/*! \brief Запись настроек в ini-файл *****************************************/
 void RSSListing::writeSettings()
 {
   settings_->beginGroup("/Settings");
@@ -469,9 +455,7 @@ void RSSListing::writeSettings()
 
 }
 
-/*! \fn void RSSListing::addFeed() ********************************************
- * \brief Добавление ленты в список лент
- ******************************************************************************/
+/*! \brief Добавление ленты в список лент *************************************/
 void RSSListing::addFeed()
 {
   AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
@@ -486,9 +470,7 @@ void RSSListing::addFeed()
   feedsModel_->select();
 }
 
-/*! \fn void RSSListing::deleteFeed() *****************************************
- * \brief Удаление ленты из списка лент с подтверждением
- ******************************************************************************/
+/*! \brief Удаление ленты из списка лент с подтверждением *********************/
 void RSSListing::deleteFeed()
 {
   QMessageBox msgBox;
@@ -510,9 +492,7 @@ void RSSListing::deleteFeed()
   feedsModel_->select();
 }
 
-/*! \brief Импорт лент из OPML-файла ******************************************
- * \fn void RSSListing::deleteFeed()
- ******************************************************************************/
+/*! \brief Импорт лент из OPML-файла ******************************************/
 void RSSListing::importFeeds()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
@@ -604,8 +584,7 @@ void RSSListing::metaDataChanged()
     }
 }
 
-/*! \fn void RSSListing::readyRead() ******************************************
- * \brief Reads data received from the RDF source.
+/*! \brief Reads data received from the RDF source.
  *
  *   We read all the available data, and pass it to the XML
  *   stream reader. Then we call the XML parsing function.
@@ -620,8 +599,7 @@ void RSSListing::readyRead()
     }
 }
 
-/*! \fn void RSSListing::finished(QNetworkReply *reply) ***********************
- * \brief Finishes processing an HTTP request.
+/*! \brief Finishes processing an HTTP request.
 
     The default behavior is to keep the text edit read only.
 
@@ -640,9 +618,7 @@ void RSSListing::finished(QNetworkReply *reply)
     feedsView_->setEnabled(true);
 }
 
-/*! \fn void RSSListing::parseXml() *******************************************
- * \brief Разбор xml-файла
- ******************************************************************************/
+/*! \brief Разбор xml-файла ***************************************************/
 void RSSListing::parseXml()
 {
   // поиск идентификатора ленты с таблице лент
@@ -741,17 +717,14 @@ void RSSListing::parseXml()
   slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
 }
 
-/*! \fn void RSSListing::itemActivated(QTreeWidgetItem * item) ****************
- * \brief Обработка события активации элемента в таблице результатов последнего запроса
+/*! \brief Обработка события активации элемента в таблице результатов последнего запроса
  ******************************************************************************/
 void RSSListing::itemActivated(QTreeWidgetItem * item)
 {
     webView_->setHtml(item->text(3));
 }
 
-/*! \fn void RSSListing::error(QNetworkReply::NetworkError) *******************
- * \brief Обработка ошибки html-запроса
- ******************************************************************************/
+/*! \brief Обработка ошибки html-запроса **************************************/
 void RSSListing::error(QNetworkReply::NetworkError)
 {
     statusBar()->showMessage("error retrieving RSS feed", 3000);
@@ -760,9 +733,7 @@ void RSSListing::error(QNetworkReply::NetworkError)
     currentReply_ = 0;
 }
 
-/*! \fn void RSSListing::slotFeedsTreeClicked(QModelIndex index) **************
- * \brief Обработка нажатия в дереве лент
- ******************************************************************************/
+/*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
@@ -786,9 +757,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsTabWidget_->setTabText(0, feedsModel_->index(index.row(), 1).data().toString());
 }
 
-/*! \fn void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index) ********
- * \brief Обработка двойного нажатия в дереве лент
- ******************************************************************************/
+/*! \brief Обработка двойного нажатия в дереве лент ***************************/
 void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
 {
   addFeedAct_->setEnabled(false);
@@ -802,50 +771,39 @@ void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
   get(currentUrl_);
 }
 
-/*! \fn void RSSListing::slotFeedViewClicked(QModelIndex index) ***************
- * \brief Обработка нажатия в дереве новостей
- ******************************************************************************/
+/*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotFeedViewClicked(QModelIndex index)
 {
   webView_->setHtml(
       newsModel_->record(index.row()).field("description").value().toString());
 }
 
-/*! \fn void RSSListing::slotFeedsTreeKeyUpDownPressed() **********************
- * \brief Обработка клавиш Up/Down в дереве лент
- ******************************************************************************/
+/*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
 void RSSListing::slotFeedsTreeKeyUpDownPressed()
 {
   slotFeedsTreeClicked(feedsView_->currentIndex());
 }
 
-/*! \fn void RSSListing::slotFeedKeyUpDownPressed() ***************************
- * \brief Обработка клавиш Up/Down в дереве новостей
- ******************************************************************************/
+/*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
 void RSSListing::slotFeedKeyUpDownPressed()
 {
   slotFeedViewClicked(newsView_->currentIndex());
 }
 
-/*! \brief Обработка переключения отображения тулбара *************************
- * \fn void RSSListing::toggleToolBar(bool checked)
- ******************************************************************************/
+/*! \brief Обработка переключения отображения тулбара *************************/
 void RSSListing::toggleToolBar(bool checked)
 {
   toolBar_->setVisible(checked);
 }
 
-/*! \fn void RSSListing::toggleQueryResults(bool checked) *********************
- * \brief Обработка переключения отображения таблицы результатов последнего запроса
+/*! \brief Обработка переключения отображения таблицы результатов последнего запроса
  ******************************************************************************/
 void RSSListing::toggleQueryResults(bool checked)
 {
   treeWidget_->setVisible(checked);
 }
 
-/*! \brief Вызов окна настроек ************************************************
- * \fn void RSSListing::showOptionDlg()
- ******************************************************************************/
+/*! \brief Вызов окна настроек ************************************************/
 void RSSListing::showOptionDlg()
 {
   OptionsDialog *optionsDialog = new OptionsDialog(this);
@@ -898,6 +856,7 @@ void RSSListing::myEmptyWorkingSet()
   EmptyWorkingSet(GetCurrentProcess());
 }
 
+/*! \brief Обработка переключения использования прокси сервера ****************/
 void RSSListing::slotSetProxy()
 {
   bool on = setProxyAct_->isChecked();
