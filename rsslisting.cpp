@@ -382,7 +382,7 @@ void RSSListing::createMenu()
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   feedMenu_->addAction(updateFeedAct_);
-  feedMenu_->addAction(updateFeedsAct_);
+  feedMenu_->addAction(updateAllFeedsAct_);
 
   menuBar()->addMenu(tr("&News"));
 
@@ -401,7 +401,7 @@ void RSSListing::createToolBar()
   toolBar_->addAction(deleteFeedAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(updateFeedAct_);
-  toolBar_->addAction(updateFeedsAct_);
+  toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
 
@@ -900,7 +900,7 @@ void RSSListing::slotUpdateFeed()
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
-void RSSListing::slotUpdateFeeds()
+void RSSListing::slotUpdateAllFeeds()
 {
   statusBar()->showMessage("Feature 'Update all' is under construction", 3000);
 //  for (int i = 0; i < feedsModel_->rowCount(); ++i) {

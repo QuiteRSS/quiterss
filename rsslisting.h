@@ -45,6 +45,8 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "updatethread.h"
+
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QTreeWidget;
@@ -70,7 +72,7 @@ public slots:
     void error(QNetworkReply::NetworkError);
     void slotFeedsTreeClicked(QModelIndex index);
     void slotUpdateFeed();
-    void slotUpdateFeeds();
+    void slotUpdateAllFeeds();
     void slotFeedViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotFeedKeyUpDownPressed();
@@ -91,6 +93,8 @@ protected:
      virtual void changeEvent(QEvent*);
 
 private:
+    UpdateThread *updateThread_;
+
     void parseXml();
     void get(const QUrl &url);
     void createActions();
@@ -127,7 +131,7 @@ private:
     QAction *treeWidgetToggle_;
     QAction *optionsAct_;
     QAction *updateFeedAct_;
-    QAction *updateFeedsAct_;
+    QAction *updateAllFeedsAct_;
     QAction *exitAct_;
     QAction *setProxyAct_;
     QMenu *fileMenu_;
