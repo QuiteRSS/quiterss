@@ -347,15 +347,15 @@ void RSSListing::createActions()
   treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
   connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
 
-  updateFeedAct_ = new QAction(tr("Update feed"), this);
+  updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update feed"), this);
   updateFeedAct_->setStatusTip(tr("Update current feed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotUpdateFeed()));
 
-  updateFeedsAct_ = new QAction(tr("Update feeds"), this);
-  updateFeedsAct_->setStatusTip(tr("Update all feeds"));
-  updateFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
-  connect(updateFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateFeeds()));
+  updateAllFeedsAct_ = new QAction(QIcon(":/images/updateAllFeeds"), tr("Update feeds"), this);
+  updateAllFeedsAct_->setStatusTip(tr("Update all feeds"));
+  updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
+  connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateAllFeeds()));
 
   optionsAct_ = new QAction(tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
@@ -907,4 +907,7 @@ void RSSListing::slotUpdateAllFeeds()
 //    QModelIndex index = feedsModel_->index(i, 0);
 //    updateFeed(index);
 //  }
+  updateThread_ = new UpdateThread(this);
+  connect(updateThread_, SIGNAL(finished()), updateThread_, SLOT(deleteLater()));
+  updateThread_->start(QThread::LowPriority);
 }
