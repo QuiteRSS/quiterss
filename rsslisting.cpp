@@ -75,7 +75,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
-            this, SLOT(slotUpdateFeed(QModelIndex)));
+            this, SLOT(updateFeed(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
@@ -347,6 +347,16 @@ void RSSListing::createActions()
   treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
   connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
 
+  updateFeedAct_ = new QAction(tr("Update feed"), this);
+  updateFeedAct_->setStatusTip(tr("Update current feed"));
+  updateFeedAct_->setShortcut(Qt::Key_F5);
+  connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotUpdateFeed()));
+
+  updateFeedsAct_ = new QAction(tr("Update feeds"), this);
+  updateFeedsAct_->setStatusTip(tr("Update all feeds"));
+  updateFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
+  connect(updateFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateFeeds()));
+
   optionsAct_ = new QAction(tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
@@ -371,6 +381,9 @@ void RSSListing::createMenu()
   viewMenu_->addAction(treeWidgetToggle_);
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
+  feedMenu_->addAction(updateFeedAct_);
+  feedMenu_->addAction(updateFeedsAct_);
+
   menuBar()->addMenu(tr("&News"));
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
@@ -386,6 +399,9 @@ void RSSListing::createToolBar()
   toolBar_->setObjectName("ToolBar_General");
   toolBar_->addAction(addFeedAct_);
   toolBar_->addAction(deleteFeedAct_);
+  toolBar_->addSeparator();
+  toolBar_->addAction(updateFeedAct_);
+  toolBar_->addAction(updateFeedsAct_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
 
@@ -402,7 +418,6 @@ void RSSListing::get(const QUrl &url)
     connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
     connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
-    statusBar()->showMessage(QString("Fetching start..."), 3000);
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -711,7 +726,7 @@ void RSSListing::parseXml()
     statusBar()->showMessage(QString("XML ERROR: Line=%1, ErrorString=%2").
                              arg(xml.lineNumber()).arg(xml.errorString()), 3000);
   } else {
-    statusBar()->showMessage(QString("Fetching done"), 3000);
+    statusBar()->showMessage(QString("Update done"), 3000);
   }
   db_.commit();
   slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
@@ -757,8 +772,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsTabWidget_->setTabText(0, feedsModel_->index(index.row(), 1).data().toString());
 }
 
-/*! \brief Обработка двойного нажатия в дереве лент ***************************/
-void RSSListing::slotUpdateFeed(QModelIndex index)
+/*! \brief Запрос обновления ленты ********************************************/
+void RSSListing::updateFeed(QModelIndex index)
 {
   addFeedAct_->setEnabled(false);
   deleteFeedAct_->setEnabled(false);
@@ -769,6 +784,11 @@ void RSSListing::slotUpdateFeed(QModelIndex index)
 
   currentUrl_.setUrl(feedsModel_->record(index.row()).field("xmlurl").value().toString());
   get(currentUrl_);
+
+  statusBar()->showMessage(QString(tr("Update '%1 - %2' ...")).
+      arg(feedsModel_->record(index.row()).field("id").value().toString()).
+      arg(feedsModel_->record(index.row()).field("text").value().toString()),
+      3000);
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -870,4 +890,21 @@ void RSSListing::slotSetProxy()
   settings_->setValue("/Proxy", on);
   settings_->endGroup();
 
+}
+
+/*! \brief Обновление ленты (действие) ****************************************/
+void RSSListing::slotUpdateFeed()
+{
+  QModelIndex index = feedsView_->currentIndex();
+  updateFeed(index);
+}
+
+/*! \brief Обновление ленты (действие) ****************************************/
+void RSSListing::slotUpdateFeeds()
+{
+  statusBar()->showMessage("Feature 'Update all' is under construction", 3000);
+//  for (int i = 0; i < feedsModel_->rowCount(); ++i) {
+//    QModelIndex index = feedsModel_->index(i, 0);
+//    updateFeed(index);
+//  }
 }

@@ -69,7 +69,8 @@ public slots:
     void itemActivated(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
     void slotFeedsTreeClicked(QModelIndex index);
-    void slotUpdateFeed(QModelIndex index);
+    void slotUpdateFeed();
+    void slotUpdateFeeds();
     void slotFeedViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotFeedKeyUpDownPressed();
@@ -125,6 +126,8 @@ private:
     QAction *toolBarToggle_;
     QAction *treeWidgetToggle_;
     QAction *optionsAct_;
+    QAction *updateFeedAct_;
+    QAction *updateFeedsAct_;
     QAction *exitAct_;
     QAction *setProxyAct_;
     QMenu *fileMenu_;
@@ -145,8 +148,10 @@ private:
 
     QSystemTrayIcon *traySystem;
     int oldState;
+
 private slots:
     void slotSetProxy();
+    void updateFeed(QModelIndex index);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
