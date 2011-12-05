@@ -69,7 +69,7 @@ public slots:
     void itemActivated(QTreeWidgetItem * item);
     void error(QNetworkReply::NetworkError);
     void slotFeedsTreeClicked(QModelIndex index);
-    void slotFeedsTreeDoubleClicked(QModelIndex index);
+    void slotUpdateFeed(QModelIndex index);
     void slotFeedViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotFeedKeyUpDownPressed();

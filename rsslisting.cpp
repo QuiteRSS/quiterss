@@ -75,7 +75,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
-            this, SLOT(slotFeedsTreeDoubleClicked(QModelIndex)));
+            this, SLOT(slotUpdateFeed(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
@@ -758,7 +758,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 }
 
 /*! \brief Обработка двойного нажатия в дереве лент ***************************/
-void RSSListing::slotFeedsTreeDoubleClicked(QModelIndex index)
+void RSSListing::slotUpdateFeed(QModelIndex index)
 {
   addFeedAct_->setEnabled(false);
   deleteFeedAct_->setEnabled(false);
