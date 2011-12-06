@@ -9,7 +9,7 @@
         <file>images/QtRSS16.png</file>
         <file>images/QtRSS32.png</file>
         <file alias="updateFeed">images/updateFeed.png</file>
-        <file alias="updateAllFeeds">images/updateAllFeeds.ico</file>
+        <file alias="updateAllFeeds">images/updateAllFeeds.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

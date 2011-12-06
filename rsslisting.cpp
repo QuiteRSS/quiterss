@@ -119,9 +119,12 @@ RSSListing::RSSListing(QWidget *parent)
     connect(&manager_, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(finished(QNetworkReply*)));
 
-    //! Create feed layout
-    feedsTabWidget_ = new QTabWidget();
-    feedsTabWidget_->addTab(feedsView_, tr("Feeds"));
+    //! Create feeds DocWidget
+    feedsDoc_ = new QDockWidget(tr("Feeds"), this);
+    feedsDoc_->setObjectName("feedsDoc");
+    feedsDoc_->setWidget(feedsView_);
+    feedsDoc_->setFeatures(QDockWidget::DockWidgetMovable);
+    addDockWidget(Qt::LeftDockWidgetArea, feedsDoc_);
 
     //! Create news layout
     QVBoxLayout *webLayout = new QVBoxLayout();
@@ -143,14 +146,9 @@ RSSListing::RSSListing(QWidget *parent)
     contentSplitter->addWidget(treeWidget_);
     contentSplitter->addWidget(newsTabWidget_);
 
-    //! Combine layouts
-    QSplitter *feedSplitter = new QSplitter();
-    feedSplitter->addWidget(feedsTabWidget_);
-    feedSplitter->addWidget(contentSplitter);
-
     QVBoxLayout *layout = new QVBoxLayout();
-    layout->setMargin(4);
-    layout->addWidget(feedSplitter);
+    layout->setMargin(0);
+    layout->addWidget(contentSplitter);
 
     QWidget *centralWidget = new QWidget();
     centralWidget->setLayout(layout);
