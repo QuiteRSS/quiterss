@@ -136,7 +136,7 @@ private:
     QMenu *trayMenu_;
     QToolBar *toolBar_;
 
-    QTabWidget *feedsTabWidget_;
+    QDockWidget *feedsDoc_;
     QTreeView *feedsView_;
     QTabWidget *newsTabWidget_;
     QTableView *newsView_;
@@ -147,6 +147,10 @@ private:
 
     QSystemTrayIcon *traySystem;
     int oldState;
+
+    QProgressBar *progressBar_;
+    QLabel *statusUnread_;
+    QLabel *statusAll_;
 
 private slots:
     void slotSetProxy();

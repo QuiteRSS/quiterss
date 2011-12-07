@@ -176,4 +176,20 @@
     <source>Feeds</source>
     <target>Новостные ленты</target>
 </phrase>
+<phrase>
+    <source>Update</source>
+    <target>Обновить</target>
+</phrase>
+<phrase>
+    <source>Update current feed</source>
+    <target>Обновить выбранную новостную ленту</target>
+</phrase>
+<phrase>
+    <source>Update all</source>
+    <target>Обновить все</target>
+</phrase>
+<phrase>
+    <source>Update all feeds</source>
+    <target>Обновить все новостные ленты</target>
+</phrase>
 </QPH>

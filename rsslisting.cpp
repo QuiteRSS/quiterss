@@ -118,9 +118,12 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
 
-    //! Create feed layout
-    feedsTabWidget_ = new QTabWidget();
-    feedsTabWidget_->addTab(feedsView_, tr("Feeds"));
+    //! Create feeds DocWidget
+    feedsDoc_ = new QDockWidget(tr("Feeds"), this);
+    feedsDoc_->setObjectName("feedsDoc");
+    feedsDoc_->setWidget(feedsView_);
+    feedsDoc_->setFeatures(QDockWidget::DockWidgetMovable);
+    addDockWidget(Qt::LeftDockWidgetArea, feedsDoc_);
 
     //! Create news layout
     QVBoxLayout *webLayout = new QVBoxLayout();
@@ -142,14 +145,9 @@ RSSListing::RSSListing(QWidget *parent)
     contentSplitter->addWidget(treeWidget_);
     contentSplitter->addWidget(newsTabWidget_);
 
-    //! Combine layouts
-    QSplitter *feedSplitter = new QSplitter();
-    feedSplitter->addWidget(feedsTabWidget_);
-    feedSplitter->addWidget(contentSplitter);
-
     QVBoxLayout *layout = new QVBoxLayout();
-    layout->setMargin(4);
-    layout->addWidget(feedSplitter);
+    layout->setMargin(0);
+    layout->addWidget(contentSplitter);
 
     QWidget *centralWidget = new QWidget();
     centralWidget->setLayout(layout);
@@ -169,6 +167,16 @@ RSSListing::RSSListing(QWidget *parent)
     toggleQueryResults(false);
     toggleToolBar(false);
 
+
+    progressBar_ = new QProgressBar();
+    progressBar_->setFixedWidth(150);
+    progressBar_->setFixedHeight(15);
+    progressBar_->setVisible(false);
+    statusBar()->addPermanentWidget(progressBar_);
+    statusUnread_ = new QLabel(tr("Unread:      "));
+    statusBar()->addPermanentWidget(statusUnread_);
+    statusAll_ = new QLabel(tr("All:      "));
+    statusBar()->addPermanentWidget(statusAll_);
     statusBar()->setVisible(true);
 
     //! testing
