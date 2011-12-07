@@ -165,7 +165,6 @@ RSSListing::RSSListing(QWidget *parent)
 
     //! GIU tuning
     toggleQueryResults(false);
-    toggleToolBar(false);
 
 
     progressBar_ = new QProgressBar();
@@ -349,7 +348,6 @@ void RSSListing::createActions()
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
-  connect(toolBarToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleToolBar(bool)));
 
   treeWidgetToggle_ = new QAction(tr("&Query results"), this);
   treeWidgetToggle_->setCheckable(true);
@@ -412,6 +410,8 @@ void RSSListing::createToolBar()
   toolBar_->addAction(updateFeedAct_);
   toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+  connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
+  connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setShown(bool)));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -431,8 +431,6 @@ void RSSListing::readSettings()
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
-  if (toolBar_->isHidden()) toolBarToggle_->setChecked(false);
-  else toolBarToggle_->setChecked(true);
 
   // Загрузка ширины столбцов таблицы
   for (int i=0; i < newsModel_->columnCount(); ++i)
@@ -783,12 +781,6 @@ void RSSListing::slotFeedsTreeKeyUpDownPressed()
 void RSSListing::slotFeedKeyUpDownPressed()
 {
   slotFeedViewClicked(newsView_->currentIndex());
-}
-
-/*! \brief Обработка переключения отображения тулбара *************************/
-void RSSListing::toggleToolBar(bool checked)
-{
-  toolBar_->setVisible(checked);
 }
 
 /*! \brief Обработка переключения отображения таблицы результатов последнего запроса

@@ -72,7 +72,6 @@ public slots:
     void slotFeedViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotFeedKeyUpDownPressed();
-    void toggleToolBar(bool checked);
     void toggleQueryResults(bool checked);
     void showOptionDlg();
     void receiveMessage(const QString&);
