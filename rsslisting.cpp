@@ -626,7 +626,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
       if (xml.name() == "item")
         linkString = xml.attributes().value("rss:about").toString();
       currentTag = xml.name().toString();
-//      qDebug() << itemCount << ": " << xml.namespaceUri().toString() << ": " << currentTag;
+      qDebug() << itemCount << ": " << currentTag;
     } else if (xml.isEndElement()) {
       if (xml.name() == "item") {
 
@@ -642,8 +642,18 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 
         // поиск статей с giud в базе
         QSqlQuery q(db_);
-        QString qStr = QString("select * from feed_%1 where guid == '%2'").
-            arg(parseFeedId).arg(guidString);
+        QString qStr;
+        qDebug() << "guid:" << guidString;
+        if (!guidString.isEmpty())
+          qStr = QString("select * from feed_%1 where guid == '%2'").
+              arg(parseFeedId).arg(guidString);
+        else
+//          qStr = QString("select * from feed_%1 "
+//              "where title == '%2' and description == '%3' and published == '%4'").
+//              arg(parseFeedId).arg(titleString).arg(descriptionString).arg(pubDateString);
+          qStr = QString("select * from feed_%1 "
+              "where title == '%2' and published == '%3'").
+              arg(parseFeedId).arg(titleString).arg(pubDateString);
         q.exec(qStr);
         // если статей с таким giud нет, добавляем статью в базу
         if (!q.next()) {
@@ -659,6 +669,11 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
           q.addBindValue(QDateTime::currentDateTime().toString());
           q.exec();
           qDebug() << "q.exec(" << q.lastQuery() << ")";
+          qDebug() << "       " << descriptionString;
+          qDebug() << "       " << guidString;
+          qDebug() << "       " << titleString;
+          qDebug() << "       " << pubDateString;
+          qDebug() << "       " << QDateTime::currentDateTime().toString();
           qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         q.finish();
