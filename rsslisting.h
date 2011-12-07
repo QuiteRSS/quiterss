@@ -153,6 +153,10 @@ private:
     QSystemTrayIcon *traySystem;
     int oldState;
 
+    QProgressBar *progressBar_;
+    QLabel *statusUnread_;
+    QLabel *statusAll_;
+
 private slots:
     void slotSetProxy();
     void updateFeed(QModelIndex index);

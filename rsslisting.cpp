@@ -168,6 +168,16 @@ RSSListing::RSSListing(QWidget *parent)
     toggleQueryResults(false);
     toggleToolBar(false);
 
+
+    progressBar_ = new QProgressBar();
+    progressBar_->setFixedWidth(150);
+    progressBar_->setFixedHeight(15);
+    progressBar_->setVisible(false);
+    statusBar()->addPermanentWidget(progressBar_);
+    statusUnread_ = new QLabel(tr("Unread:      "));
+    statusBar()->addPermanentWidget(statusUnread_);
+    statusAll_ = new QLabel(tr("All:      "));
+    statusBar()->addPermanentWidget(statusAll_);
     statusBar()->setVisible(true);
 
     //! testing
