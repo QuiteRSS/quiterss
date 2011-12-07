@@ -627,7 +627,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
       if (xml.name() == "item")
         linkString = xml.attributes().value("rss:about").toString();
       currentTag = xml.name().toString();
-      qDebug() << itemCount << ": " << currentTag;
+//      qDebug() << itemCount << ": " << currentTag;
     } else if (xml.isEndElement()) {
       if (xml.name() == "item") {
 
