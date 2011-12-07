@@ -134,12 +134,12 @@ RSSListing::RSSListing(QWidget *parent)
     webWidget->setStyleSheet("border: 1px solid gray");
     webWidget->setLayout(webLayout);
 
-    QSplitter *feedTabSplitter = new QSplitter(Qt::Vertical);
-    feedTabSplitter->addWidget(newsView_);
-    feedTabSplitter->addWidget(webWidget);
+    newsTabSplitter_ = new QSplitter(Qt::Vertical);
+    newsTabSplitter_->addWidget(newsView_);
+    newsTabSplitter_->addWidget(webWidget);
 
     newsTabWidget_ = new QTabWidget();
-    newsTabWidget_->addTab(feedTabSplitter, "");
+    newsTabWidget_->addTab(newsTabSplitter_, "");
 
     QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
     contentSplitter->addWidget(treeWidget_);
@@ -438,6 +438,12 @@ void RSSListing::readSettings()
   for (int i=0; i < newsModel_->columnCount(); ++i)
     newsView_->setColumnWidth(i, settings_->value(
          QString("newsView/columnWidth%1").arg(i), 100).toInt());
+
+  QList<int> sizes;
+  for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
+    sizes << settings_->value(QString("newsSplitter/size%1").arg(i)).toInt();
+  }
+  newsTabSplitter_->setSizes(sizes);
 }
 
 /*! \brief Запись настроек в ini-файл *****************************************/
@@ -464,6 +470,9 @@ void RSSListing::writeSettings()
     settings_->setValue(QString("newsView/columnWidth%1").arg(i),
         newsView_->columnWidth(i));
 
+  for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
+    settings_->setValue(QString("newsSplitter/size%1").arg(i), newsTabSplitter_->sizes().at(i));
+  }
 }
 
 /*! \brief Добавление ленты в список лент *************************************/

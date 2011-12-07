@@ -138,6 +138,7 @@ private:
 
     QDockWidget *feedsDoc_;
     QTreeView *feedsView_;
+    QSplitter *newsTabSplitter_;
     QTabWidget *newsTabWidget_;
     QTableView *newsView_;
 
