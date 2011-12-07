@@ -610,6 +610,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
   db_.transaction();
   int itemCount = 0;
   while (!xml.atEnd()) {
+    qApp->processEvents();
     xml.readNext();
     if (xml.isStartElement()) {
       if (xml.name() == "item")
