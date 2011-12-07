@@ -604,6 +604,9 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url.toString());
     return;
+  } else {
+    qDebug() << QString("Feed '%1' found with id = %2").arg(url.toString()).
+        arg(parseFeedId);
   }
 
   // собственно сам разбор
@@ -616,7 +619,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
       if (xml.name() == "item")
         linkString = xml.attributes().value("rss:about").toString();
       currentTag = xml.name().toString();
-      qDebug() << itemCount << ": " << xml.namespaceUri().toString() << ": " << currentTag;
+//      qDebug() << itemCount << ": " << xml.namespaceUri().toString() << ": " << currentTag;
     } else if (xml.isEndElement()) {
       if (xml.name() == "item") {
 
@@ -648,6 +651,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
           q.addBindValue(pubDateString);
           q.addBindValue(QDateTime::currentDateTime().toString());
           q.exec();
+          qDebug() << "q.exec(" << q.lastQuery() << ")";
           qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         q.finish();
