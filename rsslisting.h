@@ -155,6 +155,7 @@ private:
 private slots:
     void slotSetProxy();
     void updateFeed(QModelIndex index);
+    void slotProgressBarUpdate();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

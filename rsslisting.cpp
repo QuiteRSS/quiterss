@@ -171,6 +171,8 @@ RSSListing::RSSListing(QWidget *parent)
     progressBar_ = new QProgressBar();
     progressBar_->setFixedWidth(150);
     progressBar_->setFixedHeight(15);
+    progressBar_->setMinimum(0);
+    progressBar_->setMaximum(100);
     progressBar_->setVisible(false);
     statusBar()->addPermanentWidget(progressBar_);
     statusUnread_ = new QLabel(tr(" Unread: "));
@@ -690,6 +692,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
+  progressBar_->hide();
 }
 
 /*! \brief Обработка события активации элемента в таблице результатов последнего запроса
@@ -744,6 +747,9 @@ void RSSListing::updateFeed(QModelIndex index)
       arg(feedsModel_->record(index.row()).field("id").value().toString()).
       arg(feedsModel_->record(index.row()).field("text").value().toString()),
       3000);
+  progressBar_->setValue(progressBar_->minimum());
+  progressBar_->show();
+  QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -865,4 +871,16 @@ void RSSListing::slotUpdateAllFeeds()
   updateThread_->setObjectName("updateThread_");
   connect(updateThread_, SIGNAL(finished()), updateThread_, SLOT(deleteLater()));
   updateThread_->start(QThread::LowPriority);
+}
+
+void RSSListing::slotProgressBarUpdate()
+{
+  if (progressBar_->value() + 10 < progressBar_->maximum())
+    progressBar_->setValue(progressBar_->value() + 10);
+  else
+    progressBar_->setValue(progressBar_->minimum());
+  progressBar_->update();
+
+  if (progressBar_->isVisible())
+    QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
 }
