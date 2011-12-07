@@ -173,9 +173,9 @@ RSSListing::RSSListing(QWidget *parent)
     progressBar_->setFixedHeight(15);
     progressBar_->setVisible(false);
     statusBar()->addPermanentWidget(progressBar_);
-    statusUnread_ = new QLabel(tr("Unread:      "));
+    statusUnread_ = new QLabel(tr(" Unread: "));
     statusBar()->addPermanentWidget(statusUnread_);
-    statusAll_ = new QLabel(tr("All:      "));
+    statusAll_ = new QLabel(tr(" All: "));
     statusBar()->addPermanentWidget(statusAll_);
     statusBar()->setVisible(true);
 
@@ -402,7 +402,7 @@ void RSSListing::createMenu()
 /*! \brief Создание ToolBar ***************************************************/
 void RSSListing::createToolBar()
 {
-  toolBar_ = addToolBar(tr("General"));
+  toolBar_ = addToolBar(tr("ToolBar"));
   toolBar_->setObjectName("ToolBar_General");
   toolBar_->addAction(addFeedAct_);
   toolBar_->addAction(deleteFeedAct_);
@@ -429,6 +429,8 @@ void RSSListing::readSettings()
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
+  if (toolBar_->isHidden()) toolBarToggle_->setChecked(false);
+  else toolBarToggle_->setChecked(true);
 
   // Загрузка ширины столбцов таблицы
   for (int i=0; i < newsModel_->columnCount(); ++i)
@@ -719,6 +721,9 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setSortingEnabled(true);
   newsView_->sortByColumn(newsModel_->fieldIndex("published"));
   newsTabWidget_->setTabText(0, feedsModel_->index(index.row(), 1).data().toString());
+
+  statusUnread_->setText(tr(" Unread: ") + QString::number(newsModel_->rowCount()) + " ");
+  statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
 }
 
 /*! \brief Запрос обновления ленты ********************************************/

@@ -192,4 +192,24 @@
     <source>Update all feeds</source>
     <target>Обновить все новостные ленты</target>
 </phrase>
+<phrase>
+    <source> All: </source>
+    <target> Всего: </target>
+</phrase>
+<phrase>
+    <source> Unread: </source>
+    <target> Непрочитанных: </target>
+</phrase>
+<phrase>
+    <source>&amp;ToolBar</source>
+    <target>&amp;Панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Show ToolBar</source>
+    <target>Показать панель инструментов</target>
+</phrase>
+<phrase>
+    <source>ToolBar</source>
+    <target>Панель инструментов</target>
+</phrase>
 </QPH>

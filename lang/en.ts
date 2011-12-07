@@ -43,202 +43,214 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../rsslisting.cpp" line="103"/>
+        <location filename="../rsslisting.cpp" line="111"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="103"/>
+        <location filename="../rsslisting.cpp" line="111"/>
         <source>Title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="103"/>
+        <location filename="../rsslisting.cpp" line="111"/>
         <source>Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="103"/>
+        <location filename="../rsslisting.cpp" line="111"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="104"/>
+        <location filename="../rsslisting.cpp" line="112"/>
         <source>Comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="104"/>
+        <location filename="../rsslisting.cpp" line="112"/>
         <source>pubDate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="104"/>
+        <location filename="../rsslisting.cpp" line="112"/>
         <source>guid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="123"/>
+        <location filename="../rsslisting.cpp" line="122"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="321"/>
-        <source>&amp;Add...</source>
+        <location filename="../rsslisting.cpp" line="176"/>
+        <location filename="../rsslisting.cpp" line="723"/>
+        <source> Unread: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="322"/>
-        <source>Add new feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rsslisting.cpp" line="326"/>
-        <source>&amp;Delete...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rsslisting.cpp" line="327"/>
-        <source>Delete selected feed</source>
+        <location filename="../rsslisting.cpp" line="178"/>
+        <location filename="../rsslisting.cpp" line="724"/>
+        <source> All: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="330"/>
-        <source>&amp;Import feeds...</source>
+        <source>&amp;Add...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="331"/>
-        <source>Import feeds from OPML file</source>
+        <source>Add new feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="338"/>
-        <source>&amp;ToolBar</source>
+        <location filename="../rsslisting.cpp" line="335"/>
+        <source>&amp;Delete...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="336"/>
+        <source>Delete selected feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="339"/>
+        <source>&amp;Import feeds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="340"/>
-        <source>Show ToolBar</source>
+        <source>Import feeds from OPML file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="343"/>
-        <source>&amp;Query results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rsslisting.cpp" line="345"/>
-        <source>Show table with query results</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../rsslisting.cpp" line="348"/>
-        <source>Update</source>
+        <location filename="../rsslisting.cpp" line="347"/>
+        <source>&amp;ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="349"/>
-        <source>Update current feed</source>
+        <source>Show ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="353"/>
-        <source>Update all</source>
+        <location filename="../rsslisting.cpp" line="352"/>
+        <source>&amp;Query results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="354"/>
-        <source>Update all feeds</source>
+        <source>Show table with query results</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="357"/>
+        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="358"/>
-        <source>Options...</source>
+        <source>Update current feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="359"/>
-        <source>Open options gialog</source>
+        <location filename="../rsslisting.cpp" line="362"/>
+        <source>Update all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="363"/>
+        <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="367"/>
+        <source>Options...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="368"/>
+        <source>Open options gialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="376"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="786"/>
+        <location filename="../rsslisting.cpp" line="741"/>
         <source>Update &apos;%1 - %2&apos; ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="859"/>
+        <location filename="../rsslisting.cpp" line="815"/>
         <source>Proxy enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="334"/>
+        <location filename="../rsslisting.cpp" line="343"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="375"/>
+        <location filename="../rsslisting.cpp" line="384"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="377"/>
+        <location filename="../rsslisting.cpp" line="386"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="381"/>
+        <location filename="../rsslisting.cpp" line="390"/>
         <source>Fee&amp;ds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="385"/>
+        <location filename="../rsslisting.cpp" line="394"/>
         <source>&amp;News</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="387"/>
+        <location filename="../rsslisting.cpp" line="396"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="390"/>
+        <location filename="../rsslisting.cpp" line="399"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="396"/>
-        <source>General</source>
+        <location filename="../rsslisting.cpp" line="405"/>
+        <source>ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="511"/>
+        <location filename="../rsslisting.cpp" line="505"/>
         <source>Select OPML-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="513"/>
+        <location filename="../rsslisting.cpp" line="507"/>
         <source>OPML-files (*.opml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="516"/>
+        <location filename="../rsslisting.cpp" line="510"/>
         <source>Import canceled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="524"/>
+        <location filename="../rsslisting.cpp" line="518"/>
         <source>Import: can&apos;t open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="850"/>
+        <location filename="../rsslisting.cpp" line="805"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
