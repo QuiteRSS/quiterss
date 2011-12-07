@@ -32,7 +32,7 @@ const QString kCreateFeedTableQuery(
 
 /*!****************************************************************************/
 RSSListing::RSSListing(QWidget *parent)
-    : QMainWindow(parent), currentReply_(0)
+    : QMainWindow(parent)
 {
     QString AppFileName = qApp->applicationFilePath();
     AppFileName.replace(".exe", ".ini");
@@ -57,6 +57,14 @@ RSSListing::RSSListing(QWidget *parent)
       db_.exec(kCreateFeedTableQuery.arg(1));
       db_.exec(kCreateFeedTableQuery.arg(2));
     }
+
+    persistentUpdateThread_ = new UpdateThread(this);
+    persistentUpdateThread_->setObjectName("persistentUpdateThread_");
+    connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
+        this, SLOT(parseXml(QByteArray, QUrl)));
+    connect(persistentUpdateThread_, SIGNAL(getUrlDone(int)),
+        this, SLOT(getUrlDone(int)));
+
 
     feedsModel_ = new QSqlTableModel();
     feedsModel_->setTable("feeds");
@@ -109,15 +117,6 @@ RSSListing::RSSListing(QWidget *parent)
     treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
 
     webView_ = new QWebView();
-
-//    networkProxy_.setType(QNetworkProxy::HttpProxy);
-    networkProxy_.setHostName("10.0.0.172");
-    networkProxy_.setPort(3150);
-    manager_.setProxy(networkProxy_);
-//    QNetworkProxy::setApplicationProxy(networkProxy_);
-
-    connect(&manager_, SIGNAL(finished(QNetworkReply*)),
-             this, SLOT(finished(QNetworkReply*)));
 
     //! Create feed layout
     feedsTabWidget_ = new QTabWidget();
@@ -405,21 +404,6 @@ void RSSListing::createToolBar()
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 }
 
-/*! \brief Starts the network request and connects the needed signals *********/
-void RSSListing::get(const QUrl &url)
-{
-    qDebug() << "get:" << url;
-    QNetworkRequest request(url);
-    if (currentReply_) {
-        currentReply_->disconnect(this);
-        currentReply_->deleteLater();
-    }
-    currentReply_ = manager_.get(request);
-    connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
-    connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
-    connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
-}
-
 /*! \brief Чтение настроек из ini-файла ***************************************/
 void RSSListing::readSettings()
 {
@@ -589,65 +573,24 @@ void RSSListing::importFeeds()
   feedsModel_->select();
 }
 
-/*! \brief Обработка события изменения метаданных интернет-запроса ************/
-void RSSListing::metaDataChanged()
-{
-    QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-    if (redirectionTarget.isValid()) {
-        qDebug() << "get redirect...";
-        get(redirectionTarget);
-    }
-}
-
-/*! \brief Reads data received from the RDF source.
- *
- *   We read all the available data, and pass it to the XML
- *   stream reader. Then we call the XML parsing function.
- ******************************************************************************/
-void RSSListing::readyRead()
-{
-    int statusCode = currentReply_->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    if (statusCode >= 200 && statusCode < 300) {
-        QByteArray data = currentReply_->readAll();
-        xml.addData(data);
-        parseXml();
-    }
-}
-
-/*! \brief Finishes processing an HTTP request.
-
-    The default behavior is to keep the text edit read only.
-
-    If an error has occurred, the user interface is made available
-    to the user for further input, allowing a new fetch to be
-    started.
-
-    If the HTTP get request has finished, we make the
-    user interface available to the user for further input.
- ******************************************************************************/
-void RSSListing::finished(QNetworkReply *reply)
-{
-    Q_UNUSED(reply);
-    addFeedAct_->setEnabled(true);
-    deleteFeedAct_->setEnabled(true);
-    feedsView_->setEnabled(true);
-}
-
 /*! \brief Разбор xml-файла ***************************************************/
-void RSSListing::parseXml()
+void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 {
+  QXmlStreamReader xml;
+  xml.addData(data);
+
   // поиск идентификатора ленты с таблице лент
   int parseFeedId = 0;
   QSqlQuery q(db_);
   q.exec(QString("select id from feeds where xmlurl like '%1'").
-      arg(currentUrl_.toString()));
+      arg(url.toString()));
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
   }
 
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
-    qDebug() << QString("Feed '%1' not found").arg(currentUrl_.toString());
+    qDebug() << QString("Feed '%1' not found").arg(url.toString());
     return;
   }
 
@@ -723,8 +666,9 @@ void RSSListing::parseXml()
     }
   }
   if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
-    statusBar()->showMessage(QString("XML ERROR: Line=%1, ErrorString=%2").
-                             arg(xml.lineNumber()).arg(xml.errorString()), 3000);
+    QString str = QString("XML ERROR: Line=%1, ErrorString=%2").
+        arg(xml.lineNumber()).arg(xml.errorString());
+    statusBar()->showMessage(str, 3000);
   } else {
     statusBar()->showMessage(QString("Update done"), 3000);
   }
@@ -732,20 +676,17 @@ void RSSListing::parseXml()
   slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
 }
 
+/*! \brief Обработка окончания запроса ****************************************/
+void RSSListing::getUrlDone(const int &result)
+{
+  qDebug() << "getUrl result =" << result;
+}
+
 /*! \brief Обработка события активации элемента в таблице результатов последнего запроса
  ******************************************************************************/
 void RSSListing::itemActivated(QTreeWidgetItem * item)
 {
     webView_->setHtml(item->text(3));
-}
-
-/*! \brief Обработка ошибки html-запроса **************************************/
-void RSSListing::error(QNetworkReply::NetworkError)
-{
-    statusBar()->showMessage("error retrieving RSS feed", 3000);
-    currentReply_->disconnect(this);
-    currentReply_->deleteLater();
-    currentReply_ = 0;
 }
 
 /*! \brief Обработка нажатия в дереве лент ************************************/
@@ -775,15 +716,16 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 /*! \brief Запрос обновления ленты ********************************************/
 void RSSListing::updateFeed(QModelIndex index)
 {
-  addFeedAct_->setEnabled(false);
-  deleteFeedAct_->setEnabled(false);
-  feedsView_->setEnabled(false);
+//  addFeedAct_->setEnabled(false);
+//  deleteFeedAct_->setEnabled(false);
+//  feedsView_->setEnabled(false);
   treeWidget_->clear();
 
-  xml.clear();
+//  xml.clear();
+//  currentUrl_.setUrl(feedsModel_->record(index.row()).field("xmlurl").value().toString());
 
-  currentUrl_.setUrl(feedsModel_->record(index.row()).field("xmlurl").value().toString());
-  get(currentUrl_);
+  persistentUpdateThread_->getUrl(
+      feedsModel_->record(index.row()).field("xmlurl").value().toString());
 
   statusBar()->showMessage(QString(tr("Update '%1 - %2' ...")).
       arg(feedsModel_->record(index.row()).field("id").value().toString()).
@@ -881,15 +823,13 @@ void RSSListing::slotSetProxy()
 {
   bool on = setProxyAct_->isChecked();
   if (on) {
-    networkProxy_.setType(QNetworkProxy::HttpProxy);
+    persistentUpdateThread_->setProxyType(QNetworkProxy::HttpProxy);
   } else {
-    networkProxy_.setType(QNetworkProxy::NoProxy);
+    persistentUpdateThread_->setProxyType(QNetworkProxy::NoProxy);
   }
-  QNetworkProxy::setApplicationProxy(networkProxy_);
   settings_->beginGroup("/Settings");
   settings_->setValue("/Proxy", on);
   settings_->endGroup();
-
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
@@ -908,6 +848,7 @@ void RSSListing::slotUpdateAllFeeds()
 //    updateFeed(index);
 //  }
   updateThread_ = new UpdateThread(this);
+  updateThread_->setObjectName("updateThread_");
   connect(updateThread_, SIGNAL(finished()), updateThread_, SLOT(deleteLater()));
   updateThread_->start(QThread::LowPriority);
 }

@@ -65,11 +65,7 @@ public slots:
     void addFeed();
     void deleteFeed();
     void importFeeds();
-    void finished(QNetworkReply *reply);
-    void readyRead();
-    void metaDataChanged();
     void itemActivated(QTreeWidgetItem * item);
-    void error(QNetworkReply::NetworkError);
     void slotFeedsTreeClicked(QModelIndex index);
     void slotUpdateFeed();
     void slotUpdateAllFeeds();
@@ -86,6 +82,8 @@ public slots:
     void slotClose();
     void slotCloseApp();
     void myEmptyWorkingSet();
+    void parseXml(const QByteArray &data, const QUrl &url);
+    void getUrlDone(const int &result);
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);
@@ -93,9 +91,9 @@ protected:
      virtual void changeEvent(QEvent*);
 
 private:
+    UpdateThread *persistentUpdateThread_;
     UpdateThread *updateThread_;
 
-    void parseXml();
     void get(const QUrl &url);
     void createActions();
     void createMenu();
@@ -105,7 +103,6 @@ private:
     void createTrayMenu();
 
     QSettings *settings_;
-    QXmlStreamReader xml;
     QString currentTag;
     QString itemString;
     QString titleString;
@@ -115,10 +112,8 @@ private:
     QString pubDateString;
     QString guidString;
 
-    QNetworkProxy networkProxy_;
-    QNetworkAccessManager manager_;
-    QUrl currentUrl_;
-    QNetworkReply *currentReply_;
+//    QXmlStreamReader xml;
+//    QUrl currentUrl_;
 
     QSqlDatabase db_;
     QSqlTableModel *feedsModel_;
