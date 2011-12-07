@@ -25,17 +25,33 @@ void UpdateThread::run()
   return;
 }
 
-/*! \brief »нициаци€ сетевого запроса и подсоединение сигналов ****************/
+/*! \brief ѕостановка сетевого адреса в очередь запросов **********************/
 void UpdateThread::getUrl(const QUrl &url)
 {
-  currentUrl_ = url;
-  get(currentUrl_);
+  urlsQueue_.enqueue(url);
+  qDebug() << "urlsQueue_ <<" << url << "count=" << urlsQueue_.count();
+  getQueuedUrl();
+}
+
+/*! \brief ќбработка очереди запросов *****************************************/
+void UpdateThread::getQueuedUrl()
+{
+  if (!currentUrl_.isEmpty()) return;
+
+  if (!urlsQueue_.isEmpty()) {
+    currentUrl_ = urlsQueue_.dequeue();
+    qDebug() << "urlsQueue_ >>" << currentUrl_ << "count=" << urlsQueue_.count();
+    get(currentUrl_);
+  } else {
+    qDebug() << "urlsQueue_ -- count=" << urlsQueue_.count();
+    emit getUrlDone(1);
+  }
 }
 
 /*! \brief »нициаци€ сетевого запроса и подсоединение сигналов ****************/
 void UpdateThread::get(const QUrl &url)
 {
-  qDebug() << objectName() << "get:" << url;
+  qDebug() << objectName() << "::get:" << url;
   QNetworkRequest request(url);
   if (currentReply_) {
       currentReply_->disconnect(this);
@@ -76,12 +92,14 @@ void UpdateThread::metaDataChanged()
 /*! \brief ќбработка ошибки html-запроса **************************************/
 void UpdateThread::error(QNetworkReply::NetworkError)
 {
-  qDebug() << objectName() << "error retrieving RSS feed";
+  qDebug() << objectName() << "::error retrieving RSS feed";
 //  statusBar()->showMessage("error retrieving RSS feed", 3000);
   currentReply_->disconnect(this);
   currentReply_->deleteLater();
   currentReply_ = 0;
   emit getUrlDone(-1);
+  currentUrl_.clear();
+  getQueuedUrl();
 }
 
 /*! \brief «авершение обработки сетевого запроса
@@ -103,6 +121,8 @@ void UpdateThread::finished(QNetworkReply *reply)
 //  feedsView_->setEnabled(true);
   qDebug() << objectName() << "::finished";
   emit getUrlDone(0);
+  currentUrl_.clear();
+  getQueuedUrl();
 }
 
 void UpdateThread::setProxyType(QNetworkProxy::ProxyType type)

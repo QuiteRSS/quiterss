@@ -3,6 +3,7 @@
 
 #include <QNetworkProxy>
 #include <QNetworkReply>
+#include <QQueue>
 #include <QThread>
 #include <QXmlStreamReader>
 
@@ -16,6 +17,8 @@ private:
   QNetworkProxy networkProxy_;
   QUrl currentUrl_;
 
+  QQueue<QUrl> urlsQueue_;
+
   QString itemString;
   QString titleString;
   QString linkString;
@@ -25,6 +28,7 @@ private:
   QString guidString;
 
   void get(const QUrl &url);
+  void getQueuedUrl();
 
 public:
   explicit UpdateThread(QObject *parent = 0);
