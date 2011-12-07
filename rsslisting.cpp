@@ -805,6 +805,7 @@ void RSSListing::createTrayMenu()
   font_.setBold(true);
   showWindowAct_->setFont(font_);
   trayMenu_->addAction(showWindowAct_);
+  trayMenu_->addAction(updateAllFeedsAct_);
   trayMenu_->addSeparator();
 
   setProxyAct_ = new QAction(this);
