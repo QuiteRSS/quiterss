@@ -21,7 +21,6 @@ UpdateThread::~UpdateThread()
 void UpdateThread::run()
 {
   qDebug() << objectName() << "::run()";
-//  exec();
   return;
 }
 
@@ -93,7 +92,6 @@ void UpdateThread::metaDataChanged()
 void UpdateThread::error(QNetworkReply::NetworkError)
 {
   qDebug() << objectName() << "::error retrieving RSS feed";
-//  statusBar()->showMessage("error retrieving RSS feed", 3000);
   currentReply_->disconnect(this);
   currentReply_->deleteLater();
   currentReply_ = 0;
@@ -116,9 +114,6 @@ void UpdateThread::error(QNetworkReply::NetworkError)
 void UpdateThread::finished(QNetworkReply *reply)
 {
   Q_UNUSED(reply);
-//  addFeedAct_->setEnabled(true);
-//  deleteFeedAct_->setEnabled(true);
-//  feedsView_->setEnabled(true);
   qDebug() << objectName() << "::finished";
   emit getUrlDone(0);
   currentUrl_.clear();

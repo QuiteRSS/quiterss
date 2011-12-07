@@ -744,13 +744,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 /*! \brief Запрос обновления ленты ********************************************/
 void RSSListing::updateFeed(QModelIndex index)
 {
-//  addFeedAct_->setEnabled(false);
-//  deleteFeedAct_->setEnabled(false);
-//  feedsView_->setEnabled(false);
   treeWidget_->clear();
-
-//  xml.clear();
-//  currentUrl_.setUrl(feedsModel_->record(index.row()).field("xmlurl").value().toString());
 
   persistentUpdateThread_->getUrl(
       feedsModel_->record(index.row()).field("xmlurl").value().toString());

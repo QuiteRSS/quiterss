@@ -111,9 +111,6 @@ private:
     QString pubDateString;
     QString guidString;
 
-//    QXmlStreamReader xml;
-//    QUrl currentUrl_;
-
     QSqlDatabase db_;
     QSqlTableModel *feedsModel_;
     QSqlTableModel *newsModel_;
