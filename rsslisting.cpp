@@ -868,15 +868,10 @@ void RSSListing::slotUpdateFeed()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotUpdateAllFeeds()
 {
-  statusBar()->showMessage("Feature 'Update all' is under construction", 3000);
-//  for (int i = 0; i < feedsModel_->rowCount(); ++i) {
-//    QModelIndex index = feedsModel_->index(i, 0);
-//    updateFeed(index);
-//  }
-  updateThread_ = new UpdateThread(this);
-  updateThread_->setObjectName("updateThread_");
-  connect(updateThread_, SIGNAL(finished()), updateThread_, SLOT(deleteLater()));
-  updateThread_->start(QThread::LowPriority);
+  for (int i = 0; i < feedsModel_->rowCount(); ++i) {
+    QModelIndex index = feedsModel_->index(i, 0);
+    updateFeed(index);
+  }
 }
 
 void RSSListing::slotProgressBarUpdate()
