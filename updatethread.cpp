@@ -46,7 +46,7 @@ void UpdateThread::get(const QUrl &url)
   connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
   connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
 
-  start(QThread::LowPriority);
+//  start(QThread::LowPriority);
 }
 
 /*! \brief Чтение данных принятых из сети
