@@ -101,6 +101,9 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->verticalHeader()->setVisible(false);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setShowGrid(false);
+    newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
+    newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
+    newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
 //    feedView_->setFocusPolicy(Qt::NoFocus);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
@@ -412,7 +415,7 @@ void RSSListing::createToolBar()
   toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
-  connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setShown(bool)));
+  connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -440,7 +443,7 @@ void RSSListing::readSettings()
 
   QList<int> sizes;
   for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
-    sizes << settings_->value(QString("newsSplitter/size%1").arg(i)).toInt();
+    sizes << settings_->value(QString("newsSplitter/size%1").arg(i), 100).toInt();
   }
   newsTabSplitter_->setSizes(sizes);
 }
