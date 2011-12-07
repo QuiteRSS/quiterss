@@ -704,7 +704,7 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
-  progressBar_->hide();
+  if (1 == result) progressBar_->hide();
 }
 
 /*! \brief Обработка события активации элемента в таблице результатов последнего запроса
