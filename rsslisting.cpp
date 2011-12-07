@@ -21,7 +21,8 @@ const QString kCreateFeedTableQuery(
         "author varchar, "
         "category varchar, "
         "label varchar, "
-        "status integer default 0, "
+        "new integer default 1, "
+        "read integer default 0, "
         "sticky integer default 0, "
         "deleted integer default 0, "
         "attachment varchar, "
@@ -741,7 +742,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("author"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("category"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("label"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("status"), true);
+  newsView_->setColumnHidden(newsModel_->fieldIndex("new"), true);
+  newsView_->setColumnHidden(newsModel_->fieldIndex("read"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("sticky"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("deleted"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("attachment"), true);
