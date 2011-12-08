@@ -132,7 +132,7 @@ private:
     QMenu *trayMenu_;
     QToolBar *toolBar_;
 
-    QDockWidget *feedsDoc_;
+    QDockWidget *feedsDock_;
     QTreeView *feedsView_;
     QSplitter *newsTabSplitter_;
     QTabWidget *newsTabWidget_;

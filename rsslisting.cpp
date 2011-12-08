@@ -122,12 +122,12 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
 
-    //! Create feeds DocWidget
-    feedsDoc_ = new QDockWidget(tr("Feeds"), this);
-    feedsDoc_->setObjectName("feedsDoc");
-    feedsDoc_->setWidget(feedsView_);
-    feedsDoc_->setFeatures(QDockWidget::DockWidgetMovable);
-    addDockWidget(Qt::LeftDockWidgetArea, feedsDoc_);
+    //! Create feeds DockWidget
+    feedsDock_ = new QDockWidget(tr("Feeds"), this);
+    feedsDock_->setObjectName("feedsDock");
+    feedsDock_->setWidget(feedsView_);
+    feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
+    addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
 
     //! Create news layout
     QVBoxLayout *webLayout = new QVBoxLayout();

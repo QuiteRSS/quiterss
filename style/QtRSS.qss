@@ -103,7 +103,7 @@ QTabBar::tab:!selected {
 	margin-top: 2px; /* делаем невыбранные вкладки меньше */
 }
 
-#feedsDoc::title {
+#feedsDock::title {
 	text-align: center;
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
