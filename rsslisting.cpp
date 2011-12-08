@@ -723,7 +723,10 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
-  if (1 == result) progressBar_->hide();
+  if (1 == result) {
+    updateAllFeedsAct_->setEnabled(true);
+    progressBar_->hide();
+  }
 }
 
 /*! \brief Обработка события активации элемента в таблице результатов последнего запроса
@@ -882,6 +885,7 @@ void RSSListing::slotUpdateFeed()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotUpdateAllFeeds()
 {
+  updateAllFeedsAct_->setEnabled(false);
   for (int i = 0; i < feedsModel_->rowCount(); ++i) {
     QModelIndex index = feedsModel_->index(i, 0);
     updateFeed(index);
