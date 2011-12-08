@@ -43,7 +43,7 @@ void UpdateThread::getQueuedUrl()
     get(currentUrl_);
   } else {
     qDebug() << "urlsQueue_ -- count=" << urlsQueue_.count();
-    emit getUrlDone(1);
+    emit getUrlDone(urlsQueue_.count());
   }
 }
 
@@ -115,7 +115,7 @@ void UpdateThread::finished(QNetworkReply *reply)
 {
   Q_UNUSED(reply);
   qDebug() << objectName() << "::finished";
-  emit getUrlDone(0);
+  emit getUrlDone(urlsQueue_.count());
   currentUrl_.clear();
   getQueuedUrl();
 }

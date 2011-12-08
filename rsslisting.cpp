@@ -83,8 +83,6 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->hideColumn(feedsModel_->fieldIndex("htmlurl"));
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
-    connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
-            this, SLOT(updateFeed(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
@@ -172,10 +170,10 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
-    progressBar_->setFixedWidth(150);
-    progressBar_->setFixedHeight(15);
+    progressBar_->setFixedWidth(160);
+//    progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
-    progressBar_->setMaximum(100);
+    progressBar_->setFormat(tr("Update feeds... (%p%)"));
     progressBar_->setVisible(false);
     statusBar()->addPermanentWidget(progressBar_);
     statusUnread_ = new QLabel(tr(" Unread: "));
@@ -198,6 +196,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     connect(this, SIGNAL(signalCloseApp()),
             SLOT(slotCloseApp()), Qt::QueuedConnection);
+    connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
+            updateFeedAct_, SLOT(trigger()));
 
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
@@ -723,9 +723,14 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
-  if (1 == result) {
+  // очередь запросов пуста
+  if (0 == result) {
     updateAllFeedsAct_->setEnabled(true);
     progressBar_->hide();
+  }
+  // в очереди запросов осталось _result_ запросов
+  else if (0 < result) {
+    progressBar_->setValue(progressBar_->maximum() - result);
   }
 }
 
@@ -778,7 +783,7 @@ void RSSListing::updateFeed(QModelIndex index)
       3000);
   progressBar_->setValue(progressBar_->minimum());
   progressBar_->show();
-  QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
+  QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -878,6 +883,7 @@ void RSSListing::slotSetProxy()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotUpdateFeed()
 {
+  progressBar_->setMaximum(1);
   QModelIndex index = feedsView_->currentIndex();
   updateFeed(index);
 }
@@ -885,6 +891,7 @@ void RSSListing::slotUpdateFeed()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotUpdateAllFeeds()
 {
+  progressBar_->setMaximum(feedsModel_->rowCount()-1);
   updateAllFeedsAct_->setEnabled(false);
   for (int i = 0; i < feedsModel_->rowCount(); ++i) {
     QModelIndex index = feedsModel_->index(i, 0);
@@ -894,12 +901,8 @@ void RSSListing::slotUpdateAllFeeds()
 
 void RSSListing::slotProgressBarUpdate()
 {
-  if (progressBar_->value() + 10 < progressBar_->maximum())
-    progressBar_->setValue(progressBar_->value() + 10);
-  else
-    progressBar_->setValue(progressBar_->minimum());
   progressBar_->update();
 
   if (progressBar_->isVisible())
-    QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
+    QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
