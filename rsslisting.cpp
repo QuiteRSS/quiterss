@@ -172,11 +172,12 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
-    progressBar_->setFixedWidth(150);
+    progressBar_->setFixedWidth(400);
     progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
     progressBar_->setMaximum(100);
-    progressBar_->setVisible(false);
+//    progressBar_->setVisible(false);
+    QTimer::singleShot(1000, this, SLOT(slotProgressBarUpdate()));
     statusBar()->addPermanentWidget(progressBar_);
     statusUnread_ = new QLabel(tr(" Unread: "));
     statusBar()->addPermanentWidget(statusUnread_);
@@ -890,12 +891,12 @@ void RSSListing::slotUpdateAllFeeds()
 
 void RSSListing::slotProgressBarUpdate()
 {
-  if (progressBar_->value() + 10 < progressBar_->maximum())
-    progressBar_->setValue(progressBar_->value() + 10);
+  if (progressBar_->value() + 1 < progressBar_->maximum())
+    progressBar_->setValue(progressBar_->value() + 1);
   else
     progressBar_->setValue(progressBar_->minimum());
   progressBar_->update();
 
   if (progressBar_->isVisible())
-    QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
+    QTimer::singleShot(100, this, SLOT(slotProgressBarUpdate()));
 }
