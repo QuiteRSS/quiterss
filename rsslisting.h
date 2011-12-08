@@ -92,6 +92,7 @@ protected:
 private:
     UpdateThread *persistentUpdateThread_;
     UpdateThread *updateThread_;
+    QNetworkProxy networkProxy_;
 
     void get(const QUrl &url);
     void createActions();

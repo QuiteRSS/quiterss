@@ -35,7 +35,7 @@ public:
   ~UpdateThread();
   void run();
   void getUrl(const QUrl &url);
-  void setProxyType(QNetworkProxy::ProxyType type);
+  void setProxy(const QNetworkProxy proxy);
 
 signals:
   void readedXml(const QByteArray &xml, const QUrl &url);

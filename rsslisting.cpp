@@ -171,7 +171,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     progressBar_ = new QProgressBar();
     progressBar_->setFixedWidth(160);
-//    progressBar_->setFixedHeight(15);
+    progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
     progressBar_->setFormat(tr("Update feeds... (%p%)"));
     progressBar_->setVisible(false);
@@ -427,11 +427,7 @@ void RSSListing::readSettings()
   int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
 
-  bool proxyOn = settings_->value("/Proxy", false).toBool();
   settings_->endGroup();
-
-  setProxyAct_->setChecked(proxyOn);
-  slotSetProxy();
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
@@ -446,6 +442,15 @@ void RSSListing::readSettings()
     sizes << settings_->value(QString("newsSplitter/size%1").arg(i), 100).toInt();
   }
   newsTabSplitter_->setSizes(sizes);
+
+  setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
+  networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>
+      (settings_->value("networkProxy/type", QNetworkProxy::HttpProxy).toInt()));
+  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "10.0.0.172").toString());
+  networkProxy_.setPort(    settings_->value("networkProxy/port",     3150).toUInt());
+  networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
+  networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
+  slotSetProxy();
 }
 
 /*! \brief Запись настроек в ini-файл *****************************************/
@@ -475,6 +480,13 @@ void RSSListing::writeSettings()
   for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
     settings_->setValue(QString("newsSplitter/size%1").arg(i), newsTabSplitter_->sizes().at(i));
   }
+
+  settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
+  settings_->setValue("networkProxy/type",     networkProxy_.type());
+  settings_->setValue("networkProxy/hostName", networkProxy_.hostName());
+  settings_->setValue("networkProxy/port",     networkProxy_.port());
+  settings_->setValue("networkProxy/user",     networkProxy_.user());
+  settings_->setValue("networkProxy/password", networkProxy_.password());
 }
 
 /*! \brief Добавление ленты в список лент *************************************/
@@ -871,13 +883,10 @@ void RSSListing::slotSetProxy()
 {
   bool on = setProxyAct_->isChecked();
   if (on) {
-    persistentUpdateThread_->setProxyType(QNetworkProxy::HttpProxy);
+    persistentUpdateThread_->setProxy(networkProxy_);
   } else {
-    persistentUpdateThread_->setProxyType(QNetworkProxy::NoProxy);
+    persistentUpdateThread_->setProxy(QNetworkProxy());
   }
-  settings_->beginGroup("/Settings");
-  settings_->setValue("/Proxy", on);
-  settings_->endGroup();
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/

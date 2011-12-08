@@ -3,10 +3,6 @@
 UpdateThread::UpdateThread(QObject *parent) :
     QThread(parent), currentReply_(0)
 {
-  networkProxy_.setHostName("10.0.0.172");
-  networkProxy_.setPort(3150);
-  manager_.setProxy(networkProxy_);
-
   connect(&manager_, SIGNAL(finished(QNetworkReply*)),
       this, SLOT(finished(QNetworkReply*)));
 
@@ -120,8 +116,8 @@ void UpdateThread::finished(QNetworkReply *reply)
   getQueuedUrl();
 }
 
-void UpdateThread::setProxyType(QNetworkProxy::ProxyType type)
+void UpdateThread::setProxy(const QNetworkProxy proxy)
 {
-  networkProxy_.setType(type);
+  networkProxy_ = proxy;
   QNetworkProxy::setApplicationProxy(networkProxy_);
 }
