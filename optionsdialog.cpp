@@ -99,13 +99,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   sizes << 150 << 600;
   splitter->setSizes(sizes);
 
-  connect(categoriesTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
-          this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
-
   buttonBox_ = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
-  connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(4);
@@ -113,6 +108,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   mainLayout->addWidget(buttonBox_);
 
   setLayout(mainLayout);
+
+  connect(categoriesTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+          this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
+  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
+  connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
 
   slotCategoriesItemCLicked(categoriesTree->topLevelItem(0), 0);
 }
