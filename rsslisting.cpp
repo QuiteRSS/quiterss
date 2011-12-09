@@ -847,6 +847,7 @@ void RSSListing::showOptionDlg()
 {
   OptionsDialog *optionsDialog = new OptionsDialog(this);
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
+  optionsDialog->setProxy(networkProxy_);
   optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 }
@@ -901,10 +902,11 @@ void RSSListing::slotSetProxy()
 {
   bool on = setProxyAct_->isChecked();
   if (on) {
-    persistentUpdateThread_->setProxy(networkProxy_);
+    networkProxy_.setType(QNetworkProxy::HttpProxy);
   } else {
-    persistentUpdateThread_->setProxy(QNetworkProxy());
+    networkProxy_.setType(QNetworkProxy::NoProxy);
   }
+  persistentUpdateThread_->setProxy(networkProxy_);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
