@@ -93,6 +93,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setObjectName("newsView_");
     newsView_->setModel(newsModel_);
     newsView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+    newsView_->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     newsView_->horizontalHeader()->setStretchLastSection(true);
     newsView_->horizontalHeader()->setHighlightSections(false);
     newsView_->verticalHeader()->setDefaultSectionSize(
@@ -124,9 +125,13 @@ RSSListing::RSSListing(QWidget *parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     //! Create feeds DockWidget
+    setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
+    setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
+    setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
+
     feedsDock_ = new QDockWidget(tr("Feeds"), this);
     feedsDock_->setObjectName("feedsDock");
-    feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
+    feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
     feedsDock_->setWidget(feedsView_);
     feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
     addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
@@ -144,7 +149,18 @@ RSSListing::RSSListing(QWidget *parent)
     toolBarNull_->addWidget(pushButtonNull_);
     connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
 
-    //! Create news layout
+    //! Create news DockWidget
+    QSplitter *newsSplitter = new QSplitter(Qt::Vertical);
+    newsSplitter->addWidget(treeWidget_);
+    newsSplitter->addWidget(newsView_);
+
+    newsDock_ = new QDockWidget(tr("News"), this);
+    newsDock_->setObjectName("newsDock");
+    newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
+    newsDock_->setWidget(newsSplitter);
+    addDockWidget(Qt::TopDockWidgetArea, newsDock_);
+
+    //! Create web layout
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
     webLayout->addWidget(webView_);
@@ -153,25 +169,7 @@ RSSListing::RSSListing(QWidget *parent)
     webWidget->setStyleSheet("border: 1px solid gray");
     webWidget->setLayout(webLayout);
 
-    newsTabSplitter_ = new QSplitter(Qt::Vertical);
-    newsTabSplitter_->addWidget(newsView_);
-    newsTabSplitter_->addWidget(webWidget);
-
-    newsTabWidget_ = new QTabWidget();
-    newsTabWidget_->addTab(newsTabSplitter_, "");
-
-    QSplitter *contentSplitter = new QSplitter(Qt::Vertical);
-    contentSplitter->addWidget(treeWidget_);
-    contentSplitter->addWidget(newsTabWidget_);
-
-    QVBoxLayout *layout = new QVBoxLayout();
-    layout->setMargin(0);
-    layout->addWidget(contentSplitter);
-
-    QWidget *centralWidget = new QWidget();
-    centralWidget->setLayout(layout);
-
-    setCentralWidget(centralWidget);
+    setCentralWidget(webWidget);
 
     setWindowTitle(QString("QtRSS v") + QString(STRFILEVER).section('.', 0, 2));
 
@@ -188,7 +186,7 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
-    progressBar_->setFixedWidth(160);
+    progressBar_->setFixedWidth(180);
     progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
     progressBar_->setFormat(tr("Update feeds... (%p%)"));
@@ -222,9 +220,9 @@ RSSListing::RSSListing(QWidget *parent)
     readSettings();
 
     //Установка шрифтов и их настроек для элементов
-//    QFont font_ = newsTabWidget_->font();
-//    font_.setBold(true);
-//    newsTabWidget_->setFont(font_);
+    QFont font_ = newsDock_->font();
+    font_.setBold(true);
+    newsDock_->setFont(font_);
 }
 
 /*!****************************************************************************/
@@ -468,12 +466,6 @@ void RSSListing::readSettings()
     newsView_->setColumnWidth(i, settings_->value(
          QString("newsView/columnWidth%1").arg(i), 100).toInt());
 
-  QList<int> sizes;
-  for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
-    sizes << settings_->value(QString("newsSplitter/size%1").arg(i), 100).toInt();
-  }
-  newsTabSplitter_->setSizes(sizes);
-
   setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>
       (settings_->value("networkProxy/type", QNetworkProxy::HttpProxy).toInt()));
@@ -508,10 +500,6 @@ void RSSListing::writeSettings()
     settings_->setValue(QString("newsView/columnWidth%1").arg(i),
         newsView_->columnWidth(i));
 
-  for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
-    settings_->setValue(QString("newsSplitter/size%1").arg(i), newsTabSplitter_->sizes().at(i));
-  }
-
   settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
   settings_->setValue("networkProxy/type",     networkProxy_.type());
   settings_->setValue("networkProxy/hostName", networkProxy_.hostName());
@@ -540,7 +528,7 @@ void RSSListing::deleteFeed()
 {
   QMessageBox msgBox;
   msgBox.setIcon(QMessageBox::Question);
-  msgBox.setText(QString("Are you sure to delete the feed '%1'?").
+  msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
                  arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString()));
   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
   msgBox.setDefaultButton(QMessageBox::No);
@@ -806,8 +794,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("link"), true);
   newsView_->setSortingEnabled(true);
   newsView_->sortByColumn(newsModel_->fieldIndex("published"));
-  newsTabWidget_->setTabText(0, feedsModel_->index(index.row(), 1).data().toString());
-
+  newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
   statusUnread_->setText(tr(" Unread: ") + QString::number(newsModel_->rowCount()) + " ");
   statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
 }
@@ -957,10 +944,14 @@ void RSSListing::slotVisibledFeedsDock()
 void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 {
   if (area == Qt::LeftDockWidgetArea) {
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
-      addToolBar(Qt::LeftToolBarArea, toolBarNull_);
+    pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+    toolBarNull_->show();
+    addToolBar(Qt::LeftToolBarArea, toolBarNull_);
+  } else if (area == Qt::RightDockWidgetArea) {
+    toolBarNull_->show();
+    pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+    addToolBar(Qt::RightToolBarArea, toolBarNull_);
   } else {
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
-      addToolBar(Qt::RightToolBarArea, toolBarNull_);
+    toolBarNull_->hide();
   }
 }

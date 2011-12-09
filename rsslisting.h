@@ -135,9 +135,8 @@ private:
     QToolBar *toolBar_;
 
     QDockWidget *feedsDock_;
+    QDockWidget *newsDock_;
     QTreeView *feedsView_;
-    QSplitter *newsTabSplitter_;
-    QTabWidget *newsTabWidget_;
     QTableView *newsView_;
 
     QTreeWidget *treeWidget_;
