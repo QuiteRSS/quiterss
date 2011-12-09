@@ -212,4 +212,64 @@
     <source>ToolBar</source>
     <target>Панель инструментов</target>
 </phrase>
+<phrase>
+    <source>Password:</source>
+    <target>Пароль:</target>
+</phrase>
+<phrase>
+    <source>Port:</source>
+    <target>Порт:</target>
+</phrase>
+<phrase>
+    <source>Network Connections</source>
+    <target>Сетевые подключения</target>
+</phrase>
+<phrase>
+    <source>System proxy configuration (if available)</source>
+    <target>Системные настройки прокси (если имеется)</target>
+</phrase>
+<phrase>
+    <source>Apply</source>
+    <target>Применить</target>
+</phrase>
+<phrase>
+    <source>Update feeds... (%p%)</source>
+    <target>Обновление лент... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Received</source>
+    <target>Получено</target>
+</phrase>
+<phrase>
+    <source>Title</source>
+    <target>Заголовок</target>
+</phrase>
+<phrase>
+    <source>Open options gialog</source>
+    <target>Открыть окно настроек</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+    <target>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</target>
+</phrase>
+<phrase>
+    <source>Username:</source>
+    <target>Имя пользователя:</target>
+</phrase>
+<phrase>
+    <source>Proxy server:</source>
+    <target>Прокси-сервер:</target>
+</phrase>
+<phrase>
+    <source>Date</source>
+    <target>Дата</target>
+</phrase>
+<phrase>
+    <source>Delete feed</source>
+    <target>Удаление новостной ленты</target>
+</phrase>
+<phrase>
+    <source>Options</source>
+    <target>Настройки</target>
+</phrase>
 </QPH>

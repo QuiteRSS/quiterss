@@ -183,7 +183,7 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
-    progressBar_->setFixedWidth(180);
+    progressBar_->setFixedWidth(200);
     progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
     progressBar_->setFormat(tr("Update feeds... (%p%)"));
@@ -525,6 +525,7 @@ void RSSListing::deleteFeed()
 {
   QMessageBox msgBox;
   msgBox.setIcon(QMessageBox::Question);
+  msgBox.setWindowTitle(tr("Delete feed"));
   msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
                  arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString()));
   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
@@ -793,7 +794,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->sortByColumn(newsModel_->fieldIndex("published"));
   // Переименование колонок новостей
   newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
-  newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
+  newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
@@ -848,6 +849,7 @@ void RSSListing::toggleQueryResults(bool checked)
 void RSSListing::showOptionDlg()
 {
   OptionsDialog *optionsDialog = new OptionsDialog(this);
+  optionsDialog->setWindowTitle(tr("Options"));
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->setProxy(networkProxy_);
   int result = optionsDialog->exec();
