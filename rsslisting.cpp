@@ -76,6 +76,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     feedsView_->setModel(feedsModel_);
     feedsView_->header()->setResizeMode(QHeaderView::ResizeToContents);
+    feedsView_->header()->setVisible(false);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     feedsView_->hideColumn(feedsModel_->fieldIndex("title"));
