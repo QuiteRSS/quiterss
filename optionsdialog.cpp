@@ -52,7 +52,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   manualLayout->addWidget(userPasswordWidget);
   manualLayout->addStretch();
 
-  QWidget *manualWidget = new QGroupBox(tr("manual proxy settings"));
+  QWidget *manualWidget = new QGroupBox();
   // @TODO(arhohryakov:2011.12.08): убрать границу и заголовок группы
   manualWidget->setLayout(manualLayout);
 
@@ -75,8 +75,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   widgetSecond_->setToolTip(tr("widgetSecond"));
 
   contentLabel_ = new QLabel(tr("ContentLabel"));
-  contentLabel_->setStyleSheet("border-bottom: 2px solid black;"
-      " font-size: 12px ;font-weight: bold");
 
   contentStack_ = new QStackedWidget();
   contentStack_->addWidget(networkConnectionsWidget_);
