@@ -272,4 +272,8 @@
     <source>Options</source>
     <target>Настройки</target>
 </phrase>
+<phrase>
+    <source>Add feed</source>
+    <target>Добавление новостной ленты</target>
+</phrase>
 </QPH>

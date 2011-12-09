@@ -509,6 +509,7 @@ void RSSListing::writeSettings()
 void RSSListing::addFeed()
 {
   AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
+  addFeedDialog->setWindowTitle(tr("Add feed"));
   if (addFeedDialog->exec() == QDialog::Rejected) return;
 
   QSqlQuery q(db_);

@@ -68,7 +68,7 @@
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="112"/>
-        <location filename="../rsslisting.cpp" line="796"/>
+        <location filename="../rsslisting.cpp" line="797"/>
         <source>Title</source>
         <translation>Заголовок</translation>
     </message>
@@ -114,18 +114,18 @@
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="192"/>
-        <location filename="../rsslisting.cpp" line="801"/>
+        <location filename="../rsslisting.cpp" line="802"/>
         <source> Unread: </source>
         <translation> Непрочитанных: </translation>
     </message>
     <message>
         <location filename="../rsslisting.cpp" line="194"/>
-        <location filename="../rsslisting.cpp" line="802"/>
+        <location filename="../rsslisting.cpp" line="803"/>
         <source> All: </source>
         <translation> Всего: </translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="798"/>
+        <location filename="../rsslisting.cpp" line="799"/>
         <source>Received</source>
         <translation>Получено</translation>
     </message>
@@ -215,32 +215,37 @@
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="528"/>
+        <location filename="../rsslisting.cpp" line="512"/>
+        <source>Add feed</source>
+        <translation type="unfinished">Добавление новостной ленты</translation>
+    </message>
+    <message>
+        <location filename="../rsslisting.cpp" line="529"/>
         <source>Delete feed</source>
         <translation>Удаление новостной ленты</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="529"/>
+        <location filename="../rsslisting.cpp" line="530"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="797"/>
+        <location filename="../rsslisting.cpp" line="798"/>
         <source>Date</source>
         <translation>Дата</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="813"/>
+        <location filename="../rsslisting.cpp" line="814"/>
         <source>Update &apos;%1 - %2&apos; ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="852"/>
+        <location filename="../rsslisting.cpp" line="853"/>
         <source>Options</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="891"/>
+        <location filename="../rsslisting.cpp" line="892"/>
         <source>Proxy enabled</source>
         <translation>Прокси включен</translation>
     </message>
@@ -285,27 +290,27 @@
         <translation>Панель инструментов</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="549"/>
+        <location filename="../rsslisting.cpp" line="550"/>
         <source>Select OPML-file</source>
         <translation>Выберите OPML-файл</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="551"/>
+        <location filename="../rsslisting.cpp" line="552"/>
         <source>OPML-files (*.opml)</source>
         <translation>OPML-файлы (*.opml)</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="554"/>
+        <location filename="../rsslisting.cpp" line="555"/>
         <source>Import canceled</source>
         <translation>Отмена импортирования</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="562"/>
+        <location filename="../rsslisting.cpp" line="563"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Импортирование: не может открыть файл</translation>
     </message>
     <message>
-        <location filename="../rsslisting.cpp" line="881"/>
+        <location filename="../rsslisting.cpp" line="882"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
