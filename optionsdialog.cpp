@@ -18,11 +18,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "2" << tr("Second");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
+  systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
+  systemProxyButton_->setEnabled(false);
+  directConnectionButton_ = new QRadioButton(tr("Direct connection to the Internet"));
+  manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
+
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
   networkConnectionsLayout->setMargin(0);
-  networkConnectionsLayout->addWidget(new QRadioButton(tr("System proxy configuration (if available)")));
-  networkConnectionsLayout->addWidget(new QRadioButton(tr("Direct connection to the Internet")));
-  networkConnectionsLayout->addWidget(new QRadioButton(tr("Manual proxy configuration:")));
+  networkConnectionsLayout->addWidget(systemProxyButton_);
+  networkConnectionsLayout->addWidget(directConnectionButton_);
+  networkConnectionsLayout->addWidget(manualProxyButton_);
 
   QHBoxLayout *addrPortLayout = new QHBoxLayout();
   addrPortLayout->setMargin(0);
@@ -52,11 +57,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   manualLayout->addWidget(userPasswordWidget);
   manualLayout->addStretch();
 
-  QWidget *manualWidget = new QGroupBox();
+  manualWidget_ = new QWidget();
+  manualWidget_->setEnabled(false);  // т.к. при создании соответствующая радио-кнока не выбрана
   // @TODO(arhohryakov:2011.12.08): убрать границу и заголовок группы
-  manualWidget->setLayout(manualLayout);
+  manualWidget_->setLayout(manualLayout);
 
-  networkConnectionsLayout->addWidget(manualWidget);
+  networkConnectionsLayout->addWidget(manualWidget_);
 
   QHBoxLayout *networkConnectionsButtonsLayout = new QHBoxLayout();
   networkConnectionsButtonsLayout->setMargin(0);
@@ -111,12 +117,41 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
           this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
   connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
+  connect(manualProxyButton_, SIGNAL(toggled(bool)),
+      this, SLOT(manualProxyToggle(bool)));
 
   slotCategoriesItemCLicked(categoriesTree->topLevelItem(0), 0);
+
+  // не нужно, т.к. после создания окна из главного окна передаются настройки
+//  manualProxyToggle(manualProxyButton_->isChecked());
 }
 
 void OptionsDialog::slotCategoriesItemCLicked(QTreeWidgetItem* item, int column)
 {
   contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
   contentStack_->setCurrentIndex(item->data(0, Qt::DisplayRole).toInt());
+}
+
+void OptionsDialog::manualProxyToggle(bool checked)
+{
+  manualWidget_->setEnabled(checked);
+}
+
+void OptionsDialog::setProxy(const QNetworkProxy proxy)
+{
+  networkProxy_ = proxy;
+  updateProxy();
+}
+
+void OptionsDialog::updateProxy()
+{
+  switch (networkProxy_.type()) {
+    case QNetworkProxy::HttpProxy:
+      manualProxyButton_->setChecked(true);
+      break;
+    case QNetworkProxy::NoProxy:
+    default:
+      directConnectionButton_->setChecked(true);
+  }
+
 }
