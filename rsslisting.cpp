@@ -798,6 +798,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
 
+  slotFeedViewClicked(newsView_->currentIndex());
+
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
   statusUnread_->setText(tr(" Unread: ") + QString::number(newsModel_->rowCount()) + " ");
   statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");

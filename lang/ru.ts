@@ -12,7 +12,7 @@
     <message>
         <location filename="../optionsdialog.cpp" line="15"/>
         <source>System proxy configuration (if available)</source>
-        <translation>Системные настройки прокси (если имеется)</translation>
+        <translation>Системные настройки прокси (если имеются)</translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="17"/>
