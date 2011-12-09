@@ -29,24 +29,28 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsLayout->addWidget(directConnectionButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
 
+  editHost_ = new QLineEdit();
+  editPort_ = new QLineEdit();
+  editPort_->setFixedWidth(60);
+  editUser_ = new QLineEdit();
+  editPassword_ = new QLineEdit();
+
   QHBoxLayout *addrPortLayout = new QHBoxLayout();
   addrPortLayout->setMargin(0);
-  addrPortLayout->addWidget(new QLabel(tr("Host:")));
-  addrPortLayout->addWidget(new QLineEdit(tr("host")));
+  addrPortLayout->addWidget(new QLabel(tr("Proxy server:")));
+  addrPortLayout->addWidget(editHost_);
   addrPortLayout->addWidget(new QLabel(tr("Port:")));
-  QLineEdit *portEdit = new QLineEdit(tr("port"));
-  portEdit->setFixedWidth(60);
-  addrPortLayout->addWidget(portEdit);
+  addrPortLayout->addWidget(editPort_);
 
   QWidget *addrPortWidget = new QWidget();
   addrPortWidget->setLayout(addrPortLayout);
 
   QGridLayout *userPasswordLayout = new QGridLayout();
   userPasswordLayout->setMargin(0);
-  userPasswordLayout->addWidget(new QLabel(tr("User:")),     0, 0);
-  userPasswordLayout->addWidget(new QLineEdit(tr("")),       0, 1);
+  userPasswordLayout->addWidget(new QLabel(tr("Username:")), 0, 0);
+  userPasswordLayout->addWidget(editUser_,                   0, 1);
   userPasswordLayout->addWidget(new QLabel(tr("Password:")), 1, 0);
-  userPasswordLayout->addWidget(new QLineEdit(tr("")),       1, 1);
+  userPasswordLayout->addWidget(editPassword_,               1, 1);
 
   QWidget *userPasswordWidget = new QWidget();
   userPasswordWidget->setLayout(userPasswordLayout);
@@ -63,13 +67,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   manualWidget_->setLayout(manualLayout);
 
   networkConnectionsLayout->addWidget(manualWidget_);
-
-  QHBoxLayout *networkConnectionsButtonsLayout = new QHBoxLayout();
-  networkConnectionsButtonsLayout->setMargin(0);
-  networkConnectionsButtonsLayout->addStretch();
-  networkConnectionsButtonsLayout->addWidget(new QPushButton(tr("Restore defaults")));
-  networkConnectionsButtonsLayout->addWidget(new QPushButton(tr("Apply")));
-  networkConnectionsLayout->addLayout(networkConnectionsButtonsLayout);
 
   networkConnectionsWidget_ = new QWidget();
   networkConnectionsWidget_->setToolTip(tr("networkConnectionsWidget_"));
@@ -115,7 +112,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   connect(categoriesTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
-  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
+  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(acceptSlot()));
   connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
   connect(manualProxyButton_, SIGNAL(toggled(bool)),
       this, SLOT(manualProxyToggle(bool)));
@@ -137,6 +134,11 @@ void OptionsDialog::manualProxyToggle(bool checked)
   manualWidget_->setEnabled(checked);
 }
 
+QNetworkProxy OptionsDialog::proxy()
+{
+  return networkProxy_;
+}
+
 void OptionsDialog::setProxy(const QNetworkProxy proxy)
 {
   networkProxy_ = proxy;
@@ -153,5 +155,26 @@ void OptionsDialog::updateProxy()
     default:
       directConnectionButton_->setChecked(true);
   }
+  editHost_->setText(networkProxy_.hostName());
+  editPort_->setText(QVariant(networkProxy_.port()).toString());
+  editUser_->setText(networkProxy_.user());
+  editPassword_->setText(networkProxy_.password());
+}
 
+void OptionsDialog::applyProxy()
+{
+  if (manualProxyButton_->isChecked())
+    networkProxy_.setType(QNetworkProxy::HttpProxy);
+  else
+    networkProxy_.setType(QNetworkProxy::NoProxy);
+  networkProxy_.setHostName(editHost_->text());
+  networkProxy_.setPort(    editPort_->text().toInt());
+  networkProxy_.setUser(    editUser_->text());
+  networkProxy_.setPassword(editPassword_->text());
+}
+
+void OptionsDialog::acceptSlot()
+{
+  applyProxy();
+  accept();
 }
