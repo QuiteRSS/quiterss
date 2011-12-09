@@ -88,6 +88,7 @@ protected:
      bool eventFilter(QObject *obj, QEvent *ev);
      virtual void closeEvent(QCloseEvent*);
      virtual void changeEvent(QEvent*);
+     virtual void showEvent(QShowEvent*);
 
 private:
     UpdateThread *persistentUpdateThread_;
@@ -149,10 +150,15 @@ private:
     QLabel *statusUnread_;
     QLabel *statusAll_;
 
+    QToolBar *toolBarNull_;
+    QPushButton *pushButtonNull_;
+
 private slots:
     void slotSetProxy();
     void updateFeed(QModelIndex index);
     void slotProgressBarUpdate();
+    void slotVisibledFeedsDock();
+    void slotDockLocationChanged(Qt::DockWidgetArea area);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
