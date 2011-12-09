@@ -101,9 +101,6 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->verticalHeader()->setVisible(false);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setShowGrid(false);
-    newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
-    newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
-    newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
 //    feedView_->setFocusPolicy(Qt::NoFocus);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
@@ -794,6 +791,11 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("link"), true);
   newsView_->setSortingEnabled(true);
   newsView_->sortByColumn(newsModel_->fieldIndex("published"));
+  // Переименование колонок новостей
+  newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
+  newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
+  newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
+
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
   statusUnread_->setText(tr(" Unread: ") + QString::number(newsModel_->rowCount()) + " ");
   statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
