@@ -84,8 +84,6 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->hideColumn(feedsModel_->fieldIndex("htmlurl"));
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
-    connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
-            this, SLOT(updateFeed(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
@@ -190,10 +188,10 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
-    progressBar_->setFixedWidth(150);
+    progressBar_->setFixedWidth(160);
     progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
-    progressBar_->setMaximum(100);
+    progressBar_->setFormat(tr("Update feeds... (%p%)"));
     progressBar_->setVisible(false);
     statusBar()->addPermanentWidget(progressBar_);
     statusUnread_ = new QLabel(tr(" Unread: "));
@@ -216,6 +214,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     connect(this, SIGNAL(signalCloseApp()),
             SLOT(slotCloseApp()), Qt::QueuedConnection);
+    connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
+            updateFeedAct_, SLOT(trigger()));
 
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
@@ -458,11 +458,7 @@ void RSSListing::readSettings()
   int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
 
-  bool proxyOn = settings_->value("/Proxy", false).toBool();
   settings_->endGroup();
-
-  setProxyAct_->setChecked(proxyOn);
-  slotSetProxy();
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
@@ -477,6 +473,15 @@ void RSSListing::readSettings()
     sizes << settings_->value(QString("newsSplitter/size%1").arg(i), 100).toInt();
   }
   newsTabSplitter_->setSizes(sizes);
+
+  setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
+  networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>
+      (settings_->value("networkProxy/type", QNetworkProxy::HttpProxy).toInt()));
+  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "10.0.0.172").toString());
+  networkProxy_.setPort(    settings_->value("networkProxy/port",     3150).toUInt());
+  networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
+  networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
+  slotSetProxy();
 }
 
 /*! \brief Запись настроек в ini-файл *****************************************/
@@ -506,6 +511,13 @@ void RSSListing::writeSettings()
   for (int i = 0 ; i < newsTabSplitter_->count() ; ++i) {
     settings_->setValue(QString("newsSplitter/size%1").arg(i), newsTabSplitter_->sizes().at(i));
   }
+
+  settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
+  settings_->setValue("networkProxy/type",     networkProxy_.type());
+  settings_->setValue("networkProxy/hostName", networkProxy_.hostName());
+  settings_->setValue("networkProxy/port",     networkProxy_.port());
+  settings_->setValue("networkProxy/user",     networkProxy_.user());
+  settings_->setValue("networkProxy/password", networkProxy_.password());
 }
 
 /*! \brief Добавление ленты в список лент *************************************/
@@ -754,7 +766,15 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
-  if (1 == result) progressBar_->hide();
+  // очередь запросов пуста
+  if (0 == result) {
+    updateAllFeedsAct_->setEnabled(true);
+    progressBar_->hide();
+  }
+  // в очереди запросов осталось _result_ запросов
+  else if (0 < result) {
+    progressBar_->setValue(progressBar_->maximum() - result);
+  }
 }
 
 /*! \brief Обработка события активации элемента в таблице результатов последнего запроса
@@ -806,7 +826,7 @@ void RSSListing::updateFeed(QModelIndex index)
       3000);
   progressBar_->setValue(progressBar_->minimum());
   progressBar_->show();
-  QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
+  QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -894,18 +914,16 @@ void RSSListing::slotSetProxy()
 {
   bool on = setProxyAct_->isChecked();
   if (on) {
-    persistentUpdateThread_->setProxyType(QNetworkProxy::HttpProxy);
+    persistentUpdateThread_->setProxy(networkProxy_);
   } else {
-    persistentUpdateThread_->setProxyType(QNetworkProxy::NoProxy);
+    persistentUpdateThread_->setProxy(QNetworkProxy());
   }
-  settings_->beginGroup("/Settings");
-  settings_->setValue("/Proxy", on);
-  settings_->endGroup();
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotUpdateFeed()
 {
+  progressBar_->setMaximum(1);
   QModelIndex index = feedsView_->currentIndex();
   updateFeed(index);
 }
@@ -913,6 +931,8 @@ void RSSListing::slotUpdateFeed()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotUpdateAllFeeds()
 {
+  progressBar_->setMaximum(feedsModel_->rowCount()-1);
+  updateAllFeedsAct_->setEnabled(false);
   for (int i = 0; i < feedsModel_->rowCount(); ++i) {
     QModelIndex index = feedsModel_->index(i, 0);
     updateFeed(index);
@@ -921,14 +941,10 @@ void RSSListing::slotUpdateAllFeeds()
 
 void RSSListing::slotProgressBarUpdate()
 {
-  if (progressBar_->value() + 10 < progressBar_->maximum())
-    progressBar_->setValue(progressBar_->value() + 10);
-  else
-    progressBar_->setValue(progressBar_->minimum());
   progressBar_->update();
 
   if (progressBar_->isVisible())
-    QTimer::singleShot(400, this, SLOT(slotProgressBarUpdate()));
+    QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
 void RSSListing::slotVisibledFeedsDock()

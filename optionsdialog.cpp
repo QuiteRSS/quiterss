@@ -8,7 +8,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->setColumnCount(2);
   categoriesTree->setColumnHidden(0, true);
   QStringList treeItem;
-  treeItem << "0" << tr("Zero");
+  treeItem << "0" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "1" << tr("First");
@@ -17,8 +17,27 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "2" << tr("Second");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
-  widgetZero_ = new QWidget();
-  widgetZero_->setToolTip(tr("widgetZero"));
+  QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
+  networkConnectionsLayout->setMargin(0);
+  networkConnectionsLayout->addWidget(new QRadioButton(tr("System proxy configuration (if available)")));
+  networkConnectionsLayout->addWidget(new QRadioButton(tr("Direct connection to the Internet")));
+  networkConnectionsLayout->addWidget(new QRadioButton(tr("Manual proxy configuration:")));
+  // @TODO(arohryakov:2011.12.08): сделать границу и имя невидимыми
+  QGroupBox *manualGroupBox = new QGroupBox(tr("manual proxy settings"));
+//  manualGroupBox->setStyleSheet("border: 0px");
+  networkConnectionsLayout->addWidget(manualGroupBox);
+  QHBoxLayout *networkConnectionsButtonsLayout = new QHBoxLayout();
+  networkConnectionsButtonsLayout->setMargin(0);
+  networkConnectionsButtonsLayout->addStretch();
+  networkConnectionsButtonsLayout->addWidget(new QPushButton(tr("Restore defaults")));
+  networkConnectionsButtonsLayout->addWidget(new QPushButton(tr("Apply")));
+  networkConnectionsLayout->addLayout(networkConnectionsButtonsLayout);
+
+  networkConnectionsWidget_ = new QWidget();
+  networkConnectionsWidget_->setToolTip(tr("networkConnectionsWidget_"));
+  networkConnectionsWidget_->setLayout(networkConnectionsLayout);
+
+
   widgetFirst_ = new QWidget();
   widgetFirst_->setToolTip(tr("widgetFirst"));
   widgetSecond_ = new QWidget();
@@ -26,7 +45,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentStack_ = new QStackedWidget();
-  contentStack_->addWidget(widgetZero_);
+  contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(widgetFirst_);
   contentStack_->addWidget(widgetSecond_);
 

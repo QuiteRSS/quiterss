@@ -18,7 +18,7 @@ private:
   QLabel *contentLabel_;
   QStackedWidget *contentStack_;
 
-  QWidget *widgetZero_;
+  QWidget *networkConnectionsWidget_;
   QWidget *widgetFirst_;
   QWidget *widgetSecond_;
 

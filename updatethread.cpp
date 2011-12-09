@@ -3,10 +3,6 @@
 UpdateThread::UpdateThread(QObject *parent) :
     QThread(parent), currentReply_(0)
 {
-  networkProxy_.setHostName("10.0.0.172");
-  networkProxy_.setPort(3150);
-  manager_.setProxy(networkProxy_);
-
   connect(&manager_, SIGNAL(finished(QNetworkReply*)),
       this, SLOT(finished(QNetworkReply*)));
 
@@ -43,7 +39,7 @@ void UpdateThread::getQueuedUrl()
     get(currentUrl_);
   } else {
     qDebug() << "urlsQueue_ -- count=" << urlsQueue_.count();
-    emit getUrlDone(1);
+    emit getUrlDone(urlsQueue_.count());
   }
 }
 
@@ -115,13 +111,13 @@ void UpdateThread::finished(QNetworkReply *reply)
 {
   Q_UNUSED(reply);
   qDebug() << objectName() << "::finished";
-  emit getUrlDone(0);
+  emit getUrlDone(urlsQueue_.count());
   currentUrl_.clear();
   getQueuedUrl();
 }
 
-void UpdateThread::setProxyType(QNetworkProxy::ProxyType type)
+void UpdateThread::setProxy(const QNetworkProxy proxy)
 {
-  networkProxy_.setType(type);
+  networkProxy_ = proxy;
   QNetworkProxy::setApplicationProxy(networkProxy_);
 }
