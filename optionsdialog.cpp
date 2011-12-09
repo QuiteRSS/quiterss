@@ -7,6 +7,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->setHeaderHidden(true);
   categoriesTree->setColumnCount(2);
   categoriesTree->setColumnHidden(0, true);
+  categoriesTree->setFixedWidth(130);
   QStringList treeItem;
   treeItem << "0" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
@@ -22,10 +23,41 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsLayout->addWidget(new QRadioButton(tr("System proxy configuration (if available)")));
   networkConnectionsLayout->addWidget(new QRadioButton(tr("Direct connection to the Internet")));
   networkConnectionsLayout->addWidget(new QRadioButton(tr("Manual proxy configuration:")));
-  // @TODO(arohryakov:2011.12.08): сделать границу и имя невидимыми
-  QGroupBox *manualGroupBox = new QGroupBox(tr("manual proxy settings"));
-//  manualGroupBox->setStyleSheet("border: 0px");
-  networkConnectionsLayout->addWidget(manualGroupBox);
+
+  QHBoxLayout *addrPortLayout = new QHBoxLayout();
+  addrPortLayout->setMargin(0);
+  addrPortLayout->addWidget(new QLabel(tr("Host:")));
+  addrPortLayout->addWidget(new QLineEdit(tr("host")));
+  addrPortLayout->addWidget(new QLabel(tr("Port:")));
+  QLineEdit *portEdit = new QLineEdit(tr("port"));
+  portEdit->setFixedWidth(60);
+  addrPortLayout->addWidget(portEdit);
+
+  QWidget *addrPortWidget = new QWidget();
+  addrPortWidget->setLayout(addrPortLayout);
+
+  QGridLayout *userPasswordLayout = new QGridLayout();
+  userPasswordLayout->setMargin(0);
+  userPasswordLayout->addWidget(new QLabel(tr("User:")),     0, 0);
+  userPasswordLayout->addWidget(new QLineEdit(tr("")),       0, 1);
+  userPasswordLayout->addWidget(new QLabel(tr("Password:")), 1, 0);
+  userPasswordLayout->addWidget(new QLineEdit(tr("")),       1, 1);
+
+  QWidget *userPasswordWidget = new QWidget();
+  userPasswordWidget->setLayout(userPasswordLayout);
+
+  QVBoxLayout *manualLayout = new QVBoxLayout();
+  manualLayout->setMargin(0);
+  manualLayout->addWidget(addrPortWidget);
+  manualLayout->addWidget(userPasswordWidget);
+  manualLayout->addStretch();
+
+  QWidget *manualWidget = new QGroupBox(tr("manual proxy settings"));
+  // @TODO(arhohryakov:2011.12.08): убрать границу и заголовок группы
+  manualWidget->setLayout(manualLayout);
+
+  networkConnectionsLayout->addWidget(manualWidget);
+
   QHBoxLayout *networkConnectionsButtonsLayout = new QHBoxLayout();
   networkConnectionsButtonsLayout->setMargin(0);
   networkConnectionsButtonsLayout->addStretch();
@@ -37,13 +69,15 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsWidget_->setToolTip(tr("networkConnectionsWidget_"));
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
 
-
   widgetFirst_ = new QWidget();
   widgetFirst_->setToolTip(tr("widgetFirst"));
   widgetSecond_ = new QWidget();
   widgetSecond_->setToolTip(tr("widgetSecond"));
 
   contentLabel_ = new QLabel(tr("ContentLabel"));
+  contentLabel_->setStyleSheet("border-bottom: 2px solid black;"
+      " font-size: 12px ;font-weight: bold");
+
   contentStack_ = new QStackedWidget();
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(widgetFirst_);
