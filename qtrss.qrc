@@ -10,6 +10,8 @@
         <file>images/QtRSS32.png</file>
         <file alias="updateFeed">images/updateFeed.png</file>
         <file alias="updateAllFeeds">images/updateAllFeeds.png</file>
+        <file>images/triangleL.png</file>
+        <file>images/triangleR.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

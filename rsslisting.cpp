@@ -73,6 +73,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     feedsView_ = new QTreeView();
     feedsView_->setObjectName("feedsTreeView_");
+    feedsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     feedsView_->setModel(feedsModel_);
     feedsView_->header()->setResizeMode(QHeaderView::ResizeToContents);
     feedsView_->setUniformRowHeights(true);
@@ -120,12 +121,28 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
 
+    setContextMenuPolicy(Qt::CustomContextMenu);
+
     //! Create feeds DockWidget
     feedsDock_ = new QDockWidget(tr("Feeds"), this);
     feedsDock_->setObjectName("feedsDock");
+    feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
     feedsDock_->setWidget(feedsView_);
     feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
     addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
+
+    toolBarNull_ = new QToolBar(this);
+    toolBarNull_->setObjectName("toolBarNull");
+    toolBarNull_->setMovable(false);
+    toolBarNull_->setFixedWidth(6);
+    addToolBar(Qt::LeftToolBarArea, toolBarNull_);
+
+    pushButtonNull_ = new QPushButton(this);
+    pushButtonNull_->setObjectName("pushButtonNull");
+    pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+    pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    toolBarNull_->addWidget(pushButtonNull_);
+    connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
 
     //! Create news layout
     QVBoxLayout *webLayout = new QVBoxLayout();
@@ -164,6 +181,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     feedsView_->installEventFilter(this);
     newsView_->installEventFilter(this);
+    toolBarNull_->installEventFilter(this);
 
     //! GIU tuning
     toggleQueryResults(false);
@@ -223,6 +241,12 @@ RSSListing::~RSSListing()
   QSqlDatabase::removeDatabase(QString());
 }
 
+/*virtual*/ void RSSListing::showEvent(QShowEvent* event)
+{
+  connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
+          this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
+}
+
 /*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
@@ -248,6 +272,11 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     } else {
       return false;
     }
+  } else if (obj == toolBarNull_) {
+    if (event->type() == QEvent::MouseButtonRelease) {
+      slotVisibledFeedsDock();
+    }
+    return false;
   } else {
     // pass the event on to the parent class
     return QMainWindow::eventFilter(obj, event);
@@ -408,6 +437,8 @@ void RSSListing::createToolBar()
 {
   toolBar_ = addToolBar(tr("ToolBar"));
   toolBar_->setObjectName("ToolBar_General");
+  toolBar_->setAllowedAreas(Qt::TopToolBarArea);
+  toolBar_->setMovable(false);
   toolBar_->addAction(addFeedAct_);
   toolBar_->addAction(deleteFeedAct_);
   toolBar_->addSeparator();
@@ -914,4 +945,22 @@ void RSSListing::slotProgressBarUpdate()
 
   if (progressBar_->isVisible())
     QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
+}
+
+void RSSListing::slotVisibledFeedsDock()
+{
+  if (feedsDock_->isVisible()){
+    feedsDock_->setVisible(false);
+  } else feedsDock_->setVisible(true);
+}
+
+void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
+{
+  if (area == Qt::LeftDockWidgetArea) {
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+      addToolBar(Qt::LeftToolBarArea, toolBarNull_);
+  } else {
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+      addToolBar(Qt::RightToolBarArea, toolBarNull_);
+  }
 }
