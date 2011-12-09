@@ -11,12 +11,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QStringList treeItem;
   treeItem << "0" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-  treeItem.clear();
-  treeItem << "1" << tr("First");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-  treeItem.clear();
-  treeItem << "2" << tr("Second");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
   systemProxyButton_->setEnabled(false);
@@ -72,17 +66,10 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsWidget_->setToolTip(tr("networkConnectionsWidget_"));
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
 
-  widgetFirst_ = new QWidget();
-  widgetFirst_->setToolTip(tr("widgetFirst"));
-  widgetSecond_ = new QWidget();
-  widgetSecond_->setToolTip(tr("widgetSecond"));
-
   contentLabel_ = new QLabel(tr("ContentLabel"));
 
   contentStack_ = new QStackedWidget();
   contentStack_->addWidget(networkConnectionsWidget_);
-  contentStack_->addWidget(widgetFirst_);
-  contentStack_->addWidget(widgetSecond_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
   contentLayout->setMargin(4);

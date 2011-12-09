@@ -26,22 +26,22 @@ private:
   QLabel *contentLabel_;
   QStackedWidget *contentStack_;
 
+  //stack widgets
   QWidget *networkConnectionsWidget_;
-  QWidget *widgetFirst_;
-  QWidget *widgetSecond_;
 
   QDialogButtonBox *buttonBox_;
 
+  // network connection
   QRadioButton *systemProxyButton_;
   QRadioButton *directConnectionButton_;
   QRadioButton *manualProxyButton_;
+  QWidget *manualWidget_;
   QLineEdit *editHost_;
   QLineEdit *editPort_;
   QLineEdit *editUser_;
   QLineEdit *editPassword_;
-  QWidget *manualWidget_;
 
-
+  // internal variables for options
   QNetworkProxy networkProxy_;
 };
 
