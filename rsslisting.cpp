@@ -887,7 +887,7 @@ void RSSListing::createTrayMenu()
   setProxyAct_->setText(tr("Proxy enabled"));
   setProxyAct_->setCheckable(true);
   setProxyAct_->setChecked(false);
-  connect(setProxyAct_, SIGNAL(triggered(bool)), this, SLOT(slotSetProxy()));
+  connect(setProxyAct_, SIGNAL(toggled(bool)), this, SLOT(slotSetProxy()));
   trayMenu_->addAction(setProxyAct_);
   trayMenu_->addSeparator();
 
