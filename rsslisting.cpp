@@ -748,8 +748,7 @@ void RSSListing::parseXml()
     QString str = QString("XML ERROR: Line=%1, ErrorString=%2").
         arg(xml_.lineNumber()).arg(xml_.errorString());
     statusBar()->showMessage(str, 3000);
-  } else {
-    statusBar()->showMessage(QString("Update done"), 3000);
+    qDebug() << str;
   }
   db_.commit();
   slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
@@ -769,6 +768,7 @@ void RSSListing::getUrlDone(const int &result)
   if (0 == result) {
     updateAllFeedsAct_->setEnabled(true);
     progressBar_->hide();
+    statusBar()->showMessage(QString("Update done"), 3000);
   }
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
