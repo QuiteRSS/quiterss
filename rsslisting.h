@@ -89,6 +89,7 @@ protected:
      virtual void closeEvent(QCloseEvent*);
      virtual void changeEvent(QEvent*);
      virtual void showEvent(QShowEvent*);
+     virtual void resizeEvent(QResizeEvent* event);
 
 private:
     UpdateThread *persistentUpdateThread_;
@@ -137,7 +138,7 @@ private:
     QDockWidget *feedsDock_;
     QDockWidget *newsDock_;
     QTreeView *feedsView_;
-    QTableView *newsView_;
+    QTreeView *newsView_;
 
     QTreeWidget *treeWidget_;
 
@@ -152,6 +153,7 @@ private:
 
     QToolBar *toolBarNull_;
     QPushButton *pushButtonNull_;
+    bool manualSetColumnWidth;
 
 private slots:
     void slotSetProxy();
@@ -159,6 +161,7 @@ private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
+    void slotNewsViewSectionResized(int,int,int);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
