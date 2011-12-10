@@ -62,7 +62,7 @@ RSSListing::RSSListing(QWidget *parent)
     persistentUpdateThread_ = new UpdateThread(this);
     persistentUpdateThread_->setObjectName("persistentUpdateThread_");
     connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
-        this, SLOT(parseXml(QByteArray, QUrl)));
+        this, SLOT(receiveXml(QByteArray, QUrl)));
     connect(persistentUpdateThread_, SIGNAL(getUrlDone(int)),
         this, SLOT(getUrlDone(int)));
 
@@ -627,43 +627,48 @@ void RSSListing::importFeeds()
   feedsModel_->select();
 }
 
-/*! \brief Разбор xml-файла ***************************************************/
-void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
+/*! \brief приём xml-файла ****************************************************/
+void RSSListing::receiveXml(const QByteArray &data, const QUrl &url)
 {
-  QXmlStreamReader xml;
-  xml.addData(data);
+  url_ = url;
+  xml_.addData(data);
+}
 
+/*! \brief Разбор xml-файла ***************************************************/
+void RSSListing::parseXml()
+{
+  qDebug() << "=================== parseXml:start ============================";
   // поиск идентификатора ленты с таблице лент
   int parseFeedId = 0;
   QSqlQuery q(db_);
   q.exec(QString("select id from feeds where xmlurl like '%1'").
-      arg(url.toString()));
+      arg(url_.toString()));
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
   }
 
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
-    qDebug() << QString("Feed '%1' not found").arg(url.toString());
+    qDebug() << QString("Feed '%1' not found").arg(url_.toString());
     return;
   } else {
-    qDebug() << QString("Feed '%1' found with id = %2").arg(url.toString()).
+    qDebug() << QString("Feed '%1' found with id = %2").arg(url_.toString()).
         arg(parseFeedId);
   }
 
   // собственно сам разбор
   db_.transaction();
   int itemCount = 0;
-  while (!xml.atEnd()) {
+  while (!xml_.atEnd()) {
     qApp->processEvents();
-    xml.readNext();
-    if (xml.isStartElement()) {
-      if (xml.name() == "item")
-        linkString = xml.attributes().value("rss:about").toString();
-      currentTag = xml.name().toString();
+    xml_.readNext();
+    if (xml_.isStartElement()) {
+      if (xml_.name() == "item")
+        linkString = xml_.attributes().value("rss:about").toString();
+      currentTag = xml_.name().toString();
 //      qDebug() << itemCount << ": " << currentTag;
-    } else if (xml.isEndElement()) {
-      if (xml.name() == "item") {
+    } else if (xml_.isEndElement()) {
+      if (xml_.name() == "item") {
 
         QTreeWidgetItem *item = new QTreeWidgetItem;
         item->setText(0, itemString);
@@ -722,38 +727,44 @@ void RSSListing::parseXml(const QByteArray &data, const QUrl &url)
         guidString.clear();
         ++itemCount;
       }
-    } else if (xml.isCharacters() && !xml.isWhitespace()) {
+    } else if (xml_.isCharacters() && !xml_.isWhitespace()) {
       if (currentTag == "item")
-        itemString += xml.text().toString();
+        itemString += xml_.text().toString();
       else if (currentTag == "title")
-        titleString += xml.text().toString();
+        titleString += xml_.text().toString();
       else if (currentTag == "link")
-        linkString += xml.text().toString();
+        linkString += xml_.text().toString();
       else if (currentTag == "description")
-        descriptionString += xml.text().toString();
+        descriptionString += xml_.text().toString();
       else if (currentTag == "comments")
-        commentsString += xml.text().toString();
+        commentsString += xml_.text().toString();
       else if (currentTag == "pubDate")
-        pubDateString += xml.text().toString();
+        pubDateString += xml_.text().toString();
       else if (currentTag == "guid")
-        guidString += xml.text().toString();
+        guidString += xml_.text().toString();
     }
   }
-  if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
+  if (xml_.error() && xml_.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
     QString str = QString("XML ERROR: Line=%1, ErrorString=%2").
-        arg(xml.lineNumber()).arg(xml.errorString());
+        arg(xml_.lineNumber()).arg(xml_.errorString());
     statusBar()->showMessage(str, 3000);
   } else {
     statusBar()->showMessage(QString("Update done"), 3000);
   }
   db_.commit();
   slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
+  qDebug() << "=================== parseXml:finish ===========================";
 }
 
 /*! \brief Обработка окончания запроса ****************************************/
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
+
+  parseXml();
+  xml_.clear();
+  url_.clear();
+
   // очередь запросов пуста
   if (0 == result) {
     updateAllFeedsAct_->setEnabled(true);
