@@ -81,7 +81,7 @@ public slots:
     void slotClose();
     void slotCloseApp();
     void myEmptyWorkingSet();
-    void parseXml(const QByteArray &data, const QUrl &url);
+    void receiveXml(const QByteArray &data, const QUrl &url);
     void getUrlDone(const int &result);
 
 protected:
@@ -103,6 +103,7 @@ private:
     void readSettings ();
     void writeSettings();
     void createTrayMenu();
+    void parseXml();
 
     QSettings *settings_;
     QString currentTag;
@@ -154,6 +155,9 @@ private:
     QToolBar *toolBarNull_;
     QPushButton *pushButtonNull_;
     bool manualSetColumnWidth;
+
+    QXmlStreamReader xml_;
+    QUrl url_;
 
 private slots:
     void slotSetProxy();
