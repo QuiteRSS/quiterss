@@ -130,6 +130,7 @@ private:
     QAction *updateAllFeedsAct_;
     QAction *exitAct_;
     QAction *markNewsRead_;
+    QAction *markAllNewsRead_;
     QAction *markNewsUnread_;
     QAction *setProxyAct_;
     QMenu *fileMenu_;
@@ -171,6 +172,7 @@ private slots:
     void slotDockLocationChanged(Qt::DockWidgetArea area);
     void setItemRead(QModelIndex index, int read);
     void markNewsRead();
+    void markAllNewsRead();
     void markNewsUnread();
 
 signals:

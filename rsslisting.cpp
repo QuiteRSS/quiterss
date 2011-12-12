@@ -393,6 +393,10 @@ void RSSListing::createActions()
   markNewsRead_->setStatusTip(tr("Mark current news read"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
 
+  markAllNewsRead_ = new QAction(QIcon(":/images/newsRead"), tr("Mark all news Read"), this);
+  markAllNewsRead_->setStatusTip(tr("Mark all news read"));
+  connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
+
   markNewsUnread_ = new QAction(QIcon(":/images/newsUnread"), tr("Mark Unread"), this);
   markNewsUnread_->setStatusTip(tr("Mark current news unread"));
   connect(markNewsUnread_, SIGNAL(triggered()), this, SLOT(markNewsUnread()));
@@ -426,6 +430,8 @@ void RSSListing::createMenu()
 
   newsMenu_ = menuBar()->addMenu(tr("&News"));
   newsMenu_->addAction(markNewsRead_);
+  newsMenu_->addAction(markAllNewsRead_);
+  newsMenu_->addSeparator();
   newsMenu_->addAction(markNewsUnread_);
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
@@ -448,6 +454,7 @@ void RSSListing::createToolBar()
   toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(markNewsRead_);
+  toolBar_->addAction(markAllNewsRead_);
   toolBar_->addAction(markNewsUnread_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
@@ -1008,6 +1015,14 @@ void RSSListing::markNewsRead()
 {
   QModelIndex index = newsView_->currentIndex();
   setItemRead(newsView_->currentIndex(), 1);
+  newsView_->setCurrentIndex(index);
+}
+
+void RSSListing::markAllNewsRead()
+{
+  QModelIndex index = newsView_->currentIndex();
+  for (int news = 0; news < newsModel_->rowCount(); ++news)
+    setItemRead(newsModel_->index(news, 1), 1);
   newsView_->setCurrentIndex(index);
 }
 
