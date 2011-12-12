@@ -45,9 +45,10 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "newsheader.h"
 #include "newsmodel.h"
 #include "updatethread.h"
-
+v
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QTreeWidget;
@@ -90,7 +91,6 @@ protected:
      virtual void closeEvent(QCloseEvent*);
      virtual void changeEvent(QEvent*);
      virtual void showEvent(QShowEvent*);
-     virtual void resizeEvent(QResizeEvent* event);
 
 private:
     UpdateThread *persistentUpdateThread_;
@@ -144,6 +144,7 @@ private:
     QDockWidget *newsDock_;
     QTreeView *feedsView_;
     QTreeView *newsView_;
+    NewsHeader *newsHeader_;
 
     QTreeWidget *treeWidget_;
 
@@ -158,7 +159,6 @@ private:
 
     QToolBar *toolBarNull_;
     QPushButton *pushButtonNull_;
-    bool manualSetColumnWidth;
 
     QXmlStreamReader xml_;
     QUrl url_;
@@ -169,7 +169,6 @@ private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
-    void slotNewsViewSectionResized(int,int,int);
     void setItemRead(QModelIndex index, int read);
     void markNewsRead();
     void markNewsUnread();

@@ -13,7 +13,7 @@ HEADERS += rsslisting.h \
     qtsingleapplication/qtlocalpeer.h \
     addfeeddialog.h \
     updatethread.h \
-    newsdelegate.h \
+    newsheader.h \
     newsmodel.h
 SOURCES += main.cpp rsslisting.cpp \
     optionsdialog.cpp \
@@ -24,7 +24,8 @@ SOURCES += main.cpp rsslisting.cpp \
     qtsingleapplication/qtlocalpeer.cpp \
     addfeeddialog.cpp \
     updatethread.cpp \
-    newsmodel.cpp
+    newsheader.cpp \
+		newsmodel.cpp
 
 RESOURCES += \
     qtrss.qrc
@@ -38,10 +39,3 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
 CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
 include(lang/lang.pri)
-
-
-
-
-
-
-
