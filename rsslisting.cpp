@@ -393,9 +393,9 @@ void RSSListing::createActions()
   markNewsRead_->setStatusTip(tr("Mark current news read"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
 
-  markNewsUnread_ = new QAction(QIcon(":/images/newsRead"), tr("Mark Unread"), this);
+  markNewsUnread_ = new QAction(QIcon(":/images/newsUnread"), tr("Mark Unread"), this);
   markNewsUnread_->setStatusTip(tr("Mark current news unread"));
-  connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsUnread()));
+  connect(markNewsUnread_, SIGNAL(triggered()), this, SLOT(markNewsUnread()));
 
   optionsAct_ = new QAction(tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
@@ -851,6 +851,7 @@ void RSSListing::slotFeedViewClicked(QModelIndex index)
 {
   webView_->setHtml(
       newsModel_->record(index.row()).field("description").value().toString());
+  markNewsRead();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -1005,10 +1006,14 @@ void RSSListing::setItemRead(QModelIndex index, int read)
 
 void RSSListing::markNewsRead()
 {
+  QModelIndex index = newsView_->currentIndex();
   setItemRead(newsView_->currentIndex(), 1);
+  newsView_->setCurrentIndex(index);
 }
 
 void RSSListing::markNewsUnread()
 {
+  QModelIndex index = newsView_->currentIndex();
   setItemRead(newsView_->currentIndex(), 0);
+  newsView_->setCurrentIndex(index);
 }
