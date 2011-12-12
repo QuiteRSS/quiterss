@@ -94,6 +94,9 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setModel(newsModel_);
 //    newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    newsView_->setMinimumWidth(120);
+    newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
+    newsView_->setHeader(newsHeader_);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedViewClicked(QModelIndex)));

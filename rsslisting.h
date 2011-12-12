@@ -46,6 +46,7 @@
 #include <QtWebKit>
 
 #include "updatethread.h"
+#include "newsheader.h"
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -139,6 +140,7 @@ private:
     QDockWidget *newsDock_;
     QTreeView *feedsView_;
     QTreeView *newsView_;
+    NewsHeader *newsHeader_;
 
     QTreeWidget *treeWidget_;
 
