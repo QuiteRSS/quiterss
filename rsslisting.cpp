@@ -88,7 +88,8 @@ RSSListing::RSSListing(QWidget *parent)
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
-    newsModel_ = new QSqlTableModel();
+    newsModel_ = new NewsModel(this);
+    newsModel_->setEditStrategy(QSqlTableModel::OnFieldChange);
     newsView_ = new QTreeView();
     newsView_->setObjectName("newsView_");
     newsView_->setModel(newsModel_);
@@ -429,6 +430,14 @@ void RSSListing::createActions()
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateAllFeeds()));
 
+  markNewsRead_ = new QAction(QIcon(":/images/newsRead"), tr("Mark Read"), this);
+  markNewsRead_->setStatusTip(tr("Mark current news read"));
+  connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
+
+  markNewsUnread_ = new QAction(QIcon(":/images/newsRead"), tr("Mark Unread"), this);
+  markNewsUnread_->setStatusTip(tr("Mark current news unread"));
+  connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsUnread()));
+
   optionsAct_ = new QAction(tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
@@ -456,7 +465,9 @@ void RSSListing::createMenu()
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
 
-  menuBar()->addMenu(tr("&News"));
+  newsMenu_ = menuBar()->addMenu(tr("&News"));
+  newsMenu_->addAction(markNewsRead_);
+  newsMenu_->addAction(markNewsUnread_);
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
@@ -476,6 +487,9 @@ void RSSListing::createToolBar()
   toolBar_->addSeparator();
   toolBar_->addAction(updateFeedAct_);
   toolBar_->addAction(updateAllFeedsAct_);
+  toolBar_->addSeparator();
+  toolBar_->addAction(markNewsRead_);
+  toolBar_->addAction(markNewsUnread_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
   connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
@@ -1046,4 +1060,23 @@ void RSSListing::slotNewsViewSectionResized(int idx, int oldSize, int newSize)
     }
   }
   manualSetColumnWidth = false;
+}
+
+void RSSListing::setItemRead(QModelIndex index, int read)
+{
+  if (!index.isValid()) return;
+
+  newsModel_->setData(
+      newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+      read);
+}
+
+void RSSListing::markNewsRead()
+{
+  setItemRead(newsView_->currentIndex(), 1);
+}
+
+void RSSListing::markNewsUnread()
+{
+  setItemRead(newsView_->currentIndex(), 0);
 }

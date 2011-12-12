@@ -45,6 +45,7 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "newsmodel.h"
 #include "updatethread.h"
 
 QT_BEGIN_NAMESPACE
@@ -117,7 +118,7 @@ private:
 
     QSqlDatabase db_;
     QSqlTableModel *feedsModel_;
-    QSqlTableModel *newsModel_;
+    NewsModel *newsModel_;
 
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
@@ -128,10 +129,13 @@ private:
     QAction *updateFeedAct_;
     QAction *updateAllFeedsAct_;
     QAction *exitAct_;
+    QAction *markNewsRead_;
+    QAction *markNewsUnread_;
     QAction *setProxyAct_;
     QMenu *fileMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
+    QMenu *newsMenu_;
     QMenu *toolsMenu_;
     QMenu *trayMenu_;
     QToolBar *toolBar_;
@@ -166,6 +170,9 @@ private slots:
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
     void slotNewsViewSectionResized(int,int,int);
+    void setItemRead(QModelIndex index, int read);
+    void markNewsRead();
+    void markNewsUnread();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
