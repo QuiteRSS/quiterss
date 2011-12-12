@@ -105,6 +105,7 @@ private:
     void writeSettings();
     void createTrayMenu();
     void parseXml();
+    void updateStatus();
 
     QSettings *settings_;
     QString currentTag;

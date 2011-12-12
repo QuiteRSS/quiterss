@@ -832,8 +832,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   slotFeedViewClicked(newsView_->currentIndex());
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
-  statusUnread_->setText(tr(" Unread: ") + QString::number(newsModel_->rowCount()) + " ");
-  statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
+
+  updateStatus();
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
@@ -1016,6 +1016,7 @@ void RSSListing::markNewsRead()
   QModelIndex index = newsView_->currentIndex();
   setItemRead(newsView_->currentIndex(), 1);
   newsView_->setCurrentIndex(index);
+  updateStatus();
 }
 
 void RSSListing::markAllNewsRead()
@@ -1024,6 +1025,7 @@ void RSSListing::markAllNewsRead()
   for (int news = 0; news < newsModel_->rowCount(); ++news)
     setItemRead(newsModel_->index(news, 1), 1);
   newsView_->setCurrentIndex(index);
+  updateStatus();
 }
 
 void RSSListing::markNewsUnread()
@@ -1031,4 +1033,17 @@ void RSSListing::markNewsUnread()
   QModelIndex index = newsView_->currentIndex();
   setItemRead(newsView_->currentIndex(), 0);
   newsView_->setCurrentIndex(index);
+  updateStatus();
+}
+
+void RSSListing::updateStatus()
+{
+  int unreadCount = 0;
+  for (int news = 0; news < newsModel_->rowCount(); ++news) {
+    if (newsModel_->index(news, newsModel_->fieldIndex("read")).data().toInt() == 0)
+     ++unreadCount;
+  }
+  statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
+
+  statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
 }
