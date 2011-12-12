@@ -89,7 +89,6 @@ protected:
      virtual void closeEvent(QCloseEvent*);
      virtual void changeEvent(QEvent*);
      virtual void showEvent(QShowEvent*);
-     virtual void resizeEvent(QResizeEvent* event);
 
 private:
     UpdateThread *persistentUpdateThread_;
@@ -154,7 +153,6 @@ private:
 
     QToolBar *toolBarNull_;
     QPushButton *pushButtonNull_;
-    bool manualSetColumnWidth;
 
     QXmlStreamReader xml_;
     QUrl url_;
@@ -165,7 +163,6 @@ private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
-    void slotNewsViewSectionResized(int,int,int);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

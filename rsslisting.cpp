@@ -92,13 +92,8 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_ = new QTreeView();
     newsView_->setObjectName("newsView_");
     newsView_->setModel(newsModel_);
-    newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    newsView_->header()->setStretchLastSection(false);
-    newsView_->setMinimumWidth(120);
-
-    connect(newsView_->header(), SIGNAL(sectionResized(int,int,int)),
-            this, SLOT(slotNewsViewSectionResized(int,int,int)));
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedViewClicked(QModelIndex)));
@@ -270,33 +265,6 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       slotVisibledFeedsDock();
     }
     return false;
-  } else if (obj == newsView_->viewport()) {
-    if (event->type() == QEvent::Resize) {
-      QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
-      bool minSize = false;
-      if (resizeEvent->oldSize().width() > resizeEvent->size().width()) minSize = true;
-      if ((newsView_->columnWidth(newsModel_->fieldIndex("received")) > 40) && minSize) {
-        int width = newsView_->viewport()->width() -
-          newsView_->columnWidth(newsModel_->fieldIndex("title")) -
-          newsView_->columnWidth(newsModel_->fieldIndex("published"));
-        newsView_->setColumnWidth(newsModel_->fieldIndex("received"), width);
-      } else if ((newsView_->columnWidth(newsModel_->fieldIndex("published")) > 40) && minSize) {
-        int width = newsView_->viewport()->width() -
-          newsView_->columnWidth(newsModel_->fieldIndex("title")) -
-          newsView_->columnWidth(newsModel_->fieldIndex("received"));
-        manualSetColumnWidth = true;
-        newsView_->setColumnWidth(newsModel_->fieldIndex("published"), width);
-      } else if ((newsView_->columnWidth(newsModel_->fieldIndex("title")) > 40) || !minSize) {
-          int width = newsView_->viewport()->width() -
-            newsView_->columnWidth(newsModel_->fieldIndex("received")) -
-            newsView_->columnWidth(newsModel_->fieldIndex("published"));
-          manualSetColumnWidth = true;
-          newsView_->setColumnWidth(newsModel_->fieldIndex("title"), width);
-      }
-      return false;
-    } else {
-      return false;
-    }
   } else {
     // pass the event on to the parent class
     return QMainWindow::eventFilter(obj, event);
@@ -337,18 +305,6 @@ void RSSListing::slotCloseApp()
     }
   }
   QMainWindow::changeEvent(event);
-}
-
-/*virtual*/ void RSSListing::resizeEvent(QResizeEvent* event)
-{
-//  if (newsView_->columnWidth(newsModel_->fieldIndex("received")) > 40) {
-//    int width = newsView_->viewport()->width() - newsView_->columnWidth(newsModel_->fieldIndex("received")) -
-//      newsView_->columnWidth(newsModel_->fieldIndex("published"));
-//    newsView_->setColumnWidth(newsModel_->fieldIndex("title"), width);
-//    qDebug() << newsView_->viewport()->width()
-//             << newsView_->columnWidth(newsModel_->fieldIndex("received"))
-//             << newsView_->columnWidth(newsModel_->fieldIndex("published"));
-//  }
 }
 
 /*! \brief Обработка события помещения программы в трей ***********************/
@@ -1019,31 +975,4 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
   } else {
     toolBarNull_->hide();
   }
-}
-
-void RSSListing::slotNewsViewSectionResized(int idx, int oldSize, int newSize)
-{
-  if (!manualSetColumnWidth) {
-    if (idx == newsModel_->fieldIndex("title")) {
-      int newWidth = newsView_->viewport()->width() - newSize -
-        newsView_->columnWidth(newsModel_->fieldIndex("published"));
-      if (newWidth > 40)
-        newsView_->setColumnWidth(newsModel_->fieldIndex("received"), newWidth);
-      else {
-        manualSetColumnWidth = true;
-        newsView_->setColumnWidth(newsModel_->fieldIndex("title"), oldSize);
-      }
-    }
-    if (idx == newsModel_->fieldIndex("published")) {
-      int newWidth = newsView_->viewport()->width() - newSize -
-        newsView_->columnWidth(newsModel_->fieldIndex("title"));
-      if (newWidth > 40)
-        newsView_->setColumnWidth(newsModel_->fieldIndex("received"), newWidth);
-      else {
-        manualSetColumnWidth = true;
-        newsView_->setColumnWidth(newsModel_->fieldIndex("published"), oldSize);
-      }
-    }
-  }
-  manualSetColumnWidth = false;
 }
