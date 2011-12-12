@@ -48,7 +48,7 @@
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "updatethread.h"
-v
+
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QTreeWidget;
