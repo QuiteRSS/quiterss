@@ -12,17 +12,17 @@ public:
 protected:
   bool eventFilter(QObject *, QEvent *);
   virtual void mousePressEvent(QMouseEvent*);
-  virtual void mouseReleaseEvent(QMouseEvent*);
   virtual void mouseMoveEvent (QMouseEvent*);
 
 private slots:
+  void slotButtonColumnView();
 
 signals:
 
 
 private:
   QMenu *viewMenu_;
-  bool pressColFix;
+  QPushButton *buttonColumnView;
   int startColFix;
   int stopColFix;
   int idxCol;

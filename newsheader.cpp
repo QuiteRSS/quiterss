@@ -12,7 +12,16 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   QAction *pAct_ = new QAction(tr("Test"), this);
   viewMenu_->addAction(pAct_);
 
-  pressColFix = false;
+  buttonColumnView = new QPushButton(this);
+  buttonColumnView->setIcon(QIcon(":/images/images/triangleT.png"));
+  buttonColumnView->setObjectName("buttonColumnView");
+  buttonColumnView->setMaximumWidth(30);
+  connect(buttonColumnView, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
+
+  QHBoxLayout *buttonLayout = new QHBoxLayout();
+  buttonLayout->setMargin(0);
+  buttonLayout->addWidget(buttonColumnView, 0, Qt::AlignRight|Qt::AlignVCenter);
+  setLayout(buttonLayout);
 
   this->installEventFilter(this);
 }
@@ -31,8 +40,8 @@ void NewsHeader::init()
       break;
     }
   }
-//  setResizeMode(4, QHeaderView::Fixed);
-//  setResizeMode(stopColFix, QHeaderView::Fixed);
+  setResizeMode(stopColFix, QHeaderView::Fixed);
+
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
@@ -53,7 +62,6 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
             if (!((y == startColFix) || (y == i)))
               width = width - sectionSize(y);
           }
-
           if (width > 40) resizeSection(i, width);
           else resizeSection(i, 40);
           sizeOk = true;
@@ -69,6 +77,9 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     }
     event->ignore();
     return true;
+  } else if (event->type() == QEvent::MouseMove) {
+    qDebug() << "1";
+    return false;
   } else {
     return false;
   }
@@ -82,29 +93,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   posX = event->pos().x();
   nPos = event->pos();
   nPos.setX(nPos.x() - 5);
-  if (logicalIndexAt(nPos) == stopColFix) {
-    pressColFix = true;
-    event->ignore();
-    return;
-  }
-  pressColFix = false;
   QHeaderView::mousePressEvent(event);
-}
-
-/*virtual*/ void NewsHeader::mouseReleaseEvent(QMouseEvent *event)
-{
-  if ((logicalIndexAt(event->pos()) == stopColFix) && pressColFix) {
-    viewMenu_->setFocus();
-    viewMenu_->show();
-    QPoint pPoint;
-    pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width());
-    pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height());
-    viewMenu_->popup(pPoint);
-    event->ignore();
-    return;
-  }
-
-  QHeaderView::mouseReleaseEvent(event);
 }
 
 /*virtual*/ void NewsHeader::mouseMoveEvent(QMouseEvent *event)
@@ -153,4 +142,14 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   }
   if (posX > event->pos().x()) posX = event->pos().x();
   QHeaderView::mouseMoveEvent(event);
+}
+
+void NewsHeader::slotButtonColumnView()
+{
+  viewMenu_->setFocus();
+  viewMenu_->show();
+  QPoint pPoint;
+  pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width());
+  pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height());
+  viewMenu_->popup(pPoint);
 }

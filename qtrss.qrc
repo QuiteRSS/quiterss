@@ -14,6 +14,7 @@
         <file>images/triangleR.png</file>
         <file alias="markRead">images/markRead.png</file>
         <file alias="markReadAll">images/markReadAll.png</file>
+        <file>images/triangleT.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

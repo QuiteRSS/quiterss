@@ -129,3 +129,14 @@ QToolBar{
 	background: #e0e0e0;
 	border-style: none;
 }
+
+#buttonColumnView {
+	border: 1px solid #9B9B9B;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+}
+
+#buttonColumnView:hover, #buttonColumnView:pressed {
+
+}
