@@ -92,7 +92,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_ = new QTreeView();
     newsView_->setObjectName("newsView_");
     newsView_->setModel(newsModel_);
-//    newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setMinimumWidth(120);
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
@@ -171,7 +171,6 @@ RSSListing::RSSListing(QWidget *parent)
 
     feedsView_->installEventFilter(this);
     newsView_->installEventFilter(this);
-    newsView_->viewport()->installEventFilter(this);
     toolBarNull_->installEventFilter(this);
 
     //! GIU tuning
@@ -807,6 +806,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
+
+  newsHeader_->init();
 
   slotFeedViewClicked(newsView_->currentIndex());
 
