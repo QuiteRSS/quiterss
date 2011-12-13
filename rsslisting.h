@@ -45,8 +45,9 @@
 #include <QtSql>
 #include <QtWebKit>
 
-#include "updatethread.h"
 #include "newsheader.h"
+#include "newsmodel.h"
+#include "updatethread.h"
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -104,6 +105,7 @@ private:
     void writeSettings();
     void createTrayMenu();
     void parseXml();
+    void updateStatus();
 
     QSettings *settings_;
     QString currentTag;
@@ -117,7 +119,7 @@ private:
 
     QSqlDatabase db_;
     QSqlTableModel *feedsModel_;
-    QSqlTableModel *newsModel_;
+    NewsModel *newsModel_;
 
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
@@ -128,10 +130,14 @@ private:
     QAction *updateFeedAct_;
     QAction *updateAllFeedsAct_;
     QAction *exitAct_;
+    QAction *markNewsRead_;
+    QAction *markAllNewsRead_;
+    QAction *markNewsUnread_;
     QAction *setProxyAct_;
     QMenu *fileMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
+    QMenu *newsMenu_;
     QMenu *toolsMenu_;
     QMenu *trayMenu_;
     QToolBar *toolBar_;
@@ -165,6 +171,10 @@ private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
+    void setItemRead(QModelIndex index, int read);
+    void markNewsRead();
+    void markAllNewsRead();
+    void markNewsUnread();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

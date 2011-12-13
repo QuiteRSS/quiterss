@@ -88,7 +88,8 @@ RSSListing::RSSListing(QWidget *parent)
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
 
-    newsModel_ = new QSqlTableModel();
+    newsModel_ = new NewsModel(this);
+    newsModel_->setEditStrategy(QSqlTableModel::OnFieldChange);
     newsView_ = new QTreeView();
     newsView_->setObjectName("newsView_");
     newsView_->setModel(newsModel_);
@@ -387,6 +388,18 @@ void RSSListing::createActions()
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateAllFeeds()));
 
+  markNewsRead_ = new QAction(QIcon(":/images/newsRead"), tr("Mark Read"), this);
+  markNewsRead_->setStatusTip(tr("Mark current news read"));
+  connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
+
+  markAllNewsRead_ = new QAction(QIcon(":/images/newsRead"), tr("Mark all news Read"), this);
+  markAllNewsRead_->setStatusTip(tr("Mark all news read"));
+  connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
+
+  markNewsUnread_ = new QAction(QIcon(":/images/newsUnread"), tr("Mark Unread"), this);
+  markNewsUnread_->setStatusTip(tr("Mark current news unread"));
+  connect(markNewsUnread_, SIGNAL(triggered()), this, SLOT(markNewsUnread()));
+
   optionsAct_ = new QAction(tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
@@ -414,7 +427,11 @@ void RSSListing::createMenu()
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
 
-  menuBar()->addMenu(tr("&News"));
+  newsMenu_ = menuBar()->addMenu(tr("&News"));
+  newsMenu_->addAction(markNewsRead_);
+  newsMenu_->addAction(markAllNewsRead_);
+  newsMenu_->addSeparator();
+  newsMenu_->addAction(markNewsUnread_);
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
@@ -434,6 +451,10 @@ void RSSListing::createToolBar()
   toolBar_->addSeparator();
   toolBar_->addAction(updateFeedAct_);
   toolBar_->addAction(updateAllFeedsAct_);
+  toolBar_->addSeparator();
+  toolBar_->addAction(markNewsRead_);
+  toolBar_->addAction(markAllNewsRead_);
+  toolBar_->addAction(markNewsUnread_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
   connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
@@ -812,8 +833,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   slotFeedViewClicked(newsView_->currentIndex());
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
-  statusUnread_->setText(tr(" Unread: ") + QString::number(newsModel_->rowCount()) + " ");
-  statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
+
+  updateStatus();
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
@@ -838,6 +859,7 @@ void RSSListing::slotFeedViewClicked(QModelIndex index)
 {
   webView_->setHtml(
       newsModel_->record(index.row()).field("description").value().toString());
+  markNewsRead();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -979,4 +1001,50 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
   } else {
     toolBarNull_->hide();
   }
+}
+
+void RSSListing::setItemRead(QModelIndex index, int read)
+{
+  if (!index.isValid()) return;
+
+  newsModel_->setData(
+      newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+      read);
+}
+
+void RSSListing::markNewsRead()
+{
+  QModelIndex index = newsView_->currentIndex();
+  setItemRead(newsView_->currentIndex(), 1);
+  newsView_->setCurrentIndex(index);
+  updateStatus();
+}
+
+void RSSListing::markAllNewsRead()
+{
+  QSqlQuery q(db_);
+  q.exec(QString("update feed_%1 set read=1").
+      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+  newsModel_->select();
+  updateStatus();
+}
+
+void RSSListing::markNewsUnread()
+{
+  QModelIndex index = newsView_->currentIndex();
+  setItemRead(newsView_->currentIndex(), 0);
+  newsView_->setCurrentIndex(index);
+  updateStatus();
+}
+
+void RSSListing::updateStatus()
+{
+  int unreadCount = 0;
+  for (int news = 0; news < newsModel_->rowCount(); ++news) {
+    if (newsModel_->index(news, newsModel_->fieldIndex("read")).data().toInt() == 0)
+     ++unreadCount;
+  }
+  statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
+
+  statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
 }
