@@ -366,7 +366,7 @@ void RSSListing::createActions()
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
 
   exitAct_ = new QAction(tr("E&xit"), this);
-  exitAct_->setShortcut(QKeySequence::Quit);  // empty on windows :(
+  exitAct_->setShortcut(Qt::CTRL+Qt::Key_Q);  // standart on other OS
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
 
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
