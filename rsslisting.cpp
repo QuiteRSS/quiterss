@@ -1021,10 +1021,10 @@ void RSSListing::markNewsRead()
 
 void RSSListing::markAllNewsRead()
 {
-  QModelIndex index = newsView_->currentIndex();
-  for (int news = 0; news < newsModel_->rowCount(); ++news)
-    setItemRead(newsModel_->index(news, 1), 1);
-  newsView_->setCurrentIndex(index);
+  QSqlQuery q(db_);
+  q.exec(QString("update feed_%1 set read=1").
+      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+  newsModel_->select();
   updateStatus();
 }
 
