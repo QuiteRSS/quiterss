@@ -12,6 +12,8 @@
         <file alias="updateAllFeeds">images/updateAllFeeds.png</file>
         <file>images/triangleL.png</file>
         <file>images/triangleR.png</file>
+        <file alias="markRead">images/markRead.png</file>
+        <file alias="markReadAll">images/markReadAll.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

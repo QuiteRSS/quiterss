@@ -388,11 +388,11 @@ void RSSListing::createActions()
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateAllFeeds()));
 
-  markNewsRead_ = new QAction(QIcon(":/images/newsRead"), tr("Mark Read"), this);
+  markNewsRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
   markNewsRead_->setStatusTip(tr("Mark current news read"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
 
-  markAllNewsRead_ = new QAction(QIcon(":/images/newsRead"), tr("Mark all news Read"), this);
+  markAllNewsRead_ = new QAction(QIcon(":/images/markReadAll"), tr("Mark all news Read"), this);
   markAllNewsRead_->setStatusTip(tr("Mark all news read"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
