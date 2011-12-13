@@ -9,7 +9,7 @@
 #include "VersionNo.h"
 
 /*!****************************************************************************/
-const QString kCreateFeedTableQuery(
+const QString kCreateNewsTableQuery(
     "create table feed_%1("
         "id integer primary key, "
         "guid varchar, "
@@ -55,8 +55,8 @@ RSSListing::RSSListing(QWidget *parent)
           "values ('Qt Russian Forum', 'http://www.prog.org.ru/index.php?type=rss;action=.xml')");
       db_.exec("create table info(id integer primary key, name varchar, value varchar)");
       db_.exec("insert into info(name, value) values ('version', '1.0')");
-      db_.exec(kCreateFeedTableQuery.arg(1));
-      db_.exec(kCreateFeedTableQuery.arg(2));
+      db_.exec(kCreateNewsTableQuery.arg(1));
+      db_.exec(kCreateNewsTableQuery.arg(2));
     }
 
     persistentUpdateThread_ = new UpdateThread(this);
@@ -533,7 +533,7 @@ void RSSListing::addFeed()
   QString qStr = QString("insert into feeds(link) values (%1)").
       arg(addFeedDialog->feedEdit_->text());
   q.exec(qStr);
-  q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+  q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
   q.finish();
   feedsModel_->select();
 }
@@ -607,7 +607,7 @@ void RSSListing::importFeeds()
         q.addBindValue(xml.attributes().value("htmlUrl").toString());
         q.exec();
         qDebug() << q.lastError().number() << ": " << q.lastError().text();
-        q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+        q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
         q.finish();
       }
     } else if (xml.isEndElement()) {
