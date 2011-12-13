@@ -48,7 +48,8 @@ RSSListing::RSSListing(QWidget *parent)
     } else {  // Инициализация базы
       db_.open();
       db_.exec("create table feeds(id integer primary key, text varchar,"
-          " title varchar, description varchar, xmlurl varchar, htmlurl varchar)");
+          " title varchar, description varchar, xmlurl varchar, "
+          "htmlurl varchar, unread integer)");
       db_.exec("insert into feeds(text, xmlurl) "
           "values ('Qt Labs', 'http://labs.qt.nokia.com/blogs/feed')");
       db_.exec("insert into feeds(text, xmlurl) "
@@ -1045,6 +1046,13 @@ void RSSListing::updateStatus()
     if (newsModel_->index(news, newsModel_->fieldIndex("read")).data().toInt() == 0)
      ++unreadCount;
   }
+  QSqlQuery q(db_);
+  QString qStr = QString("update feeds set unread='%1' where id=='%2'").
+      arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
+  q.exec(qStr);
+  qDebug() << q.lastError().text();
+  feedsModel_->select();
+
   statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
 
   statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
