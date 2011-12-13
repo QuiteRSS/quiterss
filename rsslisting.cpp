@@ -179,6 +179,7 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
+    progressBar_->setObjectName("progressBar_");
     progressBar_->setFixedWidth(200);
     progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
