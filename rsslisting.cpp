@@ -76,7 +76,11 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setObjectName("feedsTreeView_");
     feedsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     feedsView_->setModel(feedsModel_);
-    feedsView_->header()->setResizeMode(QHeaderView::ResizeToContents);
+    feedsView_->header()->setStretchLastSection(false);
+    feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("id"), QHeaderView::ResizeToContents);
+    feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
+    feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
+
     feedsView_->header()->setVisible(false);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
