@@ -1055,13 +1055,20 @@ void RSSListing::markNewsUnread()
 
 void RSSListing::updateStatus()
 {
-  int unreadCount = 0;
-  for (int news = 0; news < newsModel_->rowCount(); ++news) {
-    if (newsModel_->index(news, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0)
-     ++unreadCount;
-  }
+  int allCount = 0;
+  QString qStr = QString("select count(id) from %1").
+      arg(newsModel_->tableName());
   QSqlQuery q(db_);
-  QString qStr = QString("update feeds set unread='%1' where id=='%2'").
+  q.exec(qStr);
+  if (q.next()) allCount = q.value(0).toInt();
+
+  int unreadCount = 0;
+  qStr = QString("select count(read) from %1 where read==0").
+      arg(newsModel_->tableName());
+  q.exec(qStr);
+  if (q.next()) unreadCount = q.value(0).toInt();
+
+  qStr = QString("update feeds set unread='%1' where id=='%2'").
       arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 
@@ -1071,5 +1078,5 @@ void RSSListing::updateStatus()
 
   statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
 
-  statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
+  statusAll_->setText(tr(" All: ") + QString::number(allCount) + " ");
 }
