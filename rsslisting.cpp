@@ -1043,12 +1043,13 @@ void RSSListing::markNewsUnread()
 void RSSListing::updateStatus()
 {
   int unreadCount = 0;
-  for (int news = 0; news < newsModel_->rowCount(); ++news) {
-    if (newsModel_->index(news, newsModel_->fieldIndex("read")).data().toInt() == 0)
-     ++unreadCount;
-  }
+  QString qStr = QString("select count(read) from %1 where read==0").
+      arg(newsModel_->tableName());
   QSqlQuery q(db_);
-  QString qStr = QString("update feeds set unread='%1' where id=='%2'").
+  q.exec(qStr);
+  if (q.next()) unreadCount = q.value(0).toInt();
+
+  qStr = QString("update feeds set unread='%1' where id=='%2'").
       arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 
