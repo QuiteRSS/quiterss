@@ -101,6 +101,8 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setMinimumWidth(120);
+    newsView_->setSortingEnabled(true);
+
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
     newsView_->setHeader(newsHeader_);
 
@@ -218,6 +220,8 @@ RSSListing::RSSListing(QWidget *parent)
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
     readSettings();
+
+    newsHeader_->init();
 
     //Установка шрифтов и их настроек для элементов
     QFont font_ = newsDock_->font();
@@ -480,11 +484,8 @@ void RSSListing::readSettings()
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
-
-  // Загрузка ширины столбцов таблицы
-  for (int i=0; i < newsModel_->columnCount(); ++i)
-    newsView_->setColumnWidth(i, settings_->value(
-         QString("newsView/columnWidth%1").arg(i), 100).toInt());
+  newsHeader_->restoreGeometry(settings_->value("NewsViewGeometry").toByteArray());
+  newsHeader_->restoreState(settings_->value("NewsViewState").toByteArray());
 
   setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>
@@ -514,11 +515,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
-
-  // Сохранение ширины столбцов таблицы
-  for (int i=0; i < newsModel_->columnCount(); ++i)
-    settings_->setValue(QString("newsView/columnWidth%1").arg(i),
-        newsView_->columnWidth(i));
+  settings_->setValue("NewsViewGeometry", newsHeader_->saveGeometry());
+  settings_->setValue("NewsViewState", newsHeader_->saveState());
 
   settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
   settings_->setValue("networkProxy/type",     networkProxy_.type());
@@ -827,15 +825,14 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("feed"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("location"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("link"), true);
-  newsView_->setSortingEnabled(true);
-  newsView_->sortByColumn(newsModel_->fieldIndex("published"));
+//  newsView_->setSortingEnabled(true);
+//  newsView_->sortByColumn(newsModel_->fieldIndex("published"));
   // Переименование колонок новостей
   newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, "");
   newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
-  newsHeader_->init();
 
   newsView_->setCurrentIndex(newsModel_->index(0, 0));
   slotFeedViewClicked(newsModel_->index(0, 0));

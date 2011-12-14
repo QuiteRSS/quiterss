@@ -30,7 +30,6 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 
 void NewsHeader::init()
 {
-  moveSection(11, 4);
   for (int i = 0; i < count(); i++) {
     if (!isSectionHidden(i)) {
       startColFix = visualIndex(i);
