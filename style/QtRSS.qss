@@ -131,7 +131,7 @@ QToolBar{
 }
 
 #buttonColumnView {
-	border: 1px solid #9B9B9B;
+	border: 1px solid #e0e0e0;
 	border-top: 0px;
 	border-right: 0px;
 	border-bottom: 0px;

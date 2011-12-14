@@ -3,6 +3,7 @@
 NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
     QHeaderView(orientation, parent)
 {
+  setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);
   setMovable(true);
   setDefaultAlignment(Qt::AlignLeft);
@@ -12,7 +13,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   QAction *pAct_ = new QAction(tr("Test"), this);
   viewMenu_->addAction(pAct_);
 
-  buttonColumnView = new QPushButton(this);
+  buttonColumnView = new QPushButton();
   buttonColumnView->setIcon(QIcon(":/images/images/triangleT.png"));
   buttonColumnView->setObjectName("buttonColumnView");
   buttonColumnView->setMaximumWidth(30);
