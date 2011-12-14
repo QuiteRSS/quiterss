@@ -68,7 +68,7 @@ RSSListing::RSSListing(QWidget *parent)
         this, SLOT(getUrlDone(int)));
 
 
-    feedsModel_ = new QSqlTableModel();
+    feedsModel_ = new FeedsModel(this);
     feedsModel_->setTable("feeds");
     feedsModel_->select();
 
@@ -1024,9 +1024,11 @@ void RSSListing::markNewsRead()
 
 void RSSListing::markAllNewsRead()
 {
+  QString qStr = QString("update %1 set read=1").
+      arg(newsModel_->tableName());
   QSqlQuery q(db_);
-  q.exec(QString("update feed_%1 set read=1").
-      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+  q.exec(qStr);
+  qDebug() << q.lastError().text();
   newsModel_->select();
   updateStatus();
 }

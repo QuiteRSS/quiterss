@@ -45,6 +45,7 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "feedsmodel.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "updatethread.h"
@@ -118,7 +119,7 @@ private:
     QString guidString;
 
     QSqlDatabase db_;
-    QSqlTableModel *feedsModel_;
+    FeedsModel *feedsModel_;
     NewsModel *newsModel_;
 
     QAction *addFeedAct_;
