@@ -8,6 +8,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setMovable(true);
   setDefaultAlignment(Qt::AlignLeft);
   setMinimumSectionSize(40);
+  setStretchLastSection(true);
 
   viewMenu_ = new QMenu(this);
   QAction *pAct_ = new QAction(tr("Test"), this);
@@ -78,9 +79,6 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     }
     event->ignore();
     return true;
-  } else if (event->type() == QEvent::MouseMove) {
-    qDebug() << "1";
-    return false;
   } else {
     return false;
   }
