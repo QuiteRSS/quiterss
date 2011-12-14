@@ -210,6 +210,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
+    feedsView_->setCurrentIndex(feedsModel_->index(0, 0));
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
     readSettings();
@@ -832,7 +833,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
   newsHeader_->init();
 
-  slotFeedViewClicked(newsView_->currentIndex());
+  newsView_->setCurrentIndex(newsModel_->index(0, 0));
+  slotFeedViewClicked(newsModel_->index(0, 0));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
 
@@ -859,6 +861,7 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotFeedViewClicked(QModelIndex index)
 {
+  static QModelIndex oldIndex;
   if (index.column() == newsModel_->fieldIndex("read")) {
     int read;
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
@@ -869,11 +872,13 @@ void RSSListing::slotFeedViewClicked(QModelIndex index)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
         read);
+    newsView_->setCurrentIndex(oldIndex);
     updateStatus();
   } else {
     webView_->setHtml(
         newsModel_->record(index.row()).field("description").value().toString());
     markNewsRead();
+    oldIndex = index;
   }
 }
 
