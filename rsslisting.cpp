@@ -1028,7 +1028,6 @@ void RSSListing::markAllNewsRead()
       arg(newsModel_->tableName());
   QSqlQuery q(db_);
   q.exec(qStr);
-  qDebug() << q.lastError().text();
   newsModel_->select();
   updateStatus();
 }
@@ -1052,8 +1051,10 @@ void RSSListing::updateStatus()
   QString qStr = QString("update feeds set unread='%1' where id=='%2'").
       arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
-  qDebug() << q.lastError().text();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 
   statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
 
