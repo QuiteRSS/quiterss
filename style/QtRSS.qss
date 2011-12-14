@@ -140,3 +140,18 @@ QToolBar{
 #buttonColumnView:hover, #buttonColumnView:pressed {
 
 }
+
+#progressBar_ {
+  border: 1px solid #34aa34;
+	border-radius: 3px;
+	text-align: center;
+}
+
+#progressBar_::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #7acc7a,
+								stop:0.4 #70c870,
+								stop:0.5 #60c460,
+								stop:1 #7acc7a);
+  width: 20px;
+}

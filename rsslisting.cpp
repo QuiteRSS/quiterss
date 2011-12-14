@@ -9,7 +9,7 @@
 #include "VersionNo.h"
 
 /*!****************************************************************************/
-const QString kCreateFeedTableQuery(
+const QString kCreateNewsTableQuery(
     "create table feed_%1("
         "id integer primary key, "
         "guid varchar, "
@@ -48,15 +48,16 @@ RSSListing::RSSListing(QWidget *parent)
     } else {  // Инициализация базы
       db_.open();
       db_.exec("create table feeds(id integer primary key, text varchar,"
-          " title varchar, description varchar, xmlurl varchar, htmlurl varchar)");
+          " title varchar, description varchar, xmlurl varchar, "
+          "htmlurl varchar, unread integer)");
       db_.exec("insert into feeds(text, xmlurl) "
           "values ('Qt Labs', 'http://labs.qt.nokia.com/blogs/feed')");
       db_.exec("insert into feeds(text, xmlurl) "
           "values ('Qt Russian Forum', 'http://www.prog.org.ru/index.php?type=rss;action=.xml')");
       db_.exec("create table info(id integer primary key, name varchar, value varchar)");
       db_.exec("insert into info(name, value) values ('version', '1.0')");
-      db_.exec(kCreateFeedTableQuery.arg(1));
-      db_.exec(kCreateFeedTableQuery.arg(2));
+      db_.exec(kCreateNewsTableQuery.arg(1));
+      db_.exec(kCreateNewsTableQuery.arg(2));
     }
 
     persistentUpdateThread_ = new UpdateThread(this);
@@ -67,7 +68,7 @@ RSSListing::RSSListing(QWidget *parent)
         this, SLOT(getUrlDone(int)));
 
 
-    feedsModel_ = new QSqlTableModel();
+    feedsModel_ = new FeedsModel(this);
     feedsModel_->setTable("feeds");
     feedsModel_->select();
 
@@ -179,6 +180,7 @@ RSSListing::RSSListing(QWidget *parent)
 
 
     progressBar_ = new QProgressBar();
+    progressBar_->setObjectName("progressBar_");
     progressBar_->setFixedWidth(200);
     progressBar_->setFixedHeight(15);
     progressBar_->setMinimum(0);
@@ -532,7 +534,7 @@ void RSSListing::addFeed()
   QString qStr = QString("insert into feeds(link) values (%1)").
       arg(addFeedDialog->feedEdit_->text());
   q.exec(qStr);
-  q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+  q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
   q.finish();
   feedsModel_->select();
 }
@@ -606,7 +608,7 @@ void RSSListing::importFeeds()
         q.addBindValue(xml.attributes().value("htmlUrl").toString());
         q.exec();
         qDebug() << q.lastError().number() << ": " << q.lastError().text();
-        q.exec(kCreateFeedTableQuery.arg(q.lastInsertId().toString()));
+        q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
         q.finish();
       }
     } else if (xml.isEndElement()) {
@@ -1022,9 +1024,10 @@ void RSSListing::markNewsRead()
 
 void RSSListing::markAllNewsRead()
 {
+  QString qStr = QString("update %1 set read=1").
+      arg(newsModel_->tableName());
   QSqlQuery q(db_);
-  q.exec(QString("update feed_%1 set read=1").
-      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+  q.exec(qStr);
   newsModel_->select();
   updateStatus();
 }
@@ -1044,6 +1047,15 @@ void RSSListing::updateStatus()
     if (newsModel_->index(news, newsModel_->fieldIndex("read")).data().toInt() == 0)
      ++unreadCount;
   }
+  QSqlQuery q(db_);
+  QString qStr = QString("update feeds set unread='%1' where id=='%2'").
+      arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
+  q.exec(qStr);
+
+  QModelIndex index = feedsView_->currentIndex();
+  feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
+
   statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
 
   statusAll_->setText(tr(" All: ") + QString::number(newsModel_->rowCount()) + " ");
