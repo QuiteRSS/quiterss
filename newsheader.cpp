@@ -7,7 +7,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setContextMenuPolicy(Qt::CustomContextMenu);
   setMovable(true);
   setDefaultAlignment(Qt::AlignLeft);
-  setMinimumSectionSize(40);
+  setMinimumSectionSize(25);
   setStretchLastSection(true);
 
   viewMenu_ = new QMenu(this);
@@ -30,55 +30,63 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 
 void NewsHeader::init()
 {
+  moveSection(11, 4);
   for (int i = 0; i < count(); i++) {
     if (!isSectionHidden(i)) {
-      startColFix = i;
+      startColFix = visualIndex(i);
       break;
     }
   }
   for (int i = count()-1; i >= 0; i--) {
     if (!isSectionHidden(i)) {
-      stopColFix = i;
+      stopColFix = visualIndex(i);
       break;
     }
   }
-  setResizeMode(stopColFix, QHeaderView::Fixed);
-
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::Resize) {
+
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
     bool minSize = false;
     bool sizeOk = false;
     int oldWidth = resizeEvent->oldSize().width();
-    int newWidth = resizeEvent->size().width();
-    if (oldWidth > newWidth) minSize = true;
+    if (oldWidth > 0) {
+      int newWidth = resizeEvent->size().width();
+      if (oldWidth > newWidth) minSize = true;
 
-    for (int i = count()-1; i >= 0; i--) {
-      if (i != startColFix) {
-        if ((sectionSize(i) > 40) && minSize) {
-          int width = newWidth - sectionSize(startColFix);
-          for (int y = 0; y < count(); y++) {
-            if (!((y == startColFix) || (y == i)))
-              width = width - sectionSize(y);
+      for (int i = count()-1; i >= 0; i--) {
+        if (i != startColFix) {
+          int lIdx = logicalIndex(i);
+          if ((sectionSize(lIdx) > 40) && minSize) {
+            int width = newWidth - sectionSize(logicalIndex(startColFix));
+            for (int y = 0; y < count(); y++) {
+              if (!((y == startColFix) || (y == i)))
+                width = width - sectionSize(logicalIndex(y));
+            }
+            if (width > 40) resizeSection(lIdx, width);
+            else resizeSection(lIdx, 40);
+            sizeOk = true;
           }
-          if (width > 40) resizeSection(i, width);
-          else resizeSection(i, 40);
-          sizeOk = true;
         }
       }
-    }
 
-    if ((sectionSize(startColFix) > 40) || !minSize) {
-      if (sizeOk) newWidth = newWidth;
-      int width = newWidth - sectionSize(4) - sectionSize(stopColFix);
-      if (width > 40) resizeSection(startColFix, width);
-      else resizeSection(startColFix, 40);
-    }
-    event->ignore();
-    return true;
+      if ((sectionSize(logicalIndex(startColFix)) > 40) || !minSize) {
+        if (sizeOk) newWidth = newWidth;
+        int width = newWidth;
+        for (int i = 0; i < count(); i++) {
+          if (i != startColFix) {
+            width = width - sectionSize(logicalIndex(i));
+          }
+        }
+        if (width > 40) resizeSection(logicalIndex(startColFix), width);
+        else resizeSection(logicalIndex(startColFix), 40);
+      }
+      event->ignore();
+      return true;
+    } else return false;
   } else {
     return false;
   }
@@ -88,7 +96,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   QPoint nPos = event->pos();
   nPos.setX(nPos.x() + 5);
-  idxCol = logicalIndexAt(nPos);
+  idxCol = visualIndex(logicalIndexAt(nPos));
   posX = event->pos().x();
   nPos = event->pos();
   nPos.setX(nPos.x() - 5);
@@ -106,11 +114,12 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     if (!sizeMin) {
       if (event->pos().x() < oldWidth) {
         for (int i = count()-1; i >= 0; i--) {
-          if (!isSectionHidden(i)) {
-            int sectionWidth = sectionSize(i) + oldWidth - newWidth;
+          int lIdx = logicalIndex(i);
+          if (!isSectionHidden(lIdx)) {
+            int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
             if (sectionWidth > 40) {
               if (i >= idxCol) {
-                resizeSection(i, sectionWidth);
+                resizeSection(lIdx, sectionWidth);
                 sizeMin = true;
                 break;
               }
@@ -120,7 +129,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       }
       int tWidth = 0;
       for (int i = idxCol; i < count(); i++) {
-        if (!isSectionHidden(i)) {
+        if (!isSectionHidden(logicalIndex(i))) {
           tWidth += 40;
         }
       }
@@ -128,9 +137,9 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
         sizeMin = false;
       }
     } else {
-      int sectionWidth = sectionSize(stopColFix) + oldWidth - newWidth;
+      int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
       if ((sectionWidth > 40)) {
-        resizeSection(stopColFix, sectionWidth);
+        resizeSection(logicalIndex(stopColFix), sectionWidth);
       }
     }
     if (!sizeMin) {

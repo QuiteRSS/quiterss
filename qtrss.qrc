@@ -15,6 +15,8 @@
         <file alias="markRead">images/markRead.png</file>
         <file alias="markReadAll">images/markReadAll.png</file>
         <file>images/triangleT.png</file>
+        <file alias="bulletRead">images/bulletRead.png</file>
+        <file alias="bulletUnread">images/bulletUnread.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

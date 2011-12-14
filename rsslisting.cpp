@@ -816,7 +816,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("category"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("label"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("new"), true);
-  newsView_->setColumnHidden(newsModel_->fieldIndex("read"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("sticky"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("deleted"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("attachment"), true);
@@ -829,7 +828,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
-
+  newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, "");
+  newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
   newsHeader_->init();
 
   slotFeedViewClicked(newsView_->currentIndex());
@@ -859,9 +859,22 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotFeedViewClicked(QModelIndex index)
 {
-  webView_->setHtml(
-      newsModel_->record(index.row()).field("description").value().toString());
-  markNewsRead();
+  if (index.column() == newsModel_->fieldIndex("read")) {
+    int read;
+    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+      read = 1;
+    } else {
+      read = 0;
+    }
+    newsModel_->setData(
+        newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+        read);
+    updateStatus();
+  } else {
+    webView_->setHtml(
+        newsModel_->record(index.row()).field("description").value().toString());
+    markNewsRead();
+  }
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -1044,7 +1057,7 @@ void RSSListing::updateStatus()
 {
   int unreadCount = 0;
   for (int news = 0; news < newsModel_->rowCount(); ++news) {
-    if (newsModel_->index(news, newsModel_->fieldIndex("read")).data().toInt() == 0)
+    if (newsModel_->index(news, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0)
      ++unreadCount;
   }
   QSqlQuery q(db_);
