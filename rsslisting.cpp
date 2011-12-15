@@ -539,7 +539,10 @@ void RSSListing::addFeed()
   q.exec(qStr);
   q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
   q.finish();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -562,7 +565,10 @@ void RSSListing::deleteFeed()
   q.exec(QString("drop table feed_%1").
       arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
   q.finish();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
 
 /*! \brief Импорт лент из OPML-файла ******************************************/
@@ -644,7 +650,10 @@ void RSSListing::importFeeds()
     statusBar()->showMessage(QString("Import: file read done"), 3000);
   }
   db_.commit();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
 
 /*! \brief приём xml-файла ****************************************************/
