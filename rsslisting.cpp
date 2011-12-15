@@ -800,8 +800,17 @@ void RSSListing::parseXml()
     q.exec(qStr);
 
     QModelIndex index = feedsView_->currentIndex();
-    feedsModel_->select();
-    feedsView_->setCurrentIndex(index);
+
+    // если обновлена просматриваемая лента, кликаем по ней
+    if (parseFeedId ==
+        feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
+      slotFeedsTreeClicked(feedsModel_->index(index.row(), 0));
+    }
+    // иначе обновляем модель лент
+    else {
+      feedsModel_->select();
+      feedsView_->setCurrentIndex(index);
+    }
   }
   qDebug() << "=================== parseXml:finish ===========================";
 }
