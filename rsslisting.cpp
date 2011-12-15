@@ -539,7 +539,10 @@ void RSSListing::addFeed()
   q.exec(qStr);
   q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
   q.finish();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
 
 /*! \brief ”даление ленты из списка лент с подтверждением *********************/
@@ -562,7 +565,10 @@ void RSSListing::deleteFeed()
   q.exec(QString("drop table feed_%1").
       arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
   q.finish();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
 
 /*! \brief »мпорт лент из OPML-файла ******************************************/
@@ -644,7 +650,10 @@ void RSSListing::importFeeds()
     statusBar()->showMessage(QString("Import: file read done"), 3000);
   }
   db_.commit();
+
+  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
 
 /*! \brief приЄм xml-файла ****************************************************/
@@ -671,12 +680,13 @@ void RSSListing::parseXml()
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url_.toString());
     return;
-  } else {
-    qDebug() << QString("Feed '%1' found with id = %2").arg(url_.toString()).
-        arg(parseFeedId);
   }
 
+  qDebug() << QString("Feed '%1' found with id = %2").arg(url_.toString()).
+      arg(parseFeedId);
+
   // собственно сам разбор
+  bool feedChanged = false;
   db_.transaction();
   int itemCount = 0;
   while (!xml_.atEnd()) {
@@ -700,41 +710,47 @@ void RSSListing::parseXml()
         item->setText(6, guidString);
         treeWidget_->addTopLevelItem(item);
 
-        // поиск статей с giud в базе
+        // поиск дубликата статей в базе
         QSqlQuery q(db_);
         QString qStr;
         qDebug() << "guid:" << guidString;
-        if (!guidString.isEmpty())
+        if (!guidString.isEmpty())         // поиск по guid
           qStr = QString("select * from feed_%1 where guid == '%2'").
               arg(parseFeedId).arg(guidString);
-        else
-//          qStr = QString("select * from feed_%1 "
-//              "where title == '%2' and description == '%3' and published == '%4'").
-//              arg(parseFeedId).arg(titleString).arg(descriptionString).arg(pubDateString);
+        else if (pubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
+          qStr = QString("select * from feed_%1 where title like '%2'").
+              arg(parseFeedId).arg(titleString.replace('\'', '_'));
+        else                               // поиск по title и pubDate
           qStr = QString("select * from feed_%1 "
-              "where title == '%2' and published == '%3'").
-              arg(parseFeedId).arg(titleString).arg(pubDateString);
+              "where title like '%2' and published == '%3'").
+              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(pubDateString);
         q.exec(qStr);
-        // если статей с таким giud нет, добавл€ем статью в базу
-        if (!q.next()) {
-          qStr = QString("insert into feed_%1("
-                         "description, guid, title, published, received) "
-                         "values(?, ?, ?, ?, ?)").
-              arg(parseFeedId);
-          q.prepare(qStr);
-          q.addBindValue(descriptionString);
-          q.addBindValue(guidString);
-          q.addBindValue(titleString);
-          q.addBindValue(pubDateString);
+        // проверка правильности запроса
+        if (q.lastError().isValid())
+          qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
+        else {
+          // если дубликата нет, добавл€ем статью в базу
+          if (!q.next()) {
+            qStr = QString("insert into feed_%1("
+                           "description, guid, title, published, received) "
+                           "values(?, ?, ?, ?, ?)").
+                arg(parseFeedId);
+            q.prepare(qStr);
+            q.addBindValue(descriptionString);
+            q.addBindValue(guidString);
+            q.addBindValue(titleString);
+            q.addBindValue(pubDateString);
           q.addBindValue(QDateTime::currentDateTime().toString(dataFormat));
-          q.exec();
-          qDebug() << "q.exec(" << q.lastQuery() << ")";
-          qDebug() << "       " << descriptionString;
-          qDebug() << "       " << guidString;
-          qDebug() << "       " << titleString;
-          qDebug() << "       " << pubDateString;
-          qDebug() << "       " << QDateTime::currentDateTime().toString();
-          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            q.exec();
+            qDebug() << "q.exec(" << q.lastQuery() << ")";
+            qDebug() << "       " << descriptionString;
+            qDebug() << "       " << guidString;
+            qDebug() << "       " << titleString;
+            qDebug() << "       " << pubDateString;
+            qDebug() << "       " << QDateTime::currentDateTime().toString();
+            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            feedChanged = true;
+          }
         }
         q.finish();
 
@@ -772,6 +788,21 @@ void RSSListing::parseXml()
   }
   db_.commit();
 //  slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
+  if (feedChanged) {
+    int unreadCount = 0;
+    QString qStr = QString("select count(read) from feed_%1 where read==0").
+        arg(parseFeedId);
+    q.exec(qStr);
+    if (q.next()) unreadCount = q.value(0).toInt();
+
+    qStr = QString("update feeds set unread='%1' where id=='%2'").
+        arg(unreadCount).arg(parseFeedId);
+    q.exec(qStr);
+
+    QModelIndex index = feedsView_->currentIndex();
+    feedsModel_->select();
+    feedsView_->setCurrentIndex(index);
+  }
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
@@ -838,8 +869,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   slotNewsViewClicked(newsModel_->index(0, 0));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
-
-  updateStatus();
 }
 
 /*! \brief «апрос обновлени€ ленты ********************************************/
