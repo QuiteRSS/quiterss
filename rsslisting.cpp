@@ -840,8 +840,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   slotNewsViewClicked(newsModel_->index(0, 0));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
-
-  updateStatus();
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
