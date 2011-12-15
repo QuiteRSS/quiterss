@@ -9,6 +9,9 @@ class NewsHeader : public QHeaderView
 public:
   NewsHeader(Qt::Orientation orientation, QWidget * parent = 0);
   void init();
+
+public slots:
+
 protected:
   bool eventFilter(QObject *, QEvent *);
   virtual void mousePressEvent(QMouseEvent*);
@@ -22,8 +25,6 @@ signals:
 private:
   QMenu *viewMenu_;
   QPushButton *buttonColumnView;
-  int startColFix;
-  int stopColFix;
   int idxCol;
   int posX;
 

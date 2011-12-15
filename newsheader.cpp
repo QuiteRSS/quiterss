@@ -1,4 +1,7 @@
 #include "newsheader.h"
+#include "rsslisting.h"
+
+extern NewsModel *newsModel_;
 
 NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
     QHeaderView(orientation, parent)
@@ -30,58 +33,59 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 
 void NewsHeader::init()
 {
-  for (int i = 0; i < count(); i++) {
-    if (!isSectionHidden(i)) {
-      startColFix = visualIndex(i);
-      break;
-    }
-  }
-  for (int i = count()-1; i >= 0; i--) {
-    if (!isSectionHidden(i)) {
-      stopColFix = visualIndex(i);
-      break;
-    }
-  }
+
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::Resize) {
-
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
     bool minSize = false;
-    bool sizeOk = false;
     int oldWidth = resizeEvent->oldSize().width();
+    int newWidth = resizeEvent->size().width();
     if (oldWidth > 0) {
-      int newWidth = resizeEvent->size().width();
-      if (oldWidth > newWidth) minSize = true;
+      int size = 0;
+      int widthCol[count()];
+      memset(widthCol, 0, sizeof(widthCol));
+      static int idxColSize = count()-1;
+      if (oldWidth > newWidth) {
+        minSize = true;
+        size = oldWidth - newWidth;
+      } else {
+        size = newWidth - oldWidth;
+      }
 
-      for (int i = count()-1; i >= 0; i--) {
-        if (i != startColFix) {
-          int lIdx = logicalIndex(i);
-          if ((sectionSize(lIdx) > 40) && minSize) {
-            int width = newWidth - sectionSize(logicalIndex(startColFix));
-            for (int y = 0; y < count(); y++) {
-              if (!((y == startColFix) || (y == i)))
-                width = width - sectionSize(logicalIndex(y));
-            }
-            if (width > 40) resizeSection(lIdx, width);
-            else resizeSection(lIdx, 40);
-            sizeOk = true;
+      int countCol = 0;
+      bool sizeOne = false;
+      while (size) {
+        int lIdx = logicalIndex(idxColSize);
+        if (!isSectionHidden(lIdx)) {
+          if (((sectionSize(lIdx) >= 40) && !minSize) ||
+              ((sectionSize(lIdx) - widthCol[idxColSize] > 40) && minSize)) {
+            widthCol[idxColSize]++;
+            size--;
+            sizeOne = true;
           }
+        }
+        if (idxColSize == 0) idxColSize = count()-1;
+        else idxColSize--;
+
+        if (++countCol == count()) {
+          if (!sizeOne) break;
+          sizeOne = false;
+          countCol = 0;
         }
       }
 
-      if ((sectionSize(logicalIndex(startColFix)) > 40) || !minSize) {
-        if (sizeOk) newWidth = newWidth;
-        int width = newWidth;
-        for (int i = 0; i < count(); i++) {
-          if (i != startColFix) {
-            width = width - sectionSize(logicalIndex(i));
+      for (int i = count()-1; i >= 0; i--) {
+        int lIdx = logicalIndex(i);
+        if (!isSectionHidden(lIdx) && (sectionSize(lIdx) >= 40)) {
+          if (!minSize) {
+            resizeSection(lIdx, sectionSize(lIdx) + widthCol[i]);
+          } else {
+            resizeSection(lIdx, sectionSize(lIdx) - widthCol[i]);
           }
         }
-        if (width > 40) resizeSection(logicalIndex(startColFix), width);
-        else resizeSection(logicalIndex(startColFix), 40);
       }
       event->ignore();
       return true;
@@ -108,6 +112,13 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   if (event->buttons() & Qt::LeftButton) {
     int oldWidth = width();
     int newWidth = 0;
+    int stopColFix;
+    for (int i = count()-1; i >= 0; i--) {
+      if (!isSectionHidden(i)) {
+        stopColFix = visualIndex(i);
+        break;
+      }
+    }
     for (int i = 0; i < count(); i++) newWidth += sectionSize(i);
     if (posX > event->pos().x()) sizeMin =  true;
     if (!sizeMin) {

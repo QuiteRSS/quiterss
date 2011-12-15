@@ -851,10 +851,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("id"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("guid"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("description"), true);
-  // title
-  // published
   newsView_->setColumnHidden(newsModel_->fieldIndex("modified"), true);
-  // received
   newsView_->setColumnHidden(newsModel_->fieldIndex("author"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("category"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("label"), true);
@@ -865,8 +862,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("feed"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("location"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("link"), true);
-//  newsView_->setSortingEnabled(true);
-//  newsView_->sortByColumn(newsModel_->fieldIndex("published"));
   // Переименование колонок новостей
   newsModel_->setHeaderData(newsModel_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   newsModel_->setHeaderData(newsModel_->fieldIndex("published"), Qt::Horizontal, tr("Date"));

@@ -63,6 +63,7 @@ class RSSListing : public QMainWindow
 public:
     RSSListing(QWidget *widget = 0);
     ~RSSListing();
+    NewsModel *newsModel_;
 
 public slots:
     void addFeed();
@@ -120,7 +121,6 @@ private:
 
     QSqlDatabase db_;
     FeedsModel *feedsModel_;
-    NewsModel *newsModel_;
 
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
