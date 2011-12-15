@@ -107,7 +107,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setHeader(newsHeader_);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
-            this, SLOT(slotFeedViewClicked(QModelIndex)));
+            this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotFeedKeyUpDownPressed()), Qt::QueuedConnection);
 
@@ -835,7 +835,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->setHeaderData(newsModel_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
 
   newsView_->setCurrentIndex(newsModel_->index(0, 0));
-  slotFeedViewClicked(newsModel_->index(0, 0));
+  slotNewsViewClicked(newsModel_->index(0, 0));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
 
@@ -860,7 +860,7 @@ void RSSListing::updateFeed(QModelIndex index)
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
-void RSSListing::slotFeedViewClicked(QModelIndex index)
+void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   static QModelIndex oldIndex;
   if (index.column() == newsModel_->fieldIndex("read")) {
@@ -892,7 +892,7 @@ void RSSListing::slotFeedsTreeKeyUpDownPressed()
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
 void RSSListing::slotFeedKeyUpDownPressed()
 {
-  slotFeedViewClicked(newsView_->currentIndex());
+  slotNewsViewClicked(newsView_->currentIndex());
 }
 
 /*! \brief Обработка переключения отображения таблицы результатов последнего запроса

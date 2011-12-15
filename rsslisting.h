@@ -72,7 +72,7 @@ public slots:
     void slotFeedsTreeClicked(QModelIndex index);
     void slotUpdateFeed();
     void slotUpdateAllFeeds();
-    void slotFeedViewClicked(QModelIndex index);
+    void slotNewsViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotFeedKeyUpDownPressed();
     void toggleQueryResults(bool checked);
