@@ -3,6 +3,8 @@
 
 #include <QSqlTableModel>
 
+#define dataFormat "yyyy.MM.dd hh:mm:ss"
+
 class NewsModel : public QSqlTableModel
 {
     Q_OBJECT
