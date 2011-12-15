@@ -27,9 +27,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       QDateTime dateTime = QDateTime::fromString(
             QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
             dataFormat);
-      qDebug() << QDateTime::currentDateTime().toString("yyyy.MM.dd")
-               << dateTime.toString("yyyy.MM.dd")
-               << QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString();
       if (QDateTime::currentDateTime().toString("yyyy.MM.dd") == dateTime.toString("yyyy.MM.dd")) {
         return dateTime.toString("hh:mm");
       } else return dateTime.toString("yyyy.MM.dd hh:mm");
