@@ -726,7 +726,7 @@ void RSSListing::parseXml()
           q.addBindValue(guidString);
           q.addBindValue(titleString);
           q.addBindValue(pubDateString);
-          q.addBindValue(QDateTime::currentDateTime().toString("yyyy.MM.dd  hh:mm:ss"));
+          q.addBindValue(QDateTime::currentDateTime().toString(dataFormat));
           q.exec();
           qDebug() << "q.exec(" << q.lastQuery() << ")";
           qDebug() << "       " << descriptionString;
