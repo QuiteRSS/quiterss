@@ -671,10 +671,10 @@ void RSSListing::parseXml()
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url_.toString());
     return;
-  } else {
-    qDebug() << QString("Feed '%1' found with id = %2").arg(url_.toString()).
-        arg(parseFeedId);
   }
+
+  qDebug() << QString("Feed '%1' found with id = %2").arg(url_.toString()).
+      arg(parseFeedId);
 
   // собственно сам разбор
   bool feedChanged = false;
