@@ -677,6 +677,7 @@ void RSSListing::parseXml()
   }
 
   // собственно сам разбор
+  bool feedChanged = false;
   db_.transaction();
   int itemCount = 0;
   while (!xml_.atEnd()) {
@@ -715,28 +716,32 @@ void RSSListing::parseXml()
               "where title like '%2' and published == '%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(pubDateString);
         q.exec(qStr);
+        // проверка правильности запроса
         if (q.lastError().isValid())
           qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
-        // если дубликата нет, добавляем статью в базу
-        if (!q.next()) {
-          qStr = QString("insert into feed_%1("
-                         "description, guid, title, published, received) "
-                         "values(?, ?, ?, ?, ?)").
-              arg(parseFeedId);
-          q.prepare(qStr);
-          q.addBindValue(descriptionString);
-          q.addBindValue(guidString);
-          q.addBindValue(titleString);
-          q.addBindValue(pubDateString);
-          q.addBindValue(QDateTime::currentDateTime().toString("yyyy.MM.dd  hh:mm:ss"));
-          q.exec();
-          qDebug() << "q.exec(" << q.lastQuery() << ")";
-          qDebug() << "       " << descriptionString;
-          qDebug() << "       " << guidString;
-          qDebug() << "       " << titleString;
-          qDebug() << "       " << pubDateString;
-          qDebug() << "       " << QDateTime::currentDateTime().toString();
-          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+        else {
+          // если дубликата нет, добавляем статью в базу
+          if (!q.next()) {
+            qStr = QString("insert into feed_%1("
+                           "description, guid, title, published, received) "
+                           "values(?, ?, ?, ?, ?)").
+                arg(parseFeedId);
+            q.prepare(qStr);
+            q.addBindValue(descriptionString);
+            q.addBindValue(guidString);
+            q.addBindValue(titleString);
+            q.addBindValue(pubDateString);
+            q.addBindValue(QDateTime::currentDateTime().toString("yyyy.MM.dd  hh:mm:ss"));
+            q.exec();
+            qDebug() << "q.exec(" << q.lastQuery() << ")";
+            qDebug() << "       " << descriptionString;
+            qDebug() << "       " << guidString;
+            qDebug() << "       " << titleString;
+            qDebug() << "       " << pubDateString;
+            qDebug() << "       " << QDateTime::currentDateTime().toString();
+            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            feedChanged = true;
+          }
         }
         q.finish();
 
@@ -774,6 +779,21 @@ void RSSListing::parseXml()
   }
   db_.commit();
 //  slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
+  if (feedChanged) {
+    int unreadCount = 0;
+    QString qStr = QString("select count(read) from feed_%1 where read==0").
+        arg(parseFeedId);
+    q.exec(qStr);
+    if (q.next()) unreadCount = q.value(0).toInt();
+
+    qStr = QString("update feeds set unread='%1' where id=='%2'").
+        arg(unreadCount).arg(parseFeedId);
+    q.exec(qStr);
+
+    QModelIndex index = feedsView_->currentIndex();
+    feedsModel_->select();
+    feedsView_->setCurrentIndex(index);
+  }
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
