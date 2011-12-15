@@ -700,22 +700,24 @@ void RSSListing::parseXml()
         item->setText(6, guidString);
         treeWidget_->addTopLevelItem(item);
 
-        // поиск статей с giud в базе
+        // поиск дубликата статей в базе
         QSqlQuery q(db_);
         QString qStr;
         qDebug() << "guid:" << guidString;
-        if (!guidString.isEmpty())
+        if (!guidString.isEmpty())         // поиск по guid
           qStr = QString("select * from feed_%1 where guid == '%2'").
               arg(parseFeedId).arg(guidString);
-        else
-//          qStr = QString("select * from feed_%1 "
-//              "where title == '%2' and description == '%3' and published == '%4'").
-//              arg(parseFeedId).arg(titleString).arg(descriptionString).arg(pubDateString);
+        else if (pubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
+          qStr = QString("select * from feed_%1 where title like '%2'").
+              arg(parseFeedId).arg(titleString.replace('\'', '_'));
+        else                               // поиск по title и pubDate
           qStr = QString("select * from feed_%1 "
-              "where title == '%2' and published == '%3'").
-              arg(parseFeedId).arg(titleString).arg(pubDateString);
+              "where title like '%2' and published == '%3'").
+              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(pubDateString);
         q.exec(qStr);
-        // если статей с таким giud нет, добавляем статью в базу
+        if (q.lastError().isValid())
+          qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
+        // если дубликата нет, добавляем статью в базу
         if (!q.next()) {
           qStr = QString("insert into feed_%1("
                          "description, guid, title, published, received) "
