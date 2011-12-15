@@ -771,7 +771,7 @@ void RSSListing::parseXml()
     qDebug() << str;
   }
   db_.commit();
-  slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
+//  slotFeedsTreeClicked(feedsModel_->index(feedsView_->currentIndex().row(), 0));
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
@@ -1085,4 +1085,7 @@ void RSSListing::updateStatus()
   statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
 
   statusAll_->setText(tr(" All: ") + QString::number(allCount) + " ");
+
+  static int updateCount = 0;
+  qDebug() << "updateStatus()" << ++updateCount;
 }
