@@ -1,7 +1,4 @@
 #include "newsheader.h"
-#include "rsslisting.h"
-
-extern NewsModel *newsModel_;
 
 NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
     QHeaderView(orientation, parent)
@@ -14,8 +11,6 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setStretchLastSection(true);
 
   viewMenu_ = new QMenu(this);
-  QAction *pAct_ = new QAction(tr("Test"), this);
-  viewMenu_->addAction(pAct_);
 
   buttonColumnView = new QPushButton();
   buttonColumnView->setIcon(QIcon(":/images/images/triangleT.png"));
@@ -33,6 +28,37 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 
 void NewsHeader::init()
 {
+  QActionGroup *pActGroup_ = new QActionGroup(viewMenu_);
+  pActGroup_->setExclusive(false);
+  connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisibled(QAction*)));
+  for (int i = 0; i < model_->columnCount(); i++) {
+    QAction *action = pActGroup_->addAction(
+          model_->headerData(logicalIndex(i),
+          Qt::Horizontal, Qt::EditRole).toString());
+    action->setData(logicalIndex(i));
+    action->setCheckable(true);
+    action->setChecked(!isSectionHidden(logicalIndex(i)));
+    viewMenu_->addAction(action);
+  }
+}
+
+void NewsHeader::overload()
+{
+  for (int i = 0; i < model_->columnCount(); i++) {
+    model_->setHeaderData(i, Qt::Horizontal,
+                          model_->headerData(i, Qt::Horizontal, Qt::DisplayRole),
+                          Qt::EditRole);
+  }
+  model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"), Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"), Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"), Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
+
+  for (int i = 0; i < model_->columnCount(); i++) {
+//    qDebug() << model_->headerData(i, Qt::Horizontal, Qt::EditRole).toString();
+  }
+
 
 }
 
@@ -171,4 +197,10 @@ void NewsHeader::slotButtonColumnView()
   pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width());
   pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height());
   viewMenu_->popup(pPoint);
+}
+
+void NewsHeader::columnVisibled(QAction *action)
+{
+  int idx = action->data().toInt();
+  setSectionHidden(idx, !isSectionHidden(idx));
 }
