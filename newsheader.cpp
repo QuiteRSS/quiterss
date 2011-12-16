@@ -48,13 +48,14 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       int widthCol[count()];
       memset(widthCol, 0, sizeof(widthCol));
       static int idxColSize = count()-1;
-      if (oldWidth > newWidth) {
+      int tWidth = 0;
+      for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
+      if (tWidth > newWidth) {
         minSize = true;
-        size = oldWidth - newWidth;
+        size = tWidth - newWidth;
       } else {
-        size = newWidth - oldWidth;
+        size = newWidth - tWidth;
       }
-
       int countCol = 0;
       bool sizeOne = false;
       while (size) {
@@ -112,7 +113,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   if (event->buttons() & Qt::LeftButton) {
     int oldWidth = width();
     int newWidth = 0;
-    int stopColFix;
+    int stopColFix = 0;
     for (int i = count()-1; i >= 0; i--) {
       if (!isSectionHidden(i)) {
         stopColFix = visualIndex(i);
