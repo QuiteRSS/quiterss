@@ -109,7 +109,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
-            SLOT(slotFeedKeyUpDownPressed()), Qt::QueuedConnection);
+            SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
 
     QStringList headerLabels;
     headerLabels << tr("Item") << tr("Title") << tr("Link") << tr("Description")
@@ -928,7 +928,7 @@ void RSSListing::slotFeedsTreeKeyUpDownPressed()
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
-void RSSListing::slotFeedKeyUpDownPressed()
+void RSSListing::slotNewsKeyUpDownPressed()
 {
   slotNewsViewClicked(newsView_->currentIndex());
 }
