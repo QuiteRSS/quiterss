@@ -9,6 +9,8 @@
 #include "VersionNo.h"
 
 /*!****************************************************************************/
+const QString kDbName = "feeds.db";
+
 const QString kCreateNewsTableQuery(
     "create table feed_%1("
         "id integer primary key, "
@@ -40,8 +42,7 @@ RSSListing::RSSListing(QWidget *parent)
     AppFileName.replace(".exe", ".ini");
     settings_ = new QSettings(AppFileName, QSettings::IniFormat);
 
-    QString dbFileName(qApp->applicationFilePath());
-    dbFileName.replace(".exe", ".db");
+    QString dbFileName(qApp->applicationDirPath() + "/" + kDbName);
     db_ = QSqlDatabase::addDatabase("QSQLITE");
     db_.setDatabaseName(dbFileName);
     if (QFile(dbFileName).exists()) {
