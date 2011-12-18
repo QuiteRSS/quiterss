@@ -14,6 +14,7 @@ const QString kCreateNewsTableQuery(
         "id integer primary key, "
         "guid varchar, "
         "description varchar, "
+        "content varchar, "
         "title varchar, "
         "published varchar, "
         "modified varchar, "
@@ -627,19 +628,19 @@ void RSSListing::importFeeds()
       ++elementCount;
     } else if (xml.isCharacters() && !xml.isWhitespace()) {
       if (currentTag == "item")
-        itemString += xml.text().toString();
+        rssItemString += xml.text().toString();
       else if (currentTag == "title")
         titleString += xml.text().toString();
       else if (currentTag == "link")
         linkString += xml.text().toString();
       else if (currentTag == "description")
-        descriptionString += xml.text().toString();
+        rssDescriptionString += xml.text().toString();
       else if (currentTag == "comments")
         commentsString += xml.text().toString();
       else if (currentTag == "pubDate")
-        pubDateString += xml.text().toString();
+        rssPubDateString += xml.text().toString();
       else if (currentTag == "guid")
-        guidString += xml.text().toString();
+        rssGuidString += xml.text().toString();
       else currentString += xml.text().toString();
     }
   }
@@ -693,37 +694,57 @@ void RSSListing::parseXml()
     qApp->processEvents();
     xml_.readNext();
     if (xml_.isStartElement()) {
-      if (xml_.name() == "item")
+      if (xml_.name() == "rss")  qDebug() << "Feed type: RSS";
+      if (xml_.name() == "feed") qDebug() << "Feed type: Atom";
+
+      if (xml_.name() == "item") {  // clear strings
         linkString = xml_.attributes().value("rss:about").toString();
+        rssItemString.clear();
+        titleString.clear();
+        linkString.clear();
+        rssDescriptionString.clear();
+        commentsString.clear();
+        rssPubDateString.clear();
+        rssGuidString.clear();
+      }
+      if (xml_.name() == "entry") {  // clear strings
+        atomEntryString.clear();
+        titleString.clear();
+        atomIdString.clear();
+        atomUpdatedString.clear();
+        atomSummaryString.clear();
+        atomContentString.clear();
+      }
       currentTag = xml_.name().toString();
 //      qDebug() << itemCount << ": " << currentTag;
     } else if (xml_.isEndElement()) {
+      // rss::item
       if (xml_.name() == "item") {
 
         QTreeWidgetItem *item = new QTreeWidgetItem;
-        item->setText(0, itemString);
+        item->setText(0, rssItemString);
         item->setText(1, titleString);
         item->setText(2, linkString);
-        item->setText(3, descriptionString);
+        item->setText(3, rssDescriptionString);
         item->setText(4, commentsString);
-        item->setText(5, pubDateString);
-        item->setText(6, guidString);
+        item->setText(5, rssPubDateString);
+        item->setText(6, rssGuidString);
         treeWidget_->addTopLevelItem(item);
 
         // поиск дубликата статей в базе
         QSqlQuery q(db_);
         QString qStr;
-        qDebug() << "guid:" << guidString;
-        if (!guidString.isEmpty())         // поиск по guid
+        qDebug() << "guid:" << rssGuidString;
+        if (!rssGuidString.isEmpty())         // поиск по guid
           qStr = QString("select * from feed_%1 where guid == '%2'").
-              arg(parseFeedId).arg(guidString);
-        else if (pubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
+              arg(parseFeedId).arg(rssGuidString);
+        else if (rssPubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
           qStr = QString("select * from feed_%1 where title like '%2'").
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
         else                               // поиск по title и pubDate
           qStr = QString("select * from feed_%1 "
               "where title like '%2' and published == '%3'").
-              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(pubDateString);
+              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(rssPubDateString);
         q.exec(qStr);
         // проверка правильности запроса
         if (q.lastError().isValid())
@@ -736,17 +757,17 @@ void RSSListing::parseXml()
                            "values(?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
-            q.addBindValue(descriptionString);
-            q.addBindValue(guidString);
+            q.addBindValue(rssDescriptionString);
+            q.addBindValue(rssGuidString);
             q.addBindValue(titleString);
-            q.addBindValue(pubDateString);
-          q.addBindValue(QDateTime::currentDateTime().toString(dataFormat));
+            q.addBindValue(rssPubDateString);
+            q.addBindValue(QDateTime::currentDateTime().toString(dataFormat));
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
-            qDebug() << "       " << descriptionString;
-            qDebug() << "       " << guidString;
+            qDebug() << "       " << rssDescriptionString;
+            qDebug() << "       " << rssGuidString;
             qDebug() << "       " << titleString;
-            qDebug() << "       " << pubDateString;
+            qDebug() << "       " << rssPubDateString;
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
@@ -754,30 +775,106 @@ void RSSListing::parseXml()
         }
         q.finish();
 
-        itemString.clear();
-        titleString.clear();
-        linkString.clear();
-        descriptionString.clear();
-        commentsString.clear();
-        pubDateString.clear();
-        guidString.clear();
+        if (!rssItemString.isEmpty()) QMessageBox::warning(this, windowTitle(),
+            "rssItamString is not empty");
+        ++itemCount;
+      }
+      // atom::feed
+      else if (xml_.name() == "entry") {
+            qDebug() << "  entry:  " << atomEntryString;
+            qDebug() << "  title:  " << titleString;
+            qDebug() << "  id:     " << atomIdString;
+            qDebug() << "  updated:" << atomUpdatedString;
+            qDebug() << "  summary:" << atomSummaryString;
+            qDebug() << "  content:" << atomContentString;
+
+        QTreeWidgetItem *item = new QTreeWidgetItem;
+        item->setText(0, atomEntryString);
+        item->setText(1, titleString);
+        item->setText(2, linkString);
+        item->setText(3, atomSummaryString);
+        item->setText(4, atomContentString);
+        item->setText(5, atomUpdatedString);
+        item->setText(6, atomIdString);
+        treeWidget_->addTopLevelItem(item);
+
+                // поиск дубликата статей в базе
+        QSqlQuery q(db_);
+        QString qStr;
+        qDebug() << "atomId:" << atomIdString;
+        if (!atomIdString.isEmpty())         // поиск по guid
+          qStr = QString("select * from feed_%1 where guid == '%2'").
+              arg(parseFeedId).arg(atomIdString);
+        else if (atomUpdatedString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
+          qStr = QString("select * from feed_%1 where title like '%2'").
+              arg(parseFeedId).arg(titleString.replace('\'', '_'));
+        else                               // поиск по title и pubDate
+          qStr = QString("select * from feed_%1 "
+              "where title like '%2' and published == '%3'").
+              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(atomUpdatedString);
+        q.exec(qStr);
+
+        // проверка правильности запроса
+        if (q.lastError().isValid())
+          qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
+        else {
+          // если дубликата нет, добавляем статью в базу
+          if (!q.next()) {
+            qStr = QString("insert into feed_%1("
+                           "description, content, guid, title, published, received) "
+                           "values(?, ?, ?, ?, ?, ?)").
+                arg(parseFeedId);
+            q.prepare(qStr);
+            q.addBindValue(atomSummaryString);
+            q.addBindValue(atomContentString);
+            q.addBindValue(atomIdString);
+            q.addBindValue(titleString);
+            q.addBindValue(atomUpdatedString);
+            q.addBindValue(QDateTime::currentDateTime().toString(dataFormat));
+            q.exec();
+            qDebug() << "q.exec(" << q.lastQuery() << ")";
+            qDebug() << "       " << atomSummaryString;
+            qDebug() << "       " << atomContentString;
+            qDebug() << "       " << atomIdString;
+            qDebug() << "       " << titleString;
+            qDebug() << "       " << atomUpdatedString;
+            qDebug() << "       " << QDateTime::currentDateTime().toString();
+            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            feedChanged = true;
+          }
+        }
+        q.finish();
+
+        if (!atomEntryString.isEmpty()) QMessageBox::warning(this, windowTitle(),
+            "atomEntryString is not empty");
         ++itemCount;
       }
     } else if (xml_.isCharacters() && !xml_.isWhitespace()) {
       if (currentTag == "item")
-        itemString += xml_.text().toString();
+        rssItemString += xml_.text().toString();
       else if (currentTag == "title")
         titleString += xml_.text().toString();
       else if (currentTag == "link")
         linkString += xml_.text().toString();
       else if (currentTag == "description")
-        descriptionString += xml_.text().toString();
+        rssDescriptionString += xml_.text().toString();
       else if (currentTag == "comments")
         commentsString += xml_.text().toString();
       else if (currentTag == "pubDate")
-        pubDateString += xml_.text().toString();
+        rssPubDateString += xml_.text().toString();
       else if (currentTag == "guid")
-        guidString += xml_.text().toString();
+        rssGuidString += xml_.text().toString();
+
+      else if (currentTag == "entry")
+        atomEntryString += xml_.text().toString();
+      else if (currentTag == "id")
+        atomIdString += xml_.text().toString();
+      else if (currentTag == "updated")
+        atomUpdatedString += xml_.text().toString();
+      else if (currentTag == "summary")
+        atomSummaryString += xml_.text().toString();
+      else if (currentTag == "content")
+        atomContentString += xml_.text().toString();
     }
   }
   if (xml_.error() && xml_.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
@@ -851,6 +948,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setColumnHidden(newsModel_->fieldIndex("id"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("guid"), true);
   newsView_->setColumnHidden(newsModel_->fieldIndex("description"), true);
+  newsView_->setColumnHidden(newsModel_->fieldIndex("content"), true);
   // title
   // published
   newsView_->setColumnHidden(newsModel_->fieldIndex("modified"), true);
@@ -914,8 +1012,12 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     newsView_->setCurrentIndex(oldIndex);
     updateStatus();
   } else {
-    webView_->setHtml(
-        newsModel_->record(index.row()).field("description").value().toString());
+    QString content = newsModel_->record(index.row()).field("content").value().toString();
+    if (content.isEmpty())
+      webView_->setHtml(
+          newsModel_->record(index.row()).field("description").value().toString());
+    else
+      webView_->setHtml(content);
     markNewsRead();
     oldIndex = index;
   }

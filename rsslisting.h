@@ -110,13 +110,18 @@ private:
 
     QSettings *settings_;
     QString currentTag;
-    QString itemString;
+    QString rssItemString;
     QString titleString;
     QString linkString;
-    QString descriptionString;
+    QString rssDescriptionString;
     QString commentsString;
-    QString pubDateString;
-    QString guidString;
+    QString rssPubDateString;
+    QString rssGuidString;
+    QString atomEntryString;
+    QString atomIdString;
+    QString atomUpdatedString;
+    QString atomSummaryString;
+    QString atomContentString;
 
     QSqlDatabase db_;
     FeedsModel *feedsModel_;
