@@ -17,6 +17,7 @@
         <file>images/triangleT.png</file>
         <file alias="bulletRead">images/bulletRead.png</file>
         <file alias="bulletUnread">images/bulletUnread.png</file>
+        <file>images/column.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

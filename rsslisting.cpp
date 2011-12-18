@@ -220,24 +220,11 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setCurrentIndex(feedsModel_->index(0, 0));
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
-    newsView_->setColumnHidden(newsModel_->fieldIndex("id"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("guid"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("description"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("modified"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("author"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("category"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("label"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("new"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("sticky"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("deleted"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("attachment"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("feed"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("location"), true);
-    newsView_->setColumnHidden(newsModel_->fieldIndex("link"), true);
+    newsHeader_->initColumn();
 
     readSettings();
 
-    newsHeader_->init();
+    newsHeader_->createMenu();
 
     //Установка шрифтов и их настроек для элементов
     QFont font_ = newsDock_->font();

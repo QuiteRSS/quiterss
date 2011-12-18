@@ -131,14 +131,24 @@ QToolBar{
 }
 
 #buttonColumnView {
-	border: 1px solid #e0e0e0;
-	border-top: 0px;
-	border-right: 0px;
-	border-bottom: 0px;
+	border-left: 1px solid #D5D5D5;
+	border-top: 0px solid #D5D5D5;
+	border-right: 1px solid #D5D5D5;
+	border-bottom: 1px solid #D5D5D5;
+	padding: 5px 0px 1px 0px;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #ffffff,
+								stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
 }
 
-#buttonColumnView:hover, #buttonColumnView:pressed {
 
+#buttonColumnView:hover, #buttonColumnView:pressed {
+	border-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
 }
 
 #progressBar_ {

@@ -13,7 +13,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   viewMenu_ = new QMenu(this);
 
   buttonColumnView = new QPushButton();
-  buttonColumnView->setIcon(QIcon(":/images/images/triangleT.png"));
+  buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
   buttonColumnView->setObjectName("buttonColumnView");
   buttonColumnView->setMaximumWidth(30);
   connect(buttonColumnView, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
@@ -26,7 +26,25 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   this->installEventFilter(this);
 }
 
-void NewsHeader::init()
+void NewsHeader::initColumn()
+{
+  setSectionHidden(model_->fieldIndex("id"), true);
+  setSectionHidden(model_->fieldIndex("guid"), true);
+  setSectionHidden(model_->fieldIndex("description"), true);
+  setSectionHidden(model_->fieldIndex("modified"), true);
+  setSectionHidden(model_->fieldIndex("author"), true);
+  setSectionHidden(model_->fieldIndex("category"), true);
+  setSectionHidden(model_->fieldIndex("label"), true);
+  setSectionHidden(model_->fieldIndex("new"), true);
+  setSectionHidden(model_->fieldIndex("sticky"), true);
+  setSectionHidden(model_->fieldIndex("deleted"), true);
+  setSectionHidden(model_->fieldIndex("attachment"), true);
+  setSectionHidden(model_->fieldIndex("feed"), true);
+  setSectionHidden(model_->fieldIndex("location"), true);
+  setSectionHidden(model_->fieldIndex("link"), true);
+}
+
+void NewsHeader::createMenu()
 {
   QActionGroup *pActGroup_ = new QActionGroup(viewMenu_);
   pActGroup_->setExclusive(false);
@@ -54,12 +72,6 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"), Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
-
-  for (int i = 0; i < model_->columnCount(); i++) {
-//    qDebug() << model_->headerData(i, Qt::Horizontal, Qt::EditRole).toString();
-  }
-
-
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
@@ -117,6 +129,20 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       event->ignore();
       return true;
     } else return false;
+  } else if ((event->type() == QEvent::HoverMove) ||
+             (event->type() == QEvent::HoverEnter) ||
+             (event->type() == QEvent::HoverLeave)) {
+    QHoverEvent *hoverEvent = static_cast<QHoverEvent*>(event);
+    if (hoverEvent->pos().x() > width() - buttonColumnView->width()) {
+      if (event->type() == QEvent::HoverMove) {
+        QHoverEvent* pe =
+                    new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
+        QApplication::sendEvent(this, pe);
+      }
+      return true;
+    } else {
+      return false;
+    }
   } else {
     return false;
   }

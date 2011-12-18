@@ -10,7 +10,8 @@ class NewsHeader : public QHeaderView
 public:
   NewsHeader(Qt::Orientation orientation, QWidget * parent = 0);
   NewsModel *model_;
-  void init();
+  void initColumn();
+  void createMenu();
   void overload();
 
 public slots:
