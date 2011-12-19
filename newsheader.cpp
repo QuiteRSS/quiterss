@@ -167,6 +167,11 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   bool sizeMin = false;
   if (event->buttons() & Qt::LeftButton) {
+    if (logicalIndex(idxCol-1) == model_->fieldIndex("read")) {
+      event->ignore();
+      return;
+    }
+
     int oldWidth = width();
     int newWidth = 0;
     int stopColFix = 0;
