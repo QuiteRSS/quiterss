@@ -48,6 +48,7 @@
 #include "feedsmodel.h"
 #include "newsheader.h"
 #include "newsmodel.h"
+#include "parsethread.h"
 #include "updatethread.h"
 
 QT_BEGIN_NAMESPACE
@@ -86,6 +87,7 @@ public slots:
     void myEmptyWorkingSet();
     void receiveXml(const QByteArray &data, const QUrl &url);
     void getUrlDone(const int &result);
+    void updateFeed(const QUrl &url);
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);
@@ -95,7 +97,7 @@ protected:
 
 private:
     UpdateThread *persistentUpdateThread_;
-    UpdateThread *updateThread_;
+    ParseThread *persistentParseThread_;
     QNetworkProxy networkProxy_;
 
     void get(const QUrl &url);
@@ -105,23 +107,9 @@ private:
     void readSettings ();
     void writeSettings();
     void createTrayMenu();
-    void parseXml();
     void updateStatus();
 
     QSettings *settings_;
-    QString currentTag;
-    QString rssItemString;
-    QString titleString;
-    QString linkString;
-    QString rssDescriptionString;
-    QString commentsString;
-    QString rssPubDateString;
-    QString rssGuidString;
-    QString atomEntryString;
-    QString atomIdString;
-    QString atomUpdatedString;
-    QString atomSummaryString;
-    QString atomContentString;
 
     QSqlDatabase db_;
     FeedsModel *feedsModel_;
@@ -168,7 +156,7 @@ private:
     QToolBar *toolBarNull_;
     QPushButton *pushButtonNull_;
 
-    QXmlStreamReader xml_;
+    QByteArray data_;
     QUrl url_;
 
 private slots:
