@@ -119,15 +119,6 @@ RSSListing::RSSListing(QWidget *parent)
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
 
-    QStringList headerLabels;
-    headerLabels << tr("Item") << tr("Title") << tr("Link") << tr("Description")
-                 << tr("Comments") << tr("pubDate") << tr("guid");
-    treeWidget_ = new QTreeWidget();
-    connect(treeWidget_, SIGNAL(itemActivated(QTreeWidgetItem*,int)),
-            this, SLOT(itemActivated(QTreeWidgetItem*)));
-    treeWidget_->setHeaderLabels(headerLabels);
-    treeWidget_->header()->setResizeMode(QHeaderView::ResizeToContents);
-
     webView_ = new QWebView();
 
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -159,7 +150,6 @@ RSSListing::RSSListing(QWidget *parent)
 
     //! Create news DockWidget
     QSplitter *newsSplitter = new QSplitter(Qt::Vertical);
-    newsSplitter->addWidget(treeWidget_);
     newsSplitter->addWidget(newsView_);
 
     newsDock_ = new QDockWidget(tr("News"), this);
@@ -190,9 +180,6 @@ RSSListing::RSSListing(QWidget *parent)
     toolBarNull_->installEventFilter(this);
 
     //! GIU tuning
-    toggleQueryResults(false);
-
-
     progressBar_ = new QProgressBar();
     progressBar_->setObjectName("progressBar_");
     progressBar_->setFixedWidth(200);
@@ -393,11 +380,6 @@ void RSSListing::createActions()
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
-
-  treeWidgetToggle_ = new QAction(tr("&Query results"), this);
-  treeWidgetToggle_->setCheckable(true);
-  treeWidgetToggle_->setStatusTip(tr("Show table with query results"));
-  connect(treeWidgetToggle_, SIGNAL(toggled(bool)), this, SLOT(toggleQueryResults(bool)));
 
   updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update"), this);
   updateFeedAct_->setStatusTip(tr("Update current feed"));
@@ -745,8 +727,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 /*! \brief Запрос обновления ленты ********************************************/
 void RSSListing::updateFeed(QModelIndex index)
 {
-  treeWidget_->clear();
-
   persistentUpdateThread_->getUrl(
       feedsModel_->record(index.row()).field("xmlurl").value().toString());
 

@@ -76,7 +76,6 @@ public slots:
     void slotNewsViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotNewsKeyUpDownPressed();
-    void toggleQueryResults(bool checked);
     void showOptionDlg();
     void receiveMessage(const QString&);
     void slotPlaceToTray();
@@ -119,7 +118,6 @@ private:
     QAction *deleteFeedAct_;
     QAction *importFeedsAct_;
     QAction *toolBarToggle_;
-    QAction *treeWidgetToggle_;
     QAction *optionsAct_;
     QAction *updateFeedAct_;
     QAction *updateAllFeedsAct_;
@@ -141,8 +139,6 @@ private:
     QTreeView *feedsView_;
     QTreeView *newsView_;
     NewsHeader *newsHeader_;
-
-    QTreeWidget *treeWidget_;
 
     QWebView *webView_;
 
