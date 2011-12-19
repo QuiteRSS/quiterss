@@ -553,27 +553,30 @@ void RSSListing::addFeed()
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
 void RSSListing::deleteFeed()
 {
-  QMessageBox msgBox;
-  msgBox.setIcon(QMessageBox::Question);
-  msgBox.setWindowTitle(tr("Delete feed"));
-  msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
-                 arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString()));
-  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-  msgBox.setDefaultButton(QMessageBox::No);
+  if (feedsView_->currentIndex().row() >= 0) {
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Question);
+    msgBox.setWindowTitle(tr("Delete feed"));
+    msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
+                   arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString()));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
 
-  if (msgBox.exec() == QMessageBox::No) return;
+    if (msgBox.exec() == QMessageBox::No) return;
 
-  QSqlQuery q(db_);
-  QString str = QString("delete from feeds where text='%1'").
-      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString());
-  q.exec(str);
-  q.exec(QString("drop table feed_%1").
-      arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
-  q.finish();
+    QSqlQuery q(db_);
+    QString str = QString("delete from feeds where text='%1'").
+        arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString());
+    q.exec(str);
+    q.exec(QString("drop table feed_%1").
+        arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+    q.finish();
 
-  QModelIndex index = feedsView_->currentIndex();
-  feedsModel_->select();
-  feedsView_->setCurrentIndex(index);
+    int row = feedsView_->currentIndex().row();
+    feedsModel_->select();
+    if (feedsModel_->rowCount() == row) row--;
+    feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
+  }
 }
 
 /*! \brief Импорт лент из OPML-файла ******************************************/
