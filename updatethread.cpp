@@ -6,17 +6,17 @@ UpdateThread::UpdateThread(QObject *parent) :
   connect(&manager_, SIGNAL(finished(QNetworkReply*)),
       this, SLOT(finished(QNetworkReply*)));
 
-  qDebug() << objectName() << "::constructor";
+  qDebug() << "UpdateThread::constructor";
 }
 
 UpdateThread::~UpdateThread()
 {
-  qDebug() << objectName() << "::~destructor";
+  qDebug() << "UpdateThread::~destructor";
 }
 
 void UpdateThread::run()
 {
-  qDebug() << objectName() << "::run()";
+  qDebug() << "UpdateThread::run()";
   return;
 }
 
