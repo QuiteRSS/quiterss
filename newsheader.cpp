@@ -31,6 +31,7 @@ void NewsHeader::initColumn()
   setSectionHidden(model_->fieldIndex("id"), true);
   setSectionHidden(model_->fieldIndex("guid"), true);
   setSectionHidden(model_->fieldIndex("description"), true);
+  setSectionHidden(model_->fieldIndex("content"), true);
   setSectionHidden(model_->fieldIndex("modified"), true);
   setSectionHidden(model_->fieldIndex("author"), true);
   setSectionHidden(model_->fieldIndex("category"), true);
@@ -42,6 +43,9 @@ void NewsHeader::initColumn()
   setSectionHidden(model_->fieldIndex("feed"), true);
   setSectionHidden(model_->fieldIndex("location"), true);
   setSectionHidden(model_->fieldIndex("link"), true);
+
+  moveSection(visualIndex(model_->fieldIndex("read")), visualIndex(model_->fieldIndex("title"))+1);
+  resizeSection(model_->fieldIndex("read"), 25);
 }
 
 void NewsHeader::createMenu()

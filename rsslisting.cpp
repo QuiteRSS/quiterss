@@ -951,7 +951,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->select();
 
   newsHeader_->overload();
-  newsView_->setColumnHidden(newsModel_->fieldIndex("content"), true);
 
   newsView_->setCurrentIndex(newsModel_->index(0, 0));
   slotNewsViewClicked(newsModel_->index(0, 0));
