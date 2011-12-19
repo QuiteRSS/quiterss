@@ -229,7 +229,10 @@ RSSListing::RSSListing(QWidget *parent)
 /*!****************************************************************************/
 RSSListing::~RSSListing()
 {
-  qDebug("App_Close");
+  qDebug("App_Closing");
+  persistentUpdateThread_->quit();
+  persistentParseThread_->quit();
+
   delete newsView_;
   delete feedsView_;
   delete newsModel_;
