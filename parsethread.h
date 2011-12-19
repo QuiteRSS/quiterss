@@ -8,6 +8,8 @@
 #include <QUrl>
 #include <QXmlStreamReader>
 
+#include "parseobject.h"
+
 class ParseThread : public QThread
 {
   Q_OBJECT
@@ -19,32 +21,25 @@ private:
   QQueue<QUrl> urlsQueue_;
   QQueue<QByteArray> xmlsQueue_;
 
-  QString currentTag;
-  QString rssItemString;
-  QString titleString;
-  QString linkString;
-  QString rssDescriptionString;
-  QString commentsString;
-  QString rssPubDateString;
-  QString rssGuidString;
-  QString atomEntryString;
-  QString atomIdString;
-  QString atomUpdatedString;
-  QString atomSummaryString;
-  QString atomContentString;
+  QTimer *parseTimer_;
+  ParseObject *parseObject_;
 
-  void parse();
-  void getQueuedXml();
+  void run();
 
 public:
   explicit ParseThread(QObject *parent, QSqlDatabase *db);
   ~ParseThread();
-  void parseXml(const QByteArray &data, const QUrl &url);
 
 signals:
-  void feedUpdated(const QUrl &url);
+  void startTimer();
+  void signalReadyParse(QSqlDatabase *db,
+      const QByteArray &xml, const QUrl &url);
+
+private slots:
+  void getQueuedXml();
 
 public slots:
+  void parseXml(const QByteArray &data, const QUrl &url);
 
 };
 

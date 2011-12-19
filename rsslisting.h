@@ -175,6 +175,7 @@ signals:
     void signalFeedKeyUpDownPressed();
     void signalPlaceToTray();
     void signalCloseApp();
+    void xmlReadyParse(const QByteArray &data, const QUrl &url);
 };
 
 #endif

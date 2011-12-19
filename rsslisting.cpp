@@ -71,8 +71,9 @@ RSSListing::RSSListing(QWidget *parent)
 
     persistentParseThread_ = new ParseThread(this, &db_);
     persistentParseThread_->setObjectName("persistentParseThread_");
-    connect(persistentParseThread_, SIGNAL(feedUpdated(QUrl)),
-            this, SLOT(updateFeed(QUrl)));
+    connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
+        persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
+        Qt::QueuedConnection);
 
     feedsModel_ = new FeedsModel(this);
     feedsModel_->setTable("feeds");
@@ -659,8 +660,10 @@ void RSSListing::getUrlDone(const int &result)
   qDebug() << "getUrl result =" << result;
 
   if (!url_.isEmpty()) {
-    persistentParseThread_->parseXml(data_, url_);
-    qDebug() << "parseThread <<" << url_;
+    qDebug() << "emit xmlReadyParse: before <<" << url_;
+//    persistentParseThread_->parseXml(data_, url_);
+    emit xmlReadyParse(data_, url_);
+    qDebug() << "emit xmlReadyParse: after  <<" << url_;
     data_.clear();
     url_.clear();
   }
