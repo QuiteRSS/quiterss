@@ -18,6 +18,10 @@
         <file alias="bulletRead">images/bulletRead.png</file>
         <file alias="bulletUnread">images/bulletUnread.png</file>
         <file>images/column.png</file>
+        <file alias="readSection">images/readSection.png</file>
+        <file alias="starOff">images/starOff.png</file>
+        <file alias="starOn">images/starOn.png</file>
+        <file alias="starSection">images/starSection.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

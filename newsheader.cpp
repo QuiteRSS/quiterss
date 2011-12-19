@@ -26,7 +26,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   this->installEventFilter(this);
 }
 
-void NewsHeader::initColumn()
+void NewsHeader::initColumns()
 {
   setSectionHidden(model_->fieldIndex("id"), true);
   setSectionHidden(model_->fieldIndex("guid"), true);
@@ -37,22 +37,26 @@ void NewsHeader::initColumn()
   setSectionHidden(model_->fieldIndex("category"), true);
   setSectionHidden(model_->fieldIndex("label"), true);
   setSectionHidden(model_->fieldIndex("new"), true);
-  setSectionHidden(model_->fieldIndex("sticky"), true);
   setSectionHidden(model_->fieldIndex("deleted"), true);
   setSectionHidden(model_->fieldIndex("attachment"), true);
   setSectionHidden(model_->fieldIndex("feed"), true);
   setSectionHidden(model_->fieldIndex("location"), true);
   setSectionHidden(model_->fieldIndex("link"), true);
 
+  moveSection(visualIndex(model_->fieldIndex("sticky")), visualIndex(model_->fieldIndex("title")));
+  resizeSection(model_->fieldIndex("sticky"), 25);
+  setResizeMode(model_->fieldIndex("sticky"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("read")), visualIndex(model_->fieldIndex("title"))+1);
   resizeSection(model_->fieldIndex("read"), 25);
+  setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
+  resizeSection(model_->fieldIndex("title"), 300);
 }
 
 void NewsHeader::createMenu()
 {
   QActionGroup *pActGroup_ = new QActionGroup(viewMenu_);
   pActGroup_->setExclusive(false);
-  connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisibled(QAction*)));
+  connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisible(QAction*)));
   for (int i = 0; i < model_->columnCount(); i++) {
     QAction *action = pActGroup_->addAction(
           model_->headerData(logicalIndex(i),
@@ -75,7 +79,9 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"), Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"), Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/markRead"), Qt::DecorationRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/readSection"), Qt::DecorationRole);
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, QIcon(":/images/starSection"), Qt::DecorationRole);
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
@@ -167,11 +173,6 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   bool sizeMin = false;
   if (event->buttons() & Qt::LeftButton) {
-    if (logicalIndex(idxCol-1) == model_->fieldIndex("read")) {
-      event->ignore();
-      return;
-    }
-
     int oldWidth = width();
     int newWidth = 0;
     int stopColFix = 0;
@@ -229,13 +230,16 @@ void NewsHeader::slotButtonColumnView()
   viewMenu_->setFocus();
   viewMenu_->show();
   QPoint pPoint;
-  pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width());
+  pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width()-1);
   pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height());
   viewMenu_->popup(pPoint);
 }
 
-void NewsHeader::columnVisibled(QAction *action)
+void NewsHeader::columnVisible(QAction *action)
 {
   int idx = action->data().toInt();
   setSectionHidden(idx, !isSectionHidden(idx));
+  QSize newSize = size();
+  newSize.setWidth(newSize.width()+1);
+  resize(newSize);
 }

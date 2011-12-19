@@ -10,7 +10,7 @@ class NewsHeader : public QHeaderView
 public:
   NewsHeader(Qt::Orientation orientation, QWidget * parent = 0);
   NewsModel *model_;
-  void initColumn();
+  void initColumns();
   void createMenu();
   void overload();
 
@@ -23,7 +23,7 @@ protected:
 
 private slots:
   void slotButtonColumnView();
-  void columnVisibled(QAction *);
+  void columnVisible(QAction*);
 
 signals:
 

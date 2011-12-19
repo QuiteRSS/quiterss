@@ -222,7 +222,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setCurrentIndex(feedsModel_->index(0, 0));
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
-    newsHeader_->initColumn();
+    newsHeader_->initColumns();
 
     readSettings();
 
@@ -994,6 +994,17 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
         read);
     newsView_->setCurrentIndex(oldIndex);
     updateStatus();
+  } else if (index.column() == newsModel_->fieldIndex("sticky")) {
+    int sticky;
+    if (newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
+      sticky = 1;
+    } else {
+      sticky = 0;
+    }
+    newsModel_->setData(
+        newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
+        sticky);
+    newsView_->setCurrentIndex(oldIndex);
   } else {
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     if (content.isEmpty())
