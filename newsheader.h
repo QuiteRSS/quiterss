@@ -31,7 +31,7 @@ private:
   QMenu *viewMenu_;
   QPushButton *buttonColumnView;
   int idxCol;
-  int posX;
+  int posX1;
 
 };
 

@@ -32,7 +32,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("sticky") == index.column()) {
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("received") == index.column()) {
-      qDebug() << QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString();
       QDateTime dateTime = QDateTime::fromString(
             QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
             Qt::ISODate);

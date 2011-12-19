@@ -744,7 +744,7 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
-  static QModelIndex oldIndex;
+//  static QModelIndex oldIndex;
   if (index.column() == newsModel_->fieldIndex("read")) {
     int read;
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
@@ -755,7 +755,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
         read);
-    newsView_->setCurrentIndex(oldIndex);
+//    newsView_->setCurrentIndex(index);
     updateStatus();
   } else if (index.column() == newsModel_->fieldIndex("sticky")) {
     int sticky;
@@ -767,7 +767,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
         sticky);
-    newsView_->setCurrentIndex(oldIndex);
+//    newsView_->setCurrentIndex(index);
   } else {
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     if (content.isEmpty())
@@ -776,7 +776,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     else
       webView_->setHtml(content);
     markNewsRead();
-    oldIndex = index;
+//    oldIndex = index;
   }
 }
 

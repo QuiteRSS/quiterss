@@ -82,6 +82,7 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/readSection"), Qt::DecorationRole);
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, QIcon(":/images/starSection"), Qt::DecorationRole);
+  setSortIndicator(sortIndicatorSection(), sortIndicatorOrder());
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
@@ -163,7 +164,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   QPoint nPos = event->pos();
   nPos.setX(nPos.x() + 5);
   idxCol = visualIndex(logicalIndexAt(nPos));
-  posX = event->pos().x();
+  posX1 = event->pos().x();
   nPos = event->pos();
   nPos.setX(nPos.x() - 5);
   QHeaderView::mousePressEvent(event);
@@ -175,26 +176,22 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   if (event->buttons() & Qt::LeftButton) {
     int oldWidth = width();
     int newWidth = 0;
-    int stopColFix = 0;
-    for (int i = count()-1; i >= 0; i--) {
-      if (!isSectionHidden(i)) {
-        stopColFix = visualIndex(i);
-        break;
-      }
-    }
+
     for (int i = 0; i < count(); i++) newWidth += sectionSize(i);
-    if (posX > event->pos().x()) sizeMin =  true;
+    if (posX1 > event->pos().x()) sizeMin =  true;
     if (!sizeMin) {
       if (event->pos().x() < oldWidth) {
         for (int i = count()-1; i >= 0; i--) {
           int lIdx = logicalIndex(i);
           if (!isSectionHidden(lIdx)) {
-            int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
-            if (sectionWidth > 40) {
-              if (i >= idxCol) {
-                resizeSection(lIdx, sectionWidth);
-                sizeMin = true;
-                break;
+            if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("sticky") == lIdx))) {
+              int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
+              if (sectionWidth > 40) {
+                if (i >= idxCol) {
+                  resizeSection(lIdx, sectionWidth);
+                  sizeMin = true;
+                  break;
+                }
               }
             }
           }
@@ -210,18 +207,32 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
         sizeMin = false;
       }
     } else {
+      int stopColFix = 0;
+      for (int i = count()-1; i >= 0; i--) {
+        int lIdx = logicalIndex(i);
+        if (!isSectionHidden(lIdx)) {
+          if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("sticky") == lIdx))) {
+            stopColFix = i;
+            break;
+          }
+        }
+      }
+
       int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
       if ((sectionWidth > 40)) {
-        resizeSection(logicalIndex(stopColFix), sectionWidth);
+        if (!((model_->fieldIndex("read") == logicalIndex(idxCol)) ||
+              (model_->fieldIndex("sticky") == logicalIndex(idxCol))) || idxCol < stopColFix) {
+          resizeSection(logicalIndex(stopColFix), sectionWidth);
+        } else sizeMin = false;
       }
     }
     if (!sizeMin) {
-      if (posX > event->pos().x()) posX = event->pos().x();
+      if (posX1 > event->pos().x()) posX1 = event->pos().x();
       event->ignore();
       return;
     }
   }
-  if (posX > event->pos().x()) posX = event->pos().x();
+  if (posX1 > event->pos().x()) posX1 = event->pos().x();
   QHeaderView::mouseMoveEvent(event);
 }
 
