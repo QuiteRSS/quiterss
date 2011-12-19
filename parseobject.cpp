@@ -14,6 +14,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString rssItemString;
   QString titleString;
   QString linkString;
+  QString authorString;
   QString rssDescriptionString;
   QString commentsString;
   QString rssPubDateString;
@@ -59,6 +60,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         rssItemString.clear();
         titleString.clear();
         linkString.clear();
+        authorString.clear();
         rssDescriptionString.clear();
         commentsString.clear();
         rssPubDateString.clear();
@@ -67,6 +69,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       if (xml.name() == "entry") {  // clear strings
         atomEntryString.clear();
         titleString.clear();
+        authorString.clear();
         atomIdString.clear();
         atomUpdatedString.clear();
         atomSummaryString.clear();
@@ -100,13 +103,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, guid, title, published, received) "
-                           "values(?, ?, ?, ?, ?)").
+                           "description, guid, title, author, published, received) "
+                           "values(?, ?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(rssDescriptionString);
             q.addBindValue(rssGuidString);
             q.addBindValue(titleString);
+            q.addBindValue(authorString);
             q.addBindValue(rssPubDateString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.exec();
@@ -114,6 +118,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qDebug() << "       " << rssDescriptionString;
             qDebug() << "       " << rssGuidString;
             qDebug() << "       " << titleString;
+            qDebug() << "       " << authorString;
             qDebug() << "       " << rssPubDateString;
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
@@ -129,6 +134,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (xml.name() == "entry") {
             qDebug() << "  entry:  " << atomEntryString;
             qDebug() << "  title:  " << titleString;
+            qDebug() << "  author: " << authorString;
             qDebug() << "  id:     " << atomIdString;
             qDebug() << "  updated:" << atomUpdatedString;
             qDebug() << "  summary:" << atomSummaryString;
@@ -157,14 +163,15 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, content, guid, title, published, received) "
-                           "values(?, ?, ?, ?, ?, ?)").
+                           "description, content, guid, title, author, published, received) "
+                           "values(?, ?, ?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(atomSummaryString);
             q.addBindValue(atomContentString);
             q.addBindValue(atomIdString);
             q.addBindValue(titleString);
+            q.addBindValue(authorString);
             q.addBindValue(atomUpdatedString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.exec();
@@ -173,6 +180,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qDebug() << "       " << atomContentString;
             qDebug() << "       " << atomIdString;
             qDebug() << "       " << titleString;
+            qDebug() << "       " << authorString;
             qDebug() << "       " << atomUpdatedString;
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
@@ -191,6 +199,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         titleString += xml.text().toString();
       else if (currentTag == "link")
         linkString += xml.text().toString();
+      else if (currentTag == "author")
+        authorString += xml.text().toString();
       else if (currentTag == "description")
         rssDescriptionString += xml.text().toString();
       else if (currentTag == "comments")
