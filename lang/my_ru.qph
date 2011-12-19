@@ -276,4 +276,20 @@
     <source>Add feed</source>
     <target>Добавление новостной ленты</target>
 </phrase>
+<phrase>
+    <source>author</source>
+    <target>Автор</target>
+</phrase>
+<phrase>
+    <source>Read</source>
+    <target>Прочитано</target>
+</phrase>
+<phrase>
+    <source>Star</source>
+    <target>Звёздочка</target>
+</phrase>
+<phrase>
+    <source>Author</source>
+    <target>Автор</target>
+</phrase>
 </QPH>

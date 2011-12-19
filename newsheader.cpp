@@ -33,7 +33,6 @@ void NewsHeader::initColumns()
   setSectionHidden(model_->fieldIndex("description"), true);
   setSectionHidden(model_->fieldIndex("content"), true);
   setSectionHidden(model_->fieldIndex("modified"), true);
-  setSectionHidden(model_->fieldIndex("author"), true);
   setSectionHidden(model_->fieldIndex("category"), true);
   setSectionHidden(model_->fieldIndex("label"), true);
   setSectionHidden(model_->fieldIndex("new"), true);
@@ -43,13 +42,18 @@ void NewsHeader::initColumns()
   setSectionHidden(model_->fieldIndex("location"), true);
   setSectionHidden(model_->fieldIndex("link"), true);
 
-  moveSection(visualIndex(model_->fieldIndex("sticky")), visualIndex(model_->fieldIndex("title")));
+  moveSection(visualIndex(model_->fieldIndex("sticky")),
+              visualIndex(model_->fieldIndex("title")));
   resizeSection(model_->fieldIndex("sticky"), 25);
   setResizeMode(model_->fieldIndex("sticky"), QHeaderView::Fixed);
-  moveSection(visualIndex(model_->fieldIndex("read")), visualIndex(model_->fieldIndex("title"))+1);
+  moveSection(visualIndex(model_->fieldIndex("read")),
+              visualIndex(model_->fieldIndex("title"))+1);
   resizeSection(model_->fieldIndex("read"), 25);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
-  resizeSection(model_->fieldIndex("title"), 300);
+  moveSection(visualIndex(model_->fieldIndex("author")),
+              visualIndex(model_->fieldIndex("read"))+1);
+  resizeSection(model_->fieldIndex("author"), 100);
+  resizeSection(model_->fieldIndex("title"), 200);
 }
 
 void NewsHeader::createMenu()
@@ -70,18 +74,23 @@ void NewsHeader::createMenu()
 
 void NewsHeader::overload()
 {
+  model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
+  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
+  model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
+  model_->setHeaderData(model_->fieldIndex("author"), Qt::Horizontal, tr("Author"));
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
   for (int i = 0; i < model_->columnCount(); i++) {
     model_->setHeaderData(i, Qt::Horizontal,
                           model_->headerData(i, Qt::Horizontal, Qt::DisplayRole),
                           Qt::EditRole);
   }
-  model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"), Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"), Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"), Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, QIcon(":/images/readSection"), Qt::DecorationRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal,
+                        QIcon(":/images/readSection"), Qt::DecorationRole);
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, QIcon(":/images/starSection"), Qt::DecorationRole);
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal,
+                        QIcon(":/images/starSection"), Qt::DecorationRole);
   setSortIndicator(sortIndicatorSection(), sortIndicatorOrder());
 }
 
