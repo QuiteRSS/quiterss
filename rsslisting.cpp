@@ -424,7 +424,6 @@ void RSSListing::createMenu()
 
   viewMenu_ = menuBar()->addMenu(tr("&View"));
   viewMenu_->addAction(toolBarToggle_);
-  viewMenu_->addAction(treeWidgetToggle_);
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   feedMenu_->addAction(updateFeedAct_);
@@ -788,13 +787,6 @@ void RSSListing::slotFeedsTreeKeyUpDownPressed()
 void RSSListing::slotNewsKeyUpDownPressed()
 {
   slotNewsViewClicked(newsView_->currentIndex());
-}
-
-/*! \brief Обработка переключения отображения таблицы результатов последнего запроса
- ******************************************************************************/
-void RSSListing::toggleQueryResults(bool checked)
-{
-  treeWidget_->setVisible(checked);
 }
 
 /*! \brief Вызов окна настроек ************************************************/
