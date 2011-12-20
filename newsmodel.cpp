@@ -43,13 +43,14 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         qWarning() << "News has future published Date";
         return QString();
       }
+      else if (daysToCurrentDT < 1) return dt.toString("hh:mm");
       else return dt.toString("yyyy.MM.dd hh:mm");
     }
     else if (QSqlTableModel::fieldIndex("received") == index.column()) {
       QDateTime dateTime = QDateTime::fromString(
             QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
             Qt::ISODate);
-      if (QDateTime::currentDateTime().toString("yyyy.MM.dd") == dateTime.toString("yyyy.MM.dd")) {
+      if (QDateTime::currentDateTime().date() == dateTime.date()) {
         return dateTime.toString("hh:mm");
       } else return dateTime.toString("yyyy.MM.dd hh:mm");
     }
