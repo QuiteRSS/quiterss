@@ -69,7 +69,6 @@ public slots:
     void addFeed();
     void deleteFeed();
     void importFeeds();
-    void itemActivated(QTreeWidgetItem * item);
     void slotFeedsTreeClicked(QModelIndex index);
     void slotUpdateFeed();
     void slotUpdateAllFeeds();

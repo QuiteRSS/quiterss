@@ -588,7 +588,6 @@ void RSSListing::importFeeds()
 
   QXmlStreamReader xml(&file);
 
-  QString currentString;
   int elementCount = 0;
   int outlineCount = 0;
   while (!xml.atEnd()) {
@@ -699,13 +698,6 @@ void RSSListing::updateFeed(const QUrl &url)
     feedsModel_->select();
     feedsView_->setCurrentIndex(index);
   }
-}
-
-/*! \brief Обработка события активации элемента в таблице результатов последнего запроса
- ******************************************************************************/
-void RSSListing::itemActivated(QTreeWidgetItem * item)
-{
-    webView_->setHtml(item->text(3));
 }
 
 /*! \brief Обработка нажатия в дереве лент ************************************/
