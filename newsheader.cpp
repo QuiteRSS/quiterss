@@ -253,8 +253,8 @@ void NewsHeader::slotButtonColumnView()
   viewMenu_->setFocus();
   viewMenu_->show();
   QPoint pPoint;
-  pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width()-1);
-  pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height());
+  pPoint.setX(mapToGlobal(QPoint(0,0)).x() + width() - viewMenu_->width() - 1);
+  pPoint.setY(mapToGlobal(QPoint(0,0)).y() + height() + 1);
   viewMenu_->popup(pPoint);
 }
 
