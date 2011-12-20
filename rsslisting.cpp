@@ -700,13 +700,6 @@ void RSSListing::updateFeed(const QUrl &url)
   }
 }
 
-/*! \brief Обработка события активации элемента в таблице результатов последнего запроса
- ******************************************************************************/
-void RSSListing::itemActivated(QTreeWidgetItem * item)
-{
-    webView_->setHtml(item->text(3));
-}
-
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
