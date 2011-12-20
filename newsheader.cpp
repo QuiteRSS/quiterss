@@ -9,7 +9,6 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setDefaultAlignment(Qt::AlignLeft);
   setMinimumSectionSize(25);
   setStretchLastSection(true);
-  connect(this, SIGNAL(sectionClicked(int)), SLOT(slotColumnClicked(int)));
 
   viewMenu_ = new QMenu(this);
 
@@ -263,16 +262,4 @@ void NewsHeader::columnVisible(QAction *action)
   QSize newSize = size();
   newSize.setWidth(newSize.width()+1);
   resize(newSize);
-}
-
-void NewsHeader::slotColumnClicked(int index)
-{
-  qDebug() << index << model_->fieldIndex("read");
-  if ((index == model_->fieldIndex("read")) ||
-      (index == model_->fieldIndex("sticky"))) {
-    setSortIndicatorShown(false);
-    qDebug() << "23";
-  } else {
-    setSortIndicatorShown(true);
-  }
 }

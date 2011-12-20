@@ -112,6 +112,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
     newsHeader_->model_ = newsModel_;
+    newsHeader_->view_ = newsView_;
     newsView_->setHeader(newsHeader_);
 
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
@@ -768,7 +769,9 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
           newsModel_->record(index.row()).field("description").value().toString());
     else
       webView_->setHtml(content);
-    markNewsRead();
+    setItemRead(index, 1);
+    newsView_->setCurrentIndex(index);
+    updateStatus();
 //    oldIndex = index;
   }
 }
@@ -919,13 +922,11 @@ void RSSListing::setItemRead(QModelIndex index, int read)
 void RSSListing::markNewsRead()
 {
   QModelIndex index = newsView_->currentIndex();
-  int read;
   if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-    read = 1;
+    setItemRead(newsView_->currentIndex(), 1);
   } else {
-    read = 0;
+    setItemRead(newsView_->currentIndex(), 0);
   }
-  setItemRead(newsView_->currentIndex(), read);
   newsView_->setCurrentIndex(index);
   updateStatus();
 }
