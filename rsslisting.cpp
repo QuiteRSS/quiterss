@@ -420,6 +420,16 @@ void RSSListing::createActions()
   optionsAct_->setStatusTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
+
+  setNewsFilterUnread_ = new QAction(tr("Show unread"), this);
+  setNewsFilterUnread_->setStatusTip(tr("Show unread"));
+  setNewsFilterUnread_->setCheckable(true);
+  connect(setNewsFilterUnread_, SIGNAL(toggled(bool)), this, SLOT(setNewsFilterUnread(bool)));
+
+  setFeedsFilterUnread_ = new QAction(tr("Show unread"), this);
+  setFeedsFilterUnread_->setStatusTip(tr("Show unread"));
+  setFeedsFilterUnread_->setCheckable(true);
+  connect(setFeedsFilterUnread_, SIGNAL(toggled(bool)), this, SLOT(setFeedsFilterUnread(bool)));
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -442,9 +452,15 @@ void RSSListing::createMenu()
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
 
+  QMenu *feedsFilter = feedMenu_->addMenu(tr("Filters"));
+  feedsFilter->addAction(setFeedsFilterUnread_);
+
   newsMenu_ = menuBar()->addMenu(tr("&News"));
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
+
+  QMenu *newsFilter = newsMenu_->addMenu(tr("Filters"));
+  newsFilter->addAction(setNewsFilterUnread_);
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
@@ -989,4 +1005,22 @@ void RSSListing::slotLoadFinished(bool ok)
 {
   if (!ok) statusBar()->showMessage(tr("Error loading to WebVeiw"), 3000);
   webViewProgress_->hide();
+}
+
+void RSSListing::setNewsFilterUnread(bool unread)
+{
+  if (unread) {
+    newsModel_->setFilter("read=0");
+  } else {
+    newsModel_->setFilter("read>=0");
+  }
+}
+
+void RSSListing::setFeedsFilterUnread(bool unread)
+{
+  if (unread) {
+    feedsModel_->setFilter("unread>0");
+  } else {
+    feedsModel_->setFilter("unread>=0");
+  }
 }

@@ -76,7 +76,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomContentString.clear();
       }
       currentTag = xml.name().toString();
-//      qDebug() << itemCount << ":" << currentTag ;
+//      qDebug() << itemCount << ":" << currentTag;
 //      for (int i = 0 ; i < xml.attributes().count(); ++i)
 //        qDebug() << "     " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
     } else if (xml.isEndElement()) {

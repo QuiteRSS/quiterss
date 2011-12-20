@@ -125,6 +125,8 @@ private:
     QAction *markAllNewsRead_;
     QAction *markNewsUnread_;
     QAction *setProxyAct_;
+    QAction *setNewsFilterUnread_;
+    QAction *setFeedsFilterUnread_;
     QMenu *fileMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
@@ -167,6 +169,8 @@ private slots:
     void markAllNewsRead();
     void slotLoadStarted();
     void slotLoadFinished(bool ok);
+    void setNewsFilterUnread(bool unread);
+    void setFeedsFilterUnread(bool unread);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
