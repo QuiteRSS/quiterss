@@ -164,7 +164,6 @@ private slots:
     void setItemRead(QModelIndex index, int read);
     void markNewsRead();
     void markAllNewsRead();
-    void markNewsUnread();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

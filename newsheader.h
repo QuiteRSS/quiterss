@@ -24,6 +24,7 @@ protected:
 private slots:
   void slotButtonColumnView();
   void columnVisible(QAction*);
+  void slotColumnClicked(int index);
 
 signals:
 
@@ -31,7 +32,7 @@ private:
   QMenu *viewMenu_;
   QPushButton *buttonColumnView;
   int idxCol;
-  int posX;
+  int posX1;
 
 };
 

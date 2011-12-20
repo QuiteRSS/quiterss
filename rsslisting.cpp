@@ -402,10 +402,6 @@ void RSSListing::createActions()
   markAllNewsRead_->setStatusTip(tr("Mark all news read"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
-  markNewsUnread_ = new QAction(QIcon(":/images/newsUnread"), tr("Mark Unread"), this);
-  markNewsUnread_->setStatusTip(tr("Mark current news unread"));
-  connect(markNewsUnread_, SIGNAL(triggered()), this, SLOT(markNewsUnread()));
-
   optionsAct_ = new QAction(tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
@@ -435,8 +431,6 @@ void RSSListing::createMenu()
   newsMenu_ = menuBar()->addMenu(tr("&News"));
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
-  newsMenu_->addSeparator();
-  newsMenu_->addAction(markNewsUnread_);
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
@@ -459,7 +453,6 @@ void RSSListing::createToolBar()
   toolBar_->addSeparator();
   toolBar_->addAction(markNewsRead_);
   toolBar_->addAction(markAllNewsRead_);
-  toolBar_->addAction(markNewsUnread_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
   connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
@@ -744,7 +737,7 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
-  static QModelIndex oldIndex;
+//  static QModelIndex oldIndex;
   if (index.column() == newsModel_->fieldIndex("read")) {
     int read;
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
@@ -755,7 +748,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
         read);
-    newsView_->setCurrentIndex(oldIndex);
+//    newsView_->setCurrentIndex(index);
     updateStatus();
   } else if (index.column() == newsModel_->fieldIndex("sticky")) {
     int sticky;
@@ -767,7 +760,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
         sticky);
-    newsView_->setCurrentIndex(oldIndex);
+//    newsView_->setCurrentIndex(index);
   } else {
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     if (content.isEmpty())
@@ -776,7 +769,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     else
       webView_->setHtml(content);
     markNewsRead();
-    oldIndex = index;
+//    oldIndex = index;
   }
 }
 
@@ -926,7 +919,13 @@ void RSSListing::setItemRead(QModelIndex index, int read)
 void RSSListing::markNewsRead()
 {
   QModelIndex index = newsView_->currentIndex();
-  setItemRead(newsView_->currentIndex(), 1);
+  int read;
+  if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+    read = 1;
+  } else {
+    read = 0;
+  }
+  setItemRead(newsView_->currentIndex(), read);
   newsView_->setCurrentIndex(index);
   updateStatus();
 }
@@ -938,14 +937,6 @@ void RSSListing::markAllNewsRead()
   QSqlQuery q(db_);
   q.exec(qStr);
   newsModel_->select();
-  updateStatus();
-}
-
-void RSSListing::markNewsUnread()
-{
-  QModelIndex index = newsView_->currentIndex();
-  setItemRead(newsView_->currentIndex(), 0);
-  newsView_->setCurrentIndex(index);
   updateStatus();
 }
 
