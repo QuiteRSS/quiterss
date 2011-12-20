@@ -13,7 +13,8 @@ private:
 public:
     explicit AddFeedDialog(QWidget *parent = 0);
 
-  QLineEdit *feedEdit_;
+  QLineEdit *feedTitleEdit_;
+  QLineEdit *feedUrlEdit_;
 
 signals:
 

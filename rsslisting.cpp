@@ -522,9 +522,11 @@ void RSSListing::addFeed()
   if (addFeedDialog->exec() == QDialog::Rejected) return;
 
   QSqlQuery q(db_);
-  QString qStr = QString("insert into feeds(link) values (%1)").
-      arg(addFeedDialog->feedEdit_->text());
-  q.exec(qStr);
+  QString qStr = QString("insert into feeds(text, xmlurl) values (?, ?)");
+  q.prepare(qStr);
+  q.addBindValue(addFeedDialog->feedTitleEdit_->text());
+  q.addBindValue(addFeedDialog->feedUrlEdit_->text());
+  q.exec();
   q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
   q.finish();
 
