@@ -82,6 +82,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
     } else if (xml.isEndElement()) {
       // rss::item
       if (xml.name() == "item") {
+        rssPubDateString = parseDate(rssPubDateString);
 
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
@@ -134,13 +135,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       }
       // atom::feed
       else if (xml.name() == "entry") {
-            qDebug() << "  entry:  " << atomEntryString;
-            qDebug() << "  title:  " << titleString;
-            qDebug() << "  author: " << authorString;
-            qDebug() << "  id:     " << atomIdString;
-            qDebug() << "  updated:" << atomUpdatedString;
-            qDebug() << "  summary:" << atomSummaryString;
-            qDebug() << "  content:" << atomContentString;
+        atomUpdatedString = parseDate(atomUpdatedString);
 
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
@@ -233,4 +228,25 @@ void ParseObject::slotParse(QSqlDatabase *db,
   qDebug() << "=================== parseXml:finish ===========================";
 
   if (feedChanged) emit feedUpdated(url);
+}
+
+QString ParseObject::parseDate(QString dateString)
+{
+  QDateTime dt;
+  QString temp;
+
+  if (dateString.isEmpty()) return QString();
+
+  QLocale locale(QLocale::C);
+
+  temp = dateString.left(19);
+  dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss");
+  if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
+
+  temp = dateString.left(25);
+  dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
+  if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
+
+  qWarning() << "==== parseDate(): error with" << dateString;
+  return QString();
 }

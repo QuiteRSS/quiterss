@@ -11,6 +11,9 @@ class ParseObject : public QObject
 public:
   explicit ParseObject(QObject *parent = 0);
 
+private:
+  QString parseDate(QString dateString);
+
 signals:
   void feedUpdated(const QUrl &url);
 
