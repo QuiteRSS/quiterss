@@ -121,6 +121,17 @@ RSSListing::RSSListing(QWidget *parent)
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
 
     webView_ = new QWebView();
+    webView_->setObjectName("webView_");
+    webViewProgress_ = new QProgressBar();
+    webViewProgress_->setObjectName("webViewProgress_");
+    webViewProgress_->setFixedHeight(15);
+    webViewProgress_->setMinimum(0);
+    webViewProgress_->setMaximum(100);
+    webViewProgress_->setFormat(tr("Loading... (%p%)"));
+    webViewProgress_->setVisible(true);
+    connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
+    connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
+    connect(webView_, SIGNAL(loadProgress(int)), webViewProgress_, SLOT(setValue(int)));
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -162,6 +173,7 @@ RSSListing::RSSListing(QWidget *parent)
     //! Create web layout
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
+    webLayout->addWidget(webViewProgress_);
     webLayout->addWidget(webView_);
 
     webWidget_ = new QWidget();
@@ -964,4 +976,16 @@ void RSSListing::updateStatus()
 
   static int updateCount = 0;
   qDebug() << "updateStatus()" << ++updateCount;
+}
+
+void RSSListing::slotLoadStarted()
+{
+  webViewProgress_->setValue(0);
+  webViewProgress_->show();
+}
+
+void RSSListing::slotLoadFinished(bool ok)
+{
+  if (!ok) statusBar()->showMessage(tr("Error loading to WebVeiw"), 3000);
+  webViewProgress_->hide();
 }

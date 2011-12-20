@@ -141,6 +141,7 @@ private:
 
     QWidget *webWidget_;
     QWebView *webView_;
+    QProgressBar *webViewProgress_;
 
     QSystemTrayIcon *traySystem;
     int oldState;
@@ -164,6 +165,8 @@ private slots:
     void setItemRead(QModelIndex index, int read);
     void markNewsRead();
     void markAllNewsRead();
+    void slotLoadStarted();
+    void slotLoadFinished(bool ok);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
