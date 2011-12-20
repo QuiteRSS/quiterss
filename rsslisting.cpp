@@ -588,7 +588,6 @@ void RSSListing::importFeeds()
 
   QXmlStreamReader xml(&file);
 
-  QString currentString;
   int elementCount = 0;
   int outlineCount = 0;
   while (!xml.atEnd()) {
