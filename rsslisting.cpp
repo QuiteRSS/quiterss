@@ -165,7 +165,7 @@ RSSListing::RSSListing(QWidget *parent)
     webLayout->addWidget(webView_);
 
     QWidget *webWidget = new QWidget();
-    webWidget->setStyleSheet("border: 1px solid gray");
+    webWidget->setObjectName("webWidget");
     webWidget->setLayout(webLayout);
 
     setCentralWidget(webWidget);
