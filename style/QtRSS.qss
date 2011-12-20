@@ -165,3 +165,7 @@ QToolBar{
 								stop:1 #7acc7a);
   width: 20px;
 }
+
+#webWidget_ {
+	border: 1px solid gray;
+}

@@ -164,11 +164,11 @@ RSSListing::RSSListing(QWidget *parent)
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
     webLayout->addWidget(webView_);
 
-    QWidget *webWidget = new QWidget();
-    webWidget->setStyleSheet("border: 1px solid gray");
-    webWidget->setLayout(webLayout);
+    webWidget_ = new QWidget();
+    webWidget_->setObjectName("webWidget_");
+    webWidget_->setLayout(webLayout);
 
-    setCentralWidget(webWidget);
+    setCentralWidget(webWidget_);
 
     setWindowTitle(QString("QtRSS v") + QString(STRFILEVER).section('.', 0, 2));
 

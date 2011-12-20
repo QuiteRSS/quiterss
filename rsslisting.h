@@ -139,6 +139,7 @@ private:
     QTreeView *newsView_;
     NewsHeader *newsHeader_;
 
+    QWidget *webWidget_;
     QWebView *webView_;
 
     QSystemTrayIcon *traySystem;
