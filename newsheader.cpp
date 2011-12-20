@@ -6,7 +6,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);
   setMovable(true);
-  setDefaultAlignment(Qt::AlignLeft);
+  setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
   setMinimumSectionSize(25);
   setStretchLastSection(false);
 
