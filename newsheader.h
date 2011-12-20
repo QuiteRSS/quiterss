@@ -25,6 +25,7 @@ protected:
 private slots:
   void slotButtonColumnView();
   void columnVisible(QAction*);
+  void slotSectionMoved(int, int, int);
 
 signals:
 
