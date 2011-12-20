@@ -122,7 +122,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
-    webViewProgress_ = new QProgressBar();
+    webViewProgress_ = new QProgressBar(this);
     webViewProgress_->setObjectName("webViewProgress_");
     webViewProgress_->setFixedHeight(15);
     webViewProgress_->setMinimum(0);
@@ -173,8 +173,9 @@ RSSListing::RSSListing(QWidget *parent)
     //! Create web layout
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
-    webLayout->addWidget(webViewProgress_);
+    webLayout->setSpacing(0);
     webLayout->addWidget(webView_);
+    webLayout->addWidget(webViewProgress_);
 
     webWidget_ = new QWidget();
     webWidget_->setObjectName("webWidget_");
