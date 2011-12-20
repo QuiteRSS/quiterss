@@ -194,7 +194,6 @@ QHeaderView::section:hover, QHeaderView::section:pressed {
 
 #webViewProgress_ {
 	border: 1px solid #34aa34;
-	/*border-radius: 3px;*/
 	text-align: center;
 }
 
@@ -205,5 +204,4 @@ QHeaderView::section:hover, QHeaderView::section:pressed {
 								stop:0.5 #60c460,
 								stop:1 #7acc7a);
 	width: 20px;
-	margin: 0px;
 }

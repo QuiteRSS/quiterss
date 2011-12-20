@@ -109,6 +109,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setMinimumWidth(120);
     newsView_->setSortingEnabled(true);
+    newsView_->setAlternatingRowColors(true);
 
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
     newsHeader_->model_ = newsModel_;
@@ -772,6 +773,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
         read);
+//    newsView_->selectionModel()->select(index, QItemSelectionModel::Select|QItemSelectionModel::Rows);
 //    newsView_->setCurrentIndex(index);
     updateStatus();
   } else if (index.column() == newsModel_->fieldIndex("sticky")) {
