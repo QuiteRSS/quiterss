@@ -134,7 +134,9 @@ private:
     QToolBar *toolBar_;
 
     QDockWidget *feedsDock_;
+    Qt::DockWidgetArea feedsDockArea_;
     QDockWidget *newsDock_;
+    Qt::DockWidgetArea newsDockArea_;
     QTreeView *feedsView_;
     QTreeView *newsView_;
     NewsHeader *newsHeader_;
@@ -167,6 +169,8 @@ private slots:
     void markAllNewsRead();
     void slotLoadStarted();
     void slotLoadFinished(bool ok);
+    void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
+    void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

@@ -146,6 +146,8 @@ RSSListing::RSSListing(QWidget *parent)
     feedsDock_->setWidget(feedsView_);
     feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
     addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
+    connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
+        this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
 
     toolBarNull_ = new QToolBar(this);
     toolBarNull_->setObjectName("toolBarNull");
@@ -169,6 +171,8 @@ RSSListing::RSSListing(QWidget *parent)
     newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
     newsDock_->setWidget(newsSplitter);
     addDockWidget(Qt::TopDockWidgetArea, newsDock_);
+    connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
+        this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
 
     //! Create web layout
     QVBoxLayout *webLayout = new QVBoxLayout();
@@ -897,9 +901,9 @@ void RSSListing::slotProgressBarUpdate()
 
 void RSSListing::slotVisibledFeedsDock()
 {
-  if (feedsDock_->isVisible()){
-    feedsDock_->setVisible(false);
-  } else feedsDock_->setVisible(true);
+  feedsDock_->setVisible(!feedsDock_->isVisible());
+  if (newsDockArea_ == feedsDockArea_)
+    newsDock_->setVisible(feedsDock_->isVisible());
 }
 
 void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
@@ -989,4 +993,17 @@ void RSSListing::slotLoadFinished(bool ok)
 {
   if (!ok) statusBar()->showMessage(tr("Error loading to WebVeiw"), 3000);
   webViewProgress_->hide();
+}
+
+void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
+
+{
+  qDebug() << feedsDockArea_ << "->" << area;
+  feedsDockArea_ = area;
+}
+
+void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
+{
+  qDebug() << newsDockArea_ << "->" << area;
+  newsDockArea_ = area;
 }
