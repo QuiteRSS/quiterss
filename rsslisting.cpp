@@ -109,7 +109,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     newsView_->setMinimumWidth(120);
     newsView_->setSortingEnabled(true);
-    newsView_->setAlternatingRowColors(true);
+//    newsView_->setAlternatingRowColors(true);
 
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
     newsHeader_->model_ = newsModel_;
