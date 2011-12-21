@@ -60,8 +60,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       font.setBold(true);
     return font;
   }
-
-
   return QSqlTableModel::data(index, role);
 }
 

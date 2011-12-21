@@ -464,7 +464,7 @@ void RSSListing::createMenu()
   feedsFilterGroup_->setExclusive(true);
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setFeedsFilter(QAction*)));
 
-  QMenu *feedsFilter = feedMenu_->addMenu(tr("Filter"));
+  QMenu *feedsFilter = feedMenu_->addMenu(QIcon(":/images/filter"), tr("Filter"));
   feedsFilter->addAction(filterFeedsAll_);
   feedsFilterGroup_->addAction(filterFeedsAll_);
   feedsFilter->addAction(filterFeedsUnread_);
@@ -479,7 +479,7 @@ void RSSListing::createMenu()
   newsFilterGroup_->setExclusive(true);
   connect(newsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setNewsFilter(QAction*)));
 
-  QMenu *newsFilter = newsMenu_->addMenu(tr("Filter"));
+  QMenu *newsFilter = newsMenu_->addMenu(QIcon(":/images/filter"), tr("Filter"));
   newsFilter->addAction(filterNewsAll_);
   newsFilterGroup_->addAction(filterNewsAll_);
   newsFilter->addAction(filterNewsUnread_);
@@ -555,8 +555,10 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
-  settings_->setValue("NewsViewGeometry", newsHeader_->saveGeometry());
-  settings_->setValue("NewsViewState", newsHeader_->saveState());
+  if (newsModel_->columnCount()) {
+    settings_->setValue("NewsViewGeometry", newsHeader_->saveGeometry());
+    settings_->setValue("NewsViewState", newsHeader_->saveState());
+  }
 
   settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
   settings_->setValue("networkProxy/type",     networkProxy_.type());
@@ -755,9 +757,16 @@ void RSSListing::updateFeed(const QUrl &url)
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
+  bool initNo = false;
+  if (!newsModel_->columnCount()) initNo = true;
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction());
+
+  if (initNo) {
+    newsHeader_->initColumns();
+    newsHeader_->createMenu();
+  }
 
   newsHeader_->overload();
 

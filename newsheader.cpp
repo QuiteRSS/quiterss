@@ -30,6 +30,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 
 void NewsHeader::initColumns()
 {
+  if (!model_->columnCount()) return;
   setSectionHidden(model_->fieldIndex("id"), true);
   setSectionHidden(model_->fieldIndex("guid"), true);
   setSectionHidden(model_->fieldIndex("description"), true);
@@ -47,6 +48,7 @@ void NewsHeader::initColumns()
   moveSection(visualIndex(model_->fieldIndex("sticky")),
               visualIndex(model_->fieldIndex("title")));
   resizeSection(model_->fieldIndex("sticky"), 25);
+  qDebug() << model_->fieldIndex("sticky");
   setResizeMode(model_->fieldIndex("sticky"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("read")),
               visualIndex(model_->fieldIndex("title"))+1);
@@ -60,6 +62,7 @@ void NewsHeader::initColumns()
 
 void NewsHeader::createMenu()
 {
+  if (!model_->columnCount()) return;
   QActionGroup *pActGroup_ = new QActionGroup(viewMenu_);
   pActGroup_->setExclusive(false);
   connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisible(QAction*)));
@@ -76,6 +79,7 @@ void NewsHeader::createMenu()
 
 void NewsHeader::overload()
 {
+  if (!model_->columnCount()) return;
   model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
@@ -99,6 +103,7 @@ void NewsHeader::overload()
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::Resize) {
+    if (!model_->columnCount()) return false;
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
     bool minSize = false;
     int newWidth = resizeEvent->size().width();
