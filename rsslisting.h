@@ -50,6 +50,7 @@
 #include "newsmodel.h"
 #include "parsethread.h"
 #include "updatethread.h"
+#include "newsview.h"
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
@@ -64,6 +65,7 @@ class RSSListing : public QMainWindow
 public:
     RSSListing(QWidget *widget = 0);
     ~RSSListing();
+    void updateStatus();
 
 public slots:
     void addFeed();
@@ -105,7 +107,6 @@ private:
     void readSettings ();
     void writeSettings();
     void createTrayMenu();
-    void updateStatus();
 
     QSettings *settings_;
 
@@ -138,7 +139,7 @@ private:
     QDockWidget *feedsDock_;
     QDockWidget *newsDock_;
     QTreeView *feedsView_;
-    QTreeView *newsView_;
+    NewsView *newsView_;
     NewsHeader *newsHeader_;
 
     QWidget *webWidget_;

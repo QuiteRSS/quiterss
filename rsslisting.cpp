@@ -102,14 +102,9 @@ RSSListing::RSSListing(QWidget *parent)
 
     newsModel_ = new NewsModel(this);
     newsModel_->setEditStrategy(QSqlTableModel::OnFieldChange);
-    newsView_ = new QTreeView();
-    newsView_->setObjectName("newsView_");
+    newsView_ = new NewsView(this);
     newsView_->setModel(newsModel_);
-    newsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    newsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    newsView_->setMinimumWidth(120);
-    newsView_->setSortingEnabled(true);
-//    newsView_->setAlternatingRowColors(true);
+    newsView_->model_ = newsModel_;
 
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
     newsHeader_->model_ = newsModel_;
@@ -762,43 +757,15 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
-//  static QModelIndex oldIndex;
-  if (index.column() == newsModel_->fieldIndex("read")) {
-    int read;
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-      read = 1;
-    } else {
-      read = 0;
-    }
-    newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-        read);
-//    newsView_->selectionModel()->select(index, QItemSelectionModel::Select|QItemSelectionModel::Rows);
-//    newsView_->setCurrentIndex(index);
-    updateStatus();
-  } else if (index.column() == newsModel_->fieldIndex("sticky")) {
-    int sticky;
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
-      sticky = 1;
-    } else {
-      sticky = 0;
-    }
-    newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
-        sticky);
-//    newsView_->setCurrentIndex(index);
-  } else {
-    QString content = newsModel_->record(index.row()).field("content").value().toString();
-    if (content.isEmpty())
-      webView_->setHtml(
+  QString content = newsModel_->record(index.row()).field("content").value().toString();
+  if (content.isEmpty())
+    webView_->setHtml(
           newsModel_->record(index.row()).field("description").value().toString());
-    else
-      webView_->setHtml(content);
-    setItemRead(index, 1);
-    newsView_->setCurrentIndex(index);
-    updateStatus();
-//    oldIndex = index;
-  }
+  else
+    webView_->setHtml(content);
+  setItemRead(index, 1);
+  newsView_->setCurrentIndex(index);
+  updateStatus();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
