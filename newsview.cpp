@@ -45,6 +45,10 @@ NewsView::NewsView(QWidget * parent) :
 
     event->ignore();
     return;
+  } else if ((index.row() == currentIndex().row()) &&
+             model_->index(index.row(), model_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1) {
+    event->ignore();
+    return;
   }
   QTreeView::mousePressEvent(event);
 }

@@ -770,8 +770,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 
   newsHeader_->overload();
 
-  newsView_->setCurrentIndex(newsModel_->index(0, 0));
-  slotNewsViewClicked(newsModel_->index(0, 0));
+//  newsView_->setCurrentIndex(newsModel_->index(-1, 0));
+  slotNewsViewClicked(newsModel_->index(-1, 0));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
 }
@@ -794,6 +794,10 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
+  if (index.row() < 0) {
+    webView_->setHtml("");
+    return;
+  }
   QString content = newsModel_->record(index.row()).field("content").value().toString();
   if (content.isEmpty())
     webView_->setHtml(
@@ -1004,8 +1008,10 @@ void RSSListing::updateStatus()
 
 void RSSListing::slotLoadStarted()
 {
-  webViewProgress_->setValue(0);
-  webViewProgress_->show();
+  if (newsView_->selectionModel()->selectedIndexes().count()) {
+    webViewProgress_->setValue(0);
+    webViewProgress_->show();
+  }
 }
 
 void RSSListing::slotLoadFinished(bool ok)
