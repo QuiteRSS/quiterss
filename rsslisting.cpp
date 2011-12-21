@@ -796,6 +796,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   if (index.row() < 0) {
     webView_->setHtml("");
+    updateStatus();
     return;
   }
   QString content = newsModel_->record(index.row()).field("content").value().toString();
