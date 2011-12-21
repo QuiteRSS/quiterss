@@ -417,15 +417,26 @@ void RSSListing::createActions()
   optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 
-  setNewsFilterUnread_ = new QAction(tr("Show unread"), this);
-  setNewsFilterUnread_->setStatusTip(tr("Show unread"));
-  setNewsFilterUnread_->setCheckable(true);
-  connect(setNewsFilterUnread_, SIGNAL(toggled(bool)), this, SLOT(setNewsFilterUnread(bool)));
+  filterFeedsAll_ = new QAction(tr("Show All"), this);
+  filterFeedsAll_->setObjectName("filterFeedsAll_");
+  filterFeedsAll_->setStatusTip(tr("Show All"));
+  filterFeedsAll_->setCheckable(true);
+  filterFeedsAll_->setChecked(true);
+  filterFeedsUnread_ = new QAction(tr("Show Unread"), this);
+  filterFeedsUnread_->setObjectName("filterFeedsUnread_");
+  filterFeedsUnread_->setStatusTip(tr("Show Unread"));
+  filterFeedsUnread_->setCheckable(true);
 
-  setFeedsFilterUnread_ = new QAction(tr("Show unread"), this);
-  setFeedsFilterUnread_->setStatusTip(tr("Show unread"));
-  setFeedsFilterUnread_->setCheckable(true);
-  connect(setFeedsFilterUnread_, SIGNAL(toggled(bool)), this, SLOT(setFeedsFilterUnread(bool)));
+  filterNewsAll_ = new QAction(tr("Show All"), this);
+  filterNewsAll_->setObjectName("filterNewsAll_");
+  filterNewsAll_->setStatusTip(tr("Show All"));
+  filterNewsAll_->setCheckable(true);
+  filterNewsAll_->setChecked(true);
+  filterNewsUnread_ = new QAction(tr("Show Unread"), this);
+  filterNewsUnread_->setObjectName("filterNewsUnread_");
+  filterNewsUnread_->setStatusTip(tr("Show Unread"));
+  filterNewsUnread_->setCheckable(true);
+
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -447,16 +458,32 @@ void RSSListing::createMenu()
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
+  feedMenu_->addSeparator();
 
-  QMenu *feedsFilter = feedMenu_->addMenu(tr("Filters"));
-  feedsFilter->addAction(setFeedsFilterUnread_);
+  feedsFilterGroup_ = new QActionGroup(this);
+  feedsFilterGroup_->setExclusive(true);
+  connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setFeedsFilter(QAction*)));
+
+  QMenu *feedsFilter = feedMenu_->addMenu(tr("Filter"));
+  feedsFilter->addAction(filterFeedsAll_);
+  feedsFilterGroup_->addAction(filterFeedsAll_);
+  feedsFilter->addAction(filterFeedsUnread_);
+  feedsFilterGroup_->addAction(filterFeedsUnread_);
 
   newsMenu_ = menuBar()->addMenu(tr("&News"));
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
+  newsMenu_->addSeparator();
 
-  QMenu *newsFilter = newsMenu_->addMenu(tr("Filters"));
-  newsFilter->addAction(setNewsFilterUnread_);
+  newsFilterGroup_ = new QActionGroup(this);
+  newsFilterGroup_->setExclusive(true);
+  connect(newsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setNewsFilter(QAction*)));
+
+  QMenu *newsFilter = newsMenu_->addMenu(tr("Filter"));
+  newsFilter->addAction(filterNewsAll_);
+  newsFilterGroup_->addAction(filterNewsAll_);
+  newsFilter->addAction(filterNewsUnread_);
+  newsFilterGroup_->addAction(filterNewsUnread_);
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
@@ -730,6 +757,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->select();
+  setNewsFilter(newsFilterGroup_->checkedAction());
 
   newsHeader_->overload();
 
@@ -930,6 +958,7 @@ void RSSListing::markAllNewsRead()
   QSqlQuery q(db_);
   q.exec(qStr);
   newsModel_->select();
+  setNewsFilter(newsFilterGroup_->checkedAction());
   updateStatus();
 }
 
@@ -976,20 +1005,20 @@ void RSSListing::slotLoadFinished(bool ok)
   webViewProgress_->hide();
 }
 
-void RSSListing::setNewsFilterUnread(bool unread)
+void RSSListing::setFeedsFilter(QAction* pAct)
 {
-  if (unread) {
-    newsModel_->setFilter("read=0");
-  } else {
-    newsModel_->setFilter("read>=0");
+  if (pAct->objectName() == "filterFeedsAll_") {
+    feedsModel_->setFilter("");
+  } else if (pAct->objectName() == "filterFeedsUnread_") {
+    feedsModel_->setFilter(QString("unread > 0"));
   }
 }
 
-void RSSListing::setFeedsFilterUnread(bool unread)
+void RSSListing::setNewsFilter(QAction* pAct)
 {
-  if (unread) {
-    feedsModel_->setFilter("unread>0");
-  } else {
-    feedsModel_->setFilter("unread>=0");
+  if (pAct->objectName() == "filterNewsAll_") {
+    newsModel_->setFilter("");
+  } else if (pAct->objectName() == "filterNewsUnread_") {
+    newsModel_->setFilter(QString("read = 0"));
   }
 }
