@@ -23,6 +23,7 @@
         <file alias="starOn">images/starOn.png</file>
         <file alias="starSection">images/starSection.png</file>
         <file alias="filter">images/filter.png</file>
+        <file alias="feed">images/feedDefault.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

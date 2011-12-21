@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QFont>
 #include <QBrush>
+#include <QIcon>
 
 #include "feedsmodel.h"
 
@@ -33,6 +34,17 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
       brush.setColor("#0000CA");
     }
     return brush;
+  } else if (role == Qt::DecorationRole) {
+    if (QSqlTableModel::fieldIndex("text") == index.column()) {
+      QIcon icon;
+      icon.addFile(":/images/feed");
+      return icon;
+    }
+  } else if (role == Qt::TextAlignmentRole) {
+    if (QSqlTableModel::fieldIndex("id") == index.column()) {
+      int flag = Qt::AlignRight|Qt::AlignVCenter;
+      return flag;
+    }
   }
 
   return QSqlTableModel::data(index, role);
