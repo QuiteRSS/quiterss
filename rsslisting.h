@@ -135,6 +135,7 @@ private slots:
     void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
     void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
     void slotUpdateStatus();
+    void slotNewsCurrentChanged(const QModelIndex & current, const QModelIndex & previous);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

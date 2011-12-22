@@ -50,3 +50,10 @@ NewsView::NewsView(QWidget * parent) :
 {
   emit doubleClicked(indexAt(event->pos()));
 }
+
+/*virtual*/ void NewsView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+//  qDebug() << previous.row() << current.row();
+  emit signalCurrentChanged(current, previous);
+//  QTreeView::currentChanged(current, previous);
+}

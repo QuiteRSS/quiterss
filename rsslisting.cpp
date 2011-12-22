@@ -119,6 +119,8 @@ RSSListing::RSSListing(QWidget *parent)
             this, SLOT(slotSetItemRead(QModelIndex, int)));
     connect(newsView_, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
+    connect(newsView_, SIGNAL(signalCurrentChanged(QModelIndex,QModelIndex)),
+            this, SLOT(slotNewsCurrentChanged(QModelIndex,QModelIndex)));
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
@@ -956,12 +958,15 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
+  int readOld = newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt();
   QModelIndex curIndex = newsView_->currentIndex();
+  if ((curIndex != index) && (read == 1)) read = 2;
   newsModel_->setData(
       newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
       read);
   newsView_->setCurrentIndex(curIndex);
   slotUpdateStatus();
+  qDebug() << index.row() << curIndex.row() << read << readOld;
 }
 
 void RSSListing::markNewsRead()
@@ -1063,4 +1068,18 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
 {
   QDesktopServices::openUrl(
         QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link")).data(Qt::EditRole).toString()));
+}
+
+void RSSListing::slotNewsCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+  if (!previous.isValid()) return;
+  int tRow = current.row();
+  if (newsModel_->index(previous.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != 2) {
+//    newsModel_->setData(
+//        newsModel_->index(previous.row(), newsModel_->fieldIndex("read")),
+//        2);
+  }
+//  newsView_->setCurrentIndex(current);
+//  qDebug() << previous.row() << current.row() << tRow;
+//  slotUpdateStatus();
 }
