@@ -908,12 +908,26 @@ void RSSListing::slotGetFeed()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetAllFeeds()
 {
-  progressBar_->setMaximum(feedsModel_->rowCount()-1);
   updateAllFeedsAct_->setEnabled(false);
-  for (int i = 0; i < feedsModel_->rowCount(); ++i) {
-    QModelIndex index = feedsModel_->index(i, 0);
-    updateFeed(index);
+
+  int feedCount = 0;
+
+  QSqlQuery q(db_);
+  q.exec("select xmlurl from feeds");
+  while (q.next()) {
+    persistentUpdateThread_->getUrl(q.record().value(0).toString());
+    ++feedCount;
   }
+
+  if (0 == feedCount) {
+    updateAllFeedsAct_->setEnabled(true);
+    return;
+  }
+
+  progressBar_->setMaximum(feedCount-1);
+  progressBar_->setValue(progressBar_->minimum());
+  progressBar_->show();
+  QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
 void RSSListing::slotProgressBarUpdate()
