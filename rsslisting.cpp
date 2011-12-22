@@ -117,6 +117,8 @@ RSSListing::RSSListing(QWidget *parent)
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
     connect(newsView_, SIGNAL(updateStatus()),
             this, SLOT(slotUpdateStatus()));
+    connect(newsView_, SIGNAL(doubleClicked(QModelIndex)),
+            this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
@@ -1054,3 +1056,8 @@ void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
   newsDockArea_ = area;
 }
 
+void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
+{
+  QDesktopServices::openUrl(
+        QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link")).data(Qt::EditRole).toString()));
+}

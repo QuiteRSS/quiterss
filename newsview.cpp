@@ -56,3 +56,8 @@ NewsView::NewsView(QWidget * parent) :
 /*virtual*/ void NewsView::mouseMoveEvent(QMouseEvent *event)
 {
 }
+
+/*virtual*/ void NewsView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+  emit doubleClicked(indexAt(event->pos()));
+}
