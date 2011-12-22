@@ -41,7 +41,6 @@ public slots:
     void receiveXml(const QByteArray &data, const QUrl &url);
     void getUrlDone(const int &result);
     void slotUpdateFeed(const QUrl &url);
-    void slotUpdateStatus();
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);
@@ -126,7 +125,7 @@ private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
-    void setItemRead(QModelIndex index, int read);
+    void slotSetItemRead(QModelIndex index, int read);
     void markNewsRead();
     void markAllNewsRead();
     void slotLoadStarted();
@@ -135,6 +134,7 @@ private slots:
     void setNewsFilter(QAction*);
     void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
     void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
+    void slotUpdateStatus();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

@@ -805,7 +805,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
           newsModel_->record(index.row()).field("description").value().toString());
   else
     webView_->setHtml(content);
-  setItemRead(index, 1);
+  slotSetItemRead(index, 1);
   newsView_->setCurrentIndex(index);
   slotUpdateStatus();
 }
@@ -955,7 +955,7 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
   }
 }
 
-void RSSListing::setItemRead(QModelIndex index, int read)
+void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
 
@@ -968,9 +968,9 @@ void RSSListing::markNewsRead()
 {
   QModelIndex index = newsView_->currentIndex();
   if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-    setItemRead(newsView_->currentIndex(), 1);
+    slotSetItemRead(newsView_->currentIndex(), 1);
   } else {
-    setItemRead(newsView_->currentIndex(), 0);
+    slotSetItemRead(newsView_->currentIndex(), 0);
   }
   newsView_->setCurrentIndex(index);
   slotUpdateStatus();
