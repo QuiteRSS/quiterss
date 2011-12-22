@@ -16,7 +16,7 @@ NewsView::NewsView(QWidget * parent) :
 /*virtual*/ void NewsView::mousePressEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
-  QList<QModelIndex> indexList = selectionModel()->selectedRows(model_->fieldIndex("sticky"));
+  QModelIndex curIndex = currentIndex();
   if (index.column() == model_->fieldIndex("sticky")) {
     int sticky;
     if (model_->index(index.row(), model_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
@@ -25,10 +25,7 @@ NewsView::NewsView(QWidget * parent) :
       sticky = 0;
     }
     model_->setData(model_->index(index.row(), model_->fieldIndex("sticky")), sticky);
-
-    if (indexList.count())
-      selectionModel()->select(indexList[0], QItemSelectionModel::Select|QItemSelectionModel::Rows);
-
+    setCurrentIndex(curIndex);
     event->ignore();
     return;
   } else if (index.column() == model_->fieldIndex("read")) {
@@ -39,10 +36,8 @@ NewsView::NewsView(QWidget * parent) :
       read = 0;
     }
     model_->setData(model_->index(index.row(), model_->fieldIndex("read")), read);
+    setCurrentIndex(curIndex);
     emit updateStatus();
-    if (indexList.count())
-      selectionModel()->select(indexList[0], QItemSelectionModel::Select|QItemSelectionModel::Rows);
-
     event->ignore();
     return;
   } else if ((index.row() == currentIndex().row()) &&

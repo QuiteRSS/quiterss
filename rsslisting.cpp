@@ -1020,7 +1020,7 @@ void RSSListing::slotUpdateStatus()
 
 void RSSListing::slotLoadStarted()
 {
-  if (newsView_->selectionModel()->selectedIndexes().count()) {
+  if (newsView_->currentIndex().isValid()) {
     webViewProgress_->setValue(0);
     webViewProgress_->show();
   }
