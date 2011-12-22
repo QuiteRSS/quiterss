@@ -117,10 +117,8 @@ RSSListing::RSSListing(QWidget *parent)
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
     connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
             this, SLOT(slotSetItemRead(QModelIndex, int)));
-    connect(newsView_, SIGNAL(doubleClicked(QModelIndex)),
+    connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
             this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
-    connect(newsView_, SIGNAL(signalCurrentChanged(QModelIndex,QModelIndex)),
-            this, SLOT(slotNewsCurrentChanged(QModelIndex,QModelIndex)));
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
@@ -796,18 +794,27 @@ void RSSListing::getFeed(QString urlString)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
+  static QModelIndex indexOld = index;
   if (!index.isValid()) {
     webView_->setHtml("");
     slotUpdateStatus();
     return;
   }
-  QString content = newsModel_->record(index.row()).field("content").value().toString();
-  if (content.isEmpty())
-    webView_->setHtml(
-          newsModel_->record(index.row()).field("description").value().toString());
-  else
-    webView_->setHtml(content);
-  slotSetItemRead(index, 1);
+  QModelIndex indexNew = index;
+  if (!((index.row() == indexOld.row()) &&
+         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+    QString content = newsModel_->record(index.row()).field("content").value().toString();
+    if (content.isEmpty())
+      webView_->setHtml(
+            newsModel_->record(index.row()).field("description").value().toString());
+    else
+      webView_->setHtml(content);
+    if (newsView_->currentIndex().row() != indexOld.row()) {
+      slotSetItemRead(indexOld, 1);
+    }
+    slotSetItemRead(index, 1);
+  }
+  indexOld = indexNew;
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -958,6 +965,7 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
+
   int readOld = newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt();
   QModelIndex curIndex = newsView_->currentIndex();
   if ((curIndex != index) && (read == 1)) read = 2;
@@ -966,7 +974,7 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
       read);
   newsView_->setCurrentIndex(curIndex);
   slotUpdateStatus();
-  qDebug() << index.row() << curIndex.row() << read << readOld;
+  qDebug() << index.row() << curIndex.row() << readOld << read;
 }
 
 void RSSListing::markNewsRead()
@@ -1017,8 +1025,8 @@ void RSSListing::slotUpdateStatus()
 
   statusAll_->setText(tr(" All: ") + QString::number(allCount) + " ");
 
-  static int updateCount = 0;
-  qDebug() << "updateStatus()" << ++updateCount;
+//  static int updateCount = 0;
+//  qDebug() << "updateStatus()" << ++updateCount;
 }
 
 void RSSListing::slotLoadStarted()
@@ -1049,12 +1057,11 @@ void RSSListing::setNewsFilter(QAction* pAct)
   if (pAct->objectName() == "filterNewsAll_") {
     newsModel_->setFilter("");
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(QString("read = 0"));
+    newsModel_->setFilter(QString("read < 2"));
   }
 }
 
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
-
 {
   feedsDockArea_ = area;
 }
@@ -1068,18 +1075,4 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
 {
   QDesktopServices::openUrl(
         QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link")).data(Qt::EditRole).toString()));
-}
-
-void RSSListing::slotNewsCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
-{
-  if (!previous.isValid()) return;
-  int tRow = current.row();
-  if (newsModel_->index(previous.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != 2) {
-//    newsModel_->setData(
-//        newsModel_->index(previous.row(), newsModel_->fieldIndex("read")),
-//        2);
-  }
-//  newsView_->setCurrentIndex(current);
-//  qDebug() << previous.row() << current.row() << tRow;
-//  slotUpdateStatus();
 }

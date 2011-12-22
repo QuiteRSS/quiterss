@@ -34,10 +34,6 @@ NewsView::NewsView(QWidget * parent) :
     }
     event->ignore();
     return;
-  } else if ((index.row() == currentIndex().row()) &&
-             model_->index(index.row(), model_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1) {
-    event->ignore();
-    return;
   }
   QTreeView::mousePressEvent(event);
 }
@@ -48,12 +44,5 @@ NewsView::NewsView(QWidget * parent) :
 
 /*virtual*/ void NewsView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  emit doubleClicked(indexAt(event->pos()));
-}
-
-/*virtual*/ void NewsView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
-{
-//  qDebug() << previous.row() << current.row();
-  emit signalCurrentChanged(current, previous);
-//  QTreeView::currentChanged(current, previous);
+  emit signalDoubleClicked(indexAt(event->pos()));
 }
