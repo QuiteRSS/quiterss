@@ -781,15 +781,10 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
-void RSSListing::getFeed(QModelIndex index)
+void RSSListing::getFeed(QString urlString)
 {
-  persistentUpdateThread_->getUrl(
-      feedsModel_->record(index.row()).field("xmlurl").value().toString());
+  persistentUpdateThread_->getUrl(urlString);
 
-  statusBar()->showMessage(QString(tr("Update '%1 - %2' ...")).
-      arg(feedsModel_->record(index.row()).field("id").value().toString()).
-      arg(feedsModel_->record(index.row()).field("text").value().toString()),
-      3000);
   progressBar_->setValue(progressBar_->minimum());
   progressBar_->show();
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
@@ -903,19 +898,30 @@ void RSSListing::slotSetProxy()
 void RSSListing::slotGetFeed()
 {
   progressBar_->setMaximum(1);
-  QModelIndex index = feedsView_->currentIndex();
-  getFeed(index);
+  getFeed(feedsModel_->record(feedsView_->currentIndex().row()).
+      field("xmlurl").value().toString());
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetAllFeeds()
 {
-  progressBar_->setMaximum(feedsModel_->rowCount()-1);
   updateAllFeedsAct_->setEnabled(false);
-  for (int i = 0; i < feedsModel_->rowCount(); ++i) {
-    QModelIndex index = feedsModel_->index(i, 0);
-    getFeed(index);
+
+  int feedCount = 0;
+
+  QSqlQuery q(db_);
+  q.exec("select xmlurl from feeds where xmlurl is not null");
+  while (q.next()) {
+    getFeed(q.record().value(0).toString());
+    ++feedCount;
   }
+
+  if (0 == feedCount) {
+    updateAllFeedsAct_->setEnabled(true);
+    return;
+  }
+
+  progressBar_->setMaximum(feedCount-1);
 }
 
 void RSSListing::slotProgressBarUpdate()
