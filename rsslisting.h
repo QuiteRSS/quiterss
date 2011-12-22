@@ -24,8 +24,8 @@ public slots:
     void deleteFeed();
     void importFeeds();
     void slotFeedsTreeClicked(QModelIndex index);
-    void slotUpdateFeed();
-    void slotUpdateAllFeeds();
+    void slotGetFeed();
+    void slotGetAllFeeds();
     void slotNewsViewClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotNewsKeyUpDownPressed();
@@ -39,7 +39,7 @@ public slots:
     void myEmptyWorkingSet();
     void receiveXml(const QByteArray &data, const QUrl &url);
     void getUrlDone(const int &result);
-    void updateFeed(const QUrl &url);
+    void slotUpdateFeed(const QUrl &url);
     void slotUpdateStatus();
 
 protected:
@@ -122,7 +122,7 @@ private:
 
 private slots:
     void slotSetProxy();
-    void updateFeed(QModelIndex index);
+    void slotGetFeed(QModelIndex index);
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
