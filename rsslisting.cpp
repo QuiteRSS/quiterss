@@ -224,11 +224,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setCurrentIndex(feedsModel_->index(0, 0));
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
-    newsHeader_->initColumns();
-
     readSettings();
-
-    newsHeader_->createMenu();
 
     //Установка шрифтов и их настроек для элементов
     QFont font_ = newsDock_->font();
@@ -763,12 +759,12 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction());
 
+  newsHeader_->overload();
+
   if (initNo) {
     newsHeader_->initColumns();
     newsHeader_->createMenu();
   }
-
-  newsHeader_->overload();
 
 //  newsView_->setCurrentIndex(newsModel_->index(-1, 0));
   slotNewsViewClicked(newsModel_->index(-1, 0));
