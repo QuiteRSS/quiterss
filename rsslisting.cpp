@@ -796,7 +796,7 @@ void RSSListing::updateFeed(QModelIndex index)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
-  if (index.row() < 0) {
+  if (!index.isValid()) {
     webView_->setHtml("");
     slotUpdateStatus();
     return;
