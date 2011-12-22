@@ -914,7 +914,7 @@ void RSSListing::slotGetAllFeeds()
   updateAllFeedsAct_->setEnabled(false);
   for (int i = 0; i < feedsModel_->rowCount(); ++i) {
     QModelIndex index = feedsModel_->index(i, 0);
-    updateFeed(index);
+    getFeed(index);
   }
 }
 
@@ -1046,13 +1046,11 @@ void RSSListing::setNewsFilter(QAction* pAct)
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
 
 {
-  qDebug() << feedsDockArea_ << "->" << area;
   feedsDockArea_ = area;
 }
 
 void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
 {
-  qDebug() << newsDockArea_ << "->" << area;
   newsDockArea_ = area;
 }
 
