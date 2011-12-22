@@ -53,7 +53,7 @@ private:
     ParseThread *persistentParseThread_;
     QNetworkProxy networkProxy_;
 
-    void getFeed(QModelIndex index);
+    void getFeed(QString urlString);
     void createActions();
     void createMenu();
     void createToolBar();
