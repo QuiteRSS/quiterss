@@ -908,7 +908,7 @@ void RSSListing::slotGetAllFeeds()
   int feedCount = 0;
 
   QSqlQuery q(db_);
-  q.exec("select xmlurl from feeds");
+  q.exec("select xmlurl from feeds where xmlurl is not null");
   while (q.next()) {
     getFeed(q.record().value(0).toString());
     ++feedCount;
