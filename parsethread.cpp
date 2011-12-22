@@ -29,7 +29,7 @@ void ParseThread::run()
   connect(this, SIGNAL(signalReadyParse(QSqlDatabase*,QByteArray,QUrl)),
       parseObject_, SLOT(slotParse(QSqlDatabase*,QByteArray,QUrl)));
   connect(parseObject_, SIGNAL(feedUpdated(QUrl)),
-      this->parent(), SLOT(updateFeed(QUrl)));
+      this->parent(), SLOT(slotUpdateFeed(QUrl)));
 
   exec();
 }
