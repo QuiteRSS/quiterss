@@ -412,7 +412,7 @@ void RSSListing::createActions()
   markAllNewsRead_->setStatusTip(tr("Mark all news read"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
-  optionsAct_ = new QAction(tr("Options..."), this);
+  optionsAct_ = new QAction(QIcon(":/images/options"), tr("Options..."), this);
   optionsAct_->setStatusTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
