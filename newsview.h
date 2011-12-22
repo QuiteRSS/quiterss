@@ -17,7 +17,7 @@ protected:
   virtual void mouseDoubleClickEvent(QMouseEvent*);
 
 signals:
-  void updateStatus();
+  void signalSetItemRead(QModelIndex index, int read);
   void doubleClicked(QModelIndex index);
 };
 

@@ -115,8 +115,8 @@ RSSListing::RSSListing(QWidget *parent)
             this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
-    connect(newsView_, SIGNAL(updateStatus()),
-            this, SLOT(slotUpdateStatus()));
+    connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
+            this, SLOT(slotSetItemRead(QModelIndex, int)));
     connect(newsView_, SIGNAL(doubleClicked(QModelIndex)),
             this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
 
@@ -806,8 +806,6 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   else
     webView_->setHtml(content);
   slotSetItemRead(index, 1);
-  newsView_->setCurrentIndex(index);
-  slotUpdateStatus();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -958,22 +956,22 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
-
+  QModelIndex curIndex = newsView_->currentIndex();
   newsModel_->setData(
       newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
       read);
+  newsView_->setCurrentIndex(curIndex);
+  slotUpdateStatus();
 }
 
 void RSSListing::markNewsRead()
 {
   QModelIndex index = newsView_->currentIndex();
   if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-    slotSetItemRead(newsView_->currentIndex(), 1);
+    slotSetItemRead(index, 1);
   } else {
-    slotSetItemRead(newsView_->currentIndex(), 0);
+    slotSetItemRead(index, 0);
   }
-  newsView_->setCurrentIndex(index);
-  slotUpdateStatus();
 }
 
 void RSSListing::markAllNewsRead()
