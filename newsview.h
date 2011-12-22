@@ -15,6 +15,8 @@ protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
 
+signals:
+  void updateStatus();
 };
 
 #endif // NEWSVIEW_H

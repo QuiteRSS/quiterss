@@ -65,7 +65,6 @@ class RSSListing : public QMainWindow
 public:
     RSSListing(QWidget *widget = 0);
     ~RSSListing();
-    void updateStatus();
 
 public slots:
     void addFeed();
@@ -88,6 +87,7 @@ public slots:
     void receiveXml(const QByteArray &data, const QUrl &url);
     void getUrlDone(const int &result);
     void updateFeed(const QUrl &url);
+    void slotUpdateStatus();
 
 protected:
      bool eventFilter(QObject *obj, QEvent *ev);

@@ -115,6 +115,8 @@ RSSListing::RSSListing(QWidget *parent)
             this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
+    connect(newsView_, SIGNAL(updateStatus()),
+            this, SLOT(slotUpdateStatus()));
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
@@ -796,7 +798,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   if (index.row() < 0) {
     webView_->setHtml("");
-    updateStatus();
+    slotUpdateStatus();
     return;
   }
   QString content = newsModel_->record(index.row()).field("content").value().toString();
@@ -807,7 +809,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     webView_->setHtml(content);
   setItemRead(index, 1);
   newsView_->setCurrentIndex(index);
-  updateStatus();
+  slotUpdateStatus();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -962,7 +964,7 @@ void RSSListing::markNewsRead()
     setItemRead(newsView_->currentIndex(), 0);
   }
   newsView_->setCurrentIndex(index);
-  updateStatus();
+  slotUpdateStatus();
 }
 
 void RSSListing::markAllNewsRead()
@@ -973,10 +975,10 @@ void RSSListing::markAllNewsRead()
   q.exec(qStr);
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction());
-  updateStatus();
+  slotUpdateStatus();
 }
 
-void RSSListing::updateStatus()
+void RSSListing::slotUpdateStatus()
 {
   int allCount = 0;
   QString qStr = QString("select count(id) from %1").

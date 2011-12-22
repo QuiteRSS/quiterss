@@ -39,7 +39,7 @@ NewsView::NewsView(QWidget * parent) :
       read = 0;
     }
     model_->setData(model_->index(index.row(), model_->fieldIndex("read")), read);
-//    updateStatus();
+    emit updateStatus();
     if (indexList.count())
       selectionModel()->select(indexList[0], QItemSelectionModel::Select|QItemSelectionModel::Rows);
 
