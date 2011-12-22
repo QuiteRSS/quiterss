@@ -24,8 +24,8 @@ public slots:
     void deleteFeed();
     void importFeeds();
     void slotFeedsTreeClicked(QModelIndex index);
-    void slotUpdateFeed();
-    void slotUpdateAllFeeds();
+    void slotGetFeed();
+    void slotGetAllFeeds();
     void slotNewsViewClicked(QModelIndex index);
     void slotNewsViewDoubleClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
@@ -40,7 +40,7 @@ public slots:
     void myEmptyWorkingSet();
     void receiveXml(const QByteArray &data, const QUrl &url);
     void getUrlDone(const int &result);
-    void updateFeed(const QUrl &url);
+    void slotUpdateFeed(const QUrl &url);
     void slotUpdateStatus();
 
 protected:
@@ -54,7 +54,7 @@ private:
     ParseThread *persistentParseThread_;
     QNetworkProxy networkProxy_;
 
-    void get(const QUrl &url);
+    void getFeed(QModelIndex index);
     void createActions();
     void createMenu();
     void createToolBar();
@@ -123,7 +123,6 @@ private:
 
 private slots:
     void slotSetProxy();
-    void updateFeed(QModelIndex index);
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);

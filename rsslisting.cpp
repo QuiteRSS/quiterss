@@ -401,12 +401,12 @@ void RSSListing::createActions()
   updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update"), this);
   updateFeedAct_->setStatusTip(tr("Update current feed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
-  connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotUpdateFeed()));
+  connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
 
   updateAllFeedsAct_ = new QAction(QIcon(":/images/updateAllFeeds"), tr("Update all"), this);
   updateAllFeedsAct_->setStatusTip(tr("Update all feeds"));
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
-  connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotUpdateAllFeeds()));
+  connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
   markNewsRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
   markNewsRead_->setStatusTip(tr("Mark current news read"));
@@ -723,7 +723,7 @@ void RSSListing::getUrlDone(const int &result)
   }
 }
 
-void RSSListing::updateFeed(const QUrl &url)
+void RSSListing::slotUpdateFeed(const QUrl &url)
 {
   // поиск идентификатора ленты с таблице лент
   int parseFeedId = 0;
@@ -781,7 +781,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
-void RSSListing::updateFeed(QModelIndex index)
+void RSSListing::getFeed(QModelIndex index)
 {
   persistentUpdateThread_->getUrl(
       feedsModel_->record(index.row()).field("xmlurl").value().toString());
@@ -900,15 +900,15 @@ void RSSListing::slotSetProxy()
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
-void RSSListing::slotUpdateFeed()
+void RSSListing::slotGetFeed()
 {
   progressBar_->setMaximum(1);
   QModelIndex index = feedsView_->currentIndex();
-  updateFeed(index);
+  getFeed(index);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
-void RSSListing::slotUpdateAllFeeds()
+void RSSListing::slotGetAllFeeds()
 {
   progressBar_->setMaximum(feedsModel_->rowCount()-1);
   updateAllFeedsAct_->setEnabled(false);
