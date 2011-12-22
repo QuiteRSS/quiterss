@@ -10,6 +10,8 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
   setMinimumSectionSize(25);
   setStretchLastSection(false);
 
+  pActGroup_ = NULL;
+
   viewMenu_ = new QMenu(this);
 
   buttonColumnView = new QPushButton();
@@ -63,7 +65,8 @@ void NewsHeader::initColumns()
 void NewsHeader::createMenu()
 {
   if (model_->columnCount() == 0) return;
-  QActionGroup *pActGroup_ = new QActionGroup(viewMenu_);
+  if (pActGroup_) delete pActGroup_;
+  pActGroup_ = new QActionGroup(viewMenu_);
   pActGroup_->setExclusive(false);
   connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisible(QAction*)));
   for (int i = 0; i < model_->columnCount(); i++) {

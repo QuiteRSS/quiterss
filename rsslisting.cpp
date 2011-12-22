@@ -233,6 +233,7 @@ RSSListing::RSSListing(QWidget *parent)
     slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
 
     readSettings();
+    newsHeader_->createMenu();
 
     //Установка шрифтов и их настроек для элементов
     QFont font_ = newsDock_->font();

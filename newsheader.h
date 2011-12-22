@@ -31,6 +31,7 @@ signals:
 
 private:
   QMenu *viewMenu_;
+  QActionGroup *pActGroup_;
   QPushButton *buttonColumnView;
   int idxCol;
   int posX1;
