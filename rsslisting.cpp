@@ -779,7 +779,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
-void RSSListing::slotGetFeed(QModelIndex index)
+void RSSListing::getFeed(QModelIndex index)
 {
   persistentUpdateThread_->getUrl(
       feedsModel_->record(index.row()).field("xmlurl").value().toString());
@@ -902,7 +902,7 @@ void RSSListing::slotGetFeed()
 {
   progressBar_->setMaximum(1);
   QModelIndex index = feedsView_->currentIndex();
-  slotGetFeed(index);
+  getFeed(index);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/

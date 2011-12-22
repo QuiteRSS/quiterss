@@ -53,7 +53,7 @@ private:
     ParseThread *persistentParseThread_;
     QNetworkProxy networkProxy_;
 
-    void get(const QUrl &url);
+    void getFeed(QModelIndex index);
     void createActions();
     void createMenu();
     void createToolBar();
@@ -122,7 +122,6 @@ private:
 
 private slots:
     void slotSetProxy();
-    void slotGetFeed(QModelIndex index);
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);
