@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <Psapi.h>
 
+#include "aboutdialog.h"
 #include "addfeeddialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
@@ -439,6 +440,10 @@ void RSSListing::createActions()
   filterNewsUnread_->setStatusTip(tr("Show Unread"));
   filterNewsUnread_->setCheckable(true);
 
+  aboutAct_ = new QAction(tr("About..."), this);
+  aboutAct_->setObjectName("AboutAct_");
+  aboutAct_->setToolTip(tr("Show 'About' dialog"));
+  connect(aboutAct_, SIGNAL(triggered()), this, SLOT(slotShowAboutDlg()));
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -490,7 +495,8 @@ void RSSListing::createMenu()
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
 
-  menuBar()->addMenu(tr("&Help"));
+  helpMenu_ = menuBar()->addMenu(tr("&Help"));
+  helpMenu_->addAction(aboutAct_);
 }
 
 /*! \brief Создание ToolBar ***************************************************/
@@ -1060,3 +1066,8 @@ void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
   newsDockArea_ = area;
 }
 
+void RSSListing::slotShowAboutDlg()
+{
+  AboutDialog *aboutDialog = new AboutDialog(this);
+  aboutDialog->exec();
+}

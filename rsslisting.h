@@ -83,6 +83,7 @@ private:
     QAction *filterFeedsUnread_;
     QAction *filterNewsAll_;
     QAction *filterNewsUnread_;
+    QAction *aboutAct_;
 
     QActionGroup *feedsFilterGroup_;
     QActionGroup *newsFilterGroup_;
@@ -92,6 +93,7 @@ private:
     QMenu *feedMenu_;
     QMenu *newsMenu_;
     QMenu *toolsMenu_;
+    QMenu *helpMenu_;
     QMenu *trayMenu_;
     QToolBar *toolBar_;
 
@@ -134,6 +136,7 @@ private slots:
     void setNewsFilter(QAction*);
     void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
     void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
+    void slotShowAboutDlg();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
