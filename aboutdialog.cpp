@@ -25,7 +25,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
       "<h1><font color=#5b5b5b>"
       + QString("QuiteRSS") + "</font></h1>"
-      "<p>" + tr("Version %1").arg(QString(STRFILEVER).section('.', 0, 2)) + "</p>"
+      "<p>" + tr("Version ") +
+      + "<B>" + QString("%1").arg(QString(STRFILEVER).section('.', 0, 2)) + "</B></p>"
       "<HR>"
       + tr("The authors:") +
       "<UL>"
