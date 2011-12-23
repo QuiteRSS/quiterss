@@ -10,6 +10,11 @@ ParseObject::ParseObject(QObject *parent) :
 void ParseObject::slotParse(QSqlDatabase *db,
     const QByteArray &xmlData, const QUrl &url)
 {
+  QFile file("lastfeed.dat");
+  file.open(QIODevice::WriteOnly);
+  file.write(xmlData);
+  file.close();
+
   QString currentTag;
   QString rssItemString;
   QString titleString;
