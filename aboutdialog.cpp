@@ -6,13 +6,14 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-
+  setObjectName("AboutDialog");
   QBoxLayout *aboutlayout = new QHBoxLayout(this);
   aboutlayout->setAlignment(Qt::AlignCenter);
   aboutlayout->setMargin(10);
   aboutlayout->setSpacing(10);
 
   QLabel *logo = new QLabel(this);
+  logo->setObjectName("logoLabel");
   logo->setPixmap(QPixmap(":/images/images/QtRSS32.png"));
   aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
