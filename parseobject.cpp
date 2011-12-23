@@ -218,6 +218,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         linkString += xml.text().toString();
       else if (currentTag == "author")  //rss
         authorString += xml.text().toString();
+      else if (currentTag == "creator")  //rss::dc:creator
+        authorString += xml.text().toString();
       else if (currentTag == "name")   //atom::author
         authorString += xml.text().toString();
       else if (currentTag == "uri")    //atom::uri
