@@ -762,8 +762,10 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
+  slotSetAllRead();
+  setFeedsFilter(feedsFilterGroup_->checkedAction());
   bool initNo = false;
-  if (!newsModel_->columnCount()) initNo = true;
+  if (newsModel_->columnCount() == 0) initNo = true;
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction());
@@ -809,9 +811,6 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
             newsModel_->record(index.row()).field("description").value().toString());
     else
       webView_->setHtml(content);
-    if (newsView_->currentIndex().row() != indexOld.row()) {
-      slotSetItemRead(indexOld, 1);
-    }
     slotSetItemRead(index, 1);
   }
   indexOld = indexNew;
@@ -966,15 +965,12 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
 
-  int readOld = newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt();
   QModelIndex curIndex = newsView_->currentIndex();
-  if ((curIndex != index) && (read == 1)) read = 2;
   newsModel_->setData(
       newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
       read);
   newsView_->setCurrentIndex(curIndex);
   slotUpdateStatus();
-  qDebug() << index.row() << curIndex.row() << readOld << read;
 }
 
 void RSSListing::markNewsRead()
@@ -1045,20 +1041,26 @@ void RSSListing::slotLoadFinished(bool ok)
 
 void RSSListing::setFeedsFilter(QAction* pAct)
 {
+  QModelIndex index = feedsView_->currentIndex();
   if (pAct->objectName() == "filterFeedsAll_") {
     feedsModel_->setFilter("");
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    feedsModel_->setFilter(QString("unread > 0"));
+    int id = feedsModel_->index(
+          feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+    feedsModel_->setFilter(QString("unread > 0 OR id = '%1'").arg(id));
   }
+  feedsView_->setCurrentIndex(index);
 }
 
 void RSSListing::setNewsFilter(QAction* pAct)
 {
+  QModelIndex index = newsView_->currentIndex();
   if (pAct->objectName() == "filterNewsAll_") {
     newsModel_->setFilter("");
   } else if (pAct->objectName() == "filterNewsUnread_") {
     newsModel_->setFilter(QString("read < 2"));
   }
+  newsView_->setCurrentIndex(index);
 }
 
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
@@ -1075,4 +1077,12 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
 {
   QDesktopServices::openUrl(
         QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link")).data(Qt::EditRole).toString()));
+}
+
+void RSSListing::slotSetAllRead()
+{
+  QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
+      arg(newsModel_->tableName());
+  QSqlQuery q(db_);
+  q.exec(qStr);
 }
