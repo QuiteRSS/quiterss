@@ -55,9 +55,9 @@ void NewsHeader::initColumns()
               visualIndex(model_->fieldIndex("title"))+1);
   resizeSection(model_->fieldIndex("read"), 25);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
-  moveSection(visualIndex(model_->fieldIndex("author")),
+  moveSection(visualIndex(model_->fieldIndex("author_name")),
               visualIndex(model_->fieldIndex("read"))+1);
-  resizeSection(model_->fieldIndex("author"), 100);
+  resizeSection(model_->fieldIndex("author_name"), 100);
   resizeSection(model_->fieldIndex("title"), 200);
   setSortIndicator(model_->fieldIndex("published"), Qt::DescendingOrder);
 }
@@ -86,7 +86,7 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
-  model_->setHeaderData(model_->fieldIndex("author"), Qt::Horizontal, tr("Author"));
+  model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
   for (int i = 0; i < model_->columnCount(); i++) {
