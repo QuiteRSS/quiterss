@@ -7,6 +7,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setObjectName("AboutDialog");
+
   QBoxLayout *aboutlayout = new QHBoxLayout(this);
   aboutlayout->setAlignment(Qt::AlignCenter);
   aboutlayout->setMargin(10);
@@ -39,8 +40,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<p>&copy; 2011 QuiteTeam</p>"
       "</body></html>";
   QLabel *infoLabel = new QLabel(info, this);
+  infoLabel->setMinimumWidth(200);
   infoLabel->setOpenExternalLinks(true);
   layout->addWidget(infoLabel);
+
 
   QLayout *buttonLayout = new QHBoxLayout();
   buttonLayout->setAlignment(Qt::AlignRight);

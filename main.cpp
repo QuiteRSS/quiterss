@@ -68,7 +68,7 @@ int main(int argc, char **argv)
       }
       return 0;
     }
-    app.setApplicationName("QtRss");
+    app.setApplicationName("QuiteRss");
     app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
     app.setQuitOnLastWindowClosed(false);
 
