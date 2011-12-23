@@ -71,14 +71,23 @@ void NewsHeader::createMenu()
   pActGroup_ = new QActionGroup(viewMenu_);
   pActGroup_->setExclusive(false);
   connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisible(QAction*)));
+
   for (int i = 0; i < model_->columnCount(); i++) {
-    QAction *action = pActGroup_->addAction(
-          model_->headerData(logicalIndex(i),
-          Qt::Horizontal, Qt::EditRole).toString());
-    action->setData(logicalIndex(i));
-    action->setCheckable(true);
-    action->setChecked(!isSectionHidden(logicalIndex(i)));
-    viewMenu_->addAction(action);
+    int lIdx = logicalIndex(i);
+    if ((lIdx == model_->fieldIndex("title")) ||
+        (lIdx == model_->fieldIndex("published")) ||
+        (lIdx == model_->fieldIndex("received")) ||
+        (lIdx == model_->fieldIndex("author_name")) ||
+        (lIdx == model_->fieldIndex("read")) ||
+        (lIdx == model_->fieldIndex("sticky"))) {
+      QAction *action = pActGroup_->addAction(
+            model_->headerData(lIdx,
+            Qt::Horizontal, Qt::EditRole).toString());
+      action->setData(lIdx);
+      action->setCheckable(true);
+      action->setChecked(!isSectionHidden(lIdx));
+      viewMenu_->addAction(action);
+    }
   }
 }
 
