@@ -166,6 +166,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     QHoverEvent *hoverEvent = static_cast<QHoverEvent*>(event);
     if (hoverEvent->pos().x() > width() - buttonColumnView->width()) {
       if (event->type() == QEvent::HoverMove) {
+        setCursor(QCursor(Qt::ArrowCursor));
         QHoverEvent* pe =
                     new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
         QApplication::sendEvent(this, pe);
