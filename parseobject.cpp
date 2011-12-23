@@ -10,11 +10,18 @@ ParseObject::ParseObject(QObject *parent) :
 void ParseObject::slotParse(QSqlDatabase *db,
     const QByteArray &xmlData, const QUrl &url)
 {
+  QFile file("lastfeed.dat");
+  file.open(QIODevice::WriteOnly);
+  file.write(xmlData);
+  file.close();
+
   QString currentTag;
   QString rssItemString;
   QString titleString;
   QString linkString;
   QString authorString;
+  QString authorUriString;
+  QString authorEmailString;
   QString rssDescriptionString;
   QString commentsString;
   QString rssPubDateString;
@@ -70,6 +77,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         titleString.clear();
         linkString.clear();
         authorString.clear();
+        authorUriString.clear();
+        authorEmailString.clear();
         atomIdString.clear();
         atomUpdatedString.clear();
         atomSummaryString.clear();
@@ -108,7 +117,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, guid, title, author, published, received, link) "
+                           "description, guid, title, author_name, published, received, link) "
                            "values(?, ?, ?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
@@ -164,8 +173,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, content, guid, title, author, published, received, link) "
-                           "values(?, ?, ?, ?, ?, ?, ?, ?)").
+                           "description, content, guid, title, author_name, "
+                           "author_uri, author_email, published, received, link) "
+                           "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,? )").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(atomSummaryString);
@@ -173,6 +183,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(atomIdString);
             q.addBindValue(titleString);
             q.addBindValue(authorString);
+            q.addBindValue(authorUriString);
+            q.addBindValue(authorEmailString);
             q.addBindValue(atomUpdatedString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
@@ -183,6 +195,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qDebug() << "       " << atomIdString;
             qDebug() << "       " << titleString;
             qDebug() << "       " << authorString;
+            qDebug() << "       " << authorUriString;
+            qDebug() << "       " << authorEmailString;
             qDebug() << "       " << atomUpdatedString;
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << "       " << linkString;
@@ -202,8 +216,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
         titleString += xml.text().toString();
       else if (currentTag == "link")
         linkString += xml.text().toString();
-      else if (currentTag == "author")
+      else if (currentTag == "author")  //rss
         authorString += xml.text().toString();
+      else if (currentTag == "name")   //atom::author
+        authorString += xml.text().toString();
+      else if (currentTag == "uri")    //atom::uri
+        authorUriString += xml.text().toString();
+      else if (currentTag == "email")  //atom::email
+        authorEmailString += xml.text().toString();
       else if (currentTag == "description")
         rssDescriptionString += xml.text().toString();
       else if (currentTag == "comments")
