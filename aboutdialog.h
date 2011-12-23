@@ -2,6 +2,7 @@
 #define ABOUTDIALOG_H
 
 #include <QDialog>
+#include <QtGui>
 
 class AboutDialog : public QDialog
 {
