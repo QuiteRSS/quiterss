@@ -87,13 +87,13 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     feedsView_->setModel(feedsModel_);
     feedsView_->header()->setStretchLastSection(false);
-    feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("id"), QHeaderView::ResizeToContents);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
 
     feedsView_->header()->setVisible(false);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    feedsView_->hideColumn(feedsModel_->fieldIndex("id"));
     feedsView_->hideColumn(feedsModel_->fieldIndex("title"));
     feedsView_->hideColumn(feedsModel_->fieldIndex("description"));
     feedsView_->hideColumn(feedsModel_->fieldIndex("xmlurl"));
