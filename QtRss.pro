@@ -2,7 +2,7 @@ QT += core gui network xml webkit sql
 LIBS += libkernel32 \
         libpsapi
 
-TARGET = QtRss
+TARGET = QuiteRSS
 TEMPLATE = app
 
 HEADERS += rsslisting.h \

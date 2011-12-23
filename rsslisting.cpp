@@ -190,7 +190,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     setCentralWidget(webWidget_);
 
-    setWindowTitle(QString("QtRSS v") + QString(STRFILEVER).section('.', 0, 2));
+    setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
 
     createActions();
     createMenu();
