@@ -85,9 +85,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomContentString.clear();
       }
       currentTag = xml.name().toString();
-//      qDebug() << itemCount << ":" << currentTag;
+//      if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
+//      else qDebug() << itemCount << ":" << xml.qualifiedName();
 //      for (int i = 0 ; i < xml.attributes().count(); ++i)
-//        qDebug() << "     " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
+//        qDebug() << "      " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
       if (currentTag == "link")
         linkString = xml.attributes().value("href").toString();
     } else if (xml.isEndElement()) {
