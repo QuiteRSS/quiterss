@@ -38,6 +38,8 @@ void NewsHeader::initColumns()
   setSectionHidden(model_->fieldIndex("description"), true);
   setSectionHidden(model_->fieldIndex("content"), true);
   setSectionHidden(model_->fieldIndex("modified"), true);
+  setSectionHidden(model_->fieldIndex("author_uri"), true);
+  setSectionHidden(model_->fieldIndex("author_email"), true);
   setSectionHidden(model_->fieldIndex("category"), true);
   setSectionHidden(model_->fieldIndex("label"), true);
   setSectionHidden(model_->fieldIndex("new"), true);
