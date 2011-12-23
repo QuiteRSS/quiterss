@@ -14,9 +14,11 @@ public:
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
+  virtual void mouseDoubleClickEvent(QMouseEvent*);
 
 signals:
-  void updateStatus();
+  void signalSetItemRead(QModelIndex index, int read);
+  void signalDoubleClicked(QModelIndex index);
 };
 
 #endif // NEWSVIEW_H

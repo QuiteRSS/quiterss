@@ -16,37 +16,22 @@ NewsView::NewsView(QWidget * parent) :
 /*virtual*/ void NewsView::mousePressEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
-  QList<QModelIndex> indexList = selectionModel()->selectedRows(model_->fieldIndex("sticky"));
   if (index.column() == model_->fieldIndex("sticky")) {
-    int sticky;
+    QModelIndex curIndex = currentIndex();
     if (model_->index(index.row(), model_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
-      sticky = 1;
+      model_->setData(model_->index(index.row(), model_->fieldIndex("sticky")), 1);
     } else {
-      sticky = 0;
+      model_->setData(model_->index(index.row(), model_->fieldIndex("sticky")), 0);
     }
-    model_->setData(model_->index(index.row(), model_->fieldIndex("sticky")), sticky);
-
-    if (indexList.count())
-      selectionModel()->select(indexList[0], QItemSelectionModel::Select|QItemSelectionModel::Rows);
-
+    setCurrentIndex(curIndex);
     event->ignore();
     return;
   } else if (index.column() == model_->fieldIndex("read")) {
-    int read;
     if (model_->index(index.row(), model_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-      read = 1;
+      emit signalSetItemRead(index, 1);
     } else {
-      read = 0;
+      emit signalSetItemRead(index, 0);
     }
-    model_->setData(model_->index(index.row(), model_->fieldIndex("read")), read);
-    emit updateStatus();
-    if (indexList.count())
-      selectionModel()->select(indexList[0], QItemSelectionModel::Select|QItemSelectionModel::Rows);
-
-    event->ignore();
-    return;
-  } else if ((index.row() == currentIndex().row()) &&
-             model_->index(index.row(), model_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1) {
     event->ignore();
     return;
   }
@@ -55,4 +40,9 @@ NewsView::NewsView(QWidget * parent) :
 
 /*virtual*/ void NewsView::mouseMoveEvent(QMouseEvent *event)
 {
+}
+
+/*virtual*/ void NewsView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+  emit signalDoubleClicked(indexAt(event->pos()));
 }
