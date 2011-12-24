@@ -25,6 +25,8 @@
         <file alias="feed">images/feedDefault.png</file>
         <file alias="options">images/options.png</file>
         <file alias="markReadAll">images/markReadAll.png</file>
+        <file>images/sortIndicatorA.png</file>
+        <file>images/sortIndicatorD.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

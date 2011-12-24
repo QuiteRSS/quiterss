@@ -192,6 +192,16 @@ QHeaderView::section:hover {
 								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
 }
 
+QHeaderView::down-arrow {
+	right: 2px;
+	image: url(:/images/images/sortIndicatorD.png);
+}
+
+QHeaderView::up-arrow {
+	right: 2px;
+	image: url(:/images/images/sortIndicatorA.png);
+}
+
 #webWidget_ {
 	border: 1px solid gray;
 }

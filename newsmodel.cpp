@@ -1,8 +1,3 @@
-#include <QDebug>
-#include <QFont>
-#include <QIcon>
-#include <QDateTime>
-
 #include "newsmodel.h"
 
 NewsModel::NewsModel(QObject *parent)
@@ -59,6 +54,10 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     if (0 == QSqlTableModel::index(index.row(), fieldIndex("read")).data(Qt::EditRole).toInt())
       font.setBold(true);
     return font;
+  } else if (role == Qt::BackgroundRole) {
+    if (index.column() == view_->header()->sortIndicatorSection()) {
+      return QBrush(QColor("#F5F5F5"));
+    }
   }
   return QSqlTableModel::data(index, role);
 }

@@ -108,6 +108,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_ = new NewsView(this);
     newsView_->setModel(newsModel_);
     newsView_->model_ = newsModel_;
+    newsModel_->view_ = newsView_;
 
     newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
     newsHeader_->model_ = newsModel_;
