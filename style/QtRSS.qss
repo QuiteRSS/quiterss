@@ -167,18 +167,22 @@ QToolBar{
 	width: 20px;
 }
 
+QHeaderView {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+							stop: 0 #ffffff, stop: 0.4 #ffffff,
+							stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+}
+
 QHeaderView::section {
 	height: 20;
 	border: 1px solid #D5D5D5;
 	border-top: 0px solid #D5D5D5;
 	border-left: 0px solid #D5D5D5;
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #ffffff, stop: 0.4 #ffffff,
-								stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+	background-color: transparent;
 	padding-left: 4px;
 }
 
-QHeaderView::section:hover, QHeaderView::section:pressed {
+QHeaderView::section:hover {
 	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
 								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
