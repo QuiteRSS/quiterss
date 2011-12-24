@@ -249,6 +249,16 @@ RSSListing::RSSListing(QWidget *parent)
 RSSListing::~RSSListing()
 {
   qDebug("App_Closing");
+
+  QSqlQuery q(db_);
+  q.exec("select id from feeds");
+  while (q.next()) {
+    QSqlQuery qt(db_);
+    QString qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
+        arg(QString("feed_%1").arg(q.value(0).toString()));
+    qt.exec(qStr);
+  }
+
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
 
@@ -771,7 +781,11 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  slotSetAllRead();
+  static QModelIndex indexOld = index;
+  if (index.row() != indexOld.row()) {
+    slotSetAllRead();
+  }
+  indexOld = index;
   setFeedsFilter(feedsFilterGroup_->checkedAction());
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
@@ -975,6 +989,11 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
   if (!index.isValid()) return;
 
   QModelIndex curIndex = newsView_->currentIndex();
+  if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
+    newsModel_->setData(
+        newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
+        0);
+  }
   newsModel_->setData(
       newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
       read);
@@ -1093,6 +1112,9 @@ void RSSListing::slotSetAllRead()
   QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
       arg(newsModel_->tableName());
   QSqlQuery q(db_);
+  q.exec(qStr);
+  qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
+      arg(newsModel_->tableName());
   q.exec(qStr);
 }
 

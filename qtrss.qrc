@@ -27,6 +27,8 @@
         <file alias="markReadAll">images/markReadAll.png</file>
         <file>images/sortIndicatorA.png</file>
         <file>images/sortIndicatorD.png</file>
+        <file alias="bulletNew">images/bulletNew.png</file>
+        <file alias="bulletNoNew">images/bulletNoNew.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

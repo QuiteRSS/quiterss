@@ -20,6 +20,12 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         icon.addFile(":/images/starOff");
       else icon.addFile(":/images/starOn");
       return icon;
+    } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
+      QIcon icon;
+      if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
+        icon.addFile(":/images/bulletNew");
+      else icon.addFile(":/images/bulletNoNew");
+      return icon;
     }
   } else if (role == Qt::DisplayRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
