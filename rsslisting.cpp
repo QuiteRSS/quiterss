@@ -1013,9 +1013,12 @@ void RSSListing::markNewsRead()
 
 void RSSListing::markAllNewsRead()
 {
-  QString qStr = QString("update %1 set read=1").
+  QString qStr = QString("update %1 set read=1 WHERE read=0").
       arg(newsModel_->tableName());
   QSqlQuery q(db_);
+  q.exec(qStr);
+  qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
+      arg(newsModel_->tableName());
   q.exec(qStr);
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction());
