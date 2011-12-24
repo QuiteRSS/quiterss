@@ -65,6 +65,11 @@ QMenu::item:selected {
 
 #feedsTreeView_ {
 	background: #F9FFF9;
+	
+}
+
+#feedsTreeView_::item, #newsView_::item {
+	min-height: 20px;
 }
 
 QTabWidget::pane { /* Рамка виджета со вкладками */
@@ -131,7 +136,6 @@ QToolBar{
 }
 
 #buttonColumnView {
-	height: 20;
 	border-left: 1px solid #D5D5D5;
 	border-top: 0px solid #D5D5D5;
 	border-right: 1px solid #D5D5D5;
@@ -174,7 +178,7 @@ QHeaderView {
 }
 
 QHeaderView::section {
-	height: 20;
+	min-height: 20px;
 	border: 1px solid #D5D5D5;
 	border-top: 0px solid #D5D5D5;
 	border-left: 0px solid #D5D5D5;

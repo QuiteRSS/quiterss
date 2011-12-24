@@ -33,6 +33,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 void NewsHeader::initColumns()
 {
   if (model_->columnCount() == 0) return;
+
   setSectionHidden(model_->fieldIndex("id"), true);
   setSectionHidden(model_->fieldIndex("guid"), true);
   setSectionHidden(model_->fieldIndex("description"), true);
@@ -118,6 +119,10 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   if (event->type() == QEvent::Resize) {
     if (model_->columnCount() == 0) return false;
+
+    if (buttonColumnView->height() != height())
+      buttonColumnView->setFixedHeight(height());
+
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
     bool minSize = false;
     int newWidth = resizeEvent->size().width();
