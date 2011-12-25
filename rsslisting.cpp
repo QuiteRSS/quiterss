@@ -326,6 +326,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 void RSSListing::slotClose()
 {
   traySystem->hide();
+  hide();
   writeSettings();
   emit signalCloseApp();
 }
