@@ -131,6 +131,11 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setObjectName("feedsTreeView_");
     feedsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     feedsView_->setModel(feedsModel_);
+    for (int i = 0; i < feedsModel_->columnCount(); ++i)
+      feedsView_->hideColumn(i);
+    feedsView_->showColumn(feedsModel_->fieldIndex("id"));
+    feedsView_->showColumn(feedsModel_->fieldIndex("text"));
+    feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
     feedsView_->header()->setStretchLastSection(false);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("id"), QHeaderView::ResizeToContents);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
@@ -139,10 +144,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->header()->setVisible(false);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    feedsView_->hideColumn(feedsModel_->fieldIndex("title"));
-    feedsView_->hideColumn(feedsModel_->fieldIndex("description"));
-    feedsView_->hideColumn(feedsModel_->fieldIndex("xmlurl"));
-    feedsView_->hideColumn(feedsModel_->fieldIndex("htmlurl"));
+
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
