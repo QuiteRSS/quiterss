@@ -584,8 +584,8 @@ void RSSListing::readSettings()
 
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
-  newsHeader_->restoreGeometry(settings_->value("NewsViewGeometry").toByteArray());
-  newsHeader_->restoreState(settings_->value("NewsViewState").toByteArray());
+  newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
+  newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
 
   setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>
@@ -616,8 +616,8 @@ void RSSListing::writeSettings()
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
   if (newsModel_->columnCount()) {
-    settings_->setValue("NewsViewGeometry", newsHeader_->saveGeometry());
-    settings_->setValue("NewsViewState", newsHeader_->saveState());
+    settings_->setValue("NewsHeaderGeometry", newsHeader_->saveGeometry());
+    settings_->setValue("NewsHeaderState", newsHeader_->saveState());
   }
 
   settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
