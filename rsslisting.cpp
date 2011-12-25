@@ -12,29 +12,76 @@
 /*!****************************************************************************/
 const QString kDbName = "feeds.db";
 
+const QString kCreateFeedsTableQuery(
+    "create table feeds("
+        "id integer primary key, "
+        "text varchar, "             // Текст ленты (сейчас заменяет имя)
+        "title varchar, "            // Имя ленты
+        "description varchar, "      // Описание ленты
+        "xmlurl varchar, "           // интернет-адрес самой ленты
+        "htmlurl varchar, "          // интернет-адрес сайта, с которого забираем ленту
+        "language varchar, "         // язык, на котором написана лента
+        "copyrights varchar, "       // права
+        "author_name varchar, "      // автор лента: имя
+        "author_email varchar, "     //              е-мейл
+        "author_uri varchar, "       //              личная страница
+        "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
+        "pubdate varchar, "          // Дата публикации содержимого ленты
+        "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
+        "category varchar, "         // категории содержимого, освещаемые в ленте
+        "contributor varchar, "      // участник (через табы)
+        "generator varchar, "        // программа, используемая для генерации содержимого
+        "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
+        "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
+        "cloud_port varchar, "       //   .
+        "cloud_path varchar, "       //   .
+        "cloud_procedure varchar, "  //   .
+        "cloud_protocal varchar, "   //   .
+        "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
+        "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
+        "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
+        "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
+        "unread integer, "           // количество непрочитанных новостей
+        "currentNews integer, "      // отображаемая новость
+        "label varchar"              // выставляется пользователем
+    ")");
+
 const QString kCreateNewsTableQuery(
     "create table feed_%1("
         "id integer primary key, "
-        "guid varchar, "
-        "description varchar, "
-        "content varchar, "
-        "title varchar, "
-        "published varchar, "
-        "modified varchar, "
-        "received varchar, "
-        "author_name varchar, "
-        "author_uri varchar, "
-        "author_email varchar, "
-        "category varchar, "
-        "label varchar, "
-        "new integer default 1, "
-        "read integer default 0, "
-        "sticky integer default 0, "
-        "deleted integer default 0, "
-        "attachment varchar, "
-        "feed varchar, "
-        "location varchar, "
-        "link varchar"
+        "feed integer, "                       // идентификатор ленты из таблицы feeds
+        "guid varchar, "                       // уникальный номер
+        "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
+        "description varchar, "                // краткое содержание
+        "content varchar, "                    // полное содержание (atom)
+        "title varchar, "                      // заголовок
+        "published varchar, "                  // дата публикащии
+        "modified varchar, "                   // дата модификации
+        "received varchar, "                   // дата приёма новости (выставляется при приёме)
+        "author_name varchar, "                // имя автора
+        "author_uri varchar, "                 // страничка автора (atom)
+        "author_email varchar, "               // почта автора (atom)
+        "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
+        "label varchar, "                      // метка (выставляется пользователем)
+        "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
+        "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
+        "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
+        "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется, 
+                                               //   чтобы при обновлении новостей она не появлялась вновь. 
+                                               //   Физическое удаление новость будет производится при общей чистке базы
+        "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
+        "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
+        "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
+        "enclosure_type, "                     //   длина, тип,
+        "enclosure_url, "                      //   адрес.
+        "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
+        "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
+        "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
+                                               //   который нереально передать в новости (atom)
+        "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
+        "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
+        "contributor varchar, "                // участник (через табы)
+        "rights varchar "                      // права
     ")");
 
 /*!****************************************************************************/
@@ -52,9 +99,7 @@ RSSListing::RSSListing(QWidget *parent)
       db_.open();
     } else {  // Инициализация базы
       db_.open();
-      db_.exec("create table feeds(id integer primary key, text varchar,"
-          " title varchar, description varchar, xmlurl varchar, "
-          "htmlurl varchar, unread integer)");
+      db_.exec(kCreateFeedsTableQuery);
       db_.exec("insert into feeds(text, xmlurl) "
           "values ('Qt Labs', 'http://labs.qt.nokia.com/blogs/feed')");
       db_.exec("insert into feeds(text, xmlurl) "
@@ -1084,7 +1129,7 @@ void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
 void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
 {
   QDesktopServices::openUrl(
-        QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link")).data(Qt::EditRole).toString()));
+        QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link_href")).data(Qt::EditRole).toString()));
 }
 
 void RSSListing::slotSetAllRead()
