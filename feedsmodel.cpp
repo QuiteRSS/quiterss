@@ -5,9 +5,10 @@
 
 #include "feedsmodel.h"
 
-FeedsModel::FeedsModel(QObject *parent)
+FeedsModel::FeedsModel(QObject *parent, QSqlDatabase *db)
   :QSqlTableModel(parent)
 {
+   db_ = db;
 }
 
 QVariant FeedsModel::data(const QModelIndex &index, int role) const
@@ -32,6 +33,14 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
     QBrush brush;
     if (QSqlTableModel::fieldIndex("unread") == index.column()) {
       brush.setColor("#0000CA");
+    } else if (QSqlTableModel::fieldIndex("text") == index.column()) {
+      QSqlQuery q(*db_);
+      int newCount = 0;
+      QString qStr = QString("select count(id) from feed_%1 where new=1").
+          arg(QSqlTableModel::index(index.row(), fieldIndex("id")).data(Qt::EditRole).toInt());
+      q.exec(qStr);
+      if (q.next()) newCount = q.value(0).toInt();
+      if (newCount) brush.setColor("#0000CA");
     }
     return brush;
   } else if (role == Qt::DecorationRole) {

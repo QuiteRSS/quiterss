@@ -78,7 +78,7 @@ RSSListing::RSSListing(QWidget *parent)
         persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
         Qt::QueuedConnection);
 
-    feedsModel_ = new FeedsModel(this);
+    feedsModel_ = new FeedsModel(this, &db_);
     feedsModel_->setTable("feeds");
     feedsModel_->select();
 
