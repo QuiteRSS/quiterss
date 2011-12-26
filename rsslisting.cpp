@@ -143,11 +143,14 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->header()->setVisible(false);
     feedsView_->setUniformRowHeights(true);
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    feedsView_->setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
+    connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
+            this, SLOT(showContextMenuFeed(const QPoint &)));
 
     newsModel_ = new NewsModel(this);
     newsModel_->setEditStrategy(QSqlTableModel::OnFieldChange);
@@ -247,6 +250,7 @@ RSSListing::RSSListing(QWidget *parent)
     createMenu();
     createToolBar();
     createMenuNews();
+    createMenuFeed();
 
     feedsView_->installEventFilter(this);
     newsView_->installEventFilter(this);
@@ -1253,4 +1257,34 @@ void RSSListing::markNewsStar()
   } else {
     slotSetItemStar(index, 0);
   }
+}
+
+void RSSListing::createMenuFeed()
+{
+  feedContextMenu_ = new QMenu(this);
+
+  feedContextMenu_->addAction(addFeedAct_);
+  feedContextMenu_->addSeparator();
+
+  markFeedRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
+  markFeedRead_->setStatusTip(tr("Mark feed read"));
+  connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
+  feedContextMenu_->addAction(markFeedRead_);
+  feedContextMenu_->addSeparator();
+
+  feedContextMenu_->addAction(updateFeedAct_);
+  feedContextMenu_->addSeparator();
+
+  feedContextMenu_->addAction(deleteFeedAct_);
+  feedContextMenu_->addSeparator();
+
+  feedProperties_ = new QAction(tr("Properties"), this);
+  feedProperties_->setStatusTip(tr("Properties feed"));
+  feedContextMenu_->addAction(feedProperties_);
+}
+
+void RSSListing::showContextMenuFeed(const QPoint &p)
+{
+  if (feedsView_->currentIndex().isValid())
+    feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
 }

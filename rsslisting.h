@@ -61,6 +61,7 @@ private:
     void writeSettings();
     void createTrayMenu();
     void createMenuNews();
+    void createMenuFeed();
 
     QSettings *settings_;
 
@@ -88,6 +89,8 @@ private:
     QAction *openInBrowserAct_;
     QAction *markStarAct_;
     QAction *deleteNewsAct_;
+    QAction *markFeedRead_;
+    QAction *feedProperties_;
 
     QActionGroup *feedsFilterGroup_;
     QActionGroup *newsFilterGroup_;
@@ -100,6 +103,7 @@ private:
     QMenu *helpMenu_;
     QMenu *trayMenu_;
     QMenu *newsContextMenu_;
+    QMenu *feedContextMenu_;
 
     QToolBar *toolBar_;
 
@@ -150,6 +154,7 @@ private slots:
     void openInBrowserNews();
     void slotSetItemStar(QModelIndex index, int sticky);
     void markNewsStar();
+    void showContextMenuFeed(const QPoint &);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
