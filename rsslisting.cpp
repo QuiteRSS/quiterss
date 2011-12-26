@@ -267,10 +267,6 @@ RSSListing::RSSListing(QWidget *parent)
     statusBar()->addPermanentWidget(statusAll_);
     statusBar()->setVisible(true);
 
-    //! testing
-//    webView_->load(QUrl("qrc:/html/test1.html"));
-//    webView_->show();
-
     traySystem = new QSystemTrayIcon(QIcon(":/images/images/QtRSS16.png"),this);
     connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
@@ -1107,9 +1103,6 @@ void RSSListing::slotUpdateStatus()
   statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
 
   statusAll_->setText(tr(" All: ") + QString::number(allCount) + " ");
-
-//  static int updateCount = 0;
-//  qDebug() << "updateStatus()" << ++updateCount;
 }
 
 void RSSListing::slotLoadStarted()
