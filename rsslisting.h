@@ -139,6 +139,7 @@ private slots:
     void slotUpdateStatus();
     void slotSetAllRead();
     void slotShowAboutDlg();
+    void deleteNews();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

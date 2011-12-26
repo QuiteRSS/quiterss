@@ -217,8 +217,8 @@ RSSListing::RSSListing(QWidget *parent)
     statusBar()->setVisible(true);
 
     //! testing
-    webView_->load(QUrl("qrc:/html/test1.html"));
-    webView_->show();
+//    webView_->load(QUrl("qrc:/html/test1.html"));
+//    webView_->show();
 
     traySystem = new QSystemTrayIcon(QIcon(":/images/images/QtRSS16.png"),this);
     connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -298,6 +298,8 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       if ((keyEvent->key() == Qt::Key_Up) ||
           (keyEvent->key() == Qt::Key_Down)) {
         emit signalFeedKeyUpDownPressed();
+      } else if (keyEvent->key() == Qt::Key_Delete) {
+        deleteNews();
       }
       return false;
     } else {
@@ -1029,7 +1031,7 @@ void RSSListing::markAllNewsRead()
 void RSSListing::slotUpdateStatus()
 {
   int allCount = 0;
-  QString qStr = QString("select count(id) from %1").
+  QString qStr = QString("select count(id) from %1 where deleted=0").
       arg(newsModel_->tableName());
   QSqlQuery q(db_);
   q.exec(qStr);
@@ -1088,9 +1090,9 @@ void RSSListing::setNewsFilter(QAction* pAct)
 {
   QModelIndex index = newsView_->currentIndex();
   if (pAct->objectName() == "filterNewsAll_") {
-    newsModel_->setFilter("");
+    newsModel_->setFilter("deleted = 0");
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(QString("read < 2"));
+    newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
   }
   newsView_->setCurrentIndex(index);
 }
@@ -1126,4 +1128,24 @@ void RSSListing::slotShowAboutDlg()
 {
   AboutDialog *aboutDialog = new AboutDialog(this);
   aboutDialog->exec();
+}
+
+void RSSListing::deleteNews()
+{
+  QModelIndex index = newsView_->currentIndex();
+  if (!index.isValid()) return;
+
+  newsModel_->setData(
+      newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+      1);
+  if (newsModel_->index(index.row(), newsModel_->fieldIndex("deleted")).data(Qt::EditRole).toInt() == 0) {
+    newsModel_->setData(
+        newsModel_->index(index.row(), newsModel_->fieldIndex("deleted")),
+        1);
+  }
+  if (index.row() == newsModel_->rowCount())
+    index = newsModel_->index(index.row()-1, index.column());
+  newsView_->setCurrentIndex(index);
+  slotNewsViewClicked(index);
+  slotUpdateStatus();
 }
