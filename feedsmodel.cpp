@@ -40,7 +40,7 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
           arg(QSqlTableModel::index(index.row(), fieldIndex("id")).data(Qt::EditRole).toInt());
       q.exec(qStr);
       if (q.next()) newCount = q.value(0).toInt();
-      if (newCount) brush.setColor("#0000CA");
+      if (newCount) brush.setColor("#0000FF");
     }
     return brush;
   } else if (role == Qt::DecorationRole) {
