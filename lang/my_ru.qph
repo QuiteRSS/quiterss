@@ -356,4 +356,8 @@
     <source>Feed Title:</source>
     <target>Заголовок ленты:</target>
 </phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>Пометить все прочитанными</target>
+</phrase>
 </QPH>
