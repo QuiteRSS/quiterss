@@ -14,6 +14,7 @@ NewsView::NewsView(QWidget * parent) :
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
   setItemDelegate(itemDelegate);
 //    setAlternatingRowColors(true);
+  setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 /*virtual*/ void NewsView::mousePressEvent(QMouseEvent *event)
@@ -40,6 +41,8 @@ NewsView::NewsView(QWidget * parent) :
       return;
     }
     QTreeView::mousePressEvent(event);
+  } else if (event->buttons() & Qt::RightButton) {
+    setCurrentIndex(index);
   }
 }
 

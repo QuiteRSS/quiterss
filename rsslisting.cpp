@@ -161,6 +161,8 @@ RSSListing::RSSListing(QWidget *parent)
     newsHeader_->view_ = newsView_;
     newsView_->setHeader(newsHeader_);
 
+    createMenuNews();
+
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
@@ -169,6 +171,8 @@ RSSListing::RSSListing(QWidget *parent)
             this, SLOT(slotSetItemRead(QModelIndex, int)));
     connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
             this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
+    connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
+            this, SLOT(showContextMenuNews(const QPoint &)));
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
@@ -1196,4 +1200,30 @@ void RSSListing::deleteNews()
   newsView_->setCurrentIndex(index);
   slotNewsViewClicked(index);
   slotUpdateStatus();
+}
+
+void RSSListing::createMenuNews()
+{
+  newsContextMenu_ = new QMenu(this);
+
+  QAction *openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
+  connect(openInBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInBrowserNews()));
+  newsContextMenu_->addAction(openInBrowserAct_);
+  newsContextMenu_->addSeparator();
+
+  QAction *deleteNewsAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("Delete"), this);
+  deleteNewsAct_->setShortcut(Qt::Key_Delete);
+  connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
+  newsContextMenu_->addAction(deleteNewsAct_);
+}
+
+void RSSListing::showContextMenuNews(const QPoint &p)
+{
+  newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
+}
+
+void RSSListing::openInBrowserNews()
+{
+  slotNewsViewDoubleClicked(newsView_->currentIndex());
 }

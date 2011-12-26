@@ -60,6 +60,7 @@ private:
     void readSettings ();
     void writeSettings();
     void createTrayMenu();
+    void createMenuNews();
 
     QSettings *settings_;
 
@@ -95,6 +96,8 @@ private:
     QMenu *toolsMenu_;
     QMenu *helpMenu_;
     QMenu *trayMenu_;
+    QMenu *newsContextMenu_;
+
     QToolBar *toolBar_;
 
     QDockWidget *feedsDock_;
@@ -140,6 +143,8 @@ private slots:
     void slotSetAllRead();
     void slotShowAboutDlg();
     void deleteNews();
+    void showContextMenuNews(const QPoint &);
+    void openInBrowserNews();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
