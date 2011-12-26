@@ -253,6 +253,7 @@ RSSListing::~RSSListing()
 {
   qDebug("App_Closing");
 
+  db_.transaction();
   QSqlQuery q(db_);
   q.exec("select id from feeds");
   while (q.next()) {
@@ -261,6 +262,7 @@ RSSListing::~RSSListing()
         arg(QString("feed_%1").arg(q.value(0).toString()));
     qt.exec(qStr);
   }
+  db_.commit();
 
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
