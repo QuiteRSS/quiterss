@@ -118,7 +118,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, guid, title, author_name, published, received, link) "
+                           "description, guid, title, author_name, published, received, link_href) "
                            "values(?, ?, ?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
@@ -175,7 +175,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
                            "description, content, guid, title, author_name, "
-                           "author_uri, author_email, published, received, link) "
+                           "author_uri, author_email, published, received, link_href) "
                            "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,? )").
                 arg(parseFeedId);
             q.prepare(qStr);

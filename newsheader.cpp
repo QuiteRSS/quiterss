@@ -33,33 +33,23 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
 void NewsHeader::initColumns()
 {
   if (model_->columnCount() == 0) return;
+  for (int i = 0; i < model_->columnCount(); ++i)
+    hideSection(i);
+  showSection(model_->fieldIndex("title"));
+  showSection(model_->fieldIndex("published"));
+  showSection(model_->fieldIndex("received"));
+  showSection(model_->fieldIndex("author_name"));
+  showSection(model_->fieldIndex("read"));
+  showSection(model_->fieldIndex("sticky"));
 
-  setSectionHidden(model_->fieldIndex("id"), true);
-  setSectionHidden(model_->fieldIndex("guid"), true);
-  setSectionHidden(model_->fieldIndex("description"), true);
-  setSectionHidden(model_->fieldIndex("content"), true);
-  setSectionHidden(model_->fieldIndex("modified"), true);
-  setSectionHidden(model_->fieldIndex("author_uri"), true);
-  setSectionHidden(model_->fieldIndex("author_email"), true);
-  setSectionHidden(model_->fieldIndex("category"), true);
-  setSectionHidden(model_->fieldIndex("label"), true);
-  setSectionHidden(model_->fieldIndex("new"), true);
-  setSectionHidden(model_->fieldIndex("deleted"), true);
-  setSectionHidden(model_->fieldIndex("attachment"), true);
-  setSectionHidden(model_->fieldIndex("feed"), true);
-  setSectionHidden(model_->fieldIndex("location"), true);
-  setSectionHidden(model_->fieldIndex("link"), true);
-
-  moveSection(visualIndex(model_->fieldIndex("sticky")),
-              visualIndex(model_->fieldIndex("title")));
+  moveSection(visualIndex(model_->fieldIndex("sticky")), 0);
   resizeSection(model_->fieldIndex("sticky"), 25);
   setResizeMode(model_->fieldIndex("sticky"), QHeaderView::Fixed);
-  moveSection(visualIndex(model_->fieldIndex("read")),
-              visualIndex(model_->fieldIndex("title"))+1);
+  moveSection(visualIndex(model_->fieldIndex("title")), 1);
+  moveSection(visualIndex(model_->fieldIndex("read")), 2);
   resizeSection(model_->fieldIndex("read"), 25);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
-  moveSection(visualIndex(model_->fieldIndex("author_name")),
-              visualIndex(model_->fieldIndex("read"))+1);
+  moveSection(visualIndex(model_->fieldIndex("author_name")), 3);
   resizeSection(model_->fieldIndex("author_name"), 100);
   resizeSection(model_->fieldIndex("title"), 200);
   setSortIndicator(model_->fieldIndex("published"), Qt::DescendingOrder);
