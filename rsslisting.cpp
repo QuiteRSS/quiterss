@@ -516,6 +516,20 @@ void RSSListing::createActions()
   aboutAct_->setObjectName("AboutAct_");
   aboutAct_->setToolTip(tr("Show 'About' dialog"));
   connect(aboutAct_, SIGNAL(triggered()), this, SLOT(slotShowAboutDlg()));
+
+  openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
+  connect(openInBrowserAct_, SIGNAL(triggered()), this, SLOT(openInBrowserNews()));
+  markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
+  connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
+  deleteNewsAct_ = new QAction(QIcon(":/images/deleteNews"), tr("Delete"), this);
+  deleteNewsAct_->setShortcut(Qt::Key_Delete);
+  connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
+
+  markFeedRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
+  markFeedRead_->setStatusTip(tr("Mark feed read"));
+  connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
+  feedProperties_ = new QAction(tr("Properties"), this);
+  feedProperties_->setStatusTip(tr("Properties feed"));
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -1203,27 +1217,15 @@ void RSSListing::deleteNews()
 void RSSListing::createMenuNews()
 {
   newsContextMenu_ = new QMenu(this);
-
-  openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
-  connect(openInBrowserAct_, SIGNAL(triggered()),
-          this, SLOT(openInBrowserNews()));
   newsContextMenu_->addAction(openInBrowserAct_);
   newsContextMenu_->addSeparator();
-
   newsContextMenu_->addAction(markNewsRead_);
   newsContextMenu_->addAction(markAllNewsRead_);
   newsContextMenu_->addSeparator();
-  markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
-  connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
   newsContextMenu_->addAction(markStarAct_);
   newsContextMenu_->addSeparator();
-
   newsContextMenu_->addAction(updateFeedAct_);
   newsContextMenu_->addSeparator();
-
-  deleteNewsAct_ = new QAction(QIcon(":/images/deleteNews"), tr("Delete"), this);
-  deleteNewsAct_->setShortcut(Qt::Key_Delete);
-  connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
   newsContextMenu_->addAction(deleteNewsAct_);
 }
 
@@ -1262,24 +1264,14 @@ void RSSListing::markNewsStar()
 void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
-
   feedContextMenu_->addAction(addFeedAct_);
   feedContextMenu_->addSeparator();
-
-  markFeedRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
-  markFeedRead_->setStatusTip(tr("Mark feed read"));
-  connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
   feedContextMenu_->addAction(markFeedRead_);
   feedContextMenu_->addSeparator();
-
   feedContextMenu_->addAction(updateFeedAct_);
   feedContextMenu_->addSeparator();
-
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
-
-  feedProperties_ = new QAction(tr("Properties"), this);
-  feedProperties_->setStatusTip(tr("Properties feed"));
   feedContextMenu_->addAction(feedProperties_);
 }
 
