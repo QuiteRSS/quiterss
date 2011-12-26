@@ -1220,7 +1220,8 @@ void RSSListing::createMenuNews()
 
 void RSSListing::showContextMenuNews(const QPoint &p)
 {
-  newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
+  if (newsView_->currentIndex().isValid())
+    newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
 }
 
 void RSSListing::openInBrowserNews()
