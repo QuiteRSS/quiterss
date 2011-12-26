@@ -8,6 +8,7 @@
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
+#include "delegatewithoutfocus.h"
 
 /*!****************************************************************************/
 const QString kDbName = "feeds.db";
@@ -86,6 +87,8 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setObjectName("feedsTreeView_");
     feedsView_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     feedsView_->setModel(feedsModel_);
+    DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
+    feedsView_->setItemDelegate(itemDelegate);
     feedsView_->header()->setStretchLastSection(false);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);

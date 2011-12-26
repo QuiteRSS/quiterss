@@ -1,4 +1,5 @@
 #include "newsview.h"
+#include "delegatewithoutfocus.h"
 
 NewsView::NewsView(QWidget * parent) :
     QTreeView(parent)
@@ -10,6 +11,8 @@ NewsView::NewsView(QWidget * parent) :
   setSortingEnabled(true);
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setSelectionMode(QAbstractItemView::SingleSelection);
+  DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
+  setItemDelegate(itemDelegate);
 //    setAlternatingRowColors(true);
 }
 
