@@ -197,12 +197,14 @@ QHeaderView::section:hover {
 }
 
 QHeaderView::down-arrow {
-	right: 2px;
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
 	image: url(:/images/images/sortIndicatorD.png);
 }
 
 QHeaderView::up-arrow {
-	right: 2px;
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
 	image: url(:/images/images/sortIndicatorA.png);
 }
 
