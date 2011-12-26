@@ -145,6 +145,8 @@ private slots:
     void deleteNews();
     void showContextMenuNews(const QPoint &);
     void openInBrowserNews();
+    void slotSetItemStar(QModelIndex index, int sticky);
+    void markNewsStar();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

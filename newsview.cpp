@@ -22,13 +22,11 @@ NewsView::NewsView(QWidget * parent) :
   QModelIndex index = indexAt(event->pos());
   if (event->buttons() & Qt::LeftButton) {
     if (index.column() == model_->fieldIndex("sticky")) {
-      QModelIndex curIndex = currentIndex();
       if (model_->index(index.row(), model_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
-        model_->setData(model_->index(index.row(), model_->fieldIndex("sticky")), 1);
+        emit signalSetItemStar(index, 1);
       } else {
-        model_->setData(model_->index(index.row(), model_->fieldIndex("sticky")), 0);
+        emit signalSetItemStar(index, 0);
       }
-      setCurrentIndex(curIndex);
       event->ignore();
       return;
     } else if (index.column() == model_->fieldIndex("read")) {

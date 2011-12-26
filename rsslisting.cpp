@@ -161,14 +161,14 @@ RSSListing::RSSListing(QWidget *parent)
     newsHeader_->view_ = newsView_;
     newsView_->setHeader(newsHeader_);
 
-    createMenuNews();
-
     connect(newsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
     connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
             this, SLOT(slotSetItemRead(QModelIndex, int)));
+    connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
+            this, SLOT(slotSetItemStar(QModelIndex,int)));
     connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
             this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
     connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
@@ -246,6 +246,7 @@ RSSListing::RSSListing(QWidget *parent)
     createActions();
     createMenu();
     createToolBar();
+    createMenuNews();
 
     feedsView_->installEventFilter(this);
     newsView_->installEventFilter(this);
@@ -1212,7 +1213,15 @@ void RSSListing::createMenuNews()
   newsContextMenu_->addAction(openInBrowserAct_);
   newsContextMenu_->addSeparator();
 
-  QAction *deleteNewsAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("Delete"), this);
+  newsContextMenu_->addAction(markNewsRead_);
+  newsContextMenu_->addAction(markAllNewsRead_);
+  newsContextMenu_->addSeparator();
+  QAction *markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
+  connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
+  newsContextMenu_->addAction(markStarAct_);
+  newsContextMenu_->addSeparator();
+
+  QAction *deleteNewsAct_ = new QAction(QIcon(":/images/deleteNews"), tr("Delete"), this);
   deleteNewsAct_->setShortcut(Qt::Key_Delete);
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
   newsContextMenu_->addAction(deleteNewsAct_);
@@ -1227,4 +1236,25 @@ void RSSListing::showContextMenuNews(const QPoint &p)
 void RSSListing::openInBrowserNews()
 {
   slotNewsViewDoubleClicked(newsView_->currentIndex());
+}
+
+void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
+{
+  if (!index.isValid()) return;
+
+  QModelIndex curIndex = newsView_->currentIndex();
+  newsModel_->setData(
+      newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
+      sticky);
+  newsView_->setCurrentIndex(curIndex);
+}
+
+void RSSListing::markNewsStar()
+{
+  QModelIndex index = newsView_->currentIndex();
+  if (newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
+    slotSetItemStar(index, 1);
+  } else {
+    slotSetItemStar(index, 0);
+  }
 }

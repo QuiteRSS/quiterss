@@ -29,6 +29,7 @@
         <file>images/sortIndicatorD.png</file>
         <file alias="bulletNew">images/bulletNew.png</file>
         <file alias="bulletNoNew">images/bulletNoNew.png</file>
+        <file alias="deleteNews">images/deleteNews.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>
