@@ -85,6 +85,9 @@ private:
     QAction *filterNewsAll_;
     QAction *filterNewsUnread_;
     QAction *aboutAct_;
+    QAction *openInBrowserAct_;
+    QAction *markStarAct_;
+    QAction *deleteNewsAct_;
 
     QActionGroup *feedsFilterGroup_;
     QActionGroup *newsFilterGroup_;

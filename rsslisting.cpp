@@ -1207,7 +1207,7 @@ void RSSListing::createMenuNews()
 {
   newsContextMenu_ = new QMenu(this);
 
-  QAction *openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
+  openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
   connect(openInBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openInBrowserNews()));
   newsContextMenu_->addAction(openInBrowserAct_);
@@ -1216,12 +1216,15 @@ void RSSListing::createMenuNews()
   newsContextMenu_->addAction(markNewsRead_);
   newsContextMenu_->addAction(markAllNewsRead_);
   newsContextMenu_->addSeparator();
-  QAction *markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
+  markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
   connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
   newsContextMenu_->addAction(markStarAct_);
   newsContextMenu_->addSeparator();
 
-  QAction *deleteNewsAct_ = new QAction(QIcon(":/images/deleteNews"), tr("Delete"), this);
+  newsContextMenu_->addAction(updateFeedAct_);
+  newsContextMenu_->addSeparator();
+
+  deleteNewsAct_ = new QAction(QIcon(":/images/deleteNews"), tr("Delete"), this);
   deleteNewsAct_->setShortcut(Qt::Key_Delete);
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
   newsContextMenu_->addAction(deleteNewsAct_);
