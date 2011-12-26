@@ -311,4 +311,5 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
     newSize.setWidth(newSize.width()+1);
     resize(newSize);
   }
+  createMenu();
 }
