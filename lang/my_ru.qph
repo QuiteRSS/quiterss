@@ -292,4 +292,68 @@
     <source>Author</source>
     <target>Автор</target>
 </phrase>
+<phrase>
+    <source>Show All</source>
+    <target>Показать все</target>
+</phrase>
+<phrase>
+    <source>Show Unread</source>
+    <target>Показать непрочитанные</target>
+</phrase>
+<phrase>
+    <source>Filter</source>
+    <target>Фильтр</target>
+</phrase>
+<phrase>
+    <source>Error loading to WebVeiw</source>
+    <target>Ошибка загрузки WebVeiw</target>
+</phrase>
+<phrase>
+    <source>Loading... (%p%)</source>
+    <target>Загрузка... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Mark Read</source>
+    <target>Пометить прочитанной</target>
+</phrase>
+<phrase>
+    <source>Mark current news read</source>
+    <target>Пометить текущую новость прочитанной</target>
+</phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>Пометить все новости прочитанными</target>
+</phrase>
+<phrase>
+    <source>About</source>
+    <target>О программе</target>
+</phrase>
+<phrase>
+    <source>Version </source>
+    <target>Версия</target>
+</phrase>
+<phrase>
+    <source>The authors:</source>
+    <target>Авторы:</target>
+</phrase>
+<phrase>
+    <source>&amp;Close</source>
+    <target>&amp;Закрыть</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Название новостной ленты:</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Название ленты:</target>
+</phrase>
+<phrase>
+    <source>Feed Url:</source>
+    <target>Адрес ленты:</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Заголовок ленты:</target>
+</phrase>
 </QPH>
