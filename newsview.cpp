@@ -38,10 +38,8 @@ NewsView::NewsView(QWidget * parent) :
       event->ignore();
       return;
     }
-    QTreeView::mousePressEvent(event);
-  } else if (event->buttons() & Qt::RightButton) {
-    setCurrentIndex(index);
   }
+  QTreeView::mousePressEvent(event);
 }
 
 /*virtual*/ void NewsView::mouseMoveEvent(QMouseEvent *event)
