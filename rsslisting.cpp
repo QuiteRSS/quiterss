@@ -344,6 +344,9 @@ RSSListing::~RSSListing()
   }
   db_.commit();
 
+  QString  qStr = QString("update feeds set newCount=0");
+  q.exec(qStr);
+
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
 
