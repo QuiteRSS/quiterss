@@ -503,7 +503,7 @@ void RSSListing::createActions()
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
 
-  autoLoadImagesToggle_ = new QAction(tr("&Load images"), this);
+  autoLoadImagesToggle_ = new QAction(QIcon(":/images/imagesOff"), tr("&Load images"), this);
   autoLoadImagesToggle_->setCheckable(true);
   autoLoadImagesToggle_->setStatusTip(tr("Auto load images to news view"));
 
@@ -657,6 +657,7 @@ void RSSListing::readSettings()
   qApp->setFont(QFont(fontFamily, fontSize));
 
   autoLoadImagesToggle_->setChecked(settings_->value("autoLoadImages", false).toBool());
+  setAutoLoadImages(autoLoadImagesToggle_->isChecked());
 
   settings_->endGroup();
 
@@ -1403,5 +1404,10 @@ void RSSListing::slotLinkClicked(QUrl url)
 
 void RSSListing::setAutoLoadImages(bool checked)
 {
+  if (checked) {
+    autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
+  } else {
+    autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
+  }
   webView_->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
 }

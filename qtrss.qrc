@@ -27,6 +27,8 @@
         <file alias="bulletNew">images/bulletNew.png</file>
         <file alias="bulletNoNew">images/bulletNoNew.png</file>
         <file alias="deleteNews">images/deleteNews.png</file>
+        <file alias="imagesOff">images/imagesOff.png</file>
+        <file alias="imagesOn">images/imagesOn.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>
