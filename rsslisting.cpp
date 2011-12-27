@@ -181,6 +181,7 @@ RSSListing::RSSListing(QWidget *parent)
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    webView_->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, false);
     webViewProgress_ = new QProgressBar(this);
     webViewProgress_->setObjectName("webViewProgress_");
     webViewProgress_->setFixedHeight(15);
