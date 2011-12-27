@@ -881,8 +881,15 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
     newsHeader_->createMenu();
   }
 
-//  newsView_->setCurrentIndex(newsModel_->index(-1, 0));
-  slotNewsViewClicked(newsModel_->index(-1, 0));
+  int row = -1;
+  for (int i = 0; i < newsModel_->rowCount(); i++) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+        feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+      row = i;
+    }
+  }
+  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  slotNewsViewClicked(newsModel_->index(row, 0));
 
   newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
 }
@@ -1174,12 +1181,29 @@ void RSSListing::setFeedsFilter(QAction* pAct)
 void RSSListing::setNewsFilter(QAction* pAct)
 {
   QModelIndex index = newsView_->currentIndex();
+
+  int id = newsModel_->index(
+        index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
+  QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
+      arg(newsModel_->tableName());
+  QSqlQuery q(db_);
+  q.exec(qStr);
+
   if (pAct->objectName() == "filterNewsAll_") {
     newsModel_->setFilter("deleted = 0");
   } else if (pAct->objectName() == "filterNewsUnread_") {
     newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
   }
-  newsView_->setCurrentIndex(index);
+
+  int row = -1;
+  for (int i = 0; i < newsModel_->rowCount(); i++) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
+      row = i;
+    }
+  }
+  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  if (row == -1) webView_->setHtml("");
 }
 
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
@@ -1210,6 +1234,12 @@ void RSSListing::slotSetAllRead()
 
   qStr = QString("update feeds set newCount=0 where id=='%2'").
       arg(newsModel_->tableName().remove("feed_"));
+  q.exec(qStr);
+
+  int id = newsModel_->index(newsView_->currentIndex().row(), 0).
+      data(Qt::EditRole).toInt();
+  qStr = QString("update feeds set currentNews='%1' where id=='%2'").
+      arg(id).arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 }
 
