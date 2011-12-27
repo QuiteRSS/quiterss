@@ -228,10 +228,27 @@ RSSListing::RSSListing(QWidget *parent)
     connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
 
+    webPanelTitle_ = new QLabel("");
+    webPanelTitle_->setObjectName("webPanelTitle_");
+    webPanelTitle_->setOpenExternalLinks(true);
+
+    QHBoxLayout *webPanelTitleLayout = new QHBoxLayout();
+    webPanelTitleLayout->addWidget(new QLabel(tr("Title:")));
+    webPanelTitleLayout->addWidget(webPanelTitle_);
+    webPanelTitleLayout->addStretch(1);
+
+    QVBoxLayout *webPanelLayout = new QVBoxLayout();
+    webPanelLayout->addLayout(webPanelTitleLayout);
+
+    webPanel_ = new QWidget();
+    webPanel_->setObjectName("webPanel_");
+    webPanel_->setLayout(webPanelLayout);
+
     //! Create web layout
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
     webLayout->setSpacing(0);
+    webLayout->addWidget(webPanel_);
     webLayout->addWidget(webView_);
     webLayout->addWidget(webViewProgress_);
 
@@ -877,18 +894,29 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   static QModelIndex indexOld = index;
   if (!index.isValid()) {
     webView_->setHtml("");
+    webPanel_->hide();
     slotUpdateStatus();
     return;
+  } else {
+    webPanel_->show();
   }
   QModelIndex indexNew = index;
   if (!((index.row() == indexOld.row()) &&
          newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+    QString titleString = QString("<a href='%1'>%2</a>").
+        arg(newsModel_->record(index.row()).field("link_href").value().toString()).
+        arg(newsModel_->record(index.row()).field("title").value().toString());
+    webPanelTitle_->setText(titleString);
     QString content = newsModel_->record(index.row()).field("content").value().toString();
-    if (content.isEmpty())
+    if (content.isEmpty()) {
       webView_->setHtml(
             newsModel_->record(index.row()).field("description").value().toString());
-    else
+      qDebug() << "setHtml : description";
+    }
+    else {
       webView_->setHtml(content);
+      qDebug() << "setHtml : content";
+    }
     slotSetItemRead(index, 1);
   }
   indexOld = indexNew;
