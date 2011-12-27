@@ -18,6 +18,7 @@ protected:
 
 signals:
   void signalSetItemRead(QModelIndex index, int read);
+  void signalSetItemStar(QModelIndex index, int sticky);
   void signalDoubleClicked(QModelIndex index);
 };
 
