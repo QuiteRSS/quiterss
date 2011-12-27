@@ -304,11 +304,22 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
-    feedsView_->setCurrentIndex(feedsModel_->index(0, 0));
-    slotFeedsTreeClicked(feedsModel_->index(0, 0));  // загрузка новостей
+    int id = settings_->value("feedSettings/currentId", 0).toInt();
+    int row = 0;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, 0).data().toInt() == id) {
+        row = i;
+      }
+    }
+
+    feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
+    slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
+    row = newsView_->currentIndex().row();
 
     readSettings();
+
     newsHeader_->createMenu();
+    newsView_->setCurrentIndex(newsModel_->index(row, 0));
 
     //Установка шрифтов и их настроек для элементов
     QFont font_ = newsDock_->font();
@@ -692,6 +703,9 @@ void RSSListing::writeSettings()
   settings_->setValue("networkProxy/port",     networkProxy_.port());
   settings_->setValue("networkProxy/user",     networkProxy_.user());
   settings_->setValue("networkProxy/password", networkProxy_.password());
+
+  settings_->setValue("feedSettings/currentId",
+                      feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt());
 }
 
 /*! \brief Добавление ленты в список лент *************************************/
@@ -965,6 +979,13 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
       qDebug() << "setHtml : content";
     }
     slotSetItemRead(index, 1);
+
+    QSqlQuery q(db_);
+    int id = newsModel_->index(index.row(), 0).
+        data(Qt::EditRole).toInt();
+    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
+        arg(id).arg(newsModel_->tableName().remove("feed_"));
+    q.exec(qStr);
   }
   indexOld = indexNew;
 }
@@ -1276,12 +1297,6 @@ void RSSListing::slotSetAllRead()
 
   qStr = QString("update feeds set newCount=0 where id=='%2'").
       arg(newsModel_->tableName().remove("feed_"));
-  q.exec(qStr);
-
-  int id = newsModel_->index(newsView_->currentIndex().row(), 0).
-      data(Qt::EditRole).toInt();
-  qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-      arg(id).arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 }
 
