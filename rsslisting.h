@@ -158,6 +158,7 @@ private slots:
     void slotSetItemStar(QModelIndex index, int sticky);
     void markNewsStar();
     void showContextMenuFeed(const QPoint &);
+    void slotLinkClicked(QUrl url);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

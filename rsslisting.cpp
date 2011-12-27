@@ -180,6 +180,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     webViewProgress_ = new QProgressBar(this);
     webViewProgress_->setObjectName("webViewProgress_");
     webViewProgress_->setFixedHeight(15);
@@ -190,6 +191,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
     connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
     connect(webView_, SIGNAL(loadProgress(int)), webViewProgress_, SLOT(setValue(int)));
+    connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -1362,4 +1364,9 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
 {
   if (feedsView_->currentIndex().isValid())
     feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
+}
+
+void RSSListing::slotLinkClicked(QUrl url)
+{
+  QDesktopServices::openUrl(url);
 }
