@@ -1,5 +1,4 @@
 <RCC>
-    <qresource prefix="/html"/>
     <qresource prefix="/images">
         <file alias="addFeed">images/add.png</file>
         <file alias="deleteFeed">images/delete.png</file>

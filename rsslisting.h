@@ -115,6 +115,9 @@ private:
     NewsView *newsView_;
     NewsHeader *newsHeader_;
 
+    QLabel *webPanelTitle_;
+    QWidget *webPanel_;
+
     QWidget *webWidget_;
     QWebView *webView_;
     QProgressBar *webViewProgress_;
@@ -155,6 +158,7 @@ private slots:
     void slotSetItemStar(QModelIndex index, int sticky);
     void markNewsStar();
     void showContextMenuFeed(const QPoint &);
+    void slotLinkClicked(QUrl url);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

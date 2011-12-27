@@ -30,7 +30,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString atomIdString;
   QString atomUpdatedString;
   QString atomSummaryString;
-  QString atomContentString;
+  QString contentString;
 
   qDebug() << "=================== parseXml:start ============================";
   // поиск идентификатора ленты с таблице лент
@@ -71,6 +71,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         commentsString.clear();
         rssPubDateString.clear();
         rssGuidString.clear();
+        contentString.clear();
       }
       if (xml.name() == "entry") {  // clear strings
         atomEntryString.clear();
@@ -82,7 +83,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomIdString.clear();
         atomUpdatedString.clear();
         atomSummaryString.clear();
-        atomContentString.clear();
+        contentString.clear();
       }
       currentTag = xml.name().toString();
 //      if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
@@ -118,11 +119,12 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, guid, title, author_name, published, received, link_href) "
-                           "values(?, ?, ?, ?, ?, ?, ?)").
+                           "description, content, guid, title, author_name, published, received, link_href) "
+                           "values(?, ?, ?, ?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(rssDescriptionString);
+            q.addBindValue(contentString);
             q.addBindValue(rssGuidString);
             q.addBindValue(titleString);
             q.addBindValue(authorString);
@@ -132,6 +134,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << rssDescriptionString;
+            qDebug() << "       " << contentString;
             qDebug() << "       " << rssGuidString;
             qDebug() << "       " << titleString;
             qDebug() << "       " << authorString;
@@ -180,7 +183,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(atomSummaryString);
-            q.addBindValue(atomContentString);
+            q.addBindValue(contentString);
             q.addBindValue(atomIdString);
             q.addBindValue(titleString);
             q.addBindValue(authorString);
@@ -192,7 +195,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << atomSummaryString;
-            qDebug() << "       " << atomContentString;
+            qDebug() << "       " << contentString;
             qDebug() << "       " << atomIdString;
             qDebug() << "       " << titleString;
             qDebug() << "       " << authorString;
@@ -235,6 +238,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         rssPubDateString += xml.text().toString();
       else if (currentTag == "guid")
         rssGuidString += xml.text().toString();
+      else if (currentTag == "encoded")  //rss::content:encoded
+        contentString += xml.text().toString();
 
       else if (currentTag == "entry")
         atomEntryString += xml.text().toString();
@@ -245,7 +250,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (currentTag == "summary")
         atomSummaryString += xml.text().toString();
       else if (currentTag == "content")
-        atomContentString += xml.text().toString();
+        contentString += xml.text().toString();
     }
   }
   if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
