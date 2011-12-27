@@ -43,6 +43,7 @@ const QString kCreateFeedsTableQuery(
         "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
         "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
         "unread integer, "           // количество непрочитанных новостей
+        "newCount integer, "         // количество новых новостей
         "currentNews integer, "      // отображаемая новость
         "label varchar"              // выставляется пользователем
     ")");
@@ -124,7 +125,7 @@ RSSListing::RSSListing(QWidget *parent)
         persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
         Qt::QueuedConnection);
 
-    feedsModel_ = new FeedsModel(this, &db_);
+    feedsModel_ = new FeedsModel(this);
     feedsModel_->setTable("feeds");
     feedsModel_->select();
 
@@ -834,6 +835,16 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
       arg(unreadCount).arg(parseFeedId);
   q.exec(qStr);
 
+  int newCount = 0;
+  qStr = QString("select count(new) from feed_%1 where new==1").
+      arg(parseFeedId);
+  q.exec(qStr);
+  if (q.next()) newCount = q.value(0).toInt();
+
+  qStr = QString("update feeds set newCount='%1' where id=='%2'").
+      arg(newCount).arg(parseFeedId);
+  q.exec(qStr);
+
   QModelIndex index = feedsView_->currentIndex();
 
   // если обновлена просматриваемая лента, кликаем по ней
@@ -1114,6 +1125,16 @@ void RSSListing::slotUpdateStatus()
       arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 
+  int newCount = 0;
+  qStr = QString("select count(new) from %1 where new==1").
+      arg(newsModel_->tableName());
+  q.exec(qStr);
+  if (q.next()) newCount = q.value(0).toInt();
+
+  qStr = QString("update feeds set newCount='%1' where id=='%2'").
+      arg(newCount).arg(newsModel_->tableName().remove("feed_"));
+  q.exec(qStr);
+
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
@@ -1185,6 +1206,10 @@ void RSSListing::slotSetAllRead()
   q.exec(qStr);
   qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
       arg(newsModel_->tableName());
+  q.exec(qStr);
+
+  qStr = QString("update feeds set newCount=0 where id=='%2'").
+      arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 }
 
