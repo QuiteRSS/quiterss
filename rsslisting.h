@@ -73,6 +73,7 @@ private:
     QAction *deleteFeedAct_;
     QAction *importFeedsAct_;
     QAction *toolBarToggle_;
+    QAction *autoLoadImagesToggle_;
     QAction *optionsAct_;
     QAction *updateFeedAct_;
     QAction *updateAllFeedsAct_;
@@ -159,6 +160,7 @@ private slots:
     void markNewsStar();
     void showContextMenuFeed(const QPoint &);
     void slotLinkClicked(QUrl url);
+    void setAutoLoadImages(bool checked);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

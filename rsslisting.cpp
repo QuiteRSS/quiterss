@@ -181,7 +181,6 @@ RSSListing::RSSListing(QWidget *parent)
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    webView_->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, false);
     webViewProgress_ = new QProgressBar(this);
     webViewProgress_->setObjectName("webViewProgress_");
     webViewProgress_->setFixedHeight(15);
@@ -490,6 +489,10 @@ void RSSListing::createActions()
   toolBarToggle_->setCheckable(true);
   toolBarToggle_->setStatusTip(tr("Show ToolBar"));
 
+  autoLoadImagesToggle_ = new QAction(tr("&Load images"), this);
+  autoLoadImagesToggle_->setCheckable(true);
+  autoLoadImagesToggle_->setStatusTip(tr("Auto load images to news view"));
+
   updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update"), this);
   updateFeedAct_->setStatusTip(tr("Update current feed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
@@ -568,6 +571,7 @@ void RSSListing::createMenu()
 
   viewMenu_ = menuBar()->addMenu(tr("&View"));
   viewMenu_->addAction(toolBarToggle_);
+  viewMenu_->addAction(autoLoadImagesToggle_);
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
   feedMenu_->addAction(updateFeedAct_);
@@ -621,9 +625,12 @@ void RSSListing::createToolBar()
   toolBar_->addSeparator();
   toolBar_->addAction(markNewsRead_);
   toolBar_->addAction(markAllNewsRead_);
+  toolBar_->addSeparator();
+  toolBar_->addAction(autoLoadImagesToggle_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
   connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
+  connect(autoLoadImagesToggle_, SIGNAL(toggled(bool)), this, SLOT(setAutoLoadImages(bool)));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -634,6 +641,8 @@ void RSSListing::readSettings()
   QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
   int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
+
+  autoLoadImagesToggle_->setChecked(settings_->value("autoLoadImages", false).toBool());
 
   settings_->endGroup();
 
@@ -665,6 +674,8 @@ void RSSListing::writeSettings()
   settings_->setValue("/FontFamily", fontFamily);
   int fontSize = settings_->value("/FontSize", 8).toInt();
   settings_->setValue("/FontSize", fontSize);
+
+  settings_->setValue("autoLoadImages", autoLoadImagesToggle_->isChecked());
 
   settings_->endGroup();
 
@@ -1370,4 +1381,9 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
 void RSSListing::slotLinkClicked(QUrl url)
 {
   QDesktopServices::openUrl(url);
+}
+
+void RSSListing::setAutoLoadImages(bool checked)
+{
+  webView_->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
 }
