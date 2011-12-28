@@ -703,6 +703,8 @@ void RSSListing::writeSettings()
                       feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt());
   settings_->setValue("feedSettings/filterName",
                       feedsFilterGroup_->checkedAction()->objectName());
+  settings_->setValue("newsSettings/filterName",
+                      newsFilterGroup_->checkedAction()->objectName());
 }
 
 /*! \brief Добавление ленты в список лент *************************************/
@@ -1421,11 +1423,20 @@ void RSSListing::loadSettingsFeeds()
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
   QList<QAction*> listActions = feedsFilterGroup_->actions();
   foreach(QAction *action, listActions) {
-    if (action->objectName() == filterName){
+    if (action->objectName() == filterName) {
       action->setChecked(true);
       break;
     }
   }
+  filterName = settings_->value("newsSettings/filterName", "filterNewsAll_").toString();
+  listActions = newsFilterGroup_->actions();
+  foreach(QAction *action, listActions) {
+    if (action->objectName() == filterName) {
+      action->setChecked(true);
+      break;
+    }
+  }
+
   setFeedsFilter(feedsFilterGroup_->checkedAction());
   int id = settings_->value("feedSettings/currentId", 0).toInt();
   int row = -1;
