@@ -117,6 +117,7 @@ private:
     NewsView *newsView_;
     NewsHeader *newsHeader_;
 
+    QLabel *webPanelAuthor_;
     QLabel *webPanelTitle_;
     QWidget *webPanel_;
 

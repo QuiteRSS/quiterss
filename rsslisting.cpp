@@ -234,16 +234,25 @@ RSSListing::RSSListing(QWidget *parent)
     connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
 
+    QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
+    webPanelLabelLayout->addWidget(new QLabel(tr("Author:")));
+    webPanelLabelLayout->addWidget(new QLabel(tr("Title:")));
+
+    webPanelAuthor_ = new QLabel("");
+    webPanelAuthor_->setObjectName("webPanelAuthor_");
+    webPanelAuthor_->setOpenExternalLinks(true);
+
     webPanelTitle_ = new QLabel("");
     webPanelTitle_->setObjectName("webPanelTitle_");
     webPanelTitle_->setOpenExternalLinks(true);
 
-    QHBoxLayout *webPanelTitleLayout = new QHBoxLayout();
-    webPanelTitleLayout->addWidget(new QLabel(tr("Title:")));
-    webPanelTitleLayout->addWidget(webPanelTitle_, 1);
+    QVBoxLayout *webPanelTitleLayout = new QVBoxLayout();
+    webPanelTitleLayout->addWidget(webPanelAuthor_);
+    webPanelTitleLayout->addWidget(webPanelTitle_);
 
-    QVBoxLayout *webPanelLayout = new QVBoxLayout();
-    webPanelLayout->addLayout(webPanelTitleLayout);
+    QHBoxLayout *webPanelLayout = new QHBoxLayout();
+    webPanelLayout->addLayout(webPanelLabelLayout, 0);
+    webPanelLayout->addLayout(webPanelTitleLayout, 1);
 
     webPanel_ = new QWidget();
     webPanel_->setObjectName("webPanel_");
@@ -962,6 +971,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   QModelIndex indexNew = index;
   if (!((index.row() == indexOld.row()) &&
          newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+    webPanelAuthor_->setText(newsModel_->record(index.row()).field("author_name").value().toString());
     QString titleString = QString("<a href='%1'>%2</a>").
         arg(newsModel_->record(index.row()).field("link_href").value().toString()).
         arg(newsModel_->record(index.row()).field("title").value().toString());
