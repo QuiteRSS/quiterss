@@ -62,6 +62,7 @@ private:
     void createTrayMenu();
     void createMenuNews();
     void createMenuFeed();
+    void loadSettingsFeeds();
 
     QSettings *settings_;
 

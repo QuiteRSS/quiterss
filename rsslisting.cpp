@@ -304,17 +304,8 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
-    int id = settings_->value("feedSettings/currentId", 0).toInt();
-    int row = 0;
-    for (int i = 0; i < feedsModel_->rowCount(); i++) {
-      if (feedsModel_->index(i, 0).data().toInt() == id) {
-        row = i;
-      }
-    }
-
-    feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-    slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
-    row = newsView_->currentIndex().row();
+    loadSettingsFeeds();
+    int row = newsView_->currentIndex().row();
 
     readSettings();
 
@@ -710,6 +701,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("feedSettings/currentId",
                       feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt());
+  settings_->setValue("feedSettings/filterName",
+                      feedsFilterGroup_->checkedAction()->objectName());
 }
 
 /*! \brief Добавление ленты в список лент *************************************/
@@ -1235,6 +1228,10 @@ void RSSListing::slotLoadFinished(bool ok)
 void RSSListing::setFeedsFilter(QAction* pAct)
 {
   QModelIndex index = feedsView_->currentIndex();
+
+  int id = feedsModel_->index(
+        index.row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
   if (pAct->objectName() == "filterFeedsAll_") {
     feedsModel_->setFilter("");
   } else if (pAct->objectName() == "filterFeedsUnread_") {
@@ -1242,7 +1239,14 @@ void RSSListing::setFeedsFilter(QAction* pAct)
           feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
     feedsModel_->setFilter(QString("unread > 0 OR id = '%1'").arg(id));
   }
-  feedsView_->setCurrentIndex(index);
+
+  int row = -1;
+  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
+      row = i;
+    }
+  }
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
 }
 
 void RSSListing::setNewsFilter(QAction* pAct)
@@ -1410,4 +1414,27 @@ void RSSListing::setAutoLoadImages(bool checked)
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
   webView_->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
+}
+
+void RSSListing::loadSettingsFeeds()
+{
+  QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
+  QList<QAction*> listActions = feedsFilterGroup_->actions();
+  foreach(QAction *action, listActions) {
+    if (action->objectName() == filterName){
+      action->setChecked(true);
+      break;
+    }
+  }
+  setFeedsFilter(feedsFilterGroup_->checkedAction());
+  int id = settings_->value("feedSettings/currentId", 0).toInt();
+  int row = -1;
+  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+    if (feedsModel_->index(i, 0).data().toInt() == id) {
+      row = i;
+    }
+  }
+
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
+  slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
 }
