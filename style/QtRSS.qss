@@ -229,3 +229,7 @@ QHeaderView::up-arrow {
 #AboutDialog, #logoLabel {
 	background: #F9FFF9;
 }
+
+#webPanel_ {
+	border-bottom: 1px solid gray;
+}
