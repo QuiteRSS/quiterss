@@ -240,11 +240,10 @@ RSSListing::RSSListing(QWidget *parent)
 
     QHBoxLayout *webPanelTitleLayout = new QHBoxLayout();
     webPanelTitleLayout->addWidget(new QLabel(tr("Title:")));
-    webPanelTitleLayout->addWidget(webPanelTitle_);
-    webPanelTitleLayout->addStretch(1);
+    webPanelTitleLayout->addWidget(webPanelTitle_, 1);
 
     QVBoxLayout *webPanelLayout = new QVBoxLayout();
-    webPanelLayout->addLayout(webPanelTitleLayout, 0);
+    webPanelLayout->addLayout(webPanelTitleLayout);
 
     webPanel_ = new QWidget();
     webPanel_->setObjectName("webPanel_");
@@ -254,9 +253,9 @@ RSSListing::RSSListing(QWidget *parent)
     QVBoxLayout *webLayout = new QVBoxLayout();
     webLayout->setMargin(1);  // Чтобы было видно границу виджета
     webLayout->setSpacing(0);
-    webLayout->addWidget(webPanel_);
-    webLayout->addWidget(webView_);
-    webLayout->addWidget(webViewProgress_);
+    webLayout->addWidget(webPanel_, 0);
+    webLayout->addWidget(webView_, 1);
+    webLayout->addWidget(webViewProgress_, 0);
 
     webWidget_ = new QWidget();
     webWidget_->setObjectName("webWidget_");
