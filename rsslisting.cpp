@@ -244,7 +244,7 @@ RSSListing::RSSListing(QWidget *parent)
     webPanelTitleLayout->addStretch(1);
 
     QVBoxLayout *webPanelLayout = new QVBoxLayout();
-    webPanelLayout->addLayout(webPanelTitleLayout);
+    webPanelLayout->addLayout(webPanelTitleLayout, 0);
 
     webPanel_ = new QWidget();
     webPanel_->setObjectName("webPanel_");
