@@ -655,8 +655,10 @@ void RSSListing::readSettings()
   int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
 
-  autoLoadImagesToggle_->setChecked(settings_->value("autoLoadImages", false).toBool());
-  setAutoLoadImages(autoLoadImagesToggle_->isChecked());
+  fontFamily = settings_->value("/WebFontFamily", "Tahoma").toString();
+  fontSize = settings_->value("/WebFontSize", 12).toInt();
+  webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
+  webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
 
   settings_->endGroup();
 
@@ -688,6 +690,11 @@ void RSSListing::writeSettings()
   settings_->setValue("/FontFamily", fontFamily);
   int fontSize = settings_->value("/FontSize", 8).toInt();
   settings_->setValue("/FontSize", fontSize);
+
+  fontFamily = settings_->value("/WebFontFamily", "Tahoma").toString();
+  settings_->setValue("/WebFontFamily", fontFamily);
+  fontSize = settings_->value("/WebFontSize", 12).toInt();
+  settings_->setValue("/WebFontSize", fontSize);
 
   settings_->setValue("autoLoadImages", autoLoadImagesToggle_->isChecked());
 
@@ -1424,11 +1431,14 @@ void RSSListing::setAutoLoadImages(bool checked)
   } else {
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
-  webView_->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
+  webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
 }
 
 void RSSListing::loadSettingsFeeds()
 {
+  autoLoadImagesToggle_->setChecked(settings_->value("Settings/autoLoadImages", false).toBool());
+  setAutoLoadImages(autoLoadImagesToggle_->isChecked());
+
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
   QList<QAction*> listActions = feedsFilterGroup_->actions();
   foreach(QAction *action, listActions) {
