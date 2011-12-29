@@ -490,7 +490,7 @@ void RSSListing::createActions()
   deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
-  importFeedsAct_ = new QAction(tr("&Import feeds..."), this);
+  importFeedsAct_ = new QAction(QIcon(":/images/importFeeds"), tr("&Import feeds..."), this);
   importFeedsAct_->setStatusTip(tr("Import feeds from OPML file"));
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
 

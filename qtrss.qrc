@@ -29,6 +29,7 @@
         <file alias="deleteNews">images/deleteNews.png</file>
         <file alias="imagesOff">images/imagesOff.png</file>
         <file alias="imagesOn">images/imagesOn.png</file>
+        <file alias="importFeeds">images/ImportFeeds.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>
