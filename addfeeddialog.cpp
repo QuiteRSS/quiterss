@@ -3,6 +3,7 @@
 AddFeedDialog::AddFeedDialog(QWidget *parent) :
     QDialog(parent)
 {
+  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   feedTitleEdit_ = new QLineEdit();
   feedUrlEdit_ = new QLineEdit();
   buttonBox_ = new QDialogButtonBox(
