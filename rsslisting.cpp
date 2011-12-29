@@ -1432,6 +1432,16 @@ void RSSListing::setAutoLoadImages(bool checked)
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
+  if (newsView_->currentIndex().isValid()) {
+    QString content = newsModel_->record(
+          newsView_->currentIndex().row()).field("content").value().toString();
+    if (content.isEmpty()) {
+      content = newsModel_->record(
+            newsView_->currentIndex().row()).field("description").value().toString();
+    }
+    webView_->setHtml(content);
+  }
+  qDebug() << newsView_->currentIndex().row();
 }
 
 void RSSListing::loadSettingsFeeds()
