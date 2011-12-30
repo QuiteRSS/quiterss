@@ -93,7 +93,6 @@ void UpdateThread::error(QNetworkReply::NetworkError)
   currentReply_ = 0;
   emit getUrlDone(-1);
   currentUrl_.clear();
-  getQueuedUrl();
 }
 
 /*! \brief «авершение обработки сетевого запроса
