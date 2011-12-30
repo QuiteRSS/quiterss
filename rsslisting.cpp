@@ -102,14 +102,8 @@ RSSListing::RSSListing(QWidget *parent)
     } else {  // Инициализация базы
       db_.open();
       db_.exec(kCreateFeedsTableQuery);
-      db_.exec("insert into feeds(text, xmlurl) "
-          "values ('Qt Labs', 'http://labs.qt.nokia.com/blogs/feed')");
-      db_.exec("insert into feeds(text, xmlurl) "
-          "values ('Qt Russian Forum', 'http://www.prog.org.ru/index.php?type=rss;action=.xml')");
       db_.exec("create table info(id integer primary key, name varchar, value varchar)");
       db_.exec("insert into info(name, value) values ('version', '1.0')");
-      db_.exec(kCreateNewsTableQuery.arg(1));
-      db_.exec(kCreateNewsTableQuery.arg(2));
     }
 
     persistentUpdateThread_ = new UpdateThread(this);
