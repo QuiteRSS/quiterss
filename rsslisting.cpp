@@ -1435,7 +1435,6 @@ void RSSListing::setAutoLoadImages(bool checked)
     }
     webView_->setHtml(content);
   }
-  qDebug() << newsView_->currentIndex().row();
 }
 
 void RSSListing::loadSettingsFeeds()

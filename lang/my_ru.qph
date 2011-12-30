@@ -314,15 +314,15 @@
 </phrase>
 <phrase>
     <source>Mark Read</source>
-    <target>Пометить прочитанной</target>
+    <target>Отметить прочитанной</target>
 </phrase>
 <phrase>
     <source>Mark current news read</source>
-    <target>Пометить текущую новость прочитанной</target>
+    <target>Отметить текущую новость прочитанной</target>
 </phrase>
 <phrase>
     <source>Mark all news Read</source>
-    <target>Пометить все новости прочитанными</target>
+    <target>Отметить все новости прочитанными</target>
 </phrase>
 <phrase>
     <source>About</source>
@@ -358,6 +358,46 @@
 </phrase>
 <phrase>
     <source>Mark all news Read</source>
-    <target>Пометить все прочитанными</target>
+    <target>Отметить все прочитанными</target>
+</phrase>
+<phrase>
+    <source>&amp;Load images</source>
+    <target>&amp;Загружать изображения</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Открыть в браузере</target>
+</phrase>
+<phrase>
+    <source>Delete</source>
+    <target>Удалить</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Открыть в браузере</target>
+</phrase>
+<phrase>
+    <source>Mark feed read</source>
+    <target>Отметить ленту прочитанной</target>
+</phrase>
+<phrase>
+    <source>Properties</source>
+    <target>Свойства</target>
+</phrase>
+<phrase>
+    <source>Properties feed</source>
+    <target>Свойства ленты</target>
+</phrase>
+<phrase>
+    <source>Author:</source>
+    <target>Автор:</target>
+</phrase>
+<phrase>
+    <source>Title:</source>
+    <target>Заголовок:</target>
+</phrase>
+<phrase>
+    <source>Auto load images to news view</source>
+    <target>Автоматическая загрузка изображений</target>
 </phrase>
 </QPH>
