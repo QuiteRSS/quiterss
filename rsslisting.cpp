@@ -1233,9 +1233,9 @@ void RSSListing::slotUpdateStatus()
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 
-  statusUnread_->setText(tr(" Unread: ") + QString::number(unreadCount) + " ");
+  statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
 
-  statusAll_->setText(tr(" All: ") + QString::number(allCount) + " ");
+  statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
 }
 
 void RSSListing::slotLoadStarted()
