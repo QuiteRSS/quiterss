@@ -1167,10 +1167,22 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
         0);
+//    QSqlQuery q(db_);
+//    q.exec(QString("update %1 set new=0 where id=='%2'").
+//        arg(newsModel_->tableName()).
+//        arg(newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data().toInt()));
+//    qDebug() << q.lastQuery() << q.lastError();
   }
-  newsModel_->setData(
-      newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-      read);
+  if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != read) {
+    newsModel_->setData(
+        newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+        read);
+//    QSqlQuery q(db_);
+//    q.exec(QString("update %1 set read='%2' where id=='%3'").
+//        arg(newsModel_->tableName()).arg(read).
+//        arg(newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data().toInt()));
+//    qDebug() << q.lastQuery() << q.lastError();
+  }
   newsView_->setCurrentIndex(curIndex);
   slotUpdateStatus();
 }
