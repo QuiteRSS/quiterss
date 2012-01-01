@@ -84,6 +84,7 @@ private:
     QAction *markAllNewsRead_;
     QAction *markNewsUnread_;
     QAction *setProxyAct_;
+    QAction *feedsFilter_;
     QAction *filterFeedsAll_;
     QAction *filterFeedsUnread_;
     QAction *filterNewsAll_;
@@ -107,10 +108,12 @@ private:
     QMenu *trayMenu_;
     QMenu *newsContextMenu_;
     QMenu *feedContextMenu_;
-    QMenu *feedsFilter;
     QMenu *newsFilter;
 
     QToolBar *toolBar_;
+    QToolBar *feedsToolBar_;
+
+    QTabBar *feedsTabBar_;
 
     QDockWidget *feedsDock_;
     Qt::DockWidgetArea feedsDockArea_;
