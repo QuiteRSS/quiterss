@@ -198,6 +198,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     feedsToolBar_ = new QToolBar(this);
     feedsToolBar_->setObjectName("feedsToolBar_");
+    feedsToolBar_->setIconSize(QSize(16, 15));
     feedsToolBar_->setToolButtonStyle(Qt::ToolButtonFollowStyle);
 
     QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
@@ -207,6 +208,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsPanelLayout->addWidget(feedsToolBar_, 0);
 
     QWidget *feedsPanel = new QWidget(this);
+    feedsPanel->setObjectName("feedsPanel");
     feedsPanel->setLayout(feedsPanelLayout);
 
     //! Create feeds DockWidget
