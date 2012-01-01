@@ -281,6 +281,24 @@ QString ParseObject::parseDate(QString dateString)
   dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
   if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
 
+  temp = dateString.left(dateString.lastIndexOf(' '));
+  dt = locale.toDateTime(temp, "d MMM yyyy HH:mm:ss");
+  if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
+
+  temp = dateString;
+  dt = locale.toDateTime(temp, "yyyy-MM-dd");
+  if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
+
+  // @HACK(arhohryakov:2012.01.01):
+  // Формат "ddd, dd MMM yy HH:mm:ss" не распознаётся автоматически. Приводим
+  // его к формату "ddd, dd MMM yyyy HH:mm:ss"
+  temp = dateString.mid(13, 2);
+  if (70 < temp.toInt()) temp = dateString.insert(13, "19");
+  temp = dateString.insert(12, "20");
+  temp = dateString.left(25);
+  dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
+  if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
+
   qWarning() << "==== parseDate(): error with" << dateString;
   return QString();
 }
