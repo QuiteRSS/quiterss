@@ -106,6 +106,8 @@ private:
     QMenu *trayMenu_;
     QMenu *newsContextMenu_;
     QMenu *feedContextMenu_;
+    QMenu *feedsFilter;
+    QMenu *newsFilter;
 
     QToolBar *toolBar_;
 

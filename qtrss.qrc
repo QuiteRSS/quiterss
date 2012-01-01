@@ -18,7 +18,7 @@
         <file alias="starOff">images/starOff.png</file>
         <file alias="starOn">images/starOn.png</file>
         <file alias="starSection">images/starSection.png</file>
-        <file alias="filter">images/filter.png</file>
+        <file alias="filterOn">images/filter.png</file>
         <file alias="feed">images/feedDefault.png</file>
         <file alias="options">images/options.png</file>
         <file alias="markReadAll">images/markReadAll.png</file>
@@ -30,6 +30,7 @@
         <file alias="imagesOff">images/imagesOff.png</file>
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
+        <file alias="filterOff">images/filterOff.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

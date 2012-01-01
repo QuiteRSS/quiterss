@@ -589,7 +589,7 @@ void RSSListing::createMenu()
   feedsFilterGroup_->setExclusive(true);
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setFeedsFilter(QAction*)));
 
-  QMenu *feedsFilter = feedMenu_->addMenu(QIcon(":/images/filter"), tr("Filter"));
+  feedsFilter = feedMenu_->addMenu(QIcon(":/images/filterOff"), tr("Filter"));
   feedsFilter->addAction(filterFeedsAll_);
   feedsFilterGroup_->addAction(filterFeedsAll_);
   feedsFilter->addAction(filterFeedsUnread_);
@@ -604,7 +604,7 @@ void RSSListing::createMenu()
   newsFilterGroup_->setExclusive(true);
   connect(newsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setNewsFilter(QAction*)));
 
-  QMenu *newsFilter = newsMenu_->addMenu(QIcon(":/images/filter"), tr("Filter"));
+  newsFilter = newsMenu_->addMenu(QIcon(":/images/filterOff"), tr("Filter"));
   newsFilter->addAction(filterNewsAll_);
   newsFilterGroup_->addAction(filterNewsAll_);
   newsFilter->addAction(filterNewsUnread_);
@@ -1252,6 +1252,9 @@ void RSSListing::setFeedsFilter(QAction* pAct)
     feedsModel_->setFilter(QString("unread > 0 OR id = '%1'").arg(id));
   }
 
+  if (pAct->objectName() == "filterFeedsAll_") feedsFilter->setIcon(QIcon(":/images/filterOff"));
+  else feedsFilter->setIcon(QIcon(":/images/filterOn"));
+
   int row = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
     if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
@@ -1278,6 +1281,9 @@ void RSSListing::setNewsFilter(QAction* pAct)
   } else if (pAct->objectName() == "filterNewsUnread_") {
     newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
   }
+
+  if (pAct->objectName() == "filterNewsAll_") newsFilter->setIcon(QIcon(":/images/filterOff"));
+  else newsFilter->setIcon(QIcon(":/images/filterOn"));
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
