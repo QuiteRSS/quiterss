@@ -63,6 +63,7 @@ private:
     void createMenuNews();
     void createMenuFeed();
     void loadSettingsFeeds();
+    void updateWebView(QModelIndex index);
 
     QSettings *settings_;
 
@@ -119,8 +120,9 @@ private:
     NewsView *newsView_;
     NewsHeader *newsHeader_;
 
-    QLabel *webPanelAuthor_;
     QLabel *webPanelTitle_;
+    QLabel *webPanelAuthorLabel_;
+    QLabel *webPanelAuthor_;
     QWidget *webPanel_;
 
     QWidget *webWidget_;
