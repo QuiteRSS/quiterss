@@ -991,7 +991,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
-    slotUpdateStatus();
+//    slotUpdateStatus();
     return;
   }
 
@@ -1011,7 +1011,6 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     q.exec(qStr);
   }
   indexOld = indexNew;
-  slotUpdateStatus();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
