@@ -1213,8 +1213,10 @@ void RSSListing::markAllNewsRead()
 
 void RSSListing::slotUpdateStatus()
 {
+  QString qStr;
+
   int allCount = 0;
-  QString qStr = QString("select count(id) from %1 where deleted=0").
+  qStr = QString("select count(id) from %1 where deleted=0").
       arg(newsModel_->tableName());
   QSqlQuery q(db_);
   q.exec(qStr);
@@ -1226,18 +1228,15 @@ void RSSListing::slotUpdateStatus()
   q.exec(qStr);
   if (q.next()) unreadCount = q.value(0).toInt();
 
-  qStr = QString("update feeds set unread='%1' where id=='%2'").
-      arg(unreadCount).arg(newsModel_->tableName().remove("feed_"));
-  q.exec(qStr);
-
   int newCount = 0;
   qStr = QString("select count(new) from %1 where new==1").
       arg(newsModel_->tableName());
   q.exec(qStr);
   if (q.next()) newCount = q.value(0).toInt();
 
-  qStr = QString("update feeds set newCount='%1' where id=='%2'").
-      arg(newCount).arg(newsModel_->tableName().remove("feed_"));
+  qStr = QString("update feeds set unread='%1', newCount='%2' where id=='%3'").
+      arg(unreadCount).arg(newCount).
+      arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 
   QModelIndex index = feedsView_->currentIndex();
