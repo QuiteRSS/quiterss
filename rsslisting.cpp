@@ -850,7 +850,6 @@ void RSSListing::getUrlDone(const int &result)
 
   if (!url_.isEmpty()) {
     qDebug() << "emit xmlReadyParse: before <<" << url_;
-//    persistentParseThread_->parseXml(data_, url_);
     emit xmlReadyParse(data_, url_);
     qDebug() << "emit xmlReadyParse: after  <<" << url_;
     data_.clear();
@@ -976,21 +975,6 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   if (!((index.row() == indexOld.row()) &&
          newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
     updateWebView(index);
-//    webPanelAuthor_->setText(newsModel_->record(index.row()).field("author_name").value().toString());
-//    QString titleString = QString("<a href='%1'>%2</a>").
-//        arg(newsModel_->record(index.row()).field("link_href").value().toString()).
-//        arg(newsModel_->record(index.row()).field("title").value().toString());
-//    webPanelTitle_->setText(titleString);
-//    QString content = newsModel_->record(index.row()).field("content").value().toString();
-//    if (content.isEmpty()) {
-//      webView_->setHtml(
-//            newsModel_->record(index.row()).field("description").value().toString());
-//      qDebug() << "setHtml : description";
-//    }
-//    else {
-//      webView_->setHtml(content);
-//      qDebug() << "setHtml : content";
-//    }
     slotSetItemRead(index, 1);
 
     QSqlQuery q(db_);
@@ -1438,15 +1422,6 @@ void RSSListing::setAutoLoadImages(bool checked)
   }
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
   updateWebView(newsView_->currentIndex());
-//  if (newsView_->currentIndex().isValid()) {
-//    QString content = newsModel_->record(
-//          newsView_->currentIndex().row()).field("content").value().toString();
-//    if (content.isEmpty()) {
-//      content = newsModel_->record(
-//            newsView_->currentIndex().row()).field("description").value().toString();
-//    }
-//    webView_->setHtml(content);
-//  }
 }
 
 void RSSListing::loadSettingsFeeds()
