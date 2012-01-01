@@ -228,9 +228,11 @@ RSSListing::RSSListing(QWidget *parent)
     connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
 
+    webPanelAuthorLabel_ = new QLabel(tr("Author:"));
+
     QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
-    webPanelLabelLayout->addWidget(new QLabel(tr("Author:")));
     webPanelLabelLayout->addWidget(new QLabel(tr("Title:")));
+    webPanelLabelLayout->addWidget(webPanelAuthorLabel_);
 
     webPanelAuthor_ = new QLabel("");
     webPanelAuthor_->setObjectName("webPanelAuthor_");
@@ -241,8 +243,8 @@ RSSListing::RSSListing(QWidget *parent)
     webPanelTitle_->setOpenExternalLinks(true);
 
     QVBoxLayout *webPanelTitleLayout = new QVBoxLayout();
-    webPanelTitleLayout->addWidget(webPanelAuthor_);
     webPanelTitleLayout->addWidget(webPanelTitle_);
+    webPanelTitleLayout->addWidget(webPanelAuthor_);
 
     QHBoxLayout *webPanelLayout = new QHBoxLayout();
     webPanelLayout->addLayout(webPanelLabelLayout, 0);
@@ -966,27 +968,29 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     webPanel_->hide();
     slotUpdateStatus();
     return;
-  } else {
-    webPanel_->show();
   }
+
+  webPanel_->show();
+
   QModelIndex indexNew = index;
   if (!((index.row() == indexOld.row()) &&
          newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
-    webPanelAuthor_->setText(newsModel_->record(index.row()).field("author_name").value().toString());
-    QString titleString = QString("<a href='%1'>%2</a>").
-        arg(newsModel_->record(index.row()).field("link_href").value().toString()).
-        arg(newsModel_->record(index.row()).field("title").value().toString());
-    webPanelTitle_->setText(titleString);
-    QString content = newsModel_->record(index.row()).field("content").value().toString();
-    if (content.isEmpty()) {
-      webView_->setHtml(
-            newsModel_->record(index.row()).field("description").value().toString());
-      qDebug() << "setHtml : description";
-    }
-    else {
-      webView_->setHtml(content);
-      qDebug() << "setHtml : content";
-    }
+    updateWebView(index);
+//    webPanelAuthor_->setText(newsModel_->record(index.row()).field("author_name").value().toString());
+//    QString titleString = QString("<a href='%1'>%2</a>").
+//        arg(newsModel_->record(index.row()).field("link_href").value().toString()).
+//        arg(newsModel_->record(index.row()).field("title").value().toString());
+//    webPanelTitle_->setText(titleString);
+//    QString content = newsModel_->record(index.row()).field("content").value().toString();
+//    if (content.isEmpty()) {
+//      webView_->setHtml(
+//            newsModel_->record(index.row()).field("description").value().toString());
+//      qDebug() << "setHtml : description";
+//    }
+//    else {
+//      webView_->setHtml(content);
+//      qDebug() << "setHtml : content";
+//    }
     slotSetItemRead(index, 1);
 
     QSqlQuery q(db_);
@@ -997,6 +1001,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     q.exec(qStr);
   }
   indexOld = indexNew;
+  slotUpdateStatus();
 }
 
 /*! \brief ќбработка клавиш Up/Down в дереве лент *****************************/
@@ -1426,15 +1431,16 @@ void RSSListing::setAutoLoadImages(bool checked)
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
-  if (newsView_->currentIndex().isValid()) {
-    QString content = newsModel_->record(
-          newsView_->currentIndex().row()).field("content").value().toString();
-    if (content.isEmpty()) {
-      content = newsModel_->record(
-            newsView_->currentIndex().row()).field("description").value().toString();
-    }
-    webView_->setHtml(content);
-  }
+  updateWebView(newsView_->currentIndex());
+//  if (newsView_->currentIndex().isValid()) {
+//    QString content = newsModel_->record(
+//          newsView_->currentIndex().row()).field("content").value().toString();
+//    if (content.isEmpty()) {
+//      content = newsModel_->record(
+//            newsView_->currentIndex().row()).field("description").value().toString();
+//    }
+//    webView_->setHtml(content);
+//  }
 }
 
 void RSSListing::loadSettingsFeeds()
@@ -1470,4 +1476,35 @@ void RSSListing::loadSettingsFeeds()
 
   feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
   slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
+}
+
+void RSSListing::updateWebView(QModelIndex index)
+{
+  if (!index.isValid()) {
+    webView_->setHtml("");
+    webPanel_->hide();
+    return;
+  }
+
+  webPanel_->show();
+
+  QString titleString = QString("<a href='%1'>%2</a>").
+      arg(newsModel_->record(index.row()).field("link_href").value().toString()).
+      arg(newsModel_->record(index.row()).field("title").value().toString());
+  webPanelTitle_->setText(titleString);
+
+  webPanelAuthor_->setText(newsModel_->record(index.row()).field("author_name").value().toString());
+  webPanelAuthorLabel_->setVisible(!webPanelAuthor_->text().isEmpty());
+  webPanelAuthor_->setVisible(!webPanelAuthor_->text().isEmpty());
+
+  QString content = newsModel_->record(index.row()).field("content").value().toString();
+  if (content.isEmpty()) {
+    webView_->setHtml(
+          newsModel_->record(index.row()).field("description").value().toString());
+    qDebug() << "setHtml : description";
+  }
+  else {
+    webView_->setHtml(content);
+    qDebug() << "setHtml : content";
+  }
 }
