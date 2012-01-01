@@ -189,6 +189,26 @@ RSSListing::RSSListing(QWidget *parent)
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
+    feedsTabBar_ = new QTabBar(this);
+    feedsTabBar_->setObjectName("feedsTabBar_");
+    feedsTabBar_->addTab(tr("Feeds"));
+    feedsTabBar_->setExpanding(false);
+    feedsTabBar_->setUsesScrollButtons(false);
+    feedsTabBar_->setAttribute(Qt::WA_TransparentForMouseEvents);
+
+    feedsToolBar_ = new QToolBar(this);
+    feedsToolBar_->setObjectName("feedsToolBar_");
+    feedsToolBar_->setToolButtonStyle(Qt::ToolButtonFollowStyle);
+
+    QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
+    feedsPanelLayout->setMargin(0);
+    feedsPanelLayout->addWidget(feedsTabBar_, 0);
+    feedsPanelLayout->addStretch(1);
+    feedsPanelLayout->addWidget(feedsToolBar_, 0);
+
+    QWidget *feedsPanel = new QWidget(this);
+    feedsPanel->setLayout(feedsPanelLayout);
+
     //! Create feeds DockWidget
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
@@ -197,8 +217,9 @@ RSSListing::RSSListing(QWidget *parent)
     feedsDock_ = new QDockWidget(tr("Feeds"), this);
     feedsDock_->setObjectName("feedsDock");
     feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
-    feedsDock_->setWidget(feedsView_);
     feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
+    feedsDock_->setTitleBarWidget(feedsPanel);
+    feedsDock_->setWidget(feedsView_);
     addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
     connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
@@ -525,6 +546,7 @@ void RSSListing::createActions()
   optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 
+  feedsFilter_ = new QAction(QIcon(":/images/filterOff"), tr("Filter"), this);
   filterFeedsAll_ = new QAction(tr("Show All"), this);
   filterFeedsAll_->setObjectName("filterFeedsAll_");
   filterFeedsAll_->setStatusTip(tr("Show All"));
@@ -591,11 +613,15 @@ void RSSListing::createMenu()
   feedsFilterGroup_->setExclusive(true);
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setFeedsFilter(QAction*)));
 
-  feedsFilter = feedMenu_->addMenu(QIcon(":/images/filterOff"), tr("Filter"));
-  feedsFilter->addAction(filterFeedsAll_);
+  QMenu *feedsFilterMenu_ = new QMenu(this);
+  feedsFilterMenu_->addAction(filterFeedsAll_);
   feedsFilterGroup_->addAction(filterFeedsAll_);
-  feedsFilter->addAction(filterFeedsUnread_);
+  feedsFilterMenu_->addAction(filterFeedsUnread_);
   feedsFilterGroup_->addAction(filterFeedsUnread_);
+
+  feedsFilter_->setMenu(feedsFilterMenu_);
+  feedMenu_->addAction(feedsFilter_);
+  feedsToolBar_->addAction(feedsFilter_);
 
   newsMenu_ = menuBar()->addMenu(tr("&News"));
   newsMenu_->addAction(markNewsRead_);
@@ -1241,8 +1267,8 @@ void RSSListing::setFeedsFilter(QAction* pAct)
     feedsModel_->setFilter(QString("unread > 0 OR id = '%1'").arg(id));
   }
 
-  if (pAct->objectName() == "filterFeedsAll_") feedsFilter->setIcon(QIcon(":/images/filterOff"));
-  else feedsFilter->setIcon(QIcon(":/images/filterOn"));
+  if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
+  else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   int row = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
