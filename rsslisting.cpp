@@ -1499,9 +1499,18 @@ void RSSListing::updateWebView(QModelIndex index)
       arg(newsModel_->record(index.row()).field("title").value().toString());
   webPanelTitle_->setText(titleString);
 
-  webPanelAuthor_->setText(newsModel_->record(index.row()).field("author_name").value().toString());
-  webPanelAuthorLabel_->setVisible(!webPanelAuthor_->text().isEmpty());
-  webPanelAuthor_->setVisible(!webPanelAuthor_->text().isEmpty());
+  QString authorString;
+  QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
+  QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
+  QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
+  qDebug() << authorName << authorEmail << authorUri;
+  authorString = authorName;
+  if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+  if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+
+  webPanelAuthor_->setText(authorString);
+  webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
+  webPanelAuthor_->setVisible(!authorString.isEmpty());
 
   QString content = newsModel_->record(index.row()).field("content").value().toString();
   if (content.isEmpty()) {
