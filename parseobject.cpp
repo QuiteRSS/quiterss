@@ -16,7 +16,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
   file.close();
 
   QString currentTag;
-  QString rssItemString;
+  QString currentTagText;
+  QStack<QString> tagsStack;
   QString titleString;
   QString linkString;
   QString authorString;
@@ -26,7 +27,6 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString commentsString;
   QString rssPubDateString;
   QString rssGuidString;
-  QString atomEntryString;
   QString atomIdString;
   QString atomUpdatedString;
   QString atomSummaryString;
@@ -56,14 +56,35 @@ void ParseObject::slotParse(QSqlDatabase *db,
   db->transaction();
   int itemCount = 0;
   QXmlStreamReader xml(xmlData);
+  bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
   while (!xml.atEnd()) {
     xml.readNext();
     if (xml.isStartElement()) {
-      if (xml.name() == "rss")  qDebug() << "Feed type: RSS";
-      if (xml.name() == "feed") qDebug() << "Feed type: Atom";
+      tagsStack.push(currentTag);
+      currentTag = xml.name().toString();
+      if (currentTag == "rss")  qDebug() << "Feed type: RSS";
+      if (currentTag == "feed") qDebug() << "Feed type: Atom";
 
-      if (xml.name() == "item") {  // clear strings
-        rssItemString.clear();
+      if (currentTag == "item") {  // clear strings
+        if (isHeader) {
+          rssPubDateString = parseDate(rssPubDateString);
+
+          QSqlQuery q(*db);
+          QString qStr;
+          qStr = QString("update feeds set "
+                         "title='%1', description='%2', "
+                         "author_name='%3', pubdate='%4' "
+                         "where id=='%5'").
+              arg(titleString).
+              arg(rssDescriptionString).
+              arg(authorString).
+              arg(rssPubDateString).
+              arg(parseFeedId);
+          q.exec(qStr);
+          qDebug() << "q.exec(" << q.lastQuery() << ")";
+          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+        }
+        isHeader = false;
         titleString.clear();
         linkString.clear();
         authorString.clear();
@@ -73,8 +94,29 @@ void ParseObject::slotParse(QSqlDatabase *db,
         rssGuidString.clear();
         contentString.clear();
       }
-      if (xml.name() == "entry") {  // clear strings
-        atomEntryString.clear();
+      if (currentTag == "entry") {  // clear strings
+        atomUpdatedString = parseDate(atomUpdatedString);
+
+        if (isHeader) {
+          QSqlQuery q(*db);
+          QString qStr;
+          qStr = QString("update feeds set "
+                         "title='%1', description='%2', "
+                         "author_name='%3', author_email='%4', "
+                         "author_uri='%5', pubdate='%6' "
+                         "where id=='%7'").
+              arg(titleString).
+              arg(rssDescriptionString).
+              arg(authorString).
+              arg(authorEmailString).
+              arg(authorUriString).
+              arg(atomUpdatedString).
+              arg(parseFeedId);
+          q.exec(qStr);
+          qDebug() << "q.exec(" << q.lastQuery() << ")";
+          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+        }
+        isHeader = false;
         titleString.clear();
         linkString.clear();
         authorString.clear();
@@ -85,13 +127,16 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomSummaryString.clear();
         contentString.clear();
       }
-      currentTag = xml.name().toString();
-//      if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
-//      else qDebug() << itemCount << ":" << xml.qualifiedName();
-//      for (int i = 0 ; i < xml.attributes().count(); ++i)
-//        qDebug() << "      " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
       if (currentTag == "link")
         linkString = xml.attributes().value("href").toString();
+      if (isHeader) {
+        if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
+        else qDebug() << itemCount << ":" << xml.qualifiedName();
+        for (int i = 0 ; i < xml.attributes().count(); ++i)
+          qDebug() << "      " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
+      }
+      currentTagText.clear();
+      qDebug() << tagsStack << currentTag;
     } else if (xml.isEndElement()) {
       // rss::item
       if (xml.name() == "item") {
@@ -147,7 +192,6 @@ void ParseObject::slotParse(QSqlDatabase *db,
         }
         q.finish();
 
-        if (!rssItemString.isEmpty()) qWarning() << "rssItamString is not empty";
         ++itemCount;
       }
       // atom::feed
@@ -210,14 +254,24 @@ void ParseObject::slotParse(QSqlDatabase *db,
         }
         q.finish();
 
-        if (!atomEntryString.isEmpty()) qWarning() << "atomEntryString is not empty";
         ++itemCount;
       }
+      if (isHeader) {
+        if (!currentTagText.isEmpty()) qDebug() << itemCount << "::   " << currentTagText;
+      }
+      currentTag = tagsStack.pop();
+      qDebug() << tagsStack << currentTag;
     } else if (xml.isCharacters() && !xml.isWhitespace()) {
-      if (currentTag == "item")
-        rssItemString += xml.text().toString();
-      else if (currentTag == "title")
-        titleString += xml.text().toString();
+      currentTagText += xml.text().toString();
+
+      if (currentTag == "title") {
+        if ((tagsStack.top() == "channel") ||
+            (tagsStack.top() == "item") ||
+            (tagsStack.top() == "entry"))
+          titleString += xml.text().toString();
+//        if (tagsStack.top() == "image")
+//          imageTitleString += xml.text().toString();
+      }
       else if (currentTag == "link")
         linkString += xml.text().toString();
       else if (currentTag == "author")  //rss
@@ -241,8 +295,6 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (currentTag == "encoded")  //rss::content:encoded
         contentString += xml.text().toString();
 
-      else if (currentTag == "entry")
-        atomEntryString += xml.text().toString();
       else if (currentTag == "id")
         atomIdString += xml.text().toString();
       else if (currentTag == "updated")
