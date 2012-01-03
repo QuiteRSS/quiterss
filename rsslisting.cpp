@@ -1520,14 +1520,28 @@ void RSSListing::updateWebView(QModelIndex index)
       arg(newsModel_->record(index.row()).field("title").value().toString());
   webPanelTitle_->setText(titleString);
 
+  // ‘ормируем панель автора из автора новости
   QString authorString;
   QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
   QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
   QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
-  qDebug() << authorName << authorEmail << authorUri;
+  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
   authorString = authorName;
   if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
   if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+
+  // ≈сли авора новости нет, формируем панель автора из автора ленты
+  // @NOTE(arhohryakov:2012.01.03) јвтор берЄтс€ из текущего фида, т.к. при
+  //   новость обновл€етс€ именно у него
+  if (authorString.isEmpty()) {
+    authorName = feedsModel_->record(feedsView_->currentIndex().row()).field("author_name").value().toString();
+    authorEmail = feedsModel_->record(feedsView_->currentIndex().row()).field("author_email").value().toString();
+    authorUri = feedsModel_->record(feedsView_->currentIndex().row()).field("author_uri").value().toString();
+    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
+    authorString = authorName;
+    if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+    if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+  }
 
   webPanelAuthor_->setText(authorString);
   webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
