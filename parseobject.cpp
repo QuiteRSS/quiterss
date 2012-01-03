@@ -136,7 +136,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
           qDebug() << "      " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
       }
       currentTagText.clear();
-      qDebug() << tagsStack << currentTag;
+//      qDebug() << tagsStack << currentTag;
     } else if (xml.isEndElement()) {
       // rss::item
       if (xml.name() == "item") {
@@ -260,7 +260,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         if (!currentTagText.isEmpty()) qDebug() << itemCount << "::   " << currentTagText;
       }
       currentTag = tagsStack.pop();
-      qDebug() << tagsStack << currentTag;
+//      qDebug() << tagsStack << currentTag;
     } else if (xml.isCharacters() && !xml.isWhitespace()) {
       currentTagText += xml.text().toString();
 
