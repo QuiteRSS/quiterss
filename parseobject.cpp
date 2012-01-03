@@ -106,7 +106,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
                          "author_uri='%5', pubdate='%6' "
                          "where id=='%7'").
               arg(titleString).
-              arg(rssDescriptionString).
+              arg(atomSummaryString).
               arg(authorString).
               arg(authorEmailString).
               arg(authorUriString).
@@ -284,8 +284,11 @@ void ParseObject::slotParse(QSqlDatabase *db,
         authorUriString += xml.text().toString();
       else if (currentTag == "email")  //atom::email
         authorEmailString += xml.text().toString();
-      else if (currentTag == "description")
+      else if (currentTag == "description") {
+        if ((tagsStack.top() == "channel") ||
+            (tagsStack.top() == "item"))
         rssDescriptionString += xml.text().toString();
+      }
       else if (currentTag == "comments")
         commentsString += xml.text().toString();
       else if (currentTag == "pubDate")
