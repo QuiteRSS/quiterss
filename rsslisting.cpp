@@ -993,7 +993,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
-//    slotUpdateStatus();
+    slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     return;
   }
 
