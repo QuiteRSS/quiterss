@@ -288,6 +288,7 @@ RSSListing::RSSListing(QWidget *parent)
     webWidget_ = new QWidget();
     webWidget_->setObjectName("webWidget_");
     webWidget_->setLayout(webLayout);
+    webWidget_->setMinimumWidth(400);
 
     setCentralWidget(webWidget_);
 
@@ -1515,10 +1516,13 @@ void RSSListing::updateWebView(QModelIndex index)
 
   webPanel_->show();
 
-  QString titleString = QString("<a href='%1'>%2</a>").
+  QString titleString = newsModel_->record(index.row()).field("title").value().toString();
+  titleString = webPanelTitle_->fontMetrics().elidedText(
+      titleString, Qt::ElideRight, webPanelTitle_->width());
+  QString panelTitleString = QString("<a href='%1'>%2</a>").
       arg(newsModel_->record(index.row()).field("link_href").value().toString()).
-      arg(newsModel_->record(index.row()).field("title").value().toString());
-  webPanelTitle_->setText(titleString);
+      arg(titleString);
+  webPanelTitle_->setText(panelTitleString);
 
   // Формируем панель автора из автора новости
   QString authorString;
