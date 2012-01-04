@@ -625,7 +625,7 @@ void RSSListing::createMenu()
   feedsFilterGroup_->setExclusive(true);
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setFeedsFilter(QAction*)));
 
-  QMenu *feedsFilterMenu_ = new QMenu(this);
+  feedsFilterMenu_ = new QMenu(this);
   feedsFilterMenu_->addAction(filterFeedsAll_);
   feedsFilterGroup_->addAction(filterFeedsAll_);
   feedsFilterMenu_->addAction(filterFeedsUnread_);
@@ -634,6 +634,7 @@ void RSSListing::createMenu()
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
   feedsToolBar_->addAction(feedsFilter_);
+  connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
   newsMenu_ = menuBar()->addMenu(tr("&News"));
   newsMenu_->addAction(markNewsRead_);
@@ -1569,5 +1570,23 @@ void RSSListing::updateWebView(QModelIndex index)
   else {
     webView_->setHtml(content);
     qDebug() << "setHtml : content";
+  }
+}
+
+void RSSListing::slotFeedsFilter()
+{
+  static QAction *action = NULL;
+
+  if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
+    if (action != NULL) {
+      action->setChecked(true);
+      setFeedsFilter(action);
+    } else {
+      feedsFilterMenu_->popup(cursor().pos());
+    }
+  } else {
+    action = feedsFilterGroup_->checkedAction();
+    filterFeedsAll_->setChecked(true);
+    setFeedsFilter(filterFeedsAll_);
   }
 }

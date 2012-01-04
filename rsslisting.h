@@ -109,6 +109,7 @@ private:
     QMenu *newsContextMenu_;
     QMenu *feedContextMenu_;
     QMenu *newsFilter;
+    QMenu *feedsFilterMenu_;
 
     QToolBar *toolBar_;
     QToolBar *feedsToolBar_;
@@ -170,6 +171,7 @@ private slots:
     void showContextMenuFeed(const QPoint &);
     void slotLinkClicked(QUrl url);
     void setAutoLoadImages(bool checked);
+    void slotFeedsFilter();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
