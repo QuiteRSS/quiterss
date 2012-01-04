@@ -189,23 +189,23 @@ RSSListing::RSSListing(QWidget *parent)
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
-    feedsTabBar_ = new QTabBar(this);
-    feedsTabBar_->setObjectName("feedsTabBar_");
-    feedsTabBar_->addTab(tr("Feeds"));
-    feedsTabBar_->setExpanding(false);
-    feedsTabBar_->setUsesScrollButtons(false);
-    feedsTabBar_->setAttribute(Qt::WA_TransparentForMouseEvents);
+    QLabel *feedsTitleLabel_ = new QLabel(tr("Feeds"), this);
+    feedsTitleLabel_->setObjectName("feedsTitleLabel_");
+    feedsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+    feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
 
     feedsToolBar_ = new QToolBar(this);
     feedsToolBar_->setObjectName("feedsToolBar_");
-    feedsToolBar_->setIconSize(QSize(16, 15));
-    feedsToolBar_->setToolButtonStyle(Qt::ToolButtonFollowStyle);
+    feedsToolBar_->setIconSize(QSize(16, 16));
 
     QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
     feedsPanelLayout->setMargin(0);
-    feedsPanelLayout->addWidget(feedsTabBar_, 0);
+    feedsPanelLayout->setSpacing(0);
+
+    feedsPanelLayout->addWidget(feedsTitleLabel_, 0);
     feedsPanelLayout->addStretch(1);
     feedsPanelLayout->addWidget(feedsToolBar_, 0);
+    feedsPanelLayout->addSpacing(5);
 
     QWidget *feedsPanel = new QWidget(this);
     feedsPanel->setObjectName("feedsPanel");
