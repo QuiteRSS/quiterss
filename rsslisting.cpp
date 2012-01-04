@@ -211,6 +211,15 @@ RSSListing::RSSListing(QWidget *parent)
     feedsPanel->setObjectName("feedsPanel");
     feedsPanel->setLayout(feedsPanelLayout);
 
+    QVBoxLayout *feedsWidgetLayout = new QVBoxLayout();
+    feedsWidgetLayout->setMargin(1);
+    feedsWidgetLayout->setSpacing(0);
+    feedsWidgetLayout->addWidget(feedsView_);
+
+    QWidget *feedsWidget = new QWidget(this);
+    feedsWidget->setObjectName("feedsWidget");
+    feedsWidget->setLayout(feedsWidgetLayout);
+
     //! Create feeds DockWidget
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
@@ -221,7 +230,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
     feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
     feedsDock_->setTitleBarWidget(feedsPanel);
-    feedsDock_->setWidget(feedsView_);
+    feedsDock_->setWidget(feedsWidget);
     addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
     connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
