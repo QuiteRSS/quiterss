@@ -33,7 +33,7 @@ QMenuBar::item:pressed {
 	border-top: 1px solid #34aa34;
 	border-left: 1px solid #34aa34;
 	border-right: 1px solid #34aa34;
-	border-bottom: 0px;
+	border-bottom: none;
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 								stop:0 #7acc7a,
 								stop:0.4 #70c870,
@@ -71,7 +71,6 @@ QMenu::item:selected {
 
 #newsView_ {
 	border-style: none;
-	padding: 1px;
 }
 
 #feedsTreeView_::item, #newsView_::item {
@@ -93,7 +92,7 @@ QTabBar::tab {
 								stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
 								stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
 	border: 1px solid #C4C4C3;
-	border-bottom: 0px;
+	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	min-width: 8ex;
@@ -119,7 +118,7 @@ QTabBar::tab:!selected {
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
 	border: 1px solid #9B9B9B;
-	border-bottom: 0px;
+	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 }
@@ -128,8 +127,8 @@ QTabBar::tab:!selected {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
-	border: 1px solid #9B9B9B;
-	border-bottom: 0px;
+	border: 1px solid grey;
+	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	padding: 4px;
@@ -143,7 +142,6 @@ QTabBar::tab:!selected {
 
 #feedsWidget, #newsWidget {
 	border: 1px solid gray;
-	/*border-top: none;*/
 }
 
 QToolBar {
@@ -161,7 +159,7 @@ QToolBar {
 
 #buttonColumnView {
 	border-left: 1px solid #D5D5D5;
-	border-top: 0px solid #D5D5D5;
+	border-top: none;
 	border-right: 1px solid #D5D5D5;
 	border-bottom: 1px solid #D5D5D5;
 	padding: 5px 0px 1px 0px;
@@ -203,8 +201,8 @@ QHeaderView {
 QHeaderView::section {
 	min-height: 20px;
 	border: 1px solid #D5D5D5;
-	border-top: 0px solid #D5D5D5;
-	border-left: 0px solid #D5D5D5;
+	border-top: none;
+	border-left: none;
 	background-color: transparent;
 	padding-left: 4px;
 }
@@ -213,7 +211,7 @@ QHeaderView::section:hover {
 	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
 								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
-	border-top: 0px solid #D5D5D5;
+	border-top: none;
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
 								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
