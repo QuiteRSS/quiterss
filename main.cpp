@@ -44,13 +44,12 @@
 #include "rsslisting.h"
 
 void LoadLang (QString &lang){
-    QString AppFileName = qApp->applicationDirPath()+"/QtRSS.ini";
+    QString AppFileName = qApp->applicationFilePath();
+    AppFileName.replace(".exe", ".ini");
     QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
     QString strLocalLang = QLocale::system().name();
 
-    m_settings->beginGroup("/Settings");
-    lang = m_settings->value("/Lang", strLocalLang).toString();
-    m_settings->endGroup();
+    lang = m_settings->value("Settings/Lang", strLocalLang).toString();
 }
 
 int main(int argc, char **argv)
