@@ -70,6 +70,7 @@ QMenu::item:selected {
 }
 
 #newsView_ {
+	border-style: none;
 	padding: 1px;
 }
 
@@ -113,32 +114,22 @@ QTabBar::tab:!selected {
 	margin-top: 2px;
 }
 
-#newsDock::title {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
-								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
-	border: 1px solid #9B9B9B;
-	border-bottom: 0px;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	padding: 4px;
-}
-
-#feedsPanel {
+#feedsPanel, #newsPanel {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
 	border: 1px solid gray;
+	/*border-bottom: 0px;*/
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 }
 
-#feedsTitleLabel_ {
+#feedsTitleLabel_, #newsTitleLabel_ {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
 	border: 1px solid gray;
-	border-bottom: 0px;
+	/*border-bottom: 0px;*/
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	padding: 4px;
@@ -146,9 +137,13 @@ QTabBar::tab:!selected {
 	vertical-align:middle;
 }
 
-#feedsWidget {
+#newsTitleLabel_ {
+	font-weight:bold;
+}
+
+#feedsWidget, #newsWidget {
 	border: 1px solid gray;
-	border-top: none;
+	/*border-top: none;*/
 }
 
 QToolBar {

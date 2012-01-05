@@ -87,6 +87,7 @@ private:
     QAction *feedsFilter_;
     QAction *filterFeedsAll_;
     QAction *filterFeedsUnread_;
+    QAction *newsFilter_;
     QAction *filterNewsAll_;
     QAction *filterNewsUnread_;
     QAction *aboutAct_;
@@ -108,13 +109,12 @@ private:
     QMenu *trayMenu_;
     QMenu *newsContextMenu_;
     QMenu *feedContextMenu_;
-    QMenu *newsFilter;
     QMenu *feedsFilterMenu_;
+    QMenu *newsFilterMenu_;
 
     QToolBar *toolBar_;
     QToolBar *feedsToolBar_;
-
-    QTabBar *feedsTabBar_;
+    QToolBar *newsToolBar_;
 
     QDockWidget *feedsDock_;
     Qt::DockWidgetArea feedsDockArea_;
@@ -123,6 +123,7 @@ private:
     QTreeView *feedsView_;
     NewsView *newsView_;
     NewsHeader *newsHeader_;
+    QLabel *newsTitleLabel_;
 
     QLabel *webPanelTitle_;
     QLabel *webPanelAuthorLabel_;
@@ -172,6 +173,7 @@ private slots:
     void slotLinkClicked(QUrl url);
     void setAutoLoadImages(bool checked);
     void slotFeedsFilter();
+    void slotNewsFilter();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

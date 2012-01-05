@@ -248,14 +248,44 @@ RSSListing::RSSListing(QWidget *parent)
     toolBarNull_->addWidget(pushButtonNull_);
     connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
 
-    //! Create news DockWidget
-    QSplitter *newsSplitter = new QSplitter(Qt::Vertical);
-    newsSplitter->addWidget(newsView_);
 
+    newsTitleLabel_ = new QLabel(tr("news"), this);
+    newsTitleLabel_->setObjectName("newsTitleLabel_");
+    newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+    newsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+    newsToolBar_ = new QToolBar(this);
+    newsToolBar_->setObjectName("newsToolBar_");
+    newsToolBar_->setIconSize(QSize(16, 16));
+
+    QHBoxLayout *newsPanelLayout = new QHBoxLayout();
+    newsPanelLayout->setMargin(0);
+    newsPanelLayout->setSpacing(0);
+
+    newsPanelLayout->addWidget(newsTitleLabel_, 0);
+    newsPanelLayout->addStretch(1);
+    newsPanelLayout->addWidget(newsToolBar_, 0);
+    newsPanelLayout->addSpacing(5);
+
+    QWidget *newsPanel = new QWidget(this);
+    newsPanel->setObjectName("newsPanel");
+    newsPanel->setLayout(newsPanelLayout);
+
+    QVBoxLayout *newsWidgetLayout = new QVBoxLayout();
+    newsWidgetLayout->setMargin(1);
+    newsWidgetLayout->setSpacing(0);
+    newsWidgetLayout->addWidget(newsView_);
+
+    QWidget *newsWidget = new QWidget(this);
+    newsWidget->setObjectName("newsWidget");
+    newsWidget->setLayout(newsWidgetLayout);
+
+    //! Create news DockWidget
     newsDock_ = new QDockWidget(tr("News"), this);
     newsDock_->setObjectName("newsDock");
     newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
-    newsDock_->setWidget(newsSplitter);
+    newsDock_->setTitleBarWidget(newsPanel);
+    newsDock_->setWidget(newsWidget);
     addDockWidget(Qt::TopDockWidgetArea, newsDock_);
     connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
@@ -350,9 +380,9 @@ RSSListing::RSSListing(QWidget *parent)
     newsView_->setCurrentIndex(newsModel_->index(row, 0));
 
     //Установка шрифтов и их настроек для элементов
-    QFont font_ = newsDock_->font();
-    font_.setBold(true);
-    newsDock_->setFont(font_);
+//    QFont font_ = newsTitleLabel_->font();
+//    font_.setBold(true);
+//    newsTitleLabel_->setFont(font_);
 }
 
 /*!****************************************************************************/
@@ -569,6 +599,7 @@ void RSSListing::createActions()
   filterFeedsUnread_->setStatusTip(tr("Show Unread"));
   filterFeedsUnread_->setCheckable(true);
 
+  newsFilter_ = new QAction(QIcon(":/images/filterOff"), tr("Filter"), this);
   filterNewsAll_ = new QAction(tr("Show All"), this);
   filterNewsAll_->setObjectName("filterNewsAll_");
   filterNewsAll_->setStatusTip(tr("Show All"));
@@ -645,11 +676,16 @@ void RSSListing::createMenu()
   newsFilterGroup_->setExclusive(true);
   connect(newsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setNewsFilter(QAction*)));
 
-  newsFilter = newsMenu_->addMenu(QIcon(":/images/filterOff"), tr("Filter"));
-  newsFilter->addAction(filterNewsAll_);
+  newsFilterMenu_ = new QMenu(this);
+  newsFilterMenu_->addAction(filterNewsAll_);
   newsFilterGroup_->addAction(filterNewsAll_);
-  newsFilter->addAction(filterNewsUnread_);
+  newsFilterMenu_->addAction(filterNewsUnread_);
   newsFilterGroup_->addAction(filterNewsUnread_);
+
+  newsFilter_->setMenu(newsFilterMenu_);
+  newsMenu_->addAction(newsFilter_);
+  newsToolBar_->addAction(newsFilter_);
+  connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
   toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
   toolsMenu_->addAction(optionsAct_);
@@ -984,7 +1020,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
   slotNewsViewClicked(newsModel_->index(row, 0));
 
-  newsDock_->setWindowTitle(feedsModel_->index(index.row(), 1).data().toString());
+  newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
@@ -1328,8 +1364,8 @@ void RSSListing::setNewsFilter(QAction* pAct)
     newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
   }
 
-  if (pAct->objectName() == "filterNewsAll_") newsFilter->setIcon(QIcon(":/images/filterOff"));
-  else newsFilter->setIcon(QIcon(":/images/filterOn"));
+  if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
+  else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -1588,5 +1624,23 @@ void RSSListing::slotFeedsFilter()
     action = feedsFilterGroup_->checkedAction();
     filterFeedsAll_->setChecked(true);
     setFeedsFilter(filterFeedsAll_);
+  }
+}
+
+void RSSListing::slotNewsFilter()
+{
+  static QAction *action = NULL;
+
+  if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
+    if (action != NULL) {
+      action->setChecked(true);
+      setNewsFilter(action);
+    } else {
+      newsFilterMenu_->popup(cursor().pos());
+    }
+  } else {
+    action = newsFilterGroup_->checkedAction();
+    filterNewsAll_->setChecked(true);
+    setNewsFilter(filterNewsAll_);
   }
 }
