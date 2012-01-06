@@ -591,24 +591,29 @@ void RSSListing::createActions()
   feedsFilter_ = new QAction(QIcon(":/images/filterOff"), tr("Filter"), this);
   filterFeedsAll_ = new QAction(tr("Show All"), this);
   filterFeedsAll_->setObjectName("filterFeedsAll_");
-  filterFeedsAll_->setStatusTip(tr("Show All"));
   filterFeedsAll_->setCheckable(true);
   filterFeedsAll_->setChecked(true);
+  filterFeedsNew_ = new QAction(tr("Show New"), this);
+  filterFeedsNew_->setObjectName("filterFeedsNew_");
+  filterFeedsNew_->setCheckable(true);
   filterFeedsUnread_ = new QAction(tr("Show Unread"), this);
   filterFeedsUnread_->setObjectName("filterFeedsUnread_");
-  filterFeedsUnread_->setStatusTip(tr("Show Unread"));
   filterFeedsUnread_->setCheckable(true);
 
   newsFilter_ = new QAction(QIcon(":/images/filterOff"), tr("Filter"), this);
   filterNewsAll_ = new QAction(tr("Show All"), this);
   filterNewsAll_->setObjectName("filterNewsAll_");
-  filterNewsAll_->setStatusTip(tr("Show All"));
   filterNewsAll_->setCheckable(true);
   filterNewsAll_->setChecked(true);
+  filterNewsNew_ = new QAction(tr("Show New"), this);
+  filterNewsNew_->setObjectName("filterNewsNew_");
+  filterNewsNew_->setCheckable(true);
   filterNewsUnread_ = new QAction(tr("Show Unread"), this);
   filterNewsUnread_->setObjectName("filterNewsUnread_");
-  filterNewsUnread_->setStatusTip(tr("Show Unread"));
   filterNewsUnread_->setCheckable(true);
+  filterNewsStar_ = new QAction(tr("Show Star"), this);
+  filterNewsStar_->setObjectName("filterNewsStar_");
+  filterNewsStar_->setCheckable(true);
 
   aboutAct_ = new QAction(tr("About..."), this);
   aboutAct_->setObjectName("AboutAct_");
@@ -659,6 +664,9 @@ void RSSListing::createMenu()
   feedsFilterMenu_ = new QMenu(this);
   feedsFilterMenu_->addAction(filterFeedsAll_);
   feedsFilterGroup_->addAction(filterFeedsAll_);
+  feedsFilterMenu_->addSeparator();
+  feedsFilterMenu_->addAction(filterFeedsNew_);
+  feedsFilterGroup_->addAction(filterFeedsNew_);
   feedsFilterMenu_->addAction(filterFeedsUnread_);
   feedsFilterGroup_->addAction(filterFeedsUnread_);
 
@@ -679,8 +687,13 @@ void RSSListing::createMenu()
   newsFilterMenu_ = new QMenu(this);
   newsFilterMenu_->addAction(filterNewsAll_);
   newsFilterGroup_->addAction(filterNewsAll_);
+  newsFilterMenu_->addSeparator();
+  newsFilterMenu_->addAction(filterNewsNew_);
+  newsFilterGroup_->addAction(filterNewsNew_);
   newsFilterMenu_->addAction(filterNewsUnread_);
   newsFilterGroup_->addAction(filterNewsUnread_);
+  newsFilterMenu_->addAction(filterNewsStar_);
+  newsFilterGroup_->addAction(filterNewsStar_);
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
@@ -1328,22 +1341,22 @@ void RSSListing::setFeedsFilter(QAction* pAct)
 
   if (pAct->objectName() == "filterFeedsAll_") {
     feedsModel_->setFilter("");
+  } else if (pAct->objectName() == "filterFeedsNew_") {
+    feedsModel_->setFilter(QString("newCount > 0"));
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    int id = feedsModel_->index(
-          feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-    feedsModel_->setFilter(QString("unread > 0 OR id = '%1'").arg(id));
+    feedsModel_->setFilter(QString("unread > 0"));
   }
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
-  int row = -1;
+  int rowFeeds = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
     if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
-      row = i;
+      rowFeeds = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
+  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
 }
 
 void RSSListing::setNewsFilter(QAction* pAct)
@@ -1360,8 +1373,12 @@ void RSSListing::setNewsFilter(QAction* pAct)
 
   if (pAct->objectName() == "filterNewsAll_") {
     newsModel_->setFilter("deleted = 0");
+  } else if (pAct->objectName() == "filterNewsNew_") {
+    newsModel_->setFilter(QString("new = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnread_") {
     newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
+  } else if (pAct->objectName() == "filterNewsStar_") {
+    newsModel_->setFilter(QString("sticky = 1 AND deleted = 0"));
   }
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));

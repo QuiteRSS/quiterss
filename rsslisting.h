@@ -86,10 +86,13 @@ private:
     QAction *setProxyAct_;
     QAction *feedsFilter_;
     QAction *filterFeedsAll_;
+    QAction *filterFeedsNew_;
     QAction *filterFeedsUnread_;
     QAction *newsFilter_;
     QAction *filterNewsAll_;
+    QAction *filterNewsNew_;
     QAction *filterNewsUnread_;
+    QAction *filterNewsStar_;
     QAction *aboutAct_;
     QAction *openInBrowserAct_;
     QAction *markStarAct_;
