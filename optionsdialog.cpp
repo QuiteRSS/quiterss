@@ -13,7 +13,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
-  systemProxyButton_->setEnabled(false);
+//  systemProxyButton_->setEnabled(false);
   directConnectionButton_ = new QRadioButton(tr("Direct connection to the Internet"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
@@ -135,6 +135,9 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 void OptionsDialog::updateProxy()
 {
   switch (networkProxy_.type()) {
+    case QNetworkProxy::DefaultProxy:
+      systemProxyButton_->setChecked(true);
+      break;
     case QNetworkProxy::HttpProxy:
       manualProxyButton_->setChecked(true);
       break;
@@ -150,7 +153,9 @@ void OptionsDialog::updateProxy()
 
 void OptionsDialog::applyProxy()
 {
-  if (manualProxyButton_->isChecked())
+  if (systemProxyButton_->isChecked())
+    networkProxy_.setType(QNetworkProxy::DefaultProxy);
+  else if (manualProxyButton_->isChecked())
     networkProxy_.setType(QNetworkProxy::HttpProxy);
   else
     networkProxy_.setType(QNetworkProxy::NoProxy);

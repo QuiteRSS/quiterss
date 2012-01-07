@@ -752,8 +752,8 @@ void RSSListing::readSettings()
   newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
 
   setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
-  networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>
-      (settings_->value("networkProxy/type", QNetworkProxy::HttpProxy).toInt()));
+  networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
+      settings_->value("networkProxy/type", QNetworkProxy::NoProxy).toInt()));
   networkProxy_.setHostName(settings_->value("networkProxy/hostName", "10.0.0.172").toString());
   networkProxy_.setPort(    settings_->value("networkProxy/port",     3150).toUInt());
   networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
@@ -1100,7 +1100,10 @@ void RSSListing::showOptionDlg()
   if (result == QDialog::Rejected) return;
 
   networkProxy_ = optionsDialog->proxy();
-  setProxyAct_->setChecked(networkProxy_.type() == QNetworkProxy::HttpProxy);
+  if (QNetworkProxy::DefaultProxy == networkProxy_.type())
+    persistentUpdateThread_->setProxy(networkProxy_);
+  else
+    setProxyAct_->setChecked(networkProxy_.type() == QNetworkProxy::HttpProxy);
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/

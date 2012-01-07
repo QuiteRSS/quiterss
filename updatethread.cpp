@@ -118,5 +118,8 @@ void UpdateThread::finished(QNetworkReply *reply)
 void UpdateThread::setProxy(const QNetworkProxy proxy)
 {
   networkProxy_ = proxy;
-  QNetworkProxy::setApplicationProxy(networkProxy_);
+  if (QNetworkProxy::DefaultProxy == networkProxy_.type())
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
+  else
+    QNetworkProxy::setApplicationProxy(networkProxy_);
 }
