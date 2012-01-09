@@ -135,15 +135,15 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 void OptionsDialog::updateProxy()
 {
   switch (networkProxy_.type()) {
-    case QNetworkProxy::DefaultProxy:
-      systemProxyButton_->setChecked(true);
-      break;
     case QNetworkProxy::HttpProxy:
       manualProxyButton_->setChecked(true);
       break;
     case QNetworkProxy::NoProxy:
-    default:
       directConnectionButton_->setChecked(true);
+      break;
+    case QNetworkProxy::DefaultProxy:
+    default:
+      systemProxyButton_->setChecked(true);
   }
   editHost_->setText(networkProxy_.hostName());
   editPort_->setText(QVariant(networkProxy_.port()).toString());

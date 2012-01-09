@@ -83,7 +83,6 @@ private:
     QAction *markNewsRead_;
     QAction *markAllNewsRead_;
     QAction *markNewsUnread_;
-    QAction *setProxyAct_;
     QAction *feedsFilter_;
     QAction *filterFeedsAll_;
     QAction *filterFeedsNew_;
@@ -151,7 +150,6 @@ private:
     QUrl url_;
 
 private slots:
-    void slotSetProxy();
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
     void slotDockLocationChanged(Qt::DockWidgetArea area);

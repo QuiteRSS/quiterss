@@ -751,14 +751,13 @@ void RSSListing::readSettings()
   newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
   newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
 
-  setProxyAct_->setChecked(settings_->value("networkProxy/Enabled", false).toBool());
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
       settings_->value("networkProxy/type", QNetworkProxy::NoProxy).toInt()));
   networkProxy_.setHostName(settings_->value("networkProxy/hostName", "10.0.0.172").toString());
   networkProxy_.setPort(    settings_->value("networkProxy/port",     3150).toUInt());
   networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
   networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
-  slotSetProxy();
+  persistentUpdateThread_->setProxy(networkProxy_);
 }
 
 /*! \brief Запись настроек в ini-файл *****************************************/
@@ -791,7 +790,6 @@ void RSSListing::writeSettings()
     settings_->setValue("NewsHeaderState", newsHeader_->saveState());
   }
 
-  settings_->setValue("networkProxy/Enabled",  setProxyAct_->isChecked());
   settings_->setValue("networkProxy/type",     networkProxy_.type());
   settings_->setValue("networkProxy/hostName", networkProxy_.hostName());
   settings_->setValue("networkProxy/port",     networkProxy_.port());
@@ -1100,10 +1098,7 @@ void RSSListing::showOptionDlg()
   if (result == QDialog::Rejected) return;
 
   networkProxy_ = optionsDialog->proxy();
-  if (QNetworkProxy::DefaultProxy == networkProxy_.type())
-    persistentUpdateThread_->setProxy(networkProxy_);
-  else
-    setProxyAct_->setChecked(networkProxy_.type() == QNetworkProxy::HttpProxy);
+  persistentUpdateThread_->setProxy(networkProxy_);
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
@@ -1132,35 +1127,14 @@ void RSSListing::createTrayMenu()
   trayMenu_->addAction(updateAllFeedsAct_);
   trayMenu_->addSeparator();
 
-  setProxyAct_ = new QAction(this);
-  setProxyAct_->setText(tr("Proxy enabled"));
-  setProxyAct_->setCheckable(true);
-  setProxyAct_->setChecked(false);
-  connect(setProxyAct_, SIGNAL(toggled(bool)), this, SLOT(slotSetProxy()));
-  trayMenu_->addAction(setProxyAct_);
-  trayMenu_->addSeparator();
-
   trayMenu_->addAction(exitAct_);
   traySystem->setContextMenu(trayMenu_);
-//  QNetworkProxy::NoProxy
 }
 
 /*! \brief Освобождение памяти ************************************************/
 void RSSListing::myEmptyWorkingSet()
 {
   EmptyWorkingSet(GetCurrentProcess());
-}
-
-/*! \brief Обработка переключения использования прокси сервера ****************/
-void RSSListing::slotSetProxy()
-{
-  bool on = setProxyAct_->isChecked();
-  if (on) {
-    networkProxy_.setType(QNetworkProxy::HttpProxy);
-  } else {
-    networkProxy_.setType(QNetworkProxy::NoProxy);
-  }
-  persistentUpdateThread_->setProxy(networkProxy_);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
