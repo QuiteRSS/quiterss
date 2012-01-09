@@ -1127,6 +1127,9 @@ void RSSListing::createTrayMenu()
   trayMenu_->addAction(updateAllFeedsAct_);
   trayMenu_->addSeparator();
 
+  trayMenu_->addAction(optionsAct_);
+  trayMenu_->addSeparator();
+
   trayMenu_->addAction(exitAct_);
   traySystem->setContextMenu(trayMenu_);
 }
