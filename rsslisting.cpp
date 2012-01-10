@@ -371,6 +371,9 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
+//    updateFeedsTimer_
+    QTimer::singleShot(0, this, SLOT(slotTimerUpdateFeeds()));
+
     loadSettingsFeeds();
     int row = newsView_->currentIndex().row();
 
@@ -1663,4 +1666,11 @@ void RSSListing::slotNewsFilter()
     filterNewsAll_->setChecked(true);
     setNewsFilter(filterNewsAll_);
   }
+}
+
+void RSSListing::slotTimerUpdateFeeds()
+{
+  qDebug() << "*01";
+  QTimer::singleShot(600000, this, SLOT(slotTimerUpdateFeeds()));
+  slotGetAllFeeds();
 }

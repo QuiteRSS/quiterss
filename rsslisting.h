@@ -149,6 +149,8 @@ private:
     QByteArray data_;
     QUrl url_;
 
+    QBasicTimer updateFeedsTimer_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -175,6 +177,7 @@ private slots:
     void setAutoLoadImages(bool checked);
     void slotFeedsFilter();
     void slotNewsFilter();
+    void slotTimerUpdateFeeds();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
