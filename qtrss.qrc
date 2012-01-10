@@ -31,6 +31,7 @@
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
         <file alias="filterOff">images/filterOff.png</file>
+        <file>images/QtRSS16_NewNews.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>

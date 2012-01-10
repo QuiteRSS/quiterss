@@ -494,6 +494,9 @@ void RSSListing::slotCloseApp()
       emit signalPlaceToTray();
       return;
     }
+  } else if(event->type() == QEvent::ActivationChange) {
+    if (isActiveWindow())
+      traySystem->setIcon(QIcon(":/images/images/QtRSS16.png"));
   }
   QMainWindow::changeEvent(event);
 }
@@ -981,9 +984,19 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   q.exec(qStr);
   if (q.next()) newCount = q.value(0).toInt();
 
+  int newCountOld = 0;
+  qStr = QString("select count(newCount) from feeds where id=='%1'").
+      arg(parseFeedId);
+  q.exec(qStr);
+  if (q.next()) newCountOld = q.value(0).toInt();
+
   qStr = QString("update feeds set newCount='%1' where id=='%2'").
       arg(newCount).arg(parseFeedId);
   q.exec(qStr);
+
+  if (!isActiveWindow() && (newCount > newCountOld)) {
+    traySystem->setIcon(QIcon(":/images/images/QtRSS16_NewNews.png"));
+  }
 
   QModelIndex index = feedsView_->currentIndex();
 
@@ -1284,10 +1297,20 @@ void RSSListing::slotUpdateStatus()
   q.exec(qStr);
   if (q.next()) newCount = q.value(0).toInt();
 
+  int newCountOld = 0;
+  qStr = QString("select count(newCount) from feeds where id=='%1'").
+      arg(newsModel_->tableName().remove("feed_"));
+  q.exec(qStr);
+  if (q.next()) newCountOld = q.value(0).toInt();
+
   qStr = QString("update feeds set unread='%1', newCount='%2' where id=='%3'").
       arg(unreadCount).arg(newCount).
       arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
+
+  if (!isActiveWindow() && (newCount > newCountOld)) {
+    traySystem->setIcon(QIcon(":/images/images/QtRSS16_NewNews.png"));
+  }
 
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
