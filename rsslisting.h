@@ -47,6 +47,7 @@ protected:
      virtual void closeEvent(QCloseEvent*);
      virtual void changeEvent(QEvent*);
      virtual void showEvent(QShowEvent*);
+     void timerEvent(QTimerEvent* event);
 
 private:
     UpdateThread *persistentUpdateThread_;

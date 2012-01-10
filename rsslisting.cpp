@@ -371,9 +371,6 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
-//    updateFeedsTimer_
-    QTimer::singleShot(0, this, SLOT(slotTimerUpdateFeeds()));
-
     loadSettingsFeeds();
     int row = newsView_->currentIndex().row();
 
@@ -386,6 +383,9 @@ RSSListing::RSSListing(QWidget *parent)
 //    QFont font_ = newsTitleLabel_->font();
 //    font_.setBold(true);
 //    newsTitleLabel_->setFont(font_);
+
+    updateFeedsTimer_.start(60000, this);
+    slotGetAllFeeds();
 }
 
 /*!****************************************************************************/
@@ -539,6 +539,13 @@ void RSSListing::slotShowWindows()
     showNormal();
   }
   activateWindow();
+}
+
+void RSSListing::timerEvent(QTimerEvent *event)
+{
+  if (event->timerId() == updateFeedsTimer_.timerId()) {
+    slotTimerUpdateFeeds();
+  }
 }
 
 /*! \brief Создание действий **************************************************
@@ -1670,7 +1677,7 @@ void RSSListing::slotNewsFilter()
 
 void RSSListing::slotTimerUpdateFeeds()
 {
-  qDebug() << "*01";
-  QTimer::singleShot(600000, this, SLOT(slotTimerUpdateFeeds()));
-  slotGetAllFeeds();
+  if (updateAllFeedsAct_->isEnabled()) {
+    slotGetAllFeeds();
+  }
 }
