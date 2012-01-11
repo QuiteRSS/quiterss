@@ -1047,6 +1047,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   if (initNo) {
     newsHeader_->initColumns();
     newsHeader_->createMenu();
+    newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
+    newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
   }
 
   int row = -1;
