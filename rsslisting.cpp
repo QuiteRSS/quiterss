@@ -884,7 +884,7 @@ void RSSListing::importFeeds()
     return;
   }
 
-  qDebug() << "process file:" << fileName;
+  qDebug() << "import file:" << fileName;
 
   QFile file(fileName);
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -953,9 +953,7 @@ void RSSListing::getUrlDone(const int &result)
   qDebug() << "getUrl result =" << result;
 
   if (!url_.isEmpty()) {
-    qDebug() << "emit xmlReadyParse: before <<" << url_;
     emit xmlReadyParse(data_, url_);
-    qDebug() << "emit xmlReadyParse: after  <<" << url_;
     data_.clear();
     url_.clear();
   }
@@ -1612,7 +1610,7 @@ void RSSListing::updateWebView(QModelIndex index)
   QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
   QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
   QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
-  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
+//  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
   authorString = authorName;
   if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
   if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
@@ -1624,7 +1622,7 @@ void RSSListing::updateWebView(QModelIndex index)
     authorName = feedsModel_->record(feedsView_->currentIndex().row()).field("author_name").value().toString();
     authorEmail = feedsModel_->record(feedsView_->currentIndex().row()).field("author_email").value().toString();
     authorUri = feedsModel_->record(feedsView_->currentIndex().row()).field("author_uri").value().toString();
-    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
+//    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
     authorString = authorName;
     if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
     if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
@@ -1638,11 +1636,11 @@ void RSSListing::updateWebView(QModelIndex index)
   if (content.isEmpty()) {
     webView_->setHtml(
           newsModel_->record(index.row()).field("description").value().toString());
-    qDebug() << "setHtml : description";
+//    qDebug() << "setHtml : description";
   }
   else {
     webView_->setHtml(content);
-    qDebug() << "setHtml : content";
+//    qDebug() << "setHtml : content";
   }
 }
 
