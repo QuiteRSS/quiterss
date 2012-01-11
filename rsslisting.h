@@ -151,6 +151,7 @@ private:
     QUrl url_;
 
     QBasicTimer updateFeedsTimer_;
+    bool autoUpdatefeedsStartUp_;
     bool autoUpdatefeeds_;
     int  autoUpdatefeedsTime_;
 

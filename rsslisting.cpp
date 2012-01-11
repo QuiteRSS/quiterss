@@ -384,10 +384,10 @@ RSSListing::RSSListing(QWidget *parent)
 //    font_.setBold(true);
 //    newsTitleLabel_->setFont(font_);
 
-    if (autoUpdatefeeds_) {
-      updateFeedsTimer_.start(autoUpdatefeedsTime_, this);
+    if (autoUpdatefeedsStartUp_) {
       slotGetAllFeeds();
     }
+    updateFeedsTimer_.start(autoUpdatefeedsTime_, this);
 }
 
 /*!****************************************************************************/
@@ -759,6 +759,7 @@ void RSSListing::readSettings()
   webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
 
+  autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 600000).toInt();
 
@@ -798,6 +799,7 @@ void RSSListing::writeSettings()
   settings_->setValue("/WebFontSize", fontSize);
 
   settings_->setValue("autoLoadImages", autoLoadImagesToggle_->isChecked());
+  settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
 
@@ -1686,7 +1688,7 @@ void RSSListing::slotNewsFilter()
 
 void RSSListing::slotTimerUpdateFeeds()
 {
-  if (updateAllFeedsAct_->isEnabled()) {
+  if (autoUpdatefeeds_ && updateAllFeedsAct_->isEnabled()) {
     slotGetAllFeeds();
   }
 }
