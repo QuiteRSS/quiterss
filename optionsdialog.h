@@ -33,7 +33,7 @@ private:
 
   //stack widgets
   QWidget *networkConnectionsWidget_;
-  QWidget *feedsWidget_;
+  QTabWidget *feedsWidget_;
 
   QDialogButtonBox *buttonBox_;
 

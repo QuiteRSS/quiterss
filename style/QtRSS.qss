@@ -78,7 +78,8 @@ QMenu::item:selected {
 }
 
 QTabWidget::pane { /* Рамка виджета со вкладками */
-	
+	top: -1px;
+	bottom: -1px;
 }
 
 QTabWidget::tab-bar {
@@ -256,5 +257,5 @@ QHeaderView::up-arrow {
 }
 
 #contentLabel_ {
-	font-weight:bold;
+	font-weight: bold;
 }

@@ -3,11 +3,17 @@
 OptionsDialog::OptionsDialog(QWidget *parent) :
     QDialog(parent)
 {
+  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
   QTreeWidget *categoriesTree = new QTreeWidget();
+  categoriesTree->setObjectName("categoriesTree");
   categoriesTree->setHeaderHidden(true);
-  categoriesTree->setColumnCount(2);
+  categoriesTree->setColumnCount(3);
   categoriesTree->setColumnHidden(0, true);
-  categoriesTree->setFixedWidth(130);
+  categoriesTree->header()->setStretchLastSection(false);
+  categoriesTree->header()->resizeSection(2, 5);
+  categoriesTree->header()->setResizeMode(1, QHeaderView::Stretch);
+  categoriesTree->setFixedWidth(150);
   QStringList treeItem;
   treeItem << "0" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
@@ -21,7 +27,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
-  networkConnectionsLayout->setMargin(0);
+  networkConnectionsLayout->setMargin(5);
   networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(directConnectionButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
@@ -83,24 +89,28 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsLayout->addStretch();
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
-  feedsLayout->setMargin(0);
+//  feedsLayout->setMargin(0);
   feedsLayout->addWidget(updateFeedsStartUp_);
   feedsLayout->addLayout(updateFeedsLayout);
   feedsLayout->addStretch();
 
-  feedsWidget_ = new QWidget();
-  feedsWidget_->setLayout(feedsLayout);
+  QWidget *feedsUpdateWidget_ = new QWidget();
+  feedsUpdateWidget_->setLayout(feedsLayout);
+
+  feedsWidget_ = new QTabWidget();
+  feedsWidget_->addTab(feedsUpdateWidget_, tr("General"));
   //
 
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentLabel_->setObjectName("contentLabel_");
 
   contentStack_ = new QStackedWidget();
+  contentStack_->setObjectName("contentStack_");
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(feedsWidget_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
-  contentLayout->setMargin(4);
+  contentLayout->setMargin(0);
   contentLayout->addWidget(contentLabel_);
   contentLayout->addWidget(contentStack_);
 
@@ -119,7 +129,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
-  mainLayout->setMargin(4);
+  mainLayout->setMargin(5);
   mainLayout->addWidget(splitter);
   mainLayout->addWidget(buttonBox_);
 
