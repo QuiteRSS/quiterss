@@ -151,6 +151,7 @@ private:
     QUrl url_;
 
     QBasicTimer updateFeedsTimer_;
+    bool autoUpdatefeeds_;
 
 private slots:
     void slotProgressBarUpdate();
