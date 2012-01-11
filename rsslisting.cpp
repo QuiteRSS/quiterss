@@ -385,7 +385,7 @@ RSSListing::RSSListing(QWidget *parent)
 //    newsTitleLabel_->setFont(font_);
 
     if (autoUpdatefeeds_) {
-      updateFeedsTimer_.start(600000, this);
+      updateFeedsTimer_.start(autoUpdatefeedsTime_, this);
       slotGetAllFeeds();
     }
 }
@@ -760,6 +760,7 @@ void RSSListing::readSettings()
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
 
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
+  autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 600000).toInt();
 
   settings_->endGroup();
 
@@ -798,6 +799,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("autoLoadImages", autoLoadImagesToggle_->isChecked());
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
+  settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
 
   settings_->endGroup();
 
