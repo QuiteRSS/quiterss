@@ -35,17 +35,14 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return QVariant();
     }
     else if (QSqlTableModel::fieldIndex("published") == index.column()) {
-      QString strPublished;
-      strPublished = QSqlTableModel::index(index.row(), fieldIndex("published")).data(Qt::EditRole).toString();
-      QLocale locale(QLocale::C);
-      QDateTime dt = locale.toDateTime(strPublished, "yyyy-MM-ddTHH:mm:ss");
-      int daysToCurrentDT = dt.daysTo(QDateTime::currentDateTimeUtc());
-      if (daysToCurrentDT < 0) {
-        qWarning() << "News has future published Date";
-        return QString();
-      }
-      else if (daysToCurrentDT < 1) return dt.toString("hh:mm");
-      else return dt.toString("yyyy.MM.dd hh:mm");
+      QDateTime dt = QDateTime::fromString(
+            QSqlTableModel::index(index.row(), fieldIndex("published")).data(Qt::EditRole).toString(),
+            Qt::ISODate);
+      QDateTime dtLocal = dt.toLocalTime();
+      if (QDateTime::currentDateTime().date() == dtLocal.date())
+        return dtLocal.toString("hh:mm");
+      else
+        return dtLocal.toString("yyyy.MM.dd hh:mm");
     }
     else if (QSqlTableModel::fieldIndex("received") == index.column()) {
       QDateTime dateTime = QDateTime::fromString(
