@@ -387,7 +387,7 @@ RSSListing::RSSListing(QWidget *parent)
     if (autoUpdatefeedsStartUp_) {
       slotGetAllFeeds();
     }
-    updateFeedsTimer_.start(autoUpdatefeedsTime_, this);
+    updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
 }
 
 /*!****************************************************************************/
@@ -761,7 +761,7 @@ void RSSListing::readSettings()
 
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
-  autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 600000).toInt();
+  autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
 
   settings_->endGroup();
 
@@ -1124,6 +1124,11 @@ void RSSListing::showOptionDlg()
   optionsDialog->setWindowTitle(tr("Options"));
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->setProxy(networkProxy_);
+
+  optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
+  optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
+  optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
+
   int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 
@@ -1131,6 +1136,10 @@ void RSSListing::showOptionDlg()
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
+
+  autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
+  autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
+  autoUpdatefeedsTime_ = optionsDialog->updateFeedsTime_->value();
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/

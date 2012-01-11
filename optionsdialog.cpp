@@ -11,6 +11,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QStringList treeItem;
   treeItem << "0" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "1" << tr("Feeds");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
 //  systemProxyButton_->setEnabled(false);
@@ -63,13 +66,38 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsLayout->addWidget(manualWidget_);
 
   networkConnectionsWidget_ = new QWidget();
-  networkConnectionsWidget_->setToolTip(tr("networkConnectionsWidget_"));
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
 
+  // feeds
+  updateFeedsStartUp_ = new QCheckBox(tr("Automatically update the feeds on start-up"));
+  updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
+  updateFeedsTime_ = new QSpinBox();
+  updateFeedsTime_->setEnabled(false);
+  updateFeedsTime_->setRange(5, 9999);
+  connect(updateFeeds_, SIGNAL(toggled(bool)), updateFeedsTime_, SLOT(setEnabled(bool)));
+
+  QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
+  updateFeedsLayout->setMargin(0);
+  updateFeedsLayout->addWidget(updateFeeds_);
+  updateFeedsLayout->addWidget(updateFeedsTime_);
+  updateFeedsLayout->addStretch();
+
+  QVBoxLayout *feedsLayout = new QVBoxLayout();
+  feedsLayout->setMargin(0);
+  feedsLayout->addWidget(updateFeedsStartUp_);
+  feedsLayout->addLayout(updateFeedsLayout);
+  feedsLayout->addStretch();
+
+  feedsWidget_ = new QWidget();
+  feedsWidget_->setLayout(feedsLayout);
+  //
+
   contentLabel_ = new QLabel(tr("ContentLabel"));
+  contentLabel_->setObjectName("contentLabel_");
 
   contentStack_ = new QStackedWidget();
   contentStack_->addWidget(networkConnectionsWidget_);
+  contentStack_->addWidget(feedsWidget_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
   contentLayout->setMargin(4);
@@ -104,6 +132,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   connect(manualProxyButton_, SIGNAL(toggled(bool)),
       this, SLOT(manualProxyToggle(bool)));
 
+  categoriesTree->setCurrentItem(categoriesTree->topLevelItem(0));
   slotCategoriesItemCLicked(categoriesTree->topLevelItem(0), 0);
 
   // не нужно, т.к. после создания окна из главного окна передаются настройки

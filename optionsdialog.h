@@ -13,6 +13,11 @@ public:
   QNetworkProxy proxy();
   void setProxy(const QNetworkProxy proxy);
 
+  // feeds
+  QCheckBox *updateFeedsStartUp_;
+  QCheckBox *updateFeeds_;
+  QSpinBox *updateFeedsTime_;
+
 private slots:
   void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
   void manualProxyToggle(bool checked);
@@ -28,6 +33,7 @@ private:
 
   //stack widgets
   QWidget *networkConnectionsWidget_;
+  QWidget *feedsWidget_;
 
   QDialogButtonBox *buttonBox_;
 

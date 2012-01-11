@@ -254,3 +254,7 @@ QHeaderView::up-arrow {
 #webPanel_ {
 	border-bottom: 1px solid gray;
 }
+
+#contentLabel_ {
+	font-weight:bold;
+}
