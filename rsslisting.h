@@ -152,6 +152,7 @@ private:
 
     QBasicTimer updateFeedsTimer_;
     bool autoUpdatefeeds_;
+    int  autoUpdatefeedsTime_;
 
 private slots:
     void slotProgressBarUpdate();
