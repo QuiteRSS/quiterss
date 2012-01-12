@@ -635,6 +635,10 @@ void RSSListing::createActions()
   aboutAct_->setToolTip(tr("Show 'About' dialog"));
   connect(aboutAct_, SIGNAL(triggered()), this, SLOT(slotShowAboutDlg()));
 
+  updateAppAct_ = new QAction(tr("Check for update"), this);
+  updateAppAct_->setObjectName("UpdateApp_");
+  connect(updateAppAct_, SIGNAL(triggered()), this, SLOT(checkUpdateApp()));
+
   openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
   connect(openInBrowserAct_, SIGNAL(triggered()), this, SLOT(openInBrowserNews()));
   markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
@@ -719,6 +723,7 @@ void RSSListing::createMenu()
   toolsMenu_->addAction(optionsAct_);
 
   helpMenu_ = menuBar()->addMenu(tr("&Help"));
+  helpMenu_->addAction(updateAppAct_);
   helpMenu_->addAction(aboutAct_);
 }
 
@@ -1697,5 +1702,45 @@ void RSSListing::slotTimerUpdateFeeds()
 {
   if (autoUpdatefeeds_ && updateAllFeedsAct_->isEnabled()) {
     slotGetAllFeeds();
+  }
+}
+
+void RSSListing::checkUpdateApp()
+{
+  updateAppReply_ = updateAppManager_.get( QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/VersionNo.h")) );
+  connect(updateAppReply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
+}
+
+void RSSListing::finishUpdateApp()
+{
+  QMessageBox msgBox;
+  msgBox.setWindowTitle(tr("Update check"));
+  if (updateAppReply_->error() == QNetworkReply::NoError) {
+    QString strList = QLatin1String(updateAppReply_->readAll());
+    strList  = strList.left(strList.lastIndexOf('.'));
+    strList  = strList.right(strList.length() - strList.lastIndexOf(" \"") - 2);
+
+    if (strList.contains(QString(STRFILEVER).section('.', 0, 2))) {
+      msgBox.setIcon(QMessageBox::NoIcon);
+      msgBox.setText(QString(tr("Upgrade not required")));
+      msgBox.setStandardButtons(QMessageBox::Ok);
+      if (msgBox.exec()) return;
+    } else {
+      msgBox.setIcon(QMessageBox::Question);
+      msgBox.setText(
+            QString(tr("New version: %1\nGo to the download page?")).arg(strList)
+            );
+      msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+      msgBox.setDefaultButton(QMessageBox::Yes);
+
+      if (msgBox.exec() == QMessageBox::No) return;
+
+      QDesktopServices::openUrl(QUrl("http://code.google.com/p/quite-rss/downloads/list"));
+    }
+  } else {
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText(QString(tr("Error update")));
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    if (msgBox.exec()) return;
   }
 }
