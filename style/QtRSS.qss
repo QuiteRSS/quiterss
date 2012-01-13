@@ -251,7 +251,7 @@ QHeaderView::up-arrow {
 	width: 20px;
 }
 
-#AboutDialog, #logoLabel {
+#AboutDialog, #logoLabel, #UpdateAppDialog {
 	background: #F9FFF9;
 }
 

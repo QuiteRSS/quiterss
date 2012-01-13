@@ -156,9 +156,6 @@ private:
     bool autoUpdatefeeds_;
     int  autoUpdatefeedsTime_;
 
-    QNetworkAccessManager updateAppManager_;
-    QNetworkReply *updateAppReply_;
-
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -186,8 +183,7 @@ private slots:
     void slotFeedsFilter();
     void slotNewsFilter();
     void slotTimerUpdateFeeds();
-    void checkUpdateApp();
-    void finishUpdateApp();
+    void slotShowUpdateAppDlg();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
