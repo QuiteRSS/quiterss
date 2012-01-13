@@ -556,16 +556,16 @@ void RSSListing::timerEvent(QTimerEvent *event)
 void RSSListing::createActions()
 {
   addFeedAct_ = new QAction(QIcon(":/images/addFeed"), tr("&Add..."), this);
-  addFeedAct_->setStatusTip(tr("Add new feed"));
+  addFeedAct_->setToolTip(tr("Add new feed"));
   addFeedAct_->setShortcut(QKeySequence::New);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   deleteFeedAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("&Delete..."), this);
-  deleteFeedAct_->setStatusTip(tr("Delete selected feed"));
+  deleteFeedAct_->setToolTip(tr("Delete selected feed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
   importFeedsAct_ = new QAction(QIcon(":/images/importFeeds"), tr("&Import feeds..."), this);
-  importFeedsAct_->setStatusTip(tr("Import feeds from OPML file"));
+  importFeedsAct_->setToolTip(tr("Import feeds from OPML file"));
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
 
   exitAct_ = new QAction(tr("E&xit"), this);
@@ -574,32 +574,32 @@ void RSSListing::createActions()
 
   toolBarToggle_ = new QAction(tr("&ToolBar"), this);
   toolBarToggle_->setCheckable(true);
-  toolBarToggle_->setStatusTip(tr("Show ToolBar"));
+  toolBarToggle_->setToolTip(tr("Show ToolBar"));
 
   autoLoadImagesToggle_ = new QAction(QIcon(":/images/imagesOff"), tr("&Load images"), this);
   autoLoadImagesToggle_->setCheckable(true);
-  autoLoadImagesToggle_->setStatusTip(tr("Auto load images to news view"));
+  autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
 
   updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update"), this);
-  updateFeedAct_->setStatusTip(tr("Update current feed"));
+  updateFeedAct_->setToolTip(tr("Update current feed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
 
   updateAllFeedsAct_ = new QAction(QIcon(":/images/updateAllFeeds"), tr("Update all"), this);
-  updateAllFeedsAct_->setStatusTip(tr("Update all feeds"));
+  updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
   markNewsRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
-  markNewsRead_->setStatusTip(tr("Mark current news read"));
+  markNewsRead_->setToolTip(tr("Mark current news read"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
 
   markAllNewsRead_ = new QAction(QIcon(":/images/markReadAll"), tr("Mark all news Read"), this);
-  markAllNewsRead_->setStatusTip(tr("Mark all news read"));
+  markAllNewsRead_->setToolTip(tr("Mark all news read"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
   optionsAct_ = new QAction(QIcon(":/images/options"), tr("Options..."), this);
-  optionsAct_->setStatusTip(tr("Open options gialog"));
+  optionsAct_->setToolTip(tr("Open options gialog"));
   optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 
@@ -648,10 +648,10 @@ void RSSListing::createActions()
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
 
   markFeedRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
-  markFeedRead_->setStatusTip(tr("Mark feed read"));
+  markFeedRead_->setToolTip(tr("Mark feed read"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
   feedProperties_ = new QAction(tr("Properties"), this);
-  feedProperties_->setStatusTip(tr("Properties feed"));
+  feedProperties_->setToolTip(tr("Properties feed"));
 }
 
 /*! \brief Создание главного меню *********************************************/
