@@ -7,7 +7,7 @@ IDI_ICON1               ICON    DISCARDABLE     "QtRSS.ico"
 #  include <winver.h>
 # endif
 #endif
-#include "VersionNo.h"
+#include "src/VersionNo.h"
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION FILEVER
  PRODUCTVERSION PRODUCTVER

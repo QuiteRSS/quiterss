@@ -5,39 +5,42 @@ LIBS += libkernel32 \
 TARGET = QuiteRSS
 TEMPLATE = app
 
-HEADERS += rsslisting.h \
-    VersionNo.h \
-    optionsdialog.h \
-    qtsingleapplication/qtsingleapplication.h \
-    qtsingleapplication/qtlockedfile.h \
-    qtsingleapplication/qtlocalpeer.h \
-    addfeeddialog.h \
-    updatethread.h \
-    newsheader.h \
-    newsmodel.h \
-    feedsmodel.h \
-    parsethread.h \
-    parseobject.h \
-    newsview.h \
-    aboutdialog.h \
-    delegatewithoutfocus.h
-SOURCES += main.cpp rsslisting.cpp \
-    optionsdialog.cpp \
-    qtsingleapplication/qtsingleapplication.cpp \
-    qtsingleapplication/qtlockedfile_win.cpp \
-    qtsingleapplication/qtlockedfile_unix.cpp \
-    qtsingleapplication/qtlockedfile.cpp \
-    qtsingleapplication/qtlocalpeer.cpp \
-    addfeeddialog.cpp \
-    updatethread.cpp \
-    newsheader.cpp \
-		newsmodel.cpp \
-    feedsmodel.cpp \
-    parsethread.cpp \
-    parseobject.cpp \
-    newsview.cpp \
-    aboutdialog.cpp \
-    delegatewithoutfocus.cpp
+HEADERS += \
+    src/VersionNo.h \
+    src/updatethread.h \
+    src/rsslisting.h \
+    src/parsethread.h \
+    src/parseobject.h \
+    src/optionsdialog.h \
+    src/newsview.h \
+    src/newsmodel.h \
+    src/newsheader.h \
+    src/feedsmodel.h \
+    src/delegatewithoutfocus.h \
+    src/addfeeddialog.h \
+    src/aboutdialog.h \
+    src/qtsingleapplication/qtsingleapplication.h \
+    src/qtsingleapplication/qtlockedfile.h \
+    src/qtsingleapplication/qtlocalpeer.h
+SOURCES += \
+    src/updatethread.cpp \
+    src/rsslisting.cpp \
+    src/parsethread.cpp \
+    src/parseobject.cpp \
+    src/optionsdialog.cpp \
+    src/newsview.cpp \
+    src/newsmodel.cpp \
+    src/newsheader.cpp \
+    src/main.cpp \
+    src/feedsmodel.cpp \
+    src/delegatewithoutfocus.cpp \
+    src/addfeeddialog.cpp \
+    src/aboutdialog.cpp \
+    src/qtsingleapplication/qtsingleapplication.cpp \
+    src/qtsingleapplication/qtlockedfile_win.cpp \
+    src/qtsingleapplication/qtlockedfile_unix.cpp \
+    src/qtsingleapplication/qtlockedfile.cpp \
+    src/qtsingleapplication/qtlocalpeer.cpp
 
 RESOURCES += \
     qtrss.qrc
