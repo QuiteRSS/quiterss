@@ -6,13 +6,11 @@
 
 class UpdateAppDialog : public QDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit UpdateAppDialog(QWidget *parent = 0);
+  explicit UpdateAppDialog(QWidget *parent = 0);
 
-signals:
-
-public slots:
+protected:
 
 private slots:
   void finishUpdateApp();
@@ -22,6 +20,7 @@ private:
   QNetworkReply *reply_;
 
   QLabel *infoLabel;
+signals:
 
 };
 

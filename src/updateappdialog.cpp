@@ -29,7 +29,6 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   connect(closeButton, SIGNAL(clicked()), SLOT(close()));
   buttonLayout->addStretch(1);
   buttonLayout->addWidget(closeButton);
-
   updateApplayout->addLayout(buttonLayout);
 
   reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/appinfo")));
