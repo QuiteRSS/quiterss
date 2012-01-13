@@ -94,6 +94,7 @@ private:
     QAction *filterNewsUnread_;
     QAction *filterNewsStar_;
     QAction *aboutAct_;
+    QAction *updateAppAct_;
     QAction *openInBrowserAct_;
     QAction *markStarAct_;
     QAction *deleteNewsAct_;
@@ -155,6 +156,9 @@ private:
     bool autoUpdatefeeds_;
     int  autoUpdatefeedsTime_;
 
+    QNetworkAccessManager updateAppManager_;
+    QNetworkReply *updateAppReply_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -182,6 +186,8 @@ private slots:
     void slotFeedsFilter();
     void slotNewsFilter();
     void slotTimerUpdateFeeds();
+    void checkUpdateApp();
+    void finishUpdateApp();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
