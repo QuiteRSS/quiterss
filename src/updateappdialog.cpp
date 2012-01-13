@@ -32,26 +32,32 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
 
   updateApplayout->addLayout(buttonLayout);
 
-  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
+  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/appinfo")));
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
 }
 
 void UpdateAppDialog::finishUpdateApp()
 {
   if (reply_->error() == QNetworkReply::NoError) {
-    QString infoVersion;
-    QString strList = QLatin1String(reply_->readAll());
-    strList  = strList.left(strList.lastIndexOf('.'));
-    strList  = strList.right(strList.length() - strList.lastIndexOf(" \"") - 2);
+    QString str;
+    QFile appInfoFile(":/app/appinfo");
+    appInfoFile.open(QFile::ReadOnly);
+    str = QLatin1String(appInfoFile.readAll());
+    QString version = str.left(str.lastIndexOf(" "));
+    QString date = str.right(str.length() - str.lastIndexOf(" ") - 1);
 
-    if (strList.contains(QString(STRFILEVER).section('.', 0, 2))) {
-      infoVersion =
+    str = QLatin1String(reply_->readAll());
+    QString curVersion = str.left(str.lastIndexOf(" "));
+    QString curDate = str.right(str.length() - str.lastIndexOf(" ") - 1);
+
+    if (version.contains(curVersion)) {
+      str =
           "<a><font color=#4b4b4b>" +
-          tr("You already have the latest version installed.") +
+          tr("You already have the latest version") +
           "</a>";
     } else {
-      infoVersion =
-          "<a><font color=#FF8040>" + tr("A new version.") + "</a>"
+      str =
+          "<a><font color=#FF8040>" + tr("A new version") + "</a>"
           "<p>" + QString("<a href=\"%1\">%2</a>").
           arg("http://code.google.com/p/quite-rss/downloads/list").
           arg("Click here to go to the download page");
@@ -59,9 +65,10 @@ void UpdateAppDialog::finishUpdateApp()
     QString info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"
         "<p>" + tr("Your version is: ") +
-        "<B>" + QString("%1").arg(QString(STRFILEVER).section('.', 0, 2)) + "</B>"
-        "<BR>" + tr("Current version is: ") + "<B>" + strList + "</B>"
-        "<p>" + infoVersion +
+        "<B>" + version + "</B>" + QString(" (%1)").arg(date) +
+        "<BR>" + tr("Current version is: ") +
+        "<B>" + curVersion + "</B>" + QString(" (%1)").arg(curDate) +
+        "<p>" + str +
         "</body></html>";
     infoLabel->setText(info);
   } else {
