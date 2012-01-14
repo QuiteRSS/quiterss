@@ -1722,8 +1722,6 @@ void RSSListing::slotShowUpdateAppDlg()
   updateAppDialog->exec();
 }
 
-}
-
 /*
 ** This function is used to load the contents of a database file on disk
 ** into the "main" database of open database connection pInMemory, or
@@ -1799,3 +1797,4 @@ bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save
     }
   }
   return state;
+}
