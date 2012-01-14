@@ -24,7 +24,8 @@ HEADERS += \
     src/aboutdialog.h \
     src/qtsingleapplication/qtsingleapplication.h \
     src/qtsingleapplication/qtlockedfile.h \
-    src/qtsingleapplication/qtlocalpeer.h
+    src/qtsingleapplication/qtlocalpeer.h \
+    src/updateappdialog.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -44,6 +45,7 @@ SOURCES += \
     src/qtsingleapplication/qtlockedfile_unix.cpp \
     src/qtsingleapplication/qtlockedfile.cpp \
     src/qtsingleapplication/qtlocalpeer.cpp \
+    src/updateappdialog.cpp
 
 RESOURCES += \
     qtrss.qrc
