@@ -1322,6 +1322,9 @@ void RSSListing::slotUpdateStatus()
 {
   QString qStr;
 
+  int id = feedsModel_->index(
+        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
   int allCount = 0;
   qStr = QString("select count(id) from %1 where deleted=0").
       arg(newsModel_->tableName());
@@ -1358,7 +1361,10 @@ void RSSListing::slotUpdateStatus()
 
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
-  feedsView_->setCurrentIndex(index);
+  if (feedsModel_->index(index.row(),
+                         feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
+    feedsView_->setCurrentIndex(index);
+  }
 
   statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
 
