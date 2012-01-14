@@ -65,10 +65,12 @@ private:
     void createMenuFeed();
     void loadSettingsFeeds();
     void updateWebView(QModelIndex index);
+    bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
 
     QSettings *settings_;
 
     QSqlDatabase db_;
+    QString dbFileName_;
     FeedsModel *feedsModel_;
     NewsModel *newsModel_;
 
