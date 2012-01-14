@@ -522,6 +522,7 @@ void RSSListing::slotPlaceToTray()
   QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   hide();
   sqliteDBMemFile(db_, dbFileName_, true);
+  writeSettings();
 }
 
 /*! \brief Обработка событий трея *********************************************/
@@ -1357,6 +1358,8 @@ void RSSListing::slotUpdateStatus()
 
   if (!isActiveWindow() && (newCount > newCountOld)) {
     traySystem->setIcon(QIcon(":/images/images/QtRSS16_NewNews.png"));
+  } else {
+    qDebug() << isActiveWindow() << newCount << newCountOld;
   }
 
   QModelIndex index = feedsView_->currentIndex();
