@@ -1019,7 +1019,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   if (q.next()) newCount = q.value(0).toInt();
 
   int newCountOld = 0;
-  qStr = QString("select count(newCount) from feeds where id=='%1'").
+  qStr = QString("select newCount from feeds where id=='%1'").
       arg(parseFeedId);
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
@@ -1346,7 +1346,7 @@ void RSSListing::slotUpdateStatus()
   if (q.next()) newCount = q.value(0).toInt();
 
   int newCountOld = 0;
-  qStr = QString("select count(newCount) from feeds where id=='%1'").
+  qStr = QString("select newCount from feeds where id=='%1'").
       arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
@@ -1358,8 +1358,6 @@ void RSSListing::slotUpdateStatus()
 
   if (!isActiveWindow() && (newCount > newCountOld)) {
     traySystem->setIcon(QIcon(":/images/images/QtRSS16_NewNews.png"));
-  } else {
-    qDebug() << isActiveWindow() << newCount << newCountOld;
   }
 
   QModelIndex index = feedsView_->currentIndex();
