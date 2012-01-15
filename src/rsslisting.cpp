@@ -683,6 +683,7 @@ void RSSListing::createMenu()
 
   viewMenu_ = menuBar()->addMenu(tr("&View"));
   viewMenu_->addAction(toolBarToggle_);
+  viewMenu_->addSeparator();
   viewMenu_->addAction(autoLoadImagesToggle_);
 
   feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
@@ -738,6 +739,7 @@ void RSSListing::createMenu()
 
   helpMenu_ = menuBar()->addMenu(tr("&Help"));
   helpMenu_->addAction(updateAppAct_);
+  helpMenu_->addSeparator();
   helpMenu_->addAction(aboutAct_);
 }
 
