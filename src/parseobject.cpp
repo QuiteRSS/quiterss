@@ -33,7 +33,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString contentString;
 
   qDebug() << "=================== parseXml:start ============================";
-  // ïîèñê èäåíòèôèêàòîðà ëåíòû ñ òàáëèöå ëåíò
+  // Ð¿Ð¾Ð¸ÑÐº Ð¸Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€Ð° Ð»ÐµÐ½Ñ‚Ñ‹ Ñ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ðµ Ð»ÐµÐ½Ñ‚
   int parseFeedId = 0;
   QSqlQuery q(*db);
   q.exec(QString("select id from feeds where xmlurl like '%1'").
@@ -42,7 +42,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
   }
 
-  // èäåíòèôèêàòîð íå íàéäåí (íàïðèìåð, âî âðåìÿ çàïðîñà óäàëèëè ëåíòó)
+  // Ð¸Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ (Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, Ð²Ð¾ Ð²Ñ€ÐµÐ¼Ñ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ° ÑƒÐ´Ð°Ð»Ð¸Ð»Ð¸ Ð»ÐµÐ½Ñ‚Ñƒ)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url.toString());
     return;
@@ -51,12 +51,12 @@ void ParseObject::slotParse(QSqlDatabase *db,
   qDebug() << QString("Feed '%1' found with id = %2").arg(url.toString()).
       arg(parseFeedId);
 
-  // ñîáñòâåííî ñàì ðàçáîð
+  // ÑÐ¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ð¾ ÑÐ°Ð¼ Ñ€Ð°Ð·Ð±Ð¾Ñ€
   bool feedChanged = false;
   db->transaction();
   int itemCount = 0;
   QXmlStreamReader xml(xmlData);
-  bool isHeader = true;  //!< ôëàã çàãîëîâêà ëåíòû - ýëåìåíòû äî ïåðâîé íîâîñòè
+  bool isHeader = true;  //!< Ñ„Ð»Ð°Ð³ Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ° Ð»ÐµÐ½Ñ‚Ñ‹ - ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ð´Ð¾ Ð¿ÐµÑ€Ð²Ð¾Ð¹ Ð½Ð¾Ð²Ð¾ÑÑ‚Ð¸
   while (!xml.atEnd()) {
     xml.readNext();
     if (xml.isStartElement()) {
@@ -142,26 +142,26 @@ void ParseObject::slotParse(QSqlDatabase *db,
       if (xml.name() == "item") {
         rssPubDateString = parseDate(rssPubDateString);
 
-        // ïîèñê äóáëèêàòà ñòàòåé â áàçå
+        // Ð¿Ð¾Ð¸ÑÐº Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ð° ÑÑ‚Ð°Ñ‚ÐµÐ¹ Ð² Ð±Ð°Ð·Ðµ
         QSqlQuery q(*db);
         QString qStr;
         qDebug() << "guid:" << rssGuidString;
-        if (!rssGuidString.isEmpty())         // ïîèñê ïî guid
+        if (!rssGuidString.isEmpty())         // Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ guid
           qStr = QString("select * from feed_%1 where guid == '%2'").
               arg(parseFeedId).arg(rssGuidString);
-        else if (rssPubDateString.isEmpty())  // ïîèñê ïî title, ò.ê. ïîëå pubDate ïóñòîå
+        else if (rssPubDateString.isEmpty())  // Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ title, Ñ‚.Ðº. Ð¿Ð¾Ð»Ðµ pubDate Ð¿ÑƒÑÑ‚Ð¾Ðµ
           qStr = QString("select * from feed_%1 where title like '%2'").
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
-        else                               // ïîèñê ïî title è pubDate
+        else                               // Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ title Ð¸ pubDate
           qStr = QString("select * from feed_%1 "
               "where title like '%2' and published == '%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(rssPubDateString);
         q.exec(qStr);
-        // ïðîâåðêà ïðàâèëüíîñòè çàïðîñà
+        // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾ÑÑ‚Ð¸ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°
         if (q.lastError().isValid())
           qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
         else {
-          // åñëè äóáëèêàòà íåò, äîáàâëÿåì ñòàòüþ â áàçó
+          // ÐµÑÐ»Ð¸ Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ð° Ð½ÐµÑ‚, Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÑÑ‚Ð°Ñ‚ÑŒÑŽ Ð² Ð±Ð°Ð·Ñƒ
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
                            "description, content, guid, title, author_name, published, received, link_href) "
@@ -198,27 +198,27 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (xml.name() == "entry") {
         atomUpdatedString = parseDate(atomUpdatedString);
 
-        // ïîèñê äóáëèêàòà ñòàòåé â áàçå
+        // Ð¿Ð¾Ð¸ÑÐº Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ð° ÑÑ‚Ð°Ñ‚ÐµÐ¹ Ð² Ð±Ð°Ð·Ðµ
         QSqlQuery q(*db);
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
-        if (!atomIdString.isEmpty())         // ïîèñê ïî guid
+        if (!atomIdString.isEmpty())         // Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ guid
           qStr = QString("select * from feed_%1 where guid == '%2'").
               arg(parseFeedId).arg(atomIdString);
-        else if (atomUpdatedString.isEmpty())  // ïîèñê ïî title, ò.ê. ïîëå pubDate ïóñòîå
+        else if (atomUpdatedString.isEmpty())  // Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ title, Ñ‚.Ðº. Ð¿Ð¾Ð»Ðµ pubDate Ð¿ÑƒÑÑ‚Ð¾Ðµ
           qStr = QString("select * from feed_%1 where title like '%2'").
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
-        else                               // ïîèñê ïî title è pubDate
+        else                               // Ð¿Ð¾Ð¸ÑÐº Ð¿Ð¾ title Ð¸ pubDate
           qStr = QString("select * from feed_%1 "
               "where title like '%2' and published == '%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(atomUpdatedString);
         q.exec(qStr);
 
-        // ïðîâåðêà ïðàâèëüíîñòè çàïðîñà
+        // Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾ÑÑ‚Ð¸ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°
         if (q.lastError().isValid())
           qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
         else {
-          // åñëè äóáëèêàòà íåò, äîáàâëÿåì ñòàòüþ â áàçó
+          // ÐµÑÐ»Ð¸ Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ð° Ð½ÐµÑ‚, Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ ÑÑ‚Ð°Ñ‚ÑŒÑŽ Ð² Ð±Ð°Ð·Ñƒ
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
                            "description, content, guid, title, author_name, "
@@ -352,8 +352,8 @@ QString ParseObject::parseDate(QString dateString)
   if (dt.isValid()) return locale.toString(dt, "yyyy-MM-ddTHH:mm:ss");
 
   // @HACK(arhohryakov:2012.01.01):
-  // Ôîðìàò "ddd, dd MMM yy HH:mm:ss" íå ðàñïîçíà¸òñÿ àâòîìàòè÷åñêè. Ïðèâîäèì
-  // åãî ê ôîðìàòó "ddd, dd MMM yyyy HH:mm:ss"
+  // Ð¤Ð¾Ñ€Ð¼Ð°Ñ‚ "ddd, dd MMM yy HH:mm:ss" Ð½Ðµ Ñ€Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ñ‘Ñ‚ÑÑ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸. ÐŸÑ€Ð¸Ð²Ð¾Ð´Ð¸Ð¼
+  // ÐµÐ³Ð¾ Ðº Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚Ñƒ "ddd, dd MMM yyyy HH:mm:ss"
   temp = dateString;
   if (70 < dateString.mid(13, 2).toInt()) temp = temp.insert(13, "19");
   else temp = temp.insert(12, "20");

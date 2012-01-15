@@ -20,7 +20,7 @@ void UpdateThread::run()
   return;
 }
 
-/*! \brief Постановка сетевого адреса в очередь запросов **********************/
+/*! \brief РџРѕСЃС‚Р°РЅРѕРІРєР° СЃРµС‚РµРІРѕРіРѕ Р°РґСЂРµСЃР° РІ РѕС‡РµСЂРµРґСЊ Р·Р°РїСЂРѕСЃРѕРІ **********************/
 void UpdateThread::getUrl(const QUrl &url)
 {
   urlsQueue_.enqueue(url);
@@ -28,7 +28,7 @@ void UpdateThread::getUrl(const QUrl &url)
   getQueuedUrl();
 }
 
-/*! \brief Обработка очереди запросов *****************************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РѕС‡РµСЂРµРґРё Р·Р°РїСЂРѕСЃРѕРІ *****************************************/
 void UpdateThread::getQueuedUrl()
 {
   if (!currentUrl_.isEmpty()) return;
@@ -43,7 +43,7 @@ void UpdateThread::getQueuedUrl()
   }
 }
 
-/*! \brief Инициация сетевого запроса и подсоединение сигналов ****************/
+/*! \brief РРЅРёС†РёР°С†РёСЏ СЃРµС‚РµРІРѕРіРѕ Р·Р°РїСЂРѕСЃР° Рё РїРѕРґСЃРѕРµРґРёРЅРµРЅРёРµ СЃРёРіРЅР°Р»РѕРІ ****************/
 void UpdateThread::get(const QUrl &url)
 {
   qDebug() << objectName() << "::get:" << url;
@@ -60,7 +60,7 @@ void UpdateThread::get(const QUrl &url)
 //  start(QThread::LowPriority);
 }
 
-/*! \brief Чтение данных принятых из сети
+/*! \brief Р§С‚РµРЅРёРµ РґР°РЅРЅС‹С… РїСЂРёРЅСЏС‚С‹С… РёР· СЃРµС‚Рё
  *
  *   We read all the available data, and pass it to the XML
  *   stream reader. Then we call the XML parsing function.
@@ -74,7 +74,7 @@ void UpdateThread::readyRead()
   }
 }
 
-/*! \brief Обработка события изменения метаданных интернет-запроса ************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёСЏ РёР·РјРµРЅРµРЅРёСЏ РјРµС‚Р°РґР°РЅРЅС‹С… РёРЅС‚РµСЂРЅРµС‚-Р·Р°РїСЂРѕСЃР° ************/
 void UpdateThread::metaDataChanged()
 {
   QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
@@ -84,7 +84,7 @@ void UpdateThread::metaDataChanged()
   }
 }
 
-/*! \brief Обработка ошибки html-запроса **************************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё html-Р·Р°РїСЂРѕСЃР° **************************************/
 void UpdateThread::error(QNetworkReply::NetworkError)
 {
   qDebug() << objectName() << "::error retrieving RSS feed";
@@ -95,7 +95,7 @@ void UpdateThread::error(QNetworkReply::NetworkError)
   currentUrl_.clear();
 }
 
-/*! \brief Завершение обработки сетевого запроса
+/*! \brief Р—Р°РІРµСЂС€РµРЅРёРµ РѕР±СЂР°Р±РѕС‚РєРё СЃРµС‚РµРІРѕРіРѕ Р·Р°РїСЂРѕСЃР°
 
     The default behavior is to keep the text edit read only.
 

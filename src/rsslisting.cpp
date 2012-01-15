@@ -18,74 +18,74 @@ const QString kDbName = "feeds.db";
 const QString kCreateFeedsTableQuery(
     "create table feeds("
         "id integer primary key, "
-        "text varchar, "             // Текст ленты (сейчас заменяет имя)
-        "title varchar, "            // Имя ленты
-        "description varchar, "      // Описание ленты
-        "xmlurl varchar, "           // интернет-адрес самой ленты
-        "htmlurl varchar, "          // интернет-адрес сайта, с которого забираем ленту
-        "language varchar, "         // язык, на котором написана лента
-        "copyrights varchar, "       // права
-        "author_name varchar, "      // автор лента: имя
-        "author_email varchar, "     //              е-мейл
-        "author_uri varchar, "       //              личная страница
-        "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
-        "pubdate varchar, "          // Дата публикации содержимого ленты
-        "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
-        "category varchar, "         // категории содержимого, освещаемые в ленте
-        "contributor varchar, "      // участник (через табы)
-        "generator varchar, "        // программа, используемая для генерации содержимого
-        "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
-        "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
+        "text varchar, "             // РўРµРєСЃС‚ Р»РµРЅС‚С‹ (СЃРµР№С‡Р°СЃ Р·Р°РјРµРЅСЏРµС‚ РёРјСЏ)
+        "title varchar, "            // РРјСЏ Р»РµРЅС‚С‹
+        "description varchar, "      // РћРїРёСЃР°РЅРёРµ Р»РµРЅС‚С‹
+        "xmlurl varchar, "           // РёРЅС‚РµСЂРЅРµС‚-Р°РґСЂРµСЃ СЃР°РјРѕР№ Р»РµРЅС‚С‹
+        "htmlurl varchar, "          // РёРЅС‚РµСЂРЅРµС‚-Р°РґСЂРµСЃ СЃР°Р№С‚Р°, СЃ РєРѕС‚РѕСЂРѕРіРѕ Р·Р°Р±РёСЂР°РµРј Р»РµРЅС‚Сѓ
+        "language varchar, "         // СЏР·С‹Рє, РЅР° РєРѕС‚РѕСЂРѕРј РЅР°РїРёСЃР°РЅР° Р»РµРЅС‚Р°
+        "copyrights varchar, "       // РїСЂР°РІР°
+        "author_name varchar, "      // Р°РІС‚РѕСЂ Р»РµРЅС‚Р°: РёРјСЏ
+        "author_email varchar, "     //              Рµ-РјРµР№Р»
+        "author_uri varchar, "       //              Р»РёС‡РЅР°СЏ СЃС‚СЂР°РЅРёС†Р°
+        "webMaster varchar, "        // Рµ-РјРµР№Р» Р°РґСЂРµСЃ РѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕРіРѕ Р·Р° С‚РµС…РЅРёС‡РµСЃРєРёРµ РЅРµРїРѕР»СЏРґРєРё Р»РµРЅС‚С‹
+        "pubdate varchar, "          // Р”Р°С‚Р° РїСѓР±Р»РёРєР°С†РёРё СЃРѕРґРµСЂР¶РёРјРѕРіРѕ Р»РµРЅС‚С‹
+        "lastBuildDate varchar, "    // РџРѕСЃР»РµРґРЅСЏСЏ РґР°С‚Р° РёР·РјРµРЅРµРЅРёСЏ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ Р»РµРЅС‚С‹
+        "category varchar, "         // РєР°С‚РµРіРѕСЂРёРё СЃРѕРґРµСЂР¶РёРјРѕРіРѕ, РѕСЃРІРµС‰Р°РµРјС‹Рµ РІ Р»РµРЅС‚Рµ
+        "contributor varchar, "      // СѓС‡Р°СЃС‚РЅРёРє (С‡РµСЂРµР· С‚Р°Р±С‹)
+        "generator varchar, "        // РїСЂРѕРіСЂР°РјРјР°, РёСЃРїРѕР»СЊР·СѓРµРјР°СЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЃРѕРґРµСЂР¶РёРјРѕРіРѕ
+        "docs varchar, "             // СЃСЃС‹Р»РєР° РЅР° РґРѕРєСѓРјРµРЅС‚, РѕРїРёСЃС‹РІР°СЋС‰РёР№ СЃС‚Р°РЅРґР°СЂС‚ RSS
+        "cloud_domain varchar, "     // Р’РµР±-СЃРµСЂРІРёСЃ, РїСЂРµРґРѕСЃС‚Р°РІР»СЏСЋС‰РёР№ rssCloud РёРЅС‚РµСЂС„РµР№СЃ
         "cloud_port varchar, "       //   .
         "cloud_path varchar, "       //   .
         "cloud_procedure varchar, "  //   .
         "cloud_protocal varchar, "   //   .
-        "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
-        "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
-        "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
-        "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
-        "unread integer, "           // количество непрочитанных новостей
-        "newCount integer, "         // количество новых новостей
-        "currentNews integer, "      // отображаемая новость
-        "label varchar"              // выставляется пользователем
+        "ttl integer, "              // Р’СЂРµРјСЏ РІ РјРёРЅСѓС‚Р°С…, РІ С‚РµС‡РµРЅРёРµ РєРѕС‚РѕСЂРѕРіРѕ РєР°РЅР°Р» РјРѕР¶РµС‚ Р±С‹С‚СЊ РєРµС€РёСЂРѕРІР°РЅ
+        "skipHours varchar, "        // РџРѕРґСЃРєР°Р·РєР° Р°РіРіСЂРµРіР°С‚РѕСЂР°Рј, РєРѕРіРґР° РЅРµ РЅСѓР¶РЅРѕ РѕР±РЅРѕРІР»СЏС‚СЊ Р»РµРЅС‚Сѓ (СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ С‡Р°СЃС‹)
+        "skipDays varchar, "         // РџРѕРґСЃРєР°Р·РєР° Р°РіРіСЂРµРіР°С‚РѕСЂР°Рј, РєРѕРіРґР° РЅРµ РЅСѓР¶РЅРѕ РѕР±РЅРѕРІР»СЏС‚СЊ Р»РµРЅС‚Сѓ (СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ РґРЅРё РЅРµРґРµР»Рё)
+        "image blob, "               // gif, jpeg, png СЂРёСЃСѓРЅРѕРє, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р°СЃСЃРѕС†РёРёСЂРѕРІР°РЅ СЃ РєР°РЅР°Р»РѕРј
+        "unread integer, "           // РєРѕР»РёС‡РµСЃС‚РІРѕ РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅС‹С… РЅРѕРІРѕСЃС‚РµР№
+        "newCount integer, "         // РєРѕР»РёС‡РµСЃС‚РІРѕ РЅРѕРІС‹С… РЅРѕРІРѕСЃС‚РµР№
+        "currentNews integer, "      // РѕС‚РѕР±СЂР°Р¶Р°РµРјР°СЏ РЅРѕРІРѕСЃС‚СЊ
+        "label varchar"              // РІС‹СЃС‚Р°РІР»СЏРµС‚СЃСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
     ")");
 
 const QString kCreateNewsTableQuery(
     "create table feed_%1("
         "id integer primary key, "
-        "feed integer, "                       // идентификатор ленты из таблицы feeds
-        "guid varchar, "                       // уникальный номер
-        "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
-        "description varchar, "                // краткое содержание
-        "content varchar, "                    // полное содержание (atom)
-        "title varchar, "                      // заголовок
-        "published varchar, "                  // дата публикащии
-        "modified varchar, "                   // дата модификации
-        "received varchar, "                   // дата приёма новости (выставляется при приёме)
-        "author_name varchar, "                // имя автора
-        "author_uri varchar, "                 // страничка автора (atom)
-        "author_email varchar, "               // почта автора (atom)
-        "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-        "label varchar, "                      // метка (выставляется пользователем)
-        "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
-        "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
-        "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
-        "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется, 
-                                               //   чтобы при обновлении новостей она не появлялась вновь. 
-                                               //   Физическое удаление новость будет производится при общей чистке базы
-        "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
-        "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
-        "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
-        "enclosure_type, "                     //   длина, тип,
-        "enclosure_url, "                      //   адрес.
-        "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
-        "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
-        "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
-                                               //   который нереально передать в новости (atom)
-        "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
-        "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
-        "contributor varchar, "                // участник (через табы)
-        "rights varchar "                      // права
+        "feed integer, "                       // РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р»РµРЅС‚С‹ РёР· С‚Р°Р±Р»РёС†С‹ feeds
+        "guid varchar, "                       // СѓРЅРёРєР°Р»СЊРЅС‹Р№ РЅРѕРјРµСЂ
+        "guidislink varchar default 'true', "  // С„Р»Р°Рі С‚РѕРіРѕ, С‡С‚Рѕ СѓРЅРёРєР°Р»СЊРЅС‹Р№ РЅРѕРјРµСЂ СЏРІР»СЏРµС‚СЃСЏ СЃСЃС‹Р»РєРѕР№ РЅР° РЅРѕРІРѕСЃС‚СЊ
+        "description varchar, "                // РєСЂР°С‚РєРѕРµ СЃРѕРґРµСЂР¶Р°РЅРёРµ
+        "content varchar, "                    // РїРѕР»РЅРѕРµ СЃРѕРґРµСЂР¶Р°РЅРёРµ (atom)
+        "title varchar, "                      // Р·Р°РіРѕР»РѕРІРѕРє
+        "published varchar, "                  // РґР°С‚Р° РїСѓР±Р»РёРєР°С‰РёРё
+        "modified varchar, "                   // РґР°С‚Р° РјРѕРґРёС„РёРєР°С†РёРё
+        "received varchar, "                   // РґР°С‚Р° РїСЂРёС‘РјР° РЅРѕРІРѕСЃС‚Рё (РІС‹СЃС‚Р°РІР»СЏРµС‚СЃСЏ РїСЂРё РїСЂРёС‘РјРµ)
+        "author_name varchar, "                // РёРјСЏ Р°РІС‚РѕСЂР°
+        "author_uri varchar, "                 // СЃС‚СЂР°РЅРёС‡РєР° Р°РІС‚РѕСЂР° (atom)
+        "author_email varchar, "               // РїРѕС‡С‚Р° Р°РІС‚РѕСЂР° (atom)
+        "category varchar, "                   // РєР°С‚РµРіРѕСЂРёСЏ, РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ РєР°С‚РµРіРѕСЂРёР№ (РЅР°РїСЂРёРјРµСЂ С‡РµСЂРµР· Р·РЅР°Рє С‚Р°Р±СѓР»СЏС†РёРё)
+        "label varchar, "                      // РјРµС‚РєР° (РІС‹СЃС‚Р°РІР»СЏРµС‚СЃСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј)
+        "new integer default 1, "              // Р¤Р»Р°Рі "РЅРѕРІР°СЏ". РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїСЂРё РїСЂРёС‘РјРµ, СЃРЅРёРјР°РµС‚СЃСЏ РїСЂРё Р·Р°РєСЂС‹С‚РёРё РїСЂРѕРіСЂР°РјРјС‹
+        "read integer default 0, "             // Р¤Р»Р°Рі "РїСЂРѕС‡РёС‚Р°РЅРЅР°СЏ". РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРѕСЃР»Рµ РІС‹Р±РѕСЂР° РЅРѕРІРѕСЃС‚Рё
+        "sticky integer default 0, "           // Р¤Р»Р°Рі "РѕС‚Р»РёС‡РЅР°СЏ". РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј
+        "deleted integer default 0, "          // Р¤Р»Р°Рі "СѓРґР°Р»С‘РЅРЅР°СЏ". РќРѕРІРѕСЃС‚СЊ РїРѕРјРµС‡Р°РµС‚СЃСЏ СѓРґР°Р»С‘РЅРЅРѕР№, РЅРѕ С„РёР·РёС‡РµСЃРєРё РёР· Р±Р°Р·С‹ РЅРµ СѓРґР°Р»СЏРµС‚СЃСЏ, 
+                                               //   С‡С‚РѕР±С‹ РїСЂРё РѕР±РЅРѕРІР»РµРЅРёРё РЅРѕРІРѕСЃС‚РµР№ РѕРЅР° РЅРµ РїРѕСЏРІР»СЏР»Р°СЃСЊ РІРЅРѕРІСЊ. 
+                                               //   Р¤РёР·РёС‡РµСЃРєРѕРµ СѓРґР°Р»РµРЅРёРµ РЅРѕРІРѕСЃС‚СЊ Р±СѓРґРµС‚ РїСЂРѕРёР·РІРѕРґРёС‚СЃСЏ РїСЂРё РѕР±С‰РµР№ С‡РёСЃС‚РєРµ Р±Р°Р·С‹
+        "attachment varchar, "                 // СЃСЃС‹Р»РєР° РЅР° РїСЂРёРєСЂРµРїР»РµРЅРЅС‹Рµ С„Р°Р№Р»С‹ (СЃСЃС‹Р»РєРё РјРѕРіСѓС‚ Р±С‹С‚СЊ СЂР°Р·РґРµР»РµРЅС‹ С‚Р°Р±Р°РјРё)
+        "comments varchar, "                   // РёРЅС‚РµСЂРЅРµР»-СЃСЃС‹Р»РєР° РЅР° СЃС‚СЂР°РЅРёС†Сѓ, СЃРѕРґРµСЂР¶Р°С‰СѓСЋ РєРѕРјРјРµРЅС‚Р°СЂРёРё(РѕС‚РІРµС‚С‹) Рє РЅРѕРІРѕСЃС‚Рё
+        "enclosure_length, "                   // РјРµРґРёР°-РѕР±СЉРµРєС‚, Р°СЃСЃРѕС†РёРёСЂРѕРІР°РЅРЅС‹Р№ СЃ РЅРѕРІРѕСЃС‚СЊСЋ:
+        "enclosure_type, "                     //   РґР»РёРЅР°, С‚РёРї,
+        "enclosure_url, "                      //   Р°РґСЂРµСЃ.
+        "source varchar, "                     // РёСЃС‚РѕС‡РЅРёРє, РµСЃР»Рё СЌС‚Рѕ РїРµСЂРµРїСѓР±Р»РёРєР°С†РёСЏ  (atom: <link via>)
+        "link_href varchar, "                  // РёРЅС‚РµСЂРЅРµС‚-СЃСЃС‹Р»РєР° РЅР° РЅРѕРІРѕСЃС‚СЊ (atom: <link self>)
+        "link_enclosure varchar, "             // РёРЅС‚РµСЂРЅРµС‚-СЃСЃС‹Р»РєР° РЅР° РїРѕС‚РµРЅС†РёР°Р»СЊРЅРѕ Р±РѕР»СЊС€РѕР№ РѕР±СЉС‘Рј РёРЅС„РѕСЂРјР°С†РёРё,
+                                               //   РєРѕС‚РѕСЂС‹Р№ РЅРµСЂРµР°Р»СЊРЅРѕ РїРµСЂРµРґР°С‚СЊ РІ РЅРѕРІРѕСЃС‚Рё (atom)
+        "link_related varchar, "               // РёРЅС‚РµСЂРЅРµС‚-СЃСЃС‹Р»РєР° РЅР° СЃРѕРїСѓС‚СЃС‚РІСѓСЋС‰РёРµ РґР°РЅРЅС‹Р№ РґР»СЏ РЅРѕРІРѕСЃС‚Рё  (atom)
+        "link_alternate varchar, "             // РёРЅС‚РµСЂРЅРµС‚-СЃСЃС‹Р»РєР° РЅР° Р°Р»СЊС‚РµСЂРЅР°С‚РёРІРЅРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РЅРѕРІРѕСЃС‚Рё
+        "contributor varchar, "                // СѓС‡Р°СЃС‚РЅРёРє (С‡РµСЂРµР· С‚Р°Р±С‹)
+        "rights varchar "                      // РїСЂР°РІР°
     ")");
 
 /*!****************************************************************************/
@@ -97,7 +97,7 @@ RSSListing::RSSListing(QWidget *parent)
     settings_ = new QSettings(AppFileName, QSettings::IniFormat);
 
     dbFileName_ = qApp->applicationDirPath() + "/" + kDbName;
-    if (!QFile(dbFileName_).exists()) {  // Инициализация базы
+    if (!QFile(dbFileName_).exists()) {  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р±Р°Р·С‹
       QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
       db.setDatabaseName(dbFileName_);
       db.open();
@@ -327,7 +327,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     //! Create web layout
     QVBoxLayout *webLayout = new QVBoxLayout();
-    webLayout->setMargin(1);  // Чтобы было видно границу виджета
+    webLayout->setMargin(1);  // Р§С‚РѕР±С‹ Р±С‹Р»Рѕ РІРёРґРЅРѕ РіСЂР°РЅРёС†Сѓ РІРёРґР¶РµС‚Р°
     webLayout->setSpacing(0);
     webLayout->addWidget(webPanel_, 0);
     webLayout->addWidget(webView_, 1);
@@ -388,7 +388,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsHeader_->createMenu();
     newsView_->setCurrentIndex(newsModel_->index(row, 0));
 
-    //Установка шрифтов и их настроек для элементов
+    //РЈСЃС‚Р°РЅРѕРІРєР° С€СЂРёС„С‚РѕРІ Рё РёС… РЅР°СЃС‚СЂРѕРµРє РґР»СЏ СЌР»РµРјРµРЅС‚РѕРІ
 //    QFont font_ = newsTitleLabel_->font();
 //    font_.setBold(true);
 //    newsTitleLabel_->setFont(font_);
@@ -476,7 +476,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   }
 }
 
-/*! \brief ОБработка событий закрытия окна ************************************/
+/*! \brief РћР‘СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ Р·Р°РєСЂС‹С‚РёСЏ РѕРєРЅР° ************************************/
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
   oldState = windowState();
@@ -484,7 +484,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   emit signalPlaceToTray();
 }
 
-/*! \brief Обработка события выхода из приложения *****************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёСЏ РІС‹С…РѕРґР° РёР· РїСЂРёР»РѕР¶РµРЅРёСЏ *****************************/
 void RSSListing::slotClose()
 {
   traySystem->hide();
@@ -493,13 +493,13 @@ void RSSListing::slotClose()
   emit signalCloseApp();
 }
 
-/*! \brief Завершение приложения **********************************************/
+/*! \brief Р—Р°РІРµСЂС€РµРЅРёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ **********************************************/
 void RSSListing::slotCloseApp()
 {
   qApp->quit();
 }
 
-/*! \brief Обработка события изменения состояния окна *************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёСЏ РёР·РјРµРЅРµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ РѕРєРЅР° *************************/
 /*virtual*/ void RSSListing::changeEvent(QEvent *event)
 {
   if(event->type() == QEvent::WindowStateChange) {
@@ -516,7 +516,7 @@ void RSSListing::slotCloseApp()
   QMainWindow::changeEvent(event);
 }
 
-/*! \brief Обработка события помещения программы в трей ***********************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёСЏ РїРѕРјРµС‰РµРЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹ РІ С‚СЂРµР№ ***********************/
 void RSSListing::slotPlaceToTray()
 {
   QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
@@ -524,7 +524,7 @@ void RSSListing::slotPlaceToTray()
   sqliteDBMemFile(db_, dbFileName_, true);
 }
 
-/*! \brief Обработка событий трея *********************************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№ С‚СЂРµСЏ *********************************************/
 void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 {
   switch (reason) {
@@ -543,7 +543,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
   }
 }
 
-/*! \brief Отображение окна по событию ****************************************/
+/*! \brief РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕРєРЅР° РїРѕ СЃРѕР±С‹С‚РёСЋ ****************************************/
 void RSSListing::slotShowWindows()
 {
   if (oldState == Qt::WindowMaximized) {
@@ -561,8 +561,8 @@ void RSSListing::timerEvent(QTimerEvent *event)
   }
 }
 
-/*! \brief Создание действий **************************************************
- * \details Которые будут использоваться в главном меню и ToolBar
+/*! \brief РЎРѕР·РґР°РЅРёРµ РґРµР№СЃС‚РІРёР№ **************************************************
+ * \details РљРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РІ РіР»Р°РІРЅРѕРј РјРµРЅСЋ Рё ToolBar
  ******************************************************************************/
 void RSSListing::createActions()
 {
@@ -665,7 +665,7 @@ void RSSListing::createActions()
   feedProperties_->setToolTip(tr("Properties feed"));
 }
 
-/*! \brief Создание главного меню *********************************************/
+/*! \brief РЎРѕР·РґР°РЅРёРµ РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ *********************************************/
 void RSSListing::createMenu()
 {
   fileMenu_ = menuBar()->addMenu(tr("&File"));
@@ -738,7 +738,7 @@ void RSSListing::createMenu()
   helpMenu_->addAction(aboutAct_);
 }
 
-/*! \brief Создание ToolBar ***************************************************/
+/*! \brief РЎРѕР·РґР°РЅРёРµ ToolBar ***************************************************/
 void RSSListing::createToolBar()
 {
   toolBar_ = addToolBar(tr("ToolBar"));
@@ -761,7 +761,7 @@ void RSSListing::createToolBar()
   connect(autoLoadImagesToggle_, SIGNAL(toggled(bool)), this, SLOT(setAutoLoadImages(bool)));
 }
 
-/*! \brief Чтение настроек из ini-файла ***************************************/
+/*! \brief Р§С‚РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє РёР· ini-С„Р°Р№Р»Р° ***************************************/
 void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
@@ -795,7 +795,7 @@ void RSSListing::readSettings()
   persistentUpdateThread_->setProxy(networkProxy_);
 }
 
-/*! \brief Запись настроек в ini-файл *****************************************/
+/*! \brief Р—Р°РїРёСЃСЊ РЅР°СЃС‚СЂРѕРµРє РІ ini-С„Р°Р№Р» *****************************************/
 void RSSListing::writeSettings()
 {
   settings_->beginGroup("/Settings");
@@ -842,7 +842,7 @@ void RSSListing::writeSettings()
                       newsFilterGroup_->checkedAction()->objectName());
 }
 
-/*! \brief Добавление ленты в список лент *************************************/
+/*! \brief Р”РѕР±Р°РІР»РµРЅРёРµ Р»РµРЅС‚С‹ РІ СЃРїРёСЃРѕРє Р»РµРЅС‚ *************************************/
 void RSSListing::addFeed()
 {
   AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
@@ -863,7 +863,7 @@ void RSSListing::addFeed()
   feedsView_->setCurrentIndex(index);
 }
 
-/*! \brief Удаление ленты из списка лент с подтверждением *********************/
+/*! \brief РЈРґР°Р»РµРЅРёРµ Р»РµРЅС‚С‹ РёР· СЃРїРёСЃРєР° Р»РµРЅС‚ СЃ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµРј *********************/
 void RSSListing::deleteFeed()
 {
   if (feedsView_->currentIndex().row() >= 0) {
@@ -892,7 +892,7 @@ void RSSListing::deleteFeed()
   }
 }
 
-/*! \brief Импорт лент из OPML-файла ******************************************/
+/*! \brief РРјРїРѕСЂС‚ Р»РµРЅС‚ РёР· OPML-С„Р°Р№Р»Р° ******************************************/
 void RSSListing::importFeeds()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
@@ -922,7 +922,7 @@ void RSSListing::importFeeds()
     xml.readNext();
     if (xml.isStartElement()) {
       statusBar()->showMessage(QVariant(elementCount).toString(), 3000);
-      // Выбираем одни outline'ы
+      // Р’С‹Р±РёСЂР°РµРј РѕРґРЅРё outline'С‹
       if (xml.name() == "outline") {
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
             << ":" << xml.name().toString();;
@@ -960,14 +960,14 @@ void RSSListing::importFeeds()
   feedsView_->setCurrentIndex(index);
 }
 
-/*! \brief приём xml-файла ****************************************************/
+/*! \brief РїСЂРёС‘Рј xml-С„Р°Р№Р»Р° ****************************************************/
 void RSSListing::receiveXml(const QByteArray &data, const QUrl &url)
 {
   url_ = url;
   data_.append(data);
 }
 
-/*! \brief Обработка окончания запроса ****************************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РѕРєРѕРЅС‡Р°РЅРёСЏ Р·Р°РїСЂРѕСЃР° ****************************************/
 void RSSListing::getUrlDone(const int &result)
 {
   qDebug() << "getUrl result =" << result;
@@ -978,13 +978,13 @@ void RSSListing::getUrlDone(const int &result)
     url_.clear();
   }
 
-  // очередь запросов пуста
+  // РѕС‡РµСЂРµРґСЊ Р·Р°РїСЂРѕСЃРѕРІ РїСѓСЃС‚Р°
   if (0 == result) {
     updateAllFeedsAct_->setEnabled(true);
     progressBar_->hide();
     statusBar()->showMessage(QString("Update done"), 3000);
   }
-  // в очереди запросов осталось _result_ запросов
+  // РІ РѕС‡РµСЂРµРґРё Р·Р°РїСЂРѕСЃРѕРІ РѕСЃС‚Р°Р»РѕСЃСЊ _result_ Р·Р°РїСЂРѕСЃРѕРІ
   else if (0 < result) {
     progressBar_->setValue(progressBar_->maximum() - result);
   }
@@ -992,7 +992,7 @@ void RSSListing::getUrlDone(const int &result)
 
 void RSSListing::slotUpdateFeed(const QUrl &url)
 {
-  // поиск идентификатора ленты с таблице лент
+  // РїРѕРёСЃРє РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂР° Р»РµРЅС‚С‹ СЃ С‚Р°Р±Р»РёС†Рµ Р»РµРЅС‚
   int parseFeedId = 0;
   QSqlQuery q(db_);
   q.exec(QString("select id from feeds where xmlurl like '%1'").
@@ -1033,19 +1033,19 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 
   QModelIndex index = feedsView_->currentIndex();
 
-  // если обновлена просматриваемая лента, кликаем по ней
+  // РµСЃР»Рё РѕР±РЅРѕРІР»РµРЅР° РїСЂРѕСЃРјР°С‚СЂРёРІР°РµРјР°СЏ Р»РµРЅС‚Р°, РєР»РёРєР°РµРј РїРѕ РЅРµР№
   if (parseFeedId ==
       feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
     slotFeedsTreeClicked(feedsModel_->index(index.row(), 0));
   }
-  // иначе обновляем модель лент
+  // РёРЅР°С‡Рµ РѕР±РЅРѕРІР»СЏРµРј РјРѕРґРµР»СЊ Р»РµРЅС‚
   else {
     feedsModel_->select();
     feedsView_->setCurrentIndex(index);
   }
 }
 
-/*! \brief Обработка нажатия в дереве лент ************************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ РІ РґРµСЂРµРІРµ Р»РµРЅС‚ ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   static QModelIndex indexOld = index;
@@ -1082,7 +1082,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
 }
 
-/*! \brief Запрос обновления ленты ********************************************/
+/*! \brief Р—Р°РїСЂРѕСЃ РѕР±РЅРѕРІР»РµРЅРёСЏ Р»РµРЅС‚С‹ ********************************************/
 void RSSListing::getFeed(QString urlString)
 {
   persistentUpdateThread_->getUrl(urlString);
@@ -1092,14 +1092,14 @@ void RSSListing::getFeed(QString urlString)
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
-/*! \brief Обработка нажатия в дереве новостей ********************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РЅР°Р¶Р°С‚РёСЏ РІ РґРµСЂРµРІРµ РЅРѕРІРѕСЃС‚РµР№ ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   static QModelIndex indexOld = index;
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
-    slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
+    slotUpdateStatus();  // РЅРµРѕР±С…РѕРґРёРјРѕ, РєРѕРіРґР° РІС‹Р±СЂР°РЅР° РґСЂСѓРіР°СЏ Р»РµРЅС‚Р°, РЅРѕ РЅРѕРІРѕСЃС‚СЊ РІ РЅРµР№ РЅРµ РІС‹Р±СЂР°РЅР°
     return;
   }
 
@@ -1121,19 +1121,19 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   indexOld = indexNew;
 }
 
-/*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РєР»Р°РІРёС€ Up/Down РІ РґРµСЂРµРІРµ Р»РµРЅС‚ *****************************/
 void RSSListing::slotFeedsTreeKeyUpDownPressed()
 {
   slotFeedsTreeClicked(feedsView_->currentIndex());
 }
 
-/*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° РєР»Р°РІРёС€ Up/Down РІ РґРµСЂРµРІРµ РЅРѕРІРѕСЃС‚РµР№ *************************/
 void RSSListing::slotNewsKeyUpDownPressed()
 {
   slotNewsViewClicked(newsView_->currentIndex());
 }
 
-/*! \brief Вызов окна настроек ************************************************/
+/*! \brief Р’С‹Р·РѕРІ РѕРєРЅР° РЅР°СЃС‚СЂРѕРµРє ************************************************/
 void RSSListing::showOptionDlg()
 {
   OptionsDialog *optionsDialog = new OptionsDialog(this);
@@ -1158,7 +1158,7 @@ void RSSListing::showOptionDlg()
   autoUpdatefeedsTime_ = optionsDialog->updateFeedsTime_->value();
 }
 
-/*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
+/*! \brief РћР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№ РїРѕР»СѓС‡РµРЅРЅС‹С… РёР· Р·Р°РїСѓС‰С‰РµРЅРѕР№ РєРѕРїРёРё РїСЂРѕРіСЂР°РјРјС‹ *******/
 void RSSListing::receiveMessage(const QString& message)
 {
   qDebug() << QString("Received message: '%1'").arg(message);
@@ -1171,7 +1171,7 @@ void RSSListing::receiveMessage(const QString& message)
   }
 }
 
-/*! \brief Создание меню трея *************************************************/
+/*! \brief РЎРѕР·РґР°РЅРёРµ РјРµРЅСЋ С‚СЂРµСЏ *************************************************/
 void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
@@ -1191,13 +1191,13 @@ void RSSListing::createTrayMenu()
   traySystem->setContextMenu(trayMenu_);
 }
 
-/*! \brief Освобождение памяти ************************************************/
+/*! \brief РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё ************************************************/
 void RSSListing::myEmptyWorkingSet()
 {
   EmptyWorkingSet(GetCurrentProcess());
 }
 
-/*! \brief Обновление ленты (действие) ****************************************/
+/*! \brief РћР±РЅРѕРІР»РµРЅРёРµ Р»РµРЅС‚С‹ (РґРµР№СЃС‚РІРёРµ) ****************************************/
 void RSSListing::slotGetFeed()
 {
   progressBar_->setMaximum(1);
@@ -1205,7 +1205,7 @@ void RSSListing::slotGetFeed()
       field("xmlurl").value().toString());
 }
 
-/*! \brief Обновление ленты (действие) ****************************************/
+/*! \brief РћР±РЅРѕРІР»РµРЅРёРµ Р»РµРЅС‚С‹ (РґРµР№СЃС‚РІРёРµ) ****************************************/
 void RSSListing::slotGetAllFeeds()
 {
   updateAllFeedsAct_->setEnabled(false);
@@ -1310,13 +1310,13 @@ void RSSListing::markAllNewsRead()
   slotUpdateStatus();
 }
 
-/*! \brief Подсчёт новостей
+/*! \brief РџРѕРґСЃС‡С‘С‚ РЅРѕРІРѕСЃС‚РµР№
  *
- * Подсчёт всех новостей в фиде. (50мс)
- * Подсчёт всех не прочитанных новостей в фиде. (50мс)
- * Подсчёт всех новых новостей в фиде. (50мс)
- * Запись этих данных в таблицу лент (100мс)
- * Вывод этих данных в статусную строку
+ * РџРѕРґСЃС‡С‘С‚ РІСЃРµС… РЅРѕРІРѕСЃС‚РµР№ РІ С„РёРґРµ. (50РјСЃ)
+ * РџРѕРґСЃС‡С‘С‚ РІСЃРµС… РЅРµ РїСЂРѕС‡РёС‚Р°РЅРЅС‹С… РЅРѕРІРѕСЃС‚РµР№ РІ С„РёРґРµ. (50РјСЃ)
+ * РџРѕРґСЃС‡С‘С‚ РІСЃРµС… РЅРѕРІС‹С… РЅРѕРІРѕСЃС‚РµР№ РІ С„РёРґРµ. (50РјСЃ)
+ * Р—Р°РїРёСЃСЊ СЌС‚РёС… РґР°РЅРЅС‹С… РІ С‚Р°Р±Р»РёС†Сѓ Р»РµРЅС‚ (100РјСЃ)
+ * Р’С‹РІРѕРґ СЌС‚РёС… РґР°РЅРЅС‹С… РІ СЃС‚Р°С‚СѓСЃРЅСѓСЋ СЃС‚СЂРѕРєСѓ
  */
 void RSSListing::slotUpdateStatus()
 {
@@ -1613,7 +1613,7 @@ void RSSListing::loadSettingsFeeds()
   }
 
   feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-  slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
+  slotFeedsTreeClicked(feedsModel_->index(row, 0));  // Р·Р°РіСЂСѓР·РєР° РЅРѕРІРѕСЃС‚РµР№
 }
 
 void RSSListing::updateWebView(QModelIndex index)
@@ -1634,7 +1634,7 @@ void RSSListing::updateWebView(QModelIndex index)
       arg(titleString);
   webPanelTitle_->setText(panelTitleString);
 
-  // Формируем панель автора из автора новости
+  // Р¤РѕСЂРјРёСЂСѓРµРј РїР°РЅРµР»СЊ Р°РІС‚РѕСЂР° РёР· Р°РІС‚РѕСЂР° РЅРѕРІРѕСЃС‚Рё
   QString authorString;
   QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
   QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
@@ -1644,9 +1644,9 @@ void RSSListing::updateWebView(QModelIndex index)
   if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
   if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
 
-  // Если авора новости нет, формируем панель автора из автора ленты
-  // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
-  //   новость обновляется именно у него
+  // Р•СЃР»Рё Р°РІРѕСЂР° РЅРѕРІРѕСЃС‚Рё РЅРµС‚, С„РѕСЂРјРёСЂСѓРµРј РїР°РЅРµР»СЊ Р°РІС‚РѕСЂР° РёР· Р°РІС‚РѕСЂР° Р»РµРЅС‚С‹
+  // @NOTE(arhohryakov:2012.01.03) РђРІС‚РѕСЂ Р±РµСЂС‘С‚СЃСЏ РёР· С‚РµРєСѓС‰РµРіРѕ С„РёРґР°, С‚.Рє. РїСЂРё
+  //   РЅРѕРІРѕСЃС‚СЊ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ РёРјРµРЅРЅРѕ Сѓ РЅРµРіРѕ
   if (authorString.isEmpty()) {
     authorName = feedsModel_->record(feedsView_->currentIndex().row()).field("author_name").value().toString();
     authorEmail = feedsModel_->record(feedsView_->currentIndex().row()).field("author_email").value().toString();

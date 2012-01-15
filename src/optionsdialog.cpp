@@ -65,8 +65,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   manualLayout->addStretch();
 
   manualWidget_ = new QWidget();
-  manualWidget_->setEnabled(false);  // т.к. при создании соответствующая радио-кнока не выбрана
-  // @TODO(arhohryakov:2011.12.08): убрать границу и заголовок группы
+  manualWidget_->setEnabled(false);  // С‚.Рє. РїСЂРё СЃРѕР·РґР°РЅРёРё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰Р°СЏ СЂР°РґРёРѕ-РєРЅРѕРєР° РЅРµ РІС‹Р±СЂР°РЅР°
+  // @TODO(arhohryakov:2011.12.08): СѓР±СЂР°С‚СЊ РіСЂР°РЅРёС†Сѓ Рё Р·Р°РіРѕР»РѕРІРѕРє РіСЂСѓРїРїС‹
   manualWidget_->setLayout(manualLayout);
 
   networkConnectionsLayout->addWidget(manualWidget_);
@@ -145,7 +145,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->setCurrentItem(categoriesTree->topLevelItem(0));
   slotCategoriesItemCLicked(categoriesTree->topLevelItem(0), 0);
 
-  // не нужно, т.к. после создания окна из главного окна передаются настройки
+  // РЅРµ РЅСѓР¶РЅРѕ, С‚.Рє. РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ РѕРєРЅР° РёР· РіР»Р°РІРЅРѕРіРѕ РѕРєРЅР° РїРµСЂРµРґР°СЋС‚СЃСЏ РЅР°СЃС‚СЂРѕР№РєРё
 //  manualProxyToggle(manualProxyButton_->isChecked());
 }
 
