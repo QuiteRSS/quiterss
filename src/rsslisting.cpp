@@ -502,12 +502,14 @@ void RSSListing::slotCloseApp()
 /*! \brief Обработка события изменения состояния окна *************************/
 /*virtual*/ void RSSListing::changeEvent(QEvent *event)
 {
-  if(event->type() == QEvent::WindowStateChange) {
-    oldState = ((QWindowStateChangeEvent*)event)->oldState();
+  if(event->type() == QEvent::WindowStateChange) { 
     if(isMinimized()) {
+      oldState = ((QWindowStateChangeEvent*)event)->oldState();
       event->ignore();
       emit signalPlaceToTray();
       return;
+    } else {
+      oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow())
