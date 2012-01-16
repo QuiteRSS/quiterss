@@ -12,11 +12,16 @@ public:
   explicit OptionsDialog(QWidget *parent = 0);
   QNetworkProxy proxy();
   void setProxy(const QNetworkProxy proxy);
+  QString language();
+  void setLanguage(QString langFileName);
 
   // feeds
   QCheckBox *updateFeedsStartUp_;
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
+
+  // language
+  QString langFileName_;
 
 private slots:
   void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
@@ -34,6 +39,7 @@ private:
   //stack widgets
   QWidget *networkConnectionsWidget_;
   QTabWidget *feedsWidget_;
+  QWidget *languageWidget_;
 
   QDialogButtonBox *buttonBox_;
 
@@ -46,6 +52,9 @@ private:
   QLineEdit *editPort_;
   QLineEdit *editUser_;
   QLineEdit *editPassword_;
+
+  // language
+  QListWidget *languageFileList_;
 
   // internal variables for options
   QNetworkProxy networkProxy_;

@@ -771,6 +771,8 @@ void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
 
+  langFileName_ = settings_->value("langFileName", "en.qm").toString();
+
   QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
   int fontSize = settings_->value("/FontSize", 8).toInt();
   qApp->setFont(QFont(fontFamily, fontSize));
@@ -805,9 +807,7 @@ void RSSListing::writeSettings()
 {
   settings_->beginGroup("/Settings");
 
-  QString strLocalLang = QLocale::system().name();
-  QString lang = settings_->value("/Lang", strLocalLang).toString();
-  settings_->setValue("/Lang", lang);
+  settings_->setValue("langFileName", langFileName_);
 
   QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
   settings_->setValue("/FontFamily", fontFamily);
@@ -1150,6 +1150,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
 
+  optionsDialog->setLanguage(langFileName_);
+
   int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 
@@ -1161,6 +1163,8 @@ void RSSListing::showOptionDlg()
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
   autoUpdatefeedsTime_ = optionsDialog->updateFeedsTime_->value();
+
+  langFileName_ = optionsDialog->language();
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/

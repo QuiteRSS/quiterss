@@ -20,6 +20,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem.clear();
   treeItem << "1" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "2" << tr("Language");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
 //  systemProxyButton_->setEnabled(false);
@@ -101,6 +104,25 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   feedsWidget_->addTab(feedsUpdateWidget_, tr("General"));
   //
 
+  //{ language
+  languageFileList_ = new QListWidget();
+
+  QVBoxLayout *languageLayout = new QVBoxLayout();
+  languageLayout->setMargin(0);
+  languageLayout->addWidget(new QLabel(tr("Choose language file:*")));
+  languageLayout->addWidget(languageFileList_);
+  languageLayout->addWidget(new QLabel(tr("* - changes will take effect after restart")));
+
+  languageWidget_ = new QWidget();
+  languageWidget_->setLayout(languageLayout);
+
+  // init list
+  QDir langDir = qApp->applicationDirPath() + "/lang";
+  foreach (QString file, langDir.entryList(QDir::Files)) {
+    new QListWidgetItem(file, languageFileList_);
+  }
+  //} language
+
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentLabel_->setObjectName("contentLabel_");
 
@@ -108,6 +130,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_->setObjectName("contentStack_");
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(feedsWidget_);
+  contentStack_->addWidget(languageWidget_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
   contentLayout->setMargin(0);
@@ -169,6 +192,28 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 {
   networkProxy_ = proxy;
   updateProxy();
+}
+
+QString OptionsDialog::language()
+{
+  return languageFileList_->currentItem()->data(Qt::DisplayRole).toString();
+}
+
+void OptionsDialog::setLanguage(QString langFileName)
+{
+  langFileName_ =langFileName;
+
+  // установка курсора на выбранный файл
+  QList<QListWidgetItem*> list =
+      languageFileList_->findItems(langFileName_, Qt::MatchExactly);
+  if (list.count()) {
+    languageFileList_->setCurrentItem(list.at(0));
+  } else {
+    // если не удалось найти, выбираем английский
+    QList<QListWidgetItem*> list =
+        languageFileList_->findItems("en.qm", Qt::MatchExactly);
+    languageFileList_->setCurrentItem(list.at(0));
+  }
 }
 
 void OptionsDialog::updateProxy()

@@ -9,7 +9,7 @@ void LoadLang (QString &lang){
     QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
     QString strLocalLang = QLocale::system().name();
 
-    lang = m_settings->value("Settings/Lang", strLocalLang).toString();
+    lang = m_settings->value("Settings/langFileName", strLocalLang).toString();
 }
 
 int main(int argc, char **argv)

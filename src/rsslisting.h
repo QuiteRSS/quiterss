@@ -158,6 +158,8 @@ private:
     bool autoUpdatefeeds_;
     int  autoUpdatefeedsTime_;
 
+    QString langFileName_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
