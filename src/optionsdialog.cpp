@@ -109,17 +109,19 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QVBoxLayout *languageLayout = new QVBoxLayout();
   languageLayout->setMargin(0);
-  languageLayout->addWidget(new QLabel(tr("Choose language file:*")));
+  languageLayout->addWidget(new QLabel(tr("Choose language:*")));
   languageLayout->addWidget(languageFileList_);
   languageLayout->addWidget(new QLabel(tr("* - changes will take effect after restart")));
 
   languageWidget_ = new QWidget();
   languageWidget_->setLayout(languageLayout);
 
-  // init list
-  QDir langDir = qApp->applicationDirPath() + "/lang";
-  foreach (QString file, langDir.entryList(QDir::Files)) {
-    new QListWidgetItem(file, languageFileList_);
+  // init list  
+  QStringList languageList;
+  languageList << QString(tr("English (%1)")).arg("en")
+               << QString(tr("Russian (%1)")).arg("ru");
+  foreach (QString str, languageList) {
+    new QListWidgetItem(str, languageFileList_);
   }
   //} language
 
@@ -196,22 +198,23 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 
 QString OptionsDialog::language()
 {
-  return languageFileList_->currentItem()->data(Qt::DisplayRole).toString();
+  QString langFileName = languageFileList_->currentItem()->data(Qt::DisplayRole).toString();
+  return langFileName.section("(", 1).replace(")", "");
 }
 
 void OptionsDialog::setLanguage(QString langFileName)
 {
-  langFileName_ =langFileName;
-
   // установка курсора на выбранный файл
+  langFileName = QString("(%1)").arg(langFileName);
+
   QList<QListWidgetItem*> list =
-      languageFileList_->findItems(langFileName_, Qt::MatchExactly);
+      languageFileList_->findItems(langFileName, Qt::MatchContains);
   if (list.count()) {
     languageFileList_->setCurrentItem(list.at(0));
   } else {
     // если не удалось найти, выбираем английский
     QList<QListWidgetItem*> list =
-        languageFileList_->findItems("en.qm", Qt::MatchExactly);
+        languageFileList_->findItems("(en)", Qt::MatchContains);
     languageFileList_->setCurrentItem(list.at(0));
   }
 }

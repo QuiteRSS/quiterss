@@ -771,7 +771,7 @@ void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
 
-  langFileName_ = settings_->value("langFileName", "en.qm").toString();
+  langFileName_ = settings_->value("langFileName", "en").toString();
 
   QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
   int fontSize = settings_->value("/FontSize", 8).toInt();

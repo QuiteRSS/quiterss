@@ -20,9 +20,6 @@ public:
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
 
-  // language
-  QString langFileName_;
-
 private slots:
   void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
   void manualProxyToggle(bool checked);
