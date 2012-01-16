@@ -10,7 +10,7 @@ NewsView::NewsView(QWidget * parent) :
   setMinimumWidth(120);
   setSortingEnabled(true);
   setSelectionBehavior(QAbstractItemView::SelectRows);
-  setSelectionMode(QAbstractItemView::SingleSelection);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
   setItemDelegate(itemDelegate);
 //    setAlternatingRowColors(true);
