@@ -794,9 +794,9 @@ void RSSListing::readSettings()
   newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
-      settings_->value("networkProxy/type", QNetworkProxy::NoProxy).toInt()));
-  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "10.0.0.172").toString());
-  networkProxy_.setPort(    settings_->value("networkProxy/port",     3150).toUInt());
+      settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
+  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "").toString());
+  networkProxy_.setPort(    settings_->value("networkProxy/port",     "").toUInt());
   networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
   networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
   persistentUpdateThread_->setProxy(networkProxy_);
