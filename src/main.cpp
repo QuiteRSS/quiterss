@@ -7,9 +7,7 @@ void LoadLang (QString &lang){
     QString AppFileName = qApp->applicationFilePath();
     AppFileName.replace(".exe", ".ini");
     QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
-    QString strLocalLang = QLocale::system().name();
-
-    lang = m_settings->value("Settings/langFileName", strLocalLang).toString();
+    lang = m_settings->value("Settings/langFileName", "en").toString();
 }
 
 int main(int argc, char **argv)
