@@ -371,7 +371,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
     connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
-    traySystem->setToolTip("QtRSS");
+    traySystem->setToolTip("QuiteRSS");
     createTrayMenu();
     traySystem->show();
 
