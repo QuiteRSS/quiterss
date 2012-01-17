@@ -560,6 +560,8 @@ void RSSListing::slotShowWindows()
 void RSSListing::timerEvent(QTimerEvent *event)
 {
   if (event->timerId() == updateFeedsTimer_.timerId()) {
+    updateFeedsTimer_.stop();
+    updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
     slotTimerUpdateFeeds();
   }
 }
@@ -1163,6 +1165,11 @@ void RSSListing::showOptionDlg()
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
   autoUpdatefeedsTime_ = optionsDialog->updateFeedsTime_->value();
+  if (updateFeedsTimer_.isActive() && !autoUpdatefeeds_) {
+    updateFeedsTimer_.stop();
+  } else if (!updateFeedsTimer_.isActive() && autoUpdatefeeds_) {
+    updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
+  }
 
   langFileName_ = optionsDialog->language();
 }
