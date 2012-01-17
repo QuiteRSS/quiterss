@@ -796,9 +796,9 @@ void RSSListing::readSettings()
   newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
-      settings_->value("networkProxy/type", QNetworkProxy::NoProxy).toInt()));
-  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "10.0.0.172").toString());
-  networkProxy_.setPort(    settings_->value("networkProxy/port",     3150).toUInt());
+      settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
+  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "").toString());
+  networkProxy_.setPort(    settings_->value("networkProxy/port",     "").toUInt());
   networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
   networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
   persistentUpdateThread_->setProxy(networkProxy_);
@@ -1102,30 +1102,32 @@ void RSSListing::getFeed(QString urlString)
 /*! \brief Обработка нажатия в дереве новостей ********************************/
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
-  static QModelIndex indexOld = index;
-  if (!index.isValid()) {
-    webView_->setHtml("");
-    webPanel_->hide();
-    slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    return;
+  if (QApplication::keyboardModifiers() == Qt::NoModifier) {
+    static QModelIndex indexOld = index;
+    if (!index.isValid()) {
+      webView_->setHtml("");
+      webPanel_->hide();
+      slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
+      return;
+    }
+
+    webPanel_->show();
+
+    QModelIndex indexNew = index;
+    if (!((index.row() == indexOld.row()) &&
+           newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+      updateWebView(index);
+      slotSetItemRead(index, 1);
+
+      QSqlQuery q(db_);
+      int id = newsModel_->index(index.row(), 0).
+          data(Qt::EditRole).toInt();
+      QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
+          arg(id).arg(newsModel_->tableName().remove("feed_"));
+      q.exec(qStr);
+    }
+    indexOld = indexNew;
   }
-
-  webPanel_->show();
-
-  QModelIndex indexNew = index;
-  if (!((index.row() == indexOld.row()) &&
-         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
-    updateWebView(index);
-    slotSetItemRead(index, 1);
-
-    QSqlQuery q(db_);
-    int id = newsModel_->index(index.row(), 0).
-        data(Qt::EditRole).toInt();
-    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-        arg(id).arg(newsModel_->tableName().remove("feed_"));
-    q.exec(qStr);
-  }
-  indexOld = indexNew;
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -1502,21 +1504,32 @@ void RSSListing::slotShowAboutDlg()
 
 void RSSListing::deleteNews()
 {
-  QModelIndex index = newsView_->currentIndex();
-  if (!index.isValid()) return;
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-  newsModel_->setData(
-      newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-      1);
-  if (newsModel_->index(index.row(), newsModel_->fieldIndex("deleted")).data(Qt::EditRole).toInt() == 0) {
+  qDebug() << indexes.count();
+
+  if (indexes.count() == 0) return;
+
+  int cnt = indexes.count();
+  for (int i = cnt-1; i >= 0; --i) {
+    curIndex = indexes.at(i);
+    int row = curIndex.row();
+    qDebug() << "*01" << row << i;
     newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("deleted")),
-        1);
+          newsModel_->index(row, newsModel_->fieldIndex("read")),
+          1);
+    if (newsModel_->index(row, newsModel_->fieldIndex("deleted")).data(Qt::EditRole).toInt() == 0) {
+      newsModel_->setData(
+            newsModel_->index(row, newsModel_->fieldIndex("deleted")),
+            1);
+    }
   }
-  if (index.row() == newsModel_->rowCount())
-    index = newsModel_->index(index.row()-1, index.column());
-  newsView_->setCurrentIndex(index);
-  slotNewsViewClicked(index);
+
+  if (curIndex.row() == newsModel_->rowCount())
+    curIndex = newsModel_->index(curIndex.row()-1, curIndex.column());
+  newsView_->setCurrentIndex(curIndex);
+  slotNewsViewClicked(curIndex);
   slotUpdateStatus();
 }
 
