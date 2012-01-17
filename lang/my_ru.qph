@@ -400,4 +400,80 @@
     <source>Auto load images to news view</source>
     <target>Автоматическая загрузка изображений</target>
 </phrase>
+<phrase>
+    <source>Language</source>
+    <target>Язык</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds on start-up</source>
+    <target>Автоматическое обновление лент при запуске</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds every</source>
+    <target>Автоматическое обновление лент каждые</target>
+</phrase>
+<phrase>
+    <source>General</source>
+    <target>Общие</target>
+</phrase>
+<phrase>
+    <source>English (%1)</source>
+    <target>Английский (%1)</target>
+</phrase>
+<phrase>
+    <source>* - changes will take effect after restart</source>
+    <target>* - изменения вступят в силу после перезагрузки</target>
+</phrase>
+<phrase>
+    <source>Russian (%1)</source>
+    <target>Русский (%1)</target>
+</phrase>
+<phrase>
+    <source>Choose language:*</source>
+    <target>Выберите язык:*</target>
+</phrase>
+<phrase>
+    <source>Show New</source>
+    <target>Показать новые</target>
+</phrase>
+<phrase>
+    <source>Check for updates...</source>
+    <target>Проверить наличие обновлений...</target>
+</phrase>
+<phrase>
+    <source> Unread: %1 </source>
+    <target> Непрочитанных: %1 </target>
+</phrase>
+<phrase>
+    <source> All: %1 </source>
+    <target> Всего: %1 </target>
+</phrase>
+<phrase>
+    <source>Checking for updates...</source>
+    <target>Проверка наличия обновлений...</target>
+</phrase>
+<phrase>
+    <source>Check for updates</source>
+    <target>Проверить наличие обновлений</target>
+</phrase>
+<phrase>
+    <source>You already have the latest version</source>
+    <target>У вас уже есть последняя версия</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS is available!</source>
+    <target>Новая версия QuiteRSS доступна!</target>
+</phrase>
+<phrase>
+    <source>Click here to go to the download page</source>
+    <target>Нажмите здесь, чтобы перейти на страницу загрузки</target>
+</phrase>
+<phrase>
+    <source>Current version is: </source>
+    <target>Текущая версия: </target>
+</phrase>
+<phrase>
+    <source>Error checking updates</source>
+    <target>Ошибка при проверке обновлений</target>
+</phrase>
 </QPH>

@@ -14,7 +14,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   updateApplayout->setMargin(10);
   updateApplayout->setSpacing(10);
 
-  infoLabel = new QLabel(tr("Check for updates..."), this);
+  infoLabel = new QLabel(tr("Checking for updates..."), this);
   infoLabel->setOpenExternalLinks(true);
   updateApplayout->addWidget(infoLabel, 0);
   updateApplayout->addStretch(1);
@@ -52,10 +52,11 @@ void UpdateAppDialog::finishUpdateApp()
           "</a>";
     } else {
       str =
-          "<a><font color=#FF8040>" + tr("A new version") + "</a>"
+          "<a><font color=#FF8040>" +
+          tr("A new version of QuiteRSS is available!") + "</a>"
           "<p>" + QString("<a href=\"%1\">%2</a>").
           arg("http://code.google.com/p/quite-rss/downloads/list").
-          arg("Click here to go to the download page");
+          arg(tr("Click here to go to the download page"));
     }
     QString info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"
