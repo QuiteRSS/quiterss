@@ -36,7 +36,4 @@
     <qresource prefix="/style">
         <file alias="qstyle">style/QtRSS.qss</file>
     </qresource>
-    <qresource prefix="/app">
-        <file>appinfo</file>
-    </qresource>
 </RCC>

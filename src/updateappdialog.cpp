@@ -31,23 +31,19 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   buttonLayout->addWidget(closeButton);
   updateApplayout->addLayout(buttonLayout);
 
-  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/appinfo")));
+  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
 }
 
 void UpdateAppDialog::finishUpdateApp()
 {
   if (reply_->error() == QNetworkReply::NoError) {
-    QString str;
-    QFile appInfoFile(":/app/appinfo");
-    appInfoFile.open(QFile::ReadOnly);
-    str = QLatin1String(appInfoFile.readAll());
-    QString version = str.left(str.lastIndexOf(" "));
-    QString date = str.right(str.length() - str.lastIndexOf(" ") - 1);
+    QString version = QString(STRFILEVER).section('.', 0, 2);
+    QString date = STRDATE;
 
-    str = QLatin1String(reply_->readAll());
-    QString curVersion = str.left(str.lastIndexOf(" "));
-    QString curDate = str.right(str.length() - str.lastIndexOf(" ") - 1);
+    QString str = QLatin1String(reply_->readAll());
+    QString curVersion = str.section('"', 1, 1).section('.', 0, 2);
+    QString curDate = str.section('"', 3).left(10);
 
     if (version.contains(curVersion)) {
       str =

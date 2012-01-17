@@ -23,19 +23,13 @@ AboutDialog::AboutDialog(QWidget *parent) :
   layout->setSpacing(10);
   aboutlayout->addLayout(layout);
 
-  QString str;
-  QFile appInfoFile(":/app/appinfo");
-  appInfoFile.open(QFile::ReadOnly);
-  str = QLatin1String(appInfoFile.readAll());
-  QString version = str.left(str.lastIndexOf(" "));
-  QString date = str.right(str.length() - str.lastIndexOf(" ") - 1);
-
   QString info =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
       "<h1><font color=#5b5b5b>"
       + QString("QuiteRSS") + "</font></h1>"
       "<p>" + tr("Version ") +
-      + "<B>" + version + "</B>" + QString(" (%1)").arg(date) + "</p>"
+      + "<B>" + QString(STRFILEVER).section('.', 0, 2) + "</B>"
+      + QString(" (%1)").arg(STRDATE) + "</p>"
       "<HR>"
       + tr("The authors:") +
       "<UL>"
