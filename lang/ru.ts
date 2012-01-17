@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="114"/>
         <source>* - changes will take effect after restart</source>
-        <translation>* - изменения вступят в силу после перезагрузки</translation>
+        <translation>* - изменения вступят в силу после перезапуска</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="121"/>

@@ -422,7 +422,7 @@
 </phrase>
 <phrase>
     <source>* - changes will take effect after restart</source>
-    <target>* - изменения вступят в силу после перезагрузки</target>
+    <target>* - изменения вступят в силу после перезапуска</target>
 </phrase>
 <phrase>
     <source>Russian (%1)</source>
