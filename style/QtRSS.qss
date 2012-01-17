@@ -270,3 +270,7 @@ QHeaderView::up-arrow {
 /*#categoriesTree::item {
 	min-height: 20px;
 }*/
+
+QStatusBar #progressBar_{
+	margin-right: 5px;
+}

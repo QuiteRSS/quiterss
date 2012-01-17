@@ -355,11 +355,13 @@ RSSListing::RSSListing(QWidget *parent)
     //! GIU tuning
     progressBar_ = new QProgressBar();
     progressBar_->setObjectName("progressBar_");
-    progressBar_->setFixedWidth(200);
-    progressBar_->setFixedHeight(15);
+    progressBar_->setFixedWidth(100);
+    progressBar_->setFixedHeight(14);
     progressBar_->setMinimum(0);
     progressBar_->setFormat(tr("Update feeds... (%p%)"));
+    progressBar_->setTextVisible(false);
     progressBar_->setVisible(false);
+    statusBar()->setMinimumHeight(22);
     statusBar()->addPermanentWidget(progressBar_);
     statusUnread_ = new QLabel(tr(" Unread: "));
     statusBar()->addPermanentWidget(statusUnread_);
@@ -994,6 +996,7 @@ void RSSListing::getUrlDone(const int &result)
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
     progressBar_->setValue(progressBar_->maximum() - result);
+    statusBar()->showMessage(progressBar_->text());
   }
 }
 
@@ -1096,6 +1099,7 @@ void RSSListing::getFeed(QString urlString)
 
   progressBar_->setValue(progressBar_->minimum());
   progressBar_->show();
+  statusBar()->showMessage(progressBar_->text());
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
