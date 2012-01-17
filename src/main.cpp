@@ -3,13 +3,6 @@
 #include "qtsingleapplication/qtsingleapplication.h"
 #include "rsslisting.h"
 
-void LoadLang (QString &lang){
-    QString AppFileName = qApp->applicationFilePath();
-    AppFileName.replace(".exe", ".ini");
-    QSettings *m_settings = new QSettings(AppFileName, QSettings::IniFormat);
-    lang = m_settings->value("Settings/langFileName", "en").toString();
-}
-
 int main(int argc, char **argv)
 {
     QtSingleApplication app(argc, argv);
@@ -34,12 +27,6 @@ int main(int argc, char **argv)
     QFile file(fileString);
     file.open(QFile::ReadOnly);
     app.setStyleSheet(QLatin1String(file.readAll()));
-
-    QString lang;
-    LoadLang(lang);
-    QTranslator translator;
-    translator.load(lang, app.applicationDirPath() + QString("/lang"));
-    app.installTranslator(&translator);
 
     RSSListing rsslisting;
 

@@ -189,7 +189,6 @@ RSSListing::RSSListing(QWidget *parent)
     webViewProgress_->setFixedHeight(15);
     webViewProgress_->setMinimum(0);
     webViewProgress_->setMaximum(100);
-    webViewProgress_->setFormat(tr("Loading... (%p%)"));
     webViewProgress_->setVisible(true);
     connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
     connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
@@ -198,7 +197,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
-    QLabel *feedsTitleLabel_ = new QLabel(tr("Feeds"), this);
+    feedsTitleLabel_ = new QLabel(this);
     feedsTitleLabel_->setObjectName("feedsTitleLabel_");
     feedsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
     feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -234,7 +233,7 @@ RSSListing::RSSListing(QWidget *parent)
     setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
     setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
 
-    feedsDock_ = new QDockWidget(tr("Feeds"), this);
+    feedsDock_ = new QDockWidget(this);
     feedsDock_->setObjectName("feedsDock");
     feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
     feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
@@ -258,7 +257,7 @@ RSSListing::RSSListing(QWidget *parent)
     connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
 
 
-    newsTitleLabel_ = new QLabel(tr("news"), this);
+    newsTitleLabel_ = new QLabel(this);
     newsTitleLabel_->setObjectName("newsTitleLabel_");
     newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
     newsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -290,7 +289,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsWidget->setLayout(newsWidgetLayout);
 
     //! Create news DockWidget
-    newsDock_ = new QDockWidget(tr("News"), this);
+    newsDock_ = new QDockWidget(this);
     newsDock_->setObjectName("newsDock");
     newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
     newsDock_->setTitleBarWidget(newsPanel);
@@ -299,10 +298,11 @@ RSSListing::RSSListing(QWidget *parent)
     connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
         this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
 
-    webPanelAuthorLabel_ = new QLabel(tr("Author:"));
+    webPanelTitleLabel_ = new QLabel(this);
+    webPanelAuthorLabel_ = new QLabel(this);
 
     QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
-    webPanelLabelLayout->addWidget(new QLabel(tr("Title:")));
+    webPanelLabelLayout->addWidget(webPanelTitleLabel_);
     webPanelLabelLayout->addWidget(webPanelAuthorLabel_);
 
     webPanelAuthor_ = new QLabel("");
@@ -358,14 +358,13 @@ RSSListing::RSSListing(QWidget *parent)
     progressBar_->setFixedWidth(100);
     progressBar_->setFixedHeight(14);
     progressBar_->setMinimum(0);
-    progressBar_->setFormat(tr("Update feeds... (%p%)"));
     progressBar_->setTextVisible(false);
     progressBar_->setVisible(false);
     statusBar()->setMinimumHeight(22);
     statusBar()->addPermanentWidget(progressBar_);
-    statusUnread_ = new QLabel(tr(" Unread: "));
+    statusUnread_ = new QLabel(this);
     statusBar()->addPermanentWidget(statusUnread_);
-    statusAll_ = new QLabel(tr(" All: "));
+    statusAll_ = new QLabel(this);
     statusBar()->addPermanentWidget(statusAll_);
     statusBar()->setVisible(true);
 
@@ -399,6 +398,10 @@ RSSListing::RSSListing(QWidget *parent)
       slotGetAllFeeds();
     }
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
+
+    translator_ = new QTranslator(this);
+    translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"));
+    qApp->installTranslator(translator_);
 }
 
 /*!****************************************************************************/
@@ -516,6 +519,8 @@ void RSSListing::slotCloseApp()
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow())
       traySystem->setIcon(QIcon(":/images/images/QtRSS16.png"));
+  } else if(event->type() == QEvent::LanguageChange) {
+    retranslateStrings();
   }
   QMainWindow::changeEvent(event);
 }
@@ -573,109 +578,111 @@ void RSSListing::timerEvent(QTimerEvent *event)
  ******************************************************************************/
 void RSSListing::createActions()
 {
-  addFeedAct_ = new QAction(QIcon(":/images/addFeed"), tr("&Add..."), this);
-  addFeedAct_->setToolTip(tr("Add new feed"));
+  addFeedAct_ = new QAction(this);
+  addFeedAct_->setIcon(QIcon(":/images/addFeed"));
   addFeedAct_->setShortcut(QKeySequence::New);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
-  deleteFeedAct_ = new QAction(QIcon(":/images/deleteFeed"), tr("&Delete..."), this);
-  deleteFeedAct_->setToolTip(tr("Delete selected feed"));
+  deleteFeedAct_ = new QAction(this);
+  deleteFeedAct_->setIcon(QIcon(":/images/deleteFeed"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
-  importFeedsAct_ = new QAction(QIcon(":/images/importFeeds"), tr("&Import feeds..."), this);
-  importFeedsAct_->setToolTip(tr("Import feeds from OPML file"));
+  importFeedsAct_ = new QAction(this);
+  importFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
 
-  exitAct_ = new QAction(tr("E&xit"), this);
+  exitAct_ = new QAction(this);
   exitAct_->setShortcut(Qt::CTRL+Qt::Key_Q);  // standart on other OS
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
 
-  toolBarToggle_ = new QAction(tr("&ToolBar"), this);
+  toolBarToggle_ = new QAction(this);
   toolBarToggle_->setCheckable(true);
-  toolBarToggle_->setToolTip(tr("Show ToolBar"));
 
-  autoLoadImagesToggle_ = new QAction(QIcon(":/images/imagesOff"), tr("&Load images"), this);
+  autoLoadImagesToggle_ = new QAction(this);
+  autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   autoLoadImagesToggle_->setCheckable(true);
-  autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
 
-  updateFeedAct_ = new QAction(QIcon(":/images/updateFeed"), tr("Update"), this);
-  updateFeedAct_->setToolTip(tr("Update current feed"));
+  updateFeedAct_ = new QAction(this);
+  updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
 
-  updateAllFeedsAct_ = new QAction(QIcon(":/images/updateAllFeeds"), tr("Update all"), this);
-  updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
+  updateAllFeedsAct_ = new QAction(this);
+  updateAllFeedsAct_->setIcon(QIcon(":/images/updateAllFeeds"));
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
-  markNewsRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
-  markNewsRead_->setToolTip(tr("Mark current news read"));
+  markNewsRead_ = new QAction(this);
+  markNewsRead_->setIcon(QIcon(":/images/markRead"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
 
-  markAllNewsRead_ = new QAction(QIcon(":/images/markReadAll"), tr("Mark all news Read"), this);
-  markAllNewsRead_->setToolTip(tr("Mark all news read"));
+  markAllNewsRead_ = new QAction(this);
+  markAllNewsRead_->setIcon(QIcon(":/images/markReadAll"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
-  optionsAct_ = new QAction(QIcon(":/images/options"), tr("Options..."), this);
-  optionsAct_->setToolTip(tr("Open options gialog"));
+  optionsAct_ = new QAction(this);
+  optionsAct_->setIcon(QIcon(":/images/options"));
   optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 
-  feedsFilter_ = new QAction(QIcon(":/images/filterOff"), tr("Filter"), this);
-  filterFeedsAll_ = new QAction(tr("Show All"), this);
+  feedsFilter_ = new QAction(this);
+  feedsFilter_->setIcon(QIcon(":/images/filterOff"));
+  filterFeedsAll_ = new QAction(this);
   filterFeedsAll_->setObjectName("filterFeedsAll_");
   filterFeedsAll_->setCheckable(true);
   filterFeedsAll_->setChecked(true);
-  filterFeedsNew_ = new QAction(tr("Show New"), this);
+  filterFeedsNew_ = new QAction(this);
   filterFeedsNew_->setObjectName("filterFeedsNew_");
   filterFeedsNew_->setCheckable(true);
-  filterFeedsUnread_ = new QAction(tr("Show Unread"), this);
+  filterFeedsUnread_ = new QAction(this);
   filterFeedsUnread_->setObjectName("filterFeedsUnread_");
   filterFeedsUnread_->setCheckable(true);
 
-  newsFilter_ = new QAction(QIcon(":/images/filterOff"), tr("Filter"), this);
-  filterNewsAll_ = new QAction(tr("Show All"), this);
+  newsFilter_ = new QAction(this);
+  newsFilter_->setIcon(QIcon(":/images/filterOff"));
+  filterNewsAll_ = new QAction(this);
   filterNewsAll_->setObjectName("filterNewsAll_");
   filterNewsAll_->setCheckable(true);
   filterNewsAll_->setChecked(true);
-  filterNewsNew_ = new QAction(tr("Show New"), this);
+  filterNewsNew_ = new QAction(this);
   filterNewsNew_->setObjectName("filterNewsNew_");
   filterNewsNew_->setCheckable(true);
-  filterNewsUnread_ = new QAction(tr("Show Unread"), this);
+  filterNewsUnread_ = new QAction( this);
   filterNewsUnread_->setObjectName("filterNewsUnread_");
   filterNewsUnread_->setCheckable(true);
-  filterNewsStar_ = new QAction(tr("Show Star"), this);
+  filterNewsStar_ = new QAction(this);
   filterNewsStar_->setObjectName("filterNewsStar_");
   filterNewsStar_->setCheckable(true);
 
-  aboutAct_ = new QAction(tr("About..."), this);
+  aboutAct_ = new QAction(this);
   aboutAct_->setObjectName("AboutAct_");
-  aboutAct_->setToolTip(tr("Show 'About' dialog"));
   connect(aboutAct_, SIGNAL(triggered()), this, SLOT(slotShowAboutDlg()));
 
-  updateAppAct_ = new QAction(tr("Check for updates..."), this);
+  updateAppAct_ = new QAction(this);
   updateAppAct_->setObjectName("UpdateApp_");
   connect(updateAppAct_, SIGNAL(triggered()), this, SLOT(slotShowUpdateAppDlg()));
 
-  openInBrowserAct_ = new QAction(tr("Open in Browser"), this);
+  openInBrowserAct_ = new QAction(this);
   connect(openInBrowserAct_, SIGNAL(triggered()), this, SLOT(openInBrowserNews()));
-  markStarAct_ = new QAction(QIcon(":/images/starOn"), tr("Star"), this);
+  markStarAct_ = new QAction(this);
+  markStarAct_->setIcon(QIcon(":/images/starOn"));
   connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
-  deleteNewsAct_ = new QAction(QIcon(":/images/deleteNews"), tr("Delete"), this);
+  deleteNewsAct_ = new QAction(this);
+  deleteNewsAct_->setIcon(QIcon(":/images/deleteNews"));
   deleteNewsAct_->setShortcut(Qt::Key_Delete);
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
 
-  markFeedRead_ = new QAction(QIcon(":/images/markRead"), tr("Mark Read"), this);
-  markFeedRead_->setToolTip(tr("Mark feed read"));
+  markFeedRead_ = new QAction(this);
+  markFeedRead_->setIcon(QIcon(":/images/markRead"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
-  feedProperties_ = new QAction(tr("Properties"), this);
-  feedProperties_->setToolTip(tr("Properties feed"));
+  feedProperties_ = new QAction(this);
 }
 
 /*! \brief Создание главного меню *********************************************/
 void RSSListing::createMenu()
 {
-  fileMenu_ = menuBar()->addMenu(tr("&File"));
+  fileMenu_ = new QMenu(this);
+  menuBar()->addMenu(fileMenu_);
   fileMenu_->addAction(addFeedAct_);
   fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
@@ -683,14 +690,17 @@ void RSSListing::createMenu()
   fileMenu_->addSeparator();
   fileMenu_->addAction(exitAct_);
 
-  menuBar()->addMenu(tr("&Edit"));
+  editMenu_ = new QMenu(this);
+  menuBar()->addMenu(editMenu_);
 
-  viewMenu_ = menuBar()->addMenu(tr("&View"));
+  viewMenu_  = new QMenu(this);
+  menuBar()->addMenu(viewMenu_ );
   viewMenu_->addAction(toolBarToggle_);
   viewMenu_->addSeparator();
   viewMenu_->addAction(autoLoadImagesToggle_);
 
-  feedMenu_ = menuBar()->addMenu(tr("Fee&ds"));
+  feedMenu_ = new QMenu(this);
+  menuBar()->addMenu(feedMenu_);
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
   feedMenu_->addSeparator();
@@ -713,7 +723,8 @@ void RSSListing::createMenu()
   feedsToolBar_->addAction(feedsFilter_);
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
-  newsMenu_ = menuBar()->addMenu(tr("&News"));
+  newsMenu_ = new QMenu(this);
+  menuBar()->addMenu(newsMenu_);
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
   newsMenu_->addSeparator();
@@ -738,10 +749,12 @@ void RSSListing::createMenu()
   newsToolBar_->addAction(newsFilter_);
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
-  toolsMenu_ = menuBar()->addMenu(tr("&Tools"));
+  toolsMenu_ = new QMenu(this);
+  menuBar()->addMenu(toolsMenu_);
   toolsMenu_->addAction(optionsAct_);
 
-  helpMenu_ = menuBar()->addMenu(tr("&Help"));
+  helpMenu_ = new QMenu(this);
+  menuBar()->addMenu(helpMenu_);
   helpMenu_->addAction(updateAppAct_);
   helpMenu_->addSeparator();
   helpMenu_->addAction(aboutAct_);
@@ -750,7 +763,8 @@ void RSSListing::createMenu()
 /*! \brief Создание ToolBar ***************************************************/
 void RSSListing::createToolBar()
 {
-  toolBar_ = addToolBar(tr("ToolBar"));
+  toolBar_ = new QToolBar(this);
+  addToolBar(toolBar_);
   toolBar_->setObjectName("ToolBar_General");
   toolBar_->setAllowedAreas(Qt::TopToolBarArea);
   toolBar_->setMovable(false);
@@ -1177,7 +1191,12 @@ void RSSListing::showOptionDlg()
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
   }
 
-  langFileName_ = optionsDialog->language();
+  if (langFileName_ != optionsDialog->language()) {
+    langFileName_ = optionsDialog->language();
+    qApp->removeTranslator(translator_);
+    translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"));
+    qApp->installTranslator(translator_);
+  }
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
@@ -1197,7 +1216,7 @@ void RSSListing::receiveMessage(const QString& message)
 void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
-  QAction *showWindowAct_ = new QAction(tr("Show window"), this);
+  showWindowAct_ = new QAction(this);
   connect(showWindowAct_, SIGNAL(triggered()), this, SLOT(slotShowWindows()));
   QFont font_ = showWindowAct_->font();
   font_.setBold(true);
@@ -1389,7 +1408,6 @@ void RSSListing::slotUpdateStatus()
   }
 
   statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
-
   statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
 }
 
@@ -1836,4 +1854,89 @@ bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save
     }
   }
   return state;
+}
+
+void RSSListing::retranslateStrings() {
+  webViewProgress_->setFormat(tr("Loading... (%p%)"));
+  feedsTitleLabel_->setText(tr("Feeds"));
+  webPanelTitleLabel_->setText(tr("Title:"));
+  webPanelAuthorLabel_->setText(tr("Author:"));
+  progressBar_->setFormat(tr("Update feeds... (%p%)"));
+  statusUnread_->setText(statusUnread_->text());
+  statusAll_->setText(statusAll_->text());
+
+  QString str = statusUnread_->text();
+  str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
+  statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(str));
+  str = statusAll_->text();
+  str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
+  statusAll_->setText(QString(tr(" All: %1 ")).arg(str));
+
+  addFeedAct_->setText(tr("&Add..."));
+  addFeedAct_->setToolTip(tr("Add new feed"));
+
+  deleteFeedAct_->setText(tr("&Delete..."));
+  deleteFeedAct_->setToolTip(tr("Delete selected feed"));
+
+  importFeedsAct_->setText(tr("&Import feeds..."));
+  importFeedsAct_->setToolTip(tr("Import feeds from OPML file"));
+
+  exitAct_->setText(tr("E&xit"));
+
+  toolBarToggle_->setText(tr("&ToolBar"));
+  toolBarToggle_->setToolTip(tr("Show ToolBar"));
+
+  autoLoadImagesToggle_->setText(tr("&Load images"));
+  autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
+
+  updateFeedAct_->setText(tr("Update"));
+  updateFeedAct_->setToolTip(tr("Update current feed"));
+
+  updateAllFeedsAct_->setText(tr("Update all"));
+  updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
+
+  markNewsRead_->setText(tr("Mark Read"));
+  markNewsRead_->setToolTip(tr("Mark current news read"));
+
+  markAllNewsRead_->setText(tr("Mark all news Read"));
+  markAllNewsRead_->setToolTip(tr("Mark all news read"));
+
+  optionsAct_->setText(tr("Options..."));
+  optionsAct_->setToolTip(tr("Open options gialog"));
+
+  feedsFilter_->setText(tr("Filter"));
+  filterFeedsAll_->setText(tr("Show All"));
+  filterFeedsNew_->setText(tr("Show New"));
+  filterFeedsUnread_->setText(tr("Show Unread"));
+
+  newsFilter_->setText( tr("Filter"));
+  filterNewsAll_->setText(tr("Show All"));
+  filterNewsNew_->setText(tr("Show New"));
+  filterNewsUnread_->setText(tr("Show Unread"));
+  filterNewsStar_->setText(tr("Show Star"));
+
+  aboutAct_ ->setText(tr("About..."));
+  aboutAct_->setToolTip(tr("Show 'About' dialog"));
+
+  updateAppAct_->setText(tr("Check for updates..."));
+
+  openInBrowserAct_->setText(tr("Open in Browser"));
+  markStarAct_->setText(tr("Star"));
+  deleteNewsAct_->setText( tr("Delete"));
+
+  markFeedRead_->setText(tr("Mark Read"));
+  markFeedRead_->setToolTip(tr("Mark feed read"));
+  feedProperties_->setText(tr("Properties"));
+  feedProperties_->setToolTip(tr("Properties feed"));
+
+  fileMenu_->setTitle(tr("&File"));
+  editMenu_->setTitle(tr("&Edit"));
+  viewMenu_->setTitle(tr("&View"));
+  feedMenu_->setTitle(tr("Fee&ds"));
+  newsMenu_->setTitle(tr("&News"));
+  toolsMenu_->setTitle(tr("&Tools"));
+  helpMenu_->setTitle(tr("&Help"));
+
+  toolBar_->setWindowTitle(tr("ToolBar"));
+  showWindowAct_->setText(tr("Show window"));
 }
