@@ -128,42 +128,44 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} language
 
   //{ fonts
-  feedsFontLabel_ = new QLabel();
-  QPushButton *feedsFontChange = new QPushButton(tr("Change"));
-  connect(feedsFontChange, SIGNAL(clicked()), this, SLOT(slotFeedsFontChange()));
+  fontTree = new QTreeWidget();
+  fontTree->setColumnCount(3);
+  fontTree->setColumnHidden(0, true);
+  fontTree->setColumnWidth(1, 120);
 
-  QHBoxLayout *feedsFontLayout = new QHBoxLayout();
-  feedsFontLayout->addWidget(new QLabel(tr("Feeds list font:")));
-  feedsFontLayout->addWidget(feedsFontLabel_);
-  feedsFontLayout->addStretch(1);
-  feedsFontLayout->addWidget(feedsFontChange);
+  treeItem.clear();
+  treeItem << tr("Id") << tr("Type") << tr("Font");
+  fontTree->setHeaderLabels(treeItem);
 
-  newsListFontLabel_ = new QLabel();
-  QPushButton *newsListFontChange = new QPushButton(tr("Change"));
-  connect(newsListFontChange, SIGNAL(clicked()), this, SLOT(slotNewsListFontChange()));
+//  treeItem.clear();
+//  treeItem << "0" << tr("Main font");
+//  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "0" << tr("Feeds list font");
+  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "1" << tr("News list font");
+  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "2" << tr("News font");
+  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
-  QHBoxLayout *newsListFontLayout = new QHBoxLayout();
-  newsListFontLayout->addWidget(new QLabel(tr("News list font:")));
-  newsListFontLayout->addWidget(newsListFontLabel_);
-  newsListFontLayout->addStretch(1);
-  newsListFontLayout->addWidget(newsListFontChange);
+  fontTree->setCurrentItem(fontTree->topLevelItem(0));
 
-  newsFontLabel_ = new QLabel();
-  QPushButton *newsFontChange = new QPushButton(tr("Change"));
-  connect(newsFontChange, SIGNAL(clicked()), this, SLOT(slotNewsFontChange()));
+  QPushButton *fontChange = new QPushButton(tr("Change..."));
+  connect(fontChange, SIGNAL(clicked()), this, SLOT(slotFontChange()));
+  QPushButton *fontReset = new QPushButton(tr("Reset"));
+  connect(fontReset, SIGNAL(clicked()), this, SLOT(slotFontReset()));
+  QVBoxLayout *fontsButtonLayout = new QVBoxLayout();
+  fontsButtonLayout->setMargin(0);
+  fontsButtonLayout->addWidget(fontChange);
+  fontsButtonLayout->addWidget(fontReset);
+  fontsButtonLayout->addStretch(1);
 
-  QHBoxLayout *newsFontLayout = new QHBoxLayout();
-  newsFontLayout->addWidget(new QLabel(tr("News font:")));
-  newsFontLayout->addWidget(newsFontLabel_);
-  newsFontLayout->addStretch(1);
-  newsFontLayout->addWidget(newsFontChange);
-
-  QVBoxLayout *fontsLayout = new QVBoxLayout();
+  QHBoxLayout *fontsLayout = new QHBoxLayout();
   fontsLayout->setMargin(0);
-  fontsLayout->addLayout(feedsFontLayout);
-  fontsLayout->addLayout(newsListFontLayout);
-  fontsLayout->addLayout(newsFontLayout);
-  fontsLayout->addStretch(1);
+  fontsLayout->addWidget(fontTree, 1);
+  fontsLayout->addLayout(fontsButtonLayout);
 
   fontsWidget_ = new QWidget();
   fontsWidget_->setLayout(fontsLayout);
@@ -303,53 +305,28 @@ void OptionsDialog::acceptSlot()
   accept();
 }
 
-void OptionsDialog::slotFeedsFontChange()
+void OptionsDialog::slotFontChange()
 {
   bool bOk;
   QFont curFont;
-  curFont.setFamily(feedsFontLabel_->text().section(", ", 0, 0));
-  curFont.setPointSize(feedsFontLabel_->text().section(", ", 1).toInt());
+  curFont.setFamily(fontTree->currentItem()->text(2).section(", ", 0, 0));
+  curFont.setPointSize(fontTree->currentItem()->text(2).section(", ", 1).toInt());
 
   QFont font = QFontDialog::getFont(&bOk, curFont);
   if (bOk) {
+//    if (fontTree->currentItem()->text(0).toInt() == 0) font.setPointSize(8);
     QString strFont = QString("%1, %2").
         arg(font.family()).
         arg(font.pointSize());
-    feedsFontLabel_->setText(strFont);
-    feedsFontLabel_->setFont(font);
+    fontTree->currentItem()->setText(2, strFont);
   }
 }
 
-void OptionsDialog::slotNewsListFontChange()
+void OptionsDialog::slotFontReset()
 {
-  bool bOk;
-  QFont curFont;
-  curFont.setFamily(newsListFontLabel_->text().section(", ", 0, 0));
-  curFont.setPointSize(newsListFontLabel_->text().section(", ", 1).toInt());
-
-  QFont font = QFontDialog::getFont(&bOk, curFont);
-  if (bOk) {
-    QString strFont = QString("%1, %2").
-        arg(font.family()).
-        arg(font.pointSize());
-    newsListFontLabel_->setText(strFont);
-    newsListFontLabel_->setFont(font);
-  }
-}
-
-void OptionsDialog::slotNewsFontChange()
-{
-  bool bOk;
-  QFont curFont;
-  curFont.setFamily(newsFontLabel_->text().section(", ", 0, 0));
-  curFont.setPointSize(newsFontLabel_->text().section(", ", 1).toInt());
-
-  QFont font = QFontDialog::getFont(&bOk, curFont);
-  if (bOk) {
-    QString strFont = QString("%1, %2").
-        arg(font.family()).
-        arg(font.pointSize());
-    newsFontLabel_->setText(strFont);
-    newsFontLabel_->setFont(font);
+  switch (fontTree->currentItem()->text(0).toInt()) {
+  case 3: fontTree->currentItem()->setText(2, "Tahoma, 12");
+    break;
+  default: fontTree->currentItem()->setText(2, "Tahoma, 8");
   }
 }

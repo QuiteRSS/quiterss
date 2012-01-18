@@ -1189,21 +1189,15 @@ void RSSListing::showOptionDlg()
   QString strFont = QString("%1, %2").
       arg(feedsView_->font().family()).
       arg(feedsView_->font().pointSize());
-  optionsDialog->feedsFontLabel_->setText(strFont);
-  optionsDialog->feedsFontLabel_->setFont(feedsView_->font());
+  optionsDialog->fontTree->topLevelItem(0)->setText(2, strFont);
   strFont = QString("%1, %2").
       arg(newsView_->font().family()).
       arg(newsView_->font().pointSize());
-  optionsDialog->newsListFontLabel_->setText(strFont);
-  optionsDialog->newsListFontLabel_->setFont(newsView_->font());
+  optionsDialog->fontTree->topLevelItem(1)->setText(2, strFont);
   strFont = QString("%1, %2").
       arg(webView_->settings()->fontFamily(QWebSettings::StandardFont)).
       arg(webView_->settings()->fontSize(QWebSettings::DefaultFontSize));
-  optionsDialog->newsFontLabel_->setText(strFont);
-  QFont font;
-  font.setFamily(webView_->settings()->fontFamily(QWebSettings::StandardFont));
-  font.setPixelSize(webView_->settings()->fontSize(QWebSettings::DefaultFontSize));
-  optionsDialog->newsFontLabel_->setFont(font);
+  optionsDialog->fontTree->topLevelItem(2)->setText(2, strFont);
 
   int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
@@ -1228,6 +1222,25 @@ void RSSListing::showOptionDlg()
     translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"));
     qApp->installTranslator(translator_);
   }
+
+  QFont font = feedsView_->font();
+  font.setFamily(
+        optionsDialog->fontTree->topLevelItem(0)->text(2).section(", ", 0, 0));
+  font.setPointSize(
+        optionsDialog->fontTree->topLevelItem(0)->text(2).section(", ", 1).toInt());
+  feedsView_->setFont(font);
+
+  font = newsView_->font();
+  font.setFamily(
+        optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 0, 0));
+  font.setPointSize(
+        optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 1).toInt());
+  newsView_->setFont(font);
+  webView_->settings()->setFontFamily(QWebSettings::StandardFont,
+        optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
+  webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
+        optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
+
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/

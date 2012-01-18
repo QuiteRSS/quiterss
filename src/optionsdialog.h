@@ -21,9 +21,7 @@ public:
   QSpinBox *updateFeedsTime_;
 
   // fonts
-  QLabel *feedsFontLabel_;
-  QLabel *newsListFontLabel_;
-  QLabel *newsFontLabel_;
+  QTreeWidget *fontTree;
 
 private slots:
   void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
@@ -31,9 +29,8 @@ private slots:
   void updateProxy();
   void applyProxy();
   void acceptSlot();
-  void slotFeedsFontChange();
-  void slotNewsListFontChange();
-  void slotNewsFontChange();
+  void slotFontChange();
+  void slotFontReset();
 
 signals:
 
