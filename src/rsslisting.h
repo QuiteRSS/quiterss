@@ -66,6 +66,7 @@ private:
     void loadSettingsFeeds();
     void updateWebView(QModelIndex index);
     bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
+    void retranslateStrings();
 
     QSettings *settings_;
 
@@ -102,11 +103,13 @@ private:
     QAction *deleteNewsAct_;
     QAction *markFeedRead_;
     QAction *feedProperties_;
+    QAction *showWindowAct_;
 
     QActionGroup *feedsFilterGroup_;
     QActionGroup *newsFilterGroup_;
 
     QMenu *fileMenu_;
+    QMenu *editMenu_;
     QMenu *viewMenu_;
     QMenu *feedMenu_;
     QMenu *newsMenu_;
@@ -129,9 +132,11 @@ private:
     QTreeView *feedsView_;
     NewsView *newsView_;
     NewsHeader *newsHeader_;
+    QLabel *feedsTitleLabel_;
     QLabel *newsTitleLabel_;
 
     QLabel *webPanelTitle_;
+    QLabel *webPanelTitleLabel_;
     QLabel *webPanelAuthorLabel_;
     QLabel *webPanelAuthor_;
     QWidget *webPanel_;
@@ -158,6 +163,7 @@ private:
     bool autoUpdatefeeds_;
     int  autoUpdatefeedsTime_;
 
+    QTranslator *translator_;
     QString langFileName_;
 
 private slots:
