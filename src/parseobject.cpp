@@ -70,18 +70,18 @@ void ParseObject::slotParse(QSqlDatabase *db,
           rssPubDateString = parseDate(rssPubDateString);
 
           QSqlQuery q(*db);
-          QString qStr;
-          qStr = QString("update feeds set "
-                         "title='%1', description='%2', "
-                         "author_name='%3', pubdate='%4' "
-                         "where id=='%5'").
-              arg(titleString).
-              arg(rssDescriptionString).
-              arg(authorString).
-              arg(rssPubDateString).
-              arg(parseFeedId);
-          q.exec(qStr);
+          QString qStr("update feeds "
+                       "set title=?, description=?, author_name=?, pubdate=? "
+                       "where id==?");
+          q.prepare(qStr);
+          q.addBindValue(titleString);
+          q.addBindValue(rssDescriptionString);
+          q.addBindValue(authorString);
+          q.addBindValue(rssPubDateString);
+          q.addBindValue(parseFeedId);
+          q.exec();
           qDebug() << "q.exec(" << q.lastQuery() << ")";
+          qDebug() << q.boundValues();
           qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         isHeader = false;
@@ -99,21 +99,22 @@ void ParseObject::slotParse(QSqlDatabase *db,
 
         if (isHeader) {
           QSqlQuery q(*db);
-          QString qStr;
-          qStr = QString("update feeds set "
-                         "title='%1', description='%2', "
-                         "author_name='%3', author_email='%4', "
-                         "author_uri='%5', pubdate='%6' "
-                         "where id=='%7'").
-              arg(titleString).
-              arg(atomSummaryString).
-              arg(authorString).
-              arg(authorEmailString).
-              arg(authorUriString).
-              arg(atomUpdatedString).
-              arg(parseFeedId);
-          q.exec(qStr);
+          QString qStr ("update feeds "
+                       "set title=?, description=?, "
+                       "author_name=?, author_email=?, "
+                       "author_uri=?, pubdate=? "
+                       "where id==?");
+          q.prepare(qStr);
+          q.addBindValue(titleString);
+          q.addBindValue(atomSummaryString);
+          q.addBindValue(authorString);
+          q.addBindValue(authorEmailString);
+          q.addBindValue(authorUriString);
+          q.addBindValue(atomUpdatedString);
+          q.addBindValue(parseFeedId);
+          q.exec();
           qDebug() << "q.exec(" << q.lastQuery() << ")";
+          qDebug() << q.boundValues();
           qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         isHeader = false;
