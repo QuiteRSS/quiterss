@@ -1763,6 +1763,7 @@ void RSSListing::slotShowUpdateAppDlg()
 */
 bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save)
 {
+  qDebug() << "sqliteDBMemFile(): save =" << save;
   bool state = false;
   QVariant v = memdb.driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
@@ -1818,5 +1819,6 @@ bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save
       if (rc == SQLITE_OK) state = true;
     }
   }
+  qDebug() << "sqliteDBMemFile(): return =" << state;
   return state;
 }
