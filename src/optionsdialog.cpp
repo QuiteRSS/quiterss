@@ -23,6 +23,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem.clear();
   treeItem << "2" << tr("Language");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "3" << tr("Fonts");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
 //  systemProxyButton_->setEnabled(false);
@@ -77,7 +80,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsWidget_ = new QWidget();
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
 
-  // feeds
+  //{ feeds
   updateFeedsStartUp_ = new QCheckBox(tr("Automatically update the feeds on start-up"));
   updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
   updateFeedsTime_ = new QSpinBox();
@@ -102,7 +105,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   feedsWidget_ = new QTabWidget();
   feedsWidget_->addTab(feedsUpdateWidget_, tr("General"));
-  //
+  //} feeds
 
   //{ language
   languageFileList_ = new QListWidget();
@@ -124,6 +127,48 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   }
   //} language
 
+  //{ fonts
+  feedsFontLabel_ = new QLabel();
+  QPushButton *feedsFontChange = new QPushButton(tr("Change"));
+  connect(feedsFontChange, SIGNAL(clicked()), this, SLOT(slotFeedsFontChange()));
+
+  QHBoxLayout *feedsFontLayout = new QHBoxLayout();
+  feedsFontLayout->addWidget(new QLabel(tr("Feeds list font:")));
+  feedsFontLayout->addWidget(feedsFontLabel_);
+  feedsFontLayout->addStretch(1);
+  feedsFontLayout->addWidget(feedsFontChange);
+
+  newsListFontLabel_ = new QLabel();
+  QPushButton *newsListFontChange = new QPushButton(tr("Change"));
+  connect(newsListFontChange, SIGNAL(clicked()), this, SLOT(slotNewsListFontChange()));
+
+  QHBoxLayout *newsListFontLayout = new QHBoxLayout();
+  newsListFontLayout->addWidget(new QLabel(tr("News list font:")));
+  newsListFontLayout->addWidget(newsListFontLabel_);
+  newsListFontLayout->addStretch(1);
+  newsListFontLayout->addWidget(newsListFontChange);
+
+  newsFontLabel_ = new QLabel();
+  QPushButton *newsFontChange = new QPushButton(tr("Change"));
+  connect(newsFontChange, SIGNAL(clicked()), this, SLOT(slotNewsFontChange()));
+
+  QHBoxLayout *newsFontLayout = new QHBoxLayout();
+  newsFontLayout->addWidget(new QLabel(tr("News font:")));
+  newsFontLayout->addWidget(newsFontLabel_);
+  newsFontLayout->addStretch(1);
+  newsFontLayout->addWidget(newsFontChange);
+
+  QVBoxLayout *fontsLayout = new QVBoxLayout();
+  fontsLayout->setMargin(0);
+  fontsLayout->addLayout(feedsFontLayout);
+  fontsLayout->addLayout(newsListFontLayout);
+  fontsLayout->addLayout(newsFontLayout);
+  fontsLayout->addStretch(1);
+
+  fontsWidget_ = new QWidget();
+  fontsWidget_->setLayout(fontsLayout);
+  //} fonts
+
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentLabel_->setObjectName("contentLabel_");
 
@@ -132,6 +177,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(feedsWidget_);
   contentStack_->addWidget(languageWidget_);
+  contentStack_->addWidget(fontsWidget_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
   contentLayout->setMargin(0);
@@ -255,4 +301,55 @@ void OptionsDialog::acceptSlot()
 {
   applyProxy();
   accept();
+}
+
+void OptionsDialog::slotFeedsFontChange()
+{
+  bool bOk;
+  QFont curFont;
+  curFont.setFamily(feedsFontLabel_->text().section(", ", 0, 0));
+  curFont.setPointSize(feedsFontLabel_->text().section(", ", 1).toInt());
+
+  QFont font = QFontDialog::getFont(&bOk, curFont);
+  if (bOk) {
+    QString strFont = QString("%1, %2").
+        arg(font.family()).
+        arg(font.pointSize());
+    feedsFontLabel_->setText(strFont);
+    feedsFontLabel_->setFont(font);
+  }
+}
+
+void OptionsDialog::slotNewsListFontChange()
+{
+  bool bOk;
+  QFont curFont;
+  curFont.setFamily(newsListFontLabel_->text().section(", ", 0, 0));
+  curFont.setPointSize(newsListFontLabel_->text().section(", ", 1).toInt());
+
+  QFont font = QFontDialog::getFont(&bOk, curFont);
+  if (bOk) {
+    QString strFont = QString("%1, %2").
+        arg(font.family()).
+        arg(font.pointSize());
+    newsListFontLabel_->setText(strFont);
+    newsListFontLabel_->setFont(font);
+  }
+}
+
+void OptionsDialog::slotNewsFontChange()
+{
+  bool bOk;
+  QFont curFont;
+  curFont.setFamily(newsFontLabel_->text().section(", ", 0, 0));
+  curFont.setPointSize(newsFontLabel_->text().section(", ", 1).toInt());
+
+  QFont font = QFontDialog::getFont(&bOk, curFont);
+  if (bOk) {
+    QString strFont = QString("%1, %2").
+        arg(font.family()).
+        arg(font.pointSize());
+    newsFontLabel_->setText(strFont);
+    newsFontLabel_->setFont(font);
+  }
 }

@@ -1186,6 +1186,25 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->setLanguage(langFileName_);
 
+  QString strFont = QString("%1, %2").
+      arg(feedsView_->font().family()).
+      arg(feedsView_->font().pointSize());
+  optionsDialog->feedsFontLabel_->setText(strFont);
+  optionsDialog->feedsFontLabel_->setFont(feedsView_->font());
+  strFont = QString("%1, %2").
+      arg(newsView_->font().family()).
+      arg(newsView_->font().pointSize());
+  optionsDialog->newsListFontLabel_->setText(strFont);
+  optionsDialog->newsListFontLabel_->setFont(newsView_->font());
+  strFont = QString("%1, %2").
+      arg(webView_->settings()->fontFamily(QWebSettings::StandardFont)).
+      arg(webView_->settings()->fontSize(QWebSettings::DefaultFontSize));
+  optionsDialog->newsFontLabel_->setText(strFont);
+  QFont font;
+  font.setFamily(webView_->settings()->fontFamily(QWebSettings::StandardFont));
+  font.setPixelSize(webView_->settings()->fontSize(QWebSettings::DefaultFontSize));
+  optionsDialog->newsFontLabel_->setFont(font);
+
   int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
 

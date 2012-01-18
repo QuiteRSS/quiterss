@@ -20,12 +20,20 @@ public:
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
 
+  // fonts
+  QLabel *feedsFontLabel_;
+  QLabel *newsListFontLabel_;
+  QLabel *newsFontLabel_;
+
 private slots:
   void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
   void manualProxyToggle(bool checked);
   void updateProxy();
   void applyProxy();
   void acceptSlot();
+  void slotFeedsFontChange();
+  void slotNewsListFontChange();
+  void slotNewsFontChange();
 
 signals:
 
@@ -37,6 +45,7 @@ private:
   QWidget *networkConnectionsWidget_;
   QTabWidget *feedsWidget_;
   QWidget *languageWidget_;
+  QWidget *fontsWidget_;
 
   QDialogButtonBox *buttonBox_;
 
@@ -51,7 +60,7 @@ private:
   QLineEdit *editPassword_;
 
   // language
-  QListWidget *languageFileList_;
+  QListWidget *languageFileList_;  
 
   // internal variables for options
   QNetworkProxy networkProxy_;
