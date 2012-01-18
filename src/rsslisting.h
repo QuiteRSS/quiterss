@@ -22,7 +22,7 @@ public:
 public slots:
     void addFeed();
     void deleteFeed();
-    void importFeeds();
+    void slotImportFeeds();
     void slotFeedsTreeClicked(QModelIndex index);
     void slotGetFeed();
     void slotGetAllFeeds();

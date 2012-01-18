@@ -21,8 +21,8 @@ const QString kCreateFeedsTableQuery(
         "text varchar, "             // Текст ленты (сейчас заменяет имя)
         "title varchar, "            // Имя ленты
         "description varchar, "      // Описание ленты
-        "xmlurl varchar, "           // интернет-адрес самой ленты
-        "htmlurl varchar, "          // интернет-адрес сайта, с которого забираем ленту
+        "xmlUrl varchar, "           // интернет-адрес самой ленты
+        "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
         "language varchar, "         // язык, на котором написана лента
         "copyrights varchar, "       // права
         "author_name varchar, "      // автор лента: имя
@@ -589,7 +589,7 @@ void RSSListing::createActions()
 
   importFeedsAct_ = new QAction(this);
   importFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
-  connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(importFeeds()));
+  connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(slotImportFeeds()));
 
   exitAct_ = new QAction(this);
   exitAct_->setShortcut(Qt::CTRL+Qt::Key_Q);  // standart on other OS
@@ -873,7 +873,7 @@ void RSSListing::addFeed()
   if (addFeedDialog->exec() == QDialog::Rejected) return;
 
   QSqlQuery q(db_);
-  QString qStr = QString("insert into feeds(text, xmlurl) values (?, ?)");
+  QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
   q.prepare(qStr);
   q.addBindValue(addFeedDialog->feedTitleEdit_->text());
   q.addBindValue(addFeedDialog->feedUrlEdit_->text());
@@ -916,7 +916,7 @@ void RSSListing::deleteFeed()
 }
 
 /*! \brief Импорт лент из OPML-файла ******************************************/
-void RSSListing::importFeeds()
+void RSSListing::slotImportFeeds()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
       qApp->applicationDirPath(),
@@ -950,15 +950,16 @@ void RSSListing::importFeeds()
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
             << ":" << xml.name().toString();;
         QSqlQuery q(db_);
-        QString qStr = QString("insert into feeds(text, title, description, xmlurl, htmlurl) "
+        QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
                        "values(?, ?, ?, ?, ?)");
         q.prepare(qStr);
         q.addBindValue(xml.attributes().value("text").toString());
         q.addBindValue(xml.attributes().value("title").toString());
         q.addBindValue(xml.attributes().value("description").toString());
-        q.addBindValue(xml.attributes().value("xmlurl").toString());
-        q.addBindValue(xml.attributes().value("htmlurl").toString());
+        q.addBindValue(xml.attributes().value("xmlUrl").toString());
+        q.addBindValue(xml.attributes().value("htmlUrl").toString());
         q.exec();
+        qDebug() << q.lastQuery() << q.boundValues();
         qDebug() << q.lastError().number() << ": " << q.lastError().text();
         q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
         q.finish();
@@ -997,7 +998,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 
   if (!url_.isEmpty() && !data_.isEmpty()) {
     emit xmlReadyParse(data_, url_);
-    QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlurl == '%2'").
+    QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
         arg(dtReply.toString(Qt::ISODate)).
         arg(url_.toString()));
     qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
@@ -1024,7 +1025,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   // поиск идентификатора ленты с таблице лент
   int parseFeedId = 0;
   QSqlQuery q(db_);
-  q.exec(QString("select id from feeds where xmlurl like '%1'").
+  q.exec(QString("select id from feeds where xmlUrl like '%1'").
       arg(url.toString()));
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
@@ -1248,7 +1249,7 @@ void RSSListing::slotGetFeed()
 {
   progressBar_->setMaximum(1);
   getFeed(
-      feedsModel_->record(feedsView_->currentIndex().row()).field("xmlurl").value().toString(),
+      feedsModel_->record(feedsView_->currentIndex().row()).field("xmlUrl").value().toString(),
       QDateTime::fromString(feedsModel_->record(feedsView_->currentIndex().row()).field("lastBuildDate").value().toString(), Qt::ISODate)
   );
 }
@@ -1261,7 +1262,8 @@ void RSSListing::slotGetAllFeeds()
   int feedCount = 0;
 
   QSqlQuery q(db_);
-  q.exec("select xmlurl, lastBuildDate from feeds where xmlurl is not null");
+  q.exec("select xmlUrl, lastBuildDate from feeds where xmlUrl is not null");
+  qDebug() << q.lastError();
   while (q.next()) {
     getFeed(q.record().value(0).toString(), q.record().value(1).toDateTime());
     ++feedCount;

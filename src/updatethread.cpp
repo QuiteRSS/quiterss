@@ -153,7 +153,7 @@ void UpdateThread::finished(QNetworkReply *reply)
   qDebug() << currentDate_ << dtReply << dtReplyLocal;
   qDebug() << currentDate_.toMSecsSinceEpoch() << dtReply.toMSecsSinceEpoch() << dtReplyLocal.toMSecsSinceEpoch();
   if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
-      ((currentDate_.isValid()) && (currentDate_ < dtReplyLocal))) {
+      ((!currentDate_.isValid()) || ((currentDate_.isValid()) && (currentDate_ < dtReplyLocal)))) {
     get(reply->url());
   }
   else {

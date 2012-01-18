@@ -36,7 +36,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   // поиск идентификатора ленты с таблице лент
   int parseFeedId = 0;
   QSqlQuery q(*db);
-  q.exec(QString("select id from feeds where xmlurl like '%1'").
+  q.exec(QString("select id from feeds where xmlUrl like '%1'").
       arg(url.toString()));
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
