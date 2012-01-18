@@ -39,7 +39,7 @@ public slots:
     void slotCloseApp();
     void myEmptyWorkingSet();
     void receiveXml(const QByteArray &data, const QUrl &url);
-    void getUrlDone(const int &result);
+    void getUrlDone(const int &result, const QDateTime &dtReply);
     void slotUpdateFeed(const QUrl &url);
 
 protected:
@@ -54,7 +54,7 @@ private:
     ParseThread *persistentParseThread_;
     QNetworkProxy networkProxy_;
 
-    void getFeed(QString urlString);
+    void getFeed(QString urlString, QDateTime date);
     void createActions();
     void createMenu();
     void createToolBar();

@@ -1,6 +1,7 @@
 #ifndef UPDATETHREAD_H
 #define UPDATETHREAD_H
 
+#include <QDateTime>
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QQueue>
@@ -16,8 +17,11 @@ private:
   QNetworkReply *currentReply_;
   QNetworkProxy networkProxy_;
   QUrl currentUrl_;
+  QDateTime currentDate_;
+  QByteArray currentData_;
 
   QQueue<QUrl> urlsQueue_;
+  QQueue<QDateTime> dateQueue_;
 
   QString itemString;
   QString titleString;
@@ -28,18 +32,19 @@ private:
   QString guidString;
 
   void get(const QUrl &url);
+  void head(const QUrl &url);
   void getQueuedUrl();
 
 public:
   explicit UpdateThread(QObject *parent = 0);
   ~UpdateThread();
   void run();
-  void getUrl(const QUrl &url);
+  void getUrl(const QUrl &url, const QDateTime &date);
   void setProxy(const QNetworkProxy proxy);
 
 signals:
   void readedXml(const QByteArray &xml, const QUrl &url);
-  void getUrlDone(const int &result);
+  void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
 
 private slots:
   void readyRead();

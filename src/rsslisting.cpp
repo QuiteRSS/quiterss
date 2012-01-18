@@ -119,8 +119,8 @@ RSSListing::RSSListing(QWidget *parent)
     persistentUpdateThread_->setObjectName("persistentUpdateThread_");
     connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
         this, SLOT(receiveXml(QByteArray, QUrl)));
-    connect(persistentUpdateThread_, SIGNAL(getUrlDone(int)),
-        this, SLOT(getUrlDone(int)));
+    connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
+        this, SLOT(getUrlDone(int,QDateTime)));
 
     persistentParseThread_ = new ParseThread(this, &db_);
     persistentParseThread_->setObjectName("persistentParseThread_");
@@ -938,8 +938,8 @@ void RSSListing::importFeeds()
         q.addBindValue(xml.attributes().value("text").toString());
         q.addBindValue(xml.attributes().value("title").toString());
         q.addBindValue(xml.attributes().value("description").toString());
-        q.addBindValue(xml.attributes().value("xmlUrl").toString());
-        q.addBindValue(xml.attributes().value("htmlUrl").toString());
+        q.addBindValue(xml.attributes().value("xmlurl").toString());
+        q.addBindValue(xml.attributes().value("htmlurl").toString());
         q.exec();
         qDebug() << q.lastError().number() << ": " << q.lastError().text();
         q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
@@ -973,15 +973,20 @@ void RSSListing::receiveXml(const QByteArray &data, const QUrl &url)
 }
 
 /*! \brief Обработка окончания запроса ****************************************/
-void RSSListing::getUrlDone(const int &result)
+void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 {
   qDebug() << "getUrl result =" << result;
 
-  if (!url_.isEmpty()) {
+  if (!url_.isEmpty() && !data_.isEmpty()) {
     emit xmlReadyParse(data_, url_);
-    data_.clear();
-    url_.clear();
+    QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlurl == '%2'").
+        arg(dtReply.toString(Qt::ISODate)).
+        arg(url_.toString()));
+    qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
+    qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
   }
+  data_.clear();
+  url_.clear();
 
   // очередь запросов пуста
   if (0 == result) {
@@ -1088,9 +1093,9 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
-void RSSListing::getFeed(QString urlString)
+void RSSListing::getFeed(QString urlString, QDateTime date)
 {
-  persistentUpdateThread_->getUrl(urlString);
+  persistentUpdateThread_->getUrl(urlString, date);
 
   progressBar_->setValue(progressBar_->minimum());
   progressBar_->show();
@@ -1210,8 +1215,10 @@ void RSSListing::myEmptyWorkingSet()
 void RSSListing::slotGetFeed()
 {
   progressBar_->setMaximum(1);
-  getFeed(feedsModel_->record(feedsView_->currentIndex().row()).
-      field("xmlurl").value().toString());
+  getFeed(
+      feedsModel_->record(feedsView_->currentIndex().row()).field("xmlurl").value().toString(),
+      QDateTime::fromString(feedsModel_->record(feedsView_->currentIndex().row()).field("lastBuildDate").value().toString(), Qt::ISODate)
+  );
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
@@ -1222,9 +1229,9 @@ void RSSListing::slotGetAllFeeds()
   int feedCount = 0;
 
   QSqlQuery q(db_);
-  q.exec("select xmlurl from feeds where xmlurl is not null");
+  q.exec("select xmlurl, lastBuildDate from feeds where xmlurl is not null");
   while (q.next()) {
-    getFeed(q.record().value(0).toString());
+    getFeed(q.record().value(0).toString(), q.record().value(1).toDateTime());
     ++feedCount;
   }
 
