@@ -109,9 +109,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QVBoxLayout *languageLayout = new QVBoxLayout();
   languageLayout->setMargin(0);
-  languageLayout->addWidget(new QLabel(tr("Choose language:*")));
+  languageLayout->addWidget(new QLabel(tr("Choose language:")));
   languageLayout->addWidget(languageFileList_);
-  languageLayout->addWidget(new QLabel(tr("* - changes will take effect after restart")));
 
   languageWidget_ = new QWidget();
   languageWidget_->setLayout(languageLayout);
