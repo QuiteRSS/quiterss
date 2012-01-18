@@ -789,7 +789,13 @@ void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
 
-  langFileName_ = settings_->value("langFileName", "en").toString();
+  QString strLang("en");
+  QString strLocalLang = QLocale::system().name().left(2);
+  QDir langDir = qApp->applicationDirPath() + "/lang";
+  foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
+    if (strLocalLang == file.section('.', 0, 0)) strLang = strLocalLang;
+  }
+  langFileName_ = settings_->value("langFileName", strLang).toString();
 
   QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
   int fontSize = settings_->value("/FontSize", 8).toInt();
