@@ -267,9 +267,9 @@ QHeaderView::up-arrow {
 	padding: 1px;
 }
 
-/*#categoriesTree::item {
-	min-height: 20px;
-}*/
+#categoriesTree::item, #fontTree::item, #languageFileList_::item {
+	min-height: 18px;
+}
 
 QStatusBar #progressBar_{
 	margin-right: 5px;

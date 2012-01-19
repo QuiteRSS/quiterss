@@ -13,7 +13,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->header()->setStretchLastSection(false);
   categoriesTree->header()->resizeSection(2, 5);
   categoriesTree->header()->setResizeMode(1, QHeaderView::Stretch);
-  categoriesTree->setFixedWidth(150);
+  categoriesTree->setMinimumWidth(150);
   QStringList treeItem;
   treeItem << "0" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
@@ -109,6 +109,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ language
   languageFileList_ = new QListWidget();
+  languageFileList_->setObjectName("languageFileList_");
 
   QVBoxLayout *languageLayout = new QVBoxLayout();
   languageLayout->setMargin(0);
@@ -129,6 +130,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ fonts
   fontTree = new QTreeWidget();
+  fontTree->setObjectName("fontTree");
   fontTree->setColumnCount(3);
   fontTree->setColumnHidden(0, true);
   fontTree->setColumnWidth(1, 120);
@@ -155,7 +157,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QPushButton *fontReset = new QPushButton(tr("Reset"));
   connect(fontReset, SIGNAL(clicked()), this, SLOT(slotFontReset()));
   QVBoxLayout *fontsButtonLayout = new QVBoxLayout();
-  fontsButtonLayout->setMargin(0);
   fontsButtonLayout->addWidget(fontChange);
   fontsButtonLayout->addWidget(fontReset);
   fontsButtonLayout->addStretch(1);
@@ -187,9 +188,15 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QWidget *contentWidget = new QWidget();
   contentWidget->setLayout(contentLayout);
 
+  QVBoxLayout *categoriesTreeLayout = new QVBoxLayout();
+  categoriesTreeLayout->setMargin(0);
+  categoriesTreeLayout->addWidget(categoriesTree);
+  QWidget *categoriesTreeWidget = new QWidget();
+  categoriesTreeWidget->setLayout(categoriesTreeLayout);
+
   QSplitter *splitter = new QSplitter();
   splitter->setChildrenCollapsible(false);
-  splitter->addWidget(categoriesTree);
+  splitter->addWidget(categoriesTreeWidget);
   splitter->addWidget(contentWidget);
   QList<int> sizes;
   sizes << 150 << 600;
