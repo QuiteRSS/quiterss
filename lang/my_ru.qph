@@ -476,4 +476,44 @@
     <source>Error checking updates</source>
     <target>Ошибка при проверке обновлений</target>
 </phrase>
+<phrase>
+    <source>Fonts</source>
+    <target>Шрифты</target>
+</phrase>
+<phrase>
+    <source>Choose language:</source>
+    <target>Выберите язык:</target>
+</phrase>
+<phrase>
+    <source>Type</source>
+    <target>Тип</target>
+</phrase>
+<phrase>
+    <source>Font</source>
+    <target>Шрифт</target>
+</phrase>
+<phrase>
+    <source>Feeds list font</source>
+    <target>Шрифт списка лент</target>
+</phrase>
+<phrase>
+    <source>News list font</source>
+    <target>Шрифт списка новостей</target>
+</phrase>
+<phrase>
+    <source>News font</source>
+    <target>Шрифт новости</target>
+</phrase>
+<phrase>
+    <source>News font</source>
+    <target>Шрифт новости</target>
+</phrase>
+<phrase>
+    <source>Change...</source>
+    <target>Изменить...</target>
+</phrase>
+<phrase>
+    <source>Reset</source>
+    <target>Сброс</target>
+</phrase>
 </QPH>

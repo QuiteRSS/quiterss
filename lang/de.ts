@@ -90,76 +90,116 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="27"/>
-        <source>System proxy configuration (if available)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="29"/>
-        <source>Direct connection to the Internet</source>
+        <source>Fonts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="30"/>
+        <source>System proxy configuration (if available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="32"/>
+        <source>Direct connection to the Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="33"/>
         <source>Manual proxy configuration:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="46"/>
+        <location filename="../src/optionsdialog.cpp" line="49"/>
         <source>Proxy server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="56"/>
+        <location filename="../src/optionsdialog.cpp" line="59"/>
         <source>Username:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="81"/>
+        <location filename="../src/optionsdialog.cpp" line="84"/>
         <source>Automatically update the feeds on start-up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="82"/>
+        <location filename="../src/optionsdialog.cpp" line="85"/>
         <source>Automatically update the feeds every</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="104"/>
+        <location filename="../src/optionsdialog.cpp" line="107"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="112"/>
-        <source>Choose language:*</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="114"/>
-        <source>* - changes will take effect after restart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="121"/>
+        <location filename="../src/optionsdialog.cpp" line="124"/>
         <source>English (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="122"/>
+        <location filename="../src/optionsdialog.cpp" line="125"/>
         <source>Russian (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="48"/>
+        <location filename="../src/optionsdialog.cpp" line="51"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="58"/>
+        <location filename="../src/optionsdialog.cpp" line="61"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="128"/>
+        <location filename="../src/optionsdialog.cpp" line="116"/>
+        <source>Choose language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="139"/>
+        <source>Id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="139"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="139"/>
+        <source>Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="143"/>
+        <source>Feeds list font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="146"/>
+        <source>News list font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="149"/>
+        <source>News font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="155"/>
+        <source>Change...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="157"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="173"/>
         <source>ContentLabel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -167,328 +207,309 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="201"/>
-        <location filename="../src/rsslisting.cpp" line="237"/>
+        <location filename="../src/rsslisting.cpp" line="1921"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="261"/>
-        <source>news</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="293"/>
-        <source>News</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="302"/>
+        <location filename="../src/rsslisting.cpp" line="1923"/>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="305"/>
+        <location filename="../src/rsslisting.cpp" line="1922"/>
         <source>Title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="361"/>
+        <location filename="../src/rsslisting.cpp" line="1924"/>
         <source>Update feeds... (%p%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="364"/>
-        <source> Unread: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="366"/>
-        <source> All: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="574"/>
+        <location filename="../src/rsslisting.cpp" line="1935"/>
         <source>&amp;Add...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="575"/>
+        <location filename="../src/rsslisting.cpp" line="1936"/>
         <source>Add new feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="579"/>
+        <location filename="../src/rsslisting.cpp" line="1938"/>
         <source>&amp;Delete...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="580"/>
+        <location filename="../src/rsslisting.cpp" line="1939"/>
         <source>Delete selected feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="583"/>
+        <location filename="../src/rsslisting.cpp" line="1941"/>
         <source>&amp;Import feeds...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="584"/>
+        <location filename="../src/rsslisting.cpp" line="1942"/>
         <source>Import feeds from OPML file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="591"/>
+        <location filename="../src/rsslisting.cpp" line="1946"/>
         <source>&amp;ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="593"/>
+        <location filename="../src/rsslisting.cpp" line="1947"/>
         <source>Show ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="595"/>
+        <location filename="../src/rsslisting.cpp" line="1949"/>
         <source>&amp;Load images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="597"/>
+        <location filename="../src/rsslisting.cpp" line="1950"/>
         <source>Auto load images to news view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="599"/>
+        <location filename="../src/rsslisting.cpp" line="1952"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="600"/>
+        <location filename="../src/rsslisting.cpp" line="1953"/>
         <source>Update current feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="604"/>
+        <location filename="../src/rsslisting.cpp" line="1955"/>
         <source>Update all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="605"/>
+        <location filename="../src/rsslisting.cpp" line="1956"/>
         <source>Update all feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="617"/>
+        <location filename="../src/rsslisting.cpp" line="1964"/>
         <source>Options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="618"/>
+        <location filename="../src/rsslisting.cpp" line="1965"/>
         <source>Open options gialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="623"/>
-        <location filename="../src/rsslisting.cpp" line="635"/>
+        <location filename="../src/rsslisting.cpp" line="1968"/>
+        <location filename="../src/rsslisting.cpp" line="1973"/>
         <source>Show All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="627"/>
-        <location filename="../src/rsslisting.cpp" line="639"/>
+        <location filename="../src/rsslisting.cpp" line="1969"/>
+        <location filename="../src/rsslisting.cpp" line="1974"/>
         <source>Show New</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="630"/>
-        <location filename="../src/rsslisting.cpp" line="642"/>
+        <location filename="../src/rsslisting.cpp" line="1970"/>
+        <location filename="../src/rsslisting.cpp" line="1975"/>
         <source>Show Unread</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="645"/>
+        <location filename="../src/rsslisting.cpp" line="1976"/>
         <source>Show Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="649"/>
+        <location filename="../src/rsslisting.cpp" line="1978"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="651"/>
+        <location filename="../src/rsslisting.cpp" line="1979"/>
         <source>Show &apos;About&apos; dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="654"/>
+        <location filename="../src/rsslisting.cpp" line="1981"/>
         <source>Check for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="658"/>
+        <location filename="../src/rsslisting.cpp" line="1983"/>
         <source>Open in Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="660"/>
+        <location filename="../src/rsslisting.cpp" line="1984"/>
         <source>Star</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="662"/>
+        <location filename="../src/rsslisting.cpp" line="1985"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="667"/>
+        <location filename="../src/rsslisting.cpp" line="1988"/>
         <source>Mark feed read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="669"/>
+        <location filename="../src/rsslisting.cpp" line="1989"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="670"/>
+        <location filename="../src/rsslisting.cpp" line="1990"/>
         <source>Properties feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="676"/>
+        <location filename="../src/rsslisting.cpp" line="1992"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="622"/>
-        <location filename="../src/rsslisting.cpp" line="634"/>
+        <location filename="../src/rsslisting.cpp" line="1967"/>
+        <location filename="../src/rsslisting.cpp" line="1972"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="856"/>
+        <location filename="../src/rsslisting.cpp" line="890"/>
         <source>Add feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="879"/>
+        <location filename="../src/rsslisting.cpp" line="913"/>
         <source>Delete feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="880"/>
+        <location filename="../src/rsslisting.cpp" line="914"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1387"/>
+        <location filename="../src/rsslisting.cpp" line="1468"/>
+        <location filename="../src/rsslisting.cpp" line="1930"/>
         <source> Unread: %1 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1389"/>
+        <location filename="../src/rsslisting.cpp" line="1469"/>
+        <location filename="../src/rsslisting.cpp" line="1933"/>
         <source> All: %1 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1402"/>
+        <location filename="../src/rsslisting.cpp" line="1482"/>
         <source>Error loading to WebVeiw</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1149"/>
+        <location filename="../src/rsslisting.cpp" line="1191"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="587"/>
+        <location filename="../src/rsslisting.cpp" line="1944"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="192"/>
+        <location filename="../src/rsslisting.cpp" line="1920"/>
         <source>Loading... (%p%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="609"/>
-        <location filename="../src/rsslisting.cpp" line="666"/>
+        <location filename="../src/rsslisting.cpp" line="1958"/>
+        <location filename="../src/rsslisting.cpp" line="1987"/>
         <source>Mark Read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="610"/>
+        <location filename="../src/rsslisting.cpp" line="1959"/>
         <source>Mark current news read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="613"/>
+        <location filename="../src/rsslisting.cpp" line="1961"/>
         <source>Mark all news Read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="614"/>
+        <location filename="../src/rsslisting.cpp" line="1962"/>
         <source>Mark all news read</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="684"/>
+        <location filename="../src/rsslisting.cpp" line="1993"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="686"/>
+        <location filename="../src/rsslisting.cpp" line="1994"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="691"/>
+        <location filename="../src/rsslisting.cpp" line="1995"/>
         <source>Fee&amp;ds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="714"/>
+        <location filename="../src/rsslisting.cpp" line="1996"/>
         <source>&amp;News</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="739"/>
+        <location filename="../src/rsslisting.cpp" line="1997"/>
         <source>&amp;Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="742"/>
+        <location filename="../src/rsslisting.cpp" line="1998"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="751"/>
+        <location filename="../src/rsslisting.cpp" line="2000"/>
         <source>ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="905"/>
+        <location filename="../src/rsslisting.cpp" line="939"/>
         <source>Select OPML-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="907"/>
+        <location filename="../src/rsslisting.cpp" line="941"/>
         <source>OPML-files (*.opml)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="910"/>
+        <location filename="../src/rsslisting.cpp" line="944"/>
         <source>Import canceled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="918"/>
+        <location filename="../src/rsslisting.cpp" line="952"/>
         <source>Import: can&apos;t open a file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1196"/>
+        <location filename="../src/rsslisting.cpp" line="2001"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -511,32 +532,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="51"/>
+        <location filename="../src/updateappdialog.cpp" line="52"/>
         <source>You already have the latest version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="56"/>
+        <location filename="../src/updateappdialog.cpp" line="57"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="59"/>
+        <location filename="../src/updateappdialog.cpp" line="60"/>
         <source>Click here to go to the download page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="63"/>
+        <location filename="../src/updateappdialog.cpp" line="64"/>
         <source>Your version is: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="65"/>
+        <location filename="../src/updateappdialog.cpp" line="66"/>
         <source>Current version is: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="72"/>
+        <location filename="../src/updateappdialog.cpp" line="73"/>
         <source>Error checking updates</source>
         <translation type="unfinished"></translation>
     </message>
