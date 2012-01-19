@@ -137,9 +137,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << tr("Id") << tr("Type") << tr("Font");
   fontTree->setHeaderLabels(treeItem);
 
-//  treeItem.clear();
-//  treeItem << "0" << tr("Main font");
-//  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "0" << tr("Feeds list font");
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
@@ -151,6 +148,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   fontTree->setCurrentItem(fontTree->topLevelItem(0));
+  connect(fontTree, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotFontChange()));
 
   QPushButton *fontChange = new QPushButton(tr("Change..."));
   connect(fontChange, SIGNAL(clicked()), this, SLOT(slotFontChange()));
@@ -314,7 +312,6 @@ void OptionsDialog::slotFontChange()
 
   QFont font = QFontDialog::getFont(&bOk, curFont);
   if (bOk) {
-//    if (fontTree->currentItem()->text(0).toInt() == 0) font.setPointSize(8);
     QString strFont = QString("%1, %2").
         arg(font.family()).
         arg(font.pointSize());
@@ -325,7 +322,7 @@ void OptionsDialog::slotFontChange()
 void OptionsDialog::slotFontReset()
 {
   switch (fontTree->currentItem()->text(0).toInt()) {
-  case 3: fontTree->currentItem()->setText(2, "Tahoma, 12");
+  case 2: fontTree->currentItem()->setText(2, "Tahoma, 12");
     break;
   default: fontTree->currentItem()->setText(2, "Tahoma, 8");
   }

@@ -13,7 +13,7 @@ FeedsModel::FeedsModel(QObject *parent)
 QVariant FeedsModel::data(const QModelIndex &index, int role) const
 {
   if (role == Qt::FontRole) {
-    QFont font;
+    QFont font = font_;
     if ((0 < QSqlTableModel::index(index.row(), fieldIndex("unread")).data(Qt::EditRole).toInt()) &&
         (QSqlTableModel::fieldIndex("unread") != index.column()))
       font.setBold(true);

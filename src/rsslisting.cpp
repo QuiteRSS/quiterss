@@ -149,6 +149,8 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     feedsView_->setContextMenuPolicy(Qt::CustomContextMenu);
 
+    feedsModel_->font_ = feedsView_->font();
+
     connect(feedsView_, SIGNAL(clicked(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
@@ -393,6 +395,7 @@ RSSListing::RSSListing(QWidget *parent)
 //    QFont font_ = newsTitleLabel_->font();
 //    font_.setBold(true);
 //    newsTitleLabel_->setFont(font_);
+    qApp->setFont(QFont("Tahoma", 8));
 
     if (autoUpdatefeedsStartUp_) {
       slotGetAllFeeds();
@@ -797,9 +800,13 @@ void RSSListing::readSettings()
   }
   langFileName_ = settings_->value("langFileName", strLang).toString();
 
-  QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
-  int fontSize = settings_->value("/FontSize", 8).toInt();
-  qApp->setFont(QFont(fontFamily, fontSize));
+  QString fontFamily = settings_->value("/feedsFontFamily", "Tahoma").toString();
+  int fontSize = settings_->value("/feedsFontSize", 8).toInt();
+  feedsView_->setFont(QFont(fontFamily, fontSize));
+
+  fontFamily = settings_->value("/newsFontFamily", "Tahoma").toString();
+  fontSize = settings_->value("/newsFontSize", 8).toInt();
+  newsView_->setFont(QFont(fontFamily, fontSize));
 
   fontFamily = settings_->value("/WebFontFamily", "Tahoma").toString();
   fontSize = settings_->value("/WebFontSize", 12).toInt();
@@ -833,14 +840,19 @@ void RSSListing::writeSettings()
 
   settings_->setValue("langFileName", langFileName_);
 
-  QString fontFamily = settings_->value("/FontFamily", "Tahoma").toString();
-  settings_->setValue("/FontFamily", fontFamily);
-  int fontSize = settings_->value("/FontSize", 8).toInt();
-  settings_->setValue("/FontSize", fontSize);
+  QString fontFamily = feedsView_->font().family();
+  settings_->setValue("/feedsFontFamily", fontFamily);
+  int fontSize = feedsView_->font().pointSize();
+  settings_->setValue("/feedsFontSize", fontSize);
 
-  fontFamily = settings_->value("/WebFontFamily", "Tahoma").toString();
+  fontFamily = newsView_->font().family();
+  settings_->setValue("/newsFontFamily", fontFamily);
+  fontSize = newsView_->font().pointSize();
+  settings_->setValue("/newsFontSize", fontSize);
+
+  fontFamily = webView_->settings()->fontFamily(QWebSettings::StandardFont);
   settings_->setValue("/WebFontFamily", fontFamily);
-  fontSize = settings_->value("/WebFontSize", 12).toInt();
+  fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
   settings_->setValue("/WebFontSize", fontSize);
 
   settings_->setValue("autoLoadImages", autoLoadImagesToggle_->isChecked());
@@ -1229,7 +1241,7 @@ void RSSListing::showOptionDlg()
   font.setPointSize(
         optionsDialog->fontTree->topLevelItem(0)->text(2).section(", ", 1).toInt());
   feedsView_->setFont(font);
-
+  feedsModel_->font_ = font;
   font = newsView_->font();
   font.setFamily(
         optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 0, 0));
@@ -1240,7 +1252,6 @@ void RSSListing::showOptionDlg()
         optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
         optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
-
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/

@@ -57,7 +57,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       } else return dateTime.toString("yyyy.MM.dd hh:mm");
     }
   } else if (role == Qt::FontRole) {
-    QFont font;
+    QFont font = view_->font();
     if (0 == QSqlTableModel::index(index.row(), fieldIndex("read")).data(Qt::EditRole).toInt())
       font.setBold(true);
     return font;
