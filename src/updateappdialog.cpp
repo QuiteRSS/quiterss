@@ -37,6 +37,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
 
 void UpdateAppDialog::finishUpdateApp()
 {
+  reply_->deleteLater();
   if (reply_->error() == QNetworkReply::NoError) {
     QString version = QString(STRFILEVER).section('.', 0, 2);
     QString date = STRDATE;
