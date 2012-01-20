@@ -605,6 +605,31 @@ void RSSListing::createActions()
 
   toolBarToggle_ = new QAction(this);
   toolBarToggle_->setCheckable(true);
+  toolBarStyleI_ = new QAction(this);
+  toolBarStyleI_->setObjectName("toolBarStyleI_");
+  toolBarStyleI_->setCheckable(true);
+  toolBarStyleT_ = new QAction(this);
+  toolBarStyleT_->setObjectName("toolBarStyleT_");
+  toolBarStyleT_->setCheckable(true);
+  toolBarStyleTbI_ = new QAction(this);
+  toolBarStyleTbI_->setObjectName("toolBarStyleTbI_");
+  toolBarStyleTbI_->setCheckable(true);
+  toolBarStyleTuI_ = new QAction(this);
+  toolBarStyleTuI_->setObjectName("toolBarStyleTuI_");
+  toolBarStyleTuI_->setCheckable(true);
+  toolBarStyleTuI_->setChecked(true);
+
+  toolBarIconBig_ = new QAction(this);
+  toolBarIconBig_->setObjectName("toolBarIconBig_");
+  toolBarIconBig_->setCheckable(true);
+  toolBarIconNormal_ = new QAction(this);
+  toolBarIconNormal_->setObjectName("toolBarIconNormal_");
+  toolBarIconNormal_->setCheckable(true);
+  toolBarIconNormal_->setChecked(true);
+  toolBarIconSmall_ = new QAction(this);
+  toolBarIconSmall_->setObjectName("toolBarIconSmall_");
+  toolBarIconSmall_->setCheckable(true);
+
 
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
@@ -703,7 +728,35 @@ void RSSListing::createMenu()
 
   viewMenu_  = new QMenu(this);
   menuBar()->addMenu(viewMenu_ );
-  viewMenu_->addAction(toolBarToggle_);
+
+  toolBarMenu_ = new QMenu(this);
+  toolBarStyleMenu_ = new QMenu(this);
+  toolBarStyleMenu_->addAction(toolBarStyleI_);
+  toolBarStyleMenu_->addAction(toolBarStyleT_);
+  toolBarStyleMenu_->addAction(toolBarStyleTbI_);
+  toolBarStyleMenu_->addAction(toolBarStyleTuI_);
+  toolBarStyleGroup_ = new QActionGroup(this);
+  toolBarStyleGroup_->addAction(toolBarStyleI_);
+  toolBarStyleGroup_->addAction(toolBarStyleT_);
+  toolBarStyleGroup_->addAction(toolBarStyleTbI_);
+  toolBarStyleGroup_->addAction(toolBarStyleTuI_);
+  connect(toolBarStyleGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setToolBarStyle(QAction*)));
+
+  toolBarIconSizeMenu_ = new QMenu(this);
+  toolBarIconSizeMenu_->addAction(toolBarIconBig_);
+  toolBarIconSizeMenu_->addAction(toolBarIconNormal_);
+  toolBarIconSizeMenu_->addAction(toolBarIconSmall_);
+  toolBarIconSizeGroup_ = new QActionGroup(this);
+  toolBarIconSizeGroup_->addAction(toolBarIconBig_);
+  toolBarIconSizeGroup_->addAction(toolBarIconNormal_);
+  toolBarIconSizeGroup_->addAction(toolBarIconSmall_);
+  connect(toolBarIconSizeGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setToolBarIconSize(QAction*)));
+
+  toolBarMenu_->addMenu(toolBarStyleMenu_);
+  toolBarMenu_->addMenu(toolBarIconSizeMenu_);
+  toolBarMenu_->addAction(toolBarToggle_);
+  viewMenu_->addMenu(toolBarMenu_);
+
   viewMenu_->addSeparator();
   viewMenu_->addAction(autoLoadImagesToggle_);
 
@@ -776,6 +829,7 @@ void RSSListing::createToolBar()
   toolBar_->setObjectName("ToolBar_General");
   toolBar_->setAllowedAreas(Qt::TopToolBarArea);
   toolBar_->setMovable(false);
+  toolBar_->setContextMenuPolicy(Qt::CustomContextMenu);
   toolBar_->addAction(addFeedAct_);
   toolBar_->addAction(deleteFeedAct_);
   toolBar_->addSeparator();
@@ -790,6 +844,8 @@ void RSSListing::createToolBar()
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
   connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
   connect(autoLoadImagesToggle_, SIGNAL(toggled(bool)), this, SLOT(setAutoLoadImages(bool)));
+  connect(toolBar_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuToolBar(const QPoint &)));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -821,6 +877,25 @@ void RSSListing::readSettings()
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
+
+  QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
+  QList<QAction*> listActions = toolBarStyleGroup_->actions();
+  foreach(QAction *action, listActions) {
+    if (action->objectName() == str) {
+      action->setChecked(true);
+      break;
+    }
+  }
+  setToolBarStyle(toolBarStyleGroup_->checkedAction());
+  str = settings_->value("toolBarIconSize", "toolBarIconNormal_").toString();
+  listActions = toolBarIconSizeGroup_->actions();
+  foreach(QAction *action, listActions) {
+    if (action->objectName() == str) {
+      action->setChecked(true);
+      break;
+    }
+  }
+  setToolBarIconSize(toolBarIconSizeGroup_->checkedAction());
 
   settings_->endGroup();
 
@@ -864,6 +939,11 @@ void RSSListing::writeSettings()
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
+
+  settings_->setValue("toolBarStyle",
+                      toolBarStyleGroup_->checkedAction()->objectName());
+  settings_->setValue("toolBarIconSize",
+                      toolBarIconSizeGroup_->checkedAction()->objectName());
 
   settings_->endGroup();
 
@@ -1951,9 +2031,6 @@ void RSSListing::retranslateStrings() {
 
   exitAct_->setText(tr("E&xit"));
 
-  toolBarToggle_->setText(tr("&ToolBar"));
-  toolBarToggle_->setToolTip(tr("Show ToolBar"));
-
   autoLoadImagesToggle_->setText(tr("&Load images"));
   autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
 
@@ -2006,5 +2083,48 @@ void RSSListing::retranslateStrings() {
   helpMenu_->setTitle(tr("&Help"));
 
   toolBar_->setWindowTitle(tr("ToolBar"));
+  toolBarMenu_->setTitle(tr("ToolBar"));
+  toolBarStyleMenu_->setTitle(tr("Style"));
+  toolBarStyleI_->setText(tr("Icon"));
+  toolBarStyleT_->setText(tr("Text"));
+  toolBarStyleTbI_->setText(tr("Text beside icon"));
+  toolBarStyleTuI_->setText(tr("Text under icon"));
+  toolBarIconSizeMenu_->setTitle(tr("Icon size"));
+  toolBarToggle_->setText(tr("Show ToolBar"));
+
+  toolBarIconSizeMenu_->setTitle(tr("Icon size"));
+  toolBarIconBig_->setText(tr("Big"));
+  toolBarIconNormal_->setText(tr("Normal"));
+  toolBarIconSmall_->setText(tr("Small"));
+
   showWindowAct_->setText(tr("Show window"));
+}
+
+void RSSListing::setToolBarStyle(QAction *pAct)
+{
+  if (pAct->objectName() == "toolBarStyleI_") {
+    toolBar_->setToolButtonStyle(Qt::ToolButtonIconOnly);
+  } else if (pAct->objectName() == "toolBarStyleT_") {
+    toolBar_->setToolButtonStyle(Qt::ToolButtonTextOnly);
+  } else if (pAct->objectName() == "toolBarStyleTbI_") {
+    toolBar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+  } else {
+    toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+  }
+}
+
+void RSSListing::setToolBarIconSize(QAction *pAct)
+{
+  if (pAct->objectName() == "toolBarIconBig_") {
+    toolBar_->setIconSize(QSize(32, 32));
+  } else if (pAct->objectName() == "toolBarIconSmall_") {
+    toolBar_->setIconSize(QSize(16, 16));
+  } else {
+    toolBar_->setIconSize(QSize(24, 24));
+  }
+}
+
+void RSSListing::showContextMenuToolBar(const QPoint &p)
+{
+  toolBarMenu_->popup(toolBar_->mapToGlobal(p));
 }

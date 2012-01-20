@@ -79,6 +79,13 @@ private:
     QAction *deleteFeedAct_;
     QAction *importFeedsAct_;
     QAction *toolBarToggle_;
+    QAction *toolBarStyleI_;
+    QAction *toolBarStyleT_;
+    QAction *toolBarStyleTbI_;
+    QAction *toolBarStyleTuI_;
+    QAction *toolBarIconSmall_;
+    QAction *toolBarIconNormal_;
+    QAction *toolBarIconBig_;
     QAction *autoLoadImagesToggle_;
     QAction *optionsAct_;
     QAction *updateFeedAct_;
@@ -105,12 +112,17 @@ private:
     QAction *feedProperties_;
     QAction *showWindowAct_;
 
+    QActionGroup *toolBarStyleGroup_;
+    QActionGroup *toolBarIconSizeGroup_;
     QActionGroup *feedsFilterGroup_;
     QActionGroup *newsFilterGroup_;
 
     QMenu *fileMenu_;
     QMenu *editMenu_;
     QMenu *viewMenu_;
+    QMenu *toolBarMenu_;
+    QMenu *toolBarStyleMenu_;
+    QMenu *toolBarIconSizeMenu_;
     QMenu *feedMenu_;
     QMenu *newsMenu_;
     QMenu *toolsMenu_;
@@ -194,6 +206,9 @@ private slots:
     void slotNewsFilter();
     void slotTimerUpdateFeeds();
     void slotShowUpdateAppDlg();
+    void setToolBarStyle(QAction*);
+    void setToolBarIconSize(QAction*);
+    void showContextMenuToolBar(const QPoint &);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
