@@ -374,7 +374,7 @@ RSSListing::RSSListing(QWidget *parent)
     statusBar()->addPermanentWidget(statusAll_);
     statusBar()->setVisible(true);
 
-    traySystem = new QSystemTrayIcon(QIcon(":/images/images/QtRSS16.png"),this);
+    traySystem = new QSystemTrayIcon(QIcon(":/images/images/QuiteRSS16.png"),this);
     connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
     connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
@@ -526,7 +526,7 @@ void RSSListing::slotCloseApp()
     }
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow())
-      traySystem->setIcon(QIcon(":/images/images/QtRSS16.png"));
+      traySystem->setIcon(QIcon(":/images/images/QuiteRSS16.png"));
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
   }
@@ -1161,7 +1161,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   q.exec(qStr);
 
   if (!isActiveWindow() && (newCount > newCountOld)) {
-    traySystem->setIcon(QIcon(":/images/images/QtRSS16_NewNews.png"));
+    traySystem->setIcon(QIcon(":/images/images/QuiteRSS16_NewNews.png"));
   }
 
   QModelIndex index = feedsView_->currentIndex();
@@ -1543,7 +1543,7 @@ void RSSListing::slotUpdateStatus()
   q.exec(qStr);
 
   if (!isActiveWindow() && (newCount > newCountOld)) {
-    traySystem->setIcon(QIcon(":/images/images/QtRSS16_NewNews.png"));
+    traySystem->setIcon(QIcon(":/images/images/QuiteRSS16_NewNews.png"));
   }
 
   QModelIndex index = feedsView_->currentIndex();

@@ -19,11 +19,11 @@ int main(int argc, char **argv)
       return 0;
     }
     app.setApplicationName("QuiteRss");
-    app.setWindowIcon(QIcon(":/images/QtRSS.ico"));
+    app.setWindowIcon(QIcon(":/images/QuiteRSS.ico"));
     app.setQuitOnLastWindowClosed(false);
 
     QString fileString = ":/style/qstyle";
-//    QString fileString = app.applicationDirPath() + "/Style/QtRSS.qss";
+//    QString fileString = app.applicationDirPath() + "/Style/QuiteRSS.qss";
     QFile file(fileString);
     file.open(QFile::ReadOnly);
     app.setStyleSheet(QLatin1String(file.readAll()));

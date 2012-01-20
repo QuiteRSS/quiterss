@@ -48,8 +48,8 @@ SOURCES += \
     src/updateappdialog.cpp
 
 RESOURCES += \
-    qtrss.qrc
-RC_FILE = QtRssApp.rc
+    QuiteRSS.qrc
+RC_FILE = QuiteRSSApp.rc
 
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {

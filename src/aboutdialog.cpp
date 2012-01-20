@@ -15,7 +15,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
   QLabel *logo = new QLabel(this);
   logo->setObjectName("logoLabel");
-  logo->setPixmap(QPixmap(":/images/images/QtRSS32.png"));
+  logo->setPixmap(QPixmap(":/images/images/QuiteRSS32.png"));
   aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
   QBoxLayout *layout = new QVBoxLayout();

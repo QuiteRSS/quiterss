@@ -2,9 +2,6 @@
     <qresource prefix="/images">
         <file alias="addFeed">images/add.png</file>
         <file alias="deleteFeed">images/delete.png</file>
-        <file>QtRSS.ico</file>
-        <file>images/QtRSS16.png</file>
-        <file>images/QtRSS32.png</file>
         <file alias="updateFeed">images/updateFeed.png</file>
         <file alias="updateAllFeeds">images/updateAllFeeds.png</file>
         <file>images/triangleL.png</file>
@@ -31,9 +28,12 @@
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
         <file alias="filterOff">images/filterOff.png</file>
-        <file>images/QtRSS16_NewNews.png</file>
+        <file>images/QuiteRSS16.png</file>
+        <file>images/QuiteRSS16_NewNews.png</file>
+        <file>images/QuiteRSS32.png</file>
+        <file>QuiteRSS.ico</file>
     </qresource>
     <qresource prefix="/style">
-        <file alias="qstyle">style/QtRSS.qss</file>
+        <file alias="style">style/QuiteRSS.qss</file>
     </qresource>
 </RCC>
