@@ -34,6 +34,6 @@
         <file>QuiteRSS.ico</file>
     </qresource>
     <qresource prefix="/style">
-        <file alias="style">style/QuiteRSS.qss</file>
+        <file alias="qstyle">style/QuiteRSS.qss</file>
     </qresource>
 </RCC>
