@@ -403,8 +403,9 @@ RSSListing::RSSListing(QWidget *parent)
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
 
     translator_ = new QTranslator(this);
-    translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"));
-    qApp->installTranslator(translator_);
+    if (translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
+      qApp->installTranslator(translator_);
+    } else retranslateStrings();
 }
 
 /*!****************************************************************************/
@@ -1231,8 +1232,9 @@ void RSSListing::showOptionDlg()
   if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();
     qApp->removeTranslator(translator_);
-    translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"));
-    qApp->installTranslator(translator_);
+    if (translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
+      qApp->installTranslator(translator_);
+    } else retranslateStrings();
   }
 
   QFont font = feedsView_->font();
