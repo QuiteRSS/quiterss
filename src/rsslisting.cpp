@@ -1885,7 +1885,8 @@ void RSSListing::slotFeedsFilter()
       action->setChecked(true);
       setFeedsFilter(action);
     } else {
-      feedsFilterMenu_->popup(cursor().pos());
+      feedsFilterMenu_->popup(
+            feedsToolBar_->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
     }
   } else {
     action = feedsFilterGroup_->checkedAction();
@@ -1903,7 +1904,8 @@ void RSSListing::slotNewsFilter()
       action->setChecked(true);
       setNewsFilter(action);
     } else {
-      newsFilterMenu_->popup(cursor().pos());
+      newsFilterMenu_->popup(
+            newsToolBar_->mapToGlobal(QPoint(0, newsToolBar_->height()-1)));
     }
   } else {
     action = newsFilterGroup_->checkedAction();
