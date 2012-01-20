@@ -630,10 +630,7 @@ void RSSListing::createActions()
   toolBarIconSmall_->setObjectName("toolBarIconSmall_");
   toolBarIconSmall_->setCheckable(true);
 
-
   autoLoadImagesToggle_ = new QAction(this);
-  autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
-  autoLoadImagesToggle_->setCheckable(true);
 
   updateFeedAct_ = new QAction(this);
   updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
@@ -843,7 +840,7 @@ void RSSListing::createToolBar()
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
   connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
-  connect(autoLoadImagesToggle_, SIGNAL(toggled(bool)), this, SLOT(setAutoLoadImages(bool)));
+  connect(autoLoadImagesToggle_, SIGNAL(triggered()), this, SLOT(setAutoLoadImages()));
   connect(toolBar_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuToolBar(const QPoint &)));
 }
@@ -935,7 +932,7 @@ void RSSListing::writeSettings()
   fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
   settings_->setValue("/WebFontSize", fontSize);
 
-  settings_->setValue("autoLoadImages", autoLoadImagesToggle_->isChecked());
+  settings_->setValue("autoLoadImages", autoLoadImages_);
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
@@ -1773,21 +1770,26 @@ void RSSListing::slotLinkClicked(QUrl url)
   QDesktopServices::openUrl(url);
 }
 
-void RSSListing::setAutoLoadImages(bool checked)
+void RSSListing::setAutoLoadImages()
 {
-  if (checked) {
+  autoLoadImages_ = !autoLoadImages_;
+  if (autoLoadImages_) {
+    autoLoadImagesToggle_->setText(tr("Load images"));
+    autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   } else {
+    autoLoadImagesToggle_->setText(tr("No Load images"));
+    autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
-  webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, checked);
+  webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
   updateWebView(newsView_->currentIndex());
 }
 
 void RSSListing::loadSettingsFeeds()
 {
-  autoLoadImagesToggle_->setChecked(settings_->value("Settings/autoLoadImages", false).toBool());
-  setAutoLoadImages(autoLoadImagesToggle_->isChecked());
+  autoLoadImages_ = !settings_->value("Settings/autoLoadImages", false).toBool();
+  setAutoLoadImages();
 
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
   QList<QAction*> listActions = feedsFilterGroup_->actions();
@@ -2033,8 +2035,13 @@ void RSSListing::retranslateStrings() {
 
   exitAct_->setText(tr("E&xit"));
 
-  autoLoadImagesToggle_->setText(tr("&Load images"));
-  autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
+  if (autoLoadImages_) {
+    autoLoadImagesToggle_->setText(tr("Load images"));
+    autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
+  } else {
+    autoLoadImagesToggle_->setText(tr("No Load images"));
+    autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
+  }
 
   updateFeedAct_->setText(tr("Update"));
   updateFeedAct_->setToolTip(tr("Update current feed"));

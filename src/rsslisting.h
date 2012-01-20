@@ -178,6 +178,8 @@ private:
     QTranslator *translator_;
     QString langFileName_;
 
+    bool autoLoadImages_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -201,7 +203,7 @@ private slots:
     void markNewsStar();
     void showContextMenuFeed(const QPoint &);
     void slotLinkClicked(QUrl url);
-    void setAutoLoadImages(bool checked);
+    void setAutoLoadImages();
     void slotFeedsFilter();
     void slotNewsFilter();
     void slotTimerUpdateFeeds();
