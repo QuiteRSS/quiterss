@@ -1,7 +1,11 @@
 #include <QtDebug>
 #include <QtCore>
+
+#if defined(Q_WS_WIN)
 #include <windows.h>
 #include <Psapi.h>
+#endif
+
 #include <sqlite3.h>
 
 #include "aboutdialog.h"
@@ -1292,7 +1296,9 @@ void RSSListing::createTrayMenu()
 /*! \brief Освобождение памяти ************************************************/
 void RSSListing::myEmptyWorkingSet()
 {
+#if defined(Q_WS_WIN)
   EmptyWorkingSet(GetCurrentProcess());
+#endif
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
