@@ -4,8 +4,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     QDialog(parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
+  setWindowTitle(tr("Options"));
 
-  QTreeWidget *categoriesTree = new QTreeWidget();
+  categoriesTree = new QTreeWidget();
   categoriesTree->setObjectName("categoriesTree");
   categoriesTree->setHeaderHidden(true);
   categoriesTree->setColumnCount(3);
@@ -15,25 +16,50 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->header()->setResizeMode(1, QHeaderView::Stretch);
   categoriesTree->setMinimumWidth(150);
   QStringList treeItem;
-  treeItem << "0" << tr("Network Connections");
+  treeItem << "0" << tr("System tray");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "1" << tr("Feeds");
+  treeItem << "1" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "2" << tr("Language");
+  treeItem << "2" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "3" << tr("Fonts");
+  treeItem << "3" << tr("Language");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "4" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
+  //{
+  startingTray_ = new QCheckBox(tr("starting QuiteRSS"));
+  minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
+  closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
+  singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
+
+  QVBoxLayout *generalLayout = new QVBoxLayout();
+  generalLayout->setMargin(2);
+  generalLayout->addWidget(
+        new QLabel(tr("Move to the system tray when:")), 0, Qt::AlignLeft);
+  generalLayout->addWidget(startingTray_, 0, Qt::AlignLeft);
+  generalLayout->addWidget(minimizingTray_, 0, Qt::AlignLeft);
+  generalLayout->addWidget(closingTray_, 0, Qt::AlignLeft);
+  generalLayout->addSpacing(10);
+  generalLayout->addWidget(singleClickTray_, 0, Qt::AlignLeft);
+  generalLayout->addStretch(1);
+
+  generalWidget_ = new QWidget();
+  generalWidget_->setLayout(generalLayout);
+  //}
+
+  //{ networkConnections
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
 //  systemProxyButton_->setEnabled(false);
   directConnectionButton_ = new QRadioButton(tr("Direct connection to the Internet"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
-  networkConnectionsLayout->setMargin(5);
+  networkConnectionsLayout->setMargin(2);
   networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(directConnectionButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
@@ -79,6 +105,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   networkConnectionsWidget_ = new QWidget();
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
+  //} networkConnections
 
   //{ feeds
   updateFeedsStartUp_ = new QCheckBox(tr("Automatically update the feeds on start-up"));
@@ -95,7 +122,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsLayout->addStretch();
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
-//  feedsLayout->setMargin(0);
   feedsLayout->addWidget(updateFeedsStartUp_);
   feedsLayout->addLayout(updateFeedsLayout);
   feedsLayout->addStretch();
@@ -175,6 +201,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   contentStack_ = new QStackedWidget();
   contentStack_->setObjectName("contentStack_");
+  contentStack_->addWidget(generalWidget_);
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(feedsWidget_);
   contentStack_->addWidget(languageWidget_);
@@ -186,6 +213,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentLayout->addWidget(contentStack_);
 
   QWidget *contentWidget = new QWidget();
+  contentWidget->setObjectName("contentWidget");
   contentWidget->setLayout(contentLayout);
 
   QVBoxLayout *categoriesTreeLayout = new QVBoxLayout();
@@ -218,9 +246,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
   connect(manualProxyButton_, SIGNAL(toggled(bool)),
       this, SLOT(manualProxyToggle(bool)));
-
-  categoriesTree->setCurrentItem(categoriesTree->topLevelItem(0));
-  slotCategoriesItemCLicked(categoriesTree->topLevelItem(0), 0);
 
   // не нужно, т.к. после создания окна из главного окна передаются настройки
 //  manualProxyToggle(manualProxyButton_->isChecked());
@@ -333,4 +358,15 @@ void OptionsDialog::slotFontReset()
     break;
   default: fontTree->currentItem()->setText(2, "Tahoma, 8");
   }
+}
+
+int OptionsDialog::currentIndex()
+{
+  return categoriesTree->currentItem()->text(0).toInt();
+}
+
+void OptionsDialog::setCurrentItem(int index)
+{
+  categoriesTree->setCurrentItem(categoriesTree->topLevelItem(index));
+  slotCategoriesItemCLicked(categoriesTree->topLevelItem(index), 0);
 }

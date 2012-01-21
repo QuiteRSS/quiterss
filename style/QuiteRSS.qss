@@ -261,6 +261,14 @@ QHeaderView::up-arrow {
 
 #contentLabel_ {
 	font-weight: bold;
+	padding: 2px;
+	border: 1px solid #34aa34;
+	border-radius: 3px;
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #e0eee0,
+										stop:0.4 #d8eed8,
+										stop:0.5 #cceecc,
+										stop:1 #e0eee0);
 }
 
 #categoriesTree {

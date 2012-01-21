@@ -18,6 +18,7 @@ class RSSListing : public QMainWindow
 public:
     RSSListing(QWidget *widget = 0);
     ~RSSListing();
+    bool startingTray_;
 
 public slots:
     void addFeed();
@@ -179,6 +180,10 @@ private:
     QString langFileName_;
 
     bool autoLoadImages_;
+
+    bool minimizingTray_;
+    bool closingTray_;
+    bool singleClickTray_;
 
 private slots:
     void slotProgressBarUpdate();

@@ -492,9 +492,13 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 /*! \brief ОБработка событий закрытия окна ************************************/
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
-  oldState = windowState();
   event->ignore();
-  emit signalPlaceToTray();
+  if (closingTray_) {
+    oldState = windowState();
+    emit signalPlaceToTray();
+  } else {
+    slotClose();
+  }
 }
 
 /*! \brief Обработка события выхода из приложения *****************************/
@@ -518,9 +522,11 @@ void RSSListing::slotCloseApp()
   if(event->type() == QEvent::WindowStateChange) { 
     if(isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
-      event->ignore();
-      emit signalPlaceToTray();
-      return;
+      if (minimizingTray_) {
+        event->ignore();
+        emit signalPlaceToTray();
+        return;
+      }
     } else {
       oldState = windowState();
     }
@@ -552,9 +558,10 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
     trayMenu_->activateWindow();
     break;
   case QSystemTrayIcon::DoubleClick:
-    slotShowWindows();
+    if (!singleClickTray_) slotShowWindows();
     break;
   case QSystemTrayIcon::Trigger:
+    if (singleClickTray_) slotShowWindows();
     break;
   case QSystemTrayIcon::MiddleClick:
     break;
@@ -850,6 +857,11 @@ void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
 
+  startingTray_ = settings_->value("startingTray", false).toBool();
+  minimizingTray_ = settings_->value("minimizingTray", true).toBool();
+  closingTray_ = settings_->value("closingTray", true).toBool();
+  singleClickTray_ = settings_->value("singleClickTray", true).toBool();
+
   QString strLang("en");
   QString strLocalLang = QLocale::system().name().left(2);
   QDir langDir = qApp->applicationDirPath() + "/lang";
@@ -914,6 +926,11 @@ void RSSListing::readSettings()
 void RSSListing::writeSettings()
 {
   settings_->beginGroup("/Settings");
+
+  settings_->setValue("startingTray", startingTray_);
+  settings_->setValue("minimizingTray", minimizingTray_);
+  settings_->setValue("closingTray", closingTray_);
+  settings_->setValue("singleClickTray", singleClickTray_);
 
   settings_->setValue("langFileName", langFileName_);
 
@@ -1269,9 +1286,16 @@ void RSSListing::slotNewsKeyUpDownPressed()
 /*! \brief Вызов окна настроек ************************************************/
 void RSSListing::showOptionDlg()
 {
+  static int index = 0;
   OptionsDialog *optionsDialog = new OptionsDialog(this);
-  optionsDialog->setWindowTitle(tr("Options"));
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
+  optionsDialog->setCurrentItem(index);
+
+  optionsDialog->startingTray_->setChecked(startingTray_);
+  optionsDialog->minimizingTray_->setChecked(minimizingTray_);
+  optionsDialog->closingTray_->setChecked(closingTray_);
+  optionsDialog->singleClickTray_->setChecked(singleClickTray_);
+
   optionsDialog->setProxy(networkProxy_);
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
@@ -1295,8 +1319,14 @@ void RSSListing::showOptionDlg()
 
   int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
+  index = optionsDialog->currentIndex();
 
   if (result == QDialog::Rejected) return;
+
+  startingTray_ = optionsDialog->startingTray_->isChecked();
+  minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
+  closingTray_ = optionsDialog->closingTray_->isChecked();
+  singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
@@ -1778,7 +1808,7 @@ void RSSListing::setAutoLoadImages()
     autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   } else {
-    autoLoadImagesToggle_->setText(tr("No Load images"));
+    autoLoadImagesToggle_->setText(tr("No load images"));
     autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
@@ -2039,7 +2069,7 @@ void RSSListing::retranslateStrings() {
     autoLoadImagesToggle_->setText(tr("Load images"));
     autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
   } else {
-    autoLoadImagesToggle_->setText(tr("No Load images"));
+    autoLoadImagesToggle_->setText(tr("No load images"));
     autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
   }
 

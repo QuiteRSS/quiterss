@@ -33,7 +33,8 @@ int main(int argc, char **argv)
     app.setActivationWindow(&rsslisting, true);
     QObject::connect(&app, SIGNAL(messageReceived(const QString&)), &rsslisting, SLOT(receiveMessage(const QString&)));
 
-    rsslisting.show();
+    if (!rsslisting.startingTray_)
+      rsslisting.show();
 
     return app.exec();
 }

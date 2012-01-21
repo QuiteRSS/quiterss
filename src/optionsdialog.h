@@ -14,6 +14,14 @@ public:
   void setProxy(const QNetworkProxy proxy);
   QString language();
   void setLanguage(QString langFileName);
+  int currentIndex();
+  void setCurrentItem(int index);
+
+  // general
+  QCheckBox *startingTray_;
+  QCheckBox *minimizingTray_;
+  QCheckBox *closingTray_;
+  QCheckBox *singleClickTray_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;
@@ -37,8 +45,10 @@ signals:
 private:
   QLabel *contentLabel_;
   QStackedWidget *contentStack_;
+  QTreeWidget *categoriesTree;
 
   //stack widgets
+  QWidget *generalWidget_;
   QWidget *networkConnectionsWidget_;
   QTabWidget *feedsWidget_;
   QWidget *languageWidget_;
