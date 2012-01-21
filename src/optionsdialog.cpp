@@ -119,6 +119,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsLayout->setMargin(0);
   updateFeedsLayout->addWidget(updateFeeds_);
   updateFeedsLayout->addWidget(updateFeedsTime_);
+  updateFeedsLayout->addWidget(new QLabel(tr("minutes")));
   updateFeedsLayout->addStretch();
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
