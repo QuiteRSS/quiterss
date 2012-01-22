@@ -6,7 +6,8 @@ TARGET = QuiteRSS
 TEMPLATE = app
 
 INCLUDEPATH = $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite
-SOURCES += $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite/sqlite3.c
+SOURCES += $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite/sqlite3.c \
+    src/feedpropertiesdialog.cpp
 
 HEADERS += \
     src/VersionNo.h \
@@ -25,7 +26,8 @@ HEADERS += \
     src/qtsingleapplication/qtsingleapplication.h \
     src/qtsingleapplication/qtlockedfile.h \
     src/qtsingleapplication/qtlocalpeer.h \
-    src/updateappdialog.h
+    src/updateappdialog.h \
+    src/feedpropertiesdialog.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \

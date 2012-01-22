@@ -44,11 +44,11 @@ public slots:
     void slotUpdateFeed(const QUrl &url);
 
 protected:
-     bool eventFilter(QObject *obj, QEvent *ev);
-     virtual void closeEvent(QCloseEvent*);
-     virtual void changeEvent(QEvent*);
-     virtual void showEvent(QShowEvent*);
-     void timerEvent(QTimerEvent* event);
+    bool eventFilter(QObject *obj, QEvent *ev);
+    virtual void closeEvent(QCloseEvent*);
+    virtual void changeEvent(QEvent*);
+    virtual void showEvent(QShowEvent*);
+    void timerEvent(QTimerEvent* event);
 
 private:
     UpdateThread *persistentUpdateThread_;
@@ -217,6 +217,7 @@ private slots:
     void setToolBarStyle(QAction*);
     void setToolBarIconSize(QAction*);
     void showContextMenuToolBar(const QPoint &);
+    void slotShowFeedPropertiesDlg();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

@@ -1,4 +1,3 @@
-#include <QtDebug>
 #include <QtCore>
 
 #if defined(Q_WS_WIN)
@@ -10,11 +9,12 @@
 
 #include "aboutdialog.h"
 #include "addfeeddialog.h"
-#include "optionsdialog.h"
-#include "updateappdialog.h"
-#include "rsslisting.h"
-#include "VersionNo.h"
 #include "delegatewithoutfocus.h"
+#include "feedpropertiesdialog.h"
+#include "optionsdialog.h"
+#include "rsslisting.h"
+#include "updateappdialog.h"
+#include "VersionNo.h"
 
 /*!***************************************************************************/
 const QString kDbName = "feeds.db";
@@ -714,6 +714,7 @@ void RSSListing::createActions()
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
   feedProperties_ = new QAction(this);
+  connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -989,13 +990,14 @@ void RSSListing::writeSettings()
 void RSSListing::addFeed()
 {
   AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
+
   QClipboard *clipboard_ = QApplication::clipboard();
   QString clipboardStr = clipboard_->text().left(7);
-
   if (clipboardStr.contains("http://", Qt::CaseInsensitive))
     addFeedDialog->feedUrlEdit_->setText(clipboard_->text());
   else
     addFeedDialog->feedUrlEdit_->setText("http://");
+
   if (addFeedDialog->exec() == QDialog::Rejected) return;
   QSqlQuery q(db_);
   QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
@@ -2177,4 +2179,41 @@ void RSSListing::setToolBarIconSize(QAction *pAct)
 void RSSListing::showContextMenuToolBar(const QPoint &p)
 {
   toolBarMenu_->popup(toolBar_->mapToGlobal(p));
+}
+
+void RSSListing::slotShowFeedPropertiesDlg()
+{
+  FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(this);
+  feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
+
+  QModelIndex index = feedsView_->currentIndex();
+  feedPropertiesDialog->titleEdit_->setText(
+        feedsModel_->record(index.row()).field("text").value().toString());
+  feedPropertiesDialog->titleEdit_->setCursorPosition(0);
+  feedPropertiesDialog->urlEdit_->setText(
+        feedsModel_->record(index.row()).field("xmlUrl").value().toString());
+  feedPropertiesDialog->urlEdit_->setCursorPosition(0);
+
+  feedPropertiesDialog->titleString_ = feedsModel_->record(index.row()).field("title").value().toString();
+
+  QString homepageString = QString("<a href='%1'>%1</a>").
+      arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
+  qDebug() << homepageString;
+  feedPropertiesDialog->homepageLabel_->setText(homepageString);
+
+  int result = feedPropertiesDialog->exec();
+  settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
+  if (result == QDialog::Rejected) return;
+
+  int id = feedsModel_->record(index.row()).field("id").value().toInt();
+
+  db_.exec(QString("update feeds set text = '%1' where id == '%2'").
+          arg(feedPropertiesDialog->titleEdit_->text()).
+          arg(id));
+  db_.exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
+          arg(feedPropertiesDialog->urlEdit_->text()).
+          arg(id));
+
+  feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
 }
