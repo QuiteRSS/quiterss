@@ -1011,6 +1011,12 @@ void RSSListing::addFeed()
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
+
+  progressBar_->setMaximum(1);
+  getFeed(
+      feedsModel_->record(feedsModel_->rowCount()-1).field("xmlUrl").value().toString(),
+      QDateTime::fromString(feedsModel_->record(feedsModel_->rowCount()-1).field("lastBuildDate").value().toString(), Qt::ISODate)
+  );
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -2198,7 +2204,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   QString homepageString = QString("<a href='%1'>%1</a>").
       arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
-  qDebug() << homepageString;
   feedPropertiesDialog->homepageLabel_->setText(homepageString);
 
   int result = feedPropertiesDialog->exec();
