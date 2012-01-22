@@ -36,6 +36,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
   closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
   singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
+  emptyWorking_ = new QCheckBox(tr("Empty working"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->setMargin(2);
@@ -46,6 +47,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   generalLayout->addWidget(closingTray_, 0, Qt::AlignLeft);
   generalLayout->addSpacing(10);
   generalLayout->addWidget(singleClickTray_, 0, Qt::AlignLeft);
+#if defined(Q_WS_WIN)
+  generalLayout->addWidget(emptyWorking_, 0, Qt::AlignLeft);
+#endif
   generalLayout->addStretch(1);
 
   generalWidget_ = new QWidget();
@@ -160,7 +164,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontTree->setObjectName("fontTree");
   fontTree->setColumnCount(3);
   fontTree->setColumnHidden(0, true);
-  fontTree->setColumnWidth(1, 120);
+  fontTree->setColumnWidth(1, 140);
 
   treeItem.clear();
   treeItem << tr("Id") << tr("Type") << tr("Font");

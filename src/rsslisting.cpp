@@ -542,7 +542,8 @@ void RSSListing::slotCloseApp()
 /*! \brief Обработка события помещения программы в трей ***********************/
 void RSSListing::slotPlaceToTray()
 {
-  QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
+  if (emptyWorking_)
+    QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   hide();
   sqliteDBMemFile(db_, dbFileName_, true);
   writeSettings();
@@ -861,6 +862,7 @@ void RSSListing::readSettings()
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
   closingTray_ = settings_->value("closingTray", true).toBool();
   singleClickTray_ = settings_->value("singleClickTray", true).toBool();
+  emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
   QString strLang("en");
   QString strLocalLang = QLocale::system().name().left(2);
@@ -931,6 +933,7 @@ void RSSListing::writeSettings()
   settings_->setValue("minimizingTray", minimizingTray_);
   settings_->setValue("closingTray", closingTray_);
   settings_->setValue("singleClickTray", singleClickTray_);
+  settings_->setValue("emptyWorking", emptyWorking_);
 
   settings_->setValue("langFileName", langFileName_);
 
@@ -1295,6 +1298,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->minimizingTray_->setChecked(minimizingTray_);
   optionsDialog->closingTray_->setChecked(closingTray_);
   optionsDialog->singleClickTray_->setChecked(singleClickTray_);
+  optionsDialog->emptyWorking_->setChecked(emptyWorking_);
 
   optionsDialog->setProxy(networkProxy_);
 
@@ -1327,6 +1331,7 @@ void RSSListing::showOptionDlg()
   minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
   closingTray_ = optionsDialog->closingTray_->isChecked();
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
+  emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
@@ -1404,7 +1409,8 @@ void RSSListing::createTrayMenu()
 void RSSListing::myEmptyWorkingSet()
 {
 #if defined(Q_WS_WIN)
-  EmptyWorkingSet(GetCurrentProcess());
+  if (isHidden())
+    EmptyWorkingSet(GetCurrentProcess());
 #endif
 }
 

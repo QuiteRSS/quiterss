@@ -184,6 +184,7 @@ private:
     bool minimizingTray_;
     bool closingTray_;
     bool singleClickTray_;
+    bool emptyWorking_;
 
 private slots:
     void slotProgressBarUpdate();
