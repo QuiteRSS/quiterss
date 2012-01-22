@@ -1,7 +1,6 @@
 #ifndef ADDFEEDDIALOG_H
 #define ADDFEEDDIALOG_H
 
-#include <QDialog>
 #include <QtGui>
 
 class AddFeedDialog : public QDialog
