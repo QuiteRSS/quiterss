@@ -989,9 +989,14 @@ void RSSListing::writeSettings()
 void RSSListing::addFeed()
 {
   AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
-  addFeedDialog->setWindowTitle(tr("Add feed"));
-  if (addFeedDialog->exec() == QDialog::Rejected) return;
+  QClipboard *clipboard_ = QApplication::clipboard();
+  QString clipboardStr = clipboard_->text().left(7);
 
+  if (clipboardStr.contains("http://", Qt::CaseInsensitive))
+    addFeedDialog->feedUrlEdit_->setText(clipboard_->text());
+  else
+    addFeedDialog->feedUrlEdit_->setText("http://");
+  if (addFeedDialog->exec() == QDialog::Rejected) return;
   QSqlQuery q(db_);
   QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
   q.prepare(qStr);
