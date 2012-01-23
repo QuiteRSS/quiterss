@@ -327,8 +327,6 @@ void NewsHeader::retranslateStrings()
         (lIdx == model_->fieldIndex("author_name")) ||
         (lIdx == model_->fieldIndex("read")) ||
         (lIdx == model_->fieldIndex("sticky"))) {
-      qDebug() << model_->headerData(lIdx,
-                                     Qt::Horizontal, Qt::EditRole).toString();
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
             Qt::Horizontal, Qt::EditRole).toString());

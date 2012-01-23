@@ -516,4 +516,92 @@
     <source>Reset</source>
     <target>Сброс</target>
 </phrase>
+<phrase>
+    <source>Load feed title</source>
+    <target>Загрузить заголовок ленты</target>
+</phrase>
+<phrase>
+    <source>Feed URL:</source>
+    <target>URL ленты:</target>
+</phrase>
+<phrase>
+    <source>Homepage:</source>
+    <target>Домашняя страница:</target>
+</phrase>
+<phrase>
+    <source>System tray</source>
+    <target>Системный трей</target>
+</phrase>
+<phrase>
+    <source>minutes</source>
+    <target>минуты</target>
+</phrase>
+<phrase>
+    <source>starting QuiteRSS</source>
+    <target>при запуске QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>minimizing QuiteRSS</source>
+    <target>при минимизации QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>closing QuiteRSS</source>
+    <target>при закрытии QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>Single click instead of double click for show window</source>
+    <target>Один клик вместо двойного клика для отображения окна</target>
+</phrase>
+<phrase>
+    <source>Empty working set on minimize to tray</source>
+    <target>Освобождение памяти при минимизации в трей</target>
+</phrase>
+<phrase>
+    <source>Move to the system tray when:</source>
+    <target>Помещать в ситемный трей:</target>
+</phrase>
+<phrase>
+    <source>No load images</source>
+    <target>Не загружать изображения</target>
+</phrase>
+<phrase>
+    <source>No load images to news view</source>
+    <target>Не загружать изображения</target>
+</phrase>
+<phrase>
+    <source>Load images</source>
+    <target>Загружать изображения</target>
+</phrase>
+<phrase>
+    <source>Style</source>
+    <target>Стиль</target>
+</phrase>
+<phrase>
+    <source>Icon</source>
+    <target>Иконка</target>
+</phrase>
+<phrase>
+    <source>Text</source>
+    <target>Текст</target>
+</phrase>
+<phrase>
+    <source>Text beside icon</source>
+    <target>Текст рядом с иконкой</target>
+</phrase>
+<phrase>
+    <source>Text under icon</source>
+    <target>Текст под иконкой</target>
+</phrase>
+<phrase>
+    <source>Big</source>
+    <target>Большой</target>
+</phrase>
+<phrase>
+    <source>Normal</source>
+    <target>Нормальный</target>
+</phrase>
+<phrase>
+    <source>Small</source>
+    <target>Маленький</target>
+</phrase>
 </QPH>
