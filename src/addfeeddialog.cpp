@@ -21,4 +21,6 @@ AddFeedDialog::AddFeedDialog(QWidget *parent) :
   gridLayout->addWidget(buttonBox_, 2, 1, 1, 1);
 
   setLayout(gridLayout);
+
+  setMinimumWidth(400);
 }

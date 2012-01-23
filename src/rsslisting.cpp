@@ -995,10 +995,10 @@ void RSSListing::addFeed()
 
   QClipboard *clipboard_ = QApplication::clipboard();
   QString clipboardStr = clipboard_->text().left(7);
-  if (clipboardStr.contains("http://", Qt::CaseInsensitive))
+  if (clipboardStr.contains("http://", Qt::CaseInsensitive)) {
     addFeedDialog->feedUrlEdit_->setText(clipboard_->text());
-  else
-    addFeedDialog->feedUrlEdit_->setText("http://");
+    addFeedDialog->feedUrlEdit_->setCursorPosition(0);
+  } else addFeedDialog->feedUrlEdit_->setText("http://");
 
   if (addFeedDialog->exec() == QDialog::Rejected) return;
   QSqlQuery q(db_);
