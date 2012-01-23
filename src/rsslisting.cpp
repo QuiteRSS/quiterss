@@ -714,6 +714,7 @@ void RSSListing::createActions()
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
   feedProperties_ = new QAction(this);
+  feedProperties_->setShortcut(Qt::CTRL+Qt::Key_E);
   connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
 }
 
@@ -730,7 +731,9 @@ void RSSListing::createMenu()
   fileMenu_->addAction(exitAct_);
 
   editMenu_ = new QMenu(this);
+  connect(editMenu_, SIGNAL(aboutToShow()), this, SLOT(slotEditMenuAction()));
   menuBar()->addMenu(editMenu_);
+  editMenu_->addAction(feedProperties_);
 
   viewMenu_  = new QMenu(this);
   menuBar()->addMenu(viewMenu_ );
@@ -1243,6 +1246,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   slotNewsViewClicked(newsModel_->index(row, 0));
 
   newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
+  if (index.isValid()) feedProperties_->setEnabled(true);
+  else feedProperties_->setEnabled(false);
 }
 
 /*! \brief Запрос обновления ленты ********************************************/
@@ -2189,6 +2194,11 @@ void RSSListing::showContextMenuToolBar(const QPoint &p)
 
 void RSSListing::slotShowFeedPropertiesDlg()
 {
+  if (!feedsView_->currentIndex().isValid()){
+    feedProperties_->setEnabled(false);
+    return;
+  }
+
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(this);
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
 
@@ -2225,4 +2235,10 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
+}
+
+void RSSListing::slotEditMenuAction()
+{
+  if (feedsView_->currentIndex().isValid()) feedProperties_->setEnabled(true);
+  else  feedProperties_->setEnabled(false);
 }

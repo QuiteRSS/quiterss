@@ -218,6 +218,7 @@ private slots:
     void setToolBarIconSize(QAction*);
     void showContextMenuToolBar(const QPoint &);
     void slotShowFeedPropertiesDlg();
+    void slotEditMenuAction();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
