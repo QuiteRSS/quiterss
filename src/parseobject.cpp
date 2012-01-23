@@ -71,11 +71,12 @@ void ParseObject::slotParse(QSqlDatabase *db,
 
           QSqlQuery q(*db);
           QString qStr("update feeds "
-                       "set title=?, description=?, author_name=?, pubdate=? "
+                       "set title=?, description=?, htmlUrl=?, author_name=?, pubdate=? "
                        "where id==?");
           q.prepare(qStr);
           q.addBindValue(titleString);
           q.addBindValue(rssDescriptionString);
+          q.addBindValue(linkString);
           q.addBindValue(authorString);
           q.addBindValue(rssPubDateString);
           q.addBindValue(parseFeedId);
@@ -100,13 +101,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
         if (isHeader) {
           QSqlQuery q(*db);
           QString qStr ("update feeds "
-                       "set title=?, description=?, "
+                       "set title=?, description=?, htlmUrl=?, "
                        "author_name=?, author_email=?, "
                        "author_uri=?, pubdate=? "
                        "where id==?");
           q.prepare(qStr);
           q.addBindValue(titleString);
           q.addBindValue(atomSummaryString);
+          q.addBindValue(linkString);
           q.addBindValue(authorString);
           q.addBindValue(authorEmailString);
           q.addBindValue(authorUriString);
