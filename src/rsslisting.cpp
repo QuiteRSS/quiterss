@@ -766,9 +766,6 @@ void RSSListing::createMenu()
   toolBarMenu_->addAction(toolBarToggle_);
   viewMenu_->addMenu(toolBarMenu_);
 
-  viewMenu_->addSeparator();
-  viewMenu_->addAction(autoLoadImagesToggle_);
-
   feedMenu_ = new QMenu(this);
   menuBar()->addMenu(feedMenu_);
   feedMenu_->addAction(updateFeedAct_);
@@ -818,6 +815,9 @@ void RSSListing::createMenu()
   newsMenu_->addAction(newsFilter_);
   newsToolBar_->addAction(newsFilter_);
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
+
+  newsMenu_->addSeparator();
+  newsMenu_->addAction(autoLoadImagesToggle_);
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
