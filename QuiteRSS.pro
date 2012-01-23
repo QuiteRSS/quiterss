@@ -5,10 +5,6 @@ LIBS += libkernel32 \
 TARGET = QuiteRSS
 TEMPLATE = app
 
-INCLUDEPATH = $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite
-SOURCES += $$[QT_INSTALL_PREFIX]/../../../../QtSources/4.7.4/src/3rdparty/sqlite/sqlite3.c \
-    src/feedpropertiesdialog.cpp
-
 HEADERS += \
     src/VersionNo.h \
     src/updatethread.h \
@@ -27,7 +23,8 @@ HEADERS += \
     src/qtsingleapplication/qtlockedfile.h \
     src/qtsingleapplication/qtlocalpeer.h \
     src/updateappdialog.h \
-    src/feedpropertiesdialog.h
+    src/feedpropertiesdialog.h \
+    src/sqlite/sqlite3.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -47,7 +44,9 @@ SOURCES += \
     src/qtsingleapplication/qtlockedfile_unix.cpp \
     src/qtsingleapplication/qtlockedfile.cpp \
     src/qtsingleapplication/qtlocalpeer.cpp \
-    src/updateappdialog.cpp
+    src/updateappdialog.cpp \
+    src/feedpropertiesdialog.cpp \
+    src/sqlite/sqlite3.c
 
 RESOURCES += \
     QuiteRSS.qrc

@@ -5,14 +5,13 @@
 #include <Psapi.h>
 #endif
 
-#include <sqlite3.h>
-
 #include "aboutdialog.h"
 #include "addfeeddialog.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
+#include "sqlite/sqlite3.h"
 #include "updateappdialog.h"
 #include "VersionNo.h"
 
