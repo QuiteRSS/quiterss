@@ -406,7 +406,7 @@ RSSListing::RSSListing(QWidget *parent)
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
 
     translator_ = new QTranslator(this);
-    if (translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
+    if (translator_->load("quiterss_" + langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
       qApp->installTranslator(translator_);
     } else retranslateStrings();
 }
@@ -871,7 +871,8 @@ void RSSListing::readSettings()
   QString strLocalLang = QLocale::system().name().left(2);
   QDir langDir = qApp->applicationDirPath() + "/lang";
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
-    if (strLocalLang == file.section('.', 0, 0)) strLang = strLocalLang;
+    if (strLocalLang == file.section('.', 0, 0).section('_', 1))
+      strLang = strLocalLang;
   }
   langFileName_ = settings_->value("langFileName", strLang).toString();
 
@@ -1365,7 +1366,7 @@ void RSSListing::showOptionDlg()
   if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();
     qApp->removeTranslator(translator_);
-    if (translator_->load(langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
+    if (translator_->load("quiterss_" + langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
       qApp->installTranslator(translator_);
     } else retranslateStrings();
   }
