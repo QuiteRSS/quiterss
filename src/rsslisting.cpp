@@ -862,7 +862,7 @@ void RSSListing::readSettings()
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
   closingTray_ = settings_->value("closingTray", true).toBool();
-  singleClickTray_ = settings_->value("singleClickTray", true).toBool();
+  singleClickTray_ = settings_->value("singleClickTray", false).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
   QString strLang("en");
