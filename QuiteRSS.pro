@@ -1,6 +1,9 @@
 QT += core gui network xml webkit sql
+
+win32 {
 LIBS += libkernel32 \
         libpsapi
+}
 
 TARGET = QuiteRSS
 TEMPLATE = app
