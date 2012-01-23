@@ -36,7 +36,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
   closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
   singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
-  emptyWorking_ = new QCheckBox(tr("Empty working"));
+  emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->setMargin(2);
