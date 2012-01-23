@@ -303,3 +303,47 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
   }
   createMenu();
 }
+
+void NewsHeader::retranslateStrings()
+{
+  if (model_->columnCount() == 0) return;
+  model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
+  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
+  model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
+  model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
+
+  if (pActGroup_) delete pActGroup_;
+  pActGroup_ = new QActionGroup(viewMenu_);
+  pActGroup_->setExclusive(false);
+  connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisible(QAction*)));
+
+  for (int i = 0; i < model_->columnCount(); i++) {
+    int lIdx = logicalIndex(i);
+    if ((lIdx == model_->fieldIndex("title")) ||
+        (lIdx == model_->fieldIndex("published")) ||
+        (lIdx == model_->fieldIndex("received")) ||
+        (lIdx == model_->fieldIndex("author_name")) ||
+        (lIdx == model_->fieldIndex("read")) ||
+        (lIdx == model_->fieldIndex("sticky"))) {
+      qDebug() << model_->headerData(lIdx,
+                                     Qt::Horizontal, Qt::EditRole).toString();
+      QAction *action = pActGroup_->addAction(
+            model_->headerData(lIdx,
+            Qt::Horizontal, Qt::EditRole).toString());
+      action->setData(lIdx);
+      action->setCheckable(true);
+      action->setChecked(!isSectionHidden(lIdx));
+      viewMenu_->addAction(action);
+    }
+  }
+
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal,
+                        QIcon(":/images/readSection"), Qt::DecorationRole);
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal,
+                        QIcon(":/images/starSection"), Qt::DecorationRole);
+  setSortIndicator(sortIndicatorSection(), sortIndicatorOrder());
+}

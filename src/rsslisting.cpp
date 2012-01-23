@@ -2160,6 +2160,8 @@ void RSSListing::retranslateStrings() {
   toolBarIconSmall_->setText(tr("Small"));
 
   showWindowAct_->setText(tr("Show window"));
+
+  newsHeader_->retranslateStrings();
 }
 
 void RSSListing::setToolBarStyle(QAction *pAct)

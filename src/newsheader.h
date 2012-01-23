@@ -14,6 +14,7 @@ public:
   void initColumns();
   void createMenu();
   void overload();
+  void retranslateStrings();
 
 public slots:
 
@@ -26,8 +27,6 @@ private slots:
   void slotButtonColumnView();
   void columnVisible(QAction*);
   void slotSectionMoved(int, int, int);
-
-signals:
 
 private:
   QMenu *viewMenu_;
