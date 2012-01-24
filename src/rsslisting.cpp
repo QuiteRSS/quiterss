@@ -2098,7 +2098,7 @@ void RSSListing::retranslateStrings() {
     autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
   }
 
-  updateFeedAct_->setText(tr("Update"));
+  updateFeedAct_->setText(tr("Update feed"));
   updateFeedAct_->setToolTip(tr("Update current feed"));
 
   updateAllFeedsAct_->setText(tr("Update all"));
