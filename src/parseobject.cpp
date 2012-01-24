@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QTextDocument>
 
 #include "parseobject.h"
 
@@ -200,6 +201,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
       // atom::feed
       else if (xml.name() == "entry") {
         atomUpdatedString = parseDate(atomUpdatedString);
+
+        QTextDocument textDocument;
+        textDocument.setHtml(titleString);
+        titleString = textDocument.toPlainText();
 
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
