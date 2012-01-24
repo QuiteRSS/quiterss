@@ -1,11 +1,5 @@
 QT += core gui network xml webkit sql
 
-win32 {
-LIBS += libkernel32 \
-        libpsapi
-}
-
-TARGET = QuiteRSS
 TEMPLATE = app
 
 HEADERS += \
@@ -26,8 +20,7 @@ HEADERS += \
     src/qtsingleapplication/qtlockedfile.h \
     src/qtsingleapplication/qtlocalpeer.h \
     src/updateappdialog.h \
-    src/feedpropertiesdialog.h \
-    src/sqlite/sqlite3.h
+    src/feedpropertiesdialog.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -49,7 +42,22 @@ SOURCES += \
     src/qtsingleapplication/qtlocalpeer.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
+
+win32 {
+TARGET = QuiteRSS
+LIBS += libkernel32 \
+        libpsapi
+HEADERS += \
+    src/sqlite/sqlite3.h
+SOURCES += \
     src/sqlite/sqlite3.c
+}
+
+uni {
+CONFIG += link_pkgconfig
+PKGCONFIG += sqlite3
+TARGET = quiterss
+}
 
 RESOURCES += \
     QuiteRSS.qrc
