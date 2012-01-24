@@ -265,7 +265,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsTitleLabel_ = new QLabel(this);
     newsTitleLabel_->setObjectName("newsTitleLabel_");
     newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
-    newsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+    newsTitleLabel_->setMinimumWidth(10);
 
     newsToolBar_ = new QToolBar(this);
     newsToolBar_->setObjectName("newsToolBar_");
@@ -275,9 +275,9 @@ RSSListing::RSSListing(QWidget *parent)
     newsPanelLayout->setMargin(0);
     newsPanelLayout->setSpacing(0);
 
-    newsPanelLayout->addWidget(newsTitleLabel_, 0);
+    newsPanelLayout->addWidget(newsTitleLabel_);
     newsPanelLayout->addStretch(1);
-    newsPanelLayout->addWidget(newsToolBar_, 0);
+    newsPanelLayout->addWidget(newsToolBar_);
     newsPanelLayout->addSpacing(5);
 
     QWidget *newsPanel = new QWidget(this);
