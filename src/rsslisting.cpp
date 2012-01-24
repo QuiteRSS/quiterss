@@ -884,7 +884,6 @@ void RSSListing::readSettings()
   fontFamily = settings_->value("/newsFontFamily", qApp->font().family()).toString();
   fontSize = settings_->value("/newsFontSize", qApp->font().pointSize()).toInt();
   newsView_->setFont(QFont(fontFamily, fontSize));
-qDebug() << qApp->font().pixelSize();
   fontFamily = settings_->value("/WebFontFamily", qApp->font().family()).toString();
   fontSize = settings_->value("/WebFontSize", qApp->font().pointSize()+4).toInt();
   webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
