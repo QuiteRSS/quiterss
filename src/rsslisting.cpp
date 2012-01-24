@@ -459,6 +459,8 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       if ((keyEvent->key() == Qt::Key_Up) ||
           (keyEvent->key() == Qt::Key_Down)) {
         emit signalFeedsTreeKeyUpDownPressed();
+      } else if (keyEvent->key() == Qt::Key_Delete) {
+        deleteFeed();
       }
       return false;
     } else {
