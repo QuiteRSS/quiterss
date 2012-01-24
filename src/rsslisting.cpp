@@ -2237,6 +2237,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
+  newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
 }
 
 void RSSListing::slotEditMenuAction()
