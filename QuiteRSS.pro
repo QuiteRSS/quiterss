@@ -41,7 +41,7 @@ SOURCES += \
     src/qtsingleapplication/qtlockedfile.cpp \
     src/qtsingleapplication/qtlocalpeer.cpp \
     src/updateappdialog.cpp \
-    src/feedpropertiesdialog.cpp \
+    src/feedpropertiesdialog.cpp
 
 win32 {
 TARGET = QuiteRSS
