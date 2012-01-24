@@ -398,7 +398,6 @@ RSSListing::RSSListing(QWidget *parent)
 //    QFont font_ = newsTitleLabel_->font();
 //    font_.setBold(true);
 //    newsTitleLabel_->setFont(font_);
-    qApp->setFont(QFont("Tahoma", 8));
 
     if (autoUpdatefeedsStartUp_) {
       slotGetAllFeeds();
@@ -878,16 +877,16 @@ void RSSListing::readSettings()
   }
   langFileName_ = settings_->value("langFileName", strLang).toString();
 
-  QString fontFamily = settings_->value("/feedsFontFamily", "Tahoma").toString();
-  int fontSize = settings_->value("/feedsFontSize", 8).toInt();
+  QString fontFamily = settings_->value("/feedsFontFamily", qApp->font().family()).toString();
+  int fontSize = settings_->value("/feedsFontSize", qApp->font().pointSize()).toInt();
   feedsView_->setFont(QFont(fontFamily, fontSize));
 
-  fontFamily = settings_->value("/newsFontFamily", "Tahoma").toString();
-  fontSize = settings_->value("/newsFontSize", 8).toInt();
+  fontFamily = settings_->value("/newsFontFamily", qApp->font().family()).toString();
+  fontSize = settings_->value("/newsFontSize", qApp->font().pointSize()).toInt();
   newsView_->setFont(QFont(fontFamily, fontSize));
-
-  fontFamily = settings_->value("/WebFontFamily", "Tahoma").toString();
-  fontSize = settings_->value("/WebFontSize", 12).toInt();
+qDebug() << qApp->font().pixelSize();
+  fontFamily = settings_->value("/WebFontFamily", qApp->font().family()).toString();
+  fontSize = settings_->value("/WebFontSize", qApp->font().pointSize()+4).toInt();
   webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
 
