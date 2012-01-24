@@ -80,7 +80,7 @@ unix {
 }
 
 os2 {
-  quiterss_os2.rc
+  RC_FILE = quiterss_os2.rc
 }
 
 RESOURCES += \
