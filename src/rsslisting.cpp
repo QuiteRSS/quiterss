@@ -95,11 +95,29 @@ const QString kCreateNewsTableQuery(
 RSSListing::RSSListing(QWidget *parent)
     : QMainWindow(parent)
 {
-    QString AppFileName = qApp->applicationFilePath();
-    AppFileName.replace(".exe", ".ini");
-    settings_ = new QSettings(AppFileName, QSettings::IniFormat);
+#if defined(PORTABLE)
+    if (PORTABLE) {
+      QString AppFileName = qApp->applicationFilePath();
+      AppFileName.replace(".exe", ".ini");
+      settings_ = new QSettings(AppFileName, QSettings::IniFormat);
+      dbFileName_ = qApp->applicationDirPath() + QDir::separator() + kDbName;
+    } else {
+      settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
+                                QCoreApplication::applicationName(), QCoreApplication::applicationName());
+      QString str = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+      QDir d(str);
+      d.mkpath(str);
+      dbFileName_ = str + QDir::separator() + kDbName;
+    }
+#else
+    settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
+                              QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    QString str = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QDir d(str);
+    d.mkpath(str);
+    dbFileName_ = str + QDir::separator() + kDbName;
+#endif
 
-    dbFileName_ = qApp->applicationDirPath() + "/" + kDbName;
     if (!QFile(dbFileName_).exists()) {  // Инициализация базы
       QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
       db.setDatabaseName(dbFileName_);

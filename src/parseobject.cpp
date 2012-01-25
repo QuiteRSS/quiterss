@@ -1,7 +1,9 @@
 #include <QDebug>
+#include <QDesktopServices>
 #include <QTextDocument>
 
 #include "parseobject.h"
+#include "VersionNo.h"
 
 ParseObject::ParseObject(QObject *parent) :
     QObject(parent)
@@ -11,7 +13,18 @@ ParseObject::ParseObject(QObject *parent) :
 void ParseObject::slotParse(QSqlDatabase *db,
     const QByteArray &xmlData, const QUrl &url)
 {
-  QFile file("lastfeed.dat");
+  QString appFilePath;
+#if defined(PORTABLE)
+    if (PORTABLE) {
+      appFilePath = QCoreApplication::applicationDirPath();
+    } else {
+      appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    }
+#else
+    appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
+
+  QFile file(appFilePath + QDir::separator() + "lastfeed.dat");
   file.open(QIODevice::WriteOnly);
   file.write(xmlData);
   file.close();
