@@ -604,4 +604,20 @@
     <source>Small</source>
     <target>Маленький</target>
 </phrase>
+<phrase>
+    <source>Mark current news read/unread</source>
+    <target>Отметить текущую новость прочитанной/непрочитанной</target>
+</phrase>
+<phrase>
+    <source>Mark Read/Unread</source>
+    <target>Отметить прочитанной/непрочитанной</target>
+</phrase>
+<phrase>
+    <source>Update feed</source>
+    <target>Обновить ленту</target>
+</phrase>
+<phrase>
+    <source>Icon size</source>
+    <target>Размер иконки</target>
+</phrase>
 </QPH>
