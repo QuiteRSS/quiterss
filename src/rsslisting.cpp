@@ -1003,23 +1003,37 @@ void RSSListing::addFeed()
 
   if (addFeedDialog->exec() == QDialog::Rejected) return;
   QSqlQuery q(db_);
-  QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
-  q.prepare(qStr);
-  q.addBindValue(addFeedDialog->feedTitleEdit_->text());
-  q.addBindValue(addFeedDialog->feedUrlEdit_->text());
-  q.exec();
-  q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
-  q.finish();
 
-  QModelIndex index = feedsView_->currentIndex();
-  feedsModel_->select();
-  feedsView_->setCurrentIndex(index);
+  QString textString(addFeedDialog->feedTitleEdit_->text());
+  QString xmlUrlString(addFeedDialog->feedUrlEdit_->text());
+  int duplicateFoundId = -1;
+  q.exec("select xmlUrl, id from feeds");
+  while (q.next()) {
+    if (q.record().value(0).toString() == xmlUrlString) {
+      duplicateFoundId = q.record().value(1).toInt();
+      break;
+    }
+  }
 
-  progressBar_->setMaximum(1);
-  getFeed(
-      feedsModel_->record(feedsModel_->rowCount()-1).field("xmlUrl").value().toString(),
-      QDateTime::fromString(feedsModel_->record(feedsModel_->rowCount()-1).field("lastBuildDate").value().toString(), Qt::ISODate)
-  );
+  if (0 <= duplicateFoundId) {
+    qDebug() << "duplicate feed:" << xmlUrlString << textString;
+    // @TODO(24.01.12): переместить курсор на него
+  } else {
+    QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
+    q.prepare(qStr);
+    q.addBindValue(textString);
+    q.addBindValue(xmlUrlString);
+    q.exec();
+    q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
+    q.finish();
+
+    QModelIndex index = feedsView_->currentIndex();
+    feedsModel_->select();
+    feedsView_->setCurrentIndex(index);
+
+    progressBar_->setMaximum(1);
+    getFeed(xmlUrlString, QDateTime());
+  }
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
