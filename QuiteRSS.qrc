@@ -28,10 +28,10 @@
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
         <file alias="filterOff">images/filterOff.png</file>
-        <file>images/QuiteRSS16.png</file>
         <file>images/QuiteRSS16_NewNews.png</file>
-        <file>images/QuiteRSS32.png</file>
         <file>QuiteRSS.ico</file>
+        <file alias="quiterss16">images/16x16/quiterss16.png</file>
+        <file alias="quiterss32">images/32x32/quiterss32.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QuiteRSS.qss</file>

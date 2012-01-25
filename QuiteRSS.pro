@@ -72,9 +72,9 @@ unix {
   PKGCONFIG += sqlite3
   TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts
   desktop.files = quiterss.desktop
-  icon_16.files = images/quiterss16.png
-  icon_24.files = images/quiterss24.png
-  icon_32.files = images/quiterss32.png
+  icon_16.files = images/16x16/quiterss.png
+  icon_24.files = images/24x24/quiterss.png
+  icon_32.files = images/32x32/quiterss.png
   translations.files = lang/*.qm
   isEmpty(PREFIX) {
     PREFIX =   /usr
