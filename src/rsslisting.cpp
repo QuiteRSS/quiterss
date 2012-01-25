@@ -1234,10 +1234,10 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   static QModelIndex indexOld;
-  if (index.row() != indexOld.row()) {
+  if (feedsModel_->index(index.row(), 0).data() != feedsModel_->index(indexOld.row(), 0).data()) {
     slotFeedsTreeSelected(index);
   }
-  indexOld = index;
+  indexOld = feedsView_->currentIndex();
 }
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index)
@@ -1246,8 +1246,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   if (index.row() != indexOld.row()) {
     slotSetAllRead();
   }
-  indexOld = index;
   setFeedsFilter(feedsFilterGroup_->checkedAction());
+  index = feedsView_->currentIndex();
+  indexOld = index;
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
@@ -1662,7 +1663,7 @@ void RSSListing::setFeedsFilter(QAction* pAct)
   } else if (pAct->objectName() == "filterFeedsNew_") {
     feedsModel_->setFilter(QString("newCount > 0"));
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    feedsModel_->setFilter(QString("unread > 0"));
+    feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
   }
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
