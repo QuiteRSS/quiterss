@@ -43,57 +43,53 @@ SOURCES += \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp
 
-win32 {
-TARGET = QuiteRSS
-
-LIBS += libkernel32 \
-        libpsapi
-
-RC_FILE = QuiteRSSApp.rc
-
-HEADERS += \
-    src/sqlite/sqlite3.h
-SOURCES += \
-    src/sqlite/sqlite3.c
-}
-
-uni {
-TARGET = quiterss
-}
-
-unix {
-CONFIG += link_pkgconfig
-PKGCONFIG += sqlite3
-translations.files = lang/*.qm
-desktop.files = quiterss.desktop
-icon.files = images/quiterss.png
-isEmpty(PREFIX) {
-  PREFIX =   /usr
-}
-target.path =  $$PREFIX/bin
-translations.path =  $$PREFIX/share/quiterss/lang
-desktop.path =  $$PREFIX/share/applications
-icon.path =  $$PREFIX/share/pixmaps
-INSTALLS +=  target translations  desktop  icon
-}
-
-os2 {
-HEADERS += \
-    src/sqlite/sqlite3.h
-SOURCES += \
-    src/sqlite/sqlite3.c
-RC_FILE = quiterss_os2.rc
-}
-
-RESOURCES += \
-    QuiteRSS.qrc
-
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
   BUILD_DIR = debug
 }
 
+win32 {
+TARGET = QuiteRSS
+LIBS += libkernel32 \
+        libpsapi
+RC_FILE = QuiteRSSApp.rc
+HEADERS += src/sqlite/sqlite3.h
+SOURCES += src/sqlite/sqlite3.c
+include(lang/lang.pri)
+}
+
+os2 {
+TARGET = QuiteRSS
+RC_FILE = quiterss_os2.rc
+HEADERS += src/sqlite/sqlite3.h
+SOURCES += src/sqlite/sqlite3.c
+include(lang/lang.pri)
+}
+
+unix {
+  TARGET = quiterss
+  CONFIG += link_pkgconfig
+  PKGCONFIG += sqlite3
+  TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts
+  desktop.files = quiterss.desktop
+  icon_16.files = images/quiterss16.png
+  icon_24.files = images/quiterss24.png
+  icon_32.files = images/quiterss32.png
+  translations.files = lang/*.qm
+  isEmpty(PREFIX) {
+    PREFIX =   /usr
+  }
+  target.path =  $$PREFIX/bin
+  desktop.path =  $$PREFIX/share/applications
+  icon_16.path =  $$PREFIX/share/icons/hicolor/16x16
+  icon_24.path =  $$PREFIX/share/icons/hicolor/24x24
+  icon_32.path =  $$PREFIX/share/icons/hicolor/32x32
+  translations.path =  $$PREFIX/share/quiterss/lang
+  INSTALLS += target desktop icon_16 icon_24 icon_32 translations
+}
+
+RESOURCES += \
+    QuiteRSS.qrc
+
 CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
-include(lang/lang.pri)
-
