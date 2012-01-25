@@ -1118,6 +1118,7 @@ void RSSListing::slotImportFeeds()
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
+  slotGetAllFeeds();
 }
 
 /*! \brief приём xml-файла ****************************************************/
