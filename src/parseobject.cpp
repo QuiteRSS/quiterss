@@ -102,7 +102,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         if (isHeader) {
           QSqlQuery q(*db);
           QString qStr ("update feeds "
-                       "set title=?, description=?, htlmUrl=?, "
+                       "set title=?, description=?, htmlUrl=?, "
                        "author_name=?, author_email=?, "
                        "author_uri=?, pubdate=? "
                        "where id==?");
@@ -131,7 +131,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomSummaryString.clear();
         contentString.clear();
       }
-      if (currentTag == "link")
+      if ((currentTag == "link") &&
+          (xml.attributes().value("rel").toString() == "self"))
         linkString = xml.attributes().value("href").toString();
       if (isHeader) {
         if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
@@ -273,8 +274,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
       currentTagText += xml.text().toString();
 
       if (currentTag == "title") {
-        if ((tagsStack.top() == "channel") ||
+        if ((tagsStack.top() == "channel") ||  // RSS
             (tagsStack.top() == "item") ||
+            (tagsStack.top() == "feed") ||     // Atom
             (tagsStack.top() == "entry"))
           titleString += xml.text().toString();
 //        if (tagsStack.top() == "image")
