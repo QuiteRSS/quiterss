@@ -1221,7 +1221,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   // если обновлена просматриваемая лента, кликаем по ней
   if (parseFeedId ==
       feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
-    slotFeedsTreeClicked(feedsModel_->index(index.row(), 0));
+    slotFeedsTreeSelected(feedsModel_->index(index.row(), 0));
   }
   // иначе обновляем модель лент
   else {
@@ -1232,6 +1232,15 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
+{
+  static QModelIndex indexOld = index;
+  if (index.row() != indexOld.row()) {
+    slotFeedsTreeSelected(index);
+  }
+  indexOld = index;
+}
+
+void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 {
   static QModelIndex indexOld = index;
   if (index.row() != indexOld.row()) {
@@ -1891,7 +1900,7 @@ void RSSListing::loadSettingsFeeds()
   }
 
   feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-  slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
+  slotFeedsTreeSelected(feedsModel_->index(row, 0));  // загрузка новостей
 }
 
 void RSSListing::updateWebView(QModelIndex index)
