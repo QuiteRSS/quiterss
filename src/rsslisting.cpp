@@ -1233,7 +1233,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  static QModelIndex indexOld = index;
+  static QModelIndex indexOld;
   if (index.row() != indexOld.row()) {
     slotFeedsTreeSelected(index);
   }
