@@ -2256,13 +2256,9 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   feedPropertiesDialog->titleString_ = feedsModel_->record(index.row()).field("title").value().toString();
 
-  if (feedsModel_->record(index.row()).field("htmlUrl").value().toString().isNull()) {
-    feedPropertiesDialog->homepageLabel_->setText("None");
-  } else {
-    QString homepageString = QString("<a href='%1'>%1</a>").
-        arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
-    feedPropertiesDialog->homepageLabel_->setText(homepageString);
-  }
+  QString homepageString = QString("<a href='%1'>%1</a>").
+      arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
+  feedPropertiesDialog->homepageLabel_->setText(homepageString);
 
   int result = feedPropertiesDialog->exec();
   settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
