@@ -50,9 +50,7 @@ LIBS += libkernel32 \
         libpsapi
 
 RC_FILE = QuiteRSSApp.rc
-}
 
-win32 || os2 {
 HEADERS += \
     src/sqlite/sqlite3.h
 SOURCES += \
@@ -64,23 +62,27 @@ TARGET = quiterss
 }
 
 unix {
-  CONFIG += link_pkgconfig
-  PKGCONFIG += sqlite3
-  translations.files = lang/*.qm
-  desktop.files = quiterss.desktop
-  icon.files = quiterss.ico
-  isEmpty(PREFIX) {
-    PREFIX =   /usr
-  }
-  target.path =  $$PREFIX/bin
-  translations.path =  $$PREFIX/share/quiterss/lang
-  desktop.path =  $$PREFIX/share/applications
-  icon.path =  $$PREFIX/share/pixmaps
-  INSTALLS +=  target translations  desktop  icon
+CONFIG += link_pkgconfig
+PKGCONFIG += sqlite3
+translations.files = lang/*.qm
+desktop.files = quiterss.desktop
+icon.files = images/quiterss.png
+isEmpty(PREFIX) {
+  PREFIX =   /usr
+}
+target.path =  $$PREFIX/bin
+translations.path =  $$PREFIX/share/quiterss/lang
+desktop.path =  $$PREFIX/share/applications
+icon.path =  $$PREFIX/share/pixmaps
+INSTALLS +=  target translations  desktop  icon
 }
 
 os2 {
-  RC_FILE = quiterss_os2.rc
+HEADERS += \
+    src/sqlite/sqlite3.h
+SOURCES += \
+    src/sqlite/sqlite3.c
+RC_FILE = quiterss_os2.rc
 }
 
 RESOURCES += \
