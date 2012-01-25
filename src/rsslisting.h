@@ -25,6 +25,7 @@ public slots:
     void deleteFeed();
     void slotImportFeeds();
     void slotFeedsTreeClicked(QModelIndex index);
+    void slotFeedsTreeSelected(QModelIndex index);
     void slotGetFeed();
     void slotGetAllFeeds();
     void slotNewsViewClicked(QModelIndex index);
