@@ -2104,8 +2104,8 @@ void RSSListing::retranslateStrings() {
   updateAllFeedsAct_->setText(tr("Update all"));
   updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
 
-  markNewsRead_->setText(tr("Mark Read"));
-  markNewsRead_->setToolTip(tr("Mark current news read"));
+  markNewsRead_->setText(tr("Mark Read/Unread"));
+  markNewsRead_->setToolTip(tr("Mark current news read/unread"));
 
   markAllNewsRead_->setText(tr("Mark all news Read"));
   markAllNewsRead_->setToolTip(tr("Mark all news read"));
@@ -2153,7 +2153,6 @@ void RSSListing::retranslateStrings() {
   toolBarStyleT_->setText(tr("Text"));
   toolBarStyleTbI_->setText(tr("Text beside icon"));
   toolBarStyleTuI_->setText(tr("Text under icon"));
-  toolBarIconSizeMenu_->setTitle(tr("Icon size"));
   toolBarToggle_->setText(tr("Show ToolBar"));
 
   toolBarIconSizeMenu_->setTitle(tr("Icon size"));
