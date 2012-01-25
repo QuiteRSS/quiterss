@@ -1086,19 +1086,37 @@ void RSSListing::slotImportFeeds()
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
             << ":" << xml.name().toString();;
         QSqlQuery q(db_);
-        QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
-                       "values(?, ?, ?, ?, ?)");
-        q.prepare(qStr);
-        q.addBindValue(xml.attributes().value("text").toString());
-        q.addBindValue(xml.attributes().value("title").toString());
-        q.addBindValue(xml.attributes().value("description").toString());
-        q.addBindValue(xml.attributes().value("xmlUrl").toString());
-        q.addBindValue(xml.attributes().value("htmlUrl").toString());
-        q.exec();
-        qDebug() << q.lastQuery() << q.boundValues();
-        qDebug() << q.lastError().number() << ": " << q.lastError().text();
-        q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
-        q.finish();
+
+        QString textString(xml.attributes().value("text").toString());
+        QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
+        bool duplicateFound = false;
+        q.exec("select xmlUrl from feeds");
+        while (q.next()) {
+          if (q.record().value(0).toString() == xmlUrlString) {
+            duplicateFound = true;
+            break;
+          }
+        }
+
+        if (duplicateFound) {
+          qDebug() << "duplicate feed:" << xmlUrlString << textString;
+        } else {
+          QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
+                         "values(?, ?, ?, ?, ?)");
+          q.prepare(qStr);
+          q.addBindValue(textString);
+          q.addBindValue(xml.attributes().value("title").toString());
+          q.addBindValue(xml.attributes().value("description").toString());
+          q.addBindValue(xmlUrlString);
+          q.addBindValue(xml.attributes().value("htmlUrl").toString());
+          q.exec();
+          qDebug() << q.lastQuery() << q.boundValues();
+          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+          q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
+          q.finish();
+
+          getFeed(xmlUrlString, QDateTime());
+        }
       }
     } else if (xml.isEndElement()) {
       if (xml.name() == "outline") {
@@ -1118,7 +1136,7 @@ void RSSListing::slotImportFeeds()
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
-  slotGetAllFeeds();
+//  slotGetAllFeeds();
 }
 
 /*! \brief приём xml-файла ****************************************************/
