@@ -1,4 +1,5 @@
 #include "feedsview.h"
+#include "delegatewithoutfocus.h"
 
 FeedsView::FeedsView(QWidget * parent) :
     QTreeView(parent)
@@ -14,6 +15,9 @@ FeedsView::FeedsView(QWidget * parent) :
 
   header()->setStretchLastSection(false);
   header()->setVisible(false);
+
+  DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
+  setItemDelegate(itemDelegate);
 
   setContextMenuPolicy(Qt::CustomContextMenu);
 }
