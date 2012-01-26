@@ -1818,15 +1818,12 @@ void RSSListing::deleteNews()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-  qDebug() << indexes.count();
-
   if (indexes.count() == 0) return;
 
   int cnt = indexes.count();
   for (int i = cnt-1; i >= 0; --i) {
     curIndex = indexes.at(i);
     int row = curIndex.row();
-    qDebug() << "*01" << row << i;
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("read")),
           1);
