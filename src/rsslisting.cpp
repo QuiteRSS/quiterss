@@ -1178,7 +1178,6 @@ void RSSListing::slotImportFeeds()
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
-//  slotGetAllFeeds();
 }
 
 /*! \brief приём xml-файла ****************************************************/
@@ -1259,16 +1258,22 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   }
 
   QModelIndex index = feedsView_->currentIndex();
+  int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
 
   // если обновлена просматриваемая лента, кликаем по ней
-  if (parseFeedId ==
-      feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
+  if (parseFeedId == id) {
     slotFeedsTreeSelected(feedsModel_->index(index.row(), 0));
   }
   // иначе обновляем модель лент
   else {
     feedsModel_->select();
-    feedsView_->setCurrentIndex(index);
+    int rowFeeds = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
+        rowFeeds = i;
+      }
+    }
+    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
   }
 }
 
@@ -1308,7 +1313,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt() ==
         feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
       row = i;
     }
@@ -1675,12 +1680,14 @@ void RSSListing::slotUpdateStatus()
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
-  QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
-  if (feedsModel_->index(index.row(),
-                         feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
-    feedsView_->setCurrentIndex(index);
+  int rowFeeds = -1;
+  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
+      rowFeeds = i;
+    }
   }
+  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
 
   statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
   statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
