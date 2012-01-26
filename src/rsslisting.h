@@ -71,6 +71,7 @@ private:
     void retranslateStrings();
 
     QSettings *settings_;
+    QString dataDirPath_;
 
     QSqlDatabase db_;
     QString dbFileName_;

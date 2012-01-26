@@ -97,27 +97,26 @@ RSSListing::RSSListing(QWidget *parent)
 {
 #if defined(PORTABLE)
     if (PORTABLE) {
-      QString AppFileName = qApp->applicationFilePath();
-      AppFileName.replace(".exe", ".ini");
-      settings_ = new QSettings(AppFileName, QSettings::IniFormat);
-      dbFileName_ = qApp->applicationDirPath() + QDir::separator() + kDbName;
+      dataDirPath_ = QCoreApplication::applicationDirPath();
+      settings_ = new QSettings(
+            dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini",
+            QSettings::IniFormat);
     } else {
       settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
                                 QCoreApplication::applicationName(), QCoreApplication::applicationName());
-      QString str = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-      QDir d(str);
-      d.mkpath(str);
-      dbFileName_ = str + QDir::separator() + kDbName;
+      dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+      QDir d(dataDirPath_);
+      d.mkpath(dataDirPath_);
     }
 #else
     settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
                               QCoreApplication::organizationName(), QCoreApplication::applicationName());
-    QString str = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    QDir d(str);
-    d.mkpath(str);
-    dbFileName_ = str + QDir::separator() + kDbName;
+    dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QDir d(dataDirPath_);
+    d.mkpath(dataDirPath_);
 #endif
 
+    dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
     if (!QFile(dbFileName_).exists()) {  // Инициализация базы
       QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
       db.setDatabaseName(dbFileName_);
@@ -423,9 +422,17 @@ RSSListing::RSSListing(QWidget *parent)
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
 
     translator_ = new QTranslator(this);
-    if (translator_->load("quiterss_" + langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
-      qApp->installTranslator(translator_);
-    } else retranslateStrings();
+    bool translatorLoad;
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+    translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
+                                       QString("/lang/quiterss_%1").arg(langFileName_));
+#else
+    translatorLoad = translator_->load(QString("/usr/share/") +
+                                       QCoreApplication::applicationName() +
+                                       QString("/lang/quiterss_%1").arg(langFileName_));
+#endif
+    if (translatorLoad) qApp->installTranslator(translator_);
+    else retranslateStrings();
 }
 
 /*!****************************************************************************/
@@ -1427,9 +1434,17 @@ void RSSListing::showOptionDlg()
   if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();
     qApp->removeTranslator(translator_);
-    if (translator_->load("quiterss_" + langFileName_, qApp->applicationDirPath() + QString("/lang"))) {
-      qApp->installTranslator(translator_);
-    } else retranslateStrings();
+    bool translatorLoad;
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+    translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
+                                       QString("/lang/quiterss_%1").arg(langFileName_));
+#else
+    translatorLoad = translator_->load(QString("/usr/share/") +
+                                       QCoreApplication::applicationName() +
+                                       QString("/lang/quiterss_%1").arg(langFileName_));
+#endif
+    if (translatorLoad) qApp->installTranslator(translator_);
+    else retranslateStrings();
   }
 
   QFont font = feedsView_->font();
