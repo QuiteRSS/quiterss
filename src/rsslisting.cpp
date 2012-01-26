@@ -427,9 +427,8 @@ RSSListing::RSSListing(QWidget *parent)
     translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
                                        QString("/lang/quiterss_%1").arg(langFileName_));
 #else
-    translatorLoad = translator_->load(QString("/usr/share/") +
-                                       QCoreApplication::applicationName() +
-                                       QString("/lang/quiterss_%1").arg(langFileName_));
+    translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
+                                       arg(langFileName_));
 #endif
     if (translatorLoad) qApp->installTranslator(translator_);
     else retranslateStrings();
@@ -1439,9 +1438,8 @@ void RSSListing::showOptionDlg()
     translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
                                        QString("/lang/quiterss_%1").arg(langFileName_));
 #else
-    translatorLoad = translator_->load(QString("/usr/share/") +
-                                       QCoreApplication::applicationName() +
-                                       QString("/lang/quiterss_%1").arg(langFileName_));
+    translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
+                                       arg(langFileName_));
 #endif
     if (translatorLoad) qApp->installTranslator(translator_);
     else retranslateStrings();
