@@ -190,7 +190,7 @@ RSSListing::RSSListing(QWidget *parent)
     newsHeader_->view_ = newsView_;
     newsView_->setHeader(newsHeader_);
 
-    connect(newsView_, SIGNAL(clicked(QModelIndex)),
+    connect(newsView_, SIGNAL(pressed(QModelIndex)),
             this, SLOT(slotNewsViewClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
             SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
