@@ -171,7 +171,7 @@ RSSListing::RSSListing(QWidget *parent)
 
     feedsModel_->font_ = feedsView_->font();
 
-    connect(feedsView_, SIGNAL(clicked(QModelIndex)),
+    connect(feedsView_, SIGNAL(pressed(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
             SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
