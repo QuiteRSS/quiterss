@@ -1696,7 +1696,7 @@ void RSSListing::slotLoadFinished(bool ok)
   webViewProgress_->hide();
 }
 
-void RSSListing::setFeedsFilter(QAction* pAct)
+void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   QModelIndex index = feedsView_->currentIndex();
 
@@ -1706,9 +1706,15 @@ void RSSListing::setFeedsFilter(QAction* pAct)
   if (pAct->objectName() == "filterFeedsAll_") {
     feedsModel_->setFilter("");
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    feedsModel_->setFilter(QString("newCount > 0"));
+    if (clicked)
+      feedsModel_->setFilter(QString("newCount > 0"));
+    else
+      feedsModel_->setFilter(QString("newCount > 0 OR id == '%1'").arg(id));
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
+    if (clicked)
+      feedsModel_->setFilter(QString("unread > 0"));
+    else
+      feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
   }
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -2013,7 +2019,7 @@ void RSSListing::slotFeedsFilter()
   if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
     if (action != NULL) {
       action->setChecked(true);
-      setFeedsFilter(action);
+      setFeedsFilter(action, true);
     } else {
       feedsFilterMenu_->popup(
             feedsToolBar_->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
@@ -2021,7 +2027,7 @@ void RSSListing::slotFeedsFilter()
   } else {
     action = feedsFilterGroup_->checkedAction();
     filterFeedsAll_->setChecked(true);
-    setFeedsFilter(filterFeedsAll_);
+    setFeedsFilter(filterFeedsAll_, true);
   }
 }
 

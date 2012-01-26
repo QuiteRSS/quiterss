@@ -197,7 +197,7 @@ private slots:
     void markAllNewsRead();
     void slotLoadStarted();
     void slotLoadFinished(bool ok);
-    void setFeedsFilter(QAction*);
+    void setFeedsFilter(QAction*, bool clicked = false);
     void setNewsFilter(QAction*);
     void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
     void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
