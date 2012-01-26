@@ -6,6 +6,7 @@
 #include <QtWebKit>
 
 #include "feedsmodel.h"
+#include "feedsview.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "parsethread.h"
@@ -144,7 +145,7 @@ private:
     Qt::DockWidgetArea feedsDockArea_;
     QDockWidget *newsDock_;
     Qt::DockWidgetArea newsDockArea_;
-    QTreeView *feedsView_;
+    FeedsView *feedsView_;
     NewsView *newsView_;
     NewsHeader *newsHeader_;
     QLabel *feedsTitleLabel_;

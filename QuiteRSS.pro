@@ -20,7 +20,8 @@ HEADERS += \
     src/qtsingleapplication/qtlockedfile.h \
     src/qtsingleapplication/qtlocalpeer.h \
     src/updateappdialog.h \
-    src/feedpropertiesdialog.h
+    src/feedpropertiesdialog.h \
+    src/feedsview.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -41,7 +42,8 @@ SOURCES += \
     src/qtsingleapplication/qtlockedfile.cpp \
     src/qtsingleapplication/qtlocalpeer.cpp \
     src/updateappdialog.cpp \
-    src/feedpropertiesdialog.cpp
+    src/feedpropertiesdialog.cpp \
+    src/feedsview.cpp
 
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
