@@ -439,6 +439,10 @@ RSSListing::~RSSListing()
     QString qStr = QString("UPDATE feed_%1 SET new=0 WHERE new=1")
         .arg(q.value(0).toString());
     qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET read=2 WHERE read=1").
+        arg(q.value(0).toString());
+    QSqlQuery q(db_);
+    q.exec(qStr);
   }
   db_.commit();
 
@@ -1283,10 +1287,10 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 {
   static QModelIndex indexOld = index;
-  if (index.row() != indexOld.row()) {
+  if (feedsModel_->index(index.row(), 0).data() != feedsModel_->index(indexOld.row(), 0).data()) {
     slotSetAllRead();
   }
-  setFeedsFilter(feedsFilterGroup_->checkedAction());
+  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   index = feedsView_->currentIndex();
   indexOld = index;
   bool initNo = false;
@@ -1306,7 +1310,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt() ==
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
         feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
       row = i;
     }
@@ -1706,18 +1710,28 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
   int id = feedsModel_->index(
         index.row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int unread = feedsModel_->index(
+        index.row(), feedsModel_->fieldIndex("unread")).data(Qt::EditRole).toInt();
+  int newCount = feedsModel_->index(
+        index.row(), feedsModel_->fieldIndex("newCount")).data(Qt::EditRole).toInt();
 
   if (pAct->objectName() == "filterFeedsAll_") {
     feedsModel_->setFilter("");
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    if (clicked)
-      feedsModel_->setFilter(QString("newCount > 0"));
-    else
+    if (clicked) {
+      if (newCount)
+        feedsModel_->setFilter(QString("newCount > 0 OR id == '%1'").arg(id));
+      else
+        feedsModel_->setFilter(QString("newCount > 0"));
+    } else
       feedsModel_->setFilter(QString("newCount > 0 OR id == '%1'").arg(id));
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    if (clicked)
-      feedsModel_->setFilter(QString("unread > 0"));
-    else
+    if (clicked) {
+      if (unread > 0)
+        feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
+      else
+        feedsModel_->setFilter(QString("unread > 0"));
+    } else
       feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
   }
 
@@ -1733,17 +1747,19 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
 }
 
-void RSSListing::setNewsFilter(QAction* pAct)
+void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
   QModelIndex index = newsView_->currentIndex();
 
   int id = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-  QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
-      arg(newsModel_->tableName());
-  QSqlQuery q(db_);
-  q.exec(qStr);
+  if (clicked) {
+    QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
+        arg(newsModel_->tableName());
+    QSqlQuery q(db_);
+    q.exec(qStr);
+  }
 
   if (pAct->objectName() == "filterNewsAll_") {
     newsModel_->setFilter("deleted = 0");
@@ -1943,7 +1959,7 @@ void RSSListing::loadSettingsFeeds()
     }
   }
 
-  setFeedsFilter(feedsFilterGroup_->checkedAction());
+  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   int id = settings_->value("feedSettings/currentId", 0).toInt();
   int row = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
@@ -1953,7 +1969,7 @@ void RSSListing::loadSettingsFeeds()
   }
 
   feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-  slotFeedsTreeSelected(feedsModel_->index(row, 0));  // загрузка новостей
+  slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
 }
 
 void RSSListing::updateWebView(QModelIndex index)
@@ -2020,7 +2036,7 @@ void RSSListing::slotFeedsFilter()
   if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
     if (action != NULL) {
       action->setChecked(true);
-      setFeedsFilter(action, true);
+      setFeedsFilter(action);
     } else {
       feedsFilterMenu_->popup(
             feedsToolBar_->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
@@ -2028,7 +2044,7 @@ void RSSListing::slotFeedsFilter()
   } else {
     action = feedsFilterGroup_->checkedAction();
     filterFeedsAll_->setChecked(true);
-    setFeedsFilter(filterFeedsAll_, true);
+    setFeedsFilter(filterFeedsAll_);
   }
 }
 
@@ -2039,7 +2055,7 @@ void RSSListing::slotNewsFilter()
   if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
     if (action != NULL) {
       action->setChecked(true);
-      setNewsFilter(action);
+      setNewsFilter(action, true);
     } else {
       newsFilterMenu_->popup(
             newsToolBar_->mapToGlobal(QPoint(0, newsToolBar_->height()-1)));
@@ -2047,7 +2063,7 @@ void RSSListing::slotNewsFilter()
   } else {
     action = newsFilterGroup_->checkedAction();
     filterNewsAll_->setChecked(true);
-    setNewsFilter(filterNewsAll_);
+    setNewsFilter(filterNewsAll_, true);
   }
 }
 
