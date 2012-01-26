@@ -343,5 +343,4 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal,
                         QIcon(":/images/starSection"), Qt::DecorationRole);
-  setSortIndicator(sortIndicatorSection(), sortIndicatorOrder());
 }
