@@ -36,7 +36,7 @@ public slots:
     void receiveMessage(const QString&);
     void slotPlaceToTray();
     void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
-    void slotShowWindows();
+    void slotShowWindows(bool trayClick = false);
     void slotClose();
     void slotCloseApp();
     void myEmptyWorkingSet();

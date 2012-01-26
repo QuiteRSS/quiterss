@@ -576,17 +576,17 @@ void RSSListing::slotPlaceToTray()
 /*! \brief Обработка событий трея *********************************************/
 void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 {
+  trayMenu_->activateWindow();
   switch (reason) {
   case QSystemTrayIcon::Unknown:
     break;
   case QSystemTrayIcon::Context:
-    trayMenu_->activateWindow();
     break;
   case QSystemTrayIcon::DoubleClick:
-    if (!singleClickTray_) slotShowWindows();
+    if (!singleClickTray_) slotShowWindows(true);
     break;
   case QSystemTrayIcon::Trigger:
-    if (singleClickTray_) slotShowWindows();
+    if (singleClickTray_) slotShowWindows(true);
     break;
   case QSystemTrayIcon::MiddleClick:
     break;
@@ -594,14 +594,18 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 }
 
 /*! \brief Отображение окна по событию ****************************************/
-void RSSListing::slotShowWindows()
+void RSSListing::slotShowWindows(bool trayClick)
 {
-  if (oldState == Qt::WindowMaximized) {
-    showMaximized();
+  if (!trayClick || isHidden()){
+    if (oldState == Qt::WindowMaximized) {
+      showMaximized();
+    } else {
+      showNormal();
+    }
+    activateWindow();
   } else {
-    showNormal();
+    emit signalPlaceToTray();
   }
-  activateWindow();
 }
 
 void RSSListing::timerEvent(QTimerEvent *event)
