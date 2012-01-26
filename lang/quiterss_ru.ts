@@ -169,7 +169,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="44"/>
         <source>Move to the system tray when:</source>
-        <translation>Помещать в ситемный трей:</translation>
+        <translation>Помещать в сиcтемный трей:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="60"/>
