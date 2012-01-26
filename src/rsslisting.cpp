@@ -1245,7 +1245,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   q.exec(qStr);
 
   if (!isActiveWindow() && (newCount > newCountOld)) {
-    traySystem->setIcon(QIcon(":/images/quiterss16"));
+    traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
   QModelIndex index = feedsView_->currentIndex();
@@ -1655,7 +1655,7 @@ void RSSListing::slotUpdateStatus()
   q.exec(qStr);
 
   if (!isActiveWindow() && (newCount > newCountOld)) {
-    traySystem->setIcon(QIcon(":/images/quiterss16"));
+    traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
   QModelIndex index = feedsView_->currentIndex();
