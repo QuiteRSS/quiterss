@@ -16,7 +16,6 @@ HEADERS += \
     src/delegatewithoutfocus.h \
     src/addfeeddialog.h \
     src/aboutdialog.h \
-    src/qtsingleapplication/qtsingleapplication.h \
     src/qtsingleapplication/qtlockedfile.h \
     src/qtsingleapplication/qtlocalpeer.h \
     src/updateappdialog.h \
@@ -36,7 +35,6 @@ SOURCES += \
     src/delegatewithoutfocus.cpp \
     src/addfeeddialog.cpp \
     src/aboutdialog.cpp \
-    src/qtsingleapplication/qtsingleapplication.cpp \
     src/qtsingleapplication/qtlockedfile_win.cpp \
     src/qtsingleapplication/qtlockedfile_unix.cpp \
     src/qtsingleapplication/qtlockedfile.cpp \
@@ -55,22 +53,26 @@ TARGET = QuiteRSS
 LIBS += libkernel32 \
         libpsapi
 RC_FILE = QuiteRSSApp.rc
-HEADERS += src/sqlite/sqlite3.h
-SOURCES += src/sqlite/sqlite3.c
+HEADERS += src/sqlite/sqlite3.h \
+  src/qtsingleapplication/qtsingleapplication.h
+SOURCES += src/sqlite/sqlite3.c \
+  src/qtsingleapplication/qtsingleapplication.cpp
 include(lang/lang.pri)
 }
 
 os2 {
 TARGET = QuiteRSS
 RC_FILE = quiterss_os2.rc
-HEADERS += src/sqlite/sqlite3.h
-SOURCES += src/sqlite/sqlite3.c
+HEADERS += src/sqlite/sqlite3.h \
+  src/qtsingleapplication/qtsingleapplication.h
+SOURCES += src/sqlite/sqlite3.c \
+  src/qtsingleapplication/qtsingleapplication.cpp
 include(lang/lang.pri)
 }
 
 unix {
   TARGET = quiterss
-  CONFIG += link_pkgconfig
+  CONFIG += link_pkgconfig qtsingleapplication
   PKGCONFIG += sqlite3
   TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts
   desktop.files = quiterss.desktop

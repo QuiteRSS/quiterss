@@ -1,6 +1,11 @@
 #include <QtGui>
 
+#if defined(Q_OS_UNIX)
+#include <QtSingleApplication>
+#else
 #include "qtsingleapplication/qtsingleapplication.h"
+#endif
+
 #include "rsslisting.h"
 
 int main(int argc, char **argv)
