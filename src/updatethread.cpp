@@ -1,7 +1,7 @@
 #include "updatethread.h"
 
 UpdateThread::UpdateThread(QObject *parent) :
-    QThread(parent), currentReply_(0)
+    QThread(parent)
 {
   connect(&manager_, SIGNAL(finished(QNetworkReply*)),
       this, SLOT(finished(QNetworkReply*)));
@@ -50,15 +50,16 @@ void UpdateThread::get(const QUrl &url)
 {
   qDebug() << objectName() << "::get:" << url;
   QNetworkRequest request(url);
-  if (currentReply_) {
-      currentReply_->disconnect(this);
-      currentReply_->deleteLater();
-  }
-  currentData_.clear();
-  currentReply_ = manager_.get(request);
-  connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
-  connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
-  connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+//  if (currentReply_) {
+//      currentReply_->disconnect(this);
+//      currentReply_->deleteLater();
+//  }
+//  currentData_.clear();
+  QNetworkReply *reply = manager_.get(request);
+//  connect(reply, SIGNAL(readyRead()), this, SLOT(readyRead()));
+//  connect(reply, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
+//  connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+  currentReplies_.append(reply);
 
 //  start(QThread::LowPriority);
 }
@@ -67,16 +68,18 @@ void UpdateThread::head(const QUrl &url)
 {
   qDebug() << objectName() << "::head:" << url;
   QNetworkRequest request(url);
-  if (currentReply_) {
-    currentReply_->disconnect(this);
-    currentReply_->deleteLater();
-  }
-  currentData_.clear();
-  currentReply_ = manager_.head(request);
-  connect(currentReply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
-  connect(currentReply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
-  connect(currentReply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+//  if (currentReply_) {
+//    currentReply_->disconnect(this);
+//    currentReply_->deleteLater();
+//  }
+//  currentData_.clear();
+  QNetworkReply *reply = manager_.head(request);
+//  connect(reply, SIGNAL(readyRead()), this, SLOT(readyRead()));
+//  connect(reply, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
+//  connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
+  currentReplies_.append(reply);
 
+  if (currentReplies_.size() < REPLY_MAX_COUNT) getQueuedUrl();
   //  start(QThread::LowPriority);
 }
 
@@ -85,41 +88,41 @@ void UpdateThread::head(const QUrl &url)
  *   We read all the available data, and pass it to the XML
  *   stream reader. Then we call the XML parsing function.
  ******************************************************************************/
-void UpdateThread::readyRead()
-{
-  int statusCode = currentReply_->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-  if (statusCode >= 200 && statusCode < 300) {
-    QByteArray data = currentReply_->readAll();
-    currentData_.append(data);
-    emit readedXml(data, currentUrl_);
-  }
-}
+//void UpdateThread::readyRead()
+//{
+//  int statusCode = currentReply_->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+//  if (statusCode >= 200 && statusCode < 300) {
+//    QByteArray data = currentReply_->readAll();
+//    currentData_.append(data);
+//    emit readedXml(data, currentUrl_);
+//  }
+//}
 
 /*! \brief Обработка события изменения метаданных интернет-запроса ************/
-void UpdateThread::metaDataChanged()
-{
-  QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-  if (redirectionTarget.isValid()) {
-    if (currentReply_->operation() == QNetworkAccessManager::HeadOperation) {
-      qDebug() << objectName() << "head redirect...";
-      head(redirectionTarget);
-    } else {
-      qDebug() << objectName() << "get redirect...";
-      get(redirectionTarget);
-    }
-  }
-}
+//void UpdateThread::metaDataChanged()
+//{
+//  QUrl redirectionTarget = currentReply_->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+//  if (redirectionTarget.isValid()) {
+//    if (currentReply_->operation() == QNetworkAccessManager::HeadOperation) {
+//      qDebug() << objectName() << "head redirect...";
+//      head(redirectionTarget);
+//    } else {
+//      qDebug() << objectName() << "get redirect...";
+//      get(redirectionTarget);
+//    }
+//  }
+//}
 
 /*! \brief Обработка ошибки html-запроса **************************************/
-void UpdateThread::error(QNetworkReply::NetworkError)
-{
-  qDebug() << objectName() << "::error retrieving RSS feed";
-  currentReply_->disconnect(this);
-  currentReply_->deleteLater();
-  currentReply_ = 0;
-  emit getUrlDone(-1);
-  currentUrl_.clear();
-}
+//void UpdateThread::error(QNetworkReply::NetworkError)
+//{
+//  qDebug() << objectName() << "::error retrieving RSS feed";
+//  currentReply_->disconnect(this);
+//  currentReply_->deleteLater();
+//  currentReply_ = 0;
+//  emit getUrlDone(-1);
+//  currentUrl_.clear();
+//}
 
 /*! \brief Завершение обработки сетевого запроса
 
@@ -142,20 +145,43 @@ void UpdateThread::finished(QNetworkReply *reply)
   qDebug() << reply->header(QNetworkRequest::CookieHeader);
   qDebug() << reply->header(QNetworkRequest::SetCookieHeader);
 
-  QDateTime dtReply = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
-  QDateTime dtReplyLocal = QDateTime(dtReply.date(), dtReply.time());
-
-  qDebug() << currentDate_ << dtReply << dtReplyLocal;
-  qDebug() << currentDate_.toMSecsSinceEpoch() << dtReply.toMSecsSinceEpoch() << dtReplyLocal.toMSecsSinceEpoch();
-  if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
-      ( (!currentDate_.isValid()) || (!dtReplyLocal.isValid()) ||
-        ((currentDate_.isValid()) && (currentDate_ < dtReplyLocal)))) {
-    get(reply->url());
-  }
-  else {
-    emit getUrlDone(urlsQueue_.count(), dtReplyLocal);
+  if (reply->error() != QNetworkReply::NoError) {
+    qDebug() << "  error retrieving RSS feed:" << reply->error();
+    emit getUrlDone(-1);
     currentUrl_.clear();
     getQueuedUrl();
+  }
+  else {
+    QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    if (redirectionTarget.isValid()) {
+      if (reply->operation() == QNetworkAccessManager::HeadOperation) {
+        qDebug() << objectName() << "  head redirect...";
+        head(redirectionTarget);
+      } else {
+        qDebug() << objectName() << "  get redirect...";
+        get(redirectionTarget);
+      }
+    } else {
+      QDateTime dtReply = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
+      QDateTime dtReplyLocal = QDateTime(dtReply.date(), dtReply.time());
+
+      qDebug() << currentDate_ << dtReply << dtReplyLocal;
+      qDebug() << currentDate_.toMSecsSinceEpoch() << dtReply.toMSecsSinceEpoch() << dtReplyLocal.toMSecsSinceEpoch();
+      if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
+          ((!currentDate_.isValid()) || (!dtReplyLocal.isValid()) || (currentDate_ < dtReplyLocal))) {
+        get(reply->url());
+      }
+      else {
+        QByteArray data = reply->readAll();
+        emit readedXml(data, currentUrl_);
+        emit getUrlDone(urlsQueue_.count(), dtReplyLocal);
+
+        currentReplies_.removeAll(reply);
+        currentUrl_.clear();
+
+        getQueuedUrl();
+      }
+    }
   }
   reply->deleteLater();
 }
