@@ -157,7 +157,7 @@ void UpdateThread::finished(QNetworkReply *reply)
     currentUrl_.clear();
     getQueuedUrl();
   }
-  reply->deleteLater();
+//  reply->deleteLater();
 }
 
 void UpdateThread::setProxy(const QNetworkProxy proxy)
