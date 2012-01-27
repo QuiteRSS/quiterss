@@ -190,6 +190,7 @@ private:
     bool emptyWorking_;
 
     QBasicTimer markNewsReadTimer_;
+    bool markNewsReadOn_;
     int  markNewsReadTime_;
 
 private slots:

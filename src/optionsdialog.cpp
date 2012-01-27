@@ -134,12 +134,15 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QWidget *updateFeedsWidget_ = new QWidget();
   updateFeedsWidget_->setLayout(updateFeedsLayout);
 
+  markNewsReadOn_ = new QCheckBox(tr("Mark selected news as read after"));
   markNewsReadTime_ = new QSpinBox();
+  markNewsReadTime_->setEnabled(false);
   markNewsReadTime_->setRange(0, 100);
+  connect(markNewsReadOn_, SIGNAL(toggled(bool)), markNewsReadTime_, SLOT(setEnabled(bool)));
 
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
-  readingFeedsLayout1->addWidget(new QLabel(tr("Mark selected news as read after")));
+  readingFeedsLayout1->addWidget(markNewsReadOn_);
   readingFeedsLayout1->addWidget(markNewsReadTime_);
   readingFeedsLayout1->addWidget(new QLabel(tr("seconds")));
   readingFeedsLayout1->addStretch();

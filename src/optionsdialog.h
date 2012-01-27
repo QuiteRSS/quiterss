@@ -28,6 +28,7 @@ public:
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
 
+  QCheckBox *markNewsReadOn_;
   QSpinBox *markNewsReadTime_;
 
   // fonts

@@ -920,6 +920,7 @@ void RSSListing::readSettings()
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
 
+  markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
 
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
@@ -990,6 +991,7 @@ void RSSListing::writeSettings()
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
 
+  settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
 
   settings_->setValue("toolBarStyle",
@@ -1362,7 +1364,8 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
       updateWebView(index);
 
       markNewsReadTimer_.stop();
-      markNewsReadTimer_.start(markNewsReadTime_*1000, this);
+      if (markNewsReadOn_)
+        markNewsReadTimer_.start(markNewsReadTime_*1000, this);
 
       QSqlQuery q(db_);
       int id = newsModel_->index(index.row(), 0).
@@ -1407,6 +1410,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
 
+  optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
 
   optionsDialog->setLanguage(langFileName_);
@@ -1448,6 +1452,7 @@ void RSSListing::showOptionDlg()
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
   }
 
+  markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
 
   if (langFileName_ != optionsDialog->language()) {
