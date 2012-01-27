@@ -620,4 +620,24 @@
     <source>Icon size</source>
     <target>Размер иконки</target>
 </phrase>
+<phrase>
+    <source>Show amount of new news</source>
+    <target>Показывать количество новых новостей</target>
+</phrase>
+<phrase>
+    <source>Mark selected news as read after</source>
+    <target>Отметить выделенную новость как прочитанную после</target>
+</phrase>
+<phrase>
+    <source>seconds</source>
+    <target>секунд</target>
+</phrase>
+<phrase>
+    <source>Mark selected news as read after</source>
+    <target>Пометить выделенную новость прочитанной после</target>
+</phrase>
+<phrase>
+    <source>Reading</source>
+    <target>Чтение</target>
+</phrase>
 </QPH>
