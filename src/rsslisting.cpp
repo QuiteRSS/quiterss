@@ -2001,6 +2001,7 @@ void RSSListing::loadSettingsFeeds()
 
   feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
   slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
+  slotUpdateStatus();
 }
 
 void RSSListing::updateWebView(QModelIndex index)
@@ -2196,8 +2197,6 @@ void RSSListing::retranslateStrings() {
   webPanelTitleLabel_->setText(tr("Title:"));
   webPanelAuthorLabel_->setText(tr("Author:"));
   progressBar_->setFormat(tr("Update feeds... (%p%)"));
-  statusUnread_->setText(statusUnread_->text());
-  statusAll_->setText(statusAll_->text());
 
   QString str = statusUnread_->text();
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
