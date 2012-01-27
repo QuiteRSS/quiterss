@@ -134,18 +134,13 @@ void UpdateThread::error(QNetworkReply::NetworkError)
  *********************************r*********************************************/
 void UpdateThread::finished(QNetworkReply *reply)
 {
-//  Q_UNUSED(reply);
-  qDebug() << reply->url().toString();
+  qDebug() << "reply.finished():" << reply->url().toString();
   qDebug() << reply->header(QNetworkRequest::ContentTypeHeader);
   qDebug() << reply->header(QNetworkRequest::ContentLengthHeader);
   qDebug() << reply->header(QNetworkRequest::LocationHeader);
   qDebug() << reply->header(QNetworkRequest::LastModifiedHeader);
   qDebug() << reply->header(QNetworkRequest::CookieHeader);
   qDebug() << reply->header(QNetworkRequest::SetCookieHeader);
-  static int commonCount = 0;
-  commonCount += currentData_.count();
-  qDebug() << commonCount;
-  qDebug() << objectName() << "::finished";
 
   QDateTime dtReply = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
   QDateTime dtReplyLocal = QDateTime(dtReply.date(), dtReply.time());
