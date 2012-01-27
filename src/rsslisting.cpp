@@ -1277,11 +1277,11 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  static QModelIndex indexOld;
-  if (feedsModel_->index(index.row(), 0).data() != feedsModel_->index(indexOld.row(), 0).data()) {
+  static int idOld = -1;
+  if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotFeedsTreeSelected(index);
   }
-  indexOld = feedsView_->currentIndex();
+  idOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 }
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index)
