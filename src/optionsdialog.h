@@ -28,6 +28,8 @@ public:
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
 
+  QSpinBox *markNewsReadTime_;
+
   // fonts
   QTreeWidget *fontTree;
 

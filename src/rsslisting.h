@@ -189,6 +189,9 @@ private:
     bool singleClickTray_;
     bool emptyWorking_;
 
+    QBasicTimer markNewsReadTimer_;
+    int  markNewsReadTime_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();

@@ -113,7 +113,7 @@ QTabBar::tab:selected {
 }
 
 QTabBar::tab:!selected {
-	margin-top: 2px;
+	margin-bottom: 1px;
 }
 
 #feedsPanel, #newsPanel {

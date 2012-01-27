@@ -610,6 +610,9 @@ void RSSListing::timerEvent(QTimerEvent *event)
     updateFeedsTimer_.stop();
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
     slotTimerUpdateFeeds();
+  } if (event->timerId() == markNewsReadTimer_.timerId()) {
+    markNewsReadTimer_.stop();
+    slotSetItemRead(newsView_->currentIndex(), 1);
   }
 }
 
@@ -917,6 +920,8 @@ void RSSListing::readSettings()
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
 
+  markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
+
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
   foreach(QAction *action, listActions) {
@@ -984,6 +989,8 @@ void RSSListing::writeSettings()
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
+
+  settings_->setValue("markNewsReadTime", markNewsReadTime_);
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -1277,7 +1284,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  static int idOld = -1;
+  static int idOld = -2;
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotFeedsTreeSelected(index);
   }
@@ -1296,7 +1303,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   idOld = feedsModel_->index(index.row(), 0).data().toInt();
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
-
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
@@ -1354,7 +1360,9 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
     if (!((index.row() == indexOld.row()) &&
            newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
       updateWebView(index);
-      slotSetItemRead(index, 1);
+
+      markNewsReadTimer_.stop();
+      markNewsReadTimer_.start(markNewsReadTime_*1000, this);
 
       QSqlQuery q(db_);
       int id = newsModel_->index(index.row(), 0).
@@ -1399,6 +1407,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
 
+  optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
+
   optionsDialog->setLanguage(langFileName_);
 
   QString strFont = QString("%1, %2").
@@ -1437,6 +1447,8 @@ void RSSListing::showOptionDlg()
   } else if (!updateFeedsTimer_.isActive() && autoUpdatefeeds_) {
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
   }
+
+  markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
 
   if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();

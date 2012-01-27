@@ -119,23 +119,41 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsTime_->setRange(5, 9999);
   connect(updateFeeds_, SIGNAL(toggled(bool)), updateFeedsTime_, SLOT(setEnabled(bool)));
 
-  QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
-  updateFeedsLayout->setMargin(0);
-  updateFeedsLayout->addWidget(updateFeeds_);
-  updateFeedsLayout->addWidget(updateFeedsTime_);
-  updateFeedsLayout->addWidget(new QLabel(tr("minutes")));
+  QHBoxLayout *updateFeedsLayout1 = new QHBoxLayout();
+  updateFeedsLayout1->setMargin(0);
+  updateFeedsLayout1->addWidget(updateFeeds_);
+  updateFeedsLayout1->addWidget(updateFeedsTime_);
+  updateFeedsLayout1->addWidget(new QLabel(tr("minutes")));
+  updateFeedsLayout1->addStretch();
+
+  QVBoxLayout *updateFeedsLayout = new QVBoxLayout();
+  updateFeedsLayout->addWidget(updateFeedsStartUp_);
+  updateFeedsLayout->addLayout(updateFeedsLayout1);
   updateFeedsLayout->addStretch();
 
-  QVBoxLayout *feedsLayout = new QVBoxLayout();
-  feedsLayout->addWidget(updateFeedsStartUp_);
-  feedsLayout->addLayout(updateFeedsLayout);
-  feedsLayout->addStretch();
+  QWidget *updateFeedsWidget_ = new QWidget();
+  updateFeedsWidget_->setLayout(updateFeedsLayout);
 
-  QWidget *feedsUpdateWidget_ = new QWidget();
-  feedsUpdateWidget_->setLayout(feedsLayout);
+  markNewsReadTime_ = new QSpinBox();
+  markNewsReadTime_->setRange(0, 100);
+
+  QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
+  readingFeedsLayout1->setMargin(0);
+  readingFeedsLayout1->addWidget(new QLabel(tr("Mark selected news as read after")));
+  readingFeedsLayout1->addWidget(markNewsReadTime_);
+  readingFeedsLayout1->addWidget(new QLabel(tr("seconds")));
+  readingFeedsLayout1->addStretch();
+
+  QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
+  readingFeedsLayout->addLayout(readingFeedsLayout1);
+  readingFeedsLayout->addStretch();
+
+  QWidget *readingFeedsWidget_ = new QWidget();
+  readingFeedsWidget_->setLayout(readingFeedsLayout);
 
   feedsWidget_ = new QTabWidget();
-  feedsWidget_->addTab(feedsUpdateWidget_, tr("General"));
+  feedsWidget_->addTab(updateFeedsWidget_, tr("General"));
+  feedsWidget_->addTab(readingFeedsWidget_, tr("Reading"));
   //} feeds
 
   //{ language
