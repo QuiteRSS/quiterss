@@ -1792,7 +1792,10 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
-  if (row == -1) webView_->setHtml("");
+  if (row == -1) {
+    webView_->setHtml("");
+    webPanel_->hide();
+  }
 }
 
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
