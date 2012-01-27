@@ -37,6 +37,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
   singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
+  countNewTray_ = new QCheckBox(tr("Show amount of new news"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->setMargin(2);
@@ -47,6 +48,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   generalLayout->addWidget(closingTray_, 0, Qt::AlignLeft);
   generalLayout->addSpacing(10);
   generalLayout->addWidget(singleClickTray_, 0, Qt::AlignLeft);
+  generalLayout->addWidget(countNewTray_, 0, Qt::AlignLeft);
 #if defined(Q_WS_WIN)
   generalLayout->addWidget(emptyWorking_, 0, Qt::AlignLeft);
 #endif

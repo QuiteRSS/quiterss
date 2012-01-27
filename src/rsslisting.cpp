@@ -551,7 +551,7 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
-    if (isActiveWindow())
+    if (isActiveWindow() && !countNewTray_)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
@@ -894,6 +894,7 @@ void RSSListing::readSettings()
   closingTray_ = settings_->value("closingTray", true).toBool();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
+  countNewTray_ = settings_->value("countNewTray", false).toBool();
 
   QString strLang("en");
   QString strLocalLang = QLocale::system().name().left(2);
@@ -968,6 +969,7 @@ void RSSListing::writeSettings()
   settings_->setValue("closingTray", closingTray_);
   settings_->setValue("singleClickTray", singleClickTray_);
   settings_->setValue("emptyWorking", emptyWorking_);
+  settings_->setValue("countNewTray", countNewTray_);
 
   settings_->setValue("langFileName", langFileName_);
 
@@ -1259,7 +1261,9 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
       arg(newCount).arg(parseFeedId);
   q.exec(qStr);
 
-  if (!isActiveWindow() && (newCount > newCountOld)) {
+  if (countNewTray_) {
+    showCountNewTray();
+  } else if (!isActiveWindow() && (newCount > newCountOld)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
@@ -1403,6 +1407,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->closingTray_->setChecked(closingTray_);
   optionsDialog->singleClickTray_->setChecked(singleClickTray_);
   optionsDialog->emptyWorking_->setChecked(emptyWorking_);
+  optionsDialog->countNewTray_->setChecked(countNewTray_);
 
   optionsDialog->setProxy(networkProxy_);
 
@@ -1439,6 +1444,7 @@ void RSSListing::showOptionDlg()
   closingTray_ = optionsDialog->closingTray_->isChecked();
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
   emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
+  countNewTray_ = optionsDialog->countNewTray_->isChecked();
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
@@ -1701,7 +1707,9 @@ void RSSListing::slotUpdateStatus()
       arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 
-  if (!isActiveWindow() && (newCount > newCountOld)) {
+  if (countNewTray_) {
+    showCountNewTray();
+  } else if (!isActiveWindow() && (newCount > newCountOld)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
@@ -2366,4 +2374,45 @@ void RSSListing::slotEditMenuAction()
 {
   if (feedsView_->currentIndex().isValid()) feedProperties_->setEnabled(true);
   else  feedProperties_->setEnabled(false);
+}
+
+void RSSListing::showCountNewTray()
+{
+  int newCount = 0;
+  QSqlQuery q(db_);
+  QString qStr = QString("select newCount from feeds");
+  q.exec(qStr);
+  while (q.next()) {
+    newCount += q.value(0).toInt();
+  }
+
+  if (newCount != 0) {
+    QString newCountStr;
+    QFont font;
+    font.setFamily("Consolas");
+    if (newCount > 99) {
+      font.setBold(false);
+      if (newCount < 1000) {
+        font.setPointSize(6);
+        newCountStr = QString::number(newCount);
+      } else {
+        font.setPointSize(10);
+        newCountStr = "#";
+      }
+    } else {
+      font.setBold(true);
+      font.setPointSize(8);
+      newCountStr = QString::number(newCount);
+    }
+
+    QPixmap icon = QPixmap(":/images/countNew");
+    QPainter trayPainter;
+    trayPainter.begin(&icon);
+    trayPainter.setFont(font);
+    trayPainter.setPen(Qt::blue);
+    trayPainter.drawText(QRect(0, 0, 16, 16), Qt::AlignVCenter | Qt::AlignCenter,
+                         newCountStr);
+    trayPainter.end();
+    traySystem->setIcon(icon);
+  } else traySystem->setIcon(QIcon(":/images/quiterss16"));
 }

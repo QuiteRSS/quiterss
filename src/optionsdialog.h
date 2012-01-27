@@ -22,6 +22,7 @@ public:
   QCheckBox *closingTray_;
   QCheckBox *singleClickTray_;
   QCheckBox *emptyWorking_;
+  QCheckBox *countNewTray_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;
