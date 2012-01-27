@@ -1286,18 +1286,20 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 {
-  static QModelIndex indexOld = index;
-  if (feedsModel_->index(index.row(), 0).data() != feedsModel_->index(indexOld.row(), 0).data()) {
+  static int idOld = feedsModel_->index(index.row(), 0).data().toInt();
+
+  if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotSetAllRead();
   }
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   index = feedsView_->currentIndex();
-  indexOld = index;
+  idOld = feedsModel_->index(index.row(), 0).data().toInt();
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
+
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->select();
-  setNewsFilter(newsFilterGroup_->checkedAction());
+  setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
   newsHeader_->overload();
 
@@ -1624,7 +1626,16 @@ void RSSListing::markAllNewsRead()
       arg(newsModel_->tableName());
   q.exec(qStr);
   newsModel_->select();
-  setNewsFilter(newsFilterGroup_->checkedAction());
+  setNewsFilter(newsFilterGroup_->checkedAction(), false);
+  int row = -1;
+  for (int i = 0; i < newsModel_->rowCount(); i++) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+        feedsModel_->index(feedsView_->currentIndex().row(),
+                           feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+      row = i;
+    }
+  }
+  newsView_->setCurrentIndex(newsModel_->index(row, 0));
   slotUpdateStatus();
 }
 
@@ -2055,7 +2066,7 @@ void RSSListing::slotNewsFilter()
   if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
     if (action != NULL) {
       action->setChecked(true);
-      setNewsFilter(action, true);
+      setNewsFilter(action);
     } else {
       newsFilterMenu_->popup(
             newsToolBar_->mapToGlobal(QPoint(0, newsToolBar_->height()-1)));
@@ -2063,7 +2074,7 @@ void RSSListing::slotNewsFilter()
   } else {
     action = newsFilterGroup_->checkedAction();
     filterNewsAll_->setChecked(true);
-    setNewsFilter(filterNewsAll_, true);
+    setNewsFilter(filterNewsAll_);
   }
 }
 
