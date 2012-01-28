@@ -1,9 +1,11 @@
 #include <QtCore>
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #include <windows.h>
 #include <Psapi.h>
 #endif
+
+#include <sqlite3.h>
 
 #include "aboutdialog.h"
 #include "addfeeddialog.h"
@@ -11,7 +13,6 @@
 #include "feedpropertiesdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
-#include "sqlite/sqlite3.h"
 #include "updateappdialog.h"
 #include "VersionNo.h"
 
@@ -1978,6 +1979,7 @@ void RSSListing::setAutoLoadImages()
 
 void RSSListing::loadSettingsFeeds()
 {
+  markNewsReadOn_ = false;
   autoLoadImages_ = !settings_->value("Settings/autoLoadImages", false).toBool();
   setAutoLoadImages();
 

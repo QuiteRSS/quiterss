@@ -2,6 +2,9 @@ QT += core gui network xml webkit sql
 
 TEMPLATE = app
 
+INCLUDEPATH += . \
+               3rdparty/qtsingleapplication
+
 HEADERS += \
     src/VersionNo.h \
     src/updatethread.h \
@@ -16,11 +19,12 @@ HEADERS += \
     src/delegatewithoutfocus.h \
     src/addfeeddialog.h \
     src/aboutdialog.h \
-    src/qtsingleapplication/qtlockedfile.h \
-    src/qtsingleapplication/qtlocalpeer.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/feedsview.h
+    src/feedsview.h \
+    3rdparty/qtsingleapplication/qtsingleapplication.h \
+    3rdparty/qtsingleapplication/qtlockedfile.h \
+    3rdparty/qtsingleapplication/qtlocalpeer.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -35,13 +39,14 @@ SOURCES += \
     src/delegatewithoutfocus.cpp \
     src/addfeeddialog.cpp \
     src/aboutdialog.cpp \
-    src/qtsingleapplication/qtlockedfile_win.cpp \
-    src/qtsingleapplication/qtlockedfile_unix.cpp \
-    src/qtsingleapplication/qtlockedfile.cpp \
-    src/qtsingleapplication/qtlocalpeer.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/feedsview.cpp
+    src/feedsview.cpp \
+    3rdparty/qtsingleapplication/qtsingleapplication.cpp \
+    3rdparty/qtsingleapplication/qtlockedfile_win.cpp \
+    3rdparty/qtsingleapplication/qtlockedfile_unix.cpp \
+    3rdparty/qtsingleapplication/qtlockedfile.cpp \
+    3rdparty/qtsingleapplication/qtlocalpeer.cpp
 
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
@@ -53,26 +58,24 @@ TARGET = QuiteRSS
 LIBS += libkernel32 \
         libpsapi
 RC_FILE = QuiteRSSApp.rc
-HEADERS += src/sqlite/sqlite3.h \
-  src/qtsingleapplication/qtsingleapplication.h
-SOURCES += src/sqlite/sqlite3.c \
-  src/qtsingleapplication/qtsingleapplication.cpp
+INCLUDEPATH += ./3rdparty/sqlite
+HEADERS += 3rdparty/sqlite/sqlite3.h
+SOURCES += 3rdparty/sqlite/sqlite3.c
 include(lang/lang.pri)
 }
 
 os2 {
 TARGET = QuiteRSS
 RC_FILE = quiterss_os2.rc
-HEADERS += src/sqlite/sqlite3.h \
-  src/qtsingleapplication/qtsingleapplication.h
-SOURCES += src/sqlite/sqlite3.c \
-  src/qtsingleapplication/qtsingleapplication.cpp
+INCLUDEPATH += ./3rdparty/sqlite
+HEADERS += 3rdparty/sqlite/sqlite3.h
+SOURCES += 3rdparty/sqlite/sqlite3.c
 include(lang/lang.pri)
 }
 
 unix {
   TARGET = quiterss
-  CONFIG += link_pkgconfig qtsingleapplication
+  CONFIG += link_pkgconfig
   PKGCONFIG += sqlite3
   TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts
   desktop.files = quiterss.desktop
