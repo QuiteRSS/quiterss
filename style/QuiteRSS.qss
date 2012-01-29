@@ -201,6 +201,7 @@ QHeaderView {
 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 							stop: 0 #ffffff, stop: 0.4 #ffffff,
 							stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+	color: #000000;
 }
 
 QHeaderView::section {
