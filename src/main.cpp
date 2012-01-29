@@ -19,6 +19,7 @@ int main(int argc, char **argv)
       return 0;
     }
     app.setApplicationName("QuiteRss");
+    app.setOrganizationName("QuiteRss");
     app.setWindowIcon(QIcon(":/images/QuiteRSS.ico"));
     app.setQuitOnLastWindowClosed(false);
 
