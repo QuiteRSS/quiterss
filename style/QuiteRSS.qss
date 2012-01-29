@@ -84,12 +84,13 @@ QMenu::item:selected {
 }
 
 QTabWidget::pane { /* –амка виджета со вкладками */
-	top: -1px;
-	bottom: -1px;
+/*	top: -1px;
+	bottom: -1px;*/
+	border: 1px solid gray;
 }
 
 QTabWidget::tab-bar {
-	left: 2px; /* сдвигаем вправо на 5px */
+	left: 2px; /* сдвигаем вправо на 2px */
 }
 
 /* ѕримен€ем стиль ко вкладке использу€ субэлемент управлени€ tab. ќбратите внимание на то, что
@@ -104,7 +105,7 @@ QTabBar::tab {
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	min-width: 8ex;
-	padding: 4px 4px 5px 4px;
+	padding: 4px 12px 4px 12px;
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
@@ -120,26 +121,8 @@ QTabBar::tab:selected {
 
 QTabBar::tab:!selected {
 	margin-top: 2px;
-	margin-bottom: 1px;
+	/*margin-bottom: 1px;*/
 }
-
- QTabBar::tab:selected {
-     /* расширение/перекрытие слева и справа по 4px */
-     margin-left: -2px;
-     margin-right: -2px;
- }
-
- QTabBar::tab:first:selected {
-     margin-left: 0; /* перва€ выбранна€ вкладка ничего не перекрывает слева от себ€ */
- }
-
- QTabBar::tab:last:selected {
-     margin-right: 0; /* последн€€ выбранна€ вкладка ничего не перекрывает справа от себ€ */
- }
-
- QTabBar::tab:only-one {
-     margin: 0; /* если имеетс€ только одна вкладка, перекрывающиес€ пол€ не нужны */
- }
 
 #feedsTitleLabel_, #newsTitleLabel_ {
 	margin-top: 2px;
@@ -300,4 +283,8 @@ QHeaderView::up-arrow {
 
 QStatusBar #progressBar_{
 	margin-right: 5px;
+}
+
+QMainWindow::separator {
+	border: none;
 }
