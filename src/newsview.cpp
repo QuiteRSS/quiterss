@@ -44,6 +44,7 @@ NewsView::NewsView(QWidget * parent) :
 
 /*virtual*/ void NewsView::mouseMoveEvent(QMouseEvent *event)
 {
+  Q_UNUSED(event)
 }
 
 /*virtual*/ void NewsView::mouseDoubleClickEvent(QMouseEvent *event)

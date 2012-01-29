@@ -2,3 +2,4 @@ syntax: glob
 *.user
 *.bak
 *.orig
+.directory

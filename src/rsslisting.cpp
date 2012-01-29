@@ -235,7 +235,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsPanel->setLayout(feedsPanelLayout);
 
     QVBoxLayout *feedsWidgetLayout = new QVBoxLayout();
-    feedsWidgetLayout->setMargin(1);
+    feedsWidgetLayout->setMargin(0);
     feedsWidgetLayout->setSpacing(0);
     feedsWidgetLayout->addWidget(feedsView_);
 
@@ -466,6 +466,7 @@ RSSListing::~RSSListing()
 
 /*virtual*/ void RSSListing::showEvent(QShowEvent* event)
 {
+  Q_UNUSED(event)
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
 }
@@ -907,14 +908,14 @@ void RSSListing::readSettings()
   langFileName_ = settings_->value("langFileName", strLang).toString();
 
   QString fontFamily = settings_->value("/feedsFontFamily", qApp->font().family()).toString();
-  int fontSize = settings_->value("/feedsFontSize", qApp->font().pointSize()).toInt();
+  int fontSize = settings_->value("/feedsFontSize", 8).toInt();
   feedsView_->setFont(QFont(fontFamily, fontSize));
 
   fontFamily = settings_->value("/newsFontFamily", qApp->font().family()).toString();
-  fontSize = settings_->value("/newsFontSize", qApp->font().pointSize()).toInt();
+  fontSize = settings_->value("/newsFontSize", 8).toInt();
   newsView_->setFont(QFont(fontFamily, fontSize));
   fontFamily = settings_->value("/WebFontFamily", qApp->font().family()).toString();
-  fontSize = settings_->value("/WebFontSize", qApp->font().pointSize()+4).toInt();
+  fontSize = settings_->value("/WebFontSize", 12).toInt();
   webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
 
@@ -1106,7 +1107,7 @@ void RSSListing::deleteFeed()
 void RSSListing::slotImportFeeds()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
-      qApp->applicationDirPath(),
+      QDir::homePath(),
       tr("OPML-files (*.opml)"));
 
   if (fileName.isNull()) {

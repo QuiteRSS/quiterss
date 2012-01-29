@@ -281,6 +281,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
 void OptionsDialog::slotCategoriesItemCLicked(QTreeWidgetItem* item, int column)
 {
+  Q_UNUSED(column)
   contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
   contentStack_->setCurrentIndex(item->data(0, Qt::DisplayRole).toInt());
 }
@@ -382,9 +383,11 @@ void OptionsDialog::slotFontChange()
 void OptionsDialog::slotFontReset()
 {
   switch (fontTree->currentItem()->text(0).toInt()) {
-  case 2: fontTree->currentItem()->setText(2, "Tahoma, 12");
+  case 2: fontTree->currentItem()->setText(
+                  2, QString("%1, 12").arg(qApp->font().family()));
     break;
-  default: fontTree->currentItem()->setText(2, "Tahoma, 8");
+  default: fontTree->currentItem()->setText(
+                  2, QString("%1, 8").arg(qApp->font().family()));
   }
 }
 
