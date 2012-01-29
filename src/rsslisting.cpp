@@ -104,7 +104,7 @@ RSSListing::RSSListing(QWidget *parent)
             QSettings::IniFormat);
     } else {
       settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                                QCoreApplication::applicationName(), QCoreApplication::applicationName());
+                                QCoreApplication::organizationName(), QCoreApplication::applicationName());
       dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
       QDir d(dataDirPath_);
       d.mkpath(dataDirPath_);
