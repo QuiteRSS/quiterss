@@ -88,9 +88,9 @@ unix {
   }
   target.path =  $$PREFIX/bin
   desktop.path =  $$PREFIX/share/applications
-  icon_16.path =  $$PREFIX/share/icons/hicolor/16x16
-  icon_24.path =  $$PREFIX/share/icons/hicolor/24x24
-  icon_32.path =  $$PREFIX/share/icons/hicolor/32x32
+  icon_16.path =  $$PREFIX/share/icons/hicolor/16x16/apps
+  icon_24.path =  $$PREFIX/share/icons/hicolor/24x24/apps
+  icon_32.path =  $$PREFIX/share/icons/hicolor/32x32/apps
   translations.path =  $$PREFIX/share/quiterss/lang
   INSTALLS += target desktop icon_16 icon_24 icon_32 translations
 }
