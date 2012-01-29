@@ -65,6 +65,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     if (index.column() == view_->header()->sortIndicatorSection()) {
       return QBrush(QColor("#F5F5F5"));
     }
+  } else if (role == Qt::TextColorRole) {
+    QBrush brush;
+    return brush;
   }
   return QSqlTableModel::data(index, role);
 }

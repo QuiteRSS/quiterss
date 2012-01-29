@@ -10,6 +10,7 @@ QMenuBar {
 										stop:0.4 #d8eed8,
 										stop:0.5 #cceecc,
 										stop:1 #e0eee0);
+	color: #000000;
 	padding: 1px;
 }
 
@@ -73,6 +74,7 @@ QMenu::item:selected {
 
 #newsView_ {
 	border-style: none;
+	background-color: #FFFFFF;
 	padding: 1px;
 	margin-top: -1px;
 }
@@ -87,7 +89,7 @@ QTabWidget::pane { /* –амка виджета со вкладками */
 }
 
 QTabWidget::tab-bar {
-	/*left: 5px;*/ /* сдвигаем вправо на 5px */
+	left: 2px; /* сдвигаем вправо на 5px */
 }
 
 /* ѕримен€ем стиль ко вкладке использу€ субэлемент управлени€ tab. ќбратите внимание на то, что
@@ -96,6 +98,7 @@ QTabBar::tab {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
 								stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+	color: #000000;
 	border: 1px solid #C4C4C3;
 	border-bottom: none;
 	border-top-left-radius: 4px;
@@ -108,6 +111,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+	color: #000000;
 }
 
 QTabBar::tab:selected {
@@ -115,21 +119,31 @@ QTabBar::tab:selected {
 }
 
 QTabBar::tab:!selected {
+	margin-top: 2px;
 	margin-bottom: 1px;
 }
-/*
-#feedsPanel, #newsPanel {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
-								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
-	border: 1px solid #9B9B9B;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-}*/
+
+ QTabBar::tab:selected {
+     /* расширение/перекрытие слева и справа по 4px */
+     margin-left: -2px;
+     margin-right: -2px;
+ }
+
+ QTabBar::tab:first:selected {
+     margin-left: 0; /* перва€ выбранна€ вкладка ничего не перекрывает слева от себ€ */
+ }
+
+ QTabBar::tab:last:selected {
+     margin-right: 0; /* последн€€ выбранна€ вкладка ничего не перекрывает справа от себ€ */
+ }
+
+ QTabBar::tab:only-one {
+     margin: 0; /* если имеетс€ только одна вкладка, перекрывающиес€ пол€ не нужны */
+ }
 
 #feedsTitleLabel_, #newsTitleLabel_ {
 	margin-top: 2px;
-	margin-left: 2px;
+	margin-left: 3px;
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
@@ -140,6 +154,7 @@ QTabBar::tab:!selected {
 	padding: 4px;
 	text-align: center;
 	vertical-align:middle;
+	color: #000000;
 }
 
 #newsTitleLabel_ {
@@ -272,6 +287,7 @@ QHeaderView::up-arrow {
 										stop:0.4 #d8eed8,
 										stop:0.5 #cceecc,
 										stop:1 #e0eee0);
+	color: #000000;
 }
 
 #categoriesTree {
