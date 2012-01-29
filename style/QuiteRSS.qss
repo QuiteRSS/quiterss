@@ -67,6 +67,8 @@ QMenu::item:selected {
 	border-style: none;
 	background: #F9FFF9;
 	padding: 1px;
+	margin: 1px;
+	margin-top: -2px;
 }
 
 #newsView_ {
@@ -131,7 +133,8 @@ QTabBar::tab:!selected {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
 								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
-
+	border: 1px solid grey;
+	border-bottom: 0px solid #D5D5D5;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	padding: 4px;
@@ -143,13 +146,8 @@ QTabBar::tab:!selected {
 	font-weight:bold;
 }
 
-QDockWidget {
-    border: 0px solid gray;
-  
-}
-
 #feedsWidget, #newsWidget {
-	
+	border: 1px solid gray;	
 
 }
 

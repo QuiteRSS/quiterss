@@ -235,7 +235,7 @@ RSSListing::RSSListing(QWidget *parent)
     feedsPanel->setLayout(feedsPanelLayout);
 
     QVBoxLayout *feedsWidgetLayout = new QVBoxLayout();
-    feedsWidgetLayout->setMargin(0);
+    feedsWidgetLayout->setMargin(1);
     feedsWidgetLayout->setSpacing(0);
     feedsWidgetLayout->addWidget(feedsView_);
 
