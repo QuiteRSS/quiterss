@@ -107,6 +107,7 @@ void NewsHeader::overload()
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
+  Q_UNUSED(obj)
   if (event->type() == QEvent::Resize) {
     if (model_->columnCount() == 0) return false;
 
@@ -284,6 +285,7 @@ void NewsHeader::columnVisible(QAction *action)
 
 void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
 {
+  Q_UNUSED(oldVIdx)
   if ((model_->fieldIndex("read") == lIdx) ||
       (model_->fieldIndex("sticky") == lIdx)) {
     for (int i = count()-1; i >= 0; i--) {

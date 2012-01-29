@@ -29,5 +29,5 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mouseMoveEvent(QMouseEvent *event)
 {
-
+  Q_UNUSED(event)
 }
