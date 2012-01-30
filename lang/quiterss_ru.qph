@@ -640,4 +640,33 @@
     <source>Reading</source>
     <target>Чтение</target>
 </phrase>
+<phrase>
+    <source>New news: %1
+</source>
+    <target>Новых новостей: %1</target>
+</phrase>
+<phrase>
+    <source>Show static icon</source>
+    <target>Показывать статическую иконку</target>
+</phrase>
+<phrase>
+    <source>Change icon for incoming new news</source>
+    <target>Изменять иконку для входящих новых новостей</target>
+</phrase>
+<phrase>
+    <source>Show the count of new news</source>
+    <target>Показывать количество новых новостей</target>
+</phrase>
+<phrase>
+    <source>Show the count of unread news</source>
+    <target>Показывать количество непрочитанных новостей</target>
+</phrase>
+<phrase>
+    <source>Tray icon behavior:</source>
+    <target>Поведение иконки в трее:</target>
+</phrase>
+<phrase>
+    <source>New news: %1</source>
+    <target>Новых новостей: %1</target>
+</phrase>
 </QPH>

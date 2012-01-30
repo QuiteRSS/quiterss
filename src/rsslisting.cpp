@@ -2219,7 +2219,8 @@ void RSSListing::retranslateStrings() {
   str = traySystem->toolTip();
   QString info =
       "QuiteRSS\n" +
-      QString(tr("New news: %1\n")).arg(str.section(": ", 1).section("\n", 0, 0)) +
+      QString(tr("New news: %1")).arg(str.section(": ", 1).section("\n", 0, 0)) +
+      QString("\n") +
       QString(tr("Unread news: %1")).arg(str.section(": ", 2));
   traySystem->setToolTip(info);
 
@@ -2404,7 +2405,8 @@ void RSSListing::refreshInfoTray()
 
   QString info =
       "QuiteRSS\n" +
-      QString(tr("New news: %1\n")).arg(newCount) +
+      QString(tr("New news: %1")).arg(newCount) +
+      QString("\n") +
       QString(tr("Unread news: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
