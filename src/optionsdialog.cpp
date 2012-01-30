@@ -32,40 +32,38 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ system tray
-  QLabel *moveTrayLabel = new QLabel(tr("Move to the system tray when:"));
-  moveTrayLabel->setObjectName("moveTrayLabel");
   startingTray_ = new QCheckBox(tr("starting QuiteRSS"));
   minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
   closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
-  singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
-  emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
+  QVBoxLayout *moveTrayLayout = new QVBoxLayout();
+  moveTrayLayout->setContentsMargins(15, 0, 5, 10);
+  moveTrayLayout->addWidget(startingTray_);
+  moveTrayLayout->addWidget(minimizingTray_);
+  moveTrayLayout->addWidget(closingTray_);
 
-  QLabel *notificationTrayLabel = new QLabel(tr("Notification system tray:"));
-  notificationTrayLabel->setObjectName("notificationTrayLabel");
-  noNotificationTray_ = new QRadioButton(tr("Dont notification"));
-  notificationTray_ = new QRadioButton(tr("Notification"));
-  countNewTray_ = new QRadioButton(tr("Show amount of new news"));
-  countUnreadTray_ = new QRadioButton(tr("Show amount of unread news"));
-  QVBoxLayout *notificationLayout = new QVBoxLayout();
-  notificationLayout->setMargin(0);
-  notificationLayout->addWidget(notificationTrayLabel);
-  notificationLayout->addWidget(noNotificationTray_);
-  notificationLayout->addWidget(notificationTray_);
-  notificationLayout->addWidget(countNewTray_);
-  notificationLayout->addWidget(countUnreadTray_);
+  staticIconTray_ = new QRadioButton(tr("Show static icon"));
+  changeIconTray_ = new QRadioButton(tr("Change icon for incoming new news"));
+  newCountTray_ = new QRadioButton(tr("Show the count of new news"));
+  unreadCountTray_ = new QRadioButton(tr("Show the count of unread news"));
+  QVBoxLayout *behaviorLayout = new QVBoxLayout();
+  behaviorLayout->setContentsMargins(15, 0, 5, 10);
+  behaviorLayout->addWidget(staticIconTray_);
+  behaviorLayout->addWidget(changeIconTray_);
+  behaviorLayout->addWidget(newCountTray_);
+  behaviorLayout->addWidget(unreadCountTray_);
+
+  emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
+  singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->setMargin(2);
-  generalLayout->addWidget(moveTrayLabel, 0, Qt::AlignLeft);
-  generalLayout->addWidget(startingTray_, 0, Qt::AlignLeft);
-  generalLayout->addWidget(minimizingTray_, 0, Qt::AlignLeft);
-  generalLayout->addWidget(closingTray_, 0, Qt::AlignLeft);
-  generalLayout->addSpacing(10);
-  generalLayout->addLayout(notificationLayout);
-  generalLayout->addSpacing(10);
-  generalLayout->addWidget(singleClickTray_, 0, Qt::AlignLeft);
+  generalLayout->addWidget(new QLabel(tr("Move to the system tray when:")));
+  generalLayout->addLayout(moveTrayLayout);
+  generalLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
+  generalLayout->addLayout(behaviorLayout);
+  generalLayout->addWidget(singleClickTray_);
 #if defined(Q_WS_WIN)
-  generalLayout->addWidget(emptyWorking_, 0, Qt::AlignLeft);
+  generalLayout->addWidget(emptyWorking_);
 #endif
   generalLayout->addStretch(1);
 
@@ -417,12 +415,21 @@ void OptionsDialog::setCurrentItem(int index)
   slotCategoriesItemCLicked(categoriesTree->topLevelItem(index), 0);
 }
 
-void OptionsDialog::setBehaviourTray(int behaviour)
+void OptionsDialog::setBehaviorIconTray(int behavior)
 {
-
+  switch (behavior) {
+  case 1: changeIconTray_->setChecked(true);  break;
+  case 2: newCountTray_->setChecked(true);    break;
+  case 3: unreadCountTray_->setChecked(true); break;
+  default: staticIconTray_->setChecked(true);
+  }
 }
 
-int OptionsDialog::behaviourTray()
+int OptionsDialog::behaviorIconTray()
 {
-
+  if (staticIconTray_->isChecked())       return 0;
+  else if (changeIconTray_->isChecked())  return 1;
+  else if (newCountTray_->isChecked())    return 2;
+  else if (unreadCountTray_->isChecked()) return 3;
+  else return 0;
 }

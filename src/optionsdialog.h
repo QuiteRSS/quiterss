@@ -15,8 +15,8 @@ public:
   void setLanguage(QString langFileName);
   int currentIndex();
   void setCurrentItem(int index);
-  void setBehaviourTray(int behaviour);
-  int behaviourTray();
+  void setBehaviorIconTray(int behavior);
+  int behaviorIconTray();
 
   // systemTray
   QCheckBox *startingTray_;
@@ -24,10 +24,6 @@ public:
   QCheckBox *closingTray_;
   QCheckBox *singleClickTray_;
   QCheckBox *emptyWorking_;
-  QRadioButton *noNotificationTray_;
-  QRadioButton *notificationTray_;
-  QRadioButton *countNewTray_;
-  QRadioButton *countUnreadTray_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;
@@ -64,6 +60,12 @@ private:
   QWidget *fontsWidget_;
 
   QDialogButtonBox *buttonBox_;
+
+  // systemTray
+  QRadioButton *staticIconTray_;
+  QRadioButton *changeIconTray_;
+  QRadioButton *newCountTray_;
+  QRadioButton *unreadCountTray_;
 
   // network connection
   QRadioButton *systemProxyButton_;

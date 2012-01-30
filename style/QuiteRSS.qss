@@ -288,7 +288,3 @@ QStatusBar #progressBar_{
 QMainWindow::separator {
 	border: none;
 }
-
-/*#moveTrayLabel, #notificationTrayLabel {
-	font-weight:bold;
-}*/

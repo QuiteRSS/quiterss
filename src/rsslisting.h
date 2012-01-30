@@ -70,7 +70,7 @@ private:
     void updateWebView(QModelIndex index);
     bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
     void retranslateStrings();
-    void refreshInfoTray(bool changeIcon);
+    void refreshInfoTray();
 
     QSettings *settings_;
     QString dataDirPath_;
@@ -189,7 +189,7 @@ private:
     bool closingTray_;
     bool singleClickTray_;
     bool emptyWorking_;
-    bool countNewTray_;
+    int behaviorIconTray_;
 
     QBasicTimer markNewsReadTimer_;
     bool markNewsReadOn_;

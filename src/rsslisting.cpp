@@ -552,7 +552,7 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
-    if (isActiveWindow() && !countNewTray_)
+    if (isActiveWindow() && (behaviorIconTray_ == 1))
       traySystem->setIcon(QIcon(":/images/quiterss16"));
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
@@ -893,9 +893,9 @@ void RSSListing::readSettings()
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
   closingTray_ = settings_->value("closingTray", true).toBool();
+  behaviorIconTray_ = settings_->value("behaviorIconTray", 1).toInt();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
-  countNewTray_ = settings_->value("countNewTray", false).toBool();
 
   QString strLang("en");
   QString strLocalLang = QLocale::system().name().left(2);
@@ -968,9 +968,9 @@ void RSSListing::writeSettings()
   settings_->setValue("startingTray", startingTray_);
   settings_->setValue("minimizingTray", minimizingTray_);
   settings_->setValue("closingTray", closingTray_);
+  settings_->setValue("behaviorIconTray", behaviorIconTray_);
   settings_->setValue("singleClickTray", singleClickTray_);
   settings_->setValue("emptyWorking", emptyWorking_);
-  settings_->setValue("countNewTray", countNewTray_);
 
   settings_->setValue("langFileName", langFileName_);
 
@@ -1262,13 +1262,9 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
       arg(newCount).arg(parseFeedId);
   q.exec(qStr);
 
-  if (countNewTray_) {
-    refreshInfoTray(true);
-  } else {
-    refreshInfoTray(false);
-    if (!isActiveWindow() && (newCount > newCountOld))
-      traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
-  }
+  if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
+    traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+  refreshInfoTray();
 
   QModelIndex index = feedsView_->currentIndex();
   int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
@@ -1408,9 +1404,9 @@ void RSSListing::showOptionDlg()
   optionsDialog->startingTray_->setChecked(startingTray_);
   optionsDialog->minimizingTray_->setChecked(minimizingTray_);
   optionsDialog->closingTray_->setChecked(closingTray_);
+  optionsDialog->setBehaviorIconTray(behaviorIconTray_);
   optionsDialog->singleClickTray_->setChecked(singleClickTray_);
   optionsDialog->emptyWorking_->setChecked(emptyWorking_);
-  optionsDialog->countNewTray_->setChecked(countNewTray_);
 
   optionsDialog->setProxy(networkProxy_);
 
@@ -1445,9 +1441,12 @@ void RSSListing::showOptionDlg()
   startingTray_ = optionsDialog->startingTray_->isChecked();
   minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
   closingTray_ = optionsDialog->closingTray_->isChecked();
+  behaviorIconTray_ = optionsDialog->behaviorIconTray();
+  if (behaviorIconTray_ > 1) {
+    refreshInfoTray();
+  } else traySystem->setIcon(QIcon(":/images/quiterss16"));
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
   emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
-  countNewTray_ = optionsDialog->countNewTray_->isChecked();
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
@@ -1711,13 +1710,9 @@ void RSSListing::slotUpdateStatus()
       arg(newsModel_->tableName().remove("feed_"));
   q.exec(qStr);
 
-  if (countNewTray_) {
-    refreshInfoTray(true);
-  } else {
-    refreshInfoTray(false);
-    if (!isActiveWindow() && (newCount > newCountOld))
-      traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
-  }
+  if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
+    traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+  refreshInfoTray();
 
   feedsModel_->select();
   int rowFeeds = -1;
@@ -1985,6 +1980,7 @@ void RSSListing::setAutoLoadImages()
 void RSSListing::loadSettingsFeeds()
 {
   markNewsReadOn_ = false;
+  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 1).toInt();
   autoLoadImages_ = !settings_->value("Settings/autoLoadImages", false).toBool();
   setAutoLoadImages();
 
@@ -2390,7 +2386,7 @@ void RSSListing::slotEditMenuAction()
   else  feedProperties_->setEnabled(false);
 }
 
-void RSSListing::refreshInfoTray(bool changeIcon)
+void RSSListing::refreshInfoTray()
 {
   int newCount = 0;
   QSqlQuery q(db_);
@@ -2412,7 +2408,8 @@ void RSSListing::refreshInfoTray(bool changeIcon)
       QString(tr("Unread news: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
-  if (changeIcon) {
+  if (behaviorIconTray_ > 1) {
+    if (behaviorIconTray_ == 3) newCount = unreadCount;
     if (newCount != 0) {
       QString newCountStr;
       QFont font;
