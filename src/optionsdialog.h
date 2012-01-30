@@ -15,14 +15,19 @@ public:
   void setLanguage(QString langFileName);
   int currentIndex();
   void setCurrentItem(int index);
+  void setBehaviourTray(int behaviour);
+  int behaviourTray();
 
-  // general
+  // systemTray
   QCheckBox *startingTray_;
   QCheckBox *minimizingTray_;
   QCheckBox *closingTray_;
   QCheckBox *singleClickTray_;
   QCheckBox *emptyWorking_;
-  QCheckBox *countNewTray_;
+  QRadioButton *noNotificationTray_;
+  QRadioButton *notificationTray_;
+  QRadioButton *countNewTray_;
+  QRadioButton *countUnreadTray_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;

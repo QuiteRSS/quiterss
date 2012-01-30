@@ -70,7 +70,7 @@ private:
     void updateWebView(QModelIndex index);
     bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
     void retranslateStrings();
-    void showCountNewTray();
+    void refreshInfoTray(bool changeIcon);
 
     QSettings *settings_;
     QString dataDirPath_;

@@ -31,24 +31,39 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "4" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
-  //{
+  //{ system tray
+  QLabel *moveTrayLabel = new QLabel(tr("Move to the system tray when:"));
+  moveTrayLabel->setObjectName("moveTrayLabel");
   startingTray_ = new QCheckBox(tr("starting QuiteRSS"));
   minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
   closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
   singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
-  countNewTray_ = new QCheckBox(tr("Show amount of new news"));
+
+  QLabel *notificationTrayLabel = new QLabel(tr("Notification system tray:"));
+  notificationTrayLabel->setObjectName("notificationTrayLabel");
+  noNotificationTray_ = new QRadioButton(tr("Dont notification"));
+  notificationTray_ = new QRadioButton(tr("Notification"));
+  countNewTray_ = new QRadioButton(tr("Show amount of new news"));
+  countUnreadTray_ = new QRadioButton(tr("Show amount of unread news"));
+  QVBoxLayout *notificationLayout = new QVBoxLayout();
+  notificationLayout->setMargin(0);
+  notificationLayout->addWidget(notificationTrayLabel);
+  notificationLayout->addWidget(noNotificationTray_);
+  notificationLayout->addWidget(notificationTray_);
+  notificationLayout->addWidget(countNewTray_);
+  notificationLayout->addWidget(countUnreadTray_);
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->setMargin(2);
-  generalLayout->addWidget(
-        new QLabel(tr("Move to the system tray when:")), 0, Qt::AlignLeft);
+  generalLayout->addWidget(moveTrayLabel, 0, Qt::AlignLeft);
   generalLayout->addWidget(startingTray_, 0, Qt::AlignLeft);
   generalLayout->addWidget(minimizingTray_, 0, Qt::AlignLeft);
   generalLayout->addWidget(closingTray_, 0, Qt::AlignLeft);
   generalLayout->addSpacing(10);
+  generalLayout->addLayout(notificationLayout);
+  generalLayout->addSpacing(10);
   generalLayout->addWidget(singleClickTray_, 0, Qt::AlignLeft);
-  generalLayout->addWidget(countNewTray_, 0, Qt::AlignLeft);
 #if defined(Q_WS_WIN)
   generalLayout->addWidget(emptyWorking_, 0, Qt::AlignLeft);
 #endif
@@ -400,4 +415,14 @@ void OptionsDialog::setCurrentItem(int index)
 {
   categoriesTree->setCurrentItem(categoriesTree->topLevelItem(index));
   slotCategoriesItemCLicked(categoriesTree->topLevelItem(index), 0);
+}
+
+void OptionsDialog::setBehaviourTray(int behaviour)
+{
+
+}
+
+int OptionsDialog::behaviourTray()
+{
+
 }

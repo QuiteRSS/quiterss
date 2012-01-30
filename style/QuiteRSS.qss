@@ -135,18 +135,17 @@ QTabBar::tab:!selected {
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	padding: 4px;
-	text-align: center;
 	vertical-align:middle;
 	color: #000000;
 }
 
 #newsTitleLabel_ {
 	font-weight:bold;
+	min-width: 50px;
 }
 
 #feedsWidget, #newsWidget {
-	border: 1px solid gray;	
-
+	border: 1px solid gray;
 }
 
 QToolBar {
@@ -289,3 +288,7 @@ QStatusBar #progressBar_{
 QMainWindow::separator {
 	border: none;
 }
+
+/*#moveTrayLabel, #notificationTrayLabel {
+	font-weight:bold;
+}*/

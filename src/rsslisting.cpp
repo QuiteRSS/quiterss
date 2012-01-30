@@ -275,7 +275,6 @@ RSSListing::RSSListing(QWidget *parent)
     newsTitleLabel_ = new QLabel(this);
     newsTitleLabel_->setObjectName("newsTitleLabel_");
     newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
-    newsTitleLabel_->setMinimumWidth(10);
 
     newsToolBar_ = new QToolBar(this);
     newsToolBar_->setObjectName("newsToolBar_");
@@ -1264,9 +1263,11 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   q.exec(qStr);
 
   if (countNewTray_) {
-    showCountNewTray();
-  } else if (!isActiveWindow() && (newCount > newCountOld)) {
-    traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+    refreshInfoTray(true);
+  } else {
+    refreshInfoTray(false);
+    if (!isActiveWindow() && (newCount > newCountOld))
+      traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
   QModelIndex index = feedsView_->currentIndex();
@@ -1562,6 +1563,7 @@ void RSSListing::slotGetAllFeeds()
   while (q.next()) {
     getFeed(q.record().value(0).toString(), q.record().value(1).toDateTime());
     ++feedCount;
+    qDebug() << "*02" << feedCount;
   }
 
   if (0 == feedCount) {
@@ -1710,9 +1712,11 @@ void RSSListing::slotUpdateStatus()
   q.exec(qStr);
 
   if (countNewTray_) {
-    showCountNewTray();
-  } else if (!isActiveWindow() && (newCount > newCountOld)) {
-    traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+    refreshInfoTray(true);
+  } else {
+    refreshInfoTray(false);
+    if (!isActiveWindow() && (newCount > newCountOld))
+      traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
 
   feedsModel_->select();
@@ -2216,6 +2220,13 @@ void RSSListing::retranslateStrings() {
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
   statusAll_->setText(QString(tr(" All: %1 ")).arg(str));
 
+  str = traySystem->toolTip();
+  QString info =
+      "QuiteRSS\n" +
+      QString(tr("New news: %1\n")).arg(str.section(": ", 1).section("\n", 0, 0)) +
+      QString(tr("Unread news: %1")).arg(str.section(": ", 2));
+  traySystem->setToolTip(info);
+
   addFeedAct_->setText(tr("&Add..."));
   addFeedAct_->setToolTip(tr("Add new feed"));
 
@@ -2379,7 +2390,7 @@ void RSSListing::slotEditMenuAction()
   else  feedProperties_->setEnabled(false);
 }
 
-void RSSListing::showCountNewTray()
+void RSSListing::refreshInfoTray(bool changeIcon)
 {
   int newCount = 0;
   QSqlQuery q(db_);
@@ -2388,34 +2399,48 @@ void RSSListing::showCountNewTray()
   while (q.next()) {
     newCount += q.value(0).toInt();
   }
+  int unreadCount = 0;
+  qStr = QString("select unread from feeds");
+  q.exec(qStr);
+  while (q.next()) {
+    unreadCount += q.value(0).toInt();
+  }
 
-  if (newCount != 0) {
-    QString newCountStr;
-    QFont font;
-    font.setFamily("Consolas");
-    if (newCount > 99) {
-      font.setBold(false);
-      if (newCount < 1000) {
-        font.setPointSize(6);
-        newCountStr = QString::number(newCount);
+  QString info =
+      "QuiteRSS\n" +
+      QString(tr("New news: %1\n")).arg(newCount) +
+      QString(tr("Unread news: %1")).arg(unreadCount);
+  traySystem->setToolTip(info);
+
+  if (changeIcon) {
+    if (newCount != 0) {
+      QString newCountStr;
+      QFont font;
+      font.setFamily("Consolas");
+      if (newCount > 99) {
+        font.setBold(false);
+        if (newCount < 1000) {
+          font.setPixelSize(8);
+          newCountStr = QString::number(newCount);
+        } else {
+          font.setPixelSize(11);
+          newCountStr = "#";
+        }
       } else {
-        font.setPointSize(10);
-        newCountStr = "#";
+        font.setBold(true);
+        font.setPixelSize(11);
+        newCountStr = QString::number(newCount);
       }
-    } else {
-      font.setBold(true);
-      font.setPointSize(8);
-      newCountStr = QString::number(newCount);
-    }
 
-    QPixmap icon = QPixmap(":/images/countNew");
-    QPainter trayPainter;
-    trayPainter.begin(&icon);
-    trayPainter.setFont(font);
-    trayPainter.setPen(Qt::blue);
-    trayPainter.drawText(QRect(0, 0, 16, 16), Qt::AlignVCenter | Qt::AlignCenter,
-                         newCountStr);
-    trayPainter.end();
-    traySystem->setIcon(icon);
-  } else traySystem->setIcon(QIcon(":/images/quiterss16"));
+      QPixmap icon = QPixmap(":/images/countNew");
+      QPainter trayPainter;
+      trayPainter.begin(&icon);
+      trayPainter.setFont(font);
+      trayPainter.setPen(Qt::white);
+      trayPainter.drawText(QRect(1, 0, 15, 16), Qt::AlignVCenter | Qt::AlignHCenter,
+                           newCountStr);
+      trayPainter.end();
+      traySystem->setIcon(icon);
+    } else traySystem->setIcon(QIcon(":/images/quiterss16"));
+  }
 }
