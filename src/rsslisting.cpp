@@ -1576,7 +1576,6 @@ void RSSListing::slotGetAllFeeds()
   while (q.next()) {
     getFeed(q.record().value(0).toString(), q.record().value(1).toDateTime());
     ++feedCount;
-    qDebug() << "*02" << feedCount;
   }
 
   if (0 == feedCount) {
