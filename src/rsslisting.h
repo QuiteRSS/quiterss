@@ -95,6 +95,7 @@ private:
     QAction *optionsAct_;
     QAction *updateFeedAct_;
     QAction *updateAllFeedsAct_;
+    QAction *markAllFeedRead_;
     QAction *exitAct_;
     QAction *markNewsRead_;
     QAction *markAllNewsRead_;
@@ -228,6 +229,7 @@ private slots:
     void showContextMenuToolBar(const QPoint &);
     void slotShowFeedPropertiesDlg();
     void slotEditMenuAction();
+    void markAllFeedsRead(bool readOn = true);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
