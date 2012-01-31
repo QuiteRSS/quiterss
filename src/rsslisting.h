@@ -189,6 +189,7 @@ private:
     bool minimizingTray_;
     bool closingTray_;
     bool singleClickTray_;
+    bool clearStatusNew_;
     bool emptyWorking_;
     int behaviorIconTray_;
 

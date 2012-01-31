@@ -52,8 +52,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   behaviorLayout->addWidget(newCountTray_);
   behaviorLayout->addWidget(unreadCountTray_);
 
-  emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
   singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
+  clearStatusNew_ = new QCheckBox(tr("Clear status new on minimize to tray"));
+  emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->setMargin(2);
@@ -62,6 +63,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   generalLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
   generalLayout->addLayout(behaviorLayout);
   generalLayout->addWidget(singleClickTray_);
+  generalLayout->addWidget(clearStatusNew_);
 #if defined(Q_WS_WIN)
   generalLayout->addWidget(emptyWorking_);
 #endif

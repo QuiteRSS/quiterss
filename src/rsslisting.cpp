@@ -565,6 +565,8 @@ void RSSListing::slotPlaceToTray()
 {
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
+  if (clearStatusNew_)
+    markAllFeedsRead(false);
   hide();
   sqliteDBMemFile(db_, dbFileName_, true);
   writeSettings();
@@ -901,6 +903,7 @@ void RSSListing::readSettings()
   closingTray_ = settings_->value("closingTray", true).toBool();
   behaviorIconTray_ = settings_->value("behaviorIconTray", 1).toInt();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
+  clearStatusNew_ = settings_->value("clearStatusNew", false).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
   QString strLang("en");
@@ -976,6 +979,7 @@ void RSSListing::writeSettings()
   settings_->setValue("closingTray", closingTray_);
   settings_->setValue("behaviorIconTray", behaviorIconTray_);
   settings_->setValue("singleClickTray", singleClickTray_);
+  settings_->setValue("clearStatusNew", clearStatusNew_);
   settings_->setValue("emptyWorking", emptyWorking_);
 
   settings_->setValue("langFileName", langFileName_);
@@ -1412,6 +1416,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->closingTray_->setChecked(closingTray_);
   optionsDialog->setBehaviorIconTray(behaviorIconTray_);
   optionsDialog->singleClickTray_->setChecked(singleClickTray_);
+  optionsDialog->clearStatusNew_->setChecked(clearStatusNew_);
   optionsDialog->emptyWorking_->setChecked(emptyWorking_);
 
   optionsDialog->setProxy(networkProxy_);
@@ -1452,6 +1457,7 @@ void RSSListing::showOptionDlg()
     refreshInfoTray();
   } else traySystem->setIcon(QIcon(":/images/quiterss16"));
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
+  clearStatusNew_ = optionsDialog->clearStatusNew_->isChecked();
   emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
 
   networkProxy_ = optionsDialog->proxy();

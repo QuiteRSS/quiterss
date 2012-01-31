@@ -23,6 +23,7 @@ public:
   QCheckBox *minimizingTray_;
   QCheckBox *closingTray_;
   QCheckBox *singleClickTray_;
+  QCheckBox *clearStatusNew_;
   QCheckBox *emptyWorking_;
 
   // feeds
