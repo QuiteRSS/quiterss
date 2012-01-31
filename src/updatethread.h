@@ -8,7 +8,7 @@
 #include <QThread>
 #include <QXmlStreamReader>
 
-#define REPLY_MAX_COUNT 1
+#define REPLY_MAX_COUNT 8
 
 class UpdateThread : public QThread
 {
@@ -18,8 +18,8 @@ private:
   QNetworkAccessManager manager_;
   QList<QNetworkReply *>currentReplies_;
   QNetworkProxy networkProxy_;
-  QUrl currentUrl_;
-  QDateTime currentDate_;
+  QList<QUrl> currentUrls_;
+  QList<QDateTime> currentDates_;
 //  QByteArray currentData_;
 
   QQueue<QUrl> urlsQueue_;
@@ -33,8 +33,8 @@ private:
   QString pubDateString;
   QString guidString;
 
-  void get(const QUrl &url);
-  void head(const QUrl &url);
+  void get(const QUrl &url, const QDateTime &date);
+  void head(const QUrl &url, const QDateTime &date);
   void getQueuedUrl();
 
 public:
