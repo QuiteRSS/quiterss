@@ -5,6 +5,7 @@
 #include <QNetworkProxy>
 #include <QNetworkReply>
 #include <QQueue>
+#include <QTimer>
 #include <QThread>
 #include <QXmlStreamReader>
 
@@ -15,12 +16,11 @@ class UpdateThread : public QThread
   Q_OBJECT
 
 private:
-  QNetworkAccessManager manager_;
+  QNetworkAccessManager *manager_;
   QList<QNetworkReply *>currentReplies_;
   QNetworkProxy networkProxy_;
   QList<QUrl> currentUrls_;
   QList<QDateTime> currentDates_;
-//  QByteArray currentData_;
 
   QQueue<QUrl> urlsQueue_;
   QQueue<QDateTime> dateQueue_;
@@ -33,9 +33,10 @@ private:
   QString pubDateString;
   QString guidString;
 
+  QTimer *getUrlTimer_;
+
   void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
   void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
-  void getQueuedUrl();
 
 public:
   explicit UpdateThread(QObject *parent = 0);
@@ -45,14 +46,13 @@ public:
   void setProxy(const QNetworkProxy proxy);
 
 signals:
+  void startTimer();
   void readedXml(const QByteArray &xml, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
 
 private slots:
-//  void readyRead();
-//  void metaDataChanged();
+  void getQueuedUrl();
   void finished(QNetworkReply *reply);
-//  void error(QNetworkReply::NetworkError);
 
 public slots:
 

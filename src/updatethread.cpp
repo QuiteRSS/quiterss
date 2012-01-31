@@ -3,10 +3,8 @@
 UpdateThread::UpdateThread(QObject *parent) :
     QThread(parent)
 {
-  connect(&manager_, SIGNAL(finished(QNetworkReply*)),
-      this, SLOT(finished(QNetworkReply*)));
-
   qDebug() << "UpdateThread::constructor";
+  start();
 }
 
 UpdateThread::~UpdateThread()
@@ -16,8 +14,16 @@ UpdateThread::~UpdateThread()
 
 void UpdateThread::run()
 {
-  qDebug() << "UpdateThread::run()";
-  return;
+  manager_ = new QNetworkAccessManager();
+  connect(manager_, SIGNAL(finished(QNetworkReply*)),
+      this, SLOT(finished(QNetworkReply*)));
+
+  getUrlTimer_ = new QTimer();
+  getUrlTimer_->setSingleShot(true);
+  connect(this, SIGNAL(startTimer()), getUrlTimer_, SLOT(start()));
+  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
+
+  exec();
 }
 
 /*! \brief Постановка сетевого адреса в очередь запросов **********************/
@@ -26,7 +32,7 @@ void UpdateThread::getUrl(const QUrl &url, const QDateTime &date)
   urlsQueue_.enqueue(url);
   dateQueue_.enqueue(date);
   qDebug() << "urlsQueue_ <<" << url << "count=" << urlsQueue_.count();
-  getQueuedUrl();
+  emit startTimer();
 }
 
 /*! \brief Обработка очереди запросов *****************************************/
@@ -50,7 +56,7 @@ void UpdateThread::get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime 
 {
   qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
-  QNetworkReply *reply = manager_.get(request);
+  QNetworkReply *reply = manager_->get(request);
   currentReplies_.append(reply);
   currentUrls_.append(feedUrl);
   currentDates_.append(date);
@@ -60,7 +66,7 @@ void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime
 {
   qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
-  QNetworkReply *reply = manager_.head(request);
+  QNetworkReply *reply = manager_->head(request);
   currentReplies_.append(reply);
   currentUrls_.append(feedUrl);
   currentDates_.append(date);
