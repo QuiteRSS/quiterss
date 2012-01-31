@@ -678,6 +678,10 @@ void RSSListing::createActions()
   updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
+  markAllFeedRead_ = new QAction(this);
+  markAllFeedRead_->setIcon(QIcon(":/images/markReadAll"));
+  connect(markAllFeedRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
+
   markNewsRead_ = new QAction(this);
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
@@ -798,6 +802,8 @@ void RSSListing::createMenu()
   menuBar()->addMenu(feedMenu_);
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
+  feedMenu_->addSeparator();
+  feedMenu_->addAction(markAllFeedRead_);
   feedMenu_->addSeparator();
 
   feedsFilterGroup_ = new QActionGroup(this);
@@ -1942,6 +1948,7 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(addFeedAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(markFeedRead_);
+  feedContextMenu_->addAction(markAllFeedRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
   feedContextMenu_->addSeparator();
@@ -2249,6 +2256,8 @@ void RSSListing::retranslateStrings() {
   updateAllFeedsAct_->setText(tr("Update all"));
   updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
 
+  markAllFeedRead_->setText(tr("Mark all feeds Read"));
+
   markNewsRead_->setText(tr("Mark Read/Unread"));
   markNewsRead_->setToolTip(tr("Mark current news read/unread"));
 
@@ -2442,4 +2451,44 @@ void RSSListing::refreshInfoTray()
       traySystem->setIcon(icon);
     } else traySystem->setIcon(QIcon(":/images/quiterss16"));
   }
+}
+
+void RSSListing::markAllFeedsRead(bool readOn)
+{
+  db_.transaction();
+  QSqlQuery q(db_);
+  q.exec("select id from feeds");
+  while (q.next()) {
+    QSqlQuery qt(db_);
+    QString qStr = QString("UPDATE feed_%1 SET new=0")
+        .arg(q.value(0).toString());
+    qt.exec(qStr);
+    if (readOn) {
+      qStr = QString("UPDATE feed_%1 SET read=2")
+          .arg(q.value(0).toString());
+      qt.exec(qStr);
+    }
+  }
+  db_.commit();
+
+  q.exec("update feeds set newCount=0");
+  if (readOn)
+    q.exec("update feeds set unread=0");
+
+  QModelIndex index = feedsView_->currentIndex();
+  feedsModel_->select();
+  feedsView_->setCurrentIndex(index);
+
+  newsModel_->select();
+  setNewsFilter(newsFilterGroup_->checkedAction(), false);
+  int row = -1;
+  for (int i = 0; i < newsModel_->rowCount(); i++) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+        feedsModel_->index(feedsView_->currentIndex().row(),
+                           feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+      row = i;
+    }
+  }
+  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  refreshInfoTray();
 }
