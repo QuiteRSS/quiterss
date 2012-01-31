@@ -14,12 +14,16 @@ protected:
 
 private slots:
   void finishUpdateApp();
+  void slotFinishHistoryReply();
 
 private:
   QNetworkAccessManager manager_;
   QNetworkReply *reply_;
+  QNetworkReply *historyReply_;
 
   QLabel *infoLabel;
+  QTextEdit *history_;
+
 signals:
 
 };

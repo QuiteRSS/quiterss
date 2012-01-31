@@ -7,7 +7,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   setWindowTitle(tr("Check for updates"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setObjectName("UpdateAppDialog");
-  resize(250, 150);
+  resize(300, 200);
 
   QVBoxLayout *updateApplayout = new QVBoxLayout(this);
   updateApplayout->setAlignment(Qt::AlignCenter);
@@ -17,6 +17,13 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   infoLabel = new QLabel(tr("Checking for updates..."), this);
   infoLabel->setOpenExternalLinks(true);
   updateApplayout->addWidget(infoLabel, 0);
+
+  history_ = new QTextEdit();
+  history_->setObjectName("history_");
+  history_->setReadOnly(true);
+  history_->hide();
+  updateApplayout->addWidget(history_);
+
   updateApplayout->addStretch(1);
 
   QHBoxLayout *buttonLayout = new QHBoxLayout();
@@ -33,6 +40,8 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
 
   reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
+  historyReply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/history_en")));
+  connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 }
 
 void UpdateAppDialog::finishUpdateApp()
@@ -72,4 +81,18 @@ void UpdateAppDialog::finishUpdateApp()
 //    qDebug() << reply_->error() << reply_->errorString();
     infoLabel->setText(tr("Error checking updates"));
   }
+}
+
+void UpdateAppDialog::slotFinishHistoryReply()
+{
+  historyReply_->deleteLater();
+  if (historyReply_->error() != QNetworkReply::NoError) {
+    qDebug() << "error retrieving " << historyReply_->url();
+    return;
+  }
+
+  QString str = QLatin1String(historyReply_->readAll());
+
+  history_->setText(str);
+  history_->show();
 }
