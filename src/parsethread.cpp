@@ -9,7 +9,7 @@ ParseThread::ParseThread(QObject *parent, QSqlDatabase *db) :
 {
   qDebug() << "ParseThread::constructor";
   db_ = db;
-  start(LowPriority);
+  start(LowestPriority);
 }
 
 
