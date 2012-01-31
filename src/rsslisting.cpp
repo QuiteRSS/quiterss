@@ -1215,6 +1215,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   // очередь запросов пуста
   if (0 == result) {
     updateAllFeedsAct_->setEnabled(true);
+    updateFeedAct_->setEnabled(false);
     progressBar_->hide();
     statusBar()->showMessage(QString("Update done"), 3000);
   }
@@ -1553,6 +1554,7 @@ void RSSListing::slotGetFeed()
 void RSSListing::slotGetAllFeeds()
 {
   updateAllFeedsAct_->setEnabled(false);
+  updateFeedAct_->setEnabled(false);
 
   int feedCount = 0;
 
@@ -1567,6 +1569,7 @@ void RSSListing::slotGetAllFeeds()
 
   if (0 == feedCount) {
     updateAllFeedsAct_->setEnabled(true);
+    updateFeedAct_->setEnabled(true);
     return;
   }
 
