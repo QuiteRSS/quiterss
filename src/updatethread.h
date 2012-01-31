@@ -33,8 +33,8 @@ private:
   QString pubDateString;
   QString guidString;
 
-  void get(const QUrl &url, const QDateTime &date);
-  void head(const QUrl &url, const QDateTime &date);
+  void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
+  void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
   void getQueuedUrl();
 
 public:
