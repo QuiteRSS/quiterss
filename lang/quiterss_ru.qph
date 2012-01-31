@@ -669,4 +669,12 @@
     <source>New news: %1</source>
     <target>Новых новостей: %1</target>
 </phrase>
+<phrase>
+    <source>Mark all feeds Read</source>
+    <target>Отметить все ленты прочитанными</target>
+</phrase>
+<phrase>
+    <source>Clear status new on minimize to tray</source>
+    <target>Очистить статус новые при минимизации в трей</target>
+</phrase>
 </QPH>
