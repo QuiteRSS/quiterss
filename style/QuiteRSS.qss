@@ -261,6 +261,7 @@ QHeaderView::up-arrow {
 }
 
 #contentLabel_ {
+	min-height: 20px;
 	font-weight: bold;
 	padding: 2px;
 	border: 1px solid #34aa34;
