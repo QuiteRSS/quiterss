@@ -8,17 +8,19 @@
 #include <QThread>
 #include <QXmlStreamReader>
 
+#define REPLY_MAX_COUNT 8
+
 class UpdateThread : public QThread
 {
   Q_OBJECT
 
 private:
   QNetworkAccessManager manager_;
-  QNetworkReply *currentReply_;
+  QList<QNetworkReply *>currentReplies_;
   QNetworkProxy networkProxy_;
-  QUrl currentUrl_;
-  QDateTime currentDate_;
-  QByteArray currentData_;
+  QList<QUrl> currentUrls_;
+  QList<QDateTime> currentDates_;
+//  QByteArray currentData_;
 
   QQueue<QUrl> urlsQueue_;
   QQueue<QDateTime> dateQueue_;
@@ -31,8 +33,8 @@ private:
   QString pubDateString;
   QString guidString;
 
-  void get(const QUrl &url);
-  void head(const QUrl &url);
+  void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
+  void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
   void getQueuedUrl();
 
 public:
@@ -47,10 +49,10 @@ signals:
   void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
 
 private slots:
-  void readyRead();
-  void metaDataChanged();
+//  void readyRead();
+//  void metaDataChanged();
   void finished(QNetworkReply *reply);
-  void error(QNetworkReply::NetworkError);
+//  void error(QNetworkReply::NetworkError);
 
 public slots:
 
