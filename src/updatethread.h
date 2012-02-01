@@ -9,7 +9,7 @@
 #include <QThread>
 #include <QXmlStreamReader>
 
-#include "UpdateObject.h"
+#include "updateobject.h"
 
 #define REPLY_MAX_COUNT 8
 
