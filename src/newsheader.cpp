@@ -86,7 +86,7 @@ void NewsHeader::overload()
 {
   if (model_->columnCount() == 0) return;
   model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
-  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
+  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
   model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
@@ -310,7 +310,7 @@ void NewsHeader::retranslateStrings()
 {
   if (model_->columnCount() == 0) return;
   model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
-  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Date"));
+  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
   model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
