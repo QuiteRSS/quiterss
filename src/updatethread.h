@@ -9,6 +9,8 @@
 #include <QThread>
 #include <QXmlStreamReader>
 
+#include "UpdateObject.h"
+
 #define REPLY_MAX_COUNT 8
 
 class UpdateThread : public QThread
@@ -16,10 +18,9 @@ class UpdateThread : public QThread
   Q_OBJECT
 
 private:
-  QNetworkAccessManager *manager_;
-  QList<QNetworkReply *>currentReplies_;
   QNetworkProxy networkProxy_;
   QList<QUrl> currentUrls_;
+  QList<QUrl> currentFeeds_;
   QList<QDateTime> currentDates_;
 
   QQueue<QUrl> urlsQueue_;
@@ -35,6 +36,8 @@ private:
 
   QTimer *getUrlTimer_;
 
+  UpdateObject *updateObject_;
+
   void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
   void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
 
@@ -49,6 +52,8 @@ signals:
   void startTimer();
   void readedXml(const QByteArray &xml, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
+  void signalHead(const QNetworkRequest &request);
+  void signalGet(const QNetworkRequest &request);
 
 private slots:
   void getQueuedUrl();

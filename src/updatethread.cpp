@@ -14,14 +14,16 @@ UpdateThread::~UpdateThread()
 
 void UpdateThread::run()
 {
-  manager_ = new QNetworkAccessManager();
-  connect(manager_, SIGNAL(finished(QNetworkReply*)),
-      this, SLOT(finished(QNetworkReply*)));
-
   getUrlTimer_ = new QTimer();
   getUrlTimer_->setSingleShot(true);
   connect(this, SIGNAL(startTimer()), getUrlTimer_, SLOT(start()));
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
+
+  updateObject_ = new UpdateObject();
+  connect(this, SIGNAL(signalHead(QNetworkRequest)), updateObject_, SLOT(slotHead(QNetworkRequest)));
+  connect(this, SIGNAL(signalGet(QNetworkRequest)), updateObject_, SLOT(slotGet(QNetworkRequest)));
+  connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+          this, SLOT(finished(QNetworkReply*)));
 
   exec();
 }
@@ -38,13 +40,14 @@ void UpdateThread::getUrl(const QUrl &url, const QDateTime &date)
 /*! \brief Обработка очереди запросов *****************************************/
 void UpdateThread::getQueuedUrl()
 {
-  if (REPLY_MAX_COUNT <= currentUrls_.size()) return;
+  if (REPLY_MAX_COUNT <= currentFeeds_.size()) return;
 
   if (!urlsQueue_.isEmpty()) {
     QUrl feedUrl = urlsQueue_.dequeue();
     QDateTime currentDate = dateQueue_.dequeue();
     qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << urlsQueue_.count();
     head(feedUrl, feedUrl, currentDate);
+    if (currentFeeds_.size() < REPLY_MAX_COUNT) emit startTimer();
   } else {
     qDebug() << "urlsQueue_ -- count=" << urlsQueue_.count();
     emit getUrlDone(urlsQueue_.count());
@@ -55,23 +58,19 @@ void UpdateThread::getQueuedUrl()
 void UpdateThread::get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date)
 {
   qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
-  QNetworkRequest request(getUrl);
-  QNetworkReply *reply = manager_->get(request);
-  currentReplies_.append(reply);
-  currentUrls_.append(feedUrl);
+  emit signalGet(QNetworkRequest(getUrl));
+  currentUrls_.append(getUrl);
+  currentFeeds_.append(feedUrl);
   currentDates_.append(date);
 }
 
 void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date)
 {
   qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
-  QNetworkRequest request(getUrl);
-  QNetworkReply *reply = manager_->head(request);
-  currentReplies_.append(reply);
-  currentUrls_.append(feedUrl);
+  emit signalHead(QNetworkRequest(getUrl));
+  currentUrls_.append(getUrl);
+  currentFeeds_.append(feedUrl);
   currentDates_.append(date);
-
-  if (currentReplies_.size() < REPLY_MAX_COUNT) getQueuedUrl();
 }
 
 /*! \brief Завершение обработки сетевого запроса
@@ -95,11 +94,10 @@ void UpdateThread::finished(QNetworkReply *reply)
   qDebug() << reply->header(QNetworkRequest::CookieHeader);
   qDebug() << reply->header(QNetworkRequest::SetCookieHeader);
 
-  int currentReplyIndex = currentReplies_.indexOf(reply);
-  QUrl feedUrl       = currentUrls_.takeAt(currentReplyIndex);
+  int currentReplyIndex = currentUrls_.indexOf(reply->url());
+  currentUrls_.removeAt(currentReplyIndex);
+  QUrl feedUrl       = currentFeeds_.takeAt(currentReplyIndex);
   QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
-  currentReplies_.removeAll(reply);
-  reply->deleteLater();
 
   if (reply->error() != QNetworkReply::NoError) {
     qDebug() << "  error retrieving RSS feed:" << reply->error();
@@ -135,6 +133,7 @@ void UpdateThread::finished(QNetworkReply *reply)
       }
     }
   }
+  reply->deleteLater();
 }
 
 void UpdateThread::setProxy(const QNetworkProxy proxy)

@@ -24,7 +24,8 @@ HEADERS += \
     src/feedsview.h \
     3rdparty/qtsingleapplication/qtsingleapplication.h \
     3rdparty/qtsingleapplication/qtlockedfile.h \
-    3rdparty/qtsingleapplication/qtlocalpeer.h
+    3rdparty/qtsingleapplication/qtlocalpeer.h \
+    src/updateobject.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -46,7 +47,8 @@ SOURCES += \
     3rdparty/qtsingleapplication/qtlockedfile_win.cpp \
     3rdparty/qtsingleapplication/qtlockedfile_unix.cpp \
     3rdparty/qtsingleapplication/qtlockedfile.cpp \
-    3rdparty/qtsingleapplication/qtlocalpeer.cpp
+    3rdparty/qtsingleapplication/qtlocalpeer.cpp \
+    src/updateobject.cpp
 
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
@@ -104,3 +106,6 @@ RESOURCES += \
 
 CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
+
+OTHER_FILES += \
+    history_en
