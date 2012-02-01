@@ -1234,12 +1234,13 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 
   // очередь запросов пуста
   if (0 == result) {
+    if (progressBar_->isVisible())  // result=0 может приходить несколько раз
+      statusBar()->showMessage(QString(tr("Update done")), 3000);
     updateAllFeedsAct_->setEnabled(true);
     updateFeedAct_->setEnabled(true);
     progressBar_->hide();
     progressBar_->setValue(0);
     progressBar_->setMaximum(0);
-    statusBar()->showMessage(QString("Update done"), 3000);
   }
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
