@@ -43,8 +43,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   staticIconTray_ = new QRadioButton(tr("Show static icon"));
   changeIconTray_ = new QRadioButton(tr("Change icon for incoming new news"));
-  newCountTray_ = new QRadioButton(tr("Show the count of new news"));
-  unreadCountTray_ = new QRadioButton(tr("Show the count of unread news"));
+  newCountTray_ = new QRadioButton(tr("Show count of new news"));
+  unreadCountTray_ = new QRadioButton(tr("Show count of unread news"));
   QVBoxLayout *behaviorLayout = new QVBoxLayout();
   behaviorLayout->setContentsMargins(15, 0, 5, 10);
   behaviorLayout->addWidget(staticIconTray_);
