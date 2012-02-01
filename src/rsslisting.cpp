@@ -1080,7 +1080,8 @@ void RSSListing::addFeed()
     feedsModel_->select();
     feedsView_->setCurrentIndex(index);
 
-    slotGetFeed();
+    persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
+    showProgressBar(1);
   }
 }
 
