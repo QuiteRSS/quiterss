@@ -22,13 +22,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "1" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "2" << tr("Feeds");
+  treeItem << "2" << tr("Browser");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "3" << tr("Language");
+  treeItem << "3" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "4" << tr("Fonts");
+  treeItem << "4" << tr("Language");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "5" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ system tray
@@ -127,6 +130,18 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsWidget_ = new QWidget();
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
   //} networkConnections
+
+  //{ browser
+  embeddedBrowserOn_ = new QCheckBox(tr("Use the embedded browser"));
+
+  QVBoxLayout *browserLayout = new QVBoxLayout();
+  browserLayout->setMargin(0);
+  browserLayout->addWidget(embeddedBrowserOn_);
+  browserLayout->addStretch();
+
+  browserWidget_ = new QWidget();
+  browserWidget_->setLayout(browserLayout);
+  //}
 
   //{ feeds
   updateFeedsStartUp_ = new QCheckBox(tr("Automatically update the feeds on start-up"));
@@ -246,6 +261,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_->setObjectName("contentStack_");
   contentStack_->addWidget(generalWidget_);
   contentStack_->addWidget(networkConnectionsWidget_);
+  contentStack_->addWidget(browserWidget_);
   contentStack_->addWidget(feedsWidget_);
   contentStack_->addWidget(languageWidget_);
   contentStack_->addWidget(fontsWidget_);

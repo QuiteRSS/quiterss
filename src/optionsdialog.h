@@ -26,6 +26,9 @@ public:
   QCheckBox *clearStatusNew_;
   QCheckBox *emptyWorking_;
 
+  // browser
+  QCheckBox *embeddedBrowserOn_;
+
   // feeds
   QCheckBox *updateFeedsStartUp_;
   QCheckBox *updateFeeds_;
@@ -56,6 +59,7 @@ private:
   //stack widgets
   QWidget *generalWidget_;
   QWidget *networkConnectionsWidget_;
+  QWidget *browserWidget_;
   QTabWidget *feedsWidget_;
   QWidget *languageWidget_;
   QWidget *fontsWidget_;

@@ -200,7 +200,6 @@ RSSListing::RSSListing(QWidget *parent)
 
     webView_ = new QWebView();
     webView_->setObjectName("webView_");
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     webViewProgress_ = new QProgressBar(this);
     webViewProgress_->setObjectName("webViewProgress_");
     webViewProgress_->setFixedHeight(15);
@@ -327,7 +326,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     webPanelTitle_ = new QLabel("");
     webPanelTitle_->setObjectName("webPanelTitle_");
-    webPanelTitle_->setOpenExternalLinks(true);
+    connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
+            this, SLOT(slotWebTitleLinkClicked(QString)));
 
     QVBoxLayout *webPanelTitleLayout = new QVBoxLayout();
     webPanelTitleLayout->addWidget(webPanelTitle_);
@@ -943,6 +943,12 @@ void RSSListing::readSettings()
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
 
+  embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
+  if (embeddedBrowserOn_)
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
+  else
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
   foreach(QAction *action, listActions) {
@@ -1015,6 +1021,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
+
+  settings_->setValue("embeddedBrowserOn", embeddedBrowserOn_);
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -1438,6 +1446,8 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->setProxy(networkProxy_);
 
+  optionsDialog->embeddedBrowserOn_->setChecked(embeddedBrowserOn_);
+
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
@@ -1479,6 +1489,12 @@ void RSSListing::showOptionDlg()
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
+
+  embeddedBrowserOn_ = optionsDialog->embeddedBrowserOn_->isChecked();
+  if (embeddedBrowserOn_)
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
+  else
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
@@ -1872,8 +1888,13 @@ void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
 
 void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
 {
-  QDesktopServices::openUrl(
-        QUrl(newsModel_->index(index.row(), newsModel_->fieldIndex("link_href")).data(Qt::EditRole).toString()));
+  QString linkString = newsModel_->record(
+        index.row()).field("link_href").value().toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+
+  if (embeddedBrowserOn_) webView_->load(QUrl(linkString));
+  else QDesktopServices::openUrl(QUrl(linkString));
 }
 
 void RSSListing::slotSetAllRead()
@@ -1995,7 +2016,8 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
 
 void RSSListing::slotLinkClicked(QUrl url)
 {
-  QDesktopServices::openUrl(url);
+  if (embeddedBrowserOn_) webView_->load(url);
+  else QDesktopServices::openUrl(url);
 }
 
 void RSSListing::setAutoLoadImages()
@@ -2011,7 +2033,8 @@ void RSSListing::setAutoLoadImages()
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
-  updateWebView(newsView_->currentIndex());
+  if (!embeddedBrowserOn_)
+    updateWebView(newsView_->currentIndex());
 }
 
 void RSSListing::loadSettingsFeeds()
@@ -2523,4 +2546,10 @@ void RSSListing::markAllFeedsRead(bool readOn)
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
   refreshInfoTray();
+}
+
+void RSSListing::slotWebTitleLinkClicked(QString urlStr)
+{
+  if (embeddedBrowserOn_) slotLinkClicked(QUrl(urlStr));
+  else QDesktopServices::openUrl(QUrl(urlStr));
 }

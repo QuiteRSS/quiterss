@@ -198,6 +198,8 @@ private:
     bool markNewsReadOn_;
     int  markNewsReadTime_;
 
+    bool embeddedBrowserOn_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -232,6 +234,7 @@ private slots:
     void slotShowFeedPropertiesDlg();
     void slotEditMenuAction();
     void markAllFeedsRead(bool readOn = true);
+    void slotWebTitleLinkClicked(QString urlStr);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();
