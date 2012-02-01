@@ -1353,7 +1353,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 /*! \brief Запрос обновления ленты ********************************************/
 void RSSListing::getFeed(QString urlString, QDateTime date)
 {
-  persistentUpdateThread_->getUrl(urlString, date);
+  persistentUpdateThread_->requestUrl(urlString, date);
 
   progressBar_->setValue(progressBar_->minimum());
   progressBar_->show();

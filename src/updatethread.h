@@ -38,18 +38,18 @@ private:
 
   UpdateObject *updateObject_;
 
+  void run();
   void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
   void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
 
 public:
   explicit UpdateThread(QObject *parent = 0);
   ~UpdateThread();
-  void run();
-  void getUrl(const QUrl &url, const QDateTime &date);
+  void requestUrl(const QUrl &url, const QDateTime &date);
   void setProxy(const QNetworkProxy proxy);
 
 signals:
-  void startTimer();
+  void startGetUrlTimer();
   void readedXml(const QByteArray &xml, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
   void signalHead(const QNetworkRequest &request);

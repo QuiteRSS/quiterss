@@ -16,7 +16,7 @@ void UpdateThread::run()
 {
   getUrlTimer_ = new QTimer();
   getUrlTimer_->setSingleShot(true);
-  connect(this, SIGNAL(startTimer()), getUrlTimer_, SLOT(start()));
+  connect(this, SIGNAL(startGetUrlTimer()), getUrlTimer_, SLOT(start()));
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
   updateObject_ = new UpdateObject();
@@ -29,12 +29,12 @@ void UpdateThread::run()
 }
 
 /*! \brief Постановка сетевого адреса в очередь запросов **********************/
-void UpdateThread::getUrl(const QUrl &url, const QDateTime &date)
+void UpdateThread::requestUrl(const QUrl &url, const QDateTime &date)
 {
   urlsQueue_.enqueue(url);
   dateQueue_.enqueue(date);
   qDebug() << "urlsQueue_ <<" << url << "count=" << urlsQueue_.count();
-  emit startTimer();
+  emit startGetUrlTimer();
 }
 
 /*! \brief Обработка очереди запросов *****************************************/
@@ -47,7 +47,7 @@ void UpdateThread::getQueuedUrl()
     QDateTime currentDate = dateQueue_.dequeue();
     qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << urlsQueue_.count();
     head(feedUrl, feedUrl, currentDate);
-    if (currentFeeds_.size() < REPLY_MAX_COUNT) emit startTimer();
+    if (currentFeeds_.size() < REPLY_MAX_COUNT) emit startGetUrlTimer();
   } else {
     qDebug() << "urlsQueue_ -- count=" << urlsQueue_.count();
     emit getUrlDone(urlsQueue_.count());
