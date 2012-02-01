@@ -7,7 +7,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   setWindowTitle(tr("Check for updates"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setObjectName("UpdateAppDialog");
-  resize(300, 200);
+  resize(350, 300);
 
   QVBoxLayout *updateApplayout = new QVBoxLayout(this);
   updateApplayout->setAlignment(Qt::AlignCenter);
