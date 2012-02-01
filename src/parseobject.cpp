@@ -34,6 +34,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QStack<QString> tagsStack;
   QString titleString;
   QString linkString;
+  QString linkAlternateString;
   QString authorString;
   QString authorUriString;
   QString authorEmailString;
@@ -79,7 +80,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       if (currentTag == "rss")  qDebug() << "Feed type: RSS";
       if (currentTag == "feed") qDebug() << "Feed type: Atom";
 
-      if (currentTag == "item") {  // clear strings
+      if (currentTag == "item") {  // RSS
         if (isHeader) {
           rssPubDateString = parseDate(rssPubDateString);
 
@@ -109,7 +110,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         rssGuidString.clear();
         contentString.clear();
       }
-      if (currentTag == "entry") {  // clear strings
+      if (currentTag == "entry") {  // Atom
         atomUpdatedString = parseDate(atomUpdatedString);
 
         if (isHeader) {
@@ -136,6 +137,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         isHeader = false;
         titleString.clear();
         linkString.clear();
+        linkAlternateString.clear();
         authorString.clear();
         authorUriString.clear();
         authorEmailString.clear();
@@ -143,10 +145,15 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomUpdatedString.clear();
         atomSummaryString.clear();
         contentString.clear();
+
       }
-      if ((currentTag == "link") &&
-          (xml.attributes().value("rel").toString() == "self"))
-        linkString = xml.attributes().value("href").toString();
+      if ((currentTag == "link") &&  // Atom
+          ((tagsStack.top() == "feed") || (tagsStack.top() == "entry"))) {
+        if (xml.attributes().value("rel").toString() == "self")
+          linkString = xml.attributes().value("href").toString();
+        if (xml.attributes().value("rel").toString() == "alternate")
+          linkAlternateString = xml.attributes().value("href").toString();
+      }
       if (isHeader) {
         if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
         else qDebug() << itemCount << ":" << xml.qualifiedName();
@@ -244,8 +251,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
                            "description, content, guid, title, author_name, "
-                           "author_uri, author_email, published, received, link_href) "
-                           "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,? )").
+                           "author_uri, author_email, published, received, "
+                           "link_href, link_alternate) "
+                           "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ? )").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(atomSummaryString);
@@ -258,6 +266,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(atomUpdatedString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
+            q.addBindValue(linkAlternateString);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << atomSummaryString;
@@ -270,6 +279,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qDebug() << "       " << atomUpdatedString;
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << "       " << linkString;
+            qDebug() << "       " << linkAlternateString;
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }

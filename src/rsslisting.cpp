@@ -2047,12 +2047,14 @@ void RSSListing::updateWebView(QModelIndex index)
 
   webPanel_->show();
 
-  QString titleString = newsModel_->record(index.row()).field("title").value().toString();
+  QString titleString, linkString, panelTitleString;
+  titleString = newsModel_->record(index.row()).field("title").value().toString();
   titleString = webPanelTitle_->fontMetrics().elidedText(
       titleString, Qt::ElideRight, webPanelTitle_->width());
-  QString panelTitleString = QString("<a href='%1'>%2</a>").
-      arg(newsModel_->record(index.row()).field("link_href").value().toString()).
-      arg(titleString);
+  linkString = newsModel_->record(index.row()).field("link_href").value().toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+  panelTitleString = QString("<a href='%1'>%2</a>").arg(linkString).arg(titleString);
   webPanelTitle_->setText(panelTitleString);
 
   // Формируем панель автора из автора новости
