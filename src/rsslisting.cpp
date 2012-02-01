@@ -2419,7 +2419,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedPropertiesDialog->titleEdit_->setCursorPosition(0);
   feedPropertiesDialog->urlEdit_->setText(
         feedsModel_->record(index.row()).field("xmlUrl").value().toString());
-  feedPropertiesDialog->urlEdit_->setCursorPosition(0);
+  feedPropertiesDialog->urlEdit_->selectAll();
+  feedPropertiesDialog->urlEdit_->setFocus();
 
   feedPropertiesDialog->titleString_ = feedsModel_->record(index.row()).field("title").value().toString();
 
