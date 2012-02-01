@@ -365,6 +365,7 @@ RSSListing::RSSListing(QWidget *parent)
     createMenuFeed();
 
     feedsView_->installEventFilter(this);
+    feedsView_->viewport()->installEventFilter(this);
     newsView_->installEventFilter(this);
     toolBarNull_->installEventFilter(this);
 
@@ -489,6 +490,11 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     } else {
       return false;
     }
+  } else if (obj == feedsView_->viewport()) {
+    if (event->type() == QEvent::ToolTip) {
+      return true;
+    }
+    return false;
   } else if (obj == newsView_) {
     if (event->type() == QEvent::KeyPress) {
       QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
