@@ -57,7 +57,7 @@ private:
     ParseThread *persistentParseThread_;
     QNetworkProxy networkProxy_;
 
-    void getFeed(QString urlString, QDateTime date);
+    void showProgressBar(int addToMaximum);
     void createActions();
     void createMenu();
     void createToolBar();
@@ -237,6 +237,7 @@ signals:
     void signalFeedKeyUpDownPressed();
     void signalPlaceToTray();
     void signalCloseApp();
+    void startGetUrlTimer();
     void xmlReadyParse(const QByteArray &data, const QUrl &url);
 };
 

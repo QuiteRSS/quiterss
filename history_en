@@ -1,5 +1,6 @@
 Version 0.8.x
 fixed: NetworkManager move to own thread
+fixed: ProgressBar update counter
 
 Version 0.8.0 (31 Jan 2012)
 added: sumiltaneous update up to 8 feeds

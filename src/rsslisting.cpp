@@ -138,6 +138,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     persistentUpdateThread_ = new UpdateThread(this);
     persistentUpdateThread_->setObjectName("persistentUpdateThread_");
+    connect(this, SIGNAL(startGetUrlTimer()),
+        persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
     connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
         this, SLOT(receiveXml(QByteArray, QUrl)));
     connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
@@ -372,6 +374,7 @@ RSSListing::RSSListing(QWidget *parent)
     progressBar_->setFixedWidth(100);
     progressBar_->setFixedHeight(14);
     progressBar_->setMinimum(0);
+    progressBar_->setMaximum(0);
     progressBar_->setTextVisible(false);
     progressBar_->setVisible(false);
     statusBar()->setMinimumHeight(22);
@@ -1077,8 +1080,7 @@ void RSSListing::addFeed()
     feedsModel_->select();
     feedsView_->setCurrentIndex(index);
 
-    progressBar_->setMaximum(1);
-    getFeed(xmlUrlString, QDateTime());
+    slotGetFeed();
   }
 }
 
@@ -1138,6 +1140,7 @@ void RSSListing::slotImportFeeds()
 
   int elementCount = 0;
   int outlineCount = 0;
+  int requestUrlCount = 0;
   while (!xml.atEnd()) {
     xml.readNext();
     if (xml.isStartElement()) {
@@ -1162,9 +1165,6 @@ void RSSListing::slotImportFeeds()
         if (duplicateFound) {
           qDebug() << "duplicate feed:" << xmlUrlString << textString;
         } else {
-          updateAllFeedsAct_->setEnabled(false);
-          updateFeedAct_->setEnabled(false);
-
           QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
                          "values(?, ?, ?, ?, ?)");
           q.prepare(qStr);
@@ -1179,7 +1179,8 @@ void RSSListing::slotImportFeeds()
           q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
           q.finish();
 
-          getFeed(xmlUrlString, QDateTime());
+          persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
+          requestUrlCount++;
         }
       }
     } else if (xml.isEndElement()) {
@@ -1196,6 +1197,12 @@ void RSSListing::slotImportFeeds()
     statusBar()->showMessage(QString("Import: file read done"), 3000);
   }
   db_.commit();
+
+  if (requestUrlCount) {
+    updateAllFeedsAct_->setEnabled(false);
+    updateFeedAct_->setEnabled(false);
+    showProgressBar(requestUrlCount-1);
+  }
 
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
@@ -1230,6 +1237,8 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
     updateAllFeedsAct_->setEnabled(true);
     updateFeedAct_->setEnabled(true);
     progressBar_->hide();
+    progressBar_->setValue(0);
+    progressBar_->setMaximum(0);
     statusBar()->showMessage(QString("Update done"), 3000);
   }
   // в очереди запросов осталось _result_ запросов
@@ -1348,17 +1357,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
   if (index.isValid()) feedProperties_->setEnabled(true);
   else feedProperties_->setEnabled(false);
-}
-
-/*! \brief Запрос обновления ленты ********************************************/
-void RSSListing::getFeed(QString urlString, QDateTime date)
-{
-  persistentUpdateThread_->requestUrl(urlString, date);
-
-  progressBar_->setValue(progressBar_->minimum());
-  progressBar_->show();
-  statusBar()->showMessage(progressBar_->text());
-  QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -1555,14 +1553,24 @@ void RSSListing::myEmptyWorkingSet()
 #endif
 }
 
+/*! \brief Показ статус бара после запрос обновления ленты ********************/
+void RSSListing::showProgressBar(int addToMaximum)
+{
+  progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
+  progressBar_->show();
+  statusBar()->showMessage(progressBar_->text());
+  QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
+  emit startGetUrlTimer();
+}
+
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetFeed()
 {
-  progressBar_->setMaximum(1);
-  getFeed(
+  persistentUpdateThread_->requestUrl(
       feedsModel_->record(feedsView_->currentIndex().row()).field("xmlUrl").value().toString(),
       QDateTime::fromString(feedsModel_->record(feedsView_->currentIndex().row()).field("lastBuildDate").value().toString(), Qt::ISODate)
   );
+  showProgressBar(1);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
@@ -1574,20 +1582,16 @@ void RSSListing::slotGetAllFeeds()
   q.exec("select xmlUrl, lastBuildDate from feeds where xmlUrl is not null");
   qDebug() << q.lastError();
   while (q.next()) {
-    getFeed(q.record().value(0).toString(), q.record().value(1).toDateTime());
+    persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
+        q.record().value(1).toDateTime());
     ++feedCount;
   }
 
-  if (0 == feedCount) {
-    updateAllFeedsAct_->setEnabled(true);
-    updateFeedAct_->setEnabled(true);
-    return;
-  } else {
+  if (feedCount) {
     updateAllFeedsAct_->setEnabled(false);
     updateFeedAct_->setEnabled(false);
+    showProgressBar(feedCount - 1);
   }
-
-  progressBar_->setMaximum(feedCount-1);
 }
 
 void RSSListing::slotProgressBarUpdate()
