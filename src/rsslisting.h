@@ -30,6 +30,7 @@ public slots:
     void slotGetFeed();
     void slotGetAllFeeds();
     void slotNewsViewClicked(QModelIndex index);
+    void slotNewsViewSelected(QModelIndex index);
     void slotNewsViewDoubleClicked(QModelIndex index);
     void slotFeedsTreeKeyUpDownPressed();
     void slotNewsKeyUpDownPressed();

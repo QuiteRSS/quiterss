@@ -1088,7 +1088,7 @@ void RSSListing::addFeed()
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
 void RSSListing::deleteFeed()
 {
-  if (feedsView_->currentIndex().row() >= 0) {
+  if (feedsView_->currentIndex().isValid()) {
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("Delete feed"));
@@ -1365,34 +1365,41 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
-    static QModelIndex indexOld = index;
-    if (!index.isValid()) {
-      webView_->setHtml("");
-      webPanel_->hide();
-      slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-      return;
-    }
-
-    webPanel_->show();
-
-    QModelIndex indexNew = index;
-    if (!((index.row() == indexOld.row()) &&
-           newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
-      updateWebView(index);
-
-      markNewsReadTimer_.stop();
-      if (markNewsReadOn_)
-        markNewsReadTimer_.start(markNewsReadTime_*1000, this);
-
-      QSqlQuery q(db_);
-      int id = newsModel_->index(index.row(), 0).
-          data(Qt::EditRole).toInt();
-      QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-          arg(id).arg(newsModel_->tableName().remove("feed_"));
-      q.exec(qStr);
-    }
-    indexOld = indexNew;
+    if ((QApplication::mouseButtons() == Qt::LeftButton) &&
+        (newsView_->selectionModel()->selectedRows(0).count() == 1))
+      slotNewsViewSelected(index);
   }
+}
+
+void RSSListing::slotNewsViewSelected(QModelIndex index)
+{
+  static QModelIndex indexOld = index;
+  if (!index.isValid()) {
+    webView_->setHtml("");
+    webPanel_->hide();
+    slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
+    return;
+  }
+
+  webPanel_->show();
+
+  QModelIndex indexNew = index;
+  if (!((index.row() == indexOld.row()) &&
+         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+    updateWebView(index);
+
+    markNewsReadTimer_.stop();
+    if (markNewsReadOn_)
+      markNewsReadTimer_.start(markNewsReadTime_*1000, this);
+
+    QSqlQuery q(db_);
+    int id = newsModel_->index(index.row(), 0).
+        data(Qt::EditRole).toInt();
+    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
+        arg(id).arg(newsModel_->tableName().remove("feed_"));
+    q.exec(qStr);
+  }
+  indexOld = indexNew;
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
