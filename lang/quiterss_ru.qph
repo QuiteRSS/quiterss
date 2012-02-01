@@ -677,4 +677,28 @@
     <source>Clear status new on minimize to tray</source>
     <target>Очистить статус новые при минимизации в трей</target>
 </phrase>
+<phrase>
+    <source>Published</source>
+    <target>Опубликовано</target>
+</phrase>
+<phrase>
+    <source>Browser</source>
+    <target>Браузер</target>
+</phrase>
+<phrase>
+    <source>Use the embedded browser</source>
+    <target>Использовать внутренний браузер</target>
+</phrase>
+<phrase>
+    <source>Show count of new news</source>
+    <target>Показывать количество новых новостей</target>
+</phrase>
+<phrase>
+    <source>Show count of unread news</source>
+    <target>Показывать количество непрочитанных новостей</target>
+</phrase>
+<phrase>
+    <source>Update done</source>
+    <target>Обновление завершено</target>
+</phrase>
 </QPH>
