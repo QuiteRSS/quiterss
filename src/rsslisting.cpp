@@ -1368,7 +1368,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
-  slotNewsViewClicked(newsModel_->index(row, 0));
+  slotNewsViewSelected(newsModel_->index(row, 0));
 
   newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
   if (index.isValid()) feedProperties_->setEnabled(true);
@@ -1379,9 +1379,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
-    if ((QApplication::mouseButtons() == Qt::LeftButton) &&
-        (newsView_->selectionModel()->selectedRows(0).count() == 1))
+    if ((newsView_->selectionModel()->selectedRows(0).count() == 1)) {
       slotNewsViewSelected(index);
+    }
   }
 }
 
@@ -1414,6 +1414,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     q.exec(qStr);
   }
   indexOld = indexNew;
+  newsView_->setFocus();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
@@ -1686,11 +1687,31 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
 
 void RSSListing::markNewsRead()
 {
-  QModelIndex index = newsView_->currentIndex();
-  if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-    slotSetItemRead(index, 1);
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+      slotSetItemRead(curIndex, 1);
+    } else {
+      slotSetItemRead(curIndex, 0);
+    }
   } else {
-    slotSetItemRead(index, 0);
+    bool markRead = false;
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0)
+        markRead = true;
+    }
+
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (markRead) slotSetItemRead(curIndex, 1);
+      else slotSetItemRead(curIndex, 0);
+    }
   }
 }
 
@@ -1942,7 +1963,7 @@ void RSSListing::deleteNews()
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, curIndex.column());
   newsView_->setCurrentIndex(curIndex);
-  slotNewsViewClicked(curIndex);
+  slotNewsViewSelected(curIndex);
   slotUpdateStatus();
 }
 
@@ -1985,11 +2006,31 @@ void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
 
 void RSSListing::markNewsStar()
 {
-  QModelIndex index = newsView_->currentIndex();
-  if (newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
-    slotSetItemStar(index, 1);
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
+      slotSetItemStar(curIndex, 1);
+    } else {
+      slotSetItemStar(curIndex, 0);
+    }
   } else {
-    slotSetItemStar(index, 0);
+    bool markStar = false;
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0)
+        markStar = true;
+    }
+
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (markStar) slotSetItemStar(curIndex, 1);
+      else slotSetItemStar(curIndex, 0);
+    }
   }
 }
 
