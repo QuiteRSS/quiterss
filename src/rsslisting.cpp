@@ -1641,6 +1641,7 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
 
+  int topRow = newsView_->verticalScrollBar()->value();
   QModelIndex curIndex = newsView_->currentIndex();
   if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
     newsModel_->setData(
@@ -1663,6 +1664,7 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
 //    qDebug() << q.lastQuery() << q.lastError();
   }
   newsView_->setCurrentIndex(curIndex);
+  newsView_->verticalScrollBar()->setValue(topRow);
   slotUpdateStatus();
 }
 
@@ -1978,11 +1980,13 @@ void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
 {
   if (!index.isValid()) return;
 
+  int topRow = newsView_->verticalScrollBar()->value();
   QModelIndex curIndex = newsView_->currentIndex();
   newsModel_->setData(
       newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
       sticky);
   newsView_->setCurrentIndex(curIndex);
+  newsView_->verticalScrollBar()->setValue(topRow);
 }
 
 void RSSListing::markNewsStar()
