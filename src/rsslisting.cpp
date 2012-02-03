@@ -2059,7 +2059,7 @@ void RSSListing::setAutoLoadImages()
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
-  if (!embeddedBrowserOn_)
+  if (webView_->history()->count() == 0)
     updateWebView(newsView_->currentIndex());
   else webView_->reload();
 }
