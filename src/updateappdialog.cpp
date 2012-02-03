@@ -18,7 +18,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   infoLabel->setOpenExternalLinks(true);
   updateApplayout->addWidget(infoLabel, 0);
 
-  history_ = new QTextEdit();
+  history_ = new QTextEdit(tr("Loading history..."));
   history_->setObjectName("history_");
   history_->setReadOnly(true);
   history_->hide();
@@ -81,6 +81,7 @@ void UpdateAppDialog::finishUpdateApp()
 //    qDebug() << reply_->error() << reply_->errorString();
     infoLabel->setText(tr("Error checking updates"));
   }
+  history_->show();
 }
 
 void UpdateAppDialog::slotFinishHistoryReply()
@@ -94,5 +95,4 @@ void UpdateAppDialog::slotFinishHistoryReply()
   QString str = QLatin1String(historyReply_->readAll());
 
   history_->setText(str);
-  history_->show();
 }
