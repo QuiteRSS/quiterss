@@ -418,16 +418,7 @@ RSSListing::RSSListing(QWidget *parent)
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
 
     translator_ = new QTranslator(this);
-    bool translatorLoad;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
-                                       QString("/lang/quiterss_%1").arg(langFileName_));
-#else
-    translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
-                                       arg(langFileName_));
-#endif
-    if (translatorLoad) qApp->installTranslator(translator_);
-    else retranslateStrings();
+    appInstallTranslator();
 }
 
 /*!****************************************************************************/
@@ -1511,17 +1502,7 @@ void RSSListing::showOptionDlg()
 
   if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();
-    qApp->removeTranslator(translator_);
-    bool translatorLoad;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
-                                       QString("/lang/quiterss_%1").arg(langFileName_));
-#else
-    translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
-                                       arg(langFileName_));
-#endif
-    if (translatorLoad) qApp->installTranslator(translator_);
-    else retranslateStrings();
+    appInstallTranslator();
   }
 
   QFont font = feedsView_->font();
@@ -2076,6 +2057,7 @@ void RSSListing::setAutoLoadImages()
   webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
   if (!embeddedBrowserOn_)
     updateWebView(newsView_->currentIndex());
+  else webView_->reload();
 }
 
 void RSSListing::loadSettingsFeeds()
@@ -2305,6 +2287,21 @@ bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save
   return state;
 }
 
+void RSSListing::appInstallTranslator()
+{
+  bool translatorLoad;
+  qApp->removeTranslator(translator_);
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
+                                     QString("/lang/quiterss_%1").arg(langFileName_));
+#else
+  translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
+                                     arg(langFileName_));
+#endif
+  if (translatorLoad) qApp->installTranslator(translator_);
+  else retranslateStrings();
+}
+
 void RSSListing::retranslateStrings() {
   webViewProgress_->setFormat(tr("Loading... (%p%)"));
   feedsTitleLabel_->setText(tr("Feeds"));
@@ -2411,6 +2408,16 @@ void RSSListing::retranslateStrings() {
   toolBarIconSmall_->setText(tr("Small"));
 
   showWindowAct_->setText(tr("Show window"));
+
+  webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
+  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Window"));
+  webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
+  webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
+  webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
+  webView_->page()->action(QWebPage::Back)->setText(tr("Go Back"));
+  webView_->page()->action(QWebPage::Forward)->setText(tr("Go Forward"));
+  webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
+  webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
 
   newsHeader_->retranslateStrings();
 }
