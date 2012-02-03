@@ -584,11 +584,11 @@ void RSSListing::slotPlaceToTray()
 /*! \brief Обработка событий трея *********************************************/
 void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 {
-  trayMenu_->activateWindow();
   switch (reason) {
   case QSystemTrayIcon::Unknown:
     break;
   case QSystemTrayIcon::Context:
+    trayMenu_->activateWindow();
     break;
   case QSystemTrayIcon::DoubleClick:
     if (!singleClickTray_) slotShowWindows(true);
