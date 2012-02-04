@@ -60,18 +60,14 @@ TARGET = QuiteRSS
 LIBS += libkernel32 \
         libpsapi
 RC_FILE = QuiteRSSApp.rc
-INCLUDEPATH += ./3rdparty/sqlite
-HEADERS += 3rdparty/sqlite/sqlite3.h
-SOURCES += 3rdparty/sqlite/sqlite3.c
+include(3rdparty/sqlite.pri)
 include(lang/lang.pri)
 }
 
 os2 {
 TARGET = QuiteRSS
 RC_FILE = quiterss_os2.rc
-INCLUDEPATH += ./3rdparty/sqlite
-HEADERS += 3rdparty/sqlite/sqlite3.h
-SOURCES += 3rdparty/sqlite/sqlite3.c
+include(3rdparty/sqlite.pri)
 include(lang/lang.pri)
 }
 
