@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "faviconloader.h"
 #include "feedsmodel.h"
 #include "feedsview.h"
 #include "newsheader.h"
@@ -201,6 +202,8 @@ private:
 
     bool embeddedBrowserOn_;
 
+    FaviconLoader *faviconLoader;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -236,6 +239,7 @@ private slots:
     void slotEditMenuAction();
     void markAllFeedsRead(bool readOn = true);
     void slotWebTitleLinkClicked(QString urlStr);
+    void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

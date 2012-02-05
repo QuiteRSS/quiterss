@@ -399,6 +399,10 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
+    faviconLoader = new FaviconLoader(this);
+    connect(faviconLoader, SIGNAL(signalIconRecived(const QString&, const QByteArray &)),
+            this, SLOT(slotIconFeedLoad(const QString&, const QByteArray &)));
+
     loadSettingsFeeds();
     int row = newsView_->currentIndex().row();
 
@@ -1087,6 +1091,8 @@ void RSSListing::addFeed()
 
     persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
     showProgressBar(1);
+
+    faviconLoader->setTargetUrl(xmlUrlString);
   }
 }
 
@@ -2605,4 +2611,16 @@ void RSSListing::slotWebTitleLinkClicked(QString urlStr)
 {
   if (embeddedBrowserOn_) slotLinkClicked(QUrl(urlStr));
   else QDesktopServices::openUrl(QUrl(urlStr));
+}
+
+void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
+{
+  QString qString(byteArray.toBase64());
+  db_.exec(QString("update feeds set image = '%1' where xmlUrl == '%2'").
+           arg(qString).
+           arg(strUrl));
+
+  feedsModel_->setEditStrategy(QSqlTableModel::OnManualSubmit);
+  feedsModel_->submitAll();
+  feedsModel_->setEditStrategy(QSqlTableModel::OnRowChange);
 }

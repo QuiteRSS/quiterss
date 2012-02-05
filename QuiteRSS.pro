@@ -25,7 +25,8 @@ HEADERS += \
     3rdparty/qtsingleapplication/qtsingleapplication.h \
     3rdparty/qtsingleapplication/qtlockedfile.h \
     3rdparty/qtsingleapplication/qtlocalpeer.h \
-    src/updateobject.h
+    src/updateobject.h \
+    src/faviconloader.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -48,7 +49,8 @@ SOURCES += \
     3rdparty/qtsingleapplication/qtlockedfile_unix.cpp \
     3rdparty/qtsingleapplication/qtlockedfile.cpp \
     3rdparty/qtsingleapplication/qtlocalpeer.cpp \
-    src/updateobject.cpp
+    src/updateobject.cpp \
+    src/faviconloader.cpp
 
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {

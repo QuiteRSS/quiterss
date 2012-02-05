@@ -40,9 +40,14 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
     return brush;
   } else if (role == Qt::DecorationRole) {
     if (QSqlTableModel::fieldIndex("text") == index.column()) {
-      QIcon icon;
-      icon.addFile(":/images/feed");
-      return icon;
+      QByteArray byteArray = QSqlTableModel::index(index.row(), fieldIndex("image")).
+          data(Qt::EditRole).toByteArray();
+      if (!byteArray.isNull()) {
+        QPixmap icon;
+        icon.loadFromData(QByteArray::fromBase64(byteArray));
+        return icon;
+      }
+      return QPixmap(":/images/feed");
     }
   } else if (role == Qt::TextAlignmentRole) {
     if (QSqlTableModel::fieldIndex("id") == index.column()) {
