@@ -1724,6 +1724,7 @@ void RSSListing::markAllNewsRead()
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  updateWebView(newsModel_->index(row, 0));
   slotUpdateStatus();
 }
 
@@ -2245,8 +2246,6 @@ bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save
     sqlite3 * handle = *static_cast<sqlite3 **>(v.data());
     if (handle != 0) {  // check that it is not NULL
       sqlite3 * pInMemory = handle;
-      QByteArray array = filename.toLocal8Bit();
-      const char * zFilename = array.data();
       int rc;                   /* Function return code */
       sqlite3 *pFile;           /* Database connection opened on zFilename */
       sqlite3_backup *pBackup;  /* Backup object used to copy data */
@@ -2255,7 +2254,7 @@ bool RSSListing::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save
 
       /* Open the database file identified by zFilename. Exit early if this fails
       ** for any reason. */
-      rc = sqlite3_open( zFilename, &pFile );
+      rc = sqlite3_open( filename.toUtf8().data(), &pFile );
       if (rc == SQLITE_OK) {
 
         /* If this is a 'load' operation (isSave==0), then data is copied
@@ -2604,6 +2603,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  updateWebView(newsModel_->index(row, 0));
   refreshInfoTray();
 }
 
