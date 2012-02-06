@@ -1,5 +1,6 @@
-Version 0.8.x
+Version 0.8.1
 added: Internal browser
+fixed: Cyrillic letters in application path
 fixed: SQLite for Qt 4.8.0
 fixed: NetworkManager move to his own thread
 fixed: News list don't scrool while click on column "read/unread" if cursor is
