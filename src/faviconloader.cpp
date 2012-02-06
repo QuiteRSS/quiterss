@@ -1,14 +1,10 @@
 #include "faviconloader.h"
-
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QPixmap>
-#include <QDebug>
+#include  <QDebug>
 
 FaviconLoader::FaviconLoader(QObject *pParent)
   :QThread(pParent)
 {
+  start();
 }
 
 FaviconLoader::~FaviconLoader()
@@ -17,35 +13,58 @@ FaviconLoader::~FaviconLoader()
 
 /*virtual*/ void FaviconLoader::run()
 {
-  QUrl url(strTargetUrl_);
-  QNetworkRequest myRequest(url);
+  getUrlTimer_ = new QTimer();
+  getUrlTimer_->setSingleShot(true);
+  connect(this, SIGNAL(startGetUrlTimer()), getUrlTimer_, SLOT(start()));
+  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  QNetworkAccessManager networkMgr;
-  connect(&networkMgr, SIGNAL(finished(QNetworkReply*)),
-          this, SLOT(slotRecived(QNetworkReply*)));
-
-  networkMgr.get(myRequest);
+  updateObject_ = new UpdateObject();
+  connect(this, SIGNAL(signalGet(QNetworkRequest)),
+          updateObject_, SLOT(slotGet(QNetworkRequest)));
+  connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+          this, SLOT(slotFinished(QNetworkReply*)));
 
   exec();
 }
 
-void FaviconLoader::setTargetUrl(const QString& strUrl)
+void FaviconLoader::requestUrl(const QUrl &url)
 {
-  strFeedUrl_ = strUrl;
-  strTargetUrl_ = QString("http://favicon.yandex.ru/favicon/%1").
-      arg(QUrl(strUrl).host());
-  start();
+  urlsQueue_.enqueue(url);
 }
 
-void FaviconLoader::slotRecived(QNetworkReply *pReplay)
+void FaviconLoader::getQueuedUrl()
 {
-  if(pReplay->error() == QNetworkReply::NoError) {
-    QByteArray favico;
-    favico = pReplay->readAll();
-    if(!favico.isNull()) {
-      emit signalIconRecived(strFeedUrl_, favico);
+  if (currentFeeds_.size() >= 1) return;
+
+  if (!urlsQueue_.isEmpty()) {
+    QUrl feedUrl = urlsQueue_.dequeue();
+    QUrl getUrl(QString("http://favicon.yandex.ru/favicon/%1").
+                arg(feedUrl.host())) ;
+    get(getUrl, feedUrl);
+    if (currentFeeds_.size() < 1) emit startGetUrlTimer();
+  }
+}
+
+void FaviconLoader::get(const QUrl &getUrl, const QUrl &feedUrl)
+{
+  emit signalGet(QNetworkRequest(getUrl));
+
+  currentUrls_.append(getUrl);
+  currentFeeds_.append(feedUrl);
+}
+
+void FaviconLoader::slotFinished(QNetworkReply *reply)
+{
+  int currentReplyIndex = currentUrls_.indexOf(reply->url());
+  currentUrls_.removeAt(currentReplyIndex);
+  QUrl feedUrl = currentFeeds_.takeAt(currentReplyIndex);
+
+  if(reply->error() == QNetworkReply::NoError) {
+    QByteArray favico = reply->readAll();
+    if(!favico.isNull() && (favico.size() != 178) && (favico.size() != 43)) {
+      emit signalIconRecived(feedUrl.toString(), favico);
     }
   }
-
-  exit(0);
+  getQueuedUrl();
+  reply->deleteLater();
 }

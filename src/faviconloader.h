@@ -3,29 +3,41 @@
 
 #include <QThread>
 #include <QNetworkReply>
-#include <QIcon>
+#include <QQueue>
+#include <QTimer>
 #include <QUrl>
+
+#include "updateobject.h"
 
 class FaviconLoader : public QThread
 {
   Q_OBJECT
 public:
-  FaviconLoader( QObject *pParent = 0);
+  explicit FaviconLoader( QObject *pParent = 0);
   ~FaviconLoader();
 
-  void setTargetUrl(const QString& strUrl);
+  void requestUrl(const QUrl &url);
 
 protected:
   virtual void run();
 
 private slots:
-  void slotRecived(QNetworkReply *pReplay);
+  void getQueuedUrl();
+  void slotFinished(QNetworkReply *reply);
 
-private:
-  QString strFeedUrl_;
-  QString strTargetUrl_;
+private:  
+  QList<QUrl> currentUrls_;
+  QList<QUrl> currentFeeds_;
+  QQueue<QUrl> urlsQueue_;
+  QTimer *getUrlTimer_;
+
+  UpdateObject *updateObject_;
+
+  void get(const QUrl &getUrl, const QUrl &feedUrl);
 
 signals:
+  void startGetUrlTimer();
+  void signalGet(const QNetworkRequest &request);
   void signalIconRecived(const QString& strUrl, const QByteArray& byteArray);
 };
 
