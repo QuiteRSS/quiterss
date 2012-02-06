@@ -1389,6 +1389,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     webView_->setHtml("");
     webPanel_->hide();
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
+    indexOld = index;
     return;
   }
 
