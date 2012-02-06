@@ -57,26 +57,25 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
   BUILD_DIR = debug
 }
 
+include(3rdparty/sqlite.pri)
+
 win32 {
 TARGET = QuiteRSS
 LIBS += libkernel32 \
         libpsapi
 RC_FILE = QuiteRSSApp.rc
-include(3rdparty/sqlite.pri)
 include(lang/lang.pri)
 }
 
 os2 {
 TARGET = QuiteRSS
 RC_FILE = quiterss_os2.rc
-include(3rdparty/sqlite.pri)
 include(lang/lang.pri)
 }
 
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  PKGCONFIG += sqlite3
   TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts
   desktop.files = quiterss.desktop
   icon_16.files = images/16x16/quiterss.png
