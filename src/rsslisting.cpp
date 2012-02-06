@@ -2615,10 +2615,11 @@ void RSSListing::slotWebTitleLinkClicked(QString urlStr)
 
 void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
 {
-  QString qString(byteArray.toBase64());
-  db_.exec(QString("update feeds set image = '%1' where xmlUrl == '%2'").
-           arg(qString).
-           arg(strUrl));
+  QSqlQuery q(db_);
+  q.prepare("update feeds set image = ? where xmlUrl == ?");
+  q.addBindValue(byteArray.toBase64());
+  q.addBindValue(strUrl);
+  q.exec();
 
   feedsModel_->setEditStrategy(QSqlTableModel::OnManualSubmit);
   feedsModel_->submitAll();
