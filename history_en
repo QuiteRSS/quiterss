@@ -1,6 +1,12 @@
 Version 0.8.x
-fixed: NetworkManager move to own thread
-fixed: ProgressBar update counter
+added: Internal browser
+fixed: SQLite for Qt 4.8.0
+fixed: NetworkManager move to his own thread
+fixed: News list don't scrool while click on column "read/unread" if cursor is
+       out of view
+fixed: request url queues while update feeds
+fixed: Parsing "alternate" url of the news of Atom-feeds
+fixed: TrayMenu is not appear sometimes
 
 Version 0.8.0 (31 Jan 2012)
 added: sumiltaneous update up to 8 feeds
