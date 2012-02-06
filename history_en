@@ -1,4 +1,4 @@
-Version 0.8.1
+Version 0.8.1 (6 Feb 2012)
   added: Internal browser
   fixed: Cyrillic letters in application path
   fixed: SQLite for Qt 4.8.0
