@@ -1124,7 +1124,7 @@ void RSSListing::deleteFeed()
     feedsModel_->select();
     if (feedsModel_->rowCount() == row) row--;
     feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-    slotFeedsTreeSelected(feedsModel_->index(row, 0));
+    slotFeedsTreeClicked(feedsModel_->index(row, 0));
   }
 }
 
