@@ -154,7 +154,9 @@ private:
     NewsView *newsView_;
     NewsHeader *newsHeader_;
     QLabel *feedsTitleLabel_;
-    QLabel *newsTitleLabel_;
+    QWidget *newsTitleLabel_;
+    QLabel *newsIconTitle_;
+    QLabel *newsTextTitle_;
 
     QLabel *webPanelTitle_;
     QLabel *webPanelTitleLabel_;

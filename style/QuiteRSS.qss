@@ -125,7 +125,7 @@ QTabBar::tab:!selected {
 }
 
 #feedsTitleLabel_, #newsTitleLabel_ {
-	margin-top: 2px;
+	/*margin-top: 2px;*/
 	margin-left: 3px;
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
@@ -140,8 +140,12 @@ QTabBar::tab:!selected {
 }
 
 #newsTitleLabel_ {
-	font-weight:bold;
 	min-width: 50px;
+}
+
+#newsTextTitle_ {
+	vertical-align:middle;
+	font-weight:bold;
 }
 
 #feedsWidget, #newsWidget {
