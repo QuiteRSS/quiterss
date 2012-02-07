@@ -123,7 +123,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
           q.prepare(qStr);
           q.addBindValue(titleString);
           q.addBindValue(atomSummaryString);
-          q.addBindValue(linkString);
+          if (!linkString.isNull()) q.addBindValue(linkString);
+          else q.addBindValue(linkAlternateString);
           q.addBindValue(authorString);
           q.addBindValue(authorEmailString);
           q.addBindValue(authorUriString);
@@ -147,7 +148,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         contentString.clear();
 
       }
-      if ((currentTag == "link") &&  // Atom
+      if ((currentTag == "link") && // Atom
+          (xml.attributes().value("type").toString() == "text/html") &&
           ((tagsStack.top() == "feed") || (tagsStack.top() == "entry"))) {
         if (xml.attributes().value("rel").toString() == "self")
           linkString = xml.attributes().value("href").toString();
