@@ -16,6 +16,7 @@ public:
   explicit FaviconLoader( QObject *pParent = 0);
   ~FaviconLoader();
 
+public slots:
   void requestUrl(const QUrl &url);
 
 protected:

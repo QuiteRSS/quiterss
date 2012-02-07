@@ -13,6 +13,8 @@ public:
   QLabel *homepageLabel_;
   QPushButton *loadTitleButton_;
   QString titleString_;
+  QString feedUrl_;
+  QString homePage_;
 
 private:
   QDialogButtonBox *buttonBox_;
@@ -20,6 +22,10 @@ private:
 
 private slots:
   void slotLoadTitle();
+
+signals:
+  void signalLoadTitle(const QUrl &url);
+  void startGetUrlTimer();
 
 };
 

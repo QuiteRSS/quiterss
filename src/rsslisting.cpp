@@ -2484,10 +2484,17 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedPropertiesDialog->urlEdit_->setFocus();
 
   feedPropertiesDialog->titleString_ = feedsModel_->record(index.row()).field("title").value().toString();
+  feedPropertiesDialog->feedUrl_ = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
+  feedPropertiesDialog->homePage_ = feedsModel_->record(index.row()).field("htmlUrl").value().toString();
 
   QString homepageString = QString("<a href='%1'>%1</a>").
       arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
   feedPropertiesDialog->homepageLabel_->setText(homepageString);
+
+  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl)),
+          faviconLoader, SLOT(requestUrl(QUrl)));
+  connect(feedPropertiesDialog, SIGNAL(startGetUrlTimer()),
+      this, SIGNAL(startGetUrlTimer()));
 
   int result = feedPropertiesDialog->exec();
   settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
