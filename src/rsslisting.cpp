@@ -1094,7 +1094,7 @@ void RSSListing::addFeed()
     persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
     showProgressBar(1);
 
-    faviconLoader->requestUrl(xmlUrlString);
+    faviconLoader->requestUrl(xmlUrlString, xmlUrlString);
   }
 }
 
@@ -1194,7 +1194,8 @@ void RSSListing::slotImportFeeds()
           q.finish();
 
           persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
-          faviconLoader->requestUrl(xmlUrlString);
+          faviconLoader->requestUrl(
+                xml.attributes().value("htmlUrl").toString(), xmlUrlString);
           requestUrlCount++;
         }
       }
@@ -2491,8 +2492,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
       arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
   feedPropertiesDialog->homepageLabel_->setText(homepageString);
 
-  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl)),
-          faviconLoader, SLOT(requestUrl(QUrl)));
+  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
+          faviconLoader, SLOT(requestUrl(QUrl, QUrl)));
   connect(feedPropertiesDialog, SIGNAL(startGetUrlTimer()),
       this, SIGNAL(startGetUrlTimer()));
 

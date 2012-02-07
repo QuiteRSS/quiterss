@@ -24,7 +24,7 @@ private slots:
   void slotLoadTitle();
 
 signals:
-  void signalLoadTitle(const QUrl &url);
+  void signalLoadTitle(const QUrl &url, const QUrl &feedUrl);
   void startGetUrlTimer();
 
 };

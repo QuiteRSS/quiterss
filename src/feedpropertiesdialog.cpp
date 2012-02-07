@@ -56,7 +56,6 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
 void FeedPropertiesDialog::slotLoadTitle()
 {
   titleEdit_->setText(titleString_);
-  /*if (!homePage_.isNull()) emit signalLoadTitle(homePage_);
-  else */emit signalLoadTitle(feedUrl_);
+  emit signalLoadTitle(homePage_, feedUrl_);
   emit startGetUrlTimer();
 }

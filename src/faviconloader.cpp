@@ -27,9 +27,10 @@ FaviconLoader::~FaviconLoader()
   exec();
 }
 
-void FaviconLoader::requestUrl(const QUrl &url)
+void FaviconLoader::requestUrl(const QUrl &url, const QUrl &feedUrl)
 {
   urlsQueue_.enqueue(url);
+  feedsQueue_.enqueue(feedUrl);
 }
 
 void FaviconLoader::getQueuedUrl()
@@ -37,10 +38,17 @@ void FaviconLoader::getQueuedUrl()
   if (currentFeeds_.size() >= 1) return;
 
   if (!urlsQueue_.isEmpty()) {
-    QUrl feedUrl = urlsQueue_.dequeue();
-    QUrl getUrl(QString("http://favicon.yandex.ru/favicon/%1").
-                arg(feedUrl.host())) ;
-    get(getUrl, feedUrl);
+    QUrl url = urlsQueue_.dequeue();
+    QUrl feedUrl = feedsQueue_.dequeue();
+    if (url.isValid()) {
+      QUrl getUrl(QString("http://favicon.yandex.ru/favicon/%1").
+                arg(url.host()));
+      get(getUrl, feedUrl);
+    } else {
+      QUrl getUrl(QString("http://favicon.yandex.ru/favicon/%1").
+                arg(feedUrl.host()));
+      get(getUrl, feedUrl);
+    }
     if (currentFeeds_.size() < 1) emit startGetUrlTimer();
   }
 }

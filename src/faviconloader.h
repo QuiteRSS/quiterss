@@ -17,7 +17,7 @@ public:
   ~FaviconLoader();
 
 public slots:
-  void requestUrl(const QUrl &url);
+  void requestUrl(const QUrl &url, const QUrl &feedUrl);
 
 protected:
   virtual void run();
@@ -30,6 +30,7 @@ private:
   QList<QUrl> currentUrls_;
   QList<QUrl> currentFeeds_;
   QQueue<QUrl> urlsQueue_;
+  QQueue<QUrl> feedsQueue_;
   QTimer *getUrlTimer_;
 
   UpdateObject *updateObject_;
