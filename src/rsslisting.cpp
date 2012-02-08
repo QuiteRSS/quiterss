@@ -418,6 +418,8 @@ RSSListing::RSSListing(QWidget *parent)
     loadSettingsFeeds();
     int row = newsView_->currentIndex().row();
 
+    resize(850, 600);
+
     readSettings();
 
     newsHeader_->createMenu();
@@ -916,10 +918,10 @@ void RSSListing::readSettings()
 
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
-  closingTray_ = settings_->value("closingTray", true).toBool();
-  behaviorIconTray_ = settings_->value("behaviorIconTray", 1).toInt();
+  closingTray_ = settings_->value("closingTray", false).toBool();
+  behaviorIconTray_ = settings_->value("behaviorIconTray", 2).toInt();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
-  clearStatusNew_ = settings_->value("clearStatusNew", false).toBool();
+  clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
   QString strLang("en");
@@ -2101,8 +2103,8 @@ void RSSListing::setAutoLoadImages()
 void RSSListing::loadSettingsFeeds()
 {
   markNewsReadOn_ = false;
-  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 1).toInt();
-  autoLoadImages_ = !settings_->value("Settings/autoLoadImages", false).toBool();
+  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 2).toInt();
+  autoLoadImages_ = !settings_->value("Settings/autoLoadImages", true).toBool();
   setAutoLoadImages();
 
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
