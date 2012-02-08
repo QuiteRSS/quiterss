@@ -1353,6 +1353,10 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotSetAllRead();
   }
+
+  if (index.isValid()) newsHeader_->setVisible(true);
+  else newsHeader_->setVisible(false);
+
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   index = feedsView_->currentIndex();
   idOld = feedsModel_->index(index.row(), 0).data().toInt();
