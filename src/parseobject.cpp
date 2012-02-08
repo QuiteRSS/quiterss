@@ -89,10 +89,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
                        "set title=?, description=?, htmlUrl=?, author_name=?, pubdate=? "
                        "where id==?");
           q.prepare(qStr);
-          q.addBindValue(titleString);
+          q.addBindValue(titleString.simplified());
           q.addBindValue(rssDescriptionString);
           q.addBindValue(linkString);
-          q.addBindValue(authorString);
+          q.addBindValue(authorString.simplified());
           q.addBindValue(rssPubDateString);
           q.addBindValue(parseFeedId);
           q.exec();
@@ -121,7 +121,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
                        "author_uri=?, pubdate=? "
                        "where id==?");
           q.prepare(qStr);
-          q.addBindValue(titleString);
+          q.addBindValue(titleString.simplified());
           q.addBindValue(atomSummaryString);
           if (!linkString.isNull()) q.addBindValue(linkString);
           else q.addBindValue(linkAlternateString);
@@ -198,8 +198,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(rssDescriptionString);
             q.addBindValue(contentString);
             q.addBindValue(rssGuidString);
-            q.addBindValue(titleString);
-            q.addBindValue(authorString);
+            q.addBindValue(titleString.simplified());
+            q.addBindValue(authorString.simplified());
             q.addBindValue(rssPubDateString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
@@ -261,7 +261,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(atomSummaryString);
             q.addBindValue(contentString);
             q.addBindValue(atomIdString);
-            q.addBindValue(titleString);
+            q.addBindValue(titleString.simplified());
             q.addBindValue(authorString);
             q.addBindValue(authorUriString);
             q.addBindValue(authorEmailString);
