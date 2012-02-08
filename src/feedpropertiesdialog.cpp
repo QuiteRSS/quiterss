@@ -23,7 +23,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
   generalGridLayout->addWidget(new QLabel(tr("Feed URL:")), 1, 0);
   generalGridLayout->addWidget(urlEdit_, 1, 1, 1, 2);
   generalGridLayout->addWidget(new QLabel(tr("Homepage:")), 2, 0);
-  generalGridLayout->addWidget(homepageLabel_, 2, 1);
+  generalGridLayout->addWidget(homepageLabel_, 2, 1, 1, 2);
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addLayout(generalGridLayout);
