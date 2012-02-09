@@ -10,6 +10,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
 
   // Основное окно
   layoutMain = new QVBoxLayout(this);
+  layoutMain->setMargin(5);
   tabWidget = new QTabWidget();
   buttonBox = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
