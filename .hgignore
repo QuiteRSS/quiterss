@@ -3,3 +3,7 @@ syntax: glob
 *.bak
 *.orig
 .directory
+debug
+release
+Makefile*
+object_script.QuiteRSS.*

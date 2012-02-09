@@ -2501,21 +2501,15 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
 
   QModelIndex index = feedsView_->currentIndex();
-  feedPropertiesDialog->titleEdit_->setText(
-        feedsModel_->record(index.row()).field("text").value().toString());
-  feedPropertiesDialog->titleEdit_->setCursorPosition(0);
-  feedPropertiesDialog->urlEdit_->setText(
-        feedsModel_->record(index.row()).field("xmlUrl").value().toString());
-  feedPropertiesDialog->urlEdit_->selectAll();
-  feedPropertiesDialog->urlEdit_->setFocus();
+  FEED_PROPERTIES properties;
 
-  feedPropertiesDialog->titleString_ = feedsModel_->record(index.row()).field("title").value().toString();
-  feedPropertiesDialog->feedUrl_ = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
-  feedPropertiesDialog->homePage_ = feedsModel_->record(index.row()).field("htmlUrl").value().toString();
-
-  QString homepageString = QString("<a href='%1'>%1</a>").
+  properties.general.title  = "srtgsdrgz";
+  properties.general.title = feedsModel_->record(index.row()).field("text").value().toString();
+  properties.general.url = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
+  properties.general.homepage = QString("<a href='%1'>%1</a>").
       arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
-  feedPropertiesDialog->homepageLabel_->setText(homepageString);
+
+  feedPropertiesDialog->setFeedProperties(properties);
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
           faviconLoader, SLOT(requestUrl(QUrl, QUrl)));
@@ -2528,11 +2522,13 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   int id = feedsModel_->record(index.row()).field("id").value().toInt();
 
+  properties = feedPropertiesDialog->getFeedProperties();
+
   db_.exec(QString("update feeds set text = '%1' where id == '%2'").
-          arg(feedPropertiesDialog->titleEdit_->text()).
+          arg(properties.general.title).
           arg(id));
   db_.exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
-          arg(feedPropertiesDialog->urlEdit_->text()).
+          arg(properties.general.url).
           arg(id));
 
   feedsModel_->select();
