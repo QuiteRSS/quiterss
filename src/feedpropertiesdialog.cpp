@@ -10,7 +10,6 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
 
   // Основное окно
   layoutMain = new QVBoxLayout(this);
-  layoutMain->setMargin(2);
   tabWidget = new QTabWidget();
   buttonBox = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -76,9 +75,10 @@ void FeedPropertiesDialog::showEvent(QShowEvent *event)
 {
   editTitle->setText(feedProperties.general.title);
   editURL->setText(feedProperties.general.url);
+  editURL->selectAll();
+  editURL->setFocus();
   labelHomepage->setText(QString("<a href='%1'>%1</a>").arg(feedProperties.general.homepage));
   editTitle->setCursorPosition(0);
-  editTitle->setFocus();
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::slotLoadTitle()
