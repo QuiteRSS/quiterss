@@ -4,11 +4,13 @@
 FaviconLoader::FaviconLoader(QObject *pParent)
   :QThread(pParent)
 {
+  qDebug() << "FaviconLoader::constructor";
   start();
 }
 
 FaviconLoader::~FaviconLoader()
 {
+  qDebug() << "FaviconLoader::~destructor";
 }
 
 /*virtual*/ void FaviconLoader::run()

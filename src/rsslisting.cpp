@@ -272,10 +272,20 @@ RSSListing::RSSListing(QWidget *parent)
     toolBarNull_->addWidget(pushButtonNull_);
     connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
 
+    newsIconTitle_ = new QLabel(this);
+    newsTextTitle_ = new QLabel(this);
+    newsTextTitle_->setObjectName("newsTextTitle_");
+    QHBoxLayout *newsTitleLayout = new QHBoxLayout();
+    newsTitleLayout->setMargin(4);
+    newsTitleLayout->addSpacing(3);
+    newsTitleLayout->addWidget(newsIconTitle_);
+    newsTitleLayout->addWidget(newsTextTitle_, 1);
+    newsTitleLayout->addSpacing(3);
 
-    newsTitleLabel_ = new QLabel(this);
+    newsTitleLabel_ = new QWidget(this);
     newsTitleLabel_->setObjectName("newsTitleLabel_");
     newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+    newsTitleLabel_->setLayout(newsTitleLayout);
 
     newsToolBar_ = new QToolBar(this);
     newsToolBar_->setObjectName("newsToolBar_");
@@ -408,6 +418,8 @@ RSSListing::RSSListing(QWidget *parent)
     loadSettingsFeeds();
     int row = newsView_->currentIndex().row();
 
+    resize(850, 600);
+
     readSettings();
 
     newsHeader_->createMenu();
@@ -452,6 +464,7 @@ RSSListing::~RSSListing()
 
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
+  faviconLoader->quit();
 
   delete newsView_;
   delete feedsView_;
@@ -906,10 +919,10 @@ void RSSListing::readSettings()
 
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
-  closingTray_ = settings_->value("closingTray", true).toBool();
-  behaviorIconTray_ = settings_->value("behaviorIconTray", 1).toInt();
+  closingTray_ = settings_->value("closingTray", false).toBool();
+  behaviorIconTray_ = settings_->value("behaviorIconTray", 2).toInt();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
-  clearStatusNew_ = settings_->value("clearStatusNew", false).toBool();
+  clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
   QString strLang("en");
@@ -1343,6 +1356,10 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotSetAllRead();
   }
+
+  if (index.isValid()) newsHeader_->setVisible(true);
+  else newsHeader_->setVisible(false);
+
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   index = feedsView_->currentIndex();
   idOld = feedsModel_->index(index.row(), 0).data().toInt();
@@ -1371,7 +1388,15 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   newsView_->setCurrentIndex(newsModel_->index(row, 0));
   slotNewsViewSelected(newsModel_->index(row, 0));
 
-  newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
+  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+      data().toByteArray();
+  if (!byteArray.isNull()) {
+    QPixmap icon;
+    icon.loadFromData(QByteArray::fromBase64(byteArray));
+    newsIconTitle_->setPixmap(icon);
+  } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
+  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
+
   if (index.isValid()) feedProperties_->setEnabled(true);
   else feedProperties_->setEnabled(false);
 }
@@ -2079,8 +2104,8 @@ void RSSListing::setAutoLoadImages()
 void RSSListing::loadSettingsFeeds()
 {
   markNewsReadOn_ = false;
-  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 1).toInt();
-  autoLoadImages_ = !settings_->value("Settings/autoLoadImages", false).toBool();
+  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 2).toInt();
+  autoLoadImages_ = !settings_->value("Settings/autoLoadImages", true).toBool();
   setAutoLoadImages();
 
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
@@ -2508,7 +2533,15 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
-  newsTitleLabel_->setText(feedsModel_->index(index.row(), 1).data().toString());
+
+  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+      data().toByteArray();
+  if (!byteArray.isNull()) {
+    QPixmap icon;
+    icon.loadFromData(QByteArray::fromBase64(byteArray));
+    newsIconTitle_->setPixmap(icon);
+  } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
+  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
 }
 
 void RSSListing::slotEditMenuAction()
