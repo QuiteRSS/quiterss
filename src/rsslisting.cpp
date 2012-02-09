@@ -464,6 +464,7 @@ RSSListing::~RSSListing()
 
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
+  faviconLoader->quit();
 
   delete newsView_;
   delete feedsView_;
