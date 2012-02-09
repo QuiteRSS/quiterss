@@ -18,9 +18,10 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   infoLabel->setOpenExternalLinks(true);
   updateApplayout->addWidget(infoLabel, 0);
 
-  history_ = new QTextEdit(tr("Loading history..."));
+  history_ = new QTextBrowser();
   history_->setObjectName("history_");
-  history_->setReadOnly(true);
+  history_->setText(tr("Loading history..."));
+  history_->setOpenExternalLinks(true);
   history_->hide();
   updateApplayout->addWidget(history_);
 
@@ -94,5 +95,5 @@ void UpdateAppDialog::slotFinishHistoryReply()
 
   QString str = QLatin1String(historyReply_->readAll());
 
-  history_->setText(str);
+  history_->setHtml(str);
 }

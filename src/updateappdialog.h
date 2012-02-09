@@ -22,7 +22,7 @@ private:
   QNetworkReply *historyReply_;
 
   QLabel *infoLabel;
-  QTextEdit *history_;
+  QTextBrowser *history_;
 
 signals:
 

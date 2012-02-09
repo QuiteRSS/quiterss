@@ -307,8 +307,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
 //        if (tagsStack.top() == "image")
 //          imageTitleString += xml.text().toString();
       }
-      else if (currentTag == "link")
-        linkString += xml.text().toString();
+      else if ((currentTag == "link") && (tagsStack.top() == "channel"))
+        linkString = xml.text().toString();
       else if (currentTag == "author")  //rss
         authorString += xml.text().toString();
       else if (currentTag == "creator")  //rss::dc:creator
