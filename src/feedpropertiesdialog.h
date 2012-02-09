@@ -87,6 +87,7 @@ private:
   QPushButton *btnLoadTitle; //!< Кнопка "Загрузить заголовок"
   QGridLayout *layoutGeneralGrid; //!< layout настройки
   QHBoxLayout *layoutGeneralTitle; //!< layout строки названия ленты
+  QHBoxLayout *layoutGeneralHomepage; //!< layout строки дом. страницы
   QVBoxLayout *layoutGeneralMain; //!< Основной layout вкладки
   QLineEdit *editURL; //!< строка ссылки на ленту
   QLineEdit *editTitle; //!< Заголовок ленты

@@ -2506,8 +2506,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   properties.general.title  = "srtgsdrgz";
   properties.general.title = feedsModel_->record(index.row()).field("text").value().toString();
   properties.general.url = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
-  properties.general.homepage = QString("<a href='%1'>%1</a>").
-      arg(feedsModel_->record(index.row()).field("htmlUrl").value().toString());
+  properties.general.homepage = feedsModel_->record(index.row()).field("htmlUrl").value().toString();
 
   feedPropertiesDialog->setFeedProperties(properties);
 
