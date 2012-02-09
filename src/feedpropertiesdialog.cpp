@@ -1,3 +1,4 @@
+/*This file is prepared for Doxygen automatic documentation generation.*/
 #include "feedpropertiesdialog.h"
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
@@ -6,56 +7,89 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Feed properties"));
 
-  titleEdit_ =  new QLineEdit();
-  loadTitleButton_ = new QPushButton();
-  loadTitleButton_->setIcon(QIcon(":/images/updateFeed"));
-  loadTitleButton_->setToolTip(tr("Load feed title"));
-  loadTitleButton_->setMaximumHeight(22);
-  loadTitleButton_->setFocusPolicy(Qt::NoFocus);
-  urlEdit_ =  new QLineEdit();
-  homepageLabel_ =  new QLabel();
-  homepageLabel_->setOpenExternalLinks(true);
-
-  QGridLayout *generalGridLayout = new QGridLayout();
-  generalGridLayout->addWidget(new QLabel(tr("Title:")), 0, 0);
-  generalGridLayout->addWidget(titleEdit_, 0, 1);
-  generalGridLayout->addWidget(loadTitleButton_, 0, 2);
-  generalGridLayout->addWidget(new QLabel(tr("Feed URL:")), 1, 0);
-  generalGridLayout->addWidget(urlEdit_, 1, 1, 1, 2);
-  generalGridLayout->addWidget(new QLabel(tr("Homepage:")), 2, 0);
-  generalGridLayout->addWidget(homepageLabel_, 2, 1);
-
-  QVBoxLayout *generalLayout = new QVBoxLayout();
-  generalLayout->addLayout(generalGridLayout);
-  generalLayout->addStretch(1);
-
-  QWidget *generalWidget_ = new QWidget();
-  generalWidget_->setLayout(generalLayout);
-
-  tabWidget_ = new QTabWidget();
-  tabWidget_->addTab(generalWidget_, tr("General"));
-
-  buttonBox_ = new QDialogButtonBox(
+  // Основное окно
+  layoutMain = new QVBoxLayout(this);
+  layoutMain->setMargin(2);
+  tabWidget = new QTabWidget();
+  buttonBox = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+  layoutMain->addWidget(tabWidget);
+  layoutMain->addWidget(buttonBox);
 
-  QVBoxLayout *mainLayout = new QVBoxLayout();
-  mainLayout->setMargin(5);
-  mainLayout->addWidget(tabWidget_);
-  mainLayout->addWidget(buttonBox_);
+  tabGeneral = CreateGeneralTab();
 
-  setLayout(mainLayout);
+  tabWidget->addTab(tabGeneral, tr("General"));
 
-  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
-  connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
-  connect(loadTitleButton_, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+  connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
   setMinimumWidth(400);
   setMinimumHeight(300);
 }
+//------------------------------------------------------------------------------
+QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
+{
+  QWidget *tab = new QWidget();
+  layoutGeneralMain = new QVBoxLayout(tab);
+  layoutGeneralGrid = new QGridLayout();
 
+  layoutGeneralTitle = new QHBoxLayout();
+  editTitle = new QLineEdit();
+  btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
+  btnLoadTitle->setToolTip(tr("Load feed title"));
+  btnLoadTitle->setMaximumHeight(22);
+  btnLoadTitle->setFocusPolicy(Qt::NoFocus);
+  layoutGeneralTitle->addWidget(editTitle);
+  layoutGeneralTitle->addWidget(btnLoadTitle);
+  layoutGeneralTitle->setStretch(0, 0);
+  layoutGeneralTitle->setStretch(0, 2);
+  editURL = new QLineEdit();
+  labelHomepage = new QLabel();
+  labelHomepage->setOpenExternalLinks(true);
+  layoutGeneralMain->addLayout(layoutGeneralTitle);
+
+  labelTitleCapt = new QLabel(tr("Title:"));
+  labelHomepageCapt = new QLabel(tr("Homepage:"));
+  labelURLCapt = new QLabel(tr("Feed URL:"));
+
+  layoutGeneralGrid->addWidget(labelURLCapt, 0, 0);
+  layoutGeneralGrid->addWidget(editURL, 0, 1);
+  layoutGeneralGrid->addWidget(labelHomepageCapt, 1, 0);
+  layoutGeneralGrid->addWidget(labelHomepage, 1, 1);
+
+  layoutGeneralMain->addLayout(layoutGeneralGrid);
+  spacerGeneral = new QSpacerItem(0,0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+  layoutGeneralMain->addSpacerItem(spacerGeneral);
+
+  connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
+
+  return tab;
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::showEvent(QShowEvent *event)
+{
+  editTitle->setText(feedProperties.general.title);
+  editURL->setText(feedProperties.general.url);
+  labelHomepage->setText(feedProperties.general.homepage);
+
+  editTitle->setCursorPosition(0);
+  editTitle->setFocus();
+}
+//------------------------------------------------------------------------------
 void FeedPropertiesDialog::slotLoadTitle()
 {
-  titleEdit_->setText(titleString_);
-  emit signalLoadTitle(homePage_, feedUrl_);
+  editTitle->setText(feedProperties.general.title);
+  emit signalLoadTitle(feedProperties.general.homepage, feedProperties.general.url);
   emit startGetUrlTimer();
 }
+//------------------------------------------------------------------------------
+FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
+{
+  return(feedProperties);
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::setFeedProperties(FEED_PROPERTIES properties)
+{
+  feedProperties = properties;
+}
+
