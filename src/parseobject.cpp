@@ -307,7 +307,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
 //        if (tagsStack.top() == "image")
 //          imageTitleString += xml.text().toString();
       }
-      else if ((currentTag == "link") && (tagsStack.top() == "channel"))
+      else if ((currentTag == "link") &&
+               ((tagsStack.top() == "channel") || (tagsStack.top() == "item")))
         linkString = xml.text().toString();
       else if (currentTag == "author")  //rss
         authorString += xml.text().toString();
@@ -341,6 +342,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomSummaryString += xml.text().toString();
       else if (currentTag == "content")
         contentString += xml.text().toString();
+      if (currentTag == "link") {
+        qDebug() << "*01" << xml.text().toString() << tagsStack.top();
+      }
     }
   }
   if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
