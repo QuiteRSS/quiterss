@@ -1,15 +1,30 @@
-Version 0.8.1 (6 Feb 2012)
-  added: Internal browser
-  fixed: Cyrillic letters in application path
-  fixed: SQLite for Qt 4.8.0
-  fixed: NetworkManager move to his own thread
-  fixed: News list don't scrool while click on column "read/unread" if cursor is out of view
-  fixed: request url queues while update feeds
-  fixed: Parsing "alternate" url of the news of Atom-feeds
-  fixed: TrayMenu is not appear sometimes
+<HTML><STYLE>a { color: blue; text-decoration: none; }</STYLE><BODY>
+<P><B>Version 0.8.X</B> (X Feb 2012)
+<UL>
+<LI>Added: Load feed icon (<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
+<LI>Fixed: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
+<LI>Fixed: Small bugs and defects</LI>
+</UL>
 
-Version 0.8.0 (31 Jan 2012)
-  added: sumiltaneous update up to 8 feeds
+<P><B>Version 0.8.1</B> (6 Feb 2012)
+<UL>
+<LI>Added: Internal browser</LI>
+<LI>Fixed: Cyrillic letters in application path</LI>
+<LI>Fixed: SQLite for Qt 4.8.0</LI>
+<LI>Fixed: NetworkManager move to his own thread</LI>
+<LI>Fixed: News list don't scrool while click on column "read/unread" if cursor is out of view</LI>
+<LI>Fixed: Request url queues while update feeds</LI>
+<LI>Fixed: Parsing "alternate" url of the news of Atom-feeds</LI>
+<LI>Fixed: TrayMenu is not appear sometimes</LI>
+</UL>
 
-Version 0.7.6 (28 Jan 2012)
-  ...old release. No need to document it ;)
+<P><B>Version 0.8.0</B> (31 Jan 2012)
+<UL>
+<LI>Added: Sumiltaneous update up to 8 feeds</LI>
+</UL>
+
+<P><B>Version 0.7.6</B> (28 Jan 2012)
+<UL>
+<LI>...Old release. No need to document it ;)</LI>
+</UL>
+</BODY></HTML>
