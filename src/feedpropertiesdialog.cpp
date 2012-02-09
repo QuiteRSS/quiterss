@@ -74,6 +74,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::showEvent(QShowEvent *event)
 {
+  Q_UNUSED(event)
   editTitle->setText(feedProperties.general.text);
   editURL->setText(feedProperties.general.url);
   editURL->selectAll();
