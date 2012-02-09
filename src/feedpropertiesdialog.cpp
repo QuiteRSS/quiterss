@@ -74,7 +74,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::showEvent(QShowEvent *event)
 {
-  editTitle->setText(feedProperties.general.title);
+  editTitle->setText(feedProperties.general.text);
   editURL->setText(feedProperties.general.url);
   editURL->selectAll();
   editURL->setFocus();
@@ -91,6 +91,8 @@ void FeedPropertiesDialog::slotLoadTitle()
 //------------------------------------------------------------------------------
 FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 {
+  feedProperties.general.text = editTitle->text();
+  feedProperties.general.url = editURL->text();
   return(feedProperties);
 }
 //------------------------------------------------------------------------------

@@ -2517,8 +2517,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex index = feedsView_->currentIndex();
   FEED_PROPERTIES properties;
 
-  properties.general.title  = "srtgsdrgz";
-  properties.general.title = feedsModel_->record(index.row()).field("text").value().toString();
+  properties.general.text = feedsModel_->record(index.row()).field("text").value().toString();
+  properties.general.title = feedsModel_->record(index.row()).field("title").value().toString();
   properties.general.url = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
   properties.general.homepage = feedsModel_->record(index.row()).field("htmlUrl").value().toString();
 
@@ -2542,7 +2542,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   delete feedPropertiesDialog;
 
   db_.exec(QString("update feeds set text = '%1' where id == '%2'").
-          arg(properties.general.title).
+          arg(properties.general.text).
           arg(id));
   db_.exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
           arg(properties.general.url).
