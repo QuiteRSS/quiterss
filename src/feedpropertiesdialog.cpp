@@ -36,19 +36,20 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
   layoutGeneralTitle = new QHBoxLayout();
   editTitle = new QLineEdit();
   btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
+  labelTitleCapt = new QLabel(tr("Title:"));
   btnLoadTitle->setToolTip(tr("Load feed title"));
   btnLoadTitle->setMaximumHeight(22);
   btnLoadTitle->setFocusPolicy(Qt::NoFocus);
+  layoutGeneralTitle->addWidget(labelTitleCapt);
   layoutGeneralTitle->addWidget(editTitle);
   layoutGeneralTitle->addWidget(btnLoadTitle);
   layoutGeneralTitle->setStretch(0, 0);
-  layoutGeneralTitle->setStretch(0, 2);
+  layoutGeneralTitle->setStretch(1, 2);
   editURL = new QLineEdit();
   labelHomepage = new QLabel();
   labelHomepage->setOpenExternalLinks(true);
   layoutGeneralMain->addLayout(layoutGeneralTitle);
 
-  labelTitleCapt = new QLabel(tr("Title:"));
   labelHomepageCapt = new QLabel(tr("Homepage:"));
   labelURLCapt = new QLabel(tr("Feed URL:"));
 
