@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "dbmemfilethread.h"
 #include "faviconloader.h"
 #include "feedsmodel.h"
 #include "feedsview.h"
@@ -207,6 +208,8 @@ private:
     bool embeddedBrowserOn_;
 
     FaviconLoader *faviconLoader;
+
+    DBMemFileThread *dbMemFileThread_;
 
 private slots:
     void slotProgressBarUpdate();
