@@ -26,6 +26,7 @@ public slots:
     void addFeed();
     void deleteFeed();
     void slotImportFeeds();
+    void slotExportFeeds();
     void slotFeedsTreeClicked(QModelIndex index);
     void slotFeedsTreeSelected(QModelIndex index);
     void slotGetFeed();
@@ -86,6 +87,7 @@ private:
     QAction *addFeedAct_;
     QAction *deleteFeedAct_;
     QAction *importFeedsAct_;
+    QAction *exportFeedsAct_;
     QAction *toolBarToggle_;
     QAction *toolBarStyleI_;
     QAction *toolBarStyleT_;

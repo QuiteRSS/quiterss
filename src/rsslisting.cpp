@@ -656,6 +656,10 @@ void RSSListing::createActions()
   importFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(slotImportFeeds()));
 
+  exportFeedsAct_ = new QAction(this);
+  exportFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
+  connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
+
   exitAct_ = new QAction(this);
   exitAct_->setShortcut(Qt::CTRL+Qt::Key_Q);  // standart on other OS
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
@@ -780,6 +784,7 @@ void RSSListing::createMenu()
   fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
+  fileMenu_->addAction(exportFeedsAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(exitAct_);
 
@@ -1237,7 +1242,54 @@ void RSSListing::slotImportFeeds()
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 }
+/*! Экспорт ленты в OPML-файл *************************************************/
+void RSSListing::slotExportFeeds()
+{
+  QString fileName = QFileDialog::getSaveFileName(this, tr("Select OPML-file"),
+      QDir::homePath(),
+      tr("OPML-files (*.opml)"));
 
+  if (fileName.isNull()) {
+    statusBar()->showMessage(tr("Export canceled"), 3000);
+    return;
+  }
+
+  QFile file(fileName);
+  if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    statusBar()->showMessage(tr("Export: can't open a file"), 3000);
+    return;
+  }
+
+  QXmlStreamWriter xml(&file);
+  xml.setAutoFormatting(true);
+  xml.writeStartDocument();
+  xml.writeStartElement("opml");
+  xml.writeAttribute("version", "2.0");
+  xml.writeStartElement("head");
+  xml.writeTextElement("title", "QuiteRSS");
+  xml.writeTextElement("dateModified", QDateTime::currentDateTime().toString());
+  xml.writeEndElement(); // </head>
+
+  QSqlQuery q(db_);
+  q.exec("select * from feeds where xmlUrl is not null");
+
+  xml.writeStartElement("body");
+  while (q.next()) {
+    QString value = q.record().value(q.record().indexOf("text")).toString();
+    xml.writeEmptyElement("outline");
+    xml.writeAttribute("text", value);
+    value = q.record().value(q.record().indexOf("htmlUrl")).toString();
+    xml.writeAttribute("htmlUrl", value);
+    value = q.record().value(q.record().indexOf("xmlUrl")).toString();
+    xml.writeAttribute("xmlUrl", value);
+  }
+  xml.writeEndElement(); // </body>
+
+  xml.writeEndElement(); // </opml>
+  xml.writeEndDocument();
+
+  file.close();
+}
 /*! \brief приём xml-файла ****************************************************/
 void RSSListing::receiveXml(const QByteArray &data, const QUrl &url)
 {
@@ -2371,6 +2423,9 @@ void RSSListing::retranslateStrings() {
 
   importFeedsAct_->setText(tr("&Import feeds..."));
   importFeedsAct_->setToolTip(tr("Import feeds from OPML file"));
+
+  exportFeedsAct_->setText(tr("&Export feeds..."));
+  exportFeedsAct_->setToolTip(tr("Export feeds to OPML file"));
 
   exitAct_->setText(tr("E&xit"));
 

@@ -35,6 +35,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<UL>"
       "<li>Aleksey Khokhryakov   <a href='mailto:aleksey.khokhryakov@gmail.com'>e-mail</a></li>"
       "<li>Shilyaev Egor   <a href='mailto:egor.shilyaev@gmail.com'>e-mail</a></li>"
+      "<li>Kalinin Andrey   <a href='mailto:mikhalych.kalinin@gmail.com'>e-mail</a></li>"
       "</UL>"
       "<HR>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss") +
