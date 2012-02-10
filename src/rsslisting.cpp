@@ -135,11 +135,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     dbMemFileThread_ = new DBMemFileThread(this);
     dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, false);
-    dbMemFileThread_->start();
-    while(dbMemFileThread_->isRunning()) {
-      qApp->processEvents();
-      qDebug() << dbMemFileThread_->isRunning();
-    }
+    dbMemFileThread_->start(QThread::NormalPriority);
+    while(dbMemFileThread_->isRunning()) qApp->processEvents();
 
     persistentUpdateThread_ = new UpdateThread(this);
     persistentUpdateThread_->setObjectName("persistentUpdateThread_");
@@ -477,8 +474,8 @@ RSSListing::~RSSListing()
   delete feedsModel_;
 
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-  dbMemFileThread_->start();
-  while(dbMemFileThread_->isRunning());
+  dbMemFileThread_->start(QThread::NormalPriority);
+  while(dbMemFileThread_->isRunning()) qApp->processEvents();
   db_.close();
 
   QSqlDatabase::removeDatabase(QString());
@@ -595,7 +592,7 @@ void RSSListing::slotPlaceToTray()
     markAllFeedsRead(false);
   hide();
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-  dbMemFileThread_->start();
+  dbMemFileThread_->start(QThread::LowestPriority);
   writeSettings();
 }
 
