@@ -37,12 +37,17 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>Shilyaev Egor   <a href='mailto:egor.shilyaev@gmail.com'>e-mail</a></li>"
       "<li>Kalinin Andrey   <a href='mailto:mikhalych.kalinin@gmail.com'>e-mail</a></li>"
       "</UL>"
+      + tr("Acknowledgements:") +
+      "<UL>"
+      "<li>Elbert Pol</li>"
+      "<li>TI_Eugene</li>"
+      "</UL>"
       "<HR>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss") +
       "<p>&copy; 2011 QuiteTeam</p>"
       "</body></html>";
   QLabel *infoLabel = new QLabel(info, this);
-  infoLabel->setMinimumWidth(200);
+  infoLabel->setMinimumWidth(250);
   infoLabel->setOpenExternalLinks(true);
   layout->addWidget(infoLabel);
 
