@@ -1,7 +1,8 @@
 <HTML><STYLE>a { color: blue; text-decoration: none; }</STYLE><BODY>
-<P><B>Version 0.8.x</B> (x Feb 2012)
+<P><B>Version 0.8.2</B> (10 Feb 2012)
 <UL>
 <LI>Added: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
+<LI>Added: Export feeds to OPML-file</LI>
 <LI>Fixed: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
 <LI>Fixed: Some feed parsing issues</LI>
 <LI>Fixed: Some GUI display issues</LI>
