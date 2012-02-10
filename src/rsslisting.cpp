@@ -657,7 +657,7 @@ void RSSListing::createActions()
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(slotImportFeeds()));
 
   exportFeedsAct_ = new QAction(this);
-  exportFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
+  exportFeedsAct_->setIcon(QIcon(":/images/exportFeeds"));
   connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
 
   exitAct_ = new QAction(this);

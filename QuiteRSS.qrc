@@ -34,6 +34,7 @@
         <file alias="quiterss32">images/32x32/quiterss.png</file>
         <file alias="quiterss16_NewNews1">images/QuiteRSS16_NewNews1.png</file>
         <file alias="countNew">images/quiterss_count.png</file>
+        <file alias="exportFeeds">images/exportFeeds.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QuiteRSS.qss</file>
