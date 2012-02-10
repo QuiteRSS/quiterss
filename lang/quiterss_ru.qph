@@ -701,4 +701,28 @@
     <source>Update done</source>
     <target>Обновление завершено</target>
 </phrase>
+<phrase>
+    <source>Acknowledgements:</source>
+    <target>Благодарности:</target>
+</phrase>
+<phrase>
+    <source>Export canceled</source>
+    <target>Отмена экспортирования</target>
+</phrase>
+<phrase>
+    <source>Export: can&apos;t open a file</source>
+    <target>Экспортирование: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>&amp;Export feeds...</source>
+    <target>&amp;Экспортировать новостные ленты...</target>
+</phrase>
+<phrase>
+    <source>Export feeds to OPML file</source>
+    <target>Экспортировать новостные ленты из OPML-файла</target>
+</phrase>
+<phrase>
+    <source>Loading history...</source>
+    <target>Загрузка истории...</target>
+</phrase>
 </QPH>
