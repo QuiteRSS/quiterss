@@ -5,10 +5,12 @@
 DBMemFileThread::DBMemFileThread(QObject *pParent)
   :QThread(pParent)
 {
+  qDebug() << "DBMemFileThread::constructor";
 }
 
 DBMemFileThread::~DBMemFileThread()
 {
+  qDebug() << "DBMemFileThread::~destructor";
 }
 
 /*
