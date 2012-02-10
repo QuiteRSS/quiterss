@@ -1079,11 +1079,18 @@ void RSSListing::addFeed()
     addFeedDialog->feedUrlEdit_->setCursorPosition(0);
   } else addFeedDialog->feedUrlEdit_->setText("http://");
 
-  if (addFeedDialog->exec() == QDialog::Rejected) return;
+  if (addFeedDialog->exec() == QDialog::Rejected) {
+    delete addFeedDialog;
+    return;
+  }
+
   QSqlQuery q(db_);
 
   QString textString(addFeedDialog->feedTitleEdit_->text());
   QString xmlUrlString(addFeedDialog->feedUrlEdit_->text());
+
+  delete addFeedDialog;
+
   int duplicateFoundId = -1;
   q.exec("select xmlUrl, id from feeds");
   while (q.next()) {
@@ -1554,7 +1561,10 @@ void RSSListing::showOptionDlg()
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
   index = optionsDialog->currentIndex();
 
-  if (result == QDialog::Rejected) return;
+  if (result == QDialog::Rejected) {
+    delete optionsDialog;
+    return;
+  }
 
   startingTray_ = optionsDialog->startingTray_->isChecked();
   minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
@@ -1610,6 +1620,8 @@ void RSSListing::showOptionDlg()
         optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
         optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
+
+  delete optionsDialog;
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
@@ -2009,6 +2021,7 @@ void RSSListing::slotShowAboutDlg()
 {
   AboutDialog *aboutDialog = new AboutDialog(this);
   aboutDialog->exec();
+  delete aboutDialog;
 }
 
 void RSSListing::deleteNews()
@@ -2299,6 +2312,7 @@ void RSSListing::slotShowUpdateAppDlg()
 {
   UpdateAppDialog *updateAppDialog = new UpdateAppDialog(this);
   updateAppDialog->exec();
+  delete updateAppDialog;
 }
 
 /*
@@ -2558,8 +2572,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex index = feedsView_->currentIndex();
   FEED_PROPERTIES properties;
 
-  properties.general.title  = "srtgsdrgz";
-  properties.general.title = feedsModel_->record(index.row()).field("text").value().toString();
+  properties.general.text = feedsModel_->record(index.row()).field("text").value().toString();
+  properties.general.title = feedsModel_->record(index.row()).field("title").value().toString();
   properties.general.url = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
   properties.general.homepage = feedsModel_->record(index.row()).field("htmlUrl").value().toString();
 
@@ -2572,14 +2586,18 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   int result = feedPropertiesDialog->exec();
   settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
-  if (result == QDialog::Rejected) return;
+  if (result == QDialog::Rejected) {
+    delete feedPropertiesDialog;
+    return;
+  }
 
   int id = feedsModel_->record(index.row()).field("id").value().toInt();
 
   properties = feedPropertiesDialog->getFeedProperties();
+  delete feedPropertiesDialog;
 
   db_.exec(QString("update feeds set text = '%1' where id == '%2'").
-          arg(properties.general.title).
+          arg(properties.general.text).
           arg(id));
   db_.exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
           arg(properties.general.url).

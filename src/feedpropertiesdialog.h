@@ -8,6 +8,7 @@ typedef struct {
 
   //! Основные настройки
   struct general{
+    QString text; //!< Имя
     QString title; //!< Имя
     QString url; //!< URL
     QString homepage; //!< Домашняя страница
