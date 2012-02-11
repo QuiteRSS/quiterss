@@ -411,6 +411,10 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
             updateFeedAct_, SLOT(trigger()));
 
+    commitDataRequest_ = false;
+    connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
+            this, SLOT(slotCommitDataRequest(QSessionManager&)));
+
     faviconLoader = new FaviconLoader(this);
     connect(this, SIGNAL(startGetUrlTimer()),
         faviconLoader, SIGNAL(startGetUrlTimer()));
@@ -464,6 +468,10 @@ RSSListing::~RSSListing()
   QString  qStr = QString("update feeds set newCount=0");
   q.exec(qStr);
 
+  dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
+  dbMemFileThread_->start();
+  while(dbMemFileThread_->isRunning());
+
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
   faviconLoader->quit();
@@ -473,12 +481,15 @@ RSSListing::~RSSListing()
   delete newsModel_;
   delete feedsModel_;
 
-  dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-  dbMemFileThread_->start(QThread::NormalPriority);
-  while(dbMemFileThread_->isRunning()) qApp->processEvents();
   db_.close();
 
   QSqlDatabase::removeDatabase(QString());
+}
+
+void RSSListing::slotCommitDataRequest(QSessionManager &manager)
+{
+  manager.release();
+  commitDataRequest_ = true;
 }
 
 /*virtual*/ void RSSListing::showEvent(QShowEvent* event)
@@ -537,7 +548,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
   event->ignore();
-  if (closingTray_) {
+  if (closingTray_ && !commitDataRequest_) {
     oldState = windowState();
     emit signalPlaceToTray();
   } else {

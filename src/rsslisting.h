@@ -210,6 +210,7 @@ private:
     FaviconLoader *faviconLoader;
 
     DBMemFileThread *dbMemFileThread_;
+    bool commitDataRequest_;
 
 private slots:
     void slotProgressBarUpdate();
@@ -247,6 +248,7 @@ private slots:
     void markAllFeedsRead(bool readOn = true);
     void slotWebTitleLinkClicked(QString urlStr);
     void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
+    void slotCommitDataRequest(QSessionManager&);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

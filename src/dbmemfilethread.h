@@ -12,9 +12,6 @@ public:
   ~DBMemFileThread();
   void sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
 
-public slots:
-
-
 protected:
   virtual void run();
 
@@ -22,8 +19,6 @@ private:
   QSqlDatabase memdb_;
   QString filename_;
   bool save_;
-
-signals:
 
 };
 

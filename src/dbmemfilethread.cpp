@@ -89,7 +89,6 @@ DBMemFileThread::~DBMemFileThread()
   qDebug() << "sqliteDBMemFile(): return =" << state;
 }
 
-
 void DBMemFileThread::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save)
 {
   memdb_ = memdb;
