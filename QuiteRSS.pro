@@ -86,6 +86,7 @@ unix {
   icon_48.files = images/48x48/quiterss.png
   icon_64.files = images/64x64/quiterss.png
   translations.files = lang/*.qm
+  sound.files = sound/*.wav
   isEmpty(PREFIX) {
     PREFIX =   /usr
   }
@@ -97,7 +98,9 @@ unix {
   icon_48.path =  $$PREFIX/share/icons/hicolor/48x48/apps
   icon_64.path =  $$PREFIX/share/icons/hicolor/64x64/apps
   translations.path =  $$PREFIX/share/quiterss/lang
-  INSTALLS += target desktop icon_16 icon_24 icon_32 icon_48 icon_64 translations
+  sound.path = $$PREFIX/share/quiterss/sound
+  INSTALLS += target desktop icon_16 icon_24 icon_32 icon_48 icon_64 \
+              translations sound
 }
 
 RESOURCES += \

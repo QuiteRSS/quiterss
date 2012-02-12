@@ -1355,7 +1355,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 
 void RSSListing::slotUpdateFeed(const QUrl &url)
 {
-  // поиск идентификатора ленты с таблице лент
+  // поиск идентификатора ленты в таблице лент
   int parseFeedId = 0;
   QSqlQuery q(db_);
   q.exec(QString("select id from feeds where xmlUrl like '%1'").
@@ -1393,6 +1393,9 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   refreshInfoTray();
+  if (newCount > newCountOld) {
+    playSoundNewNews();
+  }
 
   QModelIndex index = feedsView_->currentIndex();
   int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
@@ -1695,6 +1698,8 @@ void RSSListing::showProgressBar(int addToMaximum)
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetFeed()
 {
+  playSoundNewNews_ = false;
+
   persistentUpdateThread_->requestUrl(
       feedsModel_->record(feedsView_->currentIndex().row()).field("xmlUrl").value().toString(),
       QDateTime::fromString(feedsModel_->record(feedsView_->currentIndex().row()).field("lastBuildDate").value().toString(), Qt::ISODate)
@@ -1706,6 +1711,8 @@ void RSSListing::slotGetFeed()
 void RSSListing::slotGetAllFeeds()
 {
   int feedCount = 0;
+
+  playSoundNewNews_ = false;
 
   QSqlQuery q(db_);
   q.exec("select xmlUrl, lastBuildDate from feeds where xmlUrl is not null");
@@ -1886,6 +1893,9 @@ void RSSListing::slotUpdateStatus()
   if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   refreshInfoTray();
+  if (newCount > newCountOld) {
+    playSoundNewNews();
+  }
 
   feedsModel_->select();
   int rowFeeds = -1;
@@ -2676,4 +2686,17 @@ void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteA
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
+}
+
+void RSSListing::playSoundNewNews()
+{
+  if (!playSoundNewNews_ && soundNewNews_) {
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+    QSound::play(QCoreApplication::applicationDirPath() +
+                 QString("/sound/notification.wav"));
+#else
+    QProcess::startDetached("play /usr/share/quiterss/sound/notification.wav");
+#endif
+    playSoundNewNews_ = true;
+  }
 }

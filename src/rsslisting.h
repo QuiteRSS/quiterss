@@ -76,6 +76,7 @@ private:
     void appInstallTranslator();
     void retranslateStrings();
     void refreshInfoTray();
+    void playSoundNewNews();
 
     QSettings *settings_;
     QString dataDirPath_;
@@ -211,6 +212,9 @@ private:
 
     DBMemFileThread *dbMemFileThread_;
     bool commitDataRequest_;
+
+    bool soundNewNews_;
+    bool playSoundNewNews_;
 
 private slots:
     void slotProgressBarUpdate();
