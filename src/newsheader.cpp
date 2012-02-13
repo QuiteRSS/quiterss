@@ -41,6 +41,7 @@ void NewsHeader::initColumns()
   showSection(model_->fieldIndex("author_name"));
   showSection(model_->fieldIndex("read"));
   showSection(model_->fieldIndex("sticky"));
+  showSection(model_->fieldIndex("category"));
 
   moveSection(visualIndex(model_->fieldIndex("sticky")), 0);
   resizeSection(model_->fieldIndex("sticky"), 25);
@@ -51,6 +52,7 @@ void NewsHeader::initColumns()
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("author_name")), 3);
   resizeSection(model_->fieldIndex("author_name"), 100);
+  moveSection(visualIndex(model_->fieldIndex("category")), 4);
   resizeSection(model_->fieldIndex("title"), 200);
   setSortIndicator(model_->fieldIndex("published"), Qt::DescendingOrder);
 }
@@ -69,6 +71,7 @@ void NewsHeader::createMenu()
         (lIdx == model_->fieldIndex("published")) ||
         (lIdx == model_->fieldIndex("received")) ||
         (lIdx == model_->fieldIndex("author_name")) ||
+        (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
         (lIdx == model_->fieldIndex("sticky"))) {
       QAction *action = pActGroup_->addAction(
@@ -89,6 +92,7 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
   model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
+  model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
   for (int i = 0; i < model_->columnCount(); i++) {
@@ -313,6 +317,7 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
   model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
+  model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
 
@@ -327,6 +332,7 @@ void NewsHeader::retranslateStrings()
         (lIdx == model_->fieldIndex("published")) ||
         (lIdx == model_->fieldIndex("received")) ||
         (lIdx == model_->fieldIndex("author_name")) ||
+        (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
         (lIdx == model_->fieldIndex("sticky"))) {
       QAction *action = pActGroup_->addAction(

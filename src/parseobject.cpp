@@ -46,6 +46,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString atomUpdatedString;
   QString atomSummaryString;
   QString contentString;
+  QString categoryString;
 
   qDebug() << "=================== parseXml:start ============================";
   // поиск идентификатора ленты с таблице лент
@@ -109,6 +110,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         rssPubDateString.clear();
         rssGuidString.clear();
         contentString.clear();
+        categoryString.clear();
       }
       if (currentTag == "entry") {  // Atom
         atomUpdatedString = parseDate(atomUpdatedString);
@@ -146,7 +148,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomUpdatedString.clear();
         atomSummaryString.clear();
         contentString.clear();
-
+        categoryString.clear();
       }
       if ((currentTag == "link") && // Atom
           (xml.attributes().value("type").toString() == "text/html") &&
@@ -191,8 +193,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("insert into feed_%1("
-                           "description, content, guid, title, author_name, published, received, link_href) "
-                           "values(?, ?, ?, ?, ?, ?, ?, ?)").
+                           "description, content, guid, title, author_name, published, received, link_href, category) "
+                           "values(?, ?, ?, ?, ?, ?, ?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(rssDescriptionString);
@@ -203,6 +205,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(rssPubDateString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
+            q.addBindValue(categoryString);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << rssDescriptionString;
@@ -213,6 +216,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qDebug() << "       " << rssPubDateString;
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << "       " << linkString;
+            qDebug() << "       " << categoryString;
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }
@@ -254,8 +258,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qStr = QString("insert into feed_%1("
                            "description, content, guid, title, author_name, "
                            "author_uri, author_email, published, received, "
-                           "link_href, link_alternate) "
-                           "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ? )").
+                           "link_href, link_alternate, category) "
+                           "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)").
                 arg(parseFeedId);
             q.prepare(qStr);
             q.addBindValue(atomSummaryString);
@@ -269,6 +273,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
             q.addBindValue(linkAlternateString);
+            q.addBindValue(categoryString);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << atomSummaryString;
@@ -282,6 +287,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << "       " << linkString;
             qDebug() << "       " << linkAlternateString;
+            qDebug() << "       " << categoryString;
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }
@@ -342,9 +348,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomSummaryString += xml.text().toString();
       else if (currentTag == "content")
         contentString += xml.text().toString();
-      if (currentTag == "link") {
-        qDebug() << "*01" << xml.text().toString() << tagsStack.top();
-      }
+      else if (currentTag == "category")
+        categoryString = xml.text().toString();
     }
   }
   if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
