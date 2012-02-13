@@ -980,6 +980,8 @@ void RSSListing::readSettings()
   else
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
+  soundNewNews_ = settings_->value("soundNewNews", true).toBool();
+
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
   foreach(QAction *action, listActions) {
@@ -1054,6 +1056,8 @@ void RSSListing::writeSettings()
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
 
   settings_->setValue("embeddedBrowserOn", embeddedBrowserOn_);
+
+  settings_->setValue("soundNewNews", soundNewNews_);
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -1561,6 +1565,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
 
+  optionsDialog->soundNewNews_->setChecked(soundNewNews_);
+
   optionsDialog->setLanguage(langFileName_);
 
   QString strFont = QString("%1, %2").
@@ -1616,6 +1622,8 @@ void RSSListing::showOptionDlg()
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
+
+  soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
 
   if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();

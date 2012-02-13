@@ -37,6 +37,9 @@ public:
   QCheckBox *markNewsReadOn_;
   QSpinBox *markNewsReadTime_;
 
+  // nitifier
+  QCheckBox *soundNewNews_;
+
   // fonts
   QTreeWidget *fontTree;
 
@@ -61,6 +64,7 @@ private:
   QWidget *networkConnectionsWidget_;
   QWidget *browserWidget_;
   QTabWidget *feedsWidget_;
+  QWidget *notifierWidget_;
   QWidget *languageWidget_;
   QWidget *fontsWidget_;
 

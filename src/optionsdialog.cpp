@@ -28,10 +28,13 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "3" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "4" << tr("Language");
+  treeItem << "4" << tr("Notifier");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "5" << tr("Fonts");
+  treeItem << "5" << tr("Language");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "6" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ system tray
@@ -191,6 +194,18 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   feedsWidget_->addTab(readingFeedsWidget_, tr("Reading"));
   //} feeds
 
+  //{ notifier
+  soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
+
+  QVBoxLayout *notifierLayout = new QVBoxLayout();
+  notifierLayout->setMargin(0);
+  notifierLayout->addWidget(soundNewNews_);
+  notifierLayout->addStretch();
+
+  notifierWidget_ = new QWidget();
+  notifierWidget_->setLayout(notifierLayout);
+  //} notifier
+
   //{ language
   languageFileList_ = new QListWidget();
   languageFileList_->setObjectName("languageFileList_");
@@ -263,6 +278,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(browserWidget_);
   contentStack_->addWidget(feedsWidget_);
+  contentStack_->addWidget(notifierWidget_);
   contentStack_->addWidget(languageWidget_);
   contentStack_->addWidget(fontsWidget_);
 
