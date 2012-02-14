@@ -94,6 +94,9 @@ const QString kCreateNewsTableQuery(
 RSSListing::RSSListing(QWidget *parent)
     : QMainWindow(parent)
 {
+  setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
+  setContextMenuPolicy(Qt::CustomContextMenu);
+
 #if defined(PORTABLE)
     if (PORTABLE) {
       dataDirPath_ = QCoreApplication::applicationDirPath();
@@ -153,217 +156,10 @@ RSSListing::RSSListing(QWidget *parent)
         persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
         Qt::QueuedConnection);
 
-    feedsModel_ = new FeedsModel(this);
-    feedsModel_->setTable("feeds");
-    feedsModel_->select();
-
-    feedsView_ = new FeedsView(this);
-    feedsView_->setModel(feedsModel_);
-    for (int i = 0; i < feedsModel_->columnCount(); ++i)
-      feedsView_->hideColumn(i);
-    feedsView_->showColumn(feedsModel_->fieldIndex("text"));
-    feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
-    feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
-    feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
-
-    connect(feedsView_, SIGNAL(pressed(QModelIndex)),
-            this, SLOT(slotFeedsTreeClicked(QModelIndex)));
-    connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
-            SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
-    connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
-            this, SLOT(showContextMenuFeed(const QPoint &)));
-
-
-    newsView_ = new NewsView(this);
-
-    newsModel_ = new NewsModel(this, newsView_);
-    newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsView_, newsModel_);
-
-    newsView_->setModel(newsModel_);
-    newsView_->setHeader(newsHeader_);
-
-    connect(newsView_, SIGNAL(pressed(QModelIndex)),
-            this, SLOT(slotNewsViewClicked(QModelIndex)));
-    connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
-            SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
-    connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
-            this, SLOT(slotSetItemRead(QModelIndex, int)));
-    connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
-            this, SLOT(slotSetItemStar(QModelIndex,int)));
-    connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
-            this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
-    connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
-            this, SLOT(showContextMenuNews(const QPoint &)));
-
-    webView_ = new QWebView();
-    webView_->setObjectName("webView_");
-    webViewProgress_ = new QProgressBar(this);
-    webViewProgress_->setObjectName("webViewProgress_");
-    webViewProgress_->setFixedHeight(15);
-    webViewProgress_->setMinimum(0);
-    webViewProgress_->setMaximum(100);
-    webViewProgress_->setVisible(true);
-    connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
-    connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
-    connect(webView_, SIGNAL(loadProgress(int)), webViewProgress_, SLOT(setValue(int)));
-    connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
-
-    setContextMenuPolicy(Qt::CustomContextMenu);
-
-    feedsTitleLabel_ = new QLabel(this);
-    feedsTitleLabel_->setObjectName("feedsTitleLabel_");
-    feedsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
-    feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-    feedsToolBar_ = new QToolBar(this);
-    feedsToolBar_->setObjectName("feedsToolBar_");
-    feedsToolBar_->setIconSize(QSize(16, 16));
-
-    QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
-    feedsPanelLayout->setMargin(0);
-    feedsPanelLayout->setSpacing(0);
-
-    feedsPanelLayout->addWidget(feedsTitleLabel_, 0);
-    feedsPanelLayout->addStretch(1);
-    feedsPanelLayout->addWidget(feedsToolBar_, 0);
-    feedsPanelLayout->addSpacing(5);
-
-    QWidget *feedsPanel = new QWidget(this);
-    feedsPanel->setObjectName("feedsPanel");
-    feedsPanel->setLayout(feedsPanelLayout);
-
-    QVBoxLayout *feedsWidgetLayout = new QVBoxLayout();
-    feedsWidgetLayout->setMargin(1);
-    feedsWidgetLayout->setSpacing(0);
-    feedsWidgetLayout->addWidget(feedsView_);
-
-    QWidget *feedsWidget = new QWidget(this);
-    feedsWidget->setObjectName("feedsWidget");
-    feedsWidget->setLayout(feedsWidgetLayout);
-
-    //! Create feeds DockWidget
-    setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
-    setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
-    setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
-
-    feedsDock_ = new QDockWidget(this);
-    feedsDock_->setObjectName("feedsDock");
-    feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
-    feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
-    feedsDock_->setTitleBarWidget(feedsPanel);
-    feedsDock_->setWidget(feedsWidget);
-    addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
-    connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-        this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
-
-    toolBarNull_ = new QToolBar(this);
-    toolBarNull_->setObjectName("toolBarNull");
-    toolBarNull_->setMovable(false);
-    toolBarNull_->setFixedWidth(6);
-    addToolBar(Qt::LeftToolBarArea, toolBarNull_);
-
-    pushButtonNull_ = new QPushButton(this);
-    pushButtonNull_->setObjectName("pushButtonNull");
-    pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
-    pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    toolBarNull_->addWidget(pushButtonNull_);
-    connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
-
-    newsIconTitle_ = new QLabel(this);
-    newsTextTitle_ = new QLabel(this);
-    newsTextTitle_->setObjectName("newsTextTitle_");
-    QHBoxLayout *newsTitleLayout = new QHBoxLayout();
-    newsTitleLayout->setMargin(4);
-    newsTitleLayout->addSpacing(3);
-    newsTitleLayout->addWidget(newsIconTitle_);
-    newsTitleLayout->addWidget(newsTextTitle_, 1);
-    newsTitleLayout->addSpacing(3);
-
-    newsTitleLabel_ = new QWidget(this);
-    newsTitleLabel_->setObjectName("newsTitleLabel_");
-    newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
-    newsTitleLabel_->setLayout(newsTitleLayout);
-
-    newsToolBar_ = new QToolBar(this);
-    newsToolBar_->setObjectName("newsToolBar_");
-    newsToolBar_->setIconSize(QSize(16, 16));
-
-    QHBoxLayout *newsPanelLayout = new QHBoxLayout();
-    newsPanelLayout->setMargin(0);
-    newsPanelLayout->setSpacing(0);
-
-    newsPanelLayout->addWidget(newsTitleLabel_);
-    newsPanelLayout->addStretch(1);
-    newsPanelLayout->addWidget(newsToolBar_);
-    newsPanelLayout->addSpacing(5);
-
-    QWidget *newsPanel = new QWidget(this);
-    newsPanel->setObjectName("newsPanel");
-    newsPanel->setLayout(newsPanelLayout);
-
-    QVBoxLayout *newsWidgetLayout = new QVBoxLayout();
-    newsWidgetLayout->setMargin(1);
-    newsWidgetLayout->setSpacing(0);
-    newsWidgetLayout->addWidget(newsView_);
-
-    QWidget *newsWidget = new QWidget(this);
-    newsWidget->setObjectName("newsWidget");
-    newsWidget->setLayout(newsWidgetLayout);
-
-    //! Create news DockWidget
-    newsDock_ = new QDockWidget(this);
-    newsDock_->setObjectName("newsDock");
-    newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
-    newsDock_->setTitleBarWidget(newsPanel);
-    newsDock_->setWidget(newsWidget);
-    addDockWidget(Qt::TopDockWidgetArea, newsDock_);
-    connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-        this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
-
-    webPanelTitleLabel_ = new QLabel(this);
-    webPanelAuthorLabel_ = new QLabel(this);
-
-    QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
-    webPanelLabelLayout->addWidget(webPanelTitleLabel_);
-    webPanelLabelLayout->addWidget(webPanelAuthorLabel_);
-
-    webPanelAuthor_ = new QLabel("");
-    webPanelAuthor_->setObjectName("webPanelAuthor_");
-    webPanelAuthor_->setOpenExternalLinks(true);
-
-    webPanelTitle_ = new QLabel("");
-    webPanelTitle_->setObjectName("webPanelTitle_");
-    connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
-            this, SLOT(slotWebTitleLinkClicked(QString)));
-
-    QVBoxLayout *webPanelTitleLayout = new QVBoxLayout();
-    webPanelTitleLayout->addWidget(webPanelTitle_);
-    webPanelTitleLayout->addWidget(webPanelAuthor_);
-
-    QHBoxLayout *webPanelLayout = new QHBoxLayout();
-    webPanelLayout->addLayout(webPanelLabelLayout, 0);
-    webPanelLayout->addLayout(webPanelTitleLayout, 1);
-
-    webPanel_ = new QWidget();
-    webPanel_->setObjectName("webPanel_");
-    webPanel_->setLayout(webPanelLayout);
-
-    //! Create web layout
-    QVBoxLayout *webLayout = new QVBoxLayout();
-    webLayout->setMargin(1);  // Чтобы было видно границу виджета
-    webLayout->setSpacing(0);
-    webLayout->addWidget(webPanel_, 0);
-    webLayout->addWidget(webView_, 1);
-    webLayout->addWidget(webViewProgress_, 0);
-
-    webWidget_ = new QWidget();
-    webWidget_->setObjectName("webWidget_");
-    webWidget_->setLayout(webLayout);
-    webWidget_->setMinimumWidth(400);
-
-    setCentralWidget(webWidget_);
-
-    setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
+    createFeedsDock();
+    createNewsDock();
+    createToolBarNull();
+    createWebWidget();
 
     createActions();
     createMenu();
@@ -371,41 +167,11 @@ RSSListing::RSSListing(QWidget *parent)
     createMenuNews();
     createMenuFeed();
 
-    feedsView_->installEventFilter(this);
-    feedsView_->viewport()->installEventFilter(this);
-    newsView_->installEventFilter(this);
-    toolBarNull_->installEventFilter(this);
-
-    //! GIU tuning
-    progressBar_ = new QProgressBar();
-    progressBar_->setObjectName("progressBar_");
-    progressBar_->setFixedWidth(100);
-    progressBar_->setFixedHeight(14);
-    progressBar_->setMinimum(0);
-    progressBar_->setMaximum(0);
-    progressBar_->setTextVisible(false);
-    progressBar_->setVisible(false);
-    statusBar()->setMinimumHeight(22);
-    statusBar()->addPermanentWidget(progressBar_);
-    statusUnread_ = new QLabel(this);
-    statusBar()->addPermanentWidget(statusUnread_);
-    statusAll_ = new QLabel(this);
-    statusBar()->addPermanentWidget(statusAll_);
-    statusBar()->setVisible(true);
-
-    traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"),this);
-    connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
-    connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
-    traySystem->setToolTip("QuiteRSS");
-    createTrayMenu();
-    traySystem->show();
+    createStatusBar();
+    createTray();
 
     connect(this, SIGNAL(signalCloseApp()),
             SLOT(slotCloseApp()), Qt::QueuedConnection);
-    connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
-            updateFeedAct_, SLOT(trigger()));
-
     commitDataRequest_ = false;
     connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
             this, SLOT(slotCommitDataRequest(QSessionManager&)));
@@ -417,23 +183,10 @@ RSSListing::RSSListing(QWidget *parent)
             this, SLOT(slotIconFeedLoad(const QString&, const QByteArray &)));
 
     loadSettingsFeeds();
-    int row = newsView_->currentIndex().row();
-
-    resize(850, 600);
 
     readSettings();
 
-    newsHeader_->createMenu();
-    newsView_->setCurrentIndex(newsModel_->index(row, 6));
-
-    //Установка шрифтов и их настроек для элементов
-//    QFont font_ = newsTitleLabel_->font();
-//    font_.setBold(true);
-//    newsTitleLabel_->setFont(font_);
-
-    if (autoUpdatefeedsStartUp_) {
-      slotGetAllFeeds();
-    }
+    if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
 
     translator_ = new QTranslator(this);
@@ -649,6 +402,263 @@ void RSSListing::timerEvent(QTimerEvent *event)
   }
 }
 
+void RSSListing::createFeedsDock()
+{
+  feedsModel_ = new FeedsModel(this);
+  feedsModel_->setTable("feeds");
+  feedsModel_->select();
+
+  feedsView_ = new FeedsView(this);
+  feedsView_->setModel(feedsModel_);
+  for (int i = 0; i < feedsModel_->columnCount(); ++i)
+    feedsView_->hideColumn(i);
+  feedsView_->showColumn(feedsModel_->fieldIndex("text"));
+  feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
+  feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
+  feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
+
+  QVBoxLayout *feedsWidgetLayout = new QVBoxLayout();
+  feedsWidgetLayout->setMargin(1);
+  feedsWidgetLayout->setSpacing(0);
+  feedsWidgetLayout->addWidget(feedsView_);
+
+  QWidget *feedsWidget = new QWidget(this);
+  feedsWidget->setObjectName("feedsWidget");
+  feedsWidget->setLayout(feedsWidgetLayout);
+
+  //! Create title DockWidget
+  feedsTitleLabel_ = new QLabel(this);
+  feedsTitleLabel_->setObjectName("feedsTitleLabel_");
+  feedsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+  feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+  feedsToolBar_ = new QToolBar(this);
+  feedsToolBar_->setObjectName("feedsToolBar_");
+  feedsToolBar_->setIconSize(QSize(16, 16));
+
+  QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
+  feedsPanelLayout->setMargin(0);
+  feedsPanelLayout->setSpacing(0);
+  feedsPanelLayout->addWidget(feedsTitleLabel_, 0);
+  feedsPanelLayout->addStretch(1);
+  feedsPanelLayout->addWidget(feedsToolBar_, 0);
+  feedsPanelLayout->addSpacing(5);
+
+  QWidget *feedsPanel = new QWidget(this);
+  feedsPanel->setObjectName("feedsPanel");
+  feedsPanel->setLayout(feedsPanelLayout);
+
+  //! Create feeds DockWidget
+  setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
+  setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
+  setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
+
+  feedsDock_ = new QDockWidget(this);
+  feedsDock_->setObjectName("feedsDock");
+  feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
+  feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
+  feedsDock_->setTitleBarWidget(feedsPanel);
+  feedsDock_->setWidget(feedsWidget);
+  addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
+
+  connect(feedsView_, SIGNAL(pressed(QModelIndex)),
+          this, SLOT(slotFeedsTreeClicked(QModelIndex)));
+  connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
+          SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
+  connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuFeed(const QPoint &)));
+  connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
+      this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
+
+  feedsView_->installEventFilter(this);
+  feedsView_->viewport()->installEventFilter(this);
+}
+
+void RSSListing::createNewsDock()
+{
+  newsView_ = new NewsView(this);
+  newsModel_ = new NewsModel(this, newsView_);
+  newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_,
+                               newsView_, newsModel_);
+
+  newsView_->setModel(newsModel_);
+  newsView_->setHeader(newsHeader_);
+
+  QVBoxLayout *newsWidgetLayout = new QVBoxLayout();
+  newsWidgetLayout->setMargin(1);
+  newsWidgetLayout->setSpacing(0);
+  newsWidgetLayout->addWidget(newsView_);
+
+  QWidget *newsWidget = new QWidget(this);
+  newsWidget->setObjectName("newsWidget");
+  newsWidget->setLayout(newsWidgetLayout);
+
+  //! Create title DockWidget
+  newsIconTitle_ = new QLabel(this);
+  newsTextTitle_ = new QLabel(this);
+  newsTextTitle_->setObjectName("newsTextTitle_");
+  QHBoxLayout *newsTitleLayout = new QHBoxLayout();
+  newsTitleLayout->setMargin(4);
+  newsTitleLayout->addSpacing(3);
+  newsTitleLayout->addWidget(newsIconTitle_);
+  newsTitleLayout->addWidget(newsTextTitle_, 1);
+  newsTitleLayout->addSpacing(3);
+
+  newsTitleLabel_ = new QWidget(this);
+  newsTitleLabel_->setObjectName("newsTitleLabel_");
+  newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+  newsTitleLabel_->setLayout(newsTitleLayout);
+
+  newsToolBar_ = new QToolBar(this);
+  newsToolBar_->setObjectName("newsToolBar_");
+  newsToolBar_->setIconSize(QSize(16, 16));
+
+  QHBoxLayout *newsPanelLayout = new QHBoxLayout();
+  newsPanelLayout->setMargin(0);
+  newsPanelLayout->setSpacing(0);
+
+  newsPanelLayout->addWidget(newsTitleLabel_);
+  newsPanelLayout->addStretch(1);
+  newsPanelLayout->addWidget(newsToolBar_);
+  newsPanelLayout->addSpacing(5);
+
+  QWidget *newsPanel = new QWidget(this);
+  newsPanel->setObjectName("newsPanel");
+  newsPanel->setLayout(newsPanelLayout);
+
+  //! Create news DockWidget
+  newsDock_ = new QDockWidget(this);
+  newsDock_->setObjectName("newsDock");
+  newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
+  newsDock_->setTitleBarWidget(newsPanel);
+  newsDock_->setWidget(newsWidget);
+  addDockWidget(Qt::TopDockWidgetArea, newsDock_);
+
+  connect(newsView_, SIGNAL(pressed(QModelIndex)),
+          this, SLOT(slotNewsViewClicked(QModelIndex)));
+  connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
+          SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
+  connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
+          this, SLOT(slotSetItemRead(QModelIndex, int)));
+  connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
+          this, SLOT(slotSetItemStar(QModelIndex,int)));
+  connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
+          this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
+  connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuNews(const QPoint &)));
+  connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
+      this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
+
+  newsView_->installEventFilter(this);
+}
+
+void RSSListing::createToolBarNull()
+{
+  toolBarNull_ = new QToolBar(this);
+  toolBarNull_->setObjectName("toolBarNull");
+  toolBarNull_->setMovable(false);
+  toolBarNull_->setFixedWidth(6);
+  addToolBar(Qt::LeftToolBarArea, toolBarNull_);
+
+  pushButtonNull_ = new QPushButton(this);
+  pushButtonNull_->setObjectName("pushButtonNull");
+  pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+  pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  toolBarNull_->addWidget(pushButtonNull_);
+  connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
+  toolBarNull_->installEventFilter(this);
+}
+
+void RSSListing::createWebWidget()
+{
+  webView_ = new QWebView();
+  webView_->setObjectName("webView_");
+  webViewProgress_ = new QProgressBar(this);
+  webViewProgress_->setObjectName("webViewProgress_");
+  webViewProgress_->setFixedHeight(15);
+  webViewProgress_->setMinimum(0);
+  webViewProgress_->setMaximum(100);
+  webViewProgress_->setVisible(true);
+  connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
+  connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
+  connect(webView_, SIGNAL(loadProgress(int)), webViewProgress_, SLOT(setValue(int)));
+  connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
+
+  //! Create web panel
+  webPanelTitleLabel_ = new QLabel(this);
+  webPanelAuthorLabel_ = new QLabel(this);
+
+  QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
+  webPanelLabelLayout->addWidget(webPanelTitleLabel_);
+  webPanelLabelLayout->addWidget(webPanelAuthorLabel_);
+
+  webPanelAuthor_ = new QLabel("");
+  webPanelAuthor_->setObjectName("webPanelAuthor_");
+  webPanelAuthor_->setOpenExternalLinks(true);
+
+  webPanelTitle_ = new QLabel("");
+  webPanelTitle_->setObjectName("webPanelTitle_");
+  connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
+          this, SLOT(slotWebTitleLinkClicked(QString)));
+
+  QVBoxLayout *webPanelTitleLayout = new QVBoxLayout();
+  webPanelTitleLayout->addWidget(webPanelTitle_);
+  webPanelTitleLayout->addWidget(webPanelAuthor_);
+
+  QHBoxLayout *webPanelLayout = new QHBoxLayout();
+  webPanelLayout->addLayout(webPanelLabelLayout, 0);
+  webPanelLayout->addLayout(webPanelTitleLayout, 1);
+
+  webPanel_ = new QWidget();
+  webPanel_->setObjectName("webPanel_");
+  webPanel_->setLayout(webPanelLayout);
+
+  //! Create web layout
+  QVBoxLayout *webLayout = new QVBoxLayout();
+  webLayout->setMargin(1);  // Чтобы было видно границу виджета
+  webLayout->setSpacing(0);
+  webLayout->addWidget(webPanel_, 0);
+  webLayout->addWidget(webView_, 1);
+  webLayout->addWidget(webViewProgress_, 0);
+
+  webWidget_ = new QWidget();
+  webWidget_->setObjectName("webWidget_");
+  webWidget_->setLayout(webLayout);
+  webWidget_->setMinimumWidth(400);
+
+  setCentralWidget(webWidget_);
+}
+
+void RSSListing::createStatusBar()
+{
+  progressBar_ = new QProgressBar();
+  progressBar_->setObjectName("progressBar_");
+  progressBar_->setFixedWidth(100);
+  progressBar_->setFixedHeight(14);
+  progressBar_->setMinimum(0);
+  progressBar_->setMaximum(0);
+  progressBar_->setTextVisible(false);
+  progressBar_->setVisible(false);
+  statusBar()->setMinimumHeight(22);
+  statusBar()->addPermanentWidget(progressBar_);
+  statusUnread_ = new QLabel(this);
+  statusBar()->addPermanentWidget(statusUnread_);
+  statusAll_ = new QLabel(this);
+  statusBar()->addPermanentWidget(statusAll_);
+  statusBar()->setVisible(true);
+}
+
+void RSSListing::createTray()
+{
+  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"),this);
+  connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+          this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
+  connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
+  traySystem->setToolTip("QuiteRSS");
+  createTrayMenu();
+  traySystem->show();
+}
+
 /*! \brief Создание действий **************************************************
  * \details Которые будут использоваться в главном меню и ToolBar
  ******************************************************************************/
@@ -708,6 +718,8 @@ void RSSListing::createActions()
   updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
   updateFeedAct_->setShortcut(Qt::Key_F5);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
+  connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
+          updateFeedAct_, SLOT(trigger()));
 
   updateAllFeedsAct_ = new QAction(this);
   updateAllFeedsAct_->setIcon(QIcon(":/images/updateAllFeeds"));
@@ -999,10 +1011,9 @@ void RSSListing::readSettings()
 
   settings_->endGroup();
 
+  resize(850, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
-  newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
-  newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
       settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
@@ -1448,7 +1459,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
   newsHeader_->overload();
-
   if (initNo) {
     newsHeader_->initColumns();
     newsHeader_->createMenu();

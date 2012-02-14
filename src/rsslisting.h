@@ -62,6 +62,10 @@ private:
     QNetworkProxy networkProxy_;
 
     void showProgressBar(int addToMaximum);
+    void createFeedsDock();
+    void createNewsDock();
+    void createToolBarNull();
+    void createWebWidget();
     void createActions();
     void createMenu();
     void createToolBar();
@@ -70,6 +74,8 @@ private:
     void createTrayMenu();
     void createMenuNews();
     void createMenuFeed();
+    void createStatusBar();
+    void createTray();
     void loadSettingsFeeds();
     void updateWebView(QModelIndex index);
     bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
