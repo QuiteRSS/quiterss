@@ -166,8 +166,6 @@ RSSListing::RSSListing(QWidget *parent)
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
     feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
 
-    feedsModel_->font_ = feedsView_->font();
-
     connect(feedsView_, SIGNAL(pressed(QModelIndex)),
             this, SLOT(slotFeedsTreeClicked(QModelIndex)));
     connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
@@ -958,6 +956,7 @@ void RSSListing::readSettings()
   QString fontFamily = settings_->value("/feedsFontFamily", qApp->font().family()).toString();
   int fontSize = settings_->value("/feedsFontSize", 8).toInt();
   feedsView_->setFont(QFont(fontFamily, fontSize));
+  feedsModel_->font_ = feedsView_->font();
 
   fontFamily = settings_->value("/newsFontFamily", qApp->font().family()).toString();
   fontSize = settings_->value("/newsFontSize", 8).toInt();
