@@ -1839,6 +1839,7 @@ void RSSListing::markNewsRead()
 
 void RSSListing::markAllNewsRead()
 {
+  int currentRow = newsView_->currentIndex().row();
   QString qStr = QString("update %1 set read=1 WHERE read=0").
       arg(newsModel_->tableName());
   QSqlQuery q(db_);
@@ -1857,7 +1858,8 @@ void RSSListing::markAllNewsRead()
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  updateWebView(newsModel_->index(row, 0));
+  if (currentRow != row)
+    updateWebView(newsModel_->index(row, 0));
   slotUpdateStatus();
 }
 
@@ -2010,16 +2012,18 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
-  int row = -1;
-  for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
-      row = i;
+  if (clicked) {
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
+        row = i;
+      }
     }
-  }
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  if (row == -1) {
-    webView_->setHtml("");
-    webPanel_->hide();
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    if (row == -1) {
+      webView_->setHtml("");
+      webPanel_->hide();
+    }
   }
 }
 
@@ -2670,6 +2674,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 
+  int currentRow = newsView_->currentIndex().row();
   newsModel_->select();
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
   int row = -1;
@@ -2681,7 +2686,8 @@ void RSSListing::markAllFeedsRead(bool readOn)
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  updateWebView(newsModel_->index(row, 0));
+  if (currentRow != row)
+    updateWebView(newsModel_->index(row, 0));
   refreshInfoTray();
 }
 
