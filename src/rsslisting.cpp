@@ -429,7 +429,7 @@ RSSListing::RSSListing(QWidget *parent)
     readSettings();
 
     newsHeader_->createMenu();
-    newsView_->setCurrentIndex(newsModel_->index(row, 0));
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
 
     //Установка шрифтов и их настроек для элементов
 //    QFont font_ = newsTitleLabel_->font();
@@ -1467,7 +1467,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
       row = i;
     }
   }
-  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
   slotNewsViewSelected(newsModel_->index(row, 0));
 
   QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
@@ -1778,21 +1778,11 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
         0);
-//    QSqlQuery q(db_);
-//    q.exec(QString("update %1 set new=0 where id=='%2'").
-//        arg(newsModel_->tableName()).
-//        arg(newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data().toInt()));
-//    qDebug() << q.lastQuery() << q.lastError();
   }
   if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != read) {
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
         read);
-//    QSqlQuery q(db_);
-//    q.exec(QString("update %1 set read='%2' where id=='%3'").
-//        arg(newsModel_->tableName()).arg(read).
-//        arg(newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data().toInt()));
-//    qDebug() << q.lastQuery() << q.lastError();
   }
   newsView_->setCurrentIndex(curIndex);
   newsView_->verticalScrollBar()->setValue(topRow);
@@ -1817,15 +1807,33 @@ void RSSListing::markNewsRead()
     bool markRead = false;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0)
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
         markRead = true;
+        break;
+      }
     }
 
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (markRead) slotSetItemRead(curIndex, 1);
-      else slotSetItemRead(curIndex, 0);
+      QSqlQuery q(db_);
+      q.exec(QString("update %1 set new=0 where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
+      q.exec(QString("update %1 set read='%2' where id=='%3'").
+             arg(newsModel_->tableName()).arg(markRead).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
     }
+    newsModel_->select();
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(feedsView_->currentIndex().row(),
+                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+      }
+    }
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    slotUpdateStatus();
   }
 }
 
@@ -1848,7 +1856,7 @@ void RSSListing::markAllNewsRead()
       row = i;
     }
   }
-  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
   updateWebView(newsModel_->index(row, 0));
   slotUpdateStatus();
 }
@@ -2008,7 +2016,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
       row = i;
     }
   }
-  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
   if (row == -1) {
     webView_->setHtml("");
     webPanel_->hide();
@@ -2672,7 +2680,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
       row = i;
     }
   }
-  newsView_->setCurrentIndex(newsModel_->index(row, 0));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
   updateWebView(newsModel_->index(row, 0));
   refreshInfoTray();
 }
