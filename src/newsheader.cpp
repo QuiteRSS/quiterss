@@ -1,7 +1,10 @@
 #include "newsheader.h"
 
-NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent) :
-    QHeaderView(orientation, parent)
+NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent,
+                       QTreeView *view, NewsModel *model)
+  : QHeaderView(orientation, parent),
+    view_(view),
+    model_(model)
 {
   setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);

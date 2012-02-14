@@ -7,9 +7,9 @@
 class NewsView : public QTreeView
 {
   Q_OBJECT
+
 public:
   NewsView(QWidget * parent = 0);
-  NewsModel *model_;
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);

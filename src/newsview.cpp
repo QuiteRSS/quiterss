@@ -1,8 +1,8 @@
 #include "newsview.h"
 #include "delegatewithoutfocus.h"
 
-NewsView::NewsView(QWidget * parent) :
-    QTreeView(parent)
+NewsView::NewsView(QWidget * parent)
+  : QTreeView(parent)
 {
   setObjectName("newsView_");
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -20,6 +20,7 @@ NewsView::NewsView(QWidget * parent) :
 /*virtual*/ void NewsView::mousePressEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
+  QSqlTableModel *model_ = (QSqlTableModel*)model();
   if (event->buttons() & Qt::LeftButton) {
     if (index.column() == model_->fieldIndex("sticky")) {
       if (model_->index(index.row(), model_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {

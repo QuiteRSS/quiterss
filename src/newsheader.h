@@ -7,10 +7,20 @@
 class NewsHeader : public QHeaderView
 {
   Q_OBJECT
-public:
-  NewsHeader(Qt::Orientation orientation, QWidget * parent = 0);
-  NewsModel *model_;
+private:
   QTreeView *view_;
+  NewsModel *model_;
+
+  QMenu *viewMenu_;
+  QActionGroup *pActGroup_;
+  QPushButton *buttonColumnView;
+  int idxCol;
+  int posX1;
+
+public:
+  NewsHeader(Qt::Orientation orientation, QWidget * parent = 0,
+             QTreeView *view = 0, NewsModel *model = 0);
+
   void initColumns();
   void createMenu();
   void overload();
@@ -27,13 +37,6 @@ private slots:
   void slotButtonColumnView();
   void columnVisible(QAction*);
   void slotSectionMoved(int, int, int);
-
-private:
-  QMenu *viewMenu_;
-  QActionGroup *pActGroup_;
-  QPushButton *buttonColumnView;
-  int idxCol;
-  int posX1;
 
 };
 

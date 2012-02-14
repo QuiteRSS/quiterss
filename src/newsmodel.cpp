@@ -1,8 +1,10 @@
 #include "newsmodel.h"
 
-NewsModel::NewsModel(QObject *parent)
-  :QSqlTableModel(parent)
+NewsModel::NewsModel(QObject *parent, QTreeView *view)
+  : QSqlTableModel(parent),
+    view_(view)
 {
+  setEditStrategy(QSqlTableModel::OnFieldChange);
 }
 
 QVariant NewsModel::data(const QModelIndex &index, int role) const

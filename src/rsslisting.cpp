@@ -173,16 +173,13 @@ RSSListing::RSSListing(QWidget *parent)
     connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(showContextMenuFeed(const QPoint &)));
 
-    newsModel_ = new NewsModel(this);
-    newsModel_->setEditStrategy(QSqlTableModel::OnFieldChange);
-    newsView_ = new NewsView(this);
-    newsView_->setModel(newsModel_);
-    newsView_->model_ = newsModel_;
-    newsModel_->view_ = newsView_;
 
-    newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_);
-    newsHeader_->model_ = newsModel_;
-    newsHeader_->view_ = newsView_;
+    newsView_ = new NewsView(this);
+
+    newsModel_ = new NewsModel(this, newsView_);
+    newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsView_, newsModel_);
+
+    newsView_->setModel(newsModel_);
     newsView_->setHeader(newsHeader_);
 
     connect(newsView_, SIGNAL(pressed(QModelIndex)),
