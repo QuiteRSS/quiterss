@@ -1131,6 +1131,8 @@ void RSSListing::addFeed()
     qDebug() << "duplicate feed:" << xmlUrlString << textString;
     // @TODO(24.01.12): переместить курсор на него
   } else {
+    playSoundNewNews_ = false;
+
     QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
     q.prepare(qStr);
     q.addBindValue(textString);
@@ -1183,6 +1185,8 @@ void RSSListing::deleteFeed()
 /*! \brief Импорт лент из OPML-файла ******************************************/
 void RSSListing::slotImportFeeds()
 {
+  playSoundNewNews_ = false;
+
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
       QDir::homePath(),
       tr("OPML-files (*.opml)"));
@@ -1829,7 +1833,9 @@ void RSSListing::markNewsRead()
              arg(newsModel_->tableName()).arg(markRead).
              arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
     }
+
     newsModel_->select();
+
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
