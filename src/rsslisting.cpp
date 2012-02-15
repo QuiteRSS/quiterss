@@ -1532,7 +1532,6 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     q.exec(qStr);
   }
   indexOld = indexNew;
-  newsView_->setFocus();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
