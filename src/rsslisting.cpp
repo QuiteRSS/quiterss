@@ -9,6 +9,7 @@
 #include "addfeeddialog.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
+#include "newsfiltersdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "updateappdialog.h"
@@ -737,6 +738,10 @@ void RSSListing::createActions()
   markAllNewsRead_->setIcon(QIcon(":/images/markReadAll"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
+  setNewsFiltersAct_ = new QAction(this);
+  setNewsFiltersAct_->setIcon(QIcon(":/images/filterOff"));
+  connect(setNewsFiltersAct_, SIGNAL(triggered()), this, SLOT(showNewsFiltersDlg()));
+
   optionsAct_ = new QAction(this);
   optionsAct_->setIcon(QIcon(":/images/options"));
   optionsAct_->setShortcut(Qt::Key_F8);
@@ -903,6 +908,8 @@ void RSSListing::createMenu()
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
+  toolsMenu_->addAction(setNewsFiltersAct_);
+  toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
 
   helpMenu_ = new QMenu(this);
@@ -2444,6 +2451,9 @@ void RSSListing::retranslateStrings() {
   markAllNewsRead_->setText(tr("Mark all news Read"));
   markAllNewsRead_->setToolTip(tr("Mark all news read"));
 
+
+  setNewsFiltersAct_->setText(tr("News filters..."));
+
   optionsAct_->setText(tr("Options..."));
   optionsAct_->setToolTip(tr("Open options gialog"));
 
@@ -2731,4 +2741,15 @@ void RSSListing::playSoundNewNews()
 #endif
     playSoundNewNews_ = true;
   }
+}
+
+void RSSListing::showNewsFiltersDlg()
+{
+  NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this);
+  newsFiltersDialog->restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
+
+  newsFiltersDialog->exec();
+  settings_->setValue("newsFiltersDlg/geometry", newsFiltersDialog->saveGeometry());
+
+  delete newsFiltersDialog;
 }
