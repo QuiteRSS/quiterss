@@ -1,9 +1,8 @@
 #include "newsheader.h"
 
 NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent,
-                       QTreeView *view, NewsModel *model)
+                       NewsModel *model)
   : QHeaderView(orientation, parent),
-    view_(view),
     model_(model)
 {
   setObjectName("newsHeader");
@@ -20,6 +19,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent,
   buttonColumnView = new QPushButton();
   buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
   buttonColumnView->setObjectName("buttonColumnView");
+  buttonColumnView->setCursor(QCursor(Qt::ArrowCursor));
   buttonColumnView->setMaximumWidth(30);
   connect(buttonColumnView, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
 
@@ -176,9 +176,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
              (event->type() == QEvent::HoverEnter) ||
              (event->type() == QEvent::HoverLeave)) {
     QHoverEvent *hoverEvent = static_cast<QHoverEvent*>(event);
-    if (hoverEvent->pos().x() > width() - buttonColumnView->width()) {
+    if (hoverEvent->pos().x() >= width() - buttonColumnView->width()) {
       if ((event->type() == QEvent::HoverMove) && !(QApplication::mouseButtons() & Qt::LeftButton)) {
-        setCursor(QCursor(Qt::ArrowCursor));
         QHoverEvent* pe =
                     new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
         QApplication::sendEvent(this, pe);
@@ -252,7 +251,6 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       }
 
       int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
-//      qDebug() << oldWidth << newWidth << sectionWidth << sectionSize(logicalIndex(stopColFix));
       if ((sectionWidth > 40)) {
         if (!((model_->fieldIndex("read") == logicalIndex(idxCol)) ||
               (model_->fieldIndex("sticky") == logicalIndex(idxCol))) || idxCol < stopColFix) {

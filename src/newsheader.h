@@ -19,7 +19,7 @@ private:
 
 public:
   NewsHeader(Qt::Orientation orientation, QWidget * parent = 0,
-             QTreeView *view = 0, NewsModel *model = 0);
+             NewsModel *model = 0);
 
   void initColumns();
   void createMenu();

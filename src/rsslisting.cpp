@@ -478,8 +478,7 @@ void RSSListing::createNewsDock()
 {
   newsView_ = new NewsView(this);
   newsModel_ = new NewsModel(this, newsView_);
-  newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_,
-                               newsView_, newsModel_);
+  newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsModel_);
 
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
