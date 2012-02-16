@@ -10,6 +10,11 @@ private:
   QDialogButtonBox *buttonBox_;
   QTreeWidget *filtersTree;
 
+  QPushButton *editButton;
+  QPushButton *deleteButton;
+  QPushButton *moveUpButton;
+  QPushButton *moveDownButton;
+
 public:
   explicit NewsFiltersDialog(QWidget *parent = 0);
 

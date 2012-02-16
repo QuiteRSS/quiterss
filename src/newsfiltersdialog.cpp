@@ -10,6 +10,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
 
   filtersTree = new QTreeWidget();
   filtersTree->setObjectName("filtersTree");
+  filtersTree->setColumnCount(2);
   filtersTree->setColumnHidden(0, true);
   filtersTree->header()->setResizeMode(QHeaderView::Stretch);
   filtersTree->header()->setMovable(false);
@@ -27,14 +28,18 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
   connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
-  QPushButton *editButton = new QPushButton(tr("Edite..."), this);
+  editButton = new QPushButton(tr("Edite..."), this);
+  editButton->setEnabled(false);
   connect(editButton, SIGNAL(clicked()), this, SLOT(editeFilter()));
-  QPushButton *deleteButton = new QPushButton(tr("Delete..."), this);
+  deleteButton = new QPushButton(tr("Delete..."), this);
+  deleteButton->setEnabled(false);
   connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilter()));
 
-  QPushButton *moveUpButton = new QPushButton(tr("Move up"), this);
+  moveUpButton = new QPushButton(tr("Move up"), this);
+  moveUpButton->setEnabled(false);
   connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveUpFilter()));
-  QPushButton *moveDownButton = new QPushButton(tr("Move down"), this);
+  moveDownButton = new QPushButton(tr("Move down"), this);
+  moveDownButton->setEnabled(false);
   connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
   QVBoxLayout *buttonsLayout = new QVBoxLayout();
@@ -80,6 +85,10 @@ void NewsFiltersDialog::newFilter()
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(1, Qt::Checked);
   filtersTree->addTopLevelItem(treeWidgetItem);
+
+  if (((filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))) &&
+      filtersTree->currentIndex().isValid())
+    moveDownButton->setEnabled(true);
 }
 
 void NewsFiltersDialog::editeFilter()
@@ -90,6 +99,12 @@ void NewsFiltersDialog::editeFilter()
 void NewsFiltersDialog::deleteFilter()
 {
   filtersTree->takeTopLevelItem(filtersTree->currentIndex().row());
+
+  if (filtersTree->currentIndex().row() == 0)
+    moveUpButton->setEnabled(false);
+  if (filtersTree->currentIndex().row() == (filtersTree->topLevelItemCount()-1))
+    moveDownButton->setEnabled(false);
+
 }
 
 void NewsFiltersDialog::moveUpFilter()
@@ -98,7 +113,10 @@ void NewsFiltersDialog::moveUpFilter()
         filtersTree->currentIndex().row()-1);
   filtersTree->insertTopLevelItem(filtersTree->currentIndex().row()+1,
                                   treeWidgetItem);
-//  if (filtersTree->currentIndex().row() == 0)
+  if (filtersTree->currentIndex().row() == 0)
+    moveUpButton->setEnabled(false);
+  if (filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))
+    moveDownButton->setEnabled(true);
 }
 
 void NewsFiltersDialog::moveDownFilter()
@@ -107,12 +125,30 @@ void NewsFiltersDialog::moveDownFilter()
         filtersTree->currentIndex().row()+1);
   filtersTree->insertTopLevelItem(filtersTree->currentIndex().row(),
                                   treeWidgetItem);
+  if (filtersTree->currentIndex().row() == (filtersTree->topLevelItemCount()-1))
+    moveDownButton->setEnabled(false);
+  if (filtersTree->currentIndex().row() != 0)
+    moveUpButton->setEnabled(true);
 }
 
 void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
                                                QTreeWidgetItem *previous)
 {
-  qDebug() << filtersTree->indexOfTopLevelItem(current)
-           << filtersTree->indexOfTopLevelItem(previous);
-//  if (filtersTree->indexOfTopLevelItem(current))
+  if (filtersTree->indexOfTopLevelItem(current) == 0)
+    moveUpButton->setEnabled(false);
+  else moveUpButton->setEnabled(true);
+
+  if (filtersTree->indexOfTopLevelItem(current) == (filtersTree->topLevelItemCount()-1))
+    moveDownButton->setEnabled(false);
+  else moveDownButton->setEnabled(true);
+
+  if (filtersTree->indexOfTopLevelItem(current) < 0) {
+    editButton->setEnabled(false);
+    deleteButton->setEnabled(false);
+    moveUpButton->setEnabled(false);
+    moveDownButton->setEnabled(false);
+  } else {
+    editButton->setEnabled(true);
+    deleteButton->setEnabled(true);
+  }
 }
