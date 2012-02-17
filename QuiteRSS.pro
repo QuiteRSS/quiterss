@@ -28,7 +28,8 @@ HEADERS += \
     src/updateobject.h \
     src/faviconloader.h \
     src/dbmemfilethread.h \
-    src/newsfiltersdialog.h
+    src/newsfiltersdialog.h \
+    src/filterrulesdialog.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
@@ -54,7 +55,8 @@ SOURCES += \
     src/updateobject.cpp \
     src/faviconloader.cpp \
     src/dbmemfilethread.cpp \
-    src/newsfiltersdialog.cpp
+    src/newsfiltersdialog.cpp \
+    src/filterrulesdialog.cpp
 
 BUILD_DIR = release
 if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {

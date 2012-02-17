@@ -1,3 +1,4 @@
+#include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
@@ -44,7 +45,6 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
 
   QVBoxLayout *buttonsLayout = new QVBoxLayout();
   buttonsLayout->setAlignment(Qt::AlignCenter);
-  buttonsLayout->setSpacing(5);
   buttonsLayout->addWidget(newButton);
   buttonsLayout->addWidget(editButton);
   buttonsLayout->addWidget(deleteButton);
@@ -68,8 +68,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
 
   QVBoxLayout *mainlayout = new QVBoxLayout(this);
   mainlayout->setAlignment(Qt::AlignCenter);
-  mainlayout->setMargin(10);
-  mainlayout->setSpacing(10);
+  mainlayout->setMargin(5);
   mainlayout->addLayout(layoutH1);
   mainlayout->addLayout(closeLayout);
 
@@ -79,6 +78,17 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
 
 void NewsFiltersDialog::newFilter()
 {
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(this);
+//  filterRulesDialog->restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
+
+  int result = filterRulesDialog->exec();
+//  settings_->setValue("newsFiltersDlg/geometry", filterRulesDialog->saveGeometry());
+
+  if (result == QDialog::Rejected) {
+    delete filterRulesDialog;
+    return;
+  }
+
   QStringList treeItem;
   treeItem << QString::number(filtersTree->topLevelItemCount())
            << tr("Test filter %1").arg(filtersTree->topLevelItemCount());
@@ -89,6 +99,8 @@ void NewsFiltersDialog::newFilter()
   if (((filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))) &&
       filtersTree->currentIndex().isValid())
     moveDownButton->setEnabled(true);
+
+  delete filterRulesDialog;
 }
 
 void NewsFiltersDialog::editeFilter()
