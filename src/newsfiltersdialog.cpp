@@ -98,6 +98,16 @@ void NewsFiltersDialog::editeFilter()
 
 void NewsFiltersDialog::deleteFilter()
 {
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Question);
+  msgBox.setWindowTitle(tr("Delete filter"));
+  msgBox.setText(QString(tr("Are you sure to delete the filter '%1'?")).
+                 arg(filtersTree->currentItem()->text(1)));
+  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+  msgBox.setDefaultButton(QMessageBox::No);
+
+  if (msgBox.exec() == QMessageBox::No) return;
+
   filtersTree->takeTopLevelItem(filtersTree->currentIndex().row());
 
   if (filtersTree->currentIndex().row() == 0)

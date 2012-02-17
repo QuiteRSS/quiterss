@@ -7,7 +7,6 @@ class NewsFiltersDialog : public QDialog
 {
   Q_OBJECT
 private:
-  QDialogButtonBox *buttonBox_;
   QTreeWidget *filtersTree;
 
   QPushButton *editButton;
@@ -17,9 +16,6 @@ private:
 
 public:
   explicit NewsFiltersDialog(QWidget *parent = 0);
-
-  QLineEdit *feedTitleEdit_;
-  QLineEdit *feedUrlEdit_;
 
 signals:
 
