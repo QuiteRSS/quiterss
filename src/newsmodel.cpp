@@ -37,14 +37,22 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return QVariant();
     }
     else if (QSqlTableModel::fieldIndex("published") == index.column()) {
-      QDateTime dtLocalTime = QDateTime::currentDateTime();
-      QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
-      int nTimeShift = dtLocalTime.secsTo(dtUTC);
+      QDateTime dtLocal;
+      QString strDate = QSqlTableModel::index(
+            index.row(), fieldIndex("published")).data(Qt::EditRole).toString();
 
-      QDateTime dt = QDateTime::fromString(
-            QSqlTableModel::index(index.row(), fieldIndex("published")).data(Qt::EditRole).toString(),
-            Qt::ISODate);
-      QDateTime dtLocal = dt.addSecs(nTimeShift);
+      if (!strDate.isNull()) {
+        QDateTime dtLocalTime = QDateTime::currentDateTime();
+        QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+        int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+        QDateTime dt = QDateTime::fromString(strDate, Qt::ISODate);
+        dtLocal = dt.addSecs(nTimeShift);
+      } else {
+        dtLocal = QDateTime::fromString(
+                    QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
+                    Qt::ISODate);
+      }
       if (QDateTime::currentDateTime().date() == dtLocal.date())
         return dtLocal.toString("hh:mm");
       else
