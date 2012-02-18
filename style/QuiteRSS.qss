@@ -293,3 +293,7 @@ QStatusBar #progressBar_{
 QMainWindow::separator {
 	border: none;
 }
+
+#widgetM1, #widgetM2 {
+	background: white;
+}

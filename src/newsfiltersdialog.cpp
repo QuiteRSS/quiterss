@@ -1,8 +1,9 @@
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
 
-NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
-  QDialog(parent)
+NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
+  : QDialog(parent),
+    settings_(settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("News filters"));
@@ -74,16 +75,21 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent) :
 
   connect(filtersTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
+
+  restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
+}
+
+void NewsFiltersDialog::closeDialog()
+{
+  settings_->setValue("newsFiltersDlg/geometry", saveGeometry());
 }
 
 void NewsFiltersDialog::newFilter()
 {
-  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(this);
-//  filterRulesDialog->restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(this, settings_);
 
   int result = filterRulesDialog->exec();
-//  settings_->setValue("newsFiltersDlg/geometry", filterRulesDialog->saveGeometry());
-
   if (result == QDialog::Rejected) {
     delete filterRulesDialog;
     return;

@@ -7,6 +7,7 @@ class NewsFiltersDialog : public QDialog
 {
   Q_OBJECT
 private:
+  QSettings *settings_;
   QTreeWidget *filtersTree;
 
   QPushButton *editButton;
@@ -15,13 +16,14 @@ private:
   QPushButton *moveDownButton;
 
 public:
-  explicit NewsFiltersDialog(QWidget *parent = 0);
+  explicit NewsFiltersDialog(QWidget *parent = 0, QSettings *settings = 0);
 
 signals:
 
 public slots:
 
 private slots:
+  void closeDialog();
   void newFilter();
   void editeFilter();
   void deleteFilter();

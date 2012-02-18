@@ -1,62 +1,117 @@
 #include "filterrulesdialog.h"
 
-FilterRulesDialog::FilterRulesDialog(QWidget *parent) :
-  QDialog(parent)
+class ItemRules : public QWidget
+{
+public:
+  ItemRules(QWidget * parent = 0) : QWidget(parent)
+  {
+    QComboBox *comboBox1 = new QComboBox();
+    comboBox1->addItem(tr("Subject"));
+    QComboBox *comboBox2 = new QComboBox();
+    comboBox2->addItem(tr("contains"));
+
+    lineEdit = new QLineEdit();
+
+    addButton = new QToolButton();
+    addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setAutoRaise(true);
+    deleteButton = new QToolButton();
+    deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setAutoRaise(true);
+
+    QHBoxLayout *buttonsLayout = new QHBoxLayout();
+    buttonsLayout->setAlignment(Qt::AlignCenter);
+    buttonsLayout->setMargin(0);
+    buttonsLayout->setSpacing(5);
+    buttonsLayout->addWidget(comboBox1);
+    buttonsLayout->addWidget(comboBox2);
+    buttonsLayout->addWidget(lineEdit, 1);
+    buttonsLayout->addWidget(addButton);
+    buttonsLayout->addWidget(deleteButton);
+
+    setLayout(buttonsLayout);
+  }
+
+  QToolButton *addButton;
+  QToolButton *deleteButton;
+  QLineEdit *lineEdit;
+
+};
+
+FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings)
+  : QDialog(parent),
+    settings_(settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter rules"));
-  setMinimumWidth(400);
-  setMinimumHeight(250);
+  setMinimumWidth(420);
+  setMinimumHeight(300);
 
-//  filtersTree = new QTreeWidget();
-//  filtersTree->setObjectName("filtersTree");
-//  filtersTree->setColumnCount(2);
-//  filtersTree->setColumnHidden(0, true);
-//  filtersTree->header()->setResizeMode(QHeaderView::Stretch);
-//  filtersTree->header()->setMovable(false);
+  QLineEdit *filterName = new QLineEdit();
 
-//  QStringList treeItem;
-//  treeItem << tr("Id") << tr("Name");
-//  filtersTree->setHeaderLabels(treeItem);
+  QHBoxLayout *filterNamelayout = new QHBoxLayout();
+  filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
+  filterNamelayout->addWidget(filterName);
 
-//  treeItem.clear();
-//  treeItem << QString::number(filtersTree->topLevelItemCount())
-//           << tr("Test filter %1").arg(filtersTree->topLevelItemCount());
-//  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-//  treeWidgetItem->setCheckState(1, Qt::Checked);
-//  filtersTree->addTopLevelItem(treeWidgetItem);
+  QRadioButton *matchAllFollowing_ =
+      new QRadioButton(tr("Match all of the following"));
+  matchAllFollowing_->setChecked(true);
+  QRadioButton *matchAnyFollowing_ =
+      new QRadioButton(tr("Match any of the following"));
+  QRadioButton *matchAllNews_ =
+      new QRadioButton(tr("Match all news"));
 
-//  QPushButton *newButton = new QPushButton(tr("New..."), this);
-//  connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
-//  editButton = new QPushButton(tr("Edite..."), this);
-//  editButton->setEnabled(false);
-//  connect(editButton, SIGNAL(clicked()), this, SLOT(editeFilter()));
-//  deleteButton = new QPushButton(tr("Delete..."), this);
-//  deleteButton->setEnabled(false);
-//  connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilter()));
+  QHBoxLayout *matchLayout = new QHBoxLayout();
+  matchLayout->setSpacing(10);
+  matchLayout->addWidget(matchAllFollowing_);
+  matchLayout->addWidget(matchAnyFollowing_);
+  matchLayout->addWidget(matchAllNews_);
+  matchLayout->addStretch();
 
-//  moveUpButton = new QPushButton(tr("Move up"), this);
-//  moveUpButton->setEnabled(false);
-//  connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveUpFilter()));
-//  moveDownButton = new QPushButton(tr("Move down"), this);
-//  moveDownButton->setEnabled(false);
-//  connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
+  infoScrollArea = new QScrollArea();
+  infoScrollArea->setWidgetResizable(true);
 
-//  QVBoxLayout *buttonsLayout = new QVBoxLayout();
-//  buttonsLayout->setAlignment(Qt::AlignCenter);
-//  buttonsLayout->setSpacing(5);
-//  buttonsLayout->addWidget(newButton);
-//  buttonsLayout->addWidget(editButton);
-//  buttonsLayout->addWidget(deleteButton);
-//  buttonsLayout->addSpacing(20);
-//  buttonsLayout->addWidget(moveUpButton);
-//  buttonsLayout->addWidget(moveDownButton);
-//  buttonsLayout->addStretch();
+  infoLayout = new QVBoxLayout();
+  infoLayout->setMargin(5);
+  addFilterRules();
 
-//  QHBoxLayout *layoutH1 = new QHBoxLayout();
-//  layoutH1->setMargin(0);
-//  layoutH1->addWidget(filtersTree);
-//  layoutH1->addLayout(buttonsLayout);
+  infoWidget = new QWidget();
+  infoWidget->setObjectName("widgetM1");
+  infoWidget->setLayout(infoLayout);
+  infoScrollArea->setWidget(infoWidget);
+
+  QVBoxLayout *splitterLayoutV1 = new QVBoxLayout();
+  splitterLayoutV1->setMargin(0);
+  splitterLayoutV1->addLayout(matchLayout);
+  splitterLayoutV1->addWidget(infoScrollArea, 1);
+
+  QWidget *splitterWidget1 = new QWidget();
+  splitterWidget1->setLayout(splitterLayoutV1);
+
+  QScrollArea *actionsScrollArea = new QScrollArea();
+  actionsScrollArea->setWidgetResizable(true);
+
+  QVBoxLayout *actionsLayout = new QVBoxLayout();
+  actionsLayout->setMargin(5);
+  actionsLayout->addWidget(new ItemRules(), 0, Qt::AlignTop);
+
+  QWidget *actionsWidget = new QWidget();
+  actionsWidget->setObjectName("widgetM2");
+  actionsWidget->setLayout(actionsLayout);
+  actionsScrollArea->setWidget(actionsWidget);
+
+  QVBoxLayout *splitterLayoutV2 = new QVBoxLayout();
+  splitterLayoutV2->setMargin(0);
+  splitterLayoutV2->addWidget(new QLabel(tr("Perform these actions:")));
+  splitterLayoutV2->addWidget(actionsScrollArea, 1);
+
+  QWidget *splitterWidget2 = new QWidget();
+  splitterWidget2->setLayout(splitterLayoutV2);
+
+  QSplitter *spliter = new QSplitter(Qt::Vertical);
+  spliter->setChildrenCollapsible(false);
+  spliter->addWidget(splitterWidget1);
+  spliter->addWidget(splitterWidget2);
 
   buttonBox = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -65,8 +120,40 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent) :
 
   QVBoxLayout *mainlayout = new QVBoxLayout(this);
   mainlayout->setAlignment(Qt::AlignCenter);
-  mainlayout->addStretch();
   mainlayout->setMargin(5);
-//  mainlayout->addLayout(layoutH1);
+  mainlayout->addLayout(filterNamelayout);
+  mainlayout->addWidget(spliter);
   mainlayout->addWidget(buttonBox);
+
+  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
+
+  restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
+}
+
+void FilterRulesDialog::closeDialog()
+{
+  settings_->setValue("filterRulesDlg/geometry", saveGeometry());
+}
+
+void FilterRulesDialog::addFilterRules()
+{
+  infoLayout->removeItem(infoLayout->itemAt(infoLayout->count()-1));
+  infoLayout->removeItem(infoLayout->itemAt(infoLayout->count()-1));
+  ItemRules *itemRules = new ItemRules();
+  infoLayout->addWidget(itemRules);
+  infoLayout->addStretch();
+  infoLayout->addSpacing(25);
+  connect(itemRules->addButton, SIGNAL(clicked()), this, SLOT(addFilterRules()));
+  connect(itemRules->deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilterRules()));
+
+  QScrollBar *scrollBar = infoScrollArea->verticalScrollBar();
+  scrollBar->setValue(scrollBar->maximum() -
+                      scrollBar->minimum() +
+                      scrollBar->pageStep());
+  itemRules->lineEdit->setFocus();
+}
+
+void FilterRulesDialog::deleteFilterRules()
+{
+
 }

@@ -2745,11 +2745,7 @@ void RSSListing::playSoundNewNews()
 
 void RSSListing::showNewsFiltersDlg()
 {
-  NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this);
-  newsFiltersDialog->restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
-
+  NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this, settings_);
   newsFiltersDialog->exec();
-  settings_->setValue("newsFiltersDlg/geometry", newsFiltersDialog->saveGeometry());
-
   delete newsFiltersDialog;
 }
