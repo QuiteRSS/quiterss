@@ -1,43 +1,5 @@
 #include "filterrulesdialog.h"
 
-class ItemRules : public QWidget
-{
-public:
-  ItemRules(QWidget * parent = 0) : QWidget(parent)
-  {
-    QComboBox *comboBox1 = new QComboBox();
-    comboBox1->addItem(tr("Subject"));
-    QComboBox *comboBox2 = new QComboBox();
-    comboBox2->addItem(tr("contains"));
-
-    lineEdit = new QLineEdit();
-
-    addButton = new QToolButton();
-    addButton->setIcon(QIcon(":/images/addFeed"));
-    addButton->setAutoRaise(true);
-    deleteButton = new QToolButton();
-    deleteButton->setIcon(QIcon(":/images/deleteFeed"));
-    deleteButton->setAutoRaise(true);
-
-    QHBoxLayout *buttonsLayout = new QHBoxLayout();
-    buttonsLayout->setAlignment(Qt::AlignCenter);
-    buttonsLayout->setMargin(0);
-    buttonsLayout->setSpacing(5);
-    buttonsLayout->addWidget(comboBox1);
-    buttonsLayout->addWidget(comboBox2);
-    buttonsLayout->addWidget(lineEdit, 1);
-    buttonsLayout->addWidget(addButton);
-    buttonsLayout->addWidget(deleteButton);
-
-    setLayout(buttonsLayout);
-  }
-
-  QToolButton *addButton;
-  QToolButton *deleteButton;
-  QLineEdit *lineEdit;
-
-};
-
 FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings)
   : QDialog(parent),
     settings_(settings)
@@ -144,16 +106,21 @@ void FilterRulesDialog::addFilterRules()
   infoLayout->addStretch();
   infoLayout->addSpacing(25);
   connect(itemRules->addButton, SIGNAL(clicked()), this, SLOT(addFilterRules()));
-  connect(itemRules->deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilterRules()));
+  connect(itemRules, SIGNAL(siganlDeleteFilterRules(ItemRules*)),
+          this, SLOT(deleteFilterRules(ItemRules*)));
 
   QScrollBar *scrollBar = infoScrollArea->verticalScrollBar();
   scrollBar->setValue(scrollBar->maximum() -
                       scrollBar->minimum() +
                       scrollBar->pageStep());
+  itemRules->lineEdit->setText(QString::number(infoLayout->count()-2));
   itemRules->lineEdit->setFocus();
 }
 
-void FilterRulesDialog::deleteFilterRules()
+void FilterRulesDialog::deleteFilterRules(ItemRules *item)
 {
-
+  delete item;
+  if (infoLayout->count() == 2) {
+    addFilterRules();
+  }
 }

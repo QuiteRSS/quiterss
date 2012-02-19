@@ -18,7 +18,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Id") << tr("Name");
+  treeItem << tr("Id") << tr("Name filter");
   filtersTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
