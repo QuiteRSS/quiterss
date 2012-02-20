@@ -990,9 +990,9 @@ void RSSListing::readSettings()
 
   embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
   if (embeddedBrowserOn_)
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
-  else
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+  else
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
 
@@ -1622,9 +1622,9 @@ void RSSListing::showOptionDlg()
 
   embeddedBrowserOn_ = optionsDialog->embeddedBrowserOn_->isChecked();
   if (embeddedBrowserOn_)
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
-  else
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+  else
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
