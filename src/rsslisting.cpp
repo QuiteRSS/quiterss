@@ -992,7 +992,14 @@ void RSSListing::readSettings()
   if (embeddedBrowserOn_)
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
   else
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+  javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
+  webView_->settings()->setAttribute(
+        QWebSettings::JavascriptEnabled, javaScriptEnable_);
+  pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
+  webView_->settings()->setAttribute(
+        QWebSettings::PluginsEnabled, pluginsEnable_);
+
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
 
@@ -1069,6 +1076,8 @@ void RSSListing::writeSettings()
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
 
   settings_->setValue("embeddedBrowserOn", embeddedBrowserOn_);
+  settings_->setValue("javaScriptEnable", javaScriptEnable_);
+  settings_->setValue("pluginsEnable", pluginsEnable_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
 
@@ -1572,6 +1581,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->setProxy(networkProxy_);
 
   optionsDialog->embeddedBrowserOn_->setChecked(embeddedBrowserOn_);
+  optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
+  optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
@@ -1624,7 +1635,13 @@ void RSSListing::showOptionDlg()
   if (embeddedBrowserOn_)
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
   else
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DontDelegateLinks);
+    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+  javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
+  webView_->settings()->setAttribute(
+        QWebSettings::JavascriptEnabled, javaScriptEnable_);
+  pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
+  webView_->settings()->setAttribute(
+        QWebSettings::PluginsEnabled, pluginsEnable_);
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();

@@ -135,7 +135,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} networkConnections
 
   //{ browser
-  embeddedBrowserOn_ = new QCheckBox(tr("Use the embedded browser"));
+  javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
+  pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
+
+  QVBoxLayout *embeddedBrowserLayout = new QVBoxLayout();
+  embeddedBrowserLayout->addWidget(javaScriptEnable_);
+  embeddedBrowserLayout->addWidget(pluginsEnable_);
+
+  embeddedBrowserOn_ = new QGroupBox(tr("Use the embedded browser"));
+  embeddedBrowserOn_->setCheckable(true);
+  embeddedBrowserOn_->setLayout(embeddedBrowserLayout);
 
   QVBoxLayout *browserLayout = new QVBoxLayout();
   browserLayout->setMargin(0);

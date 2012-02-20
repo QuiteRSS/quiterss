@@ -214,6 +214,8 @@ private:
     int  markNewsReadTime_;
 
     bool embeddedBrowserOn_;
+    bool javaScriptEnable_;
+    bool pluginsEnable_;
 
     FaviconLoader *faviconLoader;
 

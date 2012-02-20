@@ -27,7 +27,9 @@ public:
   QCheckBox *emptyWorking_;
 
   // browser
-  QCheckBox *embeddedBrowserOn_;
+  QGroupBox *embeddedBrowserOn_;
+  QCheckBox *javaScriptEnable_;
+  QCheckBox *pluginsEnable_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;
