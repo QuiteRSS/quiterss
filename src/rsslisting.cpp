@@ -583,6 +583,8 @@ void RSSListing::createWebWidget()
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
   connect(webView_, SIGNAL(loadProgress(int)), webViewProgress_, SLOT(setValue(int)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
+  connect(webView_->page(), SIGNAL(linkHovered(QString,QString,QString)),
+          this, SLOT(slotLinkHovered(QString,QString,QString)));
 
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
@@ -2226,6 +2228,11 @@ void RSSListing::slotLinkClicked(QUrl url)
 {
   if (embeddedBrowserOn_) webView_->load(url);
   else QDesktopServices::openUrl(url);
+}
+
+void RSSListing::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
+{
+  statusBar()->showMessage(link, 3000);
 }
 
 void RSSListing::setAutoLoadImages()
