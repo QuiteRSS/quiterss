@@ -17,6 +17,7 @@ private:
 
 public:
   explicit NewsFiltersDialog(QWidget *parent = 0, QSettings *settings = 0);
+  QStringList feedsList_;
 
 signals:
 
@@ -25,7 +26,7 @@ public slots:
 private slots:
   void closeDialog();
   void newFilter();
-  void editeFilter();
+  void editFilter();
   void deleteFilter();
 
   void moveUpFilter();

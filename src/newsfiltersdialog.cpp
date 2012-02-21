@@ -31,9 +31,9 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
   connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
-  editButton = new QPushButton(tr("Edite..."), this);
+  editButton = new QPushButton(tr("Edit.."), this);
   editButton->setEnabled(false);
-  connect(editButton, SIGNAL(clicked()), this, SLOT(editeFilter()));
+  connect(editButton, SIGNAL(clicked()), this, SLOT(editFilter()));
   deleteButton = new QPushButton(tr("Delete..."), this);
   deleteButton->setEnabled(false);
   connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilter()));
@@ -76,7 +76,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   connect(filtersTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
   connect(filtersTree, SIGNAL(doubleClicked(QModelIndex)),
-          this, SLOT(editeFilter()));
+          this, SLOT(editFilter()));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
   restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
@@ -89,7 +89,8 @@ void NewsFiltersDialog::closeDialog()
 
 void NewsFiltersDialog::newFilter()
 {
-  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(this, settings_);
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
+        this, settings_, &feedsList_);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
@@ -112,11 +113,14 @@ void NewsFiltersDialog::newFilter()
   delete filterRulesDialog;
 }
 
-void NewsFiltersDialog::editeFilter()
+void NewsFiltersDialog::editFilter()
 {
-  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(this, settings_);
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
+        this, settings_, &feedsList_);
+
   filterRulesDialog->filterName->setText(filtersTree->currentItem()->text(1));
   filterRulesDialog->filterName->selectAll();
+  filterRulesDialog->feedsList_ = feedsList_;
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {

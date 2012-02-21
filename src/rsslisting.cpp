@@ -2785,6 +2785,14 @@ void RSSListing::playSoundNewNews()
 void RSSListing::showNewsFiltersDlg()
 {
   NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this, settings_);
+
+  QSqlQuery q(db_);
+  QString qStr = QString("select text from feeds");
+  q.exec(qStr);
+  while (q.next()) {
+    newsFiltersDialog->feedsList_ << q.value(0).toString();
+  }
+
   newsFiltersDialog->exec();
   delete newsFiltersDialog;
 }
