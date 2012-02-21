@@ -178,6 +178,7 @@ private:
     QWidget *webWidget_;
     QWebView *webView_;
     QProgressBar *webViewProgress_;
+    QLabel *webViewProgressLabel_;
 
     QSystemTrayIcon *traySystem;
     int oldState;
@@ -249,6 +250,7 @@ private slots:
     void showContextMenuFeed(const QPoint &);
     void slotLinkClicked(QUrl url);
     void slotLinkHovered(const QString &link, const QString &title, const QString &textContent);
+    void slotSetValue(int value);
     void setAutoLoadImages();
     void slotFeedsFilter();
     void slotNewsFilter();

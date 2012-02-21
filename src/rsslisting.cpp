@@ -581,10 +581,16 @@ void RSSListing::createWebWidget()
   webViewProgress_->setVisible(true);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
-  connect(webView_, SIGNAL(loadProgress(int)), webViewProgress_, SLOT(setValue(int)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
   connect(webView_->page(), SIGNAL(linkHovered(QString,QString,QString)),
           this, SLOT(slotLinkHovered(QString,QString,QString)));
+  connect(webView_, SIGNAL(loadProgress(int)), this, SLOT(slotSetValue(int)));
+
+  webViewProgressLabel_ = new QLabel();
+  QHBoxLayout *progressLayout = new QHBoxLayout();
+  progressLayout->setMargin(0);
+  progressLayout->addWidget(webViewProgressLabel_, 0, Qt::AlignLeft|Qt::AlignVCenter);
+  webViewProgress_->setLayout(progressLayout);
 
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
@@ -2233,6 +2239,15 @@ void RSSListing::slotLinkClicked(QUrl url)
 void RSSListing::slotLinkHovered(const QString &link, const QString &title, const QString &textContent)
 {
   statusBar()->showMessage(link, 3000);
+}
+
+void RSSListing::slotSetValue(int value)
+{
+  webViewProgress_->setValue(value);
+  QString str = QString(" %1 kB / %2 kB").
+      arg(webView_->page()->bytesReceived()/1000).
+      arg(webView_->page()->totalBytes()/1000);
+  webViewProgressLabel_->setText(str);
 }
 
 void RSSListing::setAutoLoadImages()
