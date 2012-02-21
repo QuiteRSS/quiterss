@@ -7,26 +7,27 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("News filters"));
-  setMinimumWidth(400);
+  setMinimumWidth(500);
   setMinimumHeight(250);
 
-  filtersTree = new QTreeWidget();
+  filtersTree = new QTreeWidget(this);
   filtersTree->setObjectName("filtersTree");
-  filtersTree->setColumnCount(2);
+  filtersTree->setColumnCount(3);
   filtersTree->setColumnHidden(0, true);
-  filtersTree->header()->setResizeMode(QHeaderView::Stretch);
+  filtersTree->header()->resizeSection(1, 150);
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Id") << tr("Name filter");
+  treeItem << tr("Id") << tr("Name filter") << tr("Locations");
   filtersTree->setHeaderLabels(treeItem);
 
-  treeItem.clear();
-  treeItem << QString::number(filtersTree->topLevelItemCount())
-           << tr("Test filter %1").arg(filtersTree->topLevelItemCount());
-  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(1, Qt::Checked);
-  filtersTree->addTopLevelItem(treeWidgetItem);
+//  treeItem.clear();
+//  treeItem << QString::number(filtersTree->topLevelItemCount())
+//           << tr("Test filter %1").arg(filtersTree->topLevelItemCount())
+//           << "Feed 1";
+//  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+//  treeWidgetItem->setCheckState(1, Qt::Checked);
+//  filtersTree->addTopLevelItem(treeWidgetItem);
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
   connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
@@ -45,7 +46,6 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
   QVBoxLayout *buttonsLayout = new QVBoxLayout();
-  buttonsLayout->setAlignment(Qt::AlignCenter);
   buttonsLayout->addWidget(newButton);
   buttonsLayout->addWidget(editButton);
   buttonsLayout->addWidget(deleteButton);
@@ -67,14 +67,16 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   closeLayout->setAlignment(Qt::AlignRight);
   closeLayout->addWidget(closeButton);
 
-  QVBoxLayout *mainlayout = new QVBoxLayout(this);
-  mainlayout->setAlignment(Qt::AlignCenter);
+  QVBoxLayout *mainlayout = new QVBoxLayout();
   mainlayout->setMargin(5);
   mainlayout->addLayout(layoutH1);
   mainlayout->addLayout(closeLayout);
+  setLayout(mainlayout);
 
   connect(filtersTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+  connect(filtersTree, SIGNAL(doubleClicked(QModelIndex)),
+          this, SLOT(editeFilter()));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
   restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
@@ -97,7 +99,8 @@ void NewsFiltersDialog::newFilter()
 
   QStringList treeItem;
   treeItem << QString::number(filtersTree->topLevelItemCount())
-           << tr("Test filter %1").arg(filtersTree->topLevelItemCount());
+           << filterRulesDialog->filterName->text()
+           << "All news";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(1, Qt::Checked);
   filtersTree->addTopLevelItem(treeWidgetItem);
@@ -111,7 +114,19 @@ void NewsFiltersDialog::newFilter()
 
 void NewsFiltersDialog::editeFilter()
 {
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(this, settings_);
+  filterRulesDialog->filterName->setText(filtersTree->currentItem()->text(1));
+  filterRulesDialog->filterName->selectAll();
 
+  int result = filterRulesDialog->exec();
+  if (result == QDialog::Rejected) {
+    delete filterRulesDialog;
+    return;
+  }
+
+  filtersTree->currentItem()->setText(1, filterRulesDialog->filterName->text());
+
+  delete filterRulesDialog;
 }
 
 void NewsFiltersDialog::deleteFilter()

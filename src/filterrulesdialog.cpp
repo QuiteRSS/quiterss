@@ -6,10 +6,31 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter rules"));
-  setMinimumWidth(420);
   setMinimumHeight(300);
 
-  QLineEdit *filterName = new QLineEdit();
+  QTreeWidget *feedsTree = new QTreeWidget();
+  feedsTree->setObjectName("feedsTreeFR");
+  feedsTree->setColumnCount(2);
+  feedsTree->setColumnHidden(1, true);
+  feedsTree->header()->setMovable(false);
+
+  QStringList treeItem;
+  treeItem << tr("Locations") << tr("Id") ;
+  feedsTree->setHeaderLabels(treeItem);
+
+  treeItem.clear();
+  treeItem << "All feeds" << "0";
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setCheckState(0, Qt::Unchecked);
+  feedsTree->addTopLevelItem(treeWidgetItem);
+  treeItem.clear();
+  treeItem << "Feed 1" << "1";
+  QTreeWidgetItem *treeWidgetItem1 = new QTreeWidgetItem(treeItem);
+  treeWidgetItem1->setCheckState(0, Qt::Unchecked);
+  treeWidgetItem->addChild(treeWidgetItem1);
+  feedsTree->expandAll();
+
+  filterName = new QLineEdit();
 
   QHBoxLayout *filterNamelayout = new QHBoxLayout();
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
@@ -38,7 +59,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings)
   addFilterRules();
 
   infoWidget = new QWidget();
-  infoWidget->setObjectName("widgetM1");
+  infoWidget->setObjectName("infoWidgetFR");
   infoWidget->setLayout(infoLayout);
   infoScrollArea->setWidget(infoWidget);
 
@@ -58,7 +79,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings)
   actionsLayout->addWidget(new ItemRules(), 0, Qt::AlignTop);
 
   QWidget *actionsWidget = new QWidget();
-  actionsWidget->setObjectName("widgetM2");
+  actionsWidget->setObjectName("actionsWidgetFR");
   actionsWidget->setLayout(actionsLayout);
   actionsScrollArea->setWidget(actionsWidget);
 
@@ -72,23 +93,37 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings)
 
   QSplitter *spliter = new QSplitter(Qt::Vertical);
   spliter->setChildrenCollapsible(false);
+  spliter->setMinimumWidth(420);
   spliter->addWidget(splitterWidget1);
   spliter->addWidget(splitterWidget2);
+
+  QVBoxLayout *rulesLayout = new QVBoxLayout();
+  rulesLayout->setMargin(0);
+  rulesLayout->addLayout(filterNamelayout);
+  rulesLayout->addWidget(spliter);
+
+  QWidget *rulesWidget = new QWidget();
+  rulesWidget->setLayout(rulesLayout);
+
+  QSplitter *mainSpliter = new QSplitter();
+  mainSpliter->setChildrenCollapsible(false); 
+  mainSpliter->addWidget(rulesWidget);
+  mainSpliter->addWidget(feedsTree);
 
   buttonBox = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-  QVBoxLayout *mainlayout = new QVBoxLayout(this);
-  mainlayout->setAlignment(Qt::AlignCenter);
-  mainlayout->setMargin(5);
-  mainlayout->addLayout(filterNamelayout);
-  mainlayout->addWidget(spliter);
-  mainlayout->addWidget(buttonBox);
+  QVBoxLayout *mainLayout = new QVBoxLayout();
+  mainLayout->setMargin(5);
+  mainLayout->addWidget(mainSpliter);
+  mainLayout->addWidget(buttonBox);
+  setLayout(mainLayout);
 
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
+  resize(600, 350);
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
 }
 

@@ -282,7 +282,9 @@ QHeaderView::up-arrow {
 	padding: 1px;
 }
 
-#categoriesTree::item, #fontTree::item, #languageFileList_::item {
+#categoriesTree::item, #fontTree::item, 
+#languageFileList_::item, #feedsTreeFR::item,
+#filtersTree::item {
 	min-height: 18px;
 }
 
@@ -294,6 +296,6 @@ QMainWindow::separator {
 	border: none;
 }
 
-#widgetM1, #widgetM2 {
+#infoWidgetFR, #actionsWidgetFR {
 	background: white;
 }

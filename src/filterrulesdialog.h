@@ -70,6 +70,7 @@ private:
 
 public:
   explicit FilterRulesDialog(QWidget *parent = 0, QSettings *settings = 0);
+  QLineEdit *filterName;
 
 signals:
 
