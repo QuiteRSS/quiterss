@@ -106,6 +106,7 @@ private:
     QAction *toolBarIconBig_;
     QAction *autoLoadImagesToggle_;
     QAction *setNewsFiltersAct_;
+    QAction *setFilterNewsAct_;
     QAction *optionsAct_;
     QAction *updateFeedAct_;
     QAction *updateAllFeedsAct_;
@@ -266,6 +267,7 @@ private slots:
     void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
     void slotCommitDataRequest(QSessionManager&);
     void showNewsFiltersDlg();
+    void showFilterNewsDlg();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

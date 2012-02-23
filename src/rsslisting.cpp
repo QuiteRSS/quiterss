@@ -9,6 +9,7 @@
 #include "addfeeddialog.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
+#include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
@@ -571,7 +572,7 @@ void RSSListing::createToolBarNull()
 
 void RSSListing::createWebWidget()
 {
-  webView_ = new QWebView();
+  webView_ = new QWebView(this);
   webView_->setObjectName("webView_");
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
@@ -586,7 +587,7 @@ void RSSListing::createWebWidget()
           this, SLOT(slotLinkHovered(QString,QString,QString)));
   connect(webView_, SIGNAL(loadProgress(int)), this, SLOT(slotSetValue(int)));
 
-  webViewProgressLabel_ = new QLabel();
+  webViewProgressLabel_ = new QLabel(this);
   QHBoxLayout *progressLayout = new QHBoxLayout();
   progressLayout->setMargin(0);
   progressLayout->addWidget(webViewProgressLabel_, 0, Qt::AlignLeft|Qt::AlignVCenter);
@@ -601,11 +602,11 @@ void RSSListing::createWebWidget()
   webPanelLabelLayout->addWidget(webPanelTitleLabel_);
   webPanelLabelLayout->addWidget(webPanelAuthorLabel_);
 
-  webPanelAuthor_ = new QLabel("");
+  webPanelAuthor_ = new QLabel(this);
   webPanelAuthor_->setObjectName("webPanelAuthor_");
   webPanelAuthor_->setOpenExternalLinks(true);
 
-  webPanelTitle_ = new QLabel("");
+  webPanelTitle_ = new QLabel(this);
   webPanelTitle_->setObjectName("webPanelTitle_");
   connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
           this, SLOT(slotWebTitleLinkClicked(QString)));
@@ -618,7 +619,7 @@ void RSSListing::createWebWidget()
   webPanelLayout->addLayout(webPanelLabelLayout, 0);
   webPanelLayout->addLayout(webPanelTitleLayout, 1);
 
-  webPanel_ = new QWidget();
+  webPanel_ = new QWidget(this);
   webPanel_->setObjectName("webPanel_");
   webPanel_->setLayout(webPanelLayout);
 
@@ -630,7 +631,7 @@ void RSSListing::createWebWidget()
   webLayout->addWidget(webView_, 1);
   webLayout->addWidget(webViewProgress_, 0);
 
-  webWidget_ = new QWidget();
+  webWidget_ = new QWidget(this);
   webWidget_->setObjectName("webWidget_");
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
@@ -640,7 +641,7 @@ void RSSListing::createWebWidget()
 
 void RSSListing::createStatusBar()
 {
-  progressBar_ = new QProgressBar();
+  progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
   progressBar_->setFixedWidth(100);
   progressBar_->setFixedHeight(14);
@@ -659,10 +660,11 @@ void RSSListing::createStatusBar()
 
 void RSSListing::createTray()
 {
-  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"),this);
+  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"), this);
   connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
           this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
-  connect(this,SIGNAL(signalPlaceToTray()),this,SLOT(slotPlaceToTray()),Qt::QueuedConnection);
+  connect(this, SIGNAL(signalPlaceToTray()),
+          this, SLOT(slotPlaceToTray()), Qt::QueuedConnection);
   traySystem->setToolTip("QuiteRSS");
   createTrayMenu();
   traySystem->show();
@@ -750,6 +752,9 @@ void RSSListing::createActions()
   setNewsFiltersAct_ = new QAction(this);
   setNewsFiltersAct_->setIcon(QIcon(":/images/filterOff"));
   connect(setNewsFiltersAct_, SIGNAL(triggered()), this, SLOT(showNewsFiltersDlg()));
+  setFilterNewsAct_ = new QAction(this);
+  setFilterNewsAct_->setIcon(QIcon(":/images/filterOff"));
+  connect(setFilterNewsAct_, SIGNAL(triggered()), this, SLOT(showFilterNewsDlg()));
 
   optionsAct_ = new QAction(this);
   optionsAct_->setIcon(QIcon(":/images/options"));
@@ -843,7 +848,8 @@ void RSSListing::createMenu()
   toolBarStyleGroup_->addAction(toolBarStyleT_);
   toolBarStyleGroup_->addAction(toolBarStyleTbI_);
   toolBarStyleGroup_->addAction(toolBarStyleTuI_);
-  connect(toolBarStyleGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setToolBarStyle(QAction*)));
+  connect(toolBarStyleGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setToolBarStyle(QAction*)));
 
   toolBarIconSizeMenu_ = new QMenu(this);
   toolBarIconSizeMenu_->addAction(toolBarIconBig_);
@@ -853,7 +859,8 @@ void RSSListing::createMenu()
   toolBarIconSizeGroup_->addAction(toolBarIconBig_);
   toolBarIconSizeGroup_->addAction(toolBarIconNormal_);
   toolBarIconSizeGroup_->addAction(toolBarIconSmall_);
-  connect(toolBarIconSizeGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setToolBarIconSize(QAction*)));
+  connect(toolBarIconSizeGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setToolBarIconSize(QAction*)));
 
   toolBarMenu_->addMenu(toolBarStyleMenu_);
   toolBarMenu_->addMenu(toolBarIconSizeMenu_);
@@ -870,7 +877,8 @@ void RSSListing::createMenu()
 
   feedsFilterGroup_ = new QActionGroup(this);
   feedsFilterGroup_->setExclusive(true);
-  connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setFeedsFilter(QAction*)));
+  connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setFeedsFilter(QAction*)));
 
   feedsFilterMenu_ = new QMenu(this);
   feedsFilterMenu_->addAction(filterFeedsAll_);
@@ -894,7 +902,8 @@ void RSSListing::createMenu()
 
   newsFilterGroup_ = new QActionGroup(this);
   newsFilterGroup_->setExclusive(true);
-  connect(newsFilterGroup_, SIGNAL(triggered(QAction*)), this, SLOT(setNewsFilter(QAction*)));
+  connect(newsFilterGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setNewsFilter(QAction*)));
 
   newsFilterMenu_ = new QMenu(this);
   newsFilterMenu_->addAction(filterNewsAll_);
@@ -948,9 +957,12 @@ void RSSListing::createToolBar()
   toolBar_->addSeparator();
   toolBar_->addAction(autoLoadImagesToggle_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-  connect(toolBar_, SIGNAL(visibilityChanged(bool)), toolBarToggle_, SLOT(setChecked(bool)));
-  connect(toolBarToggle_, SIGNAL(toggled(bool)), toolBar_, SLOT(setVisible(bool)));
-  connect(autoLoadImagesToggle_, SIGNAL(triggered()), this, SLOT(setAutoLoadImages()));
+  connect(toolBar_, SIGNAL(visibilityChanged(bool)),
+          toolBarToggle_, SLOT(setChecked(bool)));
+  connect(toolBarToggle_, SIGNAL(toggled(bool)),
+          toolBar_, SLOT(setVisible(bool)));
+  connect(autoLoadImagesToggle_, SIGNAL(triggered()),
+          this, SLOT(setAutoLoadImages()));
   connect(toolBar_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuToolBar(const QPoint &)));
 }
@@ -1543,6 +1555,9 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
   QModelIndex indexNew = index;
   if (!((index.row() == indexOld.row()) &&
          newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+
+    QWebSettings::globalSettings()->clearMemoryCaches();
+
     updateWebView(index);
 
     markNewsReadTimer_.stop();
@@ -2220,6 +2235,8 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
   feedContextMenu_->addSeparator();
+  feedContextMenu_->addAction(setFilterNewsAct_);
+  feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(feedProperties_);
@@ -2493,6 +2510,7 @@ void RSSListing::retranslateStrings() {
 
 
   setNewsFiltersAct_->setText(tr("News filters..."));
+  setFilterNewsAct_->setText(tr("Filter news..."));
 
   optionsAct_->setText(tr("Options..."));
   optionsAct_->setToolTip(tr("Open options gialog"));
@@ -2796,4 +2814,26 @@ void RSSListing::showNewsFiltersDlg()
 
   newsFiltersDialog->exec();
   delete newsFiltersDialog;
+}
+
+void RSSListing::showFilterNewsDlg()
+{
+  QStringList feedsList;
+  QSqlQuery q(db_);
+  QString qStr = QString("select text from feeds");
+  q.exec(qStr);
+  while (q.next()) {
+    feedsList << q.value(0).toString();
+  }
+
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
+        this, settings_, &feedsList);
+
+  int result = filterRulesDialog->exec();
+  if (result == QDialog::Rejected) {
+    delete filterRulesDialog;
+    return;
+  }
+
+  delete filterRulesDialog;
 }

@@ -14,12 +14,12 @@ UpdateThread::~UpdateThread()
 
 void UpdateThread::run()
 {
-  getUrlTimer_ = new QTimer();
+  getUrlTimer_ = new QTimer(this);
   getUrlTimer_->setSingleShot(true);
   connect(this, SIGNAL(startGetUrlTimer()), getUrlTimer_, SLOT(start()));
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  updateObject_ = new UpdateObject();
+  updateObject_ = new UpdateObject(this);
   connect(this, SIGNAL(signalHead(QNetworkRequest)), updateObject_, SLOT(slotHead(QNetworkRequest)));
   connect(this, SIGNAL(signalGet(QNetworkRequest)), updateObject_, SLOT(slotGet(QNetworkRequest)));
   connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),

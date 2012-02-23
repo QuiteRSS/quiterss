@@ -14,10 +14,10 @@ private:
 public:
   ItemRules(QWidget * parent = 0) : QWidget(parent)
   {
-    QComboBox *comboBox1 = new QComboBox();
-    comboBox2 = new QComboBox();
-    comboBox3 = new QComboBox();
-    lineEdit = new QLineEdit();
+    QComboBox *comboBox1 = new QComboBox(this);
+    comboBox2 = new QComboBox(this);
+    comboBox3 = new QComboBox(this);
+    lineEdit = new QLineEdit(this);
 
     QStringList itemList;
     itemList << tr("Title")  << tr("Description")
@@ -31,10 +31,10 @@ public:
 
     currentIndexChanged("Title");
 
-    addButton = new QToolButton();
+    addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
     addButton->setAutoRaise(true);
-    deleteButton = new QToolButton();
+    deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteFeed"));
     deleteButton->setAutoRaise(true);
 
@@ -120,18 +120,18 @@ public:
   ItemAction(QWidget * parent = 0) : QWidget(parent)
   {
     QStringList itemList;
-    QComboBox *comboBox1 = new QComboBox();
+    QComboBox *comboBox1 = new QComboBox(this);
     itemList << tr("Move news")  << tr("Copy news")
              << tr("Mark news as read") << tr("Add star")
              << tr("Delete");
     comboBox1->addItems(itemList);
 
-    comboBox2 = new QComboBox();
+    comboBox2 = new QComboBox(this);
 
-    addButton = new QToolButton();
+    addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
     addButton->setAutoRaise(true);
-    deleteButton = new QToolButton();
+    deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteFeed"));
     deleteButton->setAutoRaise(true);
 
@@ -185,13 +185,12 @@ private:
   QVBoxLayout *actionsLayout;
   QWidget *actionsWidget;
 
-  QTreeWidget *feedsTree;
-
 public:
   explicit FilterRulesDialog(QWidget *parent = 0, QSettings *settings = 0,
                              QStringList *feedsList_ = 0);
   QLineEdit *filterName;
   QStringList feedsList_;
+  QTreeWidget *feedsTree;
 
 signals:
 
