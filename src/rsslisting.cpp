@@ -594,6 +594,7 @@ void RSSListing::createWebWidget()
 
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
+  webPanelTitleLabel_->setCursor(Qt::PointingHandCursor);
   webPanelAuthorLabel_ = new QLabel(this);
 
   QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
