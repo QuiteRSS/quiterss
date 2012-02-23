@@ -15,12 +15,12 @@ FaviconLoader::~FaviconLoader()
 
 /*virtual*/ void FaviconLoader::run()
 {
-  getUrlTimer_ = new QTimer(this);
+  getUrlTimer_ = new QTimer();
   getUrlTimer_->setSingleShot(true);
   connect(this, SIGNAL(startGetUrlTimer()), getUrlTimer_, SLOT(start()));
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  updateObject_ = new UpdateObject(this);
+  updateObject_ = new UpdateObject();
   connect(this, SIGNAL(signalGet(QNetworkRequest)),
           updateObject_, SLOT(slotGet(QNetworkRequest)));
   connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
