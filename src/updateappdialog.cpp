@@ -18,7 +18,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   infoLabel->setOpenExternalLinks(true);
   updateApplayout->addWidget(infoLabel, 0);
 
-  history_ = new QTextBrowser();
+  history_ = new QTextBrowser(this);
   history_->setObjectName("history_");
   history_->setText(tr("Loading history..."));
   history_->setOpenExternalLinks(true);

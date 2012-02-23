@@ -16,7 +16,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent,
 
   viewMenu_ = new QMenu(this);
 
-  buttonColumnView = new QPushButton();
+  buttonColumnView = new QPushButton(this);
   buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
   buttonColumnView->setObjectName("buttonColumnView");
   buttonColumnView->setCursor(QCursor(Qt::ArrowCursor));

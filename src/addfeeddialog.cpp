@@ -6,8 +6,8 @@ AddFeedDialog::AddFeedDialog(QWidget *parent) :
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add feed"));
 
-  feedTitleEdit_ = new QLineEdit();
-  feedUrlEdit_ = new QLineEdit();
+  feedTitleEdit_ = new QLineEdit(this);
+  feedUrlEdit_ = new QLineEdit(this);
   buttonBox_ = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
   connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
