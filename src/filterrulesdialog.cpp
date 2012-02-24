@@ -16,7 +16,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   feedsTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Locations") << tr("Id") ;
+  treeItem << tr("Location") << "Id";
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -42,18 +42,18 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
   filterNamelayout->addWidget(filterName);
 
-  QRadioButton *matchAllFollowing_ =
-      new QRadioButton(tr("Match all of the following"), this);
-  matchAllFollowing_->setChecked(true);
-  QRadioButton *matchAnyFollowing_ =
-      new QRadioButton(tr("Match any of the following"), this);
-  QRadioButton *matchAllNews_ =
-      new QRadioButton(tr("Match all news"), this);
+  matchAllCondition_ = new QRadioButton(tr("Match all conditions"), this);
+  matchAllCondition_->setChecked(true);
+  matchAnyCondition_ = new QRadioButton(tr("Match any condition"), this);
+  matchAllNews_ = new QRadioButton(tr("Match all"), this);
+  connect(matchAllCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
+  connect(matchAnyCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
+  connect(matchAllNews_, SIGNAL(clicked()), this, SLOT(selectMatch()));
 
   QHBoxLayout *matchLayout = new QHBoxLayout();
   matchLayout->setSpacing(10);
-  matchLayout->addWidget(matchAllFollowing_);
-  matchLayout->addWidget(matchAnyFollowing_);
+  matchLayout->addWidget(matchAllCondition_);
+  matchLayout->addWidget(matchAnyCondition_);
   matchLayout->addWidget(matchAllNews_);
   matchLayout->addStretch();
 
@@ -99,7 +99,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
 
   QSplitter *spliter = new QSplitter(Qt::Vertical, this);
   spliter->setChildrenCollapsible(false);
-  spliter->setMinimumWidth(420);
+  spliter->setMinimumWidth(520);
   spliter->addWidget(splitterWidget1);
   spliter->addWidget(splitterWidget2);
 
@@ -129,13 +129,22 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
 
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
-  resize(600, 350);
+  resize(700, 350);
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
 }
 
 void FilterRulesDialog::closeDialog()
 {
   settings_->setValue("filterRulesDlg/geometry", saveGeometry());
+}
+
+void FilterRulesDialog::selectMatch()
+{
+  if (matchAllNews_->isChecked()) {
+    conditionWidget->setEnabled(false);
+  } else {
+    conditionWidget->setEnabled(true);
+  }
 }
 
 void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)

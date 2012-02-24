@@ -30,7 +30,7 @@ public:
     itemList << tr("New") << tr("Read") << tr("Stared");
     comboBox3->addItems(itemList);
 
-    currentIndexChanged("Title");
+    currentIndexChanged(tr("Title"));
 
     addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
@@ -75,24 +75,24 @@ private slots:
     comboBox2->clear();
     comboBox3->setVisible(false);
     lineEdit->setVisible(true);
-    if (str == "Title") {
+    if (str == tr("Title")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't")
                << tr("begins with") << tr("ends with");
       comboBox2->addItems(itemList);
-    } else if (str == "Description") {
+    } else if (str == tr("Description")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't");
       comboBox2->addItems(itemList);
-    } else if (str == "Author") {
+    } else if (str == tr("Author")) {
       itemList << tr("contains") << tr("doesn't contains")
                << tr("is") << tr("isn't");
       comboBox2->addItems(itemList);
-    } else if (str == "Category") {
+    } else if (str == tr("Category")) {
       itemList << tr("is") << tr("isn't")
                << tr("begins with") << tr("ends with");
       comboBox2->addItems(itemList);
-    } else if (str == "Status") {
+    } else if (str == tr("Status")) {
       itemList << tr("is") << tr("isn't");
       comboBox2->addItems(itemList);
       comboBox3->setVisible(true);
@@ -125,7 +125,7 @@ public:
   {
     QStringList itemList;
     comboBox1 = new QComboBox(this);
-    itemList << tr("Move news")  << tr("Copy news")
+    itemList << tr("Move news to")  << tr("Copy news to")
              << tr("Mark news as read") << tr("Add star")
              << tr("Delete");
     comboBox1->addItems(itemList);
@@ -183,6 +183,10 @@ private:
   QSettings *settings_;
   QDialogButtonBox *buttonBox;
 
+  QRadioButton *matchAllCondition_;
+  QRadioButton *matchAnyCondition_;
+  QRadioButton *matchAllNews_;
+
   QScrollArea *conditionScrollArea;
   QVBoxLayout *conditionLayout;
   QWidget *conditionWidget;
@@ -211,6 +215,8 @@ private slots:
 
   void addAction();
   void deleteAction(ItemAction *item);
+
+  void selectMatch();
 
 };
 
