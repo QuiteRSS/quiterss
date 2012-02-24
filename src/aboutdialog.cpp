@@ -44,7 +44,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "</UL>"
       "<HR>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss") +
-      "<p>&copy; 2011-2012 QuiteTeam</p>"
+      "<p>&copy; 2011-2012 QuiteRSS Team</p>"
       "</body></html>";
   QLabel *infoLabel = new QLabel(info, this);
   infoLabel->setMinimumWidth(250);

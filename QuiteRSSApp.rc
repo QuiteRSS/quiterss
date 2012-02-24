@@ -25,7 +25,7 @@ BEGIN
     BEGIN
         BLOCK "000004b0"
         BEGIN
-            VALUE "CompanyName", "QuiteTeam\0"
+            VALUE "CompanyName", "QuiteRSS Team\0"
             VALUE "Comments", "Application\0"
             VALUE "FileDescription", "QuiteRSS\0"
             VALUE "FileVersion", STRFILEVER
