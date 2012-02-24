@@ -3,18 +3,19 @@
 
 #include <QtGui>
 
-class ItemRules : public QWidget
+class ItemCondition : public QWidget
 {
   Q_OBJECT
 private:
   QToolButton *deleteButton;
+  QComboBox *comboBox1;
   QComboBox *comboBox2;
   QComboBox *comboBox3;
 
 public:
-  ItemRules(QWidget * parent = 0) : QWidget(parent)
+  ItemCondition(QWidget * parent = 0) : QWidget(parent)
   {
-    QComboBox *comboBox1 = new QComboBox(this);
+    comboBox1 = new QComboBox(this);
     comboBox2 = new QComboBox(this);
     comboBox3 = new QComboBox(this);
     lineEdit = new QLineEdit(this);
@@ -33,9 +34,11 @@ public:
 
     addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setToolTip(tr("Add condition"));
     addButton->setAutoRaise(true);
     deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setToolTip(tr("Delete condition"));
     deleteButton->setAutoRaise(true);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
@@ -62,7 +65,7 @@ public:
 private slots:
   void deleteFilterRules()
   {
-    emit signalDeleteFilterRules(this);
+    emit signalDeleteCondition(this);
   }
 
   void currentIndexChanged(QString str)
@@ -106,7 +109,7 @@ private slots:
   }
 
 signals:
-   void signalDeleteFilterRules(ItemRules *item);
+   void signalDeleteCondition(ItemCondition *item);
 };
 
 class ItemAction : public QWidget
@@ -114,13 +117,14 @@ class ItemAction : public QWidget
   Q_OBJECT
 private:
   QToolButton *deleteButton;
+  QComboBox *comboBox1;
   QComboBox *comboBox2;
 
 public:
   ItemAction(QWidget * parent = 0) : QWidget(parent)
   {
     QStringList itemList;
-    QComboBox *comboBox1 = new QComboBox(this);
+    comboBox1 = new QComboBox(this);
     itemList << tr("Move news")  << tr("Copy news")
              << tr("Mark news as read") << tr("Add star")
              << tr("Delete");
@@ -130,9 +134,11 @@ public:
 
     addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setToolTip(tr("Add action"));
     addButton->setAutoRaise(true);
     deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setToolTip(tr("Delete action"));
     deleteButton->setAutoRaise(true);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
@@ -157,7 +163,7 @@ public:
 private slots:
   void deleteFilterAction()
   {
-    emit signalDeleteFilterAction(this);
+    emit signalDeleteAction(this);
   }
 
   void currentIndexChanged(int index)
@@ -167,7 +173,7 @@ private slots:
   }
 
 signals:
-   void signalDeleteFilterAction(ItemAction *item);
+   void signalDeleteAction(ItemAction *item);
 };
 
 class FilterRulesDialog : public QDialog
@@ -177,9 +183,9 @@ private:
   QSettings *settings_;
   QDialogButtonBox *buttonBox;
 
-  QScrollArea *infoScrollArea;
-  QVBoxLayout *infoLayout;
-  QWidget *infoWidget;
+  QScrollArea *conditionScrollArea;
+  QVBoxLayout *conditionLayout;
+  QWidget *conditionWidget;
 
   QScrollArea *actionsScrollArea;
   QVBoxLayout *actionsLayout;
@@ -197,14 +203,14 @@ signals:
 public slots:
 
 private slots:
-  void feedsTreeClicked(QTreeWidgetItem *item, int column);
+  void feedItemChanged(QTreeWidgetItem *item, int column);
   void closeDialog();
 
-  void addFilterRules();
-  void deleteFilterRules(ItemRules *item);
+  void addCondition();
+  void deleteCondition(ItemCondition *item);
 
-  void addFilterAction();
-  void deleteFilterAction(ItemAction *item);
+  void addAction();
+  void deleteAction(ItemAction *item);
 
 };
 
