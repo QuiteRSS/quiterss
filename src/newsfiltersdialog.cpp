@@ -19,12 +19,12 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Id") << tr("Name filter") << tr("Locations");
+  treeItem << "Id" << tr("Name filter") << tr("Location");
   filtersTree->setHeaderLabels(treeItem);
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
   connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
-  editButton = new QPushButton(tr("Edit.."), this);
+  editButton = new QPushButton(tr("Edit..."), this);
   editButton->setEnabled(false);
   connect(editButton, SIGNAL(clicked()), this, SLOT(editFilter()));
   deleteButton = new QPushButton(tr("Delete..."), this);

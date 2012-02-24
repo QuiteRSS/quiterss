@@ -651,7 +651,7 @@
 </phrase>
 <phrase>
     <source>Change icon for incoming new news</source>
-    <target>Изменять иконку для входящих новых новостей</target>
+    <target>Изменять иконку при входящих новых новостях</target>
 </phrase>
 <phrase>
     <source>Show the count of new news</source>
@@ -724,5 +724,169 @@
 <phrase>
     <source>Loading history...</source>
     <target>Загрузка истории...</target>
+</phrase>
+<phrase>
+    <source>News filters...</source>
+    <target>Фильтры новостей... </target>
+</phrase>
+<phrase>
+    <source>Filter news...</source>
+    <target>Фильтр новостей...</target>
+</phrase>
+<phrase>
+    <source>Category</source>
+    <target>Категория</target>
+</phrase>
+<phrase>
+    <source>Play sound for incoming new news</source>
+    <target>Воспроизведение звука при входящих новых новостях</target>
+</phrase>
+<phrase>
+    <source>Enable JavaScript</source>
+    <target>Включить JavaScript</target>
+</phrase>
+<phrase>
+    <source>Enable plug-ins</source>
+    <target>Включить плагины</target>
+</phrase>
+<phrase>
+    <source>Notifications</source>
+    <target>Уведомления</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the filter &apos;%1&apos;?</source>
+    <target>Вы действительно хотите удалить фильтр &apos;%1&apos;?</target>
+</phrase>
+<phrase>
+    <source>Delete...</source>
+    <target>Удалить...</target>
+</phrase>
+<phrase>
+    <source>New...</source>
+    <target>Создать...</target>
+</phrase>
+<phrase>
+    <source>Edit...</source>
+    <target>Изменить...</target>
+</phrase>
+<phrase>
+    <source>Move up</source>
+    <target>Вверх</target>
+</phrase>
+<phrase>
+    <source>Move down</source>
+    <target>Вниз</target>
+</phrase>
+<phrase>
+    <source>Delete filter</source>
+    <target>Удалить фильтр</target>
+</phrase>
+<phrase>
+    <source>Name filter</source>
+    <target>Имя фильтра</target>
+</phrase>
+<phrase>
+    <source>Location</source>
+    <target>Расположение</target>
+</phrase>
+<phrase>
+    <source>Status</source>
+    <target>Состояние</target>
+</phrase>
+<phrase>
+    <source>New</source>
+    <target>Новое</target>
+</phrase>
+<phrase>
+    <source>Stared</source>
+    <target>Отмечена звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Add condition</source>
+    <target>Добавить условие</target>
+</phrase>
+<phrase>
+    <source>Delete condition</source>
+    <target>Удалить условие</target>
+</phrase>
+<phrase>
+    <source>Description</source>
+    <target>Описание</target>
+</phrase>
+<phrase>
+    <source>doesn&apos;t contains</source>
+    <target>не содержит</target>
+</phrase>
+<phrase>
+    <source>is</source>
+    <target>совпадает с</target>
+</phrase>
+<phrase>
+    <source>doesn&apos;t contains</source>
+    <target>не содержит</target>
+</phrase>
+<phrase>
+    <source>contains</source>
+    <target>содержит</target>
+</phrase>
+<phrase>
+    <source>isn&apos;t</source>
+    <target>не совпадает с</target>
+</phrase>
+<phrase>
+    <source>begins with</source>
+    <target>начинается с</target>
+</phrase>
+<phrase>
+    <source>ends with</source>
+    <target>заканчивается на</target>
+</phrase>
+<phrase>
+    <source>Add action</source>
+    <target>Добавить действие</target>
+</phrase>
+<phrase>
+    <source>Delete action</source>
+    <target>Удалить действие</target>
+</phrase>
+<phrase>
+    <source>Add star</source>
+    <target>Отметить звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Mark news as read</source>
+    <target>Отметить как прочитанной</target>
+</phrase>
+<phrase>
+    <source>Filter rules</source>
+    <target>Правила фильтрации</target>
+</phrase>
+<phrase>
+    <source>Perform these actions:</source>
+    <target>Выполнить следующие действия:</target>
+</phrase>
+<phrase>
+    <source>Move news</source>
+    <target>Переместить новость</target>
+</phrase>
+<phrase>
+    <source>Copy news</source>
+    <target>Копировать новость</target>
+</phrase>
+<phrase>
+    <source>Copy news to</source>
+    <target>Копировать новость в</target>
+</phrase>
+<phrase>
+    <source>Move news to</source>
+    <target>Переместить новость в</target>
+</phrase>
+<phrase>
+    <source>Match all conditions</source>
+    <target>Соответствует всем условиям</target>
+</phrase>
+<phrase>
+    <source>Match any condition</source>
+    <target>Соответствует любому условию</target>
 </phrase>
 </QPH>

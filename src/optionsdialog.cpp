@@ -28,7 +28,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "3" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "4" << tr("Notifier");
+  treeItem << "4" << tr("Notifications");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "5" << tr("Language");
