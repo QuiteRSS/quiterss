@@ -114,4 +114,5 @@ CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
 
 OTHER_FILES += \
-    history_en
+    history_en \
+    history_ru

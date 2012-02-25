@@ -1,8 +1,10 @@
 #include "updateappdialog.h"
 #include "VersionNo.h"
 
-UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
-    QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+UpdateAppDialog::UpdateAppDialog(const QString &lang,
+                                 QSettings *settings, QWidget *parent)
+  : QDialog(parent),
+    settings_(settings)
 {
   setWindowTitle(tr("Check for updates"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -22,10 +24,7 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
   history_->setObjectName("history_");
   history_->setText(tr("Loading history..."));
   history_->setOpenExternalLinks(true);
-  history_->hide();
-  updateApplayout->addWidget(history_);
-
-  updateApplayout->addStretch(1);
+  updateApplayout->addWidget(history_, 1);
 
   QHBoxLayout *buttonLayout = new QHBoxLayout();
   buttonLayout->setAlignment(Qt::AlignRight);
@@ -41,8 +40,22 @@ UpdateAppDialog::UpdateAppDialog(QWidget *parent) :
 
   reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
-  historyReply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/history_en")));
+
+  QString urlHistory;
+  if (lang == "ru")
+    urlHistory = "http://quite-rss.googlecode.com/hg/history_ru";
+  else urlHistory = "http://quite-rss.googlecode.com/hg/history_en";
+  historyReply_ = manager_.get(QNetworkRequest(QUrl(urlHistory)));
   connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
+
+  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
+
+  restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
+}
+
+void UpdateAppDialog::closeDialog()
+{
+  settings_->setValue("updateAppDlg/geometry", saveGeometry());
 }
 
 void UpdateAppDialog::finishUpdateApp()
@@ -82,7 +95,6 @@ void UpdateAppDialog::finishUpdateApp()
 //    qDebug() << reply_->error() << reply_->errorString();
     infoLabel->setText(tr("Error checking updates"));
   }
-  history_->show();
 }
 
 void UpdateAppDialog::slotFinishHistoryReply()
@@ -93,7 +105,7 @@ void UpdateAppDialog::slotFinishHistoryReply()
     return;
   }
 
-  QString str = QLatin1String(historyReply_->readAll());
+  QString str = QString::fromUtf8(historyReply_->readAll());
 
   history_->setHtml(str);
 }

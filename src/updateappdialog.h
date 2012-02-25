@@ -7,24 +7,24 @@
 class UpdateAppDialog : public QDialog
 {
   Q_OBJECT
-public:
-  explicit UpdateAppDialog(QWidget *parent = 0);
-
-protected:
-
-private slots:
-  void finishUpdateApp();
-  void slotFinishHistoryReply();
-
 private:
+  QSettings *settings_;
+
   QNetworkAccessManager manager_;
   QNetworkReply *reply_;
   QNetworkReply *historyReply_;
 
   QLabel *infoLabel;
   QTextBrowser *history_;
+  QString lang_;
 
-signals:
+public:
+  explicit UpdateAppDialog(const QString &lang, QSettings *settings, QWidget *parent);
+
+private slots:
+  void closeDialog();
+  void finishUpdateApp();
+  void slotFinishHistoryReply();
 
 };
 

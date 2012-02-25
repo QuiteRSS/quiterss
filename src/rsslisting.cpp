@@ -2431,7 +2431,8 @@ void RSSListing::slotTimerUpdateFeeds()
 
 void RSSListing::slotShowUpdateAppDlg()
 {
-  UpdateAppDialog *updateAppDialog = new UpdateAppDialog(this);
+  UpdateAppDialog *updateAppDialog = new UpdateAppDialog(langFileName_,
+                                                         settings_, this);
   updateAppDialog->exec();
   delete updateAppDialog;
 }
