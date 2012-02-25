@@ -3,48 +3,48 @@
 <BODY>
 <P><B>Версия 0.8.2+</B> (xx Фев 2012)
 <UL>
-<LI>Added: Опция использования plugins и java-scripts встроенного браузера</LI>
-<LI>Added: Отображение количества прочитанных байт в прогресс баре встроенного браузера</LI>
-<LI>Added: При наведении на ссылку, она отображается в строке статуса</LI>
-<LI>Added: Опция проигрывания звука после обновления новостей</LI>
+<LI><i>Added</i>: Опция использования plugins и java-scripts встроенного браузера</LI>
+<LI><i>Added</i>: Отображение количества прочитанных байт в прогресс баре встроенного браузера</LI>
+<LI><i>Added</i>: При наведении на ссылку, она отображается в строке статуса</LI>
+<LI><i>Added</i>: Опция проигрывания звука после обновления новостей</LI>
 
-<LI>Changed: Сохранение базы из памяти в файл и обратно перенесено в отдельный поток</LI>
+<LI><i>Changed</i>: Сохранение базы из памяти в файл и обратно перенесено в отдельный поток</LI>
 
-<LI>Fixed: Клик по ссылкам, когда используется встроенный браузер</LI>
-<LI>Fixed: Отсутствующая дата создания новости заменяется датой приема новости</LI>
-<LI>Fixed: Клавиши курсора "вверх/вниз" в списке лент</LI>
-<LI>Fized: Сохранение настроек и базы при завершении сеанса, когда установлена опция "минимизировать в трей"</LI>
+<LI><i>Fixed</i>: Клик по ссылкам, когда используется встроенный браузер</LI>
+<LI><i>Fixed</i>: Отсутствующая дата создания новости заменяется датой приема новости</LI>
+<LI><i>Fixed</i>: Клавиши курсора "вверх/вниз" в списке лент</LI>
+<LI><i>Fized</i>: Сохранение настроек и базы при завершении сеанса, когда установлена опция "минимизировать в трей"</LI>
 
-<LI>Fixed: Исправления GUI</LI>
-<LI>Fixed: Оптимизация модификации базы когда выбраны несколько новостей</LI>
+<LI><i>Fixed</i>: Исправления GUI</LI>
+<LI><i>Fixed</i>: Оптимизация модификации базы когда выбраны несколько новостей</LI>
 
 <LI>Рефакторинг начался...</LI>
 </UL>
 
 <P><B>Version 0.8.2</B> (10 Feb 2012)
 <UL>
-<LI>Added: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
-<LI>Added: Export feeds to OPML-file</LI>
-<LI>Fixed: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
-<LI>Fixed: Some feed parsing issues</LI>
-<LI>Fixed: Some GUI display issues</LI>
+<LI><i>Added</i>: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
+<LI><i>Added</i>: Export feeds to OPML-file</LI>
+<LI><i>Fixed</i>: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
+<LI><i>Fixed</i>: Some feed parsing issues</LI>
+<LI><i>Fixed</i>: Some GUI display issues</LI>
 </UL>
 
 <P><B>Version 0.8.1</B> (6 Feb 2012)
 <UL>
-<LI>Added: Internal browser</LI>
-<LI>Fixed: Cyrillic letters in application path</LI>
-<LI>Fixed: SQLite for Qt 4.8.0</LI>
-<LI>Fixed: NetworkManager move to his own thread</LI>
-<LI>Fixed: News list don't scrool while click on column "read/unread" if cursor is out of view</LI>
-<LI>Fixed: Request url queues while update feeds</LI>
-<LI>Fixed: Parsing "alternate" url of the news of Atom-feeds</LI>
-<LI>Fixed: TrayMenu is not appear sometimes</LI>
+<LI><i>Added</i>: Internal browser</LI>
+<LI><i>Fixed</i>: Cyrillic letters in application path</LI>
+<LI><i>Fixed</i>: SQLite for Qt 4.8.0</LI>
+<LI><i>Fixed</i>: NetworkManager move to his own thread</LI>
+<LI><i>Fixed</i>: News list don't scrool while click on column "read/unread" if cursor is out of view</LI>
+<LI><i>Fixed</i>: Request url queues while update feeds</LI>
+<LI><i>Fixed</i>: Parsing "alternate" url of the news of Atom-feeds</LI>
+<LI><i>Fixed</i>: TrayMenu is not appear sometimes</LI>
 </UL>
 
 <P><B>Version 0.8.0</B> (31 Jan 2012)
 <UL>
-<LI>Added: Sumiltaneous update up to 8 feeds</LI>
+<LI><i>Added</i>: Sumiltaneous update up to 8 feeds</LI>
 </UL>
 
 <P><B>Version 0.7.6</B> (28 Jan 2012)
