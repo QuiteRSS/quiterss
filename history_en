@@ -13,7 +13,7 @@
 <LI>Fixed: Click on links when embedded browser enabled</LI>
 <LI>Fixed: Absent create date of news replace by receive date</LI>
 <LI>Fixed: Up/Down cursor keys in feeds list</LI>
-<LI>Fized: Save tuning and database while system logout/shutdown when options "minimize to system tray" checked</LI>
+<LI>Fixed: Save tuning and database while system logout/shutdown when options "minimize to system tray" checked</LI>
 
 <LI>Fixed: Some GUI display issues</LI>
 <LI>Fixed: Optimize database modifying when several news selected</LI>
