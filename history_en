@@ -1,4 +1,26 @@
-<HTML><STYLE>a { color: blue; text-decoration: none; }</STYLE><BODY>
+<HTML>
+<STYLE>a { color: blue; text-decoration: none; }</STYLE>
+<BODY>
+<P><B>Version 0.8.2+</B> (xx Feb 2012)
+<UL>
+<LI>Added: Option to enable plugins and java-scripts in embedded browser</LI>
+<LI>Added: Receive bytes in progress bar of embedded browser</LI>
+<LI>Added: OnHover links are shown in status bar</LI>
+<LI>Added: Option to play sound on news update</LI>
+
+<LI>Changed: Copy database from memory to file and back moved to own thread</LI>
+
+<LI>Fixed: Click on links when embedded browser enabled</LI>
+<LI>Fixed: Absent create date of news replace by receive date</LI>
+<LI>Fixed: Up/Down cursor keys in feeds list</LI>
+<LI>Fized: Save tuning and database while system logout/shutdown when options "minimize to system tray" checked</LI>
+
+<LI>Fixed: Some GUI display issues</LI>
+<LI>Fixed: Optimize database modifying when several news selected</LI>
+
+<LI>Refactoring started...</LI>
+</UL>
+
 <P><B>Version 0.8.2</B> (10 Feb 2012)
 <UL>
 <LI>Added: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
@@ -29,4 +51,5 @@
 <UL>
 <LI>...Old release. No need to document it ;)</LI>
 </UL>
-</BODY></HTML>
+</BODY>
+</HTML>
