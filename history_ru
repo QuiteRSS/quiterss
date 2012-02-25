@@ -1,7 +1,7 @@
 <HTML>
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
-<P><B>Версия 0.8.2+</B> (xx Фев 2012)
+<P><B>Версия 0.8.3</B> (25 Фев 2012)
 <UL>
 <LI>Added: Опция использования plugins и java-scripts встроенного браузера</LI>
 <LI>Added: Отображение количества прочитанных байт в прогресс баре встроенного браузера</LI>

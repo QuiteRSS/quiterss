@@ -1,7 +1,7 @@
 <HTML>
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
-<P><B>Version 0.8.2+</B> (xx Feb 2012)
+<P><B>Version 0.8.3</B> (25 Feb 2012)
 <UL>
 <LI>Added: Option to enable plugins and java-scripts in embedded browser</LI>
 <LI>Added: Receive bytes in progress bar of embedded browser</LI>
