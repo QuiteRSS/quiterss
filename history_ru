@@ -1,24 +1,24 @@
 <HTML>
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
-<P><B>Version 0.8.2+</B> (xx Feb 2012)
+<P><B>Версия 0.8.2+</B> (xx Фев 2012)
 <UL>
-<LI>Added: Option to enable plugins and java-scripts in embedded browser</LI>
-<LI>Added: Receive bytes in progress bar of embedded browser</LI>
-<LI>Added: OnHover links are shown in status bar</LI>
-<LI>Added: Option to play sound on news update</LI>
+<LI>Added: Опция использования plugins и java-scripts встроенного браузера</LI>
+<LI>Added: Отображение количества прочитанных байт в прогресс баре встроенного браузера</LI>
+<LI>Added: При наведении на ссылку, она отображается в строке статуса</LI>
+<LI>Added: Опция проигрывания звука после обновления новостей</LI>
 
-<LI>Changed: Copy database from memory to file and back moved to own thread</LI>
+<LI>Changed: Сохранение базы из памяти в файл и обратно перенесено в отдельный поток</LI>
 
-<LI>Fixed: Click on links when embedded browser enabled</LI>
-<LI>Fixed: Absent create date of news replace by receive date</LI>
-<LI>Fixed: Up/Down cursor keys in feeds list</LI>
-<LI>Fized: Save tuning and database while system logout/shutdown when options "minimize to system tray" checked</LI>
+<LI>Fixed: Клик по ссылкам, когда используется встроенный браузер</LI>
+<LI>Fixed: Отсутствующая дата создания новости заменяется датой приема новости</LI>
+<LI>Fixed: Клавиши курсора "вверх/вниз" в списке лент</LI>
+<LI>Fized: Сохранение настроек и базы при завершении сеанса, когда установлена опция "минимизировать в трей"</LI>
 
-<LI>Fixed: Some GUI display issues</LI>
-<LI>Fixed: Optimize database modifying when several news selected</LI>
+<LI>Fixed: Исправления GUI</LI>
+<LI>Fixed: Оптимизация модификации базы когда выбраны несколько новостей</LI>
 
-<LI>Refactoring started...</LI>
+<LI>Рефакторинг начался...</LI>
 </UL>
 
 <P><B>Version 0.8.2</B> (10 Feb 2012)
