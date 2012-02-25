@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file alias="addFeed">images/add.png</file>
-        <file alias="deleteFeed">images/delete.png</file>
         <file alias="updateFeed">images/updateFeed.png</file>
         <file alias="updateAllFeeds">images/updateAllFeeds.png</file>
         <file>images/triangleL.png</file>
@@ -23,7 +21,6 @@
         <file>images/sortIndicatorD.png</file>
         <file alias="bulletNew">images/bulletNew.png</file>
         <file alias="bulletNoNew">images/bulletNoNew.png</file>
-        <file alias="deleteNews">images/deleteNews.png</file>
         <file alias="imagesOff">images/imagesOff.png</file>
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
@@ -35,6 +32,8 @@
         <file alias="quiterss16_NewNews1">images/QuiteRSS16_NewNews1.png</file>
         <file alias="countNew">images/quiterss_count.png</file>
         <file alias="exportFeeds">images/exportFeeds.png</file>
+        <file alias="add">images/add.png</file>
+        <file alias="delete">images/delete.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QuiteRSS.qss</file>

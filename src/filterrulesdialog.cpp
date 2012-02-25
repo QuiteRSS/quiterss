@@ -99,7 +99,6 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
 
   QSplitter *spliter = new QSplitter(Qt::Vertical, this);
   spliter->setChildrenCollapsible(false);
-  spliter->setMinimumWidth(520);
   spliter->addWidget(splitterWidget1);
   spliter->addWidget(splitterWidget2);
 
@@ -129,7 +128,6 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
 
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
-  resize(700, 350);
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
 }
 

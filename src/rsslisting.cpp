@@ -676,12 +676,12 @@ void RSSListing::createTray()
 void RSSListing::createActions()
 {
   addFeedAct_ = new QAction(this);
-  addFeedAct_->setIcon(QIcon(":/images/addFeed"));
+  addFeedAct_->setIcon(QIcon(":/images/add"));
   addFeedAct_->setShortcut(QKeySequence::New);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   deleteFeedAct_ = new QAction(this);
-  deleteFeedAct_->setIcon(QIcon(":/images/deleteFeed"));
+  deleteFeedAct_->setIcon(QIcon(":/images/delete"));
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
   importFeedsAct_ = new QAction(this);
@@ -804,7 +804,7 @@ void RSSListing::createActions()
   markStarAct_->setIcon(QIcon(":/images/starOn"));
   connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
   deleteNewsAct_ = new QAction(this);
-  deleteNewsAct_->setIcon(QIcon(":/images/deleteNews"));
+  deleteNewsAct_->setIcon(QIcon(":/images/delete"));
   deleteNewsAct_->setShortcut(Qt::Key_Delete);
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
 
@@ -926,7 +926,7 @@ void RSSListing::createMenu()
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
-  toolsMenu_->addAction(setNewsFiltersAct_);
+//  toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
 
@@ -947,7 +947,7 @@ void RSSListing::createToolBar()
   toolBar_->setMovable(false);
   toolBar_->setContextMenuPolicy(Qt::CustomContextMenu);
   toolBar_->addAction(addFeedAct_);
-  toolBar_->addAction(deleteFeedAct_);
+//  toolBar_->addAction(deleteFeedAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(updateFeedAct_);
   toolBar_->addAction(updateAllFeedsAct_);
@@ -1045,7 +1045,7 @@ void RSSListing::readSettings()
 
   settings_->endGroup();
 
-  resize(850, 600);
+  resize(800, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
@@ -2234,8 +2234,8 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(markAllFeedRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
-  feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(setFilterNewsAct_);
+//  feedContextMenu_->addSeparator();
+//  feedContextMenu_->addAction(setFilterNewsAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
