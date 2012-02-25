@@ -3,48 +3,48 @@
 <BODY>
 <P><B>Version 0.8.2+</B> (xx Feb 2012)
 <UL>
-<LI><i>Added</i>: Option to enable plugins and java-scripts in embedded browser</LI>
-<LI><i>Added</i>: Receive bytes in progress bar of embedded browser</LI>
-<LI><i>Added</i>: OnHover links are shown in status bar</LI>
-<LI><i>Added</i>: Option to play sound on news update</LI>
+<LI>Added: Option to enable plugins and java-scripts in embedded browser</LI>
+<LI>Added: Receive bytes in progress bar of embedded browser</LI>
+<LI>Added: OnHover links are shown in status bar</LI>
+<LI>Added: Option to play sound on news update</LI>
 
-<LI><i>Changed</i>: Copy database from memory to file and back moved to own thread</LI>
+<LI>Changed: Copy database from memory to file and back moved to own thread</LI>
 
-<LI><i>Fixed</i>: Click on links when embedded browser enabled</LI>
-<LI><i>Fixed</i>: Absent create date of news replace by receive date</LI>
-<LI><i>Fixed</i>: Up/Down cursor keys in feeds list</LI>
-<LI><i>Fized</i>: Save tuning and database while system logout/shutdown when options "minimize to system tray" checked</LI>
+<LI>Fixed: Click on links when embedded browser enabled</LI>
+<LI>Fixed: Absent create date of news replace by receive date</LI>
+<LI>Fixed: Up/Down cursor keys in feeds list</LI>
+<LI>Fized: Save tuning and database while system logout/shutdown when options "minimize to system tray" checked</LI>
 
-<LI><i>Fixed</i>: Some GUI display issues</LI>
-<LI><i>Fixed</i>: Optimize database modifying when several news selected</LI>
+<LI>Fixed: Some GUI display issues</LI>
+<LI>Fixed: Optimize database modifying when several news selected</LI>
 
 <LI>Refactoring started...</LI>
 </UL>
 
 <P><B>Version 0.8.2</B> (10 Feb 2012)
 <UL>
-<LI><i>Added</i>: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
-<LI><i>Added</i>: Export feeds to OPML-file</LI>
-<LI><i>Fixed</i>: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
-<LI><i>Fixed</i>: Some feed parsing issues</LI>
-<LI><i>Fixed</i>: Some GUI display issues</LI>
+<LI>Added: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
+<LI>Added: Export feeds to OPML-file</LI>
+<LI>Fixed: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
+<LI>Fixed: Some feed parsing issues</LI>
+<LI>Fixed: Some GUI display issues</LI>
 </UL>
 
 <P><B>Version 0.8.1</B> (6 Feb 2012)
 <UL>
-<LI><i>Added</i>: Internal browser</LI>
-<LI><i>Fixed</i>: Cyrillic letters in application path</LI>
-<LI><i>Fixed</i>: SQLite for Qt 4.8.0</LI>
-<LI><i>Fixed</i>: NetworkManager move to his own thread</LI>
-<LI><i>Fixed</i>: News list don't scrool while click on column "read/unread" if cursor is out of view</LI>
-<LI><i>Fixed</i>: Request url queues while update feeds</LI>
-<LI><i>Fixed</i>: Parsing "alternate" url of the news of Atom-feeds</LI>
-<LI><i>Fixed</i>: TrayMenu is not appear sometimes</LI>
+<LI>Added: Internal browser</LI>
+<LI>Fixed: Cyrillic letters in application path</LI>
+<LI>Fixed: SQLite for Qt 4.8.0</LI>
+<LI>Fixed: NetworkManager move to his own thread</LI>
+<LI>Fixed: News list don't scrool while click on column "read/unread" if cursor is out of view</LI>
+<LI>Fixed: Request url queues while update feeds</LI>
+<LI>Fixed: Parsing "alternate" url of the news of Atom-feeds</LI>
+<LI>Fixed: TrayMenu is not appear sometimes</LI>
 </UL>
 
 <P><B>Version 0.8.0</B> (31 Jan 2012)
 <UL>
-<LI><i>Added</i>: Sumiltaneous update up to 8 feeds</LI>
+<LI>Added: Sumiltaneous update up to 8 feeds</LI>
 </UL>
 
 <P><B>Version 0.7.6</B> (28 Jan 2012)
