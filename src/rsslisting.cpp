@@ -13,7 +13,6 @@
 #include "newsfiltersdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
-#include "updateappdialog.h"
 #include "VersionNo.h"
 
 /*!***************************************************************************/
@@ -190,6 +189,8 @@ RSSListing::RSSListing(QWidget *parent)
 
     if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
     updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
+
+    QTimer::singleShot(10000, this, SLOT(slotUpdateAppChacking()));
 
     translator_ = new QTranslator(this);
     appInstallTranslator();
@@ -2838,4 +2839,24 @@ void RSSListing::showFilterNewsDlg()
   }
 
   delete filterRulesDialog;
+}
+
+void RSSListing::slotUpdateAppChacking()
+{
+  updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this);
+  connect(updateAppDialog_, SIGNAL(signalNewVersion()),
+          this, SLOT(slotNewVersion()));
+}
+
+void RSSListing::slotNewVersion()
+{
+  traySystem->showMessage("Check for updates", "A new version of QuiteRSS...");
+  connect(traySystem, SIGNAL(messageClicked()),
+          this, SLOT(trayMessageClick()));
+}
+
+void RSSListing::trayMessageClick()
+{
+  updateAppDialog_->exec();
+  delete updateAppDialog_;
 }

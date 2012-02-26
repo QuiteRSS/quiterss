@@ -81,6 +81,8 @@ void UpdateAppDialog::finishUpdateApp()
           "<p>" + QString("<a href=\"%1\">%2</a>").
           arg("http://code.google.com/p/quite-rss/downloads/list").
           arg(tr("Click here to go to the download page"));
+
+      if (!isVisible()) emit signalNewVersion();
     }
     QString info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"

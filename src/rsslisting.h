@@ -12,6 +12,7 @@
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "parsethread.h"
+#include "updateappdialog.h"
 #include "updatethread.h"
 #include "newsview.h"
 
@@ -227,6 +228,8 @@ private:
     bool soundNewNews_;
     bool playSoundNewNews_;
 
+    UpdateAppDialog *updateAppDialog_;
+
 private slots:
     void slotProgressBarUpdate();
     void slotVisibledFeedsDock();
@@ -268,6 +271,9 @@ private slots:
     void slotCommitDataRequest(QSessionManager&);
     void showNewsFiltersDlg();
     void showFilterNewsDlg();
+    void slotUpdateAppChacking();
+    void slotNewVersion();
+    void trayMessageClick();
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

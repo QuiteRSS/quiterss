@@ -26,6 +26,9 @@ private slots:
   void finishUpdateApp();
   void slotFinishHistoryReply();
 
+signals:
+  void signalNewVersion();
+
 };
 
 #endif // UPDATEAPPDIALOG_H
