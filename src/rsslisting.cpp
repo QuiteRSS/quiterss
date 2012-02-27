@@ -2843,20 +2843,19 @@ void RSSListing::showFilterNewsDlg()
 
 void RSSListing::slotUpdateAppChacking()
 {
-  updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this);
-  connect(updateAppDialog_, SIGNAL(signalNewVersion()),
-          this, SLOT(slotNewVersion()));
+  updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
+  connect(updateAppDialog_, SIGNAL(signalNewVersion(bool)),
+          this, SLOT(slotNewVersion(bool)), Qt::QueuedConnection);
 }
 
-void RSSListing::slotNewVersion()
+void RSSListing::slotNewVersion(bool newVersion)
 {
-  traySystem->showMessage("Check for updates", "A new version of QuiteRSS...");
-  connect(traySystem, SIGNAL(messageClicked()),
-          this, SLOT(trayMessageClick()));
-}
-
-void RSSListing::trayMessageClick()
-{
-  updateAppDialog_->exec();
   delete updateAppDialog_;
+
+  if (newVersion) {
+    traySystem->showMessage("Check for updates",
+                            "A new version of QuiteRSS...");
+    connect(traySystem, SIGNAL(messageClicked()),
+            this, SLOT(slotShowUpdateAppDlg()));
+  }
 }

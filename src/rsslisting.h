@@ -272,8 +272,7 @@ private slots:
     void showNewsFiltersDlg();
     void showFilterNewsDlg();
     void slotUpdateAppChacking();
-    void slotNewVersion();
-    void trayMessageClick();
+    void slotNewVersion(bool newVersion);
 
 signals:
     void signalFeedsTreeKeyUpDownPressed();

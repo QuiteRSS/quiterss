@@ -1,56 +1,59 @@
 #include "updateappdialog.h"
 #include "VersionNo.h"
 
-UpdateAppDialog::UpdateAppDialog(const QString &lang,
-                                 QSettings *settings, QWidget *parent)
+UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
+                                  QWidget *parent, bool show)
   : QDialog(parent),
-    settings_(settings)
+    settings_(settings),
+    showDialog_(show)
 {
-  setWindowTitle(tr("Check for updates"));
-  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setObjectName("UpdateAppDialog");
-  resize(350, 300);
+  if (showDialog_) {
+    setWindowTitle(tr("Check for updates"));
+    setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setObjectName("UpdateAppDialog");
+    resize(350, 300);
 
-  QVBoxLayout *updateApplayout = new QVBoxLayout(this);
-  updateApplayout->setAlignment(Qt::AlignCenter);
-  updateApplayout->setMargin(10);
-  updateApplayout->setSpacing(10);
+    QVBoxLayout *updateApplayout = new QVBoxLayout(this);
+    updateApplayout->setAlignment(Qt::AlignCenter);
+    updateApplayout->setMargin(10);
+    updateApplayout->setSpacing(10);
 
-  infoLabel = new QLabel(tr("Checking for updates..."), this);
-  infoLabel->setOpenExternalLinks(true);
-  updateApplayout->addWidget(infoLabel, 0);
+    infoLabel = new QLabel(tr("Checking for updates..."), this);
+    infoLabel->setOpenExternalLinks(true);
+    updateApplayout->addWidget(infoLabel, 0);
 
-  history_ = new QTextBrowser(this);
-  history_->setObjectName("history_");
-  history_->setText(tr("Loading history..."));
-  history_->setOpenExternalLinks(true);
-  updateApplayout->addWidget(history_, 1);
+    history_ = new QTextBrowser(this);
+    history_->setObjectName("history_");
+    history_->setText(tr("Loading history..."));
+    history_->setOpenExternalLinks(true);
+    updateApplayout->addWidget(history_, 1);
 
-  QHBoxLayout *buttonLayout = new QHBoxLayout();
-  buttonLayout->setAlignment(Qt::AlignRight);
-  QPushButton *closeButton = new QPushButton(tr("&Close"), this);
-  closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->setAlignment(Qt::AlignRight);
+    QPushButton *closeButton = new QPushButton(tr("&Close"), this);
+    closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
-  closeButton->setDefault(true);
-  closeButton->setFocus(Qt::OtherFocusReason);
-  connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-  buttonLayout->addStretch(1);
-  buttonLayout->addWidget(closeButton);
-  updateApplayout->addLayout(buttonLayout);
+    closeButton->setDefault(true);
+    closeButton->setFocus(Qt::OtherFocusReason);
+    connect(closeButton, SIGNAL(clicked()), SLOT(close()));
+    buttonLayout->addStretch(1);
+    buttonLayout->addWidget(closeButton);
+    updateApplayout->addLayout(buttonLayout);
+
+    QString urlHistory;
+    if (lang == "ru")
+      urlHistory = "http://quite-rss.googlecode.com/hg/history_ru";
+    else urlHistory = "http://quite-rss.googlecode.com/hg/history_en";
+    historyReply_ = manager_.get(QNetworkRequest(QUrl(urlHistory)));
+    connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
+
+    connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
+
+    restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
+  }
 
   reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
-
-  QString urlHistory;
-  if (lang == "ru")
-    urlHistory = "http://quite-rss.googlecode.com/hg/history_ru";
-  else urlHistory = "http://quite-rss.googlecode.com/hg/history_en";
-  historyReply_ = manager_.get(QNetworkRequest(QUrl(urlHistory)));
-  connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
-
-  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
-
-  restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
 }
 
 void UpdateAppDialog::closeDialog()
@@ -61,6 +64,10 @@ void UpdateAppDialog::closeDialog()
 void UpdateAppDialog::finishUpdateApp()
 {
   reply_->deleteLater();
+
+  QString info;
+  bool newVersion = false;
+
   if (reply_->error() == QNetworkReply::NoError) {
     QString version = QString(STRFILEVER).section('.', 0, 2);
     QString date = STRDATE;
@@ -81,10 +88,9 @@ void UpdateAppDialog::finishUpdateApp()
           "<p>" + QString("<a href=\"%1\">%2</a>").
           arg("http://code.google.com/p/quite-rss/downloads/list").
           arg(tr("Click here to go to the download page"));
-
-      if (!isVisible()) emit signalNewVersion();
+      newVersion = true;
     }
-    QString info =
+    info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"
         "<p>" + tr("Your version is: ") +
         "<B>" + version + "</B>" + QString(" (%1)").arg(date) +
@@ -92,11 +98,13 @@ void UpdateAppDialog::finishUpdateApp()
         "<B>" + curVersion + "</B>" + QString(" (%1)").arg(curDate) +
         "<p>" + str +
         "</body></html>";
-    infoLabel->setText(info);
   } else {
 //    qDebug() << reply_->error() << reply_->errorString();
-    infoLabel->setText(tr("Error checking updates"));
+    info = tr("Error checking updates");
   }
+
+  if (!showDialog_) emit signalNewVersion(newVersion);
+  else infoLabel->setText(info);
 }
 
 void UpdateAppDialog::slotFinishHistoryReply()

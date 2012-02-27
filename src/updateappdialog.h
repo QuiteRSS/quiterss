@@ -8,7 +8,9 @@ class UpdateAppDialog : public QDialog
 {
   Q_OBJECT
 private:
+  QString lang_;
   QSettings *settings_;
+  bool showDialog_;
 
   QNetworkAccessManager manager_;
   QNetworkReply *reply_;
@@ -16,10 +18,11 @@ private:
 
   QLabel *infoLabel;
   QTextBrowser *history_;
-  QString lang_;
+
 
 public:
-  explicit UpdateAppDialog(const QString &lang, QSettings *settings, QWidget *parent);
+  explicit UpdateAppDialog(const QString &lang, QSettings *settings,
+                           QWidget *parent, bool show = true);
 
 private slots:
   void closeDialog();
@@ -27,7 +30,7 @@ private slots:
   void slotFinishHistoryReply();
 
 signals:
-  void signalNewVersion();
+  void signalNewVersion(bool newVersion);
 
 };
 
