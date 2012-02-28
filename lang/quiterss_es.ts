@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.0" language="es_ES">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -56,8 +56,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="43"/>
-        <source>Load feed title</source>
+        <location filename="../src/feedpropertiesdialog.cpp" line="22"/>
+        <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -66,18 +66,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="38"/>
-        <source>Feed URL:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="37"/>
         <source>Homepage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="22"/>
-        <source>General</source>
+        <location filename="../src/feedpropertiesdialog.cpp" line="38"/>
+        <source>Feed URL:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="43"/>
+        <source>Load feed title</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -651,6 +651,21 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="1329"/>
+        <source>Export canceled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="1335"/>
+        <source>Export: can&apos;t open a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="1395"/>
+        <source>Update done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="1987"/>
         <location filename="../src/rsslisting.cpp" line="2465"/>
         <source> Unread: %1 </source>
@@ -717,6 +732,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="2473"/>
+        <location filename="../src/rsslisting.cpp" line="2693"/>
+        <source>New news: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2475"/>
+        <location filename="../src/rsslisting.cpp" line="2695"/>
+        <source>Unread news: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="2478"/>
         <source>&amp;Add...</source>
         <translation type="unfinished"></translation>
@@ -747,8 +774,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="2487"/>
+        <source>&amp;Export feeds...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2488"/>
+        <source>Export feeds to OPML file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="2490"/>
         <source>E&amp;xit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2500"/>
+        <source>Update feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -764,53 +806,6 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2504"/>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2541"/>
-        <source>Mark Read</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2500"/>
-        <source>Update feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2475"/>
-        <location filename="../src/rsslisting.cpp" line="2695"/>
-        <source>Unread news: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2473"/>
-        <location filename="../src/rsslisting.cpp" line="2693"/>
-        <source>New news: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="1329"/>
-        <source>Export canceled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="1335"/>
-        <source>Export: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="1395"/>
-        <source>Update done</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2487"/>
-        <source>&amp;Export feeds...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2488"/>
-        <source>Export feeds to OPML file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -918,6 +913,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="2541"/>
+        <source>Mark Read</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="2542"/>
         <source>Mark feed read</source>
         <translation type="unfinished"></translation>
@@ -999,8 +999,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="2561"/>
+        <source>Show ToolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="2563"/>
         <source>Icon size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2564"/>
+        <source>Big</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2565"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2566"/>
+        <source>Small</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2568"/>
+        <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1046,31 +1071,6 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2578"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2561"/>
-        <source>Show ToolBar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2564"/>
-        <source>Big</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2565"/>
-        <source>Normal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2566"/>
-        <source>Small</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2568"/>
-        <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
