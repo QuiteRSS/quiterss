@@ -2135,24 +2135,39 @@ void RSSListing::deleteNews()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-  if (indexes.count() == 0) return;
-
   int cnt = indexes.count();
-  for (int i = cnt-1; i >= 0; --i) {
-    curIndex = indexes.at(i);
-    int row = curIndex.row();
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("read")),
-          1);
-    if (newsModel_->index(row, newsModel_->fieldIndex("deleted")).data(Qt::EditRole).toInt() == 0) {
-      newsModel_->setData(
-            newsModel_->index(row, newsModel_->fieldIndex("deleted")),
-            1);
-    }
-  }
+  if (cnt == 0) return;
 
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    int row = curIndex.row();
+    slotSetItemRead(curIndex, 1);
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
+  } else {
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      qDebug() << curIndex.row();
+      QSqlQuery q(db_);
+      q.exec(QString("update %1 set new=0 where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set read=2 where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set deleted=1 where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+    }
+
+    newsModel_->select();
+  }
   if (curIndex.row() == newsModel_->rowCount())
-    curIndex = newsModel_->index(curIndex.row()-1, curIndex.column());
+    curIndex = newsModel_->index(curIndex.row()-1, 6);
+  else curIndex = newsModel_->index(curIndex.row(), 6);
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   slotUpdateStatus();
