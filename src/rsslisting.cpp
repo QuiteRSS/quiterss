@@ -192,7 +192,6 @@ RSSListing::RSSListing(QWidget *parent)
     if (autoUpdatefeedsInterval_ == 1)
       updateFeedsTime = updateFeedsTime*60;
     updateFeedsTimer_.start(updateFeedsTime, this);
-    qDebug() << updateFeedsTime;
 
     QTimer::singleShot(10000, this, SLOT(slotUpdateAppChacking()));
 
@@ -1721,6 +1720,7 @@ void RSSListing::showOptionDlg()
         optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
 
   delete optionsDialog;
+  writeSettings();
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
@@ -2161,7 +2161,6 @@ void RSSListing::deleteNews()
   } else {
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      qDebug() << curIndex.row();
       QSqlQuery q(db_);
       q.exec(QString("update %1 set new=0 where id=='%2'").
              arg(newsModel_->tableName()).
