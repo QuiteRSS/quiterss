@@ -188,7 +188,11 @@ RSSListing::RSSListing(QWidget *parent)
     readSettings();
 
     if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
-    updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
+    int updateFeedsTime = autoUpdatefeedsTime_*60000;
+    if (autoUpdatefeedsInterval_ == 1)
+      updateFeedsTime = updateFeedsTime*60;
+    updateFeedsTimer_.start(updateFeedsTime, this);
+    qDebug() << updateFeedsTime;
 
     QTimer::singleShot(10000, this, SLOT(slotUpdateAppChacking()));
 
@@ -397,7 +401,10 @@ void RSSListing::timerEvent(QTimerEvent *event)
 {
   if (event->timerId() == updateFeedsTimer_.timerId()) {
     updateFeedsTimer_.stop();
-    updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
+    int updateFeedsTime = autoUpdatefeedsTime_*60000;
+    if (autoUpdatefeedsInterval_ == 1)
+      updateFeedsTime = updateFeedsTime*60;
+    updateFeedsTimer_.start(updateFeedsTime, this);
     slotTimerUpdateFeeds();
   } if (event->timerId() == markNewsReadTimer_.timerId()) {
     markNewsReadTimer_.stop();
@@ -1006,6 +1013,7 @@ void RSSListing::readSettings()
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
+  autoUpdatefeedsInterval_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
 
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
@@ -1093,6 +1101,7 @@ void RSSListing::writeSettings()
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
+  settings_->setValue("autoUpdatefeedsInterval", autoUpdatefeedsInterval_);
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
@@ -1613,6 +1622,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
+  optionsDialog->intervalTime_->setCurrentIndex(autoUpdatefeedsInterval_);
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
@@ -1672,10 +1682,14 @@ void RSSListing::showOptionDlg()
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
   autoUpdatefeedsTime_ = optionsDialog->updateFeedsTime_->value();
+  autoUpdatefeedsInterval_ = optionsDialog->intervalTime_->currentIndex();
   if (updateFeedsTimer_.isActive() && !autoUpdatefeeds_) {
     updateFeedsTimer_.stop();
   } else if (!updateFeedsTimer_.isActive() && autoUpdatefeeds_) {
-    updateFeedsTimer_.start(autoUpdatefeedsTime_*60000, this);
+    int updateFeedsTime = autoUpdatefeedsTime_*60000;
+    if (autoUpdatefeedsInterval_ == 1)
+      updateFeedsTime = updateFeedsTime*60;
+    updateFeedsTimer_.start(updateFeedsTime, this);
   }
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();

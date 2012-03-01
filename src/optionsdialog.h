@@ -35,6 +35,7 @@ public:
   QCheckBox *updateFeedsStartUp_;
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
+  QComboBox *intervalTime_;
 
   QCheckBox *markNewsReadOn_;
   QSpinBox *markNewsReadTime_;
@@ -53,6 +54,7 @@ private slots:
   void acceptSlot();
   void slotFontChange();
   void slotFontReset();
+  void intervalTimeChang(QString str);
 
 signals:
 

@@ -161,13 +161,24 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsTime_ = new QSpinBox();
   updateFeedsTime_->setEnabled(false);
   updateFeedsTime_->setRange(5, 9999);
-  connect(updateFeeds_, SIGNAL(toggled(bool)), updateFeedsTime_, SLOT(setEnabled(bool)));
+  connect(updateFeeds_, SIGNAL(toggled(bool)),
+          updateFeedsTime_, SLOT(setEnabled(bool)));
+
+  intervalTime_ = new QComboBox(this);
+  intervalTime_->setEnabled(false);
+  QStringList intervalList;
+  intervalList << tr("minutes")  << tr("hours");
+  intervalTime_->addItems(intervalList);
+  connect(updateFeeds_, SIGNAL(toggled(bool)),
+          intervalTime_, SLOT(setEnabled(bool)));
+  connect(intervalTime_, SIGNAL(currentIndexChanged(QString)),
+          this, SLOT(intervalTimeChang(QString)));
 
   QHBoxLayout *updateFeedsLayout1 = new QHBoxLayout();
   updateFeedsLayout1->setMargin(0);
   updateFeedsLayout1->addWidget(updateFeeds_);
   updateFeedsLayout1->addWidget(updateFeedsTime_);
-  updateFeedsLayout1->addWidget(new QLabel(tr("minutes")));
+  updateFeedsLayout1->addWidget(intervalTime_);
   updateFeedsLayout1->addStretch();
 
   QVBoxLayout *updateFeedsLayout = new QVBoxLayout();
@@ -475,4 +486,13 @@ int OptionsDialog::behaviorIconTray()
   else if (newCountTray_->isChecked())    return 2;
   else if (unreadCountTray_->isChecked()) return 3;
   else return 0;
+}
+
+void  OptionsDialog::intervalTimeChang(QString str)
+{
+  if (str == tr("minutes")) {
+    updateFeedsTime_->setRange(5, 9999);
+  } else if (str == tr("hours")) {
+    updateFeedsTime_->setRange(1, 9999);
+  }
 }

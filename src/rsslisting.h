@@ -199,6 +199,7 @@ private:
     bool autoUpdatefeedsStartUp_;
     bool autoUpdatefeeds_;
     int  autoUpdatefeedsTime_;
+    int  autoUpdatefeedsInterval_;
 
     QTranslator *translator_;
     QString langFileName_;
