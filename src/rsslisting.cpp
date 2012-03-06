@@ -1620,8 +1620,8 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
-  optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
   optionsDialog->intervalTime_->setCurrentIndex(autoUpdatefeedsInterval_);
+  optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
