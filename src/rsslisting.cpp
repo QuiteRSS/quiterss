@@ -2366,8 +2366,9 @@ void RSSListing::updateWebView(QModelIndex index)
 
   QString titleString, linkString, panelTitleString;
   titleString = newsModel_->record(index.row()).field("title").value().toString();
-  titleString = webPanelTitle_->fontMetrics().elidedText(
-      titleString, Qt::ElideRight, webPanelTitle_->width());
+  if (isVisible())
+    titleString = webPanelTitle_->fontMetrics().elidedText(
+        titleString, Qt::ElideRight, webPanelTitle_->width());
   linkString = newsModel_->record(index.row()).field("link_href").value().toString();
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
