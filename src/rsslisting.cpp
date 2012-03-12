@@ -1551,20 +1551,20 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 
 void RSSListing::slotNewsViewSelected(QModelIndex index)
 {
-  static QModelIndex indexOld = index;
+  static int idxOld = -1;
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    indexOld = index;
+    idxOld = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
     return;
   }
 
   webPanel_->show();
 
-  QModelIndex indexNew = index;
-  if (!((index.row() == indexOld.row()) &&
-         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 1)) {
+  int idx = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
+  if (!((idx == idxOld) &&
+         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1)) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
 
@@ -1581,7 +1581,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
         arg(id).arg(newsModel_->tableName().remove("feed_"));
     q.exec(qStr);
   }
-  indexOld = indexNew;
+  idxOld = idx;
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
