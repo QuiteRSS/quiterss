@@ -405,7 +405,7 @@ void RSSListing::timerEvent(QTimerEvent *event)
       updateFeedsTime = updateFeedsTime*60;
     updateFeedsTimer_.start(updateFeedsTime, this);
     slotTimerUpdateFeeds();
-  } if (event->timerId() == markNewsReadTimer_.timerId()) {
+  } else if (event->timerId() == markNewsReadTimer_.timerId()) {
     markNewsReadTimer_.stop();
     slotSetItemRead(newsView_->currentIndex(), 1);
   }
@@ -1500,13 +1500,19 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   else newsHeader_->setVisible(false);
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+
   index = feedsView_->currentIndex();
   idOld = feedsModel_->index(index.row(), 0).data().toInt();
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
   newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
-  newsModel_->select();
+
+  newsModel_->setSort(newsHeader_->sortIndicatorSection(),
+                      newsHeader_->sortIndicatorOrder());
+
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
+
+  newsModel_->select();
 
   newsHeader_->overload();
   if (initNo) {
@@ -1516,6 +1522,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
     newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
   }
 
+  while (newsModel_->canFetchMore())
+       newsModel_->fetchMore();
+
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
     if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
@@ -1524,7 +1533,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  slotNewsViewSelected(newsModel_->index(row, 0));
+
+  slotNewsViewSelected(newsModel_->index(row, 6));
 
   QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
       data().toByteArray();
@@ -1856,6 +1866,10 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
         read);
   }
+
+  while (newsModel_->canFetchMore())
+       newsModel_->fetchMore();
+
   newsView_->setCurrentIndex(curIndex);
   newsView_->verticalScrollBar()->setValue(topRow);
   slotUpdateStatus();
@@ -2158,6 +2172,9 @@ void RSSListing::deleteNews()
     slotSetItemRead(curIndex, 1);
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
+
+    while (newsModel_->canFetchMore())
+         newsModel_->fetchMore();
   } else {
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
@@ -2221,6 +2238,10 @@ void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
   newsModel_->setData(
       newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
       sticky);
+
+  while (newsModel_->canFetchMore())
+       newsModel_->fetchMore();
+
   newsView_->setCurrentIndex(curIndex);
   newsView_->verticalScrollBar()->setValue(topRow);
 }

@@ -57,7 +57,6 @@ void NewsHeader::initColumns()
   resizeSection(model_->fieldIndex("author_name"), 100);
   moveSection(visualIndex(model_->fieldIndex("category")), 4);
   resizeSection(model_->fieldIndex("title"), 200);
-  setSortIndicator(model_->fieldIndex("published"), Qt::DescendingOrder);
 }
 
 void NewsHeader::createMenu()
@@ -109,7 +108,6 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal,
                         QIcon(":/images/starSection"), Qt::DecorationRole);
-  setSortIndicator(sortIndicatorSection(), sortIndicatorOrder());
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
