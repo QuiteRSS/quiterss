@@ -22,9 +22,6 @@ HEADERS += \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
     src/feedsview.h \
-    3rdparty/qtsingleapplication/qtsingleapplication.h \
-    3rdparty/qtsingleapplication/qtlockedfile.h \
-    3rdparty/qtsingleapplication/qtlocalpeer.h \
     src/updateobject.h \
     src/faviconloader.h \
     src/dbmemfilethread.h \
@@ -47,11 +44,6 @@ SOURCES += \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
     src/feedsview.cpp \
-    3rdparty/qtsingleapplication/qtsingleapplication.cpp \
-    3rdparty/qtsingleapplication/qtlockedfile_win.cpp \
-    3rdparty/qtsingleapplication/qtlockedfile_unix.cpp \
-    3rdparty/qtsingleapplication/qtlockedfile.cpp \
-    3rdparty/qtsingleapplication/qtlocalpeer.cpp \
     src/updateobject.cpp \
     src/faviconloader.cpp \
     src/dbmemfilethread.cpp \
@@ -64,6 +56,7 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
 }
 
 include(3rdparty/sqlite.pri)
+include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 
 win32 {
 TARGET = QuiteRSS
