@@ -10,16 +10,19 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
   QBoxLayout *aboutlayout = new QHBoxLayout(this);
   aboutlayout->setAlignment(Qt::AlignCenter);
-  aboutlayout->setMargin(10);
+  aboutlayout->setMargin(0);
   aboutlayout->setSpacing(10);
 
   QLabel *logo = new QLabel(this);
   logo->setObjectName("logoLabel");
-  logo->setPixmap(QPixmap(":/images/quiterss32"));
-  aboutlayout->addWidget(logo, 0, Qt::AlignTop);
+  logo->setFixedWidth(110);
+  logo->setAlignment(Qt::AlignTop|Qt::AlignHCenter);
+  logo->setPixmap(QPixmap(":/images/images/logo.png"));
+  aboutlayout->addWidget(logo);
 
   QBoxLayout *layout = new QVBoxLayout();
   layout->setAlignment(Qt::AlignCenter);
+  layout->setMargin(10);
   layout->setSpacing(10);
   aboutlayout->addLayout(layout);
 
