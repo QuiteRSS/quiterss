@@ -1860,16 +1860,23 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
         newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
         0);
   }
-  if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != read) {
+  if (read == 1) {
+    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+      newsModel_->setData(
+          newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+          1);
+    }
+  } else {
     newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-        read);
+        0);
   }
 
   while (newsModel_->canFetchMore())
        newsModel_->fetchMore();
 
-  newsView_->setCurrentIndex(curIndex);
+  if (newsView_->currentIndex() != curIndex)
+    newsView_->setCurrentIndex(curIndex);
   newsView_->verticalScrollBar()->setValue(topRow);
   slotUpdateStatus();
 }
