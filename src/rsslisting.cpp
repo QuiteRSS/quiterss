@@ -2397,7 +2397,7 @@ void RSSListing::updateWebView(QModelIndex index)
     return;
   }
 
-  webPanel_->hide();
+  webPanel_->show();
 
   QString titleString, linkString, panelTitleString;
   titleString = newsModel_->record(index.row()).field("title").value().toString();
@@ -2436,8 +2436,6 @@ void RSSListing::updateWebView(QModelIndex index)
   webPanelAuthor_->setText(authorString);
   webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
   webPanelAuthor_->setVisible(!authorString.isEmpty());
-
-  webPanel_->show();
 
   QString content = newsModel_->record(index.row()).field("content").value().toString();
   if (content.isEmpty()) {
