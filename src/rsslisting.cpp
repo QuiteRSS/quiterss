@@ -351,11 +351,12 @@ void RSSListing::slotCloseApp()
 /*! \brief Обработка события помещения программы в трей ***********************/
 void RSSListing::slotPlaceToTray()
 {
+  hide();
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (clearStatusNew_)
     markAllFeedsRead(false);
-  hide();
+
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
   dbMemFileThread_->start(QThread::LowestPriority);
   writeSettings();
