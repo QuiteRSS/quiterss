@@ -1571,8 +1571,6 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     return;
   }
 
-  webPanel_->show();
-
   int idx = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
   if (!((idx == idxOld) &&
          newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1)) {
@@ -1913,6 +1911,9 @@ void RSSListing::markNewsRead()
 
     newsModel_->select();
 
+    while (newsModel_->canFetchMore())
+         newsModel_->fetchMore();
+
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
@@ -1936,8 +1937,13 @@ void RSSListing::markAllNewsRead()
   qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
       arg(newsModel_->tableName());
   q.exec(qStr);
-  newsModel_->select();
+
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
+  newsModel_->select(); 
+
+  while (newsModel_->canFetchMore())
+       newsModel_->fetchMore();
+
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
     if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
@@ -1948,7 +1954,7 @@ void RSSListing::markAllNewsRead()
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
   if (currentRow != row)
-    updateWebView(newsModel_->index(row, 0));
+    updateWebView(newsModel_->index(row, 6));
   slotUpdateStatus();
 }
 
@@ -2173,9 +2179,6 @@ void RSSListing::deleteNews()
     slotSetItemRead(curIndex, 1);
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
-
-    while (newsModel_->canFetchMore())
-         newsModel_->fetchMore();
   } else {
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
@@ -2196,6 +2199,9 @@ void RSSListing::deleteNews()
 
     newsModel_->select();
   }
+  while (newsModel_->canFetchMore())
+       newsModel_->fetchMore();
+
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, 6);
   else curIndex = newsModel_->index(curIndex.row(), 6);
@@ -2809,8 +2815,13 @@ void RSSListing::markAllFeedsRead(bool readOn)
   feedsView_->setCurrentIndex(index);
 
   int currentRow = newsView_->currentIndex().row();
-  newsModel_->select();
+
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
+  newsModel_->select();
+
+  while (newsModel_->canFetchMore())
+       newsModel_->fetchMore();
+
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
     if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
