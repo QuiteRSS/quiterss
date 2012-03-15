@@ -20,7 +20,7 @@ void loadModules(QSplashScreen* psplash)
   splash->setLayout(layout);
 
   for (int i = 0; i < 100; ) {
-    if (time.elapsed() > 5) {
+    if (time.elapsed() >= 1) {
       qApp->processEvents();
       time.start();
       ++i;
