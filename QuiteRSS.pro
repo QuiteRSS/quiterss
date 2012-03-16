@@ -75,7 +75,8 @@ include(lang/lang.pri)
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts
+  TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts \
+                  lang/quiterss_ru.ts lang/quiterss_es.ts
   desktop.files = quiterss.desktop
   icon_16.files = images/16x16/quiterss.png
   icon_24.files = images/24x24/quiterss.png
