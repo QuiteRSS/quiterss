@@ -11,6 +11,7 @@ void loadModules(QSplashScreen* psplash)
   time.start();
 
   QProgressBar splashProgress;
+  splashProgress.setObjectName("splashProgress");
   splashProgress.setTextVisible(false);
   splashProgress.setFixedHeight(10);
 
@@ -18,6 +19,8 @@ void loadModules(QSplashScreen* psplash)
   layout->addStretch(1);
   layout->addWidget(&splashProgress);
   splash->setLayout(layout);
+
+  qApp->processEvents();
 
   for (int i = 0; i < 100; ) {
     if (time.elapsed() >= 1) {
