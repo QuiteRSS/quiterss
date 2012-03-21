@@ -1,7 +1,7 @@
 <HTML>
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
-// ----------------------------------------------------------------------------
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.8.4</B> (21 Mar 2012)
 <UL>
 <LI>Added: Splash screen</LI>
@@ -18,7 +18,7 @@
 <LI>Fixed: Improve cursor, after several news make read</LI>
 <LI>Fixed: News content don't reset after update or minimize in tray</LI>
 </UL>
-// ----------------------------------------------------------------------------
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.8.3</B> (25 Feb 2012)
 <UL>
 <LI>Added: Option to enable plugins and java-scripts in embedded browser</LI>
