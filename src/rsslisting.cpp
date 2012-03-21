@@ -504,6 +504,7 @@ void RSSListing::createNewsDock()
 
   //! Create title DockWidget
   newsIconTitle_ = new QLabel(this);
+  newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
   newsTextTitle_ = new QLabel(this);
   newsTextTitle_->setObjectName("newsTextTitle_");
   QHBoxLayout *newsTitleLayout = new QHBoxLayout();
