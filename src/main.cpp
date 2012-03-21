@@ -37,6 +37,7 @@ void loadModules(QSplashScreen* psplash)
 void createSplashScreen()
 {
   splash = new QSplashScreen(QPixmap(":/images/images/splashScreen.png"));
+  splash->setFixedSize(splash->pixmap().width(), splash->pixmap().height());
   splash->setContentsMargins(15, 0, 15, 0);
   splash->setEnabled(false);
   splash->show();
