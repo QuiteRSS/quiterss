@@ -1,6 +1,24 @@
 <HTML>
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
+// ----------------------------------------------------------------------------
+<P><B>Версия 0.8.3+</B> (21 Маr 2012)
+<UL>
+<LI>Added: Splash screen</LI>
+<LI>Added: Chech for updates at startup</LI>
+<LI>Added: Ability to set update feeds interval in hours</LI>
+
+<LI>Changed: GUI. Tune icons</LI>
+<LI>Changed: GUI. Correct browser panel</LI>
+<LI>Changed: Improve switch bitween feeds and news</LI>
+<LI>Changed: Improve several news simultaneously</LI>
+
+<LI>Fixed: On some Windows systems browser don't display images</LI>
+<LI>Fixed: Improve cursor when select news, if news more than 256</LI>
+<LI>Fixed: Improve cursor, after several news make read</LI>
+<LI>Fixed: News content don't reset after update or minimize in tray</LI>
+</UL>
+// ----------------------------------------------------------------------------
 <P><B>Version 0.8.3</B> (25 Feb 2012)
 <UL>
 <LI>Added: Option to enable plugins and java-scripts in embedded browser</LI>
