@@ -16,7 +16,7 @@
 <LI>Fixed: On some Windows systems browser don't display images</LI>
 <LI>Fixed: Improve cursor when select news, if news more than 256</LI>
 <LI>Fixed: Improve cursor, after several news make read</LI>
-<LI>Fixed: News content don't reset after update or minimize in tray</LI>
+<LI>Fixed: News content reset after update or minimize in tray</LI>
 </UL>
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.8.3</B> (25 Feb 2012)
