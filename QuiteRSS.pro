@@ -55,6 +55,11 @@ if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
   BUILD_DIR = debug
 }
 
+DESTDIR = $${BUILD_DIR}/target/
+OBJECTS_DIR = $${BUILD_DIR}/obj/
+MOC_DIR = $${BUILD_DIR}/moc/
+RCC_DIR = $${BUILD_DIR}/rcc/
+
 include(3rdparty/sqlite.pri)
 include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 
