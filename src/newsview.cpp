@@ -13,7 +13,7 @@ NewsView::NewsView(QWidget * parent)
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
   setItemDelegate(itemDelegate);
-//    setAlternatingRowColors(true);
+  //    setAlternatingRowColors(true);
   setContextMenuPolicy(Qt::CustomContextMenu);
 }
 

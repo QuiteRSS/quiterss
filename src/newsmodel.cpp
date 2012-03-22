@@ -50,8 +50,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         dtLocal = dt.addSecs(nTimeShift);
       } else {
         dtLocal = QDateTime::fromString(
-                    QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
-                    Qt::ISODate);
+              QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
+              Qt::ISODate);
       }
       if (QDateTime::currentDateTime().date() == dtLocal.date())
         return dtLocal.toString("hh:mm");

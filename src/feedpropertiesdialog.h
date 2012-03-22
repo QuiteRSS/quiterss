@@ -34,8 +34,8 @@ typedef struct {
     quint16 filterType; //!< Фильтр
     quint16 groupType; //!< Способ группировки
     bool displayContent; //!< Показывать содержимое новости
-      bool displayEmbeddedImages; //!< Показывать встроенные изображения
-      bool loadMoviesAndOtherContent; //!< Загружать видео и другое содержимое
+    bool displayEmbeddedImages; //!< Показывать встроенные изображения
+    bool loadMoviesAndOtherContent; //!< Загружать видео и другое содержимое
     bool openLink; //!< Открывать ссылку новости
   } display;
 
@@ -49,9 +49,9 @@ typedef struct {
   //! Настройки очистки
   struct cleanup {
     bool enableMaxNews; //!< Разрешить максимальное количество новостей
-      quint32 maxNewsToKeep; //!< Максимальное количество новостей для хранения
+    quint32 maxNewsToKeep; //!< Максимальное количество новостей для хранения
     bool enableAgeNews; //!< Разрешить время хранения новостей
-      quint32 ageOfNewsToKeep; //!< Время хранения новостей (дней)
+    quint32 ageOfNewsToKeep; //!< Время хранения новостей (дней)
     bool deleteReadNews; //!< Удалять прочитанное
     bool neverDeleteUnread; //!< Никогда не удалять прочитанное
     bool neverDeleteLabeled; //!< Никогда не удалять отмеченное

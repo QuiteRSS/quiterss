@@ -23,7 +23,7 @@ public:
     QStringList itemList;
     itemList << tr("Title")  << tr("Description")
              << tr("Author") << tr("Category") << tr("Status")
-             /*<< tr("Published") << tr("Received")*/;
+                /*<< tr("Published") << tr("Received")*/;
     comboBox1->addItems(itemList);
 
     itemList.clear();
@@ -109,7 +109,7 @@ private slots:
   }
 
 signals:
-   void signalDeleteCondition(ItemCondition *item);
+  void signalDeleteCondition(ItemCondition *item);
 };
 
 class ItemAction : public QWidget
@@ -173,7 +173,7 @@ private slots:
   }
 
 signals:
-   void signalDeleteAction(ItemAction *item);
+  void signalDeleteAction(ItemAction *item);
 };
 
 class FilterRulesDialog : public QDialog

@@ -6,22 +6,22 @@
 #include "VersionNo.h"
 
 ParseObject::ParseObject(QObject *parent) :
-    QObject(parent)
+  QObject(parent)
 {
 }
 
 void ParseObject::slotParse(QSqlDatabase *db,
-    const QByteArray &xmlData, const QUrl &url)
+                            const QByteArray &xmlData, const QUrl &url)
 {
   QString appFilePath;
 #if defined(PORTABLE)
-    if (PORTABLE) {
-      appFilePath = QCoreApplication::applicationDirPath();
-    } else {
-      appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    }
-#else
+  if (PORTABLE) {
+    appFilePath = QCoreApplication::applicationDirPath();
+  } else {
     appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+  }
+#else
+  appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
 
   QFile file(appFilePath + QDir::separator() + "lastfeed.dat");
@@ -53,7 +53,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   int parseFeedId = 0;
   QSqlQuery q(*db);
   q.exec(QString("select id from feeds where xmlUrl like '%1'").
-      arg(url.toString()));
+         arg(url.toString()));
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
   }
@@ -65,7 +65,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   }
 
   qDebug() << QString("Feed '%1' found with id = %2").arg(url.toString()).
-      arg(parseFeedId);
+              arg(parseFeedId);
 
   // собственно сам разбор
   bool feedChanged = false;
@@ -118,10 +118,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
         if (isHeader) {
           QSqlQuery q(*db);
           QString qStr ("update feeds "
-                       "set title=?, description=?, htmlUrl=?, "
-                       "author_name=?, author_email=?, "
-                       "author_uri=?, pubdate=? "
-                       "where id==?");
+                        "set title=?, description=?, htmlUrl=?, "
+                        "author_name=?, author_email=?, "
+                        "author_uri=?, pubdate=? "
+                        "where id==?");
           q.prepare(qStr);
           q.addBindValue(titleString.simplified());
           q.addBindValue(atomSummaryString);
@@ -168,7 +168,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
           qDebug() << "      " << xml.attributes().at(i).name() << "=" << xml.attributes().at(i).value();
       }
       currentTagText.clear();
-//      qDebug() << tagsStack << currentTag;
+      //      qDebug() << tagsStack << currentTag;
     } else if (xml.isEndElement()) {
       // rss::item
       if (xml.name() == "item") {
@@ -186,7 +186,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
         else                               // поиск по title и pubDate
           qStr = QString("select * from feed_%1 "
-              "where title like '%2' and published == '%3'").
+                         "where title like '%2' and published == '%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(rssPubDateString);
         q.exec(qStr);
         // проверка правильности запроса
@@ -248,7 +248,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
         else                               // поиск по title и pubDate
           qStr = QString("select * from feed_%1 "
-              "where title like '%2' and published == '%3'").
+                         "where title like '%2' and published == '%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(atomUpdatedString);
         q.exec(qStr);
 
@@ -303,7 +303,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         if (!currentTagText.isEmpty()) qDebug() << itemCount << "::   " << currentTagText;
       }
       currentTag = tagsStack.pop();
-//      qDebug() << tagsStack << currentTag;
+      //      qDebug() << tagsStack << currentTag;
     } else if (xml.isCharacters() && !xml.isWhitespace()) {
       currentTagText += xml.text().toString();
 
@@ -313,8 +313,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             (tagsStack.top() == "feed") ||     // Atom
             (tagsStack.top() == "entry"))
           titleString += xml.text().toString();
-//        if (tagsStack.top() == "image")
-//          imageTitleString += xml.text().toString();
+        //        if (tagsStack.top() == "image")
+        //          imageTitleString += xml.text().toString();
       }
       else if ((currentTag == "link") &&
                ((tagsStack.top() == "channel") || (tagsStack.top() == "item")))
@@ -332,7 +332,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (currentTag == "description") {
         if ((tagsStack.top() == "channel") ||
             (tagsStack.top() == "item"))
-        rssDescriptionString += xml.text().toString();
+          rssDescriptionString += xml.text().toString();
       }
       else if (currentTag == "comments")
         commentsString += xml.text().toString();

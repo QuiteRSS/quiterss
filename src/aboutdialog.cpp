@@ -2,7 +2,7 @@
 #include "VersionNo.h"
 
 AboutDialog::AboutDialog(QWidget *parent) :
-    QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+  QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);

@@ -2,7 +2,7 @@
 #include "delegatewithoutfocus.h"
 
 FeedsView::FeedsView(QWidget * parent) :
-    QTreeView(parent)
+  QTreeView(parent)
 {
   setObjectName("feedsTreeView_");
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

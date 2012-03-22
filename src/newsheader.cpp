@@ -78,7 +78,7 @@ void NewsHeader::createMenu()
         (lIdx == model_->fieldIndex("sticky"))) {
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
-            Qt::Horizontal, Qt::EditRole).toString());
+                               Qt::Horizontal, Qt::EditRole).toString());
       action->setData(lIdx);
       action->setCheckable(true);
       action->setChecked(!isSectionHidden(lIdx));
@@ -177,7 +177,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     if (hoverEvent->pos().x() >= width() - buttonColumnView->width()) {
       if ((event->type() == QEvent::HoverMove) && !(QApplication::mouseButtons() & Qt::LeftButton)) {
         QHoverEvent* pe =
-                    new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
+            new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
         QApplication::sendEvent(this, pe);
       }
       return true;
@@ -336,7 +336,7 @@ void NewsHeader::retranslateStrings()
         (lIdx == model_->fieldIndex("sticky"))) {
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
-            Qt::Horizontal, Qt::EditRole).toString());
+                               Qt::Horizontal, Qt::EditRole).toString());
       action->setData(lIdx);
       action->setCheckable(true);
       action->setChecked(!isSectionHidden(lIdx));

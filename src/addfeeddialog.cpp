@@ -1,7 +1,7 @@
 #include "addfeeddialog.h"
 
 AddFeedDialog::AddFeedDialog(QWidget *parent) :
-    QDialog(parent)
+  QDialog(parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add feed"));

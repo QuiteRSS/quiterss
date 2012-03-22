@@ -44,11 +44,11 @@ void FaviconLoader::getQueuedUrl()
     QUrl feedUrl = feedsQueue_.dequeue();
     if (url.isValid()) {
       QUrl getUrl(QString("http://favicon.yandex.ru/favicon/%1").
-                arg(url.host()));
+                  arg(url.host()));
       get(getUrl, feedUrl);
     } else {
       QUrl getUrl(QString("http://favicon.yandex.ru/favicon/%1").
-                arg(feedUrl.host()));
+                  arg(feedUrl.host()));
       get(getUrl, feedUrl);
     }
     if (currentFeeds_.size() < 1) emit startGetUrlTimer();

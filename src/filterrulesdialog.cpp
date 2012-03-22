@@ -111,7 +111,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   rulesWidget->setLayout(rulesLayout);
 
   QSplitter *mainSpliter = new QSplitter(this);
-  mainSpliter->setChildrenCollapsible(false); 
+  mainSpliter->setChildrenCollapsible(false);
   mainSpliter->addWidget(rulesWidget);
   mainSpliter->addWidget(feedsTree);
 

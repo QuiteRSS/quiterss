@@ -19,7 +19,7 @@ signals:
 
 public slots:
   void slotParse(QSqlDatabase *db,
-      const QByteArray &xmlData, const QUrl &url);
+                 const QByteArray &xmlData, const QUrl &url);
 
 };
 

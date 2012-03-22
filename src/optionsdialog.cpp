@@ -1,7 +1,7 @@
 #include "optionsdialog.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
-    QDialog(parent)
+  QDialog(parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
@@ -81,7 +81,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ networkConnections
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
-//  systemProxyButton_->setEnabled(false);
+  //  systemProxyButton_->setEnabled(false);
   directConnectionButton_ = new QRadioButton(tr("Direct connection to the Internet"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
@@ -238,7 +238,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageWidget_ = new QWidget();
   languageWidget_->setLayout(languageLayout);
 
-  // init list  
+  // init list
   QStringList languageList;
   languageList << QString(tr("English (%1)")).arg("en")
                << QString(tr("Russian (%1)")).arg("ru");
@@ -342,12 +342,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   connect(buttonBox_, SIGNAL(accepted()), this, SLOT(acceptSlot()));
   connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
   connect(manualProxyButton_, SIGNAL(toggled(bool)),
-      this, SLOT(manualProxyToggle(bool)));
+          this, SLOT(manualProxyToggle(bool)));
 
   categoriesTree->installEventFilter(this);
 
   // не нужно, т.к. после создания окна из главного окна передаются настройки
-//  manualProxyToggle(manualProxyButton_->isChecked());
+  //  manualProxyToggle(manualProxyButton_->isChecked());
 }
 
 bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
@@ -422,15 +422,15 @@ void OptionsDialog::setLanguage(QString langFileName)
 void OptionsDialog::updateProxy()
 {
   switch (networkProxy_.type()) {
-    case QNetworkProxy::HttpProxy:
-      manualProxyButton_->setChecked(true);
-      break;
-    case QNetworkProxy::NoProxy:
-      directConnectionButton_->setChecked(true);
-      break;
-    case QNetworkProxy::DefaultProxy:
-    default:
-      systemProxyButton_->setChecked(true);
+  case QNetworkProxy::HttpProxy:
+    manualProxyButton_->setChecked(true);
+    break;
+  case QNetworkProxy::NoProxy:
+    directConnectionButton_->setChecked(true);
+    break;
+  case QNetworkProxy::DefaultProxy:
+  default:
+    systemProxyButton_->setChecked(true);
   }
   editHost_->setText(networkProxy_.hostName());
   editPort_->setText(QVariant(networkProxy_.port()).toString());
@@ -478,10 +478,10 @@ void OptionsDialog::slotFontReset()
 {
   switch (fontTree->currentItem()->text(0).toInt()) {
   case 2: fontTree->currentItem()->setText(
-                  2, QString("%1, 12").arg(qApp->font().family()));
+          2, QString("%1, 12").arg(qApp->font().family()));
     break;
   default: fontTree->currentItem()->setText(
-                  2, QString("%1, 8").arg(qApp->font().family()));
+          2, QString("%1, 8").arg(qApp->font().family()));
   }
 }
 

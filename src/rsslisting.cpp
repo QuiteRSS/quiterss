@@ -20,183 +20,183 @@ const QString kDbName = "feeds.db";
 
 const QString kCreateFeedsTableQuery(
     "create table feeds("
-        "id integer primary key, "
-        "text varchar, "             // Текст ленты (сейчас заменяет имя)
-        "title varchar, "            // Имя ленты
-        "description varchar, "      // Описание ленты
-        "xmlUrl varchar, "           // интернет-адрес самой ленты
-        "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
-        "language varchar, "         // язык, на котором написана лента
-        "copyrights varchar, "       // права
-        "author_name varchar, "      // автор лента: имя
-        "author_email varchar, "     //              е-мейл
-        "author_uri varchar, "       //              личная страница
-        "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
-        "pubdate varchar, "          // Дата публикации содержимого ленты
-        "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
-        "category varchar, "         // категории содержимого, освещаемые в ленте
-        "contributor varchar, "      // участник (через табы)
-        "generator varchar, "        // программа, используемая для генерации содержимого
-        "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
-        "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
-        "cloud_port varchar, "       //   .
-        "cloud_path varchar, "       //   .
-        "cloud_procedure varchar, "  //   .
-        "cloud_protocal varchar, "   //   .
-        "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
-        "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
-        "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
-        "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
-        "unread integer, "           // количество непрочитанных новостей
-        "newCount integer, "         // количество новых новостей
-        "currentNews integer, "      // отображаемая новость
-        "label varchar"              // выставляется пользователем
+    "id integer primary key, "
+    "text varchar, "             // Текст ленты (сейчас заменяет имя)
+    "title varchar, "            // Имя ленты
+    "description varchar, "      // Описание ленты
+    "xmlUrl varchar, "           // интернет-адрес самой ленты
+    "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
+    "language varchar, "         // язык, на котором написана лента
+    "copyrights varchar, "       // права
+    "author_name varchar, "      // автор лента: имя
+    "author_email varchar, "     //              е-мейл
+    "author_uri varchar, "       //              личная страница
+    "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
+    "pubdate varchar, "          // Дата публикации содержимого ленты
+    "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
+    "category varchar, "         // категории содержимого, освещаемые в ленте
+    "contributor varchar, "      // участник (через табы)
+    "generator varchar, "        // программа, используемая для генерации содержимого
+    "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
+    "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
+    "cloud_port varchar, "       //   .
+    "cloud_path varchar, "       //   .
+    "cloud_procedure varchar, "  //   .
+    "cloud_protocal varchar, "   //   .
+    "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
+    "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
+    "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
+    "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
+    "unread integer, "           // количество непрочитанных новостей
+    "newCount integer, "         // количество новых новостей
+    "currentNews integer, "      // отображаемая новость
+    "label varchar"              // выставляется пользователем
     ")");
 
 const QString kCreateNewsTableQuery(
     "create table feed_%1("
-        "id integer primary key, "
-        "feed integer, "                       // идентификатор ленты из таблицы feeds
-        "guid varchar, "                       // уникальный номер
-        "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
-        "description varchar, "                // краткое содержание
-        "content varchar, "                    // полное содержание (atom)
-        "title varchar, "                      // заголовок
-        "published varchar, "                  // дата публикащии
-        "modified varchar, "                   // дата модификации
-        "received varchar, "                   // дата приёма новости (выставляется при приёме)
-        "author_name varchar, "                // имя автора
-        "author_uri varchar, "                 // страничка автора (atom)
-        "author_email varchar, "               // почта автора (atom)
-        "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-        "label varchar, "                      // метка (выставляется пользователем)
-        "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
-        "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
-        "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
-        "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется, 
-                                               //   чтобы при обновлении новостей она не появлялась вновь. 
-                                               //   Физическое удаление новость будет производится при общей чистке базы
-        "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
-        "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
-        "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
-        "enclosure_type, "                     //   длина, тип,
-        "enclosure_url, "                      //   адрес.
-        "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
-        "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
-        "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
-                                               //   который нереально передать в новости (atom)
-        "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
-        "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
-        "contributor varchar, "                // участник (через табы)
-        "rights varchar "                      // права
+    "id integer primary key, "
+    "feed integer, "                       // идентификатор ленты из таблицы feeds
+    "guid varchar, "                       // уникальный номер
+    "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
+    "description varchar, "                // краткое содержание
+    "content varchar, "                    // полное содержание (atom)
+    "title varchar, "                      // заголовок
+    "published varchar, "                  // дата публикащии
+    "modified varchar, "                   // дата модификации
+    "received varchar, "                   // дата приёма новости (выставляется при приёме)
+    "author_name varchar, "                // имя автора
+    "author_uri varchar, "                 // страничка автора (atom)
+    "author_email varchar, "               // почта автора (atom)
+    "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
+    "label varchar, "                      // метка (выставляется пользователем)
+    "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
+    "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
+    "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
+    "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется,
+    //   чтобы при обновлении новостей она не появлялась вновь.
+    //   Физическое удаление новость будет производится при общей чистке базы
+    "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
+    "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
+    "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
+    "enclosure_type, "                     //   длина, тип,
+    "enclosure_url, "                      //   адрес.
+    "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
+    "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
+    "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
+    //   который нереально передать в новости (atom)
+    "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
+    "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
+    "contributor varchar, "                // участник (через табы)
+    "rights varchar "                      // права
     ")");
 
 /*!****************************************************************************/
 RSSListing::RSSListing(QWidget *parent)
-    : QMainWindow(parent)
+  : QMainWindow(parent)
 {
   setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
   setContextMenuPolicy(Qt::CustomContextMenu);
 
 #if defined(PORTABLE)
-    if (PORTABLE) {
-      dataDirPath_ = QCoreApplication::applicationDirPath();
-      settings_ = new QSettings(
-            dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini",
-            QSettings::IniFormat);
-    } else {
-      settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                                QCoreApplication::organizationName(), QCoreApplication::applicationName());
-      dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-      QDir d(dataDirPath_);
-      d.mkpath(dataDirPath_);
-    }
-#else
+  if (PORTABLE) {
+    dataDirPath_ = QCoreApplication::applicationDirPath();
+    settings_ = new QSettings(
+          dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini",
+          QSettings::IniFormat);
+  } else {
     settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
                               QCoreApplication::organizationName(), QCoreApplication::applicationName());
     dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
     QDir d(dataDirPath_);
     d.mkpath(dataDirPath_);
+  }
+#else
+  settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
+                            QCoreApplication::organizationName(), QCoreApplication::applicationName());
+  dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+  QDir d(dataDirPath_);
+  d.mkpath(dataDirPath_);
 #endif
 
-    dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
-    if (!QFile(dbFileName_).exists()) {  // Инициализация базы
-      QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
-      db.setDatabaseName(dbFileName_);
-      db.open();
-      db.transaction();
-      db.exec(kCreateFeedsTableQuery);
-      db.exec("create table info(id integer primary key, name varchar, value varchar)");
-      db.exec("insert into info(name, value) values ('version', '1.0')");
-      db.commit();
-      db.close();
-    }
-    QSqlDatabase::removeDatabase("dbFileName_");
+  dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
+  if (!QFile(dbFileName_).exists()) {  // Инициализация базы
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
+    db.setDatabaseName(dbFileName_);
+    db.open();
+    db.transaction();
+    db.exec(kCreateFeedsTableQuery);
+    db.exec("create table info(id integer primary key, name varchar, value varchar)");
+    db.exec("insert into info(name, value) values ('version', '1.0')");
+    db.commit();
+    db.close();
+  }
+  QSqlDatabase::removeDatabase("dbFileName_");
 
-    db_ = QSqlDatabase::addDatabase("QSQLITE");
-    db_.setDatabaseName(":memory:");
-    db_.open();
+  db_ = QSqlDatabase::addDatabase("QSQLITE");
+  db_.setDatabaseName(":memory:");
+  db_.open();
 
-    dbMemFileThread_ = new DBMemFileThread(this);
-    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, false);
-    dbMemFileThread_->start(QThread::NormalPriority);
-    while(dbMemFileThread_->isRunning()) qApp->processEvents();
+  dbMemFileThread_ = new DBMemFileThread(this);
+  dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, false);
+  dbMemFileThread_->start(QThread::NormalPriority);
+  while(dbMemFileThread_->isRunning()) qApp->processEvents();
 
-    persistentUpdateThread_ = new UpdateThread(this);
-    persistentUpdateThread_->setObjectName("persistentUpdateThread_");
-    connect(this, SIGNAL(startGetUrlTimer()),
-        persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
-    connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
-        this, SLOT(receiveXml(QByteArray, QUrl)));
-    connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
-        this, SLOT(getUrlDone(int,QDateTime)));
+  persistentUpdateThread_ = new UpdateThread(this);
+  persistentUpdateThread_->setObjectName("persistentUpdateThread_");
+  connect(this, SIGNAL(startGetUrlTimer()),
+          persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
+  connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
+          this, SLOT(receiveXml(QByteArray, QUrl)));
+  connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
+          this, SLOT(getUrlDone(int,QDateTime)));
 
-    persistentParseThread_ = new ParseThread(this, &db_);
-    persistentParseThread_->setObjectName("persistentParseThread_");
-    connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
-        persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
-        Qt::QueuedConnection);
+  persistentParseThread_ = new ParseThread(this, &db_);
+  persistentParseThread_->setObjectName("persistentParseThread_");
+  connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
+          persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
+          Qt::QueuedConnection);
 
-    createFeedsDock();
-    createNewsDock();
-    createToolBarNull();
-    createWebWidget();
+  createFeedsDock();
+  createNewsDock();
+  createToolBarNull();
+  createWebWidget();
 
-    createActions();
-    createMenu();
-    createToolBar();
-    createMenuNews();
-    createMenuFeed();
+  createActions();
+  createMenu();
+  createToolBar();
+  createMenuNews();
+  createMenuFeed();
 
-    createStatusBar();
-    createTray();
+  createStatusBar();
+  createTray();
 
-    connect(this, SIGNAL(signalCloseApp()),
-            SLOT(slotCloseApp()), Qt::QueuedConnection);
-    commitDataRequest_ = false;
-    connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
-            this, SLOT(slotCommitDataRequest(QSessionManager&)));
+  connect(this, SIGNAL(signalCloseApp()),
+          SLOT(slotCloseApp()), Qt::QueuedConnection);
+  commitDataRequest_ = false;
+  connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
+          this, SLOT(slotCommitDataRequest(QSessionManager&)));
 
-    faviconLoader = new FaviconLoader(this);
-    connect(this, SIGNAL(startGetUrlTimer()),
-        faviconLoader, SIGNAL(startGetUrlTimer()));
-    connect(faviconLoader, SIGNAL(signalIconRecived(const QString&, const QByteArray &)),
-            this, SLOT(slotIconFeedLoad(const QString&, const QByteArray &)));
+  faviconLoader = new FaviconLoader(this);
+  connect(this, SIGNAL(startGetUrlTimer()),
+          faviconLoader, SIGNAL(startGetUrlTimer()));
+  connect(faviconLoader, SIGNAL(signalIconRecived(const QString&, const QByteArray &)),
+          this, SLOT(slotIconFeedLoad(const QString&, const QByteArray &)));
 
-    loadSettingsFeeds();
+  loadSettingsFeeds();
 
-    readSettings();
+  readSettings();
 
-    if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
-    int updateFeedsTime = autoUpdatefeedsTime_*60000;
-    if (autoUpdatefeedsInterval_ == 1)
-      updateFeedsTime = updateFeedsTime*60;
-    updateFeedsTimer_.start(updateFeedsTime, this);
+  if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
+  int updateFeedsTime = autoUpdatefeedsTime_*60000;
+  if (autoUpdatefeedsInterval_ == 1)
+    updateFeedsTime = updateFeedsTime*60;
+  updateFeedsTimer_.start(updateFeedsTime, this);
 
-    QTimer::singleShot(10000, this, SLOT(slotUpdateAppChacking()));
+  QTimer::singleShot(10000, this, SLOT(slotUpdateAppChacking()));
 
-    translator_ = new QTranslator(this);
-    appInstallTranslator();
+  translator_ = new QTranslator(this);
+  appInstallTranslator();
 }
 
 /*!****************************************************************************/
@@ -328,7 +328,7 @@ void RSSListing::slotCloseApp()
 /*! \brief Обработка события изменения состояния окна *************************/
 /*virtual*/ void RSSListing::changeEvent(QEvent *event)
 {
-  if(event->type() == QEvent::WindowStateChange) { 
+  if(event->type() == QEvent::WindowStateChange) {
     if(isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
       if (minimizingTray_) {
@@ -478,7 +478,7 @@ void RSSListing::createFeedsDock()
   connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-      this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
+          this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
 
   feedsView_->installEventFilter(this);
   feedsView_->viewport()->installEventFilter(this);
@@ -557,7 +557,7 @@ void RSSListing::createNewsDock()
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuNews(const QPoint &)));
   connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-      this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
+          this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
 
   newsView_->installEventFilter(this);
 }
@@ -941,7 +941,7 @@ void RSSListing::createMenu()
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
-//  toolsMenu_->addAction(setNewsFiltersAct_);
+  //  toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
 
@@ -962,7 +962,7 @@ void RSSListing::createToolBar()
   toolBar_->setMovable(false);
   toolBar_->setContextMenuPolicy(Qt::CustomContextMenu);
   toolBar_->addAction(addFeedAct_);
-//  toolBar_->addAction(deleteFeedAct_);
+  //  toolBar_->addAction(deleteFeedAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(updateFeedAct_);
   toolBar_->addAction(updateAllFeedsAct_);
@@ -1066,7 +1066,7 @@ void RSSListing::readSettings()
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
-      settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
+                          settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
   networkProxy_.setHostName(settings_->value("networkProxy/hostName", "").toString());
   networkProxy_.setPort(    settings_->value("networkProxy/port",     "").toUInt());
   networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
@@ -1225,7 +1225,7 @@ void RSSListing::deleteFeed()
         arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString());
     q.exec(str);
     q.exec(QString("drop table feed_%1").
-        arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+           arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
     q.finish();
 
     int row = feedsView_->currentIndex().row();
@@ -1242,8 +1242,8 @@ void RSSListing::slotImportFeeds()
   playSoundNewNews_ = false;
 
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
-      QDir::homePath(),
-      tr("OPML-files (*.opml)"));
+                                                  QDir::homePath(),
+                                                  tr("OPML-files (*.opml)"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Import canceled"), 3000);
@@ -1272,7 +1272,7 @@ void RSSListing::slotImportFeeds()
       // Выбираем одни outline'ы
       if (xml.name() == "outline") {
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
-            << ":" << xml.name().toString();;
+                 << ":" << xml.name().toString();;
         QSqlQuery q(db_);
 
         QString textString(xml.attributes().value("text").toString());
@@ -1290,7 +1290,7 @@ void RSSListing::slotImportFeeds()
           qDebug() << "duplicate feed:" << xmlUrlString << textString;
         } else {
           QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
-                         "values(?, ?, ?, ?, ?)");
+                                 "values(?, ?, ?, ?, ?)");
           q.prepare(qStr);
           q.addBindValue(textString);
           q.addBindValue(xml.attributes().value("title").toString());
@@ -1318,7 +1318,7 @@ void RSSListing::slotImportFeeds()
   }
   if (xml.error()) {
     statusBar()->showMessage(QString("Import error: Line=%1, ErrorString=%2").
-        arg(xml.lineNumber()).arg(xml.errorString()), 3000);
+                             arg(xml.lineNumber()).arg(xml.errorString()), 3000);
   } else {
     statusBar()->showMessage(QString("Import: file read done"), 3000);
   }
@@ -1338,8 +1338,8 @@ void RSSListing::slotImportFeeds()
 void RSSListing::slotExportFeeds()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Select OPML-file"),
-      QDir::homePath(),
-      tr("OPML-files (*.opml)"));
+                                                  QDir::homePath(),
+                                                  tr("OPML-files (*.opml)"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Export canceled"), 3000);
@@ -1397,8 +1397,8 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   if (!url_.isEmpty() && !data_.isEmpty()) {
     emit xmlReadyParse(data_, url_);
     QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
-        arg(dtReply.toString(Qt::ISODate)).
-        arg(url_.toString()));
+                           arg(dtReply.toString(Qt::ISODate)).
+                           arg(url_.toString()));
     qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
     qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
   }
@@ -1428,7 +1428,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
   int parseFeedId = 0;
   QSqlQuery q(db_);
   q.exec(QString("select id from feeds where xmlUrl like '%1'").
-      arg(url.toString()));
+         arg(url.toString()));
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
   }
@@ -1531,7 +1531,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   }
 
   while (newsModel_->canFetchMore())
-       newsModel_->fetchMore();
+    newsModel_->fetchMore();
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -1580,7 +1580,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
 
   int idx = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
   if (!((idx == idxOld) &&
-         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1)) {
+        newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1)) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
 
@@ -1731,9 +1731,9 @@ void RSSListing::showOptionDlg()
         optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 1).toInt());
   newsView_->setFont(font);
   webView_->settings()->setFontFamily(QWebSettings::StandardFont,
-        optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
+                                      optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
-        optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
+                                    optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
 
   delete optionsDialog;
   writeSettings();
@@ -1797,9 +1797,9 @@ void RSSListing::slotGetFeed()
   playSoundNewNews_ = false;
 
   persistentUpdateThread_->requestUrl(
-      feedsModel_->record(feedsView_->currentIndex().row()).field("xmlUrl").value().toString(),
-      QDateTime::fromString(feedsModel_->record(feedsView_->currentIndex().row()).field("lastBuildDate").value().toString(), Qt::ISODate)
-  );
+        feedsModel_->record(feedsView_->currentIndex().row()).field("xmlUrl").value().toString(),
+        QDateTime::fromString(feedsModel_->record(feedsView_->currentIndex().row()).field("lastBuildDate").value().toString(), Qt::ISODate)
+        );
   showProgressBar(1);
 }
 
@@ -1815,7 +1815,7 @@ void RSSListing::slotGetAllFeeds()
   qDebug() << q.lastError();
   while (q.next()) {
     persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
-        q.record().value(1).toDateTime());
+                                        q.record().value(1).toDateTime());
     ++feedCount;
   }
 
@@ -1864,23 +1864,23 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
   QModelIndex curIndex = newsView_->currentIndex();
   if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
     newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
-        0);
+          newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
+          0);
   }
   if (read == 1) {
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
       newsModel_->setData(
-          newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-          1);
+            newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+            1);
     }
   } else {
     newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-        0);
+          newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+          0);
   }
 
   while (newsModel_->canFetchMore())
-       newsModel_->fetchMore();
+    newsModel_->fetchMore();
 
   if (newsView_->currentIndex() != curIndex)
     newsView_->setCurrentIndex(curIndex);
@@ -1926,7 +1926,7 @@ void RSSListing::markNewsRead()
     newsModel_->select();
 
     while (newsModel_->canFetchMore())
-         newsModel_->fetchMore();
+      newsModel_->fetchMore();
 
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -1953,10 +1953,10 @@ void RSSListing::markAllNewsRead()
   q.exec(qStr);
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
-  newsModel_->select(); 
+  newsModel_->select();
 
   while (newsModel_->canFetchMore())
-       newsModel_->fetchMore();
+    newsModel_->fetchMore();
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -2214,7 +2214,7 @@ void RSSListing::deleteNews()
     newsModel_->select();
   }
   while (newsModel_->canFetchMore())
-       newsModel_->fetchMore();
+    newsModel_->fetchMore();
 
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, 6);
@@ -2257,11 +2257,11 @@ void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
   int topRow = newsView_->verticalScrollBar()->value();
   QModelIndex curIndex = newsView_->currentIndex();
   newsModel_->setData(
-      newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
-      sticky);
+        newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
+        sticky);
 
   while (newsModel_->canFetchMore())
-       newsModel_->fetchMore();
+    newsModel_->fetchMore();
 
   newsView_->setCurrentIndex(curIndex);
   newsView_->verticalScrollBar()->setValue(topRow);
@@ -2306,8 +2306,8 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(markAllFeedRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
-//  feedContextMenu_->addSeparator();
-//  feedContextMenu_->addAction(setFilterNewsAct_);
+  //  feedContextMenu_->addSeparator();
+  //  feedContextMenu_->addAction(setFilterNewsAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
@@ -2410,7 +2410,7 @@ void RSSListing::updateWebView(QModelIndex index)
   titleString = newsModel_->record(index.row()).field("title").value().toString();
   if (isVisible())
     titleString = webPanelTitle_->fontMetrics().elidedText(
-        titleString, Qt::ElideRight, webPanelTitle_->width());
+          titleString, Qt::ElideRight, webPanelTitle_->width());
   linkString = newsModel_->record(index.row()).field("link_href").value().toString();
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
@@ -2422,7 +2422,7 @@ void RSSListing::updateWebView(QModelIndex index)
   QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
   QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
   QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
-//  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
+  //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
   authorString = authorName;
   if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
   if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
@@ -2434,7 +2434,7 @@ void RSSListing::updateWebView(QModelIndex index)
     authorName = feedsModel_->record(feedsView_->currentIndex().row()).field("author_name").value().toString();
     authorEmail = feedsModel_->record(feedsView_->currentIndex().row()).field("author_email").value().toString();
     authorUri = feedsModel_->record(feedsView_->currentIndex().row()).field("author_uri").value().toString();
-//    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
+    //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
     authorString = authorName;
     if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
     if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
@@ -2448,11 +2448,11 @@ void RSSListing::updateWebView(QModelIndex index)
   if (content.isEmpty()) {
     webView_->setHtml(
           newsModel_->record(index.row()).field("description").value().toString());
-//    qDebug() << "setHtml : description";
+    //    qDebug() << "setHtml : description";
   }
   else {
     webView_->setHtml(content);
-//    qDebug() << "setHtml : content";
+    //    qDebug() << "setHtml : content";
   }
 }
 
@@ -2703,7 +2703,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
           faviconLoader, SLOT(requestUrl(QUrl, QUrl)));
   connect(feedPropertiesDialog, SIGNAL(startGetUrlTimer()),
-      this, SIGNAL(startGetUrlTimer()));
+          this, SIGNAL(startGetUrlTimer()));
 
   int result = feedPropertiesDialog->exec();
   settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
@@ -2718,11 +2718,11 @@ void RSSListing::slotShowFeedPropertiesDlg()
   delete feedPropertiesDialog;
 
   db_.exec(QString("update feeds set text = '%1' where id == '%2'").
-          arg(properties.general.text).
-          arg(id));
+           arg(properties.general.text).
+           arg(id));
   db_.exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
-          arg(properties.general.url).
-          arg(id));
+           arg(properties.general.url).
+           arg(id));
 
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
@@ -2832,7 +2832,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
   newsModel_->select();
 
   while (newsModel_->canFetchMore())
-       newsModel_->fetchMore();
+    newsModel_->fetchMore();
 
   int row = -1;
   for (int i = 0; i < newsModel_->rowCount(); i++) {

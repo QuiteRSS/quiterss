@@ -2,7 +2,7 @@
 #include "feedpropertiesdialog.h"
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
-    QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+  QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Feed properties"));

@@ -2,7 +2,7 @@
 #include "updatethread.h"
 
 UpdateThread::UpdateThread(QObject *parent) :
-    QThread(parent)
+  QThread(parent)
 {
   qDebug() << "UpdateThread::constructor";
   start();
@@ -35,7 +35,7 @@ void UpdateThread::requestUrl(const QUrl &url, const QDateTime &date)
   urlsQueue_.enqueue(url);
   dateQueue_.enqueue(date);
   qDebug() << "urlsQueue_ <<" << url << "count=" << urlsQueue_.count();
-//  emit startGetUrlTimer();
+  //  emit startGetUrlTimer();
 }
 
 /*! \brief Обработка очереди запросов *****************************************/

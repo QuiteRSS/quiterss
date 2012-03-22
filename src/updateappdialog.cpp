@@ -2,7 +2,7 @@
 #include "VersionNo.h"
 
 UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
-                                  QWidget *parent, bool show)
+                                 QWidget *parent, bool show)
   : QDialog(parent),
     settings_(settings),
     showDialog_(show)
@@ -99,7 +99,7 @@ void UpdateAppDialog::finishUpdateApp()
         "<p>" + str +
         "</body></html>";
   } else {
-//    qDebug() << reply_->error() << reply_->errorString();
+    //    qDebug() << reply_->error() << reply_->errorString();
     info = tr("Error checking updates");
   }
 

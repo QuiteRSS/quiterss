@@ -5,7 +5,7 @@
 #include "parsethread.h"
 
 ParseThread::ParseThread(QObject *parent, QSqlDatabase *db) :
-    QThread(parent)
+  QThread(parent)
 {
   qDebug() << "ParseThread::constructor";
   db_ = db;
@@ -27,9 +27,9 @@ void ParseThread::run()
 
   parseObject_ = new ParseObject();
   connect(this, SIGNAL(signalReadyParse(QSqlDatabase*,QByteArray,QUrl)),
-      parseObject_, SLOT(slotParse(QSqlDatabase*,QByteArray,QUrl)));
+          parseObject_, SLOT(slotParse(QSqlDatabase*,QByteArray,QUrl)));
   connect(parseObject_, SIGNAL(feedUpdated(QUrl)),
-      this->parent(), SLOT(slotUpdateFeed(QUrl)));
+          this->parent(), SLOT(slotUpdateFeed(QUrl)));
 
   exec();
 }
@@ -50,7 +50,7 @@ void ParseThread::getQueuedXml()
     currentUrl_ = urlsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();
     qDebug() << "xmlsQueue_ >>" << currentUrl_ << "count=" << xmlsQueue_.count();
-//    parse();
+    //    parse();
     emit signalReadyParse(db_, currentXml_, currentUrl_);
   }
 

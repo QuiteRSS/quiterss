@@ -61,7 +61,7 @@ private slots:
   void intervalTimeChang(QString str);
 
 signals:
-    void signalCategoriesTreeKeyUpDownPressed();
+  void signalCategoriesTreeKeyUpDownPressed();
 
 private:
   QLabel *contentLabel_;
@@ -96,7 +96,7 @@ private:
   QLineEdit *editPassword_;
 
   // language
-  QListWidget *languageFileList_;  
+  QListWidget *languageFileList_;
 
   // internal variables for options
   QNetworkProxy networkProxy_;
