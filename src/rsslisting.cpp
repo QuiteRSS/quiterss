@@ -683,7 +683,6 @@ void RSSListing::createTray()
           this, SLOT(slotPlaceToTray()), Qt::QueuedConnection);
   traySystem->setToolTip("QuiteRSS");
   createTrayMenu();
-  traySystem->show();
 }
 
 /*! \brief Создание действий **************************************************

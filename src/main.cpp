@@ -20,8 +20,6 @@ void loadModules(QSplashScreen* psplash)
   layout->addWidget(&splashProgress);
   splash->setLayout(layout);
 
-  qApp->processEvents();
-
   for (int i = 0; i < 100; ) {
     if (time.elapsed() >= 1) {
       qApp->processEvents();
@@ -40,10 +38,9 @@ void createSplashScreen()
   splash->setFixedSize(splash->pixmap().width(), splash->pixmap().height());
   splash->setContentsMargins(15, 0, 15, 0);
   splash->setEnabled(false);
+  splash->showMessage("Prepare loading...",
+                      Qt::AlignRight | Qt::AlignTop, Qt::white);
   splash->show();
-  splash->showMessage(qApp->tr("Prepare loading..."),
-                     Qt::AlignRight | Qt::AlignTop, Qt::white);
-  qApp->processEvents();
 }
 
 int main(int argc, char **argv)
@@ -85,6 +82,7 @@ int main(int argc, char **argv)
 
   if (!rsslisting.startingTray_)
     rsslisting.show();
+  rsslisting.traySystem->show();
 
   splash->finish(&rsslisting);
 

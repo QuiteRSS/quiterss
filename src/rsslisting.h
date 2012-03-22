@@ -23,6 +23,7 @@ public:
     RSSListing(QWidget *widget = 0);
     ~RSSListing();
     bool startingTray_;
+    QSystemTrayIcon *traySystem;
 
 public slots:
     void addFeed();
@@ -182,7 +183,6 @@ private:
     QProgressBar *webViewProgress_;
     QLabel *webViewProgressLabel_;
 
-    QSystemTrayIcon *traySystem;
     int oldState;
 
     QProgressBar *progressBar_;
