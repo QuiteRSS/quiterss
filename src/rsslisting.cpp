@@ -1564,7 +1564,9 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
     if ((newsView_->selectionModel()->selectedRows(0).count() == 1)) {
-      slotNewsViewSelected(index);
+      if (QApplication::mouseButtons() & Qt::MiddleButton) {
+        slotNewsViewDoubleClicked(index);
+      } else slotNewsViewSelected(index);
     }
   }
 }
