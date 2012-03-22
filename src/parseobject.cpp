@@ -151,12 +151,15 @@ void ParseObject::slotParse(QSqlDatabase *db,
         categoryString.clear();
       }
       if ((currentTag == "link") && // Atom
-          (xml.attributes().value("type").toString() == "text/html") &&
           ((tagsStack.top() == "feed") || (tagsStack.top() == "entry"))) {
-        if (xml.attributes().value("rel").toString() == "self")
-          linkString = xml.attributes().value("href").toString();
-        if (xml.attributes().value("rel").toString() == "alternate")
+        if (xml.attributes().value("type").toString() == "text/html") {
+          if (xml.attributes().value("rel").toString() == "self")
+            linkString = xml.attributes().value("href").toString();
+          if (xml.attributes().value("rel").toString() == "alternate")
+            linkAlternateString = xml.attributes().value("href").toString();
+        } else {
           linkAlternateString = xml.attributes().value("href").toString();
+        }
       }
       if (isHeader) {
         if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
