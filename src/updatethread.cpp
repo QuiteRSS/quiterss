@@ -1,3 +1,4 @@
+#include <QDebug>
 #include "updatethread.h"
 
 UpdateThread::UpdateThread(QObject *parent) :

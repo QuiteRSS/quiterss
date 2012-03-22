@@ -50,9 +50,11 @@ SOURCES += \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp
 
-BUILD_DIR = release
-if(!debug_and_release|build_pass):CONFIG(debug, debug|release) {
+CONFIG(debug, debug|release) {
   BUILD_DIR = debug
+} else {
+  BUILD_DIR = release
+  DEFINES += QT_NO_DEBUG_OUTPUT
 }
 
 DESTDIR = $${BUILD_DIR}/target/

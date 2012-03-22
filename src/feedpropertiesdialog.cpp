@@ -1,5 +1,4 @@
 /*This file is prepared for Doxygen automatic documentation generation.*/
-#include <QDebug>
 #include "feedpropertiesdialog.h"
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
