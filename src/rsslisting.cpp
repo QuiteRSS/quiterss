@@ -274,7 +274,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       return true;
     }
     return false;
-  } else if (obj == newsView_) {
+  } else if ((obj == newsView_) || (obj == webView_)) {
     if (event->type() == QEvent::KeyPress) {
       QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
       if ((keyEvent->key() == Qt::Key_Up) ||
@@ -653,6 +653,8 @@ void RSSListing::createWebWidget()
   webWidget_->setMinimumWidth(400);
 
   setCentralWidget(webWidget_);
+
+  webView_->installEventFilter(this);
 }
 
 void RSSListing::createStatusBar()
@@ -2218,7 +2220,7 @@ void RSSListing::deleteNews()
 
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, 6);
-  else curIndex = newsModel_->index(curIndex.row(), 6);
+  else curIndex = newsModel_->index(curIndex.row()-1, 6);
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   slotUpdateStatus();
