@@ -335,15 +335,42 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   setLayout(mainLayout);
 
-  connect(categoriesTree, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+  connect(categoriesTree, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
+  connect(this, SIGNAL(signalCategoriesTreeKeyUpDownPressed()),
+          SLOT(slotCategoriesTreeKeyUpDownPressed()), Qt::QueuedConnection);
   connect(buttonBox_, SIGNAL(accepted()), this, SLOT(acceptSlot()));
   connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
   connect(manualProxyButton_, SIGNAL(toggled(bool)),
       this, SLOT(manualProxyToggle(bool)));
 
+  categoriesTree->installEventFilter(this);
+
   // не нужно, т.к. после создания окна из главного окна передаются настройки
 //  manualProxyToggle(manualProxyButton_->isChecked());
+}
+
+bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
+{
+  if (obj == categoriesTree) {
+    if (event->type() == QEvent::KeyPress) {
+      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+      if ((keyEvent->key() == Qt::Key_Up) ||
+          (keyEvent->key() == Qt::Key_Down)) {
+        emit signalCategoriesTreeKeyUpDownPressed();
+      }
+      return false;
+    } else {
+      return false;
+    }
+  } else {
+    return QDialog::eventFilter(obj, event);
+  }
+}
+
+void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()
+{
+  slotCategoriesItemCLicked(categoriesTree->currentItem(), 1);
 }
 
 void OptionsDialog::slotCategoriesItemCLicked(QTreeWidgetItem* item, int column)
@@ -465,8 +492,8 @@ int OptionsDialog::currentIndex()
 
 void OptionsDialog::setCurrentItem(int index)
 {
-  categoriesTree->setCurrentItem(categoriesTree->topLevelItem(index));
-  slotCategoriesItemCLicked(categoriesTree->topLevelItem(index), 0);
+  categoriesTree->setCurrentItem(categoriesTree->topLevelItem(index), 1);
+  slotCategoriesItemCLicked(categoriesTree->topLevelItem(index), 1);
 }
 
 void OptionsDialog::setBehaviorIconTray(int behavior)

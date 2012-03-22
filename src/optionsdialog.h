@@ -46,8 +46,12 @@ public:
   // fonts
   QTreeWidget *fontTree;
 
+protected:
+  bool eventFilter(QObject *obj, QEvent *event);
+
 private slots:
   void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
+  void slotCategoriesTreeKeyUpDownPressed();
   void manualProxyToggle(bool checked);
   void updateProxy();
   void applyProxy();
@@ -57,6 +61,7 @@ private slots:
   void intervalTimeChang(QString str);
 
 signals:
+    void signalCategoriesTreeKeyUpDownPressed();
 
 private:
   QLabel *contentLabel_;
