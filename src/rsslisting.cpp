@@ -583,6 +583,12 @@ void RSSListing::createWebWidget()
 {
   webView_ = new QWebView(this);
   webView_->setObjectName("webView_");
+
+  webView_->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
+  webView_->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
+  webView_->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
+  webView_->pageAction(QWebPage::DownloadImageToDisk)->setVisible(false);
+
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
   webViewProgress_->setFixedHeight(15);
