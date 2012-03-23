@@ -52,3 +52,11 @@ NewsView::NewsView(QWidget * parent)
 {
   emit signalDoubleClicked(indexAt(event->pos()));
 }
+
+/*virtual*/ void NewsView::keyPressEvent(QKeyEvent *event)
+{
+  if (!event->modifiers()) {
+    if (event->key() == Qt::Key_Up) emit pressKeyUp();
+    else if (event->key() == Qt::Key_Down) emit pressKeyDown();
+  }
+}

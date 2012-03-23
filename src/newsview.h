@@ -15,11 +15,15 @@ protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
   virtual void mouseDoubleClickEvent(QMouseEvent*);
+  virtual void keyPressEvent(QKeyEvent*);
 
 signals:
   void signalSetItemRead(QModelIndex index, int read);
   void signalSetItemStar(QModelIndex index, int sticky);
   void signalDoubleClicked(QModelIndex index);
+  void pressKeyUp();
+  void pressKeyDown();
+
 };
 
 #endif // NEWSVIEW_H

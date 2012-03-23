@@ -38,8 +38,6 @@ public slots:
   void slotNewsViewClicked(QModelIndex index);
   void slotNewsViewSelected(QModelIndex index);
   void slotNewsViewDoubleClicked(QModelIndex index);
-  void slotFeedsTreeKeyUpDownPressed();
-  void slotNewsKeyUpDownPressed();
   void showOptionDlg();
   void receiveMessage(const QString&);
   void slotPlaceToTray();
@@ -275,10 +273,12 @@ private slots:
   void showFilterNewsDlg();
   void slotUpdateAppChacking();
   void slotNewVersion(bool newVersion);
+  void slotFeedUpPressed();
+  void slotFeedDownPressed();
+  void slotNewsUpPressed();
+  void slotNewsDownPressed();
 
 signals:
-  void signalFeedsTreeKeyUpDownPressed();
-  void signalFeedKeyUpDownPressed();
   void signalPlaceToTray();
   void signalCloseApp();
   void startGetUrlTimer();

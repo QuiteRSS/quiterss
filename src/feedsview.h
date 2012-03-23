@@ -12,6 +12,11 @@ public:
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
+  virtual void keyPressEvent(QKeyEvent*);
+
+signals:
+  void pressKeyUp();
+  void pressKeyDown();
 
 };
 

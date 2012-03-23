@@ -256,37 +256,11 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 /*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
-  if (obj == feedsView_) {
-    if (event->type() == QEvent::KeyPress) {
-      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-      if ((keyEvent->key() == Qt::Key_Up) ||
-          (keyEvent->key() == Qt::Key_Down)) {
-        emit signalFeedsTreeKeyUpDownPressed();
-      } else if (keyEvent->key() == Qt::Key_Delete) {
-        deleteFeed();
-      }
-      return false;
-    } else {
-      return false;
-    }
-  } else if (obj == feedsView_->viewport()) {
+  if (obj == feedsView_->viewport()) {
     if (event->type() == QEvent::ToolTip) {
       return true;
     }
     return false;
-  } else if ((obj == newsView_) || (obj == webView_)) {
-    if (event->type() == QEvent::KeyPress) {
-      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-      if ((keyEvent->key() == Qt::Key_Up) ||
-          (keyEvent->key() == Qt::Key_Down)) {
-        emit signalFeedKeyUpDownPressed();
-      } else if (keyEvent->key() == Qt::Key_Delete) {
-        deleteNews();
-      }
-      return false;
-    } else {
-      return false;
-    }
   } else if (obj == toolBarNull_) {
     if (event->type() == QEvent::MouseButtonRelease) {
       slotVisibledFeedsDock();
@@ -473,14 +447,13 @@ void RSSListing::createFeedsDock()
 
   connect(feedsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedsTreeClicked(QModelIndex)));
-  connect(this, SIGNAL(signalFeedsTreeKeyUpDownPressed()),
-          SLOT(slotFeedsTreeKeyUpDownPressed()), Qt::QueuedConnection);
+  connect(feedsView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
+  connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
 
-  feedsView_->installEventFilter(this);
   feedsView_->viewport()->installEventFilter(this);
 }
 
@@ -546,8 +519,8 @@ void RSSListing::createNewsDock()
 
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotNewsViewClicked(QModelIndex)));
-  connect(this, SIGNAL(signalFeedKeyUpDownPressed()),
-          SLOT(slotNewsKeyUpDownPressed()), Qt::QueuedConnection);
+  connect(newsView_, SIGNAL(pressKeyUp()), this, SLOT(slotNewsUpPressed()));
+  connect(newsView_, SIGNAL(pressKeyDown()), this, SLOT(slotNewsDownPressed()));
   connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
           this, SLOT(slotSetItemRead(QModelIndex, int)));
   connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
@@ -558,8 +531,6 @@ void RSSListing::createNewsDock()
           this, SLOT(showContextMenuNews(const QPoint &)));
   connect(newsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotNewsDockLocationChanged(Qt::DockWidgetArea)));
-
-  newsView_->installEventFilter(this);
 }
 
 void RSSListing::createToolBarNull()
@@ -653,8 +624,6 @@ void RSSListing::createWebWidget()
   webWidget_->setMinimumWidth(400);
 
   setCentralWidget(webWidget_);
-
-  webView_->installEventFilter(this);
 }
 
 void RSSListing::createStatusBar()
@@ -699,6 +668,7 @@ void RSSListing::createActions()
 
   deleteFeedAct_ = new QAction(this);
   deleteFeedAct_->setIcon(QIcon(":/images/delete"));
+  deleteFeedAct_->setShortcut(Qt::ALT+Qt::Key_Delete);
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
   importFeedsAct_ = new QAction(this);
@@ -824,6 +794,7 @@ void RSSListing::createActions()
   deleteNewsAct_->setIcon(QIcon(":/images/delete"));
   deleteNewsAct_->setShortcut(Qt::Key_Delete);
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
+  this->addAction(deleteNewsAct_);
 
   markFeedRead_ = new QAction(this);
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
@@ -831,6 +802,26 @@ void RSSListing::createActions()
   feedProperties_ = new QAction(this);
   feedProperties_->setShortcut(Qt::CTRL+Qt::Key_E);
   connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
+
+  QAction *feedKeyUp = new QAction(this);
+  feedKeyUp->setShortcut(Qt::CTRL+Qt::Key_Up);
+  connect(feedKeyUp, SIGNAL(triggered()), this, SLOT(slotFeedUpPressed()));
+  this->addAction(feedKeyUp);
+
+  QAction *feedKeyDown = new QAction(this);
+  feedKeyDown->setShortcut(Qt::CTRL+Qt::Key_Down);
+  connect(feedKeyDown, SIGNAL(triggered()), this, SLOT(slotFeedDownPressed()));
+  this->addAction(feedKeyDown);
+
+  QAction *newsKeyUp = new QAction(this);
+  newsKeyUp->setShortcut(Qt::Key_Left);
+  connect(newsKeyUp, SIGNAL(triggered()), this, SLOT(slotNewsUpPressed()));
+  this->addAction(newsKeyUp);
+
+  QAction *newsKeyDown = new QAction(this);
+  newsKeyDown->setShortcut(Qt::Key_Right);
+  connect(newsKeyDown, SIGNAL(triggered()), this, SLOT(slotNewsDownPressed()));
+  this->addAction(newsKeyDown);
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -1233,8 +1224,8 @@ void RSSListing::deleteFeed()
     int row = feedsView_->currentIndex().row();
     feedsModel_->select();
     if (feedsModel_->rowCount() == row) row--;
-    feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-    slotFeedsTreeClicked(feedsModel_->index(row, 0));
+    feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+    slotFeedsTreeClicked(feedsModel_->index(row, 1));
   }
 }
 
@@ -1473,7 +1464,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
 
   // если обновлена просматриваемая лента, кликаем по ней
   if (parseFeedId == id) {
-    slotFeedsTreeSelected(feedsModel_->index(index.row(), 0));
+    slotFeedsTreeSelected(feedsModel_->index(index.row(), 1));
   }
   // иначе обновляем модель лент
   else {
@@ -1484,7 +1475,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url)
         rowFeeds = i;
       }
     }
-    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
+    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
   }
 }
 
@@ -1517,8 +1508,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
 
   if (index.isValid()) feedProperties_->setEnabled(true);
   else feedProperties_->setEnabled(false);
-
-  qApp->processEvents();
 
   if (index.isValid()) newsHeader_->setVisible(true);
   else newsHeader_->setVisible(false);
@@ -1601,18 +1590,6 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     q.exec(qStr);
   }
   idxOld = idx;
-}
-
-/*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
-void RSSListing::slotFeedsTreeKeyUpDownPressed()
-{
-  slotFeedsTreeClicked(feedsView_->currentIndex());
-}
-
-/*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
-void RSSListing::slotNewsKeyUpDownPressed()
-{
-  slotNewsViewClicked(newsView_->currentIndex());
 }
 
 /*! \brief Вызов окна настроек ************************************************/
@@ -2034,7 +2011,7 @@ void RSSListing::slotUpdateStatus()
       rowFeeds = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
+  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
 
   statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
   statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
@@ -2094,7 +2071,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
       rowFeeds = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 0));
+  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
 }
 
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
@@ -2400,8 +2377,8 @@ void RSSListing::setCurrentFeed()
       row = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
-  slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+  slotFeedsTreeClicked(feedsModel_->index(row, 1));  // загрузка новостей
   slotUpdateStatus();
 }
 
@@ -2948,4 +2925,50 @@ void RSSListing::slotNewVersion(bool newVersion)
     connect(traySystem, SIGNAL(messageClicked()),
             this, SLOT(slotShowUpdateAppDlg()));
   }
+}
+
+/*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
+void RSSListing::slotFeedUpPressed()
+{
+  if (!feedsView_->currentIndex().isValid()) return;
+
+  int row = feedsView_->currentIndex().row();
+  if (row == 0) row = feedsModel_->rowCount()-1;
+  else row--;
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+  slotFeedsTreeClicked(feedsView_->currentIndex());
+}
+
+void RSSListing::slotFeedDownPressed()
+{
+  if (!feedsView_->currentIndex().isValid()) return;
+
+  int row = feedsView_->currentIndex().row();
+  if ((row+1) == feedsModel_->rowCount()) row = 0;
+  else row++;
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+  slotFeedsTreeClicked(feedsView_->currentIndex());
+}
+
+/*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
+void RSSListing::slotNewsUpPressed()
+{
+  if (!newsView_->currentIndex().isValid()) return;
+
+  int row = newsView_->currentIndex().row();
+  if (row == 0) return;
+  else row--;
+  newsView_->setCurrentIndex(newsModel_->index(row, 1));
+  slotNewsViewClicked(newsView_->currentIndex());
+}
+
+void RSSListing::slotNewsDownPressed()
+{
+  if (!newsView_->currentIndex().isValid()) return;
+
+  int row = newsView_->currentIndex().row();
+  if ((row+1) == newsModel_->rowCount()) return;
+  else row++;
+  newsView_->setCurrentIndex(newsModel_->index(row, 1));
+  slotNewsViewClicked(newsView_->currentIndex());
 }
