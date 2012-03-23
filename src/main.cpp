@@ -7,7 +7,7 @@ QSplashScreen *splash;
 
 void loadModules(QSplashScreen* psplash)
 {
-  QTime time;
+  QElapsedTimer time;
   time.start();
 
   QProgressBar splashProgress;
@@ -19,16 +19,15 @@ void loadModules(QSplashScreen* psplash)
   layout->addStretch(1);
   layout->addWidget(&splashProgress);
   splash->setLayout(layout);
-
   for (int i = 0; i < 100; ) {
     if (time.elapsed() >= 1) {
-      qApp->processEvents();
       time.start();
       ++i;
+      qApp->processEvents();
+      splashProgress.setValue(i);
+      psplash->showMessage(qApp->tr("Loading: ") + QString::number(i) + "%",
+                           Qt::AlignRight | Qt::AlignTop, Qt::white);
     }
-    splashProgress.setValue(i);
-    psplash->showMessage(qApp->tr("Loading: ") + QString::number(i) + "%",
-                         Qt::AlignRight | Qt::AlignTop, Qt::white);
   }
 }
 
