@@ -157,8 +157,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
             linkString = xml.attributes().value("href").toString();
           if (xml.attributes().value("rel").toString() == "alternate")
             linkAlternateString = xml.attributes().value("href").toString();
-        } else {
-          linkAlternateString = xml.attributes().value("href").toString();
+        } else if (linkAlternateString.isNull()) {
+          if (!(xml.attributes().value("rel").toString() == "self"))
+            linkAlternateString = xml.attributes().value("href").toString();
         }
       }
       if (isHeader) {
