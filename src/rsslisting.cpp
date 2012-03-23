@@ -1565,9 +1565,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 {
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
     if ((newsView_->selectionModel()->selectedRows(0).count() == 1)) {
-      if (QApplication::mouseButtons() & Qt::MiddleButton) {
-        slotNewsViewDoubleClicked(index);
-      } else slotNewsViewSelected(index);
+      slotNewsViewSelected(index);
     }
   }
 }
@@ -2153,6 +2151,8 @@ void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
 
 void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
 {
+  if (!index.isValid()) return;
+
   QString linkString = newsModel_->record(
         index.row()).field("link_href").value().toString();
   if (linkString.isEmpty())
@@ -2453,15 +2453,20 @@ void RSSListing::updateWebView(QModelIndex index)
   webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
   webPanelAuthor_->setVisible(!authorString.isEmpty());
 
-  QString content = newsModel_->record(index.row()).field("content").value().toString();
-  if (content.isEmpty()) {
-    webView_->setHtml(
-          newsModel_->record(index.row()).field("description").value().toString());
-    //    qDebug() << "setHtml : description";
+  if (QApplication::mouseButtons() & Qt::MiddleButton) {
+    slotNewsViewDoubleClicked(index);
   }
-  else {
-    webView_->setHtml(content);
-    //    qDebug() << "setHtml : content";
+  if (!(QApplication::mouseButtons() & Qt::MiddleButton) || !embeddedBrowserOn_) {
+    QString content = newsModel_->record(index.row()).field("content").value().toString();
+    if (content.isEmpty()) {
+      webView_->setHtml(
+            newsModel_->record(index.row()).field("description").value().toString());
+      //    qDebug() << "setHtml : description";
+    }
+    else {
+      webView_->setHtml(content);
+      //    qDebug() << "setHtml : content";
+    }
   }
 }
 
