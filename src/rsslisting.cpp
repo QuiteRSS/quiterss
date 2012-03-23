@@ -434,7 +434,9 @@ void RSSListing::createFeedsDock()
 
   //! Create feeds DockWidget
   setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
-  setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
+  setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
+  setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
+  setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
   setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
 
   feedsDock_ = new QDockWidget(this);
