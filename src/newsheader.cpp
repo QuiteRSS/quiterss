@@ -19,7 +19,7 @@ NewsHeader::NewsHeader(Qt::Orientation orientation, QWidget * parent,
   buttonColumnView = new QPushButton(this);
   buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
   buttonColumnView->setObjectName("buttonColumnView");
-  buttonColumnView->setCursor(QCursor(Qt::ArrowCursor));
+  buttonColumnView->setCursor(Qt::ArrowCursor);
   buttonColumnView->setMaximumWidth(30);
   connect(buttonColumnView, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
 

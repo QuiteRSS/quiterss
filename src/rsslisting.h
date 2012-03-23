@@ -24,6 +24,7 @@ public:
   ~RSSListing();
   bool startingTray_;
   QSystemTrayIcon *traySystem;
+  void setCurrentFeed();
 
 public slots:
   void addFeed();

@@ -1506,6 +1506,20 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
     slotSetAllRead();
   }
 
+  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+      data().toByteArray();
+  if (!byteArray.isNull()) {
+    QPixmap icon;
+    icon.loadFromData(QByteArray::fromBase64(byteArray));
+    newsIconTitle_->setPixmap(icon);
+  } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
+  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
+
+  if (index.isValid()) feedProperties_->setEnabled(true);
+  else feedProperties_->setEnabled(false);
+
+  qApp->processEvents();
+
   if (index.isValid()) newsHeader_->setVisible(true);
   else newsHeader_->setVisible(false);
 
@@ -1543,20 +1557,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
-
   slotNewsViewSelected(newsModel_->index(row, 6));
-
-  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
-      data().toByteArray();
-  if (!byteArray.isNull()) {
-    QPixmap icon;
-    icon.loadFromData(QByteArray::fromBase64(byteArray));
-    newsIconTitle_->setPixmap(icon);
-  } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
-  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
-
-  if (index.isValid()) feedProperties_->setEnabled(true);
-  else feedProperties_->setEnabled(false);
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -2387,6 +2388,11 @@ void RSSListing::loadSettingsFeeds()
   }
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+}
+
+void RSSListing::setCurrentFeed()
+{
+  qApp->processEvents();
   int id = settings_->value("feedSettings/currentId", 0).toInt();
   int row = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
@@ -2394,7 +2400,6 @@ void RSSListing::loadSettingsFeeds()
       row = i;
     }
   }
-
   feedsView_->setCurrentIndex(feedsModel_->index(row, 0));
   slotFeedsTreeClicked(feedsModel_->index(row, 0));  // загрузка новостей
   slotUpdateStatus();

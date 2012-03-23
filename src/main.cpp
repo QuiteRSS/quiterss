@@ -25,7 +25,7 @@ void loadModules(QSplashScreen* psplash)
       ++i;
       qApp->processEvents();
       splashProgress.setValue(i);
-      psplash->showMessage(qApp->tr("Loading: ") + QString::number(i) + "%",
+      psplash->showMessage("Loading: " + QString::number(i) + "%",
                            Qt::AlignRight | Qt::AlignTop, Qt::white);
     }
   }
@@ -84,6 +84,7 @@ int main(int argc, char **argv)
   rsslisting.traySystem->show();
 
   splash->finish(&rsslisting);
+  rsslisting.setCurrentFeed();
 
   return app.exec();
 }
