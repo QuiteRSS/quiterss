@@ -68,6 +68,9 @@ private:
   void createToolBarNull();
   void createWebWidget();
   void createActions();
+  void createShortcut();
+  void loadActionShortcuts();
+  void saveActionShortcuts();
   void createMenu();
   void createToolBar();
   void readSettings ();
@@ -133,6 +136,10 @@ private:
   QAction *markFeedRead_;
   QAction *feedProperties_;
   QAction *showWindowAct_;
+  QAction *feedKeyUpAct_;
+  QAction *feedKeyDownAct_;
+  QAction *newsKeyUpAct_;
+  QAction *newsKeyDownAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;

@@ -163,6 +163,7 @@ RSSListing::RSSListing(QWidget *parent)
   createWebWidget();
 
   createActions();
+  createShortcut();
   createMenu();
   createToolBar();
   createMenuNews();
@@ -290,6 +291,7 @@ void RSSListing::slotClose()
   traySystem->hide();
   hide();
   writeSettings();
+  saveActionShortcuts();
   emit signalCloseApp();
 }
 
@@ -664,13 +666,13 @@ void RSSListing::createTray()
 void RSSListing::createActions()
 {
   addFeedAct_ = new QAction(this);
+  addFeedAct_->setObjectName("addFeedAct");
   addFeedAct_->setIcon(QIcon(":/images/add"));
-  addFeedAct_->setShortcut(QKeySequence::New);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   deleteFeedAct_ = new QAction(this);
+  deleteFeedAct_->setObjectName("deleteFeedAct");
   deleteFeedAct_->setIcon(QIcon(":/images/delete"));
-  deleteFeedAct_->setShortcut(Qt::ALT+Qt::Key_Delete);
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
   importFeedsAct_ = new QAction(this);
@@ -682,7 +684,7 @@ void RSSListing::createActions()
   connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
 
   exitAct_ = new QAction(this);
-  exitAct_->setShortcut(Qt::CTRL+Qt::Key_Q);  // standart on other OS
+  exitAct_->setObjectName("exitAct");
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
 
   toolBarToggle_ = new QAction(this);
@@ -715,15 +717,15 @@ void RSSListing::createActions()
   autoLoadImagesToggle_ = new QAction(this);
 
   updateFeedAct_ = new QAction(this);
+  updateFeedAct_->setObjectName("updateFeedAct");
   updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
-  updateFeedAct_->setShortcut(Qt::Key_F5);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
   connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
           updateFeedAct_, SLOT(trigger()));
 
   updateAllFeedsAct_ = new QAction(this);
+  updateAllFeedsAct_->setObjectName("updateAllFeedsAct");
   updateAllFeedsAct_->setIcon(QIcon(":/images/updateAllFeeds"));
-  updateAllFeedsAct_->setShortcut(Qt::CTRL + Qt::Key_F5);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
   markAllFeedRead_ = new QAction(this);
@@ -746,8 +748,8 @@ void RSSListing::createActions()
   connect(setFilterNewsAct_, SIGNAL(triggered()), this, SLOT(showFilterNewsDlg()));
 
   optionsAct_ = new QAction(this);
+  optionsAct_->setObjectName("optionsAct");
   optionsAct_->setIcon(QIcon(":/images/options"));
-  optionsAct_->setShortcut(Qt::Key_F8);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 
   feedsFilter_ = new QAction(this);
@@ -793,8 +795,8 @@ void RSSListing::createActions()
   markStarAct_->setIcon(QIcon(":/images/starOn"));
   connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
   deleteNewsAct_ = new QAction(this);
+  deleteNewsAct_->setObjectName("deleteNewsAct");
   deleteNewsAct_->setIcon(QIcon(":/images/delete"));
-  deleteNewsAct_->setShortcut(Qt::Key_Delete);
   connect(deleteNewsAct_, SIGNAL(triggered()), this, SLOT(deleteNews()));
   this->addAction(deleteNewsAct_);
 
@@ -802,28 +804,86 @@ void RSSListing::createActions()
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
   feedProperties_ = new QAction(this);
-  feedProperties_->setShortcut(Qt::CTRL+Qt::Key_E);
+  feedProperties_->setObjectName("feedProperties");
   connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
 
-  QAction *feedKeyUp = new QAction(this);
-  feedKeyUp->setShortcut(Qt::CTRL+Qt::Key_Up);
-  connect(feedKeyUp, SIGNAL(triggered()), this, SLOT(slotFeedUpPressed()));
-  this->addAction(feedKeyUp);
+  feedKeyUpAct_ = new QAction(this);
+  feedKeyUpAct_->setObjectName("feedKeyUp");
+  connect(feedKeyUpAct_, SIGNAL(triggered()), this, SLOT(slotFeedUpPressed()));
+  this->addAction(feedKeyUpAct_);
 
-  QAction *feedKeyDown = new QAction(this);
-  feedKeyDown->setShortcut(Qt::CTRL+Qt::Key_Down);
-  connect(feedKeyDown, SIGNAL(triggered()), this, SLOT(slotFeedDownPressed()));
-  this->addAction(feedKeyDown);
+  feedKeyDownAct_ = new QAction(this);
+  feedKeyDownAct_->setObjectName("feedKeyDownAct");
+  connect(feedKeyDownAct_, SIGNAL(triggered()), this, SLOT(slotFeedDownPressed()));
+  this->addAction(feedKeyDownAct_);
 
-  QAction *newsKeyUp = new QAction(this);
-  newsKeyUp->setShortcut(Qt::Key_Left);
-  connect(newsKeyUp, SIGNAL(triggered()), this, SLOT(slotNewsUpPressed()));
-  this->addAction(newsKeyUp);
+  newsKeyUpAct_ = new QAction(this);
+  newsKeyUpAct_->setObjectName("newsKeyUpAct");
+  connect(newsKeyUpAct_, SIGNAL(triggered()), this, SLOT(slotNewsUpPressed()));
+  this->addAction(newsKeyUpAct_);
 
-  QAction *newsKeyDown = new QAction(this);
-  newsKeyDown->setShortcut(Qt::Key_Right);
-  connect(newsKeyDown, SIGNAL(triggered()), this, SLOT(slotNewsDownPressed()));
-  this->addAction(newsKeyDown);
+  newsKeyDownAct_ = new QAction(this);
+  newsKeyDownAct_->setObjectName("newsKeyDownAct");
+  connect(newsKeyDownAct_, SIGNAL(triggered()), this, SLOT(slotNewsDownPressed()));
+  this->addAction(newsKeyDownAct_);
+}
+
+void RSSListing::createShortcut()
+{
+  addFeedAct_->setShortcut(QKeySequence(QKeySequence::New));
+  deleteFeedAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Delete));
+  exitAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));  // standart on other OS
+  updateFeedAct_->setShortcut(QKeySequence(Qt::Key_F5));
+  updateAllFeedsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));
+  optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
+  deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
+  feedProperties_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_E));
+  feedKeyUpAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Up));
+  feedKeyDownAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Down));
+  newsKeyUpAct_->setShortcut(QKeySequence(Qt::Key_Left));
+  newsKeyDownAct_->setShortcut(QKeySequence(Qt::Key_Right));
+  loadActionShortcuts();
+}
+
+void RSSListing::loadActionShortcuts()
+{
+  settings_->beginGroup("/Shortcuts");
+
+  QList<QAction *> actions = this->findChildren<QAction *> ();
+  QListIterator<QAction *> iter(actions);
+  while (iter.hasNext()) {
+    QAction *pAction = iter.next();
+    if (pAction->objectName().isEmpty())
+      continue;
+    const QString& sKey = '/' + pAction->objectName();
+    const QString& sValue = settings_->value('/' + sKey).toString();
+    if (sValue.isEmpty())
+      continue;
+    pAction->setShortcut(QKeySequence(sValue));
+  }
+
+  settings_->endGroup();
+}
+
+void RSSListing::saveActionShortcuts()
+{
+  settings_->beginGroup("/Shortcuts/");
+
+  QList<QAction *> actions = this->findChildren<QAction *> ();
+  QListIterator<QAction *> iter(actions);
+  while (iter.hasNext()) {
+    QAction *pAction = iter.next();
+    if (pAction->objectName().isEmpty())
+      continue;
+    const QString& sKey = '/' + pAction->objectName();
+    const QString& sValue = QString(pAction->shortcut());
+    if (!sValue.isEmpty())
+      settings_->setValue(sKey, sValue);
+    else if (settings_->contains(sKey))
+      settings_->remove(sKey);
+  }
+
+  settings_->endGroup();
 }
 
 /*! \brief Создание главного меню *********************************************/
@@ -1719,6 +1779,7 @@ void RSSListing::showOptionDlg()
 
   delete optionsDialog;
   writeSettings();
+  saveActionShortcuts();
 }
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
