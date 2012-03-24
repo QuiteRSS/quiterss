@@ -24,7 +24,8 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mousePressEvent(QMouseEvent *event)
 {
-  QTreeView::mousePressEvent(event);
+  if (!(event->buttons() & Qt::MiddleButton))
+    QTreeView::mousePressEvent(event);
 }
 
 /*virtual*/ void FeedsView::mouseMoveEvent(QMouseEvent *event)
