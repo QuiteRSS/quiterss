@@ -149,6 +149,9 @@ private:
   QActionGroup *feedsFilterGroup_;
   QActionGroup *newsFilterGroup_;
 
+  QAction *feedsFilterAction;
+  QAction *newsFilterAction;
+
   QMenu *fileMenu_;
   QMenu *editMenu_;
   QMenu *viewMenu_;

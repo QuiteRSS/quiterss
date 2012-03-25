@@ -994,6 +994,7 @@ void RSSListing::createMenu()
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
   feedsToolBar_->addAction(feedsFilter_);
+  feedsFilterAction = NULL;
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
   newsMenu_ = new QMenu(this);
@@ -1021,6 +1022,7 @@ void RSSListing::createMenu()
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
   newsToolBar_->addAction(newsFilter_);
+  newsFilterAction = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
   newsMenu_->addSeparator();
@@ -2170,6 +2172,9 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     }
   }
   feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+
+  if (pAct->objectName() != "filterFeedsAll_")
+    feedsFilterAction = pAct;
 }
 
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
@@ -2212,6 +2217,9 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
       webPanel_->hide();
     }
   }
+
+  if (pAct->objectName() != "filterNewsAll_")
+    newsFilterAction = pAct;
 }
 
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
@@ -2547,18 +2555,15 @@ void RSSListing::updateWebView(QModelIndex index)
 
 void RSSListing::slotFeedsFilter()
 {
-  static QAction *action = NULL;
-
   if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
-    if (action != NULL) {
-      action->setChecked(true);
-      setFeedsFilter(action);
+    if (feedsFilterAction != NULL) {
+      feedsFilterAction->setChecked(true);
+      setFeedsFilter(feedsFilterAction);
     } else {
       feedsFilterMenu_->popup(
             feedsToolBar_->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
     }
   } else {
-    action = feedsFilterGroup_->checkedAction();
     filterFeedsAll_->setChecked(true);
     setFeedsFilter(filterFeedsAll_);
   }
@@ -2566,18 +2571,15 @@ void RSSListing::slotFeedsFilter()
 
 void RSSListing::slotNewsFilter()
 {
-  static QAction *action = NULL;
-
   if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
-    if (action != NULL) {
-      action->setChecked(true);
-      setNewsFilter(action);
+    if (newsFilterAction != NULL) {
+      newsFilterAction->setChecked(true);
+      setNewsFilter(newsFilterAction);
     } else {
       newsFilterMenu_->popup(
             newsToolBar_->mapToGlobal(QPoint(0, newsToolBar_->height()-1)));
     }
   } else {
-    action = newsFilterGroup_->checkedAction();
     filterNewsAll_->setChecked(true);
     setNewsFilter(filterNewsAll_);
   }
