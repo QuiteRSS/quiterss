@@ -36,6 +36,8 @@
         <file alias="delete">images/delete.png</file>
         <file>images/splashScreen.png</file>
         <file>images/logo.png</file>
+        <file>images/noicon.png</file>
+        <file alias="preferencesFeed">images/preferencesFeed.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QuiteRSS.qss</file>

@@ -676,10 +676,12 @@ void RSSListing::createActions()
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
   importFeedsAct_ = new QAction(this);
+  importFeedsAct_->setObjectName("importFeedsAct");
   importFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(slotImportFeeds()));
 
   exportFeedsAct_ = new QAction(this);
+  exportFeedsAct_->setObjectName("exportFeedsAct");
   exportFeedsAct_->setIcon(QIcon(":/images/exportFeeds"));
   connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
 
@@ -715,6 +717,7 @@ void RSSListing::createActions()
   toolBarIconSmall_->setCheckable(true);
 
   autoLoadImagesToggle_ = new QAction(this);
+  autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
 
   updateFeedAct_ = new QAction(this);
   updateFeedAct_->setObjectName("updateFeedAct");
@@ -729,14 +732,17 @@ void RSSListing::createActions()
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
   markAllFeedRead_ = new QAction(this);
+  markAllFeedRead_->setObjectName("markAllFeedRead");
   markAllFeedRead_->setIcon(QIcon(":/images/markReadAll"));
   connect(markAllFeedRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
 
   markNewsRead_ = new QAction(this);
+  markNewsRead_->setObjectName("markNewsRead");
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
   connect(markNewsRead_, SIGNAL(triggered()), this, SLOT(markNewsRead()));
 
   markAllNewsRead_ = new QAction(this);
+  markAllNewsRead_->setObjectName("markAllNewsRead");
   markAllNewsRead_->setIcon(QIcon(":/images/markReadAll"));
   connect(markAllNewsRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
 
@@ -792,6 +798,7 @@ void RSSListing::createActions()
   openInBrowserAct_ = new QAction(this);
   connect(openInBrowserAct_, SIGNAL(triggered()), this, SLOT(openInBrowserNews()));
   markStarAct_ = new QAction(this);
+  markStarAct_->setObjectName("markStarAct");
   markStarAct_->setIcon(QIcon(":/images/starOn"));
   connect(markStarAct_, SIGNAL(triggered()), this, SLOT(markNewsStar()));
   deleteNewsAct_ = new QAction(this);
@@ -801,10 +808,12 @@ void RSSListing::createActions()
   this->addAction(deleteNewsAct_);
 
   markFeedRead_ = new QAction(this);
+  markFeedRead_->setObjectName("markFeedRead");
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
   feedProperties_ = new QAction(this);
   feedProperties_->setObjectName("feedProperties");
+  feedProperties_->setIcon(QIcon(":/images/preferencesFeed"));
   connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
 
   feedKeyUpAct_ = new QAction(this);
@@ -831,17 +840,39 @@ void RSSListing::createActions()
 void RSSListing::createShortcut()
 {
   addFeedAct_->setShortcut(QKeySequence(QKeySequence::New));
+  listActions_.append(addFeedAct_);
   deleteFeedAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Delete));
+  listActions_.append(deleteFeedAct_);
   exitAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));  // standart on other OS
+  listActions_.append(exitAct_);
   updateFeedAct_->setShortcut(QKeySequence(Qt::Key_F5));
+  listActions_.append(updateFeedAct_);
   updateAllFeedsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));
+  listActions_.append(updateAllFeedsAct_);
   optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
+  listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
+  listActions_.append(deleteNewsAct_);
   feedProperties_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_E));
+  listActions_.append(feedProperties_);
   feedKeyUpAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Up));
+  listActions_.append(feedKeyUpAct_);
   feedKeyDownAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Down));
+  listActions_.append(feedKeyDownAct_);
   newsKeyUpAct_->setShortcut(QKeySequence(Qt::Key_Left));
+  listActions_.append(newsKeyUpAct_);
   newsKeyDownAct_->setShortcut(QKeySequence(Qt::Key_Right));
+  listActions_.append(newsKeyDownAct_);
+
+  listActions_.append(importFeedsAct_);
+  listActions_.append(exportFeedsAct_);
+  listActions_.append(autoLoadImagesToggle_);
+  listActions_.append(markAllFeedRead_);
+  listActions_.append(markFeedRead_);
+  listActions_.append(markNewsRead_);
+  listActions_.append(markAllNewsRead_);
+  listActions_.append(markStarAct_);
+
   loadActionShortcuts();
 }
 
@@ -849,12 +880,14 @@ void RSSListing::loadActionShortcuts()
 {
   settings_->beginGroup("/Shortcuts");
 
-  QList<QAction *> actions = this->findChildren<QAction *> ();
-  QListIterator<QAction *> iter(actions);
+  QListIterator<QAction *> iter(listActions_);
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
     if (pAction->objectName().isEmpty())
       continue;
+
+    listDefaultShortcut_.append(pAction->shortcut());
+
     const QString& sKey = '/' + pAction->objectName();
     const QString& sValue = settings_->value('/' + sKey).toString();
     if (sValue.isEmpty())
@@ -869,8 +902,7 @@ void RSSListing::saveActionShortcuts()
 {
   settings_->beginGroup("/Shortcuts/");
 
-  QList<QAction *> actions = this->findChildren<QAction *> ();
-  QListIterator<QAction *> iter(actions);
+  QListIterator<QAction *> iter(listActions_);
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
     if (pAction->objectName().isEmpty())
@@ -1701,6 +1733,8 @@ void RSSListing::showOptionDlg()
       arg(webView_->settings()->fontSize(QWebSettings::DefaultFontSize));
   optionsDialog->fontTree->topLevelItem(2)->setText(2, strFont);
 
+  optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
+//
   int result = optionsDialog->exec();
   settings_->setValue("options/geometry", optionsDialog->saveGeometry());
   index = optionsDialog->currentIndex();
@@ -1776,6 +1810,7 @@ void RSSListing::showOptionDlg()
                                       optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
                                     optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
+  optionsDialog->saveActionShortcut(listActions_);
 
   delete optionsDialog;
   writeSettings();
@@ -2661,11 +2696,13 @@ void RSSListing::retranslateStrings() {
 
   openInBrowserAct_->setText(tr("Open in Browser"));
   markStarAct_->setText(tr("Star"));
-  deleteNewsAct_->setText( tr("Delete"));
+  markStarAct_->setToolTip(tr("Mark news star"));
+  deleteNewsAct_->setText(tr("Delete"));
+  deleteNewsAct_->setToolTip(tr("Delete selected news"));
 
   markFeedRead_->setText(tr("Mark Read"));
   markFeedRead_->setToolTip(tr("Mark feed read"));
-  feedProperties_->setText(tr("Properties"));
+  feedProperties_->setText(tr("Properties feed"));
   feedProperties_->setToolTip(tr("Properties feed"));
 
   fileMenu_->setTitle(tr("&File"));
@@ -2691,6 +2728,11 @@ void RSSListing::retranslateStrings() {
   toolBarIconSmall_->setText(tr("Small"));
 
   showWindowAct_->setText(tr("Show window"));
+
+  feedKeyUpAct_->setText(tr("Previous feed"));;
+  feedKeyDownAct_->setText(tr("Next feed"));;
+  newsKeyUpAct_->setText(tr("Previous news"));;
+  newsKeyDownAct_->setText(tr("Next news"));;
 
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Window"));

@@ -36,6 +36,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem.clear();
   treeItem << "6" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "7" << tr("Keyboard shortcuts");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ system tray
   startingTray_ = new QCheckBox(tr("starting QuiteRSS"));
@@ -289,6 +292,57 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontsWidget_->setLayout(fontsLayout);
   //} fonts
 
+  //{ shortcut
+  shortcutTree_ = new QTreeWidget();
+  shortcutTree_->setObjectName("shortcutTree");
+  shortcutTree_->setSortingEnabled(true);
+  shortcutTree_->setColumnCount(4);
+  shortcutTree_->hideColumn(0);
+  shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
+  shortcutTree_->header()->setStretchLastSection(false);
+  shortcutTree_->header()->setResizeMode(1, QHeaderView::ResizeToContents);
+  shortcutTree_->header()->setResizeMode(2, QHeaderView::Stretch);
+  shortcutTree_->header()->setResizeMode(3, QHeaderView::ResizeToContents);
+
+  treeItem.clear();
+  treeItem << "" << tr("Action") << tr("Description") << tr("Shortcut");
+  shortcutTree_->setHeaderLabels(treeItem);
+
+  editShortcut_ = new QLineEdit();
+  QPushButton *clearShortcutButton = new QPushButton(tr("Clear"));
+  QPushButton *resetShortcutButton = new QPushButton(tr("Reset"));
+
+  QHBoxLayout *editShortcutLayout = new QHBoxLayout();
+  editShortcutLayout->addWidget(new QLabel(tr("Shortcut:")));
+  editShortcutLayout->addWidget(editShortcut_, 1);
+  editShortcutLayout->addWidget(clearShortcutButton);
+  editShortcutLayout->addWidget(resetShortcutButton);
+
+  editShortcutBox = new QGroupBox();
+  editShortcutBox->setEnabled(false);
+  editShortcutBox->setLayout(editShortcutLayout);
+
+  QVBoxLayout *shortcutLayout = new QVBoxLayout();
+  shortcutLayout->setMargin(0);
+  shortcutLayout->addWidget(shortcutTree_, 1);
+  shortcutLayout->addWidget(editShortcutBox);
+
+  shortcutWidget_ = new QWidget();
+  shortcutWidget_->setLayout(shortcutLayout);
+
+  connect(shortcutTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
+          this, SLOT(shortcutTreeClicked(QTreeWidgetItem*,int)));
+  connect(this, SIGNAL(signalShortcutTreeUpDownPressed()),
+          SLOT(slotShortcutTreeUpDownPressed()), Qt::QueuedConnection);
+  connect(clearShortcutButton, SIGNAL(clicked()),
+          this, SLOT(slotClearShortcut()));
+  connect(resetShortcutButton, SIGNAL(clicked()),
+          this, SLOT(slotResetShortcut()));
+
+  shortcutTree_->installEventFilter(this);
+  editShortcut_->installEventFilter(this);
+  //} shortcut
+
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentLabel_->setObjectName("contentLabel_");
 
@@ -301,6 +355,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_->addWidget(notifierWidget_);
   contentStack_->addWidget(languageWidget_);
   contentStack_->addWidget(fontsWidget_);
+  contentStack_->addWidget(shortcutWidget_);
 
   QVBoxLayout *contentLayout = new QVBoxLayout();
   contentLayout->setMargin(0);
@@ -336,7 +391,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   setLayout(mainLayout);
 
   connect(categoriesTree, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
-          this, SLOT(slotCategoriesItemCLicked(QTreeWidgetItem*,int)));
+          this, SLOT(slotCategoriesItemClicked(QTreeWidgetItem*,int)));
   connect(this, SIGNAL(signalCategoriesTreeKeyUpDownPressed()),
           SLOT(slotCategoriesTreeKeyUpDownPressed()), Qt::QueuedConnection);
   connect(buttonBox_, SIGNAL(accepted()), this, SLOT(acceptSlot()));
@@ -352,17 +407,31 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
 bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
 {
-  if (obj == categoriesTree) {
-    if (event->type() == QEvent::KeyPress) {
-      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+  if (event->type() == QEvent::KeyPress) {
+    QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+    if (obj != editShortcut_) {
       if ((keyEvent->key() == Qt::Key_Up) ||
           (keyEvent->key() == Qt::Key_Down)) {
-        emit signalCategoriesTreeKeyUpDownPressed();
+        if (obj == categoriesTree)
+          emit signalCategoriesTreeKeyUpDownPressed();
+        else if (obj == shortcutTree_)
+          emit signalShortcutTreeUpDownPressed();
       }
-      return false;
     } else {
-      return false;
+      if ((keyEvent->key() < Qt::Key_Shift) ||
+          (keyEvent->key() > Qt::Key_Alt)) {
+        QString str;
+        if ((keyEvent->modifiers() & Qt::ShiftModifier) ||
+            (keyEvent->modifiers() & Qt::ControlModifier) ||
+            (keyEvent->modifiers() & Qt::AltModifier))
+          str.append(QKeySequence(keyEvent->modifiers()).toString());
+        str.append(QKeySequence(keyEvent->key()).toString());
+        editShortcut_->setText(str);
+        shortcutTree_->currentItem()->setText(3, str);
+      }
+      return true;
     }
+    return false;
   } else {
     return QDialog::eventFilter(obj, event);
   }
@@ -370,10 +439,10 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
 
 void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()
 {
-  slotCategoriesItemCLicked(categoriesTree->currentItem(), 1);
+  slotCategoriesItemClicked(categoriesTree->currentItem(), 1);
 }
 
-void OptionsDialog::slotCategoriesItemCLicked(QTreeWidgetItem* item, int column)
+void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int column)
 {
   Q_UNUSED(column)
   contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
@@ -493,7 +562,7 @@ int OptionsDialog::currentIndex()
 void OptionsDialog::setCurrentItem(int index)
 {
   categoriesTree->setCurrentItem(categoriesTree->topLevelItem(index), 1);
-  slotCategoriesItemCLicked(categoriesTree->topLevelItem(index), 1);
+  slotCategoriesItemClicked(categoriesTree->topLevelItem(index), 1);
 }
 
 void OptionsDialog::setBehaviorIconTray(int behavior)
@@ -522,4 +591,64 @@ void  OptionsDialog::intervalTimeChang(QString str)
   } else if (str == tr("hours")) {
     updateFeedsTime_->setRange(1, 9999);
   }
+}
+
+void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *list)
+{
+  QStringList treeItem;
+
+  QListIterator<QAction *> iter(actions);
+  while (iter.hasNext()) {
+    QAction *pAction = iter.next();
+
+    treeItem.clear();
+    treeItem << "" << pAction->text().remove("&")
+             << pAction->toolTip() << pAction->shortcut();
+    QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+
+    if (pAction->icon().isNull())
+      item->setIcon(1, QIcon(":/images/images/noicon.png"));
+    else
+      item->setIcon(1, pAction->icon());
+    shortcutTree_->addTopLevelItem(item);
+  }
+
+  listDefaultShortcut_ = list;
+}
+
+void OptionsDialog::saveActionShortcut(QList<QAction *> actions)
+{
+  int row = 0;
+  QListIterator<QAction *> iter(actions);
+  while (iter.hasNext()) {
+    QAction *pAction = iter.next();
+    pAction->setShortcut(
+          QKeySequence(shortcutTree_->topLevelItem(row)->text(3)));
+    ++row;
+  }
+}
+
+void OptionsDialog::slotShortcutTreeUpDownPressed()
+{
+  shortcutTreeClicked(shortcutTree_->currentItem(), 1);
+}
+
+void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int column)
+{
+  Q_UNUSED(column)
+  editShortcut_->setText(item->text(3));
+  editShortcutBox->setEnabled(true);
+}
+
+void OptionsDialog::slotClearShortcut()
+{
+  editShortcut_->clear();
+  shortcutTree_->currentItem()->setText(3, "");
+}
+
+void OptionsDialog::slotResetShortcut()
+{
+  QString str = listDefaultShortcut_->at(shortcutTree_->currentIndex().row());
+  editShortcut_->setText(str);
+  shortcutTree_->currentItem()->setText(3, str);
 }

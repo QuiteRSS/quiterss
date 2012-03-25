@@ -96,6 +96,9 @@ private:
   FeedsModel *feedsModel_;
   NewsModel *newsModel_;
 
+  QList<QAction *> listActions_;
+  QStringList listDefaultShortcut_;
+
   QAction *addFeedAct_;
   QAction *deleteFeedAct_;
   QAction *importFeedsAct_;

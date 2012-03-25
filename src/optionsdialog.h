@@ -46,11 +46,15 @@ public:
   // fonts
   QTreeWidget *fontTree;
 
+  // shortcut
+  void loadActionShortcut(QList<QAction *> actions, QStringList *list);
+  void saveActionShortcut(QList<QAction *> actions);
+
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
-  void slotCategoriesItemCLicked(QTreeWidgetItem* item, int column);
+  void slotCategoriesItemClicked(QTreeWidgetItem* item, int column);
   void slotCategoriesTreeKeyUpDownPressed();
   void manualProxyToggle(bool checked);
   void updateProxy();
@@ -59,9 +63,14 @@ private slots:
   void slotFontChange();
   void slotFontReset();
   void intervalTimeChang(QString str);
+  void shortcutTreeClicked(QTreeWidgetItem* item, int column);
+  void slotShortcutTreeUpDownPressed();
+  void slotClearShortcut();
+  void slotResetShortcut();
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
+  void signalShortcutTreeUpDownPressed();
 
 private:
   QLabel *contentLabel_;
@@ -76,6 +85,7 @@ private:
   QWidget *notifierWidget_;
   QWidget *languageWidget_;
   QWidget *fontsWidget_;
+  QWidget *shortcutWidget_;
 
   QDialogButtonBox *buttonBox_;
 
@@ -100,6 +110,13 @@ private:
 
   // internal variables for options
   QNetworkProxy networkProxy_;
+
+  // shortcut
+  QTreeWidget *shortcutTree_;
+  QLineEdit *editShortcut_;
+  QStringList *listDefaultShortcut_;
+  QGroupBox *editShortcutBox;
+
 };
 
 #endif // OPTIONSDIALOG_H
