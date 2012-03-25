@@ -889,4 +889,48 @@
     <source>Match any condition</source>
     <target>Соответствует любому условию</target>
 </phrase>
+<phrase>
+    <source>Mark news star</source>
+    <target>Отметить новость звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Delete selected news</source>
+    <target>Удалить выбранные новости</target>
+</phrase>
+<phrase>
+    <source>Previous feed</source>
+    <target>Предыдущая лента</target>
+</phrase>
+<phrase>
+    <source>Next feed</source>
+    <target>Следующая лента</target>
+</phrase>
+<phrase>
+    <source>Previous news</source>
+    <target>Предыдущая новость</target>
+</phrase>
+<phrase>
+    <source>Next news</source>
+    <target>Следующая новость</target>
+</phrase>
+<phrase>
+    <source>Shortcut:</source>
+    <target>Сочетание клавиш:</target>
+</phrase>
+<phrase>
+    <source>Keyboard shortcuts</source>
+    <target>Горячие клавиши</target>
+</phrase>
+<phrase>
+    <source>hours</source>
+    <target>часы</target>
+</phrase>
+<phrase>
+    <source>Action</source>
+    <target>Действие</target>
+</phrase>
+<phrase>
+    <source>Clear</source>
+    <target>Очистить</target>
+</phrase>
 </QPH>
