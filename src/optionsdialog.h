@@ -78,11 +78,11 @@ private:
   QTreeWidget *categoriesTree;
 
   //stack widgets
-  QWidget *generalWidget_;
-  QWidget *networkConnectionsWidget_;
-  QWidget *browserWidget_;
+  QFrame *generalWidget_;
+  QFrame *networkConnectionsWidget_;
+  QFrame *browserWidget_;
   QTabWidget *feedsWidget_;
-  QWidget *notifierWidget_;
+  QFrame *notifierWidget_;
   QWidget *languageWidget_;
   QWidget *fontsWidget_;
   QWidget *shortcutWidget_;

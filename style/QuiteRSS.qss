@@ -272,11 +272,8 @@ QHeaderView::up-arrow {
 }
 
 #contentLabel_ {
-	min-height: 20px;
-	font-weight: bold;
+	min-height: 24px;
 	padding: 2px;
-	border: 1px solid #34aa34;
-	border-radius: 3px;
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 										stop:0 #e0eee0,
 										stop:0.4 #d8eed8,
@@ -291,8 +288,8 @@ QHeaderView::up-arrow {
 
 #categoriesTree::item, #fontTree::item, 
 #languageFileList_::item, #feedsTreeFR::item,
-#filtersTree::item {
-	min-height: 18px;
+#filtersTree::item, #shortcutTree::item {
+	min-height: 20px;
 }
 
 QStatusBar #progressBar_{

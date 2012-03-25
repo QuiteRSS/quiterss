@@ -66,7 +66,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
-  generalLayout->setMargin(2);
   generalLayout->addWidget(new QLabel(tr("Move to the system tray when:")));
   generalLayout->addLayout(moveTrayLayout);
   generalLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
@@ -78,7 +77,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 #endif
   generalLayout->addStretch(1);
 
-  generalWidget_ = new QWidget();
+  generalWidget_ = new QFrame();
+  generalWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
   generalWidget_->setLayout(generalLayout);
   //}
 
@@ -89,7 +89,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
-  networkConnectionsLayout->setMargin(2);
   networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(directConnectionButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
@@ -133,7 +132,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   networkConnectionsLayout->addWidget(manualWidget_);
 
-  networkConnectionsWidget_ = new QWidget();
+  networkConnectionsWidget_ = new QFrame();
+  networkConnectionsWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
   //} networkConnections
 
@@ -150,11 +150,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   embeddedBrowserOn_->setLayout(embeddedBrowserLayout);
 
   QVBoxLayout *browserLayout = new QVBoxLayout();
-  browserLayout->setMargin(0);
+  browserLayout->setMargin(5);
   browserLayout->addWidget(embeddedBrowserOn_);
   browserLayout->addStretch();
 
-  browserWidget_ = new QWidget();
+  browserWidget_ = new QFrame();
+  browserWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
   browserWidget_->setLayout(browserLayout);
   //}
 
@@ -221,11 +222,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
 
   QVBoxLayout *notifierLayout = new QVBoxLayout();
-  notifierLayout->setMargin(0);
   notifierLayout->addWidget(soundNewNews_);
   notifierLayout->addStretch();
 
-  notifierWidget_ = new QWidget();
+  notifierWidget_ = new QFrame();
+  notifierWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
   notifierWidget_->setLayout(notifierLayout);
   //} notifier
 
@@ -345,6 +346,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentLabel_->setObjectName("contentLabel_");
+  contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  QFont fontContentLabel = contentLabel_->font();
+  fontContentLabel.setBold(true);
+  fontContentLabel.setPointSize(fontContentLabel.pointSize()+2);
+  contentLabel_->setFont(fontContentLabel);
 
   contentStack_ = new QStackedWidget();
   contentStack_->setObjectName("contentStack_");
