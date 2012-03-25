@@ -289,7 +289,7 @@ QHeaderView::up-arrow {
 #categoriesTree::item, #fontTree::item, 
 #languageFileList_::item, #feedsTreeFR::item,
 #filtersTree::item, #shortcutTree::item {
-	min-height: 20px;
+	min-height: 18px;
 }
 
 QStatusBar #progressBar_{
