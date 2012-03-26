@@ -1002,6 +1002,8 @@ void RSSListing::createMenu()
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
   newsMenu_->addSeparator();
+  newsMenu_->addAction(markStarAct_);
+  newsMenu_->addSeparator();
 
   newsFilterGroup_ = new QActionGroup(this);
   newsFilterGroup_->setExclusive(true);
