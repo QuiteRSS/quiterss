@@ -33,12 +33,14 @@ void loadModules(QSplashScreen* psplash)
 
 void createSplashScreen()
 {
+  splash = 0;
   splash = new QSplashScreen(QPixmap(":/images/images/splashScreen.png"));
   splash->setFixedSize(splash->pixmap().width(), splash->pixmap().height());
   splash->setContentsMargins(15, 0, 15, 0);
   splash->setEnabled(false);
   splash->showMessage("Prepare loading...",
                       Qt::AlignRight | Qt::AlignTop, Qt::white);
+  splash->setAttribute(Qt::WA_DeleteOnClose);
   splash->show();
 }
 

@@ -80,4 +80,160 @@
     <source>All files</source>
     <target>Alle Dateien</target>
 </phrase>
+<phrase>
+    <source>Stop</source>
+    <target>Abbrechen</target>
+</phrase>
+<phrase>
+    <source>Reload</source>
+    <target>Neu laden</target>
+</phrase>
+<phrase>
+    <source>Go Forward</source>
+    <target>Vor</target>
+</phrase>
+<phrase>
+    <source>Go Back</source>
+    <target>Zurück</target>
+</phrase>
+<phrase>
+    <source>Copy</source>
+    <target>Kopieren</target>
+</phrase>
+<phrase>
+    <source>Copy Link</source>
+    <target>Link-Adresse kopieren</target>
+</phrase>
+<phrase>
+    <source>Save Link...</source>
+    <target>Ziel speichern unter...</target>
+</phrase>
+<phrase>
+    <source>Open in New Window</source>
+    <target>In neuem Fenster öffnen</target>
+</phrase>
+<phrase>
+    <source>Icon size</source>
+    <target>Icon-größe</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+    <target>Sind Sie sicher, um den Feed &apos;%1&apos; löschen?</target>
+</phrase>
+<phrase>
+    <source>Delete feed</source>
+    <target>Löschen Feed</target>
+</phrase>
+<phrase>
+    <source>Select OPML-file</source>
+    <target>Wählen sie OPML-Datei aus</target>
+</phrase>
+<phrase>
+    <source>OPML-files (*.opml)</source>
+    <target>OPML-Dateien (*.opml)</target>
+</phrase>
+<phrase>
+    <source>Import canceled</source>
+    <target>Importieren abgesagt</target>
+</phrase>
+<phrase>
+    <source>Import: can&apos;t open a file</source>
+    <target>Import: kann nicht eine datei öffnen</target>
+</phrase>
+<phrase>
+    <source> Unread: %1 </source>
+    <target> Ungelesen: %1 </target>
+</phrase>
+<phrase>
+    <source> All: %1 </source>
+    <target> Alle: %1 </target>
+</phrase>
+<phrase>
+    <source>Error loading to WebVeiw</source>
+    <target>Fehler beim Laden zu WebView</target>
+</phrase>
+<phrase>
+    <source>Load images</source>
+    <target>Bilder laden</target>
+</phrase>
+<phrase>
+    <source>Auto load images to news view</source>
+    <target>Auto lastimages zur nachrichtenansicht</target>
+</phrase>
+<phrase>
+    <source>No load images</source>
+    <target>Keine lastimages</target>
+</phrase>
+<phrase>
+    <source>No load images to news view</source>
+    <target>Keine lastimages zur nachrichtenansicht</target>
+</phrase>
+<phrase>
+    <source>Loading... (%p%)</source>
+    <target>Laden... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Feeds</source>
+    <target>Feeds</target>
+</phrase>
+<phrase>
+    <source>Title:</source>
+    <target>Titel:</target>
+</phrase>
+<phrase>
+    <source>Author:</source>
+    <target>Autor:</target>
+</phrase>
+<phrase>
+    <source>Update feeds... (%p%)</source>
+    <target>Aktualisiere feeds... (%p%)</target>
+</phrase>
+<phrase>
+    <source>&amp;Add...</source>
+    <target>&amp;Hinzufügen...</target>
+</phrase>
+<phrase>
+    <source>Add new feed</source>
+    <target>Fügen Sie neues Futter hinzu</target>
+</phrase>
+<phrase>
+    <source>&amp;Delete...</source>
+    <target>&amp;Löschen...</target>
+</phrase>
+<phrase>
+    <source>Delete selected feed</source>
+    <target>Löschen ausgewählt Feed</target>
+</phrase>
+<phrase>
+    <source>&amp;Import feeds...</source>
+    <target>&amp;Import-Feeds...</target>
+</phrase>
+<phrase>
+    <source>Import feeds from OPML file</source>
+    <target>Import-Feeds aus OPML-Datei</target>
+</phrase>
+<phrase>
+    <source>E&amp;xit</source>
+    <target>E&amp;xit</target>
+</phrase>
+<phrase>
+    <source>Update current feed</source>
+    <target>Aktualisieren Sie gegenwärtiges Futter</target>
+</phrase>
+<phrase>
+    <source>About...</source>
+    <target>Über...</target>
+</phrase>
+<phrase>
+    <source>Update all</source>
+    <target>Alle aktualisieren</target>
+</phrase>
+<phrase>
+    <source>Delete selected news</source>
+    <target>Löschen ausgewählter nachrichten</target>
+</phrase>
+<phrase>
+    <source>&amp;Edit</source>
+    <target>B&amp;earbeiten</target>
+</phrase>
 </QPH>
