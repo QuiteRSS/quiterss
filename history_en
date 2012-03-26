@@ -2,6 +2,21 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.8.5</B> (26 Mar 2012)
+<UL>
+<LI>Added: Delete news with shortcut</LI>
+<LI>Added: Open news on middle click</LI>
+<LI>Added: Shortcut configuration</LI>
+
+<LI>Changed: GUI. Some visual tweaks</LI>
+
+<LI>Fixed: Improve program startup</LI>
+<LI>Fixed: Resize splashscreen</LI>
+<LI>Fixed: Open author-URI in embedded browser</LI>
+<LI>Fixed: Parsing news-URL's and author-URI's</LI>
+<LI>Fixed: Remove debug messages</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.8.4</B> (21 Mar 2012)
 <UL>
 <LI>Added: Splash screen</LI>
