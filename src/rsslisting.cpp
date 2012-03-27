@@ -2301,9 +2301,17 @@ void RSSListing::deleteNews()
              arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
                  data().toInt()));
     }
-
     newsModel_->select();
   }
+
+  // Временно, пока не сделаем нормальной очистки
+  QSqlQuery q(db_);
+  QString str = QString("delete from %1 where deleted=1").
+      arg(newsModel_->tableName());
+  q.exec(str);
+  q.exec("VACUUM");
+  //
+
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
