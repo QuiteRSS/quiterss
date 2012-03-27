@@ -306,7 +306,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   shortcutTree_->header()->setResizeMode(3, QHeaderView::ResizeToContents);
 
   treeItem.clear();
-  treeItem << "" << tr("Action") << tr("Description") << tr("Shortcut");
+  treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut");
   shortcutTree_->setHeaderLabels(treeItem);
 
   editShortcut_ = new QLineEdit();
@@ -602,13 +602,14 @@ void  OptionsDialog::intervalTimeChang(QString str)
 void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *list)
 {
   QStringList treeItem;
+  int id = 0;
 
   QListIterator<QAction *> iter(actions);
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
 
     treeItem.clear();
-    treeItem << "" << pAction->text().remove("&")
+    treeItem << QString::number(id) << pAction->text().remove("&")
              << pAction->toolTip() << pAction->shortcut();
     QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
 
@@ -617,6 +618,8 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
     else
       item->setIcon(1, pAction->icon());
     shortcutTree_->addTopLevelItem(item);
+
+    ++id;
   }
 
   listDefaultShortcut_ = list;
@@ -654,7 +657,8 @@ void OptionsDialog::slotClearShortcut()
 
 void OptionsDialog::slotResetShortcut()
 {
-  QString str = listDefaultShortcut_->at(shortcutTree_->currentIndex().row());
+  int id = shortcutTree_->currentItem()->data(0, Qt::DisplayRole).toInt();
+  QString str = listDefaultShortcut_->at(id);
   editShortcut_->setText(str);
   shortcutTree_->currentItem()->setText(3, str);
 }
