@@ -83,10 +83,12 @@ int main(int argc, char **argv)
 
   if (!rsslisting.startingTray_)
     rsslisting.show();
-  rsslisting.traySystem->show();
 
   splash->finish(&rsslisting);
   rsslisting.setCurrentFeed();
+
+  qApp->processEvents();
+  rsslisting.traySystem->show();
 
   return app.exec();
 }
