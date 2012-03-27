@@ -1,5 +1,6 @@
 #include "dbmemfilethread.h"
 #include <sqlite3.h>
+#include <QDebug>
 
 DBMemFileThread::DBMemFileThread(QObject *pParent)
   :QThread(pParent)

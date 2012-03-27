@@ -1,3 +1,5 @@
+#include <QtCore>
+
 #if defined(Q_OS_WIN)
 #include <windows.h>
 #include <Psapi.h>

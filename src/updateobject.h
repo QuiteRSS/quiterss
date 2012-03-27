@@ -1,6 +1,9 @@
 #ifndef UPDATEOBJECT_H
 #define UPDATEOBJECT_H
 
+#include <QNetworkAccessManager>
+#include <QObject>
+
 class UpdateObject : public QObject
 {
   Q_OBJECT

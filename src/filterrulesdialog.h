@@ -1,6 +1,8 @@
 #ifndef FILTERRULES_H
 #define FILTERRULES_H
 
+#include <QtGui>
+
 class ItemCondition : public QWidget
 {
   Q_OBJECT

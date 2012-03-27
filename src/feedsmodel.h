@@ -1,6 +1,9 @@
 #ifndef FEEDSMODEL_H
 #define FEEDSMODEL_H
 
+#include <QSqlTableModel>
+#include <QFont>
+
 class FeedsModel : public QSqlTableModel
 {
   Q_OBJECT

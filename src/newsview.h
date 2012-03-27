@@ -1,6 +1,7 @@
 #ifndef NEWSVIEW_H
 #define NEWSVIEW_H
 
+#include <QtGui>
 #include "newsmodel.h"
 
 class NewsView : public QTreeView

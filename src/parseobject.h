@@ -1,6 +1,10 @@
 #ifndef PARSEOBJECT_H
 #define PARSEOBJECT_H
 
+#include <QtSql>
+
+#include <QObject>
+
 class ParseObject : public QObject
 {
   Q_OBJECT

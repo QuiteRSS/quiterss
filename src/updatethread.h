@@ -1,6 +1,14 @@
 #ifndef UPDATETHREAD_H
 #define UPDATETHREAD_H
 
+#include <QDateTime>
+#include <QNetworkProxy>
+#include <QNetworkReply>
+#include <QQueue>
+#include <QTimer>
+#include <QThread>
+#include <QXmlStreamReader>
+
 #include "updateobject.h"
 
 #define REPLY_MAX_COUNT 8

@@ -1,6 +1,13 @@
 #ifndef PARSETHREAD_H
 #define PARSETHREAD_H
 
+#include <QtSql>
+
+#include <QQueue>
+#include <QThread>
+#include <QUrl>
+#include <QXmlStreamReader>
+
 #include "parseobject.h"
 
 class ParseThread : public QThread

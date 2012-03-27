@@ -1,3 +1,7 @@
+#include <QDateTime>
+#include <QDebug>
+#include <QMessageBox>
+
 #include "parsethread.h"
 
 ParseThread::ParseThread(QObject *parent, QSqlDatabase *db) :

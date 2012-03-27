@@ -1,6 +1,8 @@
 #ifndef FEEDSVIEW_H
 #define FEEDSVIEW_H
 
+#include <QtGui>
+
 class FeedsView : public QTreeView
 {
   Q_OBJECT

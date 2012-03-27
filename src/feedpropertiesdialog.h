@@ -1,6 +1,8 @@
 #ifndef FEEDPROPERTIESDIALOG_H
 #define FEEDPROPERTIESDIALOG_H
 
+#include <QtGui>
+
 //! Настройки ленты
 typedef struct {
 

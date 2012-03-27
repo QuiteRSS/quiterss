@@ -2,9 +2,8 @@ QT += core gui network xml webkit sql
 
 TEMPLATE = app
 
-CONFIG += precompile_header
-# Use Precompiled headers (PCH)
-PRECOMPILED_HEADER = src/qtincludes.h
+INCLUDEPATH += . \
+               3rdparty/qtsingleapplication
 
 HEADERS += \
     src/VersionNo.h \
@@ -27,9 +26,7 @@ HEADERS += \
     src/faviconloader.h \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
-    src/filterrulesdialog.h \
-    src/qtincludes.h
-
+    src/filterrulesdialog.h
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
