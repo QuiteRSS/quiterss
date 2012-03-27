@@ -110,9 +110,13 @@ void UpdateThread::finished(QNetworkReply *reply)
     if (redirectionTarget.isValid()) {
       if (reply->operation() == QNetworkAccessManager::HeadOperation) {
         qDebug() << objectName() << "  head redirect...";
+        if (redirectionTarget.host().isNull())
+          redirectionTarget.setUrl("http://"+feedUrl.host()+redirectionTarget.toString());
         head(redirectionTarget, feedUrl, feedDate);
       } else {
         qDebug() << objectName() << "  get redirect...";
+        if (redirectionTarget.host().isNull())
+          redirectionTarget.setUrl("http://"+feedUrl.host()+redirectionTarget.toString());
         get(redirectionTarget, feedUrl, feedDate);
       }
     } else {
