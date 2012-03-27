@@ -1317,6 +1317,7 @@ void RSSListing::deleteFeed()
     q.exec(str);
     q.exec(QString("drop table feed_%1").
            arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+    q.exec("VACUUM");
     q.finish();
 
     int row = feedsView_->currentIndex().row();
