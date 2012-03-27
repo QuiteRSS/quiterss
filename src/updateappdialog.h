@@ -1,9 +1,6 @@
 #ifndef UPDATEAPPDIALOG_H
 #define UPDATEAPPDIALOG_H
 
-#include <QtGui>
-#include <QNetworkReply>
-
 class UpdateAppDialog : public QDialog
 {
   Q_OBJECT

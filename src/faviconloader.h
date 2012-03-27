@@ -1,12 +1,6 @@
 #ifndef FAVICONLOADER_H
 #define FAVICONLOADER_H
 
-#include <QThread>
-#include <QNetworkReply>
-#include <QQueue>
-#include <QTimer>
-#include <QUrl>
-
 #include "updateobject.h"
 
 class FaviconLoader : public QThread

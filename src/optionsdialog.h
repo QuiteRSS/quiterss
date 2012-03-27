@@ -1,9 +1,6 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include <QtGui>
-#include <QNetworkProxy>
-
 class OptionsDialog : public QDialog
 {
   Q_OBJECT

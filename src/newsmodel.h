@@ -1,9 +1,6 @@
 #ifndef NEWSMODEL_H
 #define NEWSMODEL_H
 
-#include <QSqlTableModel>
-#include <QtGui>
-
 class NewsModel : public QSqlTableModel
 {
   Q_OBJECT

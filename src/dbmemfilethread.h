@@ -1,9 +1,6 @@
 #ifndef DBMEMFILETHREAD_H
 #define DBMEMFILETHREAD_H
 
-#include <QThread>
-#include <QtSql>
-
 class DBMemFileThread : public QThread
 {
   Q_OBJECT

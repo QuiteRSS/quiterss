@@ -1,10 +1,6 @@
 #ifndef RSSLISTING_H
 #define RSSLISTING_H
 
-#include <QtGui>
-#include <QtSql>
-#include <QtWebKit>
-
 #include "dbmemfilethread.h"
 #include "faviconloader.h"
 #include "feedsmodel.h"

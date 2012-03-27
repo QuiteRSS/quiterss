@@ -1,8 +1,6 @@
 #ifndef ADDFEEDDIALOG_H
 #define ADDFEEDDIALOG_H
 
-#include <QtGui>
-
 class AddFeedDialog : public QDialog
 {
   Q_OBJECT

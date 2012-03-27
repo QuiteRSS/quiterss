@@ -1,7 +1,3 @@
-#include <QDebug>
-#include <QDesktopServices>
-#include <QTextDocument>
-
 #include "parseobject.h"
 #include "VersionNo.h"
 

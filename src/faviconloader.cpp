@@ -1,5 +1,4 @@
 #include "faviconloader.h"
-#include  <QDebug>
 
 FaviconLoader::FaviconLoader(QObject *pParent)
   :QThread(pParent)

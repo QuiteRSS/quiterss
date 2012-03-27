@@ -1,7 +1,6 @@
 #ifndef NEWSHEADER_H
 #define NEWSHEADER_H
 
-#include <QtGui>
 #include "newsmodel.h"
 
 class NewsHeader : public QHeaderView

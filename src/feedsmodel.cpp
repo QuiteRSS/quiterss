@@ -1,7 +1,3 @@
-#include <QFont>
-#include <QBrush>
-#include <QIcon>
-
 #include "feedsmodel.h"
 
 FeedsModel::FeedsModel(QObject *parent)

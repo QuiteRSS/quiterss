@@ -1,5 +1,3 @@
-#include <QtGui>
-
 #include <qtsingleapplication.h>
 #include "rsslisting.h"
 
