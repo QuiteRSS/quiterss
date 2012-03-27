@@ -2308,7 +2308,7 @@ void RSSListing::deleteNews()
 
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, 6);
-  else curIndex = newsModel_->index(curIndex.row()-1, 6);
+  else curIndex = newsModel_->index(curIndex.row(), 6);
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   slotUpdateStatus();
