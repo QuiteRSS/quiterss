@@ -58,5 +58,8 @@ NewsView::NewsView(QWidget * parent)
   if (!event->modifiers()) {
     if (event->key() == Qt::Key_Up) emit pressKeyUp();
     else if (event->key() == Qt::Key_Down) emit pressKeyDown();
+  } else if ((event->modifiers() == Qt::ControlModifier) &&
+             (event->key() == Qt::Key_A)) {
+    QTreeView::keyPressEvent(event);
   }
 }
