@@ -2282,6 +2282,21 @@ void RSSListing::deleteNews()
     curIndex = indexes.at(0);
     int row = curIndex.row();
     slotSetItemRead(curIndex, 1);
+
+    // Временно, пока не сделаем нормальной очистки
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("description")), 0);
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("content")), 0);
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("received")), 0);
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("author_name")), 0);
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("link_href")), 0);
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("category")), 0);
+
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
   } else {
@@ -2300,16 +2315,43 @@ void RSSListing::deleteNews()
              arg(newsModel_->tableName()).
              arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
                  data().toInt()));
+
+      // Временно, пока не сделаем нормальной очистки
+      q.exec(QString("update %1 set description='' where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set content='' where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set received='' where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set author_name='' where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set link_href='' where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+      q.exec(QString("update %1 set category='' where id=='%2'").
+             arg(newsModel_->tableName()).
+             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
+                 data().toInt()));
+
     }
     newsModel_->select();
   }
 
-//  // Временно, пока не сделаем нормальной очистки
-//  QSqlQuery q(db_);
+  // Временно, пока не сделаем нормальной очистки
+  QSqlQuery q(db_);
 //  QString str = QString("delete from %1 where deleted=1").
 //      arg(newsModel_->tableName());
 //  q.exec(str);
-//  q.exec("VACUUM");
+  q.exec("VACUUM");
 //  //
 
 
