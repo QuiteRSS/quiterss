@@ -2,9 +2,6 @@ QT += core gui network xml webkit sql
 
 TEMPLATE = app
 
-INCLUDEPATH += . \
-               3rdparty/qtsingleapplication
-
 HEADERS += \
     src/VersionNo.h \
     src/updatethread.h \
@@ -27,6 +24,7 @@ HEADERS += \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h
+
 SOURCES += \
     src/updatethread.cpp \
     src/rsslisting.cpp \
