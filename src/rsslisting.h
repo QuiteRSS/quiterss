@@ -87,6 +87,7 @@ private:
   void retranslateStrings();
   void refreshInfoTray();
   void playSoundNewNews();
+  void feedsClearUp(QString name);
 
   QSettings *settings_;
   QString dataDirPath_;
@@ -242,6 +243,14 @@ private:
   bool playSoundNewNews_;
 
   UpdateAppDialog *updateAppDialog_;
+
+  int maxDayClearUp_;
+  int maxNewsClearUp_;
+  bool dayClearUpOn_;
+  bool newsClearUpOn_;
+  bool readClearUp_;
+  bool neverUnreadClearUp_;
+  bool neverStarClearUp_;
 
 private slots:
   void slotProgressBarUpdate();
