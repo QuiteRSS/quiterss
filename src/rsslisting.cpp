@@ -215,13 +215,45 @@ RSSListing::~RSSListing()
     qt.exec(qStr);
     qStr = QString("UPDATE feed_%1 SET read=2 WHERE read=1").
         arg(q.value(0).toString());
-    QSqlQuery q(db_);
-    q.exec(qStr);
+    qt.exec(qStr);
+
+    qStr = QString("UPDATE feed_%1 SET title='' WHERE deleted=1 AND guid!=''").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET published='' WHERE deleted=1 AND guid!=''").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+
+    qStr = QString("UPDATE feed_%1 SET description='' WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET content='' WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET received='' WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET author_name='' WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET link_href='' WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+    qStr = QString("UPDATE feed_%1 SET category='' WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+
+    qStr = QString("UPDATE feed_%1 SET deleted=2 WHERE deleted=1").
+        arg(q.value(0).toString());
+    qt.exec(qStr);
+
+
   }
   db_.commit();
 
   QString  qStr = QString("update feeds set newCount=0");
   q.exec(qStr);
+  q.exec("VACUUM");
 
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
   dbMemFileThread_->start();
@@ -907,6 +939,7 @@ void RSSListing::saveActionShortcuts()
     QAction *pAction = iter.next();
     if (pAction->objectName().isEmpty())
       continue;
+
     const QString& sKey = '/' + pAction->objectName();
     const QString& sValue = QString(pAction->shortcut());
     if (!sValue.isEmpty())
@@ -2283,20 +2316,6 @@ void RSSListing::deleteNews()
     int row = curIndex.row();
     slotSetItemRead(curIndex, 1);
 
-    // Временно, пока не сделаем нормальной очистки
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("description")), 0);
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("content")), 0);
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("received")), 0);
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("author_name")), 0);
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("link_href")), 0);
-    newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("category")), 0);
-
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
   } else {
@@ -2315,45 +2334,9 @@ void RSSListing::deleteNews()
              arg(newsModel_->tableName()).
              arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
                  data().toInt()));
-
-      // Временно, пока не сделаем нормальной очистки
-      q.exec(QString("update %1 set description='' where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set content='' where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set received='' where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set author_name='' where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set link_href='' where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set category='' where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-
     }
     newsModel_->select();
   }
-
-  // Временно, пока не сделаем нормальной очистки
-  QSqlQuery q(db_);
-//  QString str = QString("delete from %1 where deleted=1").
-//      arg(newsModel_->tableName());
-//  q.exec(str);
-  q.exec("VACUUM");
-//  //
-
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
