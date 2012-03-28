@@ -626,14 +626,11 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
 }
 
 void OptionsDialog::saveActionShortcut(QList<QAction *> actions)
-{
-  int row = 0;
-  QListIterator<QAction *> iter(actions);
-  while (iter.hasNext()) {
-    QAction *pAction = iter.next();
-    pAction->setShortcut(
-          QKeySequence(shortcutTree_->topLevelItem(row)->text(3)));
-    ++row;
+{ 
+  for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
+    int id = shortcutTree_->topLevelItem(i)->text(0).toInt();
+    actions.at(id)->setShortcut(
+          QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
   }
 }
 
