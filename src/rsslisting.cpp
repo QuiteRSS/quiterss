@@ -2651,6 +2651,7 @@ void RSSListing::slotShowUpdateAppDlg()
 {
   UpdateAppDialog *updateAppDialog = new UpdateAppDialog(langFileName_,
                                                          settings_, this);
+  updateAppDialog->activateWindow();
   updateAppDialog->exec();
   delete updateAppDialog;
 }
