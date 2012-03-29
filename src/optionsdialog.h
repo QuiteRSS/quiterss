@@ -19,6 +19,7 @@ public:
   int behaviorIconTray();
 
   // systemTray
+  QGroupBox *showTrayIconBox_;
   QCheckBox *startingTray_;
   QCheckBox *minimizingTray_;
   QCheckBox *closingTray_;

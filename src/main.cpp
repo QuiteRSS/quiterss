@@ -81,14 +81,16 @@ int main(int argc, char **argv)
 
   loadModules(splash);
 
-  if (!rsslisting.startingTray_)
+  if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
 
   splash->finish(&rsslisting);
   rsslisting.setCurrentFeed();
 
-  qApp->processEvents();
-  rsslisting.traySystem->show();
+  if (rsslisting.showTrayIcon_) {
+    qApp->processEvents();
+    rsslisting.traySystem->show();
+  }
 
   return app.exec();
 }

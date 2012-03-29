@@ -41,6 +41,10 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ system tray
+  showTrayIconBox_ = new QGroupBox(tr("Show tray icon"));
+  showTrayIconBox_->setCheckable(true);
+  showTrayIconBox_->setChecked(false);
+
   startingTray_ = new QCheckBox(tr("starting QuiteRSS"));
   minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
   closingTray_ = new QCheckBox(tr("closing QuiteRSS"));
@@ -77,10 +81,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 #endif
   generalLayout->addStretch(1);
 
+  showTrayIconBox_->setLayout(generalLayout);
+
+  QVBoxLayout *boxTrayLayout = new QVBoxLayout();
+  boxTrayLayout->setMargin(5);
+  boxTrayLayout->addWidget(showTrayIconBox_);
+
   generalWidget_ = new QFrame();
   generalWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
-  generalWidget_->setLayout(generalLayout);
-  //}
+  generalWidget_->setLayout(boxTrayLayout);
+  //} system tray
 
   //{ networkConnections
   systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
@@ -192,7 +202,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QWidget *updateFeedsWidget_ = new QWidget();
   updateFeedsWidget_->setLayout(updateFeedsLayout);
-
+//
   markNewsReadOn_ = new QCheckBox(tr("Mark selected news as read after"));
   markNewsReadTime_ = new QSpinBox();
   markNewsReadTime_->setEnabled(false);
@@ -212,7 +222,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QWidget *readingFeedsWidget_ = new QWidget();
   readingFeedsWidget_->setLayout(readingFeedsLayout);
-
 //
   dayCleanUpOn_ = new QCheckBox(tr("Maximum number of news to keep:"));
   maxDayCleanUp_ = new QSpinBox();

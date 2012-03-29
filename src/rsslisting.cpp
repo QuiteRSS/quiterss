@@ -311,7 +311,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
   event->ignore();
-  if (closingTray_ && !commitDataRequest_) {
+  if (closingTray_ && !commitDataRequest_ && showTrayIcon_) {
     oldState = windowState();
     emit signalPlaceToTray();
   } else {
@@ -341,7 +341,7 @@ void RSSListing::slotCloseApp()
   if(event->type() == QEvent::WindowStateChange) {
     if(isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
-      if (minimizingTray_) {
+      if (minimizingTray_ && showTrayIcon_) {
         event->ignore();
         emit signalPlaceToTray();
         return;
@@ -1113,6 +1113,7 @@ void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
 
+  showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
   closingTray_ = settings_->value("closingTray", false).toBool();
@@ -1213,6 +1214,7 @@ void RSSListing::writeSettings()
 {
   settings_->beginGroup("/Settings");
 
+  settings_->setValue("showTrayIcon", showTrayIcon_);
   settings_->setValue("startingTray", startingTray_);
   settings_->setValue("minimizingTray", minimizingTray_);
   settings_->setValue("closingTray", closingTray_);
@@ -1756,6 +1758,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->setCurrentItem(index);
 
+  optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog->startingTray_->setChecked(startingTray_);
   optionsDialog->minimizingTray_->setChecked(minimizingTray_);
   optionsDialog->closingTray_->setChecked(closingTray_);
@@ -1814,6 +1817,7 @@ void RSSListing::showOptionDlg()
     return;
   }
 
+  showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog->startingTray_->isChecked();
   minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
   closingTray_ = optionsDialog->closingTray_->isChecked();
@@ -1824,6 +1828,8 @@ void RSSListing::showOptionDlg()
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
   clearStatusNew_ = optionsDialog->clearStatusNew_->isChecked();
   emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
+  if (showTrayIcon_) traySystem->show();
+  else traySystem->hide();
 
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
@@ -2921,6 +2927,8 @@ void RSSListing::slotEditMenuAction()
 
 void RSSListing::refreshInfoTray()
 {
+  if (!showTrayIcon_) return;
+
   int newCount = 0;
   QSqlQuery q(db_);
   QString qStr = QString("select newCount from feeds");

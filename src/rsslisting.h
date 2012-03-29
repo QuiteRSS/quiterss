@@ -22,6 +22,7 @@ class RSSListing : public QMainWindow
 public:
   RSSListing(QWidget *widget = 0);
   ~RSSListing();
+  bool showTrayIcon_;
   bool startingTray_;
   QSystemTrayIcon *traySystem;
   void setCurrentFeed();
