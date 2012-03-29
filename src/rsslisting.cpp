@@ -1712,16 +1712,20 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 void RSSListing::slotNewsViewSelected(QModelIndex index)
 {
   static int idxOld = -1;
+  static int curFeedOld = -1;
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     idxOld = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
+    curFeedOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
     return;
   }
 
   int idx = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
-  if (!((idx == idxOld) &&
+  int curFeed = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
+
+  if (!((idx == idxOld) && (curFeed == curFeedOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1)) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
@@ -1739,7 +1743,9 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
         arg(id).arg(newsModel_->tableName().remove("feed_"));
     q.exec(qStr);
   }
+
   idxOld = idx;
+  curFeedOld = curFeed;
 }
 
 /*! \brief Вызов окна настроек ************************************************/
