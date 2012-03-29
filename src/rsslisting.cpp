@@ -217,7 +217,7 @@ RSSListing::~RSSListing()
         arg(q.value(0).toString());
     qt.exec(qStr);
 
-    feedsClearUp(q.value(0).toString());
+    feedsCleanUp(q.value(0).toString());
 
     qStr = QString("UPDATE feed_%1 SET title='' WHERE deleted=1 AND guid!=''").
         arg(q.value(0).toString());
@@ -1151,13 +1151,13 @@ void RSSListing::readSettings()
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
 
-  maxDayClearUp_ = settings_->value("maxDayClearUp", 30).toInt();
-  maxNewsClearUp_ = settings_->value("maxNewsClearUp", 200).toInt();
-  dayClearUpOn_ = settings_->value("dayClearUpOn", true).toBool();
-  newsClearUpOn_ = settings_->value("newsClearUpOn", true).toBool();
-  readClearUp_ = settings_->value("readClearUp", false).toBool();
-  neverUnreadClearUp_ = settings_->value("neverUnreadClearUp", true).toBool();
-  neverStarClearUp_ = settings_->value("neverStarClearUp", true).toBool();
+  maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
+  maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
+  dayCleanUpOn_ = settings_->value("dayClearUpOn", true).toBool();
+  newsCleanUpOn_ = settings_->value("newsClearUpOn", true).toBool();
+  readCleanUp_ = settings_->value("readClearUp", false).toBool();
+  neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
+  neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
 
   embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
   if (embeddedBrowserOn_)
@@ -1247,13 +1247,13 @@ void RSSListing::writeSettings()
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
 
-  settings_->setValue("maxDayClearUp", maxDayClearUp_);
-  settings_->setValue("maxNewsClearUp", maxNewsClearUp_);
-  settings_->setValue("dayClearUpOn", dayClearUpOn_);
-  settings_->setValue("newsClearUpOn", newsClearUpOn_);
-  settings_->setValue("readClearUp", readClearUp_);
-  settings_->setValue("neverUnreadClearUp", neverUnreadClearUp_);
-  settings_->setValue("neverStarClearUp", neverStarClearUp_);
+  settings_->setValue("maxDayClearUp", maxDayCleanUp_);
+  settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
+  settings_->setValue("dayClearUpOn", dayCleanUpOn_);
+  settings_->setValue("newsClearUpOn", newsCleanUpOn_);
+  settings_->setValue("readClearUp", readCleanUp_);
+  settings_->setValue("neverUnreadClearUp", neverUnreadCleanUp_);
+  settings_->setValue("neverStarClearUp", neverStarCleanUp_);
 
   settings_->setValue("embeddedBrowserOn", embeddedBrowserOn_);
   settings_->setValue("javaScriptEnable", javaScriptEnable_);
@@ -3136,7 +3136,7 @@ void RSSListing::slotNewsDownPressed()
   slotNewsViewClicked(newsView_->currentIndex());
 }
 
-void RSSListing::feedsClearUp(QString name)
+void RSSListing::feedsCleanUp(QString name)
 {
   int cntT = 0;
   int cntNews = 0;
@@ -3148,7 +3148,6 @@ void RSSListing::feedsClearUp(QString name)
       arg(name);
   q.exec(qStr);
   if (q.next()) cntNews = q.value(0).toInt();
-  int cntDelete = cntNews - maxNewsClearUp_;
 
   qStr = QString("SELECT deleted, received, id, read, sticky, published FROM feed_%1")
       .arg(name);
@@ -3158,16 +3157,17 @@ void RSSListing::feedsClearUp(QString name)
     int read = q.value(3).toInt();
     int sticky = q.value(4).toInt();
 
-    if ((neverUnreadClearUp_ && (read == 0)) ||
-        (neverStarClearUp_ && (sticky != 0)) ||
+    if ((neverUnreadCleanUp_ && (read == 0)) ||
+        (neverStarCleanUp_ && (sticky != 0)) ||
         q.value(0).toInt() != 0)
       continue;
 
-    if ((cntT < cntDelete) && newsClearUpOn_) {
+    if ((cntT < (cntNews - maxNewsCleanUp_)) && newsCleanUpOn_) {
         qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
             arg(name).arg(id);
         qCritical() << "*01"  << id << q.value(5).toString()
-                    << q.value(1).toString() << cntNews << cntDelete;
+                    << q.value(1).toString() << cntNews
+                    << (cntNews - maxNewsCleanUp_);
         QSqlQuery qt(db_);
         qt.exec(qStr);
         cntT++;
@@ -3177,19 +3177,20 @@ void RSSListing::feedsClearUp(QString name)
     QDateTime dateTime = QDateTime::fromString(
           q.value(1).toString(),
           Qt::ISODate);
-    if ((dateTime.daysTo(QDateTime::currentDateTime()) > maxDayClearUp_) &&
-        dayClearUpOn_) {
+    if ((dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_) &&
+        dayCleanUpOn_) {
         qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
             arg(name).arg(id);
         qCritical() << "*02"  << id << q.value(5).toString()
-                    << q.value(1).toString() << cntNews << cntDelete;
+                    << q.value(1).toString() << cntNews
+                    << (cntNews - maxNewsCleanUp_);
         QSqlQuery qt(db_);
         qt.exec(qStr);
         cntT++;
         continue;
     }
 
-    if (readClearUp_) {
+    if (readCleanUp_) {
       qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE read!=0 AND id='%2'").
           arg(name).arg(id);
       QSqlQuery qt(db_);
