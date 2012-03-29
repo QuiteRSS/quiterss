@@ -213,9 +213,45 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QWidget *readingFeedsWidget_ = new QWidget();
   readingFeedsWidget_->setLayout(readingFeedsLayout);
 
+//
+  dayCleanUpOn_ = new QCheckBox(tr("Maximum number of news to keep:"));
+  maxDayCleanUp_ = new QSpinBox();
+  maxDayCleanUp_->setEnabled(false);
+  maxDayCleanUp_->setRange(0, 9999);
+  connect(dayCleanUpOn_, SIGNAL(toggled(bool)), maxDayCleanUp_, SLOT(setEnabled(bool)));
+
+  newsCleanUpOn_ = new QCheckBox(tr("Maximum age of news in days to keep:"));
+  maxNewsCleanUp_ = new QSpinBox();
+  maxNewsCleanUp_->setEnabled(false);
+  maxNewsCleanUp_->setRange(0, 9999);
+  connect(newsCleanUpOn_, SIGNAL(toggled(bool)), maxNewsCleanUp_, SLOT(setEnabled(bool)));
+
+  readCleanUp_ = new QCheckBox(tr("Delete read news"));
+  neverUnreadCleanUp_ = new QCheckBox(tr("Never delete unread news"));
+  neverStarCleanUp_ = new QCheckBox(tr("Never delete starred news"));
+
+  QGridLayout *cleanUpFeedsLayout1 = new QGridLayout();
+  cleanUpFeedsLayout1->setMargin(0);
+  cleanUpFeedsLayout1->setColumnStretch(1, 1);
+  cleanUpFeedsLayout1->addWidget(dayCleanUpOn_, 0, 0, 1, 1);
+  cleanUpFeedsLayout1->addWidget(maxDayCleanUp_, 0, 1, 1, 1, Qt::AlignLeft);
+  cleanUpFeedsLayout1->addWidget(newsCleanUpOn_, 1, 0, 1, 1);
+  cleanUpFeedsLayout1->addWidget(maxNewsCleanUp_, 1, 1, 1, 1, Qt::AlignLeft);
+  cleanUpFeedsLayout1->addWidget(readCleanUp_, 2, 0, 1, 1);
+  cleanUpFeedsLayout1->addWidget(neverUnreadCleanUp_, 3, 0, 1, 1);
+  cleanUpFeedsLayout1->addWidget(neverStarCleanUp_, 4, 0, 1, 1);
+
+  QVBoxLayout *cleanUpFeedsLayout = new QVBoxLayout();
+  cleanUpFeedsLayout->addLayout(cleanUpFeedsLayout1);
+  cleanUpFeedsLayout->addStretch();
+
+  QWidget *cleanUpFeedsWidget_ = new QWidget();
+  cleanUpFeedsWidget_->setLayout(cleanUpFeedsLayout);
+
   feedsWidget_ = new QTabWidget();
   feedsWidget_->addTab(updateFeedsWidget_, tr("General"));
   feedsWidget_->addTab(readingFeedsWidget_, tr("Reading"));
+  feedsWidget_->addTab(cleanUpFeedsWidget_, tr("Clean Up"));
   //} feeds
 
   //{ notifier

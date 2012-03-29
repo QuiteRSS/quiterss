@@ -1778,6 +1778,14 @@ void RSSListing::showOptionDlg()
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
 
+  optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
+  optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
+  optionsDialog->newsCleanUpOn_->setChecked(newsCleanUpOn_);
+  optionsDialog->maxNewsCleanUp_->setValue(maxNewsCleanUp_);
+  optionsDialog->readCleanUp_->setChecked(readCleanUp_);
+  optionsDialog->neverUnreadCleanUp_->setChecked(neverUnreadCleanUp_);
+  optionsDialog->neverStarCleanUp_->setChecked(neverStarCleanUp_);
+
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
 
   optionsDialog->setLanguage(langFileName_);
@@ -1847,6 +1855,14 @@ void RSSListing::showOptionDlg()
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
+
+  dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
+  maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
+  newsCleanUpOn_ = optionsDialog->newsCleanUpOn_->isChecked();
+  maxNewsCleanUp_ = optionsDialog->maxNewsCleanUp_->value();
+  readCleanUp_ = optionsDialog->readCleanUp_->isChecked();
+  neverUnreadCleanUp_ = optionsDialog->neverUnreadCleanUp_->isChecked();
+  neverStarCleanUp_ = optionsDialog->neverStarCleanUp_->isChecked();
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
 
