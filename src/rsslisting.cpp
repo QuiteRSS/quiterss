@@ -92,32 +92,13 @@ const QString kCreateNewsTableQuery(
     ")");
 
 /*!****************************************************************************/
-RSSListing::RSSListing(QWidget *parent)
-  : QMainWindow(parent)
+RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent)
+  : QMainWindow(parent),
+    settings_(settings),
+    dataDirPath_(dataDirPath)
 {
   setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
   setContextMenuPolicy(Qt::CustomContextMenu);
-
-#if defined(PORTABLE)
-  if (PORTABLE) {
-    dataDirPath_ = QCoreApplication::applicationDirPath();
-    settings_ = new QSettings(
-          dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini",
-          QSettings::IniFormat);
-  } else {
-    settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                              QCoreApplication::organizationName(), QCoreApplication::applicationName());
-    dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-    QDir d(dataDirPath_);
-    d.mkpath(dataDirPath_);
-  }
-#else
-  settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                            QCoreApplication::organizationName(), QCoreApplication::applicationName());
-  dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-  QDir d(dataDirPath_);
-  d.mkpath(dataDirPath_);
-#endif
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   if (!QFile(dbFileName_).exists()) {  // Инициализация базы
@@ -1113,6 +1094,8 @@ void RSSListing::readSettings()
 {
   settings_->beginGroup("/Settings");
 
+  showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
+
   showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
@@ -1213,6 +1196,8 @@ void RSSListing::readSettings()
 void RSSListing::writeSettings()
 {
   settings_->beginGroup("/Settings");
+
+  settings_->setValue("showSplashScreen", showSplashScreen_);
 
   settings_->setValue("showTrayIcon", showTrayIcon_);
   settings_->setValue("startingTray", startingTray_);
@@ -1758,6 +1743,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->setCurrentItem(index);
 
+  optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
+
   optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog->startingTray_->setChecked(startingTray_);
   optionsDialog->minimizingTray_->setChecked(minimizingTray_);
@@ -1816,6 +1803,8 @@ void RSSListing::showOptionDlg()
     delete optionsDialog;
     return;
   }
+
+  showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
 
   showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog->startingTray_->isChecked();

@@ -18,6 +18,9 @@ public:
   void setBehaviorIconTray(int behavior);
   int behaviorIconTray();
 
+  // general
+  QCheckBox *showSplashScreen_;
+
   // systemTray
   QGroupBox *showTrayIconBox_;
   QCheckBox *startingTray_;
@@ -87,7 +90,7 @@ private:
   QTreeWidget *categoriesTree;
 
   //stack widgets
-  QFrame *generalWidget_;
+  QFrame *traySystemWidget_;
   QFrame *networkConnectionsWidget_;
   QFrame *browserWidget_;
   QTabWidget *feedsWidget_;

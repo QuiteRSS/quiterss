@@ -20,8 +20,9 @@ class RSSListing : public QMainWindow
 {
   Q_OBJECT
 public:
-  RSSListing(QWidget *widget = 0);
+  RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent = 0);
   ~RSSListing();
+  bool showSplashScreen_;
   bool showTrayIcon_;
   bool startingTray_;
   QSystemTrayIcon *traySystem;

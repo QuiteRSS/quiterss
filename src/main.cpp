@@ -1,6 +1,7 @@
 #include <QtGui>
 
 #include <qtsingleapplication.h>
+#include "VersionNo.h"
 #include "rsslisting.h"
 
 QSplashScreen *splash;
@@ -60,12 +61,36 @@ int main(int argc, char **argv)
     return 0;
   }
 
-  createSplashScreen();
-
   app.setApplicationName("QuiteRss");
   app.setOrganizationName("QuiteRss");
   app.setWindowIcon(QIcon(":/images/images/QuiteRSS.ico"));
   app.setQuitOnLastWindowClosed(false);
+
+QString dataDirPath_;
+QSettings *settings_;
+
+#if defined(PORTABLE)
+  if (PORTABLE) {
+    dataDirPath_ = QCoreApplication::applicationDirPath();
+    settings_ = new QSettings(
+          dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini",
+          QSettings::IniFormat);
+  } else {
+    settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
+                              QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+    QDir d(dataDirPath_);
+    d.mkpath(dataDirPath_);
+  }
+#else
+  settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
+                            QCoreApplication::organizationName(), QCoreApplication::applicationName());
+  dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+  QDir d(dataDirPath_);
+  d.mkpath(dataDirPath_);
+#endif
+
+  bool  showSplashScreen_ = settings_->value("Settings/showSplashScreen", true).toBool();
 
   QString fileString = ":/style/qstyle";
   //    QString fileString = app.applicationDirPath() + "/Style/QuiteRSS.qss";
@@ -73,18 +98,24 @@ int main(int argc, char **argv)
   file.open(QFile::ReadOnly);
   app.setStyleSheet(QLatin1String(file.readAll()));
 
-  RSSListing rsslisting;
+  if (showSplashScreen_)
+    createSplashScreen();
+
+  RSSListing rsslisting(settings_, dataDirPath_);
 
   app.setActivationWindow(&rsslisting, true);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),
                    &rsslisting, SLOT(receiveMessage(const QString&)));
 
-  loadModules(splash);
+  if (showSplashScreen_)
+    loadModules(splash);
 
   if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
 
-  splash->finish(&rsslisting);
+  if (showSplashScreen_)
+    splash->finish(&rsslisting);
+
   rsslisting.setCurrentFeed();
 
   if (rsslisting.showTrayIcon_) {

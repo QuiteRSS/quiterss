@@ -16,29 +16,45 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->header()->setResizeMode(1, QHeaderView::Stretch);
   categoriesTree->setMinimumWidth(150);
   QStringList treeItem;
-  treeItem << "0" << tr("System tray");
+  treeItem << "0" << tr("General");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "1" << tr("Network Connections");
+  treeItem << "1" << tr("System tray");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "2" << tr("Browser");
+  treeItem << "2" << tr("Network Connections");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "3" << tr("Feeds");
+  treeItem << "3" << tr("Browser");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "4" << tr("Notifications");
+  treeItem << "4" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "5" << tr("Language");
+  treeItem << "5" << tr("Notifications");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "6" << tr("Fonts");
+  treeItem << "6" << tr("Language");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "7" << tr("Keyboard shortcuts");
+  treeItem << "7" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "8" << tr("Keyboard shortcuts");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+
+  //{ general
+  showSplashScreen_ = new QCheckBox(tr("Show splash screen"));
+//  reopenFeed_ = new QCheckBox(tr("Reopen"));
+
+  QVBoxLayout *generalLayout = new QVBoxLayout();
+  generalLayout->addWidget(showSplashScreen_);
+  generalLayout->addStretch();
+
+  QFrame *generalWidget_ = new QFrame();
+  generalWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  generalWidget_->setLayout(generalLayout);
+  //} general
 
   //{ system tray
   showTrayIconBox_ = new QGroupBox(tr("Show tray icon"));
@@ -69,27 +85,27 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   clearStatusNew_ = new QCheckBox(tr("Clear status new on minimize to tray"));
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
-  QVBoxLayout *generalLayout = new QVBoxLayout();
-  generalLayout->addWidget(new QLabel(tr("Move to the system tray when:")));
-  generalLayout->addLayout(moveTrayLayout);
-  generalLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
-  generalLayout->addLayout(behaviorLayout);
-  generalLayout->addWidget(singleClickTray_);
-  generalLayout->addWidget(clearStatusNew_);
+  QVBoxLayout *trayLayout = new QVBoxLayout();
+  trayLayout->addWidget(new QLabel(tr("Move to the system tray when:")));
+  trayLayout->addLayout(moveTrayLayout);
+  trayLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
+  trayLayout->addLayout(behaviorLayout);
+  trayLayout->addWidget(singleClickTray_);
+  trayLayout->addWidget(clearStatusNew_);
 #if defined(Q_WS_WIN)
-  generalLayout->addWidget(emptyWorking_);
+  trayLayout->addWidget(emptyWorking_);
 #endif
-  generalLayout->addStretch(1);
+  trayLayout->addStretch(1);
 
-  showTrayIconBox_->setLayout(generalLayout);
+  showTrayIconBox_->setLayout(trayLayout);
 
   QVBoxLayout *boxTrayLayout = new QVBoxLayout();
   boxTrayLayout->setMargin(5);
   boxTrayLayout->addWidget(showTrayIconBox_);
 
-  generalWidget_ = new QFrame();
-  generalWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
-  generalWidget_->setLayout(boxTrayLayout);
+  traySystemWidget_ = new QFrame();
+  traySystemWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  traySystemWidget_->setLayout(boxTrayLayout);
   //} system tray
 
   //{ networkConnections
@@ -400,6 +416,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_ = new QStackedWidget();
   contentStack_->setObjectName("contentStack_");
   contentStack_->addWidget(generalWidget_);
+  contentStack_->addWidget(traySystemWidget_);
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(browserWidget_);
   contentStack_->addWidget(feedsWidget_);
