@@ -1715,7 +1715,8 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
   int curFeed = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 
   if (!((idx == idxOld) && (curFeed == curFeedOld) &&
-        newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1)) {
+        newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
+      (QApplication::mouseButtons() & Qt::MiddleButton)) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
 
