@@ -2867,6 +2867,20 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
 
   QModelIndex index = feedsView_->currentIndex();
+
+  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+      data().toByteArray();
+  if (!byteArray.isNull()) {
+    QPixmap icon;
+    icon.loadFromData(QByteArray::fromBase64(byteArray));
+    feedPropertiesDialog->setWindowIcon(icon);
+  } else feedPropertiesDialog->setWindowIcon(QPixmap(":/images/feed"));
+  QString str(feedPropertiesDialog->windowTitle() +
+              " '" +
+              feedsModel_->index(index.row(), 1).data().toString() +
+              "'");
+  feedPropertiesDialog->setWindowTitle(str);
+
   FEED_PROPERTIES properties;
 
   properties.general.text = feedsModel_->record(index.row()).field("text").value().toString();
@@ -2903,7 +2917,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 
-  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+  byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
       data().toByteArray();
   if (!byteArray.isNull()) {
     QPixmap icon;
