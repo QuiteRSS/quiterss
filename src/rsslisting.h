@@ -255,6 +255,8 @@ private:
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
 
+  bool showDescriptionNews_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();

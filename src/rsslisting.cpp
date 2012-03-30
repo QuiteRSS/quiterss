@@ -1136,6 +1136,8 @@ void RSSListing::readSettings()
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
 
+  showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
+
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
   dayCleanUpOn_ = settings_->value("dayClearUpOn", true).toBool();
@@ -1235,6 +1237,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
+
+  settings_->setValue("showDescriptionNews", showDescriptionNews_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -1772,6 +1776,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
 
+  optionsDialog->showDescriptionNews_->setChecked(showDescriptionNews_);
+
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
   optionsDialog->newsCleanUpOn_->setChecked(newsCleanUpOn_);
@@ -1855,6 +1861,8 @@ void RSSListing::showOptionDlg()
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
+
+  showDescriptionNews_ = optionsDialog->showDescriptionNews_->isChecked();
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
@@ -2617,15 +2625,21 @@ void RSSListing::updateWebView(QModelIndex index)
     slotNewsViewDoubleClicked(index);
   }
   if (!(QApplication::mouseButtons() & Qt::MiddleButton) || !embeddedBrowserOn_) {
-    QString content = newsModel_->record(index.row()).field("content").value().toString();
-    if (content.isEmpty()) {
-      webView_->setHtml(
-            newsModel_->record(index.row()).field("description").value().toString());
-      //    qDebug() << "setHtml : description";
-    }
-    else {
-      webView_->setHtml(content);
-      //    qDebug() << "setHtml : content";
+    if (!showDescriptionNews_) {
+      QString linkString = newsModel_->record(
+            index.row()).field("link_href").value().toString();
+      if (linkString.isEmpty())
+        linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+
+      webView_->load(QUrl(linkString));
+    } else {
+      QString content = newsModel_->record(index.row()).field("content").value().toString();
+      if (content.isEmpty()) {
+        webView_->setHtml(
+              newsModel_->record(index.row()).field("description").value().toString());
+      } else {
+        webView_->setHtml(content);
+      }
     }
   }
 }

@@ -45,6 +45,8 @@ public:
   QCheckBox *markNewsReadOn_;
   QSpinBox *markNewsReadTime_;
 
+  QCheckBox *showDescriptionNews_;
+
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;
   QCheckBox *newsCleanUpOn_;

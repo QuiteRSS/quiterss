@@ -82,7 +82,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   behaviorLayout->addWidget(newCountTray_);
   behaviorLayout->addWidget(unreadCountTray_);
 
-  singleClickTray_ = new QCheckBox(tr("Single click instead of double click for show window"));
+  singleClickTray_ = new QCheckBox(
+        tr("Single click instead of double click for show window"));
   clearStatusNew_ = new QCheckBox(tr("Clear status new on minimize to tray"));
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
@@ -110,9 +111,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} system tray
 
   //{ networkConnections
-  systemProxyButton_ = new QRadioButton(tr("System proxy configuration (if available)"));
+  systemProxyButton_ = new QRadioButton(
+        tr("System proxy configuration (if available)"));
   //  systemProxyButton_->setEnabled(false);
-  directConnectionButton_ = new QRadioButton(tr("Direct connection to the Internet"));
+  directConnectionButton_ = new QRadioButton(
+        tr("Direct connection to the Internet"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
@@ -184,10 +187,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   browserWidget_ = new QFrame();
   browserWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
   browserWidget_->setLayout(browserLayout);
-  //}
+  //} browser
 
   //{ feeds
-  updateFeedsStartUp_ = new QCheckBox(tr("Automatically update the feeds on start-up"));
+  updateFeedsStartUp_ = new QCheckBox(
+        tr("Automatically update the feeds on start-up"));
   updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
   updateFeedsTime_ = new QSpinBox();
   updateFeedsTime_->setEnabled(false);
@@ -224,7 +228,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   markNewsReadTime_ = new QSpinBox();
   markNewsReadTime_->setEnabled(false);
   markNewsReadTime_->setRange(0, 100);
-  connect(markNewsReadOn_, SIGNAL(toggled(bool)), markNewsReadTime_, SLOT(setEnabled(bool)));
+  connect(markNewsReadOn_, SIGNAL(toggled(bool)),
+          markNewsReadTime_, SLOT(setEnabled(bool)));
+
+  showDescriptionNews_ = new QCheckBox(
+        tr("Show news' description instead loading web page"));
 
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
@@ -235,6 +243,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
   readingFeedsLayout->addLayout(readingFeedsLayout1);
+  readingFeedsLayout->addWidget(showDescriptionNews_);
   readingFeedsLayout->addStretch();
 
   QWidget *readingFeedsWidget_ = new QWidget();
@@ -244,13 +253,15 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   maxDayCleanUp_ = new QSpinBox();
   maxDayCleanUp_->setEnabled(false);
   maxDayCleanUp_->setRange(0, 9999);
-  connect(dayCleanUpOn_, SIGNAL(toggled(bool)), maxDayCleanUp_, SLOT(setEnabled(bool)));
+  connect(dayCleanUpOn_, SIGNAL(toggled(bool)),
+          maxDayCleanUp_, SLOT(setEnabled(bool)));
 
   newsCleanUpOn_ = new QCheckBox(tr("Maximum age of news in days to keep:"));
   maxNewsCleanUp_ = new QSpinBox();
   maxNewsCleanUp_->setEnabled(false);
   maxNewsCleanUp_->setRange(0, 9999);
-  connect(newsCleanUpOn_, SIGNAL(toggled(bool)), maxNewsCleanUp_, SLOT(setEnabled(bool)));
+  connect(newsCleanUpOn_, SIGNAL(toggled(bool)),
+          maxNewsCleanUp_, SLOT(setEnabled(bool)));
 
   readCleanUp_ = new QCheckBox(tr("Delete read news"));
   neverUnreadCleanUp_ = new QCheckBox(tr("Never delete unread news"));
@@ -335,7 +346,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   fontTree->setCurrentItem(fontTree->topLevelItem(0));
-  connect(fontTree, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotFontChange()));
+  connect(fontTree, SIGNAL(doubleClicked(QModelIndex)),
+          this, SLOT(slotFontChange()));
 
   QPushButton *fontChange = new QPushButton(tr("Change..."));
   connect(fontChange, SIGNAL(clicked()), this, SLOT(slotFontChange()));
