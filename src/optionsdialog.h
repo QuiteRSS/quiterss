@@ -20,6 +20,7 @@ public:
 
   // general
   QCheckBox *showSplashScreen_;
+  QCheckBox *reopenFeedStartup_;
 
   // systemTray
   QGroupBox *showTrayIconBox_;

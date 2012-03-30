@@ -116,7 +116,8 @@ QSettings *settings_;
   if (showSplashScreen_)
     splash->finish(&rsslisting);
 
-  rsslisting.setCurrentFeed();
+  if (rsslisting.reopenFeedStartup_)
+    rsslisting.setCurrentFeed();
 
   if (rsslisting.showTrayIcon_) {
     qApp->processEvents();

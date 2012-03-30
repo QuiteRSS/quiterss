@@ -45,10 +45,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ general
   showSplashScreen_ = new QCheckBox(tr("Show splash screen"));
-//  reopenFeed_ = new QCheckBox(tr("Reopen"));
+  reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addWidget(showSplashScreen_);
+  generalLayout->addWidget(reopenFeedStartup_);
   generalLayout->addStretch();
 
   QFrame *generalWidget_ = new QFrame();

@@ -1095,6 +1095,7 @@ void RSSListing::readSettings()
   settings_->beginGroup("/Settings");
 
   showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
+  reopenFeedStartup_ = settings_->value("reopenFeedStartup", true).toBool();
 
   showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
@@ -1198,6 +1199,7 @@ void RSSListing::writeSettings()
   settings_->beginGroup("/Settings");
 
   settings_->setValue("showSplashScreen", showSplashScreen_);
+  settings_->setValue("reopenFeedStartup", reopenFeedStartup_);
 
   settings_->setValue("showTrayIcon", showTrayIcon_);
   settings_->setValue("startingTray", startingTray_);
@@ -1744,6 +1746,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->setCurrentItem(index);
 
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
+  optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
 
   optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog->startingTray_->setChecked(startingTray_);
@@ -1805,6 +1808,7 @@ void RSSListing::showOptionDlg()
   }
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
+  reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
 
   showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog->startingTray_->isChecked();
