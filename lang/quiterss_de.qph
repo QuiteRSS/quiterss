@@ -126,7 +126,7 @@
 </phrase>
 <phrase>
     <source>Select OPML-file</source>
-    <target>Wählen sie OPML-Datei aus</target>
+    <target>Wählen Sie OPML-Datei</target>
 </phrase>
 <phrase>
     <source>OPML-files (*.opml)</source>
@@ -138,7 +138,7 @@
 </phrase>
 <phrase>
     <source>Import: can&apos;t open a file</source>
-    <target>Import: kann nicht eine datei öffnen</target>
+    <target>Import: kann keine Datei öffnen</target>
 </phrase>
 <phrase>
     <source> Unread: %1 </source>
@@ -194,7 +194,7 @@
 </phrase>
 <phrase>
     <source>Add new feed</source>
-    <target>Fügen Sie neues Futter hinzu</target>
+    <target>Hinzufügen neuer Feed</target>
 </phrase>
 <phrase>
     <source>&amp;Delete...</source>
@@ -214,11 +214,11 @@
 </phrase>
 <phrase>
     <source>E&amp;xit</source>
-    <target>E&amp;xit</target>
+    <target>B&amp;eenden</target>
 </phrase>
 <phrase>
     <source>Update current feed</source>
-    <target>Aktualisieren Sie gegenwärtiges Futter</target>
+    <target>Aktualisieren Sie gegenwärtiges Feed</target>
 </phrase>
 <phrase>
     <source>About...</source>
@@ -230,10 +230,530 @@
 </phrase>
 <phrase>
     <source>Delete selected news</source>
-    <target>Löschen ausgewählter nachrichten</target>
+    <target>Löschen ausgewählter Artikel</target>
 </phrase>
 <phrase>
     <source>&amp;Edit</source>
     <target>B&amp;earbeiten</target>
+</phrase>
+<phrase>
+    <source>Mark news star</source>
+    <target>Markieren Stern Artikel</target>
+</phrase>
+<phrase>
+    <source>Properties feed</source>
+    <target>Eigenschaften Feed</target>
+</phrase>
+<phrase>
+    <source>Delete</source>
+    <target>Löschen</target>
+</phrase>
+<phrase>
+    <source>Star</source>
+    <target>Stern</target>
+</phrase>
+<phrase>
+    <source>Mark Read</source>
+    <target>Als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>Update feed</source>
+    <target>Feed aktualisieren</target>
+</phrase>
+<phrase>
+    <source>Unread news: %1</source>
+    <target>Ungelesene Artikel: %1</target>
+</phrase>
+<phrase>
+    <source>New news: %1</source>
+    <target>Neu Artikel: %1</target>
+</phrase>
+<phrase>
+    <source>Export canceled</source>
+    <target>Exportieren abgebrochen</target>
+</phrase>
+<phrase>
+    <source>Export: can&apos;t open a file</source>
+    <target>Export: kann keine Datei öffnen</target>
+</phrase>
+<phrase>
+    <source>Update done</source>
+    <target>Aktualisieren Sie getan</target>
+</phrase>
+<phrase>
+    <source>&amp;Export feeds...</source>
+    <target>&amp;Export-Feeds...</target>
+</phrase>
+<phrase>
+    <source>Export feeds to OPML file</source>
+    <target>Export-Feeds zu OPML-Datei</target>
+</phrase>
+<phrase>
+    <source>Mark all feeds Read</source>
+    <target>Markieren alle Feeds gelesen</target>
+</phrase>
+<phrase>
+    <source>Mark Read/Unread</source>
+    <target>Alle gelesen/ungelesen</target>
+</phrase>
+<phrase>
+    <source>Mark current news read/unread</source>
+    <target>Markieren aktuellen Artikel als gelesen/ungelesen</target>
+</phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>Artikel als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>News filters...</source>
+    <target>Filters Artikel...</target>
+</phrase>
+<phrase>
+    <source>Filter news...</source>
+    <target>Filter Artikel...</target>
+</phrase>
+<phrase>
+    <source>Options...</source>
+    <target>Einstellungen...</target>
+</phrase>
+<phrase>
+    <source>Open options gialog</source>
+    <target>Öffnen Einstellungen-Dialog</target>
+</phrase>
+<phrase>
+    <source>Filter</source>
+    <target>Filter</target>
+</phrase>
+<phrase>
+    <source>Show All</source>
+    <target>Alle anzeigen</target>
+</phrase>
+<phrase>
+    <source>Show New</source>
+    <target>Neue anzeigen</target>
+</phrase>
+<phrase>
+    <source>Show Unread</source>
+    <target>Ungelesene anzeigen</target>
+</phrase>
+<phrase>
+    <source>Show Star</source>
+    <target>Stern anzeigen</target>
+</phrase>
+<phrase>
+    <source>Show &apos;About&apos; dialog</source>
+    <target>Anzeigen &quot;Über&quot;-Dialog</target>
+</phrase>
+<phrase>
+    <source>Check for updates...</source>
+    <target>Nach Updates suchen...</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Im Browser öffnen</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>&amp;Ansicht</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>Fee&amp;ds</target>
+</phrase>
+<phrase>
+    <source>&amp;News</source>
+    <target>A&amp;rtike</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>&amp;Werkzeuge</target>
+</phrase>
+<phrase>
+    <source>&amp;Help</source>
+    <target>&amp;Hilfe</target>
+</phrase>
+<phrase>
+    <source>ToolBar</source>
+    <target>Werkzeugleiste</target>
+</phrase>
+<phrase>
+    <source>Style</source>
+    <target>Stil</target>
+</phrase>
+<phrase>
+    <source>Icon</source>
+    <target>Symbol</target>
+</phrase>
+<phrase>
+    <source>Text</source>
+    <target>Text</target>
+</phrase>
+<phrase>
+    <source>Text under icon</source>
+    <target>Text unter Symbolen</target>
+</phrase>
+<phrase>
+    <source>Text beside icon</source>
+    <target>Text neben Symbolen</target>
+</phrase>
+<phrase>
+    <source>Icon</source>
+    <target>Symbol</target>
+</phrase>
+<phrase>
+    <source>Previous feed</source>
+    <target>Voriger Feed</target>
+</phrase>
+<phrase>
+    <source>Next feed</source>
+    <target>Nächster Feed</target>
+</phrase>
+<phrase>
+    <source>Show ToolBar</source>
+    <target>Werkzeugleiste anzeigen</target>
+</phrase>
+<phrase>
+    <source>Big</source>
+    <target>Groß</target>
+</phrase>
+<phrase>
+    <source>Normal</source>
+    <target>Normal</target>
+</phrase>
+<phrase>
+    <source>Small</source>
+    <target>Klein</target>
+</phrase>
+<phrase>
+    <source>Show window</source>
+    <target>Fenster Wiederherstellung</target>
+</phrase>
+<phrase>
+    <source>Acknowledgements:</source>
+    <target>Danksagungen:</target>
+</phrase>
+<phrase>
+    <source>&amp;Close</source>
+    <target>S&amp;chließen</target>
+</phrase>
+<phrase>
+    <source>The authors:</source>
+    <target>Die Autoren:</target>
+</phrase>
+<phrase>
+    <source>Version </source>
+    <target>Version </target>
+</phrase>
+<phrase>
+    <source>Add feed</source>
+    <target>Hinzufügen Feed</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Feed Titel:</target>
+</phrase>
+<phrase>
+    <source>Feed Url:</source>
+    <target>Feed Url:</target>
+</phrase>
+<phrase>
+    <source>General</source>
+    <target>Allgemein</target>
+</phrase>
+<phrase>
+    <source>Homepage:</source>
+    <target>Homepage:</target>
+</phrase>
+<phrase>
+    <source>Load feed title</source>
+    <target>Laden Feed Titel</target>
+</phrase>
+<phrase>
+    <source>Category</source>
+    <target>Kategorie</target>
+</phrase>
+<phrase>
+    <source>Published</source>
+    <target>Veröffentlicht</target>
+</phrase>
+<phrase>
+    <source>Read</source>
+    <target>Gelesen</target>
+</phrase>
+<phrase>
+    <source>Received</source>
+    <target>Erhalten</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS is available!</source>
+    <target>Die neue Version ist verfügbar QuiteRSS!</target>
+</phrase>
+<phrase>
+    <source>Click here to go to the download page</source>
+    <target>Klicken Sie hier, um zur Download-Seite zu gehen</target>
+</phrase>
+<phrase>
+    <source>Current version is: </source>
+    <target>Aktuelle Version: </target>
+</phrase>
+<phrase>
+    <source>Error checking updates</source>
+    <target>Fehlerüberprüfung Updates</target>
+</phrase>
+<phrase>
+    <source>Loading history...</source>
+    <target>Das Laden der Geschichte...</target>
+</phrase>
+<phrase>
+    <source>You already have the latest version</source>
+    <target>Sie haben bereits die neueste Version</target>
+</phrase>
+<phrase>
+    <source>Your version is: </source>
+    <target>Ihre Version ist: </target>
+</phrase>
+<phrase>
+    <source>Mark selected news as read after</source>
+    <target>Ausgewählte Artikel als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>Action</source>
+    <target>Aktion</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds every</source>
+    <target>Alle Feeds nach dieser Zeit aktualisieren</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds on start-up</source>
+    <target>Alle Feeds beim Start aktualisieren</target>
+</phrase>
+<phrase>
+    <source>Browser</source>
+    <target>Browser</target>
+</phrase>
+<phrase>
+    <source>Change icon for incoming new news</source>
+    <target>Ändern Symbol auf eingehende neue Artikel</target>
+</phrase>
+<phrase>
+    <source>Change...</source>
+    <target>Ändern...</target>
+</phrase>
+<phrase>
+    <source>Choose language:</source>
+    <target>Wählen eine Sprache:</target>
+</phrase>
+<phrase>
+    <source>Clear</source>
+    <target>Löschen</target>
+</phrase>
+<phrase>
+    <source>Clear status new on minimize to tray</source>
+    <target>Löschen des neuen Status beim in den Tray minimieren</target>
+</phrase>
+<phrase>
+    <source>closing QuiteRSS</source>
+    <target>schließen QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>Description</source>
+    <target>Beschreibung</target>
+</phrase>
+<phrase>
+    <source>Direct connection to the Internet</source>
+    <target>Direkte Verbindung zum Internet</target>
+</phrase>
+<phrase>
+    <source>Empty working set on minimize to tray</source>
+    <target>Lösen Speicher beim Minimieren in den Tray</target>
+</phrase>
+<phrase>
+    <source>Enable JavaScript</source>
+    <target>JavaScript aktivieren</target>
+</phrase>
+<phrase>
+    <source>Enable plug-ins</source>
+    <target>Plug-Ins aktivieren</target>
+</phrase>
+<phrase>
+    <source>English (%1)</source>
+    <target>Englisch (%1)</target>
+</phrase>
+<phrase>
+    <source>Feeds list font</source>
+    <target>Feeds Liste Schriftart</target>
+</phrase>
+<phrase>
+    <source>Font</source>
+    <target>Schriftart</target>
+</phrase>
+<phrase>
+    <source>Fonts</source>
+    <target>Schriftarten</target>
+</phrase>
+<phrase>
+    <source>hours</source>
+    <target>Stunden</target>
+</phrase>
+<phrase>
+    <source>Keyboard shortcuts</source>
+    <target>Tastenkombinationen</target>
+</phrase>
+<phrase>
+    <source>Language</source>
+    <target>Sprache</target>
+</phrase>
+<phrase>
+    <source>Manual proxy configuration:</source>
+    <target>Manuelle Proxy-Konfiguration:</target>
+</phrase>
+<phrase>
+    <source>minimizing QuiteRSS</source>
+    <target>minimierung QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>minutes</source>
+    <target>Minuten</target>
+</phrase>
+<phrase>
+    <source>Move to the system tray when:</source>
+    <target>Verschieben auf System Tray, wenn:</target>
+</phrase>
+<phrase>
+    <source>Network Connections</source>
+    <target>Netzwerkverbindungen</target>
+</phrase>
+<phrase>
+    <source>News font</source>
+    <target>Artikel Schriftart</target>
+</phrase>
+<phrase>
+    <source>News list font</source>
+    <target>Schriftart Liste der Artikel</target>
+</phrase>
+<phrase>
+    <source>Notifications</source>
+    <target>Benachrichtigungen</target>
+</phrase>
+<phrase>
+    <source>Password:</source>
+    <target>Kennwort:</target>
+</phrase>
+<phrase>
+    <source>Play sound for incoming new news</source>
+    <target>Sound abspielen bei eingehenden neuen Artikel</target>
+</phrase>
+<phrase>
+    <source>Port:</source>
+    <target>Port:</target>
+</phrase>
+<phrase>
+    <source>Proxy server:</source>
+    <target>Proxy-Server:</target>
+</phrase>
+<phrase>
+    <source>Reading</source>
+    <target>Lesen</target>
+</phrase>
+<phrase>
+    <source>Reset</source>
+    <target>Zurücksetzen</target>
+</phrase>
+<phrase>
+    <source>Russian (%1)</source>
+    <target>Russisch (%1)</target>
+</phrase>
+<phrase>
+    <source>seconds</source>
+    <target>Sekunden</target>
+</phrase>
+<phrase>
+    <source>System tray</source>
+    <target>System Tray</target>
+</phrase>
+<phrase>
+    <source>Show count of new news</source>
+    <target>Zeige Anzahl der neuen Artikel</target>
+</phrase>
+<phrase>
+    <source>Show count of unread news</source>
+    <target>Zeige Anzahl der ungelesenen Artikel</target>
+</phrase>
+<phrase>
+    <source>Show static icon</source>
+    <target>Zeige statisches Symbol</target>
+</phrase>
+<phrase>
+    <source>Single click instead of double click for show window</source>
+    <target>Ein Klick statt Doppelklick, um das Fenster anzuzeigen</target>
+</phrase>
+<phrase>
+    <source>starting QuiteRSS</source>
+    <target>starten QuiteRSS</target>
+</phrase>
+<phrase>
+    <source>System proxy configuration (if available)</source>
+    <target>Systemeigene Proxykonfiguration (falls vorhanden)</target>
+</phrase>
+<phrase>
+    <source>Tray icon behavior:</source>
+    <target>Das Verhalten im System Tray Symbol:</target>
+</phrase>
+<phrase>
+    <source>Type</source>
+    <target>Art</target>
+</phrase>
+<phrase>
+    <source>Use the embedded browser</source>
+    <target>Verwenden des integrierten Browsers</target>
+</phrase>
+<phrase>
+    <source>Username:</source>
+    <target>Benutzername:</target>
+</phrase>
+<phrase>
+    <source>Show splash screen</source>
+    <target>Begrüßungsbildschirm beim Start anzeigen</target>
+</phrase>
+<phrase>
+    <source>Show system tray icon</source>
+    <target>Symbol im System Tray anzeigen</target>
+</phrase>
+<phrase>
+    <source>German (%1)</source>
+    <target>Deutsch (%1)</target>
+</phrase>
+<phrase>
+    <source>Clean Up</source>
+    <target>Aufräumen</target>
+</phrase>
+<phrase>
+    <source>Reopen last opened feeds on startup</source>
+    <target>Öffnen Sie zuletzt geöffnete Feeds beim Starten</target>
+</phrase>
+<phrase>
+    <source>Show news&apos; description instead loading web page</source>
+    <target>Zeigen Beschreibung des Artikels statt dem Herunterladen einer Web Page</target>
+</phrase>
+<phrase>
+    <source>Maximum number of news to keep:</source>
+    <target>Maximale Anzahl der zu behaltenden Artikel:</target>
+</phrase>
+<phrase>
+    <source>Maximum age of news in days to keep:</source>
+    <target>Maximale After der Artikel (in Tagen):</target>
+</phrase>
+<phrase>
+    <source>Delete read news</source>
+    <target>Gelesene Artikel löschen</target>
+</phrase>
+<phrase>
+    <source>Never delete unread news</source>
+    <target>Ungelesene Artikel nie löschen</target>
+</phrase>
+<phrase>
+    <source>Never delete starred news</source>
+    <target>Sternen Artikel nie löschen</target>
 </phrase>
 </QPH>

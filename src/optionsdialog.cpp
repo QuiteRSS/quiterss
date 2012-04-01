@@ -44,7 +44,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ general
-  showSplashScreen_ = new QCheckBox(tr("Show splash screen"));
+  showSplashScreen_ = new QCheckBox(tr("Show splash screen on startup"));
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
@@ -58,7 +58,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} general
 
   //{ system tray
-  showTrayIconBox_ = new QGroupBox(tr("Show tray icon"));
+  showTrayIconBox_ = new QGroupBox(tr("Show system tray icon"));
   showTrayIconBox_->setCheckable(true);
   showTrayIconBox_->setChecked(false);
 
@@ -191,7 +191,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ feeds
   updateFeedsStartUp_ = new QCheckBox(
-        tr("Automatically update the feeds on start-up"));
+        tr("Automatically update the feeds on startup"));
   updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
   updateFeedsTime_ = new QSpinBox();
   updateFeedsTime_->setEnabled(false);
@@ -318,6 +318,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   // init list
   QStringList languageList;
   languageList << QString(tr("English (%1)")).arg("en")
+               << QString(tr("German (%1)")).arg("de")
                << QString(tr("Russian (%1)")).arg("ru");
   foreach (QString str, languageList) {
     new QListWidgetItem(str, languageFileList_);
