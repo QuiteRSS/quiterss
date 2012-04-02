@@ -3193,7 +3193,7 @@ void RSSListing::feedsCleanUp(QString name)
   int cntT = 0;
   int cntNews = 0;
 
-  qCritical() << name;
+  qDebug() << name;
 
   QSqlQuery q(db_);
   QString qStr = QString("SELECT count(id) FROM feed_%1 WHERE deleted=0").
@@ -3217,9 +3217,9 @@ void RSSListing::feedsCleanUp(QString name)
     if ((cntT < (cntNews - maxNewsCleanUp_)) && newsCleanUpOn_) {
         qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
             arg(name).arg(id);
-        qCritical() << "*01"  << id << q.value(5).toString()
-                    << q.value(1).toString() << cntNews
-                    << (cntNews - maxNewsCleanUp_);
+        qDebug() << "*01"  << id << q.value(5).toString()
+                 << q.value(1).toString() << cntNews
+                 << (cntNews - maxNewsCleanUp_);
         QSqlQuery qt(db_);
         qt.exec(qStr);
         cntT++;
@@ -3233,9 +3233,9 @@ void RSSListing::feedsCleanUp(QString name)
         dayCleanUpOn_) {
         qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
             arg(name).arg(id);
-        qCritical() << "*02"  << id << q.value(5).toString()
-                    << q.value(1).toString() << cntNews
-                    << (cntNews - maxNewsCleanUp_);
+        qDebug() << "*02"  << id << q.value(5).toString()
+                 << q.value(1).toString() << cntNews
+                 << (cntNews - maxNewsCleanUp_);
         QSqlQuery qt(db_);
         qt.exec(qStr);
         cntT++;
