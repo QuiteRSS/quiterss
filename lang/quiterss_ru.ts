@@ -410,12 +410,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="47"/>
         <source>Show splash screen on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать заставку при запуске</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="61"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать иконку в системном трее</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
@@ -559,42 +559,42 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="48"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Повторно открывать последнюю открытую ленту при запуске</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="194"/>
         <source>Automatically update the feeds on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматическое обновление лент при запуске</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="235"/>
         <source>Show news&apos; description instead loading web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать описание новости вместо загрузки веб-страницы</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное количество сохраняемых новостей:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальный возраст сохраняемых новостей в днях:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="266"/>
         <source>Delete read news</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалять прочитанные новости</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"></translation>
+        <translation>Никогда не удалять непрочитанные новости</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"></translation>
+        <translation>Никогда не удалять новости отмеченные звёздочкой</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -604,7 +604,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>Clean Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
@@ -619,7 +619,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="321"/>
         <source>German (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Немецкий (%1)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="336"/>

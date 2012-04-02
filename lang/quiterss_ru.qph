@@ -933,4 +933,48 @@
     <source>Clear</source>
     <target>Очистить</target>
 </phrase>
+<phrase>
+    <source>Show splash screen on startup</source>
+    <target>Показать заставку при запуске</target>
+</phrase>
+<phrase>
+    <source>Show system tray icon</source>
+    <target>Показать иконку в системном трее</target>
+</phrase>
+<phrase>
+    <source>Reopen last opened feeds on startup</source>
+    <target>Повторно открывать последнюю открытую ленту при запуске</target>
+</phrase>
+<phrase>
+    <source>Show news&apos; description instead loading web page</source>
+    <target>Показывать описание новости вместо загрузки веб-страницы</target>
+</phrase>
+<phrase>
+    <source>Maximum number of news to keep:</source>
+    <target>Максимальное количество сохраняемых новостей:</target>
+</phrase>
+<phrase>
+    <source>Maximum age of news in days to keep:</source>
+    <target>Максимальный возраст сохраняемых новостей в днях:</target>
+</phrase>
+<phrase>
+    <source>Delete read news</source>
+    <target>Удалять прочитанные новости</target>
+</phrase>
+<phrase>
+    <source>Never delete unread news</source>
+    <target>Никогда не удалять непрочитанные новости</target>
+</phrase>
+<phrase>
+    <source>Never delete starred news</source>
+    <target>Никогда не удалять новости отмеченные звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Clean Up</source>
+    <target>Очистка</target>
+</phrase>
+<phrase>
+    <source>German (%1)</source>
+    <target>Немецкий (%1)</target>
+</phrase>
 </QPH>
