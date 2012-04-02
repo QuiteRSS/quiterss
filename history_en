@@ -4,7 +4,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.8.6</B> (02 Apr 2012)
 <UL>
-<LI>Added: Automatic feeds clean up("Options->Feeds->Clean Up")/LI>
+<LI>Added: Automatic feeds clean up("Options->Feeds->Clean Up")</LI>
 <LI>Added: Option "Show tray icon"</LI>
 <LI>Added: Option "Reopen last opened feeds on startup"</LI>
 <LI>Added: Option "Show splash screen"</LI>
@@ -17,7 +17,7 @@
 <LI>Fixed: Load news on some resources</LI>
 <LI>Fixed: After delete news, cursor jump to previous news</LI>
 <LI>Fixed: Delete feed</LI>
-<LI>Fixed: CTRL+À in news list</LI>
+<LI>Fixed: CTRL+A in news list</LI>
 <LI>Fixed: Shortcut configuration</LI>
 <LI>Fixed: Reopen news</LI>
 </UL>
