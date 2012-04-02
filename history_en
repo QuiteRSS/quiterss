@@ -2,6 +2,26 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.8.6</B> (02 Apr 2012)
+<UL>
+<LI>Added: Automatic feeds clean up("Options->Feeds->Clean Up")/LI>
+<LI>Added: Option "Show tray icon"</LI>
+<LI>Added: Option "Reopen last opened feeds on startup"</LI>
+<LI>Added: Option "Show splash screen"</LI>
+<LI>Added: Option "Show news' description instead loading web page"</LI>
+<LI>Added: German language</LI>
+
+<LI>Changed: GUI. Some visual tweaks</LI>
+
+<LI>Fixed: Improve startup time</LI>
+<LI>Fixed: Load news on some resources</LI>
+<LI>Fixed: After delete news, cursor jump to previous news</LI>
+<LI>Fixed: Delete feed</LI>
+<LI>Fixed: CTRL+À in news list</LI>
+<LI>Fixed: Shortcut configuration</LI>
+<LI>Fixed: Reopen news</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.8.5</B> (26 Mar 2012)
 <UL>
 <LI>Added: Delete news with shortcut</LI>
