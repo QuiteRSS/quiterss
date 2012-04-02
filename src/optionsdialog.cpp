@@ -249,14 +249,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QWidget *readingFeedsWidget_ = new QWidget();
   readingFeedsWidget_->setLayout(readingFeedsLayout);
 //
-  dayCleanUpOn_ = new QCheckBox(tr("Maximum number of news to keep:"));
+  dayCleanUpOn_ = new QCheckBox(tr("Maximum age of news in days to keep:"));
   maxDayCleanUp_ = new QSpinBox();
   maxDayCleanUp_->setEnabled(false);
   maxDayCleanUp_->setRange(0, 9999);
   connect(dayCleanUpOn_, SIGNAL(toggled(bool)),
           maxDayCleanUp_, SLOT(setEnabled(bool)));
 
-  newsCleanUpOn_ = new QCheckBox(tr("Maximum age of news in days to keep:"));
+  newsCleanUpOn_ = new QCheckBox(tr("Maximum number of news to keep:"));
   maxNewsCleanUp_ = new QSpinBox();
   maxNewsCleanUp_->setEnabled(false);
   maxNewsCleanUp_->setRange(0, 9999);
