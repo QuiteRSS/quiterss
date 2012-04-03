@@ -2325,8 +2325,8 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  if (embeddedBrowserOn_) webView_->load(QUrl(linkString));
-  else QDesktopServices::openUrl(QUrl(linkString));
+  if (embeddedBrowserOn_) webView_->load(QUrl(linkString.simplified()));
+  else QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
 void RSSListing::slotSetAllRead()
@@ -2631,7 +2631,7 @@ void RSSListing::updateWebView(QModelIndex index)
       if (linkString.isEmpty())
         linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-      webView_->load(QUrl(linkString));
+      webView_->load(QUrl(linkString.simplified()));
     } else {
       QString content = newsModel_->record(index.row()).field("content").value().toString();
       if (content.isEmpty()) {
@@ -3056,8 +3056,8 @@ void RSSListing::markAllFeedsRead(bool readOn)
 
 void RSSListing::slotWebTitleLinkClicked(QString urlStr)
 {
-  if (embeddedBrowserOn_) slotLinkClicked(QUrl(urlStr));
-  else QDesktopServices::openUrl(QUrl(urlStr));
+  if (embeddedBrowserOn_) slotLinkClicked(QUrl(urlStr.simplified()));
+  else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
 }
 
 void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
