@@ -14,6 +14,7 @@
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
+#include "webpage.h"
 
 /*!***************************************************************************/
 const QString kDbName = "feeds.db";
@@ -578,6 +579,8 @@ void RSSListing::createWebWidget()
   webView_->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
   webView_->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
   webView_->pageAction(QWebPage::DownloadImageToDisk)->setVisible(false);
+
+  webView_->setPage(new WebPage(this));
 
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");

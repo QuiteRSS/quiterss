@@ -23,7 +23,8 @@ HEADERS += \
     src/faviconloader.h \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
-    src/filterrulesdialog.h
+    src/filterrulesdialog.h \
+    src/webpage.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -46,7 +47,8 @@ SOURCES += \
     src/faviconloader.cpp \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
-    src/filterrulesdialog.cpp
+    src/filterrulesdialog.cpp \
+    src/webpage.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
