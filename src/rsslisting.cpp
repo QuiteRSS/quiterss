@@ -411,6 +411,7 @@ void RSSListing::createFeedsDock()
   feedsModel_->select();
 
   feedsView_ = new FeedsView(this);
+  feedsView_->setFrameStyle(QFrame::NoFrame);
   feedsView_->setModel(feedsModel_);
   for (int i = 0; i < feedsModel_->columnCount(); ++i)
     feedsView_->hideColumn(i);
@@ -424,8 +425,9 @@ void RSSListing::createFeedsDock()
   feedsWidgetLayout->setSpacing(0);
   feedsWidgetLayout->addWidget(feedsView_);
 
-  QWidget *feedsWidget = new QWidget(this);
+  QFrame *feedsWidget = new QFrame(this);
   feedsWidget->setObjectName("feedsWidget");
+  feedsWidget->setFrameStyle(QFrame::Box | QFrame::Sunken);
   feedsWidget->setLayout(feedsWidgetLayout);
 
   //! Create title DockWidget
@@ -480,6 +482,7 @@ void RSSListing::createFeedsDock()
 void RSSListing::createNewsDock()
 {
   newsView_ = new NewsView(this);
+  newsView_->setFrameStyle(QFrame::NoFrame);
   newsModel_ = new NewsModel(this, newsView_);
   newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsModel_);
 
@@ -491,8 +494,9 @@ void RSSListing::createNewsDock()
   newsWidgetLayout->setSpacing(0);
   newsWidgetLayout->addWidget(newsView_);
 
-  QWidget *newsWidget = new QWidget(this);
+  QFrame *newsWidget = new QFrame(this);
   newsWidget->setObjectName("newsWidget");
+  newsWidget->setFrameStyle(QFrame::Box | QFrame::Sunken);
   newsWidget->setLayout(newsWidgetLayout);
 
   //! Create title DockWidget
@@ -640,10 +644,11 @@ void RSSListing::createWebWidget()
   webLayout->addWidget(webView_, 1);
   webLayout->addWidget(webViewProgress_, 0);
 
-  webWidget_ = new QWidget(this);
+  webWidget_ = new QFrame(this);
   webWidget_->setObjectName("webWidget_");
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
+  webWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
 
   setCentralWidget(webWidget_);
 }

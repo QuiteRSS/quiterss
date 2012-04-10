@@ -194,7 +194,7 @@ private:
   QLabel *webPanelAuthor_;
   QWidget *webPanel_;
 
-  QWidget *webWidget_;
+  QFrame *webWidget_;
   QWebView *webView_;
   QProgressBar *webViewProgress_;
   QLabel *webViewProgressLabel_;

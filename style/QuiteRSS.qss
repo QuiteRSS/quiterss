@@ -1,8 +1,4 @@
-/* Simple Style */
-QWidget {
-	/*font: normal 12px "Tahoma";*/
-	/*background-color: rgb(245, 245, 245);*/
-}
+/* QuiteRSS Style */
 
 QMenuBar {
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
@@ -43,29 +39,7 @@ QMenuBar::item:pressed {
 	color: white;
 }
 
-/*QMenu {
-	background-color: #f0fff0;
-	padding: 5px 5px;
-}
-
-QMenu::item {
-	spacing: 10px;
-	padding: 3px 20px;;
-	background: transparent;
-	border-radius: 3px;
-}
-
-QMenu::item:selected {
-	border: 1px solid #84cc84;
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #d1eed1,
-								stop:0.2 #f0fff0,
-								stop:0.6 #f0fff0,
-								stop:1 #d1eed1);
-}*/
-
 #feedsTreeView_ {
-	border-style: none;
 	background: #F9FFF9;
 	padding: 2px 1px 2px 1px;
 	margin: 1px;
@@ -73,7 +47,6 @@ QMenu::item:selected {
 }
 
 #newsView_ {
-	border-style: none;
 	background-color: #FFFFFF;
 	padding: 1px;
 	margin-top: -1px;
@@ -84,8 +57,6 @@ QMenu::item:selected {
 }
 
 QTabWidget::pane { /* Рамка виджета со вкладками */
-/*	top: -1px;
-	bottom: -1px;*/
 	border: 1px solid gray;
 }
 
@@ -121,11 +92,9 @@ QTabBar::tab:selected {
 
 QTabBar::tab:!selected {
 	margin-top: 2px;
-	/*margin-bottom: 1px;*/
 }
 
 #feedsTitleLabel_, #newsTitleLabel_ {
-	/*margin-top: 2px;*/
 	margin-left: 3px;
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
@@ -148,16 +117,13 @@ QTabBar::tab:!selected {
 	font-weight:bold;
 }
 
-#feedsWidget, #newsWidget {
-	border: 1px solid gray;
-}
-
 QToolBar {
 	border-style: none;
 }
 
 #toolBarNull {
 	background-color: #f0f0f0;
+	border-style: none;
 }
 
 #pushButtonNull {
@@ -238,8 +204,8 @@ QHeaderView::up-arrow {
 	image: url(:/images/images/sortIndicatorA.png);
 }
 
-#webWidget_ {
-	border: 1px solid gray;
+#webView_ {
+	background-color: #FFFFFF;
 }
 
 #webViewProgress_ {
