@@ -92,8 +92,14 @@ QSettings *settings_;
 
   bool  showSplashScreen_ = settings_->value("Settings/showSplashScreen", true).toBool();
 
-  QString fileString = ":/style/qstyle";
-  //    QString fileString = app.applicationDirPath() + "/Style/QuiteRSS.qss";
+  QString styleActionStr = settings_->value(
+        "Settings/styleApplication", "defaultStyle_").toString();
+  QString fileString;
+  if (styleActionStr == "systemStyle_") {
+    fileString = ":/style/systemStyle";
+  } else {
+    fileString = ":/style/qstyle";
+  }
   QFile file(fileString);
   file.open(QFile::ReadOnly);
   app.setStyleSheet(QLatin1String(file.readAll()));

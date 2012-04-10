@@ -115,6 +115,8 @@ private:
   QAction *toolBarIconSmall_;
   QAction *toolBarIconNormal_;
   QAction *toolBarIconBig_;
+  QAction *systemStyle_;
+  QAction *defaultStyle_;
   QAction *autoLoadImagesToggle_;
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;
@@ -150,6 +152,7 @@ private:
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
+  QActionGroup *styleGroup_;
   QActionGroup *feedsFilterGroup_;
   QActionGroup *newsFilterGroup_;
 
@@ -162,6 +165,7 @@ private:
   QMenu *toolBarMenu_;
   QMenu *toolBarStyleMenu_;
   QMenu *toolBarIconSizeMenu_;
+  QMenu *styleMenu_;
   QMenu *feedMenu_;
   QMenu *newsMenu_;
   QMenu *toolsMenu_;
@@ -304,6 +308,7 @@ private slots:
   void slotFeedDownPressed();
   void slotNewsUpPressed();
   void slotNewsDownPressed();
+  void setStyleApp(QAction*);
 
 signals:
   void signalPlaceToTray();

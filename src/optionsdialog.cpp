@@ -422,6 +422,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentLabel_ = new QLabel(tr("ContentLabel"));
   contentLabel_->setObjectName("contentLabel_");
   contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  contentLabel_->setMinimumHeight(30);
+  contentLabel_->setMargin(4);
   QFont fontContentLabel = contentLabel_->font();
   fontContentLabel.setBold(true);
   fontContentLabel.setPointSize(fontContentLabel.pointSize()+2);

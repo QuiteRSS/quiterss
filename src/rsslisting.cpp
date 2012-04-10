@@ -610,10 +610,6 @@ void RSSListing::createWebWidget()
   webPanelTitleLabel_->setCursor(Qt::PointingHandCursor);
   webPanelAuthorLabel_ = new QLabel(this);
 
-  QVBoxLayout *webPanelLabelLayout = new QVBoxLayout();
-  webPanelLabelLayout->addWidget(webPanelTitleLabel_);
-  webPanelLabelLayout->addWidget(webPanelAuthorLabel_);
-
   webPanelAuthor_ = new QLabel(this);
   webPanelAuthor_->setObjectName("webPanelAuthor_");
   connect(webPanelAuthor_, SIGNAL(linkActivated(QString)),
@@ -624,13 +620,23 @@ void RSSListing::createWebWidget()
   connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
           this, SLOT(slotWebTitleLinkClicked(QString)));
 
-  QVBoxLayout *webPanelTitleLayout = new QVBoxLayout();
-  webPanelTitleLayout->addWidget(webPanelTitle_);
-  webPanelTitleLayout->addWidget(webPanelAuthor_);
+  QGridLayout *webPanelLayout1 = new QGridLayout();
+  webPanelLayout1->setMargin(10);
+  webPanelLayout1->setSpacing(5);
+  webPanelLayout1->setColumnStretch(1, 1);
+  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0, 1, 1);
+  webPanelLayout1->addWidget(webPanelTitle_, 0, 1, 1, 1);
+  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0, 1, 1);
+  webPanelLayout1->addWidget(webPanelAuthor_, 1, 1, 1, 1);
 
-  QHBoxLayout *webPanelLayout = new QHBoxLayout();
-  webPanelLayout->addLayout(webPanelLabelLayout, 0);
-  webPanelLayout->addLayout(webPanelTitleLayout, 1);
+  QFrame *webPanelLine = new QFrame(this);
+  webPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
+
+  QVBoxLayout *webPanelLayout = new QVBoxLayout();
+  webPanelLayout->setMargin(0);
+  webPanelLayout->setSpacing(0);
+  webPanelLayout->addLayout(webPanelLayout1);
+  webPanelLayout->addWidget(webPanelLine);
 
   webPanel_ = new QWidget(this);
   webPanel_->setObjectName("webPanel_");
@@ -640,9 +646,9 @@ void RSSListing::createWebWidget()
   QVBoxLayout *webLayout = new QVBoxLayout();
   webLayout->setMargin(1);  // Чтобы было видно границу виджета
   webLayout->setSpacing(0);
-  webLayout->addWidget(webPanel_, 0);
+  webLayout->addWidget(webPanel_);
   webLayout->addWidget(webView_, 1);
-  webLayout->addWidget(webViewProgress_, 0);
+  webLayout->addWidget(webViewProgress_);
 
   webWidget_ = new QFrame(this);
   webWidget_->setObjectName("webWidget_");
@@ -738,6 +744,14 @@ void RSSListing::createActions()
   toolBarIconSmall_ = new QAction(this);
   toolBarIconSmall_->setObjectName("toolBarIconSmall_");
   toolBarIconSmall_->setCheckable(true);
+
+  systemStyle_ = new QAction(this);
+  systemStyle_->setObjectName("systemStyle_");
+  systemStyle_->setCheckable(true);
+  defaultStyle_ = new QAction(this);
+  defaultStyle_->setObjectName("defaultStyle_");
+  defaultStyle_->setCheckable(true);
+  defaultStyle_->setChecked(true);
 
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
@@ -993,6 +1007,16 @@ void RSSListing::createMenu()
   toolBarMenu_->addAction(toolBarToggle_);
   viewMenu_->addMenu(toolBarMenu_);
 
+  styleMenu_ = new QMenu(this);
+  styleMenu_->addAction(systemStyle_);
+  styleMenu_->addAction(defaultStyle_);
+  styleGroup_ = new QActionGroup(this);
+  styleGroup_->addAction(systemStyle_);
+  styleGroup_->addAction(defaultStyle_);
+  connect(styleGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setStyleApp(QAction*)));
+  viewMenu_->addMenu(styleMenu_);
+
   feedMenu_ = new QMenu(this);
   menuBar()->addMenu(feedMenu_);
   feedMenu_->addAction(updateFeedAct_);
@@ -1188,6 +1212,15 @@ void RSSListing::readSettings()
   }
   setToolBarIconSize(toolBarIconSizeGroup_->checkedAction());
 
+  str = settings_->value("styleApplication", "defaultStyle_").toString();
+  listActions = styleGroup_->actions();
+  foreach(QAction *action, listActions) {
+    if (action->objectName() == str) {
+      action->setChecked(true);
+      break;
+    }
+  }
+
   settings_->endGroup();
 
   resize(800, 600);
@@ -1266,6 +1299,9 @@ void RSSListing::writeSettings()
                       toolBarStyleGroup_->checkedAction()->objectName());
   settings_->setValue("toolBarIconSize",
                       toolBarIconSizeGroup_->checkedAction()->objectName());
+
+  settings_->setValue("styleApplication",
+                      styleGroup_->checkedAction()->objectName());
 
   settings_->endGroup();
 
@@ -2829,6 +2865,10 @@ void RSSListing::retranslateStrings() {
   toolBarIconNormal_->setText(tr("Normal"));
   toolBarIconSmall_->setText(tr("Small"));
 
+  styleMenu_->setTitle(tr("Style application"));
+  systemStyle_->setText(tr("System"));
+  defaultStyle_->setText(tr("Default"));
+
   showWindowAct_->setText(tr("Show window"));
 
   feedKeyUpAct_->setText(tr("Previous feed"));;
@@ -3258,4 +3298,18 @@ void RSSListing::feedsCleanUp(QString name)
       cntT++;
     }
   }
+}
+
+void RSSListing::setStyleApp(QAction *pAct)
+{
+  QString fileString;
+  if (pAct->objectName() == "systemStyle_") {
+    fileString = ":/style/systemStyle";
+  } else {
+    fileString = ":/style/qstyle";
+  }
+
+  QFile file(fileString);
+  file.open(QFile::ReadOnly);
+  qApp->setStyleSheet(QLatin1String(file.readAll()));
 }

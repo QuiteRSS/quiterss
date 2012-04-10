@@ -41,5 +41,6 @@
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QuiteRSS.qss</file>
+        <file alias="systemStyle">style/system.qss</file>
     </qresource>
 </RCC>

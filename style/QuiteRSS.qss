@@ -123,7 +123,6 @@ QToolBar {
 
 #toolBarNull {
 	background-color: #f0f0f0;
-	border-style: none;
 }
 
 #pushButtonNull {
@@ -233,13 +232,7 @@ QHeaderView::up-arrow {
 	padding-top: 10px;
 }
 
-#webPanel_ {
-	border-bottom: 1px solid gray;
-}
-
 #contentLabel_ {
-	min-height: 24px;
-	padding: 2px;
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 										stop:0 #e0eee0,
 										stop:0.4 #d8eed8,
