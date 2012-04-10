@@ -21,6 +21,10 @@
 	background-color: #FFFFFF;
 }
 
+#feedsTreeView_::item, #newsView_::item {
+	min-height: 20px;
+}
+
 QToolBar {
 	border-style: none;
 }

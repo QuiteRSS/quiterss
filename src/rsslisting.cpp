@@ -427,7 +427,7 @@ void RSSListing::createFeedsDock()
 
   QFrame *feedsWidget = new QFrame(this);
   feedsWidget->setObjectName("feedsWidget");
-  feedsWidget->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  feedsWidget->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   feedsWidget->setLayout(feedsWidgetLayout);
 
   //! Create title DockWidget
@@ -496,7 +496,7 @@ void RSSListing::createNewsDock()
 
   QFrame *newsWidget = new QFrame(this);
   newsWidget->setObjectName("newsWidget");
-  newsWidget->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  newsWidget->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   newsWidget->setLayout(newsWidgetLayout);
 
   //! Create title DockWidget
@@ -654,7 +654,7 @@ void RSSListing::createWebWidget()
   webWidget_->setObjectName("webWidget_");
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
-  webWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  webWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
   setCentralWidget(webWidget_);
 }
