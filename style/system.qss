@@ -50,10 +50,6 @@ QHeaderView::up-arrow {
 	image: url(:/images/images/sortIndicatorA.png);
 }
 
-#webView_ {
-	background-color: #FFFFFF;
-}
-
 #webViewProgress_ {
 	text-align: center;
 }

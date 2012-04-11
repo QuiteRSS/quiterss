@@ -41,15 +41,10 @@ QMenuBar::item:pressed {
 
 #feedsTreeView_ {
 	background: #F9FFF9;
-	padding: 2px 1px 2px 1px;
-	margin: 1px;
-	margin-top: -2px;
 }
 
 #newsView_ {
 	background-color: #FFFFFF;
-	padding: 1px;
-	margin-top: -1px;
 }
 
 #feedsTreeView_::item, #newsView_::item {
@@ -201,10 +196,6 @@ QHeaderView::up-arrow {
 	subcontrol-origin: padding;
 	subcontrol-position: center top;
 	image: url(:/images/images/sortIndicatorA.png);
-}
-
-#webView_ {
-	background-color: #FFFFFF;
 }
 
 #webViewProgress_ {

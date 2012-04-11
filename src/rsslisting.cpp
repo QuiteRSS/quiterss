@@ -411,7 +411,7 @@ void RSSListing::createFeedsDock()
   feedsModel_->select();
 
   feedsView_ = new FeedsView(this);
-  feedsView_->setFrameStyle(QFrame::NoFrame);
+  feedsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   feedsView_->setModel(feedsModel_);
   for (int i = 0; i < feedsModel_->columnCount(); ++i)
     feedsView_->hideColumn(i);
@@ -419,16 +419,6 @@ void RSSListing::createFeedsDock()
   feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
-
-  QVBoxLayout *feedsWidgetLayout = new QVBoxLayout();
-  feedsWidgetLayout->setMargin(1);
-  feedsWidgetLayout->setSpacing(0);
-  feedsWidgetLayout->addWidget(feedsView_);
-
-  QFrame *feedsWidget = new QFrame(this);
-  feedsWidget->setObjectName("feedsWidget");
-  feedsWidget->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-  feedsWidget->setLayout(feedsWidgetLayout);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);
@@ -464,7 +454,7 @@ void RSSListing::createFeedsDock()
   feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
   feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
   feedsDock_->setTitleBarWidget(feedsPanel);
-  feedsDock_->setWidget(feedsWidget);
+  feedsDock_->setWidget(feedsView_);
   addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
 
   connect(feedsView_, SIGNAL(pressed(QModelIndex)),
@@ -482,22 +472,12 @@ void RSSListing::createFeedsDock()
 void RSSListing::createNewsDock()
 {
   newsView_ = new NewsView(this);
-  newsView_->setFrameStyle(QFrame::NoFrame);
+  newsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   newsModel_ = new NewsModel(this, newsView_);
   newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsModel_);
 
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
-
-  QVBoxLayout *newsWidgetLayout = new QVBoxLayout();
-  newsWidgetLayout->setMargin(1);
-  newsWidgetLayout->setSpacing(0);
-  newsWidgetLayout->addWidget(newsView_);
-
-  QFrame *newsWidget = new QFrame(this);
-  newsWidget->setObjectName("newsWidget");
-  newsWidget->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-  newsWidget->setLayout(newsWidgetLayout);
 
   //! Create title DockWidget
   newsIconTitle_ = new QLabel(this);
@@ -538,7 +518,7 @@ void RSSListing::createNewsDock()
   newsDock_->setObjectName("newsDock");
   newsDock_->setFeatures(QDockWidget::DockWidgetMovable);
   newsDock_->setTitleBarWidget(newsPanel);
-  newsDock_->setWidget(newsWidget);
+  newsDock_->setWidget(newsView_);
   addDockWidget(Qt::TopDockWidgetArea, newsDock_);
 
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
@@ -577,7 +557,6 @@ void RSSListing::createToolBarNull()
 void RSSListing::createWebWidget()
 {
   webView_ = new QWebView(this);
-  webView_->setObjectName("webView_");
 
   webView_->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
   webView_->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
@@ -644,7 +623,7 @@ void RSSListing::createWebWidget()
 
   //! Create web layout
   QVBoxLayout *webLayout = new QVBoxLayout();
-  webLayout->setMargin(1);  // Чтобы было видно границу виджета
+  webLayout->setMargin(0);
   webLayout->setSpacing(0);
   webLayout->addWidget(webPanel_);
   webLayout->addWidget(webView_, 1);
