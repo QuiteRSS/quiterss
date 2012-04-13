@@ -12,15 +12,6 @@
 	min-width: 50px;
 }
 
-#newsTextTitle_ {
-	vertical-align:middle;
-	font-weight:bold;
-}
-
-#feedsTreeView_, #newsView_ {
-	background-color: #FFFFFF;
-}
-
 #feedsTreeView_::item, #newsView_::item {
 	min-height: 20px;
 }
@@ -58,11 +49,6 @@ QHeaderView::up-arrow {
 								stop:0 #6C91FE,
 								stop:1 #F9FFF9);
 	padding-top: 10px;
-}
-
-#contentLabel_ {
-	background-color: grey;
-	color: #ffffff;
 }
 
 QStatusBar #progressBar_{

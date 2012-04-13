@@ -76,8 +76,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return QBrush(QColor("#F5F5F5"));
     }
   } else if (role == Qt::TextColorRole) {
-    QBrush brush;
-    return brush;
+    return qApp->palette().brush(QPalette::WindowText);
   }
   return QSqlTableModel::data(index, role);
 }

@@ -107,11 +107,6 @@ QTabBar::tab:!selected {
 	min-width: 50px;
 }
 
-#newsTextTitle_ {
-	vertical-align:middle;
-	font-weight:bold;
-}
-
 QToolBar {
 	border-style: none;
 }

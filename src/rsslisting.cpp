@@ -483,6 +483,10 @@ void RSSListing::createNewsDock()
   newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
   newsTextTitle_ = new QLabel(this);
   newsTextTitle_->setObjectName("newsTextTitle_");
+  QFont fontNewsTextTitle = newsTextTitle_->font();
+  fontNewsTextTitle.setBold(true);
+  newsTextTitle_->setFont(fontNewsTextTitle);
+
   QHBoxLayout *newsTitleLayout = new QHBoxLayout();
   newsTitleLayout->setMargin(4);
   newsTitleLayout->addSpacing(3);

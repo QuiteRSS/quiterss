@@ -2,7 +2,7 @@
 #define FEEDSMODEL_H
 
 #include <QSqlTableModel>
-#include <QFont>
+#include <QtGui>
 
 class FeedsModel : public QSqlTableModel
 {

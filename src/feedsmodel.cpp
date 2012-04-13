@@ -1,6 +1,3 @@
-#include <QFont>
-#include <QBrush>
-#include <QIcon>
 
 #include "feedsmodel.h"
 
@@ -29,11 +26,12 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
     }
   } else if (role == Qt::TextColorRole) {
     QBrush brush;
+    brush = qApp->palette().brush(QPalette::WindowText);
     if (QSqlTableModel::fieldIndex("unread") == index.column()) {
-      brush.setColor("#0000CA");
+      brush = qApp->palette().brush(QPalette::Link);
     } else if (QSqlTableModel::fieldIndex("text") == index.column()) {
       if (QSqlTableModel::index(index.row(), fieldIndex("newCount")).data(Qt::EditRole).toInt() > 0) {
-        brush.setColor("#0000FF");
+        brush = qApp->palette().brush(QPalette::Link);
       }
     }
     return brush;
