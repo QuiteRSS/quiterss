@@ -245,7 +245,7 @@
     <target>Заголовок</target>
 </phrase>
 <phrase>
-    <source>Open options gialog</source>
+    <source>Open options dialog</source>
     <target>Открыть окно настроек</target>
 </phrase>
 <phrase>
@@ -305,8 +305,8 @@
     <target>Фильтр</target>
 </phrase>
 <phrase>
-    <source>Error loading to WebVeiw</source>
-    <target>Ошибка загрузки WebVeiw</target>
+    <source>Error loading to WebView</source>
+    <target>Ошибка загрузки WebView</target>
 </phrase>
 <phrase>
     <source>Loading... (%p%)</source>
@@ -798,10 +798,6 @@
     <target>Новое</target>
 </phrase>
 <phrase>
-    <source>Stared</source>
-    <target>Отмечена звёздочкой</target>
-</phrase>
-<phrase>
     <source>Add condition</source>
     <target>Добавить условие</target>
 </phrase>
@@ -946,7 +942,7 @@
     <target>Повторно открывать последнюю открытую ленту при запуске</target>
 </phrase>
 <phrase>
-    <source>Show news&apos; description instead loading web page</source>
+    <source>Show news&apos; description instead of loading web page</source>
     <target>Показывать описание новости вместо загрузки веб-страницы</target>
 </phrase>
 <phrase>
@@ -976,5 +972,25 @@
 <phrase>
     <source>German (%1)</source>
     <target>Немецкий (%1)</target>
+</phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Отмечена звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Style application</source>
+    <target>Стиль приложения</target>
+</phrase>
+<phrase>
+    <source>System</source>
+    <target>Системный</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>По умолчанию</target>
+</phrase>
+<phrase>
+    <source>French (%1)</source>
+    <target>Французский (%1)</target>
 </phrase>
 </QPH>

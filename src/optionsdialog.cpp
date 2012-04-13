@@ -318,6 +318,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   // init list
   QStringList languageList;
   languageList << QString(tr("English (%1)")).arg("en")
+               << QString(tr("French (%1)")).arg("fr")
                << QString(tr("German (%1)")).arg("de")
                << QString(tr("Russian (%1)")).arg("ru");
   foreach (QString str, languageList) {

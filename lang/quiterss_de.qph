@@ -453,8 +453,8 @@
     <target>Feed Titel:</target>
 </phrase>
 <phrase>
-    <source>Feed Url:</source>
-    <target>Feed Url:</target>
+    <source>Feed URL:</source>
+    <target>Feed URL:</target>
 </phrase>
 <phrase>
     <source>General</source>
@@ -755,5 +755,9 @@
 <phrase>
     <source>Never delete starred news</source>
     <target>Sternen Artikel nie löschen</target>
+</phrase>
+<phrase>
+    <source>Style application</source>
+    <target>Style-Anwendung</target>
 </phrase>
 </QPH>
