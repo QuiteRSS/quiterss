@@ -28,7 +28,7 @@ public:
     comboBox1->addItems(itemList);
 
     itemList.clear();
-    itemList << tr("New") << tr("Read") << tr("Stared");
+    itemList << tr("New") << tr("Read") << tr("Starred");
     comboBox3->addItems(itemList);
 
     currentIndexChanged(tr("Title"));

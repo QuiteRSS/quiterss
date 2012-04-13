@@ -232,7 +232,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
           markNewsReadTime_, SLOT(setEnabled(bool)));
 
   showDescriptionNews_ = new QCheckBox(
-        tr("Show news' description instead loading web page"));
+        tr("Show news' description instead of loading web page"));
 
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
@@ -417,7 +417,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   editShortcut_->installEventFilter(this);
   //} shortcut
 
-  contentLabel_ = new QLabel(tr("ContentLabel"));
+  contentLabel_ = new QLabel();
   contentLabel_->setObjectName("contentLabel_");
   contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
   contentLabel_->setMinimumHeight(30);

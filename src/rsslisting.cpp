@@ -2262,7 +2262,7 @@ void RSSListing::slotLoadStarted()
 
 void RSSListing::slotLoadFinished(bool ok)
 {
-  if (!ok) statusBar()->showMessage(tr("Error loading to WebVeiw"), 3000);
+  if (!ok) statusBar()->showMessage(tr("Error loading to WebView"), 3000);
   webViewProgress_->hide();
 }
 
@@ -2821,7 +2821,7 @@ void RSSListing::retranslateStrings() {
   setFilterNewsAct_->setText(tr("Filter news..."));
 
   optionsAct_->setText(tr("Options..."));
-  optionsAct_->setToolTip(tr("Open options gialog"));
+  optionsAct_->setToolTip(tr("Open options dialog"));
 
   feedsFilter_->setText(tr("Filter"));
   filterFeedsAll_->setText(tr("Show All"));
