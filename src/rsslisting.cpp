@@ -1216,6 +1216,8 @@ void RSSListing::readSettings()
       pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
   } else if (feedsDockArea_ == Qt::RightDockWidgetArea) {
       pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+  } else {
+    pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
   }
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
