@@ -16,23 +16,23 @@ class QToolButton;
 
 class LineEdit : public QLineEdit
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    LineEdit(QWidget *parent = 0);
+  LineEdit(QWidget *parent = 0);
 
 protected:
-    void resizeEvent(QResizeEvent *);
+  void resizeEvent(QResizeEvent *);
 
 private slots:
-    void updateClearButton(const QString &text);
-    void slotClear();
+  void updateClearButton(const QString &text);
+  void slotClear();
 
 private:
-    QToolButton *clearButton;
+  QToolButton *clearButton;
 
 signals:
-    void signalClear();
+  void signalClear();
 };
 
 #endif // LIENEDIT_H
