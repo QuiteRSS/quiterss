@@ -263,9 +263,8 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
   commitDataRequest_ = true;
 }
 
-/*virtual*/ void RSSListing::showEvent(QShowEvent* event)
+/*virtual*/ void RSSListing::showEvent(QShowEvent*)
 {
-  Q_UNUSED(event)
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
 }
@@ -427,8 +426,8 @@ void RSSListing::createFeedsDock()
   feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
 
   feedsToolBar_ = new QToolBar(this);
-  feedsToolBar_->setObjectName("feedsToolBar_");
-  feedsToolBar_->setIconSize(QSize(16, 16));
+  feedsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
+  feedsToolBar_->setIconSize(QSize(18, 18));
 
   QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
   feedsPanelLayout->setMargin(0);
@@ -497,8 +496,8 @@ void RSSListing::createNewsDock()
   newsTitleLabel_->setLayout(newsTitleLayout);
 
   newsToolBar_ = new QToolBar(this);
-  newsToolBar_->setObjectName("newsToolBar_");
-  newsToolBar_->setIconSize(QSize(16, 16));
+  newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
+  newsToolBar_->setIconSize(QSize(18, 18));
 
   QHBoxLayout *newsPanelLayout = new QHBoxLayout();
   newsPanelLayout->setMargin(0);
@@ -547,11 +546,13 @@ void RSSListing::createToolBarNull()
 
   pushButtonNull_ = new QPushButton(this);
   pushButtonNull_->setObjectName("pushButtonNull");
-  pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
   pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   toolBarNull_->addWidget(pushButtonNull_);
   connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
   toolBarNull_->installEventFilter(this);
+
+  connect(feedsDock_, SIGNAL(visibilityChanged(bool)),
+          this, SLOT(updateIconToolBarNull(bool)));
 }
 
 void RSSListing::createWebWidget()
@@ -1205,6 +1206,13 @@ void RSSListing::readSettings()
   resize(800, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
+
+  toolBarNull_->setStyleSheet("QToolBar { border: none; padding: 0px;}");
+  if (feedsDockArea_ == Qt::LeftDockWidgetArea) {
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+  } else if (feedsDockArea_ == Qt::RightDockWidgetArea) {
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+  }
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
                           settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
@@ -2028,19 +2036,33 @@ void RSSListing::slotVisibledFeedsDock()
     newsDock_->setVisible(feedsDock_->isVisible());
 }
 
+void RSSListing::updateIconToolBarNull(bool feedsDockVisible)
+{
+  if (feedsDockArea_ == Qt::LeftDockWidgetArea) {
+    if (feedsDockVisible)
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+    else
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+  } else if (feedsDockArea_ == Qt::RightDockWidgetArea) {
+    if (feedsDockVisible)
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
+    else
+      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+  }
+}
+
 void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 {
   if (area == Qt::LeftDockWidgetArea) {
-    pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
     toolBarNull_->show();
     addToolBar(Qt::LeftToolBarArea, toolBarNull_);
   } else if (area == Qt::RightDockWidgetArea) {
     toolBarNull_->show();
-    pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
     addToolBar(Qt::RightToolBarArea, toolBarNull_);
   } else {
     toolBarNull_->hide();
   }
+  updateIconToolBarNull(feedsDock_->isVisible());
 }
 
 void RSSListing::slotSetItemRead(QModelIndex index, int read)

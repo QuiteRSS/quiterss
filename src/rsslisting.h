@@ -264,6 +264,7 @@ private:
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
+  void updateIconToolBarNull(bool feedsDockVisible);
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotSetItemRead(QModelIndex index, int read);
   void markNewsRead();

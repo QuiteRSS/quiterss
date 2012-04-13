@@ -25,16 +25,7 @@
 	min-height: 20px;
 }
 
-QToolBar {
-	border-style: none;
-}
-
-#toolBarNull {
-	background-color: #f0f0f0;
-}
-
 #pushButtonNull {
-	background: #e0e0e0;
 	border-style: none;
 }
 
