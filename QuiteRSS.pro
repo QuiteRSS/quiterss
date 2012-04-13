@@ -24,7 +24,8 @@ HEADERS += \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
-    src/webpage.h
+    src/webpage.h \
+    src/lineedit.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -48,7 +49,8 @@ SOURCES += \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
-    src/webpage.cpp
+    src/webpage.cpp \
+    src/lineedit.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

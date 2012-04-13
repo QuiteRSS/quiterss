@@ -2,6 +2,7 @@
 #define FILTERRULES_H
 
 #include <QtGui>
+#include "lineedit.h"
 
 class ItemCondition : public QWidget
 {
@@ -18,7 +19,7 @@ public:
     comboBox1 = new QComboBox(this);
     comboBox2 = new QComboBox(this);
     comboBox3 = new QComboBox(this);
-    lineEdit = new QLineEdit(this);
+    lineEdit = new LineEdit(this);
 
     QStringList itemList;
     itemList << tr("Title")  << tr("Description")
@@ -60,7 +61,7 @@ public:
   }
 
   QToolButton *addButton;
-  QLineEdit *lineEdit;
+  LineEdit *lineEdit;
 
 private slots:
   void deleteFilterRules()
@@ -198,7 +199,7 @@ private:
 public:
   explicit FilterRulesDialog(QWidget *parent = 0, QSettings *settings = 0,
                              QStringList *feedsList_ = 0);
-  QLineEdit *filterName;
+  LineEdit *filterName;
   QStringList feedsList_;
   QTreeWidget *feedsTree;
 

@@ -2,6 +2,7 @@
 #define ADDFEEDDIALOG_H
 
 #include <QtGui>
+#include "lineedit.h"
 
 class AddFeedDialog : public QDialog
 {
@@ -12,8 +13,8 @@ private:
 public:
   explicit AddFeedDialog(QWidget *parent = 0);
 
-  QLineEdit *feedTitleEdit_;
-  QLineEdit *feedUrlEdit_;
+  LineEdit *feedTitleEdit_;
+  LineEdit *feedUrlEdit_;
 
 signals:
 

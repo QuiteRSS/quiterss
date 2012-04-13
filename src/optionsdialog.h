@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include <QNetworkProxy>
+#include "lineedit.h"
 
 class OptionsDialog : public QDialog
 {
@@ -78,7 +79,7 @@ private slots:
   void slotFontChange();
   void slotFontReset();
   void intervalTimeChang(QString str);
-  void shortcutTreeClicked(QTreeWidgetItem* item, int column);
+  void shortcutTreeClicked(QTreeWidgetItem* item, int);
   void slotShortcutTreeUpDownPressed();
   void slotClearShortcut();
   void slotResetShortcut();
@@ -115,10 +116,10 @@ private:
   QRadioButton *directConnectionButton_;
   QRadioButton *manualProxyButton_;
   QWidget *manualWidget_;
-  QLineEdit *editHost_;
-  QLineEdit *editPort_;
-  QLineEdit *editUser_;
-  QLineEdit *editPassword_;
+  LineEdit *editHost_;
+  LineEdit *editPort_;
+  LineEdit *editUser_;
+  LineEdit *editPassword_;
 
   // language
   QListWidget *languageFileList_;
@@ -128,7 +129,7 @@ private:
 
   // shortcut
   QTreeWidget *shortcutTree_;
-  QLineEdit *editShortcut_;
+  LineEdit *editShortcut_;
   QStringList *listDefaultShortcut_;
   QGroupBox *editShortcutBox;
 

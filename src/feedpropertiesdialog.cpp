@@ -37,7 +37,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
   labelURLCapt = new QLabel(tr("Feed URL:"));
 
   layoutGeneralTitle = new QHBoxLayout();
-  editTitle = new QLineEdit();
+  editTitle = new LineEdit();
   btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
   btnLoadTitle->setToolTip(tr("Load feed title"));
   btnLoadTitle->setMaximumHeight(22);
@@ -46,7 +46,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
   layoutGeneralTitle->addWidget(btnLoadTitle);
   layoutGeneralTitle->setStretch(0, 2);
   layoutGeneralTitle->setStretch(1, 0);
-  editURL = new QLineEdit();
+  editURL = new LineEdit();
 
   layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();

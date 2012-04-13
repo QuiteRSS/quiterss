@@ -36,7 +36,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   }
   feedsTree->expandAll();
 
-  filterName = new QLineEdit(this);
+  filterName = new LineEdit(this);
 
   QHBoxLayout *filterNamelayout = new QHBoxLayout();
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));

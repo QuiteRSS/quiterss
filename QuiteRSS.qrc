@@ -38,6 +38,7 @@
         <file>images/logo.png</file>
         <file>images/noicon.png</file>
         <file alias="preferencesFeed">images/preferencesFeed.png</file>
+        <file alias="editClear">images/editClear.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="qstyle">style/QuiteRSS.qss</file>

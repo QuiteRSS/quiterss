@@ -123,11 +123,11 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   networkConnectionsLayout->addWidget(directConnectionButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
 
-  editHost_ = new QLineEdit();
-  editPort_ = new QLineEdit();
+  editHost_ = new LineEdit();
+  editPort_ = new LineEdit();
   editPort_->setFixedWidth(60);
-  editUser_ = new QLineEdit();
-  editPassword_ = new QLineEdit();
+  editUser_ = new LineEdit();
+  editPassword_ = new LineEdit();
 
   QHBoxLayout *addrPortLayout = new QHBoxLayout();
   addrPortLayout->setMargin(0);
@@ -384,14 +384,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut");
   shortcutTree_->setHeaderLabels(treeItem);
 
-  editShortcut_ = new QLineEdit();
-  QPushButton *clearShortcutButton = new QPushButton(tr("Clear"));
+  editShortcut_ = new LineEdit();
   QPushButton *resetShortcutButton = new QPushButton(tr("Reset"));
 
   QHBoxLayout *editShortcutLayout = new QHBoxLayout();
   editShortcutLayout->addWidget(new QLabel(tr("Shortcut:")));
   editShortcutLayout->addWidget(editShortcut_, 1);
-  editShortcutLayout->addWidget(clearShortcutButton);
   editShortcutLayout->addWidget(resetShortcutButton);
 
   editShortcutBox = new QGroupBox();
@@ -410,7 +408,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
           this, SLOT(shortcutTreeClicked(QTreeWidgetItem*,int)));
   connect(this, SIGNAL(signalShortcutTreeUpDownPressed()),
           SLOT(slotShortcutTreeUpDownPressed()), Qt::QueuedConnection);
-  connect(clearShortcutButton, SIGNAL(clicked()),
+  connect(editShortcut_, SIGNAL(signalClear()),
           this, SLOT(slotClearShortcut()));
   connect(resetShortcutButton, SIGNAL(clicked()),
           this, SLOT(slotResetShortcut()));
@@ -717,9 +715,8 @@ void OptionsDialog::slotShortcutTreeUpDownPressed()
   shortcutTreeClicked(shortcutTree_->currentItem(), 1);
 }
 
-void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int column)
+void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int)
 {
-  Q_UNUSED(column)
   editShortcut_->setText(item->text(3));
   editShortcutBox->setEnabled(true);
 }
