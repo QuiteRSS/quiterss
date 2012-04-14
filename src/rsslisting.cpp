@@ -2375,7 +2375,7 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
         index.row()).field("link_href").value().toString();
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-qCritical() << "*01";
+
   if (embeddedBrowserOn_) webView_->load(QUrl(linkString.simplified()));
   else QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
