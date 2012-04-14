@@ -32,7 +32,7 @@ private slots:
   void moveUpFilter();
   void moveDownFilter();
 
-  void slotCurrentItemChanged(QTreeWidgetItem* current, QTreeWidgetItem * previous);
+  void slotCurrentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
 
 };
 

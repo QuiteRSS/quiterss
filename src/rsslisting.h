@@ -285,7 +285,7 @@ private slots:
   void markNewsStar();
   void showContextMenuFeed(const QPoint &);
   void slotLinkClicked(QUrl url);
-  void slotLinkHovered(const QString &link, const QString &title, const QString &textContent);
+  void slotLinkHovered(const QString &link, const QString &, const QString &);
   void slotSetValue(int value);
   void setAutoLoadImages();
   void slotFeedsFilter();

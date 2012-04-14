@@ -183,7 +183,7 @@ void NewsFiltersDialog::moveDownFilter()
 }
 
 void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
-                                               QTreeWidgetItem *previous)
+                                               QTreeWidgetItem *)
 {
   if (filtersTree->indexOfTopLevelItem(current) == 0)
     moveUpButton->setEnabled(false);

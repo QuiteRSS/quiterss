@@ -12,5 +12,6 @@ bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &r
 }
 
 QWebPage *WebPage::createWindow(WebWindowType type) {
+  Q_UNUSED(type)
   return this;
 }
