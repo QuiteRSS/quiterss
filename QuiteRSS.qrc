@@ -45,5 +45,6 @@
         <file alias="grayStyle">style/gray.qss</file>
         <file alias="greenStyle">style/green.qss</file>
         <file alias="orangeStyle">style/orange.qss</file>
+        <file alias="purpleStyle">style/purple.qss</file>
     </qresource>
 </RCC>

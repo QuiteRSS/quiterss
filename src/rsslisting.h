@@ -118,6 +118,7 @@ private:
   QAction *systemStyle_;
   QAction *greenStyle_;
   QAction *orangeStyle_;
+  QAction *purpleStyle_;
   QAction *grayStyle_;
   QAction *autoLoadImagesToggle_;
   QAction *setNewsFiltersAct_;

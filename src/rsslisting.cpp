@@ -739,6 +739,9 @@ void RSSListing::createActions()
   orangeStyle_ = new QAction(this);
   orangeStyle_->setObjectName("orangeStyle_");
   orangeStyle_->setCheckable(true);
+  purpleStyle_ = new QAction(this);
+  purpleStyle_->setObjectName("purpleStyle_");
+  purpleStyle_->setCheckable(true);
   grayStyle_ = new QAction(this);
   grayStyle_->setObjectName("grayStyle_");
   grayStyle_->setCheckable(true);
@@ -1001,11 +1004,13 @@ void RSSListing::createMenu()
   styleMenu_->addAction(systemStyle_);
   styleMenu_->addAction(greenStyle_);
   styleMenu_->addAction(orangeStyle_);
+  styleMenu_->addAction(purpleStyle_);
   styleMenu_->addAction(grayStyle_);
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
   styleGroup_->addAction(greenStyle_);
   styleGroup_->addAction(orangeStyle_);
+  styleGroup_->addAction(purpleStyle_);
   styleGroup_->addAction(grayStyle_);
   connect(styleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setStyleApp(QAction*)));
@@ -2886,6 +2891,7 @@ void RSSListing::retranslateStrings() {
   systemStyle_->setText(tr("System"));
   greenStyle_->setText(tr("Green"));
   orangeStyle_->setText(tr("Orange"));
+  purpleStyle_->setText(tr("Purple"));
   grayStyle_->setText(tr("Gray"));
 
   showWindowAct_->setText(tr("Show window"));
@@ -3326,6 +3332,8 @@ void RSSListing::setStyleApp(QAction *pAct)
     fileString = ":/style/systemStyle";
   } else if (pAct->objectName() == "orangeStyle_") {
     fileString = ":/style/orangeStyle";
+  } else if (pAct->objectName() == "purpleStyle_") {
+    fileString = ":/style/purpleStyle";
   } else if (pAct->objectName() == "grayStyle_") {
     fileString = ":/style/grayStyle";
   } else {
