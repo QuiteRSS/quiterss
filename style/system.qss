@@ -1,3 +1,5 @@
+/* QuiteRSS System Style */
+
 #feedsTitleLabel_, #newsTitleLabel_ {
 	margin-left: 3px;
 	border: 1px solid grey;

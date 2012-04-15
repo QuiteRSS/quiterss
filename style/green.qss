@@ -1,4 +1,4 @@
-/* QuiteRSS Style */
+/* QuiteRSS Green Style */
 
 QMenuBar {
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
@@ -27,9 +27,7 @@ QMenuBar::item:selected {
 }
 
 QMenuBar::item:pressed {
-	border-top: 1px solid #34aa34;
-	border-left: 1px solid #34aa34;
-	border-right: 1px solid #34aa34;
+	border: 1px solid #34aa34;
 	border-bottom: none;
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 								stop:0 #7acc7a,
@@ -112,7 +110,7 @@ QToolBar {
 }
 
 #pushButtonNull {
-	background: #e0e0e0;
+	background: #d8eed8;
 	border-style: none;
 }
 

@@ -93,12 +93,16 @@ QSettings *settings_;
   bool  showSplashScreen_ = settings_->value("Settings/showSplashScreen", true).toBool();
 
   QString styleActionStr = settings_->value(
-        "Settings/styleApplication", "defaultStyle_").toString();
+        "Settings/styleApplication", "greenStyle_").toString();
   QString fileString;
   if (styleActionStr == "systemStyle_") {
     fileString = ":/style/systemStyle";
+  } else if (styleActionStr == "orangeStyle_") {
+    fileString = ":/style/orangeStyle";
+  } else if (styleActionStr == "grayStyle_") {
+    fileString = ":/style/grayStyle";
   } else {
-    fileString = ":/style/qstyle";
+    fileString = ":/style/greenStyle";
   }
   QFile file(fileString);
   file.open(QFile::ReadOnly);

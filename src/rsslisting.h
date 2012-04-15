@@ -116,7 +116,9 @@ private:
   QAction *toolBarIconNormal_;
   QAction *toolBarIconBig_;
   QAction *systemStyle_;
-  QAction *defaultStyle_;
+  QAction *greenStyle_;
+  QAction *orangeStyle_;
+  QAction *grayStyle_;
   QAction *autoLoadImagesToggle_;
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;

@@ -1,0 +1,256 @@
+/* QuiteRSS Gray Style */
+
+QMenuBar {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #e0e0e0,
+										stop:0.4 #d8d8d8,
+										stop:0.5 #cccccc,
+										stop:1 #e0e0e0);
+	color: #000000;
+	padding: 1px;
+}
+
+QMenuBar::item {
+	padding: 3px 6px;
+	background: transparent;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+QMenuBar::item:selected {
+	border: 1px solid #848484;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #e9e9e9,
+								stop:0.4 #e1e1e1,
+								stop:0.5 #d9d9d9,
+								stop:1 #e9e9e9);
+}
+
+QMenuBar::item:pressed {
+	border: 1px solid #545454;
+	border-bottom: none;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #9a9a9a,
+								stop:0.4 #909090,
+								stop:0.5 #808080,
+								stop:1 #9a9a9a);
+	color: white;
+}
+
+#feedsTreeView_ {
+	background: #f9f9f9;
+}
+
+#newsView_ {
+	background-color: #FFFFFF;
+}
+
+#feedsTreeView_::item, #newsView_::item {
+	min-height: 20px;
+}
+
+QTabWidget::pane { /* Рамка виджета со вкладками */
+	border: 1px solid gray;
+}
+
+QTabWidget::tab-bar {
+	left: 2px; /* сдвигаем вправо на 2px */
+}
+
+/* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
+ оно читается как QTabBar, а _не_ QTabWidget */
+QTabBar::tab {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+								stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+	color: #000000;
+	border: 1px solid #C4C4C3;
+	border-bottom: none;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	min-width: 8ex;
+	padding: 4px 12px 4px 12px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+	color: #000000;
+}
+
+QTabBar::tab:selected {
+	border-color: #9B9B9B;
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px;
+}
+
+#feedsTitleLabel_, #newsTitleLabel_ {
+	margin-left: 3px;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+	border: 1px solid grey;
+	border-bottom: 0px solid #D5D5D5;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 4px;
+	vertical-align:middle;
+	color: #000000;
+}
+
+#newsTitleLabel_ {
+	min-width: 50px;
+}
+
+QToolBar {
+	border-style: none;
+}
+
+#pushButtonNull {
+	background: #d8d8d8;
+	border-style: none;
+}
+
+#buttonColumnView {
+	border-left: 1px solid #D5D5D5;
+	border-top: none;
+	border-right: 1px solid #D5D5D5;
+	border-bottom: 1px solid #D5D5D5;
+	padding: 5px 0px 1px 0px;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #ffffff,
+								stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+}
+
+#buttonColumnView:hover, #buttonColumnView:pressed {
+	border-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+#progressBar_ {
+	border: 1px solid #545454;
+	border-radius: 3px;
+	text-align: center;
+}
+
+#progressBar_::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #9a9a9a,
+								stop:0.4 #909090,
+								stop:0.5 #808080,
+								stop:1 #9a9a9a);
+	width: 1px;
+}
+
+QHeaderView {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+							stop: 0 #ffffff, stop: 0.4 #ffffff,
+							stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+	color: #000000;
+}
+
+QHeaderView::section {
+	min-height: 20px;
+	border: 1px solid #D5D5D5;
+	border-top: none;
+	border-left: none;
+	background-color: transparent;
+	padding-left: 4px;
+}
+
+QHeaderView::section:hover {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	border-top: none;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+QHeaderView::down-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorD.png);
+}
+
+QHeaderView::up-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorA.png);
+}
+
+#webViewProgress_ {
+	border: 1px solid #545454;
+	text-align: center;
+}
+
+#webViewProgress_::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #9a9a9a,
+								stop:0.4 #909090,
+								stop:0.5 #808080,
+								stop:1 #9a9a9a);
+	width: 20px;
+}
+
+#AboutDialog, #UpdateAppDialog {
+	background: #f9f9f9;
+}
+
+#logoLabel {
+	background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+								stop:0 #6C91FE,
+								stop:1 #f9f9f9);
+	padding-top: 10px;
+}
+
+#contentLabel_ {
+	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+										stop:0 #e0e0e0,
+										stop:0.4 #d8d8d8,
+										stop:0.5 #cccccc,
+										stop:1 #e0e0e0);
+	color: #000000;
+}
+
+#categoriesTree {
+	padding: 1px;
+}
+
+#categoriesTree::item, #fontTree::item, 
+#languageFileList_::item, #feedsTreeFR::item,
+#filtersTree::item, #shortcutTree::item {
+	min-height: 18px;
+}
+
+QStatusBar #progressBar_{
+	margin-right: 5px;
+}
+
+QMainWindow::separator {
+	border: none;
+}
+
+#infoWidgetFR, #actionsWidgetFR {
+	background: white;
+}
+
+#splashProgress {
+	border: 1px solid #545454;
+}
+
+#splashProgress::chunk {
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #9a9a9a,
+								stop:0.4 #909090,
+								stop:0.5 #808080,
+								stop:1 #9a9a9a);
+}

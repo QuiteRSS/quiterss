@@ -41,7 +41,9 @@
         <file alias="editClear">images/editClear.png</file>
     </qresource>
     <qresource prefix="/style">
-        <file alias="qstyle">style/QuiteRSS.qss</file>
         <file alias="systemStyle">style/system.qss</file>
+        <file alias="grayStyle">style/gray.qss</file>
+        <file alias="greenStyle">style/green.qss</file>
+        <file alias="orangeStyle">style/orange.qss</file>
     </qresource>
 </RCC>

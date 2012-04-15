@@ -732,10 +732,16 @@ void RSSListing::createActions()
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
   systemStyle_->setCheckable(true);
-  defaultStyle_ = new QAction(this);
-  defaultStyle_->setObjectName("defaultStyle_");
-  defaultStyle_->setCheckable(true);
-  defaultStyle_->setChecked(true);
+  greenStyle_ = new QAction(this);
+  greenStyle_->setObjectName("greenStyle_");
+  greenStyle_->setCheckable(true);
+  greenStyle_->setChecked(true);
+  orangeStyle_ = new QAction(this);
+  orangeStyle_->setObjectName("orangeStyle_");
+  orangeStyle_->setCheckable(true);
+  grayStyle_ = new QAction(this);
+  grayStyle_->setObjectName("grayStyle_");
+  grayStyle_->setCheckable(true);
 
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
@@ -993,10 +999,14 @@ void RSSListing::createMenu()
 
   styleMenu_ = new QMenu(this);
   styleMenu_->addAction(systemStyle_);
-  styleMenu_->addAction(defaultStyle_);
+  styleMenu_->addAction(greenStyle_);
+  styleMenu_->addAction(orangeStyle_);
+  styleMenu_->addAction(grayStyle_);
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
-  styleGroup_->addAction(defaultStyle_);
+  styleGroup_->addAction(greenStyle_);
+  styleGroup_->addAction(orangeStyle_);
+  styleGroup_->addAction(grayStyle_);
   connect(styleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setStyleApp(QAction*)));
   viewMenu_->addMenu(styleMenu_);
@@ -2874,7 +2884,9 @@ void RSSListing::retranslateStrings() {
 
   styleMenu_->setTitle(tr("Style application"));
   systemStyle_->setText(tr("System"));
-  defaultStyle_->setText(tr("Default"));
+  greenStyle_->setText(tr("Green"));
+  orangeStyle_->setText(tr("Orange"));
+  grayStyle_->setText(tr("Gray"));
 
   showWindowAct_->setText(tr("Show window"));
 
@@ -3312,8 +3324,12 @@ void RSSListing::setStyleApp(QAction *pAct)
   QString fileString;
   if (pAct->objectName() == "systemStyle_") {
     fileString = ":/style/systemStyle";
+  } else if (pAct->objectName() == "orangeStyle_") {
+    fileString = ":/style/orangeStyle";
+  } else if (pAct->objectName() == "grayStyle_") {
+    fileString = ":/style/grayStyle";
   } else {
-    fileString = ":/style/qstyle";
+    fileString = ":/style/greenStyle";
   }
 
   QFile file(fileString);
