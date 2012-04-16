@@ -827,6 +827,9 @@ void RSSListing::createActions()
 
   openInBrowserAct_ = new QAction(this);
   connect(openInBrowserAct_, SIGNAL(triggered()), this, SLOT(openInBrowserNews()));
+  openInExternalBrowserAct_ = new QAction(this);
+  connect(openInExternalBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInExternalBrowserNews()));
   markStarAct_ = new QAction(this);
   markStarAct_->setObjectName("markStarAct");
   markStarAct_->setIcon(QIcon(":/images/starOn"));
@@ -1178,10 +1181,13 @@ void RSSListing::readSettings()
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
 
   embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
-  if (embeddedBrowserOn_)
+  if (embeddedBrowserOn_) {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-  else
+    openInExternalBrowserAct_->setVisible(true);
+  } else {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    openInExternalBrowserAct_->setVisible(false);
+  }
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   webView_->settings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -1887,10 +1893,13 @@ void RSSListing::showOptionDlg()
   persistentUpdateThread_->setProxy(networkProxy_);
 
   embeddedBrowserOn_ = optionsDialog->embeddedBrowserOn_->isChecked();
-  if (embeddedBrowserOn_)
+  if (embeddedBrowserOn_) {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-  else
+    openInExternalBrowserAct_->setVisible(true);
+  } else {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    openInExternalBrowserAct_->setVisible(false);
+  }
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   webView_->settings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -2467,6 +2476,7 @@ void RSSListing::createMenuNews()
 {
   newsContextMenu_ = new QMenu(this);
   newsContextMenu_->addAction(openInBrowserAct_);
+  newsContextMenu_->addAction(openInExternalBrowserAct_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(markNewsRead_);
   newsContextMenu_->addAction(markAllNewsRead_);
@@ -2487,6 +2497,20 @@ void RSSListing::showContextMenuNews(const QPoint &p)
 void RSSListing::openInBrowserNews()
 {
   slotNewsViewDoubleClicked(newsView_->currentIndex());
+}
+
+void RSSListing::openInExternalBrowserNews()
+{
+  QModelIndex index = newsView_->currentIndex();
+
+  if (!index.isValid()) return;
+
+  QString linkString = newsModel_->record(
+        index.row()).field("link_href").value().toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+
+  QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
 void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
@@ -2854,7 +2878,8 @@ void RSSListing::retranslateStrings() {
 
   updateAppAct_->setText(tr("Check for updates..."));
 
-  openInBrowserAct_->setText(tr("Open in Browser"));
+  openInBrowserAct_->setText(tr("Open in browser"));
+  openInExternalBrowserAct_->setText(tr("Open in external browser"));
   markStarAct_->setText(tr("Star"));
   markStarAct_->setToolTip(tr("Mark news star"));
   deleteNewsAct_->setText(tr("Delete"));

@@ -143,6 +143,7 @@ private:
   QAction *aboutAct_;
   QAction *updateAppAct_;
   QAction *openInBrowserAct_;
+  QAction *openInExternalBrowserAct_;
   QAction *markStarAct_;
   QAction *deleteNewsAct_;
   QAction *markFeedRead_;
@@ -284,6 +285,7 @@ private slots:
   void deleteNews();
   void showContextMenuNews(const QPoint &);
   void openInBrowserNews();
+  void openInExternalBrowserNews();
   void slotSetItemStar(QModelIndex index, int sticky);
   void markNewsStar();
   void showContextMenuFeed(const QPoint &);
