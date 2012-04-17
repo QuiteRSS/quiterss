@@ -993,4 +993,52 @@
     <source>French (%1)</source>
     <target>Французский (%1)</target>
 </phrase>
+<phrase>
+    <source>Open in external browser</source>
+    <target>Открыть во внешем браузере</target>
+</phrase>
+<phrase>
+    <source>Green</source>
+    <target>Зелёный</target>
+</phrase>
+<phrase>
+    <source>Orange</source>
+    <target>Оранжевый</target>
+</phrase>
+<phrase>
+    <source>Purple</source>
+    <target>Фиолетовый</target>
+</phrase>
+<phrase>
+    <source>Pink</source>
+    <target>Розовый</target>
+</phrase>
+<phrase>
+    <source>Gray</source>
+    <target>Серый</target>
+</phrase>
+<phrase>
+    <source>&amp;Undo</source>
+    <target>&amp;Отменить действие</target>
+</phrase>
+<phrase>
+    <source>&amp;Redo</source>
+    <target>&amp;Повторить действие</target>
+</phrase>
+<phrase>
+    <source>Cu&amp;t</source>
+    <target>&amp;Вырезать</target>
+</phrase>
+<phrase>
+    <source>&amp;Copy</source>
+    <target>&amp;Копировать</target>
+</phrase>
+<phrase>
+    <source>&amp;Paste</source>
+    <target>В&amp;ставить</target>
+</phrase>
+<phrase>
+    <source>Select All</source>
+    <target>Выделить всё</target>
+</phrase>
 </QPH>

@@ -760,4 +760,60 @@
     <source>Style application</source>
     <target>Style-Anwendung</target>
 </phrase>
+<phrase>
+    <source>Cancel</source>
+    <target>Abbrechen</target>
+</phrase>
+<phrase>
+    <source>&amp;Undo</source>
+    <target>&amp;Rückgängig</target>
+</phrase>
+<phrase>
+    <source>&amp;Redo</source>
+    <target>Wieder&amp;herstellen</target>
+</phrase>
+<phrase>
+    <source>Cu&amp;t</source>
+    <target>&amp;Ausschneiden</target>
+</phrase>
+<phrase>
+    <source>&amp;Copy</source>
+    <target>&amp;Kopieren</target>
+</phrase>
+<phrase>
+    <source>&amp;Paste</source>
+    <target>Einf&amp;ügen</target>
+</phrase>
+<phrase>
+    <source>Select All</source>
+    <target>Alles auswählen</target>
+</phrase>
+<phrase>
+    <source>Copy &amp;Link Location</source>
+    <target>&amp;Link-Adresse kopieren</target>
+</phrase>
+<phrase>
+    <source>Green</source>
+    <target>Grün</target>
+</phrase>
+<phrase>
+    <source>Orange</source>
+    <target>Orange</target>
+</phrase>
+<phrase>
+    <source>Purple</source>
+    <target>Lila</target>
+</phrase>
+<phrase>
+    <source>Pink</source>
+    <target>Rosa</target>
+</phrase>
+<phrase>
+    <source>Gray</source>
+    <target>Grau</target>
+</phrase>
+<phrase>
+    <source>Open in external browser</source>
+    <target>Im externen Browser öffnen</target>
+</phrase>
 </QPH>

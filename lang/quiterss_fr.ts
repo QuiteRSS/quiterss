@@ -25,7 +25,7 @@
         <translation>Merci à :</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="60"/>
+        <location filename="../src/aboutdialog.cpp" line="61"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -487,7 +487,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="91"/>
@@ -722,63 +722,152 @@
     </message>
 </context>
 <context>
+    <name>QDialogButtonBox</name>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2957"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+</context>
+<context>
+    <name>QLineEdit</name>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2959"/>
+        <source>&amp;Undo</source>
+        <translation>&amp;Annuler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2960"/>
+        <source>&amp;Redo</source>
+        <translation>&amp;Rétablir</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2961"/>
+        <source>Cu&amp;t</source>
+        <translation>Co&amp;uper</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2962"/>
+        <source>&amp;Copy</source>
+        <translation>Cop&amp;ier</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2963"/>
+        <source>&amp;Paste</source>
+        <translation>Co&amp;ller</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2964"/>
+        <source>Delete</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2965"/>
+        <source>Select All</source>
+        <translation>Tout sélectionner</translation>
+    </message>
+</context>
+<context>
+    <name>QTextControl</name>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2967"/>
+        <source>&amp;Undo</source>
+        <translation>&amp;Annuler</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2968"/>
+        <source>&amp;Redo</source>
+        <translation>&amp;Rétablir</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2969"/>
+        <source>Cu&amp;t</source>
+        <translation>Co&amp;uper</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2970"/>
+        <source>&amp;Copy</source>
+        <translation>Cop&amp;ier</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2971"/>
+        <source>&amp;Paste</source>
+        <translation>Co&amp;ller</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2972"/>
+        <source>Delete</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2973"/>
+        <source>Select All</source>
+        <translation>Tout sélectionner</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2974"/>
+        <source>Copy &amp;Link Location</source>
+        <translation>Copier l&apos;adresse du &amp;lien</translation>
+    </message>
+</context>
+<context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1387"/>
+        <location filename="../src/rsslisting.cpp" line="1418"/>
         <source>Delete feed</source>
         <translation>Supprimer flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1388"/>
+        <location filename="../src/rsslisting.cpp" line="1419"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Êtes-vous sûr(e) de vouloir supprimer le flux « %1 » ?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1417"/>
-        <location filename="../src/rsslisting.cpp" line="1513"/>
+        <location filename="../src/rsslisting.cpp" line="1448"/>
+        <location filename="../src/rsslisting.cpp" line="1544"/>
         <source>Select OPML-file</source>
         <translation>Sélectionner un fichier OPML</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1419"/>
-        <location filename="../src/rsslisting.cpp" line="1515"/>
+        <location filename="../src/rsslisting.cpp" line="1450"/>
+        <location filename="../src/rsslisting.cpp" line="1546"/>
         <source>OPML-files (*.opml)</source>
         <translation>Fichiers OPML (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1422"/>
+        <location filename="../src/rsslisting.cpp" line="1453"/>
         <source>Import canceled</source>
         <translation>Importation annulé</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1430"/>
+        <location filename="../src/rsslisting.cpp" line="1461"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Importation: impossible d&apos;ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1518"/>
+        <location filename="../src/rsslisting.cpp" line="1549"/>
         <source>Export canceled</source>
         <translation>Exportation annulé</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1524"/>
+        <location filename="../src/rsslisting.cpp" line="1555"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Exportation: impossible d&apos;ouvrir un fichier</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1584"/>
+        <location filename="../src/rsslisting.cpp" line="1615"/>
         <source>Update done</source>
         <translation>Mis à jour complété</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2251"/>
-        <location filename="../src/rsslisting.cpp" line="2770"/>
+        <location filename="../src/rsslisting.cpp" line="2285"/>
+        <location filename="../src/rsslisting.cpp" line="2825"/>
         <source> Unread: %1 </source>
         <translation> Non lus : %1 </translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2252"/>
-        <location filename="../src/rsslisting.cpp" line="2773"/>
+        <location filename="../src/rsslisting.cpp" line="2286"/>
+        <location filename="../src/rsslisting.cpp" line="2828"/>
         <source> All: %1 </source>
         <translation> Tous : %1 </translation>
     </message>
@@ -787,443 +876,481 @@
         <translation type="obsolete">Erreur de chargement dans la vue Web</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2571"/>
-        <location filename="../src/rsslisting.cpp" line="2798"/>
+        <location filename="../src/rsslisting.cpp" line="2626"/>
+        <location filename="../src/rsslisting.cpp" line="2853"/>
         <source>Load images</source>
         <translation>Charger les images</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2572"/>
-        <location filename="../src/rsslisting.cpp" line="2799"/>
+        <location filename="../src/rsslisting.cpp" line="2627"/>
+        <location filename="../src/rsslisting.cpp" line="2854"/>
         <source>Auto load images to news view</source>
         <translation>Charger automatiquement les images dans les articles</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2575"/>
-        <location filename="../src/rsslisting.cpp" line="2801"/>
+        <location filename="../src/rsslisting.cpp" line="2630"/>
+        <location filename="../src/rsslisting.cpp" line="2856"/>
         <source>No load images</source>
         <translation>Ne pas charger les images</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2576"/>
-        <location filename="../src/rsslisting.cpp" line="2802"/>
+        <location filename="../src/rsslisting.cpp" line="2631"/>
+        <location filename="../src/rsslisting.cpp" line="2857"/>
         <source>No load images to news view</source>
         <translation>Ne pas charger les images dans les articles</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2762"/>
+        <location filename="../src/rsslisting.cpp" line="2817"/>
         <source>Loading... (%p%)</source>
         <translation>Chargement en cours... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2763"/>
+        <location filename="../src/rsslisting.cpp" line="2818"/>
         <source>Feeds</source>
         <translation>Flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2764"/>
+        <location filename="../src/rsslisting.cpp" line="2819"/>
         <source>Title:</source>
         <translation>Titre :</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2765"/>
+        <location filename="../src/rsslisting.cpp" line="2820"/>
         <source>Author:</source>
         <translation>Auteur :</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2766"/>
+        <location filename="../src/rsslisting.cpp" line="2821"/>
         <source>Update feeds... (%p%)</source>
         <translation>Mis à jour des flux... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2778"/>
-        <location filename="../src/rsslisting.cpp" line="3025"/>
+        <location filename="../src/rsslisting.cpp" line="2833"/>
+        <location filename="../src/rsslisting.cpp" line="3105"/>
         <source>New news: %1</source>
         <translation>Nouveaux articles : %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2780"/>
-        <location filename="../src/rsslisting.cpp" line="3027"/>
+        <location filename="../src/rsslisting.cpp" line="2835"/>
+        <location filename="../src/rsslisting.cpp" line="3107"/>
         <source>Unread news: %1</source>
         <translation>Articles non lus : %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2783"/>
+        <location filename="../src/rsslisting.cpp" line="2838"/>
         <source>&amp;Add...</source>
         <translation>&amp;Ajouter...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2784"/>
+        <location filename="../src/rsslisting.cpp" line="2839"/>
         <source>Add new feed</source>
         <translation>Ajouter un nouveau flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2786"/>
+        <location filename="../src/rsslisting.cpp" line="2841"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Supprimer...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2787"/>
+        <location filename="../src/rsslisting.cpp" line="2842"/>
         <source>Delete selected feed</source>
         <translation>Supprimer le flux sélectionné</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2789"/>
+        <location filename="../src/rsslisting.cpp" line="2844"/>
         <source>&amp;Import feeds...</source>
         <translation>&amp;Importer des flux...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2790"/>
+        <location filename="../src/rsslisting.cpp" line="2845"/>
         <source>Import feeds from OPML file</source>
         <translation>Importer les flux d&apos;un fichier OPML</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2792"/>
+        <location filename="../src/rsslisting.cpp" line="2847"/>
         <source>&amp;Export feeds...</source>
         <translation>&amp;Exporter des flux...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2793"/>
+        <location filename="../src/rsslisting.cpp" line="2848"/>
         <source>Export feeds to OPML file</source>
         <translation>Exporter les flux vers un fichier OPML</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2795"/>
+        <location filename="../src/rsslisting.cpp" line="2850"/>
         <source>E&amp;xit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2805"/>
+        <location filename="../src/rsslisting.cpp" line="2860"/>
         <source>Update feed</source>
         <translation>Mettre à jour le flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2806"/>
+        <location filename="../src/rsslisting.cpp" line="2861"/>
         <source>Update current feed</source>
         <translation>Mettre à jour le flux actuel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2808"/>
+        <location filename="../src/rsslisting.cpp" line="2863"/>
         <source>Update all</source>
         <translation>Mettre à jour tous les flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2809"/>
+        <location filename="../src/rsslisting.cpp" line="2864"/>
         <source>Update all feeds</source>
         <translation>Mettre à jour tous les flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2811"/>
+        <location filename="../src/rsslisting.cpp" line="2866"/>
         <source>Mark all feeds Read</source>
         <translation>Marques tous les flux comme lus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2813"/>
+        <location filename="../src/rsslisting.cpp" line="2868"/>
         <source>Mark Read/Unread</source>
         <translation>Marquer lu/non lu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2814"/>
+        <location filename="../src/rsslisting.cpp" line="2869"/>
         <source>Mark current news read/unread</source>
         <translation>Marquer article actuel comme lu/non lu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2816"/>
+        <location filename="../src/rsslisting.cpp" line="2871"/>
         <source>Mark all news Read</source>
         <translation>Marquer tous les articles comme lus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2817"/>
+        <location filename="../src/rsslisting.cpp" line="2872"/>
         <source>Mark all news read</source>
         <translation>Marquer tous les articles comme lus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2820"/>
+        <location filename="../src/rsslisting.cpp" line="2875"/>
         <source>News filters...</source>
         <translation>Filtre des articles...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2821"/>
+        <location filename="../src/rsslisting.cpp" line="2876"/>
         <source>Filter news...</source>
         <translation>Filtrer les articles...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2823"/>
+        <location filename="../src/rsslisting.cpp" line="2878"/>
         <source>Options...</source>
         <translation>Configuration...</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2897"/>
+        <source>Open in browser</source>
+        <translation>Ouvrir dans un navigateur internet</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2898"/>
+        <source>Open in external browser</source>
+        <translation>Ouvrir dans un navigateur internet externe</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2933"/>
+        <source>System2</source>
+        <translation>Système2</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2934"/>
+        <source>Green</source>
+        <translation>Vert</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2935"/>
+        <source>Orange</source>
+        <translation>Orange</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2936"/>
+        <source>Purple</source>
+        <translation>Pourpre</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2937"/>
+        <source>Pink</source>
+        <translation>Rose</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2938"/>
+        <source>Gray</source>
+        <translation>Gris</translation>
     </message>
     <message>
         <source>Open options gialog</source>
         <translation type="obsolete">Ouvrir dialogue de configuration</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2265"/>
+        <location filename="../src/rsslisting.cpp" line="2299"/>
         <source>Error loading to WebView</source>
         <translation>Erreur de chargement dans la vue Web</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2824"/>
+        <location filename="../src/rsslisting.cpp" line="2879"/>
         <source>Open options dialog</source>
         <translation>Ouvrir dialogue de configuration</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2826"/>
-        <location filename="../src/rsslisting.cpp" line="2831"/>
+        <location filename="../src/rsslisting.cpp" line="2881"/>
+        <location filename="../src/rsslisting.cpp" line="2886"/>
         <source>Filter</source>
         <translation>Filtre</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2827"/>
-        <location filename="../src/rsslisting.cpp" line="2832"/>
+        <location filename="../src/rsslisting.cpp" line="2882"/>
+        <location filename="../src/rsslisting.cpp" line="2887"/>
         <source>Show All</source>
         <translation>Montrer tous</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2828"/>
-        <location filename="../src/rsslisting.cpp" line="2833"/>
+        <location filename="../src/rsslisting.cpp" line="2883"/>
+        <location filename="../src/rsslisting.cpp" line="2888"/>
         <source>Show New</source>
         <translation>Montrer nouveaux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2829"/>
-        <location filename="../src/rsslisting.cpp" line="2834"/>
+        <location filename="../src/rsslisting.cpp" line="2884"/>
+        <location filename="../src/rsslisting.cpp" line="2889"/>
         <source>Show Unread</source>
         <translation>Montrer non lus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2835"/>
+        <location filename="../src/rsslisting.cpp" line="2890"/>
         <source>Show Star</source>
         <translation>Montrer étoilés</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2837"/>
+        <location filename="../src/rsslisting.cpp" line="2892"/>
         <source>About...</source>
         <translation>À propos...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2838"/>
+        <location filename="../src/rsslisting.cpp" line="2893"/>
         <source>Show &apos;About&apos; dialog</source>
         <translation>Montrer dialogue d&apos;information</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2840"/>
+        <location filename="../src/rsslisting.cpp" line="2895"/>
         <source>Check for updates...</source>
         <translation>Vérifier les mises à jour...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2842"/>
         <source>Open in Browser</source>
-        <translation>Ouvrir dans un navigateur internet</translation>
+        <translation type="obsolete">Ouvrir dans un navigateur internet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2843"/>
+        <location filename="../src/rsslisting.cpp" line="2899"/>
         <source>Star</source>
         <translation>Étoile</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2844"/>
+        <location filename="../src/rsslisting.cpp" line="2900"/>
         <source>Mark news star</source>
         <translation>Marquer l&apos;article comme étoilé</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2845"/>
+        <location filename="../src/rsslisting.cpp" line="2901"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2846"/>
+        <location filename="../src/rsslisting.cpp" line="2902"/>
         <source>Delete selected news</source>
         <translation>Supprimer l&apos;article sélectionné</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2848"/>
+        <location filename="../src/rsslisting.cpp" line="2904"/>
         <source>Mark Read</source>
         <translation>Marquer comme lu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2849"/>
+        <location filename="../src/rsslisting.cpp" line="2905"/>
         <source>Mark feed read</source>
         <translation>Marquer le flux comme lu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2850"/>
-        <location filename="../src/rsslisting.cpp" line="2851"/>
+        <location filename="../src/rsslisting.cpp" line="2906"/>
+        <location filename="../src/rsslisting.cpp" line="2907"/>
         <source>Properties feed</source>
         <translation>Propriétés du flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2853"/>
+        <location filename="../src/rsslisting.cpp" line="2909"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2854"/>
+        <location filename="../src/rsslisting.cpp" line="2910"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2855"/>
+        <location filename="../src/rsslisting.cpp" line="2911"/>
         <source>&amp;View</source>
         <translation>Afficha&amp;ge</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2856"/>
+        <location filename="../src/rsslisting.cpp" line="2912"/>
         <source>Fee&amp;ds</source>
         <translation>&amp;Flux</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2857"/>
+        <location filename="../src/rsslisting.cpp" line="2913"/>
         <source>&amp;News</source>
         <translation>A&amp;rticles</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2858"/>
+        <location filename="../src/rsslisting.cpp" line="2914"/>
         <source>&amp;Tools</source>
         <translation>&amp;Outils</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2859"/>
+        <location filename="../src/rsslisting.cpp" line="2915"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2861"/>
-        <location filename="../src/rsslisting.cpp" line="2862"/>
+        <location filename="../src/rsslisting.cpp" line="2917"/>
+        <location filename="../src/rsslisting.cpp" line="2918"/>
         <source>ToolBar</source>
         <translation>Barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2863"/>
+        <location filename="../src/rsslisting.cpp" line="2919"/>
         <source>Style</source>
         <translation>Style</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2864"/>
+        <location filename="../src/rsslisting.cpp" line="2920"/>
         <source>Icon</source>
         <translation>Icônes seules</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2865"/>
+        <location filename="../src/rsslisting.cpp" line="2921"/>
         <source>Text</source>
         <translation>Texte seul</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2866"/>
+        <location filename="../src/rsslisting.cpp" line="2922"/>
         <source>Text beside icon</source>
         <translation>Texte contre les icônes</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2867"/>
+        <location filename="../src/rsslisting.cpp" line="2923"/>
         <source>Text under icon</source>
         <translation>Texte sous les icônes</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2868"/>
+        <location filename="../src/rsslisting.cpp" line="2924"/>
         <source>Show ToolBar</source>
         <translation>Montrer barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2870"/>
+        <location filename="../src/rsslisting.cpp" line="2926"/>
         <source>Icon size</source>
         <translation>Taille des icônes</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2871"/>
+        <location filename="../src/rsslisting.cpp" line="2927"/>
         <source>Big</source>
         <translation>Grande</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2872"/>
+        <location filename="../src/rsslisting.cpp" line="2928"/>
         <source>Normal</source>
         <translation>Moyenne</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2873"/>
+        <location filename="../src/rsslisting.cpp" line="2929"/>
         <source>Small</source>
         <translation>Petite</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2875"/>
+        <location filename="../src/rsslisting.cpp" line="2931"/>
         <source>Style application</source>
         <translation>Style de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2876"/>
+        <location filename="../src/rsslisting.cpp" line="2932"/>
         <source>System</source>
         <translation>Système</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2877"/>
         <source>Default</source>
-        <translation>Par défaut</translation>
+        <translation type="obsolete">Par défaut</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2879"/>
+        <location filename="../src/rsslisting.cpp" line="2940"/>
         <source>Show window</source>
         <translation>Montrer fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2881"/>
+        <location filename="../src/rsslisting.cpp" line="2942"/>
         <source>Previous feed</source>
         <translation>Flux précédent</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2882"/>
+        <location filename="../src/rsslisting.cpp" line="2943"/>
         <source>Next feed</source>
         <translation>Flux suivant</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2883"/>
+        <location filename="../src/rsslisting.cpp" line="2944"/>
         <source>Previous news</source>
         <translation>Article précédent</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2884"/>
+        <location filename="../src/rsslisting.cpp" line="2945"/>
         <source>Next news</source>
         <translation>Article suivant</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2886"/>
+        <location filename="../src/rsslisting.cpp" line="2947"/>
         <source>Open Link</source>
         <translation>Ouvrir le lien</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2887"/>
+        <location filename="../src/rsslisting.cpp" line="2948"/>
         <source>Open in New Window</source>
         <translation>Ouvrier le lien dans une nouvelle fenêtre</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2888"/>
+        <location filename="../src/rsslisting.cpp" line="2949"/>
         <source>Save Link...</source>
         <translation>Enregistrer le lien...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2889"/>
+        <location filename="../src/rsslisting.cpp" line="2950"/>
         <source>Copy Link</source>
         <translation>Copier le lien</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2890"/>
+        <location filename="../src/rsslisting.cpp" line="2951"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2891"/>
+        <location filename="../src/rsslisting.cpp" line="2952"/>
         <source>Go Back</source>
         <translation>Précédent</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2892"/>
+        <location filename="../src/rsslisting.cpp" line="2953"/>
         <source>Go Forward</source>
         <translation>Suivant</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2893"/>
+        <location filename="../src/rsslisting.cpp" line="2954"/>
         <source>Stop</source>
         <translation>Arrêter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2894"/>
+        <location filename="../src/rsslisting.cpp" line="2955"/>
         <source>Reload</source>
         <translation>Recharger</translation>
     </message>

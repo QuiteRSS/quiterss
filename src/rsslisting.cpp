@@ -2954,6 +2954,25 @@ void RSSListing::retranslateStrings() {
   webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
   webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
 
+  QApplication::translate("QDialogButtonBox", "Cancel");
+
+  QApplication::translate("QLineEdit", "&Undo");
+  QApplication::translate("QLineEdit", "&Redo");
+  QApplication::translate("QLineEdit", "Cu&t");
+  QApplication::translate("QLineEdit", "&Copy");
+  QApplication::translate("QLineEdit", "&Paste");
+  QApplication::translate("QLineEdit", "Delete");
+  QApplication::translate("QLineEdit", "Select All");
+
+  QApplication::translate("QTextControl", "&Undo");
+  QApplication::translate("QTextControl", "&Redo");
+  QApplication::translate("QTextControl", "Cu&t");
+  QApplication::translate("QTextControl", "&Copy");
+  QApplication::translate("QTextControl", "&Paste");
+  QApplication::translate("QTextControl", "Delete");
+  QApplication::translate("QTextControl", "Select All");
+  QApplication::translate("QTextControl", "Copy &Link Location");
+
   newsHeader_->retranslateStrings();
 }
 
