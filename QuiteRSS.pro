@@ -80,6 +80,11 @@ TARGET = QuiteRSS
 RC_FILE = quiterss_os2.rc
 }
 
+DISTFILES += \
+    HISTORY_RU \
+    HISTORY_EN \
+    COPYING
+
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
@@ -122,5 +127,5 @@ CODECFORTR  = UTF-8
 CODECFORSRC = UTF-8
 
 OTHER_FILES += \
-    history_en \
-    history_ru
+    HISTORY_RU \
+    HISTORY_EN
