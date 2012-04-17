@@ -66,47 +66,51 @@ RCC_DIR = $${BUILD_DIR}/rcc/
 
 include(3rdparty/sqlite.pri)
 include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
+include(lang/lang.pri)
 
 win32 {
 TARGET = QuiteRSS
 LIBS += libkernel32 \
         libpsapi
 RC_FILE = QuiteRSSApp.rc
-include(lang/lang.pri)
 }
 
 os2 {
 TARGET = QuiteRSS
 RC_FILE = quiterss_os2.rc
-include(lang/lang.pri)
 }
 
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts \
-                  lang/quiterss_ru.ts lang/quiterss_es.ts \
-                  lang/quiterss_fr.ts
+
+  isEmpty(PREFIX) {
+    PREFIX =   /usr
+  }
+
+  target.path =  $$PREFIX/bin
+
   desktop.files = quiterss.desktop
+  desktop.path =  $$PREFIX/share/applications
+
   icon_16.files = images/16x16/quiterss.png
   icon_24.files = images/24x24/quiterss.png
   icon_32.files = images/32x32/quiterss.png
   icon_48.files = images/48x48/quiterss.png
   icon_64.files = images/64x64/quiterss.png
-  translations.files = lang/*.qm
-  sound.files = sound/*.wav
-  isEmpty(PREFIX) {
-    PREFIX =   /usr
-  }
-  target.path =  $$PREFIX/bin
-  desktop.path =  $$PREFIX/share/applications
   icon_16.path =  $$PREFIX/share/icons/hicolor/16x16/apps
   icon_24.path =  $$PREFIX/share/icons/hicolor/24x24/apps
   icon_32.path =  $$PREFIX/share/icons/hicolor/32x32/apps
   icon_48.path =  $$PREFIX/share/icons/hicolor/48x48/apps
   icon_64.path =  $$PREFIX/share/icons/hicolor/64x64/apps
+
+  translations.files = $$DESTDIR/lang/*.qm
   translations.path =  $$PREFIX/share/quiterss/lang
+  translations.CONFIG += no_check_exist
+
+  sound.files = sound/*.wav
   sound.path = $$PREFIX/share/quiterss/sound
+
   INSTALLS += target desktop icon_16 icon_24 icon_32 icon_48 icon_64 \
               translations sound
 }
