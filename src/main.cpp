@@ -97,10 +97,14 @@ QSettings *settings_;
   QString fileString;
   if (styleActionStr == "systemStyle_") {
     fileString = ":/style/systemStyle";
+  } else if (styleActionStr == "system2Style_") {
+    fileString = ":/style/system2Style";
   } else if (styleActionStr == "orangeStyle_") {
     fileString = ":/style/orangeStyle";
   } else if (styleActionStr == "purpleStyle_") {
     fileString = ":/style/purpleStyle";
+  } else if (styleActionStr == "pinkStyle_") {
+    fileString = ":/style/pinkStyle";
   } else if (styleActionStr == "grayStyle_") {
     fileString = ":/style/grayStyle";
   } else {

@@ -732,6 +732,9 @@ void RSSListing::createActions()
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
   systemStyle_->setCheckable(true);
+  system2Style_ = new QAction(this);
+  system2Style_->setObjectName("system2Style_");
+  system2Style_->setCheckable(true);
   greenStyle_ = new QAction(this);
   greenStyle_->setObjectName("greenStyle_");
   greenStyle_->setCheckable(true);
@@ -742,6 +745,9 @@ void RSSListing::createActions()
   purpleStyle_ = new QAction(this);
   purpleStyle_->setObjectName("purpleStyle_");
   purpleStyle_->setCheckable(true);
+  pinkStyle_ = new QAction(this);
+  pinkStyle_->setObjectName("pinkStyle_");
+  pinkStyle_->setCheckable(true);
   grayStyle_ = new QAction(this);
   grayStyle_->setObjectName("grayStyle_");
   grayStyle_->setCheckable(true);
@@ -1005,15 +1011,19 @@ void RSSListing::createMenu()
 
   styleMenu_ = new QMenu(this);
   styleMenu_->addAction(systemStyle_);
+  styleMenu_->addAction(system2Style_);
   styleMenu_->addAction(greenStyle_);
   styleMenu_->addAction(orangeStyle_);
   styleMenu_->addAction(purpleStyle_);
+  styleMenu_->addAction(pinkStyle_);
   styleMenu_->addAction(grayStyle_);
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
+  styleGroup_->addAction(system2Style_);
   styleGroup_->addAction(greenStyle_);
   styleGroup_->addAction(orangeStyle_);
   styleGroup_->addAction(purpleStyle_);
+  styleGroup_->addAction(pinkStyle_);
   styleGroup_->addAction(grayStyle_);
   connect(styleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setStyleApp(QAction*)));
@@ -2920,9 +2930,11 @@ void RSSListing::retranslateStrings() {
 
   styleMenu_->setTitle(tr("Style application"));
   systemStyle_->setText(tr("System"));
+  system2Style_->setText(tr("System2"));
   greenStyle_->setText(tr("Green"));
   orangeStyle_->setText(tr("Orange"));
   purpleStyle_->setText(tr("Purple"));
+  pinkStyle_->setText(tr("Pink"));
   grayStyle_->setText(tr("Gray"));
 
   showWindowAct_->setText(tr("Show window"));
@@ -3361,10 +3373,14 @@ void RSSListing::setStyleApp(QAction *pAct)
   QString fileString;
   if (pAct->objectName() == "systemStyle_") {
     fileString = ":/style/systemStyle";
+  } else if (pAct->objectName() == "system2Style_") {
+    fileString = ":/style/system2Style";
   } else if (pAct->objectName() == "orangeStyle_") {
     fileString = ":/style/orangeStyle";
   } else if (pAct->objectName() == "purpleStyle_") {
     fileString = ":/style/purpleStyle";
+  } else if (pAct->objectName() == "pinkStyle_") {
+    fileString = ":/style/pinkStyle";
   } else if (pAct->objectName() == "grayStyle_") {
     fileString = ":/style/grayStyle";
   } else {

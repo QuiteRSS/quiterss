@@ -1,0 +1,132 @@
+/* QuiteRSS System2 Style */
+
+#feedsTreeView_::item, #newsView_::item {
+	min-height: 20px;
+}
+
+#feedsTitleLabel_, #newsTitleLabel_ {
+	margin-left: 3px;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #fafafa, stop: 0.4 #f4f4f4,
+								stop: 0.5 #e7e7e7, stop: 1.0 #fafafa);
+	border: 1px solid grey;
+	border-bottom: 0px solid #D5D5D5;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 4px;
+	vertical-align:middle;
+	color: #000000;
+}
+
+#newsTitleLabel_ {
+	min-width: 50px;
+}
+
+QToolBar {
+	border-style: none;
+}
+
+#pushButtonNull {
+	background: #E8E8E8;
+	border-style: none;
+}
+
+#buttonColumnView {
+	border-left: 1px solid #D5D5D5;
+	border-top: none;
+	border-right: 1px solid #D5D5D5;
+	border-bottom: 1px solid #D5D5D5;
+	padding: 5px 0px 1px 0px;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #ffffff,
+								stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+}
+
+#buttonColumnView:hover, #buttonColumnView:pressed {
+	border-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+QHeaderView {
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+							stop: 0 #ffffff, stop: 0.4 #ffffff,
+							stop: 0.5 #F6F7F9, stop: 1.0 #F1F2F4);
+	color: #000000;
+}
+
+QHeaderView::section {
+	min-height: 20px;
+	border: 1px solid #D5D5D5;
+	border-top: none;
+	border-left: none;
+	background-color: transparent;
+	padding-left: 4px;
+}
+
+QHeaderView::section:hover {
+	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #88CBEB, stop: 0.4 #88CBEB,
+								stop: 0.5 #69BBE3, stop: 1.0 #69BBE3);
+	border-top: none;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #E3F7FF, stop: 0.4 #E3F7FF,
+								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
+}
+
+QHeaderView::down-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorD.png);
+}
+
+QHeaderView::up-arrow {
+	subcontrol-origin: padding;
+	subcontrol-position: center top;
+	image: url(:/images/images/sortIndicatorA.png);
+}
+
+#webViewProgress_ {
+	text-align: center;
+}
+
+#AboutDialog {
+	background: #f9f9f9;
+}
+
+#logoLabel {
+	background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+								stop:0 #6C91FE,
+								stop:1 #f9f9f9);
+	padding-top: 10px;
+}
+
+#contentLabel_ {
+	background-color: #888888;
+	color: #FFFFFF;
+}
+
+#categoriesTree {
+	padding: 1px;
+}
+
+#categoriesTree::item, #fontTree::item, 
+#languageFileList_::item, #feedsTreeFR::item,
+#filtersTree::item, #shortcutTree::item {
+	min-height: 18px;
+}
+
+QStatusBar #progressBar_{
+	margin-right: 5px;
+}
+
+QMainWindow::separator {
+	border: none;
+}
+
+#infoWidgetFR, #actionsWidgetFR {
+	background: white;
+}
