@@ -2585,6 +2585,12 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
 
 void RSSListing::slotLinkClicked(QUrl url)
 {
+  if (url.host().isEmpty()) {
+    QUrl hostUrl(feedsModel_->record(feedsView_->currentIndex().row()).
+                 field("htmlUrl").value().toUrl());
+    url.setScheme(hostUrl.scheme());
+    url.setHost(hostUrl.host());
+  }
   if (embeddedBrowserOn_) webView_->load(url);
   else QDesktopServices::openUrl(url);
 }
