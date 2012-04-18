@@ -475,7 +475,7 @@ void RSSListing::createToolBarNull()
 
 void RSSListing::createWebWidget()
 {
-  webView_ = new QWebView(this);
+  webView_ = new WebView(this);
 
   webView_->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
   webView_->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
@@ -1536,7 +1536,8 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
     progressBar_->setValue(progressBar_->maximum() - result);
-    statusBar()->showMessage(progressBar_->text());
+    if (progressBar_->isVisible())
+      statusBar()->showMessage(progressBar_->text());
   }
 }
 
@@ -1934,8 +1935,8 @@ void RSSListing::myEmptyWorkingSet()
 void RSSListing::showProgressBar(int addToMaximum)
 {
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
-  progressBar_->show();
   statusBar()->showMessage(progressBar_->text());
+  progressBar_->show();
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
   emit startGetUrlTimer();
 }

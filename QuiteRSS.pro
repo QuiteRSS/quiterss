@@ -27,6 +27,7 @@ HEADERS += \
     src/webpage.h \
     src/lineedit.h \
     src/db_func.h
+    src/webview.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -53,6 +54,7 @@ SOURCES += \
     src/webpage.cpp \
     src/lineedit.cpp \
     src/db_func.cpp
+    src/webview.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
