@@ -47,7 +47,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>Glad Deschrijver</li>"
       "</UL>"
       "<HR>"
-      + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss") +
+      + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
+      + QString("<br><a href=\"%1/\">%1</a>").arg("www.quiterss.ucoz.ru") +
       "<p>&copy; 2011-2012 QuiteRSS Team</p>"
       "</body></html>";
   QLabel *infoLabel = new QLabel(info, this);
