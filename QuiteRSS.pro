@@ -25,7 +25,8 @@ HEADERS += \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
     src/webpage.h \
-    src/lineedit.h
+    src/lineedit.h \
+    src/webview.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -50,7 +51,8 @@ SOURCES += \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
     src/webpage.cpp \
-    src/lineedit.cpp
+    src/lineedit.cpp \
+    src/webview.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

@@ -561,7 +561,7 @@ void RSSListing::createToolBarNull()
 
 void RSSListing::createWebWidget()
 {
-  webView_ = new QWebView(this);
+  webView_ = new WebView(this);
 
   webView_->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
   webView_->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);

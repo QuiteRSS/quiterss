@@ -15,6 +15,7 @@
 #include "updateappdialog.h"
 #include "updatethread.h"
 #include "newsview.h"
+#include "webview.h"
 
 class RSSListing : public QMainWindow
 {
@@ -205,7 +206,7 @@ private:
   QWidget *webPanel_;
 
   QFrame *webWidget_;
-  QWebView *webView_;
+  WebView *webView_;
   QProgressBar *webViewProgress_;
   QLabel *webViewProgressLabel_;
 
