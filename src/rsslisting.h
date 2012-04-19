@@ -156,6 +156,8 @@ private:
   QAction *feedKeyDownAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
+  QAction *webHomePageAct_;
+  QAction *webExternalBrowserAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
@@ -204,6 +206,7 @@ private:
   QLabel *webPanelAuthorLabel_;
   QLabel *webPanelAuthor_;
   QWidget *webPanel_;
+  QWidget *webControlPanel_;
 
   QFrame *webWidget_;
   WebView *webView_;
@@ -318,6 +321,7 @@ private slots:
   void slotNewsUpPressed();
   void slotNewsDownPressed();
   void setStyleApp(QAction*);
+  void webHomePage();
 
 signals:
   void signalPlaceToTray();

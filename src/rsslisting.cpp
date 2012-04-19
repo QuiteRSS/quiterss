@@ -503,6 +503,56 @@ void RSSListing::createWebWidget()
   progressLayout->addWidget(webViewProgressLabel_, 0, Qt::AlignLeft|Qt::AlignVCenter);
   webViewProgress_->setLayout(progressLayout);
 
+  //! Create web control panel
+  QToolBar *webToolBar_ = new QToolBar(this);
+  webToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
+  webToolBar_->setIconSize(QSize(16, 16));
+
+  webHomePageAct_ = new QAction(this);
+  webHomePageAct_->setIcon(QIcon(":/images/homePage"));
+  connect(webHomePageAct_, SIGNAL(triggered()),
+          this, SLOT(webHomePage()));
+
+  webToolBar_->addAction(webHomePageAct_);
+  QAction *webAction = webView_->pageAction(QWebPage::Back);
+//  webAction->setIcon(QIcon(":/images/backPage"));
+  webToolBar_->addAction(webAction);
+  webAction = webView_->pageAction(QWebPage::Forward);
+//  webAction->setIcon(QIcon(":/images/forwardPage"));
+  webToolBar_->addAction(webAction);
+  webAction = webView_->pageAction(QWebPage::Reload);
+//  webAction->setIcon(QIcon(":/images/updateAllFeeds"));
+  webToolBar_->addAction(webAction);
+  webAction = webView_->pageAction(QWebPage::Stop);
+//  webAction->setIcon(QIcon(":/images/delete"));
+  webToolBar_->addAction(webAction);
+  webToolBar_->addSeparator();
+
+  webExternalBrowserAct_ = new QAction(this);
+  webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
+  webToolBar_->addAction(webExternalBrowserAct_);
+  connect(webExternalBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInExternalBrowserNews()));
+
+  QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
+  webControlPanelHLayout->setMargin(0);
+  webControlPanelHLayout->addSpacing(5);
+  webControlPanelHLayout->addWidget(webToolBar_);
+
+  QFrame *webControlPanelLine = new QFrame(this);
+  webControlPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
+
+  QVBoxLayout *webControlPanelLayout = new QVBoxLayout();
+  webControlPanelLayout->setMargin(0);
+  webControlPanelLayout->setSpacing(0);
+  webControlPanelLayout->addLayout(webControlPanelHLayout);
+  webControlPanelLayout->addWidget(webControlPanelLine);
+
+  webControlPanel_ = new QWidget(this);
+  webControlPanel_->setObjectName("webControlPanel_");
+  webControlPanel_->setLayout(webControlPanelLayout);
+  webControlPanel_->setVisible(false);
+
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
   webPanelTitleLabel_->setCursor(Qt::PointingHandCursor);
@@ -519,7 +569,7 @@ void RSSListing::createWebWidget()
           this, SLOT(slotWebTitleLinkClicked(QString)));
 
   QGridLayout *webPanelLayout1 = new QGridLayout();
-  webPanelLayout1->setMargin(10);
+  webPanelLayout1->setMargin(5);
   webPanelLayout1->setSpacing(5);
   webPanelLayout1->setColumnStretch(1, 1);
   webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0, 1, 1);
@@ -535,6 +585,8 @@ void RSSListing::createWebWidget()
   webPanelLayout->setSpacing(0);
   webPanelLayout->addLayout(webPanelLayout1);
   webPanelLayout->addWidget(webPanelLine);
+  webPanelLayout->addWidget(webControlPanel_);
+//  webPanelLayout->addWidget(webPanelLine1);
 
   webPanel_ = new QWidget(this);
   webPanel_->setObjectName("webPanel_");
@@ -1361,7 +1413,7 @@ void RSSListing::slotImportFeeds()
 
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
                                                   QDir::homePath(),
-                                                  tr("OPML-files (*.opml)"));
+                                                  tr("OPML-files (*.opml *.xml)"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Import canceled"), 3000);
@@ -1706,6 +1758,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
       (QApplication::mouseButtons() & Qt::MiddleButton)) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
+    webView_->history()->clear();
 
     updateWebView(index);
 
@@ -2325,8 +2378,11 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  if (embeddedBrowserOn_) webView_->load(QUrl(linkString.simplified()));
-  else QDesktopServices::openUrl(QUrl(linkString.simplified()));
+  if (embeddedBrowserOn_) {
+    webView_->history()->clear();
+    webControlPanel_->setVisible(true);
+    webView_->load(QUrl(linkString.simplified()));
+  } else QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
 void RSSListing::slotSetAllRead()
@@ -2516,8 +2572,13 @@ void RSSListing::slotLinkClicked(QUrl url)
     url.setScheme(hostUrl.scheme());
     url.setHost(hostUrl.host());
   }
-  if (embeddedBrowserOn_) webView_->load(url);
-  else QDesktopServices::openUrl(url);
+  if (embeddedBrowserOn_) {
+    if (!webControlPanel_->isVisible()) {
+      webView_->page()->history()->clear();
+      webControlPanel_->setVisible(true);
+    }
+    webView_->load(url);
+  } else QDesktopServices::openUrl(url);
 }
 
 void RSSListing::slotLinkHovered(const QString &link, const QString &, const QString &)
@@ -2641,6 +2702,7 @@ void RSSListing::updateWebView(QModelIndex index)
   webPanelAuthor_->setText(authorString);
   webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
   webPanelAuthor_->setVisible(!authorString.isEmpty());
+  webControlPanel_->setVisible(false);
 
   if (QApplication::mouseButtons() & Qt::MiddleButton) {
     slotNewsViewDoubleClicked(index);
@@ -2652,6 +2714,7 @@ void RSSListing::updateWebView(QModelIndex index)
       if (linkString.isEmpty())
         linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
+      webControlPanel_->setVisible(true);
       webView_->load(QUrl(linkString.simplified()));
     } else {
       QString content = newsModel_->record(index.row()).field("content").value().toString();
@@ -2854,10 +2917,10 @@ void RSSListing::retranslateStrings() {
 
   showWindowAct_->setText(tr("Show window"));
 
-  feedKeyUpAct_->setText(tr("Previous feed"));;
-  feedKeyDownAct_->setText(tr("Next feed"));;
-  newsKeyUpAct_->setText(tr("Previous news"));;
-  newsKeyDownAct_->setText(tr("Next news"));;
+  feedKeyUpAct_->setText(tr("Previous feed"));
+  feedKeyDownAct_->setText(tr("Next feed"));
+  newsKeyUpAct_->setText(tr("Previous news"));
+  newsKeyDownAct_->setText(tr("Next news"));
 
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Window"));
@@ -2868,6 +2931,9 @@ void RSSListing::retranslateStrings() {
   webView_->page()->action(QWebPage::Forward)->setText(tr("Go Forward"));
   webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
   webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
+
+  webHomePageAct_->setText(tr("Home"));
+  webExternalBrowserAct_->setText(tr("Open in external browser"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
 
@@ -3106,8 +3172,11 @@ void RSSListing::markAllFeedsRead(bool readOn)
 
 void RSSListing::slotWebTitleLinkClicked(QString urlStr)
 {
-  if (embeddedBrowserOn_) slotLinkClicked(QUrl(urlStr.simplified()));
-  else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
+  if (embeddedBrowserOn_) {
+    webView_->page()->history()->clear();
+    webControlPanel_->setVisible(true);
+    slotLinkClicked(QUrl(urlStr.simplified()));
+  } else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
 }
 
 void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
@@ -3324,4 +3393,10 @@ void RSSListing::setStyleApp(QAction *pAct)
   QFile file(fileString);
   file.open(QFile::ReadOnly);
   qApp->setStyleSheet(QLatin1String(file.readAll()));
+}
+
+void RSSListing::webHomePage()
+{
+  updateWebView(newsView_->currentIndex());
+  webView_->page()->history()->clear();
 }
