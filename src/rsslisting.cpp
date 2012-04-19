@@ -532,7 +532,7 @@ void RSSListing::createWebWidget()
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   webToolBar_->addAction(webExternalBrowserAct_);
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
-          this, SLOT(openInExternalBrowserNews()));
+          this, SLOT(openPageInExternalBrowser()));
 
   QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
   webControlPanelHLayout->setMargin(0);
@@ -1708,9 +1708,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   newsHeader_->overload();
   if (initNo) {
     newsHeader_->initColumns();
-    newsHeader_->createMenu();
     newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
     newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
+    newsHeader_->createMenu();
   }
 
   while (newsModel_->canFetchMore())
@@ -2574,7 +2574,7 @@ void RSSListing::slotLinkClicked(QUrl url)
   }
   if (embeddedBrowserOn_) {
     if (!webControlPanel_->isVisible()) {
-      webView_->page()->history()->clear();
+      webView_->history()->clear();
       webControlPanel_->setVisible(true);
     }
     webView_->load(url);
@@ -2936,6 +2936,8 @@ void RSSListing::retranslateStrings() {
   webExternalBrowserAct_->setText(tr("Open in external browser"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
+  QApplication::translate("QDialogButtonBox", "&Yes");
+  QApplication::translate("QDialogButtonBox", "&No");
 
   QApplication::translate("QLineEdit", "&Undo");
   QApplication::translate("QLineEdit", "&Redo");
@@ -2953,6 +2955,12 @@ void RSSListing::retranslateStrings() {
   QApplication::translate("QTextControl", "Delete");
   QApplication::translate("QTextControl", "Select All");
   QApplication::translate("QTextControl", "Copy &Link Location");
+
+  QApplication::translate("QAbstractSpinBox", "&Step up");
+  QApplication::translate("QAbstractSpinBox", "Step &down");
+  QApplication::translate("QAbstractSpinBox", "&Select All");
+
+  QApplication::translate("QMultiInputContext", "Select IM");
 
   newsHeader_->retranslateStrings();
 }
@@ -3173,7 +3181,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
 void RSSListing::slotWebTitleLinkClicked(QString urlStr)
 {
   if (embeddedBrowserOn_) {
-    webView_->page()->history()->clear();
+    webView_->history()->clear();
     webControlPanel_->setVisible(true);
     slotLinkClicked(QUrl(urlStr.simplified()));
   } else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
@@ -3398,5 +3406,10 @@ void RSSListing::setStyleApp(QAction *pAct)
 void RSSListing::webHomePage()
 {
   updateWebView(newsView_->currentIndex());
-  webView_->page()->history()->clear();
+  webView_->history()->clear();
+}
+
+void RSSListing::openPageInExternalBrowser()
+{
+  QDesktopServices::openUrl(webView_->url());
 }
