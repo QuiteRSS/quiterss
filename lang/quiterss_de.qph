@@ -130,7 +130,7 @@
 </phrase>
 <phrase>
     <source>OPML-files (*.opml)</source>
-    <target>OPML-Dateien (*.opml)</target>
+    <target>OPML-Dateien (*.opmll *.xml)</target>
 </phrase>
 <phrase>
     <source>Import canceled</source>
@@ -815,5 +815,37 @@
 <phrase>
     <source>Open in external browser</source>
     <target>Im externen Browser öffnen</target>
+</phrase>
+<phrase>
+    <source>Home</source>
+    <target>Haus</target>
+</phrase>
+<phrase>
+    <source>&amp;Yes</source>
+    <target>&amp;Ja</target>
+</phrase>
+<phrase>
+    <source>&amp;No</source>
+    <target>&amp;Nein</target>
+</phrase>
+<phrase>
+    <source>OPML-files (*.opml)</source>
+    <target>OPML-Dateien (*.opmll)</target>
+</phrase>
+<phrase>
+    <source>Select IM</source>
+    <target>Eingabemethode auswählen</target>
+</phrase>
+<phrase>
+    <source>&amp;Step up</source>
+    <target>&amp;Inkrementieren</target>
+</phrase>
+<phrase>
+    <source>Step &amp;down</source>
+    <target>&amp;Dekrementieren</target>
+</phrase>
+<phrase>
+    <source>&amp;Select All</source>
+    <target>&amp;Alles auswählen</target>
 </phrase>
 </QPH>

@@ -1041,4 +1041,36 @@
     <source>Select All</source>
     <target>Выделить всё</target>
 </phrase>
+<phrase>
+    <source>Select IM</source>
+    <target>Выбор режима ввода</target>
+</phrase>
+<phrase>
+    <source>Yes</source>
+    <target>&amp;Да</target>
+</phrase>
+<phrase>
+    <source>Home</source>
+    <target>Домой</target>
+</phrase>
+<phrase>
+    <source>&amp;Yes</source>
+    <target>&amp;Да</target>
+</phrase>
+<phrase>
+    <source>&amp;No</source>
+    <target>&amp;Нет</target>
+</phrase>
+<phrase>
+    <source>&amp;Step up</source>
+    <target>Шаг вв&amp;ерх</target>
+</phrase>
+<phrase>
+    <source>Step &amp;down</source>
+    <target>Шаг вн&amp;из</target>
+</phrase>
+<phrase>
+    <source>&amp;Select All</source>
+    <target>&amp;Выделить всё</target>
+</phrase>
 </QPH>

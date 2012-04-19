@@ -3022,6 +3022,8 @@ void RSSListing::retranslateStrings() {
   webExternalBrowserAct_->setText(tr("Open in external browser"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
+  QApplication::translate("QDialogButtonBox", "&Yes");
+  QApplication::translate("QDialogButtonBox", "&No");
 
   QApplication::translate("QLineEdit", "&Undo");
   QApplication::translate("QLineEdit", "&Redo");
@@ -3039,6 +3041,12 @@ void RSSListing::retranslateStrings() {
   QApplication::translate("QTextControl", "Delete");
   QApplication::translate("QTextControl", "Select All");
   QApplication::translate("QTextControl", "Copy &Link Location");
+
+  QApplication::translate("QAbstractSpinBox", "&Step up");
+  QApplication::translate("QAbstractSpinBox", "Step &down");
+  QApplication::translate("QAbstractSpinBox", "&Select All");
+
+  QApplication::translate("QMultiInputContext", "Select IM");
 
   newsHeader_->retranslateStrings();
 }
