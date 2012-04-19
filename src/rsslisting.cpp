@@ -618,7 +618,7 @@ void RSSListing::createWebWidget()
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   webToolBar_->addAction(webExternalBrowserAct_);
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
-          this, SLOT(openInExternalBrowserNews()));
+          this, SLOT(openPageInExternalBrowser()));
 
   QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
   webControlPanelHLayout->setMargin(0);
@@ -2660,7 +2660,7 @@ void RSSListing::slotLinkClicked(QUrl url)
   }
   if (embeddedBrowserOn_) {
     if (!webControlPanel_->isVisible()) {
-      webView_->page()->history()->clear();
+      webView_->history()->clear();
       webControlPanel_->setVisible(true);
     }
     webView_->load(url);
@@ -3267,7 +3267,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
 void RSSListing::slotWebTitleLinkClicked(QString urlStr)
 {
   if (embeddedBrowserOn_) {
-    webView_->page()->history()->clear();
+    webView_->history()->clear();
     webControlPanel_->setVisible(true);
     slotLinkClicked(QUrl(urlStr.simplified()));
   } else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
@@ -3492,5 +3492,10 @@ void RSSListing::setStyleApp(QAction *pAct)
 void RSSListing::webHomePage()
 {
   updateWebView(newsView_->currentIndex());
-  webView_->page()->history()->clear();
+  webView_->history()->clear();
+}
+
+void RSSListing::openPageInExternalBrowser()
+{
+  QDesktopServices::openUrl(webView_->url());
 }

@@ -322,6 +322,7 @@ private slots:
   void slotNewsDownPressed();
   void setStyleApp(QAction*);
   void webHomePage();
+  void openPageInExternalBrowser();
 
 signals:
   void signalPlaceToTray();
