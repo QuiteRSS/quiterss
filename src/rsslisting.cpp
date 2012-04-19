@@ -1794,9 +1794,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   newsHeader_->overload();
   if (initNo) {
     newsHeader_->initColumns();
-    newsHeader_->createMenu();
     newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
     newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
+    newsHeader_->createMenu();
   }
 
   while (newsModel_->canFetchMore())
