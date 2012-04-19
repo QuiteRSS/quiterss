@@ -39,6 +39,10 @@
         <file>images/noicon.png</file>
         <file alias="preferencesFeed">images/preferencesFeed.png</file>
         <file alias="editClear">images/editClear.png</file>
+        <file alias="backPage">images/back_page.png</file>
+        <file alias="forwardPage">images/forward_page.png</file>
+        <file alias="homePage">images/house.png</file>
+        <file alias="openBrowser">images/world_go.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
