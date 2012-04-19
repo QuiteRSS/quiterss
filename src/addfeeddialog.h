@@ -4,21 +4,30 @@
 #include <QtGui>
 #include "lineedit.h"
 
-class AddFeedDialog : public QDialog
+class AddFeedDialog : public QWizard
 {
   Q_OBJECT
 private:
-  QDialogButtonBox *buttonBox_;
+  QWizardPage *createUrlFeedPage();
+  QWizardPage *createNameFeedPage();
 
 public:
   explicit AddFeedDialog(QWidget *parent = 0);
 
-  LineEdit *feedTitleEdit_;
-  LineEdit *feedUrlEdit_;
+  LineEdit *nameFeedEdit_;
+  LineEdit *urlFeedEdit_;
+
+protected:
+  virtual bool validateCurrentPage();
 
 signals:
 
 public slots:
+
+private slots:
+  void urlFeedEditChanged(const QString&);
+  void nameFeedEditChanged(const QString&);
+  void slotCurrentIdChanged(int);
 
 };
 
