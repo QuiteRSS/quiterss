@@ -1499,7 +1499,7 @@ void RSSListing::slotImportFeeds()
 
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
                                                   QDir::homePath(),
-                                                  tr("OPML-files (*.opml)"));
+                                                  tr("OPML-files (*.opml *.xml)"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Import canceled"), 3000);
