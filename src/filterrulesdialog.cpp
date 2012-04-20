@@ -16,7 +16,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   feedsTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << tr("Location") << "Id";
+  treeItem << tr("Feeds") << "Id";
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -45,7 +45,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   matchAllCondition_ = new QRadioButton(tr("Match all conditions"), this);
   matchAllCondition_->setChecked(true);
   matchAnyCondition_ = new QRadioButton(tr("Match any condition"), this);
-  matchAllNews_ = new QRadioButton(tr("Match all"), this);
+  matchAllNews_ = new QRadioButton(tr("Match all news"), this);
   connect(matchAllCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
   connect(matchAnyCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
   connect(matchAllNews_, SIGNAL(clicked()), this, SLOT(selectMatch()));
