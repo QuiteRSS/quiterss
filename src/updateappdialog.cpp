@@ -42,8 +42,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
 
     QString urlHistory;
     if (lang == "ru")
-      urlHistory = "http://quite-rss.googlecode.com/hg/history_ru";
-    else urlHistory = "http://quite-rss.googlecode.com/hg/history_en";
+      urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_RU";
+    else urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_EN";
     historyReply_ = manager_.get(QNetworkRequest(QUrl(urlHistory)));
     connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 
