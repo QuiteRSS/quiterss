@@ -78,6 +78,9 @@ const QString kCreateFeedsTableQuery(
     "label varchar, "            // выставляется пользователем
     // -- added in v0.9.0 --
     // --- Categories ---
+    "hasChildren int, "  // наличие потомков
+    "parentId int, "     // id родителя
+    "rowToParent int, "  // номер строки относительно родителя
     // --- RSSowl::General ---
     "updateIntervalEnable int, "    // включение автообновления
     "updateInterval int, "          // интервал обновления
