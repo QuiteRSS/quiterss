@@ -1434,12 +1434,11 @@ void RSSListing::deleteFeed()
 
     if (msgBox.exec() == QMessageBox::No) return;
 
+    int id = feedsModel_->record(
+          feedsView_->currentIndex().row()).field("id").value().toInt();
     QSqlQuery q(db_);
-    QString str = QString("delete from feeds where text='%1'").
-        arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString());
-    q.exec(str);
-    q.exec(QString("drop table feed_%1").
-           arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+    q.exec(QString("delete from feeds where id='%1'").arg(id));
+    q.exec(QString("drop table feed_%1").arg(id));
     q.exec("VACUUM");
     q.finish();
 
