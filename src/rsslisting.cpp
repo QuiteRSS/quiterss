@@ -6,7 +6,7 @@
 #endif
 
 #include "aboutdialog.h"
-#include "addfeeddialog.h"
+#include "addfeedwizard.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
@@ -54,7 +54,7 @@ const QString kCreateFeedsTableQuery(
     "label varchar"              // выставляется пользователем
     ")");
 
-const QString kCreateNewsTableQuery(
+QString kCreateNewsTableQuery(
     "create table feed_%1("
     "id integer primary key, "
     "feed integer, "                       // идентификатор ленты из таблицы feeds
@@ -1405,52 +1405,19 @@ void RSSListing::writeSettings()
 /*! \brief Добавление ленты в список лент *************************************/
 void RSSListing::addFeed()
 {
-  AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, &db_);
 
-  if (addFeedDialog->exec() == QDialog::Rejected) {
-    delete addFeedDialog;
+  if (addFeedWizard->exec() == QDialog::Rejected) {
+    delete addFeedWizard;
     return;
   }
 
-  QSqlQuery q(db_);
+  emit startGetUrlTimer();
+  faviconLoader->requestUrl(addFeedWizard->htmlUrl_,
+                            addFeedWizard->urlFeedEdit_->text());
+  slotUpdateFeed(addFeedWizard->urlFeedEdit_->text());
 
-  QString textString(addFeedDialog->nameFeedEdit_->text());
-  QString xmlUrlString(addFeedDialog->urlFeedEdit_->text());
-
-  delete addFeedDialog;
-
-  int duplicateFoundId = -1;
-  q.exec("select xmlUrl, id from feeds");
-  while (q.next()) {
-    if (q.record().value(0).toString() == xmlUrlString) {
-      duplicateFoundId = q.record().value(1).toInt();
-      break;
-    }
-  }
-
-  if (0 <= duplicateFoundId) {
-    qDebug() << "duplicate feed:" << xmlUrlString << textString;
-    // @TODO(24.01.12): переместить курсор на него
-  } else {
-    playSoundNewNews_ = false;
-
-    QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
-    q.prepare(qStr);
-    q.addBindValue(textString);
-    q.addBindValue(xmlUrlString);
-    q.exec();
-    q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
-    q.finish();
-
-    QModelIndex index = feedsView_->currentIndex();
-    feedsModel_->select();
-    feedsView_->setCurrentIndex(index);
-
-    persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
-    showProgressBar(1);
-
-    faviconLoader->requestUrl(xmlUrlString, xmlUrlString);
-  }
+  delete addFeedWizard;
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -1520,7 +1487,7 @@ void RSSListing::slotImportFeeds()
       // Выбираем одни outline'ы
       if (xml.name() == "outline") {
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
-                 << ":" << xml.name().toString();;
+                 << ":" << xml.name().toString();
         QSqlQuery q(db_);
 
         QString textString(xml.attributes().value("text").toString());
