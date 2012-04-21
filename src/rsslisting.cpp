@@ -1321,14 +1321,6 @@ void RSSListing::addFeed()
 {
   AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
 
-  QClipboard *clipboard_ = QApplication::clipboard();
-  QString clipboardStr = clipboard_->text().left(8);
-  if (clipboardStr.contains("http://", Qt::CaseInsensitive) ||
-      clipboardStr.contains("https://", Qt::CaseInsensitive)) {
-    addFeedDialog->feedUrlEdit_->setText(clipboard_->text());
-    addFeedDialog->feedUrlEdit_->setCursorPosition(0);
-  } else addFeedDialog->feedUrlEdit_->setText("http://");
-
   if (addFeedDialog->exec() == QDialog::Rejected) {
     delete addFeedDialog;
     return;
@@ -1336,8 +1328,8 @@ void RSSListing::addFeed()
 
   QSqlQuery q(db_);
 
-  QString textString(addFeedDialog->feedTitleEdit_->text());
-  QString xmlUrlString(addFeedDialog->feedUrlEdit_->text());
+  QString textString(addFeedDialog->nameFeedEdit_->text());
+  QString xmlUrlString(addFeedDialog->urlFeedEdit_->text());
 
   delete addFeedDialog;
 

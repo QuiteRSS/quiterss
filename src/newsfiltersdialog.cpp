@@ -19,7 +19,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << "Id" << tr("Name filter") << tr("Location");
+  treeItem << "Id" << tr("Name filter") << tr("Feeds");
   filtersTree->setHeaderLabels(treeItem);
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);

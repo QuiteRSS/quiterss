@@ -43,6 +43,8 @@
         <file alias="forwardPage">images/forward_page.png</file>
         <file alias="homePage">images/house.png</file>
         <file alias="openBrowser">images/world_go.png</file>
+        <file alias="addT">images/add_t.png</file>
+        <file alias="deleteT">images/delete_t.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

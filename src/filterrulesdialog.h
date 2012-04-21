@@ -34,11 +34,11 @@ public:
     currentIndexChanged(tr("Title"));
 
     addButton = new QToolButton(this);
-    addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setIcon(QIcon(":/images/addT"));
     addButton->setToolTip(tr("Add condition"));
     addButton->setAutoRaise(true);
     deleteButton = new QToolButton(this);
-    deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setIcon(QIcon(":/images/deleteT"));
     deleteButton->setToolTip(tr("Delete condition"));
     deleteButton->setAutoRaise(true);
 
