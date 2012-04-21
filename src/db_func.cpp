@@ -198,6 +198,30 @@ const QString kCreateNewsTableQuery(
     "rights varchar "                      // права
     ")");
 
+const QString kCreateFiltersTable(
+    "create table filters("
+    "id integer primary key, "
+    "name varchar, "            // имя фильтра
+    "feeds varchar "            // перечень лент, которые пользуются фильтром
+    ")");
+
+const QString kCreateFilterConditionsTable(
+    "create table filters("
+    "id integer primary key, "
+    "idFilter int, "            // идентификатор фильтра
+    "field varchar, "           // поле, по которому производится фильтрация
+    "condition varchar, "       // условие, применяемое к полю
+    "content varchar "          // содержимое поля, используемое условием
+    ")");
+
+const QString kCreateFilterActionsTable(
+    "create table filters("
+    "id integer primary key, "
+    "idFilter int, "            // идентификатор фильтра
+    "action varchar, "          // действие, выполняемое с новостью, удовлетворяющей фильтру
+    "params varchar "           // параметры действия
+    ")");
+
 //-----------------------------------------------------------------------------
 void initDB(const QString dbFileName)
 {
