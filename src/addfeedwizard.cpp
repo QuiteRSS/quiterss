@@ -82,7 +82,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
 
   QLabel *iconWarning = new QLabel(this);
   iconWarning->setPixmap(QPixmap(":/images/warning"));
-  QLabel *textWarning = new QLabel(tr("Dublicate feed!"), this);
+  textWarning = new QLabel(this);
   QFont font = textWarning->font();
   font.setBold(true);
   textWarning->setFont(font);
@@ -92,9 +92,9 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   warningLayout->addWidget(iconWarning);
   warningLayout->addWidget(textWarning, 1);
 
-  warningWidjet_ = new QWidget(this);
-  warningWidjet_->setLayout(warningLayout);
-  warningWidjet_->setVisible(false);
+  warningWidget_ = new QWidget(this);
+  warningWidget_->setLayout(warningLayout);
+  warningWidget_->setVisible(false);
 
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
@@ -109,7 +109,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   layout->addWidget(urlFeedEdit_);
   layout->addWidget(titleFeedAsName_);
   layout->addStretch(0);
-  layout->addWidget(warningWidjet_);
+  layout->addWidget(warningWidget_);
   layout->addWidget(progressBar_);
   page->setLayout(layout);
 
@@ -142,14 +142,15 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
 
 void AddFeedWizard::urlFeedEditChanged(const QString& text)
 {
-  button(QWizard::NextButton)->setEnabled(!text.isEmpty());
+  button(QWizard::NextButton)->setEnabled(
+        !text.isEmpty() && (urlFeedEdit_->text() != "http://"));
 
   bool buttonEnable = false;
   if (titleFeedAsName_->isChecked() && (urlFeedEdit_->text() != "http://") &&
       !text.isEmpty()) {
     buttonEnable = true;
   }
-  warningWidjet_->setVisible(false);
+  warningWidget_->setVisible(false);
   button(QWizard::FinishButton)->setEnabled(buttonEnable);
 }
 
@@ -204,7 +205,8 @@ void AddFeedWizard::addFeed()
   if (q.next()) duplicateFoundId = q.value(0).toInt();
 
   if (0 <= duplicateFoundId) {
-    warningWidjet_->setVisible(true);
+    textWarning->setText(tr("Dublicate feed!"));
+    warningWidget_->setVisible(true);
   } else {
     button(QWizard::NextButton)->setEnabled(false);
     button(QWizard::CancelButton)->setEnabled(false);
@@ -276,7 +278,7 @@ void AddFeedWizard::receiveXml(const QByteArray &data, const QUrl &url)
   data_.append(data);
 }
 
-void AddFeedWizard::getUrlDone(const int&, const QDateTime &dtReply)
+void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
 {
   if (!url_.isEmpty() && !data_.isEmpty()) {
     emit xmlReadyParse(data_, url_);
@@ -288,9 +290,20 @@ void AddFeedWizard::getUrlDone(const int&, const QDateTime &dtReply)
   }
   data_.clear();
   url_.clear();
+
+  if (result == -1) {
+    textWarning->setText(tr("Error URL!"));
+    warningWidget_->setVisible(true);
+
+    deleteFeed();
+    progressBar_->hide();
+    page(0)->setEnabled(true);
+    selectedPage = false;
+    button(QWizard::CancelButton)->setEnabled(true);
+  }
 }
 
-void AddFeedWizard::slotUpdateFeed(const QUrl &url)
+void AddFeedWizard::slotUpdateFeed(const QUrl &url, const bool &)
 {
   qDebug() << "ParseDone";
   selectedPage = true;

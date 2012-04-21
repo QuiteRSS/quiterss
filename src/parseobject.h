@@ -15,7 +15,7 @@ private:
   QString parseDate(QString dateString);
 
 signals:
-  void feedUpdated(const QUrl &url);
+  void feedUpdated(const QUrl &url, const bool &changed);
 
 public slots:
   void slotParse(QSqlDatabase *db,

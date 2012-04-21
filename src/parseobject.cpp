@@ -364,7 +364,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   db->commit();
   qDebug() << "=================== parseXml:finish ===========================";
 
-  if (feedChanged) emit feedUpdated(url);
+  emit feedUpdated(url, feedChanged);
 }
 
 QString ParseObject::parseDate(QString dateString)

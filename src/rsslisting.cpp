@@ -1415,7 +1415,7 @@ void RSSListing::addFeed()
   emit startGetUrlTimer();
   faviconLoader->requestUrl(addFeedWizard->htmlUrl_,
                             addFeedWizard->urlFeedEdit_->text());
-  slotUpdateFeed(addFeedWizard->urlFeedEdit_->text());
+  slotUpdateFeed(addFeedWizard->urlFeedEdit_->text(), true);
 
   delete addFeedWizard;
 }
@@ -1637,8 +1637,10 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   }
 }
 
-void RSSListing::slotUpdateFeed(const QUrl &url)
+void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
+  if (!changed) return;
+
   // поиск идентификатора ленты в таблице лент
   int parseFeedId = 0;
   QSqlQuery q(db_);

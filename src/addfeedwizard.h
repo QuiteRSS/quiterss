@@ -24,7 +24,8 @@ private:
   QWizardPage *createUrlFeedPage();
   QWizardPage *createNameFeedPage();
   QCheckBox *titleFeedAsName_;
-  QWidget *warningWidjet_;
+  QLabel *textWarning;
+  QWidget *warningWidget_;
   QProgressBar *progressBar_;
   bool selectedPage;
   bool finishOn;
@@ -46,7 +47,7 @@ signals:
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
 
 public slots:
-  void slotUpdateFeed(const QUrl &url);
+  void slotUpdateFeed(const QUrl &url, const bool &);
 
 private slots:
   void urlFeedEditChanged(const QString&);
@@ -58,7 +59,7 @@ private slots:
   void titleFeedAsNameStateChanged(int);
   void slotProgressBarUpdate();
   void receiveXml(const QByteArray &data, const QUrl &url);
-  void getUrlDone(const int&, const QDateTime &dtReply);
+  void getUrlDone(const int &result, const QDateTime &dtReply);
 
 };
 
