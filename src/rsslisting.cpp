@@ -1410,9 +1410,9 @@ void RSSListing::addFeed()
   }
 
   emit startGetUrlTimer();
-  faviconLoader->requestUrl(addFeedWizard->htmlUrl_,
-                            addFeedWizard->urlFeedEdit_->text());
-  slotUpdateFeed(addFeedWizard->urlFeedEdit_->text(), true);
+  faviconLoader->requestUrl(addFeedWizard->htmlUrlString_,
+                            addFeedWizard->feedUrlString_);
+  slotUpdateFeed(addFeedWizard->feedUrlString_, true);
 
   delete addFeedWizard;
 }
