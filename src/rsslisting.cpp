@@ -187,6 +187,10 @@ RSSListing::~RSSListing()
 {
   qDebug("App_Closing");
 
+  persistentUpdateThread_->quit();
+  persistentParseThread_->quit();
+  faviconLoader->quit();
+
   db_.transaction();
   QSqlQuery q(db_);
   q.exec("select id from feeds");
@@ -230,8 +234,6 @@ RSSListing::~RSSListing()
     qStr = QString("UPDATE feed_%1 SET deleted=2 WHERE deleted=1").
         arg(q.value(0).toString());
     qt.exec(qStr);
-
-
   }
   db_.commit();
 
@@ -243,14 +245,9 @@ RSSListing::~RSSListing()
   dbMemFileThread_->start();
   while(dbMemFileThread_->isRunning());
 
-  persistentUpdateThread_->quit();
-  persistentParseThread_->quit();
-  faviconLoader->quit();
-
-  delete newsView_;
-  delete feedsView_;
-  delete newsModel_;
-  delete feedsModel_;
+  while (persistentUpdateThread_->isRunning());
+  while (persistentParseThread_->isRunning());
+  while (faviconLoader->isRunning());
 
   db_.close();
 
