@@ -66,6 +66,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   page->setTitle("Create a new feed");
 
   selectedPage = false;
+  finishOn = false;
 
   urlFeedEdit_ = new LineEdit(this);
 
