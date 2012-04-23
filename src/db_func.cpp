@@ -202,6 +202,7 @@ const QString kCreateFiltersTable(
     "create table filters("
     "id integer primary key, "
     "name varchar, "            // имя фильтра
+    "type int, "                // тип фильтра (И, ИЛИ, для всех лент)
     "feeds varchar "            // перечень лент, которые пользуются фильтром
     ")");
 
