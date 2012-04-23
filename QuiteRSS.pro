@@ -26,7 +26,7 @@ HEADERS += \
     src/filterrulesdialog.h \
     src/webpage.h \
     src/lineedit.h \
-    src/db_func.h
+    src/db_func.h \
     src/webview.h
 
 SOURCES += \
@@ -53,7 +53,7 @@ SOURCES += \
     src/filterrulesdialog.cpp \
     src/webpage.cpp \
     src/lineedit.cpp \
-    src/db_func.cpp
+    src/db_func.cpp \
     src/webview.cpp
 
 CONFIG(debug, debug|release) {
