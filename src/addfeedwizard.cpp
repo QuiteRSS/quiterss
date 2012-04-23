@@ -226,7 +226,6 @@ void AddFeedWizard::addFeed()
     q.prepare(qStr);
     q.addBindValue(feedUrlString_);
     q.exec();
-    q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
     q.finish();
 
     persistentUpdateThread_->requestUrl(feedUrlString_, QDateTime());
