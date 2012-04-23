@@ -241,6 +241,7 @@ void initDB(const QString dbFileName)
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
     db.setDatabaseName(dbFileName);
     db.open();
+//    db.transaction();
     QSqlQuery q(db);
     q.exec("select value from info where name='version'");
     if (q.next())
@@ -248,13 +249,43 @@ void initDB(const QString dbFileName)
     if (!dbVersionString.isEmpty()) {
       // Версия базы 1.0 (На самом деле 0.1.0)
       if (dbVersionString == "1.0") {
+
+        //! Обновляем таблицу лент
+        q.exec(QString(kCreateFeedsTableQuery)
+            .replace("table feeds", "temp table feeds_temp"));
+        qDebug() << q.lastQuery() << q.lastError().text();
+        // переписываем только используемые ранее поля
+        q.exec("INSERT "
+            "INTO feeds_temp("
+               "id, text, title, description, xmlUrl, htmlUrl, "
+               "author_name, author_email, author_uri, pubdate, lastBuildDate, "
+               "image, unread, newCount, currentNews"
+            ") SELECT "
+            "id, text, title, description, xmlUrl, htmlUrl, "
+            "author_name, author_email, author_uri, pubdate, lastBuildDate, "
+            "image, unread, newCount, currentNews "
+            "FROM feeds");
+        qDebug() << q.lastQuery() << q.lastError().text();
+        q.exec("drop table feeds");
+        qDebug() << q.lastQuery() << q.lastError().text();
+
+        q.exec(kCreateFeedsTableQuery);
+        qDebug() << q.lastQuery() << q.lastError().text();
+        q.exec("insert into feeds select * from feeds_temp");
+        qDebug() << q.lastQuery() << q.lastError().text();
+        q.exec("drop table feeds_temp");
+        qDebug() << q.lastQuery() << q.lastError().text();
+
+        //! Обновляем таблицу новостей
+        //! \TODO: Реализовать сабж
+
         dbVersionString = "0.9.0";
-        ;
         qDebug() << "DB converted to version =" << dbVersionString;
       } else {
         qDebug() << "dbVersion =" << dbVersionString;
       }
     }
+//    db.commit();
     db.close();
   }
   QSqlDatabase::removeDatabase("dbFileName_");
