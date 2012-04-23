@@ -52,7 +52,7 @@ public slots:
   void myEmptyWorkingSet();
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
-  void slotUpdateFeed(const QUrl &url);
+  void slotUpdateFeed(const QUrl &url, const bool &changed);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);

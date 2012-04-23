@@ -34,6 +34,7 @@ signals:
   void startTimer();
   void signalReadyParse(QSqlDatabase *db,
                         const QByteArray &xml, const QUrl &url);
+  void signaFeedUrl(const QUrl &url, const QUrl &urlFeed);
 
 private slots:
   void getQueuedXml();

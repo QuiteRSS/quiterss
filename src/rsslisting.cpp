@@ -6,7 +6,7 @@
 #endif
 
 #include "aboutdialog.h"
-#include "addfeeddialog.h"
+#include "addfeedwizard.h"
 #include "db_func.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
@@ -101,6 +101,10 @@ RSSListing::~RSSListing()
 {
   qDebug("App_Closing");
 
+  persistentUpdateThread_->quit();
+  persistentParseThread_->quit();
+  faviconLoader->quit();
+
   db_.transaction();
   QSqlQuery q(db_);
   q.exec("select id from feeds");
@@ -144,8 +148,6 @@ RSSListing::~RSSListing()
     qStr = QString("UPDATE feed_%1 SET deleted=2 WHERE deleted=1").
         arg(q.value(0).toString());
     qt.exec(qStr);
-
-
   }
   db_.commit();
 
@@ -157,14 +159,9 @@ RSSListing::~RSSListing()
   dbMemFileThread_->start();
   while(dbMemFileThread_->isRunning());
 
-  persistentUpdateThread_->quit();
-  persistentParseThread_->quit();
-  faviconLoader->quit();
-
-  delete newsView_;
-  delete feedsView_;
-  delete newsModel_;
-  delete feedsModel_;
+  while (persistentUpdateThread_->isRunning());
+  while (persistentParseThread_->isRunning());
+  while (faviconLoader->isRunning());
 
   db_.close();
 
@@ -1319,52 +1316,19 @@ void RSSListing::writeSettings()
 /*! \brief Добавление ленты в список лент *************************************/
 void RSSListing::addFeed()
 {
-  AddFeedDialog *addFeedDialog = new AddFeedDialog(this);
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, &db_);
 
-  if (addFeedDialog->exec() == QDialog::Rejected) {
-    delete addFeedDialog;
+  if (addFeedWizard->exec() == QDialog::Rejected) {
+    delete addFeedWizard;
     return;
   }
 
-  QSqlQuery q(db_);
+  emit startGetUrlTimer();
+  faviconLoader->requestUrl(addFeedWizard->htmlUrlString_,
+                            addFeedWizard->feedUrlString_);
+  slotUpdateFeed(addFeedWizard->feedUrlString_, true);
 
-  QString textString(addFeedDialog->nameFeedEdit_->text());
-  QString xmlUrlString(addFeedDialog->urlFeedEdit_->text());
-
-  delete addFeedDialog;
-
-  int duplicateFoundId = -1;
-  q.exec("select xmlUrl, id from feeds");
-  while (q.next()) {
-    if (q.record().value(0).toString() == xmlUrlString) {
-      duplicateFoundId = q.record().value(1).toInt();
-      break;
-    }
-  }
-
-  if (0 <= duplicateFoundId) {
-    qDebug() << "duplicate feed:" << xmlUrlString << textString;
-    // @TODO(24.01.12): переместить курсор на него
-  } else {
-    playSoundNewNews_ = false;
-
-    QString qStr = QString("insert into feeds(text, xmlUrl) values (?, ?)");
-    q.prepare(qStr);
-    q.addBindValue(textString);
-    q.addBindValue(xmlUrlString);
-    q.exec();
-//    q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
-    q.finish();
-
-    QModelIndex index = feedsView_->currentIndex();
-    feedsModel_->select();
-    feedsView_->setCurrentIndex(index);
-
-    persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
-    showProgressBar(1);
-
-    faviconLoader->requestUrl(xmlUrlString, xmlUrlString);
-  }
+  delete addFeedWizard;
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -1381,12 +1345,11 @@ void RSSListing::deleteFeed()
 
     if (msgBox.exec() == QMessageBox::No) return;
 
+    int id = feedsModel_->record(
+          feedsView_->currentIndex().row()).field("id").value().toInt();
     QSqlQuery q(db_);
-    QString str = QString("delete from feeds where text='%1'").
-        arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString());
-    q.exec(str);
-    q.exec(QString("drop table feed_%1").
-           arg(feedsModel_->record(feedsView_->currentIndex().row()).field("id").value().toString()));
+    q.exec(QString("delete from feeds where id='%1'").arg(id));
+    q.exec(QString("drop table feed_%1").arg(id));
     q.exec("VACUUM");
     q.finish();
 
@@ -1434,7 +1397,7 @@ void RSSListing::slotImportFeeds()
       // Выбираем одни outline'ы
       if (xml.name() == "outline") {
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
-                 << ":" << xml.name().toString();;
+                 << ":" << xml.name().toString();
         QSqlQuery q(db_);
 
         QString textString(xml.attributes().value("text").toString());
@@ -1585,8 +1548,10 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   }
 }
 
-void RSSListing::slotUpdateFeed(const QUrl &url)
+void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
+  if (!changed) return;
+
   // поиск идентификатора ленты в таблице лент
   int parseFeedId = 0;
   QSqlQuery q(db_);

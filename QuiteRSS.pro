@@ -14,7 +14,6 @@ HEADERS += \
     src/newsheader.h \
     src/feedsmodel.h \
     src/delegatewithoutfocus.h \
-    src/addfeeddialog.h \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
@@ -27,7 +26,8 @@ HEADERS += \
     src/webpage.h \
     src/lineedit.h \
     src/db_func.h \
-    src/webview.h
+    src/webview.h \
+    src/addfeedwizard.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -41,7 +41,6 @@ SOURCES += \
     src/main.cpp \
     src/feedsmodel.cpp \
     src/delegatewithoutfocus.cpp \
-    src/addfeeddialog.cpp \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
@@ -54,7 +53,8 @@ SOURCES += \
     src/webpage.cpp \
     src/lineedit.cpp \
     src/db_func.cpp \
-    src/webview.cpp
+    src/webview.cpp \
+    src/addfeedwizard.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
