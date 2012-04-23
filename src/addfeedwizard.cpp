@@ -28,8 +28,6 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db)
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
           persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
           Qt::QueuedConnection);
-  connect(persistentParseThread_, SIGNAL(signaFeedUrl(QUrl,QUrl)),
-          this, SLOT(slotFeedUrl(QUrl,QUrl)));
 
   connect(button(QWizard::BackButton), SIGNAL(clicked()),
           this, SLOT(backButtonClicked()));
@@ -289,6 +287,51 @@ void AddFeedWizard::receiveXml(const QByteArray &data, const QUrl &url)
 void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
 {
   if (!url_.isEmpty() && !data_.isEmpty()) {
+    QString str = QString::fromUtf8(data_);
+
+    if (str.contains("<html", Qt::CaseInsensitive)) {
+      QString linkReg = "<link[^>]+(atom|rss)\\+xml[^>]+href=\"([^\"]+)\"[^>]+/>";
+      QRegExp rx(linkReg, Qt::CaseInsensitive, QRegExp::RegExp2);
+      int pos = rx.indexIn(str);
+      if (pos > -1) {
+        QString linkFeed = rx.cap(2);
+        qDebug() << "Parse feed URL, valid:" << linkFeed;
+        int parseFeedId = 0;
+
+        QSqlQuery q(*db_);
+        int duplicateFoundId = -1;
+        q.exec(QString("select id from feeds where xmlUrl like '%1'").
+               arg(linkFeed));
+        if (q.next()) duplicateFoundId = q.value(0).toInt();
+
+        if (0 <= duplicateFoundId) {
+          textWarning->setText(tr("Dublicate feed!"));
+          warningWidget_->setVisible(true);
+
+          deleteFeed();
+          progressBar_->hide();
+          page(0)->setEnabled(true);
+          selectedPage = false;
+          button(QWizard::CancelButton)->setEnabled(true);
+        } else {
+          q.exec(QString("select id from feeds where xmlUrl like '%1'").
+                 arg(feedUrlString_));
+          if (q.next()) parseFeedId = q.value(0).toInt();
+
+          feedUrlString_ = linkFeed;
+          db_->exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
+                    arg(linkFeed).
+                    arg(parseFeedId));
+
+          emit startGetUrlTimer();
+          persistentUpdateThread_->requestUrl(linkFeed, QDateTime());
+        }
+        data_.clear();
+        url_.clear();
+        return;
+      }
+    }
+
     emit xmlReadyParse(data_, url_);
     QSqlQuery q = db_->exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
                             arg(dtReply.toString(Qt::ISODate)).
@@ -336,37 +379,6 @@ void AddFeedWizard::slotUpdateFeed(const QUrl &url, const bool &)
     finish();
   }
   progressBar_->hide();
-}
-
-void AddFeedWizard::slotFeedUrl(const QUrl &url, const QUrl &urlFeed)
-{
-  qDebug() << "Parse feed URL, valid:" << urlFeed.isValid();
-
-  if (!urlFeed.isValid()) {
-    textWarning->setText(tr("Can't find the feed URL!"));
-    warningWidget_->setVisible(true);
-
-    deleteFeed();
-    progressBar_->hide();
-    page(0)->setEnabled(true);
-    selectedPage = false;
-    button(QWizard::CancelButton)->setEnabled(true);
-  } else {
-    int parseFeedId = 0;
-
-    QSqlQuery q(*db_);
-    q.exec(QString("select id from feeds where xmlUrl like '%1'").
-           arg(url.toString()));
-    if (q.next()) parseFeedId = q.value(0).toInt();
-
-    db_->exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
-              arg(urlFeed.toString()).
-              arg(parseFeedId));
-
-    feedUrlString_ = urlFeed.toString();
-    emit startGetUrlTimer();
-    persistentUpdateThread_->requestUrl(urlFeed, QDateTime());
-  }
 }
 
 void AddFeedWizard::finish()
