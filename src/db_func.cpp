@@ -9,7 +9,7 @@
 QString kDbName = "feeds.db";
 
 const QString kCreateFeedsTableQuery_v0_1_0(
-    "create table feeds("
+    "CREATE TABLE feeds("
     "id integer primary key, "
     "text varchar, "             // Текст ленты (сейчас заменяет имя)
     "title varchar, "            // Имя ленты
@@ -44,7 +44,7 @@ const QString kCreateFeedsTableQuery_v0_1_0(
     ")");
 
 const QString kCreateFeedsTableQuery(
-    "create table feeds("
+    "CREATE TABLE feeds("
     "id integer primary key, "
     "text varchar, "             // Текст ленты (сейчас заменяет имя)
     "title varchar, "            // Имя ленты
@@ -124,7 +124,7 @@ const QString kCreateFeedsTableQuery(
     ")");
 
 const QString kCreateNewsTableQuery_v0_1_0(
-    "create table feed_%1("
+    "CREATE TABLE feed_%1("
     "id integer primary key, "
     "feed integer, "                       // идентификатор ленты из таблицы feeds
     "guid varchar, "                       // уникальный номер
@@ -162,7 +162,7 @@ const QString kCreateNewsTableQuery_v0_1_0(
     ")");
 
 const QString kCreateNewsTableQuery(
-    "create table news("
+    "CREATE TABLE news("
     "id integer primary key, "
     "feedId integer, "                     // идентификатор ленты из таблицы feeds
     "guid varchar, "                       // уникальный номер
@@ -200,7 +200,7 @@ const QString kCreateNewsTableQuery(
     ")");
 
 const QString kCreateFiltersTable(
-    "create table filters("
+    "CREATE TABLE filters("
     "id integer primary key, "
     "name varchar, "            // имя фильтра
     "type int, "                // тип фильтра (И, ИЛИ, для всех лент)
@@ -208,7 +208,7 @@ const QString kCreateFiltersTable(
     ")");
 
 const QString kCreateFilterConditionsTable(
-    "create table filters("
+    "CREATE TABLE filters("
     "id integer primary key, "
     "idFilter int, "            // идентификатор фильтра
     "field varchar, "           // поле, по которому производится фильтрация
@@ -217,7 +217,7 @@ const QString kCreateFilterConditionsTable(
     ")");
 
 const QString kCreateFilterActionsTable(
-    "create table filters("
+    "CREATE TABLE filters("
     "id integer primary key, "
     "idFilter int, "            // идентификатор фильтра
     "action varchar, "          // действие, выполняемое с новостью, удовлетворяющей фильтру
@@ -234,8 +234,8 @@ void initDB(const QString dbFileName)
     db.open();
     db.transaction();
     db.exec(kCreateFeedsTableQuery);
-    db.exec("create table info(id integer primary key, name varchar, value varchar)");
-    db.exec("insert into info(name, value) values ('version', '1.0')");
+    db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
+    db.exec("INSERT INTO info(name, value) VALUES ('version', '1.0')");
     db.commit();
     db.close();
   } else {
@@ -244,7 +244,7 @@ void initDB(const QString dbFileName)
     db.open();
     db.transaction();
     QSqlQuery q(db);
-    q.exec("select value from info where name='version'");
+    q.exec("SELECT value FROM info WHERE name='version'");
     if (q.next())
       dbVersionString = q.value(0).toString();
     if (!dbVersionString.isEmpty()) {
@@ -253,7 +253,7 @@ void initDB(const QString dbFileName)
 
         // Создаём временную таблицу версии 0.9.0
         q.exec(QString(kCreateFeedsTableQuery)
-            .replace("table feeds", "temp table feeds_temp"));
+            .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
         // переписываем только используемые ранее поля
         q.exec("INSERT "
             "INTO feeds_temp("
@@ -266,12 +266,12 @@ void initDB(const QString dbFileName)
             "image, unread, newCount, currentNews "
             "FROM feeds");
         // Хороним старую таблицу
-        q.exec("drop table feeds");
+        q.exec("DROP TABLE feeds");
 
         // Копируем временную таблицу на место старой
         q.exec(kCreateFeedsTableQuery);
-        q.exec("insert into feeds select * from feeds_temp");
-        q.exec("drop table feeds_temp");
+        q.exec("INSERT INTO feeds SELECT * FROM feeds_temp");
+        q.exec("DROP TABLE feeds_temp");
 
         // Создаём общую таблицу новостей
         q.exec(kCreateNewsTableQuery);
@@ -280,7 +280,7 @@ void initDB(const QString dbFileName)
         //! \NOTE: Удалить в одном цикле не получается, т.к. при удалении
         //! таблицы нельзя, чтобы было активных более одного запроса.
         //! Поэтому идентификаторы запоминаются в список
-        q.exec("select id from feeds");
+        q.exec("SELECT id FROM feeds");
         QList<int> idList;
         while (q.next()) {
           int id = q.value(0).toInt();
@@ -323,7 +323,7 @@ void initDB(const QString dbFileName)
 
         // Удаляем старые таблицы новостей
         foreach (int id, idList)
-          q.exec(QString("drop table feed_%1").arg(id));
+          q.exec(QString("DROP TABLE feed_%1").arg(id));
 
         // Обновляем таблицу с информацией
         dbVersionString = "0.9.0";
