@@ -75,8 +75,9 @@ const QString kCreateFeedsTableQuery(
     "unread integer, "           // количество непрочитанных новостей
     "newCount integer, "         // количество новых новостей
     "currentNews integer, "      // отображаемая новость
-    "label varchar, "            // выставляется пользователем
+    "label varchar, "            // метка. выставляется пользователем
     // -- added in v0.9.0 --
+    "tags varchar, "             // теги. выставляются пользователем
     // --- Categories ---
     "hasChildren int, "  // наличие потомков
     "parentId int, "     // id родителя
@@ -161,9 +162,9 @@ const QString kCreateNewsTableQuery_v0_1_0(
     ")");
 
 const QString kCreateNewsTableQuery(
-    "create table feed_%1("
+    "create table news("
     "id integer primary key, "
-    "feed integer, "                       // идентификатор ленты из таблицы feeds
+    "feedId integer, "                     // идентификатор ленты из таблицы feeds
     "guid varchar, "                       // уникальный номер
     "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
     "description varchar, "                // краткое содержание
@@ -179,7 +180,7 @@ const QString kCreateNewsTableQuery(
     "label varchar, "                      // метка (выставляется пользователем)
     "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
     "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
-    "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
+    "starred integer default 0, "          // Флаг "отличная". Устанавливается пользователем
     "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется,
                                            //   чтобы при обновлении новостей она не появлялась вновь.
                                            //   Физическое удаление новость будет производится при общей чистке базы
@@ -241,7 +242,7 @@ void initDB(const QString dbFileName)
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
     db.setDatabaseName(dbFileName);
     db.open();
-//    db.transaction();
+    db.transaction();
     QSqlQuery q(db);
     q.exec("select value from info where name='version'");
     if (q.next())
@@ -250,10 +251,9 @@ void initDB(const QString dbFileName)
       // Версия базы 1.0 (На самом деле 0.1.0)
       if (dbVersionString == "1.0") {
 
-        //! Обновляем таблицу лент
+        // Создаём временную таблицу версии 0.9.0
         q.exec(QString(kCreateFeedsTableQuery)
             .replace("table feeds", "temp table feeds_temp"));
-        qDebug() << q.lastQuery() << q.lastError().text();
         // переписываем только используемые ранее поля
         q.exec("INSERT "
             "INTO feeds_temp("
@@ -265,27 +265,79 @@ void initDB(const QString dbFileName)
             "author_name, author_email, author_uri, pubdate, lastBuildDate, "
             "image, unread, newCount, currentNews "
             "FROM feeds");
-        qDebug() << q.lastQuery() << q.lastError().text();
+        // Хороним старую таблицу
         q.exec("drop table feeds");
-        qDebug() << q.lastQuery() << q.lastError().text();
 
+        // Копируем временную таблицу на место старой
         q.exec(kCreateFeedsTableQuery);
-        qDebug() << q.lastQuery() << q.lastError().text();
         q.exec("insert into feeds select * from feeds_temp");
-        qDebug() << q.lastQuery() << q.lastError().text();
         q.exec("drop table feeds_temp");
-        qDebug() << q.lastQuery() << q.lastError().text();
 
-        //! Обновляем таблицу новостей
-        //! \TODO: Реализовать сабж
+        // Создаём общую таблицу новостей
+        q.exec(kCreateNewsTableQuery);
 
+        // Переписываем все новости в общую таблицу с добавлением идентификатора ленты
+        //! \NOTE: Удалить в одном цикле не получается, т.к. при удалении
+        //! таблицы нельзя, чтобы было активных более одного запроса.
+        //! Поэтому идентификаторы запоминаются в список
+        q.exec("select id from feeds");
+        QList<int> idList;
+        while (q.next()) {
+          int id = q.value(0).toInt();
+          idList << id;
+          QSqlQuery q2(db);
+          q2.exec(QString("SELECT "
+              "guid, guidislink, description, content, title, published, "
+              "author_name, author_uri, author_email, category, "
+              "new, read, sticky, deleted, "
+              "link_href "
+              "FROM feed_%1").arg(id));
+          while (q2.next()) {
+            QSqlQuery q3(db);
+            q3.prepare(QString("INSERT INTO news("
+                  "feedId, "
+                  "guid, guidislink, description, content, title, published, "
+                  "author_name, author_uri, author_email, category, "
+                  "new, read, starred, deleted, "
+                  "link_href "
+                  ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+            q3.addBindValue(id);
+            q3.addBindValue(q2.value(0));
+            q3.addBindValue(q2.value(1));
+            q3.addBindValue(q2.value(2));
+            q3.addBindValue(q2.value(3));
+            q3.addBindValue(q2.value(4));
+            q3.addBindValue(q2.value(5));
+            q3.addBindValue(q2.value(6));
+            q3.addBindValue(q2.value(7));
+            q3.addBindValue(q2.value(8));
+            q3.addBindValue(q2.value(9));
+            q3.addBindValue(q2.value(10));
+            q3.addBindValue(q2.value(11));
+            q3.addBindValue(q2.value(12));
+            q3.addBindValue(q2.value(13));
+            q3.addBindValue(q2.value(14));
+            q3.exec();
+          }
+        }
+
+        // Удаляем старые таблицы новостей
+        foreach (int id, idList)
+          q.exec(QString("drop table feed_%1").arg(id));
+
+        // Обновляем таблицу с информацией
         dbVersionString = "0.9.0";
+        q.prepare("UPDATE info SET value=? WHERE name='version'");
+        q.addBindValue(dbVersionString);
+        q.exec();
+
         qDebug() << "DB converted to version =" << dbVersionString;
       } else {
         qDebug() << "dbVersion =" << dbVersionString;
       }
     }
-//    db.commit();
+    db.commit();
+    db.exec("VACUUM");
     db.close();
   }
   QSqlDatabase::removeDatabase("dbFileName_");
