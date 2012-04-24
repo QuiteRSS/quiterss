@@ -61,7 +61,7 @@ AddFeedWizard::~AddFeedWizard()
 QWizardPage *AddFeedWizard::createUrlFeedPage()
 {
   QWizardPage *page = new QWizardPage;
-  page->setTitle("Create a new feed");
+  page->setTitle(tr("Create new feed"));
 
   selectedPage = false;
   finishOn = false;
@@ -78,7 +78,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   } else urlFeedEdit_->setText("http://");
 
   titleFeedAsName_ = new QCheckBox(
-        tr("Use the title of the feed as name"), this);
+        tr("Use title of the feed as displayed name"), this);
   titleFeedAsName_->setChecked(true);
 
   QLabel *iconWarning = new QLabel(this);
@@ -106,7 +106,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   progressBar_->setVisible(false);
 
   QVBoxLayout *layout = new QVBoxLayout;
-  layout->addWidget(new QLabel("Feed URL or website address:"));
+  layout->addWidget(new QLabel(tr("Feed URL or website address:")));
   layout->addWidget(urlFeedEdit_);
   layout->addWidget(titleFeedAsName_);
   layout->addStretch(0);
@@ -125,13 +125,13 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
 QWizardPage *AddFeedWizard::createNameFeedPage()
 {
   QWizardPage *page = new QWizardPage;
-  page->setTitle("Create a new feed");
+  page->setTitle(tr("Create new feed"));
   page->setFinalPage(false);
 
   nameFeedEdit_ = new LineEdit(this);
 
   QVBoxLayout *layout = new QVBoxLayout;
-  layout->addWidget(new QLabel("Name:"));
+  layout->addWidget(new QLabel(tr("Displayed name:")));
   layout->addWidget(nameFeedEdit_);
   page->setLayout(layout);
 
@@ -200,7 +200,7 @@ void AddFeedWizard::addFeed()
 
   QUrl feedUrl(feedUrlString_);
   if (feedUrl.host().isEmpty()) {
-    textWarning->setText(tr("Error URL!"));
+    textWarning->setText(tr("URL error!"));
     warningWidget_->setVisible(true);
     return;
   }
@@ -343,7 +343,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
   url_.clear();
 
   if (result == -1) {
-    textWarning->setText(tr("Error URL!"));
+    textWarning->setText(tr("URL error!"));
     warningWidget_->setVisible(true);
 
     deleteFeed();
