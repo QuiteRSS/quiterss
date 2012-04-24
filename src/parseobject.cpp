@@ -47,7 +47,6 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString atomSummaryString;
   QString contentString;
   QString categoryString;
-  QUrl urlFeed;
 
   qDebug() << "=================== parseXml:start ============================";
   // поиск идентификатора ленты с таблице лент
@@ -70,7 +69,6 @@ void ParseObject::slotParse(QSqlDatabase *db,
 
   // собственно сам разбор
   bool feedChanged = false;
-  bool htmlType = true;
   db->transaction();
   int itemCount = 0;
   QXmlStreamReader xml(xmlData);
@@ -82,17 +80,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
       tagsStack.push(currentTag);
       currentTag = xml.name().toString();
 
-      if (currentTag == "html") {
-        qDebug() << "Type: HTML";
-      }
-      if (currentTag == "rss")  {
-        qDebug() << "Feed type: RSS";
-        htmlType = false;
-      }
-      if (currentTag == "feed") {
-        qDebug() << "Feed type: Atom";
-        htmlType = false;
-      }
+      if (currentTag == "rss") qDebug() << "Feed type: RSS";
+      if (currentTag == "feed") qDebug() << "Feed type: Atom";
 
       if (currentTag == "item") {  // RSS
         if (isHeader) {
@@ -173,20 +162,6 @@ void ParseObject::slotParse(QSqlDatabase *db,
         } else if (linkAlternateString.isNull()) {
           if (!(xml.attributes().value("rel").toString() == "self"))
             linkAlternateString = xml.attributes().value("href").toString();
-        }
-      }
-      if ((currentTag == "link") &&
-          (tagsStack.at(1) == "html")) {
-        if ((xml.attributes().value("type").toString() == "application/rss+xml") ||
-            (xml.attributes().value("type").toString() == "application/atom+xml")) {
-          if (xml.attributes().value("rel").toString() == "alternate") {
-            urlFeed.setUrl(xml.attributes().value("href").toString());
-            if (urlFeed.host().isEmpty()) {
-              urlFeed.setScheme(url.scheme());
-              urlFeed.setHost(url.host());
-            }
-            break;
-          }
         }
       }
       if (isHeader) {
@@ -392,11 +367,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   db->commit();
   qDebug() << "=================== parseXml:finish ===========================";
 
-  if (htmlType) {
-    emit signaFeedUrl(url, urlFeed);
-  } else {
-    emit feedUpdated(url, feedChanged);
-  }
+  emit feedUpdated(url, feedChanged);
 }
 
 QString ParseObject::parseDate(QString dateString)

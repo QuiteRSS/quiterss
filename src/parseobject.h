@@ -16,7 +16,6 @@ private:
 
 signals:
   void feedUpdated(const QUrl &url, const bool &changed);
-  void signaFeedUrl(const QUrl &url, const QUrl &urlFeed);
 
 public slots:
   void slotParse(QSqlDatabase *db,

@@ -30,8 +30,6 @@ void ParseThread::run()
           parseObject_, SLOT(slotParse(QSqlDatabase*,QByteArray,QUrl)));
   connect(parseObject_, SIGNAL(feedUpdated(QUrl, bool)),
           this->parent(), SLOT(slotUpdateFeed(QUrl, bool)));
-  connect(parseObject_, SIGNAL(signaFeedUrl(QUrl, QUrl)),
-          this, SIGNAL(signaFeedUrl(QUrl, QUrl)));
 
   exec();
 }
