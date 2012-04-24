@@ -290,11 +290,17 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
     QString str = QString::fromUtf8(data_);
 
     if (str.contains("<html", Qt::CaseInsensitive)) {
-      QString linkReg = "<link[^>]+(atom|rss)\\+xml[^>]+href=\"([^\"]+)\"[^>]+/>";
+      QString linkReg = "<link[^>]+(atom|rss)\\+xml[^>]+href=\"([^\"]+)[^>]+>";
       QRegExp rx(linkReg, Qt::CaseInsensitive, QRegExp::RegExp2);
       int pos = rx.indexIn(str);
       if (pos > -1) {
         QString linkFeed = rx.cap(2);
+        QUrl url(linkFeed);
+        if (url.host().isEmpty()) {
+          url.setScheme(url_.scheme());
+          url.setHost(url_.host());
+        }
+        linkFeed = url.toString();
         qDebug() << "Parse feed URL, valid:" << linkFeed;
         int parseFeedId = 0;
 
@@ -326,10 +332,19 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
           emit startGetUrlTimer();
           persistentUpdateThread_->requestUrl(linkFeed, QDateTime());
         }
-        data_.clear();
-        url_.clear();
-        return;
+      } else {
+        textWarning->setText(tr("Can't find feed URL!"));
+        warningWidget_->setVisible(true);
+
+        deleteFeed();
+        progressBar_->hide();
+        page(0)->setEnabled(true);
+        selectedPage = false;
+        button(QWizard::CancelButton)->setEnabled(true);
       }
+      data_.clear();
+      url_.clear();
+      return;
     }
 
     emit xmlReadyParse(data_, url_);
