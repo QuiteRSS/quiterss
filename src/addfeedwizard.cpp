@@ -290,49 +290,55 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
     QString str = QString::fromUtf8(data_);
 
     if (str.contains("<html", Qt::CaseInsensitive)) {
-      QString linkReg = "<link[^>]+(atom|rss)\\+xml[^>]+href=\"([^\"]+)[^>]+>";
-      QRegExp rx(linkReg, Qt::CaseInsensitive, QRegExp::RegExp2);
+      QRegExp rx("<link[^>]+(atom|rss)\\+xml[^>]+>",
+                 Qt::CaseInsensitive, QRegExp::RegExp2);
       int pos = rx.indexIn(str);
       if (pos > -1) {
-        QString linkFeed = rx.cap(2);
-        QUrl url(linkFeed);
-        if (url.host().isEmpty()) {
-          url.setScheme(url_.scheme());
-          url.setHost(url_.host());
-        }
-        linkFeed = url.toString();
-        qDebug() << "Parse feed URL, valid:" << linkFeed;
-        int parseFeedId = 0;
+        str = rx.cap(0);
+        rx.setPattern("href=\"([^\"]+)");
+        pos = rx.indexIn(str);
+        if (pos > -1) {
+          QString linkFeed = rx.cap(1);
+          QUrl url(linkFeed);
+          if (url.host().isEmpty()) {
+            url.setScheme(url_.scheme());
+            url.setHost(url_.host());
+          }
+          linkFeed = url.toString();
+          qDebug() << "Parse feed URL, valid:" << linkFeed;
+          int parseFeedId = 0;
 
-        QSqlQuery q(*db_);
-        int duplicateFoundId = -1;
-        q.exec(QString("select id from feeds where xmlUrl like '%1'").
-               arg(linkFeed));
-        if (q.next()) duplicateFoundId = q.value(0).toInt();
-
-        if (0 <= duplicateFoundId) {
-          textWarning->setText(tr("Dublicate feed!"));
-          warningWidget_->setVisible(true);
-
-          deleteFeed();
-          progressBar_->hide();
-          page(0)->setEnabled(true);
-          selectedPage = false;
-          button(QWizard::CancelButton)->setEnabled(true);
-        } else {
+          QSqlQuery q(*db_);
+          int duplicateFoundId = -1;
           q.exec(QString("select id from feeds where xmlUrl like '%1'").
-                 arg(feedUrlString_));
-          if (q.next()) parseFeedId = q.value(0).toInt();
+                 arg(linkFeed));
+          if (q.next()) duplicateFoundId = q.value(0).toInt();
 
-          feedUrlString_ = linkFeed;
-          db_->exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
-                    arg(linkFeed).
-                    arg(parseFeedId));
+          if (0 <= duplicateFoundId) {
+            textWarning->setText(tr("Dublicate feed!"));
+            warningWidget_->setVisible(true);
 
-          emit startGetUrlTimer();
-          persistentUpdateThread_->requestUrl(linkFeed, QDateTime());
+            deleteFeed();
+            progressBar_->hide();
+            page(0)->setEnabled(true);
+            selectedPage = false;
+            button(QWizard::CancelButton)->setEnabled(true);
+          } else {
+            q.exec(QString("select id from feeds where xmlUrl like '%1'").
+                   arg(feedUrlString_));
+            if (q.next()) parseFeedId = q.value(0).toInt();
+
+            feedUrlString_ = linkFeed;
+            db_->exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
+                      arg(linkFeed).
+                      arg(parseFeedId));
+
+            emit startGetUrlTimer();
+            persistentUpdateThread_->requestUrl(linkFeed, QDateTime());
+          }
         }
-      } else {
+      }
+      if (pos < 0) {
         textWarning->setText(tr("Can't find feed URL!"));
         warningWidget_->setVisible(true);
 
@@ -342,6 +348,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
         selectedPage = false;
         button(QWizard::CancelButton)->setEnabled(true);
       }
+
       data_.clear();
       url_.clear();
       return;
