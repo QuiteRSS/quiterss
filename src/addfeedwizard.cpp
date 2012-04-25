@@ -303,6 +303,11 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
           if (url.host().isEmpty()) {
             url.setScheme(url_.scheme());
             url.setHost(url_.host());
+            if (url_.toString().indexOf('?') > -1) {
+              str = url_.path();
+              str = str.left(str.lastIndexOf('/')+1);
+              url.setPath(str+url.path());
+            }
           }
           linkFeed = url.toString();
           qDebug() << "Parse feed URL, valid:" << linkFeed;
