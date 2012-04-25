@@ -859,6 +859,29 @@
     </message>
 </context>
 <context>
+    <name>QWizard</name>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3008"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3009"/>
+        <source>&lt; &amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3010"/>
+        <source>&amp;Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3011"/>
+        <source>&amp;Next &gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RSSListing</name>
     <message>
         <location filename="../src/rsslisting.cpp" line="1426"/>
@@ -1040,13 +1063,13 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2856"/>
-        <location filename="../src/rsslisting.cpp" line="3139"/>
+        <location filename="../src/rsslisting.cpp" line="3144"/>
         <source>Unread news: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2854"/>
-        <location filename="../src/rsslisting.cpp" line="3137"/>
+        <location filename="../src/rsslisting.cpp" line="3142"/>
         <source>New news: %1</source>
         <translation type="unfinished"></translation>
     </message>

@@ -50,45 +50,45 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="10"/>
         <source>Add feed</source>
-        <translation type="unfinished">Добавление новостной ленты</translation>
+        <translation>Добавление новостной ленты</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="64"/>
         <location filename="../src/addfeedwizard.cpp" line="128"/>
         <source>Create new feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Создание новой ленты</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="81"/>
         <source>Use title of the feed as displayed name</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать название ленты, как отображаемое имя</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="109"/>
         <source>Feed URL or website address:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL ленты или адрес веб-сайта:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="134"/>
         <source>Displayed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображаемое имя:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="203"/>
         <location filename="../src/addfeedwizard.cpp" line="373"/>
         <source>URL error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка URL!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="215"/>
         <location filename="../src/addfeedwizard.cpp" line="323"/>
         <source>Duplicate feed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Дубликат ленты!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="347"/>
         <source>Can&apos;t find feed URL!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось найти URL ленты!</translation>
     </message>
 </context>
 <context>
@@ -138,7 +138,7 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="19"/>
         <source>Feeds</source>
-        <translation type="unfinished">Новостные ленты</translation>
+        <translation>Новостные ленты</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="42"/>
@@ -158,7 +158,7 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="48"/>
         <source>Match all news</source>
-        <translation type="unfinished"></translation>
+        <translation>Соответствует всем новостям</translation>
     </message>
     <message>
         <source>Match all</source>
@@ -330,7 +330,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="22"/>
         <source>Feeds</source>
-        <translation type="unfinished">Новостные ленты</translation>
+        <translation>Новостные ленты</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="25"/>
@@ -886,6 +886,29 @@
     </message>
 </context>
 <context>
+    <name>QWizard</name>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3008"/>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3009"/>
+        <source>&lt; &amp;Back</source>
+        <translation>&lt; &amp;Назад</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3010"/>
+        <source>&amp;Finish</source>
+        <translation>&amp;Завершить</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3011"/>
+        <source>&amp;Next &gt;</source>
+        <translation>&amp;Далее &gt;</translation>
+    </message>
+</context>
+<context>
     <name>RSSListing</name>
     <message>
         <location filename="../src/rsslisting.cpp" line="2839"/>
@@ -1302,13 +1325,13 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2856"/>
-        <location filename="../src/rsslisting.cpp" line="3139"/>
+        <location filename="../src/rsslisting.cpp" line="3144"/>
         <source>Unread news: %1</source>
         <translation>Непрочитанных новостей: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2854"/>
-        <location filename="../src/rsslisting.cpp" line="3137"/>
+        <location filename="../src/rsslisting.cpp" line="3142"/>
         <source>New news: %1</source>
         <translation>Новых новостей: %1</translation>
     </message>

@@ -3005,6 +3005,11 @@ void RSSListing::retranslateStrings() {
 
   QApplication::translate("QMultiInputContext", "Select IM");
 
+  QApplication::translate("QWizard", "Cancel");
+  QApplication::translate("QWizard", "< &Back");
+  QApplication::translate("QWizard", "&Finish");
+  QApplication::translate("QWizard", "&Next >");
+
   newsHeader_->retranslateStrings();
 }
 
