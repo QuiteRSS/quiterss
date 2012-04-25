@@ -212,7 +212,7 @@ void AddFeedWizard::addFeed()
   if (q.next()) duplicateFoundId = q.value(0).toInt();
 
   if (0 <= duplicateFoundId) {
-    textWarning->setText(tr("Dublicate feed!"));
+    textWarning->setText(tr("Duplicate feed!"));
     warningWidget_->setVisible(true);
   } else {
     button(QWizard::NextButton)->setEnabled(false);
@@ -320,7 +320,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
           if (q.next()) duplicateFoundId = q.value(0).toInt();
 
           if (0 <= duplicateFoundId) {
-            textWarning->setText(tr("Dublicate feed!"));
+            textWarning->setText(tr("Duplicate feed!"));
             warningWidget_->setVisible(true);
 
             deleteFeed();
