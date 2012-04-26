@@ -1,6 +1,6 @@
 #include "faviconloader.h"
 #include  <QDebug>
-#include <QtGui>
+#include <QPixmap>
 #include <QBuffer>
 
 FaviconLoader::FaviconLoader(QObject *pParent)
