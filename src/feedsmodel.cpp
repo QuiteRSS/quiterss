@@ -41,8 +41,9 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
           data(Qt::EditRole).toByteArray();
       if (!byteArray.isNull()) {
         QPixmap icon;
-        icon.loadFromData(QByteArray::fromBase64(byteArray));
-        return icon;
+        if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
+          return icon;
+        }
       }
       return QPixmap(":/images/feed");
     }
