@@ -2,6 +2,22 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.8.7</B> (25 Apr 2012)
+<UL>
+<LI>Added: Add feed wizard. Search feed URL if site URL was entered</LI>
+<LI>Added: Embedded browser: control panel</LI>
+<LI>Added: Mouse gestures: slide left, slide right</LI>
+<LI>Added: Application style: system, system2, gray, orange, green, purple, pink (Menu &quot;View&quot;)</LI>
+<LI>Added: Clear button in LineEdits</LI>
+<LI>Added: French language</LI>
+
+<LI>Changed: Ability to choose xml-file on import feeds</LI>
+<LI>Changed: GUI. Some visual tweaks</LI>
+
+<LI>Fixed: Some kind of link in embedded browser</LI>
+<LI>Fixed: Marks in column menu of news list</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.8.6</B> (02 Apr 2012)
 <UL>
 <LI>Added: Automatic feeds clean up("Options->Feeds->Clean Up")</LI>

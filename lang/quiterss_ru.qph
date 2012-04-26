@@ -1073,4 +1073,20 @@
     <source>&amp;Select All</source>
     <target>&amp;Выделить всё</target>
 </phrase>
+<phrase>
+    <source>Create new feed</source>
+    <target>Создание новой ленты</target>
+</phrase>
+<phrase>
+    <source>Displayed name:</source>
+    <target>Отображаемое имя:</target>
+</phrase>
+<phrase>
+    <source>Duplicate feed!</source>
+    <target>Дубликат ленты!</target>
+</phrase>
+<phrase>
+    <source>Can&apos;t find feed URL!</source>
+    <target>Не удалось найти URL ленты!</target>
+</phrase>
 </QPH>

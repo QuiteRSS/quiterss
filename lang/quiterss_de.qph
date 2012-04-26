@@ -848,4 +848,44 @@
     <source>&amp;Select All</source>
     <target>&amp;Alles auswählen</target>
 </phrase>
+<phrase>
+    <source>&amp;Next &gt;</source>
+    <target>&amp;Next &gt;</target>
+</phrase>
+<phrase>
+    <source>&lt; &amp;Back</source>
+    <target>&lt; &amp;Back</target>
+</phrase>
+<phrase>
+    <source>&amp;Finish</source>
+    <target>Ab&amp;schließen</target>
+</phrase>
+<phrase>
+    <source>Create new feed</source>
+    <target>Schaffen Sie neues Feed</target>
+</phrase>
+<phrase>
+    <source>Use title of the feed as displayed name</source>
+    <target>Verwenden Titel des Feed als angezeigten Namen</target>
+</phrase>
+<phrase>
+    <source>Feed URL or website address:</source>
+    <target>Feed-URL oder eine Website-Adresse:</target>
+</phrase>
+<phrase>
+    <source>Displayed name:</source>
+    <target>Angezeigter Name:</target>
+</phrase>
+<phrase>
+    <source>URL error!</source>
+    <target>URL Fehler!</target>
+</phrase>
+<phrase>
+    <source>Duplicate feed!</source>
+    <target>Duplizieren Feed!</target>
+</phrase>
+<phrase>
+    <source>Can&apos;t find feed URL!</source>
+    <target>Sie finden nicht die URL des Feed!</target>
+</phrase>
 </QPH>
