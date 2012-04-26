@@ -208,7 +208,7 @@ const QString kCreateFiltersTable(
     ")");
 
 const QString kCreateFilterConditionsTable(
-    "CREATE TABLE filters("
+    "CREATE TABLE filterConditions("
     "id integer primary key, "
     "idFilter int, "            // идентификатор фильтра
     "field varchar, "           // поле, по которому производится фильтрация
@@ -217,7 +217,7 @@ const QString kCreateFilterConditionsTable(
     ")");
 
 const QString kCreateFilterActionsTable(
-    "CREATE TABLE filters("
+    "CREATE TABLE filterActions("
     "id integer primary key, "
     "idFilter int, "            // идентификатор фильтра
     "action varchar, "          // действие, выполняемое с новостью, удовлетворяющей фильтру
@@ -324,6 +324,11 @@ void initDB(const QString dbFileName)
         // Удаляем старые таблицы новостей
         foreach (int id, idList)
           q.exec(QString("DROP TABLE feed_%1").arg(id));
+
+        // Создаём таблицы фильтров
+        q.exec(kCreateFiltersTable);
+        q.exec(kCreateFilterConditionsTable);
+        q.exec(kCreateFilterActionsTable);
 
         // Обновляем таблицу с информацией
         dbVersionString = "0.9.0";
