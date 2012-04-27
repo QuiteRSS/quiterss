@@ -87,7 +87,7 @@
         <location filename="../src/addfeedwizard.cpp" line="215"/>
         <location filename="../src/addfeedwizard.cpp" line="323"/>
         <source>Duplicate feed!</source>
-        <translation>Dupliquer flux!</translation>
+        <translation type="unfinished">Flux en double!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="347"/>
