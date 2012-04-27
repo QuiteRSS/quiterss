@@ -1226,6 +1226,8 @@ void RSSListing::readSettings()
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
   autoUpdatefeedsInterval_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
 
+  openingFeedAction_ = settings_->value("openingFeedAction", 0).toInt();
+
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
 
@@ -1348,6 +1350,8 @@ void RSSListing::writeSettings()
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
   settings_->setValue("autoUpdatefeedsInterval", autoUpdatefeedsInterval_);
+
+  settings_->setValue("openingFeedAction", openingFeedAction_);
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
@@ -1705,12 +1709,12 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   static int idOld = -2;
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
-    slotFeedsTreeSelected(index);
+    slotFeedsTreeSelected(index, true);
   }
   idOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 }
 
-void RSSListing::slotFeedsTreeSelected(QModelIndex index)
+void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 {
   static int idOld = feedsModel_->index(index.row(), 0).data().toInt();
 
@@ -1760,12 +1764,15 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
     newsModel_->fetchMore();
 
   int row = -1;
-  for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-        feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
-      row = i;
+  if ((openingFeedAction_ == 0) || !clicked) {
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+      }
     }
-  }
+  } else if (openingFeedAction_ == 1) row = 0;
+
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
   slotNewsViewSelected(newsModel_->index(row, 6));
 }
@@ -1851,6 +1858,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->intervalTime_->setCurrentIndex(autoUpdatefeedsInterval_);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
+
+  optionsDialog->setOpeningFeed(openingFeedAction_);
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
@@ -1940,6 +1949,8 @@ void RSSListing::showOptionDlg()
       updateFeedsTime = updateFeedsTime*60;
     updateFeedsTimer_.start(updateFeedsTime, this);
   }
+
+  openingFeedAction_ = optionsDialog->getOpeningFeed();
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();

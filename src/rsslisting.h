@@ -36,7 +36,7 @@ public slots:
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
-  void slotFeedsTreeSelected(QModelIndex index);
+  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false);
   void slotGetFeed();
   void slotGetAllFeeds();
   void slotNewsViewClicked(QModelIndex index);
@@ -242,6 +242,8 @@ private:
   bool clearStatusNew_;
   bool emptyWorking_;
   int behaviorIconTray_;
+
+  int openingFeedAction_;
 
   QBasicTimer markNewsReadTimer_;
   bool markNewsReadOn_;

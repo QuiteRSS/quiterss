@@ -18,6 +18,8 @@ public:
   void setCurrentItem(int index);
   void setBehaviorIconTray(int behavior);
   int behaviorIconTray();
+  void setOpeningFeed(int action);
+  int getOpeningFeed();
 
   // general
   QCheckBox *showSplashScreen_;
@@ -42,6 +44,10 @@ public:
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
   QComboBox *intervalTime_;
+
+  QRadioButton *reopenLastNews_;
+  QRadioButton *openFirstNews_;
+  QRadioButton *nottoOpenNews_;
 
   QCheckBox *markNewsReadOn_;
   QSpinBox *markNewsReadTime_;

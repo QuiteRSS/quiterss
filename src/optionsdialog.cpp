@@ -216,9 +216,22 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsLayout1->addWidget(intervalTime_);
   updateFeedsLayout1->addStretch();
 
+  reopenLastNews_ = new QRadioButton(tr("Reopen last opened news"));
+  openFirstNews_ = new QRadioButton(tr("Open first news"));
+  nottoOpenNews_ = new QRadioButton(tr("Nothing to do"));
+
+  QVBoxLayout *openingFeedsLayout = new QVBoxLayout();
+  openingFeedsLayout->setContentsMargins(15, 0, 0, 10);
+  openingFeedsLayout->addWidget(reopenLastNews_);
+  openingFeedsLayout->addWidget(openFirstNews_);
+  openingFeedsLayout->addWidget(nottoOpenNews_);
+
   QVBoxLayout *updateFeedsLayout = new QVBoxLayout();
   updateFeedsLayout->addWidget(updateFeedsStartUp_);
   updateFeedsLayout->addLayout(updateFeedsLayout1);
+  updateFeedsLayout->addSpacing(10);
+  updateFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
+  updateFeedsLayout->addLayout(openingFeedsLayout);
   updateFeedsLayout->addStretch();
 
   QWidget *updateFeedsWidget_ = new QWidget();
@@ -734,4 +747,21 @@ void OptionsDialog::slotResetShortcut()
   QString str = listDefaultShortcut_->at(id);
   editShortcut_->setText(str);
   shortcutTree_->currentItem()->setText(3, str);
+}
+
+void OptionsDialog::setOpeningFeed(int action)
+{
+  switch (action) {
+  case 1: openFirstNews_->setChecked(true); break;
+  case 2: nottoOpenNews_->setChecked(true); break;
+  default: reopenLastNews_->setChecked(true);
+  }
+}
+
+int OptionsDialog::getOpeningFeed()
+{
+  if (reopenLastNews_->isChecked())     return 0;
+  else if (openFirstNews_->isChecked()) return 1;
+  else if (nottoOpenNews_->isChecked()) return 2;
+  else return 0;
 }
