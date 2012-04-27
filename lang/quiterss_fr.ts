@@ -1122,7 +1122,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2887"/>
         <source>Mark all feeds Read</source>
-        <translation>Marques tous les flux comme lus</translation>
+        <translation>Marquer tous les flux comme lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2889"/>
