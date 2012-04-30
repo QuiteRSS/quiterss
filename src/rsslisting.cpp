@@ -1653,7 +1653,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index)
   idOld = feedsModel_->index(index.row(), 0).data().toInt();
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
-  newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
+//  newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
+  newsModel_->setTable("news");
 
   newsModel_->setSort(newsHeader_->sortIndicatorSection(),
                       newsHeader_->sortIndicatorOrder());
@@ -2285,14 +2286,17 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     q.exec(qStr);
   }
 
+  int feedId = feedsModel_->index(
+        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
   if (pAct->objectName() == "filterNewsAll_") {
-    newsModel_->setFilter("deleted = 0");
+    newsModel_->setFilter(feedIdFilter.append("deleted = 0"));
   } else if (pAct->objectName() == "filterNewsNew_") {
-    newsModel_->setFilter(QString("new = 1 AND deleted = 0"));
+    newsModel_->setFilter(feedIdFilter.append(QString("new = 1 AND deleted = 0")));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
+    newsModel_->setFilter(feedIdFilter.append(QString("read < 2 AND deleted = 0")));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    newsModel_->setFilter(QString("sticky = 1 AND deleted = 0"));
+    newsModel_->setFilter(feedIdFilter.append(QString("starred = 1 AND deleted = 0")));
   }
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -2451,15 +2455,15 @@ void RSSListing::openInExternalBrowserNews()
   QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
-void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
+void RSSListing::slotSetItemStar(QModelIndex index, int starred)
 {
   if (!index.isValid()) return;
 
   int topRow = newsView_->verticalScrollBar()->value();
   QModelIndex curIndex = newsView_->currentIndex();
   newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
-        sticky);
+        newsModel_->index(index.row(), newsModel_->fieldIndex("starred")),
+        starred);
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
@@ -2477,7 +2481,7 @@ void RSSListing::markNewsStar()
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
-    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0) {
       slotSetItemStar(curIndex, 1);
     } else {
       slotSetItemStar(curIndex, 0);
@@ -2486,7 +2490,7 @@ void RSSListing::markNewsStar()
     bool markStar = false;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0)
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0)
         markStar = true;
     }
 
@@ -3290,16 +3294,16 @@ void RSSListing::feedsCleanUp(QString name)
   q.exec(qStr);
   if (q.next()) cntNews = q.value(0).toInt();
 
-  qStr = QString("SELECT deleted, received, id, read, sticky, published FROM feed_%1")
+  qStr = QString("SELECT deleted, received, id, read, starred, published FROM feed_%1")
       .arg(name);
   q.exec(qStr);
   while (q.next()) {    
     int id = q.value(2).toInt();
     int read = q.value(3).toInt();
-    int sticky = q.value(4).toInt();
+    int starred = q.value(4).toInt();
 
     if ((neverUnreadCleanUp_ && (read == 0)) ||
-        (neverStarCleanUp_ && (sticky != 0)) ||
+        (neverStarCleanUp_ && (starred != 0)) ||
         q.value(0).toInt() != 0)
       continue;
 

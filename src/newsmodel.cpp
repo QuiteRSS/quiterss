@@ -16,9 +16,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         icon.addFile(":/images/bulletUnread");
       else icon.addFile(":/images/bulletRead");
       return icon;
-    } else if (QSqlTableModel::fieldIndex("sticky") == index.column()) {
+    } else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
       QIcon icon;
-      if (0 == QSqlTableModel::index(index.row(), fieldIndex("sticky")).data(Qt::EditRole).toInt())
+      if (0 == QSqlTableModel::index(index.row(), fieldIndex("starred")).data(Qt::EditRole).toInt())
         icon.addFile(":/images/starOff");
       else icon.addFile(":/images/starOn");
       return icon;
@@ -33,7 +33,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
       return QVariant();
     }
-    else if (QSqlTableModel::fieldIndex("sticky") == index.column()) {
+    else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
       return QVariant();
     }
     else if (QSqlTableModel::fieldIndex("published") == index.column()) {

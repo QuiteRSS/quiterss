@@ -43,12 +43,12 @@ void NewsHeader::initColumns()
   showSection(model_->fieldIndex("received"));
   showSection(model_->fieldIndex("author_name"));
   showSection(model_->fieldIndex("read"));
-  showSection(model_->fieldIndex("sticky"));
+  showSection(model_->fieldIndex("starred"));
   showSection(model_->fieldIndex("category"));
 
-  moveSection(visualIndex(model_->fieldIndex("sticky")), 0);
-  resizeSection(model_->fieldIndex("sticky"), 25);
-  setResizeMode(model_->fieldIndex("sticky"), QHeaderView::Fixed);
+  moveSection(visualIndex(model_->fieldIndex("starred")), 0);
+  resizeSection(model_->fieldIndex("starred"), 25);
+  setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("title")), 1);
   moveSection(visualIndex(model_->fieldIndex("read")), 2);
   resizeSection(model_->fieldIndex("read"), 25);
@@ -75,7 +75,7 @@ void NewsHeader::createMenu()
         (lIdx == model_->fieldIndex("author_name")) ||
         (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
-        (lIdx == model_->fieldIndex("sticky"))) {
+        (lIdx == model_->fieldIndex("starred"))) {
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
                                Qt::Horizontal, Qt::EditRole).toString());
@@ -96,7 +96,7 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
   model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
+  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
   for (int i = 0; i < model_->columnCount(); i++) {
     model_->setHeaderData(i, Qt::Horizontal,
                           model_->headerData(i, Qt::Horizontal, Qt::DisplayRole),
@@ -105,8 +105,8 @@ void NewsHeader::overload()
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal,
                         QIcon(":/images/readSection"), Qt::DecorationRole);
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal,
+  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal,
                         QIcon(":/images/starSection"), Qt::DecorationRole);
 }
 
@@ -139,7 +139,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     while (size) {
       int lIdx = logicalIndex(idxColSize);
       if (!isSectionHidden(lIdx)) {
-        if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("sticky") == lIdx))) {
+        if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx))) {
           if (((sectionSize(lIdx) >= 40) && !minSize) ||
               ((sectionSize(lIdx) - widthCol[idxColSize] > 40) && minSize)) {
             widthCol[idxColSize]++;
@@ -214,7 +214,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
         for (int i = count()-1; i >= 0; i--) {
           int lIdx = logicalIndex(i);
           if (!isSectionHidden(lIdx)) {
-            if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("sticky") == lIdx))) {
+            if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx))) {
               int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
               if (sectionWidth > 40) {
                 if (i >= idxCol) {
@@ -241,7 +241,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       for (int i = count()-1; i >= 0; i--) {
         int lIdx = logicalIndex(i);
         if (!isSectionHidden(lIdx)) {
-          if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("sticky") == lIdx))) {
+          if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx))) {
             stopColFix = i;
             break;
           }
@@ -251,7 +251,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
       if ((sectionWidth > 40)) {
         if (!((model_->fieldIndex("read") == logicalIndex(idxCol)) ||
-              (model_->fieldIndex("sticky") == logicalIndex(idxCol))) || idxCol < stopColFix) {
+              (model_->fieldIndex("starred") == logicalIndex(idxCol))) || idxCol < stopColFix) {
           resizeSection(logicalIndex(stopColFix), sectionWidth);
         } else sizeMin = false;
       }
@@ -290,7 +290,7 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
 {
   Q_UNUSED(oldVIdx)
   if ((model_->fieldIndex("read") == lIdx) ||
-      (model_->fieldIndex("sticky") == lIdx)) {
+      (model_->fieldIndex("starred") == lIdx)) {
     for (int i = count()-1; i >= 0; i--) {
       if (!isSectionHidden(logicalIndex(i))) {
         if (i == newVIdx) {
@@ -318,7 +318,7 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
   model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, tr("Star"));
+  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
 
   if (pActGroup_) delete pActGroup_;
   pActGroup_ = new QActionGroup(viewMenu_);
@@ -333,7 +333,7 @@ void NewsHeader::retranslateStrings()
         (lIdx == model_->fieldIndex("author_name")) ||
         (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
-        (lIdx == model_->fieldIndex("sticky"))) {
+        (lIdx == model_->fieldIndex("starred"))) {
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
                                Qt::Horizontal, Qt::EditRole).toString());
@@ -347,7 +347,7 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal,
                         QIcon(":/images/readSection"), Qt::DecorationRole);
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal, "", Qt::DisplayRole);
-  model_->setHeaderData(model_->fieldIndex("sticky"), Qt::Horizontal,
+  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, "", Qt::DisplayRole);
+  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal,
                         QIcon(":/images/starSection"), Qt::DecorationRole);
 }

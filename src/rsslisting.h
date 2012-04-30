@@ -292,7 +292,7 @@ private slots:
   void showContextMenuNews(const QPoint &);
   void openInBrowserNews();
   void openInExternalBrowserNews();
-  void slotSetItemStar(QModelIndex index, int sticky);
+  void slotSetItemStar(QModelIndex index, int starred);
   void markNewsStar();
   void showContextMenuFeed(const QPoint &);
   void slotLinkClicked(QUrl url);
