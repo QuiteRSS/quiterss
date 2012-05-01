@@ -548,6 +548,7 @@ void RSSListing::createToolBarNull()
   pushButtonNull_ = new QPushButton(this);
   pushButtonNull_->setObjectName("pushButtonNull");
   pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  pushButtonNull_->setFocusPolicy(Qt::NoFocus);
   toolBarNull_->addWidget(pushButtonNull_);
   connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
   toolBarNull_->installEventFilter(this);
