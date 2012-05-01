@@ -1227,6 +1227,7 @@ void RSSListing::readSettings()
   autoUpdatefeedsInterval_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
 
   openingFeedAction_ = settings_->value("openingFeedAction", 0).toInt();
+  openNewsWebViewOn_ = settings_->value("openNewsWebViewOn", true).toBool();
 
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
@@ -1352,6 +1353,7 @@ void RSSListing::writeSettings()
   settings_->setValue("autoUpdatefeedsInterval", autoUpdatefeedsInterval_);
 
   settings_->setValue("openingFeedAction", openingFeedAction_);
+  settings_->setValue("openNewsWebViewOn", openNewsWebViewOn_);
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
@@ -1769,12 +1771,25 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
           feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
         row = i;
+        break;
       }
     }
   } else if (openingFeedAction_ == 1) row = 0;
 
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  slotNewsViewSelected(newsModel_->index(row, 6));
+  if ((openingFeedAction_ < 2) && openNewsWebViewOn_ && clicked) {
+    slotNewsViewSelected(newsModel_->index(row, 6));
+  } else if (clicked) {
+    slotNewsViewSelected(newsModel_->index(-1, 6));
+    QSqlQuery q(db_);
+    int id = newsModel_->index(row, 0).
+        data(Qt::EditRole).toInt();
+    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
+        arg(id).arg(newsModel_->tableName().remove("feed_"));
+    q.exec(qStr);
+  } else {
+    slotUpdateStatus();
+  }
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -1822,7 +1837,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
         arg(id).arg(newsModel_->tableName().remove("feed_"));
     q.exec(qStr);
-  }
+  } else slotUpdateStatus();
 
   idxOld = idx;
   curFeedOld = curFeed;
@@ -1860,6 +1875,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
 
   optionsDialog->setOpeningFeed(openingFeedAction_);
+  optionsDialog->openNewsWebViewOn_->setChecked(openNewsWebViewOn_);
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
@@ -1951,6 +1967,7 @@ void RSSListing::showOptionDlg()
   }
 
   openingFeedAction_ = optionsDialog->getOpeningFeed();
+  openNewsWebViewOn_ = optionsDialog->openNewsWebViewOn_->isChecked();
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
@@ -2205,6 +2222,7 @@ void RSSListing::markNewsRead()
           feedsModel_->index(feedsView_->currentIndex().row(),
                              feedsModel_->fieldIndex("currentNews")).data().toInt()) {
         row = i;
+        break;
       }
     }
     newsView_->setCurrentIndex(newsModel_->index(row, 6));
@@ -2235,6 +2253,7 @@ void RSSListing::markAllNewsRead()
         feedsModel_->index(feedsView_->currentIndex().row(),
                            feedsModel_->fieldIndex("currentNews")).data().toInt()) {
       row = i;
+      break;
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));
@@ -2705,8 +2724,7 @@ void RSSListing::setCurrentFeed()
     }
   }
   feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-  slotFeedsTreeClicked(feedsModel_->index(row, 1));  // загрузка новостей
-  slotUpdateStatus();
+  slotFeedsTreeSelected(feedsModel_->index(row, 1), true);  // загрузка новостей
 }
 
 void RSSListing::updateWebView(QModelIndex index)
@@ -3229,6 +3247,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
         feedsModel_->index(feedsView_->currentIndex().row(),
                            feedsModel_->fieldIndex("currentNews")).data().toInt()) {
       row = i;
+      break;
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(row, 6));

@@ -244,6 +244,7 @@ private:
   int behaviorIconTray_;
 
   int openingFeedAction_;
+  bool openNewsWebViewOn_;
 
   QBasicTimer markNewsReadTimer_;
   bool markNewsReadOn_;

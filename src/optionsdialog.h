@@ -45,8 +45,9 @@ public:
   QSpinBox *updateFeedsTime_;
   QComboBox *intervalTime_;
 
-  QRadioButton *reopenLastNews_;
-  QRadioButton *openFirstNews_;
+  QRadioButton *positionLastNews_;
+  QRadioButton *positionFirstNews_;
+  QCheckBox *openNewsWebViewOn_;
   QRadioButton *nottoOpenNews_;
 
   QCheckBox *markNewsReadOn_;

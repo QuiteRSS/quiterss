@@ -216,15 +216,20 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsLayout1->addWidget(intervalTime_);
   updateFeedsLayout1->addStretch();
 
-  reopenLastNews_ = new QRadioButton(tr("Reopen last opened news"));
-  openFirstNews_ = new QRadioButton(tr("Open first news"));
+  positionLastNews_ = new QRadioButton(tr("Position on last opened news"));
+  positionFirstNews_ = new QRadioButton(tr("Position at top of list news"));
+  openNewsWebViewOn_ = new QCheckBox(tr("Open news"));
   nottoOpenNews_ = new QRadioButton(tr("Nothing to do"));
+  connect(nottoOpenNews_, SIGNAL(toggled(bool)),
+          openNewsWebViewOn_, SLOT(setDisabled(bool)));
 
-  QVBoxLayout *openingFeedsLayout = new QVBoxLayout();
+  QGridLayout *openingFeedsLayout = new QGridLayout();
   openingFeedsLayout->setContentsMargins(15, 0, 0, 10);
-  openingFeedsLayout->addWidget(reopenLastNews_);
-  openingFeedsLayout->addWidget(openFirstNews_);
-  openingFeedsLayout->addWidget(nottoOpenNews_);
+  openingFeedsLayout->setColumnStretch(1, 1);
+  openingFeedsLayout->addWidget(positionLastNews_, 0, 0, 1, 1);
+  openingFeedsLayout->addWidget(openNewsWebViewOn_, 0, 1, 1, 1);
+  openingFeedsLayout->addWidget(positionFirstNews_, 1, 0, 1, 1);
+  openingFeedsLayout->addWidget(nottoOpenNews_, 2, 0, 1, 1);
 
   QVBoxLayout *updateFeedsLayout = new QVBoxLayout();
   updateFeedsLayout->addWidget(updateFeedsStartUp_);
@@ -752,16 +757,16 @@ void OptionsDialog::slotResetShortcut()
 void OptionsDialog::setOpeningFeed(int action)
 {
   switch (action) {
-  case 1: openFirstNews_->setChecked(true); break;
+  case 1: positionFirstNews_->setChecked(true); break;
   case 2: nottoOpenNews_->setChecked(true); break;
-  default: reopenLastNews_->setChecked(true);
+  default: positionLastNews_->setChecked(true);
   }
 }
 
 int OptionsDialog::getOpeningFeed()
 {
-  if (reopenLastNews_->isChecked())     return 0;
-  else if (openFirstNews_->isChecked()) return 1;
+  if (positionLastNews_->isChecked())     return 0;
+  else if (positionFirstNews_->isChecked()) return 1;
   else if (nottoOpenNews_->isChecked()) return 2;
   else return 0;
 }
