@@ -216,9 +216,27 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   updateFeedsLayout1->addWidget(intervalTime_);
   updateFeedsLayout1->addStretch();
 
+  positionLastNews_ = new QRadioButton(tr("Position on last opened news"));
+  positionFirstNews_ = new QRadioButton(tr("Position at top of list news"));
+  openNewsWebViewOn_ = new QCheckBox(tr("Open news"));
+  nottoOpenNews_ = new QRadioButton(tr("Nothing to do"));
+  connect(nottoOpenNews_, SIGNAL(toggled(bool)),
+          openNewsWebViewOn_, SLOT(setDisabled(bool)));
+
+  QGridLayout *openingFeedsLayout = new QGridLayout();
+  openingFeedsLayout->setContentsMargins(15, 0, 0, 10);
+  openingFeedsLayout->setColumnStretch(1, 1);
+  openingFeedsLayout->addWidget(positionLastNews_, 0, 0, 1, 1);
+  openingFeedsLayout->addWidget(openNewsWebViewOn_, 0, 1, 1, 1);
+  openingFeedsLayout->addWidget(positionFirstNews_, 1, 0, 1, 1);
+  openingFeedsLayout->addWidget(nottoOpenNews_, 2, 0, 1, 1);
+
   QVBoxLayout *updateFeedsLayout = new QVBoxLayout();
   updateFeedsLayout->addWidget(updateFeedsStartUp_);
   updateFeedsLayout->addLayout(updateFeedsLayout1);
+  updateFeedsLayout->addSpacing(10);
+  updateFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
+  updateFeedsLayout->addLayout(openingFeedsLayout);
   updateFeedsLayout->addStretch();
 
   QWidget *updateFeedsWidget_ = new QWidget();
@@ -734,4 +752,21 @@ void OptionsDialog::slotResetShortcut()
   QString str = listDefaultShortcut_->at(id);
   editShortcut_->setText(str);
   shortcutTree_->currentItem()->setText(3, str);
+}
+
+void OptionsDialog::setOpeningFeed(int action)
+{
+  switch (action) {
+  case 1: positionFirstNews_->setChecked(true); break;
+  case 2: nottoOpenNews_->setChecked(true); break;
+  default: positionLastNews_->setChecked(true);
+  }
+}
+
+int OptionsDialog::getOpeningFeed()
+{
+  if (positionLastNews_->isChecked())     return 0;
+  else if (positionFirstNews_->isChecked()) return 1;
+  else if (nottoOpenNews_->isChecked()) return 2;
+  else return 0;
 }

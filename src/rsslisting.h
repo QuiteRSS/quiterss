@@ -36,7 +36,7 @@ public slots:
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
-  void slotFeedsTreeSelected(QModelIndex index);
+  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false);
   void slotGetFeed();
   void slotGetAllFeeds();
   void slotNewsViewClicked(QModelIndex index);
@@ -145,6 +145,7 @@ private:
   QAction *filterNewsStar_;
   QAction *aboutAct_;
   QAction *updateAppAct_;
+  QAction *openNewsWebViewAct_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
   QAction *markStarAct_;
@@ -158,6 +159,8 @@ private:
   QAction *newsKeyDownAct_;
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
+  QAction *switchFocusAct_;
+  QAction *visibleFeedsDockAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
@@ -243,6 +246,9 @@ private:
   bool emptyWorking_;
   int behaviorIconTray_;
 
+  int openingFeedAction_;
+  bool openNewsWebViewOn_;
+
   QBasicTimer markNewsReadTimer_;
   bool markNewsReadOn_;
   int  markNewsReadTime_;
@@ -323,6 +329,8 @@ private slots:
   void setStyleApp(QAction*);
   void webHomePage();
   void openPageInExternalBrowser();
+  void slotSwitchFocus();
+  void slotOpenNewsWebView();
 
 signals:
   void signalPlaceToTray();

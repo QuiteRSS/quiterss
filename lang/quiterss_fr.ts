@@ -87,7 +87,7 @@
         <location filename="../src/addfeedwizard.cpp" line="215"/>
         <location filename="../src/addfeedwizard.cpp" line="323"/>
         <source>Duplicate feed!</source>
-        <translation>Dupliquer flux!</translation>
+        <translation type="unfinished">Flux en double!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="347"/>
@@ -1122,7 +1122,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2887"/>
         <source>Mark all feeds Read</source>
-        <translation>Marques tous les flux comme lus</translation>
+        <translation>Marquer tous les flux comme lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2889"/>

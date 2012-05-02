@@ -29,13 +29,14 @@ private slots:
 private:  
   QList<QUrl> currentUrls_;
   QList<QUrl> currentFeeds_;
+  QList<int> currentCntRequests_;
   QQueue<QUrl> urlsQueue_;
   QQueue<QUrl> feedsQueue_;
   QTimer *getUrlTimer_;
 
   UpdateObject *updateObject_;
 
-  void get(const QUrl &getUrl, const QUrl &feedUrl);
+  void get(const QUrl &getUrl, const QUrl &feedUrl, const int &cnt);
 
 signals:
   void startGetUrlTimer();
