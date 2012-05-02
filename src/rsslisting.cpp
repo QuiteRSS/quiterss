@@ -1793,8 +1793,10 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
     newsHeader_->createMenu();
   }
 
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
+  if (newsModel_->rowCount() != 0) {
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+  }
 
   int row = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
@@ -2179,31 +2181,33 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid()) return;
 
-  int topRow = newsView_->verticalScrollBar()->value();
-  QModelIndex curIndex = newsView_->currentIndex();
-  if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
-    newsModel_->setData(
-          newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
-          0);
-  }
-  if (read == 1) {
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+  if (newsModel_->rowCount() != 0) {
+    int topRow = newsView_->verticalScrollBar()->value();
+    QModelIndex curIndex = newsView_->currentIndex();
+    if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
+      newsModel_->setData(
+            newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
+            0);
+    }
+    if (read == 1) {
+      if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+        newsModel_->setData(
+              newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+              1);
+      }
+    } else {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-            1);
+            0);
     }
-  } else {
-    newsModel_->setData(
-          newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-          0);
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    if (newsView_->currentIndex() != curIndex)
+      newsView_->setCurrentIndex(curIndex);
+    newsView_->verticalScrollBar()->setValue(topRow);
   }
-
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
-
-  if (newsView_->currentIndex() != curIndex)
-    newsView_->setCurrentIndex(curIndex);
-  newsView_->verticalScrollBar()->setValue(topRow);
   slotUpdateStatus();
 }
 
@@ -2213,6 +2217,7 @@ void RSSListing::markNewsRead()
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
   int cnt = indexes.count();
+  if (cnt == 0) return;
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
@@ -2263,6 +2268,8 @@ void RSSListing::markNewsRead()
 
 void RSSListing::markAllNewsRead()
 {
+  if (newsModel_->rowCount() == 0) return;
+
   int currentRow = newsView_->currentIndex().row();
   QString qStr = QString("update %1 set read=1 WHERE read=0").
       arg(newsModel_->tableName());
@@ -3270,26 +3277,28 @@ void RSSListing::markAllFeedsRead(bool readOn)
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 
-  int currentRow = newsView_->currentIndex().row();
+  if (newsModel_->rowCount() != 0) {
+    int currentRow = newsView_->currentIndex().row();
 
-  setNewsFilter(newsFilterGroup_->checkedAction(), false);
-  newsModel_->select();
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
+    newsModel_->select();
 
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
 
-  int row = -1;
-  for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-        feedsModel_->index(feedsView_->currentIndex().row(),
-                           feedsModel_->fieldIndex("currentNews")).data().toInt()) {
-      row = i;
-      break;
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(feedsView_->currentIndex().row(),
+                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+        break;
+      }
     }
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    if (currentRow != row)
+      updateWebView(newsModel_->index(row, 0));
   }
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  if (currentRow != row)
-    updateWebView(newsModel_->index(row, 0));
   refreshInfoTray();
 }
 
