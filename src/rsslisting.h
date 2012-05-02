@@ -145,6 +145,7 @@ private:
   QAction *filterNewsStar_;
   QAction *aboutAct_;
   QAction *updateAppAct_;
+  QAction *openNewsWebViewAct_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
   QAction *markStarAct_;
@@ -158,6 +159,8 @@ private:
   QAction *newsKeyDownAct_;
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
+  QAction *switchFocusAct_;
+  QAction *visibleFeedsDockAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
@@ -326,6 +329,8 @@ private slots:
   void setStyleApp(QAction*);
   void webHomePage();
   void openPageInExternalBrowser();
+  void slotSwitchFocus();
+  void slotOpenNewsWebView();
 
 signals:
   void signalPlaceToTray();

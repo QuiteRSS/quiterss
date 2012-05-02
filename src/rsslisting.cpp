@@ -881,11 +881,20 @@ void RSSListing::createActions()
   updateAppAct_->setObjectName("UpdateApp_");
   connect(updateAppAct_, SIGNAL(triggered()), this, SLOT(slotShowUpdateAppDlg()));
 
+  openNewsWebViewAct_ = new QAction(this);
+  openNewsWebViewAct_->setShortcut(QKeySequence(Qt::Key_Return));
+  this->addAction(openNewsWebViewAct_);
+  connect(openNewsWebViewAct_, SIGNAL(triggered()), this, SLOT(slotOpenNewsWebView()));
   openInBrowserAct_ = new QAction(this);
+  openInBrowserAct_->setObjectName("openInBrowserAct");
+  this->addAction(openInBrowserAct_);
   connect(openInBrowserAct_, SIGNAL(triggered()), this, SLOT(openInBrowserNews()));
   openInExternalBrowserAct_ = new QAction(this);
+  openInExternalBrowserAct_->setObjectName("openInExternalBrowserAct");
+  this->addAction(openInExternalBrowserAct_);
   connect(openInExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openInExternalBrowserNews()));
+
   markStarAct_ = new QAction(this);
   markStarAct_->setObjectName("markStarAct");
   markStarAct_->setIcon(QIcon(":/images/starOn"));
@@ -924,6 +933,16 @@ void RSSListing::createActions()
   newsKeyDownAct_->setObjectName("newsKeyDownAct");
   connect(newsKeyDownAct_, SIGNAL(triggered()), this, SLOT(slotNewsDownPressed()));
   this->addAction(newsKeyDownAct_);
+
+  switchFocusAct_ = new QAction(this);
+  switchFocusAct_->setObjectName("switchFocusAct");
+  connect(switchFocusAct_, SIGNAL(triggered()), this, SLOT(slotSwitchFocus()));
+  this->addAction(switchFocusAct_);
+
+  visibleFeedsDockAct_ = new QAction(this);
+  visibleFeedsDockAct_->setObjectName("visibleFeedsDockAct");
+  connect(visibleFeedsDockAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsDock()));
+  this->addAction(visibleFeedsDockAct_);
 }
 
 void RSSListing::createShortcut()
@@ -961,6 +980,17 @@ void RSSListing::createShortcut()
   listActions_.append(markNewsRead_);
   listActions_.append(markAllNewsRead_);
   listActions_.append(markStarAct_);
+
+  listActions_.append(openInBrowserAct_);
+  openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_O));
+  listActions_.append(openInExternalBrowserAct_);
+  openInExternalBrowserAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+
+  switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
+  listActions_.append(switchFocusAct_);
+
+  visibleFeedsDockAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
+  listActions_.append(visibleFeedsDockAct_);
 
   loadActionShortcuts();
 }
@@ -2995,6 +3025,12 @@ void RSSListing::retranslateStrings() {
   newsKeyUpAct_->setText(tr("Previous news"));
   newsKeyDownAct_->setText(tr("Next news"));
 
+  switchFocusAct_->setText(tr("Switch focus between panels"));
+  switchFocusAct_->setToolTip(
+        tr("Switch focus between panels (tree feeds, list news, browser)"));
+
+  visibleFeedsDockAct_->setText(tr("Show/hide tree feeds"));
+
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Window"));
   webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
@@ -3374,7 +3410,13 @@ void RSSListing::slotFeedDownPressed()
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
 void RSSListing::slotNewsUpPressed()
 {
-  if (!newsView_->currentIndex().isValid()) return;
+  if (!newsView_->currentIndex().isValid()) {
+    if (newsModel_->rowCount() > 0) {
+      newsView_->setCurrentIndex(newsModel_->index(0, 1));
+      slotNewsViewClicked(newsView_->currentIndex());
+    }
+    return;
+  }
 
   int row = newsView_->currentIndex().row();
   if (row == 0) return;
@@ -3385,7 +3427,13 @@ void RSSListing::slotNewsUpPressed()
 
 void RSSListing::slotNewsDownPressed()
 {
-  if (!newsView_->currentIndex().isValid()) return;
+  if (!newsView_->currentIndex().isValid()) {
+    if (newsModel_->rowCount() > 0) {
+      newsView_->setCurrentIndex(newsModel_->index(0, 1));
+      slotNewsViewClicked(newsView_->currentIndex());
+    }
+    return;
+  }
 
   int row = newsView_->currentIndex().row();
   if ((row+1) == newsModel_->rowCount()) return;
@@ -3491,4 +3539,21 @@ void RSSListing::webHomePage()
 void RSSListing::openPageInExternalBrowser()
 {
   QDesktopServices::openUrl(webView_->url());
+}
+
+void RSSListing::slotSwitchFocus()
+{
+  if (feedsView_->hasFocus()) {
+    newsView_->setFocus();
+  } else if (newsView_->hasFocus()) {
+    webView_->setFocus();
+  } else if (webView_->hasFocus()) {
+    feedsView_->setFocus();
+  }
+}
+
+void RSSListing::slotOpenNewsWebView()
+{
+  if (!newsView_->hasFocus()) return;
+  slotNewsViewClicked(newsView_->currentIndex());
 }
