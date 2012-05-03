@@ -277,6 +277,8 @@ private:
 
   bool showDescriptionNews_;
 
+  bool showMessageOn_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();

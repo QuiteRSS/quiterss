@@ -1655,8 +1655,10 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 
   // очередь запросов пуста
   if (0 == result) {
-    if (progressBar_->isVisible())  // result=0 может приходить несколько раз
+    if (showMessageOn_) { // result=0 может приходить несколько раз
       statusBar()->showMessage(QString(tr("Update done")), 3000);
+      showMessageOn_ = false;
+    }
     updateAllFeedsAct_->setEnabled(true);
     updateFeedAct_->setEnabled(true);
     progressBar_->hide();
@@ -1666,7 +1668,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
     progressBar_->setValue(progressBar_->maximum() - result);
-    if (progressBar_->isVisible())
+    if (showMessageOn_)
       statusBar()->showMessage(progressBar_->text());
   }
 }
@@ -2092,6 +2094,7 @@ void RSSListing::myEmptyWorkingSet()
 void RSSListing::showProgressBar(int addToMaximum)
 {
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
+  showMessageOn_ = true;
   statusBar()->showMessage(progressBar_->text());
   progressBar_->show();
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
