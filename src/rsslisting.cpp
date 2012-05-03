@@ -2756,16 +2756,18 @@ void RSSListing::loadSettingsFeeds()
 
 void RSSListing::setCurrentFeed()
 {
-  qApp->processEvents();
-  int id = settings_->value("feedSettings/currentId", 0).toInt();
-  int row = -1;
-  for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, 0).data().toInt() == id) {
-      row = i;
+  if (reopenFeedStartup_) {
+    qApp->processEvents();
+    int id = settings_->value("feedSettings/currentId", 0).toInt();
+    int row = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, 0).data().toInt() == id) {
+        row = i;
+      }
     }
-  }
-  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-  slotFeedsTreeSelected(feedsModel_->index(row, 1), true);  // загрузка новостей
+    feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+    slotFeedsTreeSelected(feedsModel_->index(row, 1), true);  // загрузка новостей
+  } else slotUpdateStatus();
 }
 
 void RSSListing::updateWebView(QModelIndex index)
