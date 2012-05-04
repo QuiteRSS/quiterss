@@ -1569,8 +1569,10 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 
   // очередь запросов пуста
   if (0 == result) {
-    if (progressBar_->isVisible())  // result=0 может приходить несколько раз
+    if (showMessageOn_) { // result=0 может приходить несколько раз
       statusBar()->showMessage(QString(tr("Update done")), 3000);
+      showMessageOn_ = false;
+    }
     updateAllFeedsAct_->setEnabled(true);
     updateFeedAct_->setEnabled(true);
     progressBar_->hide();
@@ -1580,7 +1582,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
     progressBar_->setValue(progressBar_->maximum() - result);
-    if (progressBar_->isVisible())
+    if (showMessageOn_)
       statusBar()->showMessage(progressBar_->text());
   }
 }
@@ -2007,6 +2009,7 @@ void RSSListing::myEmptyWorkingSet()
 void RSSListing::showProgressBar(int addToMaximum)
 {
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
+  showMessageOn_ = true;
   statusBar()->showMessage(progressBar_->text());
   progressBar_->show();
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
@@ -2671,16 +2674,18 @@ void RSSListing::loadSettingsFeeds()
 
 void RSSListing::setCurrentFeed()
 {
-  qApp->processEvents();
-  int id = settings_->value("feedSettings/currentId", 0).toInt();
-  int row = -1;
-  for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, 0).data().toInt() == id) {
-      row = i;
+  if (reopenFeedStartup_) {
+    qApp->processEvents();
+    int id = settings_->value("feedSettings/currentId", 0).toInt();
+    int row = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, 0).data().toInt() == id) {
+        row = i;
+      }
     }
-  }
-  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-  slotFeedsTreeSelected(feedsModel_->index(row, 1), true);  // загрузка новостей
+    feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+    slotFeedsTreeSelected(feedsModel_->index(row, 1), true);  // загрузка новостей
+  } else slotUpdateStatus();
 }
 
 void RSSListing::updateWebView(QModelIndex index)

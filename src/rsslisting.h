@@ -24,7 +24,6 @@ public:
   RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent = 0);
   ~RSSListing();
   bool showSplashScreen_;
-  bool reopenFeedStartup_;
   bool showTrayIcon_;
   bool startingTray_;
   QSystemTrayIcon *traySystem;
@@ -276,6 +275,10 @@ private:
   bool neverStarCleanUp_;
 
   bool showDescriptionNews_;
+
+  bool showMessageOn_;
+
+  bool reopenFeedStartup_;
 
 private slots:
   void slotProgressBarUpdate();
