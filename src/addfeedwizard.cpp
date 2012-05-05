@@ -226,7 +226,6 @@ void AddFeedWizard::addFeed()
     q.prepare(qStr);
     q.addBindValue(feedUrlString_);
     q.exec();
-    q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
     q.finish();
 
     persistentUpdateThread_->requestUrl(feedUrlString_, QDateTime());
@@ -243,7 +242,7 @@ void AddFeedWizard::deleteFeed()
   if (q.next()) id = q.value(0).toInt();
   if (id >= 0) {
     q.exec(QString("delete from feeds where id='%1'").arg(id));
-    q.exec(QString("drop table feed_%1").arg(id));
+//    q.exec(QString("drop table feed_%1").arg(id));
     q.exec("VACUUM");
   }
   q.finish();

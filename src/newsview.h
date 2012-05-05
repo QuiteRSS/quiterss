@@ -19,7 +19,7 @@ protected:
 
 signals:
   void signalSetItemRead(QModelIndex index, int read);
-  void signalSetItemStar(QModelIndex index, int sticky);
+  void signalSetItemStar(QModelIndex index, int starred);
   void signalDoubleClicked(QModelIndex index);
   void pressKeyUp();
   void pressKeyDown();

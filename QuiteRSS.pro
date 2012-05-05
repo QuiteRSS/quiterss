@@ -25,6 +25,7 @@ HEADERS += \
     src/filterrulesdialog.h \
     src/webpage.h \
     src/lineedit.h \
+    src/db_func.h \
     src/webview.h \
     src/addfeedwizard.h
 
@@ -51,6 +52,7 @@ SOURCES += \
     src/filterrulesdialog.cpp \
     src/webpage.cpp \
     src/lineedit.cpp \
+    src/db_func.cpp \
     src/webview.cpp \
     src/addfeedwizard.cpp
 

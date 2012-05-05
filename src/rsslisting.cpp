@@ -7,6 +7,7 @@
 
 #include "aboutdialog.h"
 #include "addfeedwizard.h"
+#include "db_func.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
@@ -15,82 +16,6 @@
 #include "rsslisting.h"
 #include "VersionNo.h"
 #include "webpage.h"
-
-/*!***************************************************************************/
-const QString kDbName = "feeds.db";
-
-const QString kCreateFeedsTableQuery(
-    "create table feeds("
-    "id integer primary key, "
-    "text varchar, "             // Текст ленты (сейчас заменяет имя)
-    "title varchar, "            // Имя ленты
-    "description varchar, "      // Описание ленты
-    "xmlUrl varchar, "           // интернет-адрес самой ленты
-    "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
-    "language varchar, "         // язык, на котором написана лента
-    "copyrights varchar, "       // права
-    "author_name varchar, "      // автор лента: имя
-    "author_email varchar, "     //              е-мейл
-    "author_uri varchar, "       //              личная страница
-    "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
-    "pubdate varchar, "          // Дата публикации содержимого ленты
-    "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
-    "category varchar, "         // категории содержимого, освещаемые в ленте
-    "contributor varchar, "      // участник (через табы)
-    "generator varchar, "        // программа, используемая для генерации содержимого
-    "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
-    "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
-    "cloud_port varchar, "       //   .
-    "cloud_path varchar, "       //   .
-    "cloud_procedure varchar, "  //   .
-    "cloud_protocal varchar, "   //   .
-    "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
-    "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
-    "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
-    "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
-    "unread integer, "           // количество непрочитанных новостей
-    "newCount integer, "         // количество новых новостей
-    "currentNews integer, "      // отображаемая новость
-    "label varchar"              // выставляется пользователем
-    ")");
-
-QString kCreateNewsTableQuery(
-    "create table feed_%1("
-    "id integer primary key, "
-    "feed integer, "                       // идентификатор ленты из таблицы feeds
-    "guid varchar, "                       // уникальный номер
-    "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
-    "description varchar, "                // краткое содержание
-    "content varchar, "                    // полное содержание (atom)
-    "title varchar, "                      // заголовок
-    "published varchar, "                  // дата публикащии
-    "modified varchar, "                   // дата модификации
-    "received varchar, "                   // дата приёма новости (выставляется при приёме)
-    "author_name varchar, "                // имя автора
-    "author_uri varchar, "                 // страничка автора (atom)
-    "author_email varchar, "               // почта автора (atom)
-    "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-    "label varchar, "                      // метка (выставляется пользователем)
-    "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
-    "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
-    "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
-    "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется,
-    //   чтобы при обновлении новостей она не появлялась вновь.
-    //   Физическое удаление новость будет производится при общей чистке базы
-    "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
-    "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
-    "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
-    "enclosure_type, "                     //   длина, тип,
-    "enclosure_url, "                      //   адрес.
-    "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
-    "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
-    "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
-    //   который нереально передать в новости (atom)
-    "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
-    "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
-    "contributor varchar, "                // участник (через табы)
-    "rights varchar "                      // права
-    ")");
 
 /*!****************************************************************************/
 RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent)
@@ -102,18 +27,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
-  if (!QFile(dbFileName_).exists()) {  // Инициализация базы
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
-    db.setDatabaseName(dbFileName_);
-    db.open();
-    db.transaction();
-    db.exec(kCreateFeedsTableQuery);
-    db.exec("create table info(id integer primary key, name varchar, value varchar)");
-    db.exec("insert into info(name, value) values ('version', '1.0')");
-    db.commit();
-    db.close();
-  }
-  QSqlDatabase::removeDatabase("dbFileName_");
+  initDB(dbFileName_);
 
   db_ = QSqlDatabase::addDatabase("QSQLITE");
   db_.setDatabaseName(":memory:");
@@ -1548,7 +1462,7 @@ void RSSListing::slotImportFeeds()
           q.exec();
           qDebug() << q.lastQuery() << q.boundValues();
           qDebug() << q.lastError().number() << ": " << q.lastError().text();
-          q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
+//          q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
           q.finish();
 
           persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
@@ -1778,7 +1692,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
   idOld = feedsModel_->index(index.row(), 0).data().toInt();
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
-  newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
+//  newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
+  newsModel_->setTable("news");
 
   newsModel_->setSort(newsHeader_->sortIndicatorSection(),
                       newsHeader_->sortIndicatorOrder());
@@ -2442,14 +2357,17 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     q.exec(qStr);
   }
 
+  int feedId = feedsModel_->index(
+        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
   if (pAct->objectName() == "filterNewsAll_") {
-    newsModel_->setFilter("deleted = 0");
+    newsModel_->setFilter(feedIdFilter.append("deleted = 0"));
   } else if (pAct->objectName() == "filterNewsNew_") {
-    newsModel_->setFilter(QString("new = 1 AND deleted = 0"));
+    newsModel_->setFilter(feedIdFilter.append(QString("new = 1 AND deleted = 0")));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(QString("read < 2 AND deleted = 0"));
+    newsModel_->setFilter(feedIdFilter.append(QString("read < 2 AND deleted = 0")));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    newsModel_->setFilter(QString("sticky = 1 AND deleted = 0"));
+    newsModel_->setFilter(feedIdFilter.append(QString("starred = 1 AND deleted = 0")));
   }
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -2608,15 +2526,15 @@ void RSSListing::openInExternalBrowserNews()
   QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
-void RSSListing::slotSetItemStar(QModelIndex index, int sticky)
+void RSSListing::slotSetItemStar(QModelIndex index, int starred)
 {
   if (!index.isValid()) return;
 
   int topRow = newsView_->verticalScrollBar()->value();
   QModelIndex curIndex = newsView_->currentIndex();
   newsModel_->setData(
-        newsModel_->index(index.row(), newsModel_->fieldIndex("sticky")),
-        sticky);
+        newsModel_->index(index.row(), newsModel_->fieldIndex("starred")),
+        starred);
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
@@ -2634,7 +2552,7 @@ void RSSListing::markNewsStar()
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
-    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0) {
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0) {
       slotSetItemStar(curIndex, 1);
     } else {
       slotSetItemStar(curIndex, 0);
@@ -2643,7 +2561,7 @@ void RSSListing::markNewsStar()
     bool markStar = false;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("sticky")).data(Qt::EditRole).toInt() == 0)
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0)
         markStar = true;
     }
 
@@ -3469,16 +3387,16 @@ void RSSListing::feedsCleanUp(QString name)
   q.exec(qStr);
   if (q.next()) cntNews = q.value(0).toInt();
 
-  qStr = QString("SELECT deleted, received, id, read, sticky, published FROM feed_%1")
+  qStr = QString("SELECT deleted, received, id, read, starred, published FROM feed_%1")
       .arg(name);
   q.exec(qStr);
   while (q.next()) {    
     int id = q.value(2).toInt();
     int read = q.value(3).toInt();
-    int sticky = q.value(4).toInt();
+    int starred = q.value(4).toInt();
 
     if ((neverUnreadCleanUp_ && (read == 0)) ||
-        (neverStarCleanUp_ && (sticky != 0)) ||
+        (neverStarCleanUp_ && (starred != 0)) ||
         q.value(0).toInt() != 0)
       continue;
 
