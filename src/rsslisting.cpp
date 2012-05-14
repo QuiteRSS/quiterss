@@ -1739,21 +1739,24 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 
 void RSSListing::slotNewsViewSelected(QModelIndex index)
 {
-  static int idxOld = -1;
-  static int curFeedOld = -1;
+  static int indexIdOld = -1;
+  static int currrentFeedIdOld = -1;
+  int indexId;
+  int currentFeedId;
+
+  indexId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  currentFeedId = feedsModel_->index(feedsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data().toInt();
+
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    idxOld = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
-    curFeedOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
+    indexIdOld = indexId;
+    currrentFeedIdOld = currentFeedId;
     return;
   }
 
-  int idx = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
-  int curFeed = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
-
-  if (!((idx == idxOld) && (curFeed == curFeedOld) &&
+  if (!((indexId == indexIdOld) && (currentFeedId == currrentFeedIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
       (QApplication::mouseButtons() & Qt::MiddleButton)) {
 
@@ -1767,15 +1770,13 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
       markNewsReadTimer_.start(markNewsReadTime_*1000, this);
 
     QSqlQuery q(db_);
-    int id = newsModel_->index(index.row(), 0).
-        data(Qt::EditRole).toInt();
-    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-        arg(id).arg(newsModel_->tableName().remove("feed_"));
+    QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
+        arg(indexId).arg(currentFeedId);
     q.exec(qStr);
   } else slotUpdateStatus();
 
-  idxOld = idx;
-  curFeedOld = curFeed;
+  indexIdOld = indexId;
+  currrentFeedIdOld = currentFeedId;
 }
 
 /*! \brief Вызов окна настроек ************************************************/
