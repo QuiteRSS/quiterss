@@ -2216,37 +2216,36 @@ void RSSListing::slotUpdateStatus()
 {
   QString qStr;
 
-  int id = feedsModel_->index(
+  int feedId = feedsModel_->index(
         feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   int allCount = 0;
-  qStr = QString("select count(id) from %1 where deleted=0").
-      arg(newsModel_->tableName());
+  qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
+      arg(feedId);
   QSqlQuery q(db_);
   q.exec(qStr);
   if (q.next()) allCount = q.value(0).toInt();
 
   int unreadCount = 0;
-  qStr = QString("select count(read) from %1 where read==0").
-      arg(newsModel_->tableName());
+  qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0").
+      arg(feedId);
   q.exec(qStr);
   if (q.next()) unreadCount = q.value(0).toInt();
 
   int newCount = 0;
-  qStr = QString("select count(new) from %1 where new==1").
-      arg(newsModel_->tableName());
+  qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1").
+      arg(feedId);
   q.exec(qStr);
   if (q.next()) newCount = q.value(0).toInt();
 
   int newCountOld = 0;
-  qStr = QString("select newCount from feeds where id=='%1'").
-      arg(newsModel_->tableName().remove("feed_"));
+  qStr = QString("SELECT newCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
 
-  qStr = QString("update feeds set unread='%1', newCount='%2' where id=='%3'").
-      arg(unreadCount).arg(newCount).
-      arg(newsModel_->tableName().remove("feed_"));
+  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2' WHERE id=='%3'").
+      arg(unreadCount).arg(newCount).arg(feedId);
   q.exec(qStr);
 
   if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
@@ -2257,13 +2256,13 @@ void RSSListing::slotUpdateStatus()
   }
 
   feedsModel_->select();
-  int rowFeeds = -1;
+  int feedRow = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
-      rowFeeds = i;
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId) {
+      feedRow = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+  feedsView_->setCurrentIndex(feedsModel_->index(feedRow, 1));
 
   statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
   statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
