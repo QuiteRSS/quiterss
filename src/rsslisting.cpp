@@ -107,52 +107,33 @@ RSSListing::~RSSListing()
 
   db_.transaction();
   QSqlQuery q(db_);
-  q.exec("select id from feeds");
+  q.exec("SELECT id FROM feeds");
   while (q.next()) {
     QSqlQuery qt(db_);
-    QString qStr = QString("UPDATE feed_%1 SET new=0 WHERE new=1")
+    QString qStr = QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new=1")
         .arg(q.value(0).toString());
     qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET read=2 WHERE read=1").
+    qStr = QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read=1").
         arg(q.value(0).toString());
     qt.exec(qStr);
 
     feedsCleanUp(q.value(0).toString());
 
-    qStr = QString("UPDATE feed_%1 SET title='' WHERE deleted=1 AND guid!=''").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET published='' WHERE deleted=1 AND guid!=''").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-
-    qStr = QString("UPDATE feed_%1 SET description='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET content='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET received='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET author_name='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET link_href='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET category='' WHERE deleted=1").
+    qStr = QString("UPDATE news SET title='', published='' "
+        "WHERE feedId=='%1' AND deleted=1 AND guid!=''").
         arg(q.value(0).toString());
     qt.exec(qStr);
 
-    qStr = QString("UPDATE feed_%1 SET deleted=2 WHERE deleted=1").
+    qStr = QString("UPDATE news "
+        "SET description='', content='', received='', author_name='', "
+        "link_href='', category='', deleted=2 "
+        "WHERE feedId=='%1' AND deleted=1").
         arg(q.value(0).toString());
     qt.exec(qStr);
   }
   db_.commit();
 
-  QString  qStr = QString("update feeds set newCount=0");
-  q.exec(qStr);
+  q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
 
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
@@ -3382,15 +3363,16 @@ void RSSListing::feedsCleanUp(QString name)
 //  qDebug() << name;
 
   QSqlQuery q(db_);
-  QString qStr = QString("SELECT count(id) FROM feed_%1 WHERE deleted=0").
+  QString qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted=0").
       arg(name);
   q.exec(qStr);
   if (q.next()) cntNews = q.value(0).toInt();
 
-  qStr = QString("SELECT deleted, received, id, read, starred, published FROM feed_%1")
+  qStr = QString("SELECT deleted, received, id, read, starred, published "
+      "FROM news WHERE feedId=='%1'")
       .arg(name);
   q.exec(qStr);
-  while (q.next()) {    
+  while (q.next()) {
     int id = q.value(2).toInt();
     int read = q.value(3).toInt();
     int starred = q.value(4).toInt();
@@ -3401,7 +3383,7 @@ void RSSListing::feedsCleanUp(QString name)
       continue;
 
     if ((cntT < (cntNews - maxNewsCleanUp_)) && newsCleanUpOn_) {
-        qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
+        qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND id='%2'").
             arg(name).arg(id);
 //        qDebug() << "*01"  << id << q.value(5).toString()
 //                 << q.value(1).toString() << cntNews
@@ -3417,7 +3399,7 @@ void RSSListing::feedsCleanUp(QString name)
           Qt::ISODate);
     if ((dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_) &&
         dayCleanUpOn_) {
-        qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
+        qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND id='%2'").
             arg(name).arg(id);
 //        qDebug() << "*02"  << id << q.value(5).toString()
 //                 << q.value(1).toString() << cntNews
@@ -3429,7 +3411,7 @@ void RSSListing::feedsCleanUp(QString name)
     }
 
     if (readCleanUp_) {
-      qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE read!=0 AND id='%2'").
+      qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND read!=0 AND id='%2'").
           arg(name).arg(id);
       QSqlQuery qt(db_);
       qt.exec(qStr);
