@@ -182,14 +182,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
         QString qStr;
         qDebug() << "guid:" << rssGuidString;
         if (!rssGuidString.isEmpty())         // поиск по guid
-          qStr = QString("select * from feed_%1 where guid == '%2'").
+          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2'").
               arg(parseFeedId).arg(rssGuidString);
         else if (rssPubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
-          qStr = QString("select * from feed_%1 where title like '%2'").
+          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND title LIKE '%2'").
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
-        else                               // поиск по title и pubDate
-          qStr = QString("select * from feed_%1 "
-                         "where title like '%2' and published == '%3'").
+        else                                  // поиск по title и pubDate
+          qStr = QString("SELECT * FROM news "
+                         "WHERE feedId=='%1' AND title LIKE '%2' AND published=='%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(rssPubDateString);
         q.exec(qStr);
         // проверка правильности запроса
@@ -198,11 +198,11 @@ void ParseObject::slotParse(QSqlDatabase *db,
         else {
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
-            qStr = QString("insert into feed_%1("
-                           "description, content, guid, title, author_name, published, received, link_href, category) "
-                           "values(?, ?, ?, ?, ?, ?, ?, ?, ?)").
-                arg(parseFeedId);
+            qStr = QString("INSERT INTO news("
+                           "feedId, description, content, guid, title, author_name, published, received, link_href, category) "
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             q.prepare(qStr);
+            q.addBindValue(parseFeedId);
             q.addBindValue(rssDescriptionString);
             q.addBindValue(contentString);
             q.addBindValue(rssGuidString);
@@ -214,6 +214,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(categoryString);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
+            qDebug() << "       " << parseFeedId;
             qDebug() << "       " << rssDescriptionString;
             qDebug() << "       " << contentString;
             qDebug() << "       " << rssGuidString;
@@ -243,15 +244,15 @@ void ParseObject::slotParse(QSqlDatabase *db,
         QSqlQuery q(*db);
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
-        if (!atomIdString.isEmpty())         // поиск по guid
-          qStr = QString("select * from feed_%1 where guid == '%2'").
+        if (!atomIdString.isEmpty())           // поиск по guid
+          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND guid=='%2'").
               arg(parseFeedId).arg(atomIdString);
         else if (atomUpdatedString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
-          qStr = QString("select * from feed_%1 where title like '%2'").
+          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND title LIKE '%2'").
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
-        else                               // поиск по title и pubDate
-          qStr = QString("select * from feed_%1 "
-                         "where title like '%2' and published == '%3'").
+        else                                   // поиск по title и pubDate
+          qStr = QString("SELECT * FROM news "
+                         "WHERE feedId=='%1' AND title LIKE '%2' AND published=='%3'").
               arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(atomUpdatedString);
         q.exec(qStr);
 
@@ -261,13 +262,13 @@ void ParseObject::slotParse(QSqlDatabase *db,
         else {
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
-            qStr = QString("insert into feed_%1("
-                           "description, content, guid, title, author_name, "
+            qStr = QString("INSERT INTO news("
+                           "feedId, description, content, guid, title, author_name, "
                            "author_uri, author_email, published, received, "
                            "link_href, link_alternate, category) "
-                           "values(?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)").
-                arg(parseFeedId);
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)");
             q.prepare(qStr);
+            q.addBindValue(parseFeedId);
             q.addBindValue(atomSummaryString);
             q.addBindValue(contentString);
             q.addBindValue(atomIdString);
@@ -282,6 +283,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(categoryString);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
+            qDebug() << "       " << parseFeedId;
             qDebug() << "       " << atomSummaryString;
             qDebug() << "       " << contentString;
             qDebug() << "       " << atomIdString;
