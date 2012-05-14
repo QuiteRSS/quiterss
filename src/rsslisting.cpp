@@ -1366,8 +1366,8 @@ void RSSListing::deleteFeed()
     int id = feedsModel_->record(
           feedsView_->currentIndex().row()).field("id").value().toInt();
     QSqlQuery q(db_);
-    q.exec(QString("delete from feeds where id='%1'").arg(id));
-    q.exec(QString("drop table feed_%1").arg(id));
+    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
+    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
     q.exec("VACUUM");
     q.finish();
 
