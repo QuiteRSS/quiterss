@@ -3159,26 +3159,19 @@ void RSSListing::refreshInfoTray()
 
 void RSSListing::markAllFeedsRead(bool readOn)
 {
+  //! Помечаем все ленты прочитанными
   db_.transaction();
   QSqlQuery q(db_);
-  q.exec("select id from feeds");
-  while (q.next()) {
-    QSqlQuery qt(db_);
-    QString qStr = QString("UPDATE feed_%1 SET new=0")
-        .arg(q.value(0).toString());
-    qt.exec(qStr);
-    if (readOn) {
-      qStr = QString("UPDATE feed_%1 SET read=2")
-          .arg(q.value(0).toString());
-      qt.exec(qStr);
-    }
+  if (!readOn) {
+    q.exec("UPDATE news SET new=0");
+    q.exec("UPDATE feeds SET newCount=0");
+  } else {
+    q.exec("UPDATE news SET new=0, read=2");
+    q.exec("UPDATE feeds SET newCount=0, unread=0");
   }
   db_.commit();
 
-  q.exec("update feeds set newCount=0");
-  if (readOn)
-    q.exec("update feeds set unread=0");
-
+  //! Перечитывание модели лент
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
