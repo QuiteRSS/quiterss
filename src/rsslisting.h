@@ -295,7 +295,7 @@ private slots:
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
   void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
   void slotUpdateStatus();
-  void slotSetAllRead();
+  void setFeedRead(int feedId);
   void slotShowAboutDlg();
   void deleteNews();
   void showContextMenuNews(const QPoint &);

@@ -1651,7 +1651,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
   static int idOld = feedsModel_->index(index.row(), 0).data().toInt();
 
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
-    slotSetAllRead();
+    setFeedRead(idOld);
   }
 
   QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
@@ -2400,19 +2400,16 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
   } else QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
-void RSSListing::slotSetAllRead()
+//! Маркировка ленты прочитанной при клике на не отмеченной ленте
+void RSSListing::setFeedRead(int feedId)
 {
-  QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
-      arg(newsModel_->tableName());
+  db_.transaction();
   QSqlQuery q(db_);
-  q.exec(qStr);
-  qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
-      arg(newsModel_->tableName());
-  q.exec(qStr);
+  q.exec(QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read==1").arg(feedId));
+  q.exec(QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").arg(feedId));
 
-  qStr = QString("update feeds set newCount=0 where id=='%2'").
-      arg(newsModel_->tableName().remove("feed_"));
-  q.exec(qStr);
+  q.exec(QString("UPDATE feeds SET newCount=0 WHERE id=='%1'").arg(feedId));
+  db_.commit();
 }
 
 void RSSListing::slotShowAboutDlg()
