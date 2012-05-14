@@ -90,7 +90,7 @@ private:
   void retranslateStrings();
   void refreshInfoTray();
   void playSoundNewNews();
-  void feedsCleanUp(QString name);
+  void feedsCleanUp(QString feedId);
 
   QSettings *settings_;
   QString dataDirPath_;
