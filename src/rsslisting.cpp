@@ -105,7 +105,6 @@ RSSListing::~RSSListing()
   persistentParseThread_->quit();
   faviconLoader->quit();
 
-  db_.transaction();
   QSqlQuery q(db_);
   q.exec("SELECT id FROM feeds");
   while (q.next()) {
@@ -132,7 +131,6 @@ RSSListing::~RSSListing()
         arg(feedId);
     qt.exec(qStr);
   }
-  db_.commit();
 
   q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
