@@ -1574,41 +1574,42 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
   if (!changed) return;
 
-  // поиск идентификатора ленты в таблице лент
+  db_.transaction();
+
+  //! Ппоиск идентификатора ленты в таблице лент по URL
+  //! + достаем предыдущее значение количества новых новостей
   int parseFeedId = 0;
+  int newCountOld = 0;
   QSqlQuery q(db_);
-  q.exec(QString("select id from feeds where xmlUrl like '%1'").
+  q.exec(QString("SELECT id, newCount FROM feeds WHERE xmlUrl LIKE '%1'").
          arg(url.toString()));
-  while (q.next()) {
+  if (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
+    newCountOld = q.value(q.record().indexOf("newCount")).toInt();
   }
 
+  //! Подсчет непрочитанных новостей
   int unreadCount = 0;
-  QString qStr = QString("select count(read) from feed_%1 where read==0").
+  QString qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0").
       arg(parseFeedId);
   q.exec(qStr);
   if (q.next()) unreadCount = q.value(0).toInt();
 
-  qStr = QString("update feeds set unread='%1' where id=='%2'").
-      arg(unreadCount).arg(parseFeedId);
-  q.exec(qStr);
-
+  //! Подсчет новых новостей
   int newCount = 0;
-  qStr = QString("select count(new) from feed_%1 where new==1").
+  qStr = QString("SELECT count(new) FROM news WHERE feedId='%1' AND new==1").
       arg(parseFeedId);
   q.exec(qStr);
   if (q.next()) newCount = q.value(0).toInt();
 
-  int newCountOld = 0;
-  qStr = QString("select newCount from feeds where id=='%1'").
-      arg(parseFeedId);
+  //! Установка количества непрочитанных новостей в ленту
+  //! Установка количества новых новостей в ленту
+  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2' WHERE id=='%3'").
+      arg(unreadCount).arg(newCount).arg(parseFeedId);
   q.exec(qStr);
-  if (q.next()) newCountOld = q.value(0).toInt();
+  db_.commit();
 
-  qStr = QString("update feeds set newCount='%1' where id=='%2'").
-      arg(newCount).arg(parseFeedId);
-  q.exec(qStr);
-
+  //! Действия после получения новых новостей: трей, звук
   if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   refreshInfoTray();
@@ -1616,10 +1617,11 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     playSoundNewNews();
   }
 
+  //! Получаем идентификатор просматриваемой ленты
   QModelIndex index = feedsView_->currentIndex();
   int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
 
-  // если обновлена просматриваемая лента, кликаем по ней
+  // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
   if (parseFeedId == id) {
     slotFeedsTreeSelected(feedsModel_->index(index.row(), 1));
   }
