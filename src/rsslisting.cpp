@@ -1650,34 +1650,33 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 {
-  static int idOld = feedsModel_->index(index.row(), 0).data().toInt();
+  int feedRow = index.row();
+  static int idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
-  if (feedsModel_->index(index.row(), 0).data() != idOld) {
+  //! При переходе на другую ленту метим старую просмотренной
+  if (feedsModel_->index(feedRow, 0).data() != idOld) {
     setFeedRead(idOld);
   }
 
-  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+  //! Устанавливаем иконку и текст для дока
+  QByteArray byteArray = feedsModel_->index(feedRow, feedsModel_->fieldIndex("image")).
       data().toByteArray();
   if (!byteArray.isNull()) {
     QPixmap icon;
     icon.loadFromData(QByteArray::fromBase64(byteArray));
     newsIconTitle_->setPixmap(icon);
   } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
-  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
+  newsTextTitle_->setText(feedsModel_->index(feedRow, 1).data().toString());
 
-  if (index.isValid()) feedProperties_->setEnabled(true);
-  else feedProperties_->setEnabled(false);
-
-  if (index.isValid()) newsHeader_->setVisible(true);
-  else newsHeader_->setVisible(false);
+  feedProperties_->setEnabled(index.isValid());
+  newsHeader_->setVisible(index.isValid());
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
-  index = feedsView_->currentIndex();
-  idOld = feedsModel_->index(index.row(), 0).data().toInt();
+  idOld = feedsModel_->index(feedRow, 0).data().toInt();
+
   bool initNo = false;
   if (newsModel_->columnCount() == 0) initNo = true;
-//  newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
   newsModel_->setTable("news");
 
   newsModel_->setSort(newsHeader_->sortIndicatorSection(),
@@ -1700,28 +1699,29 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
       newsModel_->fetchMore();
   }
 
-  int row = -1;
+  int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
-        row = i;
+          feedsModel_->index(feedRow, feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        newsRow = i;
         break;
       }
     }
-  } else if (openingFeedAction_ == 1) row = 0;
+  } else if (openingFeedAction_ == 1) newsRow = 0;
 
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  if ((openingFeedAction_ < 2) && openNewsWebViewOn_ && clicked) {
-    slotNewsViewSelected(newsModel_->index(row, 6));
-  } else if (clicked) {
-    slotNewsViewSelected(newsModel_->index(-1, 6));
-    QSqlQuery q(db_);
-    int id = newsModel_->index(row, 0).
-        data(Qt::EditRole).toInt();
-    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-        arg(id).arg(newsModel_->tableName().remove("feed_"));
-    q.exec(qStr);
+  newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+  if (clicked) {
+    if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
+      slotNewsViewSelected(newsModel_->index(newsRow, 6));
+    } else {
+      slotNewsViewSelected(newsModel_->index(-1, 6));
+      QSqlQuery q(db_);
+      int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+      q.exec(qStr);
+    }
   } else {
     slotUpdateStatus();
   }
