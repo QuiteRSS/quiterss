@@ -325,6 +325,23 @@ void initDB(const QString dbFileName)
         foreach (int id, idList)
           q.exec(QString("DROP TABLE feed_%1").arg(id));
 
+        // Создаём индекс по полю feedId
+        q.exec("CREATE INDEX feedId ON news(feedId)");
+
+        // Создаём дополнительная вспомогательные таблица лент на всякий случай
+        q.exec("CREATE TABLE feeds_ex(id integer primary key, "
+            "feedId integer, "  // идентификатор ленты
+            "name varchar, "    // имя параметра
+            "value varchar "    // значение параметра
+            ")");
+        // Создаём дополнительная вспомогательные таблица новостей на всякий случай
+        q.exec("CREATE TABLE news_ex(id integer primary key, "
+            "feedId integer, "  // идентификатор ленты
+            "newsId integer, "  // идентификатор новости
+            "name varchar, "    // имя параметра
+            "value varchar "    // значение параметра
+            ")");
+
         // Создаём таблицы фильтров
         q.exec(kCreateFiltersTable);
         q.exec(kCreateFilterConditionsTable);
