@@ -180,10 +180,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
         QString qStr;
-        qDebug() << "guid:" << rssGuidString;
+        qDebug() << "guid:     " << rssGuidString;
+        qDebug() << "link_href:" << linkString;
         if (!rssGuidString.isEmpty())         // поиск по guid
           qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2'").
               arg(parseFeedId).arg(rssGuidString);
+        else if (!linkString.isEmpty())       // поиск по link_href
+          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2'").
+              arg(parseFeedId).arg(linkString);
         else if (rssPubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
           qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND title LIKE '%2'").
               arg(parseFeedId).arg(titleString.replace('\'', '_'));
