@@ -283,25 +283,25 @@ void initDB(const QString dbFileName)
         q.exec("SELECT id FROM feeds");
         QList<int> idList;
         while (q.next()) {
-          int id = q.value(0).toInt();
-          idList << id;
+          int feedId = q.value(0).toInt();
+          idList << feedId;
           QSqlQuery q2(db);
           q2.exec(QString("SELECT "
-              "guid, guidislink, description, content, title, published, "
-              "author_name, author_uri, author_email, category, "
-              "new, read, sticky, deleted, "
-              "link_href "
-              "FROM feed_%1").arg(id));
+              "guid, guidislink, description, content, title, published, received, "  // 0..6
+              "author_name, author_uri, author_email, category, "                     // 7..10
+              "new, read, sticky, deleted, "                                          // 11..14
+              "link_href "                                                            // 15
+              "FROM feed_%1").arg(feedId));
           while (q2.next()) {
             QSqlQuery q3(db);
             q3.prepare(QString("INSERT INTO news("
                   "feedId, "
-                  "guid, guidislink, description, content, title, published, "
+                  "guid, guidislink, description, content, title, published, received, "
                   "author_name, author_uri, author_email, category, "
                   "new, read, starred, deleted, "
                   "link_href "
-                  ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
-            q3.addBindValue(id);
+                  ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+            q3.addBindValue(feedId);
             q3.addBindValue(q2.value(0));
             q3.addBindValue(q2.value(1));
             q3.addBindValue(q2.value(2));
@@ -317,6 +317,7 @@ void initDB(const QString dbFileName)
             q3.addBindValue(q2.value(12));
             q3.addBindValue(q2.value(13));
             q3.addBindValue(q2.value(14));
+            q3.addBindValue(q2.value(15));
             q3.exec();
           }
         }
