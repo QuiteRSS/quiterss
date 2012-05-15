@@ -1649,6 +1649,11 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << "--------------------------------";
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   int feedRow = index.row();
   static int idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
@@ -1674,22 +1679,37 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 
   idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
-  bool initNo = false;
-  if (newsModel_->columnCount() == 0) initNo = true;
-  newsModel_->setTable("news");
+  bool newsModelInit = false;
+  if (newsModel_->columnCount() == 0) {
+    newsModelInit = true;
+    newsModel_->setTable("news");
+    newsModel_->select();
+  }
+
+  qDebug() << "initNo =" << newsModelInit;
+
+//  newsModel_->setTable("news");
 
   newsModel_->setSort(newsHeader_->sortIndicatorSection(),
                       newsHeader_->sortIndicatorOrder());
 
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
-  newsModel_->select();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+//  newsModel_->select();
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   newsHeader_->overload();
-  if (initNo) {
+  if (newsModelInit) {
     newsHeader_->initColumns();
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~85 мс
     newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
     newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~720 мс
     newsHeader_->createMenu();
   }
 
@@ -1709,6 +1729,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
     }
   } else if (openingFeedAction_ == 1) newsRow = 0;
 
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
   if (clicked) {
     if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
@@ -1724,6 +1746,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
   } else {
     slotUpdateStatus();
   }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -1738,6 +1762,10 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 
 void RSSListing::slotNewsViewSelected(QModelIndex index)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   static int indexIdOld = -1;
   static int currrentFeedIdOld = -1;
   int indexId;
@@ -1752,6 +1780,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     indexIdOld = indexId;
     currrentFeedIdOld = currentFeedId;
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
@@ -1776,6 +1805,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
 
   indexIdOld = indexId;
   currrentFeedIdOld = currentFeedId;
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Вызов окна настроек ************************************************/
@@ -2329,6 +2359,10 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   QModelIndex index = newsView_->currentIndex();
 
   int id = newsModel_->index(
@@ -2345,14 +2379,17 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
         feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
   QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
   if (pAct->objectName() == "filterNewsAll_") {
-    newsModel_->setFilter(feedIdFilter.append("deleted = 0"));
+    feedIdFilter.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("new = 1 AND deleted = 0")));
+    feedIdFilter.append(QString("new = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("read < 2 AND deleted = 0")));
+    feedIdFilter.append(QString("read < 2 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("starred = 1 AND deleted = 0")));
+    feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
   }
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << feedIdFilter;
+  newsModel_->setFilter(feedIdFilter);
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
@@ -2370,6 +2407,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
       webPanel_->hide();
     }
   }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction = pAct;
