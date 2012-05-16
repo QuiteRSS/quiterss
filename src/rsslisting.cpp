@@ -57,6 +57,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createNewsDock();
   createToolBarNull();
   createWebWidget();
+  connect(this, SIGNAL(signalWebViewSetContent(QString)),
+                SLOT(slotWebViewSetContent(QString)), Qt::QueuedConnection);
 
   createActions();
   createShortcut();
@@ -2772,13 +2774,19 @@ void RSSListing::updateWebView(QModelIndex index)
     } else {
       QString content = newsModel_->record(index.row()).field("content").value().toString();
       if (content.isEmpty()) {
-        webView_->setHtml(
-              newsModel_->record(index.row()).field("description").value().toString());
+        content = newsModel_->record(index.row()).field("description").value().toString();
+        emit signalWebViewSetContent(content);
       } else {
-        webView_->setHtml(content);
+        emit signalWebViewSetContent(content);
       }
     }
   }
+}
+
+//! Слот для асинхронного обновления новости
+void RSSListing::slotWebViewSetContent(QString content)
+{
+  webView_->setHtml(content);
 }
 
 void RSSListing::slotFeedsFilter()
