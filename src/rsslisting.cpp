@@ -3157,24 +3157,22 @@ void RSSListing::slotEditMenuAction()
   else  feedProperties_->setEnabled(false);
 }
 
+//! Обновление информации в трее: значок и текст подсказки
 void RSSListing::refreshInfoTray()
 {
   if (!showTrayIcon_) return;
 
+  // Подсчёт количества новых и прочитанных новостей
   int newCount = 0;
-  QSqlQuery q(db_);
-  QString qStr = QString("select newCount from feeds");
-  q.exec(qStr);
-  while (q.next()) {
-    newCount += q.value(0).toInt();
-  }
   int unreadCount = 0;
-  qStr = QString("select unread from feeds");
-  q.exec(qStr);
+  QSqlQuery q(db_);
+  q.exec("SELECT newCount, unread FROM feeds");
   while (q.next()) {
-    unreadCount += q.value(0).toInt();
+    newCount    += q.value(0).toInt();
+    unreadCount += q.value(1).toInt();
   }
 
+  // Установка текста всплывающей подсказки
   QString info =
       "QuiteRSS\n" +
       QString(tr("New news: %1")).arg(newCount) +
@@ -3182,37 +3180,45 @@ void RSSListing::refreshInfoTray()
       QString(tr("Unread news: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
+  // @FIXME: Что значит "больше единицы"
   if (behaviorIconTray_ > 1) {
-    if (behaviorIconTray_ == 3) newCount = unreadCount;
-    if (newCount != 0) {
-      QString newCountStr;
-      QFont font;
-      font.setFamily("Consolas");
-      if (newCount > 99) {
+    // Отображаем количество либо новых, либо непрочитанных новостей
+    int trayCount = (behaviorIconTray_ == 3) ? unreadCount : newCount;
+    // выводим иконку с цифрой
+    if (trayCount != 0) {
+      // Подготавливаем цифру
+      QString trayCountStr;
+      QFont font("Consolas");
+      if (trayCount > 99) {
         font.setBold(false);
-        if (newCount < 1000) {
+        if (trayCount < 1000) {
           font.setPixelSize(8);
-          newCountStr = QString::number(newCount);
+          trayCountStr = QString::number(trayCount);
         } else {
           font.setPixelSize(11);
-          newCountStr = "#";
+          trayCountStr = "#";
         }
       } else {
         font.setBold(true);
         font.setPixelSize(11);
-        newCountStr = QString::number(newCount);
+        trayCountStr = QString::number(trayCount);
       }
 
+      // Рисуем иконку, текст на ней, и устанавливаем разрисованную иконку в трей
       QPixmap icon = QPixmap(":/images/countNew");
       QPainter trayPainter;
       trayPainter.begin(&icon);
       trayPainter.setFont(font);
       trayPainter.setPen(Qt::white);
       trayPainter.drawText(QRect(1, 0, 15, 16), Qt::AlignVCenter | Qt::AlignHCenter,
-                           newCountStr);
+                           trayCountStr);
       trayPainter.end();
       traySystem->setIcon(icon);
-    } else traySystem->setIcon(QIcon(":/images/quiterss16"));
+    }
+    // Выводим иконку без цифры
+    else {
+      traySystem->setIcon(QIcon(":/images/quiterss16"));
+    }
   }
 }
 
