@@ -28,8 +28,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
   QString info =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
-      "<h1><font color=#5b5b5b>"
-      + QString("QuiteRSS") + "</font></h1>"
+      "<h1><i><font color=#5b5b5b>"
+      + QString("QuiteRSS") + "</font></i></h1>"
       "<p>" + tr("Version ") +
       + "<B>" + QString(STRFILEVER).section('.', 0, 2) + "</B>"
       + QString(" (%1)").arg(STRDATE) + "</p>"
@@ -45,6 +45,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>Elbert Pol</li>"
       "<li>TI_Eugene</li>"
       "<li>Glad Deschrijver</li>"
+      "<li>Zoltán Magyar</li>"
       "</UL>"
       "<HR>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
