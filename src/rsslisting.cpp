@@ -224,7 +224,7 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
-    if (isActiveWindow() && (behaviorIconTray_ == 1))
+    if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY))
       traySystem->setIcon(QIcon(":/images/quiterss16"));
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
@@ -1121,7 +1121,6 @@ void RSSListing::readSettings()
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
   closingTray_ = settings_->value("closingTray", false).toBool();
-  behaviorIconTray_ = settings_->value("behaviorIconTray", 2).toInt();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
   clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
@@ -1611,8 +1610,10 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   db_.commit();
 
   //! Действия после получения новых новостей: трей, звук
-  if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
+  if (!isActiveWindow() && (newCount > newCountOld) &&
+      (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+  }
   refreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
@@ -1907,7 +1908,7 @@ void RSSListing::showOptionDlg()
   minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
   closingTray_ = optionsDialog->closingTray_->isChecked();
   behaviorIconTray_ = optionsDialog->behaviorIconTray();
-  if (behaviorIconTray_ > 1) {
+  if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     refreshInfoTray();
   } else traySystem->setIcon(QIcon(":/images/quiterss16"));
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
@@ -2293,8 +2294,10 @@ void RSSListing::slotUpdateStatus()
       arg(unreadCount).arg(newCount).arg(feedId);
   q.exec(qStr);
 
-  if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
+  if (!isActiveWindow() && (newCount > newCountOld) &&
+      (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+  }
   refreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
@@ -2684,7 +2687,7 @@ void RSSListing::setAutoLoadImages()
 void RSSListing::loadSettingsFeeds()
 {
   markNewsReadOn_ = false;
-  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 2).toInt();
+  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", NEW_COUNT_ICON_TRAY).toInt();
   autoLoadImages_ = !settings_->value("Settings/autoLoadImages", true).toBool();
   setAutoLoadImages();
 
@@ -3180,10 +3183,9 @@ void RSSListing::refreshInfoTray()
       QString(tr("Unread news: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
-  // @FIXME: Что значит "больше единицы"
-  if (behaviorIconTray_ > 1) {
-    // Отображаем количество либо новых, либо непрочитанных новостей
-    int trayCount = (behaviorIconTray_ == 3) ? unreadCount : newCount;
+  // Отображаем количество либо новых, либо непрочитанных новостей
+  if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
+    int trayCount = (behaviorIconTray_ == UNREAD_COUNT_ICON_TRAY) ? unreadCount : newCount;
     // выводим иконку с цифрой
     if (trayCount != 0) {
       // Подготавливаем цифру

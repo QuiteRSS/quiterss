@@ -670,20 +670,20 @@ void OptionsDialog::setCurrentItem(int index)
 void OptionsDialog::setBehaviorIconTray(int behavior)
 {
   switch (behavior) {
-  case 1: changeIconTray_->setChecked(true);  break;
-  case 2: newCountTray_->setChecked(true);    break;
-  case 3: unreadCountTray_->setChecked(true); break;
+  case CHANGE_ICON_TRAY:       changeIconTray_->setChecked(true);  break;
+  case NEW_COUNT_ICON_TRAY:    newCountTray_->setChecked(true);    break;
+  case UNREAD_COUNT_ICON_TRAY: unreadCountTray_->setChecked(true); break;
   default: staticIconTray_->setChecked(true);
   }
 }
 
 int OptionsDialog::behaviorIconTray()
 {
-  if (staticIconTray_->isChecked())       return 0;
-  else if (changeIconTray_->isChecked())  return 1;
-  else if (newCountTray_->isChecked())    return 2;
-  else if (unreadCountTray_->isChecked()) return 3;
-  else return 0;
+  if (staticIconTray_->isChecked())       return STATIC_ICON_TRAY;
+  else if (changeIconTray_->isChecked())  return CHANGE_ICON_TRAY;
+  else if (newCountTray_->isChecked())    return NEW_COUNT_ICON_TRAY;
+  else if (unreadCountTray_->isChecked()) return UNREAD_COUNT_ICON_TRAY;
+  else return STATIC_ICON_TRAY;
 }
 
 void  OptionsDialog::intervalTimeChang(QString str)

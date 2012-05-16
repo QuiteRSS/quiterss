@@ -5,6 +5,11 @@
 #include <QNetworkProxy>
 #include "lineedit.h"
 
+#define STATIC_ICON_TRAY        0
+#define CHANGE_ICON_TRAY        1
+#define NEW_COUNT_ICON_TRAY     2
+#define UNREAD_COUNT_ICON_TRAY  3
+
 class OptionsDialog : public QDialog
 {
   Q_OBJECT
