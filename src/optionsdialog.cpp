@@ -338,6 +338,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageList << QString(tr("English (%1)")).arg("en")
                << QString(tr("French (%1)")).arg("fr")
                << QString(tr("German (%1)")).arg("de")
+               << QString(tr("Hungarian (%1)")).arg("hu")
                << QString(tr("Russian (%1)")).arg("ru");
   foreach (QString str, languageList) {
     new QListWidgetItem(str, languageFileList_);
