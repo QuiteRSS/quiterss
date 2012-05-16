@@ -1645,6 +1645,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   static int idOld = -2;
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotFeedsTreeSelected(index, true);
+    feedsView_->repaint();
   }
   idOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 }
