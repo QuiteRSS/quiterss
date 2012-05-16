@@ -134,7 +134,7 @@ private:
   LineEdit *editPassword_;
 
   // language
-  QListWidget *languageFileList_;
+  QTreeWidget *languageFileList_;
 
   // internal variables for options
   QNetworkProxy networkProxy_;

@@ -46,6 +46,11 @@
         <file alias="addT">images/add_t.png</file>
         <file alias="deleteT">images/delete_t.png</file>
         <file alias="warning">images/warning.png</file>
+        <file alias="flag_EN">images/flag_great_britain.png</file>
+        <file alias="flag_FR">images/flag_france.png</file>
+        <file alias="flag_DE">images/flag_germany.png</file>
+        <file alias="flag_HU">images/flag_hungary.png</file>
+        <file alias="flag_RU">images/flag_russia.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
