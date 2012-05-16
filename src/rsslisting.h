@@ -334,10 +334,12 @@ private slots:
   void openPageInExternalBrowser();
   void slotSwitchFocus();
   void slotOpenNewsWebView();
+  void slotWebViewSetContent(QString content);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
+  void signalWebViewSetContent(QString content);
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
 };

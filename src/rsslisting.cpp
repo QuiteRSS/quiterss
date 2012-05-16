@@ -57,6 +57,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createNewsDock();
   createToolBarNull();
   createWebWidget();
+  connect(this, SIGNAL(signalWebViewSetContent(QString)),
+                SLOT(slotWebViewSetContent(QString)), Qt::QueuedConnection);
 
   createActions();
   createShortcut();
@@ -1643,12 +1645,18 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   static int idOld = -2;
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotFeedsTreeSelected(index, true);
+    feedsView_->repaint();
   }
   idOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 }
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << "--------------------------------";
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   int feedRow = index.row();
   static int idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
@@ -1674,22 +1682,37 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 
   idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
-  bool initNo = false;
-  if (newsModel_->columnCount() == 0) initNo = true;
-  newsModel_->setTable("news");
+  bool newsModelInit = false;
+  if (newsModel_->columnCount() == 0) {
+    newsModelInit = true;
+    newsModel_->setTable("news");
+    newsModel_->select();
+  }
+
+  qDebug() << "newsModelInit =" << newsModelInit;
+
+//  newsModel_->setTable("news");
 
   newsModel_->setSort(newsHeader_->sortIndicatorSection(),
                       newsHeader_->sortIndicatorOrder());
 
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
-  newsModel_->select();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+//  newsModel_->select();
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   newsHeader_->overload();
-  if (initNo) {
+  if (newsModelInit) {
     newsHeader_->initColumns();
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~85 мс
     newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
     newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~720 мс
     newsHeader_->createMenu();
   }
 
@@ -1698,6 +1721,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
       newsModel_->fetchMore();
   }
 
+  // выбор новости ленты, отображамой ранее
   int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
     for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -1709,21 +1733,32 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
     }
   } else if (openingFeedAction_ == 1) newsRow = 0;
 
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   if (clicked) {
     if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
       slotNewsViewSelected(newsModel_->index(newsRow, 6));
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     } else {
       slotNewsViewSelected(newsModel_->index(-1, 6));
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
       QSqlQuery q(db_);
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     }
   } else {
     slotUpdateStatus();
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -1738,6 +1773,10 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 
 void RSSListing::slotNewsViewSelected(QModelIndex index)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   static int indexIdOld = -1;
   static int currrentFeedIdOld = -1;
   int indexId;
@@ -1752,6 +1791,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     indexIdOld = indexId;
     currrentFeedIdOld = currentFeedId;
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
@@ -1762,7 +1802,11 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     QWebSettings::globalSettings()->clearMemoryCaches();
     webView_->history()->clear();
 
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
     updateWebView(index);
+
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_.stop();
     if (markNewsReadOn_)
@@ -1772,10 +1816,12 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
         arg(indexId).arg(currentFeedId);
     q.exec(qStr);
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   } else slotUpdateStatus();
 
   indexIdOld = indexId;
   currrentFeedIdOld = currentFeedId;
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Вызов окна настроек ************************************************/
@@ -2329,6 +2375,10 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   QModelIndex index = newsView_->currentIndex();
 
   int id = newsModel_->index(
@@ -2345,14 +2395,17 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
         feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
   QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
   if (pAct->objectName() == "filterNewsAll_") {
-    newsModel_->setFilter(feedIdFilter.append("deleted = 0"));
+    feedIdFilter.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("new = 1 AND deleted = 0")));
+    feedIdFilter.append(QString("new = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("read < 2 AND deleted = 0")));
+    feedIdFilter.append(QString("read < 2 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("starred = 1 AND deleted = 0")));
+    feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
   }
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << feedIdFilter;
+  newsModel_->setFilter(feedIdFilter);
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
@@ -2370,6 +2423,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
       webPanel_->hide();
     }
   }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction = pAct;
@@ -2733,13 +2788,19 @@ void RSSListing::updateWebView(QModelIndex index)
     } else {
       QString content = newsModel_->record(index.row()).field("content").value().toString();
       if (content.isEmpty()) {
-        webView_->setHtml(
-              newsModel_->record(index.row()).field("description").value().toString());
+        content = newsModel_->record(index.row()).field("description").value().toString();
+        emit signalWebViewSetContent(content);
       } else {
-        webView_->setHtml(content);
+        emit signalWebViewSetContent(content);
       }
     }
   }
+}
+
+//! Слот для асинхронного обновления новости
+void RSSListing::slotWebViewSetContent(QString content)
+{
+  webView_->setHtml(content);
 }
 
 void RSSListing::slotFeedsFilter()
