@@ -1689,7 +1689,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
     newsModel_->select();
   }
 
-  qDebug() << "initNo =" << newsModelInit;
+  qDebug() << "newsModelInit =" << newsModelInit;
 
 //  newsModel_->setTable("news");
 
@@ -1721,6 +1721,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
       newsModel_->fetchMore();
   }
 
+  // выбор новости ленты, отображамой ранее
   int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
     for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -1735,19 +1736,26 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   if (clicked) {
     if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
       slotNewsViewSelected(newsModel_->index(newsRow, 6));
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     } else {
       slotNewsViewSelected(newsModel_->index(-1, 6));
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
       QSqlQuery q(db_);
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     }
   } else {
     slotUpdateStatus();
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -1794,7 +1802,11 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     QWebSettings::globalSettings()->clearMemoryCaches();
     webView_->history()->clear();
 
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
     updateWebView(index);
+
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_.stop();
     if (markNewsReadOn_)
@@ -1804,6 +1816,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
         arg(indexId).arg(currentFeedId);
     q.exec(qStr);
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   } else slotUpdateStatus();
 
   indexIdOld = indexId;
