@@ -27,7 +27,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
-  initDB(dbFileName_);
+  QString versionDB = initDB(dbFileName_);
+
+  settings_->setValue("VersionDB", versionDB);
 
   db_ = QSqlDatabase::addDatabase("QSQLITE");
   db_.setDatabaseName(":memory:");

@@ -226,7 +226,7 @@ const QString kCreateFilterActionsTable(
     ")");
 
 //-----------------------------------------------------------------------------
-void initDB(const QString dbFileName)
+QString initDB(const QString dbFileName)
 {
   QString dbVersionString("");
   if (!QFile(dbFileName).exists()) {  // Инициализация базы
@@ -365,4 +365,5 @@ void initDB(const QString dbFileName)
     db.close();
   }
   QSqlDatabase::removeDatabase("dbFileName_");
+  return dbVersionString;
 }

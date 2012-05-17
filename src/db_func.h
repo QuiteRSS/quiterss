@@ -9,6 +9,6 @@ extern QString kDbName;
  * Если база старой версии, то она преобразовывается к актуальной версии
  * \param[in] dbFileName путь файла базы
  ******************************************************************************/
-void initDB(const QString dbFileName);
+QString initDB(const QString dbFileName);
 
 #endif
