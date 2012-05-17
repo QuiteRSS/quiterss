@@ -3444,7 +3444,7 @@ void RSSListing::feedsCleanUp(QString feedId)
         q.value(0).toInt() != 0)
       continue;
 
-    if ((cntT < (cntNews - maxNewsCleanUp_)) && newsCleanUpOn_) {
+    if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
         qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND id='%2'").
             arg(feedId).arg(newsId);
 //        qDebug() << "*01"  << id << q.value(5).toString()
@@ -3459,8 +3459,8 @@ void RSSListing::feedsCleanUp(QString feedId)
     QDateTime dateTime = QDateTime::fromString(
           q.value(1).toString(),
           Qt::ISODate);
-    if ((dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_) &&
-        dayCleanUpOn_) {
+    if (dayCleanUpOn_ &&
+        (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
         qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND id='%2'").
             arg(feedId).arg(newsId);
 //        qDebug() << "*02"  << id << q.value(5).toString()
