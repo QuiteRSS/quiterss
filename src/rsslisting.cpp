@@ -1731,18 +1731,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 
   qDebug() << "newsModelInit =" << newsModelInit;
 
-//  newsModel_->setTable("news");
-
-  newsModel_->setSort(newsHeader_->sortIndicatorSection(),
-                      newsHeader_->sortIndicatorOrder());
-
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
-
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-//  newsModel_->select();
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -1753,6 +1744,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
     newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
     newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~720 мс
+    newsModel_->setSort(newsHeader_->sortIndicatorSection(),
+                        newsHeader_->sortIndicatorOrder());
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     newsHeader_->createMenu();
   }
 
