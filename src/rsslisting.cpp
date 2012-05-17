@@ -2166,6 +2166,9 @@ void RSSListing::markNewsRead()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
   int cnt = indexes.count();
   if (cnt == 0) return;
 
@@ -2188,13 +2191,10 @@ void RSSListing::markNewsRead()
 
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(db_);
-      q.exec(QString("update %1 set new=0 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
-      q.exec(QString("update %1 set read='%2' where id=='%3'").
-             arg(newsModel_->tableName()).arg(markRead).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
+      q.exec(QString("UPDATE news SET new=0, read='%1' WHERE feedId='%2' AND id=='%3'").
+             arg(markRead).arg(feedId).arg(newsId));
     }
 
     newsModel_->select();
@@ -2220,13 +2220,16 @@ void RSSListing::markAllNewsRead()
 {
   if (newsModel_->rowCount() == 0) return;
 
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
   int currentRow = newsView_->currentIndex().row();
-  QString qStr = QString("update %1 set read=1 WHERE read=0").
-      arg(newsModel_->tableName());
   QSqlQuery q(db_);
+  QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+      arg(feedId);
   q.exec(qStr);
-  qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
-      arg(newsModel_->tableName());
+  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+      arg(feedId);
   q.exec(qStr);
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
@@ -2384,18 +2387,18 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   QModelIndex index = newsView_->currentIndex();
 
-  int id = newsModel_->index(
+  int feedId = feedsModel_->index(
+        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   if (clicked) {
-    QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
-        arg(newsModel_->tableName());
+    QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").
+        arg(feedId);
     QSqlQuery q(db_);
     q.exec(qStr);
   }
 
-  int feedId = feedsModel_->index(
-        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
   QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
   if (pAct->objectName() == "filterNewsAll_") {
     feedIdFilter.append("deleted = 0");
@@ -2414,14 +2417,14 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   if (clicked) {
-    int row = -1;
+    int newsRow = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
-        row = i;
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
+        newsRow = i;
       }
     }
-    newsView_->setCurrentIndex(newsModel_->index(row, 6));
-    if (row == -1) {
+    newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+    if (newsRow == -1) {
       webView_->setHtml("");
       webPanel_->hide();
     }
@@ -2486,6 +2489,9 @@ void RSSListing::deleteNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
   if (cnt == 1) {
     curIndex = indexes.at(0);
     int row = curIndex.row();
@@ -2496,19 +2502,11 @@ void RSSListing::deleteNews()
   } else {
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(db_);
-      q.exec(QString("update %1 set new=0 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set read=2 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set deleted=1 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
+          "WHERE feedId='%1 AND id=='%2'").
+          arg(feedId).arg(newsId));
     }
     newsModel_->select();
   }
