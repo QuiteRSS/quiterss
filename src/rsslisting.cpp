@@ -1574,7 +1574,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
  *    количество непрочитанных новостей,
  *    количество новых новостей
  ******************************************************************************/
-void RSSListing::recountFeedCounts(int feedId)
+void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
 {
   QSqlQuery q(db_);
   QString qStr;
@@ -1603,11 +1603,26 @@ void RSSListing::recountFeedCounts(int feedId)
 
   //! Установка количества непрочитанных новостей в ленту
   //! Установка количества новых новостей в ленту
-  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
-      "WHERE id=='%4'").
-      arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
-  q.exec(qStr);
-  db_.commit();
+
+  qDebug() << __FUNCTION__ << __LINE__ << index;
+//  if(index.isValid()) {
+//    feedsModel_->setData(
+//        feedsModel_->index(index.row(), feedsModel_->fieldIndex("unread")),
+//        unreadCount);
+//    feedsModel_->setData(
+//        feedsModel_->index(index.row(), feedsModel_->fieldIndex("newCount")),
+//        newCount);
+//    feedsModel_->setData(
+//        feedsModel_->index(index.row(), feedsModel_->fieldIndex("undeleteCount")),
+//        undeleteCount);
+//  } else {
+    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
+        "WHERE id=='%4'").
+        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
+    q.exec(qStr);
+    db_.commit();
+    feedsModel_->select();
+//  }
 }
 
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
@@ -2287,29 +2302,11 @@ void RSSListing::markAllNewsRead()
  */
 void RSSListing::slotUpdateStatus()
 {
+  QSqlQuery q(db_);
   QString qStr;
 
   int feedId = feedsModel_->index(
         feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-
-  int allCount = 0;
-  qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
-      arg(feedId);
-  QSqlQuery q(db_);
-  q.exec(qStr);
-  if (q.next()) allCount = q.value(0).toInt();
-
-  int unreadCount = 0;
-  qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0").
-      arg(feedId);
-  q.exec(qStr);
-  if (q.next()) unreadCount = q.value(0).toInt();
-
-  int newCount = 0;
-  qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1").
-      arg(feedId);
-  q.exec(qStr);
-  if (q.next()) newCount = q.value(0).toInt();
 
   int newCountOld = 0;
   qStr = QString("SELECT newCount FROM feeds WHERE id=='%1'").
@@ -2317,9 +2314,19 @@ void RSSListing::slotUpdateStatus()
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
 
-  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2' WHERE id=='%3'").
-      arg(unreadCount).arg(newCount).arg(feedId);
+  recountFeedCounts(feedId, feedsView_->currentIndex());
+
+  int newCount = 0;
+  int unreadCount = 0;
+  int allCount = 0;
+  qStr = QString("SELECT newCount, unread, undeleteCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
   q.exec(qStr);
+  if (q.next()) {
+    newCount    = q.value(0).toInt();
+    unreadCount = q.value(1).toInt();
+    allCount    = q.value(2).toInt();
+  }
 
   if (!isActiveWindow() && (newCount > newCountOld) &&
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {

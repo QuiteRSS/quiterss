@@ -91,7 +91,7 @@ private:
   void refreshInfoTray();
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
-  void recountFeedCounts(int feedId);
+  void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
 
   QSettings *settings_;
   QString dataDirPath_;
