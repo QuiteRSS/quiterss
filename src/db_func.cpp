@@ -77,6 +77,7 @@ const QString kCreateFeedsTableQuery(
     "currentNews integer, "      // отображаемая новость
     "label varchar, "            // метка. выставляется пользователем
     // -- added in v0.9.0 --
+    "allCount integer, "         // количество всех новостей (не помеченныъ удалёнными)
     "tags varchar, "             // теги. выставляются пользователем
     // --- Categories ---
     "hasChildren int, "  // наличие потомков
