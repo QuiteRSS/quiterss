@@ -120,7 +120,7 @@ QSettings *settings_;
   if (showSplashScreen_)
     createSplashScreen();
   if (versionDB != "0.9.0")
-    splash->showMessage(tr("Converting database to version 0.9.0..."),
+    splash->showMessage("Converting database to version 0.9.0...",
                         Qt::AlignRight | Qt::AlignTop, Qt::white);
 
   RSSListing rsslisting(settings_, dataDirPath_);
