@@ -2232,7 +2232,7 @@ void RSSListing::markNewsRead()
              arg(markRead).arg(feedId).arg(newsId));
     }
 
-    newsModel_->select();
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
@@ -2268,7 +2268,6 @@ void RSSListing::markAllNewsRead()
   q.exec(qStr);
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
-  newsModel_->select();
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
@@ -2532,10 +2531,10 @@ void RSSListing::deleteNews()
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(db_);
       q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
-          "WHERE feedId='%1 AND id=='%2'").
+                     "WHERE feedId='%1' AND id=='%2'").
           arg(feedId).arg(newsId));
     }
-    newsModel_->select();
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
   }
 
   while (newsModel_->canFetchMore())
@@ -3272,7 +3271,6 @@ void RSSListing::markAllFeedsRead(bool readOn)
     int currentRow = newsView_->currentIndex().row();
 
     setNewsFilter(newsFilterGroup_->checkedAction(), false);
-    newsModel_->select();
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
