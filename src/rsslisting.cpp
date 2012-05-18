@@ -1436,8 +1436,8 @@ void RSSListing::slotImportFeeds()
         if (duplicateFound) {
           qDebug() << "duplicate feed:" << xmlUrlString << textString;
         } else {
-          QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
-                                 "values(?, ?, ?, ?, ?)");
+          QString qStr = QString("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl) "
+                                 "VALUES(?, ?, ?, ?, ?)");
           q.prepare(qStr);
           q.addBindValue(textString);
           q.addBindValue(xml.attributes().value("title").toString());

@@ -208,7 +208,7 @@ void AddFeedWizard::addFeed()
 
   QSqlQuery q(*db_);
   int duplicateFoundId = -1;
-  q.exec(QString("select id from feeds where xmlUrl like '%1'").
+  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
          arg(feedUrlString_));
   if (q.next()) duplicateFoundId = q.value(0).toInt();
 
@@ -222,7 +222,7 @@ void AddFeedWizard::addFeed()
     page(0)->setEnabled(false);
     showProgressBar();
 
-    QString qStr = QString("insert into feeds(xmlUrl) values (?)");
+    QString qStr = QString("INSERT INTO feeds(xmlUrl) VALUES (?)");
     q.prepare(qStr);
     q.addBindValue(feedUrlString_);
     q.exec();
@@ -237,12 +237,12 @@ void AddFeedWizard::deleteFeed()
   int id = -1;
 
   QSqlQuery q(*db_);
-  q.exec(QString("select id from feeds where xmlUrl like '%1'").
+  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
          arg(feedUrlString_));
   if (q.next()) id = q.value(0).toInt();
   if (id >= 0) {
-    q.exec(QString("delete from feeds where id='%1'").arg(id));
-//    q.exec(QString("drop table feed_%1").arg(id));
+    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
+    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
     q.exec("VACUUM");
   }
   q.finish();
@@ -315,7 +315,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
 
           QSqlQuery q(*db_);
           int duplicateFoundId = -1;
-          q.exec(QString("select id from feeds where xmlUrl like '%1'").
+          q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
                  arg(linkFeed));
           if (q.next()) duplicateFoundId = q.value(0).toInt();
 
@@ -329,12 +329,12 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
             selectedPage = false;
             button(QWizard::CancelButton)->setEnabled(true);
           } else {
-            q.exec(QString("select id from feeds where xmlUrl like '%1'").
+            q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
                    arg(feedUrlString_));
             if (q.next()) parseFeedId = q.value(0).toInt();
 
             feedUrlString_ = linkFeed;
-            db_->exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
+            db_->exec(QString("UPDATE feeds SET xmlUrl = '%1' WHERE id == '%2'").
                       arg(linkFeed).
                       arg(parseFeedId));
 
@@ -360,7 +360,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
     }
 
     emit xmlReadyParse(data_, url_);
-    QSqlQuery q = db_->exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
+    QSqlQuery q = db_->exec(QString("UPDATE feeds SET lastBuildDate = '%1' WHERE xmlUrl == '%2'").
                             arg(dtReply.toString(Qt::ISODate)).
                             arg(url_.toString()));
     qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
@@ -389,11 +389,11 @@ void AddFeedWizard::slotUpdateFeed(const QUrl &url, const bool &)
   if (titleFeedAsName_->isChecked()) {
     int parseFeedId = 0;
     QSqlQuery q(*db_);
-    q.exec(QString("select id from feeds where xmlUrl like '%1'").
+    q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
            arg(url.toString()));
     if (q.next()) parseFeedId = q.value(0).toInt();
 
-    q.exec(QString("select title from feeds where id=='%1'").
+    q.exec(QString("SELECT title FROM feeds WHERE id=='%1'").
            arg(parseFeedId));
     if (q.next()) nameFeedEdit_->setText(q.value(0).toString());
     nameFeedEdit_->selectAll();
@@ -412,15 +412,15 @@ void AddFeedWizard::finish()
 {
   int parseFeedId = 0;
   QSqlQuery q(*db_);
-  q.exec(QString("select id from feeds where xmlUrl like '%1'").
+  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
          arg(feedUrlString_));
   if (q.next()) parseFeedId = q.value(0).toInt();
 
-  q.exec(QString("select htmlUrl from feeds where id=='%1'").
+  q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").
          arg(parseFeedId));
   if (q.next()) htmlUrlString_ = q.value(0).toString();
 
-  db_->exec(QString("update feeds set text = '%1' where id == '%2'").
+  db_->exec(QString("UPDATE feeds SET text = '%1' WHERE id == '%2'").
             arg(nameFeedEdit_->text()).
             arg(parseFeedId));
   accept();
