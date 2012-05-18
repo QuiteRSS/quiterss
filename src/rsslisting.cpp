@@ -1607,24 +1607,12 @@ void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
   //! Установка количества новых новостей в ленту
 
   qDebug() << __FUNCTION__ << __LINE__ << index;
-//  if(index.isValid()) {
-//    feedsModel_->setData(
-//        feedsModel_->index(index.row(), feedsModel_->fieldIndex("unread")),
-//        unreadCount);
-//    feedsModel_->setData(
-//        feedsModel_->index(index.row(), feedsModel_->fieldIndex("newCount")),
-//        newCount);
-//    feedsModel_->setData(
-//        feedsModel_->index(index.row(), feedsModel_->fieldIndex("undeleteCount")),
-//        undeleteCount);
-//  } else {
-    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
-        "WHERE id=='%4'").
-        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
-    q.exec(qStr);
-    db_.commit();
-    feedsModel_->select();
-//  }
+
+  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
+      "WHERE id=='%4'").
+      arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
+  q.exec(qStr);
+  db_.commit();
 }
 
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
