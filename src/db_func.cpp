@@ -235,10 +235,32 @@ QString initDB(const QString dbFileName)
     db.open();
     db.transaction();
     db.exec(kCreateFeedsTableQuery);
+    db.exec(kCreateNewsTableQuery);
+    // Создаём индекс по полю feedId
+    db.exec("CREATE INDEX feedId ON news(feedId)");
+
+    // Создаём дополнительная вспомогательные таблица лент на всякий случай
+    db.exec("CREATE TABLE feeds_ex(id integer primary key, "
+        "feedId integer, "  // идентификатор ленты
+        "name varchar, "    // имя параметра
+        "value varchar "    // значение параметра
+        ")");
+    // Создаём дополнительная вспомогательные таблица новостей на всякий случай
+    db.exec("CREATE TABLE news_ex(id integer primary key, "
+        "feedId integer, "  // идентификатор ленты
+        "newsId integer, "  // идентификатор новости
+        "name varchar, "    // имя параметра
+        "value varchar "    // значение параметра
+        ")");
+    // Создаём таблицы фильтров
+    db.exec(kCreateFiltersTable);
+    db.exec(kCreateFilterConditionsTable);
+    db.exec(kCreateFilterActionsTable);
     db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
-    db.exec("INSERT INTO info(name, value) VALUES ('version', '1.0')");
+    db.exec("INSERT INTO info(name, value) VALUES ('version', '0.9.0')");
     db.commit();
     db.close();
+    dbVersionString = "0.9.0";
   } else {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
     db.setDatabaseName(dbFileName);
