@@ -368,10 +368,23 @@ void RSSListing::createNewsDock()
   newsView_ = new NewsView(this);
   newsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   newsModel_ = new NewsModel(this, newsView_);
+  newsModel_->setTable("news");
+  newsModel_->select();
   newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsModel_);
 
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
+
+  newsHeader_->overload();
+  newsHeader_->initColumns();
+  newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
+  newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
+  newsHeader_->createMenu();
+
+  if (!newsHeader_->sortIndicatorSection()) {
+    newsHeader_->setSortIndicator(newsModel_->fieldIndex("published"),
+                                  Qt::DescendingOrder);
+  }
 
   //! Create title DockWidget
   newsIconTitle_ = new QLabel(this);
@@ -1712,33 +1725,11 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 
   idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
-  bool newsModelInit = false;
-  if (newsModel_->columnCount() == 0) {
-    newsModelInit = true;
-    newsModel_->setTable("news");
-    newsModel_->select();
-  }
-
-  qDebug() << "newsModelInit =" << newsModelInit;
-
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-  newsHeader_->overload();
-  if (newsModelInit) {
-    newsHeader_->initColumns();
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~85 мс
-    newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
-    newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();  // ~720 мс
-    newsModel_->setSort(newsHeader_->sortIndicatorSection(),
-                        newsHeader_->sortIndicatorOrder());
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-    newsHeader_->createMenu();
-  }
 
   if (newsModel_->rowCount() != 0) {
     while (newsModel_->canFetchMore())
