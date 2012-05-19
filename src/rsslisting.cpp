@@ -370,21 +370,12 @@ void RSSListing::createNewsDock()
   newsModel_ = new NewsModel(this, newsView_);
   newsModel_->setTable("news");
   newsModel_->select();
-  newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsModel_);
+  newsHeader_ = new NewsHeader(newsModel_, newsView_);
 
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
 
-  newsHeader_->overload();
-  newsHeader_->initColumns();
-  newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
-  newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
-  newsHeader_->createMenu();
-
-  if (!newsHeader_->sortIndicatorSection()) {
-    newsHeader_->setSortIndicator(newsModel_->fieldIndex("published"),
-                                  Qt::DescendingOrder);
-  }
+  newsHeader_->init(settings_);
 
   //! Create title DockWidget
   newsIconTitle_ = new QLabel(this);
