@@ -11,10 +11,11 @@
 #include "feedsview.h"
 #include "newsheader.h"
 #include "newsmodel.h"
+#include "newstabwidget.h"
+#include "newsview.h"
 #include "parsethread.h"
 #include "updateappdialog.h"
 #include "updatethread.h"
-#include "newsview.h"
 #include "webview.h"
 
 class RSSListing : public QMainWindow
@@ -67,7 +68,7 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsDock();
+  void createNewsTab();
   void createToolBarNull();
   void createWebWidget();
   void createActions();
@@ -100,6 +101,7 @@ private:
   QString dbFileName_;
   FeedsModel *feedsModel_;
   NewsModel *newsModel_;
+  QTabWidget *tabWidget_;
 
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
@@ -161,6 +163,7 @@ private:
   QAction *webExternalBrowserAct_;
   QAction *switchFocusAct_;
   QAction *visibleFeedsDockAct_;
+  QAction *openNewTabAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
@@ -203,6 +206,8 @@ private:
   QWidget *newsTitleLabel_;
   QLabel *newsIconTitle_;
   QLabel *newsTextTitle_;
+
+  NewsTabWidget *currentNewsTab;
 
   QLabel *webPanelTitle_;
   QLabel *webPanelTitleLabel_;
@@ -336,6 +341,7 @@ private slots:
   void slotSwitchFocus();
   void slotOpenNewsWebView();
   void slotWebViewSetContent(QString content);
+  void slotOpenNewTab();
 
 signals:
   void signalPlaceToTray();
