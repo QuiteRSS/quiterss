@@ -90,7 +90,8 @@ private:
   void retranslateStrings();
   void refreshInfoTray();
   void playSoundNewNews();
-  void feedsCleanUp(QString name);
+  void feedsCleanUp(QString feedId);
+  void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
 
   QSettings *settings_;
   QString dataDirPath_;
@@ -295,7 +296,7 @@ private slots:
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
   void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
   void slotUpdateStatus();
-  void slotSetAllRead();
+  void setFeedRead(int feedId);
   void slotShowAboutDlg();
   void deleteNews();
   void showContextMenuNews(const QPoint &);
@@ -334,10 +335,12 @@ private slots:
   void openPageInExternalBrowser();
   void slotSwitchFocus();
   void slotOpenNewsWebView();
+  void slotWebViewSetContent(QString content);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
+  void signalWebViewSetContent(QString content);
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
 };

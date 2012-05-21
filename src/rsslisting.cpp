@@ -27,7 +27,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
-  initDB(dbFileName_);
+  QString versionDB = initDB(dbFileName_);
+
+  settings_->setValue("VersionDB", versionDB);
 
   db_ = QSqlDatabase::addDatabase("QSQLITE");
   db_.setDatabaseName(":memory:");
@@ -57,6 +59,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createNewsDock();
   createToolBarNull();
   createWebWidget();
+  connect(this, SIGNAL(signalWebViewSetContent(QString)),
+                SLOT(slotWebViewSetContent(QString)), Qt::QueuedConnection);
 
   createActions();
   createShortcut();
@@ -105,54 +109,34 @@ RSSListing::~RSSListing()
   persistentParseThread_->quit();
   faviconLoader->quit();
 
-  db_.transaction();
   QSqlQuery q(db_);
-  q.exec("select id from feeds");
+  q.exec("SELECT id FROM feeds");
   while (q.next()) {
+    QString feedId = q.value(0).toString();
     QSqlQuery qt(db_);
-    QString qStr = QString("UPDATE feed_%1 SET new=0 WHERE new=1")
-        .arg(q.value(0).toString());
+    QString qStr = QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new=1")
+        .arg(feedId);
     qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET read=2 WHERE read=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-
-    feedsCleanUp(q.value(0).toString());
-
-    qStr = QString("UPDATE feed_%1 SET title='' WHERE deleted=1 AND guid!=''").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET published='' WHERE deleted=1 AND guid!=''").
-        arg(q.value(0).toString());
+    qStr = QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read=1").
+        arg(feedId);
     qt.exec(qStr);
 
-    qStr = QString("UPDATE feed_%1 SET description='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET content='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET received='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET author_name='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET link_href='' WHERE deleted=1").
-        arg(q.value(0).toString());
-    qt.exec(qStr);
-    qStr = QString("UPDATE feed_%1 SET category='' WHERE deleted=1").
-        arg(q.value(0).toString());
+    feedsCleanUp(feedId);
+
+    qStr = QString("UPDATE news SET title='', published='' "
+        "WHERE feedId=='%1' AND deleted=1 AND guid!=''").
+        arg(feedId);
     qt.exec(qStr);
 
-    qStr = QString("UPDATE feed_%1 SET deleted=2 WHERE deleted=1").
-        arg(q.value(0).toString());
+    qStr = QString("UPDATE news "
+        "SET description='', content='', received='', author_name='', "
+        "link_href='', category='', deleted=2 "
+        "WHERE feedId=='%1' AND deleted=1").
+        arg(feedId);
     qt.exec(qStr);
   }
-  db_.commit();
 
-  QString  qStr = QString("update feeds set newCount=0");
-  q.exec(qStr);
+  q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
 
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
@@ -242,7 +226,7 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
-    if (isActiveWindow() && (behaviorIconTray_ == 1))
+    if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY))
       traySystem->setIcon(QIcon(":/images/quiterss16"));
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
@@ -384,10 +368,14 @@ void RSSListing::createNewsDock()
   newsView_ = new NewsView(this);
   newsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   newsModel_ = new NewsModel(this, newsView_);
-  newsHeader_ = new NewsHeader(Qt::Horizontal, newsView_, newsModel_);
+  newsModel_->setTable("news");
+  newsModel_->select();
+  newsHeader_ = new NewsHeader(newsModel_, newsView_);
 
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
+
+  newsHeader_->init(settings_);
 
   //! Create title DockWidget
   newsIconTitle_ = new QLabel(this);
@@ -1139,7 +1127,6 @@ void RSSListing::readSettings()
   startingTray_ = settings_->value("startingTray", false).toBool();
   minimizingTray_ = settings_->value("minimizingTray", true).toBool();
   closingTray_ = settings_->value("closingTray", false).toBool();
-  behaviorIconTray_ = settings_->value("behaviorIconTray", 2).toInt();
   singleClickTray_ = settings_->value("singleClickTray", false).toBool();
   clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
@@ -1384,11 +1371,13 @@ void RSSListing::deleteFeed()
 
     int id = feedsModel_->record(
           feedsView_->currentIndex().row()).field("id").value().toInt();
+    db_.transaction();
     QSqlQuery q(db_);
-    q.exec(QString("delete from feeds where id='%1'").arg(id));
-    q.exec(QString("drop table feed_%1").arg(id));
+    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
+    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
     q.exec("VACUUM");
     q.finish();
+    db_.commit();
 
     int row = feedsView_->currentIndex().row();
     feedsModel_->select();
@@ -1451,8 +1440,8 @@ void RSSListing::slotImportFeeds()
         if (duplicateFound) {
           qDebug() << "duplicate feed:" << xmlUrlString << textString;
         } else {
-          QString qStr = QString("insert into feeds(text, title, description, xmlUrl, htmlUrl) "
-                                 "values(?, ?, ?, ?, ?)");
+          QString qStr = QString("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl) "
+                                 "VALUES(?, ?, ?, ?, ?)");
           q.prepare(qStr);
           q.addBindValue(textString);
           q.addBindValue(xml.attributes().value("title").toString());
@@ -1587,56 +1576,87 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   }
 }
 
+/*! Обновление счётчиков ленты:
+ *    количество непрочитанных новостей,
+ *    количество новых новостей
+ ******************************************************************************/
+void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
+{
+  QSqlQuery q(db_);
+  QString qStr;
+
+  db_.transaction();
+  //! Подсчет всех новостей (не помеченных удаленными)
+  int undeleteCount = 0;
+  qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) undeleteCount = q.value(0).toInt();
+
+  //! Подсчет непрочитанных новостей
+  int unreadCount = 0;
+  qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) unreadCount = q.value(0).toInt();
+
+  //! Подсчет новых новостей
+  int newCount = 0;
+  qStr = QString("SELECT count(new) FROM news WHERE feedId='%1' AND new==1").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) newCount = q.value(0).toInt();
+
+  //! Установка количества непрочитанных новостей в ленту
+  //! Установка количества новых новостей в ленту
+
+  qDebug() << __FUNCTION__ << __LINE__ << index;
+
+  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
+      "WHERE id=='%4'").
+      arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
+  q.exec(qStr);
+  db_.commit();
+}
+
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
   if (!changed) return;
 
-  // поиск идентификатора ленты в таблице лент
+  //! Ппоиск идентификатора ленты в таблице лент по URL
+  //! + достаем предыдущее значение количества новых новостей
   int parseFeedId = 0;
+  int newCountOld = 0;
   QSqlQuery q(db_);
-  q.exec(QString("select id from feeds where xmlUrl like '%1'").
+  q.exec(QString("SELECT id, newCount FROM feeds WHERE xmlUrl LIKE '%1'").
          arg(url.toString()));
-  while (q.next()) {
+  if (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
+    newCountOld = q.value(q.record().indexOf("newCount")).toInt();
   }
 
-  int unreadCount = 0;
-  QString qStr = QString("select count(read) from feed_%1 where read==0").
-      arg(parseFeedId);
-  q.exec(qStr);
-  if (q.next()) unreadCount = q.value(0).toInt();
+  recountFeedCounts(parseFeedId);
 
-  qStr = QString("update feeds set unread='%1' where id=='%2'").
-      arg(unreadCount).arg(parseFeedId);
-  q.exec(qStr);
-
+  //! Достаём новое значение количества новых новостей
   int newCount = 0;
-  qStr = QString("select count(new) from feed_%1 where new==1").
-      arg(parseFeedId);
-  q.exec(qStr);
+  q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(parseFeedId));
   if (q.next()) newCount = q.value(0).toInt();
 
-  int newCountOld = 0;
-  qStr = QString("select newCount from feeds where id=='%1'").
-      arg(parseFeedId);
-  q.exec(qStr);
-  if (q.next()) newCountOld = q.value(0).toInt();
-
-  qStr = QString("update feeds set newCount='%1' where id=='%2'").
-      arg(newCount).arg(parseFeedId);
-  q.exec(qStr);
-
-  if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
+  //! Действия после получения новых новостей: трей, звук
+  if (!isActiveWindow() && (newCount > newCountOld) &&
+      (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+  }
   refreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
   }
 
+  //! Получаем идентификатор просматриваемой ленты
   QModelIndex index = feedsView_->currentIndex();
   int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
 
-  // если обновлена просматриваемая лента, кликаем по ней
+  // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
   if (parseFeedId == id) {
     slotFeedsTreeSelected(feedsModel_->index(index.row(), 1));
   }
@@ -1659,87 +1679,92 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   static int idOld = -2;
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
     slotFeedsTreeSelected(index, true);
+    feedsView_->repaint();
   }
   idOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 }
 
 void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
 {
-  static int idOld = feedsModel_->index(index.row(), 0).data().toInt();
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << "--------------------------------";
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  if (feedsModel_->index(index.row(), 0).data() != idOld) {
-    slotSetAllRead();
+  int feedRow = index.row();
+  static int idOld = feedsModel_->index(feedRow, 0).data().toInt();
+
+  //! При переходе на другую ленту метим старую просмотренной
+  if (feedsModel_->index(feedRow, 0).data() != idOld) {
+    setFeedRead(idOld);
   }
 
-  QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
+  //! Устанавливаем иконку и текст для дока
+  QByteArray byteArray = feedsModel_->index(feedRow, feedsModel_->fieldIndex("image")).
       data().toByteArray();
   if (!byteArray.isNull()) {
     QPixmap icon;
     icon.loadFromData(QByteArray::fromBase64(byteArray));
     newsIconTitle_->setPixmap(icon);
   } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
-  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
+  newsTextTitle_->setText(feedsModel_->index(feedRow, 1).data().toString());
 
-  if (index.isValid()) feedProperties_->setEnabled(true);
-  else feedProperties_->setEnabled(false);
-
-  if (index.isValid()) newsHeader_->setVisible(true);
-  else newsHeader_->setVisible(false);
+  feedProperties_->setEnabled(index.isValid());
+  newsHeader_->setVisible(index.isValid());
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
-  index = feedsView_->currentIndex();
-  idOld = feedsModel_->index(index.row(), 0).data().toInt();
-  bool initNo = false;
-  if (newsModel_->columnCount() == 0) initNo = true;
-//  newsModel_->setTable(QString("feed_%1").arg(feedsModel_->index(index.row(), 0).data().toString()));
-  newsModel_->setTable("news");
+  idOld = feedsModel_->index(feedRow, 0).data().toInt();
 
-  newsModel_->setSort(newsHeader_->sortIndicatorSection(),
-                      newsHeader_->sortIndicatorOrder());
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
-  newsModel_->select();
-
-  newsHeader_->overload();
-  if (initNo) {
-    newsHeader_->initColumns();
-    newsHeader_->restoreGeometry(settings_->value("NewsHeaderGeometry").toByteArray());
-    newsHeader_->restoreState(settings_->value("NewsHeaderState").toByteArray());
-    newsHeader_->createMenu();
-  }
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (newsModel_->rowCount() != 0) {
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
   }
 
-  int row = -1;
+  // выбор новости ленты, отображамой ранее
+  int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          feedsModel_->index(index.row(), feedsModel_->fieldIndex("currentNews")).data().toInt()) {
-        row = i;
+          feedsModel_->index(feedRow, feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        newsRow = i;
         break;
       }
     }
-  } else if (openingFeedAction_ == 1) row = 0;
+  } else if (openingFeedAction_ == 1) newsRow = 0;
 
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  if ((openingFeedAction_ < 2) && openNewsWebViewOn_ && clicked) {
-    slotNewsViewSelected(newsModel_->index(row, 6));
-  } else if (clicked) {
-    slotNewsViewSelected(newsModel_->index(-1, 6));
-    QSqlQuery q(db_);
-    int id = newsModel_->index(row, 0).
-        data(Qt::EditRole).toInt();
-    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-        arg(id).arg(newsModel_->tableName().remove("feed_"));
-    q.exec(qStr);
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+  newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+  if (clicked) {
+    if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
+      slotNewsViewSelected(newsModel_->index(newsRow, 6));
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+    } else {
+      slotNewsViewSelected(newsModel_->index(-1, 6));
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+      QSqlQuery q(db_);
+      int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+      q.exec(qStr);
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+    }
   } else {
     slotUpdateStatus();
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -1754,43 +1779,55 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
 
 void RSSListing::slotNewsViewSelected(QModelIndex index)
 {
-  static int idxOld = -1;
-  static int curFeedOld = -1;
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+  static int indexIdOld = -1;
+  static int currrentFeedIdOld = -1;
+  int indexId;
+  int currentFeedId;
+
+  indexId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  currentFeedId = feedsModel_->index(feedsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data().toInt();
+
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
     slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    idxOld = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
-    curFeedOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
+    indexIdOld = indexId;
+    currrentFeedIdOld = currentFeedId;
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
-  int idx = newsModel_->index(index.row(), 0).data(Qt::EditRole).toInt();
-  int curFeed = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
-
-  if (!((idx == idxOld) && (curFeed == curFeedOld) &&
+  if (!((indexId == indexIdOld) && (currentFeedId == currrentFeedIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
       (QApplication::mouseButtons() & Qt::MiddleButton)) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
     webView_->history()->clear();
 
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
     updateWebView(index);
+
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_.stop();
     if (markNewsReadOn_)
       markNewsReadTimer_.start(markNewsReadTime_*1000, this);
 
     QSqlQuery q(db_);
-    int id = newsModel_->index(index.row(), 0).
-        data(Qt::EditRole).toInt();
-    QString qStr = QString("update feeds set currentNews='%1' where id=='%2'").
-        arg(id).arg(newsModel_->tableName().remove("feed_"));
+    QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
+        arg(indexId).arg(currentFeedId);
     q.exec(qStr);
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   } else slotUpdateStatus();
 
-  idxOld = idx;
-  curFeedOld = curFeed;
+  indexIdOld = indexId;
+  currrentFeedIdOld = currentFeedId;
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Вызов окна настроек ************************************************/
@@ -1876,7 +1913,7 @@ void RSSListing::showOptionDlg()
   minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
   closingTray_ = optionsDialog->closingTray_->isChecked();
   behaviorIconTray_ = optionsDialog->behaviorIconTray();
-  if (behaviorIconTray_ > 1) {
+  if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     refreshInfoTray();
   } else traySystem->setIcon(QIcon(":/images/quiterss16"));
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
@@ -2134,6 +2171,9 @@ void RSSListing::markNewsRead()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
   int cnt = indexes.count();
   if (cnt == 0) return;
 
@@ -2156,16 +2196,13 @@ void RSSListing::markNewsRead()
 
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(db_);
-      q.exec(QString("update %1 set new=0 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
-      q.exec(QString("update %1 set read='%2' where id=='%3'").
-             arg(newsModel_->tableName()).arg(markRead).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt()));
+      q.exec(QString("UPDATE news SET new=0, read='%1' WHERE feedId='%2' AND id=='%3'").
+             arg(markRead).arg(feedId).arg(newsId));
     }
 
-    newsModel_->select();
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
@@ -2188,17 +2225,19 @@ void RSSListing::markAllNewsRead()
 {
   if (newsModel_->rowCount() == 0) return;
 
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
   int currentRow = newsView_->currentIndex().row();
-  QString qStr = QString("update %1 set read=1 WHERE read=0").
-      arg(newsModel_->tableName());
   QSqlQuery q(db_);
+  QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+      arg(feedId);
   q.exec(qStr);
-  qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
-      arg(newsModel_->tableName());
+  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+      arg(feedId);
   q.exec(qStr);
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
-  newsModel_->select();
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
@@ -2228,56 +2267,49 @@ void RSSListing::markAllNewsRead()
  */
 void RSSListing::slotUpdateStatus()
 {
+  QSqlQuery q(db_);
   QString qStr;
 
-  int id = feedsModel_->index(
+  int feedId = feedsModel_->index(
         feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-  int allCount = 0;
-  qStr = QString("select count(id) from %1 where deleted=0").
-      arg(newsModel_->tableName());
-  QSqlQuery q(db_);
-  q.exec(qStr);
-  if (q.next()) allCount = q.value(0).toInt();
-
-  int unreadCount = 0;
-  qStr = QString("select count(read) from %1 where read==0").
-      arg(newsModel_->tableName());
-  q.exec(qStr);
-  if (q.next()) unreadCount = q.value(0).toInt();
-
-  int newCount = 0;
-  qStr = QString("select count(new) from %1 where new==1").
-      arg(newsModel_->tableName());
-  q.exec(qStr);
-  if (q.next()) newCount = q.value(0).toInt();
-
   int newCountOld = 0;
-  qStr = QString("select newCount from feeds where id=='%1'").
-      arg(newsModel_->tableName().remove("feed_"));
+  qStr = QString("SELECT newCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
 
-  qStr = QString("update feeds set unread='%1', newCount='%2' where id=='%3'").
-      arg(unreadCount).arg(newCount).
-      arg(newsModel_->tableName().remove("feed_"));
-  q.exec(qStr);
+  recountFeedCounts(feedId, feedsView_->currentIndex());
 
-  if (!isActiveWindow() && (newCount > newCountOld) && (behaviorIconTray_ == 1))
+  int newCount = 0;
+  int unreadCount = 0;
+  int allCount = 0;
+  qStr = QString("SELECT newCount, unread, undeleteCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) {
+    newCount    = q.value(0).toInt();
+    unreadCount = q.value(1).toInt();
+    allCount    = q.value(2).toInt();
+  }
+
+  if (!isActiveWindow() && (newCount > newCountOld) &&
+      (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
+  }
   refreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
   }
 
   feedsModel_->select();
-  int rowFeeds = -1;
+  int feedRow = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
-      rowFeeds = i;
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId) {
+      feedRow = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+  feedsView_->setCurrentIndex(feedsModel_->index(feedRow, 1));
 
   statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
   statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
@@ -2345,47 +2377,56 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   QModelIndex index = newsView_->currentIndex();
 
-  int id = newsModel_->index(
+  int feedId = feedsModel_->index(
+        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   if (clicked) {
-    QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
-        arg(newsModel_->tableName());
+    QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").
+        arg(feedId);
     QSqlQuery q(db_);
     q.exec(qStr);
   }
 
-  int feedId = feedsModel_->index(
-        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
   QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
   if (pAct->objectName() == "filterNewsAll_") {
-    newsModel_->setFilter(feedIdFilter.append("deleted = 0"));
+    feedIdFilter.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("new = 1 AND deleted = 0")));
+    feedIdFilter.append(QString("new = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("read < 2 AND deleted = 0")));
+    feedIdFilter.append(QString("read < 2 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    newsModel_->setFilter(feedIdFilter.append(QString("starred = 1 AND deleted = 0")));
+    feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
   }
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << feedIdFilter;
+  newsModel_->setFilter(feedIdFilter);
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   if (clicked) {
-    int row = -1;
+    int newsRow = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
-        row = i;
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
+        newsRow = i;
       }
     }
-    newsView_->setCurrentIndex(newsModel_->index(row, 6));
-    if (row == -1) {
+    newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+    if (newsRow == -1) {
       webView_->setHtml("");
       webPanel_->hide();
     }
   }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction = pAct;
@@ -2417,19 +2458,16 @@ void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
   } else QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
-void RSSListing::slotSetAllRead()
+//! Маркировка ленты прочитанной при клике на не отмеченной ленте
+void RSSListing::setFeedRead(int feedId)
 {
-  QString qStr = QString("UPDATE %1 SET read=2 WHERE read=1").
-      arg(newsModel_->tableName());
+  db_.transaction();
   QSqlQuery q(db_);
-  q.exec(qStr);
-  qStr = QString("UPDATE %1 SET new=0 WHERE new=1").
-      arg(newsModel_->tableName());
-  q.exec(qStr);
+  q.exec(QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read==1").arg(feedId));
+  q.exec(QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").arg(feedId));
 
-  qStr = QString("update feeds set newCount=0 where id=='%2'").
-      arg(newsModel_->tableName().remove("feed_"));
-  q.exec(qStr);
+  q.exec(QString("UPDATE feeds SET newCount=0 WHERE id=='%1'").arg(feedId));
+  db_.commit();
 }
 
 void RSSListing::slotShowAboutDlg()
@@ -2447,6 +2485,9 @@ void RSSListing::deleteNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
   if (cnt == 1) {
     curIndex = indexes.at(0);
     int row = curIndex.row();
@@ -2457,21 +2498,13 @@ void RSSListing::deleteNews()
   } else {
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(db_);
-      q.exec(QString("update %1 set new=0 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set read=2 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
-      q.exec(QString("update %1 set deleted=1 where id=='%2'").
-             arg(newsModel_->tableName()).
-             arg(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).
-                 data().toInt()));
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
+                     "WHERE feedId='%1' AND id=='%2'").
+          arg(feedId).arg(newsId));
     }
-    newsModel_->select();
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
   }
 
   while (newsModel_->canFetchMore())
@@ -2648,7 +2681,7 @@ void RSSListing::setAutoLoadImages()
 void RSSListing::loadSettingsFeeds()
 {
   markNewsReadOn_ = false;
-  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", 2).toInt();
+  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", NEW_COUNT_ICON_TRAY).toInt();
   autoLoadImages_ = !settings_->value("Settings/autoLoadImages", true).toBool();
   setAutoLoadImages();
 
@@ -2752,13 +2785,19 @@ void RSSListing::updateWebView(QModelIndex index)
     } else {
       QString content = newsModel_->record(index.row()).field("content").value().toString();
       if (content.isEmpty()) {
-        webView_->setHtml(
-              newsModel_->record(index.row()).field("description").value().toString());
+        content = newsModel_->record(index.row()).field("description").value().toString();
+        emit signalWebViewSetContent(content);
       } else {
-        webView_->setHtml(content);
+        emit signalWebViewSetContent(content);
       }
     }
   }
+}
+
+//! Слот для асинхронного обновления новости
+void RSSListing::slotWebViewSetContent(QString content)
+{
+  webView_->setHtml(content);
 }
 
 void RSSListing::slotFeedsFilter()
@@ -3115,24 +3154,22 @@ void RSSListing::slotEditMenuAction()
   else  feedProperties_->setEnabled(false);
 }
 
+//! Обновление информации в трее: значок и текст подсказки
 void RSSListing::refreshInfoTray()
 {
   if (!showTrayIcon_) return;
 
+  // Подсчёт количества новых и прочитанных новостей
   int newCount = 0;
-  QSqlQuery q(db_);
-  QString qStr = QString("select newCount from feeds");
-  q.exec(qStr);
-  while (q.next()) {
-    newCount += q.value(0).toInt();
-  }
   int unreadCount = 0;
-  qStr = QString("select unread from feeds");
-  q.exec(qStr);
+  QSqlQuery q(db_);
+  q.exec("SELECT newCount, unread FROM feeds");
   while (q.next()) {
-    unreadCount += q.value(0).toInt();
+    newCount    += q.value(0).toInt();
+    unreadCount += q.value(1).toInt();
   }
 
+  // Установка текста всплывающей подсказки
   QString info =
       "QuiteRSS\n" +
       QString(tr("New news: %1")).arg(newCount) +
@@ -3140,62 +3177,62 @@ void RSSListing::refreshInfoTray()
       QString(tr("Unread news: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
-  if (behaviorIconTray_ > 1) {
-    if (behaviorIconTray_ == 3) newCount = unreadCount;
-    if (newCount != 0) {
-      QString newCountStr;
-      QFont font;
-      font.setFamily("Consolas");
-      if (newCount > 99) {
+  // Отображаем количество либо новых, либо непрочитанных новостей
+  if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
+    int trayCount = (behaviorIconTray_ == UNREAD_COUNT_ICON_TRAY) ? unreadCount : newCount;
+    // выводим иконку с цифрой
+    if (trayCount != 0) {
+      // Подготавливаем цифру
+      QString trayCountStr;
+      QFont font("Consolas");
+      if (trayCount > 99) {
         font.setBold(false);
-        if (newCount < 1000) {
+        if (trayCount < 1000) {
           font.setPixelSize(8);
-          newCountStr = QString::number(newCount);
+          trayCountStr = QString::number(trayCount);
         } else {
           font.setPixelSize(11);
-          newCountStr = "#";
+          trayCountStr = "#";
         }
       } else {
         font.setBold(true);
         font.setPixelSize(11);
-        newCountStr = QString::number(newCount);
+        trayCountStr = QString::number(trayCount);
       }
 
+      // Рисуем иконку, текст на ней, и устанавливаем разрисованную иконку в трей
       QPixmap icon = QPixmap(":/images/countNew");
       QPainter trayPainter;
       trayPainter.begin(&icon);
       trayPainter.setFont(font);
       trayPainter.setPen(Qt::white);
       trayPainter.drawText(QRect(1, 0, 15, 16), Qt::AlignVCenter | Qt::AlignHCenter,
-                           newCountStr);
+                           trayCountStr);
       trayPainter.end();
       traySystem->setIcon(icon);
-    } else traySystem->setIcon(QIcon(":/images/quiterss16"));
+    }
+    // Выводим иконку без цифры
+    else {
+      traySystem->setIcon(QIcon(":/images/quiterss16"));
+    }
   }
 }
 
 void RSSListing::markAllFeedsRead(bool readOn)
 {
+  //! Помечаем все ленты прочитанными
   db_.transaction();
   QSqlQuery q(db_);
-  q.exec("select id from feeds");
-  while (q.next()) {
-    QSqlQuery qt(db_);
-    QString qStr = QString("UPDATE feed_%1 SET new=0")
-        .arg(q.value(0).toString());
-    qt.exec(qStr);
-    if (readOn) {
-      qStr = QString("UPDATE feed_%1 SET read=2")
-          .arg(q.value(0).toString());
-      qt.exec(qStr);
-    }
+  if (!readOn) {
+    q.exec("UPDATE news SET new=0");
+    q.exec("UPDATE feeds SET newCount=0");
+  } else {
+    q.exec("UPDATE news SET new=0, read=2");
+    q.exec("UPDATE feeds SET newCount=0, unread=0");
   }
   db_.commit();
 
-  q.exec("update feeds set newCount=0");
-  if (readOn)
-    q.exec("update feeds set unread=0");
-
+  //! Перечитывание модели лент
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
@@ -3204,7 +3241,6 @@ void RSSListing::markAllFeedsRead(bool readOn)
     int currentRow = newsView_->currentIndex().row();
 
     setNewsFilter(newsFilterGroup_->checkedAction(), false);
-    newsModel_->select();
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
@@ -3374,7 +3410,7 @@ void RSSListing::slotNewsDownPressed()
   slotNewsViewClicked(newsView_->currentIndex());
 }
 
-void RSSListing::feedsCleanUp(QString name)
+void RSSListing::feedsCleanUp(QString feedId)
 {
   int cntT = 0;
   int cntNews = 0;
@@ -3382,16 +3418,18 @@ void RSSListing::feedsCleanUp(QString name)
 //  qDebug() << name;
 
   QSqlQuery q(db_);
-  QString qStr = QString("SELECT count(id) FROM feed_%1 WHERE deleted=0").
-      arg(name);
+  QString qStr;
+  qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
   q.exec(qStr);
   if (q.next()) cntNews = q.value(0).toInt();
 
-  qStr = QString("SELECT deleted, received, id, read, starred, published FROM feed_%1")
-      .arg(name);
+  qStr = QString("SELECT deleted, received, id, read, starred, published "
+      "FROM news WHERE feedId=='%1'")
+      .arg(feedId);
   q.exec(qStr);
-  while (q.next()) {    
-    int id = q.value(2).toInt();
+  while (q.next()) {
+    int newsId = q.value(2).toInt();
     int read = q.value(3).toInt();
     int starred = q.value(4).toInt();
 
@@ -3400,9 +3438,9 @@ void RSSListing::feedsCleanUp(QString name)
         q.value(0).toInt() != 0)
       continue;
 
-    if ((cntT < (cntNews - maxNewsCleanUp_)) && newsCleanUpOn_) {
-        qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
-            arg(name).arg(id);
+    if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
+        qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND id='%2'").
+            arg(feedId).arg(newsId);
 //        qDebug() << "*01"  << id << q.value(5).toString()
 //                 << q.value(1).toString() << cntNews
 //                 << (cntNews - maxNewsCleanUp_);
@@ -3415,10 +3453,10 @@ void RSSListing::feedsCleanUp(QString name)
     QDateTime dateTime = QDateTime::fromString(
           q.value(1).toString(),
           Qt::ISODate);
-    if ((dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_) &&
-        dayCleanUpOn_) {
-        qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE id='%2'").
-            arg(name).arg(id);
+    if (dayCleanUpOn_ &&
+        (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
+        qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND id='%2'").
+            arg(feedId).arg(newsId);
 //        qDebug() << "*02"  << id << q.value(5).toString()
 //                 << q.value(1).toString() << cntNews
 //                 << (cntNews - maxNewsCleanUp_);
@@ -3429,8 +3467,8 @@ void RSSListing::feedsCleanUp(QString name)
     }
 
     if (readCleanUp_) {
-      qStr = QString("UPDATE feed_%1 SET deleted=1 WHERE read!=0 AND id='%2'").
-          arg(name).arg(id);
+      qStr = QString("UPDATE news SET deleted=1 WHERE feedId=='%1' AND read!=0 AND id='%2'").
+          arg(feedId).arg(newsId);
       QSqlQuery qt(db_);
       qt.exec(qStr);
       cntT++;

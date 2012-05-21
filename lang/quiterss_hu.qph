@@ -1,0 +1,1049 @@
+<!DOCTYPE QPH>
+<QPH sourcelanguage="en_GB" language="hu_HU">
+<phrase>
+    <source>Pause</source>
+    <target>Szünet</target>
+</phrase>
+<phrase>
+    <source>Next</source>
+    <target>Következő</target>
+</phrase>
+<phrase>
+    <source>Open</source>
+    <target>Megnyitás</target>
+</phrase>
+<phrase>
+    <source>Play</source>
+    <target>Lejátszás</target>
+</phrase>
+<phrase>
+    <source>Stop</source>
+    <target>Leállítás</target>
+</phrase>
+<phrase>
+    <source>Previous</source>
+    <target>Előző</target>
+</phrase>
+<phrase>
+    <source>Volume</source>
+    <target>Hangerő</target>
+</phrase>
+<phrase>
+    <source>Playlist (show/hide)</source>
+    <target>Lejátszási lista (megjelenítés/rejtés)</target>
+</phrase>
+<phrase>
+    <source>Open File...</source>
+    <target>Fájl megnyitása...</target>
+</phrase>
+<phrase>
+    <source>Aspect ratio</source>
+    <target>Oldalarány</target>
+</phrase>
+<phrase>
+    <source>Scale mode</source>
+    <target>Méretezési mód</target>
+</phrase>
+<phrase>
+    <source>Default</source>
+    <target>Alapértelmezett</target>
+</phrase>
+<phrase>
+    <source>Stretch to window</source>
+    <target>Ablakméretűvé nyújtás</target>
+</phrase>
+<phrase>
+    <source>Mute</source>
+    <target>Némítás</target>
+</phrase>
+<phrase>
+    <source>Full screen</source>
+    <target>Teljes képernyő</target>
+</phrase>
+<phrase>
+    <source>Media files (all types)</source>
+    <target>Médiafájlok (valamennyi típus)</target>
+</phrase>
+<phrase>
+    <source>Video files</source>
+    <target>Videófájlok</target>
+</phrase>
+<phrase>
+    <source>Audio files</source>
+    <target>Hangfájlok</target>
+</phrase>
+<phrase>
+    <source>All files</source>
+    <target>Az összes fájl</target>
+</phrase>
+<phrase>
+    <source>&amp;File</source>
+    <target>&amp;Fájl</target>
+</phrase>
+<phrase>
+    <source>&amp;Add...</source>
+    <target>Hozzáadás...</target>
+</phrase>
+<phrase>
+    <source>&amp;Delete...</source>
+    <target>Törlés...</target>
+</phrase>
+<phrase>
+    <source>Delete selected feed</source>
+    <target>Kijelölt hírcsatorna törlése</target>
+</phrase>
+<phrase>
+    <source>Add new feed</source>
+    <target>Új hírcsatorna felvétele</target>
+</phrase>
+<phrase>
+    <source>&amp;View</source>
+    <target>Nézet</target>
+</phrase>
+<phrase>
+    <source>&amp;Tools</source>
+    <target>Eszközök</target>
+</phrase>
+<phrase>
+    <source>&amp;Help</source>
+    <target>Súgó</target>
+</phrase>
+<phrase>
+    <source>&amp;Edit</source>
+    <target>Szerkesztés</target>
+</phrase>
+<phrase>
+    <source>E&amp;xit</source>
+    <target>Kilépés</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>Hírcsatornák</target>
+</phrase>
+<phrase>
+    <source>&amp;News</source>
+    <target>Hírek</target>
+</phrase>
+<phrase>
+    <source>Options...</source>
+    <target>Beállítások...</target>
+</phrase>
+<phrase>
+    <source>Show window</source>
+    <target>Ablak megjelenítése</target>
+</phrase>
+<phrase>
+    <source>&amp;Import feeds...</source>
+    <target>Hírcsatornák importálása...</target>
+</phrase>
+<phrase>
+    <source>Import feeds from OPML file</source>
+    <target>Hírcsatornák importálása OPML fájlba</target>
+</phrase>
+<phrase>
+    <source>Proxy enabled</source>
+    <target>Proxy engedélyezve</target>
+</phrase>
+<phrase>
+    <source>Select OPML-file</source>
+    <target>OPML-fájl kiválasztása</target>
+</phrase>
+<phrase>
+    <source>OPML-files (*.opml)</source>
+    <target>OPML-fájlok (*.opml)</target>
+</phrase>
+<phrase>
+    <source>Import canceled</source>
+    <target>Importálás megszakítva</target>
+</phrase>
+<phrase>
+    <source>Import: can&apos;t open a file</source>
+    <target>Importálás: a fájlt nem lehet megnyitni</target>
+</phrase>
+<phrase>
+    <source>Feeds</source>
+    <target>Hírcsatornák</target>
+</phrase>
+<phrase>
+    <source>Update</source>
+    <target>Frissítés</target>
+</phrase>
+<phrase>
+    <source>Update current feed</source>
+    <target>Aktuális hírcsatorna frissítése</target>
+</phrase>
+<phrase>
+    <source>Update all</source>
+    <target>Összes frissítése</target>
+</phrase>
+<phrase>
+    <source>Update all feeds</source>
+    <target>Az összes hírcsatorna frissítése</target>
+</phrase>
+<phrase>
+    <source> All: </source>
+    <target> Összes: </target>
+</phrase>
+<phrase>
+    <source> Unread: </source>
+    <target> Olvasatlan: </target>
+</phrase>
+<phrase>
+    <source>&amp;ToolBar</source>
+    <target>Eszköztár</target>
+</phrase>
+<phrase>
+    <source>Show ToolBar</source>
+    <target>Eszköztár megjelenítése</target>
+</phrase>
+<phrase>
+    <source>ToolBar</source>
+    <target>Eszköztár</target>
+</phrase>
+<phrase>
+    <source>Password:</source>
+    <target>Jelszó:</target>
+</phrase>
+<phrase>
+    <source>Port:</source>
+    <target></target>
+</phrase>
+<phrase>
+    <source>Network Connections</source>
+    <target>Hálózati kapcsolatok</target>
+</phrase>
+<phrase>
+    <source>System proxy configuration (if available)</source>
+    <target>Rendszer proxy konfiguráció (ha elérhető)</target>
+</phrase>
+<phrase>
+    <source>Apply</source>
+    <target>Alkalmaz</target>
+</phrase>
+<phrase>
+    <source>Update feeds... (%p%)</source>
+    <target>Hírcsatornák frissítése... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Received</source>
+    <target>Érkezett</target>
+</phrase>
+<phrase>
+    <source>Title</source>
+    <target>Cím</target>
+</phrase>
+<phrase>
+    <source>Open options dialog</source>
+    <target>A beállítások ablak megnyitása</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+    <target>Valóban törli a(z) &apos;%1&apos; hírcsatornát?</target>
+</phrase>
+<phrase>
+    <source>Username:</source>
+    <target>Felhasználónév:</target>
+</phrase>
+<phrase>
+    <source>Proxy server:</source>
+    <target>Proxykiszolgáló:</target>
+</phrase>
+<phrase>
+    <source>Date</source>
+    <target>Dátum</target>
+</phrase>
+<phrase>
+    <source>Delete feed</source>
+    <target>Hírcsatorna törlése</target>
+</phrase>
+<phrase>
+    <source>Options</source>
+    <target>Opciók</target>
+</phrase>
+<phrase>
+    <source>Add feed</source>
+    <target>Hírcsatorna hozzáadása</target>
+</phrase>
+<phrase>
+    <source>author</source>
+    <target>Készítő</target>
+</phrase>
+<phrase>
+    <source>Read</source>
+    <target>Olvasás</target>
+</phrase>
+<phrase>
+    <source>Star</source>
+    <target>Csillagozás</target>
+</phrase>
+<phrase>
+    <source>Author</source>
+    <target>Készítő</target>
+</phrase>
+<phrase>
+    <source>Show All</source>
+    <target>Összes megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Show Unread</source>
+    <target>Olvasatlan megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Filter</source>
+    <target>Szűrő</target>
+</phrase>
+<phrase>
+    <source>Error loading to WebView</source>
+    <target>Webnézet betöltési hiba</target>
+</phrase>
+<phrase>
+    <source>Loading... (%p%)</source>
+    <target>Betöltés... (%p%)</target>
+</phrase>
+<phrase>
+    <source>Mark Read</source>
+    <target>Megjelölés olvasottként</target>
+</phrase>
+<phrase>
+    <source>Mark current news read</source>
+    <target></target>
+</phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>Az összes hír megjelölése olvasottként</target>
+</phrase>
+<phrase>
+    <source>About</source>
+    <target>Névjegy</target>
+</phrase>
+<phrase>
+    <source>Version </source>
+    <target>Verzió </target>
+</phrase>
+<phrase>
+    <source>The authors:</source>
+    <target>Készítők:</target>
+</phrase>
+<phrase>
+    <source>&amp;Close</source>
+    <target>Bezárás</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Hírcsatorna címe:</target>
+</phrase>
+<phrase>
+    <source>Feed Url:</source>
+    <target>Hírcsatorna Url:</target>
+</phrase>
+<phrase>
+    <source>&amp;Load images</source>
+    <target>Képek betöltése</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Megnyitás a böngészőben</target>
+</phrase>
+<phrase>
+    <source>Delete</source>
+    <target>Törlés</target>
+</phrase>
+<phrase>
+    <source>Mark feed read</source>
+    <target>A hírcsatorna megjelölése olvasottként</target>
+</phrase>
+<phrase>
+    <source>Properties</source>
+    <target>Tulajdonságok</target>
+</phrase>
+<phrase>
+    <source>Properties feed</source>
+    <target>Hírcsatorna tulajdonságok</target>
+</phrase>
+<phrase>
+    <source>Author:</source>
+    <target>Készítő:</target>
+</phrase>
+<phrase>
+    <source>Title:</source>
+    <target>Cím:</target>
+</phrase>
+<phrase>
+    <source>Auto load images to news view</source>
+    <target>A képek automatikus betöltése a hírek nézetbe</target>
+</phrase>
+<phrase>
+    <source>Language</source>
+    <target>Nyelv</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds on start-up</source>
+    <target>A hírcsatornák automatikus frissítése indításkor</target>
+</phrase>
+<phrase>
+    <source>Automatically update the feeds every</source>
+    <target>A hírcsatornák automatikus frissítése minden</target>
+</phrase>
+<phrase>
+    <source>General</source>
+    <target>Általános</target>
+</phrase>
+<phrase>
+    <source>English (%1)</source>
+    <target>Angol (%1)</target>
+</phrase>
+<phrase>
+    <source>* - changes will take effect after restart</source>
+    <target>* - a módosítások újraindítás után lépnek érvénybe</target>
+</phrase>
+<phrase>
+    <source>Russian (%1)</source>
+    <target>Orosz (%1)</target>
+</phrase>
+<phrase>
+    <source>Choose language:*</source>
+    <target>Válasszon nyelvet:*</target>
+</phrase>
+<phrase>
+    <source>Show New</source>
+    <target>Új megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Check for updates...</source>
+    <target>Frissítések ellenőrzése...</target>
+</phrase>
+<phrase>
+    <source> Unread: %1 </source>
+    <target> Olvasatlan: %1</target>
+</phrase>
+<phrase>
+    <source> All: %1 </source>
+    <target>Összes: %1</target>
+</phrase>
+<phrase>
+    <source>Checking for updates...</source>
+    <target>Frissítések ellenőrzése...</target>
+</phrase>
+<phrase>
+    <source>Check for updates</source>
+    <target>Frissítések ellenőrzése</target>
+</phrase>
+<phrase>
+    <source>You already have the latest version</source>
+    <target>Jelenleg a legújabb verzióval rendelkezik</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS is available!</source>
+    <target>Új QuiteRSS verzió érhető el!</target>
+</phrase>
+<phrase>
+    <source>Click here to go to the download page</source>
+    <target>Kattintson ide a letöltési oldalra ugráshoz</target>
+</phrase>
+<phrase>
+    <source>Current version is: </source>
+    <target>Aktuális verzió: </target>
+</phrase>
+<phrase>
+    <source>Error checking updates</source>
+    <target>Frissítés ellenőrzési hiba</target>
+</phrase>
+<phrase>
+    <source>Fonts</source>
+    <target>Betűtípusok</target>
+</phrase>
+<phrase>
+    <source>Choose language:</source>
+    <target>Válasszon nyelvet:</target>
+</phrase>
+<phrase>
+    <source>Type</source>
+    <target>Típus</target>
+</phrase>
+<phrase>
+    <source>Font</source>
+    <target>Betűtípus</target>
+</phrase>
+<phrase>
+    <source>Feeds list font</source>
+    <target>Hírcsatorna lista betűtípusa</target>
+</phrase>
+<phrase>
+    <source>News list font</source>
+    <target>Hírek lista betűtipusa</target>
+</phrase>
+<phrase>
+    <source>News font</source>
+    <target>Hírek betűtípusa</target>
+</phrase>
+<phrase>
+    <source>Change...</source>
+    <target>Módosítás...</target>
+</phrase>
+<phrase>
+    <source>Reset</source>
+    <target>Visszaállítás</target>
+</phrase>
+<phrase>
+    <source>Load feed title</source>
+    <target>Hírcsatorna cím betöltése</target>
+</phrase>
+<phrase>
+    <source>Feed URL:</source>
+    <target>Hírcsatorna URL:</target>
+</phrase>
+<phrase>
+    <source>Homepage:</source>
+    <target>Honlap:</target>
+</phrase>
+<phrase>
+    <source>System tray</source>
+    <target>Rendszertálca</target>
+</phrase>
+<phrase>
+    <source>minutes</source>
+    <target>percben</target>
+</phrase>
+<phrase>
+    <source>starting QuiteRSS</source>
+    <target>A QuiteRSS indításakor</target>
+</phrase>
+<phrase>
+    <source>minimizing QuiteRSS</source>
+    <target>A QuiteRSS minimalizálásakor</target>
+</phrase>
+<phrase>
+    <source>closing QuiteRSS</source>
+    <target>A QuiteRSS bezárásakor</target>
+</phrase>
+<phrase>
+    <source>Single click instead of double click for show window</source>
+    <target>Egy kattintás a dupla kattintás helyett az ablak megjelenítéséhez</target>
+</phrase>
+<phrase>
+    <source>Empty working set on minimize to tray</source>
+    <target>Munkakészlet ürítése a tálcára küldéskor</target>
+</phrase>
+<phrase>
+    <source>Move to the system tray when:</source>
+    <target>Áthelyezés a tálcára a következő esetben:</target>
+</phrase>
+<phrase>
+    <source>No load images</source>
+    <target>Ne töltse be a képeket</target>
+</phrase>
+<phrase>
+    <source>No load images to news view</source>
+    <target>Ne töltse be a képeket hírek nézetbe</target>
+</phrase>
+<phrase>
+    <source>Load images</source>
+    <target>Képek betöltése</target>
+</phrase>
+<phrase>
+    <source>Style</source>
+    <target>Stílus</target>
+</phrase>
+<phrase>
+    <source>Icon</source>
+    <target>Ikon</target>
+</phrase>
+<phrase>
+    <source>Text</source>
+    <target>Szöveg</target>
+</phrase>
+<phrase>
+    <source>Text beside icon</source>
+    <target>Ikon melletti szöveg</target>
+</phrase>
+<phrase>
+    <source>Text under icon</source>
+    <target>Ikon alatti szöveg</target>
+</phrase>
+<phrase>
+    <source>Big</source>
+    <target>Nagy</target>
+</phrase>
+<phrase>
+    <source>Normal</source>
+    <target>Normál</target>
+</phrase>
+<phrase>
+    <source>Small</source>
+    <target>Kicsi</target>
+</phrase>
+<phrase>
+    <source>Mark current news read/unread</source>
+    <target>Az aktuális hírek megjelölése olvasotként/olvasatlanként</target>
+</phrase>
+<phrase>
+    <source>Mark Read/Unread</source>
+    <target>Olvasott/olvasatlan</target>
+</phrase>
+<phrase>
+    <source>Update feed</source>
+    <target>Hírcsatorna frissítése</target>
+</phrase>
+<phrase>
+    <source>Icon size</source>
+    <target>Ikonméret</target>
+</phrase>
+<phrase>
+    <source>Show amount of new news</source>
+    <target>Új hírek számának megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Mark selected news as read after</source>
+    <target>A kijelölt hírek megjelölése olvasottként</target>
+</phrase>
+<phrase>
+    <source>seconds</source>
+    <target>másodperc után</target>
+</phrase>
+<phrase>
+    <source>Reading</source>
+    <target>Olvasás</target>
+</phrase>
+<phrase>
+    <source>New news: %1
+</source>
+    <target>Új hírek: %1
+</target>
+</phrase>
+<phrase>
+    <source>Show static icon</source>
+    <target>Statikus ikon megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Change icon for incoming new news</source>
+    <target>Ikon módosítása a beérkező híreknél</target>
+</phrase>
+<phrase>
+    <source>Show the count of new news</source>
+    <target>Új hírek számának megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Show the count of unread news</source>
+    <target>Az olvasatlan hírek számának megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Tray icon behavior:</source>
+    <target>Tálca ikon viselkedés:</target>
+</phrase>
+<phrase>
+    <source>New news: %1</source>
+    <target>Új hírek: %1</target>
+</phrase>
+<phrase>
+    <source>Mark all feeds Read</source>
+    <target>Az összes hírcsatorna megjelölése olvasottként</target>
+</phrase>
+<phrase>
+    <source>Clear status new on minimize to tray</source>
+    <target>Az új státusz törlése a tálcára küldéskor</target>
+</phrase>
+<phrase>
+    <source>Published</source>
+    <target>Közzétéve</target>
+</phrase>
+<phrase>
+    <source>Browser</source>
+    <target>Böngésző</target>
+</phrase>
+<phrase>
+    <source>Use the embedded browser</source>
+    <target>Beágyazott böngésző használata</target>
+</phrase>
+<phrase>
+    <source>Show count of new news</source>
+    <target>Az új hírek számának megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Show count of unread news</source>
+    <target>Olvasatlan hírek számának megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Update done</source>
+    <target>A frissítés kész</target>
+</phrase>
+<phrase>
+    <source>Acknowledgements:</source>
+    <target>Köszönetnyilvánítás:</target>
+</phrase>
+<phrase>
+    <source>Export canceled</source>
+    <target>Exportálás megszakítva</target>
+</phrase>
+<phrase>
+    <source>Export: can&apos;t open a file</source>
+    <target>Exportálás: a fájlt nem lehet megnyitni</target>
+</phrase>
+<phrase>
+    <source>&amp;Export feeds...</source>
+    <target>Hírcsatornák exportálása...</target>
+</phrase>
+<phrase>
+    <source>Export feeds to OPML file</source>
+    <target>Hírcsatornák exportálása OPML fájlba</target>
+</phrase>
+<phrase>
+    <source>Loading history...</source>
+    <target>Előzmények betöltése...</target>
+</phrase>
+<phrase>
+    <source>News filters...</source>
+    <target>Hírek szűrők...</target>
+</phrase>
+<phrase>
+    <source>Filter news...</source>
+    <target>Hírek szűrése...</target>
+</phrase>
+<phrase>
+    <source>Category</source>
+    <target>Kategória</target>
+</phrase>
+<phrase>
+    <source>Play sound for incoming new news</source>
+    <target>Hangjelzés a bejövő hírek esetén</target>
+</phrase>
+<phrase>
+    <source>Enable JavaScript</source>
+    <target>JavaScript engedélyezése</target>
+</phrase>
+<phrase>
+    <source>Enable plug-ins</source>
+    <target>Beépülő modulok engedélyezése</target>
+</phrase>
+<phrase>
+    <source>Notifications</source>
+    <target>Értesítések</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the filter &apos;%1&apos;?</source>
+    <target>Valóban törli a(z) &apos;%1&apos; szűrőt?</target>
+</phrase>
+<phrase>
+    <source>Delete...</source>
+    <target>Törlés...</target>
+</phrase>
+<phrase>
+    <source>New...</source>
+    <target>Új...</target>
+</phrase>
+<phrase>
+    <source>Edit...</source>
+    <target>Szerkesztés...</target>
+</phrase>
+<phrase>
+    <source>Move up</source>
+    <target>Feljebb</target>
+</phrase>
+<phrase>
+    <source>Move down</source>
+    <target>Lejjebb</target>
+</phrase>
+<phrase>
+    <source>Delete filter</source>
+    <target>Szűrő törlése</target>
+</phrase>
+<phrase>
+    <source>Name filter</source>
+    <target>Szűrő neve</target>
+</phrase>
+<phrase>
+    <source>Location</source>
+    <target>Hely</target>
+</phrase>
+<phrase>
+    <source>Status</source>
+    <target>Állapot</target>
+</phrase>
+<phrase>
+    <source>New</source>
+    <target>Új</target>
+</phrase>
+<phrase>
+    <source>Add condition</source>
+    <target>Feltétel hozzáadása</target>
+</phrase>
+<phrase>
+    <source>Delete condition</source>
+    <target>Feltétel törlése</target>
+</phrase>
+<phrase>
+    <source>Description</source>
+    <target>Leírás</target>
+</phrase>
+<phrase>
+    <source>doesn&apos;t contains</source>
+    <target>nem tartalmaz</target>
+</phrase>
+<phrase>
+    <source>is</source>
+    <target>van</target>
+</phrase>
+<phrase>
+    <source>contains</source>
+    <target>tartalmaz</target>
+</phrase>
+<phrase>
+    <source>isn&apos;t</source>
+    <target>nem</target>
+</phrase>
+<phrase>
+    <source>begins with</source>
+    <target>kezdődik</target>
+</phrase>
+<phrase>
+    <source>ends with</source>
+    <target>végződik</target>
+</phrase>
+<phrase>
+    <source>Add action</source>
+    <target>Művelet hozzáadása</target>
+</phrase>
+<phrase>
+    <source>Delete action</source>
+    <target>Művelet törlése</target>
+</phrase>
+<phrase>
+    <source>Add star</source>
+    <target>Csillag hozzáadása</target>
+</phrase>
+<phrase>
+    <source>Mark news as read</source>
+    <target>Hírek megjelölése olvasottként</target>
+</phrase>
+<phrase>
+    <source>Filter rules</source>
+    <target>Szűrési szabályok</target>
+</phrase>
+<phrase>
+    <source>Perform these actions:</source>
+    <target>Műveletek végrehajtása:</target>
+</phrase>
+<phrase>
+    <source>Move news</source>
+    <target>Hírek áthelyezése</target>
+</phrase>
+<phrase>
+    <source>Copy news</source>
+    <target>Hírek másolása</target>
+</phrase>
+<phrase>
+    <source>Copy news to</source>
+    <target>Hírek másolása</target>
+</phrase>
+<phrase>
+    <source>Move news to</source>
+    <target>HÍrek áthelyezése</target>
+</phrase>
+<phrase>
+    <source>Match all conditions</source>
+    <target>Az összes feltételnek megfelelő</target>
+</phrase>
+<phrase>
+    <source>Match any condition</source>
+    <target>Bármely feltételnek megfelelő</target>
+</phrase>
+<phrase>
+    <source>Mark news star</source>
+    <target>Hírek megjelölése csillaggal</target>
+</phrase>
+<phrase>
+    <source>Delete selected news</source>
+    <target>Kijelölt hírek törlése</target>
+</phrase>
+<phrase>
+    <source>Previous feed</source>
+    <target>Előző hírcsatorna</target>
+</phrase>
+<phrase>
+    <source>Next feed</source>
+    <target>Következő hírcsatorna</target>
+</phrase>
+<phrase>
+    <source>Previous news</source>
+    <target>Korábbi hírek</target>
+</phrase>
+<phrase>
+    <source>Next news</source>
+    <target>Következő hír</target>
+</phrase>
+<phrase>
+    <source>Shortcut:</source>
+    <target>Gyorsbillentyű:</target>
+</phrase>
+<phrase>
+    <source>Keyboard shortcuts</source>
+    <target>Billentyűparancsok</target>
+</phrase>
+<phrase>
+    <source>hours</source>
+    <target>órában</target>
+</phrase>
+<phrase>
+    <source>Action</source>
+    <target>Művelet</target>
+</phrase>
+<phrase>
+    <source>Clear</source>
+    <target>Törlés</target>
+</phrase>
+<phrase>
+    <source>Show splash screen on startup</source>
+    <target>Indítóképernyő megjelenítése betöltéskor</target>
+</phrase>
+<phrase>
+    <source>Show system tray icon</source>
+    <target>Rendszertálca ikon megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Reopen last opened feeds on startup</source>
+    <target>A utoljára megnyitott hírcsatornák megnyitása indításkor</target>
+</phrase>
+<phrase>
+    <source>Show news&apos; description instead of loading web page</source>
+    <target>Hírleírások megjelenítése a weblap betöltése helyett</target>
+</phrase>
+<phrase>
+    <source>Maximum number of news to keep:</source>
+    <target>A megtartandó hírek maximális száma:</target>
+</phrase>
+<phrase>
+    <source>Maximum age of news in days to keep:</source>
+    <target>A megtartandó hírek maximális ideje napban:</target>
+</phrase>
+<phrase>
+    <source>Delete read news</source>
+    <target>Olvasott hírek törlése</target>
+</phrase>
+<phrase>
+    <source>Never delete unread news</source>
+    <target>Soha ne törölje az olvasatlan híreket</target>
+</phrase>
+<phrase>
+    <source>Never delete starred news</source>
+    <target>Soha ne törölje a csillagozott híreket</target>
+</phrase>
+<phrase>
+    <source>Clean Up</source>
+    <target>Törlés</target>
+</phrase>
+<phrase>
+    <source>German (%1)</source>
+    <target>Német (%1)</target>
+</phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Csillagozott</target>
+</phrase>
+<phrase>
+    <source>Style application</source>
+    <target>Alkalmazás stílus</target>
+</phrase>
+<phrase>
+    <source>System</source>
+    <target>Rendszer</target>
+</phrase>
+<phrase>
+    <source>French (%1)</source>
+    <target>Francia (%1)</target>
+</phrase>
+<phrase>
+    <source>Open in external browser</source>
+    <target>Megnyitás egy külső böngészőben</target>
+</phrase>
+<phrase>
+    <source>Green</source>
+    <target>Zöld</target>
+</phrase>
+<phrase>
+    <source>Orange</source>
+    <target>Narancs</target>
+</phrase>
+<phrase>
+    <source>Purple</source>
+    <target>Bíbor</target>
+</phrase>
+<phrase>
+    <source>Pink</source>
+    <target>Rózsaszín</target>
+</phrase>
+<phrase>
+    <source>Gray</source>
+    <target>Szürke</target>
+</phrase>
+<phrase>
+    <source>&amp;Undo</source>
+    <target>Visszavonás</target>
+</phrase>
+<phrase>
+    <source>&amp;Redo</source>
+    <target>Ismételt végrehajtás</target>
+</phrase>
+<phrase>
+    <source>Cu&amp;t</source>
+    <target>Kivágás</target>
+</phrase>
+<phrase>
+    <source>&amp;Copy</source>
+    <target>&amp;Másolás</target>
+</phrase>
+<phrase>
+    <source>&amp;Paste</source>
+    <target>Beillesztés</target>
+</phrase>
+<phrase>
+    <source>Select All</source>
+    <target>Az összes kijelölése</target>
+</phrase>
+<phrase>
+    <source>Select IM</source>
+    <target>IM kiválasztása</target>
+</phrase>
+<phrase>
+    <source>Yes</source>
+    <target>Igen</target>
+</phrase>
+<phrase>
+    <source>Home</source>
+    <target>Főoldal</target>
+</phrase>
+<phrase>
+    <source>&amp;Yes</source>
+    <target>Igen</target>
+</phrase>
+<phrase>
+    <source>&amp;No</source>
+    <target>Nem</target>
+</phrase>
+<phrase>
+    <source>&amp;Step up</source>
+    <target>Felfelé</target>
+</phrase>
+<phrase>
+    <source>Step &amp;down</source>
+    <target>Lefelé</target>
+</phrase>
+<phrase>
+    <source>&amp;Select All</source>
+    <target>Az összes kijelölése</target>
+</phrase>
+<phrase>
+    <source>Create new feed</source>
+    <target>Új hírcsatorna létrehozása</target>
+</phrase>
+<phrase>
+    <source>Displayed name:</source>
+    <target>Megjelenítendő név:</target>
+</phrase>
+<phrase>
+    <source>Duplicate feed!</source>
+    <target>Ismétlődő hírcsatorna!</target>
+</phrase>
+<phrase>
+    <source>Can&apos;t find feed URL!</source>
+    <target>Nincs hírcsatorna URL!</target>
+</phrase>
+</QPH>

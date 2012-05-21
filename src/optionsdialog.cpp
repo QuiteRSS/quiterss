@@ -1,4 +1,5 @@
 #include "optionsdialog.h"
+#include "VersionNo.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent) :
   QDialog(parent)
@@ -322,8 +323,53 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} notifier
 
   //{ language
-  languageFileList_ = new QListWidget();
+  languageFileList_ = new QTreeWidget();
   languageFileList_->setObjectName("languageFileList_");
+  languageFileList_->setColumnCount(5);
+  languageFileList_->setColumnHidden(0, true);
+  languageFileList_->setColumnWidth(1, 140);
+  languageFileList_->setColumnWidth(2, 80);
+
+  treeItem.clear();
+  treeItem << "Id" << tr("Language") << tr("Version")
+           << tr("Author") << tr("Contact");
+  languageFileList_->setHeaderLabels(treeItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString(tr("English (%1)")).arg("EN")
+           << QString(STRFILEVER).section('.', 0, 2)
+           << "QuiteRSS Team" << "";
+  QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_EN"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "1" << QString(tr("French (%1)")).arg("FR") << "0.8.7"
+           << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_FR"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "2" << QString(tr("German (%1)")).arg("DE") << "0.8.7"
+           << "QuiteRSS Team" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_DE"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "3" << QString(tr("Hungarian (%1)")).arg("HU") << "0.8.7"
+           << "Zityi" << "zityisoft@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_HU"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "4" << QString(tr("Russian (%1)")).arg("RU") << "0.8.7"
+           << "QuiteRSS Team" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_RU"));
+  languageFileList_->addTopLevelItem(languageItem);
 
   QVBoxLayout *languageLayout = new QVBoxLayout();
   languageLayout->setMargin(0);
@@ -332,16 +378,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   languageWidget_ = new QWidget();
   languageWidget_->setLayout(languageLayout);
-
-  // init list
-  QStringList languageList;
-  languageList << QString(tr("English (%1)")).arg("en")
-               << QString(tr("French (%1)")).arg("fr")
-               << QString(tr("German (%1)")).arg("de")
-               << QString(tr("Russian (%1)")).arg("ru");
-  foreach (QString str, languageList) {
-    new QListWidgetItem(str, languageFileList_);
-  }
   //} language
 
   //{ fonts
@@ -568,7 +604,7 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 
 QString OptionsDialog::language()
 {
-  QString langFileName = languageFileList_->currentItem()->data(Qt::DisplayRole).toString();
+  QString langFileName = languageFileList_->currentItem()->data(1, Qt::DisplayRole).toString();
   return langFileName.section("(", 1).replace(")", "");
 }
 
@@ -577,14 +613,14 @@ void OptionsDialog::setLanguage(QString langFileName)
   // установка курсора на выбранный файл
   langFileName = QString("(%1)").arg(langFileName);
 
-  QList<QListWidgetItem*> list =
-      languageFileList_->findItems(langFileName, Qt::MatchContains);
+  QList<QTreeWidgetItem*> list =
+      languageFileList_->findItems(langFileName, Qt::MatchContains, 1);
   if (list.count()) {
     languageFileList_->setCurrentItem(list.at(0));
   } else {
     // если не удалось найти, выбираем английский
-    QList<QListWidgetItem*> list =
-        languageFileList_->findItems("(en)", Qt::MatchContains);
+    QList<QTreeWidgetItem*> list =
+        languageFileList_->findItems("(en)", Qt::MatchContains, 1);
     languageFileList_->setCurrentItem(list.at(0));
   }
 }
@@ -669,20 +705,20 @@ void OptionsDialog::setCurrentItem(int index)
 void OptionsDialog::setBehaviorIconTray(int behavior)
 {
   switch (behavior) {
-  case 1: changeIconTray_->setChecked(true);  break;
-  case 2: newCountTray_->setChecked(true);    break;
-  case 3: unreadCountTray_->setChecked(true); break;
+  case CHANGE_ICON_TRAY:       changeIconTray_->setChecked(true);  break;
+  case NEW_COUNT_ICON_TRAY:    newCountTray_->setChecked(true);    break;
+  case UNREAD_COUNT_ICON_TRAY: unreadCountTray_->setChecked(true); break;
   default: staticIconTray_->setChecked(true);
   }
 }
 
 int OptionsDialog::behaviorIconTray()
 {
-  if (staticIconTray_->isChecked())       return 0;
-  else if (changeIconTray_->isChecked())  return 1;
-  else if (newCountTray_->isChecked())    return 2;
-  else if (unreadCountTray_->isChecked()) return 3;
-  else return 0;
+  if (staticIconTray_->isChecked())       return STATIC_ICON_TRAY;
+  else if (changeIconTray_->isChecked())  return CHANGE_ICON_TRAY;
+  else if (newCountTray_->isChecked())    return NEW_COUNT_ICON_TRAY;
+  else if (unreadCountTray_->isChecked()) return UNREAD_COUNT_ICON_TRAY;
+  else return STATIC_ICON_TRAY;
 }
 
 void  OptionsDialog::intervalTimeChang(QString str)

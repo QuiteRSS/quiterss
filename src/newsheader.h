@@ -8,6 +8,8 @@ class NewsHeader : public QHeaderView
 {
   Q_OBJECT
 private:
+  void createMenu();
+
   QTreeView *view_;
   NewsModel *model_;
 
@@ -18,15 +20,10 @@ private:
   int posX1;
 
 public:
-  NewsHeader(Qt::Orientation orientation, QWidget * parent = 0,
-             NewsModel *model = 0);
+  NewsHeader(NewsModel *model, QWidget *parent);
 
-  void initColumns();
-  void createMenu();
-  void overload();
+  void init(QSettings *settings);
   void retranslateStrings();
-
-public slots:
 
 protected:
   bool eventFilter(QObject *, QEvent *);
