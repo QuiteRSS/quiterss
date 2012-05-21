@@ -36,7 +36,8 @@ public slots:
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
-  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false);
+  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false,
+                             bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
   void slotNewsViewClicked(QModelIndex index);
@@ -68,7 +69,7 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsTab();
+  void createNewsTab(bool on = true);
   void createToolBarNull();
   void createWebWidget();
   void createActions();
@@ -342,6 +343,8 @@ private slots:
   void slotOpenNewsWebView();
   void slotWebViewSetContent(QString content);
   void slotOpenNewTab();
+  void slotTabCloseRequested(int index);
+  void slotTabCurrentChanged(int);
 
 signals:
   void signalPlaceToTray();

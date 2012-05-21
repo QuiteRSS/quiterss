@@ -77,6 +77,10 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabWidget_ = new QTabWidget(this);
   tabWidget_->setObjectName("tabWidget_");
   tabWidget_->setTabsClosable(true);
+  connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
+          this, SLOT(slotTabCloseRequested(int)));
+  connect(tabWidget_, SIGNAL(currentChanged(int)),
+          this, SLOT(slotTabCurrentChanged(int)));
   setCentralWidget(tabWidget_);
 
   connect(this, SIGNAL(signalCloseApp()),
@@ -390,11 +394,10 @@ void RSSListing::createToolBarNull()
           this, SLOT(updateIconToolBarNull(bool)));
 }
 
-void RSSListing::createNewsTab()
+void RSSListing::createNewsTab(bool on)
 {
-  int index = tabWidget_->addTab(new NewsTabWidget(settings_, this), "");
+  int index = tabWidget_->currentIndex();
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
-  tabWidget_->setCurrentIndex(index);
 
   newsModel_ = currentNewsTab->newsModel_;
   newsHeader_ = currentNewsTab->newsHeader_;
@@ -1150,15 +1153,17 @@ void RSSListing::writeSettings()
   int fontSize = feedsView_->font().pointSize();
   settings_->setValue("/feedsFontSize", fontSize);
 
-  fontFamily = newsView_->font().family();
-  settings_->setValue("/newsFontFamily", fontFamily);
-  fontSize = newsView_->font().pointSize();
-  settings_->setValue("/newsFontSize", fontSize);
+  if (tabWidget_->count()) {
+    fontFamily = newsView_->font().family();
+    settings_->setValue("/newsFontFamily", fontFamily);
+    fontSize = newsView_->font().pointSize();
+    settings_->setValue("/newsFontSize", fontSize);
 
-  fontFamily = webView_->settings()->fontFamily(QWebSettings::StandardFont);
-  settings_->setValue("/WebFontFamily", fontFamily);
-  fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
-  settings_->setValue("/WebFontSize", fontSize);
+    fontFamily = webView_->settings()->fontFamily(QWebSettings::StandardFont);
+    settings_->setValue("/WebFontFamily", fontFamily);
+    fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
+    settings_->setValue("/WebFontSize", fontSize);
+  }
 
   settings_->setValue("autoLoadImages", autoLoadImages_);
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
@@ -1200,7 +1205,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
-  if (newsModel_->columnCount()) {
+  if (tabWidget_->count()) {
     settings_->setValue("NewsHeaderGeometry", newsHeader_->saveGeometry());
     settings_->setValue("NewsHeaderState", newsHeader_->saveState());
   }
@@ -1566,7 +1571,8 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   idOld = feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt();
 }
 
-void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
+void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
+                                       bool createTab)
 {
   QElapsedTimer timer;
   timer.start();
@@ -1581,8 +1587,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked)
     setFeedRead(idOld);
   }
 
-  if (!tabWidget_->count()) {
-    createNewsTab();
+  if ((!tabWidget_->count() && clicked) || createTab) {
+    int indexTab = tabWidget_->addTab(new NewsTabWidget(settings_, this), "");
+    tabWidget_->setCurrentIndex(indexTab);
   }
 
   //! Устанавливаем иконку и текст для открытой вкладки
@@ -2501,8 +2508,8 @@ void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
   feedContextMenu_->addAction(addFeedAct_);
-//  feedContextMenu_->addSeparator();
-//  feedContextMenu_->addAction(openNewTabAct_);
+  feedContextMenu_->addSeparator();
+  feedContextMenu_->addAction(openNewTabAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(markFeedRead_);
   feedContextMenu_->addAction(markAllFeedRead_);
@@ -2613,7 +2620,7 @@ void RSSListing::setCurrentFeed()
       }
     }
     feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-    slotFeedsTreeSelected(feedsModel_->index(row, 1), true);  // загрузка новостей
+    slotFeedsTreeSelected(feedsModel_->index(row, 1), true, true);  // загрузка новостей
   } else slotUpdateStatus();
 }
 
@@ -3417,5 +3424,29 @@ void RSSListing::slotOpenNewsWebView()
 
 void RSSListing::slotOpenNewTab()
 {
-  createNewsTab();
+  slotFeedsTreeSelected(feedsView_->currentIndex(), true, true);
+}
+
+void RSSListing::slotTabCloseRequested(int index)
+{
+  if (tabWidget_->count() == 1) {
+    QString fontFamily = newsView_->font().family();
+    settings_->setValue("/newsFontFamily", fontFamily);
+    int fontSize = newsView_->font().pointSize();
+    settings_->setValue("/newsFontSize", fontSize);
+
+    fontFamily = webView_->settings()->fontFamily(QWebSettings::StandardFont);
+    settings_->setValue("/WebFontFamily", fontFamily);
+    fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
+    settings_->setValue("/WebFontSize", fontSize);
+
+    settings_->setValue("NewsHeaderGeometry", newsHeader_->saveGeometry());
+    settings_->setValue("NewsHeaderState", newsHeader_->saveState());
+  }
+  delete tabWidget_->widget(index);
+}
+
+void RSSListing::slotTabCurrentChanged(int index)
+{
+  if (tabWidget_->count()) createNewsTab();
 }
