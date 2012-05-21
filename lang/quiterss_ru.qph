@@ -1089,4 +1089,44 @@
     <source>Can&apos;t find feed URL!</source>
     <target>Не удалось найти URL ленты!</target>
 </phrase>
+<phrase>
+    <source>Switch focus between panels</source>
+    <target>Переключение фокуса между панелями</target>
+</phrase>
+<phrase>
+    <source>Switch focus between panels (tree feeds, list news, browser)</source>
+    <target>Переключение фокуса между панелями (дерево лент, список новостей, браузер)</target>
+</phrase>
+<phrase>
+    <source>Show/hide tree feeds</source>
+    <target>Показать/скрыть дерево лент</target>
+</phrase>
+<phrase>
+    <source>Open news</source>
+    <target>Открытые новости</target>
+</phrase>
+<phrase>
+    <source>Position at top of list news</source>
+    <target>Позиционировать на начало списка новостей</target>
+</phrase>
+<phrase>
+    <source>Position on last opened news</source>
+    <target>Позиционировать на последней открытой новости</target>
+</phrase>
+<phrase>
+    <source>Nothing to do</source>
+    <target>Ничего не делать</target>
+</phrase>
+<phrase>
+    <source>Opening feed:</source>
+    <target>Открытие ленты:</target>
+</phrase>
+<phrase>
+    <source>Contact</source>
+    <target>Контакт</target>
+</phrase>
+<phrase>
+    <source>Hungarian (%1)</source>
+    <target>Венгерский (%1)</target>
+</phrase>
 </QPH>

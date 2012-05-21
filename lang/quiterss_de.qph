@@ -888,4 +888,44 @@
     <source>Can&apos;t find feed URL!</source>
     <target>Sie finden nicht die URL des Feed!</target>
 </phrase>
+<phrase>
+    <source>Show/hide tree feeds</source>
+    <target>Anzeigen / ausblenden Baum-Feeds</target>
+</phrase>
+<phrase>
+    <source>Switch focus between panels (tree feeds, list news, browser)</source>
+    <target>Schalten Sie den Fokus zwischen Panels (Baum-Feeds, Nachrichten-Liste, Browser)</target>
+</phrase>
+<phrase>
+    <source>Switch focus between panels</source>
+    <target>Schalten Sie den Fokus zwischen Panels</target>
+</phrase>
+<phrase>
+    <source>Contact</source>
+    <target>Kontakt</target>
+</phrase>
+<phrase>
+    <source>Hungarian (%1)</source>
+    <target>Ungarisch (%1)</target>
+</phrase>
+<phrase>
+    <source>Opening feed:</source>
+    <target>Eröffnung der Feed:</target>
+</phrase>
+<phrase>
+    <source>Nothing to do</source>
+    <target>Nichts zu tun</target>
+</phrase>
+<phrase>
+    <source>Open news</source>
+    <target>Artikel öffnen</target>
+</phrase>
+<phrase>
+    <source>Position at top of list news</source>
+    <target>Position an der Spitze der Liste Artikels</target>
+</phrase>
+<phrase>
+    <source>Position on last opened news</source>
+    <target>Position über zuletzt geöffnete Artikel</target>
+</phrase>
 </QPH>
