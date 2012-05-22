@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.8.7+</B> (XX May 2012)
+<P><B>Version 0.9.0</B> (22 May 2012)
 <UL>
 <LI>Main: Database reconstruction (<a href="http://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</LI>
 
