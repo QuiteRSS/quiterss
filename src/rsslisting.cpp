@@ -81,6 +81,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
+  tabBar_ = qFindChild<QTabBar*>(tabWidget_);
+  tabBar_->installEventFilter(this);
   setCentralWidget(tabWidget_);
 
   connect(this, SIGNAL(signalCloseApp()),
@@ -186,6 +188,14 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   } else if (obj == toolBarNull_) {
     if (event->type() == QEvent::MouseButtonRelease) {
       slotVisibledFeedsDock();
+    }
+    return false;
+  } else if (tabBar_) {
+    if (event->type() == QEvent::MouseButtonPress) {
+      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+      if (mouseEvent->button() & Qt::MiddleButton) {
+        slotTabCloseRequested(tabBar_->tabAt(mouseEvent->pos()));
+      }
     }
     return false;
   } else {

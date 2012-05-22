@@ -103,6 +103,7 @@ private:
   FeedsModel *feedsModel_;
   NewsModel *newsModel_;
   QTabWidget *tabWidget_;
+  QTabBar* tabBar_;
 
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
