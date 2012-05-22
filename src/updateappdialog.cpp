@@ -41,7 +41,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     updateApplayout->addLayout(buttonLayout);
 
     QString urlHistory;
-    if (lang == "ru")
+    if (lang.contains("ru", Qt::CaseInsensitive))
       urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_RU";
     else urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_EN";
     historyReply_ = manager_.get(QNetworkRequest(QUrl(urlHistory)));

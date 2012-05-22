@@ -344,14 +344,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "1" << QString(tr("French (%1)")).arg("FR") << "0.8.7"
+  treeItem << "1" << QString(tr("French (%1)")).arg("FR") << "0.9.0"
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_FR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "2" << QString(tr("German (%1)")).arg("DE") << "0.8.7"
+  treeItem << "2" << QString(tr("German (%1)")).arg("DE") << "0.9.0"
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_DE"));
@@ -365,7 +365,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "4" << QString(tr("Russian (%1)")).arg("RU") << "0.8.7"
+  treeItem << "4" << QString(tr("Russian (%1)")).arg("RU") << "0.9.0"
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_RU"));
