@@ -288,6 +288,8 @@ private:
 
   bool reopenFeedStartup_;
 
+  QModelIndex selectFeedIndex;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
@@ -295,14 +297,15 @@ private slots:
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotSetItemRead(QModelIndex index, int read);
   void markNewsRead();
-  void markAllNewsRead();
+  void markAllNewsRead(bool openFeed = true);
+  void markFeedRead();
   void slotLoadStarted();
   void slotLoadFinished(bool ok);
   void setFeedsFilter(QAction*, bool clicked = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
   void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
-  void slotUpdateStatus();
+  void slotUpdateStatus(bool openFeed = true);
   void setFeedRead(int feedId);
   void slotShowAboutDlg();
   void deleteNews();

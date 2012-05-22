@@ -24,8 +24,11 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mousePressEvent(QMouseEvent *event)
 {
-  if (!(event->buttons() & Qt::MiddleButton))
-    QTreeView::mousePressEvent(event);
+  if (!(event->buttons() & Qt::MiddleButton)){
+    if (event->buttons() & Qt::RightButton) {
+//      setCurrentIndex(indexAt(event->pos()));
+    } else QTreeView::mousePressEvent(event);
+  }
 }
 
 /*virtual*/ void FeedsView::mouseMoveEvent(QMouseEvent *event)

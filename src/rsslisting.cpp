@@ -705,7 +705,7 @@ void RSSListing::createActions()
   markFeedRead_ = new QAction(this);
   markFeedRead_->setObjectName("markFeedRead");
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
-  connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markAllNewsRead()));
+  connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markFeedRead()));
   feedProperties_ = new QAction(this);
   feedProperties_->setObjectName("feedProperties");
   feedProperties_->setIcon(QIcon(":/images/preferencesFeed"));
@@ -2129,14 +2129,14 @@ void RSSListing::markNewsRead()
   }
 }
 
-void RSSListing::markAllNewsRead()
+void RSSListing::markAllNewsRead(bool openFeed)
 {
   if (newsModel_->rowCount() == 0) return;
 
   int feedId = feedsModel_->index(
       feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
 
-  int currentRow = newsView_->currentIndex().row();
+
   QSqlQuery q(db_);
   QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
       arg(feedId);
@@ -2145,24 +2145,33 @@ void RSSListing::markAllNewsRead()
       arg(feedId);
   q.exec(qStr);
 
-  setNewsFilter(newsFilterGroup_->checkedAction(), false);
+  if (openFeed) {
+    int currentRow = newsView_->currentIndex().row();
 
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
-  int row = -1;
-  for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-        feedsModel_->index(feedsView_->currentIndex().row(),
-                           feedsModel_->fieldIndex("currentNews")).data().toInt()) {
-      row = i;
-      break;
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(feedsView_->currentIndex().row(),
+                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+        break;
+      }
     }
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    if (currentRow != row)
+      updateWebView(newsModel_->index(row, 6));
   }
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  if (currentRow != row)
-    updateWebView(newsModel_->index(row, 6));
-  slotUpdateStatus();
+  slotUpdateStatus(openFeed);
+}
+
+void RSSListing::markFeedRead()
+{
+  markAllNewsRead(false);
 }
 
 /*! \brief Подсчёт новостей
@@ -2173,7 +2182,7 @@ void RSSListing::markAllNewsRead()
  * Запись этих данных в таблицу лент (100мс)
  * Вывод этих данных в статусную строку
  */
-void RSSListing::slotUpdateStatus()
+void RSSListing::slotUpdateStatus(bool openFeed)
 {
   QSqlQuery q(db_);
   QString qStr;
@@ -2219,8 +2228,10 @@ void RSSListing::slotUpdateStatus()
   }
   feedsView_->setCurrentIndex(feedsModel_->index(feedRow, 1));
 
-  statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
-  statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
+  if (openFeed) {
+    statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
+    statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
+  }
 }
 
 void RSSListing::slotLoadStarted()
@@ -2535,7 +2546,8 @@ void RSSListing::createMenuFeed()
 
 void RSSListing::showContextMenuFeed(const QPoint &p)
 {
-  if (feedsView_->currentIndex().isValid())
+  selectFeedIndex = feedsView_->indexAt(p);
+  if (selectFeedIndex.isValid())
     feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
 }
 
