@@ -31,25 +31,6 @@
     </message>
 </context>
 <context>
-    <name>AddFeedDialog</name>
-    <message>
-        <source>Add feed</source>
-        <translation type="obsolete">Ajouter un flux</translation>
-    </message>
-    <message>
-        <source>Feed Title:</source>
-        <translation type="obsolete">Titre du flux :</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="obsolete">URL du flux:</translation>
-    </message>
-    <message>
-        <source>Feed Url:</source>
-        <translation type="obsolete">URL du flux :</translation>
-    </message>
-</context>
-<context>
     <name>AddFeedWizard</name>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="10"/>
@@ -87,7 +68,7 @@
         <location filename="../src/addfeedwizard.cpp" line="216"/>
         <location filename="../src/addfeedwizard.cpp" line="323"/>
         <source>Duplicate feed!</source>
-        <translation type="unfinished">Flux en double!</translation>
+        <translation>Flux en double!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="347"/>
@@ -254,10 +235,6 @@
         <location filename="../src/filterrulesdialog.h" line="31"/>
         <source>Read</source>
         <translation>Lu</translation>
-    </message>
-    <message>
-        <source>Stared</source>
-        <translation type="obsolete">Étoilé</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="31"/>
@@ -630,27 +607,27 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="220"/>
         <source>Position on last opened news</source>
-        <translation type="unfinished"></translation>
+        <translation>Positionner sur le dernier article lu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="221"/>
         <source>Position at top of list news</source>
-        <translation type="unfinished"></translation>
+        <translation>Positionner en haut de la liste des articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="222"/>
         <source>Open news</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir article</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="223"/>
         <source>Nothing to do</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne rien faire</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="239"/>
         <source>Opening feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir flux :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="246"/>
@@ -661,10 +638,6 @@
         <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Montrer la description des articles au lieu de charger la page web</translation>
-    </message>
-    <message>
-        <source>Show news&apos; description instead loading web page</source>
-        <translation type="obsolete">Montrer la description des articles au lieu de charger la page web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="260"/>
@@ -724,17 +697,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="334"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="335"/>
         <source>Author</source>
-        <translation type="unfinished">Auteur</translation>
+        <translation>Auteur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="335"/>
         <source>Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Contact</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="347"/>
@@ -749,7 +722,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>Hungarian (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hongrois (%1)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="368"/>
@@ -1036,10 +1009,6 @@
         <translation> Tous : %1 </translation>
     </message>
     <message>
-        <source>Error loading to WebVeiw</source>
-        <translation type="obsolete">Erreur de chargement dans la vue Web</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2667"/>
         <location filename="../src/rsslisting.cpp" line="2903"/>
         <source>Load images</source>
@@ -1249,26 +1218,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2997"/>
         <source>Switch focus between panels</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus entre les panneaux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2999"/>
         <source>Switch focus between panels (tree feeds, list news, browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus entre les panneaux (arborescence des flux, liste des articles, navigateur)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3001"/>
         <source>Show/hide tree feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer/cacher arborescence des flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3013"/>
         <source>Home</source>
         <translation>Maison</translation>
-    </message>
-    <message>
-        <source>Open options gialog</source>
-        <translation type="obsolete">Ouvrir dialogue de configuration</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2328"/>
@@ -1323,10 +1288,6 @@
         <location filename="../src/rsslisting.cpp" line="2945"/>
         <source>Check for updates...</source>
         <translation>Vérifier les mises à jour...</translation>
-    </message>
-    <message>
-        <source>Open in Browser</source>
-        <translation type="obsolete">Ouvrir dans un navigateur internet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2949"/>
