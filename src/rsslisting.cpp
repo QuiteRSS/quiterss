@@ -1030,7 +1030,7 @@ void RSSListing::readSettings()
   QString strLocalLang = QLocale::system().name().left(2);
   QDir langDir = qApp->applicationDirPath() + "/lang";
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
-    if (strLocalLang == file.section('.', 0, 0).section('_', 1))
+    if (strLocalLang.contains(file.section('.', 0, 0).section('_', 1), Qt::CaseInsensitive))
       strLang = strLocalLang;
   }
   langFileName_ = settings_->value("langFileName", strLang).toString();
@@ -1260,14 +1260,15 @@ void RSSListing::deleteFeed()
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("Delete feed"));
     msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
-                   arg(feedsModel_->record(feedsView_->currentIndex().row()).field("text").value().toString()));
+                   arg(feedsModel_->record(feedsView_->selectFeedIndex.row())
+                       .field("text").value().toString()));
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
 
     if (msgBox.exec() == QMessageBox::No) return;
 
     int id = feedsModel_->record(
-          feedsView_->currentIndex().row()).field("id").value().toInt();
+          feedsView_->selectFeedIndex.row()).field("id").value().toInt();
     db_.transaction();
     QSqlQuery q(db_);
     q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
@@ -1276,11 +1277,18 @@ void RSSListing::deleteFeed()
     q.finish();
     db_.commit();
 
-    int row = feedsView_->currentIndex().row();
+    id = feedsModel_->index(feedsView_->currentIndex().row(),
+                            feedsModel_->fieldIndex("id")).data().toInt();
     feedsModel_->select();
-    if (feedsModel_->rowCount() == row) row--;
-    feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-    slotFeedsTreeClicked(feedsModel_->index(row, 1));
+    int rowFeeds = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
+        rowFeeds = i;
+      }
+    }
+    if (feedsModel_->rowCount() == rowFeeds) rowFeeds--;
+    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+    slotFeedsTreeClicked(feedsModel_->index(rowFeeds, 1));
   }
 }
 
@@ -1348,7 +1356,6 @@ void RSSListing::slotImportFeeds()
           q.exec();
           qDebug() << q.lastQuery() << q.boundValues();
           qDebug() << q.lastError().number() << ": " << q.lastError().text();
-//          q.exec(kCreateNewsTableQuery.arg(q.lastInsertId().toString()));
           q.finish();
 
           persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
@@ -1877,7 +1884,7 @@ void RSSListing::showOptionDlg()
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
 
-  if (langFileName_ != optionsDialog->language()) {
+  if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();
     appInstallTranslator();
   }
@@ -2779,10 +2786,10 @@ void RSSListing::appInstallTranslator()
   qApp->removeTranslator(translator_);
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
-                                     QString("/lang/quiterss_%1").arg(langFileName_));
+                                     QString("/lang/quiterss_%1").arg(langFileName_.toLower()));
 #else
   translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
-                                     arg(langFileName_));
+                                     arg(langFileName_.toLower()));
 #endif
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();

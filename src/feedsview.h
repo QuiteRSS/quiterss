@@ -8,6 +8,7 @@ class FeedsView : public QTreeView
   Q_OBJECT
 public:
   FeedsView(QWidget * parent = 0);
+  QModelIndex selectFeedIndex;
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);
