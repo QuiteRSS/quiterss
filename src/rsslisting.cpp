@@ -1135,7 +1135,7 @@ void RSSListing::readSettings()
   QString strLocalLang = QLocale::system().name().left(2);
   QDir langDir = qApp->applicationDirPath() + "/lang";
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
-    if (strLocalLang == file.section('.', 0, 0).section('_', 1))
+    if (strLocalLang.contains(file.section('.', 0, 0).section('_', 1), Qt::CaseInsensitive))
       strLang = strLocalLang;
   }
   langFileName_ = settings_->value("langFileName", strLang).toString();
@@ -1971,7 +1971,7 @@ void RSSListing::showOptionDlg()
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
 
-  if (langFileName_ != optionsDialog->language()) {
+  if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();
     appInstallTranslator();
   }
@@ -2854,10 +2854,10 @@ void RSSListing::appInstallTranslator()
   qApp->removeTranslator(translator_);
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
-                                     QString("/lang/quiterss_%1").arg(langFileName_));
+                                     QString("/lang/quiterss_%1").arg(langFileName_.toLower()));
 #else
   translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
-                                     arg(langFileName_));
+                                     arg(langFileName_.toLower()));
 #endif
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
