@@ -1180,6 +1180,10 @@ void RSSListing::readSettings()
     openInExternalBrowserAct_->setVisible(true);
   } else {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    QList <QKeySequence> keySequenceList;
+    keySequenceList << openInBrowserAct_->shortcut()
+                    << openInExternalBrowserAct_->shortcut();
+    openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
   }
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
@@ -1905,6 +1909,8 @@ void RSSListing::showOptionDlg()
     return;
   }
 
+  optionsDialog->saveActionShortcut(listActions_);
+
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
 
@@ -1931,6 +1937,10 @@ void RSSListing::showOptionDlg()
     openInExternalBrowserAct_->setVisible(true);
   } else {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    QList <QKeySequence> keySequenceList;
+    keySequenceList << openInBrowserAct_->shortcut()
+                    << openInExternalBrowserAct_->shortcut();
+    openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
   }
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
@@ -1993,7 +2003,6 @@ void RSSListing::showOptionDlg()
                                       optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
   webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
                                     optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
-  optionsDialog->saveActionShortcut(listActions_);
 
   delete optionsDialog;
   writeSettings();
