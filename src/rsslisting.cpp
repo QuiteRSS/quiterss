@@ -123,14 +123,14 @@ RSSListing::~RSSListing()
 
     feedsCleanUp(feedId);
 
-    qStr = QString("UPDATE news SET title='', published='' "
+    qStr = QString("UPDATE news SET title='', published='', deleted=2 "
         "WHERE feedId=='%1' AND deleted=1 AND guid!=''").
         arg(feedId);
     qt.exec(qStr);
 
     qStr = QString("UPDATE news "
         "SET description='', content='', received='', author_name='', "
-        "link_href='', category='', deleted=2 "
+        "category='', deleted=2 "
         "WHERE feedId=='%1' AND deleted=1").
         arg(feedId);
     qt.exec(qStr);
