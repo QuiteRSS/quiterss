@@ -369,7 +369,7 @@ void RSSListing::createNewsDock()
   newsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   newsModel_ = new NewsModel(this, newsView_);
   newsModel_->setTable("news");
-  newsModel_->select();
+  newsModel_->setFilter("feedId=-1");
   newsHeader_ = new NewsHeader(newsModel_, newsView_);
 
   newsView_->setModel(newsModel_);
