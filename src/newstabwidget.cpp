@@ -7,7 +7,7 @@ NewsTabWidget::NewsTabWidget(QSettings *settings, QWidget *parent)
   : QWidget(parent),
     settings_(settings)
 {
-  createNewsDock();
+  createNewsList();
   createWebWidget();
   readSettings();
   retranslateStrings();
@@ -23,13 +23,13 @@ NewsTabWidget::NewsTabWidget(QSettings *settings, QWidget *parent)
   setLayout(layout);
 }
 
-void NewsTabWidget::createNewsDock()
+void NewsTabWidget::createNewsList()
 {
   newsView_ = new NewsView(this);
   newsView_->setFrameStyle(QFrame::NoFrame);
   newsModel_ = new NewsModel(this, newsView_);
   newsModel_->setTable("news");
-  newsModel_->select();
+  newsModel_->setFilter("feedId=-1");
   newsHeader_ = new NewsHeader(newsModel_, newsView_);
 
   newsView_->setModel(newsModel_);

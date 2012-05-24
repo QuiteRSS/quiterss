@@ -14,7 +14,7 @@ class NewsTabWidget : public QWidget
 {
   Q_OBJECT
 private:
-  void createNewsDock();
+  void createNewsList();
   void createWebWidget();
   void readSettings();
 
