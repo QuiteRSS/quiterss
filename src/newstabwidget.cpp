@@ -3,9 +3,10 @@
 #include "rsslisting.h"
 #include "webpage.h"
 
-NewsTabWidget::NewsTabWidget(QSettings *settings, QWidget *parent)
+NewsTabWidget::NewsTabWidget(QSettings *settings, int feedId, QWidget *parent)
   : QWidget(parent),
-    settings_(settings)
+    settings_(settings),
+    feedId_(feedId)
 {
   createNewsList();
   createWebWidget();

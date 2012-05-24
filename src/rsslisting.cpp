@@ -404,16 +404,16 @@ void RSSListing::createToolBarNull()
           this, SLOT(updateIconToolBarNull(bool)));
 }
 
-void RSSListing::createNewsTab(bool on)
+void RSSListing::createNewsTab()
 {
   int index = tabWidget_->currentIndex();
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
 
   newsModel_ = currentNewsTab->newsModel_;
   newsHeader_ = currentNewsTab->newsHeader_;
-  newsView_ = currentNewsTab->newsView_;
-
+  newsView_ = currentNewsTab->newsView_;  
   newsToolBar_ = currentNewsTab->newsToolBar_;
+
   newsToolBar_->addAction(newsFilter_);
 
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
@@ -1609,7 +1609,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   }
 
   if ((!tabWidget_->count() && clicked) || createTab) {
-    int indexTab = tabWidget_->addTab(new NewsTabWidget(settings_, this), "");
+    int feedId = feedsModel_->index(feedRow, 0).data().toInt();
+    int indexTab = tabWidget_->addTab(
+          new NewsTabWidget(settings_, feedId, this), "");
     tabWidget_->setCurrentIndex(indexTab);
   }
 
@@ -1694,7 +1696,7 @@ void RSSListing::slotNewsViewClicked(QModelIndex index)
   }
 }
 
-void RSSListing::slotNewsViewSelected(QModelIndex index)
+void RSSListing::slotNewsViewSelected(QModelIndex index, bool clicked)
 {
   QElapsedTimer timer;
   timer.start();
@@ -1720,7 +1722,7 @@ void RSSListing::slotNewsViewSelected(QModelIndex index)
 
   if (!((indexId == indexIdOld) && (currentFeedId == currrentFeedIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
-      (QApplication::mouseButtons() & Qt::MiddleButton)) {
+      (QApplication::mouseButtons() & Qt::MiddleButton) || clicked) {
 
     QWebSettings::globalSettings()->clearMemoryCaches();
     webView_->history()->clear();
@@ -2087,6 +2089,7 @@ void RSSListing::slotSetItemRead(QModelIndex index, int read)
       newsView_->setCurrentIndex(curIndex);
     newsView_->verticalScrollBar()->setValue(topRow);
   }
+
   slotUpdateStatus();
 }
 
@@ -3462,6 +3465,7 @@ void RSSListing::slotOpenNewsWebView()
 
 void RSSListing::slotOpenNewTab()
 {
+  feedsView_->setCurrentIndex(feedsView_->selectFeedIndex);
   slotFeedsTreeSelected(feedsView_->currentIndex(), true, true);
 }
 
@@ -3486,5 +3490,34 @@ void RSSListing::slotTabCloseRequested(int index)
 
 void RSSListing::slotTabCurrentChanged(int index)
 {
-  if (tabWidget_->count()) createNewsTab();
+  if (tabWidget_->count()) {
+    createNewsTab();
+    int rowFeeds = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentNewsTab->feedId_) {
+        rowFeeds = i;
+      }
+    }
+    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+
+    int newsId = newsModel_->index(
+          newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
+    newsModel_->select();
+
+    if (newsModel_->rowCount() != 0) {
+      while (newsModel_->canFetchMore())
+        newsModel_->fetchMore();
+    }
+
+    int newsRow = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
+        newsRow = i;
+      }
+    }
+    newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+
+    slotNewsViewSelected(newsModel_->index(newsRow, 6), true);
+  }
 }

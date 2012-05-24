@@ -19,12 +19,13 @@ private:
   void readSettings();
 
   QSettings *settings_;
-
   QWidget *newsWidget_;
 
 public:
-  explicit NewsTabWidget(QSettings *settings, QWidget *parent = 0);
+  explicit NewsTabWidget(QSettings *settings, int feedId, QWidget *parent = 0);
   void retranslateStrings();
+
+  int feedId_;
 
   NewsModel *newsModel_;
   NewsView *newsView_;

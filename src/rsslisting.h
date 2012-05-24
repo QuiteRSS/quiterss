@@ -41,7 +41,7 @@ public slots:
   void slotGetFeed();
   void slotGetAllFeeds();
   void slotNewsViewClicked(QModelIndex index);
-  void slotNewsViewSelected(QModelIndex index);
+  void slotNewsViewSelected(QModelIndex index, bool clicked = false);
   void slotNewsViewDoubleClicked(QModelIndex index);
   void showOptionDlg();
   void receiveMessage(const QString&);
@@ -69,7 +69,7 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsTab(bool on = true);
+  void createNewsTab();
   void createToolBarNull();
   void createWebWidget();
   void createActions();
