@@ -555,8 +555,10 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
           emit signalShortcutTreeUpDownPressed();
       }
     } else {
-      if ((keyEvent->key() < Qt::Key_Shift) ||
-          (keyEvent->key() > Qt::Key_Alt)) {
+      if (((keyEvent->key() < Qt::Key_Shift) ||
+          (keyEvent->key() > Qt::Key_Alt)) &&
+          (keyEvent->key() != Qt::Key_Return) &&
+          (keyEvent->key() != Qt::Key_Enter)) {
         QString str;
         if ((keyEvent->modifiers() & Qt::ShiftModifier) ||
             (keyEvent->modifiers() & Qt::ControlModifier) ||
