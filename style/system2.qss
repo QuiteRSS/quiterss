@@ -7,11 +7,11 @@
 QTabWidget::pane { /* Рамка виджета со вкладками */
 	background: white;
 	border: 1px solid gray;
-	top: -1px;
 }
 
 QTabWidget::tab-bar {
 	left: 2px; /* сдвигаем вправо на 2px */
+	bottom: -1px;
 }
 
 /* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
@@ -35,7 +35,6 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 }
 
 QTabBar::tab:selected {
-	border-color: #9B9B9B;
 	border-bottom: none;
 }
 
