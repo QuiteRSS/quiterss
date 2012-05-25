@@ -83,7 +83,6 @@ private:
   void createFeedsDock();
   void createNewsTab();
   void createToolBarNull();
-  void createWebWidget();
   void createActions();
   void createShortcut();
   void loadActionShortcuts();

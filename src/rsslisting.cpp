@@ -15,7 +15,6 @@
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
-#include "webpage.h"
 
 /*!****************************************************************************/
 RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent)
@@ -409,14 +408,6 @@ void RSSListing::createNewsTab()
   newsHeader_ = currentNewsTab->newsHeader_;
   newsView_ = currentNewsTab->newsView_;  
 
-//  connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
-//          this, SLOT(showContextMenuNews(const QPoint &)));
-
-  createWebWidget();
-}
-
-void RSSListing::createWebWidget()
-{
   webView_ = currentNewsTab->webView_;
   webPanel_ = currentNewsTab->webPanel_;
 }
@@ -2288,28 +2279,6 @@ void RSSListing::deleteNews()
   slotUpdateStatus();
 }
 
-//void RSSListing::createMenuNews()
-//{
-//  newsContextMenu_ = new QMenu(this);
-//  newsContextMenu_->addAction(openInBrowserAct_);
-//  newsContextMenu_->addAction(openInExternalBrowserAct_);
-//  newsContextMenu_->addSeparator();
-//  newsContextMenu_->addAction(markNewsRead_);
-//  newsContextMenu_->addAction(markAllNewsRead_);
-//  newsContextMenu_->addSeparator();
-//  newsContextMenu_->addAction(markStarAct_);
-//  newsContextMenu_->addSeparator();
-//  newsContextMenu_->addAction(updateFeedAct_);
-//  newsContextMenu_->addSeparator();
-//  newsContextMenu_->addAction(deleteNewsAct_);
-//}
-
-//void RSSListing::showContextMenuNews(const QPoint &p)
-//{
-//  if (newsView_->currentIndex().isValid())
-//    newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
-//}
-
 void RSSListing::openInBrowserNews()
 {
   currentNewsTab->slotNewsViewDoubleClicked(newsView_->currentIndex());
@@ -2401,11 +2370,6 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
   if (selectFeedIndex.isValid())
     feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
 }
-
-//void RSSListing::slotLinkHovered(const QString &link, const QString &, const QString &)
-//{
-//  statusBar()->showMessage(link, 3000);
-//}
 
 void RSSListing::setAutoLoadImages()
 {
@@ -2707,8 +2671,6 @@ void RSSListing::retranslateStrings() {
 
   if (newsView_) {
     currentNewsTab->retranslateStrings();
-//    webHomePageAct_->setText(tr("Home"));
-//    webExternalBrowserAct_->setText(tr("Open in external browser"));
   }
 }
 
@@ -3159,7 +3121,7 @@ void RSSListing::slotTabCloseRequested(int index)
   delete tabWidget_->widget(index);
 }
 
-void RSSListing::slotTabCurrentChanged(int index)
+void RSSListing::slotTabCurrentChanged(int)
 {
   if (tabWidget_->count()) {
     createNewsTab();
@@ -3189,6 +3151,6 @@ void RSSListing::slotTabCurrentChanged(int index)
     }
     newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
 
-    currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6), true);
+    currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6));
   }
 }
