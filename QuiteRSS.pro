@@ -28,7 +28,8 @@ HEADERS += \
     src/db_func.h \
     src/webview.h \
     src/addfeedwizard.h \
-    src/newstabwidget.h
+    src/newstabwidget.h \
+    src/logfile.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -56,7 +57,8 @@ SOURCES += \
     src/db_func.cpp \
     src/webview.cpp \
     src/addfeedwizard.cpp \
-    src/newstabwidget.cpp
+    src/newstabwidget.cpp \
+    src/logfile.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
