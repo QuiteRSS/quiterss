@@ -86,12 +86,15 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabWidget_ = new QTabWidget(this);
   tabWidget_->setObjectName("tabWidget_");
   tabWidget_->setTabsClosable(true);
+
   connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
+  tabBar_->setStyleSheet("QTabBar::tab {width: 120px; text-align: left;}");
   tabBar_->installEventFilter(this);
+
   setCentralWidget(tabWidget_);
 
   connect(this, SIGNAL(signalCloseApp()),
