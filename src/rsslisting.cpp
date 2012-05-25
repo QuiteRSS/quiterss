@@ -16,6 +16,19 @@
 #include "rsslisting.h"
 #include "VersionNo.h"
 
+/*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
+void RSSListing::receiveMessage(const QString& message)
+{
+  qDebug() << QString("Received message: '%1'").arg(message);
+  if (!message.isEmpty()){
+    QStringList params = message.split('\n');
+    foreach (QString param, params) {
+      if (param == "--show") slotShowWindows();
+      if (param == "--exit") slotClose();
+    }
+  }
+}
+
 /*!****************************************************************************/
 RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent)
   : QMainWindow(parent),
@@ -1752,19 +1765,6 @@ void RSSListing::showOptionDlg()
 
   writeSettings();
   saveActionShortcuts();
-}
-
-/*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
-void RSSListing::receiveMessage(const QString& message)
-{
-  qDebug() << QString("Received message: '%1'").arg(message);
-  if (!message.isEmpty()){
-    QStringList params = message.split('\n');
-    foreach (QString param, params) {
-      if (param == "--show") slotShowWindows();
-      if (param == "--exit") slotClose();
-    }
-  }
 }
 
 /*! \brief Создание меню трея *************************************************/
