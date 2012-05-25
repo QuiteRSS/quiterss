@@ -1,6 +1,8 @@
 #include <QtGui>
 
 #include <qtsingleapplication.h>
+
+#include "logfile.h"
 #include "VersionNo.h"
 #include "rsslisting.h"
 
@@ -113,6 +115,10 @@ QSettings *settings_;
   QFile file(fileString);
   file.open(QFile::ReadOnly);
   app.setStyleSheet(QLatin1String(file.readAll()));
+
+//#if defined(QT_NO_DEBUG_OUTPUT)
+//  qInstallMsgHandler(logMessageOutput);
+//#endif
 
   QString versionDB = settings_->value("versionDB", "1.0").toString();
   if (versionDB != "0.9.0") showSplashScreen_ = true;

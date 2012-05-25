@@ -27,7 +27,8 @@ HEADERS += \
     src/lineedit.h \
     src/db_func.h \
     src/webview.h \
-    src/addfeedwizard.h
+    src/addfeedwizard.h \
+    src/logfile.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -54,7 +55,8 @@ SOURCES += \
     src/lineedit.cpp \
     src/db_func.cpp \
     src/webview.cpp \
-    src/addfeedwizard.cpp
+    src/addfeedwizard.cpp \
+    src/logfile.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
