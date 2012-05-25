@@ -288,6 +288,9 @@ private slots:
   void setNewsFilter(QAction*, bool clicked = true);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
 
+  void slotNewsUpPressed();
+  void slotNewsDownPressed();
+
   void setFeedRead(int feedId);
   void slotShowAboutDlg();
   void deleteNews();
@@ -325,7 +328,6 @@ private slots:
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
-  void signalWebViewSetContent(QString content);
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
 };

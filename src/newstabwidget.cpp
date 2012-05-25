@@ -18,15 +18,21 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   createWebWidget();
   retranslateStrings();
 
-  QSplitter *centralSplitter = new QSplitter(Qt::Vertical);
-  centralSplitter->addWidget(newsWidget_);
-  centralSplitter->addWidget(webWidget_);
+  newsTabWidgetSplitter_ = new QSplitter(Qt::Vertical);
+  newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
+  newsTabWidgetSplitter_->addWidget(newsWidget_);
+  newsTabWidgetSplitter_->addWidget(webWidget_);
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
   layout->setSpacing(0);
-  layout->addWidget(centralSplitter, 0);
+  layout->addWidget(newsTabWidgetSplitter_, 0);
   setLayout(layout);
+
+  newsTabWidgetSplitter_->restoreGeometry(
+        rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
+  newsTabWidgetSplitter_->restoreState(
+        rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
 }
 
 //! Создание новостного списка и всех сопутствующих панелей

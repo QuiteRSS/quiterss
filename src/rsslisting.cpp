@@ -73,8 +73,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   createFeedsDock();
   createToolBarNull();
-  connect(this, SIGNAL(signalWebViewSetContent(QString)),
-                SLOT(slotWebViewSetContent(QString)), Qt::QueuedConnection);
 
   createActions();
   createShortcut();
@@ -1138,8 +1136,14 @@ void RSSListing::writeSettings()
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
   if (tabWidget_->count()) {
-    settings_->setValue("NewsHeaderGeometry", newsHeader_->saveGeometry());
-    settings_->setValue("NewsHeaderState", newsHeader_->saveState());
+    settings_->setValue("NewsHeaderGeometry",
+                        currentNewsTab->newsHeader_->saveGeometry());
+    settings_->setValue("NewsHeaderState",
+                        currentNewsTab->newsHeader_->saveState());
+    settings_->setValue("NewsTabSplitter",
+                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
+    settings_->setValue("NewsTabSplitter",
+                        currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
   settings_->setValue("networkProxy/type",     networkProxy_.type());
@@ -2201,6 +2205,18 @@ void RSSListing::setFeedRead(int feedId)
   db_.commit();
 }
 
+void RSSListing::slotNewsUpPressed()
+{
+  if (newsView_)
+    currentNewsTab->slotNewsUpPressed();
+}
+
+void RSSListing::slotNewsDownPressed()
+{
+  if (newsView_)
+    currentNewsTab->slotNewsDownPressed();
+}
+
 void RSSListing::slotShowAboutDlg()
 {
   AboutDialog *aboutDialog = new AboutDialog(this);
@@ -3075,14 +3091,17 @@ void RSSListing::slotOpenNewTab()
 void RSSListing::slotTabCloseRequested(int index)
 {
   if (tabWidget_->count() == 1) {
-    settings_->setValue("/newsFontFamily", newsFontFamily_);
-    settings_->setValue("/newsFontSize", newsFontSize_);
-    settings_->setValue("/WebFontFamily", webFontFamily_);
-    settings_->setValue("/WebFontSize", webFontSize_);
-
-    settings_->setValue("NewsHeaderGeometry", newsHeader_->saveGeometry());
-    settings_->setValue("NewsHeaderState", newsHeader_->saveState());
+    settings_->setValue("NewsHeaderGeometry",
+                        currentNewsTab->newsHeader_->saveGeometry());
+    settings_->setValue("NewsHeaderState",
+                        currentNewsTab->newsHeader_->saveState());
+    settings_->setValue("NewsTabSplitter",
+                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
+    settings_->setValue("NewsTabSplitter",
+                        currentNewsTab->newsTabWidgetSplitter_->saveState());
+    feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
   }
+
   delete tabWidget_->widget(index);
 }
 

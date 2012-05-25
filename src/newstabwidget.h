@@ -44,6 +44,7 @@ public:
   NewsView *newsView_;
   NewsHeader *newsHeader_;
   QToolBar *newsToolBar_;
+  QSplitter *newsTabWidgetSplitter_;
 
   QLabel *webPanelTitle_;
   QLabel *webPanelTitleLabel_;
@@ -64,11 +65,11 @@ public slots:
   void slotNewsViewClicked(QModelIndex index);
   void slotNewsViewSelected(QModelIndex index, bool clicked = false);
   void slotNewsViewDoubleClicked(QModelIndex index);
+  void slotNewsUpPressed();
+  void slotNewsDownPressed();
 
 private slots:
   void showContextMenuNews(const QPoint &p);
-  void slotNewsUpPressed();
-  void slotNewsDownPressed();
   void slotSetItemRead(QModelIndex index, int read);
   void slotSetItemStar(QModelIndex index, int starred);
   void slotReadTimer();
