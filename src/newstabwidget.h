@@ -19,7 +19,6 @@ private:
   void createNewsList();
   void createMenuNews();
   void createWebWidget();
-  void readSettings();
 
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
@@ -30,16 +29,12 @@ private:
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
 
-  bool embeddedBrowserOn_;
-  bool showDescriptionNews_;
-
   QTimer *markNewsReadTimer_;
-  bool markNewsReadOn_;
-  int  markNewsReadTime_;
 
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
   void retranslateStrings();
+  void setSettings();
 
   void updateWebView(QModelIndex index);
 

@@ -403,6 +403,7 @@ void RSSListing::createNewsTab()
 {
   int index = tabWidget_->currentIndex();
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
+  currentNewsTab->setSettings();
 
   newsModel_ = currentNewsTab->newsModel_;
   newsHeader_ = currentNewsTab->newsHeader_;
@@ -961,13 +962,10 @@ void RSSListing::readSettings()
   feedsView_->setFont(QFont(fontFamily, fontSize));
   feedsModel_->font_ = feedsView_->font();
 
-//  fontFamily = settings_->value("/newsFontFamily", qApp->font().family()).toString();
-//  fontSize = settings_->value("/newsFontSize", 8).toInt();
-//  newsView_->setFont(QFont(fontFamily, fontSize));
-//  fontFamily = settings_->value("/WebFontFamily", qApp->font().family()).toString();
-//  fontSize = settings_->value("/WebFontSize", 12).toInt();
-//  webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
-//  webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
+  newsFontFamily_ = settings_->value("/newsFontFamily", qApp->font().family()).toString();
+  newsFontSize_ = settings_->value("/newsFontSize", 8).toInt();
+  webFontFamily_ = settings_->value("/WebFontFamily", qApp->font().family()).toString();
+  webFontSize_ = settings_->value("/WebFontSize", 12).toInt();
 
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
@@ -992,10 +990,8 @@ void RSSListing::readSettings()
 
   embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
   if (embeddedBrowserOn_) {
-//    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     openInExternalBrowserAct_->setVisible(true);
   } else {
-//    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
                     << openInExternalBrowserAct_->shortcut();
@@ -1003,12 +999,7 @@ void RSSListing::readSettings()
     openInExternalBrowserAct_->setVisible(false);
   }
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
-//  webView_->settings()->setAttribute(
-//        QWebSettings::JavascriptEnabled, javaScriptEnable_);
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
-//  webView_->settings()->setAttribute(
-//        QWebSettings::PluginsEnabled, pluginsEnable_);
-
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
 
@@ -1088,17 +1079,10 @@ void RSSListing::writeSettings()
   int fontSize = feedsView_->font().pointSize();
   settings_->setValue("/feedsFontSize", fontSize);
 
-  if (tabWidget_->count()) {
-    fontFamily = newsView_->font().family();
-    settings_->setValue("/newsFontFamily", fontFamily);
-    fontSize = newsView_->font().pointSize();
-    settings_->setValue("/newsFontSize", fontSize);
-
-    fontFamily = webView_->settings()->fontFamily(QWebSettings::StandardFont);
-    settings_->setValue("/WebFontFamily", fontFamily);
-    fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
-    settings_->setValue("/WebFontSize", fontSize);
-  }
+  settings_->setValue("/newsFontFamily", newsFontFamily_);
+  settings_->setValue("/newsFontSize", newsFontSize_);
+  settings_->setValue("/WebFontFamily", webFontFamily_);
+  settings_->setValue("/WebFontSize", webFontSize_);
 
   settings_->setValue("autoLoadImages", autoLoadImages_);
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
@@ -1662,13 +1646,9 @@ void RSSListing::showOptionDlg()
       arg(feedsView_->font().family()).
       arg(feedsView_->font().pointSize());
   optionsDialog->fontTree->topLevelItem(0)->setText(2, strFont);
-  strFont = QString("%1, %2").
-      arg(newsView_->font().family()).
-      arg(newsView_->font().pointSize());
+  strFont = QString("%1, %2").arg(newsFontFamily_).arg(newsFontSize_);
   optionsDialog->fontTree->topLevelItem(1)->setText(2, strFont);
-  strFont = QString("%1, %2").
-      arg(webView_->settings()->fontFamily(QWebSettings::StandardFont)).
-      arg(webView_->settings()->fontSize(QWebSettings::DefaultFontSize));
+  strFont = QString("%1, %2").arg(webFontFamily_).arg(webFontSize_);
   optionsDialog->fontTree->topLevelItem(2)->setText(2, strFont);
 
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
@@ -1706,10 +1686,8 @@ void RSSListing::showOptionDlg()
 
   embeddedBrowserOn_ = optionsDialog->embeddedBrowserOn_->isChecked();
   if (embeddedBrowserOn_) {
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     openInExternalBrowserAct_->setVisible(true);
   } else {
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
                     << openInExternalBrowserAct_->shortcut();
@@ -1717,11 +1695,7 @@ void RSSListing::showOptionDlg()
     openInExternalBrowserAct_->setVisible(false);
   }
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
-  webView_->settings()->setAttribute(
-        QWebSettings::JavascriptEnabled, javaScriptEnable_);
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
-  webView_->settings()->setAttribute(
-        QWebSettings::PluginsEnabled, pluginsEnable_);
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
@@ -1767,19 +1741,15 @@ void RSSListing::showOptionDlg()
   feedsView_->setFont(font);
   feedsModel_->font_ = font;
 
-  font = newsView_->font();
-  font.setFamily(
-        optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 0, 0));
-  font.setPointSize(
-        optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 1).toInt());
-  newsView_->setFont(font);
-
-  webView_->settings()->setFontFamily(QWebSettings::StandardFont,
-                                      optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0));
-  webView_->settings()->setFontSize(QWebSettings::DefaultFontSize,
-                                    optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt());
+  newsFontFamily_ = optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 0, 0);
+  newsFontSize_ = optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 1).toInt();
+  webFontFamily_ = optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0);
+  webFontSize_ = optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt();
 
   delete optionsDialog;
+
+  currentNewsTab->setSettings();
+
   writeSettings();
   saveActionShortcuts();
 }
@@ -3105,15 +3075,10 @@ void RSSListing::slotOpenNewTab()
 void RSSListing::slotTabCloseRequested(int index)
 {
   if (tabWidget_->count() == 1) {
-    QString fontFamily = newsView_->font().family();
-    settings_->setValue("/newsFontFamily", fontFamily);
-    int fontSize = newsView_->font().pointSize();
-    settings_->setValue("/newsFontSize", fontSize);
-
-    fontFamily = webView_->settings()->fontFamily(QWebSettings::StandardFont);
-    settings_->setValue("/WebFontFamily", fontFamily);
-    fontSize = webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
-    settings_->setValue("/WebFontSize", fontSize);
+    settings_->setValue("/newsFontFamily", newsFontFamily_);
+    settings_->setValue("/newsFontSize", newsFontSize_);
+    settings_->setValue("/WebFontFamily", webFontFamily_);
+    settings_->setValue("/WebFontSize", webFontSize_);
 
     settings_->setValue("NewsHeaderGeometry", newsHeader_->saveGeometry());
     settings_->setValue("NewsHeaderState", newsHeader_->saveState());

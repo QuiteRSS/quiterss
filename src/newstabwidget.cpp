@@ -16,7 +16,6 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   createNewsList();
   createMenuNews();
   createWebWidget();
-  readSettings();
   retranslateStrings();
 
   QSplitter *centralSplitter = new QSplitter(Qt::Vertical);
@@ -253,46 +252,24 @@ void NewsTabWidget::createWebWidget()
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
-void NewsTabWidget::readSettings()
+void NewsTabWidget::setSettings()
 {
-  QSettings *settings_ = rsslisting_->settings_;
-  settings_->beginGroup("/Settings");
+  newsView_->setFont(
+        QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+  webView_->settings()->setFontFamily(
+        QWebSettings::StandardFont, rsslisting_->webFontFamily_);
+  webView_->settings()->setFontSize(
+        QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
 
-  QString fontFamily = settings_->value("/newsFontFamily", qApp->font().family()).toString();
-  int fontSize = settings_->value("/newsFontSize", 8).toInt();
-  newsView_->setFont(QFont(fontFamily, fontSize));
-  fontFamily = settings_->value("/WebFontFamily", qApp->font().family()).toString();
-  fontSize = settings_->value("/WebFontSize", 12).toInt();
-  webView_->settings()->setFontFamily(QWebSettings::StandardFont, fontFamily);
-  webView_->settings()->setFontSize(QWebSettings::DefaultFontSize, fontSize);
-
-//  autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
-//  autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
-//  autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
-//  autoUpdatefeedsInterval_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
-
-//  openingFeedAction_ = settings_->value("openingFeedAction", 0).toInt();
-//  openNewsWebViewOn_ = settings_->value("openNewsWebViewOn", true).toBool();
-
-  markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
-  markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
-
-  showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
-
-  embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
-  if (embeddedBrowserOn_) {
+  if (rsslisting_->embeddedBrowserOn_) {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
   } else {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
   }
-  bool javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   webView_->settings()->setAttribute(
-        QWebSettings::JavascriptEnabled, javaScriptEnable_);
-  bool pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
+        QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
   webView_->settings()->setAttribute(
-        QWebSettings::PluginsEnabled, pluginsEnable_);
-
-  settings_->endGroup();
+        QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
 }
 
 //! Перезагрузка перевода
@@ -365,8 +342,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_->stop();
-    if (markNewsReadOn_)
-      markNewsReadTimer_->start(markNewsReadTime_*1000);
+    if (rsslisting_->markNewsReadOn_)
+      markNewsReadTimer_->start(rsslisting_->markNewsReadTime_*1000);
 
     QSqlQuery q(rsslisting_->db_);
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
@@ -390,7 +367,7 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  if (embeddedBrowserOn_) {
+  if (rsslisting_->embeddedBrowserOn_) {
     webView_->history()->clear();
     webControlPanel_->setVisible(true);
     webView_->load(QUrl(linkString.simplified()));
@@ -545,8 +522,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   if (QApplication::mouseButtons() & Qt::MiddleButton) {
     slotNewsViewDoubleClicked(index);
   }
-  if (!(QApplication::mouseButtons() & Qt::MiddleButton) || !embeddedBrowserOn_) {
-    if (!showDescriptionNews_) {
+  if (!(QApplication::mouseButtons() & Qt::MiddleButton) ||
+      !rsslisting_->embeddedBrowserOn_) {
+    if (!rsslisting_->showDescriptionNews_) {
       QString linkString = newsModel_->record(
             index.row()).field("link_href").value().toString();
       if (linkString.isEmpty())
@@ -574,7 +552,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     url.setScheme(hostUrl.scheme());
     url.setHost(hostUrl.host());
   }
-  if (embeddedBrowserOn_) {
+  if (rsslisting_->embeddedBrowserOn_) {
     if (!webControlPanel_->isVisible()) {
       webView_->history()->clear();
       webControlPanel_->setVisible(true);
@@ -620,7 +598,7 @@ void NewsTabWidget::slotWebViewSetContent(QString content)
 
 void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
 {
-  if (embeddedBrowserOn_) {
+  if (rsslisting_->embeddedBrowserOn_) {
     webView_->history()->clear();
     webControlPanel_->setVisible(true);
     slotLinkClicked(QUrl(urlStr.simplified()));

@@ -44,6 +44,20 @@ public:
   QAction *updateFeedAct_;
   QAction *deleteNewsAct_;
 
+  QString newsFontFamily_;
+  int newsFontSize_;
+  QString webFontFamily_;
+  int webFontSize_;
+
+  bool markNewsReadOn_;
+  int  markNewsReadTime_;
+
+  bool embeddedBrowserOn_;
+  bool javaScriptEnable_;
+  bool pluginsEnable_;
+
+  bool showDescriptionNews_;
+
 public slots:
   void addFeed();
   void deleteFeed();
@@ -237,13 +251,6 @@ private:
   int openingFeedAction_;
   bool openNewsWebViewOn_;
 
-  bool markNewsReadOn_;
-  int  markNewsReadTime_;
-
-  bool embeddedBrowserOn_;
-  bool javaScriptEnable_;
-  bool pluginsEnable_;
-
   FaviconLoader *faviconLoader;
 
   DBMemFileThread *dbMemFileThread_;
@@ -261,8 +268,6 @@ private:
   bool readCleanUp_;
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
-
-  bool showDescriptionNews_;
 
   bool showMessageOn_;
 
