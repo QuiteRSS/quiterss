@@ -68,7 +68,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createShortcut();
   createMenu();
   createToolBar();
-  createMenuNews();
   createMenuFeed();
 
   createStatusBar();
@@ -313,9 +312,6 @@ void RSSListing::timerEvent(QTimerEvent *event)
       updateFeedsTime = updateFeedsTime*60;
     updateFeedsTimer_.start(updateFeedsTime, this);
     slotTimerUpdateFeeds();
-  } else if (event->timerId() == markNewsReadTimer_.timerId()) {
-    markNewsReadTimer_.stop();
-    slotSetItemRead(newsView_->currentIndex(), 1);
   }
 }
 
@@ -412,22 +408,9 @@ void RSSListing::createNewsTab()
   newsModel_ = currentNewsTab->newsModel_;
   newsHeader_ = currentNewsTab->newsHeader_;
   newsView_ = currentNewsTab->newsView_;  
-  newsToolBar_ = currentNewsTab->newsToolBar_;
 
-  newsToolBar_->addAction(newsFilter_);
-
-  connect(newsView_, SIGNAL(pressed(QModelIndex)),
-          this, SLOT(slotNewsViewClicked(QModelIndex)));
-  connect(newsView_, SIGNAL(pressKeyUp()), this, SLOT(slotNewsUpPressed()));
-  connect(newsView_, SIGNAL(pressKeyDown()), this, SLOT(slotNewsDownPressed()));
-  connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
-          this, SLOT(slotSetItemRead(QModelIndex, int)));
-  connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
-          this, SLOT(slotSetItemStar(QModelIndex,int)));
-  connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
-          this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
-  connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuNews(const QPoint &)));
+//  connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
+//          this, SLOT(showContextMenuNews(const QPoint &)));
 
   createWebWidget();
 }
@@ -435,55 +418,7 @@ void RSSListing::createNewsTab()
 void RSSListing::createWebWidget()
 {
   webView_ = currentNewsTab->webView_;
-  webViewProgress_ = currentNewsTab->webViewProgress_;
-  webViewProgressLabel_ = currentNewsTab->webViewProgressLabel_;
-  webPanelAuthorLabel_ = currentNewsTab->webPanelAuthorLabel_;
-  webPanelAuthor_ = currentNewsTab->webPanelAuthor_;
-  webPanelTitleLabel_ = currentNewsTab->webPanelTitleLabel_;
-  webPanelTitle_ = currentNewsTab->webPanelTitle_;
   webPanel_ = currentNewsTab->webPanel_;
-  webControlPanel_ = currentNewsTab->webControlPanel_;
-
-  //! Create web control panel
-  QToolBar *webToolBar_ = currentNewsTab->webToolBar_;
-
-  webHomePageAct_ = new QAction(this);
-  webHomePageAct_->setIcon(QIcon(":/images/homePage"));
-  webToolBar_->addAction(webHomePageAct_);
-
-  QAction *webAction = webView_->pageAction(QWebPage::Back);
-  webToolBar_->addAction(webAction);
-  webAction = webView_->pageAction(QWebPage::Forward);
-  webToolBar_->addAction(webAction);
-  webAction = webView_->pageAction(QWebPage::Reload);
-  webToolBar_->addAction(webAction);
-  webAction = webView_->pageAction(QWebPage::Stop);
-  webToolBar_->addAction(webAction);
-  webToolBar_->addSeparator();
-
-  webExternalBrowserAct_ = new QAction(this);
-  webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
-  webToolBar_->addAction(webExternalBrowserAct_);
-
-  webHomePageAct_->setText(tr("Home"));
-  webExternalBrowserAct_->setText(tr("Open in external browser"));
-  webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
-
-  connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
-  connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
-  connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
-  connect(webView_->page(), SIGNAL(linkHovered(QString,QString,QString)),
-          this, SLOT(slotLinkHovered(QString,QString,QString)));
-  connect(webView_, SIGNAL(loadProgress(int)), this, SLOT(slotSetValue(int)));
-
-  connect(webHomePageAct_, SIGNAL(triggered()),
-          this, SLOT(webHomePage()));
-  connect(webExternalBrowserAct_, SIGNAL(triggered()),
-          this, SLOT(openPageInExternalBrowser()));
-  connect(webPanelAuthor_, SIGNAL(linkActivated(QString)),
-          this, SLOT(slotWebTitleLinkClicked(QString)));
-  connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
-          this, SLOT(slotWebTitleLinkClicked(QString)));
 }
 
 void RSSListing::createStatusBar()
@@ -678,10 +613,6 @@ void RSSListing::createActions()
   updateAppAct_->setObjectName("UpdateApp_");
   connect(updateAppAct_, SIGNAL(triggered()), this, SLOT(slotShowUpdateAppDlg()));
 
-  openNewsWebViewAct_ = new QAction(this);
-  openNewsWebViewAct_->setShortcut(QKeySequence(Qt::Key_Return));
-  this->addAction(openNewsWebViewAct_);
-  connect(openNewsWebViewAct_, SIGNAL(triggered()), this, SLOT(slotOpenNewsWebView()));
   openInBrowserAct_ = new QAction(this);
   openInBrowserAct_->setObjectName("openInBrowserAct");
   this->addAction(openInBrowserAct_);
@@ -960,7 +891,6 @@ void RSSListing::createMenu()
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
-//  newsToolBar_->addAction(newsFilter_);
   newsFilterAction = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
@@ -1611,14 +1541,14 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   if ((!tabWidget_->count() && clicked) || createTab) {
     int feedId = feedsModel_->index(feedRow, 0).data().toInt();
     int indexTab = tabWidget_->addTab(
-          new NewsTabWidget(settings_, feedId, this), "");
+          new NewsTabWidget(feedId, this), "");
     tabWidget_->setCurrentIndex(indexTab);
   }
 
   //! Устанавливаем иконку и текст для открытой вкладки
   QPixmap iconTab;
-  QByteArray byteArray = feedsModel_->index(feedRow, feedsModel_->fieldIndex("image")).
-      data().toByteArray();
+  QByteArray byteArray = feedsModel_->index(
+        feedRow, feedsModel_->fieldIndex("image")).data().toByteArray();
   if (!byteArray.isNull()) {
     iconTab.loadFromData(QByteArray::fromBase64(byteArray));
   } else {
@@ -1666,10 +1596,10 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
 
   if (clicked) {
     if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
-      slotNewsViewSelected(newsModel_->index(newsRow, 6));
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6));
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     } else {
-      slotNewsViewSelected(newsModel_->index(-1, 6));
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, 6));
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
       QSqlQuery q(db_);
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -1683,69 +1613,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
 
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-}
-
-/*! \brief Обработка нажатия в дереве новостей ********************************/
-void RSSListing::slotNewsViewClicked(QModelIndex index)
-{
-  if (QApplication::keyboardModifiers() == Qt::NoModifier) {
-    if ((newsView_->selectionModel()->selectedRows(0).count() == 1)) {
-      slotNewsViewSelected(index);
-    }
-  }
-}
-
-void RSSListing::slotNewsViewSelected(QModelIndex index, bool clicked)
-{
-  QElapsedTimer timer;
-  timer.start();
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-  static int indexIdOld = -1;
-  static int currrentFeedIdOld = -1;
-  int indexId;
-  int currentFeedId;
-
-  indexId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  currentFeedId = feedsModel_->index(feedsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data().toInt();
-
-  if (!index.isValid()) {
-    webView_->setHtml("");
-    webPanel_->hide();
-    slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    indexIdOld = indexId;
-    currrentFeedIdOld = currentFeedId;
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
-    return;
-  }
-
-  if (!((indexId == indexIdOld) && (currentFeedId == currrentFeedIdOld) &&
-        newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
-      (QApplication::mouseButtons() & Qt::MiddleButton) || clicked) {
-
-    QWebSettings::globalSettings()->clearMemoryCaches();
-    webView_->history()->clear();
-
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-    updateWebView(index);
-
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-    markNewsReadTimer_.stop();
-    if (markNewsReadOn_)
-      markNewsReadTimer_.start(markNewsReadTime_*1000, this);
-
-    QSqlQuery q(db_);
-    QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
-        arg(indexId).arg(currentFeedId);
-    q.exec(qStr);
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-  } else slotUpdateStatus();
-
-  indexIdOld = indexId;
-  currrentFeedIdOld = currentFeedId;
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
@@ -2183,7 +2050,7 @@ void RSSListing::markAllNewsRead(bool openFeed)
     }
     newsView_->setCurrentIndex(newsModel_->index(row, 6));
     if (currentRow != row)
-      updateWebView(newsModel_->index(row, 6));
+      currentNewsTab->updateWebView(newsModel_->index(row, 6));
   }
   slotUpdateStatus(openFeed);
 }
@@ -2251,20 +2118,6 @@ void RSSListing::slotUpdateStatus(bool openFeed)
     statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
     statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
   }
-}
-
-void RSSListing::slotLoadStarted()
-{
-  if (newsView_->currentIndex().isValid()) {
-    webViewProgress_->setValue(0);
-    webViewProgress_->show();
-  }
-}
-
-void RSSListing::slotLoadFinished(bool ok)
-{
-  if (!ok) statusBar()->showMessage(tr("Error loading to WebView"), 3000);
-  webViewProgress_->hide();
 }
 
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
@@ -2375,27 +2228,6 @@ void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
   feedsDockArea_ = area;
 }
 
-void RSSListing::slotNewsDockLocationChanged(Qt::DockWidgetArea area)
-{
-  newsDockArea_ = area;
-}
-
-void RSSListing::slotNewsViewDoubleClicked(QModelIndex index)
-{
-  if (!index.isValid()) return;
-
-  QString linkString = newsModel_->record(
-        index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
-  if (embeddedBrowserOn_) {
-    webView_->history()->clear();
-    webControlPanel_->setVisible(true);
-    webView_->load(QUrl(linkString.simplified()));
-  } else QDesktopServices::openUrl(QUrl(linkString.simplified()));
-}
-
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
 void RSSListing::setFeedRead(int feedId)
 {
@@ -2452,35 +2284,35 @@ void RSSListing::deleteNews()
     curIndex = newsModel_->index(curIndex.row()-1, 6);
   else curIndex = newsModel_->index(curIndex.row(), 6);
   newsView_->setCurrentIndex(curIndex);
-  slotNewsViewSelected(curIndex);
+  currentNewsTab->slotNewsViewSelected(curIndex);
   slotUpdateStatus();
 }
 
-void RSSListing::createMenuNews()
-{
-  newsContextMenu_ = new QMenu(this);
-  newsContextMenu_->addAction(openInBrowserAct_);
-  newsContextMenu_->addAction(openInExternalBrowserAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(markNewsRead_);
-  newsContextMenu_->addAction(markAllNewsRead_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(markStarAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(updateFeedAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(deleteNewsAct_);
-}
+//void RSSListing::createMenuNews()
+//{
+//  newsContextMenu_ = new QMenu(this);
+//  newsContextMenu_->addAction(openInBrowserAct_);
+//  newsContextMenu_->addAction(openInExternalBrowserAct_);
+//  newsContextMenu_->addSeparator();
+//  newsContextMenu_->addAction(markNewsRead_);
+//  newsContextMenu_->addAction(markAllNewsRead_);
+//  newsContextMenu_->addSeparator();
+//  newsContextMenu_->addAction(markStarAct_);
+//  newsContextMenu_->addSeparator();
+//  newsContextMenu_->addAction(updateFeedAct_);
+//  newsContextMenu_->addSeparator();
+//  newsContextMenu_->addAction(deleteNewsAct_);
+//}
 
-void RSSListing::showContextMenuNews(const QPoint &p)
-{
-  if (newsView_->currentIndex().isValid())
-    newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
-}
+//void RSSListing::showContextMenuNews(const QPoint &p)
+//{
+//  if (newsView_->currentIndex().isValid())
+//    newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
+//}
 
 void RSSListing::openInBrowserNews()
 {
-  slotNewsViewDoubleClicked(newsView_->currentIndex());
+  currentNewsTab->slotNewsViewDoubleClicked(newsView_->currentIndex());
 }
 
 void RSSListing::openInExternalBrowserNews()
@@ -2570,36 +2402,10 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
     feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
 }
 
-void RSSListing::slotLinkClicked(QUrl url)
-{
-  if (url.host().isEmpty()) {
-    QUrl hostUrl(feedsModel_->record(feedsView_->currentIndex().row()).
-                 field("htmlUrl").value().toUrl());
-    url.setScheme(hostUrl.scheme());
-    url.setHost(hostUrl.host());
-  }
-  if (embeddedBrowserOn_) {
-    if (!webControlPanel_->isVisible()) {
-      webView_->history()->clear();
-      webControlPanel_->setVisible(true);
-    }
-    webView_->load(url);
-  } else QDesktopServices::openUrl(url);
-}
-
-void RSSListing::slotLinkHovered(const QString &link, const QString &, const QString &)
-{
-  statusBar()->showMessage(link, 3000);
-}
-
-void RSSListing::slotSetValue(int value)
-{
-  webViewProgress_->setValue(value);
-  QString str = QString(" %1 kB / %2 kB").
-      arg(webView_->page()->bytesReceived()/1000).
-      arg(webView_->page()->totalBytes()/1000);
-  webViewProgressLabel_->setText(str);
-}
+//void RSSListing::slotLinkHovered(const QString &link, const QString &, const QString &)
+//{
+//  statusBar()->showMessage(link, 3000);
+//}
 
 void RSSListing::setAutoLoadImages()
 {
@@ -2617,7 +2423,7 @@ void RSSListing::setAutoLoadImages()
   if (newsView_) {
     webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
     if (webView_->history()->count() == 0)
-      updateWebView(newsView_->currentIndex());
+      currentNewsTab->updateWebView(newsView_->currentIndex());
     else webView_->reload();
   }
 }
@@ -2665,85 +2471,6 @@ void RSSListing::setCurrentFeed()
   } else slotUpdateStatus();
 }
 
-void RSSListing::updateWebView(QModelIndex index)
-{
-  if (!index.isValid()) {
-    webView_->setHtml("");
-    webPanel_->hide();
-    return;
-  }
-
-  webPanel_->show();
-
-  QString titleString, linkString, panelTitleString;
-  titleString = newsModel_->record(index.row()).field("title").value().toString();
-  if (isVisible())
-    titleString = webPanelTitle_->fontMetrics().elidedText(
-          titleString, Qt::ElideRight, webPanelTitle_->width());
-  linkString = newsModel_->record(index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-  panelTitleString = QString("<a href='%1'>%2</a>").arg(linkString).arg(titleString);
-  webPanelTitle_->setText(panelTitleString);
-
-  // Формируем панель автора из автора новости
-  QString authorString;
-  QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
-  QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
-  QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
-  //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
-  authorString = authorName;
-  if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
-  if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
-
-  // Если авора новости нет, формируем панель автора из автора ленты
-  // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
-  //   новость обновляется именно у него
-  if (authorString.isEmpty()) {
-    authorName = feedsModel_->record(feedsView_->currentIndex().row()).field("author_name").value().toString();
-    authorEmail = feedsModel_->record(feedsView_->currentIndex().row()).field("author_email").value().toString();
-    authorUri = feedsModel_->record(feedsView_->currentIndex().row()).field("author_uri").value().toString();
-    //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
-    authorString = authorName;
-    if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
-    if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
-  }
-
-  webPanelAuthor_->setText(authorString);
-  webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
-  webPanelAuthor_->setVisible(!authorString.isEmpty());
-  webControlPanel_->setVisible(false);
-
-  if (QApplication::mouseButtons() & Qt::MiddleButton) {
-    slotNewsViewDoubleClicked(index);
-  }
-  if (!(QApplication::mouseButtons() & Qt::MiddleButton) || !embeddedBrowserOn_) {
-    if (!showDescriptionNews_) {
-      QString linkString = newsModel_->record(
-            index.row()).field("link_href").value().toString();
-      if (linkString.isEmpty())
-        linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
-      webControlPanel_->setVisible(true);
-      webView_->load(QUrl(linkString.simplified()));
-    } else {
-      QString content = newsModel_->record(index.row()).field("content").value().toString();
-      if (content.isEmpty()) {
-        content = newsModel_->record(index.row()).field("description").value().toString();
-        emit signalWebViewSetContent(content);
-      } else {
-        emit signalWebViewSetContent(content);
-      }
-    }
-  }
-}
-
-//! Слот для асинхронного обновления новости
-void RSSListing::slotWebViewSetContent(QString content)
-{
-  webView_->setHtml(content);
-}
-
 void RSSListing::slotFeedsFilter()
 {
   if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
@@ -2768,7 +2495,9 @@ void RSSListing::slotNewsFilter()
       setNewsFilter(newsFilterAction);
     } else {
       newsFilterMenu_->popup(
-            newsToolBar_->mapToGlobal(QPoint(0, newsToolBar_->height()-1)));
+            currentNewsTab->newsToolBar_->mapToGlobal(
+              QPoint(0, currentNewsTab->newsToolBar_->height()-1))
+            );
     }
   } else {
     filterNewsAll_->setChecked(true);
@@ -2978,8 +2707,8 @@ void RSSListing::retranslateStrings() {
 
   if (newsView_) {
     currentNewsTab->retranslateStrings();
-    webHomePageAct_->setText(tr("Home"));
-    webExternalBrowserAct_->setText(tr("Open in external browser"));
+//    webHomePageAct_->setText(tr("Home"));
+//    webExternalBrowserAct_->setText(tr("Open in external browser"));
   }
 }
 
@@ -3073,14 +2802,17 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 
-  byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
-      data().toByteArray();
+  QPixmap iconTab;
+  byteArray = feedsModel_->index(
+        index.row(), feedsModel_->fieldIndex("image")).data().toByteArray();
   if (!byteArray.isNull()) {
-    QPixmap icon;
-    icon.loadFromData(QByteArray::fromBase64(byteArray));
-    newsIconTitle_->setPixmap(icon);
-  } else newsIconTitle_->setPixmap(QPixmap(":/images/feed"));
-  newsTextTitle_->setText(feedsModel_->index(index.row(), 1).data().toString());
+    iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+  } else {
+    iconTab.load(":/images/feed");
+  }
+  tabWidget_->setTabIcon(tabWidget_->currentIndex(), iconTab);
+  tabWidget_->setTabText(tabWidget_->currentIndex(),
+                         feedsModel_->index(index.row(), 1).data().toString());
 }
 
 void RSSListing::slotEditMenuAction()
@@ -3191,18 +2923,9 @@ void RSSListing::markAllFeedsRead(bool readOn)
     }
     newsView_->setCurrentIndex(newsModel_->index(row, 6));
     if (currentRow != row)
-      updateWebView(newsModel_->index(row, 0));
+      currentNewsTab->updateWebView(newsModel_->index(row, 0));
   }
   refreshInfoTray();
-}
-
-void RSSListing::slotWebTitleLinkClicked(QString urlStr)
-{
-  if (embeddedBrowserOn_) {
-    webView_->history()->clear();
-    webControlPanel_->setVisible(true);
-    slotLinkClicked(QUrl(urlStr.simplified()));
-  } else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
 }
 
 void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
@@ -3310,41 +3033,6 @@ void RSSListing::slotFeedDownPressed()
   slotFeedsTreeClicked(feedsView_->currentIndex());
 }
 
-/*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
-void RSSListing::slotNewsUpPressed()
-{
-  if (!newsView_->currentIndex().isValid()) {
-    if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, 1));
-      slotNewsViewClicked(newsView_->currentIndex());
-    }
-    return;
-  }
-
-  int row = newsView_->currentIndex().row();
-  if (row == 0) return;
-  else row--;
-  newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsView_->currentIndex());
-}
-
-void RSSListing::slotNewsDownPressed()
-{
-  if (!newsView_->currentIndex().isValid()) {
-    if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, 1));
-      slotNewsViewClicked(newsView_->currentIndex());
-    }
-    return;
-  }
-
-  int row = newsView_->currentIndex().row();
-  if ((row+1) == newsModel_->rowCount()) return;
-  else row++;
-  newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsView_->currentIndex());
-}
-
 void RSSListing::feedsCleanUp(QString feedId)
 {
   int cntT = 0;
@@ -3435,17 +3123,6 @@ void RSSListing::setStyleApp(QAction *pAct)
   qApp->setStyleSheet(QLatin1String(file.readAll()));
 }
 
-void RSSListing::webHomePage()
-{
-  updateWebView(newsView_->currentIndex());
-  webView_->history()->clear();
-}
-
-void RSSListing::openPageInExternalBrowser()
-{
-  QDesktopServices::openUrl(webView_->url());
-}
-
 void RSSListing::slotSwitchFocus()
 {
   if (feedsView_->hasFocus()) {
@@ -3455,12 +3132,6 @@ void RSSListing::slotSwitchFocus()
   } else if (webView_->hasFocus()) {
     feedsView_->setFocus();
   }
-}
-
-void RSSListing::slotOpenNewsWebView()
-{
-  if (!newsView_->hasFocus()) return;
-  slotNewsViewClicked(newsView_->currentIndex());
 }
 
 void RSSListing::slotOpenNewTab()
@@ -3518,6 +3189,6 @@ void RSSListing::slotTabCurrentChanged(int index)
     }
     newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
 
-    slotNewsViewSelected(newsModel_->index(newsRow, 6), true);
+    currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6), true);
   }
 }
