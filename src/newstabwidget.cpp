@@ -359,24 +359,31 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
       (QApplication::mouseButtons() & Qt::MiddleButton) || clicked) {
 
-    QWebSettings::globalSettings()->clearMemoryCaches();
-    webView_->history()->clear();
-
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-    updateWebView(index);
-
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_->stop();
-    if (rsslisting_->markNewsReadOn_)
-      markNewsReadTimer_->start(rsslisting_->markNewsReadTime_*1000);
+    if (rsslisting_->markNewsReadOn_) {
+      if (rsslisting_->markNewsReadTime_ == 0) {
+        slotSetItemRead(newsView_->currentIndex(), 1);
+      } else {
+        markNewsReadTimer_->start(rsslisting_->markNewsReadTime_*1000);
+      }
+    }
 
     QSqlQuery q(rsslisting_->db_);
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
         arg(indexId).arg(currentFeedId);
     q.exec(qStr);
+
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+    QWebSettings::globalSettings()->clearMemoryCaches();
+    webView_->page()->history()->clear();
+
+    updateWebView(index);
+
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
   } else rsslisting_->slotUpdateStatus();
 
   currentNewsIdOld = indexId;
