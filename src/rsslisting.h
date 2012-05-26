@@ -323,7 +323,7 @@ private slots:
   void slotSwitchFocus();
   void slotOpenNewTab();
   void slotTabCloseRequested(int index);
-  void slotTabCurrentChanged(int);
+  void slotTabCurrentChanged(int index);
 
 signals:
   void signalPlaceToTray();

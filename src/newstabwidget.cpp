@@ -13,6 +13,9 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   feedsView_ = rsslisting_->feedsView_;
   feedsModel_ = rsslisting_->feedsModel_;
 
+  currentNewsIdOld = -1;
+  currentFeedIdOld = -1;
+
   createNewsList();
   createMenuNews();
   createWebWidget();
@@ -331,8 +334,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  static int indexIdOld = -1;
-  static int currrentFeedIdOld = -1;
+//  static int currentNewsIdOld = -1;
+//  static int currentFeedIdOld = -1;
   int indexId;
   int currentFeedId;
 
@@ -343,13 +346,13 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     webView_->setHtml("");
     webPanel_->hide();
     rsslisting_->slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    indexIdOld = indexId;
-    currrentFeedIdOld = currentFeedId;
+    currentNewsIdOld = indexId;
+    currentFeedIdOld = currentFeedId;
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
-  if (!((indexId == indexIdOld) && (currentFeedId == currrentFeedIdOld) &&
+  if (!((indexId == currentNewsIdOld) && (currentFeedId == currentFeedIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
       (QApplication::mouseButtons() & Qt::MiddleButton) || clicked) {
 
@@ -373,8 +376,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   } else rsslisting_->slotUpdateStatus();
 
-  indexIdOld = indexId;
-  currrentFeedIdOld = currentFeedId;
+  currentNewsIdOld = indexId;
+  currentFeedIdOld = currentFeedId;
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 

@@ -40,6 +40,9 @@ private:
 
   QTimer *markNewsReadTimer_;
 
+  int currentNewsIdOld;
+  int currentFeedIdOld;
+
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
   void retranslateStrings();

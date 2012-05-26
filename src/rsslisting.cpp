@@ -417,6 +417,7 @@ void RSSListing::createToolBarNull()
 void RSSListing::createNewsTab()
 {
   int index = tabWidget_->currentIndex();
+  currentNewsTab = NULL;
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
   currentNewsTab->setSettings();
 
@@ -1541,6 +1542,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     tabWidget_->setCurrentIndex(indexTab);
     tabBar_->setTabButton(tabWidget_->currentIndex(), QTabBar::LeftSide, currentNewsTab->newsTitleLabel_);
   }
+  currentNewsTab->feedId_ = feedsModel_->index(feedRow, 0).data().toInt();
 
   //! Устанавливаем иконку и текст для открытой вкладки
   QPixmap iconTab;
@@ -3117,6 +3119,7 @@ void RSSListing::slotTabCurrentChanged(int)
 {
   if (tabWidget_->count()) {
     createNewsTab();
+
     int rowFeeds = -1;
     for (int i = 0; i < feedsModel_->rowCount(); i++) {
       if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentNewsTab->feedId_) {
