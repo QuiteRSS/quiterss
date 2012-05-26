@@ -52,6 +52,8 @@ public:
   bool markNewsReadOn_;
   int  markNewsReadTime_;
 
+  bool autoLoadImages_;
+
   bool embeddedBrowserOn_;
   bool javaScriptEnable_;
   bool pluginsEnable_;
@@ -238,8 +240,6 @@ private:
 
   QTranslator *translator_;
   QString langFileName_;
-
-  bool autoLoadImages_;
 
   bool minimizingTray_;
   bool closingTray_;

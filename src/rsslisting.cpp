@@ -1004,6 +1004,9 @@ void RSSListing::readSettings()
   neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
 
+  autoLoadImages_ = !settings_->value("autoLoadImages", true).toBool();
+  setAutoLoadImages();
+
   embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
   if (embeddedBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
@@ -2382,9 +2385,11 @@ void RSSListing::setAutoLoadImages()
 
   if (newsView_) {
     webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
-    if (webView_->history()->count() == 0)
-      currentNewsTab->updateWebView(newsView_->currentIndex());
-    else webView_->reload();
+    if (autoLoadImages_) {
+      if (webView_->history()->count() == 0)
+        currentNewsTab->updateWebView(newsView_->currentIndex());
+      else webView_->reload();
+    }
   }
 }
 
@@ -2392,8 +2397,6 @@ void RSSListing::loadSettingsFeeds()
 {
   markNewsReadOn_ = false;
   behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", NEW_COUNT_ICON_TRAY).toInt();
-  autoLoadImages_ = !settings_->value("Settings/autoLoadImages", true).toBool();
-  setAutoLoadImages();
 
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
   QList<QAction*> listActions = feedsFilterGroup_->actions();

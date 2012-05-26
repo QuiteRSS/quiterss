@@ -294,6 +294,9 @@ void NewsTabWidget::setSettings()
         QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
   webView_->settings()->setAttribute(
         QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
+
+  webView_->settings()->setAttribute(
+        QWebSettings::AutoLoadImages, rsslisting_->autoLoadImages_);
 }
 
 //! Перезагрузка перевода
