@@ -86,13 +86,14 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabWidget_ = new QTabWidget(this);
   tabWidget_->setObjectName("tabWidget_");
   tabWidget_->setTabsClosable(true);
+  tabWidget_->setFocusPolicy(Qt::NoFocus);
 
   connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
+
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
-  tabBar_->setStyleSheet("QTabBar::tab {width: 120px; text-align: left;}");
   tabBar_->installEventFilter(this);
 
   setCentralWidget(tabWidget_);
@@ -1538,6 +1539,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     int indexTab = tabWidget_->addTab(
           new NewsTabWidget(feedId, this), "");
     tabWidget_->setCurrentIndex(indexTab);
+    tabBar_->setTabButton(tabWidget_->currentIndex(), QTabBar::LeftSide, currentNewsTab->newsTitleLabel_);
   }
 
   //! Устанавливаем иконку и текст для открытой вкладки
@@ -1549,9 +1551,12 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   } else {
     iconTab.load(":/images/feed");
   }
-  tabWidget_->setTabIcon(tabWidget_->currentIndex(), iconTab);
-  tabWidget_->setTabText(tabWidget_->currentIndex(),
-                         feedsModel_->index(feedRow, 1).data().toString());
+  currentNewsTab->newsIconTitle_->setPixmap(iconTab);
+
+  QString tabText = feedsModel_->index(feedRow, 1).data().toString();
+  tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
+        tabText, Qt::ElideRight, 100);
+  currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
   newsHeader_->setVisible(index.isValid());

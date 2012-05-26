@@ -75,6 +75,21 @@ void NewsTabWidget::createNewsList()
   newsWidget_ = new QWidget(this);
   newsWidget_->setLayout(newsLayout);
 
+  newsIconTitle_ = new QLabel(this);
+  newsTextTitle_ = new QLabel(this);
+
+  QHBoxLayout *newsTitleLayout = new QHBoxLayout();
+  newsTitleLayout->setMargin(0);
+  newsTitleLayout->setSpacing(3);
+  newsTitleLayout->addWidget(newsIconTitle_);
+  newsTitleLayout->addWidget(newsTextTitle_, 1);
+
+  newsTitleLabel_ = new QWidget(this);
+  newsTitleLabel_->setStyleSheet("min-height: 16px;");
+  newsTitleLabel_->setFixedWidth(120);
+  newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+  newsTitleLabel_->setLayout(newsTitleLayout);
+
   markNewsReadTimer_ = new QTimer(this);
 
   QAction *openNewsWebViewAct_ = new QAction(this);

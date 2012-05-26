@@ -10,10 +10,6 @@
 	vertical-align:middle;
 }
 
-#newsTitleLabel_ {
-	min-width: 50px;
-}
-
 #feedsTreeView_::item, #newsView_::item {
 	min-height: 20px;
 }

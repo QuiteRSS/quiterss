@@ -26,6 +26,15 @@ private:
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
 
+  QWidget *webWidget_;
+  QLabel *webPanelTitle_;
+  QLabel *webPanelTitleLabel_;
+  QLabel *webPanelAuthorLabel_;
+  QLabel *webPanelAuthor_;
+  QWidget *webControlPanel_;
+  QProgressBar *webViewProgress_;
+  QLabel *webViewProgressLabel_;
+
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
 
@@ -46,17 +55,12 @@ public:
   QToolBar *newsToolBar_;
   QSplitter *newsTabWidgetSplitter_;
 
-  QLabel *webPanelTitle_;
-  QLabel *webPanelTitleLabel_;
-  QLabel *webPanelAuthorLabel_;
-  QLabel *webPanelAuthor_;
-  QWidget *webPanel_;
-  QWidget *webControlPanel_;
-
-  QWidget *webWidget_;
   WebView *webView_;
-  QProgressBar *webViewProgress_;
-  QLabel *webViewProgressLabel_;
+  QWidget *webPanel_;
+
+  QLabel *newsIconTitle_;
+  QLabel *newsTextTitle_;
+  QWidget *newsTitleLabel_;
 
 signals:
   void signalWebViewSetContent(QString content);

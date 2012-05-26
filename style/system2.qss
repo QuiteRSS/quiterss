@@ -22,7 +22,8 @@ QTabBar::tab {
 	border: 1px solid gray;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
-	min-width: 8ex;
+	min-width: 20px;
+	max-width: 120;
 	padding: 4px 12px 4px 12px;
 	margin-right: 1px;
 }
