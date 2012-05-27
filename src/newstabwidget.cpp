@@ -16,6 +16,21 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   currentNewsIdOld = -1;
   currentFeedIdOld = -1;
 
+  newsIconTitle_ = new QLabel(this);
+  newsTextTitle_ = new QLabel(this);
+
+  QHBoxLayout *newsTitleLayout = new QHBoxLayout();
+  newsTitleLayout->setMargin(0);
+  newsTitleLayout->setSpacing(3);
+  newsTitleLayout->addWidget(newsIconTitle_);
+  newsTitleLayout->addWidget(newsTextTitle_, 1);
+
+  newsTitleLabel_ = new QWidget(this);
+  newsTitleLabel_->setStyleSheet("min-height: 16px;");
+  newsTitleLabel_->setFixedWidth(120);
+  newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
+  newsTitleLabel_->setLayout(newsTitleLayout);
+
   createNewsList();
   createMenuNews();
   createWebWidget();
@@ -78,21 +93,6 @@ void NewsTabWidget::createNewsList()
   newsWidget_ = new QWidget(this);
   newsWidget_->setLayout(newsLayout);
 
-  newsIconTitle_ = new QLabel(this);
-  newsTextTitle_ = new QLabel(this);
-
-  QHBoxLayout *newsTitleLayout = new QHBoxLayout();
-  newsTitleLayout->setMargin(0);
-  newsTitleLayout->setSpacing(3);
-  newsTitleLayout->addWidget(newsIconTitle_);
-  newsTitleLayout->addWidget(newsTextTitle_, 1);
-
-  newsTitleLabel_ = new QWidget(this);
-  newsTitleLabel_->setStyleSheet("min-height: 16px;");
-  newsTitleLabel_->setFixedWidth(120);
-  newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
-  newsTitleLabel_->setLayout(newsTitleLayout);
-
   markNewsReadTimer_ = new QTimer(this);
 
   QAction *openNewsWebViewAct_ = new QAction(this);
@@ -111,6 +111,8 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotSetItemStar(QModelIndex,int)));
   connect(newsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
           this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
+  connect(newsView_, SIGNAL(signalMiddleClicked(QModelIndex)),
+          this, SLOT(slotNewsMiddleClicked(QModelIndex)));
   connect(markNewsReadTimer_, SIGNAL(timeout()),
           this, SLOT(slotReadTimer()));
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
@@ -280,6 +282,7 @@ void NewsTabWidget::setSettings()
 {
   newsView_->setFont(
         QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+
   webView_->settings()->setFontFamily(
         QWebSettings::StandardFont, rsslisting_->webFontFamily_);
   webView_->settings()->setFontSize(
@@ -357,7 +360,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
   if (!((indexId == currentNewsIdOld) && (currentFeedId == currentFeedIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
-      (QApplication::mouseButtons() & Qt::MiddleButton) || clicked) {
+      clicked) {
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -406,6 +409,13 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
     webControlPanel_->setVisible(true);
     webView_->load(QUrl(linkString.simplified()));
   } else QDesktopServices::openUrl(QUrl(linkString.simplified()));
+}
+
+void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
+{
+  if (!index.isValid()) return;
+
+  qCritical() << index.row();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
@@ -516,7 +526,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
   QString titleString, linkString, panelTitleString;
   titleString = newsModel_->record(index.row()).field("title").value().toString();
-  if (isVisible())
+  if (rsslisting_->isVisible())
     titleString = webPanelTitle_->fontMetrics().elidedText(
           titleString, Qt::ElideRight, webPanelTitle_->width());
   linkString = newsModel_->record(index.row()).field("link_href").value().toString();
@@ -553,27 +563,21 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   webPanelAuthor_->setVisible(!authorString.isEmpty());
   webControlPanel_->setVisible(false);
 
-  if (QApplication::mouseButtons() & Qt::MiddleButton) {
-    slotNewsViewDoubleClicked(index);
-  }
-  if (!(QApplication::mouseButtons() & Qt::MiddleButton) ||
-      !rsslisting_->embeddedBrowserOn_) {
-    if (!rsslisting_->showDescriptionNews_) {
-      QString linkString = newsModel_->record(
-            index.row()).field("link_href").value().toString();
-      if (linkString.isEmpty())
-        linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+  if (!rsslisting_->showDescriptionNews_) {
+    QString linkString = newsModel_->record(
+          index.row()).field("link_href").value().toString();
+    if (linkString.isEmpty())
+      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-      webControlPanel_->setVisible(true);
-      webView_->load(QUrl(linkString.simplified()));
+    webControlPanel_->setVisible(true);
+    webView_->load(QUrl(linkString.simplified()));
+  } else {
+    QString content = newsModel_->record(index.row()).field("content").value().toString();
+    if (content.isEmpty()) {
+      content = newsModel_->record(index.row()).field("description").value().toString();
+      emit signalWebViewSetContent(content);
     } else {
-      QString content = newsModel_->record(index.row()).field("content").value().toString();
-      if (content.isEmpty()) {
-        content = newsModel_->record(index.row()).field("description").value().toString();
-        emit signalWebViewSetContent(content);
-      } else {
-        emit signalWebViewSetContent(content);
-      }
+      emit signalWebViewSetContent(content);
     }
   }
 }

@@ -72,6 +72,7 @@ public slots:
   void slotNewsViewClicked(QModelIndex index);
   void slotNewsViewSelected(QModelIndex index, bool clicked = false);
   void slotNewsViewDoubleClicked(QModelIndex index);
+  void slotNewsMiddleClicked(QModelIndex index);
   void slotNewsUpPressed();
   void slotNewsDownPressed();
 

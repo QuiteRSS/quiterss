@@ -384,6 +384,8 @@ void RSSListing::createFeedsDock()
 
   connect(feedsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedsTreeClicked(QModelIndex)));
+  connect(feedsView_, SIGNAL(signalMiddleClicked()),
+          this, SLOT(slotOpenNewTab()));
   connect(feedsView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
   connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),

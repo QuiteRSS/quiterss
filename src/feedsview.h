@@ -16,6 +16,7 @@ protected:
   virtual void keyPressEvent(QKeyEvent*);
 
 signals:
+  void signalMiddleClicked();
   void pressKeyUp();
   void pressKeyDown();
 

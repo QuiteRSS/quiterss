@@ -39,6 +39,9 @@ NewsView::NewsView(QWidget * parent)
       event->ignore();
       return;
     }
+  } else if ((event->buttons() & Qt::MiddleButton)) {
+    emit signalMiddleClicked(index);
+    return;
   }
   QTreeView::mousePressEvent(event);
 }
