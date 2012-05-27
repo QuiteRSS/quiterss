@@ -43,6 +43,9 @@ public:
   QAction *markStarAct_;
   QAction *updateFeedAct_;
   QAction *deleteNewsAct_;
+  QAction *newsKeyUpAct_;
+  QAction *newsKeyDownAct_;
+  QActionGroup *newsFilterGroup_;
 
   QString newsFontFamily_;
   int newsFontSize_;
@@ -82,6 +85,7 @@ public slots:
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(const QUrl &url, const bool &changed);
   void slotUpdateStatus(bool openFeed = true);
+  void setNewsFilter(QAction*, bool clicked = true);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -173,8 +177,6 @@ private:
   QAction *showWindowAct_;
   QAction *feedKeyUpAct_;
   QAction *feedKeyDownAct_;
-  QAction *newsKeyUpAct_;
-  QAction *newsKeyDownAct_;
   QAction *switchFocusAct_;
   QAction *visibleFeedsDockAct_;
   QAction *openNewTabAct_;
@@ -183,7 +185,6 @@ private:
   QActionGroup *toolBarIconSizeGroup_;
   QActionGroup *styleGroup_;
   QActionGroup *feedsFilterGroup_;
-  QActionGroup *newsFilterGroup_;
 
   QAction *feedsFilterAction;
   QAction *newsFilterAction;
@@ -206,19 +207,16 @@ private:
   QMenu *newsFilterMenu_;
 
   QToolBar *toolBar_;
-  QToolBar *feedsToolBar_;
 
+  QLabel *feedsTitleLabel_;
+  QToolBar *feedsToolBar_;
   QDockWidget *feedsDock_;
   Qt::DockWidgetArea feedsDockArea_;
 
   NewsView *newsView_;
-  NewsHeader *newsHeader_;
-  QLabel *feedsTitleLabel_;
+  WebView *webView_;
 
   NewsTabWidget *currentNewsTab;
-
-  QWidget *webPanel_;
-  WebView *webView_;
 
   int oldState;
 
@@ -273,32 +271,19 @@ private:
 
   bool reopenFeedStartup_;
 
-  QModelIndex selectFeedIndex;
-
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
   void updateIconToolBarNull(bool feedsDockVisible);
   void slotDockLocationChanged(Qt::DockWidgetArea area);
-  void slotSetItemRead(QModelIndex index, int read);
-  void markNewsRead();
-  void markAllNewsRead(bool openFeed = true);
-  void markFeedRead();
-  void setFeedsFilter(QAction*, bool clicked = true);
-  void setNewsFilter(QAction*, bool clicked = true);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
 
-  void slotNewsUpPressed();
-  void slotNewsDownPressed();
-
   void setFeedRead(int feedId);
-  void slotShowAboutDlg();
-  void deleteNews();
+  void markFeedRead();
+  void setFeedsFilter(QAction*, bool clicked = true);
 
-  void openInBrowserNews();
-  void openInExternalBrowserNews();
-  void slotSetItemStar(QModelIndex index, int starred);
-  void markNewsStar();
+  void slotShowAboutDlg();
+
   void showContextMenuFeed(const QPoint &);
   void setAutoLoadImages();
   void slotFeedsFilter();

@@ -24,7 +24,7 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mousePressEvent(QMouseEvent *event)
 {
-  selectFeedIndex = indexAt(event->pos());
+  selectIndex = indexAt(event->pos());
   if ((event->buttons() & Qt::MiddleButton)) {
     emit signalMiddleClicked();
   } else if (event->buttons() & Qt::RightButton) {
@@ -43,4 +43,10 @@ FeedsView::FeedsView(QWidget * parent) :
     if (event->key() == Qt::Key_Up) emit pressKeyUp();
     else if (event->key() == Qt::Key_Down) emit pressKeyDown();
   }
+}
+
+/*virtual*/ void FeedsView::currentChanged(const QModelIndex &current,
+                                           const QModelIndex &)
+{
+  selectIndex = current;
 }

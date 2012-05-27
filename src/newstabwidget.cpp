@@ -117,6 +117,25 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotReadTimer()));
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuNews(const QPoint &)));
+
+  connect(rsslisting_->markNewsRead_, SIGNAL(triggered()),
+          this, SLOT(markNewsRead()));
+  connect(rsslisting_->markAllNewsRead_, SIGNAL(triggered()),
+          this, SLOT(markAllNewsRead()));
+  connect(rsslisting_->markStarAct_, SIGNAL(triggered()),
+          this, SLOT(markNewsStar()));
+  connect(rsslisting_->deleteNewsAct_, SIGNAL(triggered()),
+          this, SLOT(deleteNews()));
+
+  connect(rsslisting_->newsKeyUpAct_, SIGNAL(triggered()),
+          this, SLOT(slotNewsUpPressed()));
+  connect(rsslisting_->newsKeyDownAct_, SIGNAL(triggered()),
+          this, SLOT(slotNewsDownPressed()));
+
+  connect(rsslisting_->openInBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInBrowserNews()));
+  connect(rsslisting_->openInExternalBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInExternalBrowserNews()));
 }
 
 void NewsTabWidget::createMenuNews()
@@ -489,7 +508,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
   rsslisting_->slotUpdateStatus();
 }
 
-//! Пометка новости звездой (избранная)
+//! Пометка новости звездочкой (избранная)
 void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
 {
   if (!index.isValid()) return;
@@ -511,6 +530,175 @@ void NewsTabWidget::slotReadTimer()
 {
   markNewsReadTimer_->stop();
   slotSetItemRead(newsView_->currentIndex(), 1);
+}
+
+//! Отметить выделенные новости прочитанными
+void NewsTabWidget::markNewsRead()
+{
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+      slotSetItemRead(curIndex, 1);
+    } else {
+      slotSetItemRead(curIndex, 0);
+    }
+  } else {
+    bool markRead = false;
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+        markRead = true;
+        break;
+      }
+    }
+
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      QSqlQuery q(rsslisting_->db_);
+      q.exec(QString("UPDATE news SET new=0, read='%1' WHERE feedId='%2' AND id=='%3'").
+             arg(markRead).arg(feedId).arg(newsId));
+    }
+
+    rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(feedsView_->currentIndex().row(),
+                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+        break;
+      }
+    }
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    rsslisting_->slotUpdateStatus();
+  }
+}
+
+//! Отметить все новости в ленте прочитанными
+void NewsTabWidget::markAllNewsRead(bool openFeed)
+{
+  if (newsModel_->rowCount() == 0) return;
+
+  int feedId = feedsModel_->index(
+      feedsView_->selectIndex.row(), feedsModel_->fieldIndex("id")).data().toInt();
+
+  QSqlQuery q(rsslisting_->db_);
+  QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+      arg(feedId);
+  q.exec(qStr);
+  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+      arg(feedId);
+  q.exec(qStr);
+
+  if (openFeed) {
+    int currentRow = newsView_->currentIndex().row();
+
+    rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(feedsView_->currentIndex().row(),
+                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+        break;
+      }
+    }
+    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    if (currentRow != row)
+      updateWebView(newsModel_->index(row, 6));
+  }
+  rsslisting_->slotUpdateStatus(openFeed);
+}
+
+//! Пометка выбранных новостей звездочкой (избранные)
+void NewsTabWidget::markNewsStar()
+{
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0) {
+      slotSetItemStar(curIndex, 1);
+    } else {
+      slotSetItemStar(curIndex, 0);
+    }
+  } else {
+    bool markStar = false;
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0)
+        markStar = true;
+    }
+
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      if (markStar) slotSetItemStar(curIndex, 1);
+      else slotSetItemStar(curIndex, 0);
+    }
+  }
+}
+
+//! Удаление новости
+void NewsTabWidget::deleteNews()
+{
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    int row = curIndex.row();
+    slotSetItemRead(curIndex, 1);
+
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
+  } else {
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      QSqlQuery q(rsslisting_->db_);
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
+                     "WHERE feedId='%1' AND id=='%2'").
+          arg(feedId).arg(newsId));
+    }
+    rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+  }
+
+  while (newsModel_->canFetchMore())
+    newsModel_->fetchMore();
+
+  if (curIndex.row() == newsModel_->rowCount())
+    curIndex = newsModel_->index(curIndex.row()-1, 6);
+  else curIndex = newsModel_->index(curIndex.row(), 6);
+  newsView_->setCurrentIndex(curIndex);
+  slotNewsViewSelected(curIndex);
+  rsslisting_->slotUpdateStatus();
 }
 
 //! Загрузка/обновление содержимого браузера
@@ -661,4 +849,25 @@ void NewsTabWidget::slotOpenNewsWebView()
 {
   if (!newsView_->hasFocus()) return;
   slotNewsViewClicked(newsView_->currentIndex());
+}
+
+//! Открытие новости в браузере
+void NewsTabWidget::openInBrowserNews()
+{
+  slotNewsViewDoubleClicked(newsView_->currentIndex());
+}
+
+//! Открытие новости во внешнем браузере
+void NewsTabWidget::openInExternalBrowserNews()
+{
+  QModelIndex index = newsView_->currentIndex();
+
+  if (!index.isValid()) return;
+
+  QString linkString = newsModel_->record(
+        index.row()).field("link_href").value().toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+
+  QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }

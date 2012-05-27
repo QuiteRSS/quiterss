@@ -75,12 +75,16 @@ public slots:
   void slotNewsMiddleClicked(QModelIndex index);
   void slotNewsUpPressed();
   void slotNewsDownPressed();
+  void markAllNewsRead(bool openFeed = true);
 
 private slots:
   void showContextMenuNews(const QPoint &p);
   void slotSetItemRead(QModelIndex index, int read);
   void slotSetItemStar(QModelIndex index, int starred);
   void slotReadTimer();
+  void markNewsRead();
+  void markNewsStar();
+  void deleteNews();
 
   void slotWebViewSetContent(QString content);
   void slotWebTitleLinkClicked(QString urlStr);
@@ -92,6 +96,8 @@ private slots:
   void slotLoadStarted();
   void slotLoadFinished(bool ok);
   void slotOpenNewsWebView();
+  void openInBrowserNews();
+  void openInExternalBrowserNews();
 
 };
 

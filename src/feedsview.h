@@ -8,12 +8,14 @@ class FeedsView : public QTreeView
   Q_OBJECT
 public:
   FeedsView(QWidget * parent = 0);
-  QModelIndex selectFeedIndex;
+  QModelIndex selectIndex;
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
   virtual void keyPressEvent(QKeyEvent*);
+  virtual void currentChanged(const QModelIndex &current,
+                               const QModelIndex &previous);
 
 signals:
   void signalMiddleClicked();
