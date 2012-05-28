@@ -10,6 +10,9 @@ public:
   FeedsView(QWidget * parent = 0);
   QModelIndex selectIndex;
 
+public slots:
+  void setSelectIndex();
+
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);

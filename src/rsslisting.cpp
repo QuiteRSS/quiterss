@@ -2100,6 +2100,11 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(feedProperties_);
+
+  connect(feedContextMenu_, SIGNAL(aboutToHide()),
+          feedsView_, SLOT(setSelectIndex()), Qt::QueuedConnection);
+  connect(feedContextMenu_, SIGNAL(aboutToShow()),
+          this, SLOT(slotEditMenuAction()));
 }
 
 void RSSListing::showContextMenuFeed(const QPoint &p)

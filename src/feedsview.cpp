@@ -50,3 +50,9 @@ FeedsView::FeedsView(QWidget * parent) :
 {
   selectIndex = current;
 }
+
+void FeedsView::setSelectIndex()
+{
+  selectIndex = currentIndex();
+  viewport()->update();
+}
