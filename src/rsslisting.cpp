@@ -36,6 +36,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     dataDirPath_(dataDirPath)
 {
   setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
+  setWindowIcon(QIcon(":/images/images/QuiteRSS.ico"));
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
