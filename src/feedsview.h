@@ -16,11 +16,13 @@ public slots:
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
+  virtual void mouseDoubleClickEvent(QMouseEvent*);
   virtual void keyPressEvent(QKeyEvent*);
   virtual void currentChanged(const QModelIndex &current,
-                               const QModelIndex &previous);
+                              const QModelIndex &previous);
 
 signals:
+  void signalDoubleClicked(QModelIndex index);
   void signalMiddleClicked();
   void pressKeyUp();
   void pressKeyDown();

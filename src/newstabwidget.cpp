@@ -359,8 +359,6 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-//  static int currentNewsIdOld = -1;
-//  static int currentFeedIdOld = -1;
   int indexId;
   int currentFeedId;
 

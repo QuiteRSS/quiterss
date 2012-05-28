@@ -37,6 +37,11 @@ FeedsView::FeedsView(QWidget * parent) :
   Q_UNUSED(event)
 }
 
+/*virtual*/ void FeedsView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+  emit signalDoubleClicked(indexAt(event->pos()));
+}
+
 /*virtual*/ void FeedsView::keyPressEvent(QKeyEvent *event)
 {
   if (!event->modifiers()) {
@@ -46,13 +51,13 @@ FeedsView::FeedsView(QWidget * parent) :
 }
 
 /*virtual*/ void FeedsView::currentChanged(const QModelIndex &current,
-                                           const QModelIndex &)
+                                           const QModelIndex &previous)
 {
   selectIndex = current;
+  QTreeView::currentChanged(current, previous);
 }
 
 void FeedsView::setSelectIndex()
 {
   selectIndex = currentIndex();
-  viewport()->update();
 }

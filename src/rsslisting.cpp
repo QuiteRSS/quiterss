@@ -548,7 +548,7 @@ void RSSListing::createActions()
   updateFeedAct_->setObjectName("updateFeedAct");
   updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
-  connect(feedsView_, SIGNAL(doubleClicked(QModelIndex)),
+  connect(feedsView_, SIGNAL(signalDoubleClicked(QModelIndex)),
           updateFeedAct_, SLOT(trigger()));
 
   updateAllFeedsAct_ = new QAction(this);
@@ -1604,8 +1604,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     slotUpdateStatus();
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
-
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /*! \brief Вызов окна настроек ************************************************/
@@ -2729,7 +2727,7 @@ void RSSListing::slotFeedUpPressed()
   if (row == 0) row = feedsModel_->rowCount()-1;
   else row--;
   feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-  slotFeedsTreeClicked(feedsView_->currentIndex());
+  slotFeedsTreeClicked(feedsModel_->index(row, 1));
 }
 
 void RSSListing::slotFeedDownPressed()
@@ -2740,7 +2738,7 @@ void RSSListing::slotFeedDownPressed()
   if ((row+1) == feedsModel_->rowCount()) row = 0;
   else row++;
   feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
-  slotFeedsTreeClicked(feedsView_->currentIndex());
+  slotFeedsTreeClicked(feedsModel_->index(row, 1));
 }
 
 void RSSListing::feedsCleanUp(QString feedId)
