@@ -105,6 +105,8 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotNewsViewClicked(QModelIndex)));
   connect(newsView_, SIGNAL(pressKeyUp()), this, SLOT(slotNewsUpPressed()));
   connect(newsView_, SIGNAL(pressKeyDown()), this, SLOT(slotNewsDownPressed()));
+  connect(newsView_, SIGNAL(pressKeyHome()), this, SLOT(slotNewsHomePressed()));
+  connect(newsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotNewsEndPressed()));
   connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
           this, SLOT(slotSetItemRead(QModelIndex, int)));
   connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
@@ -441,7 +443,7 @@ void NewsTabWidget::slotNewsUpPressed()
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
       newsView_->setCurrentIndex(newsModel_->index(0, 1));
-      slotNewsViewClicked(newsView_->currentIndex());
+      slotNewsViewClicked(newsModel_->index(0, 1));
     }
     return;
   }
@@ -450,7 +452,7 @@ void NewsTabWidget::slotNewsUpPressed()
   if (row == 0) return;
   else row--;
   newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsView_->currentIndex());
+  slotNewsViewClicked(newsModel_->index(row, 1));
 }
 
 void NewsTabWidget::slotNewsDownPressed()
@@ -458,7 +460,7 @@ void NewsTabWidget::slotNewsDownPressed()
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
       newsView_->setCurrentIndex(newsModel_->index(0, 1));
-      slotNewsViewClicked(newsView_->currentIndex());
+      slotNewsViewClicked(newsModel_->index(0, 1));
     }
     return;
   }
@@ -467,7 +469,22 @@ void NewsTabWidget::slotNewsDownPressed()
   if ((row+1) == newsModel_->rowCount()) return;
   else row++;
   newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsView_->currentIndex());
+  slotNewsViewClicked(newsModel_->index(row, 1));
+}
+
+/*! \brief Обработка клавиш Home/End в дереве новостей *************************/
+void NewsTabWidget::slotNewsHomePressed()
+{
+  int row = 0;
+  newsView_->setCurrentIndex(newsModel_->index(row, 1));
+  slotNewsViewClicked(newsModel_->index(row, 1));
+}
+
+void NewsTabWidget::slotNewsEndPressed()
+{
+  int row = newsModel_->rowCount() - 1;
+  newsView_->setCurrentIndex(newsModel_->index(row, 1));
+  slotNewsViewClicked(newsModel_->index(row, 1));
 }
 
 //! Пометка новости прочитанной

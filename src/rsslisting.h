@@ -304,6 +304,8 @@ private slots:
   void slotNewVersion(bool newVersion);
   void slotFeedUpPressed();
   void slotFeedDownPressed();
+  void slotFeedHomePressed();
+  void slotFeedEndPressed();
   void setStyleApp(QAction*);
   void slotSwitchFocus();
   void slotOpenNewTab();

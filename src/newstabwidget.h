@@ -75,6 +75,8 @@ public slots:
   void slotNewsMiddleClicked(QModelIndex index);
   void slotNewsUpPressed();
   void slotNewsDownPressed();
+  void slotNewsHomePressed();
+  void slotNewsEndPressed();
   void markAllNewsRead(bool openFeed = true);
 
 private slots:

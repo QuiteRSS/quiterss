@@ -26,6 +26,8 @@ signals:
   void signalMiddleClicked();
   void pressKeyUp();
   void pressKeyDown();
+  void pressKeyHome();
+  void pressKeyEnd();
 
 };
 

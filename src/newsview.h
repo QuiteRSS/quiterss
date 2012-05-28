@@ -24,7 +24,8 @@ signals:
   void signalMiddleClicked(QModelIndex index);
   void pressKeyUp();
   void pressKeyDown();
-
+  void pressKeyHome();
+  void pressKeyEnd();
 };
 
 #endif // NEWSVIEW_H

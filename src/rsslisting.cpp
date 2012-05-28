@@ -387,6 +387,8 @@ void RSSListing::createFeedsDock()
           this, SLOT(slotOpenNewTab()));
   connect(feedsView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
   connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
+  connect(feedsView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
+  connect(feedsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
   connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
@@ -2737,6 +2739,21 @@ void RSSListing::slotFeedDownPressed()
   int row = feedsView_->currentIndex().row();
   if ((row+1) == feedsModel_->rowCount()) row = 0;
   else row++;
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+  slotFeedsTreeClicked(feedsModel_->index(row, 1));
+}
+
+/*! \brief Обработка клавиш Home/End в дереве лент *****************************/
+void RSSListing::slotFeedHomePressed()
+{
+  int row = 0;
+  feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
+  slotFeedsTreeClicked(feedsModel_->index(row, 1));
+}
+
+void RSSListing::slotFeedEndPressed()
+{
+  int row = feedsModel_->rowCount()-1;
   feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
   slotFeedsTreeClicked(feedsModel_->index(row, 1));
 }

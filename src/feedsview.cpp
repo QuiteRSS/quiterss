@@ -45,8 +45,10 @@ FeedsView::FeedsView(QWidget * parent) :
 /*virtual*/ void FeedsView::keyPressEvent(QKeyEvent *event)
 {
   if (!event->modifiers()) {
-    if (event->key() == Qt::Key_Up) emit pressKeyUp();
-    else if (event->key() == Qt::Key_Down) emit pressKeyDown();
+    if (event->key() == Qt::Key_Up)         emit pressKeyUp();
+    else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
+    else if (event->key() == Qt::Key_Home)  emit pressKeyHome();
+    else if (event->key() == Qt::Key_End)   emit pressKeyEnd();
   }
 }
 
