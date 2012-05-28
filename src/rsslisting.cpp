@@ -2850,17 +2850,16 @@ void RSSListing::slotOpenNewTab()
 
 void RSSListing::slotTabCloseRequested(int index)
 {
-  if (tabWidget_->count() == 1) {
-    settings_->setValue("NewsHeaderGeometry",
-                        currentNewsTab->newsHeader_->saveGeometry());
-    settings_->setValue("NewsHeaderState",
-                        currentNewsTab->newsHeader_->saveState());
-    settings_->setValue("NewsTabSplitter",
-                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
-    settings_->setValue("NewsTabSplitter",
-                        currentNewsTab->newsTabWidgetSplitter_->saveState());
-    feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
-  }
+  settings_->setValue("NewsHeaderGeometry",
+                      currentNewsTab->newsHeader_->saveGeometry());
+  settings_->setValue("NewsHeaderState",
+                      currentNewsTab->newsHeader_->saveState());
+  feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
+
+  settings_->setValue("NewsTabSplitter",
+                      currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
+  settings_->setValue("NewsTabSplitter",
+                      currentNewsTab->newsTabWidgetSplitter_->saveState());
 
   delete tabWidget_->widget(index);
 }
