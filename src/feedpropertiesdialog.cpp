@@ -40,7 +40,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
   editTitle = new LineEdit();
   btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
   btnLoadTitle->setToolTip(tr("Load feed title"));
-  btnLoadTitle->setMaximumHeight(22);
+  btnLoadTitle->setIconSize(QSize(16, 16));
   btnLoadTitle->setFocusPolicy(Qt::NoFocus);
   layoutGeneralTitle->addWidget(editTitle);
   layoutGeneralTitle->addWidget(btnLoadTitle);

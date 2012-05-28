@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 
   app.setApplicationName("QuiteRss");
   app.setOrganizationName("QuiteRss");
-  app.setWindowIcon(QIcon(":/images/images/QuiteRSS.ico"));
+  app.setWindowIcon(QIcon(":/images/QuiteRSS.ico"));
   app.setQuitOnLastWindowClosed(false);
 
 QString dataDirPath_;

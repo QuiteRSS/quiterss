@@ -8,7 +8,6 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add feed"));
-  setWindowIcon(QIcon(":/images/feed"));
   setWizardStyle(QWizard::ModernStyle);
   setOptions(QWizard::HaveFinishButtonOnEarlyPages |
              QWizard::NoBackButtonOnStartPage);
