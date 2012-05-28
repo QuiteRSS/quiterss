@@ -902,7 +902,7 @@ void RSSListing::createMenu()
   newsMenu_->addSeparator();
   newsMenu_->addAction(autoLoadImagesToggle_);
 
-  newsMenu_->setEnabled(false);
+  slotNewsActionEnabled(false);
   connect(newsMenu_, SIGNAL(aboutToShow()), this, SLOT(slotNewsMenuShow()));
 
   toolsMenu_ = new QMenu(this);
@@ -1559,7 +1559,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
-  newsMenu_->setEnabled(index.isValid());
+  slotNewsActionEnabled(index.isValid());
   currentNewsTab->newsHeader_->setVisible(index.isValid());
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
@@ -2542,8 +2542,17 @@ void RSSListing::slotFeedMenuShow()
 
 void RSSListing::slotNewsMenuShow()
 {
-  if (currentNewsTab) newsMenu_->setEnabled(true);
-  else newsMenu_->setEnabled(false);
+  if (currentNewsTab) slotNewsActionEnabled(true);
+  else slotNewsActionEnabled(false);
+}
+
+void RSSListing::slotNewsActionEnabled(bool enable)
+{
+  newsFilter_->setEnabled(enable);
+  markNewsRead_->setEnabled(enable);
+  markAllNewsRead_->setEnabled(enable);
+  markStarAct_->setEnabled(enable);
+  autoLoadImagesToggle_->setEnabled(enable);
 }
 
 //! Обновление информации в трее: значок и текст подсказки
@@ -2886,15 +2895,21 @@ void RSSListing::slotTabCloseRequested(int index)
                       currentNewsTab->newsHeader_->saveGeometry());
   settings_->setValue("NewsHeaderState",
                       currentNewsTab->newsHeader_->saveState());
-  feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
 
   settings_->setValue("NewsTabSplitter",
                       currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
   settings_->setValue("NewsTabSplitter",
                       currentNewsTab->newsTabWidgetSplitter_->saveState());
 
+  if (tabWidget_->count() == 1) {
+    feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
+    slotFeedsTreeClicked(feedsModel_->index(-1, 1));
+
+    currentNewsTab = NULL;
+    slotNewsActionEnabled(false);
+  }
+
   delete tabWidget_->widget(index);
-  if (tabWidget_->count() == 0) currentNewsTab = NULL;
 }
 
 void RSSListing::slotTabCurrentChanged(int)
