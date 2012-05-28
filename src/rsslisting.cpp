@@ -2713,8 +2713,8 @@ void RSSListing::slotNewVersion(bool newVersion)
   delete updateAppDialog_;
 
   if (newVersion) {
-    traySystem->showMessage("Check for updates",
-                            "A new version of QuiteRSS...");
+    traySystem->showMessage(tr("Check for updates"),
+                            tr("A new version of QuiteRSS..."));
     connect(traySystem, SIGNAL(messageClicked()),
             this, SLOT(slotShowUpdateAppDlg()));
   }
