@@ -1549,7 +1549,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
 
   QString tabText = feedsModel_->index(feedRow, 1).data().toString();
   tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-        tabText, Qt::ElideRight, 100);
+        tabText, Qt::ElideRight, 114);
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
@@ -2520,7 +2520,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
     QString tabText = feedsModel_->index(index.row(), 1).data().toString();
     tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-          tabText, Qt::ElideRight, 100);
+          tabText, Qt::ElideRight, 114);
     currentNewsTab->newsTextTitle_->setText(tabText);
   }
 }
