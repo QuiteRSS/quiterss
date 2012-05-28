@@ -67,6 +67,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
           Qt::QueuedConnection);
 
+  currentNewsTab = NULL;
   newsView_ = NULL;
   webView_ = NULL;
 
@@ -426,7 +427,6 @@ void RSSListing::createNewsTab()
 
   newsModel_ = currentNewsTab->newsModel_;
   newsView_ = currentNewsTab->newsView_;  
-
   webView_ = currentNewsTab->webView_;
 }
 
@@ -901,6 +901,9 @@ void RSSListing::createMenu()
 
   newsMenu_->addSeparator();
   newsMenu_->addAction(autoLoadImagesToggle_);
+
+  newsMenu_->setEnabled(false);
+  connect(newsMenu_, SIGNAL(aboutToShow()), this, SLOT(slotNewsMenuShow()));
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
@@ -1556,6 +1559,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
+  newsMenu_->setEnabled(index.isValid());
   currentNewsTab->newsHeader_->setVisible(index.isValid());
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
@@ -1768,7 +1772,8 @@ void RSSListing::showOptionDlg()
 
   delete optionsDialog;
 
-  currentNewsTab->setSettings();
+  if (currentNewsTab != NULL)
+    currentNewsTab->setSettings();
 
   writeSettings();
   saveActionShortcuts();
@@ -2007,6 +2012,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
+  if (currentNewsTab == NULL) return;
   QElapsedTimer timer;
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -2531,7 +2537,13 @@ void RSSListing::slotShowFeedPropertiesDlg()
 void RSSListing::slotFeedMenuShow()
 {
   if (feedsView_->selectIndex.isValid()) feedProperties_->setEnabled(true);
-  else  feedProperties_->setEnabled(false);
+  else feedProperties_->setEnabled(false);
+}
+
+void RSSListing::slotNewsMenuShow()
+{
+  if (currentNewsTab) newsMenu_->setEnabled(true);
+  else newsMenu_->setEnabled(false);
 }
 
 //! Обновление информации в трее: значок и текст подсказки
@@ -2617,7 +2629,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
   feedsModel_->select();
   feedsView_->setCurrentIndex(index);
 
-  if (newsModel_->rowCount() != 0) {
+  if (currentNewsTab != NULL) {
     int currentRow = newsView_->currentIndex().row();
 
     setNewsFilter(newsFilterGroup_->checkedAction(), false);
@@ -2882,6 +2894,7 @@ void RSSListing::slotTabCloseRequested(int index)
                       currentNewsTab->newsTabWidgetSplitter_->saveState());
 
   delete tabWidget_->widget(index);
+  if (tabWidget_->count() == 0) currentNewsTab = NULL;
 }
 
 void RSSListing::slotTabCurrentChanged(int)
