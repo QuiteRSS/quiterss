@@ -294,7 +294,7 @@ private slots:
   void setToolBarIconSize(QAction*);
   void showContextMenuToolBar(const QPoint &);
   void slotShowFeedPropertiesDlg();
-  void slotEditMenuAction();
+  void slotFeedMenuShow();
   void markAllFeedsRead(bool readOn = true);
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);

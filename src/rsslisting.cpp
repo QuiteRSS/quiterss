@@ -775,7 +775,6 @@ void RSSListing::createMenu()
   fileMenu_ = new QMenu(this);
   menuBar()->addMenu(fileMenu_);
   fileMenu_->addAction(addFeedAct_);
-  fileMenu_->addAction(deleteFeedAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
@@ -783,9 +782,7 @@ void RSSListing::createMenu()
   fileMenu_->addAction(exitAct_);
 
   editMenu_ = new QMenu(this);
-  connect(editMenu_, SIGNAL(aboutToShow()), this, SLOT(slotEditMenuAction()));
   menuBar()->addMenu(editMenu_);
-  editMenu_->addAction(feedProperties_);
 
   viewMenu_  = new QMenu(this);
   menuBar()->addMenu(viewMenu_ );
@@ -867,6 +864,12 @@ void RSSListing::createMenu()
   feedsToolBar_->addAction(feedsFilter_);
   feedsFilterAction = NULL;
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
+
+  feedMenu_->addSeparator();
+  feedMenu_->addAction(deleteFeedAct_);
+  feedMenu_->addSeparator();
+  feedMenu_->addAction(feedProperties_);
+  connect(feedMenu_, SIGNAL(aboutToShow()), this, SLOT(slotFeedMenuShow()));
 
   newsMenu_ = new QMenu(this);
   menuBar()->addMenu(newsMenu_);
@@ -2105,7 +2108,7 @@ void RSSListing::createMenuFeed()
   connect(feedContextMenu_, SIGNAL(aboutToHide()),
           feedsView_, SLOT(setSelectIndex()), Qt::QueuedConnection);
   connect(feedContextMenu_, SIGNAL(aboutToShow()),
-          this, SLOT(slotEditMenuAction()));
+          this, SLOT(slotFeedMenuShow()));
 }
 
 void RSSListing::showContextMenuFeed(const QPoint &p)
@@ -2333,8 +2336,8 @@ void RSSListing::retranslateStrings() {
 
   markFeedRead_->setText(tr("Mark Read"));
   markFeedRead_->setToolTip(tr("Mark feed read"));
-  feedProperties_->setText(tr("Properties feed"));
-  feedProperties_->setToolTip(tr("Properties feed"));
+  feedProperties_->setText(tr("Feed properties"));
+  feedProperties_->setToolTip(tr("Feed properties"));
 
   fileMenu_->setTitle(tr("&File"));
   editMenu_->setTitle(tr("&Edit"));
@@ -2526,7 +2529,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   }
 }
 
-void RSSListing::slotEditMenuAction()
+void RSSListing::slotFeedMenuShow()
 {
   if (feedsView_->selectIndex.isValid()) feedProperties_->setEnabled(true);
   else  feedProperties_->setEnabled(false);
