@@ -24,8 +24,12 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mousePressEvent(QMouseEvent *event)
 {
-  if (!(event->buttons() & Qt::MiddleButton))
-    QTreeView::mousePressEvent(event);
+  selectIndex = indexAt(event->pos());
+  if ((event->buttons() & Qt::MiddleButton)) {
+    emit signalMiddleClicked();
+  } else if (event->buttons() & Qt::RightButton) {
+
+  } else QTreeView::mousePressEvent(event);
 }
 
 /*virtual*/ void FeedsView::mouseMoveEvent(QMouseEvent *event)
@@ -33,10 +37,29 @@ FeedsView::FeedsView(QWidget * parent) :
   Q_UNUSED(event)
 }
 
+/*virtual*/ void FeedsView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+  emit signalDoubleClicked(indexAt(event->pos()));
+}
+
 /*virtual*/ void FeedsView::keyPressEvent(QKeyEvent *event)
 {
   if (!event->modifiers()) {
-    if (event->key() == Qt::Key_Up) emit pressKeyUp();
-    else if (event->key() == Qt::Key_Down) emit pressKeyDown();
+    if (event->key() == Qt::Key_Up)         emit pressKeyUp();
+    else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
+    else if (event->key() == Qt::Key_Home)  emit pressKeyHome();
+    else if (event->key() == Qt::Key_End)   emit pressKeyEnd();
   }
+}
+
+/*virtual*/ void FeedsView::currentChanged(const QModelIndex &current,
+                                           const QModelIndex &previous)
+{
+  selectIndex = current;
+  QTreeView::currentChanged(current, previous);
+}
+
+void FeedsView::setSelectIndex()
+{
+  selectIndex = currentIndex();
 }

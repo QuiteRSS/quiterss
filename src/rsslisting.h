@@ -11,10 +11,11 @@
 #include "feedsview.h"
 #include "newsheader.h"
 #include "newsmodel.h"
+#include "newstabwidget.h"
+#include "newsview.h"
 #include "parsethread.h"
 #include "updateappdialog.h"
 #include "updatethread.h"
-#include "newsview.h"
 #include "webview.h"
 
 class RSSListing : public QMainWindow
@@ -29,18 +30,49 @@ public:
   QSystemTrayIcon *traySystem;
   void setCurrentFeed();
 
+  QSettings *settings_;
+  QSqlDatabase db_;
+  FeedsModel *feedsModel_;
+  FeedsView *feedsView_;
+
+  QAction *newsFilter_;
+  QAction *openInBrowserAct_;
+  QAction *openInExternalBrowserAct_;
+  QAction *markNewsRead_;
+  QAction *markAllNewsRead_;
+  QAction *markStarAct_;
+  QAction *updateFeedAct_;
+  QAction *deleteNewsAct_;
+  QAction *newsKeyUpAct_;
+  QAction *newsKeyDownAct_;
+  QActionGroup *newsFilterGroup_;
+
+  QString newsFontFamily_;
+  int newsFontSize_;
+  QString webFontFamily_;
+  int webFontSize_;
+
+  bool markNewsReadOn_;
+  int  markNewsReadTime_;
+
+  bool autoLoadImages_;
+
+  bool embeddedBrowserOn_;
+  bool javaScriptEnable_;
+  bool pluginsEnable_;
+
+  bool showDescriptionNews_;
+
 public slots:
   void addFeed();
   void deleteFeed();
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
-  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false);
+  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false,
+                             bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
-  void slotNewsViewClicked(QModelIndex index);
-  void slotNewsViewSelected(QModelIndex index);
-  void slotNewsViewDoubleClicked(QModelIndex index);
   void showOptionDlg();
   void receiveMessage(const QString&);
   void slotPlaceToTray();
@@ -52,6 +84,8 @@ public slots:
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(const QUrl &url, const bool &changed);
+  void slotUpdateStatus(bool openFeed = true);
+  void setNewsFilter(QAction*, bool clicked = true);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -67,9 +101,8 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsDock();
+  void createNewsTab();
   void createToolBarNull();
-  void createWebWidget();
   void createActions();
   void createShortcut();
   void loadActionShortcuts();
@@ -79,12 +112,10 @@ private:
   void readSettings ();
   void writeSettings();
   void createTrayMenu();
-  void createMenuNews();
   void createMenuFeed();
   void createStatusBar();
   void createTray();
   void loadSettingsFeeds();
-  void updateWebView(QModelIndex index);
   bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
   void appInstallTranslator();
   void retranslateStrings();
@@ -93,13 +124,12 @@ private:
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
 
-  QSettings *settings_;
   QString dataDirPath_;
 
-  QSqlDatabase db_;
   QString dbFileName_;
-  FeedsModel *feedsModel_;
   NewsModel *newsModel_;
+  QTabWidget *tabWidget_;
+  QTabBar* tabBar_;
 
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
@@ -127,46 +157,34 @@ private:
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;
   QAction *optionsAct_;
-  QAction *updateFeedAct_;
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedRead_;
   QAction *exitAct_;
-  QAction *markNewsRead_;
-  QAction *markAllNewsRead_;
-  QAction *markNewsUnread_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
   QAction *filterFeedsNew_;
   QAction *filterFeedsUnread_;
-  QAction *newsFilter_;
+
   QAction *filterNewsAll_;
   QAction *filterNewsNew_;
   QAction *filterNewsUnread_;
   QAction *filterNewsStar_;
   QAction *aboutAct_;
   QAction *updateAppAct_;
-  QAction *openNewsWebViewAct_;
-  QAction *openInBrowserAct_;
-  QAction *openInExternalBrowserAct_;
-  QAction *markStarAct_;
-  QAction *deleteNewsAct_;
+
   QAction *markFeedRead_;
   QAction *feedProperties_;
   QAction *showWindowAct_;
   QAction *feedKeyUpAct_;
   QAction *feedKeyDownAct_;
-  QAction *newsKeyUpAct_;
-  QAction *newsKeyDownAct_;
-  QAction *webHomePageAct_;
-  QAction *webExternalBrowserAct_;
   QAction *switchFocusAct_;
   QAction *visibleFeedsDockAct_;
+  QAction *openNewTabAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
   QActionGroup *styleGroup_;
   QActionGroup *feedsFilterGroup_;
-  QActionGroup *newsFilterGroup_;
 
   QAction *feedsFilterAction;
   QAction *newsFilterAction;
@@ -189,32 +207,16 @@ private:
   QMenu *newsFilterMenu_;
 
   QToolBar *toolBar_;
-  QToolBar *feedsToolBar_;
-  QToolBar *newsToolBar_;
 
+  QLabel *feedsTitleLabel_;
+  QToolBar *feedsToolBar_;
   QDockWidget *feedsDock_;
   Qt::DockWidgetArea feedsDockArea_;
-  QDockWidget *newsDock_;
-  Qt::DockWidgetArea newsDockArea_;
-  FeedsView *feedsView_;
+
   NewsView *newsView_;
-  NewsHeader *newsHeader_;
-  QLabel *feedsTitleLabel_;
-  QWidget *newsTitleLabel_;
-  QLabel *newsIconTitle_;
-  QLabel *newsTextTitle_;
-
-  QLabel *webPanelTitle_;
-  QLabel *webPanelTitleLabel_;
-  QLabel *webPanelAuthorLabel_;
-  QLabel *webPanelAuthor_;
-  QWidget *webPanel_;
-  QWidget *webControlPanel_;
-
-  QFrame *webWidget_;
   WebView *webView_;
-  QProgressBar *webViewProgress_;
-  QLabel *webViewProgressLabel_;
+
+  NewsTabWidget *currentNewsTab;
 
   int oldState;
 
@@ -237,8 +239,6 @@ private:
   QTranslator *translator_;
   QString langFileName_;
 
-  bool autoLoadImages_;
-
   bool minimizingTray_;
   bool closingTray_;
   bool singleClickTray_;
@@ -248,14 +248,6 @@ private:
 
   int openingFeedAction_;
   bool openNewsWebViewOn_;
-
-  QBasicTimer markNewsReadTimer_;
-  bool markNewsReadOn_;
-  int  markNewsReadTime_;
-
-  bool embeddedBrowserOn_;
-  bool javaScriptEnable_;
-  bool pluginsEnable_;
 
   FaviconLoader *faviconLoader;
 
@@ -275,8 +267,6 @@ private:
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
 
-  bool showDescriptionNews_;
-
   bool showMessageOn_;
 
   bool reopenFeedStartup_;
@@ -286,28 +276,15 @@ private slots:
   void slotVisibledFeedsDock();
   void updateIconToolBarNull(bool feedsDockVisible);
   void slotDockLocationChanged(Qt::DockWidgetArea area);
-  void slotSetItemRead(QModelIndex index, int read);
-  void markNewsRead();
-  void markAllNewsRead();
-  void slotLoadStarted();
-  void slotLoadFinished(bool ok);
-  void setFeedsFilter(QAction*, bool clicked = true);
-  void setNewsFilter(QAction*, bool clicked = true);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
-  void slotNewsDockLocationChanged(Qt::DockWidgetArea area);
-  void slotUpdateStatus();
+
   void setFeedRead(int feedId);
+  void markFeedRead();
+  void setFeedsFilter(QAction*, bool clicked = true);
+
   void slotShowAboutDlg();
-  void deleteNews();
-  void showContextMenuNews(const QPoint &);
-  void openInBrowserNews();
-  void openInExternalBrowserNews();
-  void slotSetItemStar(QModelIndex index, int starred);
-  void markNewsStar();
+
   void showContextMenuFeed(const QPoint &);
-  void slotLinkClicked(QUrl url);
-  void slotLinkHovered(const QString &link, const QString &, const QString &);
-  void slotSetValue(int value);
   void setAutoLoadImages();
   void slotFeedsFilter();
   void slotNewsFilter();
@@ -319,7 +296,6 @@ private slots:
   void slotShowFeedPropertiesDlg();
   void slotEditMenuAction();
   void markAllFeedsRead(bool readOn = true);
-  void slotWebTitleLinkClicked(QString urlStr);
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg();
@@ -328,19 +304,17 @@ private slots:
   void slotNewVersion(bool newVersion);
   void slotFeedUpPressed();
   void slotFeedDownPressed();
-  void slotNewsUpPressed();
-  void slotNewsDownPressed();
+  void slotFeedHomePressed();
+  void slotFeedEndPressed();
   void setStyleApp(QAction*);
-  void webHomePage();
-  void openPageInExternalBrowser();
   void slotSwitchFocus();
-  void slotOpenNewsWebView();
-  void slotWebViewSetContent(QString content);
+  void slotOpenNewTab();
+  void slotTabCloseRequested(int index);
+  void slotTabCurrentChanged(int index);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
-  void signalWebViewSetContent(QString content);
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
 };

@@ -39,6 +39,9 @@ NewsView::NewsView(QWidget * parent)
       event->ignore();
       return;
     }
+  } else if ((event->buttons() & Qt::MiddleButton)) {
+    emit signalMiddleClicked(index);
+    return;
   }
   QTreeView::mousePressEvent(event);
 }
@@ -56,8 +59,10 @@ NewsView::NewsView(QWidget * parent)
 /*virtual*/ void NewsView::keyPressEvent(QKeyEvent *event)
 {
   if (!event->modifiers()) {
-    if (event->key() == Qt::Key_Up) emit pressKeyUp();
-    else if (event->key() == Qt::Key_Down) emit pressKeyDown();
+    if (event->key() == Qt::Key_Up)         emit pressKeyUp();
+    else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
+    else if (event->key() == Qt::Key_Home)  emit pressKeyHome();
+    else if (event->key() == Qt::Key_End)   emit pressKeyEnd();
   } else if ((event->modifiers() == Qt::ControlModifier) &&
              (event->key() == Qt::Key_A)) {
     QTreeView::keyPressEvent(event);

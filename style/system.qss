@@ -1,6 +1,6 @@
 /* QuiteRSS System Style */
 
-#feedsTitleLabel_, #newsTitleLabel_ {
+#feedsTitleLabel_ {
 	margin-left: 3px;
 	border: 1px solid grey;
 	border-bottom: 0px solid #D5D5D5;
@@ -8,10 +8,6 @@
 	border-top-right-radius: 4px;
 	padding: 4px;
 	vertical-align:middle;
-}
-
-#newsTitleLabel_ {
-	min-width: 50px;
 }
 
 #feedsTreeView_::item, #newsView_::item {

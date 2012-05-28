@@ -21,9 +21,11 @@ signals:
   void signalSetItemRead(QModelIndex index, int read);
   void signalSetItemStar(QModelIndex index, int starred);
   void signalDoubleClicked(QModelIndex index);
+  void signalMiddleClicked(QModelIndex index);
   void pressKeyUp();
   void pressKeyDown();
-
+  void pressKeyHome();
+  void pressKeyEnd();
 };
 
 #endif // NEWSVIEW_H
