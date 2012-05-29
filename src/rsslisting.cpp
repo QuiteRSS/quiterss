@@ -1199,6 +1199,9 @@ void RSSListing::addFeed()
 void RSSListing::deleteFeed()
 {
   if (feedsView_->selectIndex.isValid()) {
+    int id = feedsModel_->record(
+          feedsView_->selectIndex.row()).field("id").value().toInt();
+
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("Delete feed"));
@@ -1210,8 +1213,6 @@ void RSSListing::deleteFeed()
 
     if (msgBox.exec() == QMessageBox::No) return;
 
-    int id = feedsModel_->record(
-          feedsView_->selectIndex.row()).field("id").value().toInt();
     db_.transaction();
     QSqlQuery q(db_);
     q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
