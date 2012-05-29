@@ -1103,7 +1103,7 @@
 </phrase>
 <phrase>
     <source>Open news</source>
-    <target>Открытые новости</target>
+    <target>Открывать новость</target>
 </phrase>
 <phrase>
     <source>Position at top of list news</source>
@@ -1128,5 +1128,13 @@
 <phrase>
     <source>Hungarian (%1)</source>
     <target>Венгерский (%1)</target>
+</phrase>
+<phrase>
+    <source>Open in new tab</source>
+    <target>Открыть в новой вкладке</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS...</source>
+    <target>Новая версия QuiteRSS...</target>
 </phrase>
 </QPH>

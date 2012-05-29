@@ -10,9 +10,11 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
 {
   if (role == Qt::FontRole) {
     QFont font = font_;
-    if ((0 < QSqlTableModel::index(index.row(), fieldIndex("unread")).data(Qt::EditRole).toInt()) &&
-        (QSqlTableModel::fieldIndex("unread") != index.column()))
-      font.setBold(true);
+    if (QSqlTableModel::fieldIndex("text") == index.column()) {
+      if ((0 < QSqlTableModel::index(index.row(), fieldIndex("unread")).data(Qt::EditRole).toInt()) &&
+          (QSqlTableModel::fieldIndex("unread") != index.column()))
+        font.setBold(true);
+    }
     return font;
   } else if (role == Qt::DisplayRole){
     if (QSqlTableModel::fieldIndex("unread") == index.column()) {
@@ -23,6 +25,10 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
             arg(QSqlTableModel::index(index.row(), fieldIndex("unread")).data(Qt::EditRole).toInt());
         return qStr;
       }
+    } else if (QSqlTableModel::fieldIndex("undeleteCount") == index.column()) {
+      QString qStr = QString("(%1)").
+          arg(QSqlTableModel::index(index.row(), fieldIndex("undeleteCount")).data(Qt::EditRole).toInt());
+      return qStr;
     }
   } else if (role == Qt::TextColorRole) {
     QBrush brush;
