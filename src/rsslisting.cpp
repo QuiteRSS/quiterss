@@ -781,7 +781,8 @@ void RSSListing::createMenu()
   fileMenu_->addAction(exitAct_);
 
   editMenu_ = new QMenu(this);
-  menuBar()->addMenu(editMenu_);
+//  menuBar()->addMenu(editMenu_);
+  editMenu_->setVisible(false);
 
   viewMenu_  = new QMenu(this);
   menuBar()->addMenu(viewMenu_ );
