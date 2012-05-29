@@ -326,7 +326,7 @@
 </phrase>
 <phrase>
     <source>&amp;Close</source>
-    <target>Bezárás</target>
+    <target>&amp;Bezárás</target>
 </phrase>
 <phrase>
     <source>Feed Title:</source>
@@ -1012,23 +1012,23 @@
 </phrase>
 <phrase>
     <source>&amp;Yes</source>
-    <target>Igen</target>
+    <target>&amp;Igen</target>
 </phrase>
 <phrase>
     <source>&amp;No</source>
-    <target>Nem</target>
+    <target>&amp;Nem</target>
 </phrase>
 <phrase>
     <source>&amp;Step up</source>
-    <target>Felfelé</target>
+    <target>&amp;Felfelé</target>
 </phrase>
 <phrase>
     <source>Step &amp;down</source>
-    <target>Lefelé</target>
+    <target>&amp;Lefelé</target>
 </phrase>
 <phrase>
     <source>&amp;Select All</source>
-    <target>Az összes kijelölése</target>
+    <target>Az ö&amp;sszes kijelölése</target>
 </phrase>
 <phrase>
     <source>Create new feed</source>
@@ -1045,5 +1045,13 @@
 <phrase>
     <source>Can&apos;t find feed URL!</source>
     <target>Nincs hírcsatorna URL!</target>
+</phrase>
+<phrase>
+    <source>&lt; &amp;Back</source>
+    <target>&lt; &amp;Vissza</target>
+</phrase>
+<phrase>
+    <source>&amp;Next &gt;</source>
+    <target>&amp;Következő &gt;</target>
 </phrase>
 </QPH>

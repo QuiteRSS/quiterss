@@ -928,4 +928,12 @@
     <source>Position on last opened news</source>
     <target>Position über zuletzt geöffnete Artikel</target>
 </phrase>
+<phrase>
+    <source>Open in new tab</source>
+    <target>In neuem Tab öffnen</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS...</source>
+    <target>Eine neue Version von QuiteRSS...</target>
+</phrase>
 </QPH>
