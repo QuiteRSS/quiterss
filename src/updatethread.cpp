@@ -59,7 +59,10 @@ void UpdateThread::getQueuedUrl()
 void UpdateThread::get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date)
 {
   qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
-  emit signalGet(QNetworkRequest(getUrl));
+  QNetworkRequest request(getUrl);
+  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1; U; YB/3.5.1; ru) Presto/2.10.229 Version/11.62");
+  qDebug() << "request.rawHeaderList:" << request.rawHeaderList();
+  emit signalGet(request);
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
@@ -68,7 +71,10 @@ void UpdateThread::get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime 
 void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date)
 {
   qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
-  emit signalHead(QNetworkRequest(getUrl));
+  QNetworkRequest request(getUrl);
+  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1; U; YB/3.5.1; ru) Presto/2.10.229 Version/11.62");
+  qDebug() << "request.rawHeaderList:" << request.rawHeaderList();
+  emit signalHead(request);
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
