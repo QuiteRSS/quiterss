@@ -63,6 +63,9 @@ public:
 
   bool showDescriptionNews_;
 
+  bool showUnreadCount_;
+  bool showUndeleteCount_;
+
 public slots:
   void addFeed();
   void deleteFeed();

@@ -341,9 +341,9 @@ void RSSListing::createFeedsDock()
   for (int i = 0; i < feedsModel_->columnCount(); ++i)
     feedsView_->hideColumn(i);
   feedsView_->showColumn(feedsModel_->fieldIndex("text"));
-  feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("undeleteCount"), QHeaderView::ResizeToContents);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);
@@ -1049,6 +1049,12 @@ void RSSListing::readSettings()
       break;
     }
   }
+  showUnreadCount_ = settings_->value("showUnreadCount", true).toBool();
+  showUndeleteCount_ = settings_->value("showUndeleteCount", false).toBool();
+  if (showUnreadCount_)
+    feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
+  if (showUndeleteCount_)
+    feedsView_->showColumn(feedsModel_->fieldIndex("undeleteCount"));
 
   settings_->endGroup();
 
@@ -1138,6 +1144,9 @@ void RSSListing::writeSettings()
 
   settings_->setValue("styleApplication",
                       styleGroup_->checkedAction()->objectName());
+
+  settings_->setValue("showUnreadCount", showUnreadCount_);
+  settings_->setValue("showUndeleteCount", showUndeleteCount_);
 
   settings_->endGroup();
 
