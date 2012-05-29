@@ -673,6 +673,13 @@ void RSSListing::createActions()
   visibleFeedsDockAct_->setObjectName("visibleFeedsDockAct");
   connect(visibleFeedsDockAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsDock()));
   this->addAction(visibleFeedsDockAct_);
+
+  showUnreadCount_ = new QAction(this);
+  showUnreadCount_->setData(feedsModel_->fieldIndex("unread"));
+  showUnreadCount_->setCheckable(true);
+  showUndeleteCount_ = new QAction(this);
+  showUndeleteCount_->setData(feedsModel_->fieldIndex("undeleteCount"));
+  showUndeleteCount_->setCheckable(true);
 }
 
 void RSSListing::createShortcut()
@@ -866,6 +873,18 @@ void RSSListing::createMenu()
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
   feedMenu_->addSeparator();
+  feedsColumnsMenu_ = new QMenu(this);
+  feedsColumnsMenu_->addAction(showUnreadCount_);
+  feedsColumnsMenu_->addAction(showUndeleteCount_);
+  feedMenu_->addMenu(feedsColumnsMenu_);
+  feedsColumnsGroup_ = new QActionGroup(this);
+  feedsColumnsGroup_->setExclusive(false);
+  feedsColumnsGroup_->addAction(showUnreadCount_);
+  feedsColumnsGroup_->addAction(showUndeleteCount_);
+  connect(feedsColumnsGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(feedsColumnVisible(QAction*)));
+
+  feedMenu_->addSeparator();
   feedMenu_->addAction(deleteFeedAct_);
   feedMenu_->addSeparator();
   feedMenu_->addAction(feedProperties_);
@@ -1050,12 +1069,11 @@ void RSSListing::readSettings()
       break;
     }
   }
-  showUnreadCount_ = settings_->value("showUnreadCount", true).toBool();
-  showUndeleteCount_ = settings_->value("showUndeleteCount", false).toBool();
-  if (showUnreadCount_)
-    feedsView_->showColumn(feedsModel_->fieldIndex("unread"));
-  if (showUndeleteCount_)
-    feedsView_->showColumn(feedsModel_->fieldIndex("undeleteCount"));
+
+  showUnreadCount_->setChecked(settings_->value("showUnreadCount", true).toBool());
+  showUndeleteCount_->setChecked(settings_->value("showUndeleteCount", false).toBool());
+  feedsColumnVisible(showUnreadCount_);
+  feedsColumnVisible(showUndeleteCount_);
 
   settings_->endGroup();
 
@@ -1146,8 +1164,8 @@ void RSSListing::writeSettings()
   settings_->setValue("styleApplication",
                       styleGroup_->checkedAction()->objectName());
 
-  settings_->setValue("showUnreadCount", showUnreadCount_);
-  settings_->setValue("showUndeleteCount", showUndeleteCount_);
+  settings_->setValue("showUnreadCount", showUnreadCount_->isChecked());
+  settings_->setValue("showUndeleteCount", showUndeleteCount_->isChecked());
 
   settings_->endGroup();
 
@@ -2399,6 +2417,10 @@ void RSSListing::retranslateStrings() {
 
   visibleFeedsDockAct_->setText(tr("Show/hide tree feeds"));
 
+  feedsColumnsMenu_->setTitle(tr("Columns"));
+  showUnreadCount_->setText(tr("Count news unread"));
+  showUndeleteCount_->setText(tr("Count news all"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
@@ -2956,4 +2978,10 @@ void RSSListing::slotTabCurrentChanged(int)
 
     currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6));
   }
+}
+
+void RSSListing::feedsColumnVisible(QAction *action)
+{
+  int idx = action->data().toInt();
+  feedsView_->setColumnHidden(idx, !action->isChecked());
 }

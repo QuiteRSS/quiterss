@@ -63,9 +63,6 @@ public:
 
   bool showDescriptionNews_;
 
-  bool showUnreadCount_;
-  bool showUndeleteCount_;
-
 public slots:
   void addFeed();
   void deleteFeed();
@@ -192,6 +189,10 @@ private:
   QAction *feedsFilterAction;
   QAction *newsFilterAction;
 
+  QAction *showUnreadCount_;
+  QAction *showUndeleteCount_;
+  QActionGroup *feedsColumnsGroup_;
+
   QMenu *fileMenu_;
   QMenu *editMenu_;
   QMenu *viewMenu_;
@@ -208,6 +209,7 @@ private:
   QMenu *feedContextMenu_;
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
+  QMenu *feedsColumnsMenu_;
 
   QToolBar *toolBar_;
 
@@ -316,6 +318,7 @@ private slots:
   void slotOpenNewTab();
   void slotTabCloseRequested(int index);
   void slotTabCurrentChanged(int index);
+  void feedsColumnVisible(QAction* action);
 
 signals:
   void signalPlaceToTray();
