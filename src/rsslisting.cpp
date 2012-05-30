@@ -1593,6 +1593,10 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   static int idOld = -2;
   if (feedsModel_->index(index.row(), 0).data() != idOld) {
+    if (tabWidget_->currentIndex() != 0) {
+      tabWidget_->setCurrentIndex(0);
+      feedsView_->setCurrentIndex(index);
+    }
     slotFeedsTreeSelected(index, true);
     feedsView_->repaint();
   }
@@ -3001,14 +3005,6 @@ void RSSListing::slotTabCloseRequested(int index)
                         currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
     settings_->setValue("NewsTabSplitter",
                         currentNewsTab->newsTabWidgetSplitter_->saveState());
-
-    if (tabWidget_->count() == 1) {
-      feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
-      slotFeedsTreeClicked(feedsModel_->index(-1, 1));
-
-      currentNewsTab = NULL;
-      slotNewsActionEnabled(false);
-    }
 
     delete tabWidget_->widget(index);
   }
