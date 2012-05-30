@@ -39,8 +39,8 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   newsTabWidgetSplitter_ = new QSplitter(this);
   newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
 
-  if ((rsslisting_->browserPosition_ == 0) ||
-      (rsslisting_->browserPosition_ == 3)) {
+  if ((rsslisting_->browserPosition_ == TOP_POSITION) ||
+      (rsslisting_->browserPosition_ == LEFT_POSITION)) {
     newsTabWidgetSplitter_->addWidget(webWidget_);
     newsTabWidgetSplitter_->addWidget(newsWidget_);
   } else {
@@ -59,8 +59,8 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   newsTabWidgetSplitter_->restoreState(
         rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
 
-  if ((rsslisting_->browserPosition_ == 2) ||
-      (rsslisting_->browserPosition_ == 3)) {
+  if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
+      (rsslisting_->browserPosition_ == LEFT_POSITION)) {
     newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
   } else {
     newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
@@ -902,10 +902,10 @@ void NewsTabWidget::setBrowserPosition()
   int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
 
   switch (rsslisting_->browserPosition_) {
-  case 0: case 3:
+  case TOP_POSITION: case LEFT_POSITION:
     newsTabWidgetSplitter_->insertWidget(0, newsTabWidgetSplitter_->widget(idx));
     break;
-  case 1: case 2:
+  case BOTTOM_POSITION: case RIGHT_POSITION:
     newsTabWidgetSplitter_->insertWidget(1, newsTabWidgetSplitter_->widget(idx));
     break;
   default:
@@ -913,10 +913,10 @@ void NewsTabWidget::setBrowserPosition()
   }
 
   switch (rsslisting_->browserPosition_) {
-  case 0: case 1:
+  case TOP_POSITION: case BOTTOM_POSITION:
     newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
     break;
-  case 2: case 3:
+  case RIGHT_POSITION: case LEFT_POSITION:
     newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
     break;
   default:

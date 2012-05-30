@@ -425,6 +425,7 @@ void RSSListing::createNewsTab()
   currentNewsTab = NULL;
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
   currentNewsTab->setSettings();
+  currentNewsTab->setBrowserPosition();
 
   newsModel_ = currentNewsTab->newsModel_;
   newsView_ = currentNewsTab->newsView_;  
@@ -546,16 +547,16 @@ void RSSListing::createActions()
 
   topBrowserPositionAct_ = new QAction(this);
   topBrowserPositionAct_->setCheckable(true);
-  topBrowserPositionAct_->setData(0);
+  topBrowserPositionAct_->setData(TOP_POSITION);
   bottomBrowserPositionAct_ = new QAction(this);
   bottomBrowserPositionAct_->setCheckable(true);
-  bottomBrowserPositionAct_->setData(1);
+  bottomBrowserPositionAct_->setData(BOTTOM_POSITION);
   rightBrowserPositionAct_ = new QAction(this);
   rightBrowserPositionAct_->setCheckable(true);
-  rightBrowserPositionAct_->setData(2);
+  rightBrowserPositionAct_->setData(RIGHT_POSITION);
   leftBrowserPositionAct_ = new QAction(this);
   leftBrowserPositionAct_->setCheckable(true);
-  leftBrowserPositionAct_->setData(3);
+  leftBrowserPositionAct_->setData(LEFT_POSITION);
 
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
@@ -1110,11 +1111,11 @@ void RSSListing::readSettings()
   feedsColumnVisible(showUndeleteCount_);
   feedsColumnVisible(showLastUpdated_);
 
-  browserPosition_ = settings_->value("browserPosition", 1).toInt();
+  browserPosition_ = settings_->value("browserPosition", BOTTOM_POSITION).toInt();
   switch (browserPosition_) {
-  case 0: topBrowserPositionAct_->setChecked(true); break;
-  case 2: rightBrowserPositionAct_->setChecked(true); break;
-  case 3: leftBrowserPositionAct_->setChecked(true); break;
+  case TOP_POSITION:   topBrowserPositionAct_->setChecked(true); break;
+  case RIGHT_POSITION: rightBrowserPositionAct_->setChecked(true); break;
+  case LEFT_POSITION:  leftBrowserPositionAct_->setChecked(true); break;
   default: bottomBrowserPositionAct_->setChecked(true);
   }
 

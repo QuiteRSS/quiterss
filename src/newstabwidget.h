@@ -12,6 +12,11 @@
 #include "newsview.h"
 #include "webview.h"
 
+#define TOP_POSITION    0
+#define BOTTOM_POSITION 1
+#define RIGHT_POSITION  2
+#define LEFT_POSITION   3
+
 class NewsTabWidget : public QWidget
 {
   Q_OBJECT
