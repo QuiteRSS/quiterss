@@ -1496,6 +1496,13 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     newCountOld = q.value(q.record().indexOf("newCount")).toInt();
   }
 
+  //! Устанавливаем время обновления ленты
+  q.prepare("UPDATE feeds SET updated=? WHERE id=?");
+  q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
+                                       "yyyy-MM-ddTHH:mm:ss"));
+  q.addBindValue(parseFeedId);
+  q.exec();
+
   recountFeedCounts(parseFeedId);
 
   //! Достаём новое значение количества новых новостей
