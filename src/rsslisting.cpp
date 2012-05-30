@@ -344,6 +344,7 @@ void RSSListing::createFeedsDock()
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("text"), QHeaderView::Stretch);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("updated"), QHeaderView::ResizeToContents);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);
@@ -693,6 +694,9 @@ void RSSListing::createActions()
   showUndeleteCount_ = new QAction(this);
   showUndeleteCount_->setData(feedsModel_->fieldIndex("undeleteCount"));
   showUndeleteCount_->setCheckable(true);
+  showLastUpdated_ = new QAction(this);
+  showLastUpdated_->setData(feedsModel_->fieldIndex("updated"));
+  showLastUpdated_->setCheckable(true);
 }
 
 void RSSListing::createShortcut()
@@ -903,11 +907,13 @@ void RSSListing::createMenu()
   feedsColumnsMenu_ = new QMenu(this);
   feedsColumnsMenu_->addAction(showUnreadCount_);
   feedsColumnsMenu_->addAction(showUndeleteCount_);
+  feedsColumnsMenu_->addAction(showLastUpdated_);
   feedMenu_->addMenu(feedsColumnsMenu_);
   feedsColumnsGroup_ = new QActionGroup(this);
   feedsColumnsGroup_->setExclusive(false);
   feedsColumnsGroup_->addAction(showUnreadCount_);
   feedsColumnsGroup_->addAction(showUndeleteCount_);
+  feedsColumnsGroup_->addAction(showLastUpdated_);
   connect(feedsColumnsGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(feedsColumnVisible(QAction*)));
 
@@ -1099,8 +1105,10 @@ void RSSListing::readSettings()
 
   showUnreadCount_->setChecked(settings_->value("showUnreadCount", true).toBool());
   showUndeleteCount_->setChecked(settings_->value("showUndeleteCount", false).toBool());
+  showLastUpdated_->setChecked(settings_->value("showLastUpdated", false).toBool());
   feedsColumnVisible(showUnreadCount_);
   feedsColumnVisible(showUndeleteCount_);
+  feedsColumnVisible(showLastUpdated_);
 
   browserPosition_ = settings_->value("browserPosition", 1).toInt();
   switch (browserPosition_) {
@@ -1201,6 +1209,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("showUnreadCount", showUnreadCount_->isChecked());
   settings_->setValue("showUndeleteCount", showUndeleteCount_->isChecked());
+  settings_->setValue("showLastUpdated", showLastUpdated_->isChecked());
 
   settings_->setValue("browserPosition", browserPosition_);
 
@@ -1532,6 +1541,13 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
     newCountOld = q.value(q.record().indexOf("newCount")).toInt();
   }
+
+  //! Устанавливаем время обновления ленты
+  q.prepare("UPDATE feeds SET updated=? WHERE id=?");
+  q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
+                                       "yyyy-MM-ddTHH:mm:ss"));
+  q.addBindValue(parseFeedId);
+  q.exec();
 
   recountFeedCounts(parseFeedId);
 
@@ -2463,6 +2479,7 @@ void RSSListing::retranslateStrings() {
   feedsColumnsMenu_->setTitle(tr("Columns"));
   showUnreadCount_->setText(tr("Count news unread"));
   showUndeleteCount_->setText(tr("Count news all"));
+  showLastUpdated_->setText(tr("Last updated"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");

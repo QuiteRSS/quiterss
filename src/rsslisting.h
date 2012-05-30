@@ -198,6 +198,7 @@ private:
 
   QAction *showUnreadCount_;
   QAction *showUndeleteCount_;
+  QAction *showLastUpdated_;
   QActionGroup *feedsColumnsGroup_;
 
   QMenu *fileMenu_;
