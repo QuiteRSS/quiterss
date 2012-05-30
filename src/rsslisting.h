@@ -34,6 +34,7 @@ public:
   QSqlDatabase db_;
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
+  QTabWidget *tabWidget_;
 
   QAction *newsFilter_;
   QAction *openInBrowserAct_;
@@ -88,6 +89,7 @@ public slots:
   void slotUpdateFeed(const QUrl &url, const bool &changed);
   void slotUpdateStatus(bool openFeed = true);
   void setNewsFilter(QAction*, bool clicked = true);
+  void slotTabCloseRequested(int index);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -130,7 +132,6 @@ private:
 
   QString dbFileName_;
   NewsModel *newsModel_;
-  QTabWidget *tabWidget_;
   QTabBar* tabBar_;
 
   QList<QAction *> listActions_;
@@ -325,7 +326,6 @@ private slots:
   void setStyleApp(QAction*);
   void slotSwitchFocus();
   void slotOpenNewTab();
-  void slotTabCloseRequested(int index);
   void slotTabCurrentChanged(int index);
   void feedsColumnVisible(QAction *action);
   void setBrowserPosition(QAction *action);

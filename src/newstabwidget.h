@@ -71,6 +71,7 @@ public:
   QLabel *newsIconTitle_;
   QLabel *newsTextTitle_;
   QWidget *newsTitleLabel_;
+  QToolButton *closeButton_;
 
 signals:
   void signalWebViewSetContent(QString content);
@@ -107,6 +108,8 @@ private slots:
   void slotOpenNewsWebView();
   void openInBrowserNews();
   void openInExternalBrowserNews();
+
+  void slotTabClose();
 
 };
 

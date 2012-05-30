@@ -85,7 +85,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   tabWidget_ = new QTabWidget(this);
   tabWidget_->setObjectName("tabWidget_");
-  tabWidget_->setTabsClosable(true);
   tabWidget_->setFocusPolicy(Qt::NoFocus);
 
   connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
@@ -1621,7 +1620,14 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     int indexTab = tabWidget_->addTab(
           new NewsTabWidget(feedId, this), "");
     tabWidget_->setCurrentIndex(indexTab);
-    tabBar_->setTabButton(tabWidget_->currentIndex(), QTabBar::LeftSide, currentNewsTab->newsTitleLabel_);
+    tabBar_->setTabButton(tabWidget_->currentIndex(),
+                          QTabBar::LeftSide,
+                          currentNewsTab->newsTitleLabel_);
+    tabBar_->setTabButton(tabWidget_->currentIndex(),
+                          QTabBar::RightSide,
+                          currentNewsTab->closeButton_);
+    if (tabWidget_->count() == 1)
+      currentNewsTab->closeButton_->setVisible(false);
   }
   currentNewsTab->feedId_ = feedsModel_->index(feedRow, 0).data().toInt();
 
@@ -2985,25 +2991,27 @@ void RSSListing::slotOpenNewTab()
 
 void RSSListing::slotTabCloseRequested(int index)
 {
-  settings_->setValue("NewsHeaderGeometry",
-                      currentNewsTab->newsHeader_->saveGeometry());
-  settings_->setValue("NewsHeaderState",
-                      currentNewsTab->newsHeader_->saveState());
+  if (index != 0) {
+    settings_->setValue("NewsHeaderGeometry",
+                        currentNewsTab->newsHeader_->saveGeometry());
+    settings_->setValue("NewsHeaderState",
+                        currentNewsTab->newsHeader_->saveState());
 
-  settings_->setValue("NewsTabSplitter",
-                      currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
-  settings_->setValue("NewsTabSplitter",
-                      currentNewsTab->newsTabWidgetSplitter_->saveState());
+    settings_->setValue("NewsTabSplitter",
+                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
+    settings_->setValue("NewsTabSplitter",
+                        currentNewsTab->newsTabWidgetSplitter_->saveState());
 
-  if (tabWidget_->count() == 1) {
-    feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
-    slotFeedsTreeClicked(feedsModel_->index(-1, 1));
+    if (tabWidget_->count() == 1) {
+      feedsView_->setCurrentIndex(feedsModel_->index(-1, 1));
+      slotFeedsTreeClicked(feedsModel_->index(-1, 1));
 
-    currentNewsTab = NULL;
-    slotNewsActionEnabled(false);
+      currentNewsTab = NULL;
+      slotNewsActionEnabled(false);
+    }
+
+    delete tabWidget_->widget(index);
   }
-
-  delete tabWidget_->widget(index);
 }
 
 void RSSListing::slotTabCurrentChanged(int)

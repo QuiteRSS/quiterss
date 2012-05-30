@@ -31,6 +31,18 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
   newsTitleLabel_->setLayout(newsTitleLayout);
 
+  closeButton_ = new QToolButton(this);
+  closeButton_->setFixedSize(15, 15);
+  closeButton_->setCursor(Qt::ArrowCursor);
+  closeButton_->setStyleSheet(
+        "QToolButton { border: none; padding: 0px;"
+        "image: url(:/images/close); }"
+        "QToolButton:hover {"
+        "image: url(:/images/closeHover); }"
+        );
+  connect(closeButton_, SIGNAL(clicked()),
+          this, SLOT(slotTabClose()));
+
   createNewsList();
   createMenuNews();
   createWebWidget();
@@ -922,4 +934,9 @@ void NewsTabWidget::setBrowserPosition()
   default:
     newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
   }
+}
+
+void NewsTabWidget::slotTabClose()
+{
+  rsslisting_->slotTabCloseRequested(rsslisting_->tabWidget_->indexOf(this));
 }
