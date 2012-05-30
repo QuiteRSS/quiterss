@@ -63,6 +63,8 @@ public:
 
   bool showDescriptionNews_;
 
+  int browserPosition_;
+
 public slots:
   void addFeed();
   void deleteFeed();
@@ -153,6 +155,10 @@ private:
   QAction *purpleStyle_;
   QAction *pinkStyle_;
   QAction *grayStyle_;
+  QAction *topBrowserPositionAct_;
+  QAction *bottomBrowserPositionAct_;
+  QAction *rightBrowserPositionAct_;
+  QAction *leftBrowserPositionAct_;
   QAction *autoLoadImagesToggle_;
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;
@@ -184,6 +190,7 @@ private:
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
   QActionGroup *styleGroup_;
+  QActionGroup *browserPositionGroup_;
   QActionGroup *feedsFilterGroup_;
 
   QAction *feedsFilterAction;
@@ -200,6 +207,7 @@ private:
   QMenu *toolBarStyleMenu_;
   QMenu *toolBarIconSizeMenu_;
   QMenu *styleMenu_;
+  QMenu *browserPositionMenu_;
   QMenu *feedMenu_;
   QMenu *newsMenu_;
   QMenu *toolsMenu_;
@@ -318,7 +326,8 @@ private slots:
   void slotOpenNewTab();
   void slotTabCloseRequested(int index);
   void slotTabCurrentChanged(int index);
-  void feedsColumnVisible(QAction* action);
+  void feedsColumnVisible(QAction *action);
+  void setBrowserPosition(QAction *action);
 
 signals:
   void signalPlaceToTray();

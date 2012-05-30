@@ -543,6 +543,19 @@ void RSSListing::createActions()
   grayStyle_->setObjectName("grayStyle_");
   grayStyle_->setCheckable(true);
 
+  topBrowserPositionAct_ = new QAction(this);
+  topBrowserPositionAct_->setCheckable(true);
+  topBrowserPositionAct_->setData(0);
+  bottomBrowserPositionAct_ = new QAction(this);
+  bottomBrowserPositionAct_->setCheckable(true);
+  bottomBrowserPositionAct_->setData(1);
+  rightBrowserPositionAct_ = new QAction(this);
+  rightBrowserPositionAct_->setCheckable(true);
+  rightBrowserPositionAct_->setData(2);
+  leftBrowserPositionAct_ = new QAction(this);
+  leftBrowserPositionAct_->setCheckable(true);
+  leftBrowserPositionAct_->setData(3);
+
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
 
@@ -844,6 +857,20 @@ void RSSListing::createMenu()
           this, SLOT(setStyleApp(QAction*)));
   viewMenu_->addMenu(styleMenu_);
 
+  browserPositionMenu_ = new QMenu(this);
+  browserPositionMenu_->addAction(topBrowserPositionAct_);
+  browserPositionMenu_->addAction(bottomBrowserPositionAct_);
+  browserPositionMenu_->addAction(rightBrowserPositionAct_);
+  browserPositionMenu_->addAction(leftBrowserPositionAct_);
+  browserPositionGroup_ = new QActionGroup(this);
+  browserPositionGroup_->addAction(topBrowserPositionAct_);
+  browserPositionGroup_->addAction(bottomBrowserPositionAct_);
+  browserPositionGroup_->addAction(rightBrowserPositionAct_);
+  browserPositionGroup_->addAction(leftBrowserPositionAct_);
+  connect(browserPositionGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setBrowserPosition(QAction*)));
+  viewMenu_->addMenu(browserPositionMenu_);
+
   feedMenu_ = new QMenu(this);
   menuBar()->addMenu(feedMenu_);
   feedMenu_->addAction(updateFeedAct_);
@@ -1075,6 +1102,14 @@ void RSSListing::readSettings()
   feedsColumnVisible(showUnreadCount_);
   feedsColumnVisible(showUndeleteCount_);
 
+  browserPosition_ = settings_->value("browserPosition", 1).toInt();
+  switch (browserPosition_) {
+  case 0: topBrowserPositionAct_->setChecked(true); break;
+  case 2: rightBrowserPositionAct_->setChecked(true); break;
+  case 3: leftBrowserPositionAct_->setChecked(true); break;
+  default: bottomBrowserPositionAct_->setChecked(true);
+  }
+
   settings_->endGroup();
 
   resize(800, 600);
@@ -1166,6 +1201,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("showUnreadCount", showUnreadCount_->isChecked());
   settings_->setValue("showUndeleteCount", showUndeleteCount_->isChecked());
+
+  settings_->setValue("browserPosition", browserPosition_);
 
   settings_->endGroup();
 
@@ -2404,6 +2441,12 @@ void RSSListing::retranslateStrings() {
   pinkStyle_->setText(tr("Pink"));
   grayStyle_->setText(tr("Gray"));
 
+  browserPositionMenu_->setTitle(tr("Browser position"));
+  topBrowserPositionAct_->setText(tr("Top"));
+  bottomBrowserPositionAct_->setText(tr("Bottom"));
+  rightBrowserPositionAct_->setText(tr("Right"));
+  leftBrowserPositionAct_->setText(tr("Left"));
+
   showWindowAct_->setText(tr("Show window"));
 
   feedKeyUpAct_->setText(tr("Previous feed"));
@@ -2984,4 +3027,10 @@ void RSSListing::feedsColumnVisible(QAction *action)
 {
   int idx = action->data().toInt();
   feedsView_->setColumnHidden(idx, !action->isChecked());
+}
+
+void RSSListing::setBrowserPosition(QAction *action)
+{
+  browserPosition_ = action->data().toInt();
+  currentNewsTab->setBrowserPosition();
 }

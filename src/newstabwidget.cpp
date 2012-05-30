@@ -36,10 +36,17 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   createWebWidget();
   retranslateStrings();
 
-  newsTabWidgetSplitter_ = new QSplitter(Qt::Vertical);
+  newsTabWidgetSplitter_ = new QSplitter(this);
   newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
-  newsTabWidgetSplitter_->addWidget(newsWidget_);
-  newsTabWidgetSplitter_->addWidget(webWidget_);
+
+  if ((rsslisting_->browserPosition_ == 0) ||
+      (rsslisting_->browserPosition_ == 3)) {
+    newsTabWidgetSplitter_->addWidget(webWidget_);
+    newsTabWidgetSplitter_->addWidget(newsWidget_);
+  } else {
+    newsTabWidgetSplitter_->addWidget(newsWidget_);
+    newsTabWidgetSplitter_->addWidget(webWidget_);
+  }
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
@@ -51,6 +58,13 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
         rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
   newsTabWidgetSplitter_->restoreState(
         rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
+
+  if ((rsslisting_->browserPosition_ == 2) ||
+      (rsslisting_->browserPosition_ == 3)) {
+    newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
+  } else {
+    newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+  }
 }
 
 //! Создание новостного списка и всех сопутствующих панелей
@@ -263,14 +277,10 @@ void NewsTabWidget::createWebWidget()
   webPanel_->setObjectName("webPanel_");
   webPanel_->setLayout(webPanelLayout);
 
-  QFrame *line = new QFrame(this);
-  line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-
   //! Create web layout
   QVBoxLayout *webLayout = new QVBoxLayout();
   webLayout->setMargin(0);
   webLayout->setSpacing(0);
-  webLayout->addWidget(line);
   webLayout->addWidget(webPanel_);
   webLayout->addWidget(webView_, 1);
   webLayout->addWidget(webViewProgress_);
@@ -885,4 +895,31 @@ void NewsTabWidget::openInExternalBrowserNews()
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
   QDesktopServices::openUrl(QUrl(linkString.simplified()));
+}
+
+void NewsTabWidget::setBrowserPosition()
+{
+  int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
+
+  switch (rsslisting_->browserPosition_) {
+  case 0: case 3:
+    newsTabWidgetSplitter_->insertWidget(0, newsTabWidgetSplitter_->widget(idx));
+    break;
+  case 1: case 2:
+    newsTabWidgetSplitter_->insertWidget(1, newsTabWidgetSplitter_->widget(idx));
+    break;
+  default:
+    newsTabWidgetSplitter_->insertWidget(1, newsTabWidgetSplitter_->widget(idx));
+  }
+
+  switch (rsslisting_->browserPosition_) {
+  case 0: case 1:
+    newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+    break;
+  case 2: case 3:
+    newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
+    break;
+  default:
+    newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+  }
 }

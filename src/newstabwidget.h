@@ -26,6 +26,7 @@ private:
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
 
+  QFrame *lineWebWidget;
   QWidget *webWidget_;
   QLabel *webPanelTitle_;
   QLabel *webPanelTitleLabel_;
@@ -47,6 +48,7 @@ public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
   void retranslateStrings();
   void setSettings();
+  void setBrowserPosition();
 
   void updateWebView(QModelIndex index);
 
