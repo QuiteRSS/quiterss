@@ -37,6 +37,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 
 QTabBar::tab:selected {
 	border-bottom: none;
+	padding-bottom: 5px;
 }
 
 #tabWidget_::pane {
@@ -56,6 +57,7 @@ QTabBar::tab:selected {
 	padding: 4px;
 	vertical-align:middle;
 	color: #000000;
+	min-height: 17px;
 }
 
 QToolBar {

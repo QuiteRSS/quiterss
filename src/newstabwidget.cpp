@@ -27,9 +27,10 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
 
   newsTitleLabel_ = new QWidget(this);
   newsTitleLabel_->setStyleSheet("min-height: 16px;");
-  newsTitleLabel_->setFixedWidth(131);
+  newsTitleLabel_->setFixedWidth(132);
   newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
   newsTitleLabel_->setLayout(newsTitleLayout);
+  newsTitleLabel_->setVisible(false);
 
   closeButton_ = new QToolButton(this);
   closeButton_->setFixedSize(15, 15);
@@ -40,6 +41,7 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
         "QToolButton:hover {"
         "image: url(:/images/closeHover); }"
         );
+  closeButton_->setVisible(false);
   connect(closeButton_, SIGNAL(clicked()),
           this, SLOT(slotTabClose()));
 
