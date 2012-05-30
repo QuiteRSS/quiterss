@@ -12,6 +12,7 @@ public:
 
 public slots:
   void setSelectIndex();
+  void updateCurrentIndex(const QModelIndex &index);
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);

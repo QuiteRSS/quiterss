@@ -1290,7 +1290,7 @@ void RSSListing::deleteFeed()
     feedsModel_->select();
 
     if (feedsModel_->rowCount() == rowFeeds) rowFeeds--;
-    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+    feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, 1));
     slotFeedsTreeClicked(feedsModel_->index(rowFeeds, 1));
   }
 }
@@ -1390,7 +1390,7 @@ void RSSListing::slotImportFeeds()
 
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
-  feedsView_->setCurrentIndex(index);
+  feedsView_->updateCurrentIndex(index);
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
@@ -1584,7 +1584,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
         rowFeeds = i;
       }
     }
-    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+    feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, 1));
   }
 }
 
@@ -2038,7 +2038,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
       feedRow = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(feedRow, 1));
+  feedsView_->updateCurrentIndex(feedsModel_->index(feedRow, 1));
 
   if (openFeed) {
     statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
@@ -2086,7 +2086,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
       rowFeeds = i;
     }
   }
-  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+  feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, 1));
 
   if (pAct->objectName() != "filterFeedsAll_")
     feedsFilterAction = pAct;
@@ -2554,10 +2554,10 @@ void RSSListing::slotShowFeedPropertiesDlg()
     return;
   }
 
+  QModelIndex index = feedsView_->selectIndex;
+
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(this);
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
-
-  QModelIndex index = feedsView_->selectIndex;
 
   QByteArray byteArray = feedsModel_->index(index.row(), feedsModel_->fieldIndex("image")).
       data().toByteArray();
@@ -2607,7 +2607,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   QModelIndex currentIndex = feedsView_->currentIndex();
   feedsModel_->select();
-  feedsView_->setCurrentIndex(currentIndex);
+  feedsView_->updateCurrentIndex(currentIndex);
 
   if (currentIndex == index) {
     QPixmap iconTab;
@@ -2729,7 +2729,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
   //! Перечитывание модели лент
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
-  feedsView_->setCurrentIndex(index);
+  feedsView_->updateCurrentIndex(index);
 
   if (currentNewsTab != NULL) {
     int currentRow = newsView_->currentIndex().row();
@@ -2765,7 +2765,7 @@ void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteA
 
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
-  feedsView_->setCurrentIndex(index);
+  feedsView_->updateCurrentIndex(index);
 }
 
 void RSSListing::playSoundNewNews()

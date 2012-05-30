@@ -63,3 +63,10 @@ void FeedsView::setSelectIndex()
 {
   selectIndex = currentIndex();
 }
+
+void FeedsView::updateCurrentIndex(const QModelIndex &index)
+{
+  int topRow = verticalScrollBar()->value();
+  setCurrentIndex(index);
+  verticalScrollBar()->setValue(topRow);
+}
