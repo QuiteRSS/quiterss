@@ -221,9 +221,11 @@ void AddFeedWizard::addFeed()
     page(0)->setEnabled(false);
     showProgressBar();
 
-    QString qStr = QString("INSERT INTO feeds(xmlUrl) VALUES (?)");
+    QString qStr = QString("INSERT INTO feeds(xmlUrl, created) VALUES (?, ?)");
     q.prepare(qStr);
     q.addBindValue(feedUrlString_);
+    q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
+                                         "yyyy-MM-ddTHH:mm:ss"));
     q.exec();
     q.finish();
 
