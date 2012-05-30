@@ -29,6 +29,26 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
       QString qStr = QString("(%1)").
           arg(QSqlTableModel::index(index.row(), fieldIndex("undeleteCount")).data(Qt::EditRole).toInt());
       return qStr;
+    } else if (QSqlTableModel::fieldIndex("updated") == index.column()) {
+      QDateTime dtLocal;
+      QString strDate = QSqlTableModel::index(
+            index.row(), fieldIndex("updated")).data(Qt::EditRole).toString();
+
+      if (!strDate.isNull()) {
+        QDateTime dtLocalTime = QDateTime::currentDateTime();
+        QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+        int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+        QDateTime dt = QDateTime::fromString(strDate, Qt::ISODate);
+        dtLocal = dt.addSecs(nTimeShift);
+
+        if (QDateTime::currentDateTime().date() == dtLocal.date())
+          return dtLocal.toString("hh:mm");
+        else
+          return dtLocal.toString("yyyy.MM.dd");
+      } else {
+        return QVariant();
+      }
     }
   } else if (role == Qt::TextColorRole) {
     QBrush brush;
