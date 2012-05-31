@@ -34,9 +34,9 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>QuiteRSS</Program_Name>
-		<Program_Version>0.9.0</Program_Version>
+		<Program_Version>0.9.1</Program_Version>
 		<Program_Release_Month>05</Program_Release_Month>
-		<Program_Release_Day>22</Program_Release_Day>
+		<Program_Release_Day>31</Program_Release_Day>
 		<Program_Release_Year>2012</Program_Release_Year>
 		<Program_Cost_Dollars />
 		<Program_Cost_Other_Code />
@@ -107,7 +107,7 @@ Open-source</Char_Desc_2000>
 			<Application_XML_File_URL>http://quite-rss.googlecode.com/hg/wiki/quiterss_pad_file.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
-			<Primary_Download_URL>http://quite-rss.googlecode.com/files/QuiteRSS-0.9.0.zip</Primary_Download_URL>
+			<Primary_Download_URL>http://quite-rss.googlecode.com/files/QuiteRSS-0.9.1.zip</Primary_Download_URL>
 			<Secondary_Download_URL>http://code.google.com/p/quite-rss/downloads/list</Secondary_Download_URL>
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />
