@@ -146,10 +146,6 @@
         <translation>Correspondre à tous des articles</translation>
     </message>
     <message>
-        <source>Match all</source>
-        <translation type="obsolete">Correspondre à tous</translation>
-    </message>
-    <message>
         <location filename="../src/filterrulesdialog.cpp" line="94"/>
         <source>Perform these actions:</source>
         <translation>Effectuer ces actions :</translation>
@@ -307,10 +303,6 @@
         <location filename="../src/newsfiltersdialog.cpp" line="22"/>
         <source>Name filter</source>
         <translation>Filtre des noms</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation type="obsolete">Emplacement</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="22"/>
@@ -1111,21 +1103,9 @@
         <translation>Ne pas charger les images dans les articles</translation>
     </message>
     <message>
-        <source>Loading... (%p%)</source>
-        <translation type="obsolete">Chargement en cours... (%p%)</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2358"/>
         <source>Feeds</source>
         <translation>Flux</translation>
-    </message>
-    <message>
-        <source>Title:</source>
-        <translation type="obsolete">Titre :</translation>
-    </message>
-    <message>
-        <source>Author:</source>
-        <translation type="obsolete">Auteur :</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2360"/>
@@ -1298,27 +1278,27 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2481"/>
         <source>Browser position</source>
-        <translation type="unfinished"></translation>
+        <translation>Position du navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2482"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>En haut</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2483"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>En bas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2484"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>À droite</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2485"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>À gauche</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2494"/>
@@ -1338,22 +1318,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2500"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Colonnes</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2501"/>
         <source>Count news unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre d&apos;articles non lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2502"/>
         <source>Count news all</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de tous les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2503"/>
         <source>Last updated</source>
-        <translation type="unfinished"></translation>
+        <translation>Dernière mise à jour</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2854"/>
@@ -1364,14 +1344,6 @@
         <location filename="../src/rsslisting.cpp" line="2855"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Une nouvelle version de QuiteRSS...</translation>
-    </message>
-    <message>
-        <source>Home</source>
-        <translation type="obsolete">Maison</translation>
-    </message>
-    <message>
-        <source>Error loading to WebView</source>
-        <translation type="obsolete">Erreur de chargement dans la vue Web</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2380"/>
@@ -1590,42 +1562,6 @@
         <location filename="../src/rsslisting.cpp" line="2492"/>
         <source>Next news</source>
         <translation>Article suivant</translation>
-    </message>
-    <message>
-        <source>Open Link</source>
-        <translation type="obsolete">Ouvrir le lien</translation>
-    </message>
-    <message>
-        <source>Open in New Window</source>
-        <translation type="obsolete">Ouvrier le lien dans une nouvelle fenêtre</translation>
-    </message>
-    <message>
-        <source>Save Link...</source>
-        <translation type="obsolete">Enregistrer le lien...</translation>
-    </message>
-    <message>
-        <source>Copy Link</source>
-        <translation type="obsolete">Copier le lien</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Copier</translation>
-    </message>
-    <message>
-        <source>Go Back</source>
-        <translation type="obsolete">Précédent</translation>
-    </message>
-    <message>
-        <source>Go Forward</source>
-        <translation type="obsolete">Suivant</translation>
-    </message>
-    <message>
-        <source>Stop</source>
-        <translation type="obsolete">Arrêter</translation>
-    </message>
-    <message>
-        <source>Reload</source>
-        <translation type="obsolete">Recharger</translation>
     </message>
 </context>
 <context>
