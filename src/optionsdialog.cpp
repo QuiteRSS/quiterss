@@ -359,7 +359,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "3" << QString(tr("Hungarian (%1)")).arg("HU") << "0.9.1"
-           << "Zityi" << "zityisoft@gmail.com";
+           << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_HU"));
   languageFileList_->addTopLevelItem(languageItem);
