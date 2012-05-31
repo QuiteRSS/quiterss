@@ -2,6 +2,23 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.9.0+</B> (31 May 2012)
+<UL>
+<LI>Note: Reappear news, which already have been marked read (0.8.x -> 0.9.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
+
+<LI>Added: Tabs. Ability to open feeds in new tab</LI>
+<LI>Added: Ability to choose browser position ("View->Browser position")</LI>
+<LI>Added: New columns in feeds list ("Feeds->Columns")</LI>
+<LI>Added: Hotkey "Home", "End" in feeds list and news list</LI>
+
+<LI>Changed: GUI. Some visual tweaks</LI>
+
+<LI>Fixed: Keyboard layout in unix systems</LI>
+<LI>Fixed: Default application icon instead on QuiteRSS icon in unix systems</LI>
+<LI>Fixed: Hang while updating some feeds</LI>
+<LI>Fixed: Duplicate feeds detection</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.9.0</B> (22 May 2012)
 <UL>
 <LI>Main: Database reconstruction (<a href="http://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</LI>
