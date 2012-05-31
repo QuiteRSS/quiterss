@@ -60,7 +60,9 @@ void FaviconLoader::getQueuedUrl()
 void FaviconLoader::get(const QUrl &getUrl,
                         const QUrl &feedUrl, const int &cntRequests)
 {
-  emit signalGet(QNetworkRequest(getUrl));
+  QNetworkRequest request(getUrl);
+  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1; U; YB/3.5.1; ru) Presto/2.10.229 Version/11.62");
+  emit signalGet(request);
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
@@ -120,6 +122,9 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
             if (icon.save(&buffer, "ICO")) {
               emit signalIconRecived(feedUrl.toString(), faviconData);
             }
+          } else if (cntRequests == 0) {
+            QString link = QString("http://%1").arg(url.host());
+            get(link, feedUrl, 1);
           }
         }
       }
