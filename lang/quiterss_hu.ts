@@ -34,15 +34,15 @@
     <name>AddFeedDialog</name>
     <message>
         <source>Add feed</source>
-        <translation type="obsolete">Hírcsatorna hozzáadása</translation>
+        <translation>Hírcsatorna hozzáadása</translation>
     </message>
     <message>
         <source>Feed Title:</source>
-        <translation type="obsolete">Hírcsatorna címe:</translation>
+        <translation>Hírcsatorna címe:</translation>
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation type="obsolete">Hírcsatorna URL:</translation>
+        <translation>Hírcsatorna URL:</translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation type="obsolete">Hely</translation>
+        <translation>Hely</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="19"/>
@@ -162,7 +162,7 @@
     </message>
     <message>
         <source>Match all</source>
-        <translation type="obsolete">Az összesnek megfelelő</translation>
+        <translation>Az összesnek megfelelő</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="94"/>
@@ -325,7 +325,7 @@
     </message>
     <message>
         <source>Location</source>
-        <translation type="obsolete">Hely</translation>
+        <translation>Hely</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="22"/>
@@ -649,27 +649,27 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="220"/>
         <source>Position on last opened news</source>
-        <translation type="unfinished"></translation>
+        <translation>Elhelyezés az utoljára megnyitott híreken</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="221"/>
         <source>Position at top of list news</source>
-        <translation type="unfinished"></translation>
+        <translation>Elhelyezés a hírek listájának tetején</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="222"/>
         <source>Open news</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek megnyitása</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="223"/>
         <source>Nothing to do</source>
-        <translation type="unfinished"></translation>
+        <translation>Nincs művelet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="239"/>
         <source>Opening feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatorna megnyitása:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="246"/>
@@ -765,7 +765,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="335"/>
         <source>Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapcsolat</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="354"/>
@@ -775,7 +775,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>Hungarian (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Magyar (%1)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
@@ -1105,7 +1105,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2277"/>
         <source>Open in new tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyitás új fülön</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2299"/>
@@ -1223,11 +1223,11 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2741"/>
         <source>A new version of QuiteRSS...</source>
-        <translation type="unfinished"></translation>
+        <translation>Új QuiteRSS verzió...</translation>
     </message>
     <message>
         <source>Properties feed</source>
-        <translation type="obsolete">Hírcsatorna tulajdonságok</translation>
+        <translation>Hírcsatorna tulajdonságok</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2347"/>
@@ -1287,57 +1287,57 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2385"/>
         <source>Switch focus between panels</source>
-        <translation type="unfinished"></translation>
+        <translation>Fókusz váltása a panelek között</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2387"/>
         <source>Switch focus between panels (tree feeds, list news, browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fókusz váltása a panelek között (hírcsatorna-fa, hírek lista, böngésző)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2389"/>
         <source>Show/hide tree feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatorna-fa megjelenítése/rejtése</translation>
     </message>
     <message>
         <source>Open Link</source>
-        <translation type="obsolete">Link megnyitása</translation>
+        <translation>Link megnyitása</translation>
     </message>
     <message>
         <source>Open in New Window</source>
-        <translation type="obsolete">Megnyitás új ablakban</translation>
+        <translation>Megnyitás új ablakban</translation>
     </message>
     <message>
         <source>Save Link...</source>
-        <translation type="obsolete">Hivatkozás mentése...</translation>
+        <translation>Hivatkozás mentése...</translation>
     </message>
     <message>
         <source>Copy Link</source>
-        <translation type="obsolete">Hivatkozás másolása</translation>
+        <translation>Hivatkozás másolása</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="obsolete">Másolás</translation>
+        <translation>Másolás</translation>
     </message>
     <message>
         <source>Go Back</source>
-        <translation type="obsolete">Ugrás vissza</translation>
+        <translation>Ugrás vissza</translation>
     </message>
     <message>
         <source>Go Forward</source>
-        <translation type="obsolete">Ugrás előre</translation>
+        <translation>Ugrás előre</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="obsolete">Leállítás</translation>
+        <translation>Leállítás</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="obsolete">Újratöltés</translation>
+        <translation>Újratöltés</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="obsolete">Főoldal</translation>
+        <translation>Főoldal</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2319"/>
@@ -1374,15 +1374,15 @@
     </message>
     <message>
         <source>Loading... (%p%)</source>
-        <translation type="obsolete">Betöltés... (%p%)</translation>
+        <translation>Betöltés... (%p%)</translation>
     </message>
     <message>
         <source>Author:</source>
-        <translation type="obsolete">Készítő:</translation>
+        <translation>Készítő:</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="obsolete">Cím:</translation>
+        <translation>Cím:</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2129"/>
@@ -1491,7 +1491,7 @@
     </message>
     <message>
         <source>Error loading to WebView</source>
-        <translation type="obsolete">Webnézet betöltési hiba</translation>
+        <translation>Webnézet betöltési hiba</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2285"/>

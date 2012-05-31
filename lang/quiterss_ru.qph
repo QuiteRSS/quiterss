@@ -1137,4 +1137,44 @@
     <source>A new version of QuiteRSS...</source>
     <target>Новая версия QuiteRSS...</target>
 </phrase>
+<phrase>
+    <source>Browser position</source>
+    <target>Позиция браузера</target>
+</phrase>
+<phrase>
+    <source>Top</source>
+    <target>Вверху</target>
+</phrase>
+<phrase>
+    <source>Bottom</source>
+    <target>Внизу</target>
+</phrase>
+<phrase>
+    <source>Right</source>
+    <target>Справа</target>
+</phrase>
+<phrase>
+    <source>Left</source>
+    <target>слева</target>
+</phrase>
+<phrase>
+    <source>Left</source>
+    <target>Слева</target>
+</phrase>
+<phrase>
+    <source>Columns</source>
+    <target>Колонки</target>
+</phrase>
+<phrase>
+    <source>Count news unread</source>
+    <target>Количество непрочитанных новостей</target>
+</phrase>
+<phrase>
+    <source>Count news all</source>
+    <target>Количество всех новостей</target>
+</phrase>
+<phrase>
+    <source>Last updated</source>
+    <target>Последнее обновление</target>
+</phrase>
 </QPH>

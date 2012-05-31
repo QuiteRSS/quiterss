@@ -936,4 +936,44 @@
     <source>A new version of QuiteRSS...</source>
     <target>Eine neue Version von QuiteRSS...</target>
 </phrase>
+<phrase>
+    <source>Top</source>
+    <target>Oben</target>
+</phrase>
+<phrase>
+    <source>Browser position</source>
+    <target>Position des Browsers</target>
+</phrase>
+<phrase>
+    <source>Bottom</source>
+    <target>Unten</target>
+</phrase>
+<phrase>
+    <source>Right</source>
+    <target>Rechts</target>
+</phrase>
+<phrase>
+    <source>Bottom</source>
+    <target>Unten</target>
+</phrase>
+<phrase>
+    <source>Left</source>
+    <target>Links</target>
+</phrase>
+<phrase>
+    <source>Columns</source>
+    <target>Spalten</target>
+</phrase>
+<phrase>
+    <source>Count news unread</source>
+    <target>Anzahl ungelesenen Artikel</target>
+</phrase>
+<phrase>
+    <source>Last updated</source>
+    <target>Zuletzt aktualisiert</target>
+</phrase>
+<phrase>
+    <source>Count news all</source>
+    <target>Anzahl alle Artikel</target>
+</phrase>
 </QPH>
