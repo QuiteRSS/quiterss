@@ -351,21 +351,21 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "2" << QString(tr("German (%1)")).arg("DE") << "0.9.0"
+  treeItem << "2" << QString(tr("German (%1)")).arg("DE") << "0.9.1"
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_DE"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "3" << QString(tr("Hungarian (%1)")).arg("HU") << "0.8.7"
+  treeItem << "3" << QString(tr("Hungarian (%1)")).arg("HU") << "0.9.0"
            << "Zityi" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_HU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "4" << QString(tr("Russian (%1)")).arg("RU") << "0.9.0"
+  treeItem << "4" << QString(tr("Russian (%1)")).arg("RU") << "0.9.1"
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_RU"));

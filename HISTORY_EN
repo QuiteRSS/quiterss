@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.9.0+</B> (31 May 2012)
+<P><B>Version 0.9.1</B> (31 May 2012)
 <UL>
 <LI>Note: Reappear news, which already have been marked read (0.8.x -> 0.9.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
 
@@ -16,7 +16,7 @@
 <LI>Fixed: Keyboard layout in unix systems</LI>
 <LI>Fixed: Default application icon instead on QuiteRSS icon in unix systems</LI>
 <LI>Fixed: Hang while updating some feeds</LI>
-<LI>Fixed: Duplicate feeds detection</LI>
+<LI>Fixed: Duplicate news in RSS-feeds</LI>
 </UL>
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.9.0</B> (22 May 2012)
