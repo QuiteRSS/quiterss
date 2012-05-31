@@ -458,7 +458,7 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
 
-  qCritical() << index.row();
+//  qCritical() << index.row();
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
