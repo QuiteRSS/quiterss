@@ -79,7 +79,7 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
   if(reply->error() == QNetworkReply::NoError) {
     QByteArray data = reply->readAll();
     if (!data.isNull()) {
-      if (cntRequests == 1) {
+      if ((cntRequests == 1) || (cntRequests == 3)) {
         QString str = QString::fromUtf8(data);
         if (str.contains("<html", Qt::CaseInsensitive)) {
           QString linkFavicon;
@@ -135,9 +135,9 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
       }
     }
   } else {
-    if (cntRequests == 0) {
+    if ((cntRequests == 0) || (cntRequests == 2)) {
       QString link = QString("http://%1").arg(url.host());
-      get(link, feedUrl, 1);
+      get(link, feedUrl, cntRequests+1);
     }
   }
   getQueuedUrl();
