@@ -71,11 +71,18 @@ void ParseObject::slotParse(QSqlDatabase *db,
   bool feedChanged = false;
   db->transaction();
   int itemCount = 0;
-  QXmlStreamReader xml(QString::fromUtf8(xmlData).simplified());
+  QXmlStreamReader xml(xmlData.trimmed());
   xml.setNamespaceProcessing(false);
   bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
+
+  xml.readNext();
+  if (xml.documentEncoding().contains("utf-8", Qt::CaseInsensitive)) {
+    xml.clear();
+    xml.addData(QString::fromUtf8(xmlData.trimmed()));
+  }
+
+  xml.readNext();
   while (!xml.atEnd()) {
-    xml.readNext();
     if (xml.isStartElement()) {
       tagsStack.push(currentTag);
       currentTag = xml.name().toString();
@@ -363,6 +370,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (currentTag == "category")
         categoryString = xml.text().toString();
     }
+    xml.readNext();
   }
 
   if (xml.error() && xml.error() != QXmlStreamReader::PrematureEndOfDocumentError) {
