@@ -99,7 +99,7 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
               }
               linkFavicon = urlFavicon.toString();
               qDebug() << "Favicon URL:" << linkFavicon;
-              get(linkFavicon, feedUrl, 2);
+              get(linkFavicon, feedUrl, cntRequests+1);
             }
           }
         }
