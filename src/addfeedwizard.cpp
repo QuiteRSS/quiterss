@@ -421,8 +421,10 @@ void AddFeedWizard::finish()
          arg(parseFeedId));
   if (q.next()) htmlUrlString_ = q.value(0).toString();
 
-  db_->exec(QString("UPDATE feeds SET text = '%1' WHERE id == '%2'").
-            arg(nameFeedEdit_->text()).
-            arg(parseFeedId));
+  q.prepare("UPDATE feeds SET text = ? WHERE id == ?");
+  q.addBindValue(nameFeedEdit_->text());
+  q.addBindValue(parseFeedId);
+  q.exec();
+
   accept();
 }

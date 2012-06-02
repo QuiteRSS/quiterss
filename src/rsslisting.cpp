@@ -2619,12 +2619,11 @@ void RSSListing::slotShowFeedPropertiesDlg()
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
 
-  db_.exec(QString("update feeds set text = '%1' where id == '%2'").
-           arg(properties.general.text).
-           arg(id));
-  db_.exec(QString("update feeds set xmlUrl = '%1' where id == '%2'").
-           arg(properties.general.url).
-           arg(id));
+  QSqlQuery q(db_);
+  q.prepare("update feeds set text = ? where id == ?");
+  q.addBindValue(properties.general.text);
+  q.addBindValue(id);
+  q.exec();
 
   QModelIndex currentIndex = feedsView_->currentIndex();
   feedsModel_->select();
