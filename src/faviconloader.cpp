@@ -86,6 +86,11 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
           QRegExp rx("<link[^>]+rel=\"shortcut icon\"[^>]+>",
                      Qt::CaseInsensitive, QRegExp::RegExp2);
           int pos = rx.indexIn(str);
+          if (pos == -1) {
+            rx = QRegExp("<link[^>]+rel=\"icon\"[^>]+>",
+                       Qt::CaseInsensitive, QRegExp::RegExp2);
+            pos = rx.indexIn(str);
+          }
           if (pos > -1) {
             str = rx.cap(0);
             rx.setPattern("href=\"([^\"]+)");
@@ -94,8 +99,11 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
               linkFavicon = rx.cap(1);
               QUrl urlFavicon(linkFavicon);
               if (urlFavicon.host().isEmpty()) {
-                urlFavicon.setScheme(url.scheme());
+//                urlFavicon.setScheme(url.scheme());
                 urlFavicon.setHost(url.host());
+              }
+              if (urlFavicon.scheme().isEmpty()) {
+                urlFavicon.setScheme(url.scheme());
               }
               linkFavicon = urlFavicon.toString();
               qDebug() << "Favicon URL:" << linkFavicon;
