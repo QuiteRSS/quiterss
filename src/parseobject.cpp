@@ -71,7 +71,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   bool feedChanged = false;
   db->transaction();
   int itemCount = 0;
-  QXmlStreamReader xml(xmlData);
+  QXmlStreamReader xml(QString::fromUtf8(xmlData).simplified());
   xml.setNamespaceProcessing(false);
   bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
   while (!xml.atEnd()) {
