@@ -14,6 +14,7 @@
 #include "newsfiltersdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
+#include "webpage.h"
 #include "VersionNo.h"
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
@@ -421,9 +422,10 @@ void RSSListing::createToolBarNull()
 void RSSListing::createNewsTab()
 {
   int index = tabWidget_->currentIndex();
-  currentNewsTab = NULL;
+
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
   currentNewsTab->setSettings();
+  currentNewsTab->retranslateStrings();
   currentNewsTab->setBrowserPosition();
 
   newsModel_ = currentNewsTab->newsModel_;
@@ -3020,55 +3022,61 @@ void RSSListing::slotOpenNewTab()
 void RSSListing::slotTabCloseRequested(int index)
 {
   if (index != 0) {
-    settings_->setValue("NewsHeaderGeometry",
-                        currentNewsTab->newsHeader_->saveGeometry());
-    settings_->setValue("NewsHeaderState",
-                        currentNewsTab->newsHeader_->saveState());
-
-    settings_->setValue("NewsTabSplitter",
-                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
-    settings_->setValue("NewsTabSplitter",
-                        currentNewsTab->newsTabWidgetSplitter_->saveState());
-
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
-    setFeedRead(widget->feedId_);
+
+    if (widget->feedId_ > -1) {
+      setFeedRead(widget->feedId_);
+
+      settings_->setValue("NewsHeaderGeometry",
+                          widget->newsHeader_->saveGeometry());
+      settings_->setValue("NewsHeaderState",
+                          widget->newsHeader_->saveState());
+
+      settings_->setValue("NewsTabSplitter",
+                          widget->newsTabWidgetSplitter_->saveGeometry());
+      settings_->setValue("NewsTabSplitter",
+                          widget->newsTabWidgetSplitter_->saveState());
+    }
 
     delete tabWidget_->widget(index);
   }
 }
 
-void RSSListing::slotTabCurrentChanged(int)
+void RSSListing::slotTabCurrentChanged(int index)
 {
   if (tabWidget_->count()) {
-    createNewsTab();
+    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
+    if (widget->feedId_ > -1) {
+      createNewsTab();
 
-    int rowFeeds = -1;
-    for (int i = 0; i < feedsModel_->rowCount(); i++) {
-      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentNewsTab->feedId_) {
-        rowFeeds = i;
+      int rowFeeds = -1;
+      for (int i = 0; i < feedsModel_->rowCount(); i++) {
+        if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentNewsTab->feedId_) {
+          rowFeeds = i;
+        }
       }
-    }
-    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
+      feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
 
-    int newsId = newsModel_->index(
-          newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      int newsId = newsModel_->index(
+            newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-    newsModel_->select();
+      newsModel_->select();
 
-    if (newsModel_->rowCount() != 0) {
-      while (newsModel_->canFetchMore())
-        newsModel_->fetchMore();
-    }
-
-    int newsRow = -1;
-    for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
-        newsRow = i;
+      if (newsModel_->rowCount() != 0) {
+        while (newsModel_->canFetchMore())
+          newsModel_->fetchMore();
       }
-    }
-    newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
 
-    currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6));
+      int newsRow = -1;
+      for (int i = 0; i < newsModel_->rowCount(); i++) {
+        if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
+          newsRow = i;
+        }
+      }
+      newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6));
+    }
   }
 }
 
@@ -3082,4 +3090,29 @@ void RSSListing::setBrowserPosition(QAction *action)
 {
   browserPosition_ = action->data().toInt();
   currentNewsTab->setBrowserPosition();
+}
+
+QWebPage *RSSListing::createWebTab()
+{
+  NewsTabWidget *widget = new NewsTabWidget(-1, this);
+  int indexTab = tabWidget_->addTab(widget, "");
+  tabWidget_->setCurrentIndex(indexTab);
+
+  tabBar_->setTabButton(tabWidget_->currentIndex(),
+                        QTabBar::LeftSide,
+                        widget->newsTitleLabel_);
+  tabBar_->setTabButton(tabWidget_->currentIndex(),
+                        QTabBar::RightSide,
+                        widget->closeButton_);
+
+  widget->newsTextTitle_->setText(tr("Loading..."));
+
+  QPixmap iconTab;
+  iconTab.load(":/images/webPage");
+  widget->newsIconTitle_->setPixmap(iconTab);
+
+  widget->setSettings();
+  widget->retranslateStrings();
+
+  return widget->webView_->page();
 }

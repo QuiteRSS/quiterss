@@ -9,6 +9,8 @@ class WebView : public QWebView
 public:
   explicit WebView(QWidget *parent = 0);
 
+  bool midButtonClick;
+
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);

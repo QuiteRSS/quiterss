@@ -1,13 +1,16 @@
 #include <QInputEvent>
+#include "webpage.h"
 #include "webview.h"
 
 WebView::WebView(QWidget *parent) :
   QWebView(parent)
 {
+  setPage(new WebPage(this));
 }
 
 /*virtual*/ void WebView::mousePressEvent(QMouseEvent *event)
 {
+  midButtonClick = false;
   if (event->buttons() & Qt::RightButton)
     posX1 = event->pos().x();
 
@@ -26,6 +29,8 @@ WebView::WebView(QWidget *parent) :
       rightButtonClick = true;
       forward();
     }
+  } else if (event->button() & Qt::MiddleButton) {
+    midButtonClick = true;
   }
 
   QWebView::mouseReleaseEvent(event);

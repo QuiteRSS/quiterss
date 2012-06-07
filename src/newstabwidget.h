@@ -110,6 +110,7 @@ private slots:
   void openInExternalBrowserNews();
 
   void slotTabClose();
+  void webTitleChanged(QString title);
 
 };
 

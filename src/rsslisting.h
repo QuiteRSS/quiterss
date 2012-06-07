@@ -90,6 +90,7 @@ public slots:
   void slotUpdateStatus(bool openFeed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotTabCloseRequested(int index);
+  QWebPage *createWebTab();
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);

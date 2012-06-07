@@ -10,7 +10,10 @@ public:
   explicit WebPage(QWidget *parent = 0);
 
   bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
+
+protected slots:
   QWebPage *createWindow(WebWindowType type);
+
 };
 
 #endif // WEBPAGE_H

@@ -1,7 +1,5 @@
 #include "newstabwidget.h"
-
 #include "rsslisting.h"
-#include "webpage.h"
 
 RSSListing *rsslisting_;
 
@@ -9,7 +7,7 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   : QWidget(parent),
     feedId_(feedId)
 {
-  rsslisting_ = static_cast<RSSListing*>(parent);
+  rsslisting_ = qobject_cast<RSSListing*>(parent);
   feedsView_ = rsslisting_->feedsView_;
   feedsModel_ = rsslisting_->feedsModel_;
 
@@ -45,39 +43,48 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   connect(closeButton_, SIGNAL(clicked()),
           this, SLOT(slotTabClose()));
 
-  createNewsList();
-  createMenuNews();
+  if (feedId_ > -1) {
+    createNewsList();
+    createMenuNews();
+  }
   createWebWidget();
-  retranslateStrings();
 
-  newsTabWidgetSplitter_ = new QSplitter(this);
-  newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
+  if (feedId_ > -1) {
+    newsTabWidgetSplitter_ = new QSplitter(this);
+    newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
 
-  if ((rsslisting_->browserPosition_ == TOP_POSITION) ||
-      (rsslisting_->browserPosition_ == LEFT_POSITION)) {
-    newsTabWidgetSplitter_->addWidget(webWidget_);
-    newsTabWidgetSplitter_->addWidget(newsWidget_);
-  } else {
-    newsTabWidgetSplitter_->addWidget(newsWidget_);
-    newsTabWidgetSplitter_->addWidget(webWidget_);
+    if ((rsslisting_->browserPosition_ == TOP_POSITION) ||
+        (rsslisting_->browserPosition_ == LEFT_POSITION)) {
+      newsTabWidgetSplitter_->addWidget(webWidget_);
+      newsTabWidgetSplitter_->addWidget(newsWidget_);
+    } else {
+      newsTabWidgetSplitter_->addWidget(newsWidget_);
+      newsTabWidgetSplitter_->addWidget(webWidget_);
+    }
   }
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
   layout->setSpacing(0);
-  layout->addWidget(newsTabWidgetSplitter_, 0);
+  if (feedId_ > -1)
+    layout->addWidget(newsTabWidgetSplitter_, 0);
+  else
+    layout->addWidget(webWidget_, 0);
   setLayout(layout);
 
-  newsTabWidgetSplitter_->restoreGeometry(
-        rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
-  newsTabWidgetSplitter_->restoreState(
-        rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
 
-  if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
-      (rsslisting_->browserPosition_ == LEFT_POSITION)) {
-    newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
-  } else {
-    newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+  if (feedId_ > -1) {
+    newsTabWidgetSplitter_->restoreGeometry(
+          rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
+    newsTabWidgetSplitter_->restoreState(
+          rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
+
+    if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
+        (rsslisting_->browserPosition_ == LEFT_POSITION)) {
+      newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
+    } else {
+      newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+    }
   }
 }
 
@@ -195,13 +202,6 @@ void NewsTabWidget::createWebWidget()
 {
   webView_ = new WebView(this);
 
-  webView_->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
-  webView_->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
-  webView_->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
-  webView_->pageAction(QWebPage::DownloadImageToDisk)->setVisible(false);
-
-  webView_->setPage(new WebPage(this));
-
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
   webViewProgress_->setFixedHeight(15);
@@ -255,7 +255,9 @@ void NewsTabWidget::createWebWidget()
   webControlPanel_ = new QWidget(this);
   webControlPanel_->setObjectName("webControlPanel_");
   webControlPanel_->setLayout(webControlPanelLayout);
-  webControlPanel_->setVisible(false);
+
+  if (feedId_ > -1)
+    webControlPanel_->setVisible(false);
 
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
@@ -285,17 +287,18 @@ void NewsTabWidget::createWebWidget()
   webPanelLayout->setSpacing(0);
   webPanelLayout->addLayout(webPanelLayout1);
   webPanelLayout->addWidget(webPanelLine);
-  webPanelLayout->addWidget(webControlPanel_);
 
   webPanel_ = new QWidget(this);
   webPanel_->setObjectName("webPanel_");
   webPanel_->setLayout(webPanelLayout);
+  webPanel_->setVisible(false);
 
   //! Create web layout
   QVBoxLayout *webLayout = new QVBoxLayout();
   webLayout->setMargin(0);
   webLayout->setSpacing(0);
   webLayout->addWidget(webPanel_);
+  webLayout->addWidget(webControlPanel_);
   webLayout->addWidget(webView_, 1);
   webLayout->addWidget(webViewProgress_);
 
@@ -320,13 +323,17 @@ void NewsTabWidget::createWebWidget()
   connect(webView_->page(), SIGNAL(linkHovered(QString,QString,QString)),
           this, SLOT(slotLinkHovered(QString,QString,QString)));
   connect(webView_, SIGNAL(loadProgress(int)), this, SLOT(slotSetValue(int)));
+
+  connect(webView_, SIGNAL(titleChanged(QString)),
+          this, SLOT(webTitleChanged(QString)));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
 void NewsTabWidget::setSettings()
 {
-  newsView_->setFont(
-        QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+  if (feedId_ > -1)
+    newsView_->setFont(
+          QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
 
   webView_->settings()->setFontFamily(
         QWebSettings::StandardFont, rsslisting_->webFontFamily_);
@@ -366,7 +373,8 @@ void NewsTabWidget::retranslateStrings() {
   webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
   webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
 
-  newsHeader_->retranslateStrings();
+  if (feedId_ > -1)
+    newsHeader_->retranslateStrings();
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -447,18 +455,20 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  if (rsslisting_->embeddedBrowserOn_) {
-    webView_->history()->clear();
-    webControlPanel_->setVisible(true);
-    webView_->load(QUrl(linkString.simplified()));
-  } else QDesktopServices::openUrl(QUrl(linkString.simplified()));
+  slotLinkClicked(linkString.simplified());
 }
 
 void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
 
-//  qCritical() << index.row();
+  QString linkString = newsModel_->record(
+        index.row()).field("link_href").value().toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+
+  webView_->midButtonClick = true;
+  slotLinkClicked(linkString.simplified());
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
@@ -811,19 +821,24 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
 void NewsTabWidget::slotLinkClicked(QUrl url)
 {
-  if (url.host().isEmpty()) {
-    QUrl hostUrl(feedsModel_->record(feedsView_->currentIndex().row()).
-                 field("htmlUrl").value().toUrl());
-    url.setScheme(hostUrl.scheme());
-    url.setHost(hostUrl.host());
-  }
-  if (rsslisting_->embeddedBrowserOn_) {
-    if (!webControlPanel_->isVisible()) {
-      webView_->history()->clear();
-      webControlPanel_->setVisible(true);
+    if (url.host().isEmpty()) {
+      QUrl hostUrl(feedsModel_->record(feedsView_->currentIndex().row()).
+                   field("htmlUrl").value().toUrl());
+      url.setScheme(hostUrl.scheme());
+      url.setHost(hostUrl.host());
     }
-    webView_->load(url);
-  } else QDesktopServices::openUrl(url);
+    if (rsslisting_->embeddedBrowserOn_) {
+      if (!webView_->midButtonClick) {
+        if (!webControlPanel_->isVisible()) {
+          webView_->history()->clear();
+          webControlPanel_->setVisible(true);
+        }
+        webView_->load(url);
+      } else {
+        qobject_cast<WebView*>(rsslisting_->createWebTab()->view())->load(url);
+      }
+    } else QDesktopServices::openUrl(url);
+    webView_->midButtonClick = false;
 }
 
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
@@ -842,10 +857,10 @@ void NewsTabWidget::slotSetValue(int value)
 
 void NewsTabWidget::slotLoadStarted()
 {
-  if (newsView_->currentIndex().isValid()) {
+//  if (newsView_->currentIndex().isValid()) {
     webViewProgress_->setValue(0);
     webViewProgress_->show();
-  }
+//  }
 }
 
 void NewsTabWidget::slotLoadFinished(bool ok)
@@ -863,18 +878,18 @@ void NewsTabWidget::slotWebViewSetContent(QString content)
 
 void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
 {
-  if (rsslisting_->embeddedBrowserOn_) {
-    webView_->history()->clear();
-    webControlPanel_->setVisible(true);
-    slotLinkClicked(QUrl(urlStr.simplified()));
-  } else QDesktopServices::openUrl(QUrl(urlStr.simplified()));
+  slotLinkClicked(urlStr.simplified());
 }
 
 //! Переход на краткое содержание новости
 void NewsTabWidget::webHomePage()
 {
-  updateWebView(newsView_->currentIndex());
-  webView_->history()->clear();
+  if (feedId_ > -1) {
+    updateWebView(newsView_->currentIndex());
+    webView_->history()->clear();
+  } else {
+    webView_->history()->goToItem(webView_->history()->itemAt(0));
+  }
 }
 
 //! Открытие отображаемой страницы во внешнем браузере
@@ -941,4 +956,14 @@ void NewsTabWidget::setBrowserPosition()
 void NewsTabWidget::slotTabClose()
 {
   rsslisting_->slotTabCloseRequested(rsslisting_->tabWidget_->indexOf(this));
+}
+
+void NewsTabWidget::webTitleChanged(QString title)
+{
+  if (feedId_ == -1) {
+    QString tabText = title;
+    tabText = newsTextTitle_->fontMetrics().elidedText(
+          tabText, Qt::ElideRight, 114);
+    newsTextTitle_->setText(tabText);
+  }
 }
