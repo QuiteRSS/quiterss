@@ -2241,11 +2241,13 @@ void RSSListing::setAutoLoadImages()
   }
 
   if (newsView_) {
-    webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
+    NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(tabWidget_->currentWidget());
+    widget->webView_->settings()->setAttribute(
+          QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
-      if (webView_->history()->count() == 0)
+      if ((widget->webView_->history()->count() == 0) && (widget->feedId_ > -1))
         currentNewsTab->updateWebView(newsView_->currentIndex());
-      else webView_->reload();
+      else widget->webView_->reload();
     }
   }
 }
@@ -3038,7 +3040,7 @@ void RSSListing::slotTabCloseRequested(int index)
                           widget->newsTabWidgetSplitter_->saveState());
     }
 
-    delete tabWidget_->widget(index);
+    delete widget;
   }
 }
 
