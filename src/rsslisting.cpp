@@ -386,7 +386,7 @@ void RSSListing::createFeedsDock()
   connect(feedsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedsTreeClicked(QModelIndex)));
   connect(feedsView_, SIGNAL(signalMiddleClicked()),
-          this, SLOT(slotOpenNewTab()));
+          this, SLOT(slotOpenFeedNewTab()));
   connect(feedsView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
   connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
@@ -473,9 +473,9 @@ void RSSListing::createActions()
   addFeedAct_->setIcon(QIcon(":/images/add"));
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
-  openNewTabAct_ = new QAction(this);
-  openNewTabAct_->setObjectName("openNewTabAct");
-  connect(openNewTabAct_, SIGNAL(triggered()), this, SLOT(slotOpenNewTab()));
+  openFeedNewTabAct_ = new QAction(this);
+  openFeedNewTabAct_->setObjectName("openNewTabAct");
+  connect(openFeedNewTabAct_, SIGNAL(triggered()), this, SLOT(slotOpenFeedNewTab()));
 
   deleteFeedAct_ = new QAction(this);
   deleteFeedAct_->setObjectName("deleteFeedAct");
@@ -643,6 +643,10 @@ void RSSListing::createActions()
   openInExternalBrowserAct_ = new QAction(this);
   openInExternalBrowserAct_->setObjectName("openInExternalBrowserAct");
   this->addAction(openInExternalBrowserAct_);
+
+  openNewsNewTabAct_ = new QAction(this);
+  openNewsNewTabAct_->setObjectName("openInNewTabAct");
+  this->addAction(openNewsNewTabAct_);
 
   markStarAct_ = new QAction(this);
   markStarAct_->setObjectName("markStarAct");
@@ -1065,12 +1069,14 @@ void RSSListing::readSettings()
   embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
   if (embeddedBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
+    openNewsNewTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
                     << openInExternalBrowserAct_->shortcut();
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
+    openNewsNewTabAct_->setVisible(false);
   }
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
@@ -1819,12 +1825,14 @@ void RSSListing::showOptionDlg()
   embeddedBrowserOn_ = optionsDialog->embeddedBrowserOn_->isChecked();
   if (embeddedBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
+    openNewsNewTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
                     << openInExternalBrowserAct_->shortcut();
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
+    openNewsNewTabAct_->setVisible(false);
   }
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
@@ -2205,7 +2213,7 @@ void RSSListing::createMenuFeed()
   feedContextMenu_ = new QMenu(this);
   feedContextMenu_->addAction(addFeedAct_);
   feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(openNewTabAct_);
+  feedContextMenu_->addAction(openFeedNewTabAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(markFeedRead_);
   feedContextMenu_->addAction(markAllFeedRead_);
@@ -2384,7 +2392,7 @@ void RSSListing::retranslateStrings() {
   addFeedAct_->setText(tr("&Add..."));
   addFeedAct_->setToolTip(tr("Add new feed"));
 
-  openNewTabAct_->setText(tr("Open in new tab"));
+  openFeedNewTabAct_->setText(tr("Open in new tab"));
 
   deleteFeedAct_->setText(tr("&Delete..."));
   deleteFeedAct_->setToolTip(tr("Delete selected feed"));
@@ -2444,6 +2452,7 @@ void RSSListing::retranslateStrings() {
 
   openInBrowserAct_->setText(tr("Open in browser"));
   openInExternalBrowserAct_->setText(tr("Open in external browser"));
+  openNewsNewTabAct_->setText(tr("Open in new tab"));
   markStarAct_->setText(tr("Star"));
   markStarAct_->setToolTip(tr("Mark news star"));
   deleteNewsAct_->setText(tr("Delete"));
@@ -3022,7 +3031,7 @@ void RSSListing::slotSwitchFocus()
 }
 
 //! Открытие ленты в новой вкладке
-void RSSListing::slotOpenNewTab()
+void RSSListing::slotOpenFeedNewTab()
 {
   feedsView_->setCurrentIndex(feedsView_->selectIndex);
   slotFeedsTreeSelected(feedsView_->selectIndex, true, true);

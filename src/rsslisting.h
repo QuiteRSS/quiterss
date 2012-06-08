@@ -39,6 +39,7 @@ public:
   QAction *newsFilter_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
+  QAction *openNewsNewTabAct_;
   QAction *markNewsRead_;
   QAction *markAllNewsRead_;
   QAction *markStarAct_;
@@ -187,7 +188,7 @@ private:
   QAction *feedKeyDownAct_;
   QAction *switchFocusAct_;
   QAction *visibleFeedsDockAct_;
-  QAction *openNewTabAct_;
+  QAction *openFeedNewTabAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
@@ -326,7 +327,7 @@ private slots:
   void slotFeedEndPressed();
   void setStyleApp(QAction*);
   void slotSwitchFocus();
-  void slotOpenNewTab();
+  void slotOpenFeedNewTab();
   void slotTabCurrentChanged(int index);
   void feedsColumnVisible(QAction *action);
   void setBrowserPosition(QAction *action);

@@ -108,6 +108,7 @@ private slots:
   void slotOpenNewsWebView();
   void openInBrowserNews();
   void openInExternalBrowserNews();
+  void slotOpenNewsNewTab();
 
   void slotTabClose();
   void webTitleChanged(QString title);

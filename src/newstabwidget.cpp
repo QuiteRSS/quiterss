@@ -173,6 +173,8 @@ void NewsTabWidget::createNewsList()
           this, SLOT(openInBrowserNews()));
   connect(rsslisting_->openInExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openInExternalBrowserNews()));
+  connect(rsslisting_->openNewsNewTabAct_, SIGNAL(triggered()),
+          this, SLOT(slotOpenNewsNewTab()));
 }
 
 void NewsTabWidget::createMenuNews()
@@ -180,6 +182,7 @@ void NewsTabWidget::createMenuNews()
   newsContextMenu_ = new QMenu(this);
   newsContextMenu_->addAction(rsslisting_->openInBrowserAct_);
   newsContextMenu_->addAction(rsslisting_->openInExternalBrowserAct_);
+  newsContextMenu_->addAction(rsslisting_->openNewsNewTabAct_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->markNewsRead_);
   newsContextMenu_->addAction(rsslisting_->markAllNewsRead_);
@@ -364,7 +367,7 @@ void NewsTabWidget::retranslateStrings() {
   webExternalBrowserAct_->setText(tr("Open in external browser"));
 
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
-  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Window"));
+  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in new tab"));
   webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
   webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
   webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
@@ -969,4 +972,9 @@ void NewsTabWidget::webTitleChanged(QString title)
           tabText, Qt::ElideRight, 114);
     newsTextTitle_->setText(tabText);
   }
+}
+
+void NewsTabWidget::slotOpenNewsNewTab()
+{
+  slotNewsMiddleClicked(newsView_->currentIndex());
 }
