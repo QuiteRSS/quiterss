@@ -46,6 +46,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>TI_Eugene</li>"
       "<li>Glad Deschrijver</li>"
       "<li>ZityiSoft</li>"
+      "<li>" + QString::fromUtf8("Åke Engelbrektson") + "</li>"
       "</UL>"
       "<HR>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
