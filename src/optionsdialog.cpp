@@ -327,8 +327,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->setObjectName("languageFileList_");
   languageFileList_->setColumnCount(5);
   languageFileList_->setColumnHidden(0, true);
-  languageFileList_->setColumnWidth(1, 140);
+  languageFileList_->setColumnWidth(1, 120);
   languageFileList_->setColumnWidth(2, 80);
+  languageFileList_->setColumnWidth(3, 120);
 
   treeItem.clear();
   treeItem << "Id" << tr("Language") << tr("Version")
@@ -336,7 +337,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << "0" << QString(tr("English (%1)")).arg("EN")
+  treeItem << "0" << QString::fromUtf8("English (EN)")
            << QString(STRFILEVER).section('.', 0, 2)
            << "QuiteRSS Team" << "";
   QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
@@ -344,35 +345,40 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "1" << QString(tr("French (%1)")).arg("FR") << "0.9.1"
+  treeItem << "1" << QString::fromUtf8("Français (FR)")
+           << "0.9.1"
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_FR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "2" << QString(tr("German (%1)")).arg("DE") << "0.9.1"
+  treeItem << "2" << QString::fromUtf8("Deutsch (DE)")
+           << QString(STRFILEVER).section('.', 0, 2)
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_DE"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "3" << QString(tr("Hungarian (%1)")).arg("HU") << "0.9.1"
+  treeItem << "3" << QString::fromUtf8("Magyar (HU)")
+           << "0.9.1"
            << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_HU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "4" << QString(tr("Russian (%1)")).arg("RU") << "0.9.1"
+  treeItem << "4" << QString::fromUtf8("Русский (RU)")
+           << QString(STRFILEVER).section('.', 0, 2)
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_RU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "5" << QString(tr("Swedish (%1)")).arg("SV") << "0.9.1"
+  treeItem << "5" << QString::fromUtf8("Svenska (SV)")
+           << "0.9.1"
            << QString::fromUtf8("Åke Engelbrektson") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SV"));
