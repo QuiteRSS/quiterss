@@ -476,8 +476,8 @@ void NewsTabWidget::slotNewsUpPressed()
 {
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, 1));
-      slotNewsViewClicked(newsModel_->index(0, 1));
+      newsView_->setCurrentIndex(newsModel_->index(0, 6));
+      slotNewsViewClicked(newsModel_->index(0, 6));
     }
     return;
   }
@@ -485,16 +485,16 @@ void NewsTabWidget::slotNewsUpPressed()
   int row = newsView_->currentIndex().row();
   if (row == 0) return;
   else row--;
-  newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsModel_->index(row, 1));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
+  slotNewsViewClicked(newsModel_->index(row, 6));
 }
 
 void NewsTabWidget::slotNewsDownPressed()
 {
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, 1));
-      slotNewsViewClicked(newsModel_->index(0, 1));
+      newsView_->setCurrentIndex(newsModel_->index(0, 6));
+      slotNewsViewClicked(newsModel_->index(0, 6));
     }
     return;
   }
@@ -502,23 +502,23 @@ void NewsTabWidget::slotNewsDownPressed()
   int row = newsView_->currentIndex().row();
   if ((row+1) == newsModel_->rowCount()) return;
   else row++;
-  newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsModel_->index(row, 1));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
+  slotNewsViewClicked(newsModel_->index(row, 6));
 }
 
 /*! \brief Обработка клавиш Home/End в дереве новостей *************************/
 void NewsTabWidget::slotNewsHomePressed()
 {
   int row = 0;
-  newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsModel_->index(row, 1));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
+  slotNewsViewClicked(newsModel_->index(row, 6));
 }
 
 void NewsTabWidget::slotNewsEndPressed()
 {
   int row = newsModel_->rowCount() - 1;
-  newsView_->setCurrentIndex(newsModel_->index(row, 1));
-  slotNewsViewClicked(newsModel_->index(row, 1));
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
+  slotNewsViewClicked(newsModel_->index(row, 6));
 }
 
 //! Пометка новости прочитанной
