@@ -379,7 +379,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem.clear();
   treeItem << "5" << QString::fromUtf8("Svenska (SV)")
            << "0.9.1"
-           << QString::fromUtf8("Åke Engelbrektson") << "";
+           << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SV"));
   languageFileList_->addTopLevelItem(languageItem);
