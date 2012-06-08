@@ -1698,6 +1698,9 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
 
   newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
 
+  if (newsRow == -1)
+    newsView_->verticalScrollBar()->setValue(newsRow);
+
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (clicked) {
