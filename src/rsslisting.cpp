@@ -1638,10 +1638,10 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     int indexTab = tabWidget_->addTab(
           new NewsTabWidget(feedId, this), "");
     tabWidget_->setCurrentIndex(indexTab);
-    tabBar_->setTabButton(tabWidget_->currentIndex(),
+    tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           currentNewsTab->newsTitleLabel_);
-    tabBar_->setTabButton(tabWidget_->currentIndex(),
+    tabBar_->setTabButton(indexTab,
                           QTabBar::RightSide,
                           currentNewsTab->closeButton_);
     if (indexTab == 0)
@@ -2897,6 +2897,7 @@ void RSSListing::slotFeedEndPressed()
   slotFeedsTreeClicked(feedsModel_->index(row, 1));
 }
 
+//! Удаление новостей в ленте по критериям
 void RSSListing::feedsCleanUp(QString feedId)
 {
   int cntT = 0;
@@ -2978,6 +2979,7 @@ void RSSListing::feedsCleanUp(QString feedId)
   q.exec(qStr);
 }
 
+//! Установка стиля оформления приложения
 void RSSListing::setStyleApp(QAction *pAct)
 {
   QString fileString;
@@ -3002,6 +3004,7 @@ void RSSListing::setStyleApp(QAction *pAct)
   qApp->setStyleSheet(QLatin1String(file.readAll()));
 }
 
+//! Переключение фокуса между деревом лент, списком новостей и браузером
 void RSSListing::slotSwitchFocus()
 {
   if (feedsView_->hasFocus()) {
@@ -3013,12 +3016,14 @@ void RSSListing::slotSwitchFocus()
   }
 }
 
+//! Открытие ленты в новой вкладке
 void RSSListing::slotOpenNewTab()
 {
   feedsView_->setCurrentIndex(feedsView_->selectIndex);
   slotFeedsTreeSelected(feedsView_->selectIndex, true, true);
 }
 
+//! Закрытие вкладки
 void RSSListing::slotTabCloseRequested(int index)
 {
   if (index != 0) {
@@ -3042,6 +3047,7 @@ void RSSListing::slotTabCloseRequested(int index)
   }
 }
 
+//! Переключение между вкладками
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (tabWidget_->count()) {
@@ -3080,28 +3086,33 @@ void RSSListing::slotTabCurrentChanged(int index)
   }
 }
 
+//! Включение/отключение отображения колонок в дереве лент
 void RSSListing::feedsColumnVisible(QAction *action)
 {
   int idx = action->data().toInt();
   feedsView_->setColumnHidden(idx, !action->isChecked());
 }
 
+//! Установка позиции браузера
 void RSSListing::setBrowserPosition(QAction *action)
 {
   browserPosition_ = action->data().toInt();
   currentNewsTab->setBrowserPosition();
 }
 
+//! Создание вкладки только с браузером
 QWebPage *RSSListing::createWebTab()
 {
   NewsTabWidget *widget = new NewsTabWidget(-1, this);
   int indexTab = tabWidget_->addTab(widget, "");
-  tabWidget_->setCurrentIndex(indexTab);
 
-  tabBar_->setTabButton(tabWidget_->currentIndex(),
+  if (QApplication::keyboardModifiers() != Qt::ControlModifier)
+    tabWidget_->setCurrentIndex(indexTab);
+
+  tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
-  tabBar_->setTabButton(tabWidget_->currentIndex(),
+  tabBar_->setTabButton(indexTab,
                         QTabBar::RightSide,
                         widget->closeButton_);
 

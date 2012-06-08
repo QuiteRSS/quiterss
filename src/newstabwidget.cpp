@@ -926,6 +926,7 @@ void NewsTabWidget::openInExternalBrowserNews()
   QDesktopServices::openUrl(QUrl(linkString.simplified()));
 }
 
+//! Установка позиции браузера
 void NewsTabWidget::setBrowserPosition()
 {
   int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
@@ -953,11 +954,13 @@ void NewsTabWidget::setBrowserPosition()
   }
 }
 
+//! Закрытие вкладки по кнопке х
 void NewsTabWidget::slotTabClose()
 {
   rsslisting_->slotTabCloseRequested(rsslisting_->tabWidget_->indexOf(this));
 }
 
+//! Вывод на вкладке названия открытой странички браузера
 void NewsTabWidget::webTitleChanged(QString title)
 {
   if (feedId_ == -1) {
