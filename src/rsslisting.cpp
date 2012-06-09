@@ -2175,6 +2175,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     if (newsRow == -1) {
       webView_->setHtml("");
       currentNewsTab->webPanel_->hide();
+      currentNewsTab->webControlPanel_->hide();
     }
   }
 

@@ -37,7 +37,6 @@ private:
   QLabel *webPanelTitleLabel_;
   QLabel *webPanelAuthorLabel_;
   QLabel *webPanelAuthor_;
-  QWidget *webControlPanel_;
   QProgressBar *webViewProgress_;
   QLabel *webViewProgressLabel_;
 
@@ -67,6 +66,7 @@ public:
 
   WebView *webView_;
   QWidget *webPanel_;
+  QWidget *webControlPanel_;
 
   QLabel *newsIconTitle_;
   QLabel *newsTextTitle_;

@@ -405,6 +405,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
+    webControlPanel_->hide();
     rsslisting_->slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     currentNewsIdOld = indexId;
     currentFeedIdOld = currentFeedId;
@@ -759,6 +760,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   if (!index.isValid()) {
     webView_->setHtml("");
     webPanel_->hide();
+    webControlPanel_->hide();
     return;
   }
 
