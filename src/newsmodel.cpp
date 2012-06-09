@@ -8,7 +8,7 @@ NewsModel::NewsModel(QObject *parent, QTreeView *view)
 }
 
 QVariant NewsModel::data(const QModelIndex &index, int role) const
-{ 
+{
   if (role == Qt::DecorationRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
       QIcon icon;
@@ -72,7 +72,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       font.setBold(true);
     return font;
   } else if (role == Qt::BackgroundRole) {
-    if (index.column() == view_->header()->sortIndicatorSection()) {
+    if ((index.column() == view_->header()->sortIndicatorSection()) &&
+        (!view_->selectionModel()->isSelected(index))) {
       return QBrush(QColor("#F5F5F5"));
     }
   } else if (role == Qt::TextColorRole) {
