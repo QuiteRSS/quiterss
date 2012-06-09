@@ -22,6 +22,7 @@ private:
   QList<QUrl> currentUrls_;
   QList<QUrl> currentFeeds_;
   QList<QDateTime> currentDates_;
+  QList<bool> currentHead_;
 
   QQueue<QUrl> urlsQueue_;
   QQueue<QDateTime> dateQueue_;

@@ -66,6 +66,7 @@ void UpdateThread::get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
+  currentHead_.append(false);
 }
 
 void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date)
@@ -78,6 +79,7 @@ void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
+  currentHead_.append(true);
 }
 
 /*! \brief Завершение обработки сетевого запроса
@@ -105,11 +107,16 @@ void UpdateThread::finished(QNetworkReply *reply)
   currentUrls_.removeAt(currentReplyIndex);
   QUrl feedUrl       = currentFeeds_.takeAt(currentReplyIndex);
   QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
+  bool headOk = currentHead_.takeAt(currentReplyIndex);
 
   if (reply->error() != QNetworkReply::NoError) {
     qDebug() << "  error retrieving RSS feed:" << reply->error();
-    emit getUrlDone(-1);
-    getQueuedUrl();
+    if (!headOk) {
+      emit getUrlDone(-1);
+      getQueuedUrl();
+    } else {
+      get(reply->url(), feedUrl, feedDate);
+    }
   }
   else {
     QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
