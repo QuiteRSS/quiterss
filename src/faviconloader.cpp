@@ -45,11 +45,13 @@ void FaviconLoader::getQueuedUrl()
     QUrl url = urlsQueue_.dequeue();
     QUrl feedUrl = feedsQueue_.dequeue();
     if (url.isValid()) {
-      QUrl getUrl(QString("http://%1/favicon.ico").
+      QUrl getUrl(QString("%1://%2/favicon.ico").
+                  arg(url.scheme()).
                   arg(url.host()));
       get(getUrl, feedUrl, 0);
     } else {
-      QUrl getUrl(QString("http://%1/favicon.ico").
+      QUrl getUrl(QString("%1://%2/favicon.ico").
+                  arg(feedUrl.scheme()).
                   arg(feedUrl.host()));
       get(getUrl, feedUrl, 0);
     }
@@ -99,7 +101,6 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
               linkFavicon = rx.cap(1);
               QUrl urlFavicon(linkFavicon);
               if (urlFavicon.host().isEmpty()) {
-//                urlFavicon.setScheme(url.scheme());
                 urlFavicon.setHost(url.host());
               }
               if (urlFavicon.scheme().isEmpty()) {
@@ -131,7 +132,7 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
               emit signalIconRecived(feedUrl.toString(), faviconData);
             }
           } else if (cntRequests == 0) {
-            QString link = QString("http://%1").arg(url.host());
+            QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
             get(link, feedUrl, 1);
           }
         }
