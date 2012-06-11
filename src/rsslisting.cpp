@@ -592,7 +592,7 @@ void RSSListing::createActions()
   connect(setNewsFiltersAct_, SIGNAL(triggered()), this, SLOT(showNewsFiltersDlg()));
   setFilterNewsAct_ = new QAction(this);
   setFilterNewsAct_->setIcon(QIcon(":/images/filterOff"));
-  connect(setFilterNewsAct_, SIGNAL(triggered()), this, SLOT(showFilterNewsDlg()));
+  connect(setFilterNewsAct_, SIGNAL(triggered()), this, SLOT(showFilterRulesDlg()));
 
   optionsAct_ = new QAction(this);
   optionsAct_->setObjectName("optionsAct");
@@ -2220,8 +2220,8 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(markAllFeedRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
-  //  feedContextMenu_->addSeparator();
-  //  feedContextMenu_->addAction(setFilterNewsAct_);
+//  feedContextMenu_->addSeparator();
+//  feedContextMenu_->addAction(setFilterNewsAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
@@ -2833,7 +2833,7 @@ void RSSListing::showNewsFiltersDlg()
   delete newsFiltersDialog;
 }
 
-void RSSListing::showFilterNewsDlg()
+void RSSListing::showFilterRulesDlg()
 {
   QStringList feedsList;
   QSqlQuery q(db_);

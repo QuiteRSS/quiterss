@@ -136,6 +136,8 @@ void FilterRulesDialog::closeDialog()
   settings_->setValue("filterRulesDlg/geometry", saveGeometry());
 }
 
+
+
 void FilterRulesDialog::selectMatch()
 {
   if (matchAllNews_->isChecked()) {

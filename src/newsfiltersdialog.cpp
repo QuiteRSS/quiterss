@@ -83,7 +83,7 @@ void NewsFiltersDialog::closeDialog()
 void NewsFiltersDialog::newFilter()
 {
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        this, settings_, &feedsList_);
+        parentWidget(), settings_, &feedsList_);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {

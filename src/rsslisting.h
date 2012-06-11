@@ -318,7 +318,7 @@ private slots:
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg();
-  void showFilterNewsDlg();
+  void showFilterRulesDlg();
   void slotUpdateAppChacking();
   void slotNewVersion(bool newVersion);
   void slotFeedUpPressed();
