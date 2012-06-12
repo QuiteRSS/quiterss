@@ -83,7 +83,7 @@ void NewsFiltersDialog::closeDialog()
 void NewsFiltersDialog::newFilter()
 {
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        parentWidget(), settings_, &feedsList_);
+        parentWidget(), true);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
@@ -120,11 +120,10 @@ void NewsFiltersDialog::newFilter()
 void NewsFiltersDialog::editFilter()
 {
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        this, settings_, &feedsList_);
+        parentWidget(), false);
 
   filterRulesDialog->filterName->setText(filtersTree->currentItem()->text(1));
   filterRulesDialog->filterName->selectAll();
-  filterRulesDialog->feedsList_ = feedsList_;
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {

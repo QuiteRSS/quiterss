@@ -2835,16 +2835,13 @@ void RSSListing::showNewsFiltersDlg()
 
 void RSSListing::showFilterRulesDlg()
 {
-  QStringList feedsList;
-  QSqlQuery q(db_);
-  QString qStr = QString("select text from feeds");
-  q.exec(qStr);
-  while (q.next()) {
-    feedsList << q.value(0).toString();
-  }
+  if (!feedsView_->selectIndex.isValid()) return;
+
+  int feedId = feedsModel_->record(
+        feedsView_->selectIndex.row()).field("id").value().toInt();
 
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        this, settings_, &feedsList);
+        this, true, feedId);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {

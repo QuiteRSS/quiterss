@@ -1,13 +1,17 @@
+#include "rsslisting.h"
 #include "filterrulesdialog.h"
 
-FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
-                                     QStringList *feedsList_)
+FilterRulesDialog::FilterRulesDialog(QWidget *parent, bool newFilter, int feedId)
   : QDialog(parent),
-    settings_(settings)
+    newFilter_(newFilter),
+    feedId_(feedId)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter rules"));
   setMinimumHeight(300);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  settings_ = rssl_->settings_;
 
   feedsTree = new QTreeWidget(this);
   feedsTree->setObjectName("feedsTreeFR");
@@ -20,21 +24,44 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << "All feeds" << "0";
+  treeItem << "All feeds" << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree->addTopLevelItem(treeWidgetItem);
   connect(feedsTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this, SLOT(feedItemChanged(QTreeWidgetItem*,int)));
 
-  foreach (QString str, *feedsList_) {
+  int rowFeed = - 1;
+  QSqlQuery q(rssl_->db_);
+  QString qStr = QString("select text, id, image from feeds");
+  q.exec(qStr);
+  while (q.next()) {
     treeItem.clear();
-    treeItem << str << "1";
+    treeItem << q.value(0).toString() << q.value(1).toString();
     QTreeWidgetItem *treeWidgetItem1 = new QTreeWidgetItem(treeItem);
-    treeWidgetItem1->setCheckState(0, Qt::Unchecked);
+
+    QPixmap iconTab;
+    QByteArray byteArray = q.value(2).toByteArray();
+    if (!byteArray.isNull()) {
+      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+    } else {
+      iconTab.load(":/images/feed");
+    }
+    treeWidgetItem1->setIcon(0, iconTab);
+
     treeWidgetItem->addChild(treeWidgetItem1);
+    if (feedId == q.value(1).toInt()) {
+      treeWidgetItem1->setCheckState(0, Qt::Checked);
+      rowFeed = feedsTree->topLevelItem(0)->childCount();
+    }
+    else
+      treeWidgetItem1->setCheckState(0, Qt::Unchecked);
   }
+
   feedsTree->expandAll();
+
+  feedsTree->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
+  feedsTree->verticalScrollBar()->setValue(rowFeed);
 
   filterName = new LineEdit(this);
 
@@ -58,6 +85,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   matchLayout->addStretch();
 
   conditionScrollArea = new QScrollArea(this);
+  conditionScrollArea->setFocusPolicy(Qt::NoFocus);
   conditionScrollArea->setWidgetResizable(true);
 
   conditionLayout = new QVBoxLayout();
@@ -79,6 +107,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
 
   actionsScrollArea = new QScrollArea(this);
   actionsScrollArea->setWidgetResizable(true);
+  actionsScrollArea->setFocusPolicy(Qt::NoFocus);
 
   actionsLayout = new QVBoxLayout();
   actionsLayout->setMargin(5);
@@ -126,17 +155,71 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, QSettings *settings,
   mainLayout->addWidget(buttonBox);
   setLayout(mainLayout);
 
-  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
+  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog(int)));
 
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
+  filterName->setFocus();
 }
 
-void FilterRulesDialog::closeDialog()
+void FilterRulesDialog::closeDialog(int result)
 {
   settings_->setValue("filterRulesDlg/geometry", saveGeometry());
+
+  if (result == QDialog::Accepted) {
+    RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+    QSqlQuery q(rssl_->db_);
+    if (newFilter_) {
+      int type;
+      if (matchAllCondition_->isChecked()) {
+        type = 1;
+      } else if (matchAnyCondition_->isChecked()) {
+        type = 2;
+      } else {
+        type = 0;
+      }
+
+      QString strIdFeeds;
+      QTreeWidgetItem *treeWidgetItem =
+          feedsTree->topLevelItem(0);
+
+      for (int i = 0; i < treeWidgetItem->childCount(); i++) {
+        if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
+          strIdFeeds.append(treeWidgetItem->child(i)->text(1));
+        }
+      }
+
+//      QString qStr = QString("INSERT INTO filters (name, type, feeds)"
+//                             "VALUES (?, ?, ?)");
+//      q.prepare(qStr);
+//      q.addBindValue(filterName->text());
+//      q.addBindValue(type);
+//      q.addBindValue(strIdFeeds);
+//      q.exec();
+
+//      int filterId = -1;
+//      q.exec(QString("SELECT id FROM filters WHERE name LIKE '%1'").
+//             arg(filterName->text()));
+//      if (q.next()) filterId = q.value(0).toInt();
+
+      for (int i = 0; i < conditionLayout->count()-2; i++) {
+        ItemCondition *itemCondition =
+            qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
+        qCritical() << itemCondition->comboBox1->currentIndex()
+                    << itemCondition->comboBox2->currentIndex()
+                    << itemCondition->comboBox3->currentIndex()
+                    << itemCondition->lineEdit->text();
+      }
+
+    } else {
+
+    }
+  }
 }
 
+void FilterRulesDialog::setData()
+{
 
+}
 
 void FilterRulesDialog::selectMatch()
 {

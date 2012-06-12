@@ -9,9 +9,6 @@ class ItemCondition : public QWidget
   Q_OBJECT
 private:
   QToolButton *deleteButton;
-  QComboBox *comboBox1;
-  QComboBox *comboBox2;
-  QComboBox *comboBox3;
 
 public:
   ItemCondition(QWidget * parent = 0) : QWidget(parent)
@@ -60,8 +57,12 @@ public:
             this, SLOT(currentIndexChanged(QString)));
   }
 
-  QToolButton *addButton;
+  QComboBox *comboBox1;
+  QComboBox *comboBox2;
+  QComboBox *comboBox3;
   LineEdit *lineEdit;
+
+  QToolButton *addButton;
 
 private slots:
   void deleteFilterRules()
@@ -126,19 +127,20 @@ public:
   {
     QStringList itemList;
     comboBox1 = new QComboBox(this);
-    itemList << tr("Move news to")  << tr("Copy news to")
+    itemList /*<< tr("Move news to")  << tr("Copy news to")*/
              << tr("Mark news as read") << tr("Add star")
              << tr("Delete");
     comboBox1->addItems(itemList);
 
     comboBox2 = new QComboBox(this);
+    comboBox2->setVisible(false);
 
     addButton = new QToolButton(this);
-    addButton->setIcon(QIcon(":/images/addFeed"));
+    addButton->setIcon(QIcon(":/images/addT"));
     addButton->setToolTip(tr("Add action"));
     addButton->setAutoRaise(true);
     deleteButton = new QToolButton(this);
-    deleteButton->setIcon(QIcon(":/images/deleteFeed"));
+    deleteButton->setIcon(QIcon(":/images/deleteT"));
     deleteButton->setToolTip(tr("Delete action"));
     deleteButton->setAutoRaise(true);
 
@@ -169,7 +171,7 @@ private slots:
 
   void currentIndexChanged(int index)
   {
-    if (index < 2) comboBox2->setVisible(true);
+    if (index < 0/*2*/) comboBox2->setVisible(true);
     else comboBox2->setVisible(false);
   }
 
@@ -181,7 +183,11 @@ class FilterRulesDialog : public QDialog
 {
   Q_OBJECT
 private:
+  void setData();
+
   QSettings *settings_;
+  bool newFilter_;
+  int feedId_;
   QDialogButtonBox *buttonBox;
 
   QRadioButton *matchAllCondition_;
@@ -197,10 +203,9 @@ private:
   QWidget *actionsWidget;
 
 public:
-  explicit FilterRulesDialog(QWidget *parent = 0, QSettings *settings = 0,
-                             QStringList *feedsList_ = 0);
+  explicit FilterRulesDialog(QWidget *parent, bool newFilter, int feedId = -1);
+
   LineEdit *filterName;
-  QStringList feedsList_;
   QTreeWidget *feedsTree;
 
 signals:
@@ -209,7 +214,7 @@ public slots:
 
 private slots:
   void feedItemChanged(QTreeWidgetItem *item, int column);
-  void closeDialog();
+  void closeDialog(int result);
 
   void addCondition();
   void deleteCondition(ItemCondition *item);
