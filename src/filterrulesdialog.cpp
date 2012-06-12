@@ -1,14 +1,16 @@
 #include "rsslisting.h"
 #include "filterrulesdialog.h"
 
-FilterRulesDialog::FilterRulesDialog(QWidget *parent, bool newFilter, int feedId)
+FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   : QDialog(parent),
-    newFilter_(newFilter),
+    filterId_(filterId),
     feedId_(feedId)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter rules"));
   setMinimumHeight(300);
+
+  filterId_ = -1;
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   settings_ = rssl_->settings_;
@@ -144,81 +146,148 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, bool newFilter, int feedId
   mainSpliter->addWidget(rulesWidget);
   mainSpliter->addWidget(feedsTree);
 
+  QLabel *iconWarning = new QLabel(this);
+  iconWarning->setPixmap(QPixmap(":/images/warning"));
+  textWarning = new QLabel(this);
+  QFont font = textWarning->font();
+  font.setBold(true);
+  textWarning->setFont(font);
+
+  QHBoxLayout *warningLayout = new QHBoxLayout();
+  warningLayout->setMargin(0);
+  warningLayout->addWidget(iconWarning);
+  warningLayout->addWidget(textWarning, 1);
+
+  warningWidget_ = new QWidget(this);
+  warningWidget_->setLayout(warningLayout);
+  warningWidget_->setVisible(false);
+
   buttonBox = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptDialog()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+
+  QHBoxLayout *statusLayout = new QHBoxLayout();
+  statusLayout->setMargin(0);
+  statusLayout->addWidget(warningWidget_, 1);
+  statusLayout->addWidget(buttonBox);
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(5);
   mainLayout->addWidget(mainSpliter);
-  mainLayout->addWidget(buttonBox);
+  mainLayout->addLayout(statusLayout);
   setLayout(mainLayout);
 
-  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog(int)));
+  connect(filterName, SIGNAL(textChanged(QString)),
+          this, SLOT(filterNameChanged(QString)));
+  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
   filterName->setFocus();
 }
 
-void FilterRulesDialog::closeDialog(int result)
+void FilterRulesDialog::closeDialog()
 {
   settings_->setValue("filterRulesDlg/geometry", saveGeometry());
-
-  if (result == QDialog::Accepted) {
-    RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-    QSqlQuery q(rssl_->db_);
-    if (newFilter_) {
-      int type;
-      if (matchAllCondition_->isChecked()) {
-        type = 1;
-      } else if (matchAnyCondition_->isChecked()) {
-        type = 2;
-      } else {
-        type = 0;
-      }
-
-      QString strIdFeeds;
-      QTreeWidgetItem *treeWidgetItem =
-          feedsTree->topLevelItem(0);
-
-      for (int i = 0; i < treeWidgetItem->childCount(); i++) {
-        if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
-          strIdFeeds.append(treeWidgetItem->child(i)->text(1));
-        }
-      }
-
-//      QString qStr = QString("INSERT INTO filters (name, type, feeds)"
-//                             "VALUES (?, ?, ?)");
-//      q.prepare(qStr);
-//      q.addBindValue(filterName->text());
-//      q.addBindValue(type);
-//      q.addBindValue(strIdFeeds);
-//      q.exec();
-
-//      int filterId = -1;
-//      q.exec(QString("SELECT id FROM filters WHERE name LIKE '%1'").
-//             arg(filterName->text()));
-//      if (q.next()) filterId = q.value(0).toInt();
-
-      for (int i = 0; i < conditionLayout->count()-2; i++) {
-        ItemCondition *itemCondition =
-            qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
-        qCritical() << itemCondition->comboBox1->currentIndex()
-                    << itemCondition->comboBox2->currentIndex()
-                    << itemCondition->comboBox3->currentIndex()
-                    << itemCondition->lineEdit->text();
-      }
-
-    } else {
-
-    }
-  }
 }
 
-void FilterRulesDialog::setData()
+void FilterRulesDialog::acceptDialog()
 {
+  if (filterName->text().isEmpty()) {
+    filterName->setFocus();
+    textWarning->setText(tr("Please enter name for the filter."));
+    warningWidget_->setVisible(true);
+    return;
+  }
 
+  if (!matchAllNews_->isChecked()) {
+    for (int i = 0; i < conditionLayout->count()-2; i++) {
+      ItemCondition *itemCondition =
+          qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
+      if ((itemCondition->comboBox1->currentIndex() != 4) &&
+          itemCondition->lineEdit->text().isEmpty()) {
+        itemCondition->lineEdit->setFocus();
+        textWarning->setText(tr("Please enter search condition for the news filter."));
+        warningWidget_->setVisible(true);
+        return;
+      }
+    }
+  }
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  if (filterId_ == -1) {
+    int type;
+    if (matchAllCondition_->isChecked()) {
+      type = 1;
+    } else if (matchAnyCondition_->isChecked()) {
+      type = 2;
+    } else {
+      type = 0;
+    }
+
+    QString strIdFeeds;
+    QTreeWidgetItem *treeWidgetItem =
+        feedsTree->topLevelItem(0);
+
+    for (int i = 0; i < treeWidgetItem->childCount(); i++) {
+      if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
+        if (!strIdFeeds.isNull()) strIdFeeds.append(",");
+        strIdFeeds.append(treeWidgetItem->child(i)->text(1));
+      }
+    }
+
+    QString qStr = QString("INSERT INTO filters (name, type, feeds)"
+                           "VALUES (?, ?, ?)");
+    q.prepare(qStr);
+    q.addBindValue(filterName->text());
+    q.addBindValue(type);
+    q.addBindValue(strIdFeeds);
+    q.exec();
+
+    q.exec(QString("SELECT id FROM filters WHERE name LIKE '%1'").
+           arg(filterName->text()));
+    if (q.next()) filterId_ = q.value(0).toInt();
+
+    for (int i = 0; i < conditionLayout->count()-2; i++) {
+      ItemCondition *itemCondition =
+          qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
+      qStr = QString("INSERT INTO filterConditions "
+                     "(idFilter, field, condition, content)"
+                     "VALUES (?, ?, ?, ?)");
+      q.prepare(qStr);
+      q.addBindValue(filterId_);
+      q.addBindValue(itemCondition->comboBox1->currentIndex());
+      q.addBindValue(itemCondition->comboBox2->currentIndex());
+      if (itemCondition->comboBox1->currentIndex() == 4)
+        q.addBindValue(itemCondition->comboBox3->currentIndex());
+      else
+        q.addBindValue(itemCondition->lineEdit->text());
+      q.exec();
+    }
+
+    for (int i = 0; i < actionsLayout->count()-2; i++) {
+      ItemAction *itemAction =
+          qobject_cast<ItemAction*>(actionsLayout->itemAt(i)->widget());
+      qStr = QString("INSERT INTO filterActions "
+                     "(idFilter, action, params)"
+                     "VALUES (?, ?, ?)");
+      q.prepare(qStr);
+      q.addBindValue(filterId_);
+      q.addBindValue(itemAction->comboBox1->currentIndex());
+      q.addBindValue(itemAction->comboBox2->currentIndex());
+      q.exec();
+    }
+
+  } else {
+
+  }
+  accept();
+}
+
+void FilterRulesDialog::filterNameChanged(const QString &)
+{
+  warningWidget_->setVisible(false);
 }
 
 void FilterRulesDialog::selectMatch()
@@ -277,6 +346,10 @@ void FilterRulesDialog::addCondition()
                       scrollBar->minimum() +
                       scrollBar->pageStep());
   itemCondition->lineEdit->setFocus();
+  connect(itemCondition->lineEdit, SIGNAL(textChanged(QString)),
+          this, SLOT(filterNameChanged(QString)));
+  connect(itemCondition->comboBox1, SIGNAL(currentIndexChanged(QString)),
+          this, SLOT(filterNameChanged(QString)));
 }
 
 void FilterRulesDialog::deleteCondition(ItemCondition *item)

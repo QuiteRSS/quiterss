@@ -1,5 +1,6 @@
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
+#include "rsslisting.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   : QDialog(parent),
@@ -15,12 +16,37 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->setColumnCount(3);
   filtersTree->setColumnHidden(0, true);
   filtersTree->header()->resizeSection(1, 150);
-  filtersTree->header()->setResizeMode(2, QHeaderView::Stretch);
+  filtersTree->header()->resizeSection(2, 350);
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
   treeItem << "Id" << tr("Name filter") << tr("Feeds");
   filtersTree->setHeaderLabels(treeItem);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  QString qStr = QString("SELECT id, name, feeds from filters");
+  q.exec(qStr);
+  while (q.next()) {
+    QSqlQuery q1(rssl_->db_);
+    QString strNameFeeds;
+    QStringList strIdFeeds = q.value(2).toString().split(",");
+    foreach (QString strIdFeed, strIdFeeds) {
+      if (!strNameFeeds.isNull()) strNameFeeds.append(", ");
+      qStr = QString("SELECT text FROM feeds WHERE id==%1").
+          arg(strIdFeed);
+      q1.exec(qStr);
+      if (q1.next()) strNameFeeds.append(q1.value(0).toString());
+    }
+
+    treeItem.clear();
+    treeItem << q.value(0).toString()
+             << q.value(1).toString()
+             << strNameFeeds;
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+    treeWidgetItem->setCheckState(1, Qt::Checked);
+    filtersTree->addTopLevelItem(treeWidgetItem);
+  }
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
   connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
@@ -83,7 +109,7 @@ void NewsFiltersDialog::closeDialog()
 void NewsFiltersDialog::newFilter()
 {
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        parentWidget(), true);
+        parentWidget(), -1);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
@@ -120,7 +146,7 @@ void NewsFiltersDialog::newFilter()
 void NewsFiltersDialog::editFilter()
 {
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        parentWidget(), false);
+        parentWidget(), 1);
 
   filterRulesDialog->filterName->setText(filtersTree->currentItem()->text(1));
   filterRulesDialog->filterName->selectAll();

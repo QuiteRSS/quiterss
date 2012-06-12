@@ -119,8 +119,6 @@ class ItemAction : public QWidget
   Q_OBJECT
 private:
   QToolButton *deleteButton;
-  QComboBox *comboBox1;
-  QComboBox *comboBox2;
 
 public:
   ItemAction(QWidget * parent = 0) : QWidget(parent)
@@ -161,6 +159,8 @@ public:
             this, SLOT(currentIndexChanged(int)));
   }
 
+  QComboBox *comboBox1;
+  QComboBox *comboBox2;
   QToolButton *addButton;
 
 private slots:
@@ -183,10 +183,8 @@ class FilterRulesDialog : public QDialog
 {
   Q_OBJECT
 private:
-  void setData();
-
   QSettings *settings_;
-  bool newFilter_;
+  int filterId_;
   int feedId_;
   QDialogButtonBox *buttonBox;
 
@@ -202,8 +200,11 @@ private:
   QVBoxLayout *actionsLayout;
   QWidget *actionsWidget;
 
+  QLabel *textWarning;
+  QWidget *warningWidget_;
+
 public:
-  explicit FilterRulesDialog(QWidget *parent, bool newFilter, int feedId = -1);
+  explicit FilterRulesDialog(QWidget *parent, int filterId, int feedId = -1);
 
   LineEdit *filterName;
   QTreeWidget *feedsTree;
@@ -214,7 +215,10 @@ public slots:
 
 private slots:
   void feedItemChanged(QTreeWidgetItem *item, int column);
-  void closeDialog(int result);
+  void closeDialog();
+  void acceptDialog();
+
+  void filterNameChanged(const QString &text);
 
   void addCondition();
   void deleteCondition(ItemCondition *item);

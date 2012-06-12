@@ -966,7 +966,7 @@ void RSSListing::createMenu()
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
-  //  toolsMenu_->addAction(setNewsFiltersAct_);
+//  toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
 
@@ -2841,7 +2841,7 @@ void RSSListing::showFilterRulesDlg()
         feedsView_->selectIndex.row()).field("id").value().toInt();
 
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        this, true, feedId);
+        this, -1, feedId);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
