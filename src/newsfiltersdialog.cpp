@@ -59,9 +59,11 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   moveUpButton = new QPushButton(tr("Move up"), this);
   moveUpButton->setEnabled(false);
+  moveUpButton->setVisible(false);
   connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveUpFilter()));
   moveDownButton = new QPushButton(tr("Move down"), this);
   moveDownButton->setEnabled(false);
+  moveDownButton->setVisible(false);
   connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
   QVBoxLayout *buttonsLayout = new QVBoxLayout();
