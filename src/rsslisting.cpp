@@ -966,7 +966,7 @@ void RSSListing::createMenu()
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
-//  toolsMenu_->addAction(setNewsFiltersAct_);
+  toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
 
@@ -2220,8 +2220,8 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(markAllFeedRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
-//  feedContextMenu_->addSeparator();
-//  feedContextMenu_->addAction(setFilterNewsAct_);
+  feedContextMenu_->addSeparator();
+  feedContextMenu_->addAction(setFilterNewsAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();

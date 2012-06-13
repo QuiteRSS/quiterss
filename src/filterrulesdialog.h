@@ -183,9 +183,11 @@ class FilterRulesDialog : public QDialog
 {
   Q_OBJECT
 private:
+  void setData();
+
   QSettings *settings_;
-  int filterId_;
-  int feedId_;
+  LineEdit *filterName;
+  QTreeWidget *feedsTree;
   QDialogButtonBox *buttonBox;
 
   QRadioButton *matchAllCondition_;
@@ -206,8 +208,7 @@ private:
 public:
   explicit FilterRulesDialog(QWidget *parent, int filterId, int feedId = -1);
 
-  LineEdit *filterName;
-  QTreeWidget *feedsTree;
+  int filterId_;
 
 signals:
 
@@ -220,10 +221,10 @@ private slots:
 
   void filterNameChanged(const QString &text);
 
-  void addCondition();
+  ItemCondition *addCondition();
   void deleteCondition(ItemCondition *item);
 
-  void addAction();
+  ItemAction *addAction();
   void deleteAction(ItemAction *item);
 
   void selectMatch();

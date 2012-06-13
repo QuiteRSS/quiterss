@@ -25,7 +25,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q(rssl_->db_);
-  QString qStr = QString("SELECT id, name, feeds from filters");
+  QString qStr = QString("SELECT id, name, feeds FROM filters");
   q.exec(qStr);
   while (q.next()) {
     QSqlQuery q1(rssl_->db_);
@@ -117,39 +117,47 @@ void NewsFiltersDialog::newFilter()
     return;
   }
 
-  QString strFeeds;
-  QTreeWidgetItem *treeWidgetItem =
-      filterRulesDialog->feedsTree->topLevelItem(0);
+  int filterId = filterRulesDialog->filterId_;
+  delete filterRulesDialog;
 
-  for (int i = 0; i < treeWidgetItem->childCount(); i++) {
-    if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
-      if (!strFeeds.isNull()) strFeeds.append(", ");
-      strFeeds.append(treeWidgetItem->child(i)->text(0));
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  QString qStr = QString("SELECT name, feeds FROM filters WHERE id=='%1'").
+      arg(filterId);
+  q.exec(qStr);
+  if (q.next()) {
+    QSqlQuery q1(rssl_->db_);
+    QString strNameFeeds;
+    QStringList strIdFeeds = q.value(1).toString().split(",");
+    foreach (QString strIdFeed, strIdFeeds) {
+      if (!strNameFeeds.isNull()) strNameFeeds.append(", ");
+      qStr = QString("SELECT text FROM feeds WHERE id==%1").
+          arg(strIdFeed);
+      q1.exec(qStr);
+      if (q1.next()) strNameFeeds.append(q1.value(0).toString());
     }
-  }
 
-  QStringList treeItem;
-  treeItem << QString::number(filtersTree->topLevelItemCount())
-           << filterRulesDialog->filterName->text()
-           << strFeeds;
-  treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(1, Qt::Checked);
-  filtersTree->addTopLevelItem(treeWidgetItem);
+    QStringList treeItem;
+    treeItem << QString::number(filterId)
+             << q.value(0).toString()
+             << strNameFeeds;
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+    treeWidgetItem->setCheckState(1, Qt::Checked);
+    filtersTree->addTopLevelItem(treeWidgetItem);
+  }
 
   if (((filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))) &&
       filtersTree->currentIndex().isValid())
     moveDownButton->setEnabled(true);
-
-  delete filterRulesDialog;
 }
 
 void NewsFiltersDialog::editFilter()
 {
-  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
-        parentWidget(), 1);
+  int filterRow = filtersTree->currentIndex().row();
+  int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
 
-  filterRulesDialog->filterName->setText(filtersTree->currentItem()->text(1));
-  filterRulesDialog->filterName->selectAll();
+  FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
+        parentWidget(), filterId);
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
@@ -157,9 +165,30 @@ void NewsFiltersDialog::editFilter()
     return;
   }
 
-  filtersTree->currentItem()->setText(1, filterRulesDialog->filterName->text());
-
   delete filterRulesDialog;
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  QString qStr = QString("SELECT name, feeds FROM filters WHERE id=='%1'").
+      arg(filterId);
+  q.exec(qStr);
+  if (q.next()) {
+    QSqlQuery q1(rssl_->db_);
+    QString strNameFeeds;
+    QStringList strIdFeeds = q.value(1).toString().split(",");
+    foreach (QString strIdFeed, strIdFeeds) {
+      if (!strNameFeeds.isNull()) strNameFeeds.append(", ");
+      qStr = QString("SELECT text FROM feeds WHERE id==%1").
+          arg(strIdFeed);
+      q1.exec(qStr);
+      if (q1.next()) strNameFeeds.append(q1.value(0).toString());
+    }
+
+    filtersTree->topLevelItem(filterRow)->setText(0, QString::number(filterId));
+    filtersTree->topLevelItem(filterRow)->setText(1, q.value(0).toString());
+    filtersTree->topLevelItem(filterRow)->setText(2, strNameFeeds);
+    filtersTree->topLevelItem(filterRow)->setCheckState(1, Qt::Checked);
+  }
 }
 
 void NewsFiltersDialog::deleteFilter()
@@ -174,13 +203,23 @@ void NewsFiltersDialog::deleteFilter()
 
   if (msgBox.exec() == QMessageBox::No) return;
 
-  filtersTree->takeTopLevelItem(filtersTree->currentIndex().row());
+  int filterRow = filtersTree->currentIndex().row();
+  int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  q.exec(QString("DELETE FROM filters WHERE id='%1'").arg(filterId));
+  q.exec(QString("DELETE FROM filterConditions WHERE idFilter='%1'").arg(filterId));
+  q.exec(QString("DELETE FROM filterActions WHERE idFilter='%1'").arg(filterId));
+  q.exec("VACUUM");
+  q.finish();
+
+  filtersTree->takeTopLevelItem(filterRow);
 
   if (filtersTree->currentIndex().row() == 0)
     moveUpButton->setEnabled(false);
   if (filtersTree->currentIndex().row() == (filtersTree->topLevelItemCount()-1))
     moveDownButton->setEnabled(false);
-
 }
 
 void NewsFiltersDialog::moveUpFilter()
