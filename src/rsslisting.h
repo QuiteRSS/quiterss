@@ -313,8 +313,6 @@ private slots:
   void showContextMenuToolBar(const QPoint &);
   void slotShowFeedPropertiesDlg();
   void slotFeedMenuShow();
-  void slotNewsMenuShow();
-  void slotNewsActionEnabled(bool enable);
   void markAllFeedsRead(bool readOn = true);
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);

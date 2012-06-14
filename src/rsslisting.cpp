@@ -961,9 +961,6 @@ void RSSListing::createMenu()
   newsMenu_->addSeparator();
   newsMenu_->addAction(autoLoadImagesToggle_);
 
-  slotNewsActionEnabled(false);
-  connect(newsMenu_, SIGNAL(aboutToShow()), this, SLOT(slotNewsMenuShow()));
-
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
   toolsMenu_->addAction(setNewsFiltersAct_);
@@ -1673,7 +1670,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
-  slotNewsActionEnabled(index.isValid());
   currentNewsTab->newsHeader_->setVisible(index.isValid());
 
   setFeedsFilter(feedsFilterGroup_->checkedAction());
@@ -2665,21 +2661,6 @@ void RSSListing::slotFeedMenuShow()
 {
   if (feedsView_->selectIndex.isValid()) feedProperties_->setEnabled(true);
   else feedProperties_->setEnabled(false);
-}
-
-void RSSListing::slotNewsMenuShow()
-{
-  if (currentNewsTab) slotNewsActionEnabled(true);
-  else slotNewsActionEnabled(false);
-}
-
-void RSSListing::slotNewsActionEnabled(bool enable)
-{
-  newsFilter_->setEnabled(enable);
-  markNewsRead_->setEnabled(enable);
-  markAllNewsRead_->setEnabled(enable);
-  markStarAct_->setEnabled(enable);
-  autoLoadImagesToggle_->setEnabled(enable);
 }
 
 //! Обновление информации в трее: значок и текст подсказки
