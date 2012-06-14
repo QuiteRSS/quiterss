@@ -16,7 +16,7 @@ typedef struct {
     quint32 updateInterval; //!< Интервал обновления
     quint32 intervalParameter; //!< Единицы измерения интервала
     bool updateOnStartup; //!< Обновлять при запуске приложения
-    bool displayOnStartup; //!< Отображать при запуске приложения
+    int displayOnStartup; //!< Отображать при запуске приложения
   } general;
 
   //! Настройки чтения
@@ -76,33 +76,26 @@ class FeedPropertiesDialog : public QDialog
 public:
   explicit FeedPropertiesDialog(QWidget *parent = 0);
 
-  FEED_PROPERTIES getFeedProperties(void); //!< Получить свойства ленты из диалога
+  FEED_PROPERTIES getFeedProperties(); //!< Получить свойства ленты из диалога
   void setFeedProperties(FEED_PROPERTIES properties); //!< Передать свойства ленты в диалог
 
 private:
-  QVBoxLayout *layoutMain;
   QDialogButtonBox *buttonBox;
   QTabWidget *tabWidget;
 
   // Вкладка "Общие"
   QWidget *tabGeneral; //!< Виджет вкладки
-  QPushButton *btnLoadTitle; //!< Кнопка "Загрузить заголовок"
-  QGridLayout *layoutGeneralGrid; //!< layout настройки
-  QHBoxLayout *layoutGeneralTitle; //!< layout строки названия ленты
-  QHBoxLayout *layoutGeneralHomepage; //!< layout строки дом. страницы
-  QVBoxLayout *layoutGeneralMain; //!< Основной layout вкладки
   LineEdit *editURL; //!< строка ссылки на ленту
   LineEdit *editTitle; //!< Заголовок ленты
   QLabel *labelHomepage; //!< Ссылка на домашнюю страницу
-  QLabel *labelTitleCapt;
-  QLabel *labelURLCapt;
-  QLabel *labelHomepageCapt;
-  QSpacerItem *spacerGeneral;
+  QCheckBox *displayOnStartup;
+
+  QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
 
   FEED_PROPERTIES feedProperties;
 
-  void showEvent(QShowEvent *event);
-  QWidget *CreateGeneralTab(void); //!< Создание вкладки "Общие"
+protected:
+  virtual void showEvent(QShowEvent *event);
 
 private slots:
   void slotLoadTitle();

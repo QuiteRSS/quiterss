@@ -8,7 +8,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
   setWindowTitle(tr("Feed properties"));
 
   // Основное окно
-  layoutMain = new QVBoxLayout(this);
+  QVBoxLayout *layoutMain = new QVBoxLayout(this);
   layoutMain->setMargin(5);
   tabWidget = new QTabWidget();
   buttonBox = new QDialogButtonBox(
@@ -27,34 +27,32 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
   setMinimumHeight(300);
 }
 //------------------------------------------------------------------------------
-QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
+QWidget *FeedPropertiesDialog::CreateGeneralTab()
 {
   QWidget *tab = new QWidget();
-  layoutGeneralMain = new QVBoxLayout(tab);
-  layoutGeneralGrid = new QGridLayout();
-  labelTitleCapt = new QLabel(tr("Title:"));
-  labelHomepageCapt = new QLabel(tr("Homepage:"));
-  labelURLCapt = new QLabel(tr("Feed URL:"));
+  QVBoxLayout *layoutGeneralMain = new QVBoxLayout(tab);
+  QGridLayout *layoutGeneralGrid = new QGridLayout();
+  QLabel *labelTitleCapt = new QLabel(tr("Title:"));
+  QLabel *labelHomepageCapt = new QLabel(tr("Homepage:"));
+  QLabel *labelURLCapt = new QLabel(tr("Feed URL:"));
 
-  layoutGeneralTitle = new QHBoxLayout();
+  QHBoxLayout *layoutGeneralTitle = new QHBoxLayout();
   editTitle = new LineEdit();
-  btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
+  QPushButton *btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
   btnLoadTitle->setToolTip(tr("Load feed title"));
   btnLoadTitle->setIconSize(QSize(16, 16));
   btnLoadTitle->setFocusPolicy(Qt::NoFocus);
-  layoutGeneralTitle->addWidget(editTitle);
+  layoutGeneralTitle->addWidget(editTitle, 1);
   layoutGeneralTitle->addWidget(btnLoadTitle);
-  layoutGeneralTitle->setStretch(0, 2);
-  layoutGeneralTitle->setStretch(1, 0);
   editURL = new LineEdit();
 
-  layoutGeneralHomepage = new QHBoxLayout();
+  displayOnStartup = new QCheckBox(tr("Display feed on startup"));
+
+  QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
   labelHomepage->setOpenExternalLinks(true);
   layoutGeneralHomepage->addWidget(labelHomepageCapt);
-  layoutGeneralHomepage->addWidget(labelHomepage);
-  layoutGeneralHomepage->setStretch(0,0);
-  layoutGeneralHomepage->setStretch(1,2);
+  layoutGeneralHomepage->addWidget(labelHomepage, 1);
 
   layoutGeneralGrid->addWidget(labelTitleCapt, 0, 0);
   layoutGeneralGrid->addLayout(layoutGeneralTitle, 0 ,1);
@@ -63,15 +61,16 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab(void)
 
   layoutGeneralMain->addLayout(layoutGeneralGrid);
   layoutGeneralMain->addLayout(layoutGeneralHomepage);
-  spacerGeneral = new QSpacerItem(0,0, QSizePolicy::Minimum, QSizePolicy::Expanding);
-  layoutGeneralMain->addSpacerItem(spacerGeneral);
+  layoutGeneralMain->addSpacing(15);
+  layoutGeneralMain->addWidget(displayOnStartup);
+  layoutGeneralMain->addStretch();
 
   connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
 
   return tab;
 }
 //------------------------------------------------------------------------------
-void FeedPropertiesDialog::showEvent(QShowEvent *event)
+/*virtual*/ void FeedPropertiesDialog::showEvent(QShowEvent *event)
 {
   Q_UNUSED(event)
   editTitle->setText(feedProperties.general.text);
@@ -79,7 +78,7 @@ void FeedPropertiesDialog::showEvent(QShowEvent *event)
   editURL->selectAll();
   editURL->setFocus();
   labelHomepage->setText(QString("<a href='%1'>%1</a>").arg(feedProperties.general.homepage));
-  editTitle->setCursorPosition(0);
+  displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::slotLoadTitle()
@@ -93,6 +92,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 {
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
+  feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   return(feedProperties);
 }
 //------------------------------------------------------------------------------

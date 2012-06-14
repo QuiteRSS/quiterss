@@ -1242,8 +1242,9 @@ void RSSListing::writeSettings()
   settings_->setValue("networkProxy/user",     networkProxy_.user());
   settings_->setValue("networkProxy/password", networkProxy_.password());
 
-  settings_->setValue("feedSettings/currentId",
-                      feedsModel_->index(feedsView_->currentIndex().row(), 0).data().toInt());
+  NewsTabWidget* widget = (NewsTabWidget*)tabWidget_->widget(0);
+
+  settings_->setValue("feedSettings/currentId", widget->feedId_);
   settings_->setValue("feedSettings/filterName",
                       feedsFilterGroup_->checkedAction()->objectName());
   settings_->setValue("newsSettings/filterName",
@@ -2273,18 +2274,25 @@ void RSSListing::loadSettingsFeeds()
 
 void RSSListing::setCurrentFeed()
 {
+  qApp->processEvents();
   if (reopenFeedStartup_) {
-    qApp->processEvents();
     int id = settings_->value("feedSettings/currentId", 0).toInt();
     int row = -1;
     for (int i = 0; i < feedsModel_->rowCount(); i++) {
       if (feedsModel_->index(i, 0).data().toInt() == id) {
         row = i;
+        break;
       }
     }
     feedsView_->setCurrentIndex(feedsModel_->index(row, 1)); // загрузка новостей
     slotFeedsTreeClicked(feedsModel_->index(row, 1));
   } else slotUpdateStatus();
+
+  QSqlQuery q(db_);
+  q.exec(QString("SELECT id FROM feeds WHERE displayOnStartup=1"));
+  while(q.next()) {
+    creatFeedTab(q.value(0).toInt());
+  }
 }
 
 void RSSListing::slotFeedsFilter()
@@ -2594,11 +2602,16 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   FEED_PROPERTIES properties;
 
-  properties.general.text = feedsModel_->record(index.row()).field("text").value().toString();
-  properties.general.title = feedsModel_->record(index.row()).field("title").value().toString();
-  properties.general.url = feedsModel_->record(index.row()).field("xmlUrl").value().toString();
-  properties.general.homepage = feedsModel_->record(index.row()).field("htmlUrl").value().toString();
-
+  properties.general.text =
+      feedsModel_->record(index.row()).field("text").value().toString();
+  properties.general.title =
+      feedsModel_->record(index.row()).field("title").value().toString();
+  properties.general.url =
+      feedsModel_->record(index.row()).field("xmlUrl").value().toString();
+  properties.general.homepage =
+      feedsModel_->record(index.row()).field("htmlUrl").value().toString();
+  properties.general.displayOnStartup =
+      feedsModel_->record(index.row()).field("displayOnStartup").value().toInt();
   feedPropertiesDialog->setFeedProperties(properties);
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
@@ -2619,8 +2632,10 @@ void RSSListing::slotShowFeedPropertiesDlg()
   delete feedPropertiesDialog;
 
   QSqlQuery q(db_);
-  q.prepare("update feeds set text = ? where id == ?");
+  q.prepare("update feeds set text = ?, xmlUrl = ?, displayOnStartup = ? where id == ?");
   q.addBindValue(properties.general.text);
+  q.addBindValue(properties.general.url);
+  q.addBindValue(properties.general.displayOnStartup);
   q.addBindValue(id);
   q.exec();
 
@@ -3120,4 +3135,83 @@ QWebPage *RSSListing::createWebTab()
   widget->retranslateStrings();
 
   return widget->webView_->page();
+}
+
+void RSSListing::creatFeedTab(int feedId)
+{
+  QSqlQuery q(db_);
+  q.exec(QString("SELECT text, image, currentNews FROM feeds WHERE id LIKE '%1'").
+         arg(feedId));
+
+  if (q.next()) {
+    NewsTabWidget *widget = new NewsTabWidget(feedId, this);
+    int indexTab = tabWidget_->addTab(widget, "");
+    widget->setSettings();
+    widget->retranslateStrings();
+    widget->setBrowserPosition();
+    tabBar_->setTabButton(indexTab,
+                          QTabBar::LeftSide,
+                          widget->newsTitleLabel_);
+    tabBar_->setTabButton(indexTab,
+                          QTabBar::RightSide,
+                          widget->closeButton_);
+
+    //! Устанавливаем иконку и текст для открытой вкладки
+    QPixmap iconTab;
+    QByteArray byteArray = q.value(1).toByteArray();
+    if (!byteArray.isNull()) {
+      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+    } else {
+      iconTab.load(":/images/feed");
+    }
+    widget->newsIconTitle_->setPixmap(iconTab);
+
+    QString tabText = q.value(0).toString();
+    tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
+          tabText, Qt::ElideRight, 114);
+    widget->newsTextTitle_->setText(tabText);
+
+    QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
+    if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
+      feedIdFilter.append("deleted = 0");
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsNew_") {
+      feedIdFilter.append(QString("new = 1 AND deleted = 0"));
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsUnread_") {
+      feedIdFilter.append(QString("read < 2 AND deleted = 0"));
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsStar_") {
+      feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
+    }
+    widget->newsModel_->setFilter(feedIdFilter);
+
+    if (widget->newsModel_->rowCount() != 0) {
+      while (widget->newsModel_->canFetchMore())
+        widget->newsModel_->fetchMore();
+    }
+
+    // выбор новости ленты, отображамой ранее
+    int newsRow = -1;
+    if (openingFeedAction_ == 0) {
+      for (int i = 0; i < widget->newsModel_->rowCount(); i++) {
+        if (widget->newsModel_->index(i, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+            q.value(2).toInt()) {
+          newsRow = i;
+          break;
+        }
+      }
+    } else if (openingFeedAction_ == 1) newsRow = 0;
+
+    widget->newsView_->setCurrentIndex(widget->newsModel_->index(newsRow, 6));
+    if (newsRow == -1)
+      widget->newsView_->verticalScrollBar()->setValue(newsRow);
+
+    if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
+      widget->slotNewsViewSelected(widget->newsModel_->index(newsRow, 6));
+    } else {
+      widget->slotNewsViewSelected(widget->newsModel_->index(-1, 6));
+      QSqlQuery q(db_);
+      int newsId = widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+      q.exec(qStr);
+    }
+  }
 }

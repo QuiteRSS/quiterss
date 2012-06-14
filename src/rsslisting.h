@@ -129,6 +129,7 @@ private:
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
+  void creatFeedTab(int feedId);
 
   QString dataDirPath_;
 
