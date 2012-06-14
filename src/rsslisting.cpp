@@ -1675,7 +1675,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   slotNewsActionEnabled(index.isValid());
   currentNewsTab->newsHeader_->setVisible(index.isValid());
 
-  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+  setFeedsFilter(feedsFilterGroup_->checkedAction());
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -2080,35 +2080,18 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   }
 }
 
-void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
+void RSSListing::setFeedsFilter(QAction* pAct)
 {
-  QModelIndex index = feedsView_->currentIndex();
-
   int id = feedsModel_->index(
-        index.row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  int unread = feedsModel_->index(
-        index.row(), feedsModel_->fieldIndex("unread")).data(Qt::EditRole).toInt();
-  int newCount = feedsModel_->index(
-        index.row(), feedsModel_->fieldIndex("newCount")).data(Qt::EditRole).toInt();
+        feedsView_->currentIndex().row(),
+        feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   if (pAct->objectName() == "filterFeedsAll_") {
     feedsModel_->setFilter("");
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    if (clicked) {
-      if (newCount)
-        feedsModel_->setFilter(QString("newCount > 0 OR id == '%1'").arg(id));
-      else
-        feedsModel_->setFilter(QString("newCount > 0"));
-    } else
-      feedsModel_->setFilter(QString("newCount > 0 OR id == '%1'").arg(id));
+    feedsModel_->setFilter(QString("newCount > 0"));
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    if (clicked) {
-      if (unread > 0)
-        feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
-      else
-        feedsModel_->setFilter(QString("unread > 0"));
-    } else
-      feedsModel_->setFilter(QString("unread > 0 OR id == '%1'").arg(id));
+    feedsModel_->setFilter(QString("unread > 0"));
   }
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -2135,8 +2118,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   QModelIndex index = newsView_->currentIndex();
 
-  int feedId = feedsModel_->index(
-        feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int feedId = currentNewsTab->feedId_;
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
@@ -2286,7 +2268,7 @@ void RSSListing::loadSettingsFeeds()
     }
   }
 
-  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+  setFeedsFilter(feedsFilterGroup_->checkedAction());
 }
 
 void RSSListing::setCurrentFeed()
