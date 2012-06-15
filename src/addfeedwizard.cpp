@@ -144,10 +144,10 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
 void AddFeedWizard::urlFeedEditChanged(const QString& text)
 {
   button(QWizard::NextButton)->setEnabled(
-        !text.isEmpty() && (urlFeedEdit_->text() != "http://"));
+        !text.isEmpty() && (text != "http://"));
 
   bool buttonEnable = false;
-  if (titleFeedAsName_->isChecked() && (urlFeedEdit_->text() != "http://") &&
+  if (titleFeedAsName_->isChecked() && (text != "http://") &&
       !text.isEmpty()) {
     buttonEnable = true;
   }
@@ -196,7 +196,7 @@ void AddFeedWizard::finishButtonClicked()
 
 void AddFeedWizard::addFeed()
 {
-  feedUrlString_ = urlFeedEdit_->text();
+  feedUrlString_ = urlFeedEdit_->text().simplified();
 
   QUrl feedUrl(feedUrlString_);
   if (feedUrl.host().isEmpty()) {
