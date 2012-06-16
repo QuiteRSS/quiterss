@@ -50,12 +50,13 @@ void createSplashScreen()
 int main(int argc, char **argv)
 {
   QtSingleApplication app(argc, argv);
+
+  QString message = app.arguments().value(1);
   if (app.isRunning()) {
     if (1 == argc) {
       app.sendMessage("--show");
     }
     else {
-      QString message = app.arguments().value(1);
       for (int i = 2; i < argc; ++i)
         message += '\n' + app.arguments().value(i);
       app.sendMessage(message);
@@ -150,6 +151,9 @@ QSettings *settings_;
     qApp->processEvents();
     rsslisting.traySystem->show();
   }
+
+  if (message.contains("feed://", Qt::CaseInsensitive))
+    rsslisting.receiveMessage(message);
 
   return app.exec();
 }

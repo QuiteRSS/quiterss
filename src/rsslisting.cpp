@@ -26,6 +26,12 @@ void RSSListing::receiveMessage(const QString& message)
     foreach (QString param, params) {
       if (param == "--show") slotShowWindows();
       if (param == "--exit") slotClose();
+      if (param.contains("feed://", Qt::CaseInsensitive)) {
+        param.remove(0, 7);
+        QApplication::clipboard()->setText("http://" + param);
+        activateWindow();
+        addFeed();
+      }
     }
   }
 }
