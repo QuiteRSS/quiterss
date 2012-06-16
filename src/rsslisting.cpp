@@ -1582,8 +1582,9 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
 
   // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
-  if (parseFeedId == id) {
-    slotFeedsTreeSelected(feedsModel_->index(index.row(), 1));
+  if (parseFeedId == currentNewsTab->feedId_) {
+    slotUpdateNews();
+    slotUpdateStatus();
   }
   // иначе обновляем модель лент
   else {
@@ -1596,6 +1597,28 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     }
     feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, 1));
   }
+}
+
+//! Обновление списка новостей
+void RSSListing::slotUpdateNews()
+{
+  int newsId = newsModel_->index(
+        newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
+  newsModel_->select();
+
+  if (newsModel_->rowCount() != 0) {
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+  }
+
+  int newsRow = -1;
+  for (int i = 0; i < newsModel_->rowCount(); i++) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
+      newsRow = i;
+    }
+  }
+  newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
 }
 
 /*! \brief Обработка нажатия в дереве лент ************************************/
@@ -2031,9 +2054,13 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   QSqlQuery q(db_);
   QString qStr;
 
-  int feedId = feedsModel_->index(
-        feedsView_->selectIndex.row(),
-        feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int feedId;
+  if (feedsView_->selectIndex.isValid())
+    feedId = feedsModel_->index(
+            feedsView_->selectIndex.row(),
+            feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  else
+    feedId = currentNewsTab->feedId_;
 
   int newCountOld = 0;
   qStr = QString("SELECT newCount FROM feeds WHERE id=='%1'").
@@ -3057,25 +3084,8 @@ void RSSListing::slotTabCurrentChanged(int index)
       }
       feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, 1));
 
-      int newsId = newsModel_->index(
-            newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-
-      newsModel_->select();
-
-      if (newsModel_->rowCount() != 0) {
-        while (newsModel_->canFetchMore())
-          newsModel_->fetchMore();
-      }
-
-      int newsRow = -1;
-      for (int i = 0; i < newsModel_->rowCount(); i++) {
-        if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
-          newsRow = i;
-        }
-      }
-      newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
-
-      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, 6));
+      slotUpdateNews();
+      currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
     }
   }
 }

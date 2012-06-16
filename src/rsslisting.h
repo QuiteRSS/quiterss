@@ -88,6 +88,7 @@ public slots:
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(const QUrl &url, const bool &changed);
+  void slotUpdateNews();
   void slotUpdateStatus(bool openFeed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotTabCloseRequested(int index);
