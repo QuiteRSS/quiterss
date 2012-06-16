@@ -112,6 +112,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   loadSettingsFeeds();
 
+  setStyleSheet("QMainWindow::separator { width: 1px; }");
+
   readSettings();
 
   if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
@@ -124,8 +126,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   translator_ = new QTranslator(this);
   appInstallTranslator();
-
-  setStyleSheet("QMainWindow::separator { width: 1px; }");
 }
 
 /*!****************************************************************************/
@@ -1556,6 +1556,8 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
                                        "yyyy-MM-ddTHH:mm:ss"));
   q.addBindValue(parseFeedId);
   q.exec();
+
+  setUserFilter(parseFeedId);
 
   recountFeedCounts(parseFeedId);
 
@@ -3195,6 +3197,158 @@ void RSSListing::creatFeedTab(int feedId)
       int newsId = widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
+    }
+  }
+}
+
+//! Применение пользовательских фильтров
+void RSSListing::setUserFilter(int feedId)
+{
+  QSqlQuery q(db_);
+  q.exec(QString("SELECT id, type FROM filters WHERE feeds LIKE '\%,%1,\%'").
+         arg(feedId));
+  while (q.next()) {
+    int filterId = q.value(0).toInt();
+    int filterType = q.value(1).toInt();
+
+    QString qStr("UPDATE news SET");
+    QString qStr1;
+
+    QSqlQuery q1(db_);
+    q1.exec(QString("SELECT action FROM filterActions "
+                    "WHERE idFilter=='%1'").arg(filterId));
+    while (q1.next()) {
+      if (!qStr1.isNull()) qStr1.append(",");
+      switch (q1.value(0).toInt()) {
+      case 0: // action -> Mark news as read
+        qStr1.append(" new=0, read=2");
+        break;
+      case 1: // action -> Add star
+        qStr1.append(" starred=1");
+        break;
+      case 2: // action -> Delete
+        qStr1.append(" new=0, read=2, deleted=1");
+        break;
+      }
+    }
+    qStr.append(qStr1);
+    qStr.append(QString(" WHERE feedId='%1' AND deleted=0").arg(feedId));
+
+    QString qStr2;
+    switch (filterType) {
+    case 1: // Match all conditions
+      qStr2.append("AND ");
+      break;
+    case 2: // Match any condition
+      qStr2.append("OR ");
+      break;
+    }
+
+    if ((filterType == 1) || (filterType == 2)) {
+      qStr.append(" AND ( ");
+      qStr1.clear();
+
+      q1.exec(QString("SELECT field, condition, content FROM filterConditions "
+                      "WHERE idFilter=='%1'").arg(filterId));
+      while (q1.next()) {
+        if (!qStr1.isNull()) qStr1.append(qStr2);
+        switch (q1.value(0).toInt()) {
+        case 0: // field -> Title
+          switch (q1.value(1).toInt()) {
+          case 0: // condition -> contains
+            qStr1.append(QString("title LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 1: // condition -> doesn't contains
+            qStr1.append(QString("title NOT LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 2: // condition -> is
+            qStr1.append(QString("title LIKE '%1' ").arg(q1.value(2).toString()));
+            break;
+          case 3: // condition -> isn't
+            qStr1.append(QString("title NOT LIKE '%1' ").arg(q1.value(2).toString()));
+            break;
+          case 4: // condition -> begins with
+            qStr1.append(QString("title LIKE '%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 5: // condition -> ends with
+            qStr1.append(QString("title LIKE '\%%1' ").arg(q1.value(2).toString()));
+            break;
+          }
+          break;
+        case 1: // field -> Description
+          switch (q1.value(1).toInt()) {
+          case 0: // condition -> contains
+            qStr1.append(QString("description LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 1: // condition -> doesn't contains
+            qStr1.append(QString("description NOT LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            break;
+          }
+          break;
+        case 2: // field -> Author
+          switch (q1.value(1).toInt()) {
+          case 0: // condition -> contains
+            qStr1.append(QString("author_name LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 1: // condition -> doesn't contains
+            qStr1.append(QString("author_name NOT LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 2: // condition -> is
+            qStr1.append(QString("author_name LIKE '%1' ").arg(q1.value(2).toString()));
+            break;
+          case 3: // condition -> isn't
+            qStr1.append(QString("author_name NOT LIKE '%1' ").arg(q1.value(2).toString()));
+            break;
+          }
+          break;
+        case 3: // field -> Category
+          switch (q1.value(1).toInt()) {
+          case 0: // condition -> is
+            qStr1.append(QString("category LIKE '%1' ").arg(q1.value(2).toString()));
+            break;
+          case 1: // condition -> isn't
+            qStr1.append(QString("category NOT LIKE '%1' ").arg(q1.value(2).toString()));
+            break;
+          case 2: // condition -> begins with
+            qStr1.append(QString("category LIKE '%1\%' ").arg(q1.value(2).toString()));
+            break;
+          case 3: // condition -> ends with
+            qStr1.append(QString("category LIKE '\%%1' ").arg(q1.value(2).toString()));
+            break;
+          }
+          break;
+        case 4: // field -> Status
+          if (q1.value(1).toInt() == 0) { // Status -> is
+            switch (q1.value(2).toInt()) {
+            case 0:
+              qStr1.append("new==1 ");
+              break;
+            case 1:
+              qStr1.append("read>=1 ");
+              break;
+            case 2:
+              qStr1.append("starred==1 ");
+              break;
+            }
+          } else { // Status -> isn't
+            switch (q1.value(2).toInt()) {
+            case 0:
+              qStr1.append("new==0 ");
+              break;
+            case 1:
+              qStr1.append("read==0 ");
+              break;
+            case 2:
+              qStr1.append("starred==0 ");
+              break;
+            }
+          }
+          break;
+        }
+      }
+      qStr.append(qStr1).append(")");
+      q1.exec(qStr);
+//      qCritical() << qStr;
     }
   }
 }

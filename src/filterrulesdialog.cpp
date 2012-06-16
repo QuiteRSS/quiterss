@@ -209,7 +209,7 @@ void FilterRulesDialog::setData()
     }
     selectMatch();
 
-    QStringList strIdFeeds = q.value(2).toString().split(",");
+    QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
       for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
         if (strIdFeed == feedsTree->topLevelItem(0)->child(i)->text(1)) {
@@ -287,10 +287,11 @@ void FilterRulesDialog::acceptDialog()
 
   for (int i = 0; i < treeWidgetItem->childCount(); i++) {
     if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
-      if (!strIdFeeds.isNull()) strIdFeeds.append(",");
+      strIdFeeds.append(",");
       strIdFeeds.append(treeWidgetItem->child(i)->text(1));
     }
   }
+  strIdFeeds.append(",");
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q(rssl_->db_);

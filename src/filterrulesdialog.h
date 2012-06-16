@@ -83,8 +83,7 @@ private slots:
                << tr("begins with") << tr("ends with");
       comboBox2->addItems(itemList);
     } else if (str == tr("Description")) {
-      itemList << tr("contains") << tr("doesn't contains")
-               << tr("is") << tr("isn't");
+      itemList << tr("contains") << tr("doesn't contains");
       comboBox2->addItems(itemList);
     } else if (str == tr("Author")) {
       itemList << tr("contains") << tr("doesn't contains")

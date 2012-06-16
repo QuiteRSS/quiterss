@@ -29,7 +29,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   while (q.next()) {
     QSqlQuery q1(rssl_->db_);
     QString strNameFeeds;
-    QStringList strIdFeeds = q.value(2).toString().split(",");
+    QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
       if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1").
@@ -129,7 +129,7 @@ void NewsFiltersDialog::newFilter()
   if (q.next()) {
     QSqlQuery q1(rssl_->db_);
     QString strNameFeeds;
-    QStringList strIdFeeds = q.value(1).toString().split(",");
+    QStringList strIdFeeds = q.value(1).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
       if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1").
@@ -176,7 +176,7 @@ void NewsFiltersDialog::editFilter()
   if (q.next()) {
     QSqlQuery q1(rssl_->db_);
     QString strNameFeeds;
-    QStringList strIdFeeds = q.value(1).toString().split(",");
+    QStringList strIdFeeds = q.value(1).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
       if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1").
