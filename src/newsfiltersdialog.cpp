@@ -16,7 +16,6 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->setColumnCount(3);
   filtersTree->setColumnHidden(0, true);
   filtersTree->header()->resizeSection(1, 150);
-  filtersTree->header()->resizeSection(2, 350);
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
@@ -32,7 +31,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(2).toString().split(",");
     foreach (QString strIdFeed, strIdFeeds) {
-      if (!strNameFeeds.isNull()) strNameFeeds.append(", ");
+      if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1").
           arg(strIdFeed);
       q1.exec(qStr);
@@ -132,7 +131,7 @@ void NewsFiltersDialog::newFilter()
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(1).toString().split(",");
     foreach (QString strIdFeed, strIdFeeds) {
-      if (!strNameFeeds.isNull()) strNameFeeds.append(", ");
+      if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1").
           arg(strIdFeed);
       q1.exec(qStr);
@@ -179,7 +178,7 @@ void NewsFiltersDialog::editFilter()
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(1).toString().split(",");
     foreach (QString strIdFeed, strIdFeeds) {
-      if (!strNameFeeds.isNull()) strNameFeeds.append(", ");
+      if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1").
           arg(strIdFeed);
       q1.exec(qStr);
