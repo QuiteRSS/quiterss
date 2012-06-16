@@ -124,6 +124,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   translator_ = new QTranslator(this);
   appInstallTranslator();
+
+  setStyleSheet("QMainWindow::separator { width: 1px; }");
 }
 
 /*!****************************************************************************/
