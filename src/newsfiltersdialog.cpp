@@ -83,14 +83,20 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   closeButton->setDefault(true);
   closeButton->setFocus(Qt::OtherFocusReason);
   connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-  QHBoxLayout *closeLayout = new QHBoxLayout();
-  closeLayout->setAlignment(Qt::AlignRight);
-  closeLayout->addWidget(closeButton);
+
+  applyFilterButton = new QPushButton(tr("Apply selected filter"), this);
+  applyFilterButton->setEnabled(false);
+  connect(applyFilterButton, SIGNAL(clicked()), SLOT(applyFilter()));
+
+  QHBoxLayout *mainButtonsLayout = new QHBoxLayout();
+  mainButtonsLayout->addWidget(applyFilterButton);
+  mainButtonsLayout->addStretch();
+  mainButtonsLayout->addWidget(closeButton);
 
   QVBoxLayout *mainlayout = new QVBoxLayout();
   mainlayout->setMargin(5);
   mainlayout->addLayout(layoutH1);
-  mainlayout->addLayout(closeLayout);
+  mainlayout->addLayout(mainButtonsLayout);
   setLayout(mainlayout);
 
   connect(filtersTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
@@ -150,6 +156,9 @@ void NewsFiltersDialog::newFilter()
   if (((filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))) &&
       filtersTree->currentIndex().isValid())
     moveDownButton->setEnabled(true);
+
+  filtersTree->setCurrentItem(
+        filtersTree->topLevelItem(filtersTree->topLevelItemCount()-1));
 }
 
 void NewsFiltersDialog::editFilter()
@@ -263,8 +272,38 @@ void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
     deleteButton->setEnabled(false);
     moveUpButton->setEnabled(false);
     moveDownButton->setEnabled(false);
+    applyFilterButton->setEnabled(false);
   } else {
     editButton->setEnabled(true);
     deleteButton->setEnabled(true);
+    applyFilterButton->setEnabled(true);
+  }
+}
+
+void NewsFiltersDialog::applyFilter()
+{
+  int filterRow = filtersTree->currentIndex().row();
+  int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
+  int feedId = -1;
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  QString qStr = QString("SELECT feeds FROM filters WHERE id='%1'").
+      arg(filterId);
+  q.exec(qStr);
+  if (q.next()) {
+    QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
+    foreach (QString strIdFeed, strIdFeeds) {
+      rssl_->setUserFilter(strIdFeed.toInt(), false);
+      NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->tabWidget_->currentWidget());
+      if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
+    }
+  }
+
+  if (feedId == -1)
+    rssl_->slotUpdateStatus(false);
+  else {
+    rssl_->slotUpdateNews();
+    rssl_->slotUpdateStatus();
   }
 }

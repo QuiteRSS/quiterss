@@ -8,20 +8,16 @@ class NewsFiltersDialog : public QDialog
   Q_OBJECT
 private:
   QSettings *settings_;
-  QTreeWidget *filtersTree;
 
   QPushButton *editButton;
   QPushButton *deleteButton;
   QPushButton *moveUpButton;
   QPushButton *moveDownButton;
+  QPushButton *applyFilterButton;
 
 public:
   explicit NewsFiltersDialog(QWidget *parent = 0, QSettings *settings = 0);
-  QStringList feedsList_;
-
-signals:
-
-public slots:
+  QTreeWidget *filtersTree;
 
 private slots:
   void closeDialog();
@@ -33,6 +29,8 @@ private slots:
   void moveDownFilter();
 
   void slotCurrentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
+
+  void applyFilter();
 
 };
 

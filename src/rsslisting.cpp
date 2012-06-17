@@ -1652,6 +1652,11 @@ void RSSListing::slotUpdateNews()
     }
   }
   newsView_->setCurrentIndex(newsModel_->index(newsRow, 6));
+  if (newsRow == -1) {
+    webView_->setHtml("");
+    currentNewsTab->webPanel_->hide();
+    currentNewsTab->webControlPanel_->hide();
+  }
 }
 
 /*! \brief Обработка нажатия в дереве лент ************************************/
@@ -2086,7 +2091,7 @@ void RSSListing::markFeedRead()
   if (currentNewsTab->feedId_ == feedId) {
     int currentRow = newsView_->currentIndex().row();
 
-    setNewsFilter(newsFilterGroup_->checkedAction(), false);
+    newsModel_->select();
 
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
@@ -2885,18 +2890,17 @@ void RSSListing::playSoundNewNews()
   }
 }
 
-void RSSListing::showNewsFiltersDlg()
+void RSSListing::showNewsFiltersDlg(bool newFilter)
 {
   NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this, settings_);
-
-  QSqlQuery q(db_);
-  QString qStr = QString("select text from feeds");
-  q.exec(qStr);
-  while (q.next()) {
-    newsFiltersDialog->feedsList_ << q.value(0).toString();
+  if (newFilter) {
+    newsFiltersDialog->filtersTree->setCurrentItem(
+          newsFiltersDialog->filtersTree->topLevelItem(
+            newsFiltersDialog->filtersTree->topLevelItemCount()-1));
   }
 
   newsFiltersDialog->exec();
+
   delete newsFiltersDialog;
 }
 
@@ -2917,6 +2921,8 @@ void RSSListing::showFilterRulesDlg()
   }
 
   delete filterRulesDialog;
+
+  showNewsFiltersDlg(true);
 }
 
 void RSSListing::slotUpdateAppChacking()
@@ -3270,7 +3276,7 @@ void RSSListing::creatFeedTab(int feedId)
 }
 
 //! Применение пользовательских фильтров
-void RSSListing::setUserFilter(int feedId)
+void RSSListing::setUserFilter(int feedId, bool onlyNew)
 {
   QSqlQuery q(db_);
   q.exec(QString("SELECT id, type FROM filters WHERE feeds LIKE '\%,%1,\%'").
@@ -3301,6 +3307,8 @@ void RSSListing::setUserFilter(int feedId)
     }
     qStr.append(qStr1);
     qStr.append(QString(" WHERE feedId='%1' AND deleted=0").arg(feedId));
+
+    if (onlyNew) qStr.append(" AND new=1");
 
     QString qStr2;
     switch (filterType) {

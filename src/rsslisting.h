@@ -93,6 +93,7 @@ public slots:
   void setNewsFilter(QAction*, bool clicked = true);
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
+  void setUserFilter(int feedId, bool onlyNew = true);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -131,7 +132,6 @@ private:
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
   void creatFeedTab(int feedId);
-  void setUserFilter(int feedId);
 
   QString dataDirPath_;
 
@@ -318,7 +318,7 @@ private slots:
   void markAllFeedsRead(bool readOn = true);
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);
-  void showNewsFiltersDlg();
+  void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
   void slotUpdateAppChacking();
   void slotNewVersion(bool newVersion);

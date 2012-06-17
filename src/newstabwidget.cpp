@@ -630,29 +630,12 @@ void NewsTabWidget::markAllNewsRead()
 
   int currentRow = newsView_->currentIndex().row();
 
-  rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+  newsModel_->select();
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
-  int currentNews = -1;
-  for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId_) {
-      currentNews = feedsModel_->index(i, feedsModel_->fieldIndex("currentNews")).data().toInt();
-      break;
-    }
-  }
-
-  int row = -1;
-  for (int i = 0; i < newsModel_->rowCount(); i++) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == currentNews) {
-      row = i;
-      break;
-    }
-  }
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  if (currentRow != row)
-    updateWebView(newsModel_->index(row, 6));
+  newsView_->setCurrentIndex(newsModel_->index(currentRow, 6));
 
   rsslisting_->slotUpdateStatus();
 }
