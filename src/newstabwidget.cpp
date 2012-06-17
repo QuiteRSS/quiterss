@@ -132,12 +132,6 @@ void NewsTabWidget::createNewsList()
 
   markNewsReadTimer_ = new QTimer(this);
 
-  QAction *openNewsWebViewAct_ = new QAction(this);
-  openNewsWebViewAct_->setShortcut(QKeySequence(Qt::Key_Return));
-  rsslisting_->addAction(openNewsWebViewAct_);
-  connect(openNewsWebViewAct_, SIGNAL(triggered()),
-          this, SLOT(slotOpenNewsWebView()));
-
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotNewsViewClicked(QModelIndex)));
   connect(newsView_, SIGNAL(pressKeyUp()), this, SLOT(slotNewsUpPressed()));
@@ -156,27 +150,6 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotReadTimer()));
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuNews(const QPoint &)));
-
-  connect(rsslisting_->markNewsRead_, SIGNAL(triggered()),
-          this, SLOT(markNewsRead()));
-  connect(rsslisting_->markAllNewsRead_, SIGNAL(triggered()),
-          this, SLOT(markAllNewsRead()));
-  connect(rsslisting_->markStarAct_, SIGNAL(triggered()),
-          this, SLOT(markNewsStar()));
-  connect(rsslisting_->deleteNewsAct_, SIGNAL(triggered()),
-          this, SLOT(deleteNews()));
-
-  connect(rsslisting_->newsKeyUpAct_, SIGNAL(triggered()),
-          this, SLOT(slotNewsUpPressed()));
-  connect(rsslisting_->newsKeyDownAct_, SIGNAL(triggered()),
-          this, SLOT(slotNewsDownPressed()));
-
-  connect(rsslisting_->openInBrowserAct_, SIGNAL(triggered()),
-          this, SLOT(openInBrowserNews()));
-  connect(rsslisting_->openInExternalBrowserAct_, SIGNAL(triggered()),
-          this, SLOT(openInExternalBrowserNews()));
-  connect(rsslisting_->openNewsNewTabAct_, SIGNAL(triggered()),
-          this, SLOT(slotOpenNewsNewTab()));
 }
 
 void NewsTabWidget::createMenuNews()
@@ -643,54 +616,45 @@ void NewsTabWidget::markNewsRead()
 }
 
 //! Отметить все новости в ленте прочитанными
-void NewsTabWidget::markAllNewsRead(bool openFeed)
+void NewsTabWidget::markAllNewsRead()
 {
   if (newsModel_->rowCount() == 0) return;
 
-  int feedId;
-  if (feedsView_->selectIndex.isValid())
-    feedId = feedsModel_->index(
-            feedsView_->selectIndex.row(),
-            feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  else
-    feedId = feedId_;
-
   QSqlQuery q(rsslisting_->db_);
   QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
-      arg(feedId);
+      arg(feedId_);
   q.exec(qStr);
   qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
-      arg(feedId);
+      arg(feedId_);
   q.exec(qStr);
 
-  if (openFeed) {
-    int currentRow = newsView_->currentIndex().row();
+  int currentRow = newsView_->currentIndex().row();
 
-    rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+  rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
+  while (newsModel_->canFetchMore())
+    newsModel_->fetchMore();
 
-    int currentNews = -1;
-    for (int i = 0; i < feedsModel_->rowCount(); i++) {
-      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId) {
-        currentNews = feedsModel_->index(i, feedsModel_->fieldIndex("currentNews")).data().toInt();
-        break;
-      }
+  int currentNews = -1;
+  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId_) {
+      currentNews = feedsModel_->index(i, feedsModel_->fieldIndex("currentNews")).data().toInt();
+      break;
     }
-
-    int row = -1;
-    for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == currentNews) {
-        row = i;
-        break;
-      }
-    }
-    newsView_->setCurrentIndex(newsModel_->index(row, 6));
-    if (currentRow != row)
-      updateWebView(newsModel_->index(row, 6));
   }
-  rsslisting_->slotUpdateStatus(openFeed);
+
+  int row = -1;
+  for (int i = 0; i < newsModel_->rowCount(); i++) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == currentNews) {
+      row = i;
+      break;
+    }
+  }
+  newsView_->setCurrentIndex(newsModel_->index(row, 6));
+  if (currentRow != row)
+    updateWebView(newsModel_->index(row, 6));
+
+  rsslisting_->slotUpdateStatus();
 }
 
 //! Пометка выбранных новостей звездочкой (избранные)
@@ -913,13 +877,6 @@ void NewsTabWidget::webHomePage()
 void NewsTabWidget::openPageInExternalBrowser()
 {
   QDesktopServices::openUrl(webView_->url());
-}
-
-//! Открытие новости клавишей Enter
-void NewsTabWidget::slotOpenNewsWebView()
-{
-  if (!newsView_->hasFocus()) return;
-  slotNewsViewClicked(newsView_->currentIndex());
 }
 
 //! Открытие новости в браузере

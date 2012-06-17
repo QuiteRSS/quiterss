@@ -711,6 +711,33 @@ void RSSListing::createActions()
   showLastUpdated_ = new QAction(this);
   showLastUpdated_->setData(feedsModel_->fieldIndex("updated"));
   showLastUpdated_->setCheckable(true);
+
+  QAction *openNewsWebViewAct_ = new QAction(this);
+  openNewsWebViewAct_->setShortcut(QKeySequence(Qt::Key_Return));
+  connect(openNewsWebViewAct_, SIGNAL(triggered()),
+          this, SLOT(slotOpenNewsWebView()));
+  this->addAction(openNewsWebViewAct_);
+
+  connect(markNewsRead_, SIGNAL(triggered()),
+          this, SLOT(markNewsRead()));
+  connect(markAllNewsRead_, SIGNAL(triggered()),
+          this, SLOT(markAllNewsRead()));
+  connect(markStarAct_, SIGNAL(triggered()),
+          this, SLOT(markNewsStar()));
+  connect(deleteNewsAct_, SIGNAL(triggered()),
+          this, SLOT(deleteNews()));
+
+  connect(newsKeyUpAct_, SIGNAL(triggered()),
+          this, SLOT(slotNewsUpPressed()));
+  connect(newsKeyDownAct_, SIGNAL(triggered()),
+          this, SLOT(slotNewsDownPressed()));
+
+  connect(openInBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInBrowserNews()));
+  connect(openInExternalBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openInExternalBrowserNews()));
+  connect(openNewsNewTabAct_, SIGNAL(triggered()),
+          this, SLOT(slotOpenNewsNewTab()));
 }
 
 void RSSListing::createShortcut()
@@ -2044,7 +2071,32 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 
 void RSSListing::markFeedRead()
 {
-  currentNewsTab->markAllNewsRead(false);
+  int feedId = feedsModel_->index(
+            feedsView_->selectIndex.row(),
+            feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
+  QSqlQuery q(db_);
+  QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+      arg(feedId);
+  q.exec(qStr);
+  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+      arg(feedId);
+  q.exec(qStr);
+
+  if (currentNewsTab->feedId_ == feedId) {
+    int currentRow = newsView_->currentIndex().row();
+
+    setNewsFilter(newsFilterGroup_->checkedAction(), false);
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    newsView_->setCurrentIndex(newsModel_->index(currentRow, 6));
+
+    slotUpdateStatus();
+  } else {
+    slotUpdateStatus(false);
+  }
 }
 
 /*! \brief Подсчёт новостей
@@ -3367,4 +3419,56 @@ void RSSListing::setUserFilter(int feedId)
 //      qCritical() << qStr;
     }
   }
+}
+
+//! Открытие новости клавишей Enter
+void RSSListing::slotOpenNewsWebView()
+{
+  if (!newsView_->hasFocus()) return;
+  currentNewsTab->slotNewsViewClicked(newsView_->currentIndex());
+}
+
+void RSSListing::slotNewsUpPressed()
+{
+  currentNewsTab->slotNewsUpPressed();
+}
+
+void RSSListing::slotNewsDownPressed()
+{
+  currentNewsTab->slotNewsDownPressed();
+}
+
+void RSSListing::markNewsRead()
+{
+  currentNewsTab->markNewsRead();
+}
+
+void RSSListing::markAllNewsRead()
+{
+  currentNewsTab->markAllNewsRead();
+}
+
+void RSSListing::markNewsStar()
+{
+  currentNewsTab->markNewsStar();
+}
+
+void RSSListing::deleteNews()
+{
+  currentNewsTab->deleteNews();
+}
+
+void RSSListing::openInBrowserNews()
+{
+  currentNewsTab->openInBrowserNews();
+}
+
+void RSSListing::openInExternalBrowserNews()
+{
+  currentNewsTab->openInExternalBrowserNews();
+}
+
+void RSSListing::slotOpenNewsNewTab()
+{
+  currentNewsTab->slotOpenNewsNewTab();
 }

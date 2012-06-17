@@ -332,6 +332,17 @@ private slots:
   void slotTabCurrentChanged(int index);
   void feedsColumnVisible(QAction *action);
   void setBrowserPosition(QAction *action);
+  void slotOpenNewsWebView();
+
+  void slotNewsUpPressed();
+  void slotNewsDownPressed();
+  void markNewsRead();
+  void markAllNewsRead();
+  void markNewsStar();
+  void deleteNews();
+  void openInBrowserNews();
+  void openInExternalBrowserNews();
+  void slotOpenNewsNewTab();
 
 signals:
   void signalPlaceToTray();
