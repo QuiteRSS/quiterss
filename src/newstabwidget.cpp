@@ -951,7 +951,6 @@ inline static bool launch(const QUrl &url, const QString &client)
 //! Открытие ссылки во внешем браузере
 bool NewsTabWidget::openUrl(const QUrl &url)
 {
-  qCritical() << url.toString().toLatin1() << QString::fromUtf8(rsslisting_->externalBrowser_.toUtf8());
   if (!url.isValid())
     return false;
 
@@ -976,23 +975,23 @@ bool NewsTabWidget::openUrl(const QUrl &url)
 #else
   if (rsslisting_->externalBrowserOn_ == 2) {
     if (launch(url, rsslisting_->externalBrowser_.toLatin1()))
-  } else {
-    if (launch(url, QLatin1String("xdg-open")))
-        return true;
-    if (launch(url, QString::fromLocal8Bit(getenv("DEFAULT_BROWSER"))))
-        return true;
-    if (launch(url, QString::fromLocal8Bit(getenv("BROWSER"))))
-        return true;
-
-    if (launch(url, QLatin1String("firefox")))
-        return true;
-    if (launch(url, QLatin1String("mozilla")))
-        return true;
-    if (launch(url, QLatin1String("netscape")))
-        return true;
-    if (launch(url, QLatin1String("opera")))
         return true;
   }
+  if (launch(url, QLatin1String("xdg-open")))
+      return true;
+  if (launch(url, QString::fromLocal8Bit(getenv("DEFAULT_BROWSER"))))
+      return true;
+  if (launch(url, QString::fromLocal8Bit(getenv("BROWSER"))))
+      return true;
+
+  if (launch(url, QLatin1String("firefox")))
+      return true;
+  if (launch(url, QLatin1String("mozilla")))
+      return true;
+  if (launch(url, QLatin1String("netscape")))
+      return true;
+  if (launch(url, QLatin1String("opera")))
+      return true;
 #endif
   return false;
 }
