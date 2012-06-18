@@ -1,6 +1,11 @@
 #include "newstabwidget.h"
 #include "rsslisting.h"
 
+#if defined(Q_OS_WIN)
+#include <qt_windows.h>
+#endif
+
+
 RSSListing *rsslisting_;
 
 NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
@@ -801,7 +806,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
       } else {
         qobject_cast<WebView*>(rsslisting_->createWebTab()->view())->load(url);
       }
-    } else QDesktopServices::openUrl(url);
+    } else openUrl(url);
     webView_->midButtonClick = false;
 }
 
@@ -859,7 +864,7 @@ void NewsTabWidget::webHomePage()
 //! Открытие отображаемой страницы во внешнем браузере
 void NewsTabWidget::openPageInExternalBrowser()
 {
-  QDesktopServices::openUrl(webView_->url());
+  openUrl(webView_->url());
 }
 
 //! Открытие новости в браузере
@@ -880,7 +885,7 @@ void NewsTabWidget::openInExternalBrowserNews()
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  QDesktopServices::openUrl(QUrl(linkString.simplified()));
+  openUrl(linkString.simplified());
 }
 
 //! Установка позиции браузера
@@ -928,7 +933,54 @@ void NewsTabWidget::webTitleChanged(QString title)
   }
 }
 
-void NewsTabWidget::slotOpenNewsNewTab()
+//! Открытие новости в новой вкладке
+void NewsTabWidget::openNewsNewTab()
 {
   slotNewsMiddleClicked(newsView_->currentIndex());
+}
+
+inline static bool launch(const QUrl &url, const QString &client)
+{
+#if !defined(QT_NO_PROCESS)
+    return (QProcess::startDetached(client + QLatin1Char(' ') +
+                                    url.toString().toLatin1()));
+#else
+    return (::system((client + QLatin1Char(' ') + url.toString().toLatin1()) != -1);
+#endif
+}
+
+//! Открытие ссылки во внешем браузере
+bool NewsTabWidget::openUrl(const QUrl &url)
+{
+  qCritical() << url.toString().toLatin1();
+  if (!url.isValid())
+    return false;
+
+  if (url.scheme() == QLatin1String("mailto"))
+      return QDesktopServices::openUrl(url);
+
+#if defined(Q_OS_WIN)
+  quintptr returnValue = (quintptr)ShellExecute(
+        rsslisting_->winId(), 0,
+        (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
+        0, 0, SW_SHOWNA);
+  return (returnValue > 32);
+#else
+  if (launch(url, QLatin1String("xdg-open")))
+      return true;
+  if (launch(url, QString::fromLocal8Bit(getenv("DEFAULT_BROWSER"))))
+      return true;
+  if (launch(url, QString::fromLocal8Bit(getenv("BROWSER"))))
+      return true;
+
+  if (launch(url, QLatin1String("firefox")))
+      return true;
+  if (launch(url, QLatin1String("mozilla")))
+      return true;
+  if (launch(url, QLatin1String("netscape")))
+      return true;
+  if (launch(url, QLatin1String("opera")))
+      return true;
+  return false;
+#endif
 }

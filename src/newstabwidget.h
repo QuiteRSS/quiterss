@@ -24,6 +24,8 @@ private:
   void createNewsList();
   void createMenuNews();
   void createWebWidget();
+  bool openUrl(const QUrl &url);
+//  inline static bool launch(const QUrl &url, const QString &client);
 
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
@@ -60,7 +62,7 @@ public:
 
   void openInBrowserNews();
   void openInExternalBrowserNews();
-  void slotOpenNewsNewTab();
+  void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
 
