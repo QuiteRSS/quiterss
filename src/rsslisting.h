@@ -59,7 +59,8 @@ public:
 
   bool autoLoadImages_;
 
-  bool embeddedBrowserOn_;
+  int externalBrowserOn_;
+  QString externalBrowser_;
   bool javaScriptEnable_;
   bool pluginsEnable_;
 

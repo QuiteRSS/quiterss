@@ -323,7 +323,7 @@ void NewsTabWidget::setSettings()
   webView_->settings()->setFontSize(
         QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
 
-  if (rsslisting_->embeddedBrowserOn_) {
+  if (!rsslisting_->externalBrowserOn_) {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
   } else {
     webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
@@ -796,7 +796,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
       url.setScheme(hostUrl.scheme());
       url.setHost(hostUrl.host());
     }
-    if (rsslisting_->embeddedBrowserOn_) {
+    if (!rsslisting_->externalBrowserOn_) {
       if (!webView_->midButtonClick) {
         if (!webControlPanel_->isVisible()) {
           webView_->history()->clear();
@@ -942,8 +942,7 @@ void NewsTabWidget::openNewsNewTab()
 inline static bool launch(const QUrl &url, const QString &client)
 {
 #if !defined(QT_NO_PROCESS)
-    return (QProcess::startDetached(client + QLatin1Char(' ') +
-                                    url.toString().toLatin1()));
+    return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toLatin1()));
 #else
     return (::system((client + QLatin1Char(' ') + url.toString().toLatin1()) != -1);
 #endif
@@ -952,7 +951,7 @@ inline static bool launch(const QUrl &url, const QString &client)
 //! Открытие ссылки во внешем браузере
 bool NewsTabWidget::openUrl(const QUrl &url)
 {
-  qCritical() << url.toString().toLatin1();
+  qCritical() << url.toString().toLatin1() << QString::fromUtf8(rsslisting_->externalBrowser_.toUtf8());
   if (!url.isValid())
     return false;
 
@@ -960,27 +959,40 @@ bool NewsTabWidget::openUrl(const QUrl &url)
       return QDesktopServices::openUrl(url);
 
 #if defined(Q_OS_WIN)
-  quintptr returnValue = (quintptr)ShellExecute(
-        rsslisting_->winId(), 0,
-        (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
-        0, 0, SW_SHOWNA);
-  return (returnValue > 32);
+  if (rsslisting_->externalBrowserOn_ == 2) {
+    quintptr returnValue = (quintptr)ShellExecute(
+          rsslisting_->winId(), 0,
+          (wchar_t *)QString::fromUtf8(rsslisting_->externalBrowser_.toUtf8()).utf16(),
+          (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
+          0, SW_SHOWNORMAL);
+    return (returnValue > 32);
+  } else {
+    quintptr returnValue = (quintptr)ShellExecute(
+          rsslisting_->winId(), 0,
+          (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
+          0, 0, SW_SHOWNORMAL);
+    return (returnValue > 32);
+  }
 #else
-  if (launch(url, QLatin1String("xdg-open")))
-      return true;
-  if (launch(url, QString::fromLocal8Bit(getenv("DEFAULT_BROWSER"))))
-      return true;
-  if (launch(url, QString::fromLocal8Bit(getenv("BROWSER"))))
-      return true;
+  if (rsslisting_->externalBrowserOn_ == 2) {
+    if (launch(url, rsslisting_->externalBrowser_.toLatin1()))
+  } else {
+    if (launch(url, QLatin1String("xdg-open")))
+        return true;
+    if (launch(url, QString::fromLocal8Bit(getenv("DEFAULT_BROWSER"))))
+        return true;
+    if (launch(url, QString::fromLocal8Bit(getenv("BROWSER"))))
+        return true;
 
-  if (launch(url, QLatin1String("firefox")))
-      return true;
-  if (launch(url, QLatin1String("mozilla")))
-      return true;
-  if (launch(url, QLatin1String("netscape")))
-      return true;
-  if (launch(url, QLatin1String("opera")))
-      return true;
-  return false;
+    if (launch(url, QLatin1String("firefox")))
+        return true;
+    if (launch(url, QLatin1String("mozilla")))
+        return true;
+    if (launch(url, QLatin1String("netscape")))
+        return true;
+    if (launch(url, QLatin1String("opera")))
+        return true;
+  }
 #endif
+  return false;
 }

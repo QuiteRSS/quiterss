@@ -169,25 +169,48 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} networkConnections
 
   //{ browser
+  embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
+  standartBrowserOn_ = new QRadioButton(tr("Use standart external browser"));
+  externalBrowserOn_ = new QRadioButton(tr("Use following external browser:"));
+
+  editExternalBrowser_ = new LineEdit();
+  selectionExternalBrowser_ = new QPushButton(tr("Browse..."));
+
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
 
-  QVBoxLayout *embeddedBrowserLayout = new QVBoxLayout();
-  embeddedBrowserLayout->addWidget(javaScriptEnable_);
-  embeddedBrowserLayout->addWidget(pluginsEnable_);
+  QGridLayout *browserLayout = new QGridLayout();
+  browserLayout->setContentsMargins(15, 0, 5, 10);
+  browserLayout->addWidget(embeddedBrowserOn_, 0, 0);
+  browserLayout->addWidget(standartBrowserOn_, 1, 0);
+  browserLayout->addWidget(externalBrowserOn_, 2, 0);
+  browserLayout->addWidget(editExternalBrowser_, 3, 0);
+  browserLayout->addWidget(selectionExternalBrowser_, 3, 1, Qt::AlignRight);
 
-  embeddedBrowserOn_ = new QGroupBox(tr("Use the embedded browser"));
-  embeddedBrowserOn_->setCheckable(true);
-  embeddedBrowserOn_->setLayout(embeddedBrowserLayout);
+  QVBoxLayout *contentBrowserLayout = new QVBoxLayout();
+  contentBrowserLayout->setContentsMargins(15, 0, 5, 10);
+  contentBrowserLayout->addWidget(javaScriptEnable_);
+  contentBrowserLayout->addWidget(pluginsEnable_);
 
-  QVBoxLayout *browserLayout = new QVBoxLayout();
-  browserLayout->setMargin(5);
-  browserLayout->addWidget(embeddedBrowserOn_);
-  browserLayout->addStretch();
+  QVBoxLayout *browserLayoutV = new QVBoxLayout();
+  browserLayoutV->addWidget(new QLabel(tr("Browser selection:")));
+  browserLayoutV->addLayout(browserLayout);
+  browserLayoutV->addWidget(new QLabel(tr("Content:")));
+  browserLayoutV->addLayout(contentBrowserLayout);
+  browserLayoutV->addStretch();
 
   browserWidget_ = new QFrame();
   browserWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
-  browserWidget_->setLayout(browserLayout);
+  browserWidget_->setLayout(browserLayoutV);
+
+  connect(externalBrowserOn_, SIGNAL(toggled(bool)),
+          editExternalBrowser_, SLOT(setEnabled(bool)));
+  connect(externalBrowserOn_, SIGNAL(toggled(bool)),
+          selectionExternalBrowser_, SLOT(setEnabled(bool)));
+  externalBrowserOn_->setChecked(true);
+
+  connect(selectionExternalBrowser_, SIGNAL(clicked()),
+          this, SLOT(selectionBrowser()));
   //} browser
 
   //{ feeds
@@ -820,4 +843,19 @@ int OptionsDialog::getOpeningFeed()
   else if (positionFirstNews_->isChecked()) return 1;
   else if (nottoOpenNews_->isChecked()) return 2;
   else return 0;
+}
+
+void OptionsDialog::selectionBrowser()
+{
+  QString path;
+
+  QFileInfo file(editExternalBrowser_->text());
+  if (file.isFile()) path = editExternalBrowser_->text();
+  else path = file.path();
+
+  QString fileName = QFileDialog::getOpenFileName(this,
+                                                  tr("Open File..."),
+                                                  path);
+  if (!fileName.isEmpty())
+    editExternalBrowser_->setText(fileName);
 }

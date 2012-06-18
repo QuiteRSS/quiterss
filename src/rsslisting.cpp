@@ -1099,8 +1099,8 @@ void RSSListing::readSettings()
   autoLoadImages_ = !settings_->value("autoLoadImages", true).toBool();
   setAutoLoadImages();
 
-  embeddedBrowserOn_ = settings_->value("embeddedBrowserOn", false).toBool();
-  if (embeddedBrowserOn_) {
+  externalBrowserOn_ = settings_->value("externalBrowserOn", 1).toInt();
+  if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
   } else {
@@ -1111,6 +1111,7 @@ void RSSListing::readSettings()
     openInExternalBrowserAct_->setVisible(false);
     openNewsNewTabAct_->setVisible(false);
   }
+  externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
 
@@ -1234,7 +1235,8 @@ void RSSListing::writeSettings()
   settings_->setValue("neverUnreadClearUp", neverUnreadCleanUp_);
   settings_->setValue("neverStarClearUp", neverStarCleanUp_);
 
-  settings_->setValue("embeddedBrowserOn", embeddedBrowserOn_);
+  settings_->setValue("externalBrowserOn", externalBrowserOn_);
+  settings_->setValue("externalBrowser", externalBrowser_);
   settings_->setValue("javaScriptEnable", javaScriptEnable_);
   settings_->setValue("pluginsEnable", pluginsEnable_);
 
@@ -1814,7 +1816,9 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->setProxy(networkProxy_);
 
-  optionsDialog->embeddedBrowserOn_->setChecked(embeddedBrowserOn_);
+  optionsDialog->embeddedBrowserOn_->setChecked(externalBrowserOn_ == 0);
+  optionsDialog->standartBrowserOn_->setChecked(externalBrowserOn_ == 1);
+  optionsDialog->editExternalBrowser_->setText(externalBrowser_);
   optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
 
@@ -1885,8 +1889,14 @@ void RSSListing::showOptionDlg()
   networkProxy_ = optionsDialog->proxy();
   persistentUpdateThread_->setProxy(networkProxy_);
 
-  embeddedBrowserOn_ = optionsDialog->embeddedBrowserOn_->isChecked();
-  if (embeddedBrowserOn_) {
+  if (optionsDialog->embeddedBrowserOn_->isChecked())
+    externalBrowserOn_ = 0;
+  else if (optionsDialog->externalBrowserOn_->isChecked())
+    externalBrowserOn_ = 2;
+  else
+    externalBrowserOn_ = 1;
+
+  if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
   } else {
@@ -1897,6 +1907,7 @@ void RSSListing::showOptionDlg()
     openInExternalBrowserAct_->setVisible(false);
     openNewsNewTabAct_->setVisible(false);
   }
+  externalBrowser_ = optionsDialog->editExternalBrowser_->text();
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
 

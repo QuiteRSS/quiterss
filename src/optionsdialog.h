@@ -40,7 +40,11 @@ public:
   QCheckBox *emptyWorking_;
 
   // browser
-  QGroupBox *embeddedBrowserOn_;
+  QRadioButton *embeddedBrowserOn_;
+  QRadioButton *standartBrowserOn_;
+  QRadioButton *externalBrowserOn_;
+  LineEdit *editExternalBrowser_;
+  QPushButton *selectionExternalBrowser_;
   QCheckBox *javaScriptEnable_;
   QCheckBox *pluginsEnable_;
 
@@ -95,6 +99,7 @@ private slots:
   void slotShortcutTreeUpDownPressed();
   void slotClearShortcut();
   void slotResetShortcut();
+  void selectionBrowser();
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
