@@ -2376,7 +2376,10 @@ void RSSListing::setCurrentFeed()
     }
     feedsView_->setCurrentIndex(feedsModel_->index(row, 1)); // загрузка новостей
     slotFeedsTreeClicked(feedsModel_->index(row, 1));
-  } else slotUpdateStatus();
+  } else {
+    feedsView_->setCurrentIndex(feedsModel_->index(-1, 1)); // загрузка новостей
+    slotFeedsTreeClicked(feedsModel_->index(-1, 1));
+  }
 
   QSqlQuery q(db_);
   q.exec(QString("SELECT id FROM feeds WHERE displayOnStartup=1"));
@@ -3486,5 +3489,5 @@ void RSSListing::openInExternalBrowserNews()
 
 void RSSListing::slotOpenNewsNewTab()
 {
-  currentNewsTab->slotOpenNewsNewTab();
+  currentNewsTab->openNewsNewTab();
 }
