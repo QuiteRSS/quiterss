@@ -2947,10 +2947,14 @@ void RSSListing::slotNewVersion(bool newVersion)
 /*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
 void RSSListing::slotFeedUpPressed()
 {
-  if (!feedsView_->currentIndex().isValid()) return;
+  if (!feedsView_->currentIndex().isValid()) {
+    feedsView_->setCurrentIndex(feedsModel_->index(0, 1));
+    slotFeedsTreeClicked(feedsModel_->index(0, 1));
+    return;
+  }
 
   int row = feedsView_->currentIndex().row();
-  if (row == 0) row = feedsModel_->rowCount()-1;
+  if (row == 0) return;
   else row--;
   feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
   slotFeedsTreeClicked(feedsModel_->index(row, 1));
@@ -2958,10 +2962,14 @@ void RSSListing::slotFeedUpPressed()
 
 void RSSListing::slotFeedDownPressed()
 {
-  if (!feedsView_->currentIndex().isValid()) return;
+  if (!feedsView_->currentIndex().isValid()) {
+    feedsView_->setCurrentIndex(feedsModel_->index(0, 1));
+    slotFeedsTreeClicked(feedsModel_->index(0, 1));
+    return;
+  }
 
   int row = feedsView_->currentIndex().row();
-  if ((row+1) == feedsModel_->rowCount()) row = 0;
+  if ((row+1) == feedsModel_->rowCount()) return;
   else row++;
   feedsView_->setCurrentIndex(feedsModel_->index(row, 1));
   slotFeedsTreeClicked(feedsModel_->index(row, 1));
