@@ -28,7 +28,8 @@ void RSSListing::receiveMessage(const QString& message)
       if (param == "--exit") slotClose();
       if (param.contains("feed://", Qt::CaseInsensitive)) {
         param.remove(0, 7);
-        QApplication::clipboard()->setText("http://" + param);
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText("http://" + param);
         activateWindow();
         addFeed();
       }
