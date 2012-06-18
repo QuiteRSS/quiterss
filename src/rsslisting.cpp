@@ -2852,18 +2852,10 @@ void RSSListing::markAllFeedsRead(bool readOn)
     while (newsModel_->canFetchMore())
       newsModel_->fetchMore();
 
-    int row = -1;
-    for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          feedsModel_->index(feedsView_->currentIndex().row(),
-                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
-        row = i;
-        break;
-      }
-    }
-    newsView_->setCurrentIndex(newsModel_->index(row, 6));
-    if (currentRow != row)
-      currentNewsTab->updateWebView(newsModel_->index(row, 0));
+    newsView_->setCurrentIndex(newsModel_->index(currentRow, 6));
+
+    if (readOn)
+      currentNewsTab->updateWebView(newsModel_->index(-1, 0));
   }
   refreshInfoTray();
 }
