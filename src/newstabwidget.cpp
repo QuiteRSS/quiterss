@@ -31,7 +31,6 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   newsTitleLabel_ = new QWidget(this);
   newsTitleLabel_->setStyleSheet("min-height: 16px;");
   newsTitleLabel_->setFixedWidth(132);
-  newsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
   newsTitleLabel_->setLayout(newsTitleLayout);
   newsTitleLabel_->setVisible(false);
 
@@ -358,6 +357,8 @@ void NewsTabWidget::retranslateStrings() {
 
   if (feedId_ > -1)
     newsHeader_->retranslateStrings();
+
+  closeButton_->setToolTip(tr("Close tab"));
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/

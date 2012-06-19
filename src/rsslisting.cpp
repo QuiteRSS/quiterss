@@ -1743,6 +1743,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
   QString tabText = feedsModel_->index(feedRow, feedsModel_->fieldIndex("text")).data().toString();
+  currentNewsTab->newsTextTitle_->setToolTip(tabText);
   tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
         tabText, Qt::ElideRight, 114);
   currentNewsTab->newsTextTitle_->setText(tabText);
@@ -2765,6 +2766,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
     QString tabText = feedsModel_->index(index.row(), feedsModel_->fieldIndex("text")).data().toString();
+    currentNewsTab->newsTextTitle_->setToolTip(tabText);
     tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     currentNewsTab->newsTextTitle_->setText(tabText);
@@ -3247,6 +3249,7 @@ void RSSListing::creatFeedTab(int feedId)
     widget->newsIconTitle_->setPixmap(iconTab);
 
     QString tabText = q.value(0).toString();
+    widget->newsTextTitle_->setToolTip(tabText);
     tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     widget->newsTextTitle_->setText(tabText);
