@@ -941,11 +941,7 @@ void NewsTabWidget::openNewsNewTab()
 
 inline static bool launch(const QUrl &url, const QString &client)
 {
-#if !defined(QT_NO_PROCESS)
-    return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toLatin1()));
-#else
-    return (::system((client + QLatin1Char(' ') + url.toString().toLatin1()) != -1);
-#endif
+  return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toLatin1()));
 }
 
 //! Открытие ссылки во внешем браузере
@@ -957,41 +953,19 @@ bool NewsTabWidget::openUrl(const QUrl &url)
   if (url.scheme() == QLatin1String("mailto"))
       return QDesktopServices::openUrl(url);
 
-#if defined(Q_OS_WIN)
   if (rsslisting_->externalBrowserOn_ == 2) {
+#if defined(Q_WS_WIN)
     quintptr returnValue = (quintptr)ShellExecute(
           rsslisting_->winId(), 0,
           (wchar_t *)QString::fromUtf8(rsslisting_->externalBrowser_.toUtf8()).utf16(),
           (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
           0, SW_SHOWNORMAL);
-    return (returnValue > 32);
-  } else {
-    quintptr returnValue = (quintptr)ShellExecute(
-          rsslisting_->winId(), 0,
-          (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
-          0, 0, SW_SHOWNORMAL);
-    return (returnValue > 32);
-  }
-#else
-  if (rsslisting_->externalBrowserOn_ == 2) {
+    if (returnValue > 32)
+      return true;
+#elif defined(Q_WS_X11)
     if (launch(url, rsslisting_->externalBrowser_.toLatin1()))
-        return true;
-  }
-  if (launch(url, QLatin1String("xdg-open")))
-      return true;
-  if (launch(url, QString::fromLocal8Bit(getenv("DEFAULT_BROWSER"))))
-      return true;
-  if (launch(url, QString::fromLocal8Bit(getenv("BROWSER"))))
-      return true;
-
-  if (launch(url, QLatin1String("firefox")))
-      return true;
-  if (launch(url, QLatin1String("mozilla")))
-      return true;
-  if (launch(url, QLatin1String("netscape")))
-      return true;
-  if (launch(url, QLatin1String("opera")))
       return true;
 #endif
-  return false;
+  }
+  return QDesktopServices::openUrl(url);
 }

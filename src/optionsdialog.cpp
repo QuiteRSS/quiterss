@@ -211,6 +211,12 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   connect(selectionExternalBrowser_, SIGNAL(clicked()),
           this, SLOT(selectionBrowser()));
+
+#if !(defined(Q_WS_WIN) || defined(Q_WS_X11))
+  externalBrowserOn_->setVisible(false);
+  editExternalBrowser_->setVisible(false);
+  selectionExternalBrowser_->setVisible(false);
+#endif
   //} browser
 
   //{ feeds
