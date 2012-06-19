@@ -1331,9 +1331,19 @@ void RSSListing::deleteFeed()
     db_.commit();
 
     int rowFeeds = feedsView_->currentIndex().row();
+    int currentId = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
     feedsModel_->select();
 
-    if (feedsModel_->rowCount() == rowFeeds) rowFeeds--;
+    if (currentId == id) {
+      if (feedsModel_->rowCount() == rowFeeds) rowFeeds--;
+    } else {
+      rowFeeds = -1;
+      for (int i = 0; i < feedsModel_->rowCount(); i++) {
+        if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentId) {
+          rowFeeds = i;
+        }
+      }
+    }
     feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
     slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
   }
@@ -1612,10 +1622,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     playSoundNewNews();
   }
 
-  //! Получаем идентификатор просматриваемой ленты
-  QModelIndex index = feedsView_->currentIndex();
   feedsView_->selectIndex = feedsView_->currentIndex();
-  int id = feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt();
 
   // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
   if (parseFeedId == currentNewsTab->feedId_) {
@@ -1624,14 +1631,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   }
   // иначе обновляем модель лент
   else {
-    feedsModel_->select();
-    int rowFeeds = -1;
-    for (int i = 0; i < feedsModel_->rowCount(); i++) {
-      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
-        rowFeeds = i;
-      }
-    }
-    feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+    feedsModelReload();
   }
 }
 
@@ -2168,16 +2168,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
     playSoundNewNews();
   }
 
-  feedId = feedsModel_->index(feedsView_->currentIndex().row(),
-                              feedsModel_->fieldIndex("id")).data().toInt();
-  feedsModel_->select();
-  int feedRow = -1;
-  for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId) {
-      feedRow = i;
-    }
-  }
-  feedsView_->updateCurrentIndex(feedsModel_->index(feedRow, feedsModel_->fieldIndex("text")));
+  feedsModelReload();
 
   if (openFeed) {
     statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
@@ -2191,13 +2182,15 @@ void RSSListing::setFeedsFilter(QAction* pAct)
         feedsView_->currentIndex().row(),
         feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
+  QString strFilter;
   if (pAct->objectName() == "filterFeedsAll_") {
-    feedsModel_->setFilter("");
+    strFilter = "";
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    feedsModel_->setFilter(QString("newCount > 0"));
+    strFilter = "newCount > 0";
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    feedsModel_->setFilter(QString("unread > 0"));
+    strFilter = "unread > 0";
   }
+  feedsModel_->setFilter(strFilter);
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
@@ -2852,10 +2845,7 @@ void RSSListing::markAllFeedsRead(bool readOn)
   }
   db_.commit();
 
-  //! Перечитывание модели лент
-  QModelIndex index = feedsView_->currentIndex();
-  feedsModel_->select();
-  feedsView_->updateCurrentIndex(index);
+  feedsModelReload();
 
   if (currentNewsTab != NULL) {
     int currentRow = newsView_->currentIndex().row();
@@ -2881,9 +2871,7 @@ void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteA
   q.addBindValue(strUrl);
   q.exec();
 
-  QModelIndex index = feedsView_->currentIndex();
-  feedsModel_->select();
-  feedsView_->updateCurrentIndex(index);
+  feedsModelReload();
 }
 
 void RSSListing::playSoundNewNews()
@@ -3496,4 +3484,19 @@ void RSSListing::openInExternalBrowserNews()
 void RSSListing::slotOpenNewsNewTab()
 {
   currentNewsTab->openNewsNewTab();
+}
+
+//! Перечитывание модели лент
+void RSSListing::feedsModelReload()
+{
+  int rowFeeds = feedsView_->currentIndex().row();
+  int id = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
+  feedsModel_->select();
+  rowFeeds = -1;
+  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
+      rowFeeds = i;
+    }
+  }
+  feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
 }

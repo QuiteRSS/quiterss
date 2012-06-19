@@ -133,6 +133,7 @@ private:
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
   void creatFeedTab(int feedId);
+  void feedsModelReload();
 
   QString dataDirPath_;
 
