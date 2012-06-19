@@ -29,7 +29,10 @@ HEADERS += \
     src/webview.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
-    src/logfile.h
+    src/logfile.h \
+    src/treeeditdialog.h \
+    src/treemodeldb.h \
+    src/treeitemdb.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -58,7 +61,10 @@ SOURCES += \
     src/webview.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
-    src/logfile.cpp
+    src/logfile.cpp \
+    src/treeeditdialog.cpp \
+    src/treemodeldb.cpp \
+    src/treeitemdb.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

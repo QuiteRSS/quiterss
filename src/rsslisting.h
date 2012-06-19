@@ -173,6 +173,7 @@ private:
   QAction *optionsAct_;
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedRead_;
+  QAction *editFeedsTree_;
   QAction *exitAct_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
@@ -318,6 +319,7 @@ private slots:
   void slotShowFeedPropertiesDlg();
   void slotFeedMenuShow();
   void markAllFeedsRead(bool readOn = true);
+  void slotEditFeedsTree();
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);

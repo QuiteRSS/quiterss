@@ -14,6 +14,7 @@
 #include "newsfiltersdialog.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
+#include "treeeditdialog.h"
 #include "webpage.h"
 #include "VersionNo.h"
 
@@ -588,6 +589,11 @@ void RSSListing::createActions()
   markAllFeedRead_->setIcon(QIcon(":/images/markReadAll"));
   connect(markAllFeedRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
 
+  editFeedsTree_ = new QAction(this);
+  editFeedsTree_->setObjectName("editFeedsTree");
+//  editFeedsTree_->setIcon(QIcon(":/images/editFeedsTree"));
+  connect(editFeedsTree_, SIGNAL(triggered()), this, SLOT(slotEditFeedsTree()));
+
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
@@ -963,6 +969,8 @@ void RSSListing::createMenu()
   feedMenu_->addAction(deleteFeedAct_);
   feedMenu_->addSeparator();
   feedMenu_->addAction(feedProperties_);
+  feedMenu_->addSeparator();
+  feedMenu_->addAction(editFeedsTree_);
   connect(feedMenu_, SIGNAL(aboutToShow()), this, SLOT(slotFeedMenuShow()));
 
   newsMenu_ = new QMenu(this);
@@ -2553,6 +2561,8 @@ void RSSListing::retranslateStrings() {
   markFeedRead_->setToolTip(tr("Mark feed read"));
   feedProperties_->setText(tr("Feed properties"));
   feedProperties_->setToolTip(tr("Feed properties"));
+  editFeedsTree_->setText(tr("editFeedsTree_"));
+  editFeedsTree_->setToolTip(tr("editFeedsTree_"));
 
   fileMenu_->setTitle(tr("&File"));
   editMenu_->setTitle(tr("&Edit"));
@@ -3499,4 +3509,11 @@ void RSSListing::feedsModelReload()
     }
   }
   feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+}
+
+void RSSListing::slotEditFeedsTree()
+{
+  TreeEditDialog *treeEditDialog = new TreeEditDialog(this, &db_);
+
+  treeEditDialog->exec();
 }

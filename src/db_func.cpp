@@ -380,6 +380,23 @@ QString initDB(const QString dbFileName)
         qDebug() << "DB converted to version =" << dbVersionString;
       } else {
         qDebug() << "dbVersion =" << dbVersionString;
+
+        //! debug --------------------------------------------------------------
+        // устанавливаем все ленты в корень
+        q.exec("SELECT id FROM feeds");
+        int rowToParent = 0;
+        while (q.next()) {
+          int id = q.value(0).toInt();
+          QSqlQuery q2(db);
+          q2.prepare("UPDATE feeds SET hasChildren=0, parentId=0, rowToParent=:rowToParent "
+                     "WHERE id=:id");
+          q2.bindValue(":rowToParent", rowToParent);
+          q2.bindValue(":id", id);
+          q2.exec();
+          rowToParent++;
+        }
+        //! --------------------------------------------------------------------
+
       }
     }
     db.commit();
