@@ -459,8 +459,8 @@ void NewsTabWidget::slotNewsUpPressed()
 {
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, 6));
-      slotNewsViewClicked(newsModel_->index(0, 6));
+      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
+      slotNewsViewClicked(newsModel_->index(0, newsModel_->fieldIndex("title")));
     }
     return;
   }
@@ -468,16 +468,16 @@ void NewsTabWidget::slotNewsUpPressed()
   int row = newsView_->currentIndex().row();
   if (row == 0) return;
   else row--;
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  slotNewsViewClicked(newsModel_->index(row, 6));
+  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
 void NewsTabWidget::slotNewsDownPressed()
 {
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
-      newsView_->setCurrentIndex(newsModel_->index(0, 6));
-      slotNewsViewClicked(newsModel_->index(0, 6));
+      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
+      slotNewsViewClicked(newsModel_->index(0, newsModel_->fieldIndex("title")));
     }
     return;
   }
@@ -485,23 +485,23 @@ void NewsTabWidget::slotNewsDownPressed()
   int row = newsView_->currentIndex().row();
   if ((row+1) == newsModel_->rowCount()) return;
   else row++;
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  slotNewsViewClicked(newsModel_->index(row, 6));
+  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
 /*! \brief Обработка клавиш Home/End в дереве новостей *************************/
 void NewsTabWidget::slotNewsHomePressed()
 {
   int row = 0;
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  slotNewsViewClicked(newsModel_->index(row, 6));
+  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
 void NewsTabWidget::slotNewsEndPressed()
 {
   int row = newsModel_->rowCount() - 1;
-  newsView_->setCurrentIndex(newsModel_->index(row, 6));
-  slotNewsViewClicked(newsModel_->index(row, 6));
+  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
 //! Пометка новости прочитанной
@@ -615,7 +615,7 @@ void NewsTabWidget::markNewsRead()
         break;
       }
     }
-    newsView_->setCurrentIndex(newsModel_->index(row, 6));
+    newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
     rsslisting_->slotUpdateStatus();
   }
 }
@@ -640,7 +640,7 @@ void NewsTabWidget::markAllNewsRead()
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
-  newsView_->setCurrentIndex(newsModel_->index(currentRow, 6));
+  newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
   rsslisting_->slotUpdateStatus();
 }
@@ -711,8 +711,8 @@ void NewsTabWidget::deleteNews()
     newsModel_->fetchMore();
 
   if (curIndex.row() == newsModel_->rowCount())
-    curIndex = newsModel_->index(curIndex.row()-1, 6);
-  else curIndex = newsModel_->index(curIndex.row(), 6);
+    curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
+  else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rsslisting_->slotUpdateStatus();
