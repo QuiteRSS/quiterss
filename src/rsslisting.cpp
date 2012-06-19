@@ -3165,6 +3165,12 @@ void RSSListing::slotTabCurrentChanged(int index)
 
       slotUpdateNews();
       currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
+
+      statusUnread_->setVisible(true);
+      statusAll_->setVisible(true);
+    } else {
+      statusUnread_->setVisible(false);
+      statusAll_->setVisible(false);
     }
   }
 }
