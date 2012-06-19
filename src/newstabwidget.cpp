@@ -941,7 +941,7 @@ void NewsTabWidget::openNewsNewTab()
 
 inline static bool launch(const QUrl &url, const QString &client)
 {
-  return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toLatin1()));
+  return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toUtf8()));
 }
 
 //! Открытие ссылки во внешем браузере
@@ -963,7 +963,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
     if (returnValue > 32)
       return true;
 #elif defined(Q_WS_X11)
-    if (launch(url, rsslisting_->externalBrowser_.toLatin1()))
+    if (launch(url, rsslisting_->externalBrowser_.toUtf8()))
       return true;
 #endif
   }
