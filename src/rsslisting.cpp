@@ -2401,21 +2401,22 @@ void RSSListing::loadSettingsFeeds()
 void RSSListing::setCurrentFeed()
 {
   qApp->processEvents();
+
+  int row = -1;
   if (reopenFeedStartup_) {
     int id = settings_->value("feedSettings/currentId", 0).toInt();
-    int row = -1;
     for (int i = 0; i < feedsModel_->rowCount(); i++) {
       if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
         row = i;
         break;
       }
     }
-    feedsView_->setCurrentIndex(feedsModel_->index(row, feedsModel_->fieldIndex("text"))); // загрузка новостей
-    slotFeedsTreeClicked(feedsModel_->index(row, feedsModel_->fieldIndex("text")));
-  } else {
-    feedsView_->setCurrentIndex(feedsModel_->index(-1, 1)); // загрузка новостей
-    slotFeedsTreeClicked(feedsModel_->index(-1, 1));
   }
+
+  feedsView_->setCurrentIndex(feedsModel_->index(row, feedsModel_->fieldIndex("text"))); // загрузка новостей
+  tabCurrentUpdateOff_ = true;
+  slotFeedsTreeClicked(feedsModel_->index(row, feedsModel_->fieldIndex("text")));
+  tabCurrentUpdateOff_ = false;
 
   QSqlQuery q(db_);
   q.exec(QString("SELECT id FROM feeds WHERE displayOnStartup=1"));
