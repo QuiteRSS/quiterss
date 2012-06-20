@@ -100,9 +100,13 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
+  connect(this, SIGNAL(signalCurrentTab(int,bool)),
+          SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
 
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
   tabBar_->installEventFilter(this);
+
+  tabCurrentUpdateOff_ = false;
 
   setCentralWidget(tabWidget_);
 
@@ -1736,6 +1740,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
                           currentNewsTab->closeButton_);
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
+
+    emit signalCurrentTab(indexTab, true);
   }
   currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
 
@@ -3141,10 +3147,6 @@ void RSSListing::slotOpenFeedNewTab()
 {
   feedsView_->setCurrentIndex(feedsView_->selectIndex);
   slotFeedsTreeSelected(feedsView_->selectIndex, true, true);
-
-  tabCurrentUpdateOff_ = true;
-  tabWidget_->setCurrentIndex(tabWidget_->count()-1);
-  tabCurrentUpdateOff_ = false;
 }
 
 //! Закрытие вкладки
@@ -3175,6 +3177,7 @@ void RSSListing::slotTabCloseRequested(int index)
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (tabCurrentUpdateOff_) return;
+
   if (tabWidget_->count()) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
     if (widget->feedId_ > -1) {
@@ -3221,9 +3224,6 @@ QWebPage *RSSListing::createWebTab()
   NewsTabWidget *widget = new NewsTabWidget(-1, this);
   int indexTab = tabWidget_->addTab(widget, "");
 
-  if (QApplication::keyboardModifiers() != Qt::ControlModifier)
-    tabWidget_->setCurrentIndex(indexTab);
-
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
@@ -3239,6 +3239,9 @@ QWebPage *RSSListing::createWebTab()
 
   widget->setSettings();
   widget->retranslateStrings();
+
+  if (QApplication::keyboardModifiers() != Qt::ControlModifier)
+    emit signalCurrentTab(indexTab);
 
   return widget->webView_->page();
 }
@@ -3549,4 +3552,11 @@ void RSSListing::slotEditFeedsTree()
   TreeEditDialog *treeEditDialog = new TreeEditDialog(this, &db_);
 
   treeEditDialog->exec();
+}
+
+void RSSListing::setCurrentTab(int index, bool updateTab)
+{
+  tabCurrentUpdateOff_ = updateTab;
+  tabWidget_->setCurrentIndex(index);
+  tabCurrentUpdateOff_ = false;
 }

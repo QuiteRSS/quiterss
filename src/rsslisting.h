@@ -349,12 +349,15 @@ private slots:
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();
+  void setCurrentTab(int index, bool updateTab = false);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
+  void signalCurrentTab(int index, bool updateTab = false);
+
 };
 
 #endif
