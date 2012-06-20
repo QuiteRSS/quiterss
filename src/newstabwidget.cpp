@@ -71,9 +71,9 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   layout->setMargin(0);
   layout->setSpacing(0);
   if (feedId_ > -1)
-    layout->addWidget(newsTabWidgetSplitter_, 0);
+    layout->addWidget(newsTabWidgetSplitter_);
   else
-    layout->addWidget(webWidget_, 0);
+    layout->addWidget(webWidget_);
   setLayout(layout);
 
 

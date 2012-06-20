@@ -2195,9 +2195,9 @@ void RSSListing::setFeedsFilter(QAction* pAct)
   if (pAct->objectName() == "filterFeedsAll_") {
     strFilter = "";
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    strFilter = "newCount > 0";
+    strFilter = QString("newCount > 0 OR id=='%1'").arg(id);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    strFilter = "unread > 0";
+    strFilter = QString("unread > 0 OR id=='%1'").arg(id);
   }
   feedsModel_->setFilter(strFilter);
 
@@ -3164,6 +3164,7 @@ void RSSListing::slotTabCurrentChanged(int index)
         }
       }
       feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+      setFeedsFilter(feedsFilterGroup_->checkedAction());
 
       slotUpdateNews();
       currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
