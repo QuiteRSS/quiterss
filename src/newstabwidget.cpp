@@ -928,6 +928,7 @@ void NewsTabWidget::webTitleChanged(QString title)
 {
   if (feedId_ == -1) {
     QString tabText = title;
+    newsTitleLabel_->setToolTip(tabText);
     tabText = newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     newsTextTitle_->setText(tabText);
