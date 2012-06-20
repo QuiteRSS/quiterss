@@ -110,7 +110,7 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsTab();
+  void createNewsTab(int index);
   void createToolBarNull();
   void createActions();
   void createShortcut();
@@ -294,6 +294,8 @@ private:
 
   bool reopenFeedStartup_;
 
+  bool tabCurrentUpdateOff_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
@@ -347,12 +349,15 @@ private slots:
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();
+  void setCurrentTab(int index, bool updateTab = false);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
+  void signalCurrentTab(int index, bool updateTab = false);
+
 };
 
 #endif

@@ -55,6 +55,7 @@
         <file alias="closeHover">images/close_hover.png</file>
         <file alias="flag_SV">images/flag_sweden.png</file>
         <file alias="webPage">images/world.png</file>
+        <file alias="quiterssDebug">images/quiterss_debug.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

@@ -100,9 +100,13 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
+  connect(this, SIGNAL(signalCurrentTab(int,bool)),
+          SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
 
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
   tabBar_->installEventFilter(this);
+
+  tabCurrentUpdateOff_ = false;
 
   setCentralWidget(tabWidget_);
 
@@ -270,8 +274,13 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
-    if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY))
+    if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
+#if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
+#else
+      traySystem->setIcon(QIcon(":/images/quiterssDebug"));
+#endif
+    }
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
   }
@@ -429,10 +438,8 @@ void RSSListing::createToolBarNull()
           this, SLOT(updateIconToolBarNull(bool)));
 }
 
-void RSSListing::createNewsTab()
+void RSSListing::createNewsTab(int index)
 {
-  int index = tabWidget_->currentIndex();
-
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
   currentNewsTab->setSettings();
   currentNewsTab->retranslateStrings();
@@ -464,7 +471,11 @@ void RSSListing::createStatusBar()
 
 void RSSListing::createTray()
 {
-  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"), this);
+#if defined(QT_NO_DEBUG_OUTPUT)
+    traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"), this);
+#else
+  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterssDebug"), this);
+#endif
   connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
           this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
   connect(this, SIGNAL(signalPlaceToTray()),
@@ -1719,7 +1730,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
     int indexTab = tabWidget_->addTab(
           new NewsTabWidget(feedId, this), "");
-    tabWidget_->setCurrentIndex(indexTab);
+    createNewsTab(indexTab);
+
     tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           currentNewsTab->newsTitleLabel_);
@@ -1728,6 +1740,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
                           currentNewsTab->closeButton_);
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
+
+    emit signalCurrentTab(indexTab, true);
   }
   currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
 
@@ -1743,7 +1757,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
   QString tabText = feedsModel_->index(feedRow, feedsModel_->fieldIndex("text")).data().toString();
-  currentNewsTab->newsTextTitle_->setToolTip(tabText);
+  currentNewsTab->newsTitleLabel_->setToolTip(tabText);
   tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
         tabText, Qt::ElideRight, 114);
   currentNewsTab->newsTextTitle_->setText(tabText);
@@ -1890,7 +1904,13 @@ void RSSListing::showOptionDlg()
   behaviorIconTray_ = optionsDialog->behaviorIconTray();
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     refreshInfoTray();
-  } else traySystem->setIcon(QIcon(":/images/quiterss16"));
+  } else {
+#if defined(QT_NO_DEBUG_OUTPUT)
+    traySystem->setIcon(QIcon(":/images/quiterss16"));
+#else
+    traySystem->setIcon(QIcon(":/images/quiterssDebug"));
+#endif
+  }
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
   clearStatusNew_ = optionsDialog->clearStatusNew_->isChecked();
   emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
@@ -2195,9 +2215,9 @@ void RSSListing::setFeedsFilter(QAction* pAct)
   if (pAct->objectName() == "filterFeedsAll_") {
     strFilter = "";
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    strFilter = "newCount > 0";
+    strFilter = QString("newCount > 0 OR id=='%1'").arg(id);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    strFilter = "unread > 0";
+    strFilter = QString("unread > 0 OR id=='%1'").arg(id);
   }
   feedsModel_->setFilter(strFilter);
 
@@ -2766,7 +2786,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
     QString tabText = feedsModel_->index(index.row(), feedsModel_->fieldIndex("text")).data().toString();
-    currentNewsTab->newsTextTitle_->setToolTip(tabText);
+    currentNewsTab->newsTitleLabel_->setToolTip(tabText);
     tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     currentNewsTab->newsTextTitle_->setText(tabText);
@@ -2838,7 +2858,11 @@ void RSSListing::refreshInfoTray()
     }
     // Выводим иконку без цифры
     else {
+#if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
+#else
+      traySystem->setIcon(QIcon(":/images/quiterssDebug"));
+#endif
     }
   }
 }
@@ -3152,10 +3176,12 @@ void RSSListing::slotTabCloseRequested(int index)
 //! Переключение между вкладками
 void RSSListing::slotTabCurrentChanged(int index)
 {
+  if (tabCurrentUpdateOff_) return;
+
   if (tabWidget_->count()) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
     if (widget->feedId_ > -1) {
-      createNewsTab();
+      createNewsTab(index);
 
       int rowFeeds = -1;
       for (int i = 0; i < feedsModel_->rowCount(); i++) {
@@ -3164,6 +3190,7 @@ void RSSListing::slotTabCurrentChanged(int index)
         }
       }
       feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+      setFeedsFilter(feedsFilterGroup_->checkedAction());
 
       slotUpdateNews();
       currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
@@ -3197,9 +3224,6 @@ QWebPage *RSSListing::createWebTab()
   NewsTabWidget *widget = new NewsTabWidget(-1, this);
   int indexTab = tabWidget_->addTab(widget, "");
 
-  if (QApplication::keyboardModifiers() != Qt::ControlModifier)
-    tabWidget_->setCurrentIndex(indexTab);
-
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
@@ -3215,6 +3239,9 @@ QWebPage *RSSListing::createWebTab()
 
   widget->setSettings();
   widget->retranslateStrings();
+
+  if (QApplication::keyboardModifiers() != Qt::ControlModifier)
+    emit signalCurrentTab(indexTab);
 
   return widget->webView_->page();
 }
@@ -3249,7 +3276,7 @@ void RSSListing::creatFeedTab(int feedId)
     widget->newsIconTitle_->setPixmap(iconTab);
 
     QString tabText = q.value(0).toString();
-    widget->newsTextTitle_->setToolTip(tabText);
+    widget->newsTitleLabel_->setToolTip(tabText);
     tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     widget->newsTextTitle_->setText(tabText);
@@ -3525,4 +3552,11 @@ void RSSListing::slotEditFeedsTree()
   TreeEditDialog *treeEditDialog = new TreeEditDialog(this, &db_);
 
   treeEditDialog->exec();
+}
+
+void RSSListing::setCurrentTab(int index, bool updateTab)
+{
+  tabCurrentUpdateOff_ = updateTab;
+  tabWidget_->setCurrentIndex(index);
+  tabCurrentUpdateOff_ = false;
 }

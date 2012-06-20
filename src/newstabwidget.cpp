@@ -71,9 +71,9 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   layout->setMargin(0);
   layout->setSpacing(0);
   if (feedId_ > -1)
-    layout->addWidget(newsTabWidgetSplitter_, 0);
+    layout->addWidget(newsTabWidgetSplitter_);
   else
-    layout->addWidget(webWidget_, 0);
+    layout->addWidget(webWidget_);
   setLayout(layout);
 
 
@@ -928,6 +928,7 @@ void NewsTabWidget::webTitleChanged(QString title)
 {
   if (feedId_ == -1) {
     QString tabText = title;
+    newsTitleLabel_->setToolTip(tabText);
     tabText = newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     newsTextTitle_->setText(tabText);
