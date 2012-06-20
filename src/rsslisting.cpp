@@ -429,10 +429,8 @@ void RSSListing::createToolBarNull()
           this, SLOT(updateIconToolBarNull(bool)));
 }
 
-void RSSListing::createNewsTab()
+void RSSListing::createNewsTab(int index)
 {
-  int index = tabWidget_->currentIndex();
-
   currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
   currentNewsTab->setSettings();
   currentNewsTab->retranslateStrings();
@@ -1719,7 +1717,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
     int indexTab = tabWidget_->addTab(
           new NewsTabWidget(feedId, this), "");
-    tabWidget_->setCurrentIndex(indexTab);
+    createNewsTab(indexTab);
+
     tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           currentNewsTab->newsTitleLabel_);
@@ -3123,6 +3122,10 @@ void RSSListing::slotOpenFeedNewTab()
 {
   feedsView_->setCurrentIndex(feedsView_->selectIndex);
   slotFeedsTreeSelected(feedsView_->selectIndex, true, true);
+
+  tabCurrentUpdateOff_ = true;
+  tabWidget_->setCurrentIndex(tabWidget_->count()-1);
+  tabCurrentUpdateOff_ = false;
 }
 
 //! Закрытие вкладки
@@ -3152,10 +3155,11 @@ void RSSListing::slotTabCloseRequested(int index)
 //! Переключение между вкладками
 void RSSListing::slotTabCurrentChanged(int index)
 {
+  if (tabCurrentUpdateOff_) return;
   if (tabWidget_->count()) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
     if (widget->feedId_ > -1) {
-      createNewsTab();
+      createNewsTab(index);
 
       int rowFeeds = -1;
       for (int i = 0; i < feedsModel_->rowCount(); i++) {

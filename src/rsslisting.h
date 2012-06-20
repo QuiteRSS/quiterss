@@ -110,7 +110,7 @@ private:
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();
-  void createNewsTab();
+  void createNewsTab(int index);
   void createToolBarNull();
   void createActions();
   void createShortcut();
@@ -293,6 +293,8 @@ private:
   bool showMessageOn_;
 
   bool reopenFeedStartup_;
+
+  bool tabCurrentUpdateOff_;
 
 private slots:
   void slotProgressBarUpdate();
