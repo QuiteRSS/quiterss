@@ -2908,6 +2908,24 @@ void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteA
   q.addBindValue(strUrl);
   q.exec();
 
+  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
+         arg(strUrl));
+  if (q.next()) {
+    for (int i = 0; i < tabWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+      if (widget->feedId_ == q.value(0).toInt()) {
+        QPixmap iconTab;
+        if (!byteArray.isNull()) {
+          iconTab.loadFromData(byteArray);
+        } else {
+          iconTab.load(":/images/feed");
+        }
+        widget->newsIconTitle_->setPixmap(iconTab);
+        break;
+      }
+    }
+  }
+
   feedsModelReload();
 }
 
