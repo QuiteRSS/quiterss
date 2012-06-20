@@ -26,7 +26,13 @@ TreeEditDialog::TreeEditDialog(QWidget *parent, QSqlDatabase *db) :
   toolBar_->addAction(moveLeft_);
   toolBar_->addAction(moveRight_);
 
-  view_ = new QTreeView();
+  view_ = new TreeViewDB();
+  view_->setSelectionMode(QAbstractItemView::SingleSelection);
+  view_->setDragDropMode(QAbstractItemView::InternalMove);
+  view_->setDragEnabled(true);
+  view_->setAcceptDrops(true);
+  view_->setDropIndicatorShown(true);
+
   view_->setModel(model_);
   view_->header()->hide();
   for (int i = 1; i < model_->columnCount(); ++i)
@@ -42,7 +48,7 @@ TreeEditDialog::TreeEditDialog(QWidget *parent, QSqlDatabase *db) :
   mainLayout->addWidget(buttonBox_);
   setLayout(mainLayout);
 
-  connect(view_, SIGNAL(clicked(QModelIndex)), this, SLOT(slotUpdateActions(QModelIndex&)));
+  connect(view_, SIGNAL(clicked(QModelIndex)), this, SLOT(slotUpdateActions(QModelIndex)));
   connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
   connect(createFolder_, SIGNAL(triggered()), this, SLOT(slotCreateFolder()));
@@ -62,7 +68,7 @@ void TreeEditDialog::renewModel(void)
   delete oldModel;
 }
 
-void TreeEditDialog::slotUpdateActions(QModelIndex &index)
+void TreeEditDialog::slotUpdateActions(QModelIndex index)
 {
   if (index.isValid()) {
     deleteNode_->setEnabled(true);

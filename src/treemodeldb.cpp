@@ -59,7 +59,8 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
   if (!index.isValid())
     return 0;
 
-  return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+  return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable |
+      Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
 }
 
 //!----------------------------------------------------------------------------
@@ -230,4 +231,10 @@ void TreeModel::setupModelData(TreeItem *parent)
       parents.value(parentId)->insertChild(rowToParent, parents.value(id));
     }
   }
+}
+
+//!-----------------------------------------------------------------------------
+Qt::DropActions TreeModel::supportedDropActions() const
+{
+  return Qt::MoveAction;
 }

@@ -32,7 +32,8 @@ HEADERS += \
     src/logfile.h \
     src/treeeditdialog.h \
     src/treemodeldb.h \
-    src/treeitemdb.h
+    src/treeitemdb.h \
+    src/treeviewdb.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -64,7 +65,8 @@ SOURCES += \
     src/logfile.cpp \
     src/treeeditdialog.cpp \
     src/treemodeldb.cpp \
-    src/treeitemdb.cpp
+    src/treeitemdb.cpp \
+    src/treeviewdb.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

@@ -3,6 +3,7 @@
 
 #include <QtGui>
 #include "treemodeldb.h"
+#include "treeviewdb.h"
 
 class TreeEditDialog : public QDialog
 {
@@ -16,7 +17,7 @@ class TreeEditDialog : public QDialog
   QAction *moveLeft_;
 
   QToolBar *toolBar_;
-  QTreeView *view_;
+  TreeViewDB *view_;
 
   QDialogButtonBox *buttonBox_;
 
@@ -26,7 +27,7 @@ class TreeEditDialog : public QDialog
   void renewModel(void);
 
 private slots:
-  void slotUpdateActions(QModelIndex &index);
+  void slotUpdateActions(QModelIndex index);
   void slotCreateFolder();
   void slotDeleteNode();
   void slotMoveUp();
