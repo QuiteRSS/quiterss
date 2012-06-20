@@ -270,8 +270,13 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
     }
   } else if(event->type() == QEvent::ActivationChange) {
-    if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY))
+    if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
+#if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
+#else
+      traySystem->setIcon(QIcon(":/images/quiterssDebug"));
+#endif
+    }
   } else if(event->type() == QEvent::LanguageChange) {
     retranslateStrings();
   }
@@ -462,7 +467,11 @@ void RSSListing::createStatusBar()
 
 void RSSListing::createTray()
 {
-  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"), this);
+#if defined(QT_NO_DEBUG_OUTPUT)
+    traySystem = new QSystemTrayIcon(QIcon(":/images/quiterss16"), this);
+#else
+  traySystem = new QSystemTrayIcon(QIcon(":/images/quiterssDebug"), this);
+#endif
   connect(traySystem,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
           this, SLOT(slotActivationTray(QSystemTrayIcon::ActivationReason)));
   connect(this, SIGNAL(signalPlaceToTray()),
@@ -1889,7 +1898,13 @@ void RSSListing::showOptionDlg()
   behaviorIconTray_ = optionsDialog->behaviorIconTray();
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     refreshInfoTray();
-  } else traySystem->setIcon(QIcon(":/images/quiterss16"));
+  } else {
+#if defined(QT_NO_DEBUG_OUTPUT)
+    traySystem->setIcon(QIcon(":/images/quiterss16"));
+#else
+    traySystem->setIcon(QIcon(":/images/quiterssDebug"));
+#endif
+  }
   singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
   clearStatusNew_ = optionsDialog->clearStatusNew_->isChecked();
   emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
@@ -2837,7 +2852,11 @@ void RSSListing::refreshInfoTray()
     }
     // Выводим иконку без цифры
     else {
+#if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
+#else
+      traySystem->setIcon(QIcon(":/images/quiterssDebug"));
+#endif
     }
   }
 }
