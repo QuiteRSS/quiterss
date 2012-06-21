@@ -25,7 +25,6 @@ private:
   void createMenuNews();
   void createWebWidget();
   bool openUrl(const QUrl &url);
-//  inline static bool launch(const QUrl &url, const QString &client);
 
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
@@ -52,6 +51,7 @@ private:
 
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
+
   void retranslateStrings();
   void setSettings();
   void setBrowserPosition();

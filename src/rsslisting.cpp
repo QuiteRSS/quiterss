@@ -3185,7 +3185,9 @@ void RSSListing::slotTabCloseRequested(int index)
                           widget->newsTabWidgetSplitter_->saveState());
     }
 
+    QWidget *newsTitleLabel = widget->newsTitleLabel_;
     delete widget;
+    delete newsTitleLabel;
   }
 }
 

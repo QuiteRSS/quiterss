@@ -19,10 +19,10 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   currentNewsIdOld = -1;
   currentFeedIdOld = -1;
 
-  newsIconTitle_ = new QLabel(this);
-  newsTextTitle_ = new QLabel(this);
+  newsIconTitle_ = new QLabel();
+  newsTextTitle_ = new QLabel();
 
-  closeButton_ = new QToolButton(this);
+  closeButton_ = new QToolButton();
   closeButton_->setFixedSize(15, 15);
   closeButton_->setCursor(Qt::ArrowCursor);
   closeButton_->setStyleSheet(
@@ -42,7 +42,7 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   newsTitleLayout->addWidget(newsTextTitle_, 1);
   newsTitleLayout->addWidget(closeButton_);
 
-  newsTitleLabel_ = new QWidget(this);
+  newsTitleLabel_ = new QWidget();
   newsTitleLabel_->setObjectName("newsTitleLabel_");
   newsTitleLabel_->setStyleSheet("min-height: 16px;");
   newsTitleLabel_->setFixedWidth(148);
