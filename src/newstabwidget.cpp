@@ -22,18 +22,6 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   newsIconTitle_ = new QLabel(this);
   newsTextTitle_ = new QLabel(this);
 
-  QHBoxLayout *newsTitleLayout = new QHBoxLayout();
-  newsTitleLayout->setMargin(0);
-  newsTitleLayout->setSpacing(3);
-  newsTitleLayout->addWidget(newsIconTitle_);
-  newsTitleLayout->addWidget(newsTextTitle_, 1);
-
-  newsTitleLabel_ = new QWidget(this);
-  newsTitleLabel_->setStyleSheet("min-height: 16px;");
-  newsTitleLabel_->setFixedWidth(132);
-  newsTitleLabel_->setLayout(newsTitleLayout);
-  newsTitleLabel_->setVisible(false);
-
   closeButton_ = new QToolButton(this);
   closeButton_->setFixedSize(15, 15);
   closeButton_->setCursor(Qt::ArrowCursor);
@@ -43,9 +31,23 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
         "QToolButton:hover {"
         "image: url(:/images/closeHover); }"
         );
-  closeButton_->setVisible(false);
   connect(closeButton_, SIGNAL(clicked()),
           this, SLOT(slotTabClose()));
+
+  QHBoxLayout *newsTitleLayout = new QHBoxLayout();
+  newsTitleLayout->setMargin(0);
+  newsTitleLayout->setSpacing(0);
+  newsTitleLayout->addWidget(newsIconTitle_);
+  newsTitleLayout->addSpacing(3);
+  newsTitleLayout->addWidget(newsTextTitle_, 1);
+  newsTitleLayout->addWidget(closeButton_);
+
+  newsTitleLabel_ = new QWidget(this);
+  newsTitleLabel_->setObjectName("newsTitleLabel_");
+  newsTitleLabel_->setStyleSheet("min-height: 16px;");
+  newsTitleLabel_->setFixedWidth(148);
+  newsTitleLabel_->setLayout(newsTitleLayout);
+  newsTitleLabel_->setVisible(false);
 
   if (feedId_ > -1) {
     createNewsList();
@@ -926,7 +928,7 @@ void NewsTabWidget::slotTabClose()
 //! Вывод на вкладке названия открытой странички браузера
 void NewsTabWidget::webTitleChanged(QString title)
 {
-  if (feedId_ == -1) {
+  if ((feedId_ == -1) && !title.isEmpty()) {
     QString tabText = title;
     newsTitleLabel_->setToolTip(tabText);
     tabText = newsTextTitle_->fontMetrics().elidedText(
