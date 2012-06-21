@@ -7,15 +7,13 @@ TreeViewDB::TreeViewDB(QWidget *parent) :
 
 void TreeViewDB::handleDrop(QDropEvent *e)
 {
-  qDebug() << __FUNCTION__;
-  QModelIndex indexFrom = currentIndex();
-  QModelIndex indexTo = indexAt(e->pos());
-  qDebug() << "move" << indexFrom << "to" << indexTo;
+  QModelIndex indexWhat = currentIndex();
+  QModelIndex indexWhere = indexAt(e->pos());
+  emit signalDropped(indexWhat, indexWhere);
 }
 
 void TreeViewDB::dropEvent(QDropEvent *e)
 {
-  qDebug() << __FUNCTION__ << e->pos() << indexAt(e->pos());
   handleDrop(e);
 }
 

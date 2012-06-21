@@ -14,6 +14,9 @@ public:
   void dropEvent(QDropEvent *e);
   void handleDrop(QDropEvent *e);
 
+signals:
+  void signalDropped(QModelIndex what, QModelIndex where);
+
 };
 
 #endif // TREEVIEWDB_H

@@ -34,6 +34,7 @@ private slots:
   void slotMoveDown();
   void slotMoveLeft();
   void slotMoveRight();
+  void slotMoveIndex(QModelIndex indexWhat,QModelIndex indexWhere);
 
 public:
   explicit TreeEditDialog(QWidget *parent = NULL, QSqlDatabase *db = NULL);
