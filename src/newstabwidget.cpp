@@ -926,7 +926,7 @@ void NewsTabWidget::slotTabClose()
 //! Вывод на вкладке названия открытой странички браузера
 void NewsTabWidget::webTitleChanged(QString title)
 {
-  if (feedId_ == -1) {
+  if ((feedId_ == -1) && !title.isEmpty()) {
     QString tabText = title;
     newsTitleLabel_->setToolTip(tabText);
     tabText = newsTextTitle_->fontMetrics().elidedText(
