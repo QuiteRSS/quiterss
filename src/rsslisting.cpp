@@ -1735,9 +1735,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           currentNewsTab->newsTitleLabel_);
-    tabBar_->setTabButton(indexTab,
-                          QTabBar::RightSide,
-                          currentNewsTab->closeButton_);
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
 
@@ -3246,9 +3243,6 @@ QWebPage *RSSListing::createWebTab()
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
-  tabBar_->setTabButton(indexTab,
-                        QTabBar::RightSide,
-                        widget->closeButton_);
 
   widget->newsTextTitle_->setText(tr("Loading..."));
 
@@ -3280,9 +3274,6 @@ void RSSListing::creatFeedTab(int feedId)
     tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           widget->newsTitleLabel_);
-    tabBar_->setTabButton(indexTab,
-                          QTabBar::RightSide,
-                          widget->closeButton_);
 
     //! Устанавливаем иконку и текст для открытой вкладки
     QPixmap iconTab;
