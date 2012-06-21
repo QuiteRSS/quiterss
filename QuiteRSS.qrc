@@ -56,6 +56,12 @@
         <file alias="flag_SV">images/flag_sweden.png</file>
         <file alias="webPage">images/world.png</file>
         <file alias="quiterssDebug">images/quiterss_debug.png</file>
+        <file alias="addFolder">images/folder_add.png</file>
+        <file alias="deleteFolder">images/folder_delete.png</file>
+        <file alias="moveDown">images/arrow_down.png</file>
+        <file alias="moveLeft">images/arrow_left.png</file>
+        <file alias="moveRight">images/arrow_right.png</file>
+        <file alias="moveUp">images/arrow_up.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
