@@ -114,8 +114,6 @@ void TreeEditDialog::slotDeleteNode()
   q.prepare("DELETE FROM feeds WHERE id=:id");
   q.bindValue(":id", index.data(Qt::UserRole));
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
 
   reassambleParent(index);
 
@@ -172,7 +170,6 @@ void TreeEditDialog::slotMoveLeft()
 
   // поиск количества потомков у нового родителя
   int newRowToParent = model_->rowCount(index.parent().parent());
-  qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   // перемещение ленты к новому родителю
   QSqlQuery q(*db_);
@@ -185,8 +182,6 @@ void TreeEditDialog::slotMoveLeft()
   q.bindValue(":newRowToParent", newRowToParent);
   q.bindValue(":id", index.data(Qt::UserRole));
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
 
   reassambleParent(index);
 
@@ -202,7 +197,6 @@ void TreeEditDialog::slotMoveRight()
   // поиск количества потомков у нового родителя
   int newRowToParent = model_->rowCount(model_->index(
       index.row()-1, index.column(), index.parent()));
-  qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   reassambleParent(index);
 
@@ -215,8 +209,6 @@ void TreeEditDialog::slotMoveRight()
   q.bindValue(":newRowToParent", newRowToParent);
   q.bindValue(":id", index.data(Qt::UserRole));
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
 
   // помечаем, что у нового родителя теперь есть дети
   // (на всякий случай, если у него их ещё не было)
@@ -224,19 +216,14 @@ void TreeEditDialog::slotMoveRight()
   q.bindValue(":id", model_->index(
       index.row()-1, index.column(), index.parent()).data(Qt::UserRole));
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
 
   renewModel();
 }
 
 void TreeEditDialog::slotMoveIndex(QModelIndex indexWhat, QModelIndex indexWhere)
 {
-  qDebug() << __FUNCTION__ << indexWhat << indexWhere;
-
   // поиск количества потомков у нового родителя
   int newRowToParent = model_->rowCount(indexWhere);
-  qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   reassambleParent(indexWhat);
 
@@ -248,16 +235,12 @@ void TreeEditDialog::slotMoveIndex(QModelIndex indexWhat, QModelIndex indexWhere
   q.bindValue(":rowToParent", newRowToParent);
   q.bindValue(":id", indexWhat.data(Qt::UserRole));
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
 
   // помечаем, что у нового родителя теперь есть дети
   // (на всякий случай, если у него их ещё не было)
   q.prepare("UPDATE feeds SET hasChildren=1 WHERE id=:id");
   q.bindValue(":id", indexWhere.data(Qt::UserRole));
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
 
   renewModel();
 }
@@ -273,8 +256,6 @@ void TreeEditDialog::reassambleParent(QModelIndex index)
   else
     q.bindValue(":parentId", 0);
   q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
   bool hasChildren = false;  //! флаг того, что у старого родителя ещё остались дети
   while (q.next()) {
     hasChildren = true;
@@ -286,8 +267,6 @@ void TreeEditDialog::reassambleParent(QModelIndex index)
       q2.bindValue(":rowToParent", rowToParent-1);
       q2.bindValue(":id", id);
       q2.exec();
-      qDebug() << __FUNCTION__ << q2.lastQuery() << q.lastError();
-      qDebug() << __FUNCTION__ << q2.boundValues();
     }
   }
   // если детей не осталось, то помечаем, что у родителя не осталось детей
@@ -295,8 +274,6 @@ void TreeEditDialog::reassambleParent(QModelIndex index)
     q.prepare("UPDATE feeds SET hasChildren=0 WHERE id=:id");
     q.bindValue(":id", index.parent().data(Qt::UserRole));
     q.exec();
-    qDebug() << __FUNCTION__ << q.lastQuery();
-    qDebug() << __FUNCTION__ << q.boundValues();
   }
   db_->commit();
 }
