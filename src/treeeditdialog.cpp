@@ -90,15 +90,11 @@ void TreeEditDialog::slotUpdateActions(QModelIndex index)
 void TreeEditDialog::slotCreateFolder()
 {
   // поиск количества потомков в корне
-  QSqlQuery q(*db_);
-  q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  int newRowToParent = 0;
-  if (q.next()) newRowToParent = q.value(0).toInt() + 1;
+  int newRowToParent = model_->rowCount(QModelIndex());
   qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   // вставляем новую папку
+  QSqlQuery q(*db_);
   q.prepare("INSERT INTO feeds(hasChildren, parentId, rowToParent, text) "
          "VALUES(0, 0, :rowToParent, 'New folder')");
   q.bindValue(":rowToParent", newRowToParent);
@@ -203,24 +199,11 @@ void TreeEditDialog::slotMoveLeft()
   if (!index.parent().isValid()) return;
 
   // поиск количества потомков у нового родителя
-  qDebug() << __FUNCTION__ << index.data();
-  qDebug() << __FUNCTION__ << index.data(Qt::UserRole);
-  qDebug() << __FUNCTION__ << index.parent().data(Qt::UserRole);
-  qDebug() << __FUNCTION__ << index.parent().parent().data(Qt::UserRole);
-  QSqlQuery q(*db_);
-  q.prepare("SELECT max(rowToParent) FROM feeds WHERE parentId=:parentId");
-  if (index.parent().parent().isValid())
-    q.bindValue(":parentId", index.parent().parent().data(Qt::UserRole));
-  else
-    q.bindValue(":parentId", 0);
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  int newRowToParent = 0;
-  if (q.next()) newRowToParent = q.value(0).toInt() + 1;
+  int newRowToParent = model_->rowCount(index.parent().parent());
   qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   // перемещение ленты к новому родителю
+  QSqlQuery q(*db_);
   q.prepare("UPDATE feeds SET parentId=:parentId, rowToParent=:newRowToParent "
             "WHERE id=:id");
   if (index.parent().parent().isValid())
@@ -273,26 +256,12 @@ void TreeEditDialog::slotMoveRight()
   if (index.row() <= 0) return;
 
   // поиск количества потомков у нового родителя
-  qDebug() << __FUNCTION__ << index.data();
-  qDebug() << __FUNCTION__ << index.data(Qt::UserRole);
-  qDebug() << __FUNCTION__ << index.parent().data(Qt::UserRole);
-  qDebug() << __FUNCTION__ << index.parent().parent().data(Qt::UserRole);
-  QSqlQuery q(*db_);
-  q.prepare("SELECT max(rowToParent) FROM feeds WHERE parentId=:parentId");
-  q.bindValue(":parentId", model_->index(
-      index.row()-1, index.column(), index.parent()).data(Qt::UserRole));
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  int newRowToParent = 0;
-  if (q.next()) {
-    qDebug() << q.value(0);
-    if (!q.value(0).isNull())
-      newRowToParent = q.value(0).toInt() + 1;
-  }
+  int newRowToParent = model_->rowCount(model_->index(
+      index.row()-1, index.column(), index.parent()));
   qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   // перекомпоновка остающихся лент (чтобы не осталось "дырки" в нумерации)
+  QSqlQuery q(*db_);
   q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
   if (index.parent().isValid())
     q.bindValue(":parentId", index.parent().data(Qt::UserRole));
@@ -343,21 +312,11 @@ void TreeEditDialog::slotMoveIndex(QModelIndex indexWhat, QModelIndex indexWhere
   qDebug() << __FUNCTION__ << indexWhat << indexWhere;
 
   // поиск количества потомков у нового родителя
-  QSqlQuery q(*db_);
-  q.prepare("SELECT max(rowToParent) FROM feeds WHERE parentId=:parentId");
-  q.bindValue(":parentId", indexWhere.data(Qt::UserRole));
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  int newRowToParent = 0;
-  if (q.next()) {
-    qDebug() << q.value(0);
-    if (!q.value(0).isNull())
-      newRowToParent = q.value(0).toInt() + 1;
-  }
+  int newRowToParent = model_->rowCount(indexWhere);
   qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
   // перекомпоновка остающихся лент (чтобы не осталось "дырки" в нумерации)
+  QSqlQuery q(*db_);
   q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
   if (indexWhat.parent().isValid())
     q.bindValue(":parentId", indexWhat.parent().data(Qt::UserRole));
