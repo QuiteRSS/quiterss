@@ -117,35 +117,7 @@ void TreeEditDialog::slotDeleteNode()
   qDebug() << __FUNCTION__ << q.lastQuery();
   qDebug() << __FUNCTION__ << q.boundValues();
 
-  // перекомпоновка оставшихся лент (чтобы не осталось "дырки" в нумерации)
-  q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
-  q.bindValue(":parentId", index.parent().data(Qt::UserRole));
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  bool hasChildren = false;  //! флаг того, что у старого родителя ещё остались дети
-  while (q.next()) {
-    hasChildren = true;
-    int id = q.value(0).toInt();
-    int rowToParent = q.value(1).toInt();
-    if (index.row() < rowToParent) {
-      QSqlQuery q2(*db_);
-      q2.prepare("UPDATE feeds SET rowToParent=:reoToParent WHERE id=:id");
-      q2.bindValue(":rowToParent", rowToParent-1);
-      q2.bindValue(":id", id);
-      q2.exec();
-      qDebug() << __FUNCTION__ << q2.lastQuery() << q.lastError();
-      qDebug() << __FUNCTION__ << q2.boundValues();
-    }
-  }
-  // если детей не осталось, то помечаем, что у родителя не осталось детей
-  if (!hasChildren) {
-    q.prepare("UPDATE feeds SET hasChildren=0 WHERE id=:id");
-    q.bindValue(":id", index.parent().data(Qt::UserRole));
-    q.exec();
-    qDebug() << __FUNCTION__ << q.lastQuery();
-    qDebug() << __FUNCTION__ << q.boundValues();
-  }
+  reassambleParent(index);
 
   renewModel();
 }
@@ -216,35 +188,7 @@ void TreeEditDialog::slotMoveLeft()
   qDebug() << __FUNCTION__ << q.lastQuery();
   qDebug() << __FUNCTION__ << q.boundValues();
 
-  // перекомпоновка оставшихся лент (чтобы не осталось "дырки" в нумерации)
-  q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
-  q.bindValue(":parentId", index.parent().data(Qt::UserRole));
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  bool hasChildren = false;  //! флаг того, что у старого родителя ещё остались дети
-  while (q.next()) {
-    hasChildren = true;
-    int id = q.value(0).toInt();
-    int rowToParent = q.value(1).toInt();
-    if (index.row() < rowToParent) {
-      QSqlQuery q2(*db_);
-      q2.prepare("UPDATE feeds SET rowToParent=:reoToParent WHERE id=:id");
-      q2.bindValue(":rowToParent", rowToParent-1);
-      q2.bindValue(":id", id);
-      q2.exec();
-      qDebug() << __FUNCTION__ << q2.lastQuery() << q.lastError();
-      qDebug() << __FUNCTION__ << q2.boundValues();
-    }
-  }
-  // если детей не осталось, то помечаем, что у родителя не осталось детей
-  if (!hasChildren) {
-    q.prepare("UPDATE feeds SET hasChildren=0 WHERE id=:id");
-    q.bindValue(":id", index.parent().data(Qt::UserRole));
-    q.exec();
-    qDebug() << __FUNCTION__ << q.lastQuery();
-    qDebug() << __FUNCTION__ << q.boundValues();
-  }
+  reassambleParent(index);
 
   renewModel();
 }
@@ -260,31 +204,10 @@ void TreeEditDialog::slotMoveRight()
       index.row()-1, index.column(), index.parent()));
   qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
-  // перекомпоновка остающихся лент (чтобы не осталось "дырки" в нумерации)
-  QSqlQuery q(*db_);
-  q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
-  if (index.parent().isValid())
-    q.bindValue(":parentId", index.parent().data(Qt::UserRole));
-  else
-    q.bindValue(":parentId", 0);
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  while (q.next()) {
-    int id = q.value(0).toInt();
-    int rowToParent = q.value(1).toInt();
-    if (index.row() < rowToParent) {
-      QSqlQuery q2(*db_);
-      q2.prepare("UPDATE feeds SET rowToParent=:rowToParent WHERE id=:id");
-      q2.bindValue(":rowToParent", rowToParent-1);
-      q2.bindValue(":id", id);
-      q2.exec();
-      qDebug() << __FUNCTION__ << q2.lastQuery() << q.lastError();
-      qDebug() << __FUNCTION__ << q2.boundValues();
-    }
-  }
+  reassambleParent(index);
 
   // перемещение ленты к новому родителю
+  QSqlQuery q(*db_);
   q.prepare("UPDATE feeds SET parentId=:parentId, rowToParent=:newRowToParent "
             "WHERE id=:id");
   q.bindValue(":parentId", model_->index(
@@ -315,41 +238,10 @@ void TreeEditDialog::slotMoveIndex(QModelIndex indexWhat, QModelIndex indexWhere
   int newRowToParent = model_->rowCount(indexWhere);
   qDebug() << __FUNCTION__ << "newRowToParent =" << newRowToParent;
 
-  // перекомпоновка остающихся лент (чтобы не осталось "дырки" в нумерации)
-  QSqlQuery q(*db_);
-  q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
-  if (indexWhat.parent().isValid())
-    q.bindValue(":parentId", indexWhat.parent().data(Qt::UserRole));
-  else
-    q.bindValue(":parentId", 0);
-  q.exec();
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-  bool hasChildren = false;  //! флаг того, что у старого родителя ещё остались дети
-  while (q.next()) {
-    hasChildren = true;
-    int id = q.value(0).toInt();
-    int rowToParent = q.value(1).toInt();
-    if (indexWhat.row() < rowToParent) {
-      QSqlQuery q2(*db_);
-      q2.prepare("UPDATE feeds SET rowToParent=:rowToParent WHERE id=:id");
-      q2.bindValue(":rowToParent", rowToParent-1);
-      q2.bindValue(":id", id);
-      q2.exec();
-      qDebug() << __FUNCTION__ << q2.lastQuery() << q.lastError();
-      qDebug() << __FUNCTION__ << q2.boundValues();
-    }
-  }
-  // если детей не осталось, то помечаем, что у родителя не осталось детей
-  if (!hasChildren) {
-    q.prepare("UPDATE feeds SET hasChildren=0 WHERE id=:id");
-    q.bindValue(":id", indexWhat.parent().data(Qt::UserRole));
-    q.exec();
-    qDebug() << __FUNCTION__ << q.lastQuery();
-    qDebug() << __FUNCTION__ << q.boundValues();
-  }
+  reassambleParent(indexWhat);
 
   // перемещение узла к новому родителю
+  QSqlQuery q(*db_);
   q.prepare("UPDATE feeds SET parentId=:parentId, rowToParent=:rowToParent "
             "WHERE id=:id");
   q.bindValue(":parentId", indexWhere.data(Qt::UserRole));
@@ -368,4 +260,43 @@ void TreeEditDialog::slotMoveIndex(QModelIndex indexWhat, QModelIndex indexWhere
   qDebug() << __FUNCTION__ << q.boundValues();
 
   renewModel();
+}
+
+//! перекомпоновка лент родителя index (чтобы не осталось "дырки" в нумерации)
+void TreeEditDialog::reassambleParent(QModelIndex index)
+{
+  db_->transaction();
+  QSqlQuery q(*db_);
+  q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
+  if (index.parent().isValid())
+    q.bindValue(":parentId", index.parent().data(Qt::UserRole));
+  else
+    q.bindValue(":parentId", 0);
+  q.exec();
+  qDebug() << __FUNCTION__ << q.lastQuery();
+  qDebug() << __FUNCTION__ << q.boundValues();
+  bool hasChildren = false;  //! флаг того, что у старого родителя ещё остались дети
+  while (q.next()) {
+    hasChildren = true;
+    int id = q.value(0).toInt();
+    int rowToParent = q.value(1).toInt();
+    if (index.row() < rowToParent) {
+      QSqlQuery q2(*db_);
+      q2.prepare("UPDATE feeds SET rowToParent=:reoToParent WHERE id=:id");
+      q2.bindValue(":rowToParent", rowToParent-1);
+      q2.bindValue(":id", id);
+      q2.exec();
+      qDebug() << __FUNCTION__ << q2.lastQuery() << q.lastError();
+      qDebug() << __FUNCTION__ << q2.boundValues();
+    }
+  }
+  // если детей не осталось, то помечаем, что у родителя не осталось детей
+  if (!hasChildren) {
+    q.prepare("UPDATE feeds SET hasChildren=0 WHERE id=:id");
+    q.bindValue(":id", index.parent().data(Qt::UserRole));
+    q.exec();
+    qDebug() << __FUNCTION__ << q.lastQuery();
+    qDebug() << __FUNCTION__ << q.boundValues();
+  }
+  db_->commit();
 }

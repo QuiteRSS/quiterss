@@ -26,6 +26,9 @@ class TreeEditDialog : public QDialog
 
   void renewModel(void);
 
+private:
+  void reassambleParent(QModelIndex index);
+
 private slots:
   void slotUpdateActions(QModelIndex index);
   void slotCreateFolder();
