@@ -62,6 +62,7 @@
         <file alias="moveLeft">images/arrow_left.png</file>
         <file alias="moveRight">images/arrow_right.png</file>
         <file alias="moveUp">images/arrow_up.png</file>
+        <file alias="folder">images/folder.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

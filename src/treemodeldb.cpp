@@ -9,7 +9,7 @@
 TreeModel::TreeModel(QObject *parent)
   : QAbstractItemModel(parent)
 {
-  tableModel = new QSqlTableModel();
+  tableModel = new QSqlTableModel(this);
   tableModel->setTable("feeds");
   tableModel->select();
   tableModel->setEditStrategy(QSqlTableModel::OnFieldChange);
@@ -37,20 +37,45 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
     return QVariant();
 
   if ((role != Qt::DisplayRole) && (role != Qt::EditRole) &&
-      (role != Qt::UserRole) && (role != Qt::UserRole+1))
+      (role != Qt::DecorationRole) &&
+      (role != Qt::UserRole)) {
     return QVariant();
+  }
 
   TreeItem *item = getItem(index);
-
-  if (role == Qt::UserRole) {
-    return item->id_;
-  } else {
-    // отфильтровываем строчку по id и берём дату
-    QString filterStr = QString("id == '%1'").arg(item->id_);
-    tableModel->setFilter(filterStr);
-    return tableModel->index(0, index.column() + tableModel->fieldIndex("text")).
-        data(role);
+  int rowFeeds = -1;
+  for (int i = 0; i < tableModel->rowCount(); i++) {
+    if (tableModel->index(i, tableModel->fieldIndex("id")).data(Qt::EditRole).toInt() == item->id_) {
+      rowFeeds = i;
+      break;
+    }
   }
+
+  if (role == Qt::UserRole)
+    return item->id_;
+
+  if (role == Qt::DecorationRole) {
+    if (index.column() == 0) {
+      if (!tableModel->index(rowFeeds, tableModel->fieldIndex("xmlUrl")).
+          data(Qt::EditRole).toString().isEmpty()) {
+        QByteArray byteArray = tableModel->index(rowFeeds, tableModel->fieldIndex("image")).
+            data(Qt::EditRole).toByteArray();
+        if (!byteArray.isNull()) {
+          QPixmap icon;
+          if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
+            return icon;
+          }
+        }
+        return QPixmap(":/images/feed");
+      } else {
+        return QPixmap(":/images/folder");
+      }
+    }
+  }
+
+  // отфильтровываем строчку по id и берём дату
+  return tableModel->index(rowFeeds, index.column() + tableModel->fieldIndex("text")).
+      data(role);
 }
 
 //!----------------------------------------------------------------------------
@@ -142,16 +167,20 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
 
   TreeItem *item = getItem(index);
 
-  // отфильтровываем строчку по id
-  QString filterStr = QString("id == '%1'").arg(item->id_);
-  tableModel->setFilter(filterStr);
+  int rowFeeds = -1;
+  for (int i = 0; i < tableModel->rowCount(); i++) {
+    if (tableModel->index(i, tableModel->fieldIndex("id")).data(Qt::EditRole).toInt() == item->id_) {
+      rowFeeds = i;
+      break;
+    }
+  }
 
-  qDebug() << tableModel->index(0, index.column() + tableModel->fieldIndex("text")).data();
+  qDebug() << tableModel->index(rowFeeds, index.column() + tableModel->fieldIndex("text")).data();
   bool result = tableModel->setData(
-      tableModel->index(0, index.column() + tableModel->fieldIndex("text")),
+      tableModel->index(rowFeeds, index.column() + tableModel->fieldIndex("text")),
       value, role);
   qDebug() << "setData(): res =" << result << value << role;
-  qDebug() << tableModel->index(0, index.column() + tableModel->fieldIndex("text")).data();
+  qDebug() << tableModel->index(rowFeeds, index.column() + tableModel->fieldIndex("text")).data();
 
   if (result)
       emit dataChanged(index, index);
