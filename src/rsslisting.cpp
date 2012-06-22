@@ -673,6 +673,9 @@ void RSSListing::createActions()
   openNewsNewTabAct_ = new QAction(this);
   openNewsNewTabAct_->setObjectName("openInNewTabAct");
   this->addAction(openNewsNewTabAct_);
+  openNewsBackgroundTabAct_ = new QAction(this);
+  openNewsBackgroundTabAct_->setObjectName("openInBackgroundTabAct");
+  this->addAction(openNewsBackgroundTabAct_);
 
   markStarAct_ = new QAction(this);
   markStarAct_->setObjectName("markStarAct");
@@ -756,6 +759,8 @@ void RSSListing::createActions()
           this, SLOT(openInExternalBrowserNews()));
   connect(openNewsNewTabAct_, SIGNAL(triggered()),
           this, SLOT(slotOpenNewsNewTab()));
+  connect(openNewsBackgroundTabAct_, SIGNAL(triggered()),
+          this, SLOT(slotOpenNewsBackgroundTab()));
 }
 
 void RSSListing::createShortcut()
@@ -798,6 +803,10 @@ void RSSListing::createShortcut()
   openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_O));
   listActions_.append(openInExternalBrowserAct_);
   openInExternalBrowserAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+  openNewsNewTabAct_->setShortcut(QKeySequence(Qt::Key_T));
+  listActions_.append(openNewsNewTabAct_);
+  openNewsBackgroundTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_T));
+  listActions_.append(openNewsBackgroundTabAct_);
 
   switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
   listActions_.append(switchFocusAct_);
@@ -1122,6 +1131,7 @@ void RSSListing::readSettings()
   if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
+    openNewsBackgroundTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
@@ -1129,6 +1139,7 @@ void RSSListing::readSettings()
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
     openNewsNewTabAct_->setVisible(false);
+    openNewsBackgroundTabAct_->setVisible(false);
   }
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
@@ -1927,6 +1938,7 @@ void RSSListing::showOptionDlg()
   if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
+    openNewsBackgroundTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
@@ -1934,6 +1946,7 @@ void RSSListing::showOptionDlg()
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
     openNewsNewTabAct_->setVisible(false);
+    openNewsBackgroundTabAct_->setVisible(false);
   }
   externalBrowser_ = optionsDialog->editExternalBrowser_->text();
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
@@ -2571,6 +2584,9 @@ void RSSListing::retranslateStrings() {
   openInBrowserAct_->setText(tr("Open in browser"));
   openInExternalBrowserAct_->setText(tr("Open in external browser"));
   openNewsNewTabAct_->setText(tr("Open in new tab"));
+  openNewsNewTabAct_->setToolTip(tr("Open news in new tab"));
+  openNewsBackgroundTabAct_->setText(tr("Open in background tab"));
+  openNewsBackgroundTabAct_->setToolTip(tr("Open news in background tab"));
   markStarAct_->setText(tr("Star"));
   markStarAct_->setToolTip(tr("Mark news star"));
   deleteNewsAct_->setText(tr("Delete"));
@@ -3544,6 +3560,15 @@ void RSSListing::openInExternalBrowserNews()
 void RSSListing::slotOpenNewsNewTab()
 {
   currentNewsTab->openNewsNewTab();
+}
+
+void RSSListing::slotOpenNewsBackgroundTab()
+{
+  currentNewsTab->openNewsNewTab();
+  QKeyEvent* pe = new QKeyEvent(QEvent::KeyPress,
+                                Qt::ControlModifier,
+                                Qt::NoModifier);
+  QApplication::sendEvent(this, pe);
 }
 
 //! Перечитывание модели лент

@@ -40,6 +40,7 @@ public:
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
   QAction *openNewsNewTabAct_;
+  QAction *openNewsBackgroundTabAct_;
   QAction *markNewsRead_;
   QAction *markAllNewsRead_;
   QAction *markStarAct_;
@@ -349,6 +350,7 @@ private slots:
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();
+  void slotOpenNewsBackgroundTab();
   void setCurrentTab(int index, bool updateTab = false);
 
 signals:
