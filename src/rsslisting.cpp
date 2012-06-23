@@ -95,6 +95,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabWidget_ = new QTabWidget(this);
   tabWidget_->setObjectName("tabWidget_");
   tabWidget_->setFocusPolicy(Qt::NoFocus);
+  tabWidget_->setMovable(true);
 
   connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
           this, SLOT(slotTabCloseRequested(int)));
@@ -222,6 +223,15 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
       if (mouseEvent->button() & Qt::MiddleButton) {
         slotTabCloseRequested(tabBar_->tabAt(mouseEvent->pos()));
+      } else if (mouseEvent->button() & Qt::LeftButton) {
+        if (tabBar_->tabAt(QPoint(mouseEvent->pos().x(), 0)) == 0)
+          return true;
+      }
+    } else if (event->type() == QEvent::MouseMove) {
+      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+      if (mouseEvent->buttons() & Qt::LeftButton) {
+        if (tabBar_->tabAt(QPoint(mouseEvent->pos().x()-78, 0)) <= 0)
+          return true;
       }
     }
     return false;
