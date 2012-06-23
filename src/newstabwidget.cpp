@@ -245,7 +245,6 @@ void NewsTabWidget::createWebWidget()
 
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
-  webPanelTitleLabel_->setCursor(Qt::PointingHandCursor);
   webPanelAuthorLabel_ = new QLabel(this);
 
   webPanelAuthor_ = new QLabel(this);
@@ -291,6 +290,10 @@ void NewsTabWidget::createWebWidget()
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
 
+  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->disconnect();
+
+  webPanelTitle_->installEventFilter(this);
+
   connect(webHomePageAct_, SIGNAL(triggered()),
           this, SLOT(webHomePage()));
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
@@ -310,6 +313,8 @@ void NewsTabWidget::createWebWidget()
 
   connect(webView_, SIGNAL(titleChanged(QString)),
           this, SLOT(webTitleChanged(QString)));
+  connect(webView_->page()->action(QWebPage::OpenLinkInNewWindow), SIGNAL(triggered()),
+          this, SLOT(openLinkInNewTab()));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -361,6 +366,26 @@ void NewsTabWidget::retranslateStrings() {
     newsHeader_->retranslateStrings();
 
   closeButton_->setToolTip(tr("Close tab"));
+}
+
+bool NewsTabWidget::eventFilter(QObject *obj, QEvent *event)
+{
+  if (obj == webPanelTitle_) {
+    if (event->type() == QEvent::MouseButtonRelease) {
+      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+      if (mouseEvent->button() & Qt::MiddleButton) {
+        webView_->midButtonClick = true;
+        QMouseEvent* pe =
+            new QMouseEvent(QEvent::MouseButtonRelease, mouseEvent->pos(),
+                            Qt::LeftButton, Qt::LeftButton,
+                            Qt::ControlModifier);
+        QApplication::sendEvent(webPanelTitle_, pe);
+      }
+    }
+    return false;
+  } else {
+    return QWidget::eventFilter(obj, event);
+  }
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -815,6 +840,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
 
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
 {
+  linkH_ = link;
   rsslisting_->statusBar()->showMessage(link, 3000);
 }
 
@@ -941,6 +967,13 @@ void NewsTabWidget::webTitleChanged(QString title)
 void NewsTabWidget::openNewsNewTab()
 {
   slotNewsMiddleClicked(newsView_->currentIndex());
+}
+
+//! Открытие ссылки в новой вкладке
+void NewsTabWidget::openLinkInNewTab()
+{
+  webView_->midButtonClick = true;
+  slotLinkClicked(linkH_);
 }
 
 inline static bool launch(const QUrl &url, const QString &client)

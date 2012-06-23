@@ -6,6 +6,7 @@ WebView::WebView(QWidget *parent) :
   QWebView(parent)
 {
   setPage(new WebPage(this));
+  midButtonClick = false;
 }
 
 /*virtual*/ void WebView::mousePressEvent(QMouseEvent *event)

@@ -43,6 +43,7 @@ private:
 
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
+  QString linkH_;
 
   QTimer *markNewsReadTimer_;
 
@@ -96,6 +97,9 @@ public slots:
   void slotNewsHomePressed();
   void slotNewsEndPressed();
 
+protected:
+  bool eventFilter(QObject *obj, QEvent *event);
+
 private slots:
   void showContextMenuNews(const QPoint &p);
   void slotSetItemRead(QModelIndex index, int read);
@@ -114,6 +118,7 @@ private slots:
 
   void slotTabClose();
   void webTitleChanged(QString title);
+  void openLinkInNewTab();
 
 };
 

@@ -35,6 +35,7 @@ public:
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
   QTabWidget *tabWidget_;
+  WebView *webView_;
 
   QAction *newsFilter_;
   QAction *openInBrowserAct_;
@@ -238,7 +239,6 @@ private:
   Qt::DockWidgetArea feedsDockArea_;
 
   NewsView *newsView_;
-  WebView *webView_;
 
   NewsTabWidget *currentNewsTab;
 
