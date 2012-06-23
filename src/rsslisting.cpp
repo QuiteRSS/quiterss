@@ -208,6 +208,7 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 /*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
+  static bool tabFixed = false;
   if (obj == feedsView_->viewport()) {
     if (event->type() == QEvent::ToolTip) {
       return true;
@@ -225,12 +226,14 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
         slotTabCloseRequested(tabBar_->tabAt(mouseEvent->pos()));
       } else if (mouseEvent->button() & Qt::LeftButton) {
         if (tabBar_->tabAt(QPoint(mouseEvent->pos().x(), 0)) == 0)
-          return true;
+          tabFixed = true;
+        else
+          tabFixed = false;
       }
     } else if (event->type() == QEvent::MouseMove) {
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
       if (mouseEvent->buttons() & Qt::LeftButton) {
-        if (tabBar_->tabAt(QPoint(mouseEvent->pos().x()-78, 0)) <= 0)
+        if ((tabBar_->tabAt(QPoint(mouseEvent->pos().x()-78, 0)) <= 0) || tabFixed)
           return true;
       }
     }
