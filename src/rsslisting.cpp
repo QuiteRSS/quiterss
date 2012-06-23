@@ -217,7 +217,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       slotVisibledFeedsDock();
     }
     return false;
-  } else if (tabBar_) {
+  } else if (obj == tabBar_) {
     if (event->type() == QEvent::MouseButtonPress) {
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
       if (mouseEvent->button() & Qt::MiddleButton) {
