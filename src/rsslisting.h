@@ -70,6 +70,8 @@ public:
 
   int browserPosition_;
 
+  QString newsFilterStr;
+
 public slots:
   void addFeed();
   void deleteFeed();

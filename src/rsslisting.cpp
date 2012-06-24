@@ -2279,18 +2279,19 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     q.exec(qStr);
   }
 
-  QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
+  newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
+
   if (pAct->objectName() == "filterNewsAll_") {
-    feedIdFilter.append("deleted = 0");
+    newsFilterStr.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
-    feedIdFilter.append(QString("new = 1 AND deleted = 0"));
+    newsFilterStr.append(QString("new = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    feedIdFilter.append(QString("read < 2 AND deleted = 0"));
+    newsFilterStr.append(QString("read < 2 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
+    newsFilterStr.append(QString("starred = 1 AND deleted = 0"));
   }
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << feedIdFilter;
-  newsModel_->setFilter(feedIdFilter);
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << newsFilterStr;
+  newsModel_->setFilter(newsFilterStr);
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));

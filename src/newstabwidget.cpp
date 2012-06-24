@@ -116,12 +116,17 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->setIconSize(QSize(18, 18));
   newsToolBar_->addAction(rsslisting_->newsFilter_);
 
+  findText_ = new FindTextContent(this);
+  findText_->setFixedWidth(200);
+
   QHBoxLayout *newsPanelLayout = new QHBoxLayout();
-  newsPanelLayout->setMargin(0);
+  newsPanelLayout->setMargin(2);
   newsPanelLayout->setSpacing(0);
-  newsPanelLayout->addSpacing(5);
+  newsPanelLayout->addSpacing(2);
   newsPanelLayout->addWidget(newsToolBar_);
   newsPanelLayout->addStretch(1);
+  newsPanelLayout->addWidget(findText_);
+  newsPanelLayout->addSpacing(2);
 
   QFrame *line = new QFrame(this);
   line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -156,6 +161,13 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotReadTimer()));
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuNews(const QPoint &)));
+
+  connect(findText_, SIGNAL(textChanged(QString)),
+          this, SLOT(slotFindText(QString)));
+  connect(findText_, SIGNAL(signalSelectFind()),
+          this, SLOT(slotSelectFind()));
+  connect(findText_, SIGNAL(returnPressed()),
+          this, SLOT(slotSelectFind()));
 }
 
 void NewsTabWidget::createMenuNews()
@@ -362,8 +374,10 @@ void NewsTabWidget::retranslateStrings() {
   webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
   webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
 
-  if (feedId_ > -1)
+  if (feedId_ > -1) {
+    findText_->retranslateStrings();
     newsHeader_->retranslateStrings();
+  }
 
   closeButton_->setToolTip(tr("Close tab"));
 }
@@ -1005,4 +1019,47 @@ bool NewsTabWidget::openUrl(const QUrl &url)
 #endif
   }
   return QDesktopServices::openUrl(url);
+}
+
+void NewsTabWidget::slotFindText(const QString &text)
+{
+  if (findText_->findGroup_->checkedAction()->objectName() == "findInBrowserAct") {
+    webView_->findText("", QWebPage::HighlightAllOccurrences);
+    webView_->findText(text, QWebPage::HighlightAllOccurrences);
+  } else {
+    int newsId = newsModel_->index(
+          newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
+    QString filterStr = rsslisting_->newsFilterStr +
+        QString(" AND (title LIKE '\%%1\%' OR author_name LIKE '\%%1\%' OR category LIKE '\%%1\%')").
+        arg(text);
+
+    newsModel_->setFilter(filterStr);
+
+    int newsRow = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsId) {
+        newsRow = i;
+      }
+    }
+    newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+    if (newsRow == -1) {
+      currentNewsIdOld = newsId;
+      webView_->setHtml("");
+      webPanel_->hide();
+      webControlPanel_->hide();
+    }
+  }
+}
+
+void NewsTabWidget::slotSelectFind()
+{
+  if (findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct")
+    webView_->findText("", QWebPage::HighlightAllOccurrences);
+  else {
+    QModelIndex index = newsView_->currentIndex();
+    newsModel_->setFilter(rsslisting_->newsFilterStr);
+    newsView_->setCurrentIndex(index);
+  }
+  slotFindText(findText_->text());
 }

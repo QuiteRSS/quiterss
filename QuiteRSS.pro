@@ -33,7 +33,8 @@ HEADERS += \
     src/treeeditdialog.h \
     src/treemodeldb.h \
     src/treeitemdb.h \
-    src/treeviewdb.h
+    src/treeviewdb.h \
+    src/findtext.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -66,7 +67,8 @@ SOURCES += \
     src/treeeditdialog.cpp \
     src/treemodeldb.cpp \
     src/treeitemdb.cpp \
-    src/treeviewdb.cpp
+    src/treeviewdb.cpp \
+    src/findtext.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

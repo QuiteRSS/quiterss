@@ -63,6 +63,10 @@
         <file alias="moveRight">images/arrow_right.png</file>
         <file alias="moveUp">images/arrow_up.png</file>
         <file alias="folder">images/folder.png</file>
+        <file alias="findText">images/find.png</file>
+        <file alias="selectFindInBrowser">images/find_in_browser_s.png</file>
+        <file alias="findInNews">images/find_in_news.png</file>
+        <file alias="selectFindInNews">images/find_in_news_s.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
