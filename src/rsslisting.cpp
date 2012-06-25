@@ -1143,7 +1143,7 @@ void RSSListing::readSettings()
   neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
 
-  externalBrowserOn_ = settings_->value("externalBrowserOn", 1).toInt();
+  externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
   if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
