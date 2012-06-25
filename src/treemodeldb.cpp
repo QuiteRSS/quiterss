@@ -210,8 +210,6 @@ void TreeModel::setupModelData(TreeItem *parent)
   QMap<int, TreeItem*> parents;
   parents.insert(0, parent);
 
-  QSqlQuery q;
-
   //! регистрируем "родителей"
   // находим записи с родителем 0, затем идентификаторы записей загоняем в список
   // ищем записи с родителями из списка
@@ -219,35 +217,28 @@ void TreeModel::setupModelData(TreeItem *parent)
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
 
-    q.prepare("SELECT id, parentId FROM feeds "
-              "WHERE hasChildren=1 AND parentId=:parentId");
-    q.bindValue(":parentId", parentIds.dequeue());
-    q.exec();
-    qDebug() << __FUNCTION__ << q.lastQuery();
-    qDebug() << __FUNCTION__ << q.boundValues();
+    int parentId = parentIds.dequeue();
+    for (int i = 0; i < tableModel->rowCount(); ++i) {
+      if ((tableModel->index(i, tableModel->fieldIndex("hasChildren")).data().toInt() == 1) &&
+          (tableModel->index(i, tableModel->fieldIndex("parentId")).data().toInt() == parentId))
+      {
+        int id = tableModel->index(i, tableModel->fieldIndex("id")).data().toInt();
 
-    while (q.next()) {
-      int id          = q.value(0).toInt();
-      int parentId    = q.value(1).toInt();
+        TreeItem *item = new TreeItem(id, parents.value(parentId));
+        parents.insert(id, item);
 
-      TreeItem *item = new TreeItem(id, parents.value(parentId));
-      parents.insert(id, item);
-
-      parentIds.enqueue(id);
-      qDebug() << parentIds;
+        parentIds.enqueue(id);
+        qDebug() << parentIds;
+      }
     }
   }
 
   //! регисрируем "детей"
-  q.exec("SELECT id, hasChildren, parentId, rowToParent FROM feeds");
-  qDebug() << __FUNCTION__ << q.lastQuery();
-  qDebug() << __FUNCTION__ << q.boundValues();
-
-  while (q.next()) {
-    int id          = q.value(0).toInt();
-    int hasChildren = q.value(1).toInt();
-    int parentId    = q.value(2).toInt();
-    int rowToParent = q.value(3).toInt();
+  for (int i = 0; i < tableModel->rowCount(); ++i) {
+    int id          = tableModel->index(i, tableModel->fieldIndex("id")).data().toInt();
+    int hasChildren = tableModel->index(i, tableModel->fieldIndex("hasChildren")).data().toInt();
+    int parentId    = tableModel->index(i, tableModel->fieldIndex("parentId")).data().toInt();
+    int rowToParent = tableModel->index(i, tableModel->fieldIndex("rowToParent")).data().toInt();
 
     // "ребёнка" создаём и прикрепляем к "родителю"
     if (0 == hasChildren) {
