@@ -7,6 +7,7 @@
 
 #include "feedsmodel.h"
 #include "feedsview.h"
+#include "findtext.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newsview.h"
@@ -28,6 +29,7 @@ private:
 
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
+  FindTextContent *findText_;
 
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
@@ -43,6 +45,7 @@ private:
 
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
+  QString linkH_;
 
   QTimer *markNewsReadTimer_;
 
@@ -96,6 +99,9 @@ public slots:
   void slotNewsHomePressed();
   void slotNewsEndPressed();
 
+protected:
+  bool eventFilter(QObject *obj, QEvent *event);
+
 private slots:
   void showContextMenuNews(const QPoint &p);
   void slotSetItemRead(QModelIndex index, int read);
@@ -114,6 +120,10 @@ private slots:
 
   void slotTabClose();
   void webTitleChanged(QString title);
+  void openLinkInNewTab();
+
+  void slotFindText(const QString& text);
+  void slotSelectFind();
 
 };
 

@@ -95,6 +95,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabWidget_ = new QTabWidget(this);
   tabWidget_->setObjectName("tabWidget_");
   tabWidget_->setFocusPolicy(Qt::NoFocus);
+  tabWidget_->setMovable(true);
 
   connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
           this, SLOT(slotTabCloseRequested(int)));
@@ -207,6 +208,7 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 /*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
+  static bool tabFixed = false;
   if (obj == feedsView_->viewport()) {
     if (event->type() == QEvent::ToolTip) {
       return true;
@@ -217,11 +219,22 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       slotVisibledFeedsDock();
     }
     return false;
-  } else if (tabBar_) {
+  } else if (obj == tabBar_) {
     if (event->type() == QEvent::MouseButtonPress) {
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
       if (mouseEvent->button() & Qt::MiddleButton) {
         slotTabCloseRequested(tabBar_->tabAt(mouseEvent->pos()));
+      } else if (mouseEvent->button() & Qt::LeftButton) {
+        if (tabBar_->tabAt(QPoint(mouseEvent->pos().x(), 0)) == 0)
+          tabFixed = true;
+        else
+          tabFixed = false;
+      }
+    } else if (event->type() == QEvent::MouseMove) {
+      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+      if (mouseEvent->buttons() & Qt::LeftButton) {
+        if ((tabBar_->tabAt(QPoint(mouseEvent->pos().x()-78, 0)) <= 0) || tabFixed)
+          return true;
       }
     }
     return false;
@@ -673,6 +686,9 @@ void RSSListing::createActions()
   openNewsNewTabAct_ = new QAction(this);
   openNewsNewTabAct_->setObjectName("openInNewTabAct");
   this->addAction(openNewsNewTabAct_);
+  openNewsBackgroundTabAct_ = new QAction(this);
+  openNewsBackgroundTabAct_->setObjectName("openInBackgroundTabAct");
+  this->addAction(openNewsBackgroundTabAct_);
 
   markStarAct_ = new QAction(this);
   markStarAct_->setObjectName("markStarAct");
@@ -756,6 +772,8 @@ void RSSListing::createActions()
           this, SLOT(openInExternalBrowserNews()));
   connect(openNewsNewTabAct_, SIGNAL(triggered()),
           this, SLOT(slotOpenNewsNewTab()));
+  connect(openNewsBackgroundTabAct_, SIGNAL(triggered()),
+          this, SLOT(slotOpenNewsBackgroundTab()));
 }
 
 void RSSListing::createShortcut()
@@ -798,6 +816,10 @@ void RSSListing::createShortcut()
   openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_O));
   listActions_.append(openInExternalBrowserAct_);
   openInExternalBrowserAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
+  openNewsNewTabAct_->setShortcut(QKeySequence(Qt::Key_T));
+  listActions_.append(openNewsNewTabAct_);
+  openNewsBackgroundTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_T));
+  listActions_.append(openNewsBackgroundTabAct_);
 
   switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
   listActions_.append(switchFocusAct_);
@@ -1122,6 +1144,7 @@ void RSSListing::readSettings()
   if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
+    openNewsBackgroundTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
@@ -1129,6 +1152,7 @@ void RSSListing::readSettings()
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
     openNewsNewTabAct_->setVisible(false);
+    openNewsBackgroundTabAct_->setVisible(false);
   }
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
@@ -1927,6 +1951,7 @@ void RSSListing::showOptionDlg()
   if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
     openNewsNewTabAct_->setVisible(true);
+    openNewsBackgroundTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
@@ -1934,6 +1959,7 @@ void RSSListing::showOptionDlg()
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
     openNewsNewTabAct_->setVisible(false);
+    openNewsBackgroundTabAct_->setVisible(false);
   }
   externalBrowser_ = optionsDialog->editExternalBrowser_->text();
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
@@ -2253,18 +2279,19 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     q.exec(qStr);
   }
 
-  QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
+  newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
+
   if (pAct->objectName() == "filterNewsAll_") {
-    feedIdFilter.append("deleted = 0");
+    newsFilterStr.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
-    feedIdFilter.append(QString("new = 1 AND deleted = 0"));
+    newsFilterStr.append(QString("new = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnread_") {
-    feedIdFilter.append(QString("read < 2 AND deleted = 0"));
+    newsFilterStr.append(QString("read < 2 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsStar_") {
-    feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
+    newsFilterStr.append(QString("starred = 1 AND deleted = 0"));
   }
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << feedIdFilter;
-  newsModel_->setFilter(feedIdFilter);
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << newsFilterStr;
+  newsModel_->setFilter(newsFilterStr);
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -2571,6 +2598,9 @@ void RSSListing::retranslateStrings() {
   openInBrowserAct_->setText(tr("Open in browser"));
   openInExternalBrowserAct_->setText(tr("Open in external browser"));
   openNewsNewTabAct_->setText(tr("Open in new tab"));
+  openNewsNewTabAct_->setToolTip(tr("Open news in new tab"));
+  openNewsBackgroundTabAct_->setText(tr("Open in background tab"));
+  openNewsBackgroundTabAct_->setToolTip(tr("Open news in background tab"));
   markStarAct_->setText(tr("Star"));
   markStarAct_->setToolTip(tr("Mark news star"));
   deleteNewsAct_->setText(tr("Delete"));
@@ -3212,12 +3242,14 @@ void RSSListing::slotTabCurrentChanged(int index)
 
       slotUpdateNews();
       currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
+      currentNewsTab->newsView_->setFocus();
 
       statusUnread_->setVisible(true);
       statusAll_->setVisible(true);
     } else {
       statusUnread_->setVisible(false);
       statusAll_->setVisible(false);
+      widget->setFocus();
     }
   }
 }
@@ -3542,6 +3574,15 @@ void RSSListing::openInExternalBrowserNews()
 void RSSListing::slotOpenNewsNewTab()
 {
   currentNewsTab->openNewsNewTab();
+}
+
+void RSSListing::slotOpenNewsBackgroundTab()
+{
+  currentNewsTab->openNewsNewTab();
+  QKeyEvent* pe = new QKeyEvent(QEvent::KeyPress,
+                                Qt::ControlModifier,
+                                Qt::NoModifier);
+  QApplication::sendEvent(this, pe);
 }
 
 //! Перечитывание модели лент

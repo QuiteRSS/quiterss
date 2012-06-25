@@ -47,6 +47,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>Glad Deschrijver</li>"
       "<li>ZityiSoft</li>"
       "<li>" + QString::fromUtf8("Åke Engelbrektson") + "</li>"
+      "<li>" + "Korolev Andrey aka Zavulon" + "</li>"
       "<li>" + "Elohin Igor\'" + "</li>"
       "<li>" + "Vascom" + "</li>"
 

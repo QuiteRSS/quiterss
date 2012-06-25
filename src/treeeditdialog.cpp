@@ -6,6 +6,9 @@
 TreeEditDialog::TreeEditDialog(QWidget *parent, QSqlDatabase *db) :
   QDialog(parent)
 {
+  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
+  resize(350, 350);
+
   db_ = db;
   model_ = new TreeModel();
 

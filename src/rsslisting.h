@@ -35,11 +35,13 @@ public:
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
   QTabWidget *tabWidget_;
+  WebView *webView_;
 
   QAction *newsFilter_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
   QAction *openNewsNewTabAct_;
+  QAction *openNewsBackgroundTabAct_;
   QAction *markNewsRead_;
   QAction *markAllNewsRead_;
   QAction *markStarAct_;
@@ -67,6 +69,8 @@ public:
   bool showDescriptionNews_;
 
   int browserPosition_;
+
+  QString newsFilterStr;
 
 public slots:
   void addFeed();
@@ -237,7 +241,6 @@ private:
   Qt::DockWidgetArea feedsDockArea_;
 
   NewsView *newsView_;
-  WebView *webView_;
 
   NewsTabWidget *currentNewsTab;
 
@@ -349,6 +352,7 @@ private slots:
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();
+  void slotOpenNewsBackgroundTab();
   void setCurrentTab(int index, bool updateTab = false);
 
 signals:
