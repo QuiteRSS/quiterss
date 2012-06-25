@@ -10,9 +10,10 @@
 #include "treeitemdb.h"
 
 //!----------------------------------------------------------------------------
-TreeItem::TreeItem(const int id, TreeItem *parent)
+TreeItem::TreeItem(const int id, const int tableRow, TreeItem *parent)
 {
   id_ = id;
+  tableRow_ = tableRow;
   parentItem = parent;
 }
 

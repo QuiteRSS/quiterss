@@ -48,7 +48,7 @@
 class TreeItem
 {
 public:
-    TreeItem(const int id, TreeItem *parent = 0);
+    TreeItem(const int id, const int tableRow, TreeItem *parent = 0);
     ~TreeItem();
 
     void appendChild(TreeItem *child);
@@ -59,6 +59,7 @@ public:
     int row() const;
     TreeItem *parent();
     int id_;
+    int tableRow_;
 
 private:
 //    QList<TreeItem*> childItems;
