@@ -1143,9 +1143,6 @@ void RSSListing::readSettings()
   neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
 
-  autoLoadImages_ = !settings_->value("autoLoadImages", true).toBool();
-  setAutoLoadImages();
-
   externalBrowserOn_ = settings_->value("externalBrowserOn", 1).toInt();
   if (!externalBrowserOn_) {
     openInExternalBrowserAct_->setVisible(true);
@@ -1262,7 +1259,6 @@ void RSSListing::writeSettings()
   settings_->setValue("/WebFontFamily", webFontFamily_);
   settings_->setValue("/WebFontSize", webFontSize_);
 
-  settings_->setValue("autoLoadImages", autoLoadImages_);
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
   settings_->setValue("autoUpdatefeedsTime", autoUpdatefeedsTime_);
