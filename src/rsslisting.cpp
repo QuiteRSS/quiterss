@@ -307,7 +307,7 @@ void RSSListing::slotPlaceToTray()
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (clearStatusNew_)
-    markAllFeedsRead(false);
+    markAllFeedsOld();
 
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
   dbMemFileThread_->start(QThread::LowestPriority);
@@ -2904,18 +2904,30 @@ void RSSListing::refreshInfoTray()
   }
 }
 
-void RSSListing::markAllFeedsRead(bool readOn)
+//! Помечаем все ленты прочитанными
+void RSSListing::markAllFeedsRead()
 {
-  //! Помечаем все ленты прочитанными
   db_.transaction();
   QSqlQuery q(db_);
-  if (!readOn) {
-    q.exec("UPDATE news SET new=0");
-    q.exec("UPDATE feeds SET newCount=0");
-  } else {
-    q.exec("UPDATE news SET new=0, read=2");
-    q.exec("UPDATE feeds SET newCount=0, unread=0");
-  }
+  q.exec("UPDATE news SET new=0, read=2");
+  q.exec("UPDATE feeds SET newCount=0, unread=0");
+  db_.commit();
+
+  feedsView_->setCurrentIndex(feedsModel_->index(-1, feedsModel_->fieldIndex("text")));
+  tabCurrentUpdateOff_ = true;
+  slotFeedsTreeClicked(feedsModel_->index(-1, feedsModel_->fieldIndex("text")));
+  tabCurrentUpdateOff_ = false;
+
+  refreshInfoTray();
+}
+
+//! Помечаем все ленты не новыми
+void RSSListing::markAllFeedsOld()
+{
+  db_.transaction();
+  QSqlQuery q(db_);
+  q.exec("UPDATE news SET new=0");
+  q.exec("UPDATE feeds SET newCount=0");
   db_.commit();
 
   feedsModelReload();
@@ -2929,9 +2941,6 @@ void RSSListing::markAllFeedsRead(bool readOn)
       newsModel_->fetchMore();
 
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
-
-    if (readOn)
-      currentNewsTab->updateWebView(newsModel_->index(-1, 0));
   }
   refreshInfoTray();
 }
