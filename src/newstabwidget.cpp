@@ -306,6 +306,15 @@ void NewsTabWidget::createWebWidget()
 
   webPanelTitle_->installEventFilter(this);
 
+  if (feedId_ > -1) {
+    QSqlQuery q(rsslisting_->db_);
+    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id='%1'").
+           arg(feedId_));
+    if (q.next()) {
+      autoLoadImages_ = q.value(0).toInt();
+    }
+  }
+
   connect(webHomePageAct_, SIGNAL(triggered()),
           this, SLOT(webHomePage()));
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
@@ -330,29 +339,40 @@ void NewsTabWidget::createWebWidget()
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
-void NewsTabWidget::setSettings()
+void NewsTabWidget::setSettings(bool newTab)
 {
-  if (feedId_ > -1)
-    newsView_->setFont(
-          QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+  if (newTab) {
+    if (feedId_ > -1)
+      newsView_->setFont(
+            QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
 
-  webView_->settings()->setFontFamily(
-        QWebSettings::StandardFont, rsslisting_->webFontFamily_);
-  webView_->settings()->setFontSize(
-        QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
+    webView_->settings()->setFontFamily(
+          QWebSettings::StandardFont, rsslisting_->webFontFamily_);
+    webView_->settings()->setFontSize(
+          QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
 
-  if (!rsslisting_->externalBrowserOn_) {
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-  } else {
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    if (!rsslisting_->externalBrowserOn_) {
+      webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    } else {
+      webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    }
+    webView_->settings()->setAttribute(
+          QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
+    webView_->settings()->setAttribute(
+          QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
+  } else if (feedId_ > -1) {
+    QSqlQuery q(rsslisting_->db_);
+    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id='%1'").
+           arg(feedId_));
+    if (q.next()) {
+      autoLoadImages_ = q.value(0).toInt();
+    }
   }
-  webView_->settings()->setAttribute(
-        QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
-  webView_->settings()->setAttribute(
-        QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
 
+  rsslisting_->autoLoadImages_ = !autoLoadImages_;
+  rsslisting_->setAutoLoadImages(false);
   webView_->settings()->setAttribute(
-        QWebSettings::AutoLoadImages, rsslisting_->autoLoadImages_);
+        QWebSettings::AutoLoadImages, autoLoadImages_);
 }
 
 //! Перезагрузка перевода

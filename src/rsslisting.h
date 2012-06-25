@@ -99,6 +99,7 @@ public slots:
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
   void setUserFilter(int feedId, bool onlyNew = true);
+  void setAutoLoadImages(bool set = true);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -313,7 +314,6 @@ private slots:
   void slotShowAboutDlg();
 
   void showContextMenuFeed(const QPoint &);
-  void setAutoLoadImages();
   void slotFeedsFilter();
   void slotNewsFilter();
   void slotTimerUpdateFeeds();

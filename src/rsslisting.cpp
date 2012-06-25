@@ -1769,8 +1769,10 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
       currentNewsTab->closeButton_->setVisible(false);
 
     emit signalCurrentTab(indexTab, true);
+  } else {
+    currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
+    currentNewsTab->setSettings(false);
   }
-  currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
 
   //! Устанавливаем иконку и текст для открытой вкладки
   QPixmap iconTab;
@@ -2378,7 +2380,7 @@ void RSSListing::showContextMenuFeed(const QPoint &p)
     feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
 }
 
-void RSSListing::setAutoLoadImages()
+void RSSListing::setAutoLoadImages(bool set)
 {
   autoLoadImages_ = !autoLoadImages_;
   if (autoLoadImages_) {
@@ -2391,8 +2393,9 @@ void RSSListing::setAutoLoadImages()
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
 
-  if (newsView_) {
+  if (newsView_ && set) {
     NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(tabWidget_->currentWidget());
+    widget->autoLoadImages_ = autoLoadImages_;
     widget->webView_->settings()->setAttribute(
           QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
@@ -2777,6 +2780,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
       feedsModel_->record(index.row()).field("htmlUrl").value().toString();
   properties.general.displayOnStartup =
       feedsModel_->record(index.row()).field("displayOnStartup").value().toInt();
+  properties.display.displayEmbeddedImages =
+      feedsModel_->record(index.row()).field("displayEmbeddedImages").value().toInt();
   feedPropertiesDialog->setFeedProperties(properties);
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
@@ -2797,10 +2802,12 @@ void RSSListing::slotShowFeedPropertiesDlg()
   delete feedPropertiesDialog;
 
   QSqlQuery q(db_);
-  q.prepare("update feeds set text = ?, xmlUrl = ?, displayOnStartup = ? where id == ?");
+  q.prepare("update feeds set text = ?, xmlUrl = ?, displayOnStartup = ?, "
+            "displayEmbeddedImages = ? where id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
+  q.addBindValue(properties.display.displayEmbeddedImages);
   q.addBindValue(id);
   q.exec();
 
@@ -3290,6 +3297,7 @@ QWebPage *RSSListing::createWebTab()
   iconTab.load(":/images/webPage");
   widget->newsIconTitle_->setPixmap(iconTab);
 
+  widget->autoLoadImages_ = currentNewsTab->autoLoadImages_;
   widget->setSettings();
   widget->retranslateStrings();
 

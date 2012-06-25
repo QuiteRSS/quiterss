@@ -55,7 +55,7 @@ public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
 
   void retranslateStrings();
-  void setSettings();
+  void setSettings(bool newTab = true);
   void setBrowserPosition();
   void markNewsRead();
   void markAllNewsRead();
@@ -69,6 +69,7 @@ public:
   void updateWebView(QModelIndex index);
 
   int feedId_;
+  bool autoLoadImages_;
 
   FindTextContent *findText_;
 
