@@ -752,6 +752,12 @@ void RSSListing::createActions()
           this, SLOT(slotOpenNewsWebView()));
   this->addAction(openNewsWebViewAct_);
 
+  QAction *findTextAct_ = new QAction(this);
+  findTextAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
+  connect(findTextAct_, SIGNAL(triggered()),
+          this, SLOT(findText()));
+  this->addAction(findTextAct_);
+
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
   connect(markAllNewsRead_, SIGNAL(triggered()),
@@ -824,7 +830,7 @@ void RSSListing::createShortcut()
   switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
   listActions_.append(switchFocusAct_);
 
-  visibleFeedsDockAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
+  visibleFeedsDockAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
   listActions_.append(visibleFeedsDockAct_);
 
   loadActionShortcuts();
@@ -3613,3 +3619,10 @@ void RSSListing::setCurrentTab(int index, bool updateTab)
   tabWidget_->setCurrentIndex(index);
   tabCurrentUpdateOff_ = false;
 }
+
+void RSSListing::findText()
+{
+  if (currentNewsTab->feedId_ > -1)
+    currentNewsTab->findText_->setFocus();
+}
+

@@ -354,6 +354,7 @@ private slots:
   void slotOpenNewsNewTab();
   void slotOpenNewsBackgroundTab();
   void setCurrentTab(int index, bool updateTab = false);
+  void findText();
 
 signals:
   void signalPlaceToTray();
