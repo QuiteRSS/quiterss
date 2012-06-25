@@ -600,7 +600,9 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
       if (((keyEvent->key() < Qt::Key_Shift) ||
           (keyEvent->key() > Qt::Key_Alt)) &&
           (keyEvent->key() != Qt::Key_Return) &&
-          (keyEvent->key() != Qt::Key_Enter)) {
+          (keyEvent->key() != Qt::Key_Enter) &&
+          !((keyEvent->modifiers() & Qt::ControlModifier) &&
+            (keyEvent->key() == Qt::Key_F))) {
         QString str;
         if ((keyEvent->modifiers() & Qt::ShiftModifier) ||
             (keyEvent->modifiers() & Qt::ControlModifier) ||

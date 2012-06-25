@@ -29,7 +29,6 @@ private:
 
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
-  FindTextContent *findText_;
 
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
@@ -70,6 +69,8 @@ public:
   void updateWebView(QModelIndex index);
 
   int feedId_;
+
+  FindTextContent *findText_;
 
   NewsModel *newsModel_;
   NewsView *newsView_;
