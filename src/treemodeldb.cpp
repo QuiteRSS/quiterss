@@ -210,7 +210,6 @@ void TreeModel::setupModelData(TreeItem *parent)
         parents.insert(id, item);
 
         parentIds.enqueue(id);
-        qDebug() << parentIds;
       }
     }
   }
