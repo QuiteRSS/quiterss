@@ -41,6 +41,8 @@ private:
   QLabel *webPanelAuthor_;
   QProgressBar *webViewProgress_;
   QLabel *webViewProgressLabel_;
+  QString titleString_;
+  QString linkString_;
 
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
@@ -103,6 +105,7 @@ public slots:
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
+  void resizeEvent(QResizeEvent *);
 
 private slots:
   void showContextMenuNews(const QPoint &p);

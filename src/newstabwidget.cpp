@@ -96,6 +96,15 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   }
 }
 
+void NewsTabWidget::resizeEvent(QResizeEvent *)
+{
+  QString titleStr, panelTitleStr;
+  titleStr = webPanelTitle_->fontMetrics().elidedText(
+        titleString_, Qt::ElideRight, webPanelTitle_->width());
+  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  webPanelTitle_->setText(panelTitleStr);
+}
+
 //! Создание новостного списка и всех сопутствующих панелей
 void NewsTabWidget::createNewsList()
 {
@@ -273,10 +282,10 @@ void NewsTabWidget::createWebWidget()
   webPanelLayout1->setMargin(5);
   webPanelLayout1->setSpacing(5);
   webPanelLayout1->setColumnStretch(1, 1);
-  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0, 1, 1);
-  webPanelLayout1->addWidget(webPanelTitle_, 0, 1, 1, 1);
-  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0, 1, 1);
-  webPanelLayout1->addWidget(webPanelAuthor_, 1, 1, 1, 1);
+  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0);
+  webPanelLayout1->addWidget(webPanelTitle_, 0, 1);
+  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0);
+  webPanelLayout1->addWidget(webPanelAuthor_, 1, 1);
 
   QFrame *webPanelLine = new QFrame(this);
   webPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -796,16 +805,15 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
   webPanel_->show();
 
-  QString titleString, linkString, panelTitleString;
-  titleString = newsModel_->record(index.row()).field("title").value().toString();
-  if (rsslisting_->isVisible())
-    titleString = webPanelTitle_->fontMetrics().elidedText(
-          titleString, Qt::ElideRight, webPanelTitle_->width());
-  linkString = newsModel_->record(index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-  panelTitleString = QString("<a href='%1'>%2</a>").arg(linkString).arg(titleString);
-  webPanelTitle_->setText(panelTitleString);
+  QString titleStr, panelTitleStr;
+  titleString_ = newsModel_->record(index.row()).field("title").value().toString();
+  titleStr = webPanelTitle_->fontMetrics().elidedText(
+        titleString_, Qt::ElideRight, webPanelTitle_->width());
+  linkString_ = newsModel_->record(index.row()).field("link_href").value().toString();
+  if (linkString_.isEmpty())
+    linkString_ = newsModel_->record(index.row()).field("link_alternate").value().toString();
+  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  webPanelTitle_->setText(panelTitleStr);
 
   // Формируем панель автора из автора новости
   QString authorString;
