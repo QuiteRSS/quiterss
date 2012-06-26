@@ -126,12 +126,10 @@ void NewsTabWidget::createNewsList()
 
   QHBoxLayout *newsPanelLayout = new QHBoxLayout();
   newsPanelLayout->setMargin(2);
-  newsPanelLayout->setSpacing(0);
-  newsPanelLayout->addSpacing(2);
+  newsPanelLayout->setSpacing(2);
   newsPanelLayout->addWidget(newsToolBar_);
   newsPanelLayout->addStretch(1);
   newsPanelLayout->addWidget(findText_);
-  newsPanelLayout->addSpacing(2);
 
   QFrame *line = new QFrame(this);
   line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -219,7 +217,7 @@ void NewsTabWidget::createWebWidget()
   //! Create web control panel
   QToolBar *webToolBar_ = new QToolBar(this);
   webToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
-  webToolBar_->setIconSize(QSize(16, 16));
+  webToolBar_->setIconSize(QSize(18, 18));
 
   webHomePageAct_ = new QAction(this);
   webHomePageAct_->setIcon(QIcon(":/images/homePage"));
@@ -240,9 +238,10 @@ void NewsTabWidget::createWebWidget()
   webToolBar_->addAction(webExternalBrowserAct_);
 
   QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
-  webControlPanelHLayout->setMargin(0);
-  webControlPanelHLayout->addSpacing(5);
+  webControlPanelHLayout->setMargin(2);
+  webControlPanelHLayout->setSpacing(2);
   webControlPanelHLayout->addWidget(webToolBar_);
+  webControlPanelHLayout->addStretch(1);
 
   QFrame *webControlPanelLine = new QFrame(this);
   webControlPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
