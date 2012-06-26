@@ -1790,7 +1790,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   feedProperties_->setEnabled(index.isValid());
   currentNewsTab->newsHeader_->setVisible(index.isValid());
 
-  setFeedsFilter(feedsFilterGroup_->checkedAction());
+  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -2232,19 +2232,31 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   }
 }
 
-void RSSListing::setFeedsFilter(QAction* pAct)
+void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   int id = feedsModel_->index(
         feedsView_->currentIndex().row(),
         feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int newCount = feedsModel_->index(
+        feedsView_->currentIndex().row(),
+        feedsModel_->fieldIndex("newCount")).data(Qt::EditRole).toInt();
+  int unRead = feedsModel_->index(
+        feedsView_->currentIndex().row(),
+        feedsModel_->fieldIndex("unread")).data(Qt::EditRole).toInt();
 
   QString strFilter;
   if (pAct->objectName() == "filterFeedsAll_") {
     strFilter = "";
   } else if (pAct->objectName() == "filterFeedsNew_") {
-    strFilter = QString("newCount > 0 OR id=='%1'").arg(id);
+    if (clicked && !newCount) {
+      strFilter = QString("newCount > 0");
+    } else
+      strFilter = QString("newCount > 0 OR id=='%1'").arg(id);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    strFilter = QString("unread > 0 OR id=='%1'").arg(id);
+    if (clicked && !unRead) {
+      strFilter = QString("unread > 0");
+    } else
+      strFilter = QString("unread > 0 OR id=='%1'").arg(id);
   }
   feedsModel_->setFilter(strFilter);
 
@@ -2258,6 +2270,10 @@ void RSSListing::setFeedsFilter(QAction* pAct)
     }
   }
   feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+  if (clicked && (tabWidget_->currentIndex() == 0)) {
+    slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+  }
 
   if (pAct->objectName() != "filterFeedsAll_")
     feedsFilterAction = pAct;
@@ -2330,6 +2346,8 @@ void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
 void RSSListing::setFeedRead(int feedId)
 {
+  if (feedId <= -1) return;
+
   db_.transaction();
   QSqlQuery q(db_);
   q.exec(QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read==1").arg(feedId));
@@ -2424,7 +2442,7 @@ void RSSListing::loadSettingsFeeds()
     }
   }
 
-  setFeedsFilter(feedsFilterGroup_->checkedAction());
+  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 }
 
 void RSSListing::setCurrentFeed()
@@ -2913,10 +2931,37 @@ void RSSListing::markAllFeedsRead()
   q.exec("UPDATE feeds SET newCount=0, unread=0");
   db_.commit();
 
-  feedsView_->setCurrentIndex(feedsModel_->index(-1, feedsModel_->fieldIndex("text")));
-  tabCurrentUpdateOff_ = true;
-  slotFeedsTreeClicked(feedsModel_->index(-1, feedsModel_->fieldIndex("text")));
-  tabCurrentUpdateOff_ = false;
+  if (tabWidget_->currentIndex() == 0) {
+    feedsView_->setCurrentIndex(feedsModel_->index(-1, feedsModel_->fieldIndex("text")));
+    slotFeedsTreeClicked(feedsModel_->index(-1, feedsModel_->fieldIndex("text")));
+  } else {
+    feedsModelReload();
+
+    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(0);
+
+    int rowFeeds = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == widget->feedId_) {
+        rowFeeds = i;
+      }
+    }
+
+    if (rowFeeds == -1) {
+      widget->newsModel_->setFilter("feedId=-1");
+
+      QPixmap iconTab;
+      iconTab.load(":/images/feed");
+      widget->newsIconTitle_->setPixmap(iconTab);
+      widget->newsTextTitle_->setText("");
+
+      feedProperties_->setEnabled(false);
+      widget->newsHeader_->setVisible(false);
+
+      widget->webView_->setHtml("");
+      widget->webPanel_->hide();
+      widget->webControlPanel_->hide();
+    }
+  }
 
   refreshInfoTray();
 }
@@ -3256,7 +3301,7 @@ void RSSListing::slotTabCurrentChanged(int index)
         }
       }
       feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
-      setFeedsFilter(feedsFilterGroup_->checkedAction());
+      setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
       slotUpdateNews();
       currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());

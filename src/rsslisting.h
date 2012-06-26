@@ -309,7 +309,7 @@ private slots:
 
   void setFeedRead(int feedId);
   void markFeedRead();
-  void setFeedsFilter(QAction*);
+  void setFeedsFilter(QAction*, bool clicked = true);
 
   void slotShowAboutDlg();
 
