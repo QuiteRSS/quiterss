@@ -177,7 +177,7 @@ private:
   QAction *setFilterNewsAct_;
   QAction *optionsAct_;
   QAction *updateAllFeedsAct_;
-  QAction *markAllFeedRead_;
+  QAction *markAllFeedsRead_;
   QAction *editFeedsTree_;
   QAction *exitAct_;
   QAction *feedsFilter_;

@@ -608,10 +608,10 @@ void RSSListing::createActions()
   updateAllFeedsAct_->setIcon(QIcon(":/images/updateAllFeeds"));
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
-  markAllFeedRead_ = new QAction(this);
-  markAllFeedRead_->setObjectName("markAllFeedRead");
-  markAllFeedRead_->setIcon(QIcon(":/images/markReadAll"));
-  connect(markAllFeedRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
+  markAllFeedsRead_ = new QAction(this);
+  markAllFeedsRead_->setObjectName("markAllFeedRead");
+  markAllFeedsRead_->setIcon(QIcon(":/images/markReadAll"));
+  connect(markAllFeedsRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
 
   editFeedsTree_ = new QAction(this);
   editFeedsTree_->setObjectName("editFeedsTree");
@@ -812,7 +812,7 @@ void RSSListing::createShortcut()
   listActions_.append(importFeedsAct_);
   listActions_.append(exportFeedsAct_);
   listActions_.append(autoLoadImagesToggle_);
-  listActions_.append(markAllFeedRead_);
+  listActions_.append(markAllFeedsRead_);
   listActions_.append(markFeedRead_);
   listActions_.append(markNewsRead_);
   listActions_.append(markAllNewsRead_);
@@ -967,7 +967,8 @@ void RSSListing::createMenu()
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
   feedMenu_->addSeparator();
-  feedMenu_->addAction(markAllFeedRead_);
+  feedMenu_->addAction(markFeedRead_);
+  feedMenu_->addAction(markAllFeedsRead_);
   feedMenu_->addSeparator();
 
   feedsFilterGroup_ = new QActionGroup(this);
@@ -990,7 +991,6 @@ void RSSListing::createMenu()
   feedsFilterAction = NULL;
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
-  feedMenu_->addSeparator();
   feedsColumnsMenu_ = new QMenu(this);
   feedsColumnsMenu_->addAction(showUnreadCount_);
   feedsColumnsMenu_->addAction(showUndeleteCount_);
@@ -1067,13 +1067,12 @@ void RSSListing::createToolBar()
   toolBar_->setMovable(false);
   toolBar_->setContextMenuPolicy(Qt::CustomContextMenu);
   toolBar_->addAction(addFeedAct_);
-  //  toolBar_->addAction(deleteFeedAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(updateFeedAct_);
   toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->addSeparator();
-  toolBar_->addAction(markNewsRead_);
-  toolBar_->addAction(markAllNewsRead_);
+  toolBar_->addAction(markFeedRead_);
+//  toolBar_->addAction(markAllNewsRead_);
   toolBar_->addSeparator();
   toolBar_->addAction(autoLoadImagesToggle_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -2393,15 +2392,14 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(openFeedNewTabAct_);
   feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(markFeedRead_);
-  feedContextMenu_->addAction(markAllFeedRead_);
-  feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(updateFeedAct_);
   feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(setFilterNewsAct_);
+  feedContextMenu_->addAction(markFeedRead_);
+  feedContextMenu_->addAction(markAllFeedsRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
+  feedContextMenu_->addAction(setFilterNewsAct_);
   feedContextMenu_->addAction(feedProperties_);
 
   connect(feedContextMenu_, SIGNAL(aboutToHide()),
@@ -2609,7 +2607,7 @@ void RSSListing::retranslateStrings() {
   updateAllFeedsAct_->setText(tr("Update all"));
   updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
 
-  markAllFeedRead_->setText(tr("Mark all feeds Read"));
+  markAllFeedsRead_->setText(tr("Mark all feeds Read"));
 
   markNewsRead_->setText(tr("Mark Read/Unread"));
   markNewsRead_->setToolTip(tr("Mark current news read/unread"));

@@ -114,6 +114,11 @@ void NewsTabWidget::createNewsList()
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   newsToolBar_->setIconSize(QSize(18, 18));
+  newsToolBar_->addAction(rsslisting_->markNewsRead_);
+  newsToolBar_->addAction(rsslisting_->markAllNewsRead_);
+  newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->markStarAct_);
+  newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->newsFilter_);
 
   findText_ = new FindTextContent(this);
