@@ -2150,25 +2150,47 @@ void RSSListing::markFeedRead()
             feedsView_->selectIndex.row(),
             feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
+  db_.transaction();
   QSqlQuery q(db_);
-  QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
-      arg(feedId);
-  q.exec(qStr);
-  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
-      arg(feedId);
-  q.exec(qStr);
+  if (currentNewsTab->feedId_ == feedId) {
+    QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
+        arg(feedId);
+    q.exec(qStr);
+    qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+        arg(feedId);
+    q.exec(qStr);
+    qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
+        arg(feedId);
+    q.exec(qStr);
+  } else {
+    QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+        arg(feedId);
+    q.exec(qStr);
+    qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+        arg(feedId);
+    q.exec(qStr);
+  }
+  db_.commit();
 
   if (currentNewsTab->feedId_ == feedId) {
-    int currentRow = newsView_->currentIndex().row();
+    if (tabWidget_->currentIndex() == 0) {
+      int row = feedsView_->currentIndex().row();
+      if ((row+1) == feedsModel_->rowCount()) row--;
+      else row++;
+      feedsView_->setCurrentIndex(feedsModel_->index(row, feedsModel_->fieldIndex("text")));
+      slotFeedsTreeClicked(feedsModel_->index(row, feedsModel_->fieldIndex("text")));
+    } else {
+      int currentRow = newsView_->currentIndex().row();
 
-    newsModel_->select();
+      newsModel_->select();
 
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
+      while (newsModel_->canFetchMore())
+        newsModel_->fetchMore();
 
-    newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
+      newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
-    slotUpdateStatus();
+      slotUpdateStatus();
+    }
   } else {
     slotUpdateStatus(false);
   }
@@ -2350,10 +2372,10 @@ void RSSListing::setFeedRead(int feedId)
 
   db_.transaction();
   QSqlQuery q(db_);
-  q.exec(QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read==1").arg(feedId));
-  q.exec(QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").arg(feedId));
+  q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
+  q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
 
-  q.exec(QString("UPDATE feeds SET newCount=0 WHERE id=='%1'").arg(feedId));
+  q.exec(QString("UPDATE feeds SET newCount=0 WHERE id='%1'").arg(feedId));
   db_.commit();
 }
 
