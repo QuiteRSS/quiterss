@@ -24,6 +24,8 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mousePressEvent(QMouseEvent *event)
 {
+  if (!indexAt(event->pos()).isValid()) return;
+
   selectIndex = indexAt(event->pos());
   if ((event->buttons() & Qt::MiddleButton)) {
     if (selectIndex.isValid())
@@ -40,6 +42,8 @@ FeedsView::FeedsView(QWidget * parent) :
 
 /*virtual*/ void FeedsView::mouseDoubleClickEvent(QMouseEvent *event)
 {
+  if (!indexAt(event->pos()).isValid()) return;
+
   emit signalDoubleClicked(indexAt(event->pos()));
 }
 
