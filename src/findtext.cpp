@@ -53,8 +53,8 @@ FindTextContent::FindTextContent(QWidget *parent)
                 arg(findButton->sizeHint().width() + frameWidth + 1));
   QSize msz = minimumSizeHint();
   setMinimumSize(
-        qMax(msz.width(), clearButton->sizeHint().height() + findButton->sizeHint().height() + frameWidth * 2),
-        qMax(msz.height(), clearButton->sizeHint().height() + frameWidth * 2));
+        qMax(msz.width(), clearButton->sizeHint().height() + findButton->sizeHint().height() + frameWidth * 2 + 2),
+        qMax(msz.height(), clearButton->sizeHint().height() + frameWidth * 2 + 2));
 }
 
 void FindTextContent::retranslateStrings()
