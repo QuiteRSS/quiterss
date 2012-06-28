@@ -170,7 +170,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ browser
   embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
-  standartBrowserOn_ = new QRadioButton(tr("Use standart external browser"));
+  standartBrowserOn_ = new QRadioButton(tr("Use standard external browser"));
   externalBrowserOn_ = new QRadioButton(tr("Use following external browser:"));
 
   editExternalBrowser_ = new LineEdit();
