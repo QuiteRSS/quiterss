@@ -109,6 +109,10 @@
     <target>Súgó</target>
 </phrase>
 <phrase>
+    <source>&amp;View</source>
+    <target>&amp;Nézet</target>
+</phrase>
+<phrase>
     <source>&amp;Edit</source>
     <target>Szerkesztés</target>
 </phrase>
@@ -117,12 +121,20 @@
     <target>Kilépés</target>
 </phrase>
 <phrase>
+    <source>&amp;Tools</source>
+    <target>&amp;Eszközök</target>
+</phrase>
+<phrase>
     <source>Fee&amp;ds</source>
     <target>Hírcsatornák</target>
 </phrase>
 <phrase>
     <source>&amp;News</source>
     <target>Hírek</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>Hírcsatornák</target>
 </phrase>
 <phrase>
     <source>Options...</source>
@@ -333,8 +345,20 @@
     <target>Hírcsatorna címe:</target>
 </phrase>
 <phrase>
+    <source>Feed Title:</source>
+    <target>Hírcsatorna címe:</target>
+</phrase>
+<phrase>
     <source>Feed Url:</source>
     <target>Hírcsatorna Url:</target>
+</phrase>
+<phrase>
+    <source>Feed Title:</source>
+    <target>Hírcsatorna címe:</target>
+</phrase>
+<phrase>
+    <source>Mark all news Read</source>
+    <target>A hírek megjelölése olvasottként</target>
 </phrase>
 <phrase>
     <source>&amp;Load images</source>
@@ -347,6 +371,10 @@
 <phrase>
     <source>Delete</source>
     <target>Törlés</target>
+</phrase>
+<phrase>
+    <source>Open in Browser</source>
+    <target>Megnyitás a böngészőben</target>
 </phrase>
 <phrase>
     <source>Mark feed read</source>
@@ -477,6 +505,10 @@
     <target>Hírek betűtípusa</target>
 </phrase>
 <phrase>
+    <source>News font</source>
+    <target>Hírek betűtípusa</target>
+</phrase>
+<phrase>
     <source>Change...</source>
     <target>Módosítás...</target>
 </phrase>
@@ -601,6 +633,10 @@
     <target>másodperc után</target>
 </phrase>
 <phrase>
+    <source>Mark selected news as read after</source>
+    <target>A kijelölt hírek megjelölése olvasottként</target>
+</phrase>
+<phrase>
     <source>Reading</source>
     <target>Olvasás</target>
 </phrase>
@@ -608,7 +644,6 @@
     <source>New news: %1
 </source>
     <target>Új hírek: %1
-</target>
 </phrase>
 <phrase>
     <source>Show static icon</source>
@@ -783,6 +818,10 @@
     <target>van</target>
 </phrase>
 <phrase>
+    <source>doesn&apos;t contains</source>
+    <target>nem tartalmaz</target>
+</phrase>
+<phrase>
     <source>contains</source>
     <target>tartalmaz</target>
 </phrase>
@@ -947,6 +986,10 @@
     <target>Rendszer</target>
 </phrase>
 <phrase>
+    <source>Default</source>
+    <target>Alapértelmezett</target>
+</phrase>
+<phrase>
     <source>French (%1)</source>
     <target>Francia (%1)</target>
 </phrase>
@@ -1047,11 +1090,155 @@
     <target>Nincs hírcsatorna URL!</target>
 </phrase>
 <phrase>
-    <source>&lt; &amp;Back</source>
-    <target>&lt; &amp;Vissza</target>
+    <source>Switch focus between panels</source>
+    <target>Fókusz váltása a panelek között</target>
 </phrase>
 <phrase>
-    <source>&amp;Next &gt;</source>
-    <target>&amp;Következő &gt;</target>
+    <source>Switch focus between panels (tree feeds, list news, browser)</source>
+    <target>Fókusz váltása a panelek között (hírek-fa, hírek lista, böngésző)</target>
+</phrase>
+<phrase>
+    <source>Show/hide tree feeds</source>
+    <target>Hírek-fa megjelenítése/elrejtés</target>
+</phrase>
+<phrase>
+    <source>Open news</source>
+    <target>Hírek megnyitása</target>
+</phrase>
+<phrase>
+    <source>Position at top of list news</source>
+    <target>Elhelyezés a hírek lista tetejére</target>
+</phrase>
+<phrase>
+    <source>Position on last opened news</source>
+    <target>Elhelyezés a legutóbb megnyitott híren</target>
+</phrase>
+<phrase>
+    <source>Nothing to do</source>
+    <target>Nincs művelet</target>
+</phrase>
+<phrase>
+    <source>Opening feed:</source>
+    <target>Hírcsatorna megnyitása:</target>
+</phrase>
+<phrase>
+    <source>Contact</source>
+    <target>Kapcsolat</target>
+</phrase>
+<phrase>
+    <source>Hungarian (%1)</source>
+    <target>Magyar (%1)</target>
+</phrase>
+<phrase>
+    <source>Open in new tab</source>
+    <target>Megnyitás új lapon</target>
+</phrase>
+<phrase>
+    <source>A new version of QuiteRSS...</source>
+    <target>Új QuiteRSS verzió...</target>
+</phrase>
+<phrase>
+    <source>Browser position</source>
+    <target>Böngésző pozíció</target>
+</phrase>
+<phrase>
+    <source>Top</source>
+    <target>Fent</target>
+</phrase>
+<phrase>
+    <source>Bottom</source>
+    <target>Lent</target>
+</phrase>
+<phrase>
+    <source>Right</source>
+    <target>Jobbra</target>
+</phrase>
+<phrase>
+    <source>Left</source>
+    <target>Balra</target>
+</phrase>
+<phrase>
+    <source>Left</source>
+    <target>Balra</target>
+</phrase>
+<phrase>
+    <source>Columns</source>
+    <target>Oszlopok</target>
+</phrase>
+<phrase>
+    <source>Count news unread</source>
+    <target>Olvasatlan hírek száma</target>
+</phrase>
+<phrase>
+    <source>Count news all</source>
+    <target>Az összes hír száma</target>
+</phrase>
+<phrase>
+    <source>Last updated</source>
+    <target>Utoljára frissítve</target>
+</phrase>
+<phrase>
+    <source>Display feed on startup</source>
+    <target>Hírcsatorna megjelenítése indításnál</target>
+</phrase>
+<phrase>
+    <source>Please enter name for the filter.</source>
+    <target>Kérjük, adja meg a szűrő nevét.</target>
+</phrase>
+<phrase>
+    <source>Please enter search condition for the news filter.</source>
+    <target>Kérjük, adjon meg keresési feltételeket a hír szűrő számára.</target>
+</phrase>
+<phrase>
+    <source>Filter news</source>
+    <target>Hírek szűrő</target>
+</phrase>
+<phrase>
+    <source>Apply selected filter</source>
+    <target>A kiválasztott szűrő használata</target>
+</phrase>
+<phrase>
+    <source>Close tab</source>
+    <target>Lap bezárása</target>
+</phrase>
+<phrase>
+    <source>Use following external browser:</source>
+    <target>A következő külső böngésző használata:</target>
+</phrase>
+<phrase>
+    <source>Use standard external browser</source>
+    <target>Standard külső böngésző használata</target>
+</phrase>
+<phrase>
+    <source>Use embedded browser</source>
+    <target>Beágyazott böngésző használata</target>
+</phrase>
+<phrase>
+    <source>Browse...</source>
+    <target>Tallózás...</target>
+</phrase>
+<phrase>
+    <source>Browser selection:</source>
+    <target>Böngésző választás:</target>
+</phrase>
+<phrase>
+    <source>Content:</source>
+    <target>Tartalom:</target>
+</phrase>
+<phrase>
+    <source>Open news in new tab</source>
+    <target>Hírek megnyitása új lapon</target>
+</phrase>
+<phrase>
+    <source>Open in background tab</source>
+    <target>Megnyitás egy háttérlapon</target>
+</phrase>
+<phrase>
+    <source>Open news in background tab</source>
+    <target>Hírek megnyitása egy háttérlapon</target>
+</phrase>
+<phrase>
+    <source>Loading...</source>
+    <target>Betöltés...</target>
 </phrase>
 </QPH>

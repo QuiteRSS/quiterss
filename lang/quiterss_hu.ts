@@ -106,12 +106,12 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="49"/>
         <source>Display feed on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatorna megjelenítése az indításnál</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="50"/>
         <source>Load images</source>
-        <translation type="unfinished">Képek betöltése</translation>
+        <translation>Képek betöltése</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
@@ -173,12 +173,12 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="256"/>
         <source>Please enter name for the filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérjük, adja meg a szűrő nevét</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="268"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kérjük, adjon meg keresési feltételeket a hír szűrő számára</translation>
     </message>
     <message>
         <source>Match all</source>
@@ -196,12 +196,12 @@
         <location filename="../src/findtext.cpp" line="47"/>
         <location filename="../src/findtext.cpp" line="62"/>
         <source>Filter news</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek szűrő</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="63"/>
         <source>Find in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés a böngészőben</translation>
     </message>
 </context>
 <context>
@@ -395,7 +395,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="87"/>
         <source>Apply selected filter</source>
-        <translation type="unfinished"></translation>
+        <translation>A kiválasztott szűrő alkalmazása</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="208"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="401"/>
         <source>Open in new tab</source>
-        <translation type="unfinished">Megnyitás új fülön</translation>
+        <translation>Megnyitás új fülön</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="402"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="415"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Lap bezárása</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="913"/>
@@ -661,17 +661,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="172"/>
         <source>Use embedded browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Beágyazott böngésző használata</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="174"/>
         <source>Use following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>A következő külső böngésző használata:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="177"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tallózás...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="179"/>
@@ -686,7 +686,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Open File...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl megnyitása...</translation>
     </message>
     <message>
         <source>Use the embedded browser</source>
@@ -773,17 +773,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="173"/>
         <source>Use standard external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard külső böngésző használata</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="196"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Böngésző választás:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="198"/>
         <source>Content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tartalom:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="283"/>
@@ -1267,17 +1267,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2644"/>
         <source>Open news in new tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek megnyitása új lapon</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2645"/>
         <source>Open in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Megnyitás a háttérben lévő lapon</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2646"/>
         <source>Open news in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek megnyitása a háttérben lévő lapon</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2647"/>
@@ -1308,7 +1308,7 @@
         <location filename="../src/rsslisting.cpp" line="2656"/>
         <location filename="../src/rsslisting.cpp" line="2657"/>
         <source>editFeedsTree_</source>
-        <translation type="unfinished"></translation>
+        <translation>editFeedsTree_</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2690"/>
@@ -1368,7 +1368,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3364"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Betöltés...</translation>
     </message>
     <message>
         <source>Properties feed</source>
@@ -1740,32 +1740,32 @@
     <message>
         <location filename="../src/treeeditdialog.cpp" line="15"/>
         <source>createFolder</source>
-        <translation type="unfinished"></translation>
+        <translation>createFolder</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="16"/>
         <source>deleteNode</source>
-        <translation type="unfinished"></translation>
+        <translation>deleteNode</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="17"/>
         <source>moveUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Felfelé</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="18"/>
         <source>moveDown</source>
-        <translation type="unfinished"></translation>
+        <translation>Lefelé</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="19"/>
         <source>moveLeft</source>
-        <translation type="unfinished"></translation>
+        <translation>Balra</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="20"/>
         <source>moveRight</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobbra</translation>
     </message>
 </context>
 <context>
