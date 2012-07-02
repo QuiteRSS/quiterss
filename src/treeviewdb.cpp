@@ -24,10 +24,5 @@ void TreeViewDB::dragEnterEvent(QDragEnterEvent *e)
 
 void TreeViewDB::dragMoveEvent(QDragMoveEvent *e)
 {
-  if (currentIndex().parent() == indexAt(e->pos())) {
-    e->ignore();
-    viewport()->repaint();
-  }
-  else
-    QTreeView::dragMoveEvent(e);
+  QTreeView::dragMoveEvent(e);
 }
