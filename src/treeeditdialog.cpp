@@ -225,6 +225,8 @@ void TreeEditDialog::slotMoveRight()
 
 void TreeEditDialog::slotMoveIndex(QModelIndex indexWhat, QModelIndex indexWhere)
 {
+  if (indexWhat.parent() == indexWhere) return;
+
   // поиск количества потомков у нового родителя
   int newRowToParent = model_->rowCount(indexWhere);
 
