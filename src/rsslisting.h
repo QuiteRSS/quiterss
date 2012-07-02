@@ -295,6 +295,7 @@ private:
   bool neverStarCleanUp_;
 
   bool showMessageOn_;
+  int updateFeedsCount_;
 
   bool reopenFeedStartup_;
 

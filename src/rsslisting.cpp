@@ -1483,7 +1483,7 @@ void RSSListing::slotImportFeeds()
   if (requestUrlCount) {
     updateAllFeedsAct_->setEnabled(false);
     updateFeedAct_->setEnabled(false);
-    showProgressBar(requestUrlCount-1);
+    showProgressBar(requestUrlCount);
   }
 
   QModelIndex index = feedsView_->currentIndex();
@@ -1550,13 +1550,17 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 {
   qDebug() << "getUrl result =" << result;
 
-  if (!url_.isEmpty() && !data_.isEmpty()) {
-    emit xmlReadyParse(data_, url_);
-    QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
-                           arg(dtReply.toString(Qt::ISODate)).
-                           arg(url_.toString()));
-    qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
-    qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
+  if (!url_.isEmpty()) {
+    if (!data_.isEmpty()) {
+      emit xmlReadyParse(data_, url_);
+      QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
+                             arg(dtReply.toString(Qt::ISODate)).
+                             arg(url_.toString()));
+      qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
+      qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
+    } else {
+      slotUpdateFeed(url_, false);
+    }
   }
   data_.clear();
   url_.clear();
@@ -1626,6 +1630,8 @@ void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
 
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
+  if (updateFeedsCount_ > 1) updateFeedsCount_--;
+
   if (!changed) return;
 
   //! Ппоиск идентификатора ленты в таблице лент по URL
@@ -2059,6 +2065,7 @@ void RSSListing::myEmptyWorkingSet()
 void RSSListing::showProgressBar(int addToMaximum)
 {
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
+  updateFeedsCount_ = addToMaximum;
   showMessageOn_ = true;
   statusBar()->showMessage(progressBar_->text());
   progressBar_->show();
@@ -2097,7 +2104,7 @@ void RSSListing::slotGetAllFeeds()
   if (feedCount) {
     updateAllFeedsAct_->setEnabled(false);
     updateFeedAct_->setEnabled(false);
-    showProgressBar(feedCount - 1);
+    showProgressBar(feedCount);
   }
 }
 

@@ -112,6 +112,7 @@ void UpdateThread::finished(QNetworkReply *reply)
   if (reply->error() != QNetworkReply::NoError) {
     qDebug() << "  error retrieving RSS feed:" << reply->error();
     if (!headOk) {
+      emit readedXml(NULL, feedUrl);
       emit getUrlDone(-1);
       getQueuedUrl();
     } else {
