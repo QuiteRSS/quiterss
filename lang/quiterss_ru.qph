@@ -1177,4 +1177,68 @@
     <source>Last updated</source>
     <target>Последнее обновление</target>
 </phrase>
+<phrase>
+    <source>Display feed on startup</source>
+    <target>Показывать ленту при запуске</target>
+</phrase>
+<phrase>
+    <source>Please enter name for the filter.</source>
+    <target>Пожалуйста, введите название фильтра.</target>
+</phrase>
+<phrase>
+    <source>Please enter search condition for the news filter.</source>
+    <target>Введите условия поиска для новостного фильтра.</target>
+</phrase>
+<phrase>
+    <source>Filter news</source>
+    <target>Фильтр новостей</target>
+</phrase>
+<phrase>
+    <source>Apply selected filter</source>
+    <target>Применить выбранный фильтр</target>
+</phrase>
+<phrase>
+    <source>Close tab</source>
+    <target>Закрыть вкладку</target>
+</phrase>
+<phrase>
+    <source>Use following external browser:</source>
+    <target>Использовать следующий внешний браузер:</target>
+</phrase>
+<phrase>
+    <source>Use standard external browser</source>
+    <target>Использовать стандартный внешний браузер</target>
+</phrase>
+<phrase>
+    <source>Use embedded browser</source>
+    <target>Использовать встроенный браузер</target>
+</phrase>
+<phrase>
+    <source>Browse...</source>
+    <target>Обзор...</target>
+</phrase>
+<phrase>
+    <source>Browser selection:</source>
+    <target>Выбор браузера:</target>
+</phrase>
+<phrase>
+    <source>Content:</source>
+    <target>Содержимое:</target>
+</phrase>
+<phrase>
+    <source>Open news in new tab</source>
+    <target>Открыть новость в новой вкладке</target>
+</phrase>
+<phrase>
+    <source>Open in background tab</source>
+    <target>Открыть в фоновой вкладке</target>
+</phrase>
+<phrase>
+    <source>Open news in background tab</source>
+    <target>Открыть новость в фоновой вкладке</target>
+</phrase>
+<phrase>
+    <source>Loading...</source>
+    <target>Загрузка...</target>
+</phrase>
 </QPH>

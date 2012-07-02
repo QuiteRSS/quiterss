@@ -99,6 +99,7 @@ public slots:
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
   void setUserFilter(int feedId, bool onlyNew = true);
+  void setAutoLoadImages(bool set = true);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -176,7 +177,7 @@ private:
   QAction *setFilterNewsAct_;
   QAction *optionsAct_;
   QAction *updateAllFeedsAct_;
-  QAction *markAllFeedRead_;
+  QAction *markAllFeedsRead_;
   QAction *editFeedsTree_;
   QAction *exitAct_;
   QAction *feedsFilter_;
@@ -294,6 +295,7 @@ private:
   bool neverStarCleanUp_;
 
   bool showMessageOn_;
+  int updateFeedsCount_;
 
   bool reopenFeedStartup_;
 
@@ -308,12 +310,11 @@ private slots:
 
   void setFeedRead(int feedId);
   void markFeedRead();
-  void setFeedsFilter(QAction*);
+  void setFeedsFilter(QAction*, bool clicked = true);
 
   void slotShowAboutDlg();
 
   void showContextMenuFeed(const QPoint &);
-  void setAutoLoadImages();
   void slotFeedsFilter();
   void slotNewsFilter();
   void slotTimerUpdateFeeds();
@@ -323,7 +324,8 @@ private slots:
   void showContextMenuToolBar(const QPoint &);
   void slotShowFeedPropertiesDlg();
   void slotFeedMenuShow();
-  void markAllFeedsRead(bool readOn = true);
+  void markAllFeedsRead();
+  void markAllFeedsOld();
   void slotEditFeedsTree();
   void slotIconFeedLoad(const QString& strUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);

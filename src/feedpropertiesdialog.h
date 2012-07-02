@@ -35,7 +35,7 @@ typedef struct {
     quint16 filterType; //!< Фильтр
     quint16 groupType; //!< Способ группировки
     bool displayContent; //!< Показывать содержимое новости
-    bool displayEmbeddedImages; //!< Показывать встроенные изображения
+    int displayEmbeddedImages; //!< Показывать встроенные изображения
     bool loadMoviesAndOtherContent; //!< Загружать видео и другое содержимое
     bool openLink; //!< Открывать ссылку новости
   } display;
@@ -89,6 +89,7 @@ private:
   LineEdit *editTitle; //!< Заголовок ленты
   QLabel *labelHomepage; //!< Ссылка на домашнюю страницу
   QCheckBox *displayOnStartup;
+  QCheckBox *loadImagesOn;
 
   QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
 

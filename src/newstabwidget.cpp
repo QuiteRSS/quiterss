@@ -96,6 +96,15 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   }
 }
 
+void NewsTabWidget::resizeEvent(QResizeEvent *)
+{
+  QString titleStr, panelTitleStr;
+  titleStr = webPanelTitle_->fontMetrics().elidedText(
+        titleString_, Qt::ElideRight, webPanelTitle_->width());
+  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  webPanelTitle_->setText(panelTitleStr);
+}
+
 //! Создание новостного списка и всех сопутствующих панелей
 void NewsTabWidget::createNewsList()
 {
@@ -114,6 +123,11 @@ void NewsTabWidget::createNewsList()
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   newsToolBar_->setIconSize(QSize(18, 18));
+  newsToolBar_->addAction(rsslisting_->markNewsRead_);
+  newsToolBar_->addAction(rsslisting_->markAllNewsRead_);
+  newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->markStarAct_);
+  newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->newsFilter_);
 
   findText_ = new FindTextContent(this);
@@ -121,12 +135,10 @@ void NewsTabWidget::createNewsList()
 
   QHBoxLayout *newsPanelLayout = new QHBoxLayout();
   newsPanelLayout->setMargin(2);
-  newsPanelLayout->setSpacing(0);
-  newsPanelLayout->addSpacing(2);
+  newsPanelLayout->setSpacing(2);
   newsPanelLayout->addWidget(newsToolBar_);
   newsPanelLayout->addStretch(1);
   newsPanelLayout->addWidget(findText_);
-  newsPanelLayout->addSpacing(2);
 
   QFrame *line = new QFrame(this);
   line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -214,7 +226,7 @@ void NewsTabWidget::createWebWidget()
   //! Create web control panel
   QToolBar *webToolBar_ = new QToolBar(this);
   webToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
-  webToolBar_->setIconSize(QSize(16, 16));
+  webToolBar_->setIconSize(QSize(18, 18));
 
   webHomePageAct_ = new QAction(this);
   webHomePageAct_->setIcon(QIcon(":/images/homePage"));
@@ -235,9 +247,10 @@ void NewsTabWidget::createWebWidget()
   webToolBar_->addAction(webExternalBrowserAct_);
 
   QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
-  webControlPanelHLayout->setMargin(0);
-  webControlPanelHLayout->addSpacing(5);
+  webControlPanelHLayout->setMargin(2);
+  webControlPanelHLayout->setSpacing(2);
   webControlPanelHLayout->addWidget(webToolBar_);
+  webControlPanelHLayout->addStretch(1);
 
   QFrame *webControlPanelLine = new QFrame(this);
   webControlPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -269,10 +282,10 @@ void NewsTabWidget::createWebWidget()
   webPanelLayout1->setMargin(5);
   webPanelLayout1->setSpacing(5);
   webPanelLayout1->setColumnStretch(1, 1);
-  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0, 1, 1);
-  webPanelLayout1->addWidget(webPanelTitle_, 0, 1, 1, 1);
-  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0, 1, 1);
-  webPanelLayout1->addWidget(webPanelAuthor_, 1, 1, 1, 1);
+  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0);
+  webPanelLayout1->addWidget(webPanelTitle_, 0, 1);
+  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0);
+  webPanelLayout1->addWidget(webPanelAuthor_, 1, 1);
 
   QFrame *webPanelLine = new QFrame(this);
   webPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -306,6 +319,15 @@ void NewsTabWidget::createWebWidget()
 
   webPanelTitle_->installEventFilter(this);
 
+  if (feedId_ > -1) {
+    QSqlQuery q(rsslisting_->db_);
+    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id='%1'").
+           arg(feedId_));
+    if (q.next()) {
+      autoLoadImages_ = q.value(0).toInt();
+    }
+  }
+
   connect(webHomePageAct_, SIGNAL(triggered()),
           this, SLOT(webHomePage()));
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
@@ -330,29 +352,40 @@ void NewsTabWidget::createWebWidget()
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
-void NewsTabWidget::setSettings()
+void NewsTabWidget::setSettings(bool newTab)
 {
-  if (feedId_ > -1)
-    newsView_->setFont(
-          QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+  if (newTab) {
+    if (feedId_ > -1)
+      newsView_->setFont(
+            QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
 
-  webView_->settings()->setFontFamily(
-        QWebSettings::StandardFont, rsslisting_->webFontFamily_);
-  webView_->settings()->setFontSize(
-        QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
+    webView_->settings()->setFontFamily(
+          QWebSettings::StandardFont, rsslisting_->webFontFamily_);
+    webView_->settings()->setFontSize(
+          QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
 
-  if (!rsslisting_->externalBrowserOn_) {
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-  } else {
-    webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    if (!rsslisting_->externalBrowserOn_) {
+      webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    } else {
+      webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
+    }
+    webView_->settings()->setAttribute(
+          QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
+    webView_->settings()->setAttribute(
+          QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
+  } else if (feedId_ > -1) {
+    QSqlQuery q(rsslisting_->db_);
+    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id='%1'").
+           arg(feedId_));
+    if (q.next()) {
+      autoLoadImages_ = q.value(0).toInt();
+    }
   }
-  webView_->settings()->setAttribute(
-        QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
-  webView_->settings()->setAttribute(
-        QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
 
+  rsslisting_->autoLoadImages_ = !autoLoadImages_;
+  rsslisting_->setAutoLoadImages(false);
   webView_->settings()->setAttribute(
-        QWebSettings::AutoLoadImages, rsslisting_->autoLoadImages_);
+        QWebSettings::AutoLoadImages, autoLoadImages_);
 }
 
 //! Перезагрузка перевода
@@ -772,16 +805,15 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
   webPanel_->show();
 
-  QString titleString, linkString, panelTitleString;
-  titleString = newsModel_->record(index.row()).field("title").value().toString();
-  if (rsslisting_->isVisible())
-    titleString = webPanelTitle_->fontMetrics().elidedText(
-          titleString, Qt::ElideRight, webPanelTitle_->width());
-  linkString = newsModel_->record(index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-  panelTitleString = QString("<a href='%1'>%2</a>").arg(linkString).arg(titleString);
-  webPanelTitle_->setText(panelTitleString);
+  QString titleStr, panelTitleStr;
+  titleString_ = newsModel_->record(index.row()).field("title").value().toString();
+  titleStr = webPanelTitle_->fontMetrics().elidedText(
+        titleString_, Qt::ElideRight, webPanelTitle_->width());
+  linkString_ = newsModel_->record(index.row()).field("link_href").value().toString();
+  if (linkString_.isEmpty())
+    linkString_ = newsModel_->record(index.row()).field("link_alternate").value().toString();
+  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  webPanelTitle_->setText(panelTitleStr);
 
   // Формируем панель автора из автора новости
   QString authorString;

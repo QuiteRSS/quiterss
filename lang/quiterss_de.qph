@@ -976,4 +976,156 @@
     <source>Count news all</source>
     <target>Anzahl alle Artikel</target>
 </phrase>
+<phrase>
+    <source>Display feed on startup</source>
+    <target>Anzeige Feeds beim Start</target>
+</phrase>
+<phrase>
+    <source>Use embedded browser</source>
+    <target>Den eingebetteten Browser benutzen</target>
+</phrase>
+<phrase>
+    <source>Use following external browser:</source>
+    <target>Den folgenden externen Browser benutzen:</target>
+</phrase>
+<phrase>
+    <source>Use standard external browser</source>
+    <target>Den externen Standardbrowser benutzen</target>
+</phrase>
+<phrase>
+    <source>Browser selection:</source>
+    <target>Browser-Auswahl:</target>
+</phrase>
+<phrase>
+    <source>Content:</source>
+    <target>Inhalte:</target>
+</phrase>
+<phrase>
+    <source>Close tab</source>
+    <target>Tab schließen</target>
+</phrase>
+<phrase>
+    <source>Filter name:</source>
+    <target>Filter Name:</target>
+</phrase>
+<phrase>
+    <source>Open in background tab</source>
+    <target>In Hintergrund-Tab öffnen</target>
+</phrase>
+<phrase>
+    <source>Open news in new tab</source>
+    <target>Artikel in neuem Tab öffnen</target>
+</phrase>
+<phrase>
+    <source>New...</source>
+    <target>Neu...</target>
+</phrase>
+<phrase>
+    <source>Name filter</source>
+    <target>Name Filter</target>
+</phrase>
+<phrase>
+    <source>Move up</source>
+    <target>Nach oben</target>
+</phrase>
+<phrase>
+    <source>Move down</source>
+    <target>Nach unten</target>
+</phrase>
+<phrase>
+    <source>Apply selected filter</source>
+    <target>Anwenden Filter ausgewählt</target>
+</phrase>
+<phrase>
+    <source>Delete filter</source>
+    <target>Löschen Filter</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the filter &apos;%1&apos;?</source>
+    <target>Sind Sie sicher um den Filter &apos;%1&apos; löschen?</target>
+</phrase>
+<phrase>
+    <source>Filter rules</source>
+    <target>Filter-Regeln</target>
+</phrase>
+<phrase>
+    <source>Match all conditions</source>
+    <target>Erfüllt alle Bedingungen</target>
+</phrase>
+<phrase>
+    <source>Match any condition</source>
+    <target>Entspricht einem beliebigen Bedingung</target>
+</phrase>
+<phrase>
+    <source>Match all news</source>
+    <target>Erfüllt alle Artikel</target>
+</phrase>
+<phrase>
+    <source>Perform these actions:</source>
+    <target>Folgende Aktionen ausführen:</target>
+</phrase>
+<phrase>
+    <source>Please enter name for the filter.</source>
+    <target>Bitte geben Sie Namen für den Filter.</target>
+</phrase>
+<phrase>
+    <source>Please enter search condition for the news filter.</source>
+    <target>Bitte geben Sie Suchbedingung für den Filter Artikel.</target>
+</phrase>
+<phrase>
+    <source>Status</source>
+    <target>Artikelstatus</target>
+</phrase>
+<phrase>
+    <source>Add condition</source>
+    <target>Bedingung hinzufügen</target>
+</phrase>
+<phrase>
+    <source>Delete condition</source>
+    <target>Bedingung löschen</target>
+</phrase>
+<phrase>
+    <source>doesn&apos;t contains</source>
+    <target>nicht enthält</target>
+</phrase>
+<phrase>
+    <source>contains</source>
+    <target>enthält</target>
+</phrase>
+<phrase>
+    <source>is</source>
+    <target>ist</target>
+</phrase>
+<phrase>
+    <source>isn&apos;t</source>
+    <target>ist nicht</target>
+</phrase>
+<phrase>
+    <source>begins with</source>
+    <target>beginnt mit</target>
+</phrase>
+<phrase>
+    <source>ends with</source>
+    <target>endet mit</target>
+</phrase>
+<phrase>
+    <source>Add star</source>
+    <target>Mark mit Sternchen</target>
+</phrase>
+<phrase>
+    <source>Mark news as read</source>
+    <target>Artikel als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>Add action</source>
+    <target>Aktion hinzufügen</target>
+</phrase>
+<phrase>
+    <source>Delete action</source>
+    <target>Aktion löschen</target>
+</phrase>
+<phrase>
+    <source>Find in browser</source>
+    <target>Suche im Browser</target>
+</phrase>
 </QPH>

@@ -13,12 +13,13 @@ NewsView::NewsView(QWidget * parent)
   setSelectionMode(QAbstractItemView::ExtendedSelection);
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
   setItemDelegate(itemDelegate);
-  //    setAlternatingRowColors(true);
   setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 /*virtual*/ void NewsView::mousePressEvent(QMouseEvent *event)
 {
+  if (!indexAt(event->pos()).isValid()) return;
+
   QModelIndex index = indexAt(event->pos());
   QSqlTableModel *model_ = (QSqlTableModel*)model();
   if (event->buttons() & Qt::LeftButton) {
@@ -54,6 +55,8 @@ NewsView::NewsView(QWidget * parent)
 
 /*virtual*/ void NewsView::mouseDoubleClickEvent(QMouseEvent *event)
 {
+  if (!indexAt(event->pos()).isValid()) return;
+
   emit signalDoubleClicked(indexAt(event->pos()));
 }
 
