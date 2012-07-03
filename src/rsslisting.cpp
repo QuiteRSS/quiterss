@@ -12,7 +12,6 @@
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
-#include "notifications.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "treeeditdialog.h"
@@ -80,6 +79,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   currentNewsTab = NULL;
   newsView_ = NULL;
   webView_ = NULL;
+  notificationWidget = NULL;
 
   createFeedsDock();
   createToolBarNull();
@@ -3726,6 +3726,15 @@ void RSSListing::findText()
 void RSSListing::showNotification()
 {
   if (idFeedList_.isEmpty()) return;
-//  NotificationWidget *notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
+//  if (notificationWidget) delete notificationWidget;
+//  notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
+//  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
+//  connect(notificationWidget, SIGNAL(signalDelete()), this, SLOT(deleteNotification()));
 //  notificationWidget->show();
+}
+
+void RSSListing::deleteNotification()
+{
+  notificationWidget->deleteLater();
+  notificationWidget = NULL;
 }

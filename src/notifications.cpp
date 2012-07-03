@@ -1,4 +1,5 @@
 #include "notifications.h"
+#include "rsslisting.h"
 
 NotificationWidget::NotificationWidget(QSqlDatabase *db,
                                        QList<int> idFeedList,
@@ -10,8 +11,9 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
 {
   setAttribute(Qt::WA_TranslucentBackground);
   setFocusPolicy(Qt::NoFocus);
+  setAttribute(Qt::WA_AlwaysShowToolTips);
 
-  countShowNews_ = 5;
+  countShowNews_ = 10;
 
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
@@ -37,16 +39,20 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   titleLayout->addWidget(closeButton_);
 
   QWidget *titlePanel_ = new QWidget(this);
+  titlePanel_->setCursor(Qt::PointingHandCursor);
   titlePanel_->setObjectName("titleNotification");
   titlePanel_->setLayout(titleLayout);
+  titlePanel_->installEventFilter(this);
 
   numPage_ = new QLabel(this);
 
   leftButton_ = new QToolButton(this);
   leftButton_->setIcon(QIcon(":/images/moveLeft"));
+  leftButton_->setCursor(Qt::PointingHandCursor);
   leftButton_->setEnabled(false);
   rightButton_ = new QToolButton(this);
   rightButton_->setIcon(QIcon(":/images/moveRight"));
+  rightButton_->setCursor(Qt::PointingHandCursor);
 
   QHBoxLayout *bottomLayout = new QHBoxLayout();
   bottomLayout->setMargin(2);
@@ -65,6 +71,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   stackedWidget_ = new QStackedWidget(this);
 
   QVBoxLayout *pageLayout_ = new QVBoxLayout();
+  pageLayout_->setMargin(5);
   pageLayout_->setSpacing(0);
   QWidget *pageWidget = new QWidget(this);
   pageWidget->setLayout(pageLayout_);
@@ -103,61 +110,76 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
         arg(idFeed);
     q.exec(qStr);
     QString titleFeed;
-    QPixmap iconTab;
+    QPixmap iconFeed;
     if (q.next()) {
       titleFeed = q.value(0).toString();
       QByteArray byteArray = q.value(1).toByteArray();
       if (!byteArray.isNull()) {
-        iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-      } else {
-        iconTab.load(":/images/feed");
+        iconFeed.loadFromData(QByteArray::fromBase64(byteArray));
       }
     }
 
-    qStr = QString("SELECT title FROM news WHERE new=1 AND feedId=='%1'").
+    qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1'").
         arg(idFeed);
     q.exec(qStr);
     while (q.next()) {
       if (cnt >= countShowNews_) {
         cnt = 1;
-        pageLayout_->setMargin(5);
         pageLayout_ = new QVBoxLayout();
+        pageLayout_->setMargin(5);
         pageLayout_->setSpacing(0);
         QWidget *pageWidget = new QWidget(this);
         pageWidget->setLayout(pageLayout_);
         stackedWidget_->addWidget(pageWidget);
       } else cnt++;
 
-      NewsItem *newsItem = new NewsItem(this);
-      newsItem->iconNews->setPixmap(iconTab);
+      NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(), this);
+      newsItem->iconNews->setPixmap(iconFeed);
       newsItem->iconNews->setToolTip(titleFeed);
+      connect(newsItem, SIGNAL(signalMarkRead(int)),
+              this, SLOT(markRead(int)));
+      connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
+              this, SIGNAL(signalOpenNews(int, int)));
 
       QString titleStr = newsItem->titleNews->fontMetrics().elidedText(
-            q.value(0).toString(), Qt::ElideRight, newsItem->titleNews->sizeHint().width());
+            q.value(1).toString(), Qt::ElideRight, newsItem->titleNews->sizeHint().width());
       newsItem->titleNews->setText(titleStr);
-      newsItem->titleNews->setToolTip(q.value(0).toString());
+      newsItem->titleNews->setToolTip(q.value(1).toString());
       pageLayout_->addWidget(newsItem);
     }
   }
   pageLayout_->addStretch(1);
   numPage_->setText(QString(tr("Page %1 of %2").arg("1").arg(stackedWidget_->count())));
 
-  QPoint point(QApplication::desktop()->availableGeometry(0).width()-sizeHint().width(),
-               QApplication::desktop()->availableGeometry(0).height()-sizeHint().height());
-  move(point);
-  pageLayout_->setMargin(5);
-
   showTimer_ = new QTimer(this);
   connect(showTimer_, SIGNAL(timeout()),
-          this, SLOT(deleteLater()));
+          this, SIGNAL(signalDelete()));
   connect(closeButton_, SIGNAL(clicked()),
-          this, SLOT(deleteLater()));
+          this, SIGNAL(signalDelete()));
   connect(leftButton_, SIGNAL(clicked()),
           this, SLOT(previousPage()));
   connect(rightButton_, SIGNAL(clicked()),
           this, SLOT(nextPage()));
 
 //  showTimer_->start(10000);
+}
+
+/*virtual*/ void NotificationWidget::showEvent(QShowEvent*)
+{
+  QPoint point(QApplication::desktop()->availableGeometry(0).width()-width(),
+               QApplication::desktop()->availableGeometry(0).height()-height());
+  move(point);
+}
+
+bool NotificationWidget::eventFilter(QObject *obj, QEvent *event)
+{
+  if(event->type() == QEvent::MouseButtonPress) {
+    emit signalShow();
+    emit signalDelete();
+    return true;
+  } else {
+    return QObject::eventFilter(obj, event);
+  }
 }
 
 void NotificationWidget::nextPage()
@@ -182,4 +204,12 @@ void NotificationWidget::previousPage()
   numPage_->setText(QString(tr("Page %1 of %2").
                             arg(stackedWidget_->currentIndex()+1).
                             arg(stackedWidget_->count())));
+}
+
+void NotificationWidget::markRead(int id)
+{
+  int read = 1;
+  QSqlQuery q(*db_);
+  q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
+         arg(read).arg(id));
 }

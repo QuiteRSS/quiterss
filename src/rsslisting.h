@@ -13,6 +13,7 @@
 #include "newsmodel.h"
 #include "newstabwidget.h"
 #include "newsview.h"
+#include "notifications.h"
 #include "parsethread.h"
 #include "updateappdialog.h"
 #include "updatethread.h"
@@ -303,6 +304,8 @@ private:
 
   bool tabCurrentUpdateOff_;
 
+  NotificationWidget *notificationWidget;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
@@ -361,6 +364,7 @@ private slots:
   void findText();
 
   void showNotification();
+  void deleteNotification();
 
 signals:
   void signalPlaceToTray();
