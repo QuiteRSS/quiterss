@@ -12,6 +12,7 @@
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
+#include "notifications.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "treeeditdialog.h"
@@ -122,6 +123,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           faviconLoader, SIGNAL(startGetUrlTimer()));
   connect(faviconLoader, SIGNAL(signalIconRecived(const QString&, const QByteArray &)),
           this, SLOT(slotIconFeedLoad(const QString&, const QByteArray &)));
+
+  connect(this, SIGNAL(signalShowNotification()),
+          SLOT(showNotification()), Qt::QueuedConnection);
 
   loadSettingsFeeds();
 
@@ -1630,7 +1634,8 @@ void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
 
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
-  if (updateFeedsCount_ > 1) updateFeedsCount_--;
+  if (updateFeedsCount_ > 0) updateFeedsCount_--;
+  if (updateFeedsCount_ == 0) emit signalShowNotification();
 
   if (!changed) return;
 
@@ -1670,6 +1675,11 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   refreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
+  }
+
+  if ((newCount - newCountOld) > 0) {
+    idFeedList_.append(parseFeedId);
+    cntNewNewsList_.append(newCount - newCountOld);
   }
 
   feedsView_->selectIndex = feedsView_->currentIndex();
@@ -2066,6 +2076,8 @@ void RSSListing::showProgressBar(int addToMaximum)
 {
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
   updateFeedsCount_ = addToMaximum;
+  idFeedList_.clear();
+  cntNewNewsList_.clear();
   showMessageOn_ = true;
   statusBar()->showMessage(progressBar_->text());
   progressBar_->show();
@@ -3711,3 +3723,9 @@ void RSSListing::findText()
     currentNewsTab->findText_->setFocus();
 }
 
+void RSSListing::showNotification()
+{
+  if (idFeedList_.isEmpty()) return;
+//  NotificationWidget *notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
+//  notificationWidget->show();
+}

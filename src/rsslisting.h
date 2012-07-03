@@ -296,6 +296,8 @@ private:
 
   bool showMessageOn_;
   int updateFeedsCount_;
+  QList<int> idFeedList_;
+  QList<int> cntNewNewsList_;
 
   bool reopenFeedStartup_;
 
@@ -358,12 +360,15 @@ private slots:
   void setCurrentTab(int index, bool updateTab = false);
   void findText();
 
+  void showNotification();
+
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
   void signalCurrentTab(int index, bool updateTab = false);
+  void signalShowNotification();
 
 };
 
