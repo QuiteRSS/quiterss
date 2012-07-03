@@ -205,7 +205,8 @@ const QString kCreateFeedsTableQuery(
     "updated text, "                // время последнего обновления ленты (update)
     "lastDisplayed text, "           // время последнего просмотра ленты
     // -- added in v0.10.0 --`
-    "expanded integer default 1"  // состояние раскрытости категории дерева
+    "f_Expanded integer default 1, "  // флаг раскрытости категории дерева
+    "flags text"                    // другие флаги перечисляемые текстом (могут быть, например "focused", "hidden")
     // -- changed in v0.10.0 -- исправлено в тексте выше
     // "displayEmbeddedImages integer default 1, "  // отображать изображения встроенные в новость
     // "hasChildren integer default 0, "  // наличие потомков. По умолчанию - нет
@@ -379,8 +380,8 @@ QString initDB(const QString dbFileName)
     if (!dbVersionString.isEmpty()) {
       // Версия базы 1.0 (На самом деле 0.1.0)
       if (dbVersionString == "1.0") {
-
-        // Создаём временную таблицу версии 0.9.0
+        //-- Преобразуем таблицу feeds
+        // Создаём временную таблицу версии 0.10.0
         q.exec(QString(kCreateFeedsTableQuery)
             .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
         // переписываем только используемые ранее поля
@@ -404,7 +405,6 @@ QString initDB(const QString dbFileName)
 
         // Модифицируем поле rowToParent таблицы feeds, чтобы все элементы
         // лежали в корне дерева
-        // устанавливаем все ленты в корень
         q.exec("SELECT id FROM feeds");
         int rowToParent = 0;
         while (q.next()) {
@@ -417,6 +417,7 @@ QString initDB(const QString dbFileName)
           rowToParent++;
         }
 
+        //-- Преобразуем таблицы feed_# в общую таблицу news
         // Создаём общую таблицу новостей
         q.exec(kCreateNewsTableQuery);
 
@@ -470,7 +471,7 @@ QString initDB(const QString dbFileName)
         foreach (int id, idList)
           q.exec(QString("DROP TABLE feed_%1").arg(id));
 
-        // Создаём индекс по полю feedId
+        // Создаём индекс по полю feedId (для более скоростного поиска)
         q.exec("CREATE INDEX feedId ON news(feedId)");
 
         // Создаём дополнительную таблицу лент на всякий случай
@@ -504,7 +505,73 @@ QString initDB(const QString dbFileName)
         q.exec();
 
         qDebug() << "DB converted to version =" << kDbVersion;
-      } else {
+      }
+      // Версия базы 0.9.0
+      else if (dbVersionString == "0.9.0") {
+        //-- Преобразуем таблицу feeds
+        // Создаём временную таблицу версии 0.10.0
+        q.exec(QString(kCreateFeedsTableQuery)
+            .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
+        // переписываем только используемые ранее поля
+        q.exec("INSERT "
+            "INTO feeds_temp("
+               "id, text, title, description, xmlUrl, htmlUrl, "
+               "author_name, author_email, author_uri, pubdate, lastBuildDate, "
+               "image, unread, newCount, currentNews, undeleteCount, updated, "
+               "displayOnStartup, displayEmbeddedImages "
+            ") SELECT "
+            "id, text, title, description, xmlUrl, htmlUrl, "
+            "author_name, author_email, author_uri, pubdate, lastBuildDate, "
+            "image, unread, newCount, currentNews, undeleteCount, updated, "
+            "displayOnStartup, displayEmbeddedImages "
+            "FROM feeds");
+        // Хороним старую таблицу
+        q.exec("DROP TABLE feeds");
+
+        // Копируем временную таблицу на место старой
+        q.exec(kCreateFeedsTableQuery);
+        q.exec("INSERT INTO feeds SELECT * FROM feeds_temp");
+        q.exec("DROP TABLE feeds_temp");
+
+        // Модифицируем поле rowToParent таблицы feeds, чтобы все элементы
+        // лежали в корне дерева
+        q.exec("SELECT id FROM feeds");
+        int rowToParent = 0;
+        while (q.next()) {
+          int id = q.value(0).toInt();
+          QSqlQuery q2(db);
+          q2.prepare("UPDATE feeds SET rowToParent=:rowToParent WHERE id=:id");
+          q2.bindValue(":rowToParent", rowToParent);
+          q2.bindValue(":id", id);
+          q2.exec();
+          rowToParent++;
+        }
+
+        //-- Таблицу news не трогаем
+        //-- Перестраиваем индекс
+        q.exec("DROP INDEX feedId");
+        q.exec("CREATE INDEX feedId ON news(feedId)");
+        // Дополнительные таблицы лент и новостей уже созданы
+        // Заменяем старую пустую таблицу фильтров на новую с новыми полями
+        q.exec("DROP TABLE filters");
+        q.exec(kCreateFiltersTable);
+        // Таблицы условий и действий фильтров не трогаем
+
+        // Создаём дополнительную таблицу фильтров на всякий случай
+        q.exec("CREATE TABLE filters_ex(id integer primary key, "
+            "idFilter integer, "  // идентификатор фильтра
+            "name text, "         // имя параметра
+            "value text"          // значение параметра
+            ")");
+
+        // Обновляем таблицу с информацией
+        q.prepare("UPDATE info SET value=:version WHERE name='version'");
+        q.bindValue(":version", kDbVersion);
+        q.exec();
+
+        qDebug() << "DB converted to version =" << kDbVersion;
+      }
+      else {
         qDebug() << "dbVersion =" << dbVersionString;
 
         //! debug --------------------------------------------------------------
