@@ -2,6 +2,7 @@
 
 #include <qtsingleapplication.h>
 
+#include "db_func.h"
 #include "logfile.h"
 #include "VersionNo.h"
 #include "rsslisting.h"
@@ -122,12 +123,13 @@ QSettings *settings_;
 //#endif
 
   QString versionDB = settings_->value("versionDB", "1.0").toString();
-  if (versionDB != "0.9.0") showSplashScreen_ = true;
+  if (versionDB != kDbVersion) showSplashScreen_ = true;
 
   if (showSplashScreen_)
     createSplashScreen();
-  if (versionDB != "0.9.0")
-    splash->showMessage("Converting database to version 0.9.0...",
+  if (versionDB != kDbVersion)
+    splash->showMessage(QString("Converting database to version %1...").
+                        arg(kDbVersion),
                         Qt::AlignRight | Qt::AlignTop, Qt::white);
 
   RSSListing rsslisting(settings_, dataDirPath_);
