@@ -221,11 +221,20 @@ void AddFeedWizard::addFeed()
     page(0)->setEnabled(false);
     showProgressBar();
 
-    QString qStr = QString("INSERT INTO feeds(xmlUrl, created) VALUES (?, ?)");
-    q.prepare(qStr);
-    q.addBindValue(feedUrlString_);
-    q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
-                                         "yyyy-MM-ddTHH:mm:ss"));
+    // Вычисляем номер ряда для вставляемой ленты
+    int rowToParent = 0;
+    q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
+    qDebug() << q.lastQuery();
+    qDebug() << q.lastError();
+    if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+
+    // Добавляем ленту
+    q.prepare("INSERT INTO feeds(xmlUrl, created, rowToParent) "
+              "VALUES (:feedUrl, :feedCreateTime, :rowToParent)");
+    q.bindValue(":feedUrl", feedUrlString_);
+    q.bindValue(":feedCreateTime",
+        QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
+    q.bindValue(":rowToParent", rowToParent);
     q.exec();
     q.finish();
 
