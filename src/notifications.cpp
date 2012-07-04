@@ -14,6 +14,8 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   setAttribute(Qt::WA_AlwaysShowToolTips);
 
   countShowNews_ = 10;
+  timeShowNews_ = 10;
+  widthTitleNews_ = 300;
 
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
@@ -85,6 +87,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   QWidget *mainWidget = new QWidget(this);
   mainWidget->setObjectName("notificationWidget");
   mainWidget->setLayout(mainLayout);
+  mainWidget->setMouseTracking(true);
 
   QVBoxLayout* layout = new QVBoxLayout();
   layout->setMargin(0);
@@ -131,7 +134,8 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
         stackedWidget_->addWidget(pageWidget);
       } else cnt++;
 
-      NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(), this);
+      NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(),
+                                        widthTitleNews_, this);
       newsItem->iconNews->setPixmap(iconFeed);
       newsItem->iconNews->setToolTip(titleFeed);
       connect(newsItem, SIGNAL(signalMarkRead(int)),
@@ -159,7 +163,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   connect(rightButton_, SIGNAL(clicked()),
           this, SLOT(nextPage()));
 
-//  showTimer_->start(10000);
+  showTimer_->start(timeShowNews_*1000);
 }
 
 /*virtual*/ void NotificationWidget::showEvent(QShowEvent*)
@@ -178,6 +182,16 @@ bool NotificationWidget::eventFilter(QObject *obj, QEvent *event)
   } else {
     return QObject::eventFilter(obj, event);
   }
+}
+
+/*virtual*/ void NotificationWidget::enterEvent(QEvent*)
+{
+  showTimer_->stop();
+}
+
+/*virtual*/ void NotificationWidget::leaveEvent(QEvent*)
+{
+  showTimer_->start(timeShowNews_*1000);
 }
 
 void NotificationWidget::nextPage()

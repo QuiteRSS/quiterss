@@ -3725,7 +3725,8 @@ void RSSListing::findText()
 
 void RSSListing::showNotification()
 {
-  if (idFeedList_.isEmpty()) return;
+  if (idFeedList_.isEmpty() || isActiveWindow()) return;
+
 //  if (notificationWidget) delete notificationWidget;
 //  notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
 //  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));

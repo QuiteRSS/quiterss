@@ -8,7 +8,7 @@ class NewsItem : public QWidget
 {
   Q_OBJECT
 public:
-  NewsItem(int idFeed, int idNews, QWidget * parent = 0) :
+  NewsItem(int idFeed, int idNews, int width, QWidget * parent = 0) :
     QWidget(parent), idFeed_(idFeed), idNews_(idNews)
   {
     read = false;
@@ -38,7 +38,7 @@ public:
     setLayout(buttonsLayout);
     installEventFilter(this);
 
-    titleNews->setFixedWidth(300);
+    titleNews->setFixedWidth(width);
 
     connect(readButton, SIGNAL(clicked()),
             this, SLOT(markRead()));
@@ -88,6 +88,8 @@ public:
 protected:
   virtual void showEvent(QShowEvent*);
   bool eventFilter(QObject *obj, QEvent *event);
+  /*virtual*/ void enterEvent(QEvent*);
+  /*virtual*/ void leaveEvent(QEvent*);
 
 private:
   QLabel *iconTitle_;
@@ -105,6 +107,7 @@ private:
   QList<int> cntNewNewsList_;
   int countShowNews_;
   int timeShowNews_;
+  int widthTitleNews_;
 
 private slots:
   void nextPage();
