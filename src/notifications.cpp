@@ -23,13 +23,11 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   textTitle_->setFont(fontTitle);
 
   closeButton_ = new QToolButton(this);
-  closeButton_->setIcon(style()->standardIcon(QStyle::SP_TitleBarCloseButton));
   closeButton_->setStyleSheet(
-        "QToolButton { border: none; padding: 0px; }"
-//        "image: url(:/images/closeHover); }"
-//        "QToolButton:hover {"
-//        "image: url(:/images/closeHover); }"
-        );
+        "QToolButton { border: none; padding: 0px; "
+        "image: url(:/images/close); }"
+        "QToolButton:hover {"
+        "image: url(:/images/closeHover); }");
 
   QHBoxLayout *titleLayout = new QHBoxLayout();
   titleLayout->setMargin(5);
@@ -166,8 +164,8 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
 
 /*virtual*/ void NotificationWidget::showEvent(QShowEvent*)
 {
-  QPoint point(QApplication::desktop()->availableGeometry(0).width()-width(),
-               QApplication::desktop()->availableGeometry(0).height()-height());
+  QPoint point(QApplication::desktop()->availableGeometry(0).width()-width()-5,
+               QApplication::desktop()->availableGeometry(0).height()-height()-5);
   move(point);
 }
 
