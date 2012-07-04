@@ -3717,12 +3717,14 @@ void RSSListing::setCurrentTab(int index, bool updateTab)
   tabCurrentUpdateOff_ = false;
 }
 
+//! Установить фокус в строку поиска (CTRL+F)
 void RSSListing::findText()
 {
   if (currentNewsTab->feedId_ > -1)
     currentNewsTab->findText_->setFocus();
 }
 
+//! Показать уведовление о входящих новостях
 void RSSListing::showNotification()
 {
   if (idFeedList_.isEmpty() || isActiveWindow()) return;
@@ -3734,6 +3736,7 @@ void RSSListing::showNotification()
 //  notificationWidget->show();
 }
 
+//! Удалить уведовление о входящих новостях
 void RSSListing::deleteNotification()
 {
   notificationWidget->deleteLater();
