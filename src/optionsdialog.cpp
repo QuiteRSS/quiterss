@@ -342,8 +342,13 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //{ notifier
   soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
 
+  showNotifyOn_ = new QGroupBox(tr("Display notification for incoming news"));
+  showNotifyOn_->setCheckable(true);
+//  showNotifyOn_->setChecked(false);
+
   QVBoxLayout *notifierLayout = new QVBoxLayout();
   notifierLayout->addWidget(soundNewNews_);
+  notifierLayout->addWidget(showNotifyOn_);
   notifierLayout->addStretch();
 
   notifierWidget_ = new QFrame();

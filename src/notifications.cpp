@@ -72,7 +72,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
 
   QVBoxLayout *pageLayout_ = new QVBoxLayout();
   pageLayout_->setMargin(5);
-  pageLayout_->setSpacing(0);
+  pageLayout_->setSpacing(1);
   QWidget *pageWidget = new QWidget(this);
   pageWidget->setLayout(pageLayout_);
   stackedWidget_->addWidget(pageWidget);
@@ -128,7 +128,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
         cnt = 1;
         pageLayout_ = new QVBoxLayout();
         pageLayout_->setMargin(5);
-        pageLayout_->setSpacing(0);
+        pageLayout_->setSpacing(1);
         QWidget *pageWidget = new QWidget(this);
         pageWidget->setLayout(pageLayout_);
         stackedWidget_->addWidget(pageWidget);

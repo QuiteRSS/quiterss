@@ -29,7 +29,7 @@ public:
     readButton->hide();
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
-    buttonsLayout->setContentsMargins(0, 0, 0, 1);
+    buttonsLayout->setMargin(0);
     buttonsLayout->setSpacing(5);
     buttonsLayout->addWidget(iconNews);
     buttonsLayout->addWidget(titleNews, 1);

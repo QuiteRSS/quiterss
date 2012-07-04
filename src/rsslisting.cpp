@@ -1165,6 +1165,7 @@ void RSSListing::readSettings()
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
+  showNotifyOn_ = settings_->value("showNotifyOn", true).toBool();
 
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
@@ -1289,6 +1290,7 @@ void RSSListing::writeSettings()
   settings_->setValue("pluginsEnable", pluginsEnable_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
+  settings_->setValue("showNotifyOn", showNotifyOn_);
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -1909,6 +1911,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->neverStarCleanUp_->setChecked(neverStarCleanUp_);
 
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
+  optionsDialog->showNotifyOn_->setChecked(showNotifyOn_);
 
   optionsDialog->setLanguage(langFileName_);
 
@@ -2014,6 +2017,7 @@ void RSSListing::showOptionDlg()
   neverStarCleanUp_ = optionsDialog->neverStarCleanUp_->isChecked();
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
+  showNotifyOn_ = optionsDialog->showNotifyOn_->isChecked();
 
   if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();
@@ -3727,16 +3731,16 @@ void RSSListing::findText()
 //! Показать уведовление о входящих новостях
 void RSSListing::showNotification()
 {
-  if (idFeedList_.isEmpty() || isActiveWindow()) return;
+  if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) return;
 
-//  if (notificationWidget) delete notificationWidget;
-//  notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
-//  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
-//  connect(notificationWidget, SIGNAL(signalDelete()),
-//          this, SLOT(deleteNotification()));
-//  connect(notificationWidget, SIGNAL(signalOpenNews(int,int)),
-//          this, SLOT(slotOpenNew(int,int)));
-//  notificationWidget->show();
+  if (notificationWidget) delete notificationWidget;
+  notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
+  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
+  connect(notificationWidget, SIGNAL(signalDelete()),
+          this, SLOT(deleteNotification()));
+  connect(notificationWidget, SIGNAL(signalOpenNews(int,int)),
+          this, SLOT(slotOpenNew(int,int)));
+  notificationWidget->show();
 }
 
 //! Удалить уведовление о входящих новостях

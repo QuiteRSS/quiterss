@@ -75,6 +75,11 @@ public:
   // nitifier
   QCheckBox *soundNewNews_;
 
+  QGroupBox *showNotifyOn_;
+  QSpinBox *countShowNewsNotify_;
+  QSpinBox *timeShowNewsNotify_;
+  QSpinBox *widthTitleNewsNotify_;
+
   // fonts
   QTreeWidget *fontTree;
 
