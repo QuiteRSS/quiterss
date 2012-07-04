@@ -365,6 +365,7 @@ private slots:
 
   void showNotification();
   void deleteNotification();
+  void slotOpenNew(int feedId, int newsId);
 
 signals:
   void signalPlaceToTray();

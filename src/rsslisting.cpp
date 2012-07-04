@@ -3732,7 +3732,10 @@ void RSSListing::showNotification()
 //  if (notificationWidget) delete notificationWidget;
 //  notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
 //  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
-//  connect(notificationWidget, SIGNAL(signalDelete()), this, SLOT(deleteNotification()));
+//  connect(notificationWidget, SIGNAL(signalDelete()),
+//          this, SLOT(deleteNotification()));
+//  connect(notificationWidget, SIGNAL(signalOpenNews(int,int)),
+//          this, SLOT(slotOpenNew(int,int)));
 //  notificationWidget->show();
 }
 
@@ -3741,4 +3744,25 @@ void RSSListing::deleteNotification()
 {
   notificationWidget->deleteLater();
   notificationWidget = NULL;
+}
+
+//! Показать новость при клике в окне уведомления входящих новостей
+void RSSListing::slotOpenNew(int feedId, int newsId)
+{
+  deleteNotification();
+
+  QSqlQuery q(db_);
+  QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+  q.exec(qStr);
+
+  int rowFeeds = -1;
+  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == feedId) {
+      rowFeeds = i;
+    }
+  }
+  feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+  slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+  slotShowWindows();
 }
