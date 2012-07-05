@@ -92,7 +92,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
 
       if (currentTag == "item") {  // RSS
         if (isHeader) {
-          rssPubDateString = parseDate(rssPubDateString);
+          rssPubDateString = parseDate(rssPubDateString, url.toString());
 
           QSqlQuery q(*db);
           QString qStr("update feeds "
@@ -122,7 +122,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         categoryString.clear();
       }
       if (currentTag == "entry") {  // Atom
-        atomUpdatedString = parseDate(atomUpdatedString);
+        atomUpdatedString = parseDate(atomUpdatedString, url.toString());
 
         if (isHeader) {
           QSqlQuery q(*db);
@@ -182,7 +182,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
     } else if (xml.isEndElement()) {
       // rss::item
       if (xml.name() == "item") {
-        rssPubDateString = parseDate(rssPubDateString);
+        rssPubDateString = parseDate(rssPubDateString, url.toString());
 
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
@@ -245,7 +245,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
       }
       // atom::feed
       else if (xml.name() == "entry") {
-        atomUpdatedString = parseDate(atomUpdatedString);
+        atomUpdatedString = parseDate(atomUpdatedString, url.toString());
 
         QTextDocument textDocument;
         textDocument.setHtml(titleString);
@@ -384,7 +384,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   emit feedUpdated(url, feedChanged);
 }
 
-QString ParseObject::parseDate(QString dateString)
+QString ParseObject::parseDate(QString dateString, QString urlString)
 {
   QDateTime dt;
   QString temp;
@@ -415,6 +415,11 @@ QString ParseObject::parseDate(QString dateString)
   dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
   if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
+  temp = ds.left(24);
+  timeZone = ds.mid(temp.length()+1, 3);
+  dt = locale.toDateTime(temp, "ddd, d MMM yyyy HH:mm:ss");
+  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+
   temp = ds.left(ds.lastIndexOf(' '));
   timeZone = ds.mid(temp.length()+1, 3);
   dt = locale.toDateTime(temp, "d MMM yyyy HH:mm:ss");
@@ -440,6 +445,6 @@ QString ParseObject::parseDate(QString dateString)
   dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
   if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  qWarning() << __LINE__ << "parseDate: error with" << dateString;
+  qWarning() << __LINE__ << "parseDate: error with" << dateString << urlString;
   return QString();
 }

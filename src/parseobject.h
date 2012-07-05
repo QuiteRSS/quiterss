@@ -12,7 +12,7 @@ public:
   explicit ParseObject(QObject *parent = 0);
 
 private:
-  QString parseDate(QString dateString);
+  QString parseDate(QString dateString, QString urlString);
 
 signals:
   void feedUpdated(const QUrl &url, const bool &changed);
