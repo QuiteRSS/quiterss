@@ -354,6 +354,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
         commentsString += xml.text().toString();
       else if (currentTag == "pubDate")
         rssPubDateString += xml.text().toString();
+      else if (currentTag == "date")
+        rssPubDateString += xml.text().toString();
       else if (currentTag == "guid")
         rssGuidString += xml.text().toString();
       else if (currentTag == "encoded")  //rss::content:encoded
