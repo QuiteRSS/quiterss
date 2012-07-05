@@ -286,8 +286,8 @@ private:
   bool playSoundNewNews_;
   bool showNotifyOn_;
   int countShowNewsNotify_;
-  int timeShowNewsNotify_;
   int widthTitleNewsNotify_;
+  int timeShowNewsNotify_;
 
   UpdateAppDialog *updateAppDialog_;
 

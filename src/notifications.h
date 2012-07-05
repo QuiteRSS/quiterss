@@ -83,7 +83,9 @@ class NotificationWidget : public QWidget
   Q_OBJECT
 public:
   NotificationWidget(QSqlDatabase *db, QList<int> idFeedList,
-                     QList<int> cntNewNewsList, QWidget * parent = 0);
+                     QList<int> cntNewNewsList,
+                     int countShowNews, int timeShowNews, int widthTitleNews,
+                     QWidget * parent = 0);
 
 protected:
   virtual void showEvent(QShowEvent*);

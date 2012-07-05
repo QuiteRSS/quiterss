@@ -344,16 +344,46 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   showNotifyOn_ = new QGroupBox(tr("Display notification for incoming news"));
   showNotifyOn_->setCheckable(true);
-//  showNotifyOn_->setChecked(false);
+  showNotifyOn_->setChecked(false);
 
-  QVBoxLayout *notifierLayout = new QVBoxLayout();
-  notifierLayout->addWidget(soundNewNews_);
-  notifierLayout->addWidget(showNotifyOn_);
-  notifierLayout->addStretch();
+  countShowNewsNotify_ = new QSpinBox();
+  countShowNewsNotify_->setRange(1, 30);
+  widthTitleNewsNotify_ = new QSpinBox();
+  widthTitleNewsNotify_->setRange(50, 500);
+  timeShowNewsNotify_ = new QSpinBox();
+  timeShowNewsNotify_->setRange(1, 99);
+
+  QHBoxLayout *notifierLayout1 = new QHBoxLayout();
+  notifierLayout1->addWidget(new QLabel(tr("Show maximum of")));
+  notifierLayout1->addWidget(countShowNewsNotify_);
+  notifierLayout1->addWidget(new QLabel(tr("news on page notification")), 1);
+
+  QHBoxLayout *notifierLayout2 = new QHBoxLayout();
+  notifierLayout2->addWidget(new QLabel(tr("Width news list")));
+  notifierLayout2->addWidget(widthTitleNewsNotify_);
+  notifierLayout2->addWidget(new QLabel(tr("pixels")), 1);
+
+  QHBoxLayout *notifierLayout3 = new QHBoxLayout();
+  notifierLayout3->addWidget(new QLabel(tr("Close notification after")));
+  notifierLayout3->addWidget(timeShowNewsNotify_);
+  notifierLayout3->addWidget(new QLabel(tr("seconds")), 1);
+
+  QVBoxLayout *notificationLayout = new QVBoxLayout();
+  notificationLayout->addLayout(notifierLayout1);
+  notificationLayout->addLayout(notifierLayout2);
+  notificationLayout->addLayout(notifierLayout3);
+  notificationLayout->addStretch(1);
+
+  showNotifyOn_->setLayout(notificationLayout);
+
+  QVBoxLayout *notifierMainLayout = new QVBoxLayout();
+  notifierMainLayout->addWidget(soundNewNews_);
+  notifierMainLayout->addSpacing(10);
+  notifierMainLayout->addWidget(showNotifyOn_, 1);
 
   notifierWidget_ = new QFrame();
   notifierWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
-  notifierWidget_->setLayout(notifierLayout);
+  notifierWidget_->setLayout(notifierMainLayout);
   //} notifier
 
   //{ language

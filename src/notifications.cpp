@@ -3,19 +3,22 @@
 
 NotificationWidget::NotificationWidget(QSqlDatabase *db,
                                        QList<int> idFeedList,
-                                       QList<int> cntNewNewsList, QWidget *parent) :
+                                       QList<int> cntNewNewsList,
+                                       int countShowNews,
+                                       int timeShowNews,
+                                       int widthTitleNews,
+                                       QWidget *parent) :
   QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint),
   db_(db),
   idFeedList_(idFeedList),
-  cntNewNewsList_(cntNewNewsList)
+  cntNewNewsList_(cntNewNewsList),
+  countShowNews_(countShowNews),
+  timeShowNews_(timeShowNews),
+  widthTitleNews_(widthTitleNews)
 {
   setAttribute(Qt::WA_TranslucentBackground);
   setFocusPolicy(Qt::NoFocus);
   setAttribute(Qt::WA_AlwaysShowToolTips);
-
-  countShowNews_ = 10;
-  timeShowNews_ = 10;
-  widthTitleNews_ = 300;
 
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
@@ -136,7 +139,8 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
 
       NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(),
                                         widthTitleNews_, this);
-      newsItem->iconNews->setPixmap(iconFeed);
+      if (!iconFeed.isNull())
+        newsItem->iconNews->setPixmap(iconFeed);
       newsItem->iconNews->setToolTip(titleFeed);
       connect(newsItem, SIGNAL(signalMarkRead(int)),
               this, SLOT(markRead(int)));

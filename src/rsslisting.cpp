@@ -1166,6 +1166,9 @@ void RSSListing::readSettings()
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
   showNotifyOn_ = settings_->value("showNotifyOn", true).toBool();
+  countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
+  widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
+  timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
 
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
@@ -1291,6 +1294,9 @@ void RSSListing::writeSettings()
 
   settings_->setValue("soundNewNews", soundNewNews_);
   settings_->setValue("showNotifyOn", showNotifyOn_);
+  settings_->setValue("countShowNewsNotify", countShowNewsNotify_);
+  settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
+  settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -1912,6 +1918,9 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
   optionsDialog->showNotifyOn_->setChecked(showNotifyOn_);
+  optionsDialog->countShowNewsNotify_->setValue(countShowNewsNotify_);
+  optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
+  optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
 
   optionsDialog->setLanguage(langFileName_);
 
@@ -2018,6 +2027,9 @@ void RSSListing::showOptionDlg()
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
   showNotifyOn_ = optionsDialog->showNotifyOn_->isChecked();
+  countShowNewsNotify_ = optionsDialog->countShowNewsNotify_->value();
+  widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
+  timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
 
   if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();
@@ -3734,7 +3746,9 @@ void RSSListing::showNotification()
   if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) return;
 
   if (notificationWidget) delete notificationWidget;
-  notificationWidget = new NotificationWidget(&db_, idFeedList_, cntNewNewsList_);
+  notificationWidget = new NotificationWidget(
+        &db_, idFeedList_, cntNewNewsList_,
+        countShowNewsNotify_, timeShowNewsNotify_, widthTitleNewsNotify_);
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
   connect(notificationWidget, SIGNAL(signalDelete()),
           this, SLOT(deleteNotification()));
