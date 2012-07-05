@@ -395,55 +395,68 @@ QString ParseObject::parseDate(QString dateString, QString urlString)
   QString ds = dateString.simplified();
   QLocale locale(QLocale::C);
 
-  temp     = ds.left(23);
-  timeZone = ds.mid(temp.length(), 3);
-  dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss.z");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+  if (ds.indexOf(',') != -1) {
+    ds = ds.remove(0, ds.indexOf(',')+1).simplified();
+  }
 
-  temp     = ds.left(19);
-  timeZone = ds.mid(temp.length(), 3);
-  dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+  for (int i = 0; i < 2; i++, locale = QLocale::system()) {
+    temp     = ds.left(23);
+    timeZone = ds.mid(temp.length(), 3);
+    dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss.z");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  temp = ds.left(23);
-  timeZone = ds.mid(temp.length()+1, 3);
-  dt = locale.toDateTime(temp, "yyyy-MM-dd HH:mm:ss.z");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp     = ds.left(19);
+    timeZone = ds.mid(temp.length(), 3);
+    dt = locale.toDateTime(temp, "yyyy-MM-ddTHH:mm:ss");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  temp = ds.left(25);
-  timeZone = ds.mid(temp.length()+1, 3);
-  dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp = ds.left(23);
+    timeZone = ds.mid(temp.length()+1, 3);
+    dt = locale.toDateTime(temp, "yyyy-MM-dd HH:mm:ss.z");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  temp = ds.left(24);
-  timeZone = ds.mid(temp.length()+1, 3);
-  dt = locale.toDateTime(temp, "ddd, d MMM yyyy HH:mm:ss");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp = ds.left(19);
+    timeZone = ds.mid(temp.length()+1, 3);
+    dt = locale.toDateTime(temp, "yyyy-MM-dd HH:mm:ss");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  temp = ds.left(ds.lastIndexOf(' '));
-  timeZone = ds.mid(temp.length()+1, 3);
-  dt = locale.toDateTime(temp, "d MMM yyyy HH:mm:ss");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp = ds.left(20);
+    timeZone = ds.mid(temp.length()+1, 3);
+    dt = locale.toDateTime(temp, "dd MMM yyyy HH:mm:ss");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  temp = ds.left(11);
-  dt = locale.toDateTime(temp, "dd MMM yyyy");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp = ds.left(19);
+    timeZone = ds.mid(temp.length()+1, 3);
+    dt = locale.toDateTime(temp, "d MMM yyyy HH:mm:ss");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  temp = ds.left(10);
-  dt = locale.toDateTime(temp, "yyyy-MM-dd");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp = ds.left(11);
+    timeZone = ds.mid(temp.length()+1, 3);
+    dt = locale.toDateTime(temp, "dd MMM yyyy");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
-  // @HACK(arhohryakov:2012.01.01):
-  // Формат "ddd, dd MMM yy HH:mm:ss" не распознаётся автоматически. Приводим
-  // его к формату "ddd, dd MMM yyyy HH:mm:ss"
-  QString temp2;
-  temp2 = ds;  // чтобы сохранить нетронутую ds для вывода, если будет ошибка
-  if (70 < ds.mid(12, 2).toInt()) temp2.insert(12, "19");
-  else temp2.insert(12, "20");
-  temp = temp2.left(25);
-  timeZone = ds.mid(temp.length()+1-2, 3);  // -2, т.к. вставили 2 символа
-  dt = locale.toDateTime(temp, "ddd, dd MMM yyyy HH:mm:ss");
-  if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+    temp = ds.left(10);
+    timeZone = ds.mid(temp.length()+1, 3);
+    dt = locale.toDateTime(temp, "d MMM yyyy");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+
+    temp = ds.left(10);
+    timeZone = ds.mid(temp.length(), 3);
+    dt = locale.toDateTime(temp, "yyyy-MM-dd");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+
+    // @HACK(arhohryakov:2012.01.01):
+    // Формат "dd MMM yy HH:mm:ss" не распознаётся автоматически. Приводим
+    // его к формату "dd MMM yyyy HH:mm:ss"
+    QString temp2;
+    temp2 = ds;  // чтобы сохранить нетронутую ds для вывода, если будет ошибка
+    if (70 < ds.mid(7, 2).toInt()) temp2.insert(7, "19");
+    else temp2.insert(7, "20");
+    temp = temp2.left(20);
+    timeZone = ds.mid(temp.length()+1-2, 3);  // "-2", т.к. вставили 2 символа
+    dt = locale.toDateTime(temp, "dd MMM yyyy HH:mm:ss");
+    if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
+  }
 
   qWarning() << __LINE__ << "parseDate: error with" << dateString << urlString;
   return QString();
