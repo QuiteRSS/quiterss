@@ -201,6 +201,7 @@ private:
   QAction *switchFocusAct_;
   QAction *visibleFeedsDockAct_;
   QAction *openFeedNewTabAct_;
+  QAction *placeToTrayAct_;
 
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;

@@ -762,6 +762,11 @@ void RSSListing::createActions()
           this, SLOT(findText()));
   this->addAction(findTextAct_);
 
+  placeToTrayAct_ = new QAction(this);
+  placeToTrayAct_->setObjectName("placeToTrayAct");
+  connect(placeToTrayAct_, SIGNAL(triggered()), this, SLOT(slotPlaceToTray()));
+  this->addAction(placeToTrayAct_);
+
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
   connect(markAllNewsRead_, SIGNAL(triggered()),
@@ -836,6 +841,8 @@ void RSSListing::createShortcut()
 
   visibleFeedsDockAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
   listActions_.append(visibleFeedsDockAct_);
+
+  listActions_.append(placeToTrayAct_);
 
   loadActionShortcuts();
 }
@@ -2740,6 +2747,10 @@ void RSSListing::retranslateStrings() {
         tr("Switch focus between panels (tree feeds, list news, browser)"));
 
   visibleFeedsDockAct_->setText(tr("Show/hide tree feeds"));
+
+  placeToTrayAct_->setText(tr("Minimize to tray"));
+  placeToTrayAct_->setToolTip(
+        tr("Minimize application to tray"));
 
   feedsColumnsMenu_->setTitle(tr("Columns"));
   showUnreadCount_->setText(tr("Count news unread"));
