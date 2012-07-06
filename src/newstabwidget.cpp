@@ -197,6 +197,7 @@ void NewsTabWidget::createMenuNews()
   newsContextMenu_->addAction(rsslisting_->updateFeedAct_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->deleteNewsAct_);
+  newsContextMenu_->addAction(rsslisting_->deleteAllNewsAct_);
 }
 
 void NewsTabWidget::showContextMenuNews(const QPoint &p)
@@ -788,6 +789,29 @@ void NewsTabWidget::deleteNews()
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
   else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
+  newsView_->setCurrentIndex(curIndex);
+  slotNewsViewSelected(curIndex);
+  rsslisting_->slotUpdateStatus();
+}
+
+//! Удаление всех новостей из списка
+void NewsTabWidget::deleteAllNewsList()
+{
+  QModelIndex curIndex;
+
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
+  for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
+    int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
+    QSqlQuery q(rsslisting_->db_);
+    q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
+                   "WHERE feedId='%1' AND id=='%2'").
+           arg(feedId).arg(newsId));
+  }
+  rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+
+  curIndex = newsModel_->index(-1, newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rsslisting_->slotUpdateStatus();

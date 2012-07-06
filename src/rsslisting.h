@@ -48,6 +48,7 @@ public:
   QAction *markStarAct_;
   QAction *updateFeedAct_;
   QAction *deleteNewsAct_;
+  QAction *deleteAllNewsAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
   QActionGroup *newsFilterGroup_;
@@ -361,6 +362,7 @@ private slots:
   void markAllNewsRead();
   void markNewsStar();
   void deleteNews();
+  void deleteAllNewsList();
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();

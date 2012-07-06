@@ -63,6 +63,7 @@ public:
   void markAllNewsRead();
   void markNewsStar();
   void deleteNews();
+  void deleteAllNewsList();
 
   void openInBrowserNews();
   void openInExternalBrowserNews();

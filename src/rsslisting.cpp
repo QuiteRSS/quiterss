@@ -702,6 +702,10 @@ void RSSListing::createActions()
   deleteNewsAct_->setObjectName("deleteNewsAct");
   deleteNewsAct_->setIcon(QIcon(":/images/delete"));
   this->addAction(deleteNewsAct_);
+  deleteAllNewsAct_ = new QAction(this);
+  deleteAllNewsAct_->setObjectName("deleteAllNewsAct");
+//  deleteAllNewsAct_->setIcon(QIcon(":/images/delete"));
+  this->addAction(deleteAllNewsAct_);
 
   markFeedRead_ = new QAction(this);
   markFeedRead_->setObjectName("markFeedRead");
@@ -775,6 +779,8 @@ void RSSListing::createActions()
           this, SLOT(markNewsStar()));
   connect(deleteNewsAct_, SIGNAL(triggered()),
           this, SLOT(deleteNews()));
+  connect(deleteAllNewsAct_, SIGNAL(triggered()),
+          this, SLOT(deleteAllNewsList()));
 
   connect(newsKeyUpAct_, SIGNAL(triggered()),
           this, SLOT(slotNewsUpPressed()));
@@ -807,6 +813,7 @@ void RSSListing::createShortcut()
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
   listActions_.append(deleteNewsAct_);
+  listActions_.append(deleteAllNewsAct_);
   feedProperties_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_E));
   listActions_.append(feedProperties_);
   feedKeyUpAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Up));
@@ -2690,6 +2697,8 @@ void RSSListing::retranslateStrings() {
   markStarAct_->setToolTip(tr("Mark news star"));
   deleteNewsAct_->setText(tr("Delete"));
   deleteNewsAct_->setToolTip(tr("Delete selected news"));
+  deleteAllNewsAct_->setText(tr("Delete all news"));
+  deleteAllNewsAct_->setToolTip(tr("Delete all news from list"));
 
   markFeedRead_->setText(tr("Mark Read"));
   markFeedRead_->setToolTip(tr("Mark feed read"));
@@ -3701,6 +3710,11 @@ void RSSListing::markNewsStar()
 void RSSListing::deleteNews()
 {
   currentNewsTab->deleteNews();
+}
+
+void RSSListing::deleteAllNewsList()
+{
+  currentNewsTab->deleteAllNewsList();
 }
 
 void RSSListing::openInBrowserNews()
