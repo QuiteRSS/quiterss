@@ -219,6 +219,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(rssGuidString);
             q.addBindValue(titleString.simplified());
             q.addBindValue(authorString.simplified());
+            if (rssPubDateString.isEmpty())
+              rssPubDateString = QDateTime::currentDateTimeUtc().toString(Qt::ISODate);
             q.addBindValue(rssPubDateString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
@@ -287,6 +289,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(authorString);
             q.addBindValue(authorUriString);
             q.addBindValue(authorEmailString);
+            if (atomUpdatedString.isEmpty())
+              atomUpdatedString = QDateTime::currentDateTimeUtc().toString(Qt::ISODate);
             q.addBindValue(atomUpdatedString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
