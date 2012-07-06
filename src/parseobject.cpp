@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QTextDocument>
+#include <QTextDocumentFragment>
 
 #include "parseobject.h"
 #include "VersionNo.h"
@@ -222,14 +223,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(rssDescriptionString);
             q.addBindValue(contentString);
             q.addBindValue(rssGuidString);
-            q.addBindValue(titleString.simplified());
-            q.addBindValue(authorString.simplified());
+            q.addBindValue(QTextDocumentFragment::fromHtml(titleString.simplified()).toPlainText());
+            q.addBindValue(QTextDocumentFragment::fromHtml(authorString.simplified()).toPlainText());
             if (rssPubDateString.isEmpty())
               rssPubDateString = QDateTime::currentDateTimeUtc().toString(Qt::ISODate);
             q.addBindValue(rssPubDateString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
-            q.addBindValue(categoryString);
+            q.addBindValue(QTextDocumentFragment::fromHtml(categoryString.simplified()).toPlainText());
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << parseFeedId;
@@ -290,8 +291,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(atomSummaryString);
             q.addBindValue(contentString);
             q.addBindValue(atomIdString);
-            q.addBindValue(titleString.simplified());
-            q.addBindValue(authorString);
+            q.addBindValue(QTextDocumentFragment::fromHtml(titleString.simplified()).toPlainText());
+            q.addBindValue(QTextDocumentFragment::fromHtml(authorString.simplified()).toPlainText());
             q.addBindValue(authorUriString);
             q.addBindValue(authorEmailString);
             if (atomUpdatedString.isEmpty())
@@ -300,7 +301,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
             q.addBindValue(linkAlternateString);
-            q.addBindValue(categoryString);
+            q.addBindValue(QTextDocumentFragment::fromHtml(categoryString.simplified()).toPlainText());
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << parseFeedId;
