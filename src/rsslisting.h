@@ -99,7 +99,7 @@ public slots:
   void setNewsFilter(QAction*, bool clicked = true);
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
-  void setUserFilter(int feedId, bool onlyNew = true);
+  void setUserFilter(int feedId, int filterId = -1);
   void setAutoLoadImages(bool set = true);
 
 protected:

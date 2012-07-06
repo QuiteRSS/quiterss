@@ -3490,13 +3490,25 @@ void RSSListing::creatFeedTab(int feedId)
 }
 
 //! Применение пользовательских фильтров
-void RSSListing::setUserFilter(int feedId, bool onlyNew)
+void RSSListing::setUserFilter(int feedId, int filterId)
 {
   QSqlQuery q(db_);
-  q.exec(QString("SELECT id, type FROM filters WHERE feeds LIKE '\%,%1,\%'").
-         arg(feedId));
+  bool onlyNew = true;
+
+  if (filterId != -1) {
+    onlyNew = false;
+    q.exec(QString("SELECT enable, type FROM filters WHERE id='%1' AND feeds LIKE '\%,%2,\%'").
+           arg(filterId).arg(feedId));
+  } else {
+    q.exec(QString("SELECT enable, type, id FROM filters WHERE feeds LIKE '\%,%1,\%'").
+           arg(feedId));
+  }
+
   while (q.next()) {
-    int filterId = q.value(0).toInt();
+    if (q.value(0).toInt() == 0) continue;
+
+    if (onlyNew)
+      filterId = q.value(2).toInt();
     int filterType = q.value(1).toInt();
 
     QString qStr("UPDATE news SET");

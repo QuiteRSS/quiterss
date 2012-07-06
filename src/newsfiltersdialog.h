@@ -29,6 +29,7 @@ private slots:
   void moveDownFilter();
 
   void slotCurrentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
+  void slotItemChanged(QTreeWidgetItem *item,int column);
 
   void applyFilter();
 

@@ -24,7 +24,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q(rssl_->db_);
-  QString qStr = QString("SELECT id, name, feeds FROM filters");
+  QString qStr = QString("SELECT id, name, feeds, enable FROM filters");
   q.exec(qStr);
   while (q.next()) {
     QSqlQuery q1(rssl_->db_);
@@ -43,7 +43,10 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
              << q.value(1).toString()
              << strNameFeeds;
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-    treeWidgetItem->setCheckState(1, Qt::Checked);
+    if (q.value(3).toInt() == 1)
+      treeWidgetItem->setCheckState(1, Qt::Checked);
+    else
+      treeWidgetItem->setCheckState(1, Qt::Unchecked);
     filtersTree->addTopLevelItem(treeWidgetItem);
   }
 
@@ -103,6 +106,8 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
   connect(filtersTree, SIGNAL(doubleClicked(QModelIndex)),
           this, SLOT(editFilter()));
+  connect(filtersTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+          this, SLOT(slotItemChanged(QTreeWidgetItem*,int)));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
   restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
@@ -129,7 +134,7 @@ void NewsFiltersDialog::newFilter()
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q(rssl_->db_);
-  QString qStr = QString("SELECT name, feeds FROM filters WHERE id=='%1'").
+  QString qStr = QString("SELECT name, feeds, enable FROM filters WHERE id=='%1'").
       arg(filterId);
   q.exec(qStr);
   if (q.next()) {
@@ -149,7 +154,10 @@ void NewsFiltersDialog::newFilter()
              << q.value(0).toString()
              << strNameFeeds;
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-    treeWidgetItem->setCheckState(1, Qt::Checked);
+    if (q.value(2).toInt() == 1)
+      treeWidgetItem->setCheckState(1, Qt::Checked);
+    else
+      treeWidgetItem->setCheckState(1, Qt::Unchecked);
     filtersTree->addTopLevelItem(treeWidgetItem);
   }
 
@@ -197,7 +205,6 @@ void NewsFiltersDialog::editFilter()
     filtersTree->topLevelItem(filterRow)->setText(0, QString::number(filterId));
     filtersTree->topLevelItem(filterRow)->setText(1, q.value(0).toString());
     filtersTree->topLevelItem(filterRow)->setText(2, strNameFeeds);
-    filtersTree->topLevelItem(filterRow)->setCheckState(1, Qt::Checked);
   }
 }
 
@@ -276,7 +283,10 @@ void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
   } else {
     editButton->setEnabled(true);
     deleteButton->setEnabled(true);
-    applyFilterButton->setEnabled(true);
+    if (current->checkState(1) == Qt::Checked)
+      applyFilterButton->setEnabled(true);
+    else
+      applyFilterButton->setEnabled(false);
   }
 }
 
@@ -294,7 +304,7 @@ void NewsFiltersDialog::applyFilter()
   if (q.next()) {
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      rssl_->setUserFilter(strIdFeed.toInt(), false);
+      rssl_->setUserFilter(strIdFeed.toInt(), filterId);
       NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->tabWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
@@ -305,5 +315,22 @@ void NewsFiltersDialog::applyFilter()
   else {
     rssl_->slotUpdateNews();
     rssl_->slotUpdateStatus();
+  }
+}
+
+void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
+{
+  if (column == 1) {
+    int enable = 0;
+    if (item->checkState(1) == Qt::Checked) enable = 1;
+
+    RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+    QSqlQuery q(rssl_->db_);
+    QString qStr = QString("UPDATE filters SET enable='%1' WHERE id=='%2'").
+        arg(enable).arg(item->text(0).toInt());
+    q.exec(qStr);
+
+    if (filtersTree->currentItem() == item)
+      applyFilterButton->setEnabled(enable);
   }
 }
