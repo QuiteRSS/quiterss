@@ -7,6 +7,8 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
                                        int countShowNews,
                                        int timeShowNews,
                                        int widthTitleNews,
+                                       QString fontFamily,
+                                       int fontSize,
                                        QWidget *parent) :
   QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint),
   db_(db),
@@ -147,6 +149,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
       connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
               this, SIGNAL(signalOpenNews(int, int)));
 
+      newsItem->titleNews->setFont(QFont(fontFamily, fontSize));
       QString titleStr = newsItem->titleNews->fontMetrics().elidedText(
             q.value(1).toString(), Qt::ElideRight, newsItem->titleNews->sizeHint().width());
       newsItem->titleNews->setText(titleStr);

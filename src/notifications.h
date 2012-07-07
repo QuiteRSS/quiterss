@@ -85,6 +85,7 @@ public:
   NotificationWidget(QSqlDatabase *db, QList<int> idFeedList,
                      QList<int> cntNewNewsList,
                      int countShowNews, int timeShowNews, int widthTitleNews,
+                     QString fontFamily, int fontSize,
                      QWidget * parent = 0);
 
 protected:

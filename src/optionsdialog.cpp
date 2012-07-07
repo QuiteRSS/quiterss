@@ -477,6 +477,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem.clear();
   treeItem << "2" << tr("News font");
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "3" << tr("Notification font");
+  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   fontTree->setCurrentItem(fontTree->topLevelItem(0));
   connect(fontTree, SIGNAL(doubleClicked(QModelIndex)),

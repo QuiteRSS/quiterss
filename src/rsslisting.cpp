@@ -1138,6 +1138,8 @@ void RSSListing::readSettings()
   newsFontSize_ = settings_->value("/newsFontSize", 8).toInt();
   webFontFamily_ = settings_->value("/WebFontFamily", qApp->font().family()).toString();
   webFontSize_ = settings_->value("/WebFontSize", 12).toInt();
+  notificationFontFamily_ = settings_->value("/notificationFontFamily", qApp->font().family()).toString();
+  notificationFontSize_ = settings_->value("/notificationFontSize", 8).toInt();
 
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
@@ -1279,6 +1281,8 @@ void RSSListing::writeSettings()
   settings_->setValue("/newsFontSize", newsFontSize_);
   settings_->setValue("/WebFontFamily", webFontFamily_);
   settings_->setValue("/WebFontSize", webFontSize_);
+  settings_->setValue("/notificationFontFamily", notificationFontFamily_);
+  settings_->setValue("/notificationFontSize", notificationFontSize_);
 
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
@@ -1946,6 +1950,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->fontTree->topLevelItem(1)->setText(2, strFont);
   strFont = QString("%1, %2").arg(webFontFamily_).arg(webFontSize_);
   optionsDialog->fontTree->topLevelItem(2)->setText(2, strFont);
+  strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
+  optionsDialog->fontTree->topLevelItem(3)->setText(2, strFont);
 
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
 //
@@ -2062,6 +2068,8 @@ void RSSListing::showOptionDlg()
   newsFontSize_ = optionsDialog->fontTree->topLevelItem(1)->text(2).section(", ", 1).toInt();
   webFontFamily_ = optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 0, 0);
   webFontSize_ = optionsDialog->fontTree->topLevelItem(2)->text(2).section(", ", 1).toInt();
+  notificationFontFamily_ = optionsDialog->fontTree->topLevelItem(3)->text(2).section(", ", 0, 0);
+  notificationFontSize_ = optionsDialog->fontTree->topLevelItem(3)->text(2).section(", ", 1).toInt();
 
   delete optionsDialog;
 
@@ -3785,12 +3793,15 @@ void RSSListing::showNotification()
   if (notificationWidget) delete notificationWidget;
   notificationWidget = new NotificationWidget(
         &db_, idFeedList_, cntNewNewsList_,
-        countShowNewsNotify_, timeShowNewsNotify_, widthTitleNewsNotify_);
+        countShowNewsNotify_, timeShowNewsNotify_, widthTitleNewsNotify_,
+        notificationFontFamily_, notificationFontSize_);
+
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
   connect(notificationWidget, SIGNAL(signalDelete()),
           this, SLOT(deleteNotification()));
   connect(notificationWidget, SIGNAL(signalOpenNews(int,int)),
           this, SLOT(slotOpenNew(int,int)));
+
   notificationWidget->show();
 }
 
