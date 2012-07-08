@@ -67,6 +67,7 @@
         <file alias="selectFindInBrowser">images/find_in_browser_s.png</file>
         <file alias="findInNews">images/find_in_news.png</file>
         <file alias="selectFindInNews">images/find_in_news_s.png</file>
+        <file alias="flag_SR">images/flag_serbian.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
