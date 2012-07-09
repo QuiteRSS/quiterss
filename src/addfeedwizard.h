@@ -42,6 +42,7 @@ public:
 protected:
   virtual bool validateCurrentPage();
   virtual void done(int result);
+  void changeEvent(QEvent *event);
 
 signals:
   void startGetUrlTimer();

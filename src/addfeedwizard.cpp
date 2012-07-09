@@ -58,6 +58,21 @@ AddFeedWizard::~AddFeedWizard()
   QWizard::done(result);
 }
 
+void AddFeedWizard::changeEvent(QEvent *event)
+{
+  if ((event->type() == QEvent::ActivationChange) &&
+      isActiveWindow() && (currentId() == 0) && urlFeedEdit_->isEnabled()) {
+    QClipboard *clipboard_ = QApplication::clipboard();
+    QString clipboardStr = clipboard_->text().left(8);
+    if (clipboardStr.contains("http://", Qt::CaseInsensitive) ||
+        clipboardStr.contains("https://", Qt::CaseInsensitive)) {
+      urlFeedEdit_->setText(clipboard_->text());
+      urlFeedEdit_->selectAll();
+      urlFeedEdit_->setFocus();
+    } else urlFeedEdit_->setText("http://");
+  }
+}
+
 QWizardPage *AddFeedWizard::createUrlFeedPage()
 {
   QWizardPage *page = new QWizardPage;
@@ -67,15 +82,6 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   finishOn = false;
 
   urlFeedEdit_ = new LineEdit(this);
-
-  QClipboard *clipboard_ = QApplication::clipboard();
-  QString clipboardStr = clipboard_->text().left(8);
-  if (clipboardStr.contains("http://", Qt::CaseInsensitive) ||
-      clipboardStr.contains("https://", Qt::CaseInsensitive)) {
-    urlFeedEdit_->setText(clipboard_->text());
-    urlFeedEdit_->selectAll();
-    urlFeedEdit_->setFocus();
-  } else urlFeedEdit_->setText("http://");
 
   titleFeedAsName_ = new QCheckBox(
         tr("Use title of the feed as displayed name"), this);
