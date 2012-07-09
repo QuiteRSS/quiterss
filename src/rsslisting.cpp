@@ -1464,39 +1464,42 @@ void RSSListing::slotImportFeeds()
       if (xml.name() == "outline") {
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
                  << ":" << xml.name().toString();
-        QSqlQuery q(db_);
 
-        QString textString(xml.attributes().value("text").toString());
-        QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
-        bool duplicateFound = false;
-        q.exec("select xmlUrl from feeds");
-        while (q.next()) {
-          if (q.record().value(0).toString() == xmlUrlString) {
-            duplicateFound = true;
-            break;
+        if (!xml.attributes().value("xmlUrl").isEmpty()) {
+          QSqlQuery q(db_);
+
+          QString textString(xml.attributes().value("text").toString());
+          QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
+          bool duplicateFound = false;
+          q.exec("select xmlUrl from feeds");
+          while (q.next()) {
+            if (q.record().value(0).toString() == xmlUrlString) {
+              duplicateFound = true;
+              break;
+            }
           }
-        }
 
-        if (duplicateFound) {
-          qDebug() << "duplicate feed:" << xmlUrlString << textString;
-        } else {
-          QString qStr = QString("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl) "
-                                 "VALUES(?, ?, ?, ?, ?)");
-          q.prepare(qStr);
-          q.addBindValue(textString);
-          q.addBindValue(xml.attributes().value("title").toString());
-          q.addBindValue(xml.attributes().value("description").toString());
-          q.addBindValue(xmlUrlString);
-          q.addBindValue(xml.attributes().value("htmlUrl").toString());
-          q.exec();
-          qDebug() << q.lastQuery() << q.boundValues();
-          qDebug() << q.lastError().number() << ": " << q.lastError().text();
-          q.finish();
+          if (duplicateFound) {
+            qDebug() << "duplicate feed:" << xmlUrlString << textString;
+          } else {
+            QString qStr = QString("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl) "
+                                   "VALUES(?, ?, ?, ?, ?)");
+            q.prepare(qStr);
+            q.addBindValue(textString);
+            q.addBindValue(xml.attributes().value("title").toString());
+            q.addBindValue(xml.attributes().value("description").toString());
+            q.addBindValue(xmlUrlString);
+            q.addBindValue(xml.attributes().value("htmlUrl").toString());
+            q.exec();
+            qDebug() << q.lastQuery() << q.boundValues();
+            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            q.finish();
 
-          persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
-          faviconLoader->requestUrl(
-                xml.attributes().value("htmlUrl").toString(), xmlUrlString);
-          requestUrlCount++;
+            persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
+            faviconLoader->requestUrl(
+                  xml.attributes().value("htmlUrl").toString(), xmlUrlString);
+            requestUrlCount++;
+          }
         }
       }
     } else if (xml.isEndElement()) {
