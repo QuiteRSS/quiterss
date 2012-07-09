@@ -1370,6 +1370,10 @@ void RSSListing::addFeed()
     return;
   }
 
+  updateFeedsCount_ = -1;
+  idFeedList_.clear();
+  cntNewNewsList_.clear();
+
   emit startGetUrlTimer();
   faviconLoader->requestUrl(addFeedWizard->htmlUrlString_,
                             addFeedWizard->feedUrlString_);
