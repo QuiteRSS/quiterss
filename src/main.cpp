@@ -18,6 +18,7 @@ void loadModules(QSplashScreen* psplash)
   splashProgress.setObjectName("splashProgress");
   splashProgress.setTextVisible(false);
   splashProgress.setFixedHeight(10);
+  splashProgress.setMaximum(100);
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->addStretch(1);
@@ -40,7 +41,7 @@ void createSplashScreen()
   splash = 0;
   splash = new QSplashScreen(QPixmap(":/images/images/splashScreen.png"));
   splash->setFixedSize(splash->pixmap().width(), splash->pixmap().height());
-  splash->setContentsMargins(15, 0, 15, 0);
+  splash->setContentsMargins(5, 0, 5, 0);
   splash->setEnabled(false);
   splash->showMessage("Prepare loading...",
                       Qt::AlignRight | Qt::AlignTop, Qt::white);
