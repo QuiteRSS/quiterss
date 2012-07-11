@@ -155,6 +155,12 @@ RSSListing::~RSSListing()
   faviconLoader->quit();
 
   QSqlQuery q(db_);
+
+  bool cleanUpDB = false;
+  q.exec("SELECT value FROM info WHERE name='cleanUpAllDB_0.10.0'");
+  if (q.next()) cleanUpDB = q.value(0).toBool();
+  else q.exec("INSERT INTO info(name, value) VALUES ('cleanUpAllDB_0.10.0', 'true')");
+
   q.exec("SELECT id FROM feeds");
   while (q.next()) {
     QString feedId = q.value(0).toString();
@@ -169,15 +175,19 @@ RSSListing::~RSSListing()
     feedsCleanUp(feedId);
 
     qStr = QString("UPDATE news SET title='', published='' "
-                   "WHERE feedId=='%1' AND guid!='' AND deleted=1").
+                   "WHERE feedId=='%1' AND guid!=''").
         arg(feedId);
+    if (cleanUpDB) qStr.append(" AND deleted=1");
+    else  qStr.append(" AND deleted!=0");
     qt.exec(qStr);
 
     qStr = QString("UPDATE news SET description='', content='', received='', "
                    "author_name='', author_uri='', author_email='', "
                    "category='', new='', read='', starred='', deleted=2 "
-                   "WHERE feedId=='%1' AND deleted=1").
+                   "WHERE feedId=='%1'").
         arg(feedId);
+    if (cleanUpDB) qStr.append(" AND deleted=1");
+    else qStr.append(" AND deleted!=0");
     qt.exec(qStr);
   }
 
