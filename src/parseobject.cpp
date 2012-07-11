@@ -193,24 +193,30 @@ void ParseObject::slotParse(QSqlDatabase *db,
         qDebug() << "guid:     " << rssGuidString;
         qDebug() << "link_href:" << linkString;
         if (!rssGuidString.isEmpty())         // поиск по guid
-          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2'").
-              arg(parseFeedId).arg(rssGuidString);
+          q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2'").
+                 arg(parseFeedId).arg(rssGuidString));
         else if (!linkString.isEmpty()) {     // поиск по link_href
           if (rssPubDateString.isEmpty())
-            qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2'").
-                arg(parseFeedId).arg(linkString);
+            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2'").
+                   arg(parseFeedId).arg(linkString));
           else
-            qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2' AND published=='%3'").
-                arg(parseFeedId).arg(linkString).arg(rssPubDateString);
+            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2' AND published=='%3'").
+                   arg(parseFeedId).arg(linkString).arg(rssPubDateString));
         }
-        else if (rssPubDateString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
-          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND title LIKE '%2'").
-              arg(parseFeedId).arg(titleString.replace('\'', '_'));
-        else                                  // поиск по title и pubDate
-          qStr = QString("SELECT * FROM news "
-                         "WHERE feedId=='%1' AND title LIKE '%2' AND published=='%3'").
-              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(rssPubDateString);
-        q.exec(qStr);
+        else if (rssPubDateString.isEmpty()) {  // поиск по title, т.к. поле pubDate пустое
+          q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title");
+          q.bindValue(":id", parseFeedId);
+          q.bindValue(":title", titleString);
+          q.exec();
+        }
+        else {                                 // поиск по title и pubDate
+          q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title AND published=:published");
+          q.bindValue(":id", parseFeedId);
+          q.bindValue(":title", titleString);
+          q.bindValue(":published", rssPubDateString);
+          q.exec();
+        }
+
         // проверка правильности запроса
         if (q.lastError().isValid())
           qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
@@ -265,16 +271,21 @@ void ParseObject::slotParse(QSqlDatabase *db,
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
         if (!atomIdString.isEmpty())           // поиск по guid
-          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND guid=='%2'").
-              arg(parseFeedId).arg(atomIdString);
-        else if (atomUpdatedString.isEmpty())  // поиск по title, т.к. поле pubDate пустое
-          qStr = QString("SELECT * FROM news WHERE feedId=='%1' AND title LIKE '%2'").
-              arg(parseFeedId).arg(titleString.replace('\'', '_'));
-        else                                   // поиск по title и pubDate
-          qStr = QString("SELECT * FROM news "
-                         "WHERE feedId=='%1' AND title LIKE '%2' AND published=='%3'").
-              arg(parseFeedId).arg(titleString.replace('\'', '_')).arg(atomUpdatedString);
-        q.exec(qStr);
+          q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid=='%2'").
+                 arg(parseFeedId).arg(atomIdString));
+        else if (atomUpdatedString.isEmpty()) {  // поиск по title, т.к. поле pubDate пустое
+          q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title");
+          q.bindValue(":id", parseFeedId);
+          q.bindValue(":title", titleString);
+          q.exec();
+        }
+        else {                                  // поиск по title и pubDate
+          q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title AND published=:published");
+          q.bindValue(":id", parseFeedId);
+          q.bindValue(":title", titleString);
+          q.bindValue(":published", atomUpdatedString);
+          q.exec();
+        }
 
         // проверка правильности запроса
         if (q.lastError().isValid())
