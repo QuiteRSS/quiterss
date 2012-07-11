@@ -1,6 +1,5 @@
 #include <QDebug>
 #include <QDesktopServices>
-#include <QTextDocument>
 #include <QTextDocumentFragment>
 
 #include "parseobject.h"
@@ -185,6 +184,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
       if (xml.name() == "item") {
         rssPubDateString = parseDate(rssPubDateString, url.toString());
 
+        titleString = QTextDocumentFragment::fromHtml(titleString.simplified()).
+            toPlainText();
+
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
         QString qStr;
@@ -223,7 +225,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(rssDescriptionString);
             q.addBindValue(contentString);
             q.addBindValue(rssGuidString);
-            q.addBindValue(QTextDocumentFragment::fromHtml(titleString.simplified()).toPlainText());
+            q.addBindValue(titleString);
             q.addBindValue(QTextDocumentFragment::fromHtml(authorString.simplified()).toPlainText());
             if (rssPubDateString.isEmpty())
               rssPubDateString = QDateTime::currentDateTimeUtc().toString(Qt::ISODate);
@@ -255,9 +257,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
       else if (xml.name() == "entry") {
         atomUpdatedString = parseDate(atomUpdatedString, url.toString());
 
-        QTextDocument textDocument;
-        textDocument.setHtml(titleString);
-        titleString = textDocument.toPlainText();
+        titleString = QTextDocumentFragment::fromHtml(titleString.simplified()).
+            toPlainText();
 
         // поиск дубликата статей в базе
         QSqlQuery q(*db);
@@ -291,7 +292,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.addBindValue(atomSummaryString);
             q.addBindValue(contentString);
             q.addBindValue(atomIdString);
-            q.addBindValue(QTextDocumentFragment::fromHtml(titleString.simplified()).toPlainText());
+            q.addBindValue(titleString);
             q.addBindValue(QTextDocumentFragment::fromHtml(authorString.simplified()).toPlainText());
             q.addBindValue(authorUriString);
             q.addBindValue(authorEmailString);
