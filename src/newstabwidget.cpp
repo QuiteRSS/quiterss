@@ -963,7 +963,7 @@ void NewsTabWidget::webHomePage()
 //! Открытие отображаемой страницы во внешнем браузере
 void NewsTabWidget::openPageInExternalBrowser()
 {
-  openUrl(webView_->url());
+  QDesktopServices::openUrl(webView_->url());
 }
 
 //! Открытие новости в браузере
