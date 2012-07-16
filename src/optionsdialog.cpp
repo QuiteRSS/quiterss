@@ -838,8 +838,13 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
 
     if (pAction->icon().isNull())
       item->setIcon(1, QIcon(":/images/images/noicon.png"));
-    else
-      item->setIcon(1, pAction->icon());
+    else {
+      if (pAction->objectName() == "autoLoadImagesToggle") {
+        item->setIcon(1, QIcon(":/images/imagesOn"));
+        item->setText(1, tr("Load images"));
+        item->setText(2, tr("Auto load images to news view"));
+      } else item->setIcon(1, pAction->icon());
+    }
     shortcutTree_->addTopLevelItem(item);
 
     ++id;
