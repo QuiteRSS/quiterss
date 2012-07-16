@@ -207,7 +207,7 @@ QHeaderView::up-arrow {
 
 #logoLabel {
 	background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-								stop:0 #6C91FE,
+								stop:0 #31B1FF,
 								stop:1 #f9f9f9);
 	padding-top: 10px;
 }

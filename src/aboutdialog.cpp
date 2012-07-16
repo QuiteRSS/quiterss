@@ -28,11 +28,10 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
   QString info =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
-      "<h1><i><font color=#5b5b5b>"
-      + QString("QuiteRSS") + "</font></i></h1>"
-      "<p>" + tr("Version ") +
+      "<CENTER><IMG BORDER=\"10\" SRC=\":/images/images/logo_text.png\"></CENTER>"
+      "<P><RIGHT>" + tr("Version ") +
       + "<B>" + QString(STRFILEVER).section('.', 0, 2) + "</B>"
-      + QString(" (%1)").arg(STRDATE) + "</p>"
+      + QString(" (%1)").arg(STRDATE) + "</P>"
       "<HR>"
       + tr("The authors:") +
       "<UL>"
@@ -50,6 +49,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>" + "Korolev Andrey aka Zavulon" + "</li>"
       "<li>" + "Elohin Igor\'" + "</li>"
       "<li>" + "Vascom" + "</li>"
+      "<li>" + "Ozzii" + "</li>"
 
       "</UL>"
       "<HR>"
