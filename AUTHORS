@@ -15,15 +15,30 @@ Kalinin Andrey <mikhalych.kalinin@gmail.com>
 
 Elbert Pol 
 	* Testing
-	* Porting and creating package for OS/2 
+  * OS/2 package maintainer
 
 TI_Eugene 
 	* Testing
 	* Creating RPM packages for Fedora, Mandriva and OpenSUSE 
 
-Glad Deschrijver 
+Glad Deschrijver <glad.deschrijver@gmail.com>
 	* Testing
 	* French translations
 
-Zityi <zityisoft@gmail.com>
+ZityiSoft <zityisoft@gmail.com>
   * Hungarian translations
+
+Åke Engelbrektson <eson57@gmail.com>
+  * Swedish translations
+
+Korolev Andrey aka Zavulon <zavulon@mail15.com>
+  * Testing
+
+Elohin Igor' <maintlab@gmail.com>
+  * Testing
+
+Vascom
+  * Fedora package maintainer
+
+Ozzii <ozzii.translate@gmail.com>
+  * Serbian translations
