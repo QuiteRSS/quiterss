@@ -1128,4 +1128,48 @@
     <source>Find in browser</source>
     <target>Suche im Browser</target>
 </phrase>
+<phrase>
+    <source>Display notification for incoming news</source>
+    <target>Anzeigen einer Benachrichtigung über eingehende Artikel</target>
+</phrase>
+<phrase>
+    <source>Show maximum of</source>
+    <target>Ein Maximum anzeigen von</target>
+</phrase>
+<phrase>
+    <source>news on page notification</source>
+    <target>Artikel auf Seite Benachrichtigung</target>
+</phrase>
+<phrase>
+    <source>Width news list</source>
+    <target>Die Breite einer Liste der Artikel</target>
+</phrase>
+<phrase>
+    <source>pixels</source>
+    <target>Pixel</target>
+</phrase>
+<phrase>
+    <source>Close notification after</source>
+    <target>Die Schließen Benachrichtigung nach</target>
+</phrase>
+<phrase>
+    <source>Notification font</source>
+    <target>Schriftart Benachrichtigung</target>
+</phrase>
+<phrase>
+    <source>Delete all news from list</source>
+    <target>Löschen Sie alle Artikel von der Liste</target>
+</phrase>
+<phrase>
+    <source>Delete all news</source>
+    <target>Löschen Sie alle Artikel</target>
+</phrase>
+<phrase>
+    <source>Minimize to tray</source>
+    <target>Zum Tray minimieren</target>
+</phrase>
+<phrase>
+    <source>Minimize application to tray</source>
+    <target>Minimieren Anwendung auf das Tray</target>
+</phrase>
 </QPH>

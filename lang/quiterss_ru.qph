@@ -739,7 +739,7 @@
 </phrase>
 <phrase>
     <source>Play sound for incoming new news</source>
-    <target>Воспроизведение звука при входящих новых новостях</target>
+    <target>Воспроизводить звук при входящих новых новостях</target>
 </phrase>
 <phrase>
     <source>Enable JavaScript</source>
@@ -931,11 +931,11 @@
 </phrase>
 <phrase>
     <source>Show splash screen on startup</source>
-    <target>Показать заставку при запуске</target>
+    <target>Показывать заставку при запуске</target>
 </phrase>
 <phrase>
     <source>Show system tray icon</source>
-    <target>Показать иконку в системном трее</target>
+    <target>Показывать иконку в системном трее</target>
 </phrase>
 <phrase>
     <source>Reopen last opened feeds on startup</source>
@@ -1240,5 +1240,17 @@
 <phrase>
     <source>Loading...</source>
     <target>Загрузка...</target>
+</phrase>
+<phrase>
+    <source>Show maximum of</source>
+    <target>Показывать максимум</target>
+</phrase>
+<phrase>
+    <source>Show splash screen on startup</source>
+    <target>Показывать заставку при запуске</target>
+</phrase>
+<phrase>
+    <source>Close notification after</source>
+    <target>Закрывать уведомление после</target>
 </phrase>
 </QPH>
