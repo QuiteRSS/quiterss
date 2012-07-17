@@ -322,6 +322,8 @@ void RSSListing::slotPlaceToTray()
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (clearStatusNew_)
     markAllFeedsOld();
+  idFeedList_.clear();
+  cntNewNewsList_.clear();
 
   dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
   dbMemFileThread_->start(QThread::LowestPriority);
@@ -1720,7 +1722,11 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     playSoundNewNews();
   }
 
-  if ((newCount - newCountOld) > 0) {
+  if (isActiveWindow()) {
+    idFeedList_.clear();
+    cntNewNewsList_.clear();
+  }
+  if (((newCount - newCountOld) > 0) && !isActiveWindow()) {
     idFeedList_.append(parseFeedId);
     cntNewNewsList_.append(newCount - newCountOld);
   }
