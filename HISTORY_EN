@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.9.1+</B> (xx July 2012)
+<P><B>Version 0.10.0</B> (18 July 2012)
 <UL>
 <LI>Note: Reappear news, which already have been marked read (0.8.x, 0.9.x -> 0.10.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
 <BR>
