@@ -111,12 +111,12 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="49"/>
         <source>Display feed on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer flux au démarrage</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="50"/>
         <source>Load images</source>
-        <translation type="unfinished">Charger les images</translation>
+        <translation>Charger les images</translation>
     </message>
 </context>
 <context>
@@ -163,12 +163,12 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="256"/>
         <source>Please enter name for the filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduisez un nom pour le filtre.</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="268"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduisez une condition de recherche pour le filtre.</translation>
     </message>
 </context>
 <context>
@@ -177,12 +177,12 @@
         <location filename="../src/findtext.cpp" line="47"/>
         <location filename="../src/findtext.cpp" line="62"/>
         <source>Filter news</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer les articles</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="63"/>
         <source>Find in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher dans le navigateur</translation>
     </message>
 </context>
 <context>
@@ -372,7 +372,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="90"/>
         <source>Apply selected filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer filtre sélectionné</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="215"/>
@@ -435,7 +435,7 @@
     <message>
         <location filename="../src/notifications.h" line="27"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished">Marquer lu/non lu</translation>
+        <translation>Marquer lu/non lu</translation>
     </message>
 </context>
 <context>
@@ -477,7 +477,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="402"/>
         <source>Open in new tab</source>
-        <translation type="unfinished">Ouvrir dans un nouvel onglet</translation>
+        <translation>Ouvrir dans un nouvel onglet</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="403"/>
@@ -517,7 +517,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="416"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer onglet</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="937"/>
@@ -530,14 +530,14 @@
     <message>
         <location filename="../src/notifications.cpp" line="107"/>
         <source>Incoming news: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Articles entrants: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="161"/>
         <location filename="../src/notifications.cpp" line="211"/>
         <location filename="../src/notifications.cpp" line="223"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Page %1 de %2</translation>
     </message>
 </context>
 <context>
@@ -657,7 +657,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="89"/>
         <source>Empty working set on minimize to tray</source>
-        <translation></translation>
+        <translation>Effacer ensemble de travail lors du passage à la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="92"/>
@@ -707,22 +707,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="172"/>
         <source>Use embedded browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser le navigateur intégré</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="173"/>
         <source>Use standard external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser le navigateur externe par défaut</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="174"/>
         <source>Use following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser le navigateur externe suivant :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="177"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Naviguer...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="179"/>
@@ -737,62 +737,62 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="196"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélection du navigateur :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="198"/>
         <source>Content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Contenu :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>Display notification for incoming news</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher notification pour les articles entrants</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="357"/>
         <source>Show maximum of</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer un maximum de</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="359"/>
         <source>news on page notification</source>
-        <translation type="unfinished"></translation>
+        <translation>article(s) sur la notification</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="362"/>
         <source>Width news list</source>
-        <translation type="unfinished"></translation>
+        <translation>Largeur de la liste des articles :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>pixels</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Close notification after</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer notification après</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="489"/>
         <source>Notification font</source>
-        <translation type="unfinished"></translation>
+        <translation>Police de la notification</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="844"/>
         <source>Load images</source>
-        <translation type="unfinished">Charger les images</translation>
+        <translation>Charger les images</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Auto load images to news view</source>
-        <translation type="unfinished">Charger automatiquement les images dans les articles</translation>
+        <translation>Charger automatiquement les images dans les articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Open File...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir fichier...</translation>
     </message>
     <message>
         <source>Use the embedded browser</source>
@@ -1384,27 +1384,27 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2718"/>
         <source>Open news in new tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir article dans un nouvel onglet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2719"/>
         <source>Open in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un onglet d&apos;arrière-plan</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2720"/>
         <source>Open news in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir article dans un onglet d&apos;arrière-plan</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2725"/>
         <source>Delete all news</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tous les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2726"/>
         <source>Delete all news from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tous les articles de la liste</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2730"/>
@@ -1416,7 +1416,7 @@
         <location filename="../src/rsslisting.cpp" line="2732"/>
         <location filename="../src/rsslisting.cpp" line="2733"/>
         <source>editFeedsTree_</source>
-        <translation type="unfinished"></translation>
+        <translation>Édition des flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2759"/>
@@ -1491,12 +1491,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2785"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser vers la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2787"/>
         <source>Minimize application to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser application vers la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2789"/>
@@ -1531,7 +1531,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3444"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement en cours...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2657"/>
@@ -1758,32 +1758,32 @@
     <message>
         <location filename="../src/treeeditdialog.cpp" line="15"/>
         <source>createFolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un dossier</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="16"/>
         <source>deleteNode</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer un nœud</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="17"/>
         <source>moveUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Vers le haut</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="18"/>
         <source>moveDown</source>
-        <translation type="unfinished"></translation>
+        <translation>Vers le bas</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="19"/>
         <source>moveLeft</source>
-        <translation type="unfinished"></translation>
+        <translation>Vers la gauche</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="20"/>
         <source>moveRight</source>
-        <translation type="unfinished"></translation>
+        <translation>Vers la droite</translation>
     </message>
 </context>
 <context>
