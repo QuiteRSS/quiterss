@@ -86,17 +86,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="42"/>
         <source>Load feed title</source>
-        <translation>Унос наслова канаал</translation>
+        <translation>Унос наслова канала</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="49"/>
         <source>Display feed on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи канал на покретање</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="50"/>
         <source>Load images</source>
-        <translation type="unfinished">Учитај слике</translation>
+        <translation>Учитај слике</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
@@ -159,12 +159,12 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="256"/>
         <source>Please enter name for the filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Унети име за филтер.</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="268"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Унети услов претраге за нови филтер.</translation>
     </message>
 </context>
 <context>
@@ -173,12 +173,12 @@
         <location filename="../src/findtext.cpp" line="47"/>
         <location filename="../src/findtext.cpp" line="62"/>
         <source>Filter news</source>
-        <translation type="unfinished"></translation>
+        <translation>Филтрирај вести</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="63"/>
         <source>Find in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Наћи у прегледнику</translation>
     </message>
 </context>
 <context>
@@ -368,7 +368,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="90"/>
         <source>Apply selected filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Примени одабран филтер</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="215"/>
@@ -431,7 +431,7 @@
     <message>
         <location filename="../src/notifications.h" line="27"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished">Означи Прочитаним/непрочитаним</translation>
+        <translation>Означи Прочитаним/непрочитаним</translation>
     </message>
 </context>
 <context>
@@ -473,7 +473,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="402"/>
         <source>Open in new tab</source>
-        <translation type="unfinished">Отвори у новом језичку</translation>
+        <translation>Отвори у новом језичку</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="403"/>
@@ -513,7 +513,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="416"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Затвори језичак</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="937"/>
@@ -526,14 +526,14 @@
     <message>
         <location filename="../src/notifications.cpp" line="107"/>
         <source>Incoming news: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Долазне вести: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="161"/>
         <location filename="../src/notifications.cpp" line="211"/>
         <location filename="../src/notifications.cpp" line="223"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Страница %1 од %2</translation>
     </message>
 </context>
 <context>
@@ -687,22 +687,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="172"/>
         <source>Use embedded browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи унутрашњи претраживач</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="173"/>
         <source>Use standard external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи стандардни екстерни претраживач</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="174"/>
         <source>Use following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Овај екстерни претраживач:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="177"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Претражи...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="179"/>
@@ -717,17 +717,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="844"/>
         <source>Load images</source>
-        <translation type="unfinished">Учитај слике</translation>
+        <translation>Учитај слике</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Auto load images to news view</source>
-        <translation type="unfinished">Ауто учитај слике у изглед вести</translation>
+        <translation>Ауто учитај слике у изглед вести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Open File...</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори датотеку...</translation>
     </message>
     <message>
         <source>Use the embedded browser</source>
@@ -820,12 +820,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="196"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Одабирање претраживача:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="198"/>
         <source>Content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Садржај:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="283"/>
@@ -865,32 +865,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>Display notification for incoming news</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи обавештење за долазне вести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="357"/>
         <source>Show maximum of</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи макс од</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="359"/>
         <source>news on page notification</source>
-        <translation type="unfinished"></translation>
+        <translation>вести по страници обавештења</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="362"/>
         <source>Width news list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ширина листе вести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>пиксела</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Close notification after</source>
-        <translation type="unfinished"></translation>
+        <translation>Затвори обавештење после</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="461"/>
@@ -965,7 +965,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="489"/>
         <source>Notification font</source>
-        <translation type="unfinished"></translation>
+        <translation>Фонт обавештења</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="496"/>
@@ -1309,12 +1309,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2785"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Умањи у треју</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2787"/>
         <source>Minimize application to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Умањи програм у треју</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2789"/>
@@ -1486,17 +1486,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2718"/>
         <source>Open news in new tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори вести у новом језичку</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2719"/>
         <source>Open in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори у позадински језичак</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2720"/>
         <source>Open news in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори вести у позадински језичак</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2721"/>
@@ -1511,12 +1511,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2725"/>
         <source>Delete all news</source>
-        <translation type="unfinished"></translation>
+        <translation>Обриши све вести</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2726"/>
         <source>Delete all news from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Обриши све вести са листе</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2729"/>
@@ -1527,7 +1527,7 @@
         <location filename="../src/rsslisting.cpp" line="2732"/>
         <location filename="../src/rsslisting.cpp" line="2733"/>
         <source>editFeedsTree_</source>
-        <translation type="unfinished"></translation>
+        <translation>editFeedsTree_</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2735"/>
@@ -1673,7 +1673,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3444"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Учитавање...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2750"/>
@@ -1689,7 +1689,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2753"/>
         <source>Big</source>
-        <translation type="unfinished">Велико</translation>
+        <translation>Велико</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2754"/>
@@ -1742,32 +1742,32 @@
     <message>
         <location filename="../src/treeeditdialog.cpp" line="15"/>
         <source>createFolder</source>
-        <translation type="unfinished"></translation>
+        <translation>createFolder</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="16"/>
         <source>deleteNode</source>
-        <translation type="unfinished"></translation>
+        <translation>deleteNode</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="17"/>
         <source>moveUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Горе</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="18"/>
         <source>moveDown</source>
-        <translation type="unfinished"></translation>
+        <translation>Доле</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="19"/>
         <source>moveLeft</source>
-        <translation type="unfinished"></translation>
+        <translation>Лево</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="20"/>
         <source>moveRight</source>
-        <translation type="unfinished"></translation>
+        <translation>Десно</translation>
     </message>
 </context>
 <context>
