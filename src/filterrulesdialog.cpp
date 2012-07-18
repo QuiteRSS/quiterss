@@ -23,7 +23,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << "All feeds" << "-1";
+  treeItem << tr("All feeds") << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree->addTopLevelItem(treeWidgetItem);
