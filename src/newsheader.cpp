@@ -10,7 +10,6 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
   setMinimumSectionSize(25);
   setStretchLastSection(false);
-  setVisible(false);
 
   pActGroup_ = NULL;
 

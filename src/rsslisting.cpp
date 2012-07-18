@@ -1765,9 +1765,7 @@ void RSSListing::slotUpdateNews()
   }
   newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
   if (newsRow == -1) {
-    webView_->setHtml("");
-    currentNewsTab->webPanel_->hide();
-    currentNewsTab->webControlPanel_->hide();
+    currentNewsTab->hideWebContent();
   }
 }
 
@@ -1832,6 +1830,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   } else {
     currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
     currentNewsTab->setSettings(false);
+    if (index.isValid())
+      currentNewsTab->setVisible(true);
   }
 
   //! Устанавливаем иконку и текст для открытой вкладки
@@ -1852,7 +1852,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
-  currentNewsTab->newsHeader_->setVisible(index.isValid());
+  if (!index.isValid())
+    currentNewsTab->setVisible(false);
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
@@ -2426,11 +2427,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
       }
     }
     newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-    if (newsRow == -1) {
-      webView_->setHtml("");
-      currentNewsTab->webPanel_->hide();
-      currentNewsTab->webControlPanel_->hide();
-    }
+    if (newsRow == -1)
+      currentNewsTab->hideWebContent();
   }
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -3061,11 +3059,7 @@ void RSSListing::markAllFeedsRead()
       widget->newsTextTitle_->setText("");
 
       feedProperties_->setEnabled(false);
-      widget->newsHeader_->setVisible(false);
-
-      widget->webView_->setHtml("");
-      widget->webPanel_->hide();
-      widget->webControlPanel_->hide();
+      widget->setVisible(false);
     }
   }
 
@@ -3398,6 +3392,8 @@ void RSSListing::slotTabCurrentChanged(int index)
   if (tabWidget_->count()) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
     if (widget->feedId_ > -1) {
+      if (widget->feedId_ == 0)
+        widget->hide();
       createNewsTab(index);
 
       int rowFeeds = -1;

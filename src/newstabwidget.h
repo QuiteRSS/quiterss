@@ -71,6 +71,8 @@ public:
 
   void updateWebView(QModelIndex index);
 
+  void hideWebContent();
+
   int feedId_;
   bool autoLoadImages_;
 
@@ -106,6 +108,7 @@ public slots:
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
+  void showEvent(QShowEvent *);
   void resizeEvent(QResizeEvent *);
 
 private slots:

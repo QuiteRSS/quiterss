@@ -96,6 +96,15 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   }
 }
 
+void NewsTabWidget::showEvent(QShowEvent *)
+{
+  QString titleStr, panelTitleStr;
+  titleStr = webPanelTitle_->fontMetrics().elidedText(
+        titleString_, Qt::ElideRight, webPanelTitle_->width());
+  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  webPanelTitle_->setText(panelTitleStr);
+}
+
 void NewsTabWidget::resizeEvent(QResizeEvent *)
 {
   QString titleStr, panelTitleStr;
@@ -457,9 +466,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   indexId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   if (!index.isValid()) {
-    webView_->setHtml("");
-    webPanel_->hide();
-    webControlPanel_->hide();
+    hideWebContent();
     rsslisting_->slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     currentNewsIdOld = indexId;
     currentFeedIdOld = feedId_;
@@ -821,9 +828,7 @@ void NewsTabWidget::deleteAllNewsList()
 void NewsTabWidget::updateWebView(QModelIndex index)
 {
   if (!index.isValid()) {
-    webView_->setHtml("");
-    webPanel_->hide();
-    webControlPanel_->hide();
+    hideWebContent();
     return;
   }
 
@@ -1101,9 +1106,7 @@ void NewsTabWidget::slotFindText(const QString &text)
     newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
     if (newsRow == -1) {
       currentNewsIdOld = newsId;
-      webView_->setHtml("");
-      webPanel_->hide();
-      webControlPanel_->hide();
+      hideWebContent();
     }
   }
 }
@@ -1119,3 +1122,11 @@ void NewsTabWidget::slotSelectFind()
   }
   slotFindText(findText_->text());
 }
+
+void NewsTabWidget::hideWebContent()
+{
+  webView_->setHtml("");
+  webPanel_->hide();
+  webControlPanel_->hide();
+}
+
