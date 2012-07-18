@@ -189,9 +189,7 @@ private:
   QTreeWidget *feedsTree;
   QDialogButtonBox *buttonBox;
 
-  QRadioButton *matchAllCondition_;
-  QRadioButton *matchAnyCondition_;
-  QRadioButton *matchAllNews_;
+  QComboBox *matchComboBox_;
 
   QScrollArea *conditionScrollArea;
   QVBoxLayout *conditionLayout;
@@ -226,7 +224,7 @@ private slots:
   ItemAction *addAction();
   void deleteAction(ItemAction *item);
 
-  void selectMatch();
+  void selectMatch(int index);
 
 };
 

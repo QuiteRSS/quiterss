@@ -67,19 +67,18 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
   filterNamelayout->addWidget(filterName);
 
-  matchAllCondition_ = new QRadioButton(tr("Match all conditions"), this);
-  matchAllCondition_->setChecked(true);
-  matchAnyCondition_ = new QRadioButton(tr("Match any condition"), this);
-  matchAllNews_ = new QRadioButton(tr("Match all news"), this);
-  connect(matchAllCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
-  connect(matchAnyCondition_, SIGNAL(clicked()), this, SLOT(selectMatch()));
-  connect(matchAllNews_, SIGNAL(clicked()), this, SLOT(selectMatch()));
+  matchComboBox_ = new QComboBox(this);
+
+  QStringList itemList;
+  itemList << tr("Match all news") << tr("Match all conditions")
+           << tr("Match any condition");
+  matchComboBox_->addItems(itemList);
+  matchComboBox_->setCurrentIndex(1);
+  connect(matchComboBox_, SIGNAL(currentIndexChanged(int)),
+          this, SLOT(selectMatch(int)));
 
   QHBoxLayout *matchLayout = new QHBoxLayout();
-  matchLayout->setSpacing(10);
-  matchLayout->addWidget(matchAllCondition_);
-  matchLayout->addWidget(matchAnyCondition_);
-  matchLayout->addWidget(matchAllNews_);
+  matchLayout->addWidget(matchComboBox_);
   matchLayout->addStretch();
 
   conditionScrollArea = new QScrollArea(this);
@@ -102,6 +101,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   splitterLayoutV1->addWidget(conditionScrollArea, 1);
 
   QWidget *splitterWidget1 = new QWidget(this);
+  splitterWidget1->setMinimumWidth(400);
   splitterWidget1->setLayout(splitterLayoutV1);
 
   actionsScrollArea = new QScrollArea(this);
@@ -200,14 +200,7 @@ void FilterRulesDialog::setData()
   if (q.next()) {
     filterName->setText(q.value(0).toString());
 
-    if (q.value(1).toInt() == 1) {
-      matchAllCondition_->setChecked(true);
-    } else if (q.value(1).toInt() == 2) {
-      matchAnyCondition_->setChecked(true);
-    } else {
-      matchAllNews_->setChecked(true);
-    }
-    selectMatch();
+    matchComboBox_->setCurrentIndex(q.value(1).toInt());
 
     QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
@@ -258,7 +251,7 @@ void FilterRulesDialog::acceptDialog()
     return;
   }
 
-  if (!matchAllNews_->isChecked()) {
+  if (matchComboBox_->currentIndex() != 0) {
     for (int i = 0; i < conditionLayout->count()-2; i++) {
       ItemCondition *itemCondition =
           qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
@@ -270,15 +263,6 @@ void FilterRulesDialog::acceptDialog()
         return;
       }
     }
-  }
-
-  int type;
-  if (matchAllCondition_->isChecked()) {
-    type = 1;
-  } else if (matchAnyCondition_->isChecked()) {
-    type = 2;
-  } else {
-    type = 0;
   }
 
   QString strIdFeeds;
@@ -301,7 +285,7 @@ void FilterRulesDialog::acceptDialog()
                            "VALUES (?, ?, ?)");
     q.prepare(qStr);
     q.addBindValue(filterName->text());
-    q.addBindValue(type);
+    q.addBindValue(matchComboBox_->currentIndex());
     q.addBindValue(strIdFeeds);
     q.exec();
 
@@ -341,7 +325,7 @@ void FilterRulesDialog::acceptDialog()
   } else {
     q.prepare("UPDATE filters SET name=?, type=?, feeds=? WHERE id=?");
     q.addBindValue(filterName->text());
-    q.addBindValue(type);
+    q.addBindValue(matchComboBox_->currentIndex());
     q.addBindValue(strIdFeeds);
     q.addBindValue(filterId_);
     q.exec();
@@ -387,9 +371,9 @@ void FilterRulesDialog::filterNameChanged(const QString &)
   warningWidget_->setVisible(false);
 }
 
-void FilterRulesDialog::selectMatch()
+void FilterRulesDialog::selectMatch(int index)
 {
-  if (matchAllNews_->isChecked()) {
+  if (index == 0) {
     conditionWidget->setEnabled(false);
   } else {
     conditionWidget->setEnabled(true);
