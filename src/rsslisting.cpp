@@ -1039,7 +1039,7 @@ void RSSListing::createMenu()
   feedMenu_->addSeparator();
   feedMenu_->addAction(feedProperties_);
   feedMenu_->addSeparator();
-  feedMenu_->addAction(editFeedsTree_);
+//  feedMenu_->addAction(editFeedsTree_);
   connect(feedMenu_, SIGNAL(aboutToShow()), this, SLOT(slotFeedMenuShow()));
 
   newsMenu_ = new QMenu(this);
