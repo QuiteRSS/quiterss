@@ -92,7 +92,9 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
       newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
     }
     newsTabWidgetSplitter_->setHandleWidth(1);
-    newsTabWidgetSplitter_->setStyleSheet("QSplitter::handle {background: gray;}");
+    newsTabWidgetSplitter_->setStyleSheet(
+          QString("QSplitter::handle {background: %1;}").
+          arg(qApp->palette().color(QPalette::Dark).name()));
   }
 }
 
