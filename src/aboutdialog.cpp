@@ -50,6 +50,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>" + "Elohin Igor\'" + "</li>"
       "<li>" + "Vascom" + "</li>"
       "<li>" + "Ozzii" + "</li>"
+      "<li>" + "Sergey Borisov aka NaturKeks" + "</li>"
 
       "</UL>"
       "<HR>"
