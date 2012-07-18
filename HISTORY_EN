@@ -2,6 +2,33 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.9.1+</B> (xx July 2012)
+<UL>
+<LI>Note: Reappear news, which already have been marked read (0.8.x, 0.9.x -> 0.10.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
+<BR>
+<LI>Added: Tabs. Open news in new tab</LI>
+<LI>Added: Tabs. Open link from news in new tab</LI>
+<LI>Added: User filters (case sensitive)</LI>
+<LI>Added: Feed option: "Display feed on startup". If enabled, show feed in new tab on startup </LI>
+<LI>Added: Feed option: "Load images". Specific behavior for every feed</LI>
+<LI>Added: Ability to subscribe to feed from Firefox</LI>
+<LI>Added: Application option: External browser selection</LI>
+<LI>Added: More shortcuts</LI>
+<LI>Added: Quick news filter and find in browser</LI>
+<LI>Added: Notification on new news</LI>
+<LI>Added: Swedish translation</LI>
+<LI>Added: Serbian translation</LI>
+<BR>
+<LI>Changed: GUI. Some visual tweaks</LI>
+<LI>Changed: Opening tabs in more smooth</LI>
+<BR>
+<LI>Fixed: Some feeds did not work</LI>
+<LI>Fixed: Can't detect date and time of some feeds</LI>
+<LI>Fixed: Can't load icon of some feeds</LI>
+<LI>Fixed: Deleting news (smaller size of database)</LI>
+<LI>Fixed: Application crash in Windows, due to lack of QtSvg4.dll</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.9.1</B> (31 May 2012)
 <UL>
 <LI>Note: Reappear news, which already have been marked read (0.8.x -> 0.9.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
