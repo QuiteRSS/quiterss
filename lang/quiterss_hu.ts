@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/notifications.h" line="27"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished">Olvasott/olvasatlan</translation>
+        <translation>Olvasott/olvasatlan</translation>
     </message>
 </context>
 <context>
@@ -553,14 +553,14 @@
     <message>
         <location filename="../src/notifications.cpp" line="107"/>
         <source>Incoming news: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bejövő hírek: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="161"/>
         <location filename="../src/notifications.cpp" line="211"/>
         <location filename="../src/notifications.cpp" line="223"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - %2 oldal</translation>
     </message>
 </context>
 <context>
@@ -687,6 +687,10 @@
         <translation>Beágyazott böngésző használata</translation>
     </message>
     <message>
+        <source>Use standart external browser</source>
+        <translation type="obsolete">Szabványos külső böngésző használata</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="174"/>
         <source>Use following external browser:</source>
         <translation>A következő külső böngésző használata:</translation>
@@ -707,49 +711,14 @@
         <translation>Beépülő modulok engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="345"/>
-        <source>Display notification for incoming news</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="357"/>
-        <source>Show maximum of</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="359"/>
-        <source>news on page notification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="362"/>
-        <source>Width news list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="364"/>
-        <source>pixels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="367"/>
-        <source>Close notification after</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="489"/>
-        <source>Notification font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="844"/>
         <source>Load images</source>
-        <translation type="unfinished">Képek betöltése</translation>
+        <translation>Képek betöltése</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Auto load images to news view</source>
-        <translation type="unfinished">A képek automatikus betöltése a hírek nézetbe</translation>
+        <translation>A képek automatikus betöltése a hírek nézetbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
@@ -890,6 +859,36 @@
         <translation>Hangjelzés a bejövő hírek esetén</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="345"/>
+        <source>Display notification for incoming news</source>
+        <translation>Értesítés megjelenítése a bejövő hírekről</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="357"/>
+        <source>Show maximum of</source>
+        <translation>Maximális megjelenítés</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="359"/>
+        <source>news on page notification</source>
+        <translation>hír az oldalon</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="362"/>
+        <source>Width news list</source>
+        <translation>Hírek-lista szélessége</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="364"/>
+        <source>pixels</source>
+        <translation>képpont</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="367"/>
+        <source>Close notification after</source>
+        <translation>Bezárás az értesítést követően</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="461"/>
         <source>Choose language:</source>
         <translation>Válasszon nyelvet:</translation>
@@ -950,6 +949,11 @@
         <location filename="../src/optionsdialog.cpp" line="486"/>
         <source>News font</source>
         <translation>Hírek betűtípusa</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <source>Notification font</source>
+        <translation>Értesítések betűtípusa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="496"/>
@@ -1371,12 +1375,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2725"/>
         <source>Delete all news</source>
-        <translation type="unfinished"></translation>
+        <translation>Az összes hír törlése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2726"/>
         <source>Delete all news from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Az összes hír törlése a listáról</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2729"/>
@@ -1417,12 +1421,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2785"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Lekicsinyítés a tálcára</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2787"/>
         <source>Minimize application to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Alkalmazás lekicsinyítése a tálcára</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2789"/>

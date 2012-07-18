@@ -1241,4 +1241,16 @@
     <source>Loading...</source>
     <target>Betöltés...</target>
 </phrase>
+<phrase>
+    <source>Show maximum of</source>
+    <target>Maximális megjelenítés</target>
+</phrase>
+<phrase>
+    <source>Show splash screen on startup</source>
+    <target>Nyitóképernyő megjelenítése indításkor</target>
+</phrase>
+<phrase>
+    <source>Close notification after</source>
+    <target>Bezárás az értesítést követően</target>
+</phrase>
 </QPH>
