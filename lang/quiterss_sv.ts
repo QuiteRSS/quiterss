@@ -91,12 +91,12 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="49"/>
         <source>Display feed on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa flöde vid uppstart</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="50"/>
         <source>Load images</source>
-        <translation type="unfinished">Läs in bilder</translation>
+        <translation>Läs in bilder</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
@@ -159,12 +159,12 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="256"/>
         <source>Please enter name for the filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett namn för filtret.</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="268"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange sökvillkor för nyhetsfiltret.</translation>
     </message>
 </context>
 <context>
@@ -173,12 +173,12 @@
         <location filename="../src/findtext.cpp" line="47"/>
         <location filename="../src/findtext.cpp" line="62"/>
         <source>Filter news</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrera nyheter</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="63"/>
         <source>Find in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna i webbläsare</translation>
     </message>
 </context>
 <context>
@@ -368,7 +368,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="90"/>
         <source>Apply selected filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd markerat filter</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="215"/>
@@ -431,7 +431,7 @@
     <message>
         <location filename="../src/notifications.h" line="27"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished">Markera som läst/oläst</translation>
+        <translation>Markera som läst/oläst</translation>
     </message>
 </context>
 <context>
@@ -473,7 +473,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="402"/>
         <source>Open in new tab</source>
-        <translation type="unfinished">Öppna i ny flik</translation>
+        <translation>Öppna i ny flik</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="403"/>
@@ -513,7 +513,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="416"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng flik</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="937"/>
@@ -526,14 +526,14 @@
     <message>
         <location filename="../src/notifications.cpp" line="107"/>
         <source>Incoming news: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkommande nyheter: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="161"/>
         <location filename="../src/notifications.cpp" line="211"/>
         <location filename="../src/notifications.cpp" line="223"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Sidan %1 av %2</translation>
     </message>
 </context>
 <context>
@@ -687,17 +687,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="172"/>
         <source>Use embedded browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd intern webbläsare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="174"/>
         <source>Use following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd följande extern webbläsare:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="177"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bläddra...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="179"/>
@@ -712,52 +712,52 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>Display notification for incoming news</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa meddelande för inkommande nyheter</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="357"/>
         <source>Show maximum of</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa maximalt</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="359"/>
         <source>news on page notification</source>
-        <translation type="unfinished"></translation>
+        <translation>nyheter i meddelande</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="362"/>
         <source>Width news list</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyhetslistans bredd</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="364"/>
         <source>pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>pixel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Close notification after</source>
-        <translation type="unfinished"></translation>
+        <translation>Stäng meddelanden efter</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="489"/>
         <source>Notification font</source>
-        <translation type="unfinished"></translation>
+        <translation>Meddelandeteckensnitt</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="844"/>
         <source>Load images</source>
-        <translation type="unfinished">Läs in bilder</translation>
+        <translation>Läs in bilder</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Auto load images to news view</source>
-        <translation type="unfinished">Läs in bilder automatiskt i nyhetsvyn</translation>
+        <translation>Läs in bilder automatiskt i nyhetsvyn</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Open File...</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna fil...</translation>
     </message>
     <message>
         <source>Use the embedded browser</source>
@@ -850,17 +850,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="173"/>
         <source>Use standard external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd systemets standardwebbläsare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="196"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbläsarval:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="198"/>
         <source>Content:</source>
-        <translation type="unfinished"></translation>
+        <translation>Innehåll:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="283"/>
@@ -1476,17 +1476,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2718"/>
         <source>Open news in new tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna nyheter i ny flik</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2719"/>
         <source>Open in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna i bakgrundsflik</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2720"/>
         <source>Open news in background tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna nyheter i bakgrundsflik</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2721"/>
@@ -1501,12 +1501,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2725"/>
         <source>Delete all news</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort alla nyheter</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2726"/>
         <source>Delete all news from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort alla nyheter från listan</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2729"/>
@@ -1517,7 +1517,8 @@
         <location filename="../src/rsslisting.cpp" line="2732"/>
         <location filename="../src/rsslisting.cpp" line="2733"/>
         <source>editFeedsTree_</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Dont know exactly what this is</translatorcomment>
+        <translation>Redigera flödesträd</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2735"/>
@@ -1663,17 +1664,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2785"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimera</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2787"/>
         <source>Minimize application to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimera till meddelandefältet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3444"/>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Läser in...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2750"/>
@@ -1742,32 +1743,32 @@
     <message>
         <location filename="../src/treeeditdialog.cpp" line="15"/>
         <source>createFolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa mapp</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="16"/>
         <source>deleteNode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort nod</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="17"/>
         <source>moveUp</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta upp</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="18"/>
         <source>moveDown</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta ner</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="19"/>
         <source>moveLeft</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta åt vänster</translation>
     </message>
     <message>
         <location filename="../src/treeeditdialog.cpp" line="20"/>
         <source>moveRight</source>
-        <translation type="unfinished"></translation>
+        <translation>Flytta åt höger</translation>
     </message>
 </context>
 <context>
