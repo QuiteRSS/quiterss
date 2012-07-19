@@ -3414,6 +3414,8 @@ void RSSListing::slotTabCurrentChanged(int index)
     } else {
       statusUnread_->setVisible(false);
       statusAll_->setVisible(false);
+      widget->setSettings();
+      widget->retranslateStrings();
       widget->setFocus();
     }
   }
