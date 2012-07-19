@@ -239,3 +239,38 @@ Qt::DropActions TreeModel::supportedDropActions() const
 {
   return Qt::MoveAction;
 }
+
+//!-----------------------------------------------------------------------------
+int TreeModel::fieldIndex(const QString &fieldName) const
+{
+  return tableModel->fieldIndex(fieldName);
+}
+
+//!-----------------------------------------------------------------------------
+QSqlRecord TreeModel::record(int row) const
+{
+  return tableModel->record(row);
+}
+
+//!-----------------------------------------------------------------------------
+bool TreeModel::select(QString filter)
+{
+  tableModel->setFilter(filter);
+
+  bool result = tableModel->select();
+
+  TreeItem *newRootItem = new TreeItem(0, -1);
+  setupModelData(newRootItem);
+
+  delete rootItem;
+  rootItem = newRootItem;
+
+  return result;
+}
+
+//!-----------------------------------------------------------------------------
+void TreeModel::setFilter(const QString &filter)
+{
+  select(filter);
+}
+

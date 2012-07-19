@@ -55,6 +55,8 @@ class TreeModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
+    QFont font_;
+
     TreeModel(QObject *parent = 0);
     ~TreeModel();
 
@@ -73,6 +75,11 @@ public:
     bool setHeaderData(int section, Qt::Orientation orientation,
                        const QVariant &value, int role = Qt::EditRole);
     Qt::DropActions supportedDropActions() const;
+
+    int fieldIndex(const QString &fieldName) const;
+    QSqlRecord record(int row) const;
+    bool select(QString filter = QString());
+    void setFilter(const QString &filter);
 
 private:
     void setupModelData(TreeItem *parent);

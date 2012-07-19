@@ -379,11 +379,13 @@ void RSSListing::timerEvent(QTimerEvent *event)
 
 void RSSListing::createFeedsDock()
 {
-  feedsModel_ = new FeedsModel(this);
-  feedsModel_->setTable("feeds");
-  feedsModel_->select();
+//  feedsModel_ = new FeedsModel(this);
+  feedsModel_ = new TreeModel(this);
+//  feedsModel_->setTable("feeds");
+//  feedsModel_->select();
 
-  feedsView_ = new FeedsView(this);
+//  feedsView_ = new FeedsView(this);
+  feedsView_ = new TreeViewDB(this);
   feedsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   feedsView_->setModel(feedsModel_);
   for (int i = 0; i < feedsModel_->columnCount(); ++i)

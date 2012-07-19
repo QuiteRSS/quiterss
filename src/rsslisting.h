@@ -7,14 +7,16 @@
 
 #include "dbmemfilethread.h"
 #include "faviconloader.h"
-#include "feedsmodel.h"
-#include "feedsview.h"
+//#include "feedsmodel.h"
+//#include "feedsview.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newstabwidget.h"
 #include "newsview.h"
 #include "notifications.h"
 #include "parsethread.h"
+#include "treemodeldb.h"
+#include "treeviewdb.h"
 #include "updateappdialog.h"
 #include "updatethread.h"
 #include "webview.h"
@@ -33,8 +35,10 @@ public:
 
   QSettings *settings_;
   QSqlDatabase db_;
-  FeedsModel *feedsModel_;
-  FeedsView *feedsView_;
+//  FeedsModel *feedsModel_;
+//  FeedsView *feedsView_;
+  TreeModel *feedsModel_;
+  TreeViewDB *feedsView_;
   QTabWidget *tabWidget_;
   WebView *webView_;
 

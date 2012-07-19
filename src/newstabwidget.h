@@ -5,12 +5,14 @@
 #include <QtSql>
 #include <QtWebKit>
 
-#include "feedsmodel.h"
-#include "feedsview.h"
+//#include "feedsmodel.h"
+//#include "feedsview.h"
 #include "findtext.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newsview.h"
+#include "treemodeldb.h"
+#include "treeviewdb.h"
 #include "webview.h"
 
 #define TOP_POSITION    0
@@ -30,8 +32,10 @@ private:
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
 
-  FeedsModel *feedsModel_;
-  FeedsView *feedsView_;
+//  FeedsModel *feedsModel_;
+//  FeedsView *feedsView_;
+  TreeModel *feedsModel_;
+  TreeViewDB *feedsView_;
 
   QFrame *lineWebWidget;
   QWidget *webWidget_;
