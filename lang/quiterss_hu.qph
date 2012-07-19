@@ -651,7 +651,7 @@
 </phrase>
 <phrase>
     <source>Change icon for incoming new news</source>
-    <target>Ikon módosítása a beérkező híreknél</target>
+    <target>Ikon változtatása a beérkező híreknél</target>
 </phrase>
 <phrase>
     <source>Show the count of new news</source>
@@ -727,7 +727,7 @@
 </phrase>
 <phrase>
     <source>News filters...</source>
-    <target>Hírek szűrők...</target>
+    <target>Hír-szűrők...</target>
 </phrase>
 <phrase>
     <source>Filter news...</source>
@@ -1107,11 +1107,11 @@
 </phrase>
 <phrase>
     <source>Position at top of list news</source>
-    <target>Elhelyezés a hírek lista tetejére</target>
+    <target>A hírek lista tetején</target>
 </phrase>
 <phrase>
     <source>Position on last opened news</source>
-    <target>Elhelyezés a legutóbb megnyitott híren</target>
+    <target>Az utoljára megnyitott híreken</target>
 </phrase>
 <phrase>
     <source>Nothing to do</source>
@@ -1251,6 +1251,6 @@
 </phrase>
 <phrase>
     <source>Close notification after</source>
-    <target>Bezárás az értesítést követően</target>
+    <target>Bezárás az értesítést követő</target>
 </phrase>
 </QPH>

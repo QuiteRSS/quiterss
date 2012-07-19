@@ -346,7 +346,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="10"/>
         <source>News filters</source>
-        <translation>Hírek-szűrők</translation>
+        <translation>Hír-szűrők</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="22"/>
@@ -629,7 +629,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="76"/>
         <source>Change icon for incoming new news</source>
-        <translation>Ikon módosítása a beérkező híreknél</translation>
+        <translation>Ikon változtatása a beérkező híreknél</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="87"/>
@@ -749,12 +749,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="249"/>
         <source>Position on last opened news</source>
-        <translation>Elhelyezés az utoljára megnyitott híreken</translation>
+        <translation>Az utoljára megnyitott híreken</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="250"/>
         <source>Position at top of list news</source>
-        <translation>Elhelyezés a hírek listájának tetején</translation>
+        <translation>A hírek lista tetején</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
@@ -886,7 +886,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>Close notification after</source>
-        <translation>Bezárás az értesítést követően</translation>
+        <translation>Bezárás az értesítést követő</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="461"/>
@@ -1287,7 +1287,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2693"/>
         <source>News filters...</source>
-        <translation>Hírek szűrők...</translation>
+        <translation>Hír-szűrők...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2694"/>
