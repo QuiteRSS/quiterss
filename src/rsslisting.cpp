@@ -1777,21 +1777,22 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
   static int idOld = -2;
   int indexTab = -1;
+  int feedId = index.data(Qt::UserRole).toInt();
 
-  qDebug() << __FUNCTION__ << index;
-
+  // Поиск вкладки, отображающей ленту, на которой кликнули
   for (int i = 0; i < tabWidget_->count(); i++) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
-    if (widget->feedId_ == feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
-//    if (widget->feedId_ == index.data(Qt::UserRole).toInt()) {
+//    if (widget->feedId_ == feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
+    if (widget->feedId_ == feedId) {
       indexTab = i;
       break;
     }
   }
 
-  if ((feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data() != idOld) &&
-//  if ((index.data(Qt::UserRole).toInt() != idOld) &&
-      (indexTab == -1)) {
+  // Если кликнули по другой ленте (не по той, что кликали в прошлый раз)
+  //   и индивидуальная вкладка не найдена, то...
+//  if ((feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data() != idOld) &&
+  if ((feedId != idOld) && (indexTab == -1)) {
     if (tabWidget_->currentIndex() != 0) {
       tabWidget_->setCurrentIndex(0);
       feedsView_->setCurrentIndex(index);
@@ -1803,9 +1804,9 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
     slotFeedsTreeSelected(index, true);
     feedsView_->repaint();
   }
-  idOld = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
-//  idOld = feedsView_->currentIndex().data(Qt::UserRole).toInt();
+//  idOld = feedsModel_->index(
+//      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  idOld = feedId;
 
   if (indexTab != -1) {
     tabWidget_->setCurrentIndex(indexTab);
@@ -1820,13 +1821,13 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   qDebug() << "--------------------------------";
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  int feedRow = index.row();
+  int feedId = index.data(Qt::UserRole).toInt();
+//  int feedRow = index.data(Qt::UserRole+1).toInt();
 
   if ((!tabWidget_->count() && clicked) || createTab) {
-    int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
+//    int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
 //    int feedId = index.data(Qt::UserRole).toInt();
-    int indexTab = tabWidget_->addTab(
-          new NewsTabWidget(feedId, this), "");
+    int indexTab = tabWidget_->addTab(new NewsTabWidget(feedId, this), "");
     createNewsTab(indexTab);
 
     tabBar_->setTabButton(indexTab,
@@ -1837,8 +1838,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
 
     emit signalCurrentTab(indexTab, true);
   } else {
-    currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
-//    currentNewsTab->feedId_ = index.data(Qt::UserRole).toInt();
+//    currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
+    currentNewsTab->feedId_ = feedId;
     currentNewsTab->setSettings(false);
     if (index.isValid())
       currentNewsTab->setVisible(true);
@@ -1847,7 +1848,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   //! Устанавливаем иконку и текст для открытой вкладки
   QPixmap iconTab;
   QByteArray byteArray = feedsModel_->index(
-        feedRow, feedsModel_->fieldIndex("image")).data().toByteArray();
+      index.row(), feedsModel_->fieldIndex("image"), index.parent()).data().toByteArray();
   if (!byteArray.isNull()) {
     iconTab.loadFromData(QByteArray::fromBase64(byteArray));
   } else {
@@ -1855,7 +1856,8 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   }
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
-  QString tabText = feedsModel_->index(feedRow, feedsModel_->fieldIndex("text")).data().toString();
+  QString tabText = feedsModel_->index(
+      index.row(), feedsModel_->fieldIndex("text"), index.parent()).data().toString();
   currentNewsTab->newsTitleLabel_->setToolTip(tabText);
   tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
         tabText, Qt::ElideRight, 114);
@@ -1881,9 +1883,11 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   // выбор новости ленты, отображамой ранее
   int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
+    int currentNewsId = feedsModel_->index(
+        index.row(), feedsModel_->fieldIndex("currentNews"), index.parent()).data().toInt();
     for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          feedsModel_->index(feedRow, feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+      if (currentNewsId ==
+          newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt()) {
         newsRow = i;
         break;
       }
@@ -1908,7 +1912,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
       QSqlQuery q(db_);
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-      int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+//      int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 //      int feedId = index.data(Qt::UserRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
