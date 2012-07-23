@@ -1424,6 +1424,7 @@ void RSSListing::deleteFeed()
 
     int rowFeeds = feedsView_->currentIndex().row();
     int currentId = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
+//    int currentId = feedsView_->currentIndex().data(Qt::UserRole).toInt();
     feedsModel_->select();
 
     if (currentId == id) {
@@ -1777,15 +1778,19 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   static int idOld = -2;
   int indexTab = -1;
 
+  qDebug() << __FUNCTION__ << index;
+
   for (int i = 0; i < tabWidget_->count(); i++) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
     if (widget->feedId_ == feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data().toInt()) {
+//    if (widget->feedId_ == index.data(Qt::UserRole).toInt()) {
       indexTab = i;
       break;
     }
   }
 
   if ((feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data() != idOld) &&
+//  if ((index.data(Qt::UserRole).toInt() != idOld) &&
       (indexTab == -1)) {
     if (tabWidget_->currentIndex() != 0) {
       tabWidget_->setCurrentIndex(0);
@@ -1800,6 +1805,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   }
   idOld = feedsModel_->index(
       feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+//  idOld = feedsView_->currentIndex().data(Qt::UserRole).toInt();
 
   if (indexTab != -1) {
     tabWidget_->setCurrentIndex(indexTab);
@@ -1818,6 +1824,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
 
   if ((!tabWidget_->count() && clicked) || createTab) {
     int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
+//    int feedId = index.data(Qt::UserRole).toInt();
     int indexTab = tabWidget_->addTab(
           new NewsTabWidget(feedId, this), "");
     createNewsTab(indexTab);
@@ -1831,6 +1838,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
     emit signalCurrentTab(indexTab, true);
   } else {
     currentNewsTab->feedId_ = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data().toInt();
+//    currentNewsTab->feedId_ = index.data(Qt::UserRole).toInt();
     currentNewsTab->setSettings(false);
     if (index.isValid())
       currentNewsTab->setVisible(true);
@@ -1901,6 +1909,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
       QSqlQuery q(db_);
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       int feedId = feedsModel_->index(feedRow, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+//      int feedId = index.data(Qt::UserRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -2231,6 +2240,7 @@ void RSSListing::markFeedRead()
   int feedId = feedsModel_->index(
             feedsView_->selectIndex.row(),
             feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+//  int feedId = feedsView_->selectIndex.data(Qt::UserRole).toInt();
 
   db_.transaction();
   QSqlQuery q(db_);
@@ -2296,6 +2306,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
     feedId = feedsModel_->index(
             feedsView_->selectIndex.row(),
             feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+//    feedId = feedsView_->selectIndex.data(Qt::UserRole).toInt();
   else
     feedId = currentNewsTab->feedId_;
 
@@ -2341,6 +2352,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   int id = feedsModel_->index(
         feedsView_->currentIndex().row(),
         feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+//  int id = feedsView_->currentIndex().data(Qt::UserRole).toInt();
   int newCount = feedsModel_->index(
         feedsView_->currentIndex().row(),
         feedsModel_->fieldIndex("newCount")).data(Qt::EditRole).toInt();

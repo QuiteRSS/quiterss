@@ -1,8 +1,25 @@
 #include "treeviewdb.h"
+#include "delegatewithoutfocus.h"
 
 TreeViewDB::TreeViewDB(QWidget *parent) :
   QTreeView(parent)
 {
+  setObjectName("feedsTreeView_");
+  setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+  setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+  setSelectionBehavior(QAbstractItemView::SelectRows);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+  setUniformRowHeights(true);
+
+  header()->setStretchLastSection(false);
+  header()->setVisible(false);
+
+  DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
+  setItemDelegate(itemDelegate);
+
+  setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 void TreeViewDB::setSelectIndex()
@@ -12,9 +29,9 @@ void TreeViewDB::setSelectIndex()
 
 void TreeViewDB::updateCurrentIndex(const QModelIndex &index)
 {
-  int topRow = verticalScrollBar()->value();
-  setCurrentIndex(index);
-  verticalScrollBar()->setValue(topRow);
+//  int topRow = verticalScrollBar()->value();
+//  setCurrentIndex(index);
+//  verticalScrollBar()->setValue(topRow);
 }
 
 /*virtual*/ void TreeViewDB::mousePressEvent(QMouseEvent *event)
@@ -22,6 +39,7 @@ void TreeViewDB::updateCurrentIndex(const QModelIndex &index)
   if (!indexAt(event->pos()).isValid()) return;
 
   selectIndex = indexAt(event->pos());
+  qDebug() << selectIndex;
   if ((event->buttons() & Qt::MiddleButton)) {
     if (selectIndex.isValid())
       emit signalMiddleClicked();
@@ -37,9 +55,7 @@ void TreeViewDB::updateCurrentIndex(const QModelIndex &index)
 
 /*virtual*/ void TreeViewDB::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  if (!indexAt(event->pos()).isValid()) return;
-
-  emit signalDoubleClicked(indexAt(event->pos()));
+  QTreeView::mouseDoubleClickEvent(event);
 }
 
 /*virtual*/ void TreeViewDB::keyPressEvent(QKeyEvent *event)

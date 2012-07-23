@@ -27,7 +27,8 @@ TreeModel::~TreeModel()
 //!----------------------------------------------------------------------------
 int TreeModel::columnCount(const QModelIndex &parent) const
 {
-  return tableModel->columnCount() - tableModel->fieldIndex("text");
+//  return tableModel->columnCount() - tableModel->fieldIndex("text");
+  return 4;
 }
 
 //!----------------------------------------------------------------------------
@@ -36,8 +37,8 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
   if (!index.isValid())
     return QVariant();
 
-  if ((role != Qt::DisplayRole) && (role != Qt::EditRole) &&
-      (role != Qt::DecorationRole) &&
+  if ((role != Qt::FontRole) && (role != Qt::DisplayRole) &&
+      (role != Qt::DecorationRole) && (role != Qt::TextColorRole) &&
       (role != Qt::UserRole) && (role != Qt::UserRole+1)) {
     return QVariant();
   }
@@ -49,7 +50,60 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
   if (role == Qt::UserRole+1)
     return item->tableRow_;
 
-  if (role == Qt::DecorationRole) {
+  if (role == Qt::FontRole) {
+    QFont font = font_;
+    if (fieldIndex("text") == index.column()) {
+      if (0 < tableModel->index(item->tableRow_, tableModel->fieldIndex("unread")).data(Qt::EditRole).toInt())
+        font.setBold(true);
+    }
+    return font;
+  }
+  else if (role == Qt::DisplayRole) {
+    if (fieldIndex("unread") == index.column()) {
+      int unread = tableModel->index(
+          item->tableRow_, tableModel->fieldIndex("unread")).data(Qt::EditRole).toInt();
+      return (0 == unread) ? QVariant() : QString("(%1)").arg(unread);
+    }
+    else if (fieldIndex("undeleteCount") == index.column()) {
+      int undeleteCount = tableModel->index(
+          item->tableRow_, tableModel->fieldIndex("undeleteCount")).data(Qt::EditRole).toInt();
+      return (0 == undeleteCount) ? QVariant() : QString("(%1)").arg(undeleteCount);
+    }
+    else if (fieldIndex("updated") == index.column()) {
+      QDateTime dtLocal;
+      QString strDate = tableModel->index(
+          item->tableRow_, tableModel->fieldIndex("updated")).data(Qt::EditRole).toString();
+
+      if (!strDate.isNull()) {
+        QDateTime dtLocalTime = QDateTime::currentDateTime();
+        QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+        int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+        QDateTime dt = QDateTime::fromString(strDate, Qt::ISODate);
+        dtLocal = dt.addSecs(nTimeShift);
+
+        if (QDateTime::currentDateTime().date() == dtLocal.date())
+          return dtLocal.toString("hh:mm");
+        else
+          return dtLocal.toString("yyyy.MM.dd");
+      } else {
+        return QVariant();
+      }
+    }
+  }
+  else if (role == Qt::TextColorRole) {
+    QBrush brush;
+    brush = qApp->palette().brush(QPalette::WindowText);
+    if (fieldIndex("unread") == index.column()) {
+      brush = qApp->palette().brush(QPalette::Link);
+    } else if (fieldIndex("text") == index.column()) {
+      if (tableModel->index(item->tableRow_, tableModel->fieldIndex("newCount")).data(Qt::EditRole).toInt() > 0) {
+        brush = qApp->palette().brush(QPalette::Link);
+      }
+    }
+    return brush;
+  }
+  else if (role == Qt::DecorationRole) {
     if (index.column() == 0) {
       if (!tableModel->index(item->tableRow_, tableModel->fieldIndex("xmlUrl")).
           data(Qt::EditRole).toString().isEmpty()) {
@@ -68,7 +122,8 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
     }
   }
 
-  return tableModel->index(item->tableRow_, tableModel->fieldIndex("text")).data(role);
+  return tableModel->index(
+      item->tableRow_, tableModel->fieldIndex(getDBFieldName(index.column()))).data(role);
 }
 
 //!----------------------------------------------------------------------------
@@ -92,12 +147,30 @@ TreeItem *TreeModel::getItem(const QModelIndex &index) const
 }
 
 //!----------------------------------------------------------------------------
+QString TreeModel::getDBFieldName(int col) const
+{
+  QString fieldName;
+  switch (col) {
+    case 0 : fieldName = "text"; break;
+    case 1 : fieldName = "unread"; break;
+    case 2 : fieldName = "undeleteCount"; break;
+    case 3 : fieldName = "updated"; break;
+    case 4 : fieldName = "id"; break;
+    case 5 : fieldName = "title"; break;
+    case 6 : fieldName = "description"; break;
+    case 7 : fieldName = "currentNews"; break;
+    case 8 : fieldName = "image"; break;
+    case 9 : fieldName = "newCount"; break;
+  }
+  return fieldName;
+}
+
+//!----------------------------------------------------------------------------
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation,
                                int role) const
 {
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-    return tableModel->headerData(section + tableModel->fieldIndex("text"),
-                                  orientation, role);
+    return tableModel->headerData(section, orientation, role);
 
   return QVariant();
 }
@@ -161,7 +234,7 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
   TreeItem *item = getItem(index);
 
   bool result = tableModel->setData(
-      tableModel->index(item->tableRow_, tableModel->fieldIndex("text")),
+      tableModel->index(item->tableRow_, tableModel->fieldIndex(getDBFieldName(index.column()))),
       value, role);
 
   if (result)
@@ -243,7 +316,20 @@ Qt::DropActions TreeModel::supportedDropActions() const
 //!-----------------------------------------------------------------------------
 int TreeModel::fieldIndex(const QString &fieldName) const
 {
-  return tableModel->fieldIndex(fieldName);
+//  return tableModel->fieldIndex(fieldName);
+  // Замена первых 4-х индексов не необходимые
+  if (fieldName == "text")          return 0;
+  if (fieldName == "unread")        return 1;
+  if (fieldName == "undeleteCount") return 2;
+  if (fieldName == "updated")       return 3;
+  if (fieldName == "id")            return 4;
+  if (fieldName == "title")         return 5;
+  if (fieldName == "description")   return 6;
+  if (fieldName == "currentNews")   return 7;
+  if (fieldName == "image")         return 8;
+  if (fieldName == "newCount")      return 9;
+
+  return -1;
 }
 
 //!-----------------------------------------------------------------------------
@@ -257,15 +343,17 @@ bool TreeModel::select(QString filter)
 {
   tableModel->setFilter(filter);
 
-  bool result = tableModel->select();
+//  bool result = tableModel->select();
+  return tableModel->select();
 
-  TreeItem *newRootItem = new TreeItem(0, -1);
-  setupModelData(newRootItem);
+//  TreeItem *newRootItem = new TreeItem(0, -1);
+//  setupModelData(newRootItem);
 
-  delete rootItem;
-  rootItem = newRootItem;
+//  delete rootItem;
+//  rootItem = newRootItem;
 
-  return result;
+//  return result;
+  return true;
 }
 
 //!-----------------------------------------------------------------------------

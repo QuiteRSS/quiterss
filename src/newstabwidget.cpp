@@ -653,8 +653,9 @@ void NewsTabWidget::markNewsRead()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+//  int feedId = feedsModel_->index(
+//      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsView_->currentIndex().data(Qt::UserRole).toInt();
 
   int cnt = indexes.count();
   if (cnt == 0) return;
@@ -768,8 +769,9 @@ void NewsTabWidget::deleteNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+//  int feedId = feedsModel_->index(
+//      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsView_->currentIndex().data(Qt::UserRole).toInt();
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
@@ -806,8 +808,9 @@ void NewsTabWidget::deleteAllNewsList()
 {
   QModelIndex curIndex;
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+//  int feedId = feedsModel_->index(
+//      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsView_->currentIndex().data(Qt::UserRole).toInt();
 
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();

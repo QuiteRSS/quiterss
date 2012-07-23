@@ -84,6 +84,7 @@ public:
 private:
     void setupModelData(TreeItem *parent);
     TreeItem *getItem(const QModelIndex &index) const;
+    QString getDBFieldName(int col) const;
 
     TreeItem *rootItem;
     QSqlTableModel *tableModel;
