@@ -179,13 +179,6 @@ RSSListing::~RSSListing()
 
     feedsCleanUp(feedId);
 
-    qStr = QString("UPDATE news SET title='', published='' "
-                   "WHERE feedId=='%1' AND guid!=''").
-        arg(feedId);
-    if (cleanUpDB) qStr.append(" AND deleted=1");
-    else  qStr.append(" AND deleted!=0");
-    qt.exec(qStr);
-
     qStr = QString("UPDATE news SET description='', content='', received='', "
                    "author_name='', author_uri='', author_email='', "
                    "category='', new='', read='', starred='', deleted=2 "

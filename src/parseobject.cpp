@@ -192,13 +192,27 @@ void ParseObject::slotParse(QSqlDatabase *db,
         QString qStr;
         qDebug() << "guid:     " << rssGuidString;
         qDebug() << "link_href:" << linkString;
-        if (!rssGuidString.isEmpty())         // поиск по guid
-          q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2'").
-                 arg(parseFeedId).arg(rssGuidString));
+        qDebug() << "published:" << rssPubDateString;
+        if (!rssGuidString.isEmpty()) {        // поиск по guid
+          if (rssPubDateString.isEmpty()) {
+            q.prepare("SELECT * FROM news WHERE feedId=:id AND guid=:guid AND title LIKE :title");
+            q.bindValue(":id", parseFeedId);
+            q.bindValue(":guid", rssGuidString);
+            q.bindValue(":title", titleString);
+            q.exec();
+          }
+          else
+            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2' AND published=='%3'").
+                   arg(parseFeedId).arg(rssGuidString).arg(rssPubDateString));
+        }
         else if (!linkString.isEmpty()) {     // поиск по link_href
-          if (rssPubDateString.isEmpty())
-            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2'").
-                   arg(parseFeedId).arg(linkString));
+          if (rssPubDateString.isEmpty()) {
+            q.prepare("SELECT * FROM news WHERE feedId=:id AND link_href=:link_href AND title LIKE :title");
+            q.bindValue(":id", parseFeedId);
+            q.bindValue(":link_href", linkString);
+            q.bindValue(":title", titleString);
+            q.exec();
+          }
           else
             q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2' AND published=='%3'").
                    arg(parseFeedId).arg(linkString).arg(rssPubDateString));
@@ -270,9 +284,15 @@ void ParseObject::slotParse(QSqlDatabase *db,
         QSqlQuery q(*db);
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
-        if (!atomIdString.isEmpty())           // поиск по guid
-          q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid=='%2'").
-                 arg(parseFeedId).arg(atomIdString));
+        qDebug() << "published:" << atomUpdatedString;
+        if (!atomIdString.isEmpty()) {          // поиск по guid
+          if (atomUpdatedString.isEmpty())
+            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid=='%2'").
+                   arg(parseFeedId).arg(atomIdString));
+          else
+            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid=='%2' AND published=='%3'").
+                   arg(parseFeedId).arg(atomIdString).arg(atomUpdatedString));
+        }
         else if (atomUpdatedString.isEmpty()) {  // поиск по title, т.к. поле pubDate пустое
           q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title");
           q.bindValue(":id", parseFeedId);
