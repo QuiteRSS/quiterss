@@ -195,15 +195,18 @@ void ParseObject::slotParse(QSqlDatabase *db,
         qDebug() << "published:" << rssPubDateString;
         if (!rssGuidString.isEmpty()) {        // поиск по guid
           if (rssPubDateString.isEmpty()) {
-            q.prepare("SELECT * FROM news WHERE feedId=:id AND guid=:guid AND title LIKE :title");
-            q.bindValue(":id", parseFeedId);
+            q.prepare("SELECT * FROM news WHERE feedId=:feedId AND guid=:guid AND title LIKE :title");
+            q.bindValue(":feedId", parseFeedId);
             q.bindValue(":guid", rssGuidString);
             q.bindValue(":title", titleString);
             q.exec();
           }
           else
-            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND guid == '%2' AND published=='%3'").
-                   arg(parseFeedId).arg(rssGuidString).arg(rssPubDateString));
+            q.prepare("SELECT * FROM news WHERE feedId=:feedId' AND guid=:guid AND published=:published");
+            q.bindValue(":feedId", parseFeedId);
+            q.bindValue(":guid", rssGuidString);
+            q.bindValue(":published", rssPubDateString);
+            q.exec();
         }
         else if (!linkString.isEmpty()) {     // поиск по link_href
           if (rssPubDateString.isEmpty()) {
@@ -214,8 +217,11 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.exec();
           }
           else
-            q.exec(QString("SELECT * FROM news WHERE feedId=='%1' AND link_href == '%2' AND published=='%3'").
-                   arg(parseFeedId).arg(linkString).arg(rssPubDateString));
+            q.prepare("SELECT * FROM news WHERE feedId=:feedId AND link_href=:link_href AND published=:published");
+            q.bindValue(":feedId", parseFeedId);
+            q.bindValue(":link_href", linkString);
+            q.bindValue(":published", rssPubDateString);
+            q.exec();
         }
         else if (rssPubDateString.isEmpty()) {  // поиск по title, т.к. поле pubDate пустое
           q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title");
