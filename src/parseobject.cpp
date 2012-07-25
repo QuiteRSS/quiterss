@@ -202,7 +202,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             q.exec();
           }
           else
-            q.prepare("SELECT * FROM news WHERE feedId=:feedId' AND guid=:guid AND published=:published");
+            q.prepare("SELECT * FROM news WHERE feedId=:feedId AND guid=:guid AND published=:published");
             q.bindValue(":feedId", parseFeedId);
             q.bindValue(":guid", rssGuidString);
             q.bindValue(":published", rssPubDateString);
