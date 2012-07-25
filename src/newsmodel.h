@@ -14,7 +14,7 @@ public:
   NewsModel(QObject *parent, QTreeView *view = 0);
   virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-
+  QString formatDateTime_;
 };
 
 #endif // NEWSMODEL_H

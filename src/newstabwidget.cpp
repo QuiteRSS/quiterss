@@ -367,9 +367,11 @@ void NewsTabWidget::createWebWidget()
 void NewsTabWidget::setSettings(bool newTab)
 {
   if (newTab) {
-    if (feedId_ > -1)
+    if (feedId_ > -1) {
       newsView_->setFont(
             QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+      newsModel_->formatDateTime_ = rsslisting_->formatDateTime_;
+    }
 
     webView_->settings()->setFontFamily(
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);

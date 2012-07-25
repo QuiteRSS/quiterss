@@ -56,7 +56,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       if (QDateTime::currentDateTime().date() == dtLocal.date())
         return dtLocal.toString("hh:mm");
       else
-        return dtLocal.toString("yyyy.MM.dd hh:mm");
+        return dtLocal.toString(formatDateTime_);
     }
     else if (QSqlTableModel::fieldIndex("received") == index.column()) {
       QDateTime dateTime = QDateTime::fromString(
@@ -64,7 +64,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
             Qt::ISODate);
       if (QDateTime::currentDateTime().date() == dateTime.date()) {
         return dateTime.toString("hh:mm");
-      } else return dateTime.toString("yyyy.MM.dd hh:mm");
+      } else return dateTime.toString(formatDateTime_);
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();

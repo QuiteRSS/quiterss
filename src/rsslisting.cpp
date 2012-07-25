@@ -1169,6 +1169,8 @@ void RSSListing::readSettings()
 
   showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
 
+  formatDateTime_ = settings_->value("formatDataTime", "dd.MM.yy hh:mm").toString();
+
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
   dayCleanUpOn_ = settings_->value("dayClearUpOn", true).toBool();
@@ -1311,6 +1313,8 @@ void RSSListing::writeSettings()
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
 
   settings_->setValue("showDescriptionNews", showDescriptionNews_);
+
+  settings_->setValue("formatDataTime", formatDateTime_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -1953,6 +1957,13 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->showDescriptionNews_->setChecked(showDescriptionNews_);
 
+  for (int i = 0; i < optionsDialog->formatDateTime_->count(); i++) {
+    if (optionsDialog->formatDateTime_->itemData(i).toString() == formatDateTime_) {
+      optionsDialog->formatDateTime_->setCurrentIndex(i);
+      break;
+    }
+  }
+
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
   optionsDialog->newsCleanUpOn_->setChecked(newsCleanUpOn_);
@@ -2063,6 +2074,9 @@ void RSSListing::showOptionDlg()
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
 
   showDescriptionNews_ = optionsDialog->showDescriptionNews_->isChecked();
+
+  formatDateTime_ = optionsDialog->formatDateTime_->itemData(
+        optionsDialog->formatDateTime_->currentIndex()).toString();
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
