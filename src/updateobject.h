@@ -18,6 +18,9 @@ signals:
 public slots:
   void slotHead(const QNetworkRequest &request);
   void slotGet(const QNetworkRequest &request);
+
+private slots:
+  void handleSslErrors(QNetworkReply* reply, const QList<QSslError> &errors);
   
 };
 
