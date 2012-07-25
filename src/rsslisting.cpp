@@ -664,6 +664,9 @@ void RSSListing::createActions()
   filterFeedsUnread_ = new QAction(this);
   filterFeedsUnread_->setObjectName("filterFeedsUnread_");
   filterFeedsUnread_->setCheckable(true);
+  filterFeedsStarred_ = new QAction(this);
+  filterFeedsStarred_->setObjectName("filterFeedsStarred_");
+  filterFeedsStarred_->setCheckable(true);
 
   newsFilter_ = new QAction(this);
   newsFilter_->setIcon(QIcon(":/images/filterOff"));
@@ -1012,6 +1015,8 @@ void RSSListing::createMenu()
   feedsFilterGroup_->addAction(filterFeedsNew_);
   feedsFilterMenu_->addAction(filterFeedsUnread_);
   feedsFilterGroup_->addAction(filterFeedsUnread_);
+  feedsFilterMenu_->addAction(filterFeedsStarred_);
+  feedsFilterGroup_->addAction(filterFeedsStarred_);
 
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
@@ -2357,6 +2362,8 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
       strFilter = QString("unread > 0");
     } else
       strFilter = QString("unread > 0 OR id=='%1'").arg(id);
+  } else if (pAct->objectName() == "filterFeedsStarred_") {
+    strFilter = QString("label LIKE '\%starred\%'");
   }
   feedsModel_->setFilter(strFilter);
 
@@ -2702,6 +2709,7 @@ void RSSListing::retranslateStrings() {
   filterFeedsAll_->setText(tr("Show All"));
   filterFeedsNew_->setText(tr("Show New"));
   filterFeedsUnread_->setText(tr("Show Unread"));
+  filterFeedsStarred_->setText(tr("Show Starred feeds"));
 
   newsFilter_->setText( tr("Filter"));
   filterNewsAll_->setText(tr("Show All"));
@@ -2898,6 +2906,12 @@ void RSSListing::slotShowFeedPropertiesDlg()
       feedsModel_->record(index.row()).field("displayOnStartup").value().toInt();
   properties.display.displayEmbeddedImages =
       feedsModel_->record(index.row()).field("displayEmbeddedImages").value().toInt();
+
+  if (feedsModel_->record(index.row()).field("label").value().toString().contains("starred"))
+    properties.general.starred = true;
+  else
+    properties.general.starred = false;
+
   feedPropertiesDialog->setFeedProperties(properties);
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
@@ -2919,11 +2933,15 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   QSqlQuery q(db_);
   q.prepare("update feeds set text = ?, xmlUrl = ?, displayOnStartup = ?, "
-            "displayEmbeddedImages = ? where id == ?");
+            "displayEmbeddedImages = ?, label = ? where id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
   q.addBindValue(properties.display.displayEmbeddedImages);
+  if (properties.general.starred)
+    q.addBindValue("starred");
+  else
+    q.addBindValue("");
   q.addBindValue(id);
   q.exec();
 

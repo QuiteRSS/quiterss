@@ -188,6 +188,7 @@ private:
   QAction *filterFeedsAll_;
   QAction *filterFeedsNew_;
   QAction *filterFeedsUnread_;
+  QAction *filterFeedsStarred_;
 
   QAction *filterNewsAll_;
   QAction *filterNewsNew_;

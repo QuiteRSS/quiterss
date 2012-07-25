@@ -47,6 +47,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   editURL = new LineEdit();
 
   displayOnStartup = new QCheckBox(tr("Display feed on startup"));
+  starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
@@ -64,6 +65,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addLayout(layoutGeneralHomepage);
   layoutGeneralMain->addSpacing(15);
   layoutGeneralMain->addWidget(displayOnStartup);
+  layoutGeneralMain->addWidget(starredOn_);
   layoutGeneralMain->addWidget(loadImagesOn);
   layoutGeneralMain->addStretch();
 
@@ -81,6 +83,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   editURL->setFocus();
   labelHomepage->setText(QString("<a href='%1'>%1</a>").arg(feedProperties.general.homepage));
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
+  starredOn_->setChecked(feedProperties.general.starred);
   loadImagesOn->setChecked(feedProperties.display.displayEmbeddedImages);
 }
 //------------------------------------------------------------------------------
@@ -96,6 +99,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
+  feedProperties.general.starred = starredOn_->isChecked();
   feedProperties.display.displayEmbeddedImages = loadImagesOn->isChecked();
   return(feedProperties);
 }

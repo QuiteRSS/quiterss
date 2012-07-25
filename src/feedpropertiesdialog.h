@@ -17,6 +17,7 @@ typedef struct {
     quint32 intervalParameter; //!< Единицы измерения интервала
     bool updateOnStartup; //!< Обновлять при запуске приложения
     int displayOnStartup; //!< Отображать при запуске приложения
+    bool starred; //!< Избранная лента
   } general;
 
   //! Настройки чтения
@@ -89,6 +90,7 @@ private:
   LineEdit *editTitle; //!< Заголовок ленты
   QLabel *labelHomepage; //!< Ссылка на домашнюю страницу
   QCheckBox *displayOnStartup;
+  QCheckBox *starredOn_;
   QCheckBox *loadImagesOn;
 
   QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
