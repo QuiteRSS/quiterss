@@ -85,6 +85,14 @@ QTabBar::tab:selected {
 	padding-bottom: 5px;
 }
 
+QTabBar QToolButton {
+	border: 1px solid gray;
+	border-radius: 2px;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+								stop: 0 #ffffff, stop: 0.4 #fafafa,
+								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
+}
+
 #tabWidget_::pane {
 	border-right: none;
 	border-bottom: none;
