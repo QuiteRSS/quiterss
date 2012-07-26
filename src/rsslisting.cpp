@@ -2674,7 +2674,7 @@ void RSSListing::retranslateStrings() {
       QString(tr("Unread News: %1")).arg(str.section(": ", 2));
   traySystem->setToolTip(info);
 
-  addFeedAct_->setText(tr("&Add..."));
+  addFeedAct_->setText(tr("&Add Feed..."));
   addFeedAct_->setToolTip(tr("Add New Feed"));
 
   openFeedNewTabAct_->setText(tr("Open in New Tab"));
@@ -2723,7 +2723,7 @@ void RSSListing::retranslateStrings() {
   filterFeedsAll_->setText(tr("Show All"));
   filterFeedsNew_->setText(tr("Show New"));
   filterFeedsUnread_->setText(tr("Show Unread"));
-  filterFeedsStarred_->setText(tr("Show Starred feeds"));
+  filterFeedsStarred_->setText(tr("Show Starred Feeds"));
 
   newsFilter_->setText( tr("Filter"));
   filterNewsAll_->setText(tr("Show All"));
