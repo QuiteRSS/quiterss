@@ -1105,7 +1105,7 @@ void RSSListing::createToolBar()
   toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(markFeedRead_);
-//  toolBar_->addAction(markAllNewsRead_);
+  toolBar_->addAction(markAllFeedsRead_);
   toolBar_->addSeparator();
   toolBar_->addAction(autoLoadImagesToggle_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
