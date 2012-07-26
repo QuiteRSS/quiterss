@@ -1410,7 +1410,7 @@ void RSSListing::deleteFeed()
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
-    msgBox.setWindowTitle(tr("Delete feed"));
+    msgBox.setWindowTitle(tr("Delete Feed"));
     msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
                    arg(feedsModel_->record(feedsView_->selectIndex.row())
                        .field("text").value().toString()));
@@ -1451,9 +1451,9 @@ void RSSListing::slotImportFeeds()
 {
   playSoundNewNews_ = false;
 
-  QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-file"),
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-File"),
                                                   QDir::homePath(),
-                                                  tr("OPML-files (*.opml *.xml)"));
+                                                  tr("OPML-Files (*.opml *.xml)"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Import canceled"), 3000);
@@ -1549,9 +1549,9 @@ void RSSListing::slotImportFeeds()
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
 {
-  QString fileName = QFileDialog::getSaveFileName(this, tr("Select OPML-file"),
+  QString fileName = QFileDialog::getSaveFileName(this, tr("Select OPML-File"),
                                                   QDir::homePath(),
-                                                  tr("OPML-files (*.opml)"));
+                                                  tr("OPML-Files (*.opml)"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Export canceled"), 3000);
@@ -2515,12 +2515,12 @@ void RSSListing::setAutoLoadImages(bool set)
 {
   autoLoadImages_ = !autoLoadImages_;
   if (autoLoadImages_) {
-    autoLoadImagesToggle_->setText(tr("Load images"));
-    autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
+    autoLoadImagesToggle_->setText(tr("Load Images"));
+    autoLoadImagesToggle_->setToolTip(tr("Auto Ioad Images to News View"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   } else {
-    autoLoadImagesToggle_->setText(tr("No load images"));
-    autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
+    autoLoadImagesToggle_->setText(tr("No Load Images"));
+    autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
 
@@ -2669,55 +2669,55 @@ void RSSListing::retranslateStrings() {
   str = traySystem->toolTip();
   QString info =
       "QuiteRSS\n" +
-      QString(tr("New news: %1")).arg(str.section(": ", 1).section("\n", 0, 0)) +
+      QString(tr("New News: %1")).arg(str.section(": ", 1).section("\n", 0, 0)) +
       QString("\n") +
-      QString(tr("Unread news: %1")).arg(str.section(": ", 2));
+      QString(tr("Unread News: %1")).arg(str.section(": ", 2));
   traySystem->setToolTip(info);
 
   addFeedAct_->setText(tr("&Add..."));
-  addFeedAct_->setToolTip(tr("Add new feed"));
+  addFeedAct_->setToolTip(tr("Add New Feed"));
 
-  openFeedNewTabAct_->setText(tr("Open in new tab"));
+  openFeedNewTabAct_->setText(tr("Open in New Tab"));
 
   deleteFeedAct_->setText(tr("&Delete..."));
-  deleteFeedAct_->setToolTip(tr("Delete selected feed"));
+  deleteFeedAct_->setToolTip(tr("Delete Selected Feed"));
 
-  importFeedsAct_->setText(tr("&Import feeds..."));
-  importFeedsAct_->setToolTip(tr("Import feeds from OPML file"));
+  importFeedsAct_->setText(tr("&Import Feeds..."));
+  importFeedsAct_->setToolTip(tr("Import Feeds from OPML File"));
 
-  exportFeedsAct_->setText(tr("&Export feeds..."));
-  exportFeedsAct_->setToolTip(tr("Export feeds to OPML file"));
+  exportFeedsAct_->setText(tr("&Export Feeds..."));
+  exportFeedsAct_->setToolTip(tr("Export Feeds to OPML File"));
 
   exitAct_->setText(tr("E&xit"));
 
   if (autoLoadImages_) {
-    autoLoadImagesToggle_->setText(tr("Load images"));
-    autoLoadImagesToggle_->setToolTip(tr("Auto load images to news view"));
+    autoLoadImagesToggle_->setText(tr("Load Images"));
+    autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
   } else {
-    autoLoadImagesToggle_->setText(tr("No load images"));
-    autoLoadImagesToggle_->setToolTip(tr("No load images to news view"));
+    autoLoadImagesToggle_->setText(tr("No Load Images"));
+    autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
   }
 
-  updateFeedAct_->setText(tr("Update feed"));
-  updateFeedAct_->setToolTip(tr("Update current feed"));
+  updateFeedAct_->setText(tr("Update Feed"));
+  updateFeedAct_->setToolTip(tr("Update Current Feed"));
 
-  updateAllFeedsAct_->setText(tr("Update all"));
-  updateAllFeedsAct_->setToolTip(tr("Update all feeds"));
+  updateAllFeedsAct_->setText(tr("Update All"));
+  updateAllFeedsAct_->setToolTip(tr("Update All Feeds"));
 
-  markAllFeedsRead_->setText(tr("Mark all feeds Read"));
+  markAllFeedsRead_->setText(tr("Mark All Feeds Read"));
 
   markNewsRead_->setText(tr("Mark Read/Unread"));
-  markNewsRead_->setToolTip(tr("Mark current news read/unread"));
+  markNewsRead_->setToolTip(tr("Mark Current News Read/Unread"));
 
-  markAllNewsRead_->setText(tr("Mark all news Read"));
-  markAllNewsRead_->setToolTip(tr("Mark all news read"));
+  markAllNewsRead_->setText(tr("Mark All News Read"));
+  markAllNewsRead_->setToolTip(tr("Mark All News Read"));
 
 
-  setNewsFiltersAct_->setText(tr("News filters..."));
-  setFilterNewsAct_->setText(tr("Filter news..."));
+  setNewsFiltersAct_->setText(tr("News Filters..."));
+  setFilterNewsAct_->setText(tr("Filter News..."));
 
   optionsAct_->setText(tr("Options..."));
-  optionsAct_->setToolTip(tr("Open options dialog"));
+  optionsAct_->setToolTip(tr("Open Options Dialog"));
 
   feedsFilter_->setText(tr("Filter"));
   filterFeedsAll_->setText(tr("Show All"));
@@ -2732,27 +2732,27 @@ void RSSListing::retranslateStrings() {
   filterNewsStar_->setText(tr("Show Star"));
 
   aboutAct_ ->setText(tr("About..."));
-  aboutAct_->setToolTip(tr("Show 'About' dialog"));
+  aboutAct_->setToolTip(tr("Show 'About' Dialog"));
 
-  updateAppAct_->setText(tr("Check for updates..."));
+  updateAppAct_->setText(tr("Check for Updates..."));
 
-  openInBrowserAct_->setText(tr("Open in browser"));
-  openInExternalBrowserAct_->setText(tr("Open in external browser"));
-  openNewsNewTabAct_->setText(tr("Open in new tab"));
-  openNewsNewTabAct_->setToolTip(tr("Open news in new tab"));
-  openNewsBackgroundTabAct_->setText(tr("Open in background tab"));
-  openNewsBackgroundTabAct_->setToolTip(tr("Open news in background tab"));
+  openInBrowserAct_->setText(tr("Open in Browser"));
+  openInExternalBrowserAct_->setText(tr("Open in External Browser"));
+  openNewsNewTabAct_->setText(tr("Open in New Tab"));
+  openNewsNewTabAct_->setToolTip(tr("Open News in New Tab"));
+  openNewsBackgroundTabAct_->setText(tr("Open in Background Tab"));
+  openNewsBackgroundTabAct_->setToolTip(tr("Open News in Background Tab"));
   markStarAct_->setText(tr("Star"));
-  markStarAct_->setToolTip(tr("Mark news star"));
+  markStarAct_->setToolTip(tr("Mark News Star"));
   deleteNewsAct_->setText(tr("Delete"));
-  deleteNewsAct_->setToolTip(tr("Delete selected news"));
-  deleteAllNewsAct_->setText(tr("Delete all news"));
-  deleteAllNewsAct_->setToolTip(tr("Delete all news from list"));
+  deleteNewsAct_->setToolTip(tr("Delete Selected News"));
+  deleteAllNewsAct_->setText(tr("Delete All News"));
+  deleteAllNewsAct_->setToolTip(tr("Delete All News from List"));
 
   markFeedRead_->setText(tr("Mark Read"));
-  markFeedRead_->setToolTip(tr("Mark feed read"));
-  feedProperties_->setText(tr("Feed properties"));
-  feedProperties_->setToolTip(tr("Feed properties"));
+  markFeedRead_->setToolTip(tr("Mark Feed Read"));
+  feedProperties_->setText(tr("Feed Properties"));
+  feedProperties_->setToolTip(tr("Feed Properties"));
   editFeedsTree_->setText(tr("editFeedsTree_"));
   editFeedsTree_->setToolTip(tr("editFeedsTree_"));
 
@@ -2769,16 +2769,16 @@ void RSSListing::retranslateStrings() {
   toolBarStyleMenu_->setTitle(tr("Style"));
   toolBarStyleI_->setText(tr("Icon"));
   toolBarStyleT_->setText(tr("Text"));
-  toolBarStyleTbI_->setText(tr("Text beside icon"));
-  toolBarStyleTuI_->setText(tr("Text under icon"));
+  toolBarStyleTbI_->setText(tr("Text Beside Icon"));
+  toolBarStyleTuI_->setText(tr("Text Under Icon"));
   toolBarToggle_->setText(tr("Show ToolBar"));
 
-  toolBarIconSizeMenu_->setTitle(tr("Icon size"));
+  toolBarIconSizeMenu_->setTitle(tr("Icon Size"));
   toolBarIconBig_->setText(tr("Big"));
   toolBarIconNormal_->setText(tr("Normal"));
   toolBarIconSmall_->setText(tr("Small"));
 
-  styleMenu_->setTitle(tr("Style application"));
+  styleMenu_->setTitle(tr("Style Application"));
   systemStyle_->setText(tr("System"));
   system2Style_->setText(tr("System2"));
   greenStyle_->setText(tr("Green"));
@@ -2787,33 +2787,33 @@ void RSSListing::retranslateStrings() {
   pinkStyle_->setText(tr("Pink"));
   grayStyle_->setText(tr("Gray"));
 
-  browserPositionMenu_->setTitle(tr("Browser position"));
+  browserPositionMenu_->setTitle(tr("Browser Position"));
   topBrowserPositionAct_->setText(tr("Top"));
   bottomBrowserPositionAct_->setText(tr("Bottom"));
   rightBrowserPositionAct_->setText(tr("Right"));
   leftBrowserPositionAct_->setText(tr("Left"));
 
-  showWindowAct_->setText(tr("Show window"));
+  showWindowAct_->setText(tr("Show Window"));
 
-  feedKeyUpAct_->setText(tr("Previous feed"));
-  feedKeyDownAct_->setText(tr("Next feed"));
-  newsKeyUpAct_->setText(tr("Previous news"));
-  newsKeyDownAct_->setText(tr("Next news"));
+  feedKeyUpAct_->setText(tr("Previous Feed"));
+  feedKeyDownAct_->setText(tr("Next Feed"));
+  newsKeyUpAct_->setText(tr("Previous News"));
+  newsKeyDownAct_->setText(tr("Next News"));
 
-  switchFocusAct_->setText(tr("Switch focus between panels"));
+  switchFocusAct_->setText(tr("Switch Focus Between Panels"));
   switchFocusAct_->setToolTip(
-        tr("Switch focus between panels (tree feeds, list news, browser)"));
+        tr("Switch Focus Between Panels (Tree Feeds, List News, Browser)"));
 
-  visibleFeedsDockAct_->setText(tr("Show/hide tree feeds"));
+  visibleFeedsDockAct_->setText(tr("Show/Hide Tree Feeds"));
 
-  placeToTrayAct_->setText(tr("Minimize to tray"));
+  placeToTrayAct_->setText(tr("Minimize to Tray"));
   placeToTrayAct_->setToolTip(
-        tr("Minimize application to tray"));
+        tr("Minimize Application to Tray"));
 
   feedsColumnsMenu_->setTitle(tr("Columns"));
-  showUnreadCount_->setText(tr("Count news unread"));
-  showUndeleteCount_->setText(tr("Count news all"));
-  showLastUpdated_->setText(tr("Last updated"));
+  showUnreadCount_->setText(tr("Count News Unread"));
+  showUndeleteCount_->setText(tr("Count News All"));
+  showLastUpdated_->setText(tr("Last Updated"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -3006,9 +3006,9 @@ void RSSListing::refreshInfoTray()
   // Установка текста всплывающей подсказки
   QString info =
       "QuiteRSS\n" +
-      QString(tr("New news: %1")).arg(newCount) +
+      QString(tr("New News: %1")).arg(newCount) +
       QString("\n") +
-      QString(tr("Unread news: %1")).arg(unreadCount);
+      QString(tr("Unread News: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
   // Отображаем количество либо новых, либо непрочитанных новостей

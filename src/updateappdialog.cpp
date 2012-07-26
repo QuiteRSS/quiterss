@@ -8,7 +8,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     showDialog_(show)
 {
   if (showDialog_) {
-    setWindowTitle(tr("Check for updates"));
+    setWindowTitle(tr("Check for Updates"));
     setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setObjectName("UpdateAppDialog");
     resize(450, 350);

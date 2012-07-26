@@ -20,7 +20,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "0" << tr("General");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "1" << tr("System tray");
+  treeItem << "1" << tr("System Tray");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "2" << tr("Network Connections");
@@ -41,7 +41,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "7" << tr("Fonts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "8" << tr("Keyboard shortcuts");
+  treeItem << "8" << tr("Keyboard Shortcuts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ general

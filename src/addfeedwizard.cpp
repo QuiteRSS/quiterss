@@ -7,7 +7,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db)
     db_(db)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setWindowTitle(tr("Add feed"));
+  setWindowTitle(tr("Add Feed"));
   setWizardStyle(QWizard::ModernStyle);
   setOptions(QWizard::HaveFinishButtonOnEarlyPages |
              QWizard::NoBackButtonOnStartPage);
@@ -76,7 +76,7 @@ void AddFeedWizard::changeEvent(QEvent *event)
 QWizardPage *AddFeedWizard::createUrlFeedPage()
 {
   QWizardPage *page = new QWizardPage;
-  page->setTitle(tr("Create new feed"));
+  page->setTitle(tr("Create New Feed"));
 
   selectedPage = false;
   finishOn = false;
@@ -131,7 +131,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
 QWizardPage *AddFeedWizard::createNameFeedPage()
 {
   QWizardPage *page = new QWizardPage;
-  page->setTitle(tr("Create new feed"));
+  page->setTitle(tr("Create New Feed"));
   page->setFinalPage(false);
 
   nameFeedEdit_ = new LineEdit(this);

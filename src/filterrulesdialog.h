@@ -32,11 +32,11 @@ public:
 
     addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addT"));
-    addButton->setToolTip(tr("Add condition"));
+    addButton->setToolTip(tr("Add Condition"));
     addButton->setAutoRaise(true);
     deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteT"));
-    deleteButton->setToolTip(tr("Delete condition"));
+    deleteButton->setToolTip(tr("Delete Condition"));
     deleteButton->setAutoRaise(true);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
@@ -124,8 +124,8 @@ public:
   {
     QStringList itemList;
     comboBox1 = new QComboBox(this);
-    itemList /*<< tr("Move news to")  << tr("Copy news to")*/
-             << tr("Mark news as read") << tr("Add star")
+    itemList /*<< tr("Move News to")  << tr("Copy News to")*/
+             << tr("Mark News as Read") << tr("Add Star")
              << tr("Delete");
     comboBox1->addItems(itemList);
 
@@ -134,11 +134,11 @@ public:
 
     addButton = new QToolButton(this);
     addButton->setIcon(QIcon(":/images/addT"));
-    addButton->setToolTip(tr("Add action"));
+    addButton->setToolTip(tr("Add Action"));
     addButton->setAutoRaise(true);
     deleteButton = new QToolButton(this);
     deleteButton->setIcon(QIcon(":/images/deleteT"));
-    deleteButton->setToolTip(tr("Delete action"));
+    deleteButton->setToolTip(tr("Delete Action"));
     deleteButton->setAutoRaise(true);
 
     QHBoxLayout *buttonsLayout = new QHBoxLayout();

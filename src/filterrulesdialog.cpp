@@ -6,7 +6,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
     filterId_(filterId)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setWindowTitle(tr("Filter rules"));
+  setWindowTitle(tr("Filter Rules"));
   setMinimumHeight(300);
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
@@ -23,7 +23,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("All feeds") << "-1";
+  treeItem << tr("All Feeds") << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree->addTopLevelItem(treeWidgetItem);

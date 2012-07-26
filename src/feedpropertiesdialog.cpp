@@ -5,7 +5,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
   QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setWindowTitle(tr("Feed properties"));
+  setWindowTitle(tr("Feed Properties"));
 
   // Основное окно
   QVBoxLayout *layoutMain = new QVBoxLayout(this);

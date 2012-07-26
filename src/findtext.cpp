@@ -59,8 +59,8 @@ FindTextContent::FindTextContent(QWidget *parent)
 
 void FindTextContent::retranslateStrings()
 {
-  findInNewsAct_->setText(tr("Filter news"));
-  findInBrowserAct_->setText(tr("Find in browser"));
+  findInNewsAct_->setText(tr("Filter News"));
+  findInBrowserAct_->setText(tr("Find in Browser"));
   findLabel_->setText(findGroup_->checkedAction()->text());
 }
 

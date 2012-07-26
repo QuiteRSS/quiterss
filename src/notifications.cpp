@@ -104,7 +104,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   foreach (int cntNews, cntNewNewsList_) {
     cntAllNews = cntAllNews + cntNews;
   }
-  textTitle_->setText(QString(tr("Incoming news: %1")).arg(cntAllNews));
+  textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews));
 
   if (cntAllNews > countShowNews_) rightButton_->setEnabled(true);
   else rightButton_->setEnabled(false);

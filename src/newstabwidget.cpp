@@ -409,10 +409,10 @@ void NewsTabWidget::retranslateStrings() {
   webPanelAuthorLabel_->setText(tr("Author:"));
 
   webHomePageAct_->setText(tr("Home"));
-  webExternalBrowserAct_->setText(tr("Open in external browser"));
+  webExternalBrowserAct_->setText(tr("Open in External Browser"));
 
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
-  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in new tab"));
+  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
   webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
   webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
   webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
@@ -426,7 +426,7 @@ void NewsTabWidget::retranslateStrings() {
     newsHeader_->retranslateStrings();
   }
 
-  closeButton_->setToolTip(tr("Close tab"));
+  closeButton_->setToolTip(tr("Close Tab"));
 }
 
 bool NewsTabWidget::eventFilter(QObject *obj, QEvent *event)

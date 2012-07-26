@@ -7,7 +7,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
     settings_(settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setWindowTitle(tr("News filters"));
+  setWindowTitle(tr("News Filters"));
   setMinimumWidth(500);
   setMinimumHeight(250);
 
@@ -19,7 +19,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << "Id" << tr("Name filter") << tr("Feeds");
+  treeItem << "Id" << tr("Name Filter") << tr("Feeds");
   filtersTree->setHeaderLabels(treeItem);
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
@@ -87,7 +87,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   closeButton->setFocus(Qt::OtherFocusReason);
   connect(closeButton, SIGNAL(clicked()), SLOT(close()));
 
-  applyFilterButton = new QPushButton(tr("Apply selected filter"), this);
+  applyFilterButton = new QPushButton(tr("Apply Selected Filter"), this);
   applyFilterButton->setEnabled(false);
   connect(applyFilterButton, SIGNAL(clicked()), SLOT(applyFilter()));
 
@@ -212,7 +212,7 @@ void NewsFiltersDialog::deleteFilter()
 {
   QMessageBox msgBox;
   msgBox.setIcon(QMessageBox::Question);
-  msgBox.setWindowTitle(tr("Delete filter"));
+  msgBox.setWindowTitle(tr("Delete Filter"));
   msgBox.setText(QString(tr("Are you sure to delete the filter '%1'?")).
                  arg(filtersTree->currentItem()->text(1)));
   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
