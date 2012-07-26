@@ -49,7 +49,7 @@ QMenuBar::item:pressed {
 	min-height: 20px;
 }
 
-QTabWidget#tabWidget_::pane { /* Рамка виджета со вкладками */
+QTabWidget::pane { /* Рамка виджета со вкладками */
 	background: white;
 	border: 1px solid gray;
 }
