@@ -2,6 +2,7 @@
 #define WEBPAGE_H
 
 #include <QWebPage>
+#include <QNetworkAccessManager>
 
 class WebPage : public QWebPage
 {
@@ -13,6 +14,9 @@ public:
 
 protected slots:
   QWebPage *createWindow(WebWindowType type);
+
+private slots:
+  void handleSslErrors(QNetworkReply* reply, const QList<QSslError> &errors);
 
 };
 
