@@ -1253,4 +1253,32 @@
     <source>Close notification after</source>
     <target>Bezárás az értesítést követő</target>
 </phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Csillagozott</target>
+</phrase>
+<phrase>
+    <source>All Feeds</source>
+    <target>Az összes hírcsatorna</target>
+</phrase>
+<phrase>
+    <source>December</source>
+    <target>December</target>
+</phrase>
+<phrase>
+    <source>Display format for date and time in list of news:</source>
+    <target>Dátum és idő megjelenítési formátuma a hírek listájában:</target>
+</phrase>
+<phrase>
+    <source>&amp;Add Feed...</source>
+    <target>&amp;Hírcsatorna hozzáadása...</target>
+</phrase>
+<phrase>
+    <source>Show Starred Feeds</source>
+    <target>Csillagozott hírcsatornák megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Application Style</source>
+    <target>Alkalmazás stílus</target>
+</phrase>
 </QPH>
