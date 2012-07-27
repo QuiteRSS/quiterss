@@ -2349,6 +2349,13 @@ void RSSListing::slotUpdateStatus(bool openFeed)
     statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
     statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
   }
+  if (feedId > 0) {
+    statusUnread_->setVisible(true);
+    statusAll_->setVisible(true);
+  } else {
+    statusUnread_->setVisible(false);
+    statusAll_->setVisible(false);
+  }
 }
 
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
