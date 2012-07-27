@@ -1105,7 +1105,7 @@ void RSSListing::createToolBar()
   toolBar_->addAction(updateAllFeedsAct_);
   toolBar_->addSeparator();
   toolBar_->addAction(markFeedRead_);
-  toolBar_->addAction(markAllFeedsRead_);
+//  toolBar_->addAction(markAllFeedsRead_);
   toolBar_->addSeparator();
   toolBar_->addAction(autoLoadImagesToggle_);
   toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -2764,21 +2764,21 @@ void RSSListing::retranslateStrings() {
   toolsMenu_->setTitle(tr("&Tools"));
   helpMenu_->setTitle(tr("&Help"));
 
-  toolBar_->setWindowTitle(tr("ToolBar"));
-  toolBarMenu_->setTitle(tr("ToolBar"));
+  toolBar_->setWindowTitle(tr("Toolbar"));
+  toolBarMenu_->setTitle(tr("Toolbar"));
   toolBarStyleMenu_->setTitle(tr("Style"));
   toolBarStyleI_->setText(tr("Icon"));
   toolBarStyleT_->setText(tr("Text"));
   toolBarStyleTbI_->setText(tr("Text Beside Icon"));
   toolBarStyleTuI_->setText(tr("Text Under Icon"));
-  toolBarToggle_->setText(tr("Show ToolBar"));
+  toolBarToggle_->setText(tr("Show Toolbar"));
 
   toolBarIconSizeMenu_->setTitle(tr("Icon Size"));
   toolBarIconBig_->setText(tr("Big"));
   toolBarIconNormal_->setText(tr("Normal"));
   toolBarIconSmall_->setText(tr("Small"));
 
-  styleMenu_->setTitle(tr("Style Application"));
+  styleMenu_->setTitle(tr("Application Style"));
   systemStyle_->setText(tr("System"));
   system2Style_->setText(tr("System2"));
   greenStyle_->setText(tr("Green"));
