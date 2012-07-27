@@ -62,6 +62,10 @@ void FindTextContent::retranslateStrings()
   findInNewsAct_->setText(tr("Filter News"));
   findInBrowserAct_->setText(tr("Find in Browser"));
   findLabel_->setText(findGroup_->checkedAction()->text());
+  if (findLabel_->isVisible()) {
+    findLabel_->hide();
+    findLabel_->show();
+  }
 }
 
 void FindTextContent::resizeEvent(QResizeEvent *)
