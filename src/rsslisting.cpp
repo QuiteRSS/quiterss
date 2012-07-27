@@ -956,6 +956,7 @@ void RSSListing::createMenu()
 
   toolBarMenu_->addMenu(toolBarStyleMenu_);
   toolBarMenu_->addMenu(toolBarIconSizeMenu_);
+  toolBarMenu_->addSeparator();
   toolBarMenu_->addAction(toolBarToggle_);
   viewMenu_->addMenu(toolBarMenu_);
 
