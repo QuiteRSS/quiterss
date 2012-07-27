@@ -581,7 +581,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="412"/>
         <source>Open in External Browser</source>
-        <translation">Megnyitás egy külső böngészőben</translation>
+        <translation>Megnyitás egy külső böngészőben</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="415"/>
@@ -626,7 +626,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="429"/>
         <source>Close Tab</source>
-        <translation">Fül bezárása</translation>
+        <translation>Fül bezárása</translation>
     </message>
     <message>
         <source>Close tab</source>
@@ -1593,7 +1593,7 @@
         <location filename="../src/rsslisting.cpp" line="2672"/>
         <location filename="../src/rsslisting.cpp" line="3009"/>
         <source>New News: %1</source>
-        <translation">Új hírek: %1</translation>
+        <translation>Új hírek: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2674"/>
@@ -1884,7 +1884,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2809"/>
         <source>Minimize to Tray</source>
-        <translation">Lekicsinyítés a tálcára</translation>
+        <translation>Lekicsinyítés a tálcára</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2811"/>
