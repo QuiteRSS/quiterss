@@ -1253,4 +1253,32 @@
     <source>Close notification after</source>
     <target>Закрывать уведомление после</target>
 </phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Избранная</target>
+</phrase>
+<phrase>
+    <source>All Feeds</source>
+    <target>Все ленты</target>
+</phrase>
+<phrase>
+    <source>December</source>
+    <target>Декабрь</target>
+</phrase>
+<phrase>
+    <source>Display format for date and time in list of news:</source>
+    <target>Формат отображения даты и времени в списке новостей:</target>
+</phrase>
+<phrase>
+    <source>&amp;Add Feed...</source>
+    <target>&amp;Добавить ленту...</target>
+</phrase>
+<phrase>
+    <source>Show Starred Feeds</source>
+    <target>Показать избранные ленты</target>
+</phrase>
+<phrase>
+    <source>Application Style</source>
+    <target>Стиль приложения</target>
+</phrase>
 </QPH>

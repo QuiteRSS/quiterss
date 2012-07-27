@@ -1172,4 +1172,32 @@
     <source>Minimize application to tray</source>
     <target>Minimieren Anwendung auf das Tray</target>
 </phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Favoriten</target>
+</phrase>
+<phrase>
+    <source>All Feeds</source>
+    <target>Alle Feeds</target>
+</phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Stern</target>
+</phrase>
+<phrase>
+    <source>December</source>
+    <target>Dezember</target>
+</phrase>
+<phrase>
+    <source>Display format for date and time in list of news:</source>
+    <target>Anzeigeformat für Datum und Uhrzeit in der Liste der Neuigkeiten:</target>
+</phrase>
+<phrase>
+    <source>Previous News</source>
+    <target>Voriger Artikel</target>
+</phrase>
+<phrase>
+    <source>Show Starred Feeds</source>
+    <target>Favoriten anzeigen Feeds</target>
+</phrase>
 </QPH>

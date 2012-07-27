@@ -2516,7 +2516,7 @@ void RSSListing::setAutoLoadImages(bool set)
   autoLoadImages_ = !autoLoadImages_;
   if (autoLoadImages_) {
     autoLoadImagesToggle_->setText(tr("Load Images"));
-    autoLoadImagesToggle_->setToolTip(tr("Auto Ioad Images to News View"));
+    autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   } else {
     autoLoadImagesToggle_->setText(tr("No Load Images"));
