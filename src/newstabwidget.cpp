@@ -453,9 +453,7 @@ bool NewsTabWidget::eventFilter(QObject *obj, QEvent *event)
 void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
 {
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
-    if ((newsView_->selectionModel()->selectedRows(0).count() == 1)) {
-      slotNewsViewSelected(index);
-    }
+    slotNewsViewSelected(index);
   }
 }
 
@@ -755,11 +753,32 @@ void NewsTabWidget::markNewsStar()
         markStar = true;
     }
 
+    rsslisting_->db_.transaction();
+    QSqlQuery q(rsslisting_->db_);
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (markStar) slotSetItemStar(curIndex, 1);
-      else slotSetItemStar(curIndex, 0);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%3'").
+             arg(markStar).arg(newsId));
     }
+    rsslisting_->db_.commit();
+
+    rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    int row = -1;
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          feedsModel_->index(feedsView_->currentIndex().row(),
+                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+        row = i;
+        break;
+      }
+    }
+    newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+    rsslisting_->slotUpdateStatus();
   }
 }
 

@@ -44,7 +44,11 @@ NewsView::NewsView(QWidget * parent)
     emit signalSetItemRead(index, 1);
     emit signalMiddleClicked(index);
     return;
+  } else {
+    if (selectionModel()->selectedRows(0).count() > 1)
+      return;
   }
+
   QTreeView::mousePressEvent(event);
 }
 
