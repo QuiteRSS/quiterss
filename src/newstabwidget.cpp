@@ -26,7 +26,8 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
   closeButton_->setFixedSize(15, 15);
   closeButton_->setCursor(Qt::ArrowCursor);
   closeButton_->setStyleSheet(
-        "QToolButton { border: none; padding: 0px;"
+        "QToolButton { background-color: transparent;"
+        "border: none; padding: 0px;"
         "image: url(:/images/close); }"
         "QToolButton:hover {"
         "image: url(:/images/closeHover); }"
