@@ -9,6 +9,7 @@
 #include "faviconloader.h"
 #include "feedsmodel.h"
 #include "feedsview.h"
+#include "findfeed.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newstabwidget.h"
@@ -222,6 +223,8 @@ private:
   QAction *showLastUpdated_;
   QActionGroup *feedsColumnsGroup_;
 
+  QAction *findFeedAct_;
+
   QMenu *fileMenu_;
   QMenu *editMenu_;
   QMenu *viewMenu_;
@@ -316,6 +319,9 @@ private:
 
   NotificationWidget *notificationWidget;
 
+  FindFeed *findFeeds_;
+  QWidget *findFeedsWidget_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
@@ -377,6 +383,10 @@ private slots:
   void showNotification();
   void deleteNotification();
   void slotOpenNew(int feedId, int newsId);
+
+  void slotFindFeeds(QString text);
+  void slotSelectFind();
+  void findFeedVisible(bool visible);
 
 signals:
   void signalPlaceToTray();

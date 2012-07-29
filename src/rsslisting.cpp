@@ -382,7 +382,7 @@ void RSSListing::createFeedsDock()
   feedsModel_->select();
 
   feedsView_ = new FeedsView(this);
-  feedsView_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+  feedsView_->setFrameStyle(QFrame::NoFrame);
   feedsView_->setModel(feedsModel_);
   for (int i = 0; i < feedsModel_->columnCount(); ++i)
     feedsView_->hideColumn(i);
@@ -399,7 +399,7 @@ void RSSListing::createFeedsDock()
   feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
 
   feedsToolBar_ = new QToolBar(this);
-  feedsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
+  feedsToolBar_->setStyleSheet("QToolBar { border: none; padding: 1px; }");
   feedsToolBar_->setIconSize(QSize(18, 18));
 
   QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
@@ -421,12 +421,29 @@ void RSSListing::createFeedsDock()
   setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
   setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
 
+  findFeeds_ = new FindFeed(this);
+  QVBoxLayout *findFeedsLayout = new QVBoxLayout();
+  findFeedsLayout->setMargin(2);
+  findFeedsLayout->addWidget(findFeeds_);
+  findFeedsWidget_ = new QWidget(this);
+  findFeedsWidget_->hide();
+  findFeedsWidget_->setLayout(findFeedsLayout);
+
+  QVBoxLayout *feedsLayout = new QVBoxLayout();
+  feedsLayout->setMargin(0);
+  feedsLayout->setSpacing(0);
+  feedsLayout->addWidget(findFeedsWidget_);
+  feedsLayout->addWidget(feedsView_, 1);
+  QFrame *feedsWidget_ = new QFrame(this);
+  feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+  feedsWidget_->setLayout(feedsLayout);
+
   feedsDock_ = new QDockWidget(this);
   feedsDock_->setObjectName("feedsDock");
   feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
   feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
   feedsDock_->setTitleBarWidget(feedsPanel);
-  feedsDock_->setWidget(feedsView_);
+  feedsDock_->setWidget(feedsWidget_);
   addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
 
   connect(feedsView_, SIGNAL(pressed(QModelIndex)),
@@ -441,6 +458,13 @@ void RSSListing::createFeedsDock()
           this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
+
+  connect(findFeeds_, SIGNAL(textChanged(QString)),
+          this, SLOT(slotFindFeeds(QString)));
+  connect(findFeeds_, SIGNAL(signalSelectFind()),
+          this, SLOT(slotSelectFind()));
+  connect(findFeeds_, SIGNAL(returnPressed()),
+          this, SLOT(slotSelectFind()));
 
   feedsView_->viewport()->installEventFilter(this);
 }
@@ -783,6 +807,14 @@ void RSSListing::createActions()
   placeToTrayAct_->setObjectName("placeToTrayAct");
   connect(placeToTrayAct_, SIGNAL(triggered()), this, SLOT(slotPlaceToTray()));
   this->addAction(placeToTrayAct_);
+
+  findFeedAct_ = new QAction(this);
+  findFeedAct_->setCheckable(true);
+  findFeedAct_->setChecked(false);
+  findFeedAct_->setIcon(QIcon(":/images/images/findFeed.png"));
+  feedsToolBar_->addAction(findFeedAct_);
+  connect(findFeedAct_, SIGNAL(triggered(bool)),
+          this, SLOT(findFeedVisible(bool)));
 
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
@@ -2858,6 +2890,7 @@ void RSSListing::retranslateStrings() {
   if (newsView_) {
     currentNewsTab->retranslateStrings();
   }
+  findFeeds_->retranslateStrings();
 }
 
 void RSSListing::setToolBarStyle(QAction *pAct)
@@ -3890,4 +3923,51 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
 
   slotShowWindows();
+}
+
+void RSSListing::slotFindFeeds(QString text)
+{
+  if (!findFeedsWidget_->isVisible()) return;
+
+  QString filterStr;
+  if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
+    filterStr = "";
+  } else if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsNew_") {
+    filterStr = QString("newCount > 0 AND ");
+  } else if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsUnread_") {
+    filterStr = QString("unread > 0 AND ");
+  } else if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsStarred_") {
+    filterStr = QString("label LIKE '\%starred\%' AND ");
+  }
+
+  if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
+    filterStr.append(QString("text LIKE '\%%1\%'").arg(text));
+  } else {
+    filterStr.append(QString("xmlUrl LIKE '\%%1\%'").arg(text));
+  }
+  feedsModel_->setFilter(filterStr);
+}
+
+void RSSListing::slotSelectFind()
+{
+  slotFindFeeds(findFeeds_->text());
+}
+
+void RSSListing::findFeedVisible(bool visible)
+{
+  findFeedsWidget_->setVisible(visible);
+  if (visible) {
+    findFeeds_->setFocus();
+  } else {
+    findFeeds_->clear();
+    feedsModel_->setFilter("");
+    int rowFeeds = -1;
+    for (int i = 0; i < feedsModel_->rowCount(); i++) {
+      if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentNewsTab->feedId_) {
+        rowFeeds = i;
+      }
+    }
+    feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+    setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+  }
 }
