@@ -2482,8 +2482,16 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   } else if (pAct->objectName() == "filterNewsStar_") {
     newsFilterStr.append(QString("starred = 1 AND deleted = 0"));
   }
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << newsFilterStr;
-  newsModel_->setFilter(newsFilterStr);
+
+  QString filterStr = newsFilterStr;
+  if (currentNewsTab->findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct") {
+    filterStr.append(
+        QString(" AND (title LIKE '\%%1\%' OR author_name LIKE '\%%1\%' OR category LIKE '\%%1\%')").
+        arg(currentNewsTab->findText_->text()));
+  }
+
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << filterStr;
+  newsModel_->setFilter(filterStr);
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
