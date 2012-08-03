@@ -145,6 +145,7 @@ private:
   void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
   void creatFeedTab(int feedId);
   void feedsModelReload();
+  void cleanUp();
 
   QString dataDirPath_;
 

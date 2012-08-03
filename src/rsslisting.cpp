@@ -81,6 +81,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
           Qt::QueuedConnection);
 
+  cleanUp();
+
   currentNewsTab = NULL;
   newsView_ = NULL;
   webView_ = NULL;
@@ -3989,4 +3991,24 @@ void RSSListing::findFeedVisible(bool visible)
     feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   }
+}
+
+//! Полное удаление новостей
+void RSSListing::cleanUp()
+{
+  if (settings_->value("CleanUp", 0).toInt() != 1) return;
+
+  QSqlQuery q(db_);
+  q.exec("SELECT received, id FROM news WHERE deleted==2");
+  while (q.next()) {
+    QDateTime dateTime = QDateTime::fromString(q.value(0).toString(), Qt::ISODate);
+    if (dateTime.daysTo(QDateTime::currentDateTime()) > settings_->value("DayCleanUp", 0).toInt()) {
+      QString qStr = QString("DELETE FROM news WHERE id='%2'").
+          arg(q.value(1).toInt());
+      QSqlQuery qt(db_);
+      qt.exec(qStr);
+    }
+  }
+
+  settings_->setValue("CleanUp", 0);
 }
