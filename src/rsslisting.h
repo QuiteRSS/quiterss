@@ -323,6 +323,8 @@ private:
   FindFeed *findFeeds_;
   QWidget *findFeedsWidget_;
 
+  int feedIdOld;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();

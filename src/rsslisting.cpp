@@ -87,6 +87,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   newsView_ = NULL;
   webView_ = NULL;
   notificationWidget = NULL;
+  feedIdOld = -2;
 
   createFeedsDock();
   createToolBarNull();
@@ -1814,7 +1815,6 @@ void RSSListing::slotUpdateNews()
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 {
-  static int idOld = -2;
   int indexTab = -1;
 
   for (int i = 0; i < tabWidget_->count(); i++) {
@@ -1825,7 +1825,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
     }
   }
 
-  if ((feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data() != idOld) &&
+  if ((feedsModel_->index(index.row(), feedsModel_->fieldIndex("id")).data() != feedIdOld) ||
       (indexTab == -1)) {
     if (tabWidget_->currentIndex() != 0) {
       tabWidget_->setCurrentIndex(0);
@@ -1833,12 +1833,12 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
     }
 
     //! При переходе на другую ленту метим старую просмотренной
-    setFeedRead(idOld);
+    setFeedRead(feedIdOld);
 
     slotFeedsTreeSelected(index, true);
     feedsView_->repaint();
   }
-  idOld = feedsModel_->index(
+  feedIdOld = feedsModel_->index(
       feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
 
   if (indexTab != -1) {
@@ -3940,8 +3940,15 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
       rowFeeds = i;
     }
   }
+  openingFeedAction_ = 0;
+  openNewsWebViewOn_ = true;
+  feedIdOld = -2;
+
   feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
   slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+  openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
+  openNewsWebViewOn_ = settings_->value("/Settings/openNewsWebViewOn", true).toBool();
 
   slotShowWindows();
 }
