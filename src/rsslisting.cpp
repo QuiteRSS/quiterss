@@ -4032,9 +4032,24 @@ void RSSListing::findFeedVisible(bool visible)
 //! Полное удаление новостей
 void RSSListing::cleanUp()
 {
+  QSqlQuery q(db_);
+
+  bool lastBuildDateClear = false;
+  q.exec("SELECT value FROM info WHERE name='lastBuildDateClear_0.10.1'");
+  if (q.next()) {
+    lastBuildDateClear = q.value(0).toBool();
+    q.exec("UPDATE info SET value='true' WHERE name='lastBuildDateClear_0.10.1'");
+  }
+  else q.exec("INSERT INTO info(name, value) VALUES ('lastBuildDateClear_0.10.1', 'true')");
+
+  if (!lastBuildDateClear) {
+    QString qStr = QString("UPDATE feeds SET lastBuildDate = '%1'").
+        arg(QDateTime().toString(Qt::ISODate));
+    q.exec(qStr);
+  }
+
   if (settings_->value("CleanUp", 0).toInt() != 1) return;
 
-  QSqlQuery q(db_);
   q.exec("SELECT received, id FROM news WHERE deleted==2");
   while (q.next()) {
     QDateTime dateTime = QDateTime::fromString(q.value(0).toString(), Qt::ISODate);
