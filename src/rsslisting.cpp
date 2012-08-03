@@ -2410,12 +2410,12 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     if (clicked && !newCount) {
       strFilter = QString("newCount > 0");
     } else
-      strFilter = QString("newCount > 0 OR id=='%1'").arg(id);
+      strFilter = QString("(newCount > 0 OR id=='%1')").arg(id);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
     if (clicked && !unRead) {
       strFilter = QString("unread > 0");
     } else
-      strFilter = QString("unread > 0 OR id=='%1'").arg(id);
+      strFilter = QString("(unread > 0 OR id=='%1')").arg(id);
   } else if (pAct->objectName() == "filterFeedsStarred_") {
     strFilter = QString("label LIKE '\%starred\%'");
   }
