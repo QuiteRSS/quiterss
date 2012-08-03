@@ -2419,6 +2419,17 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   } else if (pAct->objectName() == "filterFeedsStarred_") {
     strFilter = QString("label LIKE '\%starred\%'");
   }
+
+  if (findFeedsWidget_->isVisible()) {
+    if (pAct->objectName() != "filterFeedsAll_")
+      strFilter.append(" AND ");
+    if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
+      strFilter.append(QString("text LIKE '\%%1\%'").arg(findFeeds_->text()));
+    } else {
+      strFilter.append(QString("xmlUrl LIKE '\%%1\%'").arg(findFeeds_->text()));
+    }
+  }
+
   feedsModel_->setFilter(strFilter);
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
