@@ -300,6 +300,22 @@ void RSSListing::slotCloseApp()
       }
     } else {
       oldState = windowState();
+
+      if (tabWidget_->count()) {
+        QString stateStr;
+        if (((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMaximized)
+          stateStr = "Maximized";
+        settings_->setValue("NewsHeaderState" + stateStr,
+                            currentNewsTab->newsHeader_->saveState());
+
+        stateStr = "";
+        if (windowState() & Qt::WindowMaximized)
+          stateStr = "Maximized";
+
+        currentNewsTab->newsHeader_->restoreState(
+              settings_->value("NewsHeaderState" + stateStr).toByteArray());
+
+      }
     }
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
@@ -1390,10 +1406,17 @@ void RSSListing::writeSettings()
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
   if (tabWidget_->count()) {
-    settings_->setValue("NewsHeaderGeometry",
-                        currentNewsTab->newsHeader_->saveGeometry());
-    settings_->setValue("NewsHeaderState",
+    QString stateStr;
+    if(isMinimized()) {
+      if (oldState & Qt::WindowMaximized)
+        stateStr = "Maximized";
+    } else {
+      if (windowState() & Qt::WindowMaximized)
+        stateStr = "Maximized";
+    }
+    settings_->setValue("NewsHeaderState" + stateStr,
                         currentNewsTab->newsHeader_->saveState());
+
     settings_->setValue("NewsTabSplitter",
                         currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
     settings_->setValue("NewsTabSplitter",
@@ -3459,9 +3482,15 @@ void RSSListing::slotTabCloseRequested(int index)
     if (widget->feedId_ > -1) {
       setFeedRead(widget->feedId_);
 
-      settings_->setValue("NewsHeaderGeometry",
-                          widget->newsHeader_->saveGeometry());
-      settings_->setValue("NewsHeaderState",
+      QString stateStr;
+      if(isMinimized()) {
+        if (oldState & Qt::WindowMaximized)
+          stateStr = "Maximized";
+      } else {
+        if (windowState() & Qt::WindowMaximized)
+          stateStr = "Maximized";
+      }
+      settings_->setValue("NewsHeaderState" + stateStr,
                           widget->newsHeader_->saveState());
 
       settings_->setValue("NewsTabSplitter",

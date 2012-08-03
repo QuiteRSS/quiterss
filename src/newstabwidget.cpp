@@ -130,7 +130,7 @@ void NewsTabWidget::createNewsList()
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
 
-  newsHeader_->init(rsslisting_->settings_);
+  newsHeader_->init(rsslisting_);
 
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");

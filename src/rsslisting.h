@@ -78,6 +78,8 @@ public:
 
   QString newsFilterStr;
 
+  int oldState;
+
 public slots:
   void addFeed();
   void deleteFeed();
@@ -255,8 +257,6 @@ private:
   NewsView *newsView_;
 
   NewsTabWidget *currentNewsTab;
-
-  int oldState;
 
   QProgressBar *progressBar_;
   QLabel *statusUnread_;

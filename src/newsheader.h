@@ -22,7 +22,7 @@ private:
 public:
   NewsHeader(NewsModel *model, QWidget *parent);
 
-  void init(QSettings *settings);
+  void init(QWidget *rsslisting);
   void retranslateStrings();
 
 protected:

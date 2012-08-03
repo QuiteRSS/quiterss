@@ -1,4 +1,5 @@
 #include "newsheader.h"
+#include "rsslisting.h"
 
 NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   : QHeaderView(Qt::Horizontal, parent),
@@ -33,7 +34,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   this->installEventFilter(this);
 }
 
-void NewsHeader::init(QSettings *settings)
+void NewsHeader::init(QWidget *rsslisting)
 {
   if (count() == 0) return;
 
@@ -78,8 +79,14 @@ void NewsHeader::init(QSettings *settings)
   moveSection(visualIndex(model_->fieldIndex("category")), 4);
   resizeSection(model_->fieldIndex("title"), 200);
 
-  restoreGeometry(settings->value("NewsHeaderGeometry").toByteArray());
-  restoreState(settings->value("NewsHeaderState").toByteArray());
+  RSSListing *rsslisting_ = qobject_cast<RSSListing*>(rsslisting);
+
+  QString stateStr;
+  if (rsslisting_->windowState() & Qt::WindowMaximized)
+    stateStr = "Maximized";
+
+  restoreState(rsslisting_->settings_->value("NewsHeaderState" + stateStr).
+               toByteArray());
 
   createMenu();
 
