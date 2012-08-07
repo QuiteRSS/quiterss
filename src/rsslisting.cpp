@@ -3978,8 +3978,10 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
 
   openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
   openNewsWebViewOn_ = settings_->value("/Settings/openNewsWebViewOn", true).toBool();
-
+  QModelIndex index = newsView_->currentIndex();
   slotShowWindows();
+  newsView_->setCurrentIndex(index);
+
 }
 
 void RSSListing::slotFindFeeds(QString text)
