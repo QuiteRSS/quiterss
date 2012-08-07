@@ -261,16 +261,38 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   openingFeedsLayout->addWidget(positionFirstNews_, 1, 0, 1, 1);
   openingFeedsLayout->addWidget(nottoOpenNews_, 2, 0, 1, 1);
 
-  QVBoxLayout *updateFeedsLayout = new QVBoxLayout();
-  updateFeedsLayout->addWidget(updateFeedsStartUp_);
-  updateFeedsLayout->addLayout(updateFeedsLayout1);
-  updateFeedsLayout->addSpacing(10);
-  updateFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
-  updateFeedsLayout->addLayout(openingFeedsLayout);
-  updateFeedsLayout->addStretch();
+  formatDateTime_ = new QComboBox(this);
 
-  QWidget *updateFeedsWidget_ = new QWidget();
-  updateFeedsWidget_->setLayout(updateFeedsLayout);
+  QStringList itemList;
+  itemList << "31.12.99 13:37" << "31.12.1999 13:37"
+           << QString("31. %1. 1999 13:37").arg(tr("Dec"))
+           << QString("31. %1 1999 13:37").arg(tr("December"))
+           << "99-12-31 13:37" << "1999-12-31 13:37";
+  formatDateTime_->addItems(itemList);
+  formatDateTime_->setItemData(0, "dd.MM.yy hh:mm");
+  formatDateTime_->setItemData(1, "dd.MM.yyyy hh:mm");
+  formatDateTime_->setItemData(2, "dd. MMM. yyyy hh:mm");
+  formatDateTime_->setItemData(3, "dd. MMMM yyyy hh:mm");
+  formatDateTime_->setItemData(4, "yy-MM-dd hh:mm");
+  formatDateTime_->setItemData(5, "yyyy-MM-dd hh:mm");
+
+  QHBoxLayout *formatDateLayout = new QHBoxLayout();
+  formatDateLayout->setMargin(0);
+  formatDateLayout->addWidget(new QLabel(tr("Display format for date and time:")));
+  formatDateLayout->addWidget(formatDateTime_);
+  formatDateLayout->addStretch();
+
+  QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
+  generalFeedsLayout->addWidget(updateFeedsStartUp_);
+  generalFeedsLayout->addLayout(updateFeedsLayout1);
+  generalFeedsLayout->addSpacing(10);
+  generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
+  generalFeedsLayout->addLayout(openingFeedsLayout);
+  generalFeedsLayout->addLayout(formatDateLayout);
+  generalFeedsLayout->addStretch();
+
+  QWidget *generalFeedsWidget_ = new QWidget();
+  generalFeedsWidget_->setLayout(generalFeedsLayout);
 //
   markNewsReadOn_ = new QCheckBox(tr("Mark selected news as read after"));
   markNewsReadTime_ = new QSpinBox();
@@ -289,32 +311,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   readingFeedsLayout1->addWidget(new QLabel(tr("seconds")));
   readingFeedsLayout1->addStretch();
 
-  formatDateTime_ = new QComboBox(this);
-
-  QStringList itemList;
-  itemList << "31.12.99 13:37" << "31.12.1999 13:37"
-           << QString("31. %1. 1999 13:37").arg(tr("Dec"))
-           << QString("31. %1 1999 13:37").arg(tr("December"))
-           << "99-12-31 13:37" << "1999-12-31 13:37";
-  formatDateTime_->addItems(itemList);
-  formatDateTime_->setItemData(0, "dd.MM.yy hh:mm");
-  formatDateTime_->setItemData(1, "dd.MM.yyyy hh:mm");
-  formatDateTime_->setItemData(2, "dd. MMM. yyyy hh:mm");
-  formatDateTime_->setItemData(3, "dd. MMMM yyyy hh:mm");
-  formatDateTime_->setItemData(4, "yy-MM-dd hh:mm");
-  formatDateTime_->setItemData(5, "yyyy-MM-dd hh:mm");
-
-  QHBoxLayout *readingFeedsLayout2 = new QHBoxLayout();
-  readingFeedsLayout2->setMargin(0);
-  readingFeedsLayout2->addWidget(new QLabel(tr("Display format for date and time in list of news:")));
-  readingFeedsLayout2->addWidget(formatDateTime_);
-  readingFeedsLayout2->addStretch();
-
   QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
   readingFeedsLayout->addLayout(readingFeedsLayout1);
   readingFeedsLayout->addWidget(showDescriptionNews_);
-  readingFeedsLayout->addSpacing(15);
-  readingFeedsLayout->addLayout(readingFeedsLayout2);
   readingFeedsLayout->addStretch();
 
   QWidget *readingFeedsWidget_ = new QWidget();
@@ -357,7 +356,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   cleanUpFeedsWidget_->setLayout(cleanUpFeedsLayout);
 
   feedsWidget_ = new QTabWidget();
-  feedsWidget_->addTab(updateFeedsWidget_, tr("General"));
+  feedsWidget_->addTab(generalFeedsWidget_, tr("General"));
   feedsWidget_->addTab(readingFeedsWidget_, tr("Reading"));
   feedsWidget_->addTab(cleanUpFeedsWidget_, tr("Clean Up"));
   //} feeds
