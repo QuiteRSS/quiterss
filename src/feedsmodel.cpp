@@ -45,7 +45,7 @@ QVariant FeedsModel::data(const QModelIndex &index, int role) const
         if (QDateTime::currentDateTime().date() == dtLocal.date())
           return dtLocal.toString("hh:mm");
         else
-          return dtLocal.toString("yyyy.MM.dd");
+          return dtLocal.toString(formatDateTime_.left(formatDateTime_.length()-6));
       } else {
         return QVariant();
       }

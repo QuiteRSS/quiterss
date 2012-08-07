@@ -1222,6 +1222,7 @@ void RSSListing::readSettings()
   showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
 
   formatDateTime_ = settings_->value("formatDataTime", "dd.MM.yy hh:mm").toString();
+  feedsModel_->formatDateTime_ = formatDateTime_;
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -2135,6 +2136,7 @@ void RSSListing::showOptionDlg()
 
   formatDateTime_ = optionsDialog->formatDateTime_->itemData(
         optionsDialog->formatDateTime_->currentIndex()).toString();
+  feedsModel_->formatDateTime_ = formatDateTime_;
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
