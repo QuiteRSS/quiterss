@@ -47,7 +47,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralTitle->addWidget(btnLoadTitle);
   editURL = new LineEdit();
 
-  displayOnStartup = new QCheckBox(tr("Display feed on startup"));
+  displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
 
