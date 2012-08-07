@@ -140,6 +140,8 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->markStarAct_);
   newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
+  newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->newsFilter_);
 
   findText_ = new FindTextContent(this);
