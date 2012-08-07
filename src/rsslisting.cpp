@@ -3461,7 +3461,7 @@ void RSSListing::slotSwitchFocus()
     newsView_->setFocus();
   } else if (newsView_->hasFocus()) {
     webView_->setFocus();
-  } else if (webView_->hasFocus()) {
+  } else {
     feedsView_->setFocus();
   }
 }
@@ -3981,7 +3981,6 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   QModelIndex index = newsView_->currentIndex();
   slotShowWindows();
   newsView_->setCurrentIndex(index);
-
 }
 
 void RSSListing::slotFindFeeds(QString text)
