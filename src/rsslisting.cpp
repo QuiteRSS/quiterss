@@ -3011,6 +3011,29 @@ void RSSListing::slotShowFeedPropertiesDlg()
   else
     properties.general.starred = false;
 
+  QDateTime dtLocalTime = QDateTime::currentDateTime();
+  QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+  int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+  QDateTime dt = QDateTime::fromString(
+        feedsModel_->record(index.row()).field("created").value().toString(),
+        Qt::ISODate);
+  properties.status.createdTime = dt.addSecs(nTimeShift);
+
+  dt = QDateTime::fromString(
+        feedsModel_->record(index.row()).field("updated").value().toString(),
+        Qt::ISODate);
+  properties.status.lastUpdate = dt.addSecs(nTimeShift);
+
+  properties.status.undeleteCount =
+      feedsModel_->record(index.row()).field("undeleteCount").value().toInt();
+  properties.status.newCount =
+      feedsModel_->record(index.row()).field("newCount").value().toInt();
+  properties.status.unreadCount =
+      feedsModel_->record(index.row()).field("unread").value().toInt();
+  properties.status.description =
+      feedsModel_->record(index.row()).field("description").value().toString();
+
   feedPropertiesDialog->setFeedProperties(properties);
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),

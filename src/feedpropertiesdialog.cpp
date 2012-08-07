@@ -17,8 +17,9 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
   layoutMain->addWidget(buttonBox);
 
   tabGeneral = CreateGeneralTab();
-
   tabWidget->addTab(tabGeneral, tr("General"));
+
+  tabWidget->addTab(CreateStatusTab(), tr("Status"));
 
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
   connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
@@ -74,6 +75,35 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
+QWidget *FeedPropertiesDialog::CreateStatusTab()
+{
+  createdFeed_ = new QLabel();
+  lastUpdateFeed_ = new QLabel();
+  newsCount_ = new QLabel();
+
+  descriptionText_ = new QTextEdit();
+  descriptionText_->setReadOnly(true);
+
+  QGridLayout *layoutGrid = new QGridLayout();
+  layoutGrid->addWidget(new QLabel(tr("Created:")), 0, 0);
+  layoutGrid->addWidget(createdFeed_, 0, 1);
+  layoutGrid->addWidget(new QLabel(tr("Last update:")), 1, 0);
+  layoutGrid->addWidget(lastUpdateFeed_, 1, 1);
+  layoutGrid->addWidget(new QLabel(tr("News count:")), 2, 0);
+  layoutGrid->addWidget(newsCount_, 2, 1);
+  layoutGrid->addWidget(new QLabel(tr("Description:")), 3, 0, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(descriptionText_, 3, 1, 1, 1, Qt::AlignTop);
+
+  QVBoxLayout *layoutMain = new QVBoxLayout();
+  layoutMain->addLayout(layoutGrid);
+  layoutMain->addStretch(1);
+
+  QWidget *tab = new QWidget();
+  tab->setLayout(layoutMain);
+
+  return tab;
+}
+//------------------------------------------------------------------------------
 /*virtual*/ void FeedPropertiesDialog::showEvent(QShowEvent *event)
 {
   Q_UNUSED(event)
@@ -85,6 +115,18 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
   loadImagesOn->setChecked(feedProperties.display.displayEmbeddedImages);
+
+  descriptionText_->setText(feedProperties.status.description);
+  if (feedProperties.status.createdTime.isValid())
+    createdFeed_->setText(feedProperties.status.createdTime.toString("dd.MM.yy hh:mm"));
+  else
+    createdFeed_->setText(tr("Long ago ;-)"));
+
+  lastUpdateFeed_->setText(feedProperties.status.lastUpdate.toString("dd.MM.yy hh:mm"));
+  newsCount_->setText(QString("%1 (%2 new, %3 unread)").
+                      arg(feedProperties.status.undeleteCount).
+                      arg(feedProperties.status.newCount).
+                      arg(feedProperties.status.unreadCount));
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::slotLoadTitle()

@@ -65,7 +65,10 @@ typedef struct {
     QString description; //!< Описание
     QDateTime createdTime; //!< Время создания
     QDateTime lastDisplayed; //!< Последний просмотр
-    quint64 newsCount; //!< Количесвто новостей
+    QDateTime lastUpdate; //!< Последние обновление
+    int undeleteCount; //!< Количество всех новостей
+    int newCount; //!< Количество новых новостей
+    int unreadCount; //!< Количество непрочитанных новостей
   } status;
 
 } FEED_PROPERTIES;
@@ -94,6 +97,14 @@ private:
   QCheckBox *loadImagesOn;
 
   QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
+
+  // Вкладка "Cостояние"
+  QTextEdit *descriptionText_;
+  QLabel *createdFeed_;
+  QLabel *lastUpdateFeed_;
+  QLabel *newsCount_;
+
+  QWidget *CreateStatusTab(); //!< Создание вкладки
 
   FEED_PROPERTIES feedProperties;
 
