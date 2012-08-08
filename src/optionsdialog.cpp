@@ -300,6 +300,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   markNewsReadTime_->setRange(0, 100);
   connect(markNewsReadOn_, SIGNAL(toggled(bool)),
           markNewsReadTime_, SLOT(setEnabled(bool)));
+  markReadSwitchingFeed_ = new QCheckBox(tr("Mark displayed news as read when switching feeds"));
+  markReadClosingTab_ = new QCheckBox(tr("Mark displayed news as read when closing tab"));
+  markReadMinimize_ = new QCheckBox(tr("Mark displayed news as read on minimize"));
 
   showDescriptionNews_ = new QCheckBox(
         tr("Show news' description instead of loading web page"));
@@ -313,6 +316,10 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
   readingFeedsLayout->addLayout(readingFeedsLayout1);
+  readingFeedsLayout->addWidget(markReadSwitchingFeed_);
+  readingFeedsLayout->addWidget(markReadClosingTab_);
+  readingFeedsLayout->addWidget(markReadMinimize_);
+  readingFeedsLayout->addSpacing(10);
   readingFeedsLayout->addWidget(showDescriptionNews_);
   readingFeedsLayout->addStretch();
 

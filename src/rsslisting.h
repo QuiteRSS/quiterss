@@ -64,6 +64,10 @@ public:
 
   bool markNewsReadOn_;
   int  markNewsReadTime_;
+  bool markReadSwitchingFeed_;
+  bool markReadClosingTab_;
+  bool markReadMinimize_;
+  bool showDescriptionNews_;
 
   bool autoLoadImages_;
 
@@ -71,8 +75,6 @@ public:
   QString externalBrowser_;
   bool javaScriptEnable_;
   bool pluginsEnable_;
-
-  bool showDescriptionNews_;
 
   int browserPosition_;
 
@@ -332,7 +334,7 @@ private slots:
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
 
-  void setFeedRead(int feedId);
+  void setFeedRead(int feedId, int type);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
 

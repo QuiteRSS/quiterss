@@ -61,6 +61,9 @@ public:
 
   QCheckBox *markNewsReadOn_;
   QSpinBox *markNewsReadTime_;
+  QCheckBox *markReadSwitchingFeed_;
+  QCheckBox *markReadClosingTab_;
+  QCheckBox *markReadMinimize_;
 
   QCheckBox *showDescriptionNews_;
 

@@ -337,6 +337,8 @@ void RSSListing::slotPlaceToTray()
   hide();
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
+  if (markReadMinimize_)
+    setFeedRead(currentNewsTab->feedId_, 2);
   if (clearStatusNew_)
     markAllFeedsOld();
   idFeedList_.clear();
@@ -1218,6 +1220,9 @@ void RSSListing::readSettings()
 
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
+  markReadSwitchingFeed_ = settings_->value("markReadSwitchingFeed", false).toBool();
+  markReadClosingTab_ = settings_->value("markReadClosingTab", false).toBool();
+  markReadMinimize_ = settings_->value("markReadMinimize", false).toBool();
 
   showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
 
@@ -1364,6 +1369,9 @@ void RSSListing::writeSettings()
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
+  settings_->setValue("markReadSwitchingFeed", markReadSwitchingFeed_);
+  settings_->setValue("markReadClosingTab", markReadClosingTab_);
+  settings_->setValue("markReadMinimize", markReadMinimize_);
 
   settings_->setValue("showDescriptionNews", showDescriptionNews_);
 
@@ -1857,7 +1865,7 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
     }
 
     //! При переходе на другую ленту метим старую просмотренной
-    setFeedRead(feedIdOld);
+    setFeedRead(feedIdOld, 0);
 
     slotFeedsTreeSelected(index, true);
     feedsView_->repaint();
@@ -2013,6 +2021,9 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
+  optionsDialog->markReadSwitchingFeed_->setChecked(markReadSwitchingFeed_);
+  optionsDialog->markReadClosingTab_->setChecked(markReadClosingTab_);
+  optionsDialog->markReadMinimize_->setChecked(markReadMinimize_);
 
   optionsDialog->showDescriptionNews_->setChecked(showDescriptionNews_);
 
@@ -2131,6 +2142,9 @@ void RSSListing::showOptionDlg()
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
+  markReadSwitchingFeed_ = optionsDialog->markReadSwitchingFeed_->isChecked();
+  markReadClosingTab_ = optionsDialog->markReadClosingTab_->isChecked();
+  markReadMinimize_ = optionsDialog->markReadMinimize_->isChecked();
 
   showDescriptionNews_ = optionsDialog->showDescriptionNews_->isChecked();
 
@@ -2548,17 +2562,33 @@ void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
 }
 
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
-void RSSListing::setFeedRead(int feedId)
+void RSSListing::setFeedRead(int feedId, int type)
 {
   if (feedId <= -1) return;
 
+  bool update = false;
   db_.transaction();
   QSqlQuery q(db_);
-  q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
+  if ((markReadSwitchingFeed_ && (type == 0)) ||
+      (markReadClosingTab_ && (type == 1)) ||
+      (markReadMinimize_ && (type == 2))) {
+    q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1'").arg(feedId));
+    update = true;
+  }
+  else
+    q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
   q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
 
   q.exec(QString("UPDATE feeds SET newCount=0 WHERE id='%1'").arg(feedId));
   db_.commit();
+
+  if (update) {
+    recountFeedCounts(feedId);
+    if (type != 2) {
+      refreshInfoTray();
+      feedsModelReload();
+    }
+  }
 }
 
 void RSSListing::slotShowAboutDlg()
@@ -3505,7 +3535,7 @@ void RSSListing::slotTabCloseRequested(int index)
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
 
     if (widget->feedId_ > -1) {
-      setFeedRead(widget->feedId_);
+      setFeedRead(widget->feedId_, 1);
 
       QString stateStr;
       if(isMinimized()) {
