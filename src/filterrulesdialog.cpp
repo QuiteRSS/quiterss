@@ -289,9 +289,10 @@ void FilterRulesDialog::acceptDialog()
     q.addBindValue(strIdFeeds);
     q.exec();
 
-    q.exec(QString("SELECT id FROM filters WHERE name LIKE '%1'").
-           arg(filterName->text()));
-    if (q.next()) filterId_ = q.value(0).toInt();
+    filterId_ = q.lastInsertId().toInt();
+    qStr = QString("UPDATE filters SET num='%1' WHERE id=='%1'").
+        arg(filterId_);
+    q.exec(qStr);
 
     for (int i = 0; i < conditionLayout->count()-2; i++) {
       ItemCondition *itemCondition =

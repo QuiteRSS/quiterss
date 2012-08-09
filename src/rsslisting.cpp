@@ -3720,7 +3720,7 @@ void RSSListing::setUserFilter(int feedId, int filterId)
     q.exec(QString("SELECT enable, type FROM filters WHERE id='%1' AND feeds LIKE '\%,%2,\%'").
            arg(filterId).arg(feedId));
   } else {
-    q.exec(QString("SELECT enable, type, id FROM filters WHERE feeds LIKE '\%,%1,\%'").
+    q.exec(QString("SELECT enable, type, id FROM filters WHERE feeds LIKE '\%,%1,\%' ORDER BY num").
            arg(feedId));
   }
 
@@ -3741,13 +3741,13 @@ void RSSListing::setUserFilter(int feedId, int filterId)
       if (!qStr1.isNull()) qStr1.append(",");
       switch (q1.value(0).toInt()) {
       case 0: // action -> Mark news as read
-        qStr1.append(" new=0, read=2");
+        qStr1.append(" read=2");
         break;
       case 1: // action -> Add star
         qStr1.append(" starred=1");
         break;
       case 2: // action -> Delete
-        qStr1.append(" new=0, read=2, deleted=1");
+        qStr1.append(" read=2, deleted=1");
         break;
       }
     }
@@ -3873,6 +3873,8 @@ void RSSListing::setUserFilter(int feedId, int filterId)
 //      qCritical() << qStr;
     }
   }
+  q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND read=2 AND new=1")
+         .arg(feedId));
 }
 
 //! Открытие новости клавишей Enter

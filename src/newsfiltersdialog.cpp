@@ -13,18 +13,20 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   filtersTree = new QTreeWidget(this);
   filtersTree->setObjectName("filtersTree");
-  filtersTree->setColumnCount(3);
+  filtersTree->setColumnCount(4);
   filtersTree->setColumnHidden(0, true);
+  filtersTree->setColumnHidden(3, true);
+  filtersTree->setSortingEnabled(false);
   filtersTree->header()->resizeSection(1, 150);
   filtersTree->header()->setMovable(false);
 
   QStringList treeItem;
-  treeItem << "Id" << tr("Name Filter") << tr("Feeds");
+  treeItem << "Id" << tr("Name Filter") << tr("Feeds") << "Num";
   filtersTree->setHeaderLabels(treeItem);
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q(rssl_->db_);
-  QString qStr = QString("SELECT id, name, feeds, enable FROM filters");
+  QString qStr = QString("SELECT id, name, feeds, enable, num FROM filters ORDER BY num");
   q.exec(qStr);
   while (q.next()) {
     QSqlQuery q1(rssl_->db_);
@@ -41,13 +43,21 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
     treeItem.clear();
     treeItem << q.value(0).toString()
              << q.value(1).toString()
-             << strNameFeeds;
+             << strNameFeeds
+             << q.value(4).toString();
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
     if (q.value(3).toInt() == 1)
       treeWidgetItem->setCheckState(1, Qt::Checked);
     else
       treeWidgetItem->setCheckState(1, Qt::Unchecked);
     filtersTree->addTopLevelItem(treeWidgetItem);
+
+    if (q.value(4).toInt() == 0) {
+      qStr = QString("UPDATE filters SET num='%1' WHERE id=='%1'").
+          arg(q.value(0).toInt());
+      q1.exec(qStr);
+      treeWidgetItem->setText(3, q.value(0).toString());
+    }
   }
 
   QPushButton *newButton = new QPushButton(tr("New..."), this);
@@ -61,18 +71,16 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   moveUpButton = new QPushButton(tr("Move up"), this);
   moveUpButton->setEnabled(false);
-  moveUpButton->setVisible(false);
   connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveUpFilter()));
   moveDownButton = new QPushButton(tr("Move down"), this);
   moveDownButton->setEnabled(false);
-  moveDownButton->setVisible(false);
   connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
   QVBoxLayout *buttonsLayout = new QVBoxLayout();
   buttonsLayout->addWidget(newButton);
   buttonsLayout->addWidget(editButton);
   buttonsLayout->addWidget(deleteButton);
-  buttonsLayout->addSpacing(20);
+  buttonsLayout->addSpacing(10);
   buttonsLayout->addWidget(moveUpButton);
   buttonsLayout->addWidget(moveDownButton);
   buttonsLayout->addStretch();
@@ -159,6 +167,8 @@ void NewsFiltersDialog::newFilter()
     else
       treeWidgetItem->setCheckState(1, Qt::Unchecked);
     filtersTree->addTopLevelItem(treeWidgetItem);
+
+    treeWidgetItem->setText(3, q.value(0).toString());
   }
 
   if (((filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))) &&
@@ -241,26 +251,66 @@ void NewsFiltersDialog::deleteFilter()
 
 void NewsFiltersDialog::moveUpFilter()
 {
-  QTreeWidgetItem *treeWidgetItem = filtersTree->takeTopLevelItem(
-        filtersTree->currentIndex().row()-1);
-  filtersTree->insertTopLevelItem(filtersTree->currentIndex().row()+1,
-                                  treeWidgetItem);
+  int filterRow = filtersTree->currentIndex().row();
+
+  int num1 = filtersTree->topLevelItem(filterRow)->text(3).toInt();
+  int num2 = filtersTree->topLevelItem(filterRow-1)->text(3).toInt();
+  filtersTree->topLevelItem(filterRow-1)->setText(3, QString::number(num1));
+  filtersTree->topLevelItem(filterRow)->setText(3, QString::number(num2));
+
+  QTreeWidgetItem *treeWidgetItem = filtersTree->takeTopLevelItem(filterRow-1);
+  filtersTree->insertTopLevelItem(filterRow, treeWidgetItem);
+
   if (filtersTree->currentIndex().row() == 0)
     moveUpButton->setEnabled(false);
   if (filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))
     moveDownButton->setEnabled(true);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
+  int filterNum = filtersTree->topLevelItem(filterRow)->text(3).toInt();
+  QString qStr = QString("UPDATE filters SET num='%1' WHERE id=='%2'").
+      arg(filterNum).arg(filterId);
+  q.exec(qStr);
+
+  filterId = filtersTree->topLevelItem(filterRow-1)->text(0).toInt();
+  filterNum = filtersTree->topLevelItem(filterRow-1)->text(3).toInt();
+  qStr = QString("UPDATE filters SET num='%1' WHERE id=='%2'").
+      arg(filterNum).arg(filterId);
+  q.exec(qStr);
 }
 
 void NewsFiltersDialog::moveDownFilter()
 {
-  QTreeWidgetItem *treeWidgetItem = filtersTree->takeTopLevelItem(
-        filtersTree->currentIndex().row()+1);
-  filtersTree->insertTopLevelItem(filtersTree->currentIndex().row(),
-                                  treeWidgetItem);
+  int filterRow = filtersTree->currentIndex().row();
+
+  int num1 = filtersTree->topLevelItem(filterRow)->text(3).toInt();
+  int num2 = filtersTree->topLevelItem(filterRow+1)->text(3).toInt();
+  filtersTree->topLevelItem(filterRow+1)->setText(3, QString::number(num1));
+  filtersTree->topLevelItem(filterRow)->setText(3, QString::number(num2));
+
+  QTreeWidgetItem *treeWidgetItem = filtersTree->takeTopLevelItem(filterRow+1);
+  filtersTree->insertTopLevelItem(filterRow, treeWidgetItem);
+
   if (filtersTree->currentIndex().row() == (filtersTree->topLevelItemCount()-1))
     moveDownButton->setEnabled(false);
   if (filtersTree->currentIndex().row() != 0)
     moveUpButton->setEnabled(true);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
+  int filterNum = filtersTree->topLevelItem(filterRow)->text(3).toInt();
+  QString qStr = QString("UPDATE filters SET num='%1' WHERE id=='%2'").
+      arg(filterNum).arg(filterId);
+  q.exec(qStr);
+
+  filterId = filtersTree->topLevelItem(filterRow+1)->text(0).toInt();
+  filterNum = filtersTree->topLevelItem(filterRow+1)->text(3).toInt();
+  qStr = QString("UPDATE filters SET num='%1' WHERE id=='%2'").
+      arg(filterNum).arg(filterId);
+  q.exec(qStr);
 }
 
 void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
