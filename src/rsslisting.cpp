@@ -934,8 +934,6 @@ void RSSListing::loadActionShortcuts()
 
     const QString& sKey = '/' + pAction->objectName();
     const QString& sValue = settings_->value('/' + sKey).toString();
-    if (sValue.isEmpty())
-      continue;
     pAction->setShortcut(QKeySequence(sValue));
   }
 
@@ -954,10 +952,7 @@ void RSSListing::saveActionShortcuts()
 
     const QString& sKey = '/' + pAction->objectName();
     const QString& sValue = QString(pAction->shortcut());
-    if (!sValue.isEmpty())
-      settings_->setValue(sKey, sValue);
-    else if (settings_->contains(sKey))
-      settings_->remove(sKey);
+    settings_->setValue(sKey, sValue);
   }
 
   settings_->endGroup();
