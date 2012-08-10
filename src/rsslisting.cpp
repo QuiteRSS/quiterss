@@ -867,7 +867,7 @@ void RSSListing::createShortcut()
 {
   addFeedAct_->setShortcut(QKeySequence(QKeySequence::New));
   listActions_.append(addFeedAct_);
-  deleteFeedAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Delete));
+  deleteFeedAct_->setShortcut(QKeySequence());
   listActions_.append(deleteFeedAct_);
   exitAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));  // standart on other OS
   listActions_.append(exitAct_);
@@ -879,6 +879,7 @@ void RSSListing::createShortcut()
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
   listActions_.append(deleteNewsAct_);
+  deleteAllNewsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Delete));
   listActions_.append(deleteAllNewsAct_);
   feedProperties_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_E));
   listActions_.append(feedProperties_);
