@@ -47,9 +47,9 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralTitle->addWidget(btnLoadTitle);
   editURL = new LineEdit();
 
-  displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
+  displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
@@ -65,9 +65,9 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addLayout(layoutGeneralGrid);
   layoutGeneralMain->addLayout(layoutGeneralHomepage);
   layoutGeneralMain->addSpacing(15);
-  layoutGeneralMain->addWidget(displayOnStartup);
   layoutGeneralMain->addWidget(starredOn_);
   layoutGeneralMain->addWidget(loadImagesOn);
+  layoutGeneralMain->addWidget(displayOnStartup);
   layoutGeneralMain->addStretch();
 
   connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
