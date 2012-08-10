@@ -80,6 +80,8 @@ public:
 
   // nitifier
   QCheckBox *soundNewNews_;
+  QLineEdit *editSoundNotifer_;
+  QPushButton *selectionSoundNotifer_;
 
   QGroupBox *showNotifyOn_;
   QSpinBox *countShowNewsNotify_;
@@ -111,6 +113,7 @@ private slots:
   void slotClearShortcut();
   void slotResetShortcut();
   void selectionBrowser();
+  void selectionSoundNotifer();
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
