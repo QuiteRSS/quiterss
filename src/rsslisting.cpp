@@ -1953,7 +1953,16 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
         break;
       }
     }
-  } else if (openingFeedAction_ == 1) newsRow = 0;
+  } else if (openingFeedAction_ == 1) {
+    newsRow = 0;
+  } else if (openingFeedAction_ == 3) {
+    for (int i = newsModel_->rowCount()-1; i >= 0; i--) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+        newsRow = i;
+        break;
+      }
+    }
+  }
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -1965,7 +1974,7 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (clicked) {
-    if ((openingFeedAction_ < 2) && openNewsWebViewOn_) {
+    if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
       currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
     } else {

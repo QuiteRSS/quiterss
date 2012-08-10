@@ -248,6 +248,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   positionLastNews_ = new QRadioButton(tr("Position on last opened news"));
   positionFirstNews_ = new QRadioButton(tr("Position at top of list news"));
+  positionUnreadNews_ = new QRadioButton(tr("Position on unread news"));
   openNewsWebViewOn_ = new QCheckBox(tr("Open news"));
   nottoOpenNews_ = new QRadioButton(tr("Nothing to do"));
   connect(nottoOpenNews_, SIGNAL(toggled(bool)),
@@ -259,7 +260,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   openingFeedsLayout->addWidget(positionLastNews_, 0, 0, 1, 1);
   openingFeedsLayout->addWidget(openNewsWebViewOn_, 0, 1, 1, 1);
   openingFeedsLayout->addWidget(positionFirstNews_, 1, 0, 1, 1);
-  openingFeedsLayout->addWidget(nottoOpenNews_, 2, 0, 1, 1);
+  openingFeedsLayout->addWidget(positionUnreadNews_, 2, 0, 1, 1);
+  openingFeedsLayout->addWidget(nottoOpenNews_, 3, 0, 1, 1);
 
   formatDateTime_ = new QComboBox(this);
 
@@ -921,6 +923,7 @@ void OptionsDialog::setOpeningFeed(int action)
   switch (action) {
   case 1: positionFirstNews_->setChecked(true); break;
   case 2: nottoOpenNews_->setChecked(true); break;
+  case 3: positionUnreadNews_->setChecked(true); break;
   default: positionLastNews_->setChecked(true);
   }
 }
@@ -930,6 +933,7 @@ int OptionsDialog::getOpeningFeed()
   if (positionLastNews_->isChecked())     return 0;
   else if (positionFirstNews_->isChecked()) return 1;
   else if (nottoOpenNews_->isChecked()) return 2;
+  else if (positionUnreadNews_->isChecked()) return 3;
   else return 0;
 }
 

@@ -56,6 +56,7 @@ public:
 
   QRadioButton *positionLastNews_;
   QRadioButton *positionFirstNews_;
+  QRadioButton *positionUnreadNews_;
   QCheckBox *openNewsWebViewOn_;
   QRadioButton *nottoOpenNews_;
 
