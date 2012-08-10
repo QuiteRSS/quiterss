@@ -201,6 +201,7 @@ private:
   QAction *filterNewsNew_;
   QAction *filterNewsUnread_;
   QAction *filterNewsStar_;
+  QAction *filterNewsUnreadStar_;
   QAction *aboutAct_;
   QAction *updateAppAct_;
 
