@@ -343,6 +343,11 @@ void NewsTabWidget::createWebWidget()
     }
   }
 
+  webDefaultFontSize_ =
+      webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
+  webDefaultFixedFontSize_ =
+      webView_->settings()->fontSize(QWebSettings::DefaultFixedFontSize);
+
   connect(webHomePageAct_, SIGNAL(triggered()),
           this, SLOT(webHomePage()));
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
@@ -378,8 +383,12 @@ void NewsTabWidget::setSettings(bool newTab)
 
     webView_->settings()->setFontFamily(
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);
-    webView_->settings()->setFontSize(
-          QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
+
+    if ((!webView_->url().isValid() ||
+        (webView_->url().toString() == "about:blank")) && (feedId_ > -1)) {
+      webView_->settings()->setFontSize(
+            QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
+    }
 
     if (!rsslisting_->externalBrowserOn_) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
@@ -502,7 +511,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     QWebSettings::globalSettings()->clearMemoryCaches();
-    webView_->page()->history()->clear();
+    webView_->setHtml("");
 
     updateWebView(index);
 
@@ -956,10 +965,8 @@ void NewsTabWidget::slotSetValue(int value)
 
 void NewsTabWidget::slotLoadStarted()
 {
-//  if (newsView_->currentIndex().isValid()) {
-    webViewProgress_->setValue(0);
-    webViewProgress_->show();
-//  }
+  webViewProgress_->setValue(0);
+  webViewProgress_->show();
 }
 
 void NewsTabWidget::slotLoadFinished(bool ok)
@@ -967,12 +974,24 @@ void NewsTabWidget::slotLoadFinished(bool ok)
   if (!ok)
     rsslisting_->statusBar()->showMessage(tr("Error loading to WebView"), 3000);
   webViewProgress_->hide();
+  if ((!webView_->url().isValid() ||
+      (webView_->url().toString() == "about:blank")) && (feedId_ > -1)) {
+    webView_->settings()->setFontSize(
+          QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
+  } else {
+    webView_->settings()->setFontSize(
+          QWebSettings::DefaultFontSize, webDefaultFontSize_);
+    webView_->settings()->setFontSize(
+          QWebSettings::DefaultFixedFontSize, webDefaultFixedFontSize_);
+  }
 }
 
 //! Слот для асинхронного обновления новости
 void NewsTabWidget::slotWebViewSetContent(QString content)
 {
+  webView_->history()->setMaximumItemCount(0);
   webView_->setHtml(content);
+  webView_->history()->setMaximumItemCount(100);
 }
 
 void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
@@ -985,7 +1004,6 @@ void NewsTabWidget::webHomePage()
 {
   if (feedId_ > -1) {
     updateWebView(newsView_->currentIndex());
-    webView_->history()->clear();
   } else {
     webView_->history()->goToItem(webView_->history()->itemAt(0));
   }

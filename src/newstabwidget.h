@@ -53,6 +53,9 @@ private:
   int currentNewsIdOld;
   int currentFeedIdOld;
 
+  int webDefaultFontSize_;
+  int webDefaultFixedFontSize_;
+
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
 
