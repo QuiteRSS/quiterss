@@ -399,11 +399,35 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   notifierLayout3->addWidget(timeShowNewsNotify_);
   notifierLayout3->addWidget(new QLabel(tr("seconds")), 1);
 
+  onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
+
+  feedsTreeNotify_ = new QTreeWidget(this);
+  feedsTreeNotify_->setColumnCount(2);
+  feedsTreeNotify_->setColumnHidden(1, true);
+  feedsTreeNotify_->header()->hide();
+  feedsTreeNotify_->setEnabled(false);
+
+  treeItem.clear();
+  treeItem << tr("Feeds") << "Id";
+  feedsTreeNotify_->setHeaderLabels(treeItem);
+
+  treeItem.clear();
+  treeItem << tr("All Feeds") << "-1";
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setCheckState(0, Qt::Unchecked);
+  feedsTreeNotify_->addTopLevelItem(treeWidgetItem);
+  connect(feedsTreeNotify_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+          this, SLOT(feedsTreeNotifyItemChanged(QTreeWidgetItem*,int)));
+
   QVBoxLayout *notificationLayout = new QVBoxLayout();
   notificationLayout->addLayout(notifierLayout1);
   notificationLayout->addLayout(notifierLayout2);
   notificationLayout->addLayout(notifierLayout3);
-  notificationLayout->addStretch(1);
+  notificationLayout->addWidget(onlySelectedFeeds_);
+  notificationLayout->addWidget(feedsTreeNotify_, 1);
+
+  connect(onlySelectedFeeds_, SIGNAL(toggled(bool)),
+          feedsTreeNotify_, SLOT(setEnabled(bool)));
 
   showNotifyOn_->setLayout(notificationLayout);
 
@@ -950,4 +974,54 @@ void OptionsDialog::selectionBrowser()
                                                   path);
   if (!fileName.isEmpty())
     editExternalBrowser_->setText(fileName);
+}
+
+void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column)
+{
+  static bool rootChecked = false;
+  static bool notRootChecked = false;
+
+  if (column != 0) return;
+
+  if (feedsTreeNotify_->indexOfTopLevelItem(item) == 0) {
+    if (!rootChecked) {
+      notRootChecked = true;
+      if (item->checkState(0) == Qt::Unchecked) {
+        for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
+          feedsTreeNotify_->topLevelItem(0)->child(i)->setCheckState(0, Qt::Unchecked);
+        }
+      } else {
+        for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
+          feedsTreeNotify_->topLevelItem(0)->child(i)->setCheckState(0, Qt::Checked);
+        }
+      }
+      notRootChecked = false;
+    }
+  } else {
+    if (!notRootChecked) {
+      bool childCheckedOn = false;
+      for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
+        if (feedsTreeNotify_->topLevelItem(0)->child(i)->checkState(0)) {
+          childCheckedOn = true;
+          break;
+        }
+      }     
+      rootChecked = true;
+      if (childCheckedOn) {
+        for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
+          if (!feedsTreeNotify_->topLevelItem(0)->child(i)->checkState(0)) {
+            childCheckedOn = false;
+            break;
+          }
+        }
+        if (childCheckedOn)
+          feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Checked);
+        else
+          feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
+      } else {
+        feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+      }
+      rootChecked = false;
+    }
+  }
 }

@@ -301,6 +301,7 @@ private:
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;
+  bool onlySelectedFeeds_;
 
   UpdateAppDialog *updateAppDialog_;
 

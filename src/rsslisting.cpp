@@ -1261,6 +1261,7 @@ void RSSListing::readSettings()
   countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
   widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
+  onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
 
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
@@ -1396,6 +1397,7 @@ void RSSListing::writeSettings()
   settings_->setValue("countShowNewsNotify", countShowNewsNotify_);
   settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
+  settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -1803,8 +1805,19 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     cntNewNewsList_.clear();
   }
   if (((newCount - newCountOld) > 0) && !isActiveWindow()) {
-    idFeedList_.append(parseFeedId);
-    cntNewNewsList_.append(newCount - newCountOld);
+    if (onlySelectedFeeds_) {
+      q.exec(QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
+             arg(parseFeedId));
+      if (q.next()) {
+        if (q.value(0).toInt() == 1) {
+          idFeedList_.append(parseFeedId);
+          cntNewNewsList_.append(newCount - newCountOld);
+        }
+      }
+    } else {
+      idFeedList_.append(parseFeedId);
+      cntNewNewsList_.append(newCount - newCountOld);
+    }
   }
 
   feedsView_->selectIndex = feedsView_->currentIndex();
@@ -2057,6 +2070,42 @@ void RSSListing::showOptionDlg()
   optionsDialog->countShowNewsNotify_->setValue(countShowNewsNotify_);
   optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
   optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
+  optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
+
+  QSqlQuery q(db_);
+  QString qStr = QString("SELECT text, id, image FROM feeds");
+  q.exec(qStr);
+  while (q.next()) {
+    QStringList treeItem;
+    treeItem << q.value(0).toString() << q.value(1).toString();
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+
+    QPixmap iconTab;
+    QByteArray byteArray = q.value(2).toByteArray();
+    if (!byteArray.isNull()) {
+      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+    } else {
+      iconTab.load(":/images/feed");
+    }
+    treeWidgetItem->setIcon(0, iconTab);
+
+    optionsDialog->feedsTreeNotify_->topLevelItem(0)->addChild(treeWidgetItem);
+    treeWidgetItem->setCheckState(0, Qt::Unchecked);
+
+    QSqlQuery q1(db_);
+    qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
+        arg(q.value(1).toInt());
+    q1.exec(qStr);
+    if (q1.next()) {
+      if (q1.value(0).toInt() == 1)
+        treeWidgetItem->setCheckState(0, Qt::Checked);
+    } else {
+      qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
+          arg(q.value(1).toInt());
+      q1.exec(qStr);
+    }
+  }
+  optionsDialog->feedsTreeNotify_->expandAll();
 
   optionsDialog->setLanguage(langFileName_);
 
@@ -2175,6 +2224,19 @@ void RSSListing::showOptionDlg()
   countShowNewsNotify_ = optionsDialog->countShowNewsNotify_->value();
   widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
+  onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
+
+  QTreeWidgetItem *treeWidgetItem =
+      optionsDialog->feedsTreeNotify_->topLevelItem(0);
+  for (int i = 0; i < treeWidgetItem->childCount(); i++) {
+    int check = 0;
+    if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked)
+      check = 1;
+
+    qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
+        arg(check).arg(treeWidgetItem->child(i)->text(1).toInt());
+    q.exec(qStr);
+  }
 
   if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();

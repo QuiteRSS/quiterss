@@ -86,6 +86,9 @@ public:
   QSpinBox *timeShowNewsNotify_;
   QSpinBox *widthTitleNewsNotify_;
 
+  QCheckBox *onlySelectedFeeds_;
+  QTreeWidget *feedsTreeNotify_;
+
   // fonts
   QTreeWidget *fontTree;
 
@@ -111,6 +114,7 @@ private slots:
   void slotClearShortcut();
   void slotResetShortcut();
   void selectionBrowser();
+  void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
