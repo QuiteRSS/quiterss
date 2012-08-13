@@ -1257,6 +1257,14 @@ void RSSListing::readSettings()
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
+  QString soundNotifyPathStr;
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+    soundNotifyPathStr = QCoreApplication::applicationDirPath() +
+        QString("/sound/notification.wav");
+#else
+    soundNotifyPathStr = "/usr/share/quiterss/sound/notification.wav";
+#endif
+  soundNotifyPath_ = settings_->value("soundNotifyPath", soundNotifyPathStr).toString();
   showNotifyOn_ = settings_->value("showNotifyOn", true).toBool();
   countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
   widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
@@ -1393,6 +1401,7 @@ void RSSListing::writeSettings()
   settings_->setValue("pluginsEnable", pluginsEnable_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
+  settings_->setValue("soundNotifyPath", soundNotifyPath_);
   settings_->setValue("showNotifyOn", showNotifyOn_);
   settings_->setValue("countShowNewsNotify", countShowNewsNotify_);
   settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
@@ -2066,6 +2075,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->neverStarCleanUp_->setChecked(neverStarCleanUp_);
 
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
+  optionsDialog->editSoundNotifer_->setText(soundNotifyPath_);
   optionsDialog->showNotifyOn_->setChecked(showNotifyOn_);
   optionsDialog->countShowNewsNotify_->setValue(countShowNewsNotify_);
   optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
@@ -2220,6 +2230,7 @@ void RSSListing::showOptionDlg()
   neverStarCleanUp_ = optionsDialog->neverStarCleanUp_->isChecked();
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
+  soundNotifyPath_ = optionsDialog->editSoundNotifer_->text();
   showNotifyOn_ = optionsDialog->showNotifyOn_->isChecked();
   countShowNewsNotify_ = optionsDialog->countShowNewsNotify_->value();
   widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
@@ -3368,10 +3379,9 @@ void RSSListing::playSoundNewNews()
 {
   if (!playSoundNewNews_ && soundNewNews_) {
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    QSound::play(QCoreApplication::applicationDirPath() +
-                 QString("/sound/notification.wav"));
+    QSound::play(soundNotifyPath_);
 #else
-    QProcess::startDetached("play /usr/share/quiterss/sound/notification.wav");
+    QProcess::startDetached(QString("play %1").arg(soundNotifyPath_));
 #endif
     playSoundNewNews_ = true;
   }

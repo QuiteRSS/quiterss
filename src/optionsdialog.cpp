@@ -372,6 +372,21 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   //{ notifier
   soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
+  soundNewNews_->setChecked(true);
+  editSoundNotifer_ = new LineEdit();
+  selectionSoundNotifer_ = new QPushButton(tr("Browse..."));
+
+  connect(soundNewNews_, SIGNAL(toggled(bool)),
+          editSoundNotifer_, SLOT(setEnabled(bool)));
+  connect(soundNewNews_, SIGNAL(toggled(bool)),
+          selectionSoundNotifer_, SLOT(setEnabled(bool)));
+  connect(selectionSoundNotifer_, SIGNAL(clicked()),
+          this, SLOT(selectionSoundNotifer()));
+
+  QHBoxLayout *notifierLayout0 = new QHBoxLayout();
+  notifierLayout0->addWidget(soundNewNews_);
+  notifierLayout0->addWidget(editSoundNotifer_, 1);
+  notifierLayout0->addWidget(selectionSoundNotifer_);
 
   showNotifyOn_ = new QGroupBox(tr("Display notification for incoming news"));
   showNotifyOn_->setCheckable(true);
@@ -432,8 +447,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   showNotifyOn_->setLayout(notificationLayout);
 
   QVBoxLayout *notifierMainLayout = new QVBoxLayout();
-  notifierMainLayout->addWidget(soundNewNews_);
-  notifierMainLayout->addSpacing(10);
+  notifierMainLayout->addLayout(notifierLayout0);
+  notifierMainLayout->addSpacing(5);
   notifierMainLayout->addWidget(showNotifyOn_, 1);
 
   notifierWidget_ = new QFrame();
@@ -974,6 +989,21 @@ void OptionsDialog::selectionBrowser()
                                                   path);
   if (!fileName.isEmpty())
     editExternalBrowser_->setText(fileName);
+}
+
+void OptionsDialog::selectionSoundNotifer()
+{
+  QString path;
+
+  QFileInfo file(editSoundNotifer_->text());
+  if (file.isFile()) path = editSoundNotifer_->text();
+  else path = file.path();
+
+  QString fileName = QFileDialog::getOpenFileName(this,
+                                                  tr("Open File..."),
+                                                  path, "*.wav");
+  if (!fileName.isEmpty())
+    editSoundNotifer_->setText(fileName);
 }
 
 void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column)

@@ -296,6 +296,7 @@ private:
   bool commitDataRequest_;
 
   bool soundNewNews_;
+  QString soundNotifyPath_;
   bool playSoundNewNews_;
   bool showNotifyOn_;
   int countShowNewsNotify_;
