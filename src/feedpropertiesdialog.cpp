@@ -39,7 +39,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   QHBoxLayout *layoutGeneralTitle = new QHBoxLayout();
   editTitle = new LineEdit();
-  QPushButton *btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), tr(""));
+  QPushButton *btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), "");
   btnLoadTitle->setToolTip(tr("Load Feed Title"));
   btnLoadTitle->setIconSize(QSize(16, 16));
   btnLoadTitle->setFocusPolicy(Qt::NoFocus);
@@ -123,10 +123,12 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
     createdFeed_->setText(tr("Long ago ;-)"));
 
   lastUpdateFeed_->setText(feedProperties.status.lastUpdate.toString("dd.MM.yy hh:mm"));
-  newsCount_->setText(QString("%1 (%2 new, %3 unread)").
+  newsCount_->setText(QString("%1 (%2 %3, %4 %5)").
                       arg(feedProperties.status.undeleteCount).
                       arg(feedProperties.status.newCount).
-                      arg(feedProperties.status.unreadCount));
+                      arg(tr("new")).
+                      arg(feedProperties.status.unreadCount).
+                      arg(tr("unread")));
 }
 //------------------------------------------------------------------------------
 void FeedPropertiesDialog::slotLoadTitle()

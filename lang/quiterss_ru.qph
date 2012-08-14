@@ -1281,4 +1281,64 @@
     <source>Application Style</source>
     <target>Стиль приложения</target>
 </phrase>
+<phrase>
+    <source>Display feed in new tab on startup</source>
+    <target>Показывать ленту в новой вкладке при запуске</target>
+</phrase>
+<phrase>
+    <source>Created:</source>
+    <target>Создана:</target>
+</phrase>
+<phrase>
+    <source>News count:</source>
+    <target>Количество новостей:</target>
+</phrase>
+<phrase>
+    <source>Long ago ;-)</source>
+    <target>Давным-давно ;-)</target>
+</phrase>
+<phrase>
+    <source>Find Name</source>
+    <target>Найти имя</target>
+</phrase>
+<phrase>
+    <source>Find Link</source>
+    <target>Найти ссылку</target>
+</phrase>
+<phrase>
+    <source>Show Unread or Star</source>
+    <target>Показать непрочитанные и со звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Position on unread news</source>
+    <target>Позиционировать на непрочитанной новости</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read when switching feeds</source>
+    <target>Отметить отображаемые новости как прочитанные при переключении ленты</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read when closing tab</source>
+    <target>Отметить отображаемые новости как прочитанные при закрытии вкладки</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read on minimize</source>
+    <target>Отметить отображаемые новости как прочитанные при минимизации</target>
+</phrase>
+<phrase>
+    <source>Only show selected feeds:</source>
+    <target>Показывать новости только выбранных лент:</target>
+</phrase>
+<phrase>
+    <source>new</source>
+    <target>новых</target>
+</phrase>
+<phrase>
+    <source>unread</source>
+    <target>непрочитанных</target>
+</phrase>
+<phrase>
+    <source>Search Feed</source>
+    <target>Поиск ленты</target>
+</phrase>
 </QPH>

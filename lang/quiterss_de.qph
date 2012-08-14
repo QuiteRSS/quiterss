@@ -1200,4 +1200,56 @@
     <source>Show Starred Feeds</source>
     <target>Favoriten anzeigen Feeds</target>
 </phrase>
+<phrase>
+    <source>Find Link</source>
+    <target>Link suchen</target>
+</phrase>
+<phrase>
+    <source>Find Name</source>
+    <target>Name suchen</target>
+</phrase>
+<phrase>
+    <source>Created:</source>
+    <target>Erstellt:</target>
+</phrase>
+<phrase>
+    <source>Display feed in new tab on startup</source>
+    <target>Anzeige Feed in neuem Tab öffnen beim Start</target>
+</phrase>
+<phrase>
+    <source>Long ago ;-)</source>
+    <target>Vor langer Zeit ;-)</target>
+</phrase>
+<phrase>
+    <source>News count:</source>
+    <target>Anzahl der Artikel:</target>
+</phrase>
+<phrase>
+    <source>Status</source>
+    <target>Status</target>
+</phrase>
+<phrase>
+    <source>Search Feed</source>
+    <target>Suche Feed</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read on minimize</source>
+    <target>Angezeigte Artikel beim Minimieren als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read when closing tab</source>
+    <target>Angezeigte Artikel beim Schließen des Tabs als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read when switching feeds</source>
+    <target>Angezeigte Artikel beim Wechseln des Feeds als gelesen markieren</target>
+</phrase>
+<phrase>
+    <source>Only show selected feeds:</source>
+    <target>Nur zeigen ausgewählte Feeds:</target>
+</phrase>
+<phrase>
+    <source>Position on unread news</source>
+    <target>Position auf dem ungelesen Artikel</target>
+</phrase>
 </QPH>

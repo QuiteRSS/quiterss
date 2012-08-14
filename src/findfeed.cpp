@@ -42,7 +42,7 @@ FindFeed::FindFeed(QWidget *parent)
   connect(this, SIGNAL(textChanged(const QString&)),
           SLOT(updateClearButton(const QString&)));
 
-  findLabel_ = new QLabel(tr("Filter news"), this);
+  findLabel_ = new QLabel(this);
   findLabel_->setStyleSheet("QLabel { color: gray; }");
 
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);

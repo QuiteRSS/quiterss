@@ -3017,6 +3017,8 @@ void RSSListing::retranslateStrings() {
   showUndeleteCount_->setText(tr("Count News All"));
   showLastUpdated_->setText(tr("Last Updated"));
 
+  findFeedAct_->setToolTip(tr("Search Feed"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
