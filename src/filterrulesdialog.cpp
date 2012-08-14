@@ -412,8 +412,18 @@ void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)
         }
       }
       rootChecked = true;
-      if (childChecked)
-        feedsTree->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
+      if (childChecked) {
+        for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
+          if (!feedsTree->topLevelItem(0)->child(i)->checkState(0)) {
+            childChecked = false;
+            break;
+          }
+        }
+        if (childChecked)
+          feedsTree->topLevelItem(0)->setCheckState(0, Qt::Checked);
+        else
+          feedsTree->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
+      }
       else
         feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
       rootChecked = false;
