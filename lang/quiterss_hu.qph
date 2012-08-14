@@ -1281,4 +1281,64 @@
     <source>Application Style</source>
     <target>Alkalmazás stílus</target>
 </phrase>
+<phrase>
+    <source>Display feed in new tab on startup</source>
+    <target>Hírcsatorna megjelenítése új lapon indításnál</target>
+</phrase>
+<phrase>
+    <source>Created:</source>
+    <target>Létrehozva:</target>
+</phrase>
+<phrase>
+    <source>News count:</source>
+    <target>Hírek száma:</target>
+</phrase>
+<phrase>
+    <source>Long ago ;-)</source>
+    <target>Régen ;-)</target>
+</phrase>
+<phrase>
+    <source>Find Name</source>
+    <target>Név keresése</target>
+</phrase>
+<phrase>
+    <source>Find Link</source>
+    <target>Hivatkozás keresése</target>
+</phrase>
+<phrase>
+    <source>Show Unread or Star</source>
+    <target>Olvasatlan vagy csillaggal jelölt megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Position on unread news</source>
+    <target>Az olvasatlan hír pozíciója</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read when switching feeds</source>
+    <target>A megjelenített hírek megjelölése olvasottként hírcsatorna váltáskor</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read when closing tab</source>
+    <target>A megjelenített hírek megjelölése olvasottként a lap bezárásakor</target>
+</phrase>
+<phrase>
+    <source>Mark displayed news as read on minimize</source>
+    <target>A megjelenített hírek megjelölése olvasottként minimalizáláskor</target>
+</phrase>
+<phrase>
+    <source>Only show selected feeds:</source>
+    <target>Csak a kijelölt hírcsatornák megjelenítése:</target>
+</phrase>
+<phrase>
+    <source>new</source>
+    <target>új</target>
+</phrase>
+<phrase>
+    <source>unread</source>
+    <target>olvasatlan</target>
+</phrase>
+<phrase>
+    <source>Search Feed</source>
+    <target>Hírcsatorna keresése</target>
+</phrase>
 </QPH>

@@ -136,7 +136,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="22"/>
         <source>Status</source>
-        <translation type="unfinished">Állapot</translation>
+        <translation>Állapot</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="38"/>
@@ -151,42 +151,42 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="52"/>
         <source>Display feed in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatorna megjelenítése új lapon indításnál</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Created:</source>
-        <translation type="unfinished"></translation>
+        <translation>Létrehozva:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
         <source>Last update:</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó frissítés:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="92"/>
         <source>News count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek száma:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Leírás:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="123"/>
         <source>Long ago ;-)</source>
-        <translation type="unfinished"></translation>
+        <translation>Régen ;-)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="129"/>
         <source>new</source>
-        <translation type="unfinished"></translation>
+        <translation>új</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="131"/>
         <source>unread</source>
-        <translation type="unfinished"></translation>
+        <translation>olvasatlan</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="37"/>
@@ -267,18 +267,14 @@
 <context>
     <name>FindFeed</name>
     <message>
-        <source>Filter news</source>
-        <translation type="obsolete">Hírek szűrő</translation>
-    </message>
-    <message>
         <location filename="../src/findfeed.cpp" line="60"/>
         <source>Find Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Név keresése</translation>
     </message>
     <message>
         <location filename="../src/findfeed.cpp" line="61"/>
         <source>Find Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Hivatkozás keresése</translation>
     </message>
 </context>
 <context>
@@ -916,7 +912,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Position on unread news</source>
-        <translation type="unfinished"></translation>
+        <translation>Az olvasatlan hír pozíciója</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
@@ -931,7 +927,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="283"/>
         <source>Display format for date and time:</source>
-        <translation type="unfinished"></translation>
+        <translation>A dátum és idő megjelenítési formátuma</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="291"/>
@@ -946,17 +942,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="305"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>A megjelenített hírek megjelölése olvasottként hírcsatorna váltáskor</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation type="unfinished"></translation>
+        <translation>A megjelenített hírek megjelölése olvasottként a lap bezárásakor</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="307"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>A megjelenített hírek megjelölése olvasottként minimalizáláskor</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="316"/>
@@ -1097,12 +1093,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="417"/>
         <source>Only show selected feeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak a kijelölt hírcsatornák megjelenítése:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="430"/>
         <source>All Feeds</source>
-        <translation type="unfinished">Az összes hírcsatorna</translation>
+        <translation>Az összes hírcsatorna</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="531"/>
@@ -1800,12 +1796,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2927"/>
         <source>Show Starred Feeds</source>
-        <translation>A csillagozott hírcsatornák megjelenítése</translation>
+        <translation>A csillaggal jelölt hírcsatornák megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2934"/>
         <source>Show Unread or Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Olvasatlan vagy csillaggal jelölt megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2937"/>
@@ -2012,7 +2008,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3020"/>
         <source>Search Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatorna keresése</translation>
     </message>
     <message>
         <source>Previous feed</source>
