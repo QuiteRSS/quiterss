@@ -33,23 +33,15 @@
 <context>
     <name>AddFeedWizard</name>
     <message>
-        <source>Add feed</source>
-        <translation type="obsolete">Ajouter un flux</translation>
-    </message>
-    <message>
-        <source>Create new feed</source>
-        <translation type="obsolete">Créer un nouveau flux</translation>
-    </message>
-    <message>
         <location filename="../src/addfeedwizard.cpp" line="10"/>
         <source>Add Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un flux</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="79"/>
         <location filename="../src/addfeedwizard.cpp" line="134"/>
         <source>Create New Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un nouveau flux</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="87"/>
@@ -87,13 +79,9 @@
 <context>
     <name>FeedPropertiesDialog</name>
     <message>
-        <source>Feed properties</source>
-        <translation type="obsolete">Propriétés du flux</translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="8"/>
         <source>Feed Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés du flux</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="20"/>
@@ -103,7 +91,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="22"/>
         <source>Status</source>
-        <translation type="unfinished">État</translation>
+        <translation>État</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="36"/>
@@ -123,60 +111,52 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="43"/>
         <source>Load Feed Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger titre du flux</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="52"/>
         <source>Display feed in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer flux dans un nouvel onglet au démarrage</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Created:</source>
-        <translation type="unfinished"></translation>
+        <translation>Créé :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
         <source>Last update:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dernière mise à jour :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="92"/>
         <source>News count:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre d&apos;articles :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Description :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="123"/>
         <source>Long ago ;-)</source>
-        <translation type="unfinished"></translation>
+        <translation>Il y a longtemps ;-)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="129"/>
         <source>new</source>
-        <translation type="unfinished"></translation>
+        <translation>nouveau(x)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="131"/>
         <source>unread</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load feed title</source>
-        <translation type="obsolete">Charger titre du flux</translation>
-    </message>
-    <message>
-        <source>Display feed on startup</source>
-        <translation type="obsolete">Montrer flux au démarrage</translation>
+        <translation>non lu(s)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="50"/>
         <source>Starred</source>
-        <translation type="unfinished">Étoilé</translation>
+        <translation>Étoilé</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="51"/>
@@ -186,10 +166,6 @@
 </context>
 <context>
     <name>FilterRulesDialog</name>
-    <message>
-        <source>Filter rules</source>
-        <translation type="obsolete">Règles de filtrage</translation>
-    </message>
     <message>
         <source>Location</source>
         <translation type="obsolete">Emplacement</translation>
@@ -222,12 +198,12 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="9"/>
         <source>Filter Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Règles de filtrage</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="26"/>
         <source>All Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Tous les flux</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="123"/>
@@ -248,18 +224,14 @@
 <context>
     <name>FindFeed</name>
     <message>
-        <source>Filter news</source>
-        <translation type="obsolete">Filtrer les articles</translation>
-    </message>
-    <message>
         <location filename="../src/findfeed.cpp" line="60"/>
         <source>Find Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver le nom</translation>
     </message>
     <message>
         <location filename="../src/findfeed.cpp" line="61"/>
         <source>Find Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver le lien</translation>
     </message>
 </context>
 <context>
@@ -272,16 +244,12 @@
     <message>
         <location filename="../src/findtext.cpp" line="62"/>
         <source>Filter News</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer les articles</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="63"/>
         <source>Find in Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Find in browser</source>
-        <translation type="obsolete">Chercher dans le navigateur</translation>
+        <translation>Chercher dans le navigateur</translation>
     </message>
 </context>
 <context>
@@ -295,22 +263,14 @@
         <translation type="obsolete">Copier article vers</translation>
     </message>
     <message>
-        <source>Mark news as read</source>
-        <translation type="obsolete">Marquer article comme lu</translation>
-    </message>
-    <message>
-        <source>Add star</source>
-        <translation type="obsolete">Ajouter étoile</translation>
-    </message>
-    <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
         <source>Mark News as Read</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer article comme lu</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
         <source>Add Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter étoile</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
@@ -320,20 +280,12 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
         <source>Add Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une action</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="141"/>
         <source>Delete Action</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add action</source>
-        <translation type="obsolete">Ajouter action</translation>
-    </message>
-    <message>
-        <source>Delete action</source>
-        <translation type="obsolete">Supprimer action</translation>
+        <translation>Supprimer action</translation>
     </message>
 </context>
 <context>
@@ -387,20 +339,12 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="35"/>
         <source>Add Condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une condition</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="39"/>
         <source>Delete Condition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add condition</source>
-        <translation type="obsolete">Ajouter condition</translation>
-    </message>
-    <message>
-        <source>Delete condition</source>
-        <translation type="obsolete">Supprimer condition</translation>
+        <translation>Supprimer condition</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="81"/>
@@ -448,17 +392,9 @@
 <context>
     <name>NewsFiltersDialog</name>
     <message>
-        <source>News filters</source>
-        <translation type="obsolete">Filtre des articles</translation>
-    </message>
-    <message>
-        <source>Name filter</source>
-        <translation type="obsolete">Filtre des noms</translation>
-    </message>
-    <message>
         <location filename="../src/newsfiltersdialog.cpp" line="10"/>
         <source>News Filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtres des articles</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="24"/>
@@ -468,7 +404,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="24"/>
         <source>Name Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre des noms</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="63"/>
@@ -503,20 +439,12 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="98"/>
         <source>Apply Selected Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer filtre sélectionné</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="225"/>
         <source>Delete Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Apply selected filter</source>
-        <translation type="obsolete">Appliquer filtre sélectionné</translation>
-    </message>
-    <message>
-        <source>Delete filter</source>
-        <translation type="obsolete">Supprimer filtre</translation>
+        <translation>Supprimer filtre</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="226"/>
@@ -600,10 +528,6 @@
         <translation>Maison</translation>
     </message>
     <message>
-        <source>Open in external browser</source>
-        <translation type="obsolete">Ouvrir dans un navigateur internet externe</translation>
-    </message>
-    <message>
         <location filename="../src/newstabwidget.cpp" line="426"/>
         <source>Open Link</source>
         <translation>Ouvrir le lien</translation>
@@ -613,18 +537,14 @@
         <translation type="obsolete">Ouvrier le lien dans une nouvelle fenêtre</translation>
     </message>
     <message>
-        <source>Open in new tab</source>
-        <translation type="obsolete">Ouvrir dans un nouvel onglet</translation>
-    </message>
-    <message>
         <location filename="../src/newstabwidget.cpp" line="424"/>
         <source>Open in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un navigateur internet externe</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="427"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un nouvel onglet</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="428"/>
@@ -664,11 +584,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="441"/>
         <source>Close Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close tab</source>
-        <translation type="obsolete">Fermer onglet</translation>
+        <translation>Fermer onglet</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="975"/>
@@ -679,13 +595,9 @@
 <context>
     <name>NotificationWidget</name>
     <message>
-        <source>Incoming news: %1</source>
-        <translation type="obsolete">Articles entrants: %1</translation>
-    </message>
-    <message>
         <location filename="../src/notifications.cpp" line="107"/>
         <source>Incoming News: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Articles entrants: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="161"/>
@@ -707,10 +619,6 @@
         <location filename="../src/optionsdialog.cpp" line="368"/>
         <source>General</source>
         <translation>Général</translation>
-    </message>
-    <message>
-        <source>System tray</source>
-        <translation type="obsolete">Boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="26"/>
@@ -745,18 +653,14 @@
         <translation>Polices</translation>
     </message>
     <message>
-        <source>Keyboard shortcuts</source>
-        <translation type="obsolete">Raccourcis clavier</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="23"/>
         <source>System Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="44"/>
         <source>Keyboard Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Raccourcis clavier</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="48"/>
@@ -912,17 +816,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Position on unread news</source>
-        <translation type="unfinished"></translation>
+        <translation>Positionner sur un article non lu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="270"/>
         <source>Dec</source>
-        <translation type="unfinished"></translation>
+        <translation>Déc</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="271"/>
         <source>December</source>
-        <translation type="unfinished"></translation>
+        <translation>Décembre</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="391"/>
@@ -976,10 +880,6 @@
         <translation>Ouvrir fichier...</translation>
     </message>
     <message>
-        <source>Use the embedded browser</source>
-        <translation type="obsolete">Utiliser le navigateur intégré</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="224"/>
         <source>Automatically update the feeds on startup</source>
         <translation>Mettre automatiquement les flux à jour au démarrage</translation>
@@ -1024,7 +924,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="283"/>
         <source>Display format for date and time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Format d&apos;affichage pour la date et l&apos;heure :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="291"/>
@@ -1039,17 +939,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="305"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer les articles affichés comme lus lors du passage à un autre flux</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer les articles affichés comme lus lors de la fermeture de l&apos;onglet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="307"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer les articles affichés comme lus lors du passage à la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="310"/>
@@ -1105,12 +1005,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="417"/>
         <source>Only show selected feeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer seulement les flux sélectionnés :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="430"/>
         <source>All Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Tous les flux</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="531"/>
@@ -1369,30 +1269,14 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <source>Delete feed</source>
-        <translation type="obsolete">Supprimer flux</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="1494"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Êtes-vous sûr(e) de vouloir supprimer le flux « %1 » ?</translation>
     </message>
     <message>
-        <source>Select OPML-file</source>
-        <translation type="obsolete">Sélectionner un fichier OPML</translation>
-    </message>
-    <message>
-        <source>OPML-files (*.opml)</source>
-        <translation type="obsolete">Fichiers OPML (*.opml)</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="1539"/>
         <source>Import canceled</source>
         <translation>Importation annulé</translation>
-    </message>
-    <message>
-        <source>OPML-files (*.opml *.xml)</source>
-        <translation type="obsolete">Fichiers OPML (*.opml *.xml)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1547"/>
@@ -1427,22 +1311,6 @@
         <translation> Tous : %1 </translation>
     </message>
     <message>
-        <source>Load images</source>
-        <translation type="obsolete">Charger les images</translation>
-    </message>
-    <message>
-        <source>Auto load images to news view</source>
-        <translation type="obsolete">Charger automatiquement les images dans les articles</translation>
-    </message>
-    <message>
-        <source>No load images</source>
-        <translation type="obsolete">Ne pas charger les images</translation>
-    </message>
-    <message>
-        <source>No load images to news view</source>
-        <translation type="obsolete">Ne pas charger les images dans les articles</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2859"/>
         <source>Feeds</source>
         <translation>Flux</translation>
@@ -1453,45 +1321,9 @@
         <translation>Mis à jour des flux... (%p%)</translation>
     </message>
     <message>
-        <source>New news: %1</source>
-        <translation type="obsolete">Nouveaux articles : %1</translation>
-    </message>
-    <message>
-        <source>Unread news: %1</source>
-        <translation type="obsolete">Articles non lus : %1</translation>
-    </message>
-    <message>
-        <source>&amp;Add...</source>
-        <translation type="obsolete">&amp;Ajouter...</translation>
-    </message>
-    <message>
-        <source>Add new feed</source>
-        <translation type="obsolete">Ajouter un nouveau flux</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2883"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Supprimer...</translation>
-    </message>
-    <message>
-        <source>Delete selected feed</source>
-        <translation type="obsolete">Supprimer le flux sélectionné</translation>
-    </message>
-    <message>
-        <source>&amp;Import feeds...</source>
-        <translation type="obsolete">&amp;Importer des flux...</translation>
-    </message>
-    <message>
-        <source>Import feeds from OPML file</source>
-        <translation type="obsolete">Importer les flux d&apos;un fichier OPML</translation>
-    </message>
-    <message>
-        <source>&amp;Export feeds...</source>
-        <translation type="obsolete">&amp;Exporter des flux...</translation>
-    </message>
-    <message>
-        <source>Export feeds to OPML file</source>
-        <translation type="obsolete">Exporter les flux vers un fichier OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2892"/>
@@ -1499,49 +1331,9 @@
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <source>Update feed</source>
-        <translation type="obsolete">Mettre à jour le flux</translation>
-    </message>
-    <message>
-        <source>Update current feed</source>
-        <translation type="obsolete">Mettre à jour le flux actuel</translation>
-    </message>
-    <message>
-        <source>Update all</source>
-        <translation type="obsolete">Mettre à jour tous les flux</translation>
-    </message>
-    <message>
-        <source>Update all feeds</source>
-        <translation type="obsolete">Mettre à jour tous les flux</translation>
-    </message>
-    <message>
-        <source>Mark all feeds Read</source>
-        <translation type="obsolete">Marquer tous les flux comme lus</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2910"/>
         <source>Mark Read/Unread</source>
         <translation>Marquer lu/non lu</translation>
-    </message>
-    <message>
-        <source>Mark current news read/unread</source>
-        <translation type="obsolete">Marquer article actuel comme lu/non lu</translation>
-    </message>
-    <message>
-        <source>Mark all news Read</source>
-        <translation type="obsolete">Marquer tous les articles comme lus</translation>
-    </message>
-    <message>
-        <source>Mark all news read</source>
-        <translation type="obsolete">Marquer tous les articles comme lus</translation>
-    </message>
-    <message>
-        <source>News filters...</source>
-        <translation type="obsolete">Filtre des articles...</translation>
-    </message>
-    <message>
-        <source>Filter news...</source>
-        <translation type="obsolete">Filtrer les articles...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2920"/>
@@ -1549,261 +1341,229 @@
         <translation>Configuration...</translation>
     </message>
     <message>
-        <source>Open in browser</source>
-        <translation type="obsolete">Ouvrir dans un navigateur internet</translation>
-    </message>
-    <message>
-        <source>Open in external browser</source>
-        <translation type="obsolete">Ouvrir dans un navigateur internet externe</translation>
-    </message>
-    <message>
-        <source>Open news in new tab</source>
-        <translation type="obsolete">Ouvrir article dans un nouvel onglet</translation>
-    </message>
-    <message>
-        <source>Open in background tab</source>
-        <translation type="obsolete">Ouvrir dans un onglet d&apos;arrière-plan</translation>
-    </message>
-    <message>
-        <source>Open news in background tab</source>
-        <translation type="obsolete">Ouvrir article dans un onglet d&apos;arrière-plan</translation>
-    </message>
-    <message>
-        <source>Delete all news</source>
-        <translation type="obsolete">Supprimer tous les articles</translation>
-    </message>
-    <message>
-        <source>Delete all news from list</source>
-        <translation type="obsolete">Supprimer tous les articles de la liste</translation>
-    </message>
-    <message>
-        <source>Feed properties</source>
-        <translation type="obsolete">Propriétés du flux</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="1493"/>
         <source>Delete Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1534"/>
         <location filename="../src/rsslisting.cpp" line="1632"/>
         <source>Select OPML-File</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner un fichier OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1536"/>
         <source>OPML-Files (*.opml *.xml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers OPML (*.opml *.xml)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1634"/>
         <source>OPML-Files (*.opml)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers OPML (*.opml)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2719"/>
         <location filename="../src/rsslisting.cpp" line="2895"/>
         <source>Load Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger les images</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2723"/>
         <location filename="../src/rsslisting.cpp" line="2898"/>
         <source>No Load Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas charger les images</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2724"/>
         <location filename="../src/rsslisting.cpp" line="2899"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas charger les images dans les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2873"/>
         <location filename="../src/rsslisting.cpp" line="3237"/>
         <source>New News: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveaux articles : %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2875"/>
         <location filename="../src/rsslisting.cpp" line="3239"/>
         <source>Unread News: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Articles non lus : %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2878"/>
         <source>&amp;Add Feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter un flux...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2879"/>
         <source>Add New Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter un flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2881"/>
         <location filename="../src/rsslisting.cpp" line="2943"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un nouvel onglet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2884"/>
         <source>Delete Selected Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer le flux sélectionné</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2886"/>
         <source>&amp;Import Feeds...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Importer des flux...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2887"/>
         <source>Import Feeds from OPML File</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer les flux d&apos;un fichier OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2889"/>
         <source>&amp;Export Feeds...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exporter des flux...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2890"/>
         <source>Export Feeds to OPML File</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter les flux vers un fichier OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2720"/>
         <location filename="../src/rsslisting.cpp" line="2896"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger automatiquement les images dans les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2902"/>
         <source>Update Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour le flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2903"/>
         <source>Update Current Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour le flux actuel</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2905"/>
         <source>Update All</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour tous les flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2906"/>
         <source>Update All Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à jour tous les flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2908"/>
         <source>Mark All Feeds Read</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer tous les flux comme lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2911"/>
         <source>Mark Current News Read/Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer article actuel comme lu/non lu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2913"/>
         <location filename="../src/rsslisting.cpp" line="2914"/>
         <source>Mark All News Read</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer tous les articles comme lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2917"/>
         <source>News Filters...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtre des articles...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2918"/>
         <source>Filter News...</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer les articles...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2921"/>
         <source>Open Options Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dialogue de configuration</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2927"/>
         <source>Show Starred Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer flux étoilés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2934"/>
         <source>Show Unread or Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer non lus ou étoilés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2937"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer dialogue d&apos;information</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2939"/>
         <source>Check for Updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier les mises à jour...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2941"/>
         <source>Open in Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un navigateur internet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2942"/>
         <source>Open in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un navigateur internet externe</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2944"/>
         <source>Open News in New Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir article dans un nouvel onglet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2945"/>
         <source>Open in Background Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir dans un onglet d&apos;arrière-plan</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2946"/>
         <source>Open News in Background Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir article dans un onglet d&apos;arrière-plan</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2948"/>
         <source>Mark News Star</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer l&apos;article comme étoilé</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2950"/>
         <source>Delete Selected News</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer l&apos;article sélectionné</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2951"/>
         <source>Delete All News</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tous les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2952"/>
         <source>Delete All News from List</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tous les articles de la liste</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2955"/>
         <source>Mark Feed Read</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer le flux comme lu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2956"/>
         <location filename="../src/rsslisting.cpp" line="2957"/>
         <source>Feed Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Propriétés du flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2958"/>
@@ -1815,32 +1575,32 @@
         <location filename="../src/rsslisting.cpp" line="2969"/>
         <location filename="../src/rsslisting.cpp" line="2970"/>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2974"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte contre les icônes</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2975"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Texte sous les icônes</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2976"/>
         <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2978"/>
         <source>Icon Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille des icônes</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2983"/>
         <source>Application Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Style de l&apos;application</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2985"/>
@@ -1875,81 +1635,77 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2992"/>
         <source>Browser Position</source>
-        <translation type="unfinished"></translation>
+        <translation>Position du navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2998"/>
         <source>Show Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer fenêtre</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3000"/>
         <source>Previous Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Flux précédent</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3001"/>
         <source>Next Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Flux suivant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3002"/>
         <source>Previous News</source>
-        <translation type="unfinished"></translation>
+        <translation>Article précédent</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3003"/>
         <source>Next News</source>
-        <translation type="unfinished"></translation>
+        <translation>Article suivant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3005"/>
         <source>Switch Focus Between Panels</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus entre les panneaux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3007"/>
         <source>Switch Focus Between Panels (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus entre les panneaux (arborescence des flux, liste des articles, navigateur)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3009"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer/cacher arborescence des flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3011"/>
         <source>Minimize to Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser vers la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3013"/>
         <source>Minimize Application to Tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser application vers la boîte à miniatures</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3016"/>
         <source>Count News Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre d&apos;articles non lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3017"/>
         <source>Count News All</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de tous les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3018"/>
         <source>Last Updated</source>
-        <translation type="unfinished"></translation>
+        <translation>Dernière mise à jour</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3020"/>
         <source>Search Feed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Browser position</source>
-        <translation type="obsolete">Position du navigateur</translation>
+        <translation>Marquer le flux comme lu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2993"/>
@@ -1972,41 +1728,9 @@
         <translation>À gauche</translation>
     </message>
     <message>
-        <source>Switch focus between panels</source>
-        <translation type="obsolete">Basculer le focus entre les panneaux</translation>
-    </message>
-    <message>
-        <source>Switch focus between panels (tree feeds, list news, browser)</source>
-        <translation type="obsolete">Basculer le focus entre les panneaux (arborescence des flux, liste des articles, navigateur)</translation>
-    </message>
-    <message>
-        <source>Show/hide tree feeds</source>
-        <translation type="obsolete">Montrer/cacher arborescence des flux</translation>
-    </message>
-    <message>
-        <source>Minimize to tray</source>
-        <translation type="obsolete">Minimiser vers la boîte à miniatures</translation>
-    </message>
-    <message>
-        <source>Minimize application to tray</source>
-        <translation type="obsolete">Minimiser application vers la boîte à miniatures</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="3015"/>
         <source>Columns</source>
         <translation>Colonnes</translation>
-    </message>
-    <message>
-        <source>Count news unread</source>
-        <translation type="obsolete">Nombre d&apos;articles non lus</translation>
-    </message>
-    <message>
-        <source>Count news all</source>
-        <translation type="obsolete">Nombre de tous les articles</translation>
-    </message>
-    <message>
-        <source>Last updated</source>
-        <translation type="obsolete">Dernière mise à jour</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3439"/>
@@ -2022,14 +1746,6 @@
         <location filename="../src/rsslisting.cpp" line="3711"/>
         <source>Loading...</source>
         <translation>Chargement en cours...</translation>
-    </message>
-    <message>
-        <source>Open in new tab</source>
-        <translation type="obsolete">Ouvrir dans un nouvel onglet</translation>
-    </message>
-    <message>
-        <source>Open options dialog</source>
-        <translation type="obsolete">Ouvrir dialogue de configuration</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2923"/>
@@ -2066,21 +1782,9 @@
         <translation>À propos...</translation>
     </message>
     <message>
-        <source>Show &apos;About&apos; dialog</source>
-        <translation type="obsolete">Montrer dialogue d&apos;information</translation>
-    </message>
-    <message>
-        <source>Check for updates...</source>
-        <translation type="obsolete">Vérifier les mises à jour...</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2947"/>
         <source>Star</source>
         <translation>Étoile</translation>
-    </message>
-    <message>
-        <source>Mark news star</source>
-        <translation type="obsolete">Marquer l&apos;article comme étoilé</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2949"/>
@@ -2088,21 +1792,9 @@
         <translation>Supprimer</translation>
     </message>
     <message>
-        <source>Delete selected news</source>
-        <translation type="obsolete">Supprimer l&apos;article sélectionné</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2954"/>
         <source>Mark Read</source>
         <translation>Marquer comme lu</translation>
-    </message>
-    <message>
-        <source>Mark feed read</source>
-        <translation type="obsolete">Marquer le flux comme lu</translation>
-    </message>
-    <message>
-        <source>Properties feed</source>
-        <translation type="obsolete">Propriétés du flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2961"/>
@@ -2140,10 +1832,6 @@
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <source>ToolBar</source>
-        <translation type="obsolete">Barre d&apos;outils</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2971"/>
         <source>Style</source>
         <translation>Style</translation>
@@ -2157,22 +1845,6 @@
         <location filename="../src/rsslisting.cpp" line="2973"/>
         <source>Text</source>
         <translation>Texte seul</translation>
-    </message>
-    <message>
-        <source>Text beside icon</source>
-        <translation type="obsolete">Texte contre les icônes</translation>
-    </message>
-    <message>
-        <source>Text under icon</source>
-        <translation type="obsolete">Texte sous les icônes</translation>
-    </message>
-    <message>
-        <source>Show ToolBar</source>
-        <translation type="obsolete">Montrer la barre d&apos;outils</translation>
-    </message>
-    <message>
-        <source>Icon size</source>
-        <translation type="obsolete">Taille des icônes</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2979"/>
@@ -2190,10 +1862,6 @@
         <translation>Petite</translation>
     </message>
     <message>
-        <source>Style application</source>
-        <translation type="obsolete">Style de l&apos;application</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2984"/>
         <source>System</source>
         <translation>Système</translation>
@@ -2201,26 +1869,6 @@
     <message>
         <source>Default</source>
         <translation type="obsolete">Par défaut</translation>
-    </message>
-    <message>
-        <source>Show window</source>
-        <translation type="obsolete">Montrer fenêtre</translation>
-    </message>
-    <message>
-        <source>Previous feed</source>
-        <translation type="obsolete">Flux précédent</translation>
-    </message>
-    <message>
-        <source>Next feed</source>
-        <translation type="obsolete">Flux suivant</translation>
-    </message>
-    <message>
-        <source>Previous news</source>
-        <translation type="obsolete">Article précédent</translation>
-    </message>
-    <message>
-        <source>Next news</source>
-        <translation type="obsolete">Article suivant</translation>
     </message>
 </context>
 <context>
@@ -2259,13 +1907,9 @@
 <context>
     <name>UpdateAppDialog</name>
     <message>
-        <source>Check for updates</source>
-        <translation type="obsolete">Vérifier les mises à jour</translation>
-    </message>
-    <message>
         <location filename="../src/updateappdialog.cpp" line="11"/>
         <source>Check for Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier les mises à jour</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="21"/>
