@@ -2,6 +2,29 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.10.0+</B> (xx Aug 2012)
+<UL>
+<LI>Added: Feeds filters. Show starred feeds (Feed option. Starred)</LI>
+<LI>Added: Feed option. Tab "Status"</LI>
+<LI>Added: Search in the tree feeds by name or link</LI>
+<LI>Added: Option: "Display format for date and time"("Options->Feeds->General")</LI>
+<LI>Added: Option: "Opening feed: position on unread news"</LI>
+<LI>Added: Option: "Mark displayed news as read when switching feeds",
+<BR>"Mark displayed news as read when closing tab",
+<BR>"Mark displayed news as read on minimize"</LI>
+<LI>Added: Options. Selecting notification sound</LI>
+<LI>Added: Options. Show in the notification only selected feeds</LI>
+<LI>Added: Filter news: "Show Unread or Star"</LI>
+<LI>Added: Sorting user filters</LI>
+<BR>
+<LI>Changed: GUI. Some visual tweaks</LI>
+<BR>
+<LI>Fixed: Some news were not displayed (All news will be re-uploaded!)</LI>
+<LI>Fixed: Do not work feeds that use SSL</LI>
+<LI>Fixed: Opening of the news from the notification window</LI>
+<LI>Fixed: Remapping shortcuts</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.10.0</B> (18 Jul 2012)
 <UL>
 <LI>Note: Reappear news, which already have been marked read (0.8.x, 0.9.x -> 0.10.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
