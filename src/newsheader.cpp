@@ -81,12 +81,17 @@ void NewsHeader::init(QWidget *rsslisting)
 
   RSSListing *rsslisting_ = qobject_cast<RSSListing*>(rsslisting);
 
+  restoreState(rsslisting_->settings_->value("NewsHeaderState").toByteArray());
+
   QString stateStr;
   if (rsslisting_->windowState() & Qt::WindowMaximized)
     stateStr = "Maximized";
-
-  restoreState(rsslisting_->settings_->value("NewsHeaderState" + stateStr).
-               toByteArray());
+  int logicalIndex = 0;
+  QStringList widthStrList = rsslisting_->settings_->value(
+        "NewsHeaderSectionSize" + stateStr).toStringList();
+  foreach (const QString &widthStr, widthStrList) {
+    resizeSection(logicalIndex++, widthStr.toInt());
+  }
 
   createMenu();
 

@@ -301,20 +301,25 @@ void RSSListing::slotCloseApp()
     } else {
       oldState = windowState();
 
-      if (tabWidget_->count()) {
+      if (tabWidget_->count() &&
+          (((QWindowStateChangeEvent*)event)->oldState() != Qt::WindowMinimized)) {
         QString stateStr;
         if (((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMaximized)
           stateStr = "Maximized";
-        settings_->setValue("NewsHeaderState" + stateStr,
-                            currentNewsTab->newsHeader_->saveState());
+        QStringList widthStrList;
+        for (int i = 0; i < currentNewsTab->newsHeader_->count(); i++) {
+          widthStrList << QString::number(currentNewsTab->newsHeader_->sectionSize(i));
+        }
+        settings_->setValue("NewsHeaderSectionSize" + stateStr, widthStrList);
 
         stateStr = "";
         if (windowState() & Qt::WindowMaximized)
           stateStr = "Maximized";
-
-        currentNewsTab->newsHeader_->restoreState(
-              settings_->value("NewsHeaderState" + stateStr).toByteArray());
-
+        int logicalIndex = 0;
+        widthStrList = settings_->value("NewsHeaderSectionSize" + stateStr).toStringList();
+        foreach (const QString &widthStr, widthStrList) {
+          currentNewsTab->newsHeader_->resizeSection(logicalIndex++, widthStr.toInt());
+        }
       }
     }
   } else if(event->type() == QEvent::ActivationChange) {
@@ -1435,8 +1440,12 @@ void RSSListing::writeSettings()
       if (windowState() & Qt::WindowMaximized)
         stateStr = "Maximized";
     }
-    settings_->setValue("NewsHeaderState" + stateStr,
-                        currentNewsTab->newsHeader_->saveState());
+    QStringList widthStrList;
+    for (int i = 0; i < currentNewsTab->newsHeader_->count(); i++) {
+      widthStrList << QString::number(currentNewsTab->newsHeader_->sectionSize(i));
+    }
+    settings_->setValue("NewsHeaderSectionSize" + stateStr, widthStrList);
+    settings_->setValue("NewsHeaderState", currentNewsTab->newsHeader_->saveState());
 
     settings_->setValue("NewsTabSplitter",
                         currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
@@ -3632,8 +3641,12 @@ void RSSListing::slotTabCloseRequested(int index)
         if (windowState() & Qt::WindowMaximized)
           stateStr = "Maximized";
       }
-      settings_->setValue("NewsHeaderState" + stateStr,
-                          widget->newsHeader_->saveState());
+      QStringList widthStrList;
+      for (int i = 0; i < widget->newsHeader_->count(); i++) {
+        widthStrList << QString::number(widget->newsHeader_->sectionSize(i));
+      }
+      settings_->setValue("NewsHeaderSectionSize" + stateStr, widthStrList);
+      settings_->setValue("NewsHeaderState", widget->newsHeader_->saveState());
 
       settings_->setValue("NewsTabSplitter",
                           widget->newsTabWidgetSplitter_->saveGeometry());
