@@ -2,8 +2,8 @@
 #define PORTABLE       1
 #endif
 
-#define FILEVER        0,10,0,0
+#define FILEVER        0,10,1,0
 #define PRODUCTVER     FILEVER
-#define STRFILEVER     "0.10.0.0\0"
+#define STRFILEVER     "0.10.1.0\0"
 #define STRPRODUCTVER  STRFILEVER
-#define STRDATE        "18.07.2012\0"
+#define STRDATE        "17.08.2012\0"

@@ -34,9 +34,9 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>QuiteRSS</Program_Name>
-		<Program_Version>0.10.0</Program_Version>
-		<Program_Release_Month>07</Program_Release_Month>
-		<Program_Release_Day>18</Program_Release_Day>
+		<Program_Version>0.10.1</Program_Version>
+		<Program_Release_Month>08</Program_Release_Month>
+		<Program_Release_Day>17</Program_Release_Day>
 		<Program_Release_Year>2012</Program_Release_Year>
 		<Program_Cost_Dollars />
 		<Program_Cost_Other_Code />
@@ -51,9 +51,9 @@
 		<Program_Category_Class>Communications::Newsgroup Clients</Program_Category_Class>
 		<Program_System_Requirements />
 		<File_Info>
-			<File_Size_Bytes>15365966</File_Size_Bytes>
-			<File_Size_K>15005</File_Size_K>
-			<File_Size_MB>14.65</File_Size_MB>
+			<File_Size_Bytes>16082678</File_Size_Bytes>
+			<File_Size_K>15705</File_Size_K>
+			<File_Size_MB>15.34</File_Size_MB>
 		</File_Info>
 		<Expire_Info>
 			<Has_Expire_Info>N</Has_Expire_Info>
@@ -107,7 +107,7 @@ Open-source</Char_Desc_2000>
 			<Application_XML_File_URL>http://quite-rss.googlecode.com/hg/wiki/quiterss_pad_file.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
-			<Primary_Download_URL>http://quite-rss.googlecode.com/files/QuiteRSS-0.10.0.zip</Primary_Download_URL>
+			<Primary_Download_URL>http://quite-rss.googlecode.com/files/QuiteRSS-0.10.1.zip</Primary_Download_URL>
 			<Secondary_Download_URL>http://code.google.com/p/quite-rss/downloads/list</Secondary_Download_URL>
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />

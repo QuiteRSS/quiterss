@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.10.0+</B> (xx Aug 2012)
+<P><B>Version 0.10.1</B> (17 Aug 2012)
 <UL>
 <LI>Added: Feeds filters. Show starred feeds (Feed option. Starred)</LI>
 <LI>Added: Feed option. Tab "Status"</LI>
