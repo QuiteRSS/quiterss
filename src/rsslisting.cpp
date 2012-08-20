@@ -2702,7 +2702,7 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(updateFeedAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(markFeedRead_);
-  feedContextMenu_->addAction(markAllFeedsRead_);
+//  feedContextMenu_->addAction(markAllFeedsRead_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(deleteFeedAct_);
   feedContextMenu_->addSeparator();
