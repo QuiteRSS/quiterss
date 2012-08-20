@@ -638,7 +638,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="424"/>
         <source>Open in External Browser</source>
-        <translation>Открыть во внешем браузере</translation>
+        <translation>Открыть во внешнем браузере</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="427"/>
@@ -1821,7 +1821,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2942"/>
         <source>Open in External Browser</source>
-        <translation>Открыть во внешем браузере</translation>
+        <translation>Открыть во внешнем браузере</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2944"/>
