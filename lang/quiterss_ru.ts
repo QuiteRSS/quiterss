@@ -2369,7 +2369,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="87"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation>Новая версия QuiteRSS доступна!</translation>
+        <translation>Доступна новая версия QuiteRSS!</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="90"/>
