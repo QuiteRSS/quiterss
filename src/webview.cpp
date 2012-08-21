@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QInputEvent>
 #include "webpage.h"
 #include "webview.h"
@@ -7,6 +8,9 @@ WebView::WebView(QWidget *parent) :
 {
   setPage(new WebPage(this));
   midButtonClick = false;
+  QPalette pal(qApp->palette());
+  pal.setColor(QPalette::Base, Qt::white);
+  setPalette(pal);
 }
 
 /*virtual*/ void WebView::mousePressEvent(QMouseEvent *event)

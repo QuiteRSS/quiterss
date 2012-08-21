@@ -61,6 +61,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
   QLabel *infoLabel = new QLabel(info, this);
   infoLabel->setMinimumWidth(250);
   infoLabel->setOpenExternalLinks(true);
+  infoLabel->setStyleSheet("Color: #000000;");
   layout->addWidget(infoLabel);
 
 

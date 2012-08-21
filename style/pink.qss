@@ -41,10 +41,6 @@ QMenuBar::item:pressed {
 	background: #FFF9F9;
 }
 
-#newsView_ {
-	background-color: #FFFFFF;
-}
-
 #feedsTreeView_::item, #newsView_::item {
 	min-height: 20px;
 }
@@ -63,7 +59,6 @@ QTabWidget::tab-bar {
  оно читается как QTabBar, а _не_ QTabWidget */
 QTabBar::tab {
 	background-color: transparent;
-	color: #000000;
 	border: 1px solid gray;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;

@@ -19,6 +19,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   buttonColumnView = new QPushButton(this);
   buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
   buttonColumnView->setObjectName("buttonColumnView");
+  buttonColumnView->setFlat(true);
   buttonColumnView->setCursor(Qt::ArrowCursor);
   buttonColumnView->setFocusPolicy(Qt::NoFocus);
   buttonColumnView->setMaximumWidth(30);

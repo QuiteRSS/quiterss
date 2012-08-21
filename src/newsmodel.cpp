@@ -74,7 +74,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   } else if (role == Qt::BackgroundRole) {
     if ((index.column() == view_->header()->sortIndicatorSection()) &&
         (!view_->selectionModel()->isSelected(index))) {
-      return QBrush(QColor("#F5F5F5"));
+      return qApp->palette().brush(QPalette::AlternateBase);
     }
   } else if (role == Qt::TextColorRole) {
     return qApp->palette().brush(QPalette::WindowText);
