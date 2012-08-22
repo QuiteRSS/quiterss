@@ -942,7 +942,7 @@ void RSSListing::loadActionShortcuts()
     listDefaultShortcut_.append(pAction->shortcut());
 
     const QString& sKey = '/' + pAction->objectName();
-    const QString& sValue = settings_->value('/' + sKey).toString();
+    const QString& sValue = settings_->value('/' + sKey, pAction->shortcut().toString()).toString();
     pAction->setShortcut(QKeySequence(sValue));
   }
 
