@@ -10,15 +10,14 @@ public:
   explicit WebView(QWidget *parent = 0);
 
   bool midButtonClick;
+  bool rightButtonClick;
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);
-  virtual void contextMenuEvent(QContextMenuEvent*);
 
 private:
   int posX1;
-  bool rightButtonClick;
 
 };
 

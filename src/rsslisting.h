@@ -52,6 +52,7 @@ public:
   QAction *deleteAllNewsAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
+  QAction *autoLoadImagesToggle_;
   QActionGroup *newsFilterGroup_;
 
   QString newsFontFamily_;
@@ -183,7 +184,6 @@ private:
   QAction *bottomBrowserPositionAct_;
   QAction *rightBrowserPositionAct_;
   QAction *leftBrowserPositionAct_;
-  QAction *autoLoadImagesToggle_;
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;
   QAction *optionsAct_;

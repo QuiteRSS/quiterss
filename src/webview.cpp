@@ -40,13 +40,3 @@ WebView::WebView(QWidget *parent) :
 
   QWebView::mouseReleaseEvent(event);
 }
-
-/*virtual*/ void WebView::contextMenuEvent(QContextMenuEvent *event)
-{
-  if (rightButtonClick) {
-    rightButtonClick = false;
-    return;
-  }
-
-  QWebView::contextMenuEvent(event);
-}

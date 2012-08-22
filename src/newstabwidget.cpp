@@ -225,6 +225,8 @@ void NewsTabWidget::createWebWidget()
 {
   webView_ = new WebView(this);
 
+  webMenu_ = new QMenu(webView_);
+
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
   webViewProgress_->setFixedHeight(15);
@@ -332,6 +334,9 @@ void NewsTabWidget::createWebWidget()
 
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->disconnect();
 
+  urlExternalBrowserAct_ = new QAction(this);
+  urlExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
+
   webPanelTitle_->installEventFilter(this);
 
   if (feedId_ > -1) {
@@ -352,6 +357,8 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(webHomePage()));
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openPageInExternalBrowser()));
+  connect(urlExternalBrowserAct_, SIGNAL(triggered()),
+          this, SLOT(openUrlInExternalBrowser()));
   connect(webPanelAuthor_, SIGNAL(linkActivated(QString)),
           this, SLOT(slotWebTitleLinkClicked(QString)));
   connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
@@ -369,6 +376,9 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(webTitleChanged(QString)));
   connect(webView_->page()->action(QWebPage::OpenLinkInNewWindow), SIGNAL(triggered()),
           this, SLOT(openLinkInNewTab()));
+
+  connect(webView_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextWebPage(const QPoint &)));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -422,6 +432,7 @@ void NewsTabWidget::retranslateStrings() {
 
   webHomePageAct_->setText(tr("Home"));
   webExternalBrowserAct_->setText(tr("Open in External Browser"));
+  urlExternalBrowserAct_->setText(tr("Open in External Browser"));
 
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
@@ -1172,5 +1183,35 @@ void NewsTabWidget::hideWebContent()
   webView_->setHtml("");
   webPanel_->hide();
   webControlPanel_->hide();
+}
+
+void NewsTabWidget::showContextWebPage(const QPoint &p)
+{
+  if (webView_->rightButtonClick) {
+    webView_->rightButtonClick = false;
+    return;
+  }
+
+  webMenu_->clear();
+  QMenu *menu_t = webView_->page()->createStandardContextMenu();
+  webMenu_->addActions(menu_t->actions());
+
+  const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
+  if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
+    urlM_ = hitTest.linkUrl();
+    webMenu_->addSeparator();
+    webMenu_->addAction(urlExternalBrowserAct_);
+  } else if (menu_t->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
+    webMenu_->addSeparator();
+    webMenu_->addAction(rsslisting_->autoLoadImagesToggle_);
+  }
+
+  webMenu_->popup(webView_->mapToGlobal(p));
+}
+
+//! Открытие ссылки во внешнем браузере
+void NewsTabWidget::openUrlInExternalBrowser()
+{
+  QDesktopServices::openUrl(urlM_);
 }
 

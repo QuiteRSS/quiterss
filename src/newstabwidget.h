@@ -46,6 +46,7 @@ private:
 
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
+  QAction *urlExternalBrowserAct_;
   QString linkH_;
 
   QTimer *markNewsReadTimer_;
@@ -55,6 +56,9 @@ private:
 
   int webDefaultFontSize_;
   int webDefaultFixedFontSize_;
+
+  QMenu *webMenu_;
+  QUrl urlM_;
 
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
@@ -129,6 +133,8 @@ private slots:
   void slotSetValue(int value);
   void slotLoadStarted();
   void slotLoadFinished(bool ok);
+  void showContextWebPage(const QPoint &p);
+  void openUrlInExternalBrowser();
 
   void slotTabClose();
   void webTitleChanged(QString title);
