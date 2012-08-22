@@ -47,7 +47,6 @@ private:
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
   QAction *urlExternalBrowserAct_;
-  QString linkH_;
 
   QTimer *markNewsReadTimer_;
 
@@ -58,7 +57,7 @@ private:
   int webDefaultFixedFontSize_;
 
   QMenu *webMenu_;
-  QUrl urlM_;
+  QUrl linkUrl_;
 
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);

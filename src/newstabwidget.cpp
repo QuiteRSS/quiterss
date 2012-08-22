@@ -961,7 +961,6 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
 
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
 {
-  linkH_ = link;
   rsslisting_->statusBar()->showMessage(link, 3000);
 }
 
@@ -1103,7 +1102,7 @@ void NewsTabWidget::openNewsNewTab()
 void NewsTabWidget::openLinkInNewTab()
 {
   webView_->midButtonClick = true;
-  slotLinkClicked(linkH_);
+  slotLinkClicked(linkUrl_);
 }
 
 inline static bool launch(const QUrl &url, const QString &client)
@@ -1198,9 +1197,11 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 
   const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
   if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
-    urlM_ = hitTest.linkUrl();
-    webMenu_->addSeparator();
-    webMenu_->addAction(urlExternalBrowserAct_);
+    linkUrl_ = hitTest.linkUrl();
+    if (!rsslisting_->externalBrowserOn_) {
+      webMenu_->addSeparator();
+      webMenu_->addAction(urlExternalBrowserAct_);
+    }
   } else if (menu_t->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
     webMenu_->addSeparator();
     webMenu_->addAction(rsslisting_->autoLoadImagesToggle_);
@@ -1212,6 +1213,6 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 //! Открытие ссылки во внешнем браузере
 void NewsTabWidget::openUrlInExternalBrowser()
 {
-  QDesktopServices::openUrl(urlM_);
+  QDesktopServices::openUrl(linkUrl_);
 }
 
