@@ -6,6 +6,7 @@
 WebView::WebView(QWidget *parent) :
   QWebView(parent)
 {
+  setContextMenuPolicy(Qt::CustomContextMenu);
   setPage(new WebPage(this));
   midButtonClick = false;
   QPalette pal(qApp->palette());
