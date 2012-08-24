@@ -33,6 +33,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString currentTagText;
   QStack<QString> tagsStack;
   QString titleString;
+  QString linkBaseString;
   QString linkString;
   QString linkAlternateString;
   QString authorString;
@@ -87,8 +88,12 @@ void ParseObject::slotParse(QSqlDatabase *db,
       tagsStack.push(currentTag);
       currentTag = xml.name().toString();
 
-      if (currentTag == "rss") qDebug() << "Feed type: RSS";
-      if (currentTag == "feed") qDebug() << "Feed type: Atom";
+      if (currentTag == "rss")
+        qDebug() << "Feed type: RSS";
+      if (currentTag == "feed") {
+        qDebug() << "Feed type: Atom";
+        linkBaseString = xml.attributes().value("xml:base").toString();
+      }
 
       if (currentTag == "item") {  // RSS
         if (isHeader) {
@@ -134,8 +139,11 @@ void ParseObject::slotParse(QSqlDatabase *db,
           q.prepare(qStr);
           q.addBindValue(titleString.simplified());
           q.addBindValue(atomSummaryString);
-          if (!linkString.isNull()) q.addBindValue(linkString);
-          else q.addBindValue(linkAlternateString);
+          QString linkStr;
+          if (!linkString.isEmpty()) linkStr = linkString;
+          else linkStr = linkAlternateString;
+          if (QUrl(linkStr).host().isEmpty()) linkStr = linkBaseString + linkStr;
+          q.addBindValue(linkStr);
           q.addBindValue(authorString);
           q.addBindValue(authorEmailString);
           q.addBindValue(authorUriString);
@@ -321,7 +329,11 @@ void ParseObject::slotParse(QSqlDatabase *db,
               atomUpdatedString = QDateTime::currentDateTimeUtc().toString(Qt::ISODate);
             q.addBindValue(atomUpdatedString);
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
+            if (!linkString.isEmpty() && QUrl(linkString).host().isEmpty())
+              linkString = linkBaseString + linkString;
             q.addBindValue(linkString);
+            if (!linkAlternateString.isEmpty() && QUrl(linkAlternateString).host().isEmpty())
+              linkAlternateString = linkBaseString + linkAlternateString;
             q.addBindValue(linkAlternateString);
             q.addBindValue(QTextDocumentFragment::fromHtml(categoryString.simplified()).toPlainText());
             q.exec();
