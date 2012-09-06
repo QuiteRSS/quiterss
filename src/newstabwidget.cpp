@@ -188,6 +188,9 @@ void NewsTabWidget::createNewsList()
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuNews(const QPoint &)));
 
+  connect(newsModel_, SIGNAL(signalSort(int,int)),
+          this, SLOT(slotSort(int,int)));
+
   connect(findText_, SIGNAL(textChanged(QString)),
           this, SLOT(slotFindText(QString)));
   connect(findText_, SIGNAL(signalSelectFind()),
@@ -868,6 +871,23 @@ void NewsTabWidget::deleteAllNewsList()
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rsslisting_->slotUpdateStatus();
+}
+
+//! Сортировка новостей по "star" или по "read"
+void NewsTabWidget::slotSort(int column, int order)
+{
+  QString qStr;
+  if (column == newsModel_->fieldIndex("read")) {
+    qStr = QString("UPDATE news SET rights=read WHERE feedId='%1'").
+        arg(feedId_);
+  }
+  else if (column == newsModel_->fieldIndex("starred")) {
+    qStr = QString("UPDATE news SET rights=starred WHERE feedId='%1'").
+        arg(feedId_);
+  }
+  QSqlQuery q(rsslisting_->db_);
+  q.exec(qStr);
+  newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }
 
 //! Загрузка/обновление содержимого браузера

@@ -111,6 +111,7 @@ public slots:
   void slotNewsDownPressed();
   void slotNewsHomePressed();
   void slotNewsEndPressed();
+  void slotSort(int column, int order);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);

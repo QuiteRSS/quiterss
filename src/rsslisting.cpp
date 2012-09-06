@@ -2629,6 +2629,12 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   newsModel_->setFilter(filterStr);
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
+  if ((currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("read")) ||
+      currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("starred")) {
+    currentNewsTab->slotSort(currentNewsTab->newsHeader_->sortIndicatorSection(),
+                             currentNewsTab->newsHeader_->sortIndicatorOrder());
+  }
+
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 

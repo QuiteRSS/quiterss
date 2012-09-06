@@ -86,3 +86,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 {
   return QSqlTableModel::setData(index, value, role);
 }
+
+/*virtual*/ void NewsModel::sort(int column, Qt::SortOrder order)
+{
+  if ((column == fieldIndex("read")) || (column == fieldIndex("starred")))
+    emit signalSort(column, order);
+  else
+    QSqlTableModel::sort(column, order);
+}
