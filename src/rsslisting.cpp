@@ -736,6 +736,9 @@ void RSSListing::createActions()
   filterNewsUnreadStar_ = new QAction(this);
   filterNewsUnreadStar_->setObjectName("filterNewsUnreadStar_");
   filterNewsUnreadStar_->setCheckable(true);
+  filterNewsDeleted_ = new QAction(this);
+  filterNewsDeleted_->setObjectName("filterNewsDeleted_");
+  filterNewsDeleted_->setCheckable(true);
 
   aboutAct_ = new QAction(this);
   aboutAct_->setObjectName("AboutAct_");
@@ -773,10 +776,14 @@ void RSSListing::createActions()
 //  deleteAllNewsAct_->setIcon(QIcon(":/images/delete"));
   this->addAction(deleteAllNewsAct_);
 
+  restoreNewsAct_ = new QAction(this);
+  restoreNewsAct_->setIcon(QIcon(":/images/images/arrow_turn_left.png"));
+
   markFeedRead_ = new QAction(this);
   markFeedRead_->setObjectName("markFeedRead");
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markFeedRead()));
+
   feedProperties_ = new QAction(this);
   feedProperties_->setObjectName("feedProperties");
   feedProperties_->setIcon(QIcon(":/images/preferencesFeed"));
@@ -855,6 +862,8 @@ void RSSListing::createActions()
           this, SLOT(deleteNews()));
   connect(deleteAllNewsAct_, SIGNAL(triggered()),
           this, SLOT(deleteAllNewsList()));
+  connect(restoreNewsAct_, SIGNAL(triggered()),
+          this, SLOT(restoreNews()));
 
   connect(newsKeyUpAct_, SIGNAL(triggered()),
           this, SLOT(slotNewsUpPressed()));
@@ -1128,6 +1137,9 @@ void RSSListing::createMenu()
   newsFilterGroup_->addAction(filterNewsStar_);
   newsFilterMenu_->addAction(filterNewsUnreadStar_);
   newsFilterGroup_->addAction(filterNewsUnreadStar_);
+  newsFilterMenu_->addSeparator();
+  newsFilterMenu_->addAction(filterNewsDeleted_);
+  newsFilterGroup_->addAction(filterNewsDeleted_);
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
@@ -2616,7 +2628,14 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     newsFilterStr.append(QString("starred = 1 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnreadStar_") {
     newsFilterStr.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
+  } else if (pAct->objectName() == "filterNewsDeleted_") {
+    newsFilterStr.append(QString("deleted = 1"));
   }
+
+  if (pAct->objectName() == "filterNewsDeleted_")
+    currentNewsTab->setVisibleAction(true);
+  else
+    currentNewsTab->setVisibleAction(false);
 
   QString filterStr = newsFilterStr;
   if (currentNewsTab->findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct") {
@@ -2947,6 +2966,7 @@ void RSSListing::retranslateStrings() {
   filterNewsUnread_->setText(tr("Show Unread"));
   filterNewsStar_->setText(tr("Show Star"));
   filterNewsUnreadStar_->setText(tr("Show Unread or Star"));
+  filterNewsDeleted_->setText(tr("Show Deleted"));
 
   aboutAct_ ->setText(tr("About..."));
   aboutAct_->setToolTip(tr("Show 'About' Dialog"));
@@ -2965,6 +2985,8 @@ void RSSListing::retranslateStrings() {
   deleteNewsAct_->setToolTip(tr("Delete Selected News"));
   deleteAllNewsAct_->setText(tr("Delete All News"));
   deleteAllNewsAct_->setToolTip(tr("Delete All News from List"));
+  restoreNewsAct_->setText(tr("Restore"));
+  restoreNewsAct_->setToolTip(tr("Restore News"));
 
   markFeedRead_->setText(tr("Mark Read"));
   markFeedRead_->setToolTip(tr("Mark Feed Read"));
@@ -3786,6 +3808,8 @@ void RSSListing::creatFeedTab(int feedId)
       feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsUnreadStar_") {
       feedIdFilter.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsDeleted_") {
+      feedIdFilter.append(QString("deleted = 1"));
     }
     widget->newsModel_->setFilter(feedIdFilter);
 
@@ -4030,6 +4054,11 @@ void RSSListing::deleteNews()
 void RSSListing::deleteAllNewsList()
 {
   currentNewsTab->deleteAllNewsList();
+}
+
+void RSSListing::restoreNews()
+{
+  currentNewsTab->restoreNews();
 }
 
 void RSSListing::openInBrowserNews()

@@ -53,6 +53,7 @@ public:
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
   QAction *autoLoadImagesToggle_;
+  QAction *restoreNewsAct_;
   QActionGroup *newsFilterGroup_;
 
   QString newsFontFamily_;
@@ -202,6 +203,7 @@ private:
   QAction *filterNewsUnread_;
   QAction *filterNewsStar_;
   QAction *filterNewsUnreadStar_;
+  QAction *filterNewsDeleted_;
   QAction *aboutAct_;
   QAction *updateAppAct_;
 
@@ -381,6 +383,7 @@ private slots:
   void markNewsStar();
   void deleteNews();
   void deleteAllNewsList();
+  void restoreNews();
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();

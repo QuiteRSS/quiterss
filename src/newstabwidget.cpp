@@ -135,6 +135,7 @@ void NewsTabWidget::createNewsList()
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   newsToolBar_->setIconSize(QSize(18, 18));
+
   newsToolBar_->addAction(rsslisting_->markNewsRead_);
   newsToolBar_->addAction(rsslisting_->markAllNewsRead_);
   newsToolBar_->addSeparator();
@@ -202,6 +203,8 @@ void NewsTabWidget::createNewsList()
 void NewsTabWidget::createMenuNews()
 {
   newsContextMenu_ = new QMenu(this);
+  newsContextMenu_->addAction(rsslisting_->restoreNewsAct_);
+  newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->openInBrowserAct_);
   newsContextMenu_->addAction(rsslisting_->openInExternalBrowserAct_);
   newsContextMenu_->addAction(rsslisting_->openNewsNewTabAct_);
@@ -873,6 +876,46 @@ void NewsTabWidget::deleteAllNewsList()
   rsslisting_->slotUpdateStatus();
 }
 
+//! Восстановление новостей
+void NewsTabWidget::restoreNews()
+{
+  QModelIndex curIndex;
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
+  int feedId = feedsModel_->index(
+      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
+  if (cnt == 1) {
+    curIndex = indexes.at(0);
+    int row = curIndex.row();
+
+    newsModel_->setData(
+          newsModel_->index(row, newsModel_->fieldIndex("deleted")), 0);
+  } else {
+    for (int i = cnt-1; i >= 0; --i) {
+      curIndex = indexes.at(i);
+      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      QSqlQuery q(rsslisting_->db_);
+      q.exec(QString("UPDATE news SET deleted=0 WHERE feedId='%1' AND id=='%2'").
+          arg(feedId).arg(newsId));
+    }
+    rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
+  }
+
+  while (newsModel_->canFetchMore())
+    newsModel_->fetchMore();
+
+  if (curIndex.row() == newsModel_->rowCount())
+    curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
+  else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
+  newsView_->setCurrentIndex(curIndex);
+  slotNewsViewSelected(curIndex);
+  rsslisting_->slotUpdateStatus();
+}
+
 //! Сортировка новостей по "star" или по "read"
 void NewsTabWidget::slotSort(int column, int order)
 {
@@ -1236,3 +1279,8 @@ void NewsTabWidget::openUrlInExternalBrowser()
   QDesktopServices::openUrl(linkUrl_);
 }
 
+void NewsTabWidget::setVisibleAction(bool show)
+{
+  newsContextMenu_->actions().at(0)->setVisible(show);
+  newsContextMenu_->actions().at(1)->setVisible(show);
+}

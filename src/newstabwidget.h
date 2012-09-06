@@ -70,6 +70,7 @@ public:
   void markNewsStar();
   void deleteNews();
   void deleteAllNewsList();
+  void restoreNews();
 
   void openInBrowserNews();
   void openInExternalBrowserNews();
@@ -78,6 +79,8 @@ public:
   void updateWebView(QModelIndex index);
 
   void hideWebContent();
+
+  void setVisibleAction(bool show);
 
   int feedId_;
   bool autoLoadImages_;
