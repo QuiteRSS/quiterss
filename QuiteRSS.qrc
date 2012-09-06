@@ -71,6 +71,7 @@
         <file>images/logo_text.png</file>
         <file>images/findFeed.png</file>
         <file alias="flag_NL">images/flag_netherlands.png</file>
+        <file alias="flag_FA">images/flag_iran.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
