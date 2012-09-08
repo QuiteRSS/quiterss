@@ -54,17 +54,24 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   QString versionDB = initDB(dbFileName_);
-
   settings_->setValue("VersionDB", versionDB);
 
+  storeDBMemory_ = settings_->value("Settings/storeDBMemory", true).toBool();
+  storeDBMemoryT_ = storeDBMemory_;
+
   db_ = QSqlDatabase::addDatabase("QSQLITE");
-  db_.setDatabaseName(":memory:");
+  if (storeDBMemory_)
+    db_.setDatabaseName(":memory:");
+  else
+    db_.setDatabaseName(dbFileName_);
   db_.open();
 
-  dbMemFileThread_ = new DBMemFileThread(this);
-  dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, false);
-  dbMemFileThread_->start(QThread::NormalPriority);
-  while(dbMemFileThread_->isRunning()) qApp->processEvents();
+  if (storeDBMemory_) {
+    dbMemFileThread_ = new DBMemFileThread(this);
+    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, false);
+    dbMemFileThread_->start(QThread::NormalPriority);
+    while(dbMemFileThread_->isRunning()) qApp->processEvents();
+  }
 
   persistentUpdateThread_ = new UpdateThread(this);
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");
@@ -195,9 +202,11 @@ RSSListing::~RSSListing()
   q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
 
-  dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-  dbMemFileThread_->start();
-  while(dbMemFileThread_->isRunning());
+  if (storeDBMemory_) {
+    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
+    dbMemFileThread_->start();
+    while(dbMemFileThread_->isRunning());
+  }
 
   while (persistentUpdateThread_->isRunning());
   while (persistentParseThread_->isRunning());
@@ -349,8 +358,10 @@ void RSSListing::slotPlaceToTray()
   idFeedList_.clear();
   cntNewNewsList_.clear();
 
-  dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-  dbMemFileThread_->start(QThread::LowestPriority);
+  if (storeDBMemory_) {
+    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
+    dbMemFileThread_->start(QThread::LowestPriority);
+  }
   writeSettings();
 }
 
@@ -1363,6 +1374,8 @@ void RSSListing::writeSettings()
   settings_->setValue("showSplashScreen", showSplashScreen_);
   settings_->setValue("reopenFeedStartup", reopenFeedStartup_);
 
+  settings_->setValue("storeDBMemory", storeDBMemoryT_);
+
   settings_->setValue("showTrayIcon", showTrayIcon_);
   settings_->setValue("startingTray", startingTray_);
   settings_->setValue("minimizingTray", minimizingTray_);
@@ -2047,6 +2060,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
 
+  optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
+
   optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog->startingTray_->setChecked(startingTray_);
   optionsDialog->minimizingTray_->setChecked(minimizingTray_);
@@ -2166,6 +2181,8 @@ void RSSListing::showOptionDlg()
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
+
+  storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
 
   showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog->startingTray_->isChecked();

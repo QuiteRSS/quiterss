@@ -29,6 +29,7 @@ public:
   // general
   QCheckBox *showSplashScreen_;
   QCheckBox *reopenFeedStartup_;
+  QCheckBox *storeDBMemory_;
 
   // systemTray
   QGroupBox *showTrayIconBox_;

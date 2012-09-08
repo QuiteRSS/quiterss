@@ -332,6 +332,9 @@ private:
 
   int feedIdOld;
 
+  bool storeDBMemory_;
+  bool storeDBMemoryT_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();

@@ -48,10 +48,13 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   showSplashScreen_ = new QCheckBox(tr("Show splash screen on startup"));
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
 
+  storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
+
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addWidget(showSplashScreen_);
   generalLayout->addWidget(reopenFeedStartup_);
   generalLayout->addStretch();
+  generalLayout->addWidget(storeDBMemory_);
 
   QFrame *generalWidget_ = new QFrame();
   generalWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
