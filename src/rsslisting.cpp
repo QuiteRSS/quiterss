@@ -171,6 +171,7 @@ RSSListing::~RSSListing()
 
   QSqlQuery q(db_);
 
+//  db_.transaction();
   bool cleanUpDB = false;
   q.exec("SELECT value FROM info WHERE name='cleanUpAllDB_0.10.0'");
   if (q.next()) cleanUpDB = q.value(0).toBool();
@@ -201,6 +202,8 @@ RSSListing::~RSSListing()
 
   q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
+//  q.finish();
+//  db_.commit();
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
@@ -2119,6 +2122,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
 
   QSqlQuery q(db_);
+  db_.transaction();
   QString qStr = QString("SELECT text, id, image FROM feeds");
   q.exec(qStr);
   while (q.next()) {
@@ -2151,6 +2155,7 @@ void RSSListing::showOptionDlg()
       q1.exec(qStr);
     }
   }
+  db_.commit();
   optionsDialog->feedsTreeNotify_->expandAll();
 
   optionsDialog->setLanguage(langFileName_);
@@ -2277,6 +2282,7 @@ void RSSListing::showOptionDlg()
 
   QTreeWidgetItem *treeWidgetItem =
       optionsDialog->feedsTreeNotify_->topLevelItem(0);
+  db_.transaction();
   for (int i = 0; i < treeWidgetItem->childCount(); i++) {
     int check = 0;
     if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked)
@@ -2286,6 +2292,7 @@ void RSSListing::showOptionDlg()
         arg(check).arg(treeWidgetItem->child(i)->text(1).toInt());
     q.exec(qStr);
   }
+  db_.commit();
 
   if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();
@@ -3867,6 +3874,7 @@ void RSSListing::creatFeedTab(int feedId)
 void RSSListing::setUserFilter(int feedId, int filterId)
 {
   QSqlQuery q(db_);
+  db_.transaction();
   bool onlyNew = true;
 
   if (filterId != -1) {
@@ -4029,6 +4037,7 @@ void RSSListing::setUserFilter(int feedId, int filterId)
   }
   q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND read=2 AND new=1")
          .arg(feedId));
+  db_.commit();
 }
 
 //! Открытие новости клавишей Enter
@@ -4246,6 +4255,7 @@ void RSSListing::cleanUp()
 {
   QSqlQuery q(db_);
 
+  db_.transaction();
   bool lastBuildDateClear = false;
   q.exec("SELECT value FROM info WHERE name='lastBuildDateClear_0.10.1'");
   if (q.next()) {
@@ -4272,6 +4282,7 @@ void RSSListing::cleanUp()
       qt.exec(qStr);
     }
   }
+  db_.commit();
 
   settings_->setValue("CleanUp", 0);
 }

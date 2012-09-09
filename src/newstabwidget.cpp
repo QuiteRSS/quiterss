@@ -707,6 +707,7 @@ void NewsTabWidget::markNewsRead()
       }
     }
 
+    rsslisting_->db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
@@ -714,6 +715,7 @@ void NewsTabWidget::markNewsRead()
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE feedId='%2' AND id=='%3'").
              arg(markRead).arg(feedId).arg(newsId));
     }
+    rsslisting_->db_.commit();
 
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
@@ -831,6 +833,7 @@ void NewsTabWidget::deleteNews()
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
   } else {
+    rsslisting_->db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
@@ -839,6 +842,7 @@ void NewsTabWidget::deleteNews()
                      "WHERE feedId='%1' AND id=='%2'").
           arg(feedId).arg(newsId));
     }
+    rsslisting_->db_.commit();
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
   }
 
@@ -861,6 +865,7 @@ void NewsTabWidget::deleteAllNewsList()
   int feedId = feedsModel_->index(
       feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
 
+  rsslisting_->db_.transaction();
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
     QSqlQuery q(rsslisting_->db_);
@@ -868,6 +873,7 @@ void NewsTabWidget::deleteAllNewsList()
                    "WHERE feedId='%1' AND id=='%2'").
            arg(feedId).arg(newsId));
   }
+  rsslisting_->db_.commit();
   rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
   curIndex = newsModel_->index(-1, newsModel_->fieldIndex("title"));
@@ -895,6 +901,7 @@ void NewsTabWidget::restoreNews()
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 0);
   } else {
+    rsslisting_->db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
@@ -902,6 +909,7 @@ void NewsTabWidget::restoreNews()
       q.exec(QString("UPDATE news SET deleted=0 WHERE feedId='%1' AND id=='%2'").
           arg(feedId).arg(newsId));
     }
+    rsslisting_->db_.commit();
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
   }
 
