@@ -135,7 +135,7 @@ private slots:
   void slotLinkHovered(const QString &link, const QString &, const QString &);
   void slotSetValue(int value);
   void slotLoadStarted();
-  void slotLoadFinished(bool ok);
+  void slotLoadFinished(bool);
   void showContextWebPage(const QPoint &p);
   void openUrlInExternalBrowser();
 

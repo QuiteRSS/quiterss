@@ -1050,10 +1050,8 @@ void NewsTabWidget::slotLoadStarted()
   webViewProgress_->show();
 }
 
-void NewsTabWidget::slotLoadFinished(bool ok)
+void NewsTabWidget::slotLoadFinished(bool)
 {
-  if (!ok)
-    rsslisting_->statusBar()->showMessage(tr("Error loading to WebView"), 3000);
   webViewProgress_->hide();
   if ((!webView_->url().isValid() ||
       (webView_->url().toString() == "about:blank")) && (feedId_ > -1)) {
