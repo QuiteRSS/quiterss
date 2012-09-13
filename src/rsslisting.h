@@ -191,6 +191,7 @@ private:
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedsRead_;
   QAction *editFeedsTree_;
+  QAction *sortFeedsAct_;
   QAction *exitAct_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
@@ -251,6 +252,7 @@ private:
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
   QMenu *feedsColumnsMenu_;
+  QMenu *sortFeedsMenu_;
 
   QToolBar *toolBar_;
 
@@ -401,6 +403,8 @@ private slots:
   void slotFindFeeds(QString text);
   void slotSelectFind();
   void findFeedVisible(bool visible);
+
+  void slotSortFeeds();
 
 signals:
   void signalPlaceToTray();
