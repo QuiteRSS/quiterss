@@ -171,7 +171,7 @@ RSSListing::~RSSListing()
 
   QSqlQuery q(db_);
 
-//  db_.transaction();
+  db_.transaction();
   bool cleanUpDB = false;
   q.exec("SELECT value FROM info WHERE name='cleanUpAllDB_0.10.0'");
   if (q.next()) cleanUpDB = q.value(0).toBool();
@@ -202,8 +202,8 @@ RSSListing::~RSSListing()
 
   q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
-//  q.finish();
-//  db_.commit();
+  q.finish();
+  db_.commit();
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
