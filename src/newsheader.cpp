@@ -285,6 +285,10 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   QHeaderView::mouseMoveEvent(event);
 }
 
+/*virtual*/ void NewsHeader::mouseDoubleClickEvent(QMouseEvent*)
+{
+}
+
 void NewsHeader::slotButtonColumnView()
 {
   viewMenu_->setFocus();

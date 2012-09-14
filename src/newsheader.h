@@ -29,6 +29,7 @@ protected:
   bool eventFilter(QObject *, QEvent *);
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
+  virtual void mouseDoubleClickEvent(QMouseEvent*);
 
 private slots:
   void slotButtonColumnView();
