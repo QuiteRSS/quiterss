@@ -308,6 +308,12 @@ void NewsHeader::columnVisible(QAction *action)
 
   int idx = action->data().toInt();
   setSectionHidden(idx, !isSectionHidden(idx));
+  if (!isSectionHidden(idx)) {
+    if ((model_->fieldIndex("starred") == idx) || (model_->fieldIndex("read") == idx))
+      resizeSection(idx, 25);
+    else
+      resizeSection(idx, 40);
+  }
   QSize newSize = size();
   newSize.setWidth(newSize.width()+1);
   resize(newSize);
