@@ -1252,4 +1252,28 @@
     <source>Position on unread news</source>
     <target>Position auf dem ungelesen Artikel</target>
 </phrase>
+<phrase>
+    <source>Store a DB in memory (requires program restart)</source>
+    <target>Bewahren Sie eine DB im Speicher (erfordert Neustart des Programms)</target>
+</phrase>
+<phrase>
+    <source>Show Deleted</source>
+    <target>Gelöschte anzeigen</target>
+</phrase>
+<phrase>
+    <source>Restore</source>
+    <target>Wiederherzustellen</target>
+</phrase>
+<phrase>
+    <source>Restore News</source>
+    <target>Wiederherstellen News</target>
+</phrase>
+<phrase>
+    <source>Restore</source>
+    <target>Wiederherzustellen</target>
+</phrase>
+<phrase>
+    <source>Sort By</source>
+    <target>Sortieren nach</target>
+</phrase>
 </QPH>

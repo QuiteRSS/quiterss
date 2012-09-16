@@ -1341,4 +1341,24 @@
     <source>Search Feed</source>
     <target>Поиск ленты</target>
 </phrase>
+<phrase>
+    <source>Store a DB in memory (requires program restart)</source>
+    <target>Хранить БД в памяти (требуется перезапуск программы)</target>
+</phrase>
+<phrase>
+    <source>Show Deleted</source>
+    <target>Показать удалённые</target>
+</phrase>
+<phrase>
+    <source>Restore News</source>
+    <target>Восстановить новость</target>
+</phrase>
+<phrase>
+    <source>Restore</source>
+    <target>Восстановить</target>
+</phrase>
+<phrase>
+    <source>Sort By</source>
+    <target>Сортировать по</target>
+</phrase>
 </QPH>
