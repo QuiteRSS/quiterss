@@ -484,7 +484,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("فارسی (FA)")
            << "0.10.1"
-           << "Mona moh" << "hessam55@hotmail.com";
+           << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_FA"));
   languageFileList_->addTopLevelItem(languageItem);
