@@ -1276,4 +1276,8 @@
     <source>Sort By</source>
     <target>Sortieren nach</target>
 </phrase>
+<phrase>
+    <source>Sort by Title</source>
+    <target>Sortieren nach Titel</target>
+</phrase>
 </QPH>

@@ -1361,4 +1361,8 @@
     <source>Sort By</source>
     <target>Сортировать по</target>
 </phrase>
+<phrase>
+    <source>Sort by Title</source>
+    <target>Сортировать по заголовку</target>
+</phrase>
 </QPH>
