@@ -696,9 +696,9 @@ void RSSListing::createActions()
 //  editFeedsTree_->setIcon(QIcon(":/images/editFeedsTree"));
   connect(editFeedsTree_, SIGNAL(triggered()), this, SLOT(slotEditFeedsTree()));
 
-  sortFeedsAct_ = new QAction(this);
-  sortFeedsAct_->setCheckable(true);
-  connect(sortFeedsAct_, SIGNAL(triggered()), this, SLOT(slotSortFeeds()));
+  titleSortFeedsAct_ = new QAction(this);
+  titleSortFeedsAct_->setCheckable(true);
+  connect(titleSortFeedsAct_, SIGNAL(triggered()), this, SLOT(slotSortFeeds()));
 
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
@@ -1122,9 +1122,7 @@ void RSSListing::createMenu()
   connect(feedsColumnsGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(feedsColumnVisible(QAction*)));
 
-  sortFeedsMenu_ = new QMenu(this);
-  sortFeedsMenu_->addAction(sortFeedsAct_);
-  feedMenu_->addMenu(sortFeedsMenu_);
+  feedMenu_->addAction(titleSortFeedsAct_);
 
   feedMenu_->addSeparator();
   feedMenu_->addAction(deleteFeedAct_);
@@ -1345,7 +1343,7 @@ void RSSListing::readSettings()
   feedsColumnVisible(showUndeleteCount_);
   feedsColumnVisible(showLastUpdated_);
 
-  sortFeedsAct_->setChecked(settings_->value("sortFeeds", true).toBool());
+  titleSortFeedsAct_->setChecked(settings_->value("sortFeeds", true).toBool());
   slotSortFeeds();
 
   browserPosition_ = settings_->value("browserPosition", BOTTOM_POSITION).toInt();
@@ -1464,7 +1462,7 @@ void RSSListing::writeSettings()
   settings_->setValue("showUndeleteCount", showUndeleteCount_->isChecked());
   settings_->setValue("showLastUpdated", showLastUpdated_->isChecked());
 
-  settings_->setValue("sortFeeds", sortFeedsAct_->isChecked());
+  settings_->setValue("sortFeeds", titleSortFeedsAct_->isChecked());
 
   settings_->setValue("browserPosition", browserPosition_);
 
@@ -3091,8 +3089,7 @@ void RSSListing::retranslateStrings() {
   showUndeleteCount_->setText(tr("Count News All"));
   showLastUpdated_->setText(tr("Last Updated"));
 
-  sortFeedsMenu_->setTitle(tr("Sort By"));
-  sortFeedsAct_->setText(tr("Title"));
+  titleSortFeedsAct_->setText(tr("Sort by Title"));
 
   findFeedAct_->setToolTip(tr("Search Feed"));
 
@@ -4306,7 +4303,7 @@ void RSSListing::cleanUp()
 //! Сортировка дерева лент
 void RSSListing::slotSortFeeds()
 {
-  if (sortFeedsAct_->isChecked())
+  if (titleSortFeedsAct_->isChecked())
     feedsView_->sortByColumn(feedsModel_->fieldIndex("text"), Qt::AscendingOrder);
   else
     feedsView_->sortByColumn(feedsModel_->fieldIndex("id"), Qt::AscendingOrder);

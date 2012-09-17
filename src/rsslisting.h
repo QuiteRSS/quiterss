@@ -191,7 +191,7 @@ private:
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedsRead_;
   QAction *editFeedsTree_;
-  QAction *sortFeedsAct_;
+  QAction *titleSortFeedsAct_;
   QAction *exitAct_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
@@ -252,7 +252,6 @@ private:
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
   QMenu *feedsColumnsMenu_;
-  QMenu *sortFeedsMenu_;
 
   QToolBar *toolBar_;
 
