@@ -755,7 +755,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="51"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Adatbázis tárolása a memóriában (újraindítást igényel)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
@@ -1811,7 +1811,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3004"/>
         <source>Show Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>A törölt megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3007"/>
@@ -1871,12 +1871,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3023"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Visszaállítás</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3024"/>
         <source>Restore News</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek visszaállítása</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3027"/>
@@ -2028,7 +2028,11 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3092"/>
         <source>Sort by Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Rendezés cím szerint</translation>
+    </message>
+    <message>
+        <source>Sort By</source>
+        <translation type="obsolete">Rendezés</translation>
     </message>
     <message>
         <source>Title</source>

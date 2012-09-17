@@ -1341,4 +1341,28 @@
     <source>Search Feed</source>
     <target>Hírcsatorna keresése</target>
 </phrase>
+<phrase>
+    <source>Store a DB in memory (requires program restart)</source>
+    <target>Aadatbázis tárolása a memóriában (újraindítást igényel)</target>
+</phrase>
+<phrase>
+    <source>Show Deleted</source>
+    <target>A törölt megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Restore News</source>
+    <target>Hírek visszaállítása</target>
+</phrase>
+<phrase>
+    <source>Restore</source>
+    <target>Visszaállítás</target>
+</phrase>
+<phrase>
+    <source>Sort By</source>
+    <target>Rendezés</target>
+</phrase>
+<phrase>
+    <source>Sort by Title</source>
+    <target>Rendezés cím szerint</target>
+</phrase>
 </QPH>
