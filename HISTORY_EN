@@ -2,13 +2,13 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Версия 0.10.1+</B> (xx Сен 2012)
+<P><B>Version 0.10.1+</B> (xx Sep 2012)
 <UL>
 <LI>Added: Embedded browser context menu item "Load Images"</LI>
 <LI>Added: Embedded browser context menu item "Open in External Browser"</LI>
 <LI>Added: News filter "Show Deleted"</LI>
 <LI>Added: Option "Store database in memory" (On by default)</LI>
-<LI>Added: Sorting feeds by title ("Feeds->Sort By")</LI>
+<LI>Added: Sorting feeds by title ("Feeds->Sort by Title")</LI>
 <LI>Added: Language: Dutch</LI>
 <LI>Added: Language: Farsi</LI>
 <BR>
@@ -16,7 +16,7 @@
 <BR>
 <LI>Fixed: Invisible text on OS with dark theme</LI>
 <LI>Fixed: Open links from embedded browser in new tab: wrong links</LI>
-<LI>Fixed: Assinging default shortcuts</LI>
+<LI>Fixed: Assigning default shortcuts</LI>
 <LI>Fixed: Cut link in some feeds</LI>
 <LI>Fixed: News list sorting by "Star" or "Read"</LI>
 <LI>Fixed: Column chooser in news list</LI>
