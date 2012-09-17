@@ -746,7 +746,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="51"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lagra databas i minnet (kräver omstart av programmet)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="69"/>
@@ -2049,7 +2049,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3004"/>
         <source>Show Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa borttagna</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3007"/>
@@ -2109,12 +2109,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3023"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3024"/>
         <source>Restore News</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ nyheter</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3027"/>
@@ -2221,7 +2221,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3092"/>
         <source>Sort by Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortera efter titel</translation>
     </message>
     <message>
         <source>Title</source>
