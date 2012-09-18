@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.10.1+</B> (xx Sep 2012)
+<P><B>Version 0.10.2</B> (18 Sep 2012)
 <UL>
 <LI>Added: Embedded browser context menu item "Load Images"</LI>
 <LI>Added: Embedded browser context menu item "Open in External Browser"</LI>

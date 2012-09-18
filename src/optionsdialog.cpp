@@ -483,7 +483,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("فارسی (FA)")
-           << "0.10.1"
+           << "0.10.2"
            << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_FA"));
@@ -491,7 +491,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Français (FR)")
-           << "0.10.1"
+           << "0.10.2"
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_FR"));
@@ -507,7 +507,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Magyar (HU)")
-           << "0.10.1"
+           << "0.10.2"
            << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_HU"));
@@ -515,7 +515,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Nederlands (NL)")
-           << "0.10.1"
+           << "0.10.2"
            << "TeLLie" << "elbert.pol@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_NL"));
@@ -539,7 +539,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Svenska (SV)")
-           << "0.10.1"
+           << "0.10.2"
            << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SV"));
