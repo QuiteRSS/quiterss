@@ -101,7 +101,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="50"/>
         <source>Starred</source>
-        <translation type="unfinished">Са звездом</translation>
+        <translation>Са звездом</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="51"/>
@@ -121,7 +121,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="22"/>
         <source>Status</source>
-        <translation type="unfinished">Стање</translation>
+        <translation>Стање</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="38"/>
@@ -746,7 +746,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="51"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај базу у меморији (потребно рестарт програма)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="69"/>
@@ -1993,7 +1993,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3004"/>
         <source>Show Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи обрисано</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3007"/>
@@ -2053,12 +2053,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3023"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Врати</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3024"/>
         <source>Restore News</source>
-        <translation type="unfinished"></translation>
+        <translation>Врати вести</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3027"/>
@@ -2085,7 +2085,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3047"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">Текст испод иконе</translation>
+        <translation>Текст испод иконе</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3048"/>
@@ -2220,7 +2220,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3092"/>
         <source>Sort by Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Среди по Наслову</translation>
     </message>
     <message>
         <source>Title</source>
