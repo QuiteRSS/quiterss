@@ -638,7 +638,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="51"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sla een DB op in geheugen.(Vereist een herstart)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="69"/>
@@ -1348,7 +1348,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3092"/>
         <source>Sort by Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorteer op Titel</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3513"/>
@@ -1686,7 +1686,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3004"/>
         <source>Show Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon Gewiste</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3007"/>
@@ -1746,12 +1746,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3023"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstellen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3024"/>
         <source>Restore News</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstel Nieuws</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3027"/>
