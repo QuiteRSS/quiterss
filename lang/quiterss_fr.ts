@@ -675,7 +675,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="51"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stocker une base de données dans la mémoire (nécessite le redémarrage du programme)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
@@ -1507,7 +1507,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3004"/>
         <source>Show Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer effacés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3007"/>
@@ -1567,12 +1567,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3023"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3024"/>
         <source>Restore News</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer article</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3027"/>
@@ -1759,7 +1759,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3092"/>
         <source>Sort by Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Trier par titre</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3513"/>
