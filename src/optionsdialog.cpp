@@ -531,7 +531,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Српски (SR)")
-           << "0.10.1"
+           << "0.10.2"
            << "Ozzii" << "ozzii.translate@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SR"));
