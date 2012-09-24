@@ -64,6 +64,9 @@ int main(int argc, char **argv)
       app.sendMessage(message);
     }
     return 0;
+  } else {
+    if (message.contains("--exit", Qt::CaseInsensitive))
+      return 0;
   }
 
   app.setApplicationName("QuiteRss");
@@ -155,8 +158,7 @@ QSettings *settings_;
     rsslisting.traySystem->show();
   }
 
-  if ((message.contains("feed://", Qt::CaseInsensitive)) ||
-      (message.contains("--exit", Qt::CaseInsensitive)))
+  if (message.contains("feed://", Qt::CaseInsensitive))
     rsslisting.receiveMessage(message);
 
   return app.exec();
