@@ -155,7 +155,8 @@ QSettings *settings_;
     rsslisting.traySystem->show();
   }
 
-  if (message.contains("feed://", Qt::CaseInsensitive))
+  if ((message.contains("feed://", Qt::CaseInsensitive)) ||
+      (message.contains("--exit", Qt::CaseInsensitive)))
     rsslisting.receiveMessage(message);
 
   return app.exec();
