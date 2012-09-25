@@ -19,6 +19,7 @@ private:
   QLabel *infoLabel;
   QTextBrowser *history_;
 
+  QPushButton *updateButton_;
 
 public:
   explicit UpdateAppDialog(const QString &lang, QSettings *settings,
@@ -26,8 +27,9 @@ public:
 
 private slots:
   void closeDialog();
-  void finishUpdateApp();
+  void finishUpdatesChecking();
   void slotFinishHistoryReply();
+  void updaterRun();
 
 signals:
   void signalNewVersion(bool newVersion);

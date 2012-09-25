@@ -1,6 +1,10 @@
 #include "updateappdialog.h"
 #include "VersionNo.h"
 
+#if defined(Q_OS_WIN)
+#include <qt_windows.h>
+#endif
+
 UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
                                  QWidget *parent, bool show)
   : QDialog(parent),
@@ -28,14 +32,19 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     history_->setOpenExternalLinks(true);
     updateApplayout->addWidget(history_, 1);
 
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->setAlignment(Qt::AlignRight);
-    QPushButton *closeButton = new QPushButton(tr("&Close"), this);
-    closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    updateButton_ = new QPushButton(tr("&Update"), this);
+    updateButton_->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    updateButton_->hide();
+    connect(updateButton_, SIGNAL(clicked()), SLOT(updaterRun()));
 
+    QPushButton *closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setDefault(true);
     closeButton->setFocus(Qt::OtherFocusReason);
+    closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     connect(closeButton, SIGNAL(clicked()), SLOT(close()));
+
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->addWidget(updateButton_);
     buttonLayout->addStretch(1);
     buttonLayout->addWidget(closeButton);
     updateApplayout->addLayout(buttonLayout);
@@ -53,7 +62,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
   }
 
   reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
-  connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdateApp()));
+  connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
 }
 
 void UpdateAppDialog::closeDialog()
@@ -61,7 +70,7 @@ void UpdateAppDialog::closeDialog()
   settings_->setValue("updateAppDlg/geometry", saveGeometry());
 }
 
-void UpdateAppDialog::finishUpdateApp()
+void UpdateAppDialog::finishUpdatesChecking()
 {
   reply_->deleteLater();
 
@@ -103,8 +112,16 @@ void UpdateAppDialog::finishUpdateApp()
     info = tr("Error checking updates");
   }
 
-  if (!showDialog_) emit signalNewVersion(newVersion);
-  else infoLabel->setText(info);
+  if (!showDialog_)
+    emit signalNewVersion(newVersion);
+  else {
+    infoLabel->setText(info);
+
+#if defined(Q_OS_WIN)
+    if (QFile::exists(QCoreApplication::applicationDirPath() + "/Updater.exe"))
+      updateButton_->show();
+#endif
+  }
 }
 
 void UpdateAppDialog::slotFinishHistoryReply()
@@ -118,4 +135,13 @@ void UpdateAppDialog::slotFinishHistoryReply()
   QString str = QString::fromUtf8(historyReply_->readAll());
 
   history_->setHtml(str);
+}
+
+void UpdateAppDialog::updaterRun()
+{
+  close();
+#if defined(Q_WS_WIN)
+  QString updaterFile = QCoreApplication::applicationDirPath() + "/Updater.exe";
+  ShellExecute(0, 0, (wchar_t *)updaterFile.utf16(), 0, 0, SW_SHOWNORMAL);
+#endif
 }
