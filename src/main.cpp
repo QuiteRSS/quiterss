@@ -64,6 +64,9 @@ int main(int argc, char **argv)
       app.sendMessage(message);
     }
     return 0;
+  } else {
+    if (message.contains("--exit", Qt::CaseInsensitive))
+      return 0;
   }
 
   app.setApplicationName("QuiteRss");
