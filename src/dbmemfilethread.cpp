@@ -1,5 +1,9 @@
 #include "dbmemfilethread.h"
-#include <sqlite3.h>
+#if QT_VERSION >= 0x040800
+#include <sqlite_qt48x/sqlite3.h>
+#else
+#include <sqlite_qt47x/sqlite3.h>
+#endif
 #include <QDebug>
 
 DBMemFileThread::DBMemFileThread(QObject *pParent)
