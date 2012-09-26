@@ -118,7 +118,8 @@ void UpdateAppDialog::finishUpdatesChecking()
     infoLabel->setText(info);
 
 #if defined(Q_OS_WIN)
-    if (QFile::exists(QCoreApplication::applicationDirPath() + "/Updater.exe"))
+    if (QFile::exists(QCoreApplication::applicationDirPath() + "/Updater.exe") &&
+        newVersion)
       updateButton_->show();
 #endif
   }
