@@ -19,6 +19,7 @@ NewsView::NewsView(QWidget * parent)
 /*virtual*/ void NewsView::mousePressEvent(QMouseEvent *event)
 {
   if (!indexAt(event->pos()).isValid()) return;
+  indexClicked_ = indexAt(event->pos());
 
   QModelIndex index = indexAt(event->pos());
   QSqlTableModel *model_ = (QSqlTableModel*)model();
@@ -61,7 +62,10 @@ NewsView::NewsView(QWidget * parent)
 {
   if (!indexAt(event->pos()).isValid()) return;
 
-  emit signalDoubleClicked(indexAt(event->pos()));
+  if (indexClicked_ == indexAt(event->pos()))
+    emit signalDoubleClicked(indexAt(event->pos()));
+  else
+    mousePressEvent(event);
 }
 
 /*virtual*/ void NewsView::keyPressEvent(QKeyEvent *event)

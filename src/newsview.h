@@ -11,6 +11,9 @@ class NewsView : public QTreeView
 public:
   NewsView(QWidget * parent = 0);
 
+private:
+  QModelIndex indexClicked_;
+
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseMoveEvent(QMouseEvent*);
