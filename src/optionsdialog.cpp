@@ -514,6 +514,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Italiano (IT)")
+           << "0.10.2"
+           << "ZeroWis" << "lightflash@hotmail.it";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_IT"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Nederlands (NL)")
            << "0.10.2"
            << "TeLLie" << "elbert.pol@gmail.com";

@@ -73,6 +73,7 @@
         <file alias="flag_NL">images/flag_netherlands.png</file>
         <file alias="flag_FA">images/flag_iran.png</file>
         <file>images/arrow_turn_left.png</file>
+        <file alias="flag_IT">images/flag_italy.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
