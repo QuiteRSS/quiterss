@@ -52,6 +52,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<li>" + "Ozzii" + "</li>"
       "<li>" + "Sergey Borisov aka NaturKeks" + "</li>"
       "<li>" + "H.Mohamadi" + "</li>"
+      "<li>" + "ZeroWis" + "</li>"
       "</UL>"
       "<HR>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
