@@ -218,11 +218,16 @@ private:
   QAction *openFeedNewTabAct_;
   QAction *placeToTrayAct_;
 
+  QAction *zoomInAct_;
+  QAction *zoomOutAct_;
+  QAction *zoomTo100Act_;
+
   QActionGroup *toolBarStyleGroup_;
   QActionGroup *toolBarIconSizeGroup_;
   QActionGroup *styleGroup_;
   QActionGroup *browserPositionGroup_;
   QActionGroup *feedsFilterGroup_;
+  QActionGroup *browserZoomGroup_;
 
   QAction *feedsFilterAction;
   QAction *newsFilterAction;
@@ -244,6 +249,7 @@ private:
   QMenu *browserPositionMenu_;
   QMenu *feedMenu_;
   QMenu *newsMenu_;
+  QMenu *browserMenu_;
   QMenu *toolsMenu_;
   QMenu *helpMenu_;
   QMenu *trayMenu_;
@@ -252,6 +258,7 @@ private:
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
   QMenu *feedsColumnsMenu_;
+  QMenu *browserZoomMenu_;
 
   QToolBar *toolBar_;
 
@@ -404,6 +411,8 @@ private slots:
   void findFeedVisible(bool visible);
 
   void slotSortFeeds();
+
+  void browserZoom(QAction*);
 
 signals:
   void signalPlaceToTray();

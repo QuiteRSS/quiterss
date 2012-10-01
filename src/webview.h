@@ -15,6 +15,7 @@ public:
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);
+  virtual void wheelEvent(QWheelEvent*);
 
 private:
   int posX1;

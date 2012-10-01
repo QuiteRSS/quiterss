@@ -41,3 +41,15 @@ WebView::WebView(QWidget *parent) :
 
   QWebView::mouseReleaseEvent(event);
 }
+
+/*virtual*/ void WebView::wheelEvent(QWheelEvent *event)
+{
+  if (QApplication::keyboardModifiers() == Qt::ControlModifier) {
+    if (event->delta() > 0)
+      setZoomFactor(zoomFactor()+0.1);
+    else if (zoomFactor() > 0.1)
+      setZoomFactor(zoomFactor()-0.1);
+    return;
+  }
+  QWebView::wheelEvent(event);
+}

@@ -674,6 +674,13 @@ void RSSListing::createActions()
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
 
+  zoomInAct_ = new QAction(this);
+  zoomInAct_->setObjectName("zoomInAct");
+  zoomOutAct_ = new QAction(this);
+  zoomOutAct_->setObjectName("zoomOutAct");
+  zoomTo100Act_ = new QAction(this);
+  zoomTo100Act_->setObjectName("zoomTo100Act");
+
   updateFeedAct_ = new QAction(this);
   updateFeedAct_->setObjectName("updateFeedAct");
   updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
@@ -953,6 +960,13 @@ void RSSListing::createShortcut()
 
   listActions_.append(placeToTrayAct_);
 
+  zoomInAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
+  listActions_.append(zoomInAct_);
+  zoomOutAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+  listActions_.append(zoomOutAct_);
+  zoomTo100Act_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_0));
+  listActions_.append(zoomTo100Act_);
+
   loadActionShortcuts();
 }
 
@@ -1166,8 +1180,24 @@ void RSSListing::createMenu()
   newsFilterAction = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
-  newsMenu_->addSeparator();
-  newsMenu_->addAction(autoLoadImagesToggle_);
+  browserMenu_ = new QMenu(this);
+  menuBar()->addMenu(browserMenu_);
+
+  browserMenu_->addAction(autoLoadImagesToggle_);
+  browserMenu_->addSeparator();
+
+  browserZoomMenu_ = new QMenu(this);
+  browserZoomMenu_->addAction(zoomInAct_);
+  browserZoomMenu_->addAction(zoomOutAct_);
+  browserZoomMenu_->addSeparator();
+  browserZoomMenu_->addAction(zoomTo100Act_);
+  browserZoomGroup_ = new QActionGroup(this);
+  browserZoomGroup_->addAction(zoomInAct_);
+  browserZoomGroup_->addAction(zoomOutAct_);
+  browserZoomGroup_->addAction(zoomTo100Act_);
+  browserMenu_->addMenu(browserZoomMenu_);
+  connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(browserZoom(QAction*)));
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
@@ -3035,6 +3065,7 @@ void RSSListing::retranslateStrings() {
   viewMenu_->setTitle(tr("&View"));
   feedMenu_->setTitle(tr("Fee&ds"));
   newsMenu_->setTitle(tr("&News"));
+  browserMenu_->setTitle(tr("&Browser"));
   toolsMenu_->setTitle(tr("&Tools"));
   helpMenu_->setTitle(tr("&Help"));
 
@@ -3092,6 +3123,14 @@ void RSSListing::retranslateStrings() {
   titleSortFeedsAct_->setText(tr("Sort by Title"));
 
   findFeedAct_->setToolTip(tr("Search Feed"));
+
+  browserZoomMenu_->setTitle(tr("Zoom"));
+  zoomInAct_->setText(tr("Zoom In"));
+  zoomInAct_->setToolTip(tr("Zoom in in browser"));
+  zoomOutAct_->setText(tr("Zoom Out"));
+  zoomOutAct_->setToolTip(tr("Zoom out in browser"));
+  zoomTo100Act_->setText(tr("100%"));
+  zoomTo100Act_->setToolTip(tr("Reset zoom in browser"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -4307,4 +4346,17 @@ void RSSListing::slotSortFeeds()
     feedsView_->sortByColumn(feedsModel_->fieldIndex("text"), Qt::AscendingOrder);
   else
     feedsView_->sortByColumn(feedsModel_->fieldIndex("id"), Qt::AscendingOrder);
+}
+
+//! Масштаб в браузере
+void RSSListing::browserZoom(QAction *action)
+{
+  if (action->objectName() == "zoomInAct") {
+    webView_->setZoomFactor(webView_->zoomFactor()+0.1);
+  } else if (action->objectName() == "zoomOutAct") {
+    if (webView_->zoomFactor() > 0.1)
+      webView_->setZoomFactor(webView_->zoomFactor()-0.1);
+  } else {
+    webView_->setZoomFactor(1);
+  }
 }
