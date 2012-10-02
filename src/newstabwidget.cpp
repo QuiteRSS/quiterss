@@ -1274,6 +1274,9 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
   } else if (menu_t->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
     webMenu_->addSeparator();
     webMenu_->addAction(rsslisting_->autoLoadImagesToggle_);
+    webMenu_->addSeparator();
+    webMenu_->addAction(rsslisting_->printAct_);
+    webMenu_->addAction(rsslisting_->printPreviewAct_);
   }
 
   webMenu_->popup(webView_->mapToGlobal(p));

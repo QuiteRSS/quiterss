@@ -53,6 +53,8 @@ public:
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
   QAction *autoLoadImagesToggle_;
+  QAction *printAct_;
+  QAction *printPreviewAct_;
   QAction *restoreNewsAct_;
   QActionGroup *newsFilterGroup_;
 
@@ -415,6 +417,9 @@ private slots:
 
   void browserZoom(QAction*);
   void slotReportProblem();
+
+  void slotPrint();
+  void slotPrintPreview();
 
 signals:
   void signalPlaceToTray();

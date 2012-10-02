@@ -674,6 +674,17 @@ void RSSListing::createActions()
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
 
+  printAct_ = new QAction(this);
+  printAct_->setObjectName("printAct");
+  printAct_->setIcon(QIcon(":/images/printer"));
+  this->addAction(printAct_);
+  connect(printAct_, SIGNAL(triggered()), this, SLOT(slotPrint()));
+  printPreviewAct_ = new QAction(this);
+  printPreviewAct_->setObjectName("printPreviewAct");
+  printPreviewAct_->setIcon(QIcon(":/images/printer"));
+  this->addAction(printPreviewAct_);
+  connect(printPreviewAct_, SIGNAL(triggered()), this, SLOT(slotPrintPreview()));
+
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
   zoomOutAct_ = new QAction(this);
@@ -971,6 +982,11 @@ void RSSListing::createShortcut()
   zoomTo100Act_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_0));
   listActions_.append(zoomTo100Act_);
 
+  printAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
+  listActions_.append(printAct_);
+  printPreviewAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_P));
+  listActions_.append(printPreviewAct_);
+
   loadActionShortcuts();
 }
 
@@ -1184,11 +1200,12 @@ void RSSListing::createMenu()
   newsFilterAction = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
+  newsMenu_->addSeparator();
+  newsMenu_->addAction(deleteNewsAct_);
+  newsMenu_->addAction(deleteAllNewsAct_);
+
   browserMenu_ = new QMenu(this);
   menuBar()->addMenu(browserMenu_);
-
-  browserMenu_->addAction(autoLoadImagesToggle_);
-  browserMenu_->addSeparator();
 
   browserZoomMenu_ = new QMenu(this);
   browserZoomMenu_->addAction(zoomInAct_);
@@ -1199,9 +1216,14 @@ void RSSListing::createMenu()
   browserZoomGroup_->addAction(zoomInAct_);
   browserZoomGroup_->addAction(zoomOutAct_);
   browserZoomGroup_->addAction(zoomTo100Act_);
-  browserMenu_->addMenu(browserZoomMenu_);
   connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(browserZoom(QAction*)));
+
+  browserMenu_->addAction(autoLoadImagesToggle_);
+  browserMenu_->addMenu(browserZoomMenu_);
+  browserMenu_->addSeparator();
+  browserMenu_->addAction(printAct_);
+  browserMenu_->addAction(printPreviewAct_);
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
@@ -3138,6 +3160,11 @@ void RSSListing::retranslateStrings() {
   zoomTo100Act_->setText(tr("100%"));
   zoomTo100Act_->setToolTip(tr("Reset zoom in browser"));
 
+  printAct_->setText(tr("Print..."));
+  printAct_->setToolTip(tr("Print Web page"));
+  printPreviewAct_->setText(tr("Print Preview..."));
+  printPreviewAct_->setToolTip(tr("Preview Web page"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
@@ -4371,4 +4398,28 @@ void RSSListing::browserZoom(QAction *action)
 void RSSListing::slotReportProblem()
 {
   QDesktopServices::openUrl(QUrl("http://code.google.com/p/quite-rss/issues/list"));
+}
+
+//! Печать страницы из браузера
+void RSSListing::slotPrint()
+{
+  QPrinter printer;
+  printer.setDocName(tr("Web Page"));
+  QPrintDialog *printDlg = new QPrintDialog(&printer);
+  connect(printDlg, SIGNAL(accepted(QPrinter*)), webView_, SLOT(print(QPrinter*)));
+  printDlg->exec();
+  delete printDlg;
+}
+
+//! Предварительный просмотр при печати страницы из браузера
+void RSSListing::slotPrintPreview()
+{
+  QPrinter printer;
+  printer.setDocName(tr("Web Page"));
+  QPrintPreviewDialog *prevDlg = new QPrintPreviewDialog(&printer);
+  prevDlg->setWindowFlags(prevDlg->windowFlags() | Qt::WindowMaximizeButtonHint);
+  prevDlg->resize(650, 800);
+  connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), webView_, SLOT(print(QPrinter*)));
+  prevDlg->exec();
+  delete prevDlg;
 }
