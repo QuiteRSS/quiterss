@@ -687,8 +687,10 @@ void RSSListing::createActions()
 
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
+  zoomInAct_->setIcon(QIcon(":/images/zoomIn"));
   zoomOutAct_ = new QAction(this);
   zoomOutAct_->setObjectName("zoomOutAct");
+  zoomOutAct_->setIcon(QIcon(":/images/zoomOut"));
   zoomTo100Act_ = new QAction(this);
   zoomTo100Act_->setObjectName("zoomTo100Act");
 
@@ -1208,6 +1210,7 @@ void RSSListing::createMenu()
   menuBar()->addMenu(browserMenu_);
 
   browserZoomMenu_ = new QMenu(this);
+  browserZoomMenu_->setIcon(QIcon(":/images/zoom"));
   browserZoomMenu_->addAction(zoomInAct_);
   browserZoomMenu_->addAction(zoomOutAct_);
   browserZoomMenu_->addSeparator();
