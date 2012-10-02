@@ -773,6 +773,10 @@ void RSSListing::createActions()
   updateAppAct_->setObjectName("UpdateApp_");
   connect(updateAppAct_, SIGNAL(triggered()), this, SLOT(slotShowUpdateAppDlg()));
 
+  reportProblemAct_ = new QAction(this);
+  reportProblemAct_->setObjectName("reportProblemAct_");
+  connect(reportProblemAct_, SIGNAL(triggered()), this, SLOT(slotReportProblem()));
+
   openInBrowserAct_ = new QAction(this);
   openInBrowserAct_->setObjectName("openInBrowserAct");
   this->addAction(openInBrowserAct_);
@@ -1209,6 +1213,7 @@ void RSSListing::createMenu()
   menuBar()->addMenu(helpMenu_);
   helpMenu_->addAction(updateAppAct_);
   helpMenu_->addSeparator();
+  helpMenu_->addAction(reportProblemAct_);
   helpMenu_->addAction(aboutAct_);
 }
 
@@ -3037,6 +3042,7 @@ void RSSListing::retranslateStrings() {
   aboutAct_->setToolTip(tr("Show 'About' Dialog"));
 
   updateAppAct_->setText(tr("Check for Updates..."));
+  reportProblemAct_->setText(tr("Report a Problem..."));
 
   openInBrowserAct_->setText(tr("Open in Browser"));
   openInExternalBrowserAct_->setText(tr("Open in External Browser"));
@@ -4359,4 +4365,10 @@ void RSSListing::browserZoom(QAction *action)
   } else {
     webView_->setZoomFactor(1);
   }
+}
+
+//! Сообщить о проблеме...
+void RSSListing::slotReportProblem()
+{
+  QDesktopServices::openUrl(QUrl("http://code.google.com/p/quite-rss/issues/list"));
 }

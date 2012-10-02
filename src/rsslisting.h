@@ -207,6 +207,7 @@ private:
   QAction *filterNewsDeleted_;
   QAction *aboutAct_;
   QAction *updateAppAct_;
+  QAction *reportProblemAct_;
 
   QAction *markFeedRead_;
   QAction *feedProperties_;
@@ -413,6 +414,7 @@ private slots:
   void slotSortFeeds();
 
   void browserZoom(QAction*);
+  void slotReportProblem();
 
 signals:
   void signalPlaceToTray();
