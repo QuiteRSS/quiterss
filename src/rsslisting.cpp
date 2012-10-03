@@ -608,8 +608,13 @@ void RSSListing::createActions()
   exitAct_->setObjectName("exitAct");
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
 
-  toolBarToggle_ = new QAction(this);
-  toolBarToggle_->setCheckable(true);
+  mainToolbarToggle_ = new QAction(this);
+  mainToolbarToggle_->setCheckable(true);
+  newsToolbarToggle_ = new QAction(this);
+  newsToolbarToggle_->setCheckable(true);
+  browserToolbarToggle_ = new QAction(this);
+  browserToolbarToggle_->setCheckable(true);
+
   toolBarStyleI_ = new QAction(this);
   toolBarStyleI_->setObjectName("toolBarStyleI_");
   toolBarStyleI_->setCheckable(true);
@@ -634,6 +639,8 @@ void RSSListing::createActions()
   toolBarIconSmall_ = new QAction(this);
   toolBarIconSmall_->setObjectName("toolBarIconSmall_");
   toolBarIconSmall_->setCheckable(true);
+
+  toolBarToggle_ = new QAction(this);
 
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
@@ -674,10 +681,23 @@ void RSSListing::createActions()
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
 
+  printAct_ = new QAction(this);
+  printAct_->setObjectName("printAct");
+  printAct_->setIcon(QIcon(":/images/printer"));
+  this->addAction(printAct_);
+  connect(printAct_, SIGNAL(triggered()), this, SLOT(slotPrint()));
+  printPreviewAct_ = new QAction(this);
+  printPreviewAct_->setObjectName("printPreviewAct");
+  printPreviewAct_->setIcon(QIcon(":/images/printer"));
+  this->addAction(printPreviewAct_);
+  connect(printPreviewAct_, SIGNAL(triggered()), this, SLOT(slotPrintPreview()));
+
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
+  zoomInAct_->setIcon(QIcon(":/images/zoomIn"));
   zoomOutAct_ = new QAction(this);
   zoomOutAct_->setObjectName("zoomOutAct");
+  zoomOutAct_->setIcon(QIcon(":/images/zoomOut"));
   zoomTo100Act_ = new QAction(this);
   zoomTo100Act_->setObjectName("zoomTo100Act");
 
@@ -971,6 +991,11 @@ void RSSListing::createShortcut()
   zoomTo100Act_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_0));
   listActions_.append(zoomTo100Act_);
 
+  printAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
+  listActions_.append(printAct_);
+  printPreviewAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_P));
+  listActions_.append(printPreviewAct_);
+
   loadActionShortcuts();
 }
 
@@ -1028,10 +1053,12 @@ void RSSListing::createMenu()
 //  menuBar()->addMenu(editMenu_);
   editMenu_->setVisible(false);
 
-  viewMenu_  = new QMenu(this);
-  menuBar()->addMenu(viewMenu_ );
+  toolbarsMenu_ = new QMenu(this);
+  toolbarsMenu_->addAction(mainToolbarToggle_);
+  toolbarsMenu_->addAction(newsToolbarToggle_);
+  toolbarsMenu_->addAction(browserToolbarToggle_);
 
-  toolBarMenu_ = new QMenu(this);
+  customizeToolbarMenu_ = new QMenu(this);
   toolBarStyleMenu_ = new QMenu(this);
   toolBarStyleMenu_->addAction(toolBarStyleI_);
   toolBarStyleMenu_->addAction(toolBarStyleT_);
@@ -1056,11 +1083,8 @@ void RSSListing::createMenu()
   connect(toolBarIconSizeGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setToolBarIconSize(QAction*)));
 
-  toolBarMenu_->addMenu(toolBarStyleMenu_);
-  toolBarMenu_->addMenu(toolBarIconSizeMenu_);
-  toolBarMenu_->addSeparator();
-  toolBarMenu_->addAction(toolBarToggle_);
-  viewMenu_->addMenu(toolBarMenu_);
+  customizeToolbarMenu_->addMenu(toolBarStyleMenu_);
+  customizeToolbarMenu_->addMenu(toolBarIconSizeMenu_);
 
   styleMenu_ = new QMenu(this);
   styleMenu_->addAction(systemStyle_);
@@ -1080,7 +1104,6 @@ void RSSListing::createMenu()
   styleGroup_->addAction(grayStyle_);
   connect(styleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setStyleApp(QAction*)));
-  viewMenu_->addMenu(styleMenu_);
 
   browserPositionMenu_ = new QMenu(this);
   browserPositionMenu_->addAction(topBrowserPositionAct_);
@@ -1094,7 +1117,14 @@ void RSSListing::createMenu()
   browserPositionGroup_->addAction(leftBrowserPositionAct_);
   connect(browserPositionGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setBrowserPosition(QAction*)));
+
+  viewMenu_  = new QMenu(this);
+  viewMenu_->addMenu(toolbarsMenu_);
+  viewMenu_->addMenu(customizeToolbarMenu_);
+  viewMenu_->addSeparator();
   viewMenu_->addMenu(browserPositionMenu_);
+  viewMenu_->addMenu(styleMenu_);
+  menuBar()->addMenu(viewMenu_);
 
   feedMenu_ = new QMenu(this);
   menuBar()->addMenu(feedMenu_);
@@ -1184,13 +1214,15 @@ void RSSListing::createMenu()
   newsFilterAction = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
+  newsMenu_->addSeparator();
+  newsMenu_->addAction(deleteNewsAct_);
+  newsMenu_->addAction(deleteAllNewsAct_);
+
   browserMenu_ = new QMenu(this);
   menuBar()->addMenu(browserMenu_);
 
-  browserMenu_->addAction(autoLoadImagesToggle_);
-  browserMenu_->addSeparator();
-
   browserZoomMenu_ = new QMenu(this);
+  browserZoomMenu_->setIcon(QIcon(":/images/zoom"));
   browserZoomMenu_->addAction(zoomInAct_);
   browserZoomMenu_->addAction(zoomOutAct_);
   browserZoomMenu_->addSeparator();
@@ -1199,9 +1231,14 @@ void RSSListing::createMenu()
   browserZoomGroup_->addAction(zoomInAct_);
   browserZoomGroup_->addAction(zoomOutAct_);
   browserZoomGroup_->addAction(zoomTo100Act_);
-  browserMenu_->addMenu(browserZoomMenu_);
   connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(browserZoom(QAction*)));
+
+  browserMenu_->addAction(autoLoadImagesToggle_);
+  browserMenu_->addMenu(browserZoomMenu_);
+  browserMenu_->addSeparator();
+  browserMenu_->addAction(printAct_);
+  browserMenu_->addAction(printPreviewAct_);
 
   toolsMenu_ = new QMenu(this);
   menuBar()->addMenu(toolsMenu_);
@@ -1220,29 +1257,36 @@ void RSSListing::createMenu()
 /*! \brief Создание ToolBar ***************************************************/
 void RSSListing::createToolBar()
 {
-  toolBar_ = new QToolBar(this);
-  addToolBar(toolBar_);
-  toolBar_->setObjectName("ToolBar_General");
-  toolBar_->setAllowedAreas(Qt::TopToolBarArea);
-  toolBar_->setMovable(false);
-  toolBar_->setContextMenuPolicy(Qt::CustomContextMenu);
-  toolBar_->addAction(addFeedAct_);
-  toolBar_->addSeparator();
-  toolBar_->addAction(updateFeedAct_);
-  toolBar_->addAction(updateAllFeedsAct_);
-  toolBar_->addSeparator();
-  toolBar_->addAction(markFeedRead_);
-//  toolBar_->addAction(markAllFeedsRead_);
-  toolBar_->addSeparator();
-  toolBar_->addAction(autoLoadImagesToggle_);
-  toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-  connect(toolBar_, SIGNAL(visibilityChanged(bool)),
-          toolBarToggle_, SLOT(setChecked(bool)));
-  connect(toolBarToggle_, SIGNAL(toggled(bool)),
-          toolBar_, SLOT(setVisible(bool)));
+  mainToolbarMenu_ = new QMenu(this);
+  mainToolbarMenu_->addActions(customizeToolbarMenu_->actions());
+  mainToolbarMenu_->addSeparator();
+  mainToolbarMenu_->addAction(toolBarToggle_);
+
+  mainToolbar_ = new QToolBar(this);
+  addToolBar(mainToolbar_);
+  mainToolbar_->setObjectName("ToolBar_General");
+  mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
+  mainToolbar_->setMovable(false);
+  mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
+  mainToolbar_->addAction(addFeedAct_);
+  mainToolbar_->addSeparator();
+  mainToolbar_->addAction(updateFeedAct_);
+  mainToolbar_->addAction(updateAllFeedsAct_);
+  mainToolbar_->addSeparator();
+  mainToolbar_->addAction(markFeedRead_);
+  mainToolbar_->addSeparator();
+  mainToolbar_->addAction(autoLoadImagesToggle_);
+  mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
+  connect(mainToolbar_, SIGNAL(visibilityChanged(bool)),
+          mainToolbarToggle_, SLOT(setChecked(bool)));
+  connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
+          mainToolbar_, SLOT(setVisible(bool)));
+  connect(toolBarToggle_, SIGNAL(triggered()),
+          mainToolbar_, SLOT(hide()));
   connect(autoLoadImagesToggle_, SIGNAL(triggered()),
           this, SLOT(setAutoLoadImages()));
-  connect(toolBar_, SIGNAL(customContextMenuRequested(QPoint)),
+  connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuToolBar(const QPoint &)));
 }
 
@@ -1342,6 +1386,9 @@ void RSSListing::readSettings()
   widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
   onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
+
+  newsToolbarToggle_->setChecked(settings_->value("newsToolbarShow", true).toBool());
+  browserToolbarToggle_->setChecked(settings_->value("browserToolbarShow", true).toBool());
 
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
@@ -1484,6 +1531,9 @@ void RSSListing::writeSettings()
   settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
   settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
+
+  settings_->setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
+  settings_->setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -3075,14 +3125,14 @@ void RSSListing::retranslateStrings() {
   toolsMenu_->setTitle(tr("&Tools"));
   helpMenu_->setTitle(tr("&Help"));
 
-  toolBar_->setWindowTitle(tr("Toolbar"));
-  toolBarMenu_->setTitle(tr("Toolbar"));
+  mainToolbar_->setWindowTitle(tr("Main Toolbar"));
+  customizeToolbarMenu_->setTitle(tr("Customize Toolbar"));
   toolBarStyleMenu_->setTitle(tr("Style"));
   toolBarStyleI_->setText(tr("Icon"));
   toolBarStyleT_->setText(tr("Text"));
   toolBarStyleTbI_->setText(tr("Text Beside Icon"));
   toolBarStyleTuI_->setText(tr("Text Under Icon"));
-  toolBarToggle_->setText(tr("Show Toolbar"));
+  toolBarToggle_->setText(tr("Hide Toolbar"));
 
   toolBarIconSizeMenu_->setTitle(tr("Icon Size"));
   toolBarIconBig_->setText(tr("Big"));
@@ -3138,6 +3188,16 @@ void RSSListing::retranslateStrings() {
   zoomTo100Act_->setText(tr("100%"));
   zoomTo100Act_->setToolTip(tr("Reset zoom in browser"));
 
+  printAct_->setText(tr("Print..."));
+  printAct_->setToolTip(tr("Print Web page"));
+  printPreviewAct_->setText(tr("Print Preview..."));
+  printPreviewAct_->setToolTip(tr("Preview Web page"));
+
+  toolbarsMenu_->setTitle(tr("Toolbars"));
+  mainToolbarToggle_->setText(tr("Main Toolbar"));
+  newsToolbarToggle_->setText(tr("News Toolbar"));
+  browserToolbarToggle_->setText(tr("Browser Toolbar"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
@@ -3179,30 +3239,30 @@ void RSSListing::retranslateStrings() {
 void RSSListing::setToolBarStyle(QAction *pAct)
 {
   if (pAct->objectName() == "toolBarStyleI_") {
-    toolBar_->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    mainToolbar_->setToolButtonStyle(Qt::ToolButtonIconOnly);
   } else if (pAct->objectName() == "toolBarStyleT_") {
-    toolBar_->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextOnly);
   } else if (pAct->objectName() == "toolBarStyleTbI_") {
-    toolBar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   } else {
-    toolBar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   }
 }
 
 void RSSListing::setToolBarIconSize(QAction *pAct)
 {
   if (pAct->objectName() == "toolBarIconBig_") {
-    toolBar_->setIconSize(QSize(32, 32));
+    mainToolbar_->setIconSize(QSize(32, 32));
   } else if (pAct->objectName() == "toolBarIconSmall_") {
-    toolBar_->setIconSize(QSize(16, 16));
+    mainToolbar_->setIconSize(QSize(16, 16));
   } else {
-    toolBar_->setIconSize(QSize(24, 24));
+    mainToolbar_->setIconSize(QSize(24, 24));
   }
 }
 
 void RSSListing::showContextMenuToolBar(const QPoint &p)
 {
-  toolBarMenu_->popup(toolBar_->mapToGlobal(p));
+  mainToolbarMenu_->popup(mainToolbar_->mapToGlobal(p));
 }
 
 void RSSListing::slotShowFeedPropertiesDlg()
@@ -4371,4 +4431,28 @@ void RSSListing::browserZoom(QAction *action)
 void RSSListing::slotReportProblem()
 {
   QDesktopServices::openUrl(QUrl("http://code.google.com/p/quite-rss/issues/list"));
+}
+
+//! Печать страницы из браузера
+void RSSListing::slotPrint()
+{
+  QPrinter printer;
+  printer.setDocName(tr("Web Page"));
+  QPrintDialog *printDlg = new QPrintDialog(&printer);
+  connect(printDlg, SIGNAL(accepted(QPrinter*)), webView_, SLOT(print(QPrinter*)));
+  printDlg->exec();
+  delete printDlg;
+}
+
+//! Предварительный просмотр при печати страницы из браузера
+void RSSListing::slotPrintPreview()
+{
+  QPrinter printer;
+  printer.setDocName(tr("Web Page"));
+  QPrintPreviewDialog *prevDlg = new QPrintPreviewDialog(&printer);
+  prevDlg->setWindowFlags(prevDlg->windowFlags() | Qt::WindowMaximizeButtonHint);
+  prevDlg->resize(650, 800);
+  connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), webView_, SLOT(print(QPrinter*)));
+  prevDlg->exec();
+  delete prevDlg;
 }
