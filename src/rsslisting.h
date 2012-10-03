@@ -39,6 +39,8 @@ public:
   QTabWidget *tabWidget_;
   WebView *webView_;
 
+  QAction *newsToolbarToggle_;
+  QAction *browserToolbarToggle_;
   QAction *newsFilter_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
@@ -168,6 +170,7 @@ private:
   QAction *deleteFeedAct_;
   QAction *importFeedsAct_;
   QAction *exportFeedsAct_;
+  QAction *mainToolbarToggle_;
   QAction *toolBarToggle_;
   QAction *toolBarStyleI_;
   QAction *toolBarStyleT_;
@@ -245,7 +248,9 @@ private:
   QMenu *fileMenu_;
   QMenu *editMenu_;
   QMenu *viewMenu_;
-  QMenu *toolBarMenu_;
+  QMenu *toolbarsMenu_;
+  QMenu *customizeToolbarMenu_;
+  QMenu *mainToolbarMenu_;
   QMenu *toolBarStyleMenu_;
   QMenu *toolBarIconSizeMenu_;
   QMenu *styleMenu_;
@@ -263,7 +268,7 @@ private:
   QMenu *feedsColumnsMenu_;
   QMenu *browserZoomMenu_;
 
-  QToolBar *toolBar_;
+  QToolBar *mainToolbar_;
 
   QLabel *feedsTitleLabel_;
   QToolBar *feedsToolBar_;

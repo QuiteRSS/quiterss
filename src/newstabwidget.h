@@ -59,6 +59,9 @@ private:
   QMenu *webMenu_;
   QUrl linkUrl_;
 
+  QWidget *newsPanelWidget_;
+  bool webToolbarShow_;
+
 public:
   explicit NewsTabWidget(int feedId, QWidget *parent);
 
@@ -145,6 +148,8 @@ private slots:
 
   void slotFindText(const QString& text);
   void slotSelectFind();
+
+  void setWebToolbarVisible(bool show = true, bool checked = true);
 
 };
 

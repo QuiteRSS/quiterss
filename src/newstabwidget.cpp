@@ -158,11 +158,21 @@ void NewsTabWidget::createNewsList()
   QFrame *line = new QFrame(this);
   line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
 
+  QVBoxLayout *newsPanelLayoutV = new QVBoxLayout();
+  newsPanelLayoutV->setMargin(0);
+  newsPanelLayoutV->setSpacing(0);
+  newsPanelLayoutV->addLayout(newsPanelLayout);
+  newsPanelLayoutV->addWidget(line);
+
+  newsPanelWidget_ = new QWidget(this);
+  newsPanelWidget_->setLayout(newsPanelLayoutV);
+  if (!rsslisting_->newsToolbarToggle_->isChecked())
+    newsPanelWidget_->hide();
+
   QVBoxLayout *newsLayout = new QVBoxLayout();
   newsLayout->setMargin(0);
   newsLayout->setSpacing(0);
-  newsLayout->addLayout(newsPanelLayout);
-  newsLayout->addWidget(line);
+  newsLayout->addWidget(newsPanelWidget_);
   newsLayout->addWidget(newsView_);
 
   newsWidget_ = new QWidget(this);
@@ -198,6 +208,9 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotSelectFind()));
   connect(findText_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
+
+  connect(rsslisting_->newsToolbarToggle_, SIGNAL(toggled(bool)),
+          newsPanelWidget_, SLOT(setVisible(bool)));
 }
 
 void NewsTabWidget::createMenuNews()
@@ -289,7 +302,9 @@ void NewsTabWidget::createWebWidget()
   webControlPanel_->setLayout(webControlPanelLayout);
 
   if (feedId_ > -1)
-    webControlPanel_->setVisible(false);
+    setWebToolbarVisible(false, false);
+  else
+    setWebToolbarVisible(true, false);
 
   //! Create web panel
   webPanelTitleLabel_ = new QLabel(this);
@@ -385,6 +400,9 @@ void NewsTabWidget::createWebWidget()
 
   connect(webView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextWebPage(const QPoint &)));
+
+  connect(rsslisting_->browserToolbarToggle_, SIGNAL(triggered()),
+          this, SLOT(setWebToolbarVisible()));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -987,7 +1005,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   webPanelAuthor_->setText(authorString);
   webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
   webPanelAuthor_->setVisible(!authorString.isEmpty());
-  webControlPanel_->setVisible(false);
+  setWebToolbarVisible(false, false);
 
   if (!rsslisting_->showDescriptionNews_) {
     QString linkString = newsModel_->record(
@@ -995,7 +1013,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (linkString.isEmpty())
       linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-    webControlPanel_->setVisible(true);
+    setWebToolbarVisible(true, false);
     webView_->load(QUrl(linkString.simplified()));
   } else {
     QString content = newsModel_->record(index.row()).field("content").value().toString();
@@ -1020,7 +1038,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
       if (!webView_->midButtonClick) {
         if (!webControlPanel_->isVisible()) {
           webView_->history()->clear();
-          webControlPanel_->setVisible(true);
+          setWebToolbarVisible(true, false);
         }
         webView_->load(url);
       } else {
@@ -1250,7 +1268,7 @@ void NewsTabWidget::hideWebContent()
 {
   webView_->setHtml("");
   webPanel_->hide();
-  webControlPanel_->hide();
+  setWebToolbarVisible(false, false);
 }
 
 void NewsTabWidget::showContextWebPage(const QPoint &p)
@@ -1292,4 +1310,11 @@ void NewsTabWidget::setVisibleAction(bool show)
 {
   newsContextMenu_->actions().at(0)->setVisible(show);
   newsContextMenu_->actions().at(1)->setVisible(show);
+}
+
+void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
+{
+  if (!checked) webToolbarShow_ = show;
+  webControlPanel_->setVisible(webToolbarShow_ &
+                               rsslisting_->browserToolbarToggle_->isChecked());
 }
