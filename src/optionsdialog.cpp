@@ -571,7 +571,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontTree->setColumnWidth(1, 140);
 
   treeItem.clear();
-  treeItem << tr("Id") << tr("Type") << tr("Font");
+  treeItem << "Id" << tr("Type") << tr("Font");
   fontTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
