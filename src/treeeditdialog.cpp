@@ -12,12 +12,12 @@ TreeEditDialog::TreeEditDialog(QWidget *parent, QSqlDatabase *db) :
   db_ = db;
   model_ = new TreeModel();
 
-  createFolder_ = new QAction(QIcon(":/images/addFolder"), tr("createFolder"), this);
-  deleteNode_ = new QAction(QIcon(":/images/deleteFolder"), tr("deleteNode"), this);
-  moveUp_ = new QAction(QIcon(":/images/moveUp"), tr("moveUp"), this);
-  moveDown_ = new QAction(QIcon(":/images/moveDown"), tr("moveDown"), this);
-  moveLeft_ = new QAction(QIcon(":/images/moveLeft"), tr("moveLeft"), this);
-  moveRight_ = new QAction(QIcon(":/images/moveRight"), tr("moveRight"), this);
+  createFolder_ = new QAction(QIcon(":/images/addFolder"), /*tr*/("createFolder"), this);
+  deleteNode_ = new QAction(QIcon(":/images/deleteFolder"), /*tr*/("deleteNode"), this);
+  moveUp_ = new QAction(QIcon(":/images/moveUp"), /*tr*/("moveUp"), this);
+  moveDown_ = new QAction(QIcon(":/images/moveDown"), /*tr*/("moveDown"), this);
+  moveLeft_ = new QAction(QIcon(":/images/moveLeft"), /*tr*/("moveLeft"), this);
+  moveRight_ = new QAction(QIcon(":/images/moveRight"), /*tr*/("moveRight"), this);
 
   toolBar_ = new QToolBar();
   toolBar_->addAction(createFolder_);

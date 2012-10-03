@@ -3113,8 +3113,8 @@ void RSSListing::retranslateStrings() {
   markFeedRead_->setToolTip(tr("Mark Feed Read"));
   feedProperties_->setText(tr("Feed Properties"));
   feedProperties_->setToolTip(tr("Feed Properties"));
-  editFeedsTree_->setText(tr("editFeedsTree_"));
-  editFeedsTree_->setToolTip(tr("editFeedsTree_"));
+  editFeedsTree_->setText(/*tr*/("editFeedsTree_"));
+  editFeedsTree_->setToolTip(/*tr*/("editFeedsTree_"));
 
   fileMenu_->setTitle(tr("&File"));
   editMenu_->setTitle(tr("&Edit"));
