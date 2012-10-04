@@ -1138,10 +1138,6 @@
         <translation type="obsolete">Magyar (%1)</translation>
     </message>
     <message>
-        <source>Id</source>
-        <translation type="obsolete">Id</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="574"/>
         <source>Type</source>
         <translation>Típus</translation>
@@ -1571,10 +1567,6 @@
         <translation type="obsolete">A hírcsatorna megjelölése olvasottként</translation>
     </message>
     <message>
-        <source>editFeedsTree_</source>
-        <translation type="obsolete">editFeedsTree_</translation>
-    </message>
-    <message>
         <source>Browser position</source>
         <translation type="obsolete">Böngésző pozíció</translation>
     </message>
@@ -1823,7 +1815,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3045"/>
         <source>Report a Problem...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibajelentés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3047"/>
@@ -1899,7 +1891,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3074"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Böngésző</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3078"/>
@@ -2040,37 +2032,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3133"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagyítás</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3134"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation">Nagyítás +</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3135"/>
         <source>Zoom in in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagyítás a böngészőben</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3136"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagyítás -</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3137"/>
         <source>Zoom out in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Lekicsinyítés a böngészőben</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3138"/>
         <source>100%</source>
-        <translation type="unfinished"></translation>
+        <translation>100%</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3139"/>
         <source>Reset zoom in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagyítás visszaállítása a böngészőben</translation>
     </message>
     <message>
         <source>Sort By</source>
@@ -2378,33 +2370,6 @@
     </message>
 </context>
 <context>
-    <name>TreeEditDialog</name>
-    <message>
-        <source>createFolder</source>
-        <translation type="obsolete">createFolder</translation>
-    </message>
-    <message>
-        <source>deleteNode</source>
-        <translation type="obsolete">deleteNode</translation>
-    </message>
-    <message>
-        <source>moveUp</source>
-        <translation type="obsolete">Felfelé</translation>
-    </message>
-    <message>
-        <source>moveDown</source>
-        <translation type="obsolete">Lefelé</translation>
-    </message>
-    <message>
-        <source>moveLeft</source>
-        <translation type="obsolete">Balra</translation>
-    </message>
-    <message>
-        <source>moveRight</source>
-        <translation type="obsolete">Jobbra</translation>
-    </message>
-</context>
-<context>
     <name>UpdateAppDialog</name>
     <message>
         <source>Check for updates</source>
@@ -2428,7 +2393,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="35"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítés</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>
