@@ -2037,7 +2037,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3134"/>
         <source>Zoom In</source>
-        <translation">Nagyítás +</translation>
+        <translation>Nagyítás +</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3135"/>
