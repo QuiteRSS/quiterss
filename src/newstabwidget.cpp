@@ -1109,6 +1109,7 @@ void NewsTabWidget::webHomePage()
 //! Открытие отображаемой страницы во внешнем браузере
 void NewsTabWidget::openPageInExternalBrowser()
 {
+  rsslisting_->openingLink_ = true;
   QDesktopServices::openUrl(webView_->url());
 }
 
@@ -1130,6 +1131,7 @@ void NewsTabWidget::openInExternalBrowserNews()
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
+  rsslisting_->openingLink_ = true;
   openUrl(linkString.simplified());
 }
 
@@ -1206,6 +1208,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
   if (url.scheme() == QLatin1String("mailto"))
       return QDesktopServices::openUrl(url);
 
+  rsslisting_->openingLink_ = true;
   if (rsslisting_->externalBrowserOn_ == 2) {
 #if defined(Q_WS_WIN)
     quintptr returnValue = (quintptr)ShellExecute(
@@ -1303,6 +1306,7 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 //! Открытие ссылки во внешнем браузере
 void NewsTabWidget::openUrlInExternalBrowser()
 {
+  rsslisting_->openingLink_ = true;
   QDesktopServices::openUrl(linkUrl_);
 }
 

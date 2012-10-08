@@ -76,6 +76,9 @@ public:
   bool showDescriptionNews_;
 
   bool autoLoadImages_;
+  bool openLinkInBackground_;
+  bool openingLink_;  //!< флаг открытия ссылки
+  QElapsedTimer timerLinkOpening_;
 
   int externalBrowserOn_;
   QString externalBrowser_;
@@ -122,6 +125,7 @@ protected:
   virtual void closeEvent(QCloseEvent*);
   virtual void changeEvent(QEvent*);
   virtual void showEvent(QShowEvent*);
+  virtual bool event(QEvent *e);
   void timerEvent(QTimerEvent* event);
 
 private:

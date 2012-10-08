@@ -95,6 +95,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   webView_ = NULL;
   notificationWidget = NULL;
   feedIdOld = -2;
+  openingLink_ = false;
+  timerLinkOpening_.invalidate();
 
   createFeedsDock();
   createToolBarNull();
@@ -230,6 +232,25 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 {
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
+}
+
+/*! \brief Обработка деактивации окна при открытии ссылки в браузере в фоне **/
+bool RSSListing::event(QEvent *e)
+{
+  // Если производится открытие ссылки, то запускаем таймер
+  if (openingLink_) {
+    openingLink_ = false;
+    timerLinkOpening_.start();
+  }
+
+  if (timerLinkOpening_.isValid()) {
+    if (timerLinkOpening_.hasExpired(1000))
+      timerLinkOpening_.invalidate();
+    else if (openLinkInBackground_)
+      activateWindow();
+  }
+
+  return QMainWindow::event(e);
 }
 
 /*!****************************************************************************/
@@ -1435,6 +1456,8 @@ void RSSListing::readSettings()
   case LEFT_POSITION:  leftBrowserPositionAct_->setChecked(true); break;
   default: bottomBrowserPositionAct_->setChecked(true);
   }
+
+  openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
 
   settings_->endGroup();
 
