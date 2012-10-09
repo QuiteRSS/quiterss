@@ -182,6 +182,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
 
+  openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background"));
+
   QGridLayout *browserLayout = new QGridLayout();
   browserLayout->setContentsMargins(15, 0, 5, 10);
   browserLayout->addWidget(embeddedBrowserOn_, 0, 0);
@@ -200,6 +202,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   browserLayoutV->addLayout(browserLayout);
   browserLayoutV->addWidget(new QLabel(tr("Content:")));
   browserLayoutV->addLayout(contentBrowserLayout);
+  browserLayoutV->addWidget(openLinkInBackground_);
   browserLayoutV->addStretch();
 
   browserWidget_ = new QFrame();

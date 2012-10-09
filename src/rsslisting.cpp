@@ -2204,6 +2204,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->editExternalBrowser_->setText(externalBrowser_);
   optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
+  optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
@@ -2358,6 +2359,7 @@ void RSSListing::showOptionDlg()
   externalBrowser_ = optionsDialog->editExternalBrowser_->text();
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
+  openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();

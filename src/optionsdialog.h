@@ -48,6 +48,7 @@ public:
   QPushButton *selectionExternalBrowser_;
   QCheckBox *javaScriptEnable_;
   QCheckBox *pluginsEnable_;
+  QCheckBox *openLinkInBackground_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;
