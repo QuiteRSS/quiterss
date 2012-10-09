@@ -244,7 +244,7 @@ bool RSSListing::event(QEvent *e)
   }
 
   if (timerLinkOpening_.isValid()) {
-    if (timerLinkOpening_.hasExpired(1000))
+    if (timerLinkOpening_.hasExpired(openingLinkTimeout_))
       timerLinkOpening_.invalidate();
     else if (openLinkInBackground_)
       activateWindow();
@@ -1458,6 +1458,7 @@ void RSSListing::readSettings()
   }
 
   openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
+  openingLinkTimeout_ = settings_->value("openingLinkTimeout", 1000).toInt();
 
   settings_->endGroup();
 
@@ -1573,6 +1574,9 @@ void RSSListing::writeSettings()
   settings_->setValue("sortFeeds", titleSortFeedsAct_->isChecked());
 
   settings_->setValue("browserPosition", browserPosition_);
+
+  settings_->setValue("openLinkInBackground", openLinkInBackground_);
+  settings_->setValue("openingLinkTimeout", openingLinkTimeout_);
 
   settings_->endGroup();
 

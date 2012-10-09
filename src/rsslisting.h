@@ -77,6 +77,7 @@ public:
 
   bool autoLoadImages_;
   bool openLinkInBackground_;
+  int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
   bool openingLink_;  //!< флаг открытия ссылки
   QElapsedTimer timerLinkOpening_;
 
