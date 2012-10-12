@@ -75,6 +75,8 @@ NewsView::NewsView(QWidget * parent)
     else if (event->key() == Qt::Key_Down)  emit pressKeyDown();
     else if (event->key() == Qt::Key_Home)  emit pressKeyHome();
     else if (event->key() == Qt::Key_End)   emit pressKeyEnd();
+    else if (event->key() == Qt::Key_PageUp)   emit pressKeyPageUp();
+    else if (event->key() == Qt::Key_PageDown) emit pressKeyPageDown();
   } else if (((event->modifiers() == Qt::ControlModifier) &&
              (event->key() == Qt::Key_A)) ||
              (event->modifiers() == Qt::ShiftModifier)) {

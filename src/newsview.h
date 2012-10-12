@@ -29,6 +29,8 @@ signals:
   void pressKeyDown();
   void pressKeyHome();
   void pressKeyEnd();
+  void pressKeyPageUp();
+  void pressKeyPageDown();
 };
 
 #endif // NEWSVIEW_H

@@ -117,6 +117,8 @@ public slots:
   void slotNewsDownPressed();
   void slotNewsHomePressed();
   void slotNewsEndPressed();
+  void slotNewsPageUpPressed();
+  void slotNewsPageDownPressed();
   void slotSort(int column, int order);
 
 protected:

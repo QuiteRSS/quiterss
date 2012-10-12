@@ -186,6 +186,8 @@ void NewsTabWidget::createNewsList()
   connect(newsView_, SIGNAL(pressKeyDown()), this, SLOT(slotNewsDownPressed()));
   connect(newsView_, SIGNAL(pressKeyHome()), this, SLOT(slotNewsHomePressed()));
   connect(newsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotNewsEndPressed()));
+  connect(newsView_, SIGNAL(pressKeyPageUp()), this, SLOT(slotNewsPageUpPressed()));
+  connect(newsView_, SIGNAL(pressKeyPageDown()), this, SLOT(slotNewsPageDownPressed()));
   connect(newsView_, SIGNAL(signalSetItemRead(QModelIndex, int)),
           this, SLOT(slotSetItemRead(QModelIndex, int)));
   connect(newsView_, SIGNAL(signalSetItemStar(QModelIndex,int)),
@@ -632,6 +634,39 @@ void NewsTabWidget::slotNewsHomePressed()
 void NewsTabWidget::slotNewsEndPressed()
 {
   int row = newsModel_->rowCount() - 1;
+  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
+}
+
+/*! \brief Обработка клавиш PageUp/PageDown в дереве новостей *************************/
+void NewsTabWidget::slotNewsPageUpPressed()
+{
+  if (!newsView_->currentIndex().isValid()) {
+    if (newsModel_->rowCount() > 0) {
+      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
+      slotNewsViewClicked(newsModel_->index(0, newsModel_->fieldIndex("title")));
+    }
+    return;
+  }
+
+  int row = newsView_->currentIndex().row() - newsView_->verticalScrollBar()->pageStep();
+  if (row < 0) row = 0;
+  newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
+  slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
+}
+
+void NewsTabWidget::slotNewsPageDownPressed()
+{
+  if (!newsView_->currentIndex().isValid()) {
+    if (newsModel_->rowCount() > 0) {
+      newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
+      slotNewsViewClicked(newsModel_->index(0, newsModel_->fieldIndex("title")));
+    }
+    return;
+  }
+
+  int row = newsView_->currentIndex().row() + newsView_->verticalScrollBar()->pageStep();
+  if ((row+1) > newsModel_->rowCount()) row = newsModel_->rowCount()-1;
   newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
