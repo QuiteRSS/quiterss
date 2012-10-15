@@ -335,7 +335,7 @@ void RSSListing::slotCloseApp()
       oldState = windowState();
 
       if (tabWidget_->count() &&
-          (((QWindowStateChangeEvent*)event)->oldState() != Qt::WindowMinimized)) {
+          !(((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMinimized)) {
         QString stateStr;
         if (((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMaximized)
           stateStr = "Maximized";
@@ -413,7 +413,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 void RSSListing::slotShowWindows(bool trayClick)
 {
   if (!trayClick || isHidden()){
-    if (oldState == Qt::WindowMaximized) {
+    if (oldState & Qt::WindowMaximized) {
       showMaximized();
     } else {
       showNormal();
