@@ -418,13 +418,13 @@ void NewsTabWidget::setSettings(bool newTab)
     }
 
     webPanelTitleLabel_->setFont(
-          QFont(rsslisting_->newsFontFamily_, rsslisting_->panelNewsFontSize_));
+          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelTitle_->setFont(
-          QFont(rsslisting_->newsFontFamily_, rsslisting_->panelNewsFontSize_));
+          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelAuthorLabel_->setFont(
-          QFont(rsslisting_->newsFontFamily_, rsslisting_->panelNewsFontSize_));
+          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelAuthor_->setFont(
-          QFont(rsslisting_->newsFontFamily_, rsslisting_->panelNewsFontSize_));
+          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
 
     webView_->settings()->setFontFamily(
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);
