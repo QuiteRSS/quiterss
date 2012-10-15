@@ -571,7 +571,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontTree->setObjectName("fontTree");
   fontTree->setColumnCount(3);
   fontTree->setColumnHidden(0, true);
-  fontTree->setColumnWidth(1, 140);
+  fontTree->setColumnWidth(1, 200);
 
   treeItem.clear();
   treeItem << "Id" << tr("Type") << tr("Font");
@@ -584,10 +584,13 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "1" << tr("News list font");
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "2" << tr("News font");
+  treeItem << "2" << tr("News panel font (Title, Author)");
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "3" << tr("Notification font");
+  treeItem << "3" << tr("News font");
+  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "4" << tr("Notification font");
   fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   fontTree->setCurrentItem(fontTree->topLevelItem(0));
@@ -876,7 +879,7 @@ void OptionsDialog::slotFontChange()
 void OptionsDialog::slotFontReset()
 {
   switch (fontTree->currentItem()->text(0).toInt()) {
-  case 2: fontTree->currentItem()->setText(
+  case 3: fontTree->currentItem()->setText(
           2, QString("%1, 12").arg(qApp->font().family()));
     break;
   default: fontTree->currentItem()->setText(

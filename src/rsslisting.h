@@ -62,6 +62,8 @@ public:
 
   QString newsFontFamily_;
   int newsFontSize_;
+  QString panelNewsFontFamily_;
+  int panelNewsFontSize_;
   QString webFontFamily_;
   int webFontSize_;
   QString notificationFontFamily_;
