@@ -36,7 +36,8 @@ HEADERS += \
     src/treeviewdb.h \
     src/findtext.h \
     src/notifications.h \
-    src/findfeed.h
+    src/findfeed.h \
+    src/googlereader.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -72,7 +73,8 @@ SOURCES += \
     src/treeviewdb.cpp \
     src/findtext.cpp \
     src/notifications.cpp \
-    src/findfeed.cpp
+    src/findfeed.cpp \
+    src/googlereader.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
