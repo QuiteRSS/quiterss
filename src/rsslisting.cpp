@@ -953,8 +953,8 @@ void RSSListing::createActions()
           this, SLOT(findFeedVisible(bool)));
 
   fullScreenAct_ = new QAction(this);
+  fullScreenAct_->setObjectName("fullScreenAct");
   fullScreenAct_->setIcon(QIcon(":/images/images/fullScreen.png"));
-  fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
   this->addAction(fullScreenAct_);
   connect(fullScreenAct_, SIGNAL(triggered()),
           this, SLOT(setFullScreen()));
@@ -1053,6 +1053,9 @@ void RSSListing::createShortcut()
   listActions_.append(printAct_);
   printPreviewAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_P));
   listActions_.append(printPreviewAct_);
+
+  fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
+  listActions_.append(fullScreenAct_);
 
   loadActionShortcuts();
 }
@@ -1182,6 +1185,8 @@ void RSSListing::createMenu()
   viewMenu_->addSeparator();
   viewMenu_->addMenu(browserPositionMenu_);
   viewMenu_->addMenu(styleMenu_);
+  viewMenu_->addSeparator();
+  viewMenu_->addAction(fullScreenAct_);
   menuBar()->addMenu(viewMenu_);
 
   feedMenu_ = new QMenu(this);
@@ -3271,6 +3276,9 @@ void RSSListing::retranslateStrings() {
   mainToolbarToggle_->setText(tr("Main Toolbar"));
   newsToolbarToggle_->setText(tr("News Toolbar"));
   browserToolbarToggle_->setText(tr("Browser Toolbar"));
+
+  fullScreenAct_->setText(tr("Full Screen"));
+  fullScreenAct_->setToolTip(tr("Full Screen"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
