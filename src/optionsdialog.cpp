@@ -182,7 +182,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
 
-  openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background"));
+  openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background (experimental)"));
 
   QGridLayout *browserLayout = new QGridLayout();
   browserLayout->setContentsMargins(15, 0, 5, 10);
