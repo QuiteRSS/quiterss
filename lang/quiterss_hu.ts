@@ -870,7 +870,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="185"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hivatkozások megnyitása külső böngészőben a háttérben (kísérleti)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="948"/>
@@ -1165,7 +1165,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>News panel font (Title, Author)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek panel betűtípus (Cím, Szerző)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
@@ -1907,58 +1907,58 @@
         <location filename="../src/rsslisting.cpp" line="3202"/>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Fő eszköztár</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>Customize Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztár testreszabása</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3209"/>
         <source>Hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztár rejtése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3265"/>
         <source>Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyomtatás...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3266"/>
         <source>Print Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Weboldal nyomtatása</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3267"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyomtatási kép...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3268"/>
         <source>Preview Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Weboldal előnézet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3270"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztárak</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek eszköztár</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Browser Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Böngésző eszköztár</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4514"/>
         <location filename="../src/rsslisting.cpp" line="4525"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Weboldal</translation>
     </message>
     <message>
         <source>Toolbar</source>
