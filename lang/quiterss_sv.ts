@@ -872,7 +872,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="185"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna länkar i extern webbläsare, i bakgrunden (experimentell).</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -922,7 +922,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>News panel font (Title, Author)</source>
-        <translation type="unfinished"></translation>
+        <translation>Teckensnitt i nyhetslistan (Rubrik, Författare)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="593"/>
@@ -1510,17 +1510,17 @@
         <location filename="../src/rsslisting.cpp" line="3202"/>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktygsrad</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>Customize Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa verktygsrad</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3209"/>
         <source>Hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Dölj verktygsrad</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3225"/>
@@ -2087,7 +2087,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3169"/>
         <source>Report a Problem...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapportera ett problem</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3171"/>
@@ -2158,48 +2158,48 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3198"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Webbläsare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3265"/>
         <source>Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv ut...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3266"/>
         <source>Print Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv ut webbsida</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3267"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsgranskning...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3268"/>
         <source>Preview Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhandsgranska webbsida</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3270"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktygsfält</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyhetsverktyg</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Browser Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbläsarverktyg</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4514"/>
         <location filename="../src/rsslisting.cpp" line="4525"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Webbsida</translation>
     </message>
     <message>
         <source>Toolbar</source>
@@ -2297,37 +2297,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3257"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3258"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Zooma in</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3259"/>
         <source>Zoom in in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Zooma in i webbläsare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3260"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Zooma ut</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3261"/>
         <source>Zoom out in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Zooma ut i webbläsare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3262"/>
         <source>100%</source>
-        <translation type="unfinished"></translation>
+        <translation>100%</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3263"/>
         <source>Reset zoom in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ zoom-nivå i webbläsare</translation>
     </message>
     <message>
         <source>Title</source>
@@ -2394,7 +2394,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="35"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uppdatera</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>
