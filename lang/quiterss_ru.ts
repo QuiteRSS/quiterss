@@ -870,7 +870,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="185"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Открывать ссылки во внешнем браузере в фоновом режиме (экспериментально)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="948"/>
@@ -1165,7 +1165,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>News panel font (Title, Author)</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт панели новостей (Заголовок, Автор)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
@@ -1825,7 +1825,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3169"/>
         <source>Report a Problem...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщить о проблеме...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3171"/>
@@ -1901,64 +1901,64 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3198"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Браузер</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3202"/>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Главная панель</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>Customize Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройка панели инструментов</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3209"/>
         <source>Hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Скрыть панель инструментов</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3265"/>
         <source>Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Печать...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3266"/>
         <source>Print Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Печать веб-страницы</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3267"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Предварительный просмотр...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3268"/>
         <source>Preview Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Предварительный просмотр веб-страницы</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3270"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Панель инструментов</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Панель списка новостей</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Browser Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Панель браузера</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4514"/>
         <location filename="../src/rsslisting.cpp" line="4525"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Веб-страница</translation>
     </message>
     <message>
         <source>Toolbar</source>
@@ -2096,37 +2096,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3257"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Масштаб</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3258"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличить</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3259"/>
         <source>Zoom in in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличение масштаба в браузере</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3260"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Уменьшить</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3261"/>
         <source>Zoom out in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Уменьшение масштаба в браузере</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3262"/>
         <source>100%</source>
-        <translation type="unfinished"></translation>
+        <translation>100%</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3263"/>
         <source>Reset zoom in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Сброс масштаба в браузере</translation>
     </message>
     <message>
         <source>Sort By</source>
@@ -2457,7 +2457,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="35"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Обновить</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>
