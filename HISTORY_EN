@@ -2,6 +2,27 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.10.2+</B> (16 Oct 2012)
+<UL>
+<LI>Added: Fullscreen mode</LI>
+<LI>Added: PageUp/PageDown processing in news list</LI>
+<LI>Added: Zooming in browser</LI>
+<LI>Added: Print browser page</LI>
+<LI>Added: Ability to hide imbedded browser panels</LI>
+<LI>Added: Ability to report a problem (menu "Help->Report a Problem...")</LI>
+<LI>Added: Automatic update (Windows)</LI>
+<LI>Added: Language: Italian</LI>
+<BR>
+<LI>Added: Experimental option "Open link in external browser in background"</LI>
+<BR>
+<LI>Changed: News list is scrolled when active item is in the middle</LI>
+<LI>Changed: GUI. Some Visual tweaks</LI>
+<BR>
+<LI>Fixed: CTRL+Enter available for shortcuts</LI>
+<LI>Fixed: Using sqlite3 library </LI>
+<LI>Fixed: Command parameter "--exit" reject startup application</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.10.2</B> (18 Sep 2012)
 <UL>
 <LI>Added: Embedded browser context menu item "Load Images"</LI>
