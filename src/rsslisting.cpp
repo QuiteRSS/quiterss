@@ -573,11 +573,17 @@ void RSSListing::createStatusBar()
   progressBar_->setTextVisible(false);
   progressBar_->setVisible(false);
   statusBar()->setMinimumHeight(22);
+
+  QToolButton *fullScreenButton = new QToolButton(this);
+  fullScreenButton->setDefaultAction(fullScreenAct_);
+  fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+
   statusBar()->addPermanentWidget(progressBar_);
   statusUnread_ = new QLabel(this);
   statusBar()->addPermanentWidget(statusUnread_);
   statusAll_ = new QLabel(this);
   statusBar()->addPermanentWidget(statusAll_);
+  statusBar()->addPermanentWidget(fullScreenButton);
   statusBar()->setVisible(true);
 }
 
@@ -921,6 +927,13 @@ void RSSListing::createActions()
   feedsToolBar_->addAction(findFeedAct_);
   connect(findFeedAct_, SIGNAL(triggered(bool)),
           this, SLOT(findFeedVisible(bool)));
+
+  fullScreenAct_ = new QAction(this);
+  fullScreenAct_->setIcon(QIcon(":/images/images/fullScreen.png"));
+  fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
+  this->addAction(fullScreenAct_);
+  connect(fullScreenAct_, SIGNAL(triggered()),
+          this, SLOT(setFullScreen()));
 
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
@@ -4492,4 +4505,27 @@ void RSSListing::slotPrintPreview()
   connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), webView_, SLOT(print(QPrinter*)));
   prevDlg->exec();
   delete prevDlg;
+}
+
+void RSSListing::setFullScreen()
+{
+  if (!isFullScreen()) {
+    // hide menu & toolbars
+    mainToolbar_->hide();
+    menuBar()->hide();
+#ifdef Q_WS_X11
+    show();
+    raise();
+    setWindowState( windowState() | Qt::WindowFullScreen );
+#else
+    setWindowState( windowState() | Qt::WindowFullScreen );
+    show();
+    raise();
+#endif
+  } else {
+    menuBar()->show();
+    mainToolbar_->show();
+    setWindowState( windowState() ^ Qt::WindowFullScreen );
+    show();
+  }
 }

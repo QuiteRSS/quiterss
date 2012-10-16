@@ -78,6 +78,7 @@
         <file alias="zoom">images/zoom.png</file>
         <file alias="zoomIn">images/zoom_in.png</file>
         <file alias="zoomOut">images/zoom_out.png</file>
+        <file>images/fullScreen.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

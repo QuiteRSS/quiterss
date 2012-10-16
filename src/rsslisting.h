@@ -251,6 +251,7 @@ private:
   QActionGroup *feedsColumnsGroup_;
 
   QAction *findFeedAct_;
+  QAction *fullScreenAct_;
 
   QMenu *fileMenu_;
   QMenu *editMenu_;
@@ -432,6 +433,8 @@ private slots:
 
   void slotPrint();
   void slotPrintPreview();
+
+  void setFullScreen();
 
 signals:
   void signalPlaceToTray();
