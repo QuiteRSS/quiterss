@@ -4,13 +4,13 @@
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.10.2+</B> (16 Oct 2012)
 <UL>
-<LI>Added: Fullscreen mode</LI>
-<LI>Added: PageUp/PageDown processing in news list</LI>
+<LI>Added: Full screen mode</LI>
+<LI>Added: Page Up/Page Down processing in news list</LI>
 <LI>Added: Zooming in browser</LI>
 <LI>Added: Print browser page</LI>
-<LI>Added: Ability to hide imbedded browser panels</LI>
+<LI>Added: Ability to hide embedded browser panels</LI>
 <LI>Added: Ability to report a problem (menu "Help->Report a Problem...")</LI>
-<LI>Added: Automatic update (Windows)</LI>
+<LI>Added: Automatic update application (Windows)</LI>
 <LI>Added: Language: Italian</LI>
 <BR>
 <LI>Added: Experimental option "Open link in external browser in background"</LI>
@@ -20,7 +20,6 @@
 <BR>
 <LI>Fixed: CTRL+Enter available for shortcuts</LI>
 <LI>Fixed: Using sqlite3 library </LI>
-<LI>Fixed: Command parameter "--exit" reject startup application</LI>
 </UL>
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.10.2</B> (18 Sep 2012)
