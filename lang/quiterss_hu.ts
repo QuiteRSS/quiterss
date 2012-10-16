@@ -1254,17 +1254,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3296"/>
+        <location filename="../src/rsslisting.cpp" line="3304"/>
         <source>&amp;Step up</source>
         <translation>&amp;Felfelé</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3297"/>
+        <location filename="../src/rsslisting.cpp" line="3305"/>
         <source>Step &amp;down</source>
         <translation>&amp;Lefelé</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3298"/>
+        <location filename="../src/rsslisting.cpp" line="3306"/>
         <source>&amp;Select All</source>
         <translation>Az ö&amp;sszes kijelölése</translation>
     </message>
@@ -1272,69 +1272,23 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3275"/>
+        <location filename="../src/rsslisting.cpp" line="3283"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3276"/>
+        <location filename="../src/rsslisting.cpp" line="3284"/>
         <source>&amp;Yes</source>
         <translation>&amp;Igen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3277"/>
+        <location filename="../src/rsslisting.cpp" line="3285"/>
         <source>&amp;No</source>
         <translation>&amp;Nem</translation>
     </message>
 </context>
 <context>
     <name>QLineEdit</name>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3279"/>
-        <source>&amp;Undo</source>
-        <translation>Visszavonás</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3280"/>
-        <source>&amp;Redo</source>
-        <translation>Ismételt végrehajtás</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3281"/>
-        <source>Cu&amp;t</source>
-        <translation>Kivágás</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3282"/>
-        <source>&amp;Copy</source>
-        <translation>&amp;Másolás</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3283"/>
-        <source>&amp;Paste</source>
-        <translation>Beillesztés</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3284"/>
-        <source>Delete</source>
-        <translation>Törlés</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3285"/>
-        <source>Select All</source>
-        <translation>Az összes kijelölése</translation>
-    </message>
-</context>
-<context>
-    <name>QMultiInputContext</name>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3300"/>
-        <source>Select IM</source>
-        <translation>IM kiválasztása</translation>
-    </message>
-</context>
-<context>
-    <name>QTextControl</name>
     <message>
         <location filename="../src/rsslisting.cpp" line="3287"/>
         <source>&amp;Undo</source>
@@ -1353,7 +1307,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3290"/>
         <source>&amp;Copy</source>
-        <translation>Másolás</translation>
+        <translation>&amp;Másolás</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3291"/>
@@ -1370,8 +1324,54 @@
         <source>Select All</source>
         <translation>Az összes kijelölése</translation>
     </message>
+</context>
+<context>
+    <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3294"/>
+        <location filename="../src/rsslisting.cpp" line="3308"/>
+        <source>Select IM</source>
+        <translation>IM kiválasztása</translation>
+    </message>
+</context>
+<context>
+    <name>QTextControl</name>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3295"/>
+        <source>&amp;Undo</source>
+        <translation>Visszavonás</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3296"/>
+        <source>&amp;Redo</source>
+        <translation>Ismételt végrehajtás</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3297"/>
+        <source>Cu&amp;t</source>
+        <translation>Kivágás</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3298"/>
+        <source>&amp;Copy</source>
+        <translation>Másolás</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3299"/>
+        <source>&amp;Paste</source>
+        <translation>Beillesztés</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3300"/>
+        <source>Delete</source>
+        <translation>Törlés</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3301"/>
+        <source>Select All</source>
+        <translation>Az összes kijelölése</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3302"/>
         <source>Copy &amp;Link Location</source>
         <translation>Hivatkozási hely másolása</translation>
     </message>
@@ -1379,22 +1379,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3302"/>
+        <location filename="../src/rsslisting.cpp" line="3310"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3303"/>
+        <location filename="../src/rsslisting.cpp" line="3311"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Vissza</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3304"/>
+        <location filename="../src/rsslisting.cpp" line="3312"/>
         <source>&amp;Finish</source>
         <translation>&amp;Befejezés</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3305"/>
+        <location filename="../src/rsslisting.cpp" line="3313"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Következő &gt;</translation>
     </message>
@@ -1402,12 +1402,12 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3087"/>
+        <location filename="../src/rsslisting.cpp" line="3092"/>
         <source>Feeds</source>
         <translation>Hírcsatornák</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3089"/>
+        <location filename="../src/rsslisting.cpp" line="3094"/>
         <source>Update feeds... (%p%)</source>
         <translation>Hírcsatornák frissítése... (%p%)</translation>
     </message>
@@ -1420,7 +1420,7 @@
         <translation type="obsolete">Új hírcsatorna felvétele</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3111"/>
+        <location filename="../src/rsslisting.cpp" line="3116"/>
         <source>&amp;Delete...</source>
         <translation>Törlés...</translation>
     </message>
@@ -1477,7 +1477,7 @@
         <translation type="obsolete">Az összes hírcsatorna megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3138"/>
+        <location filename="../src/rsslisting.cpp" line="3143"/>
         <source>Mark Read/Unread</source>
         <translation>Olvasott/olvasatlan</translation>
     </message>
@@ -1494,35 +1494,35 @@
         <translation type="obsolete">Hírek szűrése...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3148"/>
+        <location filename="../src/rsslisting.cpp" line="3153"/>
         <source>Options...</source>
         <translation>Beállítások...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3152"/>
-        <location filename="../src/rsslisting.cpp" line="3158"/>
+        <location filename="../src/rsslisting.cpp" line="3157"/>
+        <location filename="../src/rsslisting.cpp" line="3163"/>
         <source>Show All</source>
         <translation>Összes megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3153"/>
-        <location filename="../src/rsslisting.cpp" line="3159"/>
+        <location filename="../src/rsslisting.cpp" line="3158"/>
+        <location filename="../src/rsslisting.cpp" line="3164"/>
         <source>Show New</source>
         <translation>Új megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3154"/>
-        <location filename="../src/rsslisting.cpp" line="3160"/>
+        <location filename="../src/rsslisting.cpp" line="3159"/>
+        <location filename="../src/rsslisting.cpp" line="3165"/>
         <source>Show Unread</source>
         <translation>Olvasatlan megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3161"/>
+        <location filename="../src/rsslisting.cpp" line="3166"/>
         <source>Show Star</source>
         <translation>Csillag megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3165"/>
+        <location filename="../src/rsslisting.cpp" line="3170"/>
         <source>About...</source>
         <translation>Névjegy...</translation>
     </message>
@@ -1547,7 +1547,7 @@
         <translation type="obsolete">Hírek megnyitása a háttérben lévő lapon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3177"/>
+        <location filename="../src/rsslisting.cpp" line="3182"/>
         <source>Star</source>
         <translation>Csillagozás</translation>
     </message>
@@ -1556,7 +1556,7 @@
         <translation type="obsolete">Hírek megjelölése csillaggal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3179"/>
+        <location filename="../src/rsslisting.cpp" line="3184"/>
         <source>Delete</source>
         <translation>Törlés</translation>
     </message>
@@ -1581,22 +1581,22 @@
         <translation type="obsolete">Böngésző pozíció</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3226"/>
+        <location filename="../src/rsslisting.cpp" line="3231"/>
         <source>Top</source>
         <translation>Fent</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3227"/>
+        <location filename="../src/rsslisting.cpp" line="3232"/>
         <source>Bottom</source>
         <translation>Lent</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3228"/>
+        <location filename="../src/rsslisting.cpp" line="3233"/>
         <source>Right</source>
         <translation>Jobbra</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3229"/>
+        <location filename="../src/rsslisting.cpp" line="3234"/>
         <source>Left</source>
         <translation>Balra</translation>
     </message>
@@ -1609,7 +1609,7 @@
         <translation type="obsolete">Alkalmazás lekicsinyítése a tálcára</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3248"/>
+        <location filename="../src/rsslisting.cpp" line="3253"/>
         <source>Columns</source>
         <translation>Oszlopok</translation>
     </message>
@@ -1626,17 +1626,17 @@
         <translation type="obsolete">Utoljára frissítve</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3692"/>
+        <location filename="../src/rsslisting.cpp" line="3700"/>
         <source>Check for updates</source>
         <translation>Frissítések ellenőrzése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3693"/>
+        <location filename="../src/rsslisting.cpp" line="3701"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Új QuiteRSS verzió...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3968"/>
+        <location filename="../src/rsslisting.cpp" line="3976"/>
         <source>Loading...</source>
         <translation>Betöltés...</translation>
     </message>
@@ -1645,29 +1645,29 @@
         <translation type="obsolete">Hírcsatorna tulajdonságok</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1694"/>
+        <location filename="../src/rsslisting.cpp" line="1699"/>
         <source>Delete Feed</source>
         <translation>Hírcsatorna törlése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1735"/>
-        <location filename="../src/rsslisting.cpp" line="1833"/>
+        <location filename="../src/rsslisting.cpp" line="1740"/>
+        <location filename="../src/rsslisting.cpp" line="1838"/>
         <source>Select OPML-File</source>
         <translation>OPML-fájl kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1737"/>
+        <location filename="../src/rsslisting.cpp" line="1742"/>
         <source>OPML-Files (*.opml *.xml)</source>
         <translation>OPML-fájlok (*.opml *.xml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1835"/>
+        <location filename="../src/rsslisting.cpp" line="1840"/>
         <source>OPML-Files (*.opml)</source>
         <translation>OPML-Files (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2947"/>
-        <location filename="../src/rsslisting.cpp" line="3123"/>
+        <location filename="../src/rsslisting.cpp" line="2952"/>
+        <location filename="../src/rsslisting.cpp" line="3128"/>
         <source>Load Images</source>
         <translation>Képek betöltése</translation>
     </message>
@@ -1676,287 +1676,293 @@
         <translation type="obsolete">A képek automatikus betöltése Hírek nézetbe</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2951"/>
-        <location filename="../src/rsslisting.cpp" line="3126"/>
+        <location filename="../src/rsslisting.cpp" line="2956"/>
+        <location filename="../src/rsslisting.cpp" line="3131"/>
         <source>No Load Images</source>
         <translation>Ne töltse be a képeket</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2952"/>
-        <location filename="../src/rsslisting.cpp" line="3127"/>
+        <location filename="../src/rsslisting.cpp" line="2957"/>
+        <location filename="../src/rsslisting.cpp" line="3132"/>
         <source>No Load Images to News View</source>
         <translation>Ne töltse be a képeket a Hírek nézetbe</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3101"/>
-        <location filename="../src/rsslisting.cpp" line="3490"/>
+        <location filename="../src/rsslisting.cpp" line="3106"/>
+        <location filename="../src/rsslisting.cpp" line="3498"/>
         <source>New News: %1</source>
         <translation>Új hírek: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3103"/>
-        <location filename="../src/rsslisting.cpp" line="3492"/>
+        <location filename="../src/rsslisting.cpp" line="3108"/>
+        <location filename="../src/rsslisting.cpp" line="3500"/>
         <source>Unread News: %1</source>
         <translation>Olvasatlan hírek: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3106"/>
+        <location filename="../src/rsslisting.cpp" line="3111"/>
         <source>&amp;Add Feed...</source>
         <translation>&amp;Hírcsatorna hozzáadása...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3107"/>
+        <location filename="../src/rsslisting.cpp" line="3112"/>
         <source>Add New Feed</source>
         <translation>Új hírcsatorna hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3109"/>
-        <location filename="../src/rsslisting.cpp" line="3173"/>
+        <location filename="../src/rsslisting.cpp" line="3114"/>
+        <location filename="../src/rsslisting.cpp" line="3178"/>
         <source>Open in New Tab</source>
         <translation>Megnyitás egy új lapon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3112"/>
+        <location filename="../src/rsslisting.cpp" line="3117"/>
         <source>Delete Selected Feed</source>
         <translation>A kijelölt hírcsatorna törlése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3114"/>
+        <location filename="../src/rsslisting.cpp" line="3119"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Hírcsatornák importálása...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3115"/>
+        <location filename="../src/rsslisting.cpp" line="3120"/>
         <source>Import Feeds from OPML File</source>
         <translation>Hírcsatornák importálása OPML fájlból</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3117"/>
+        <location filename="../src/rsslisting.cpp" line="3122"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Hírcsatornák exportálása...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3118"/>
+        <location filename="../src/rsslisting.cpp" line="3123"/>
         <source>Export Feeds to OPML File</source>
         <translation>Hírcsatornák exportálása OPML fájlba</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2948"/>
-        <location filename="../src/rsslisting.cpp" line="3124"/>
+        <location filename="../src/rsslisting.cpp" line="2953"/>
+        <location filename="../src/rsslisting.cpp" line="3129"/>
         <source>Auto Load Images to News View</source>
         <translation>Képek automatikus betöltése a hírek nézetbe</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3130"/>
+        <location filename="../src/rsslisting.cpp" line="3135"/>
         <source>Update Feed</source>
         <translation>Hírcsatorna frissítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3131"/>
+        <location filename="../src/rsslisting.cpp" line="3136"/>
         <source>Update Current Feed</source>
         <translation>Az aktuális hírcsatorna frissítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3133"/>
+        <location filename="../src/rsslisting.cpp" line="3138"/>
         <source>Update All</source>
         <translation>Az összes frissítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3134"/>
+        <location filename="../src/rsslisting.cpp" line="3139"/>
         <source>Update All Feeds</source>
         <translation>Az összes hírcsatorna frissítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3136"/>
+        <location filename="../src/rsslisting.cpp" line="3141"/>
         <source>Mark All Feeds Read</source>
         <translation>Az összes hírcsatorna megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3139"/>
+        <location filename="../src/rsslisting.cpp" line="3144"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Az aktuális hírek megjelölése olvasotként/olvasatlanként</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3141"/>
-        <location filename="../src/rsslisting.cpp" line="3142"/>
+        <location filename="../src/rsslisting.cpp" line="3146"/>
+        <location filename="../src/rsslisting.cpp" line="3147"/>
         <source>Mark All News Read</source>
         <translation>Az összes hír megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3145"/>
+        <location filename="../src/rsslisting.cpp" line="3150"/>
         <source>News Filters...</source>
         <translation>Hír-szűrők...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3146"/>
+        <location filename="../src/rsslisting.cpp" line="3151"/>
         <source>Filter News...</source>
         <translation>Hírek szűrése...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3149"/>
+        <location filename="../src/rsslisting.cpp" line="3154"/>
         <source>Open Options Dialog</source>
         <translation>A beállítások párbeszédpanel megnyitása</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3155"/>
+        <location filename="../src/rsslisting.cpp" line="3160"/>
         <source>Show Starred Feeds</source>
         <translation>A csillaggal jelölt hírcsatornák megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3162"/>
+        <location filename="../src/rsslisting.cpp" line="3167"/>
         <source>Show Unread or Star</source>
         <translation>Olvasatlan vagy csillaggal jelölt megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3163"/>
+        <location filename="../src/rsslisting.cpp" line="3168"/>
         <source>Show Deleted</source>
         <translation>A törölt megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3166"/>
+        <location filename="../src/rsslisting.cpp" line="3171"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>A &apos;Névjegy&apos; párbeszédpanel megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3168"/>
+        <location filename="../src/rsslisting.cpp" line="3173"/>
         <source>Check for Updates...</source>
         <translation>Frissítések ellenőrzése...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3169"/>
+        <location filename="../src/rsslisting.cpp" line="3174"/>
         <source>Report a Problem...</source>
         <translation>Hibajelentés</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3171"/>
+        <location filename="../src/rsslisting.cpp" line="3176"/>
         <source>Open in Browser</source>
         <translation>Megnyitás a böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3172"/>
+        <location filename="../src/rsslisting.cpp" line="3177"/>
         <source>Open in External Browser</source>
         <translation>Megnyitás egy külső böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3174"/>
+        <location filename="../src/rsslisting.cpp" line="3179"/>
         <source>Open News in New Tab</source>
         <translation>Hírek megnyitása új lapon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3175"/>
+        <location filename="../src/rsslisting.cpp" line="3180"/>
         <source>Open in Background Tab</source>
         <translation>Megnyitása a háttérlapon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3176"/>
+        <location filename="../src/rsslisting.cpp" line="3181"/>
         <source>Open News in Background Tab</source>
         <translation>Hírek megnyitása a háttérlapon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3178"/>
+        <location filename="../src/rsslisting.cpp" line="3183"/>
         <source>Mark News Star</source>
         <translation>Hírek megjelölése csillaggal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3180"/>
+        <location filename="../src/rsslisting.cpp" line="3185"/>
         <source>Delete Selected News</source>
         <translation>A kijelölt hírek törlése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3181"/>
+        <location filename="../src/rsslisting.cpp" line="3186"/>
         <source>Delete All News</source>
         <translation>Az összes hír törlése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3182"/>
+        <location filename="../src/rsslisting.cpp" line="3187"/>
         <source>Delete All News from List</source>
         <translation>Az összes hír törlése a listáról</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3183"/>
+        <location filename="../src/rsslisting.cpp" line="3188"/>
         <source>Restore</source>
         <translation>Visszaállítás</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3184"/>
+        <location filename="../src/rsslisting.cpp" line="3189"/>
         <source>Restore News</source>
         <translation>Hírek visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3187"/>
+        <location filename="../src/rsslisting.cpp" line="3192"/>
         <source>Mark Feed Read</source>
         <translation>Hírcsatorna megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3188"/>
-        <location filename="../src/rsslisting.cpp" line="3189"/>
+        <location filename="../src/rsslisting.cpp" line="3193"/>
+        <location filename="../src/rsslisting.cpp" line="3194"/>
         <source>Feed Properties</source>
         <translation>Hírcsatorna-tulajdonságok</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3193"/>
+        <location filename="../src/rsslisting.cpp" line="3198"/>
         <source>&amp;File</source>
         <translation>&amp;Fájl</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3198"/>
+        <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>&amp;Browser</source>
         <translation>Böngésző</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3202"/>
-        <location filename="../src/rsslisting.cpp" line="3271"/>
+        <location filename="../src/rsslisting.cpp" line="3207"/>
+        <location filename="../src/rsslisting.cpp" line="3276"/>
         <source>Main Toolbar</source>
         <translation>Fő eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3203"/>
+        <location filename="../src/rsslisting.cpp" line="3208"/>
         <source>Customize Toolbar</source>
         <translation>Eszköztár testreszabása</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3209"/>
+        <location filename="../src/rsslisting.cpp" line="3214"/>
         <source>Hide Toolbar</source>
         <translation>Eszköztár rejtése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3265"/>
+        <location filename="../src/rsslisting.cpp" line="3270"/>
         <source>Print...</source>
         <translation>Nyomtatás...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3266"/>
+        <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Print Web page</source>
         <translation>Weboldal nyomtatása</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3267"/>
+        <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>Print Preview...</source>
         <translation>Nyomtatási kép...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3268"/>
+        <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Preview Web page</source>
         <translation>Weboldal előnézet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3270"/>
+        <location filename="../src/rsslisting.cpp" line="3275"/>
         <source>Toolbars</source>
         <translation>Eszköztárak</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3272"/>
+        <location filename="../src/rsslisting.cpp" line="3277"/>
         <source>News Toolbar</source>
         <translation>Hírek eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3273"/>
+        <location filename="../src/rsslisting.cpp" line="3278"/>
         <source>Browser Toolbar</source>
         <translation>Böngésző eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4514"/>
-        <location filename="../src/rsslisting.cpp" line="4525"/>
+        <location filename="../src/rsslisting.cpp" line="3280"/>
+        <location filename="../src/rsslisting.cpp" line="3281"/>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4522"/>
+        <location filename="../src/rsslisting.cpp" line="4533"/>
         <source>Web Page</source>
         <translation>Weboldal</translation>
     </message>
@@ -1965,12 +1971,12 @@
         <translation type="obsolete">Eszköztár</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3207"/>
+        <location filename="../src/rsslisting.cpp" line="3212"/>
         <source>Text Beside Icon</source>
         <translation>Szöveg az ikon mellett</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3208"/>
+        <location filename="../src/rsslisting.cpp" line="3213"/>
         <source>Text Under Icon</source>
         <translation>Szöveg az ikon alatt</translation>
     </message>
@@ -1979,152 +1985,152 @@
         <translation type="obsolete">Eszköztár megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3211"/>
+        <location filename="../src/rsslisting.cpp" line="3216"/>
         <source>Icon Size</source>
         <translation>Ikonméret</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3216"/>
+        <location filename="../src/rsslisting.cpp" line="3221"/>
         <source>Application Style</source>
         <translation>Alkalmazás stílus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3218"/>
+        <location filename="../src/rsslisting.cpp" line="3223"/>
         <source>System2</source>
         <translation>System2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3219"/>
+        <location filename="../src/rsslisting.cpp" line="3224"/>
         <source>Green</source>
         <translation>Zöld</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3220"/>
+        <location filename="../src/rsslisting.cpp" line="3225"/>
         <source>Orange</source>
         <translation>Narancs</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3221"/>
+        <location filename="../src/rsslisting.cpp" line="3226"/>
         <source>Purple</source>
         <translation>Bíbor</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3222"/>
+        <location filename="../src/rsslisting.cpp" line="3227"/>
         <source>Pink</source>
         <translation>Rózsaszín</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3223"/>
+        <location filename="../src/rsslisting.cpp" line="3228"/>
         <source>Gray</source>
         <translation>Szürke</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3225"/>
+        <location filename="../src/rsslisting.cpp" line="3230"/>
         <source>Browser Position</source>
         <translation>Böngésző pozíció</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3231"/>
+        <location filename="../src/rsslisting.cpp" line="3236"/>
         <source>Show Window</source>
         <translation>Ablak megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3233"/>
+        <location filename="../src/rsslisting.cpp" line="3238"/>
         <source>Previous Feed</source>
         <translation>Előző hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3234"/>
+        <location filename="../src/rsslisting.cpp" line="3239"/>
         <source>Next Feed</source>
         <translation>Következő hírcsatorna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3235"/>
+        <location filename="../src/rsslisting.cpp" line="3240"/>
         <source>Previous News</source>
         <translation>Előző hír</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3236"/>
+        <location filename="../src/rsslisting.cpp" line="3241"/>
         <source>Next News</source>
         <translation>Következő hír</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3238"/>
+        <location filename="../src/rsslisting.cpp" line="3243"/>
         <source>Switch Focus Between Panels</source>
         <translation>Fókuszváltás a panelek között</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3240"/>
+        <location filename="../src/rsslisting.cpp" line="3245"/>
         <source>Switch Focus Between Panels (Tree Feeds, List News, Browser)</source>
         <translation>Fókuszváltás a panelek között (hírcsatorna-fa, hírek lista, böngésző)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3242"/>
+        <location filename="../src/rsslisting.cpp" line="3247"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Hírcsatornák fa megjelenítése/rejtése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3244"/>
+        <location filename="../src/rsslisting.cpp" line="3249"/>
         <source>Minimize to Tray</source>
         <translation>Lekicsinyítés a tálcára</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3246"/>
+        <location filename="../src/rsslisting.cpp" line="3251"/>
         <source>Minimize Application to Tray</source>
         <translation>Alkalmazás minimalizálása a tálcára</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3249"/>
+        <location filename="../src/rsslisting.cpp" line="3254"/>
         <source>Count News Unread</source>
         <translation>Olvasott hírek száma</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3250"/>
+        <location filename="../src/rsslisting.cpp" line="3255"/>
         <source>Count News All</source>
         <translation>Az összes hír száma</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3251"/>
+        <location filename="../src/rsslisting.cpp" line="3256"/>
         <source>Last Updated</source>
         <translation>Utolsó frissítés</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3253"/>
+        <location filename="../src/rsslisting.cpp" line="3258"/>
         <source>Sort by Title</source>
         <translation>Rendezés cím szerint</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3257"/>
+        <location filename="../src/rsslisting.cpp" line="3262"/>
         <source>Zoom</source>
         <translation>Nagyítás</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3258"/>
+        <location filename="../src/rsslisting.cpp" line="3263"/>
         <source>Zoom In</source>
         <translation>Nagyítás +</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3259"/>
+        <location filename="../src/rsslisting.cpp" line="3264"/>
         <source>Zoom in in browser</source>
         <translation>Nagyítás a böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3260"/>
+        <location filename="../src/rsslisting.cpp" line="3265"/>
         <source>Zoom Out</source>
         <translation>Nagyítás -</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3261"/>
+        <location filename="../src/rsslisting.cpp" line="3266"/>
         <source>Zoom out in browser</source>
         <translation>Lekicsinyítés a böngészőben</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3262"/>
+        <location filename="../src/rsslisting.cpp" line="3267"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3263"/>
+        <location filename="../src/rsslisting.cpp" line="3268"/>
         <source>Reset zoom in browser</source>
         <translation>Nagyítás visszaállítása a böngészőben</translation>
     </message>
@@ -2137,7 +2143,7 @@
         <translation type="obsolete">Cím</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3255"/>
+        <location filename="../src/rsslisting.cpp" line="3260"/>
         <source>Search Feed</source>
         <translation>Hírcsatorna keresése</translation>
     </message>
@@ -2210,8 +2216,8 @@
         <translation type="obsolete">Főoldal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3151"/>
-        <location filename="../src/rsslisting.cpp" line="3157"/>
+        <location filename="../src/rsslisting.cpp" line="3156"/>
+        <location filename="../src/rsslisting.cpp" line="3162"/>
         <source>Filter</source>
         <translation>Szűrő</translation>
     </message>
@@ -2220,24 +2226,24 @@
         <translation type="obsolete">Hírcsatorna törlése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1695"/>
+        <location filename="../src/rsslisting.cpp" line="1700"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Valóban törli a(z) &apos;%1&apos; hírcsatornát?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2721"/>
-        <location filename="../src/rsslisting.cpp" line="3093"/>
+        <location filename="../src/rsslisting.cpp" line="2726"/>
+        <location filename="../src/rsslisting.cpp" line="3098"/>
         <source> Unread: %1 </source>
         <translation> Olvasatlan: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2722"/>
-        <location filename="../src/rsslisting.cpp" line="3096"/>
+        <location filename="../src/rsslisting.cpp" line="2727"/>
+        <location filename="../src/rsslisting.cpp" line="3101"/>
         <source> All: %1 </source>
         <translation>Összes: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3120"/>
+        <location filename="../src/rsslisting.cpp" line="3125"/>
         <source>E&amp;xit</source>
         <translation>Kilépés</translation>
     </message>
@@ -2258,7 +2264,7 @@
         <translation type="obsolete">Képek betöltése</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3186"/>
+        <location filename="../src/rsslisting.cpp" line="3191"/>
         <source>Mark Read</source>
         <translation>Megjelölés olvasottként</translation>
     </message>
@@ -2271,32 +2277,32 @@
         <translation type="obsolete">Az összes hír megjelölése olvasottként</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3194"/>
+        <location filename="../src/rsslisting.cpp" line="3199"/>
         <source>&amp;Edit</source>
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3195"/>
+        <location filename="../src/rsslisting.cpp" line="3200"/>
         <source>&amp;View</source>
         <translation>Nézet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3196"/>
+        <location filename="../src/rsslisting.cpp" line="3201"/>
         <source>Fee&amp;ds</source>
         <translation>Hírcsatornák</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3197"/>
+        <location filename="../src/rsslisting.cpp" line="3202"/>
         <source>&amp;News</source>
         <translation>Hírek</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3199"/>
+        <location filename="../src/rsslisting.cpp" line="3204"/>
         <source>&amp;Tools</source>
         <translation>Eszközök</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3200"/>
+        <location filename="../src/rsslisting.cpp" line="3205"/>
         <source>&amp;Help</source>
         <translation>Súgó</translation>
     </message>
@@ -2313,12 +2319,12 @@
         <translation type="obsolete">OPML-fájlok (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1740"/>
+        <location filename="../src/rsslisting.cpp" line="1745"/>
         <source>Import canceled</source>
         <translation>Importálás megszakítva</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1748"/>
+        <location filename="../src/rsslisting.cpp" line="1753"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Importálás: a fájlt nem lehet megnyitni</translation>
     </message>
@@ -2331,17 +2337,17 @@
         <translation type="obsolete">Új hírek: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1838"/>
+        <location filename="../src/rsslisting.cpp" line="1843"/>
         <source>Export canceled</source>
         <translation>Exportálás megszakítva</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1844"/>
+        <location filename="../src/rsslisting.cpp" line="1849"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Exportálás: a fájlt nem lehet megnyitni</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1908"/>
+        <location filename="../src/rsslisting.cpp" line="1913"/>
         <source>Update done</source>
         <translation>A frissítés kész</translation>
     </message>
@@ -2378,17 +2384,17 @@
         <translation type="obsolete">Hírcsatorna-tulajdonságok</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3204"/>
+        <location filename="../src/rsslisting.cpp" line="3209"/>
         <source>Style</source>
         <translation>Stílus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3205"/>
+        <location filename="../src/rsslisting.cpp" line="3210"/>
         <source>Icon</source>
         <translation>Ikon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3206"/>
+        <location filename="../src/rsslisting.cpp" line="3211"/>
         <source>Text</source>
         <translation>Szöveg</translation>
     </message>
@@ -2405,17 +2411,17 @@
         <translation type="obsolete">Ikonméret</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3212"/>
+        <location filename="../src/rsslisting.cpp" line="3217"/>
         <source>Big</source>
         <translation>Nagy</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3213"/>
+        <location filename="../src/rsslisting.cpp" line="3218"/>
         <source>Normal</source>
         <translation>Normál</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3214"/>
+        <location filename="../src/rsslisting.cpp" line="3219"/>
         <source>Small</source>
         <translation>Kicsi</translation>
     </message>
@@ -2424,7 +2430,7 @@
         <translation type="obsolete">Alkalmazás stílus</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3217"/>
+        <location filename="../src/rsslisting.cpp" line="3222"/>
         <source>System</source>
         <translation>Rendszer</translation>
     </message>

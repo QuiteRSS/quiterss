@@ -1280,4 +1280,104 @@
     <source>Sort by Title</source>
     <target>Sortieren nach Titel</target>
 </phrase>
+<phrase>
+    <source>Open links in external browser in background (experimental)</source>
+    <target>Öffne Links in externen Browser im Hintergrund (experimentell)</target>
+</phrase>
+<phrase>
+    <source>News panel font (Title, Author)</source>
+    <target>Schriftart Artikel Panel (Titel, Autor)</target>
+</phrase>
+<phrase>
+    <source>&amp;Update</source>
+    <target>&amp;Aktualisieren</target>
+</phrase>
+<phrase>
+    <source>Report a Problem...</source>
+    <target>Ein Problem melden...</target>
+</phrase>
+<phrase>
+    <source>Main Toolbar</source>
+    <target>Hauptsymbolleiste</target>
+</phrase>
+<phrase>
+    <source>Customize Toolbar</source>
+    <target>Symbolleiste anpassen</target>
+</phrase>
+<phrase>
+    <source>Hide Toolbar</source>
+    <target>Symbolleiste ausblenden</target>
+</phrase>
+<phrase>
+    <source>Zoom</source>
+    <target>Zoom</target>
+</phrase>
+<phrase>
+    <source>Zoom In</source>
+    <target>Zoomen</target>
+</phrase>
+<phrase>
+    <source>Zoom in in browser</source>
+    <target>Zoomen im Browser</target>
+</phrase>
+<phrase>
+    <source>Zoom Out</source>
+    <target>Verkleinern</target>
+</phrase>
+<phrase>
+    <source>Zoom out in browser</source>
+    <target>Verkleinern im Browser</target>
+</phrase>
+<phrase>
+    <source>100%</source>
+    <target>100%</target>
+</phrase>
+<phrase>
+    <source>Reset zoom in browser</source>
+    <target>Zurücksetzen zoom im Browser</target>
+</phrase>
+<phrase>
+    <source>Print...</source>
+    <target>Drucken...</target>
+</phrase>
+<phrase>
+    <source>Print Web page</source>
+    <target>Drucken Web Page</target>
+</phrase>
+<phrase>
+    <source>Print Preview...</source>
+    <target>Druckvorschau...</target>
+</phrase>
+<phrase>
+    <source>Preview Web page</source>
+    <target>Vorschau Web Page</target>
+</phrase>
+<phrase>
+    <source>Toolbars</source>
+    <target>Symbolleisten</target>
+</phrase>
+<phrase>
+    <source>Web Page</source>
+    <target>Web Page</target>
+</phrase>
+<phrase>
+    <source>Browser Toolbar</source>
+    <target>Browser Werkzeugleiste</target>
+</phrase>
+<phrase>
+    <source>Browser Toolbar</source>
+    <target>Browser Werkzeugleiste</target>
+</phrase>
+<phrase>
+    <source>News Toolbar</source>
+    <target>Artikel Werkzeugleiste</target>
+</phrase>
+<phrase>
+    <source>Full Screen</source>
+    <target>Vollbild</target>
+</phrase>
+<phrase>
+    <source>Full Screen</source>
+    <target>Vollbild</target>
+</phrase>
 </QPH>

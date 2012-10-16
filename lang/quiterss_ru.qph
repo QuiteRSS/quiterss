@@ -1365,4 +1365,80 @@
     <source>Sort by Title</source>
     <target>Сортировать по заголовку</target>
 </phrase>
+<phrase>
+    <source>Open links in external browser in background (experimental)</source>
+    <target>Открывать ссылки во внешнем браузере в фоновом режиме (экспериментально)</target>
+</phrase>
+<phrase>
+    <source>News panel font (Title, Author)</source>
+    <target>Шрифт панели новостей (Заголовок, Автор)</target>
+</phrase>
+<phrase>
+    <source>Report a Problem...</source>
+    <target>Сообщить о проблеме...</target>
+</phrase>
+<phrase>
+    <source>Main Toolbar</source>
+    <target>Главная панель</target>
+</phrase>
+<phrase>
+    <source>Customize Toolbar</source>
+    <target>Настройка панели инструментов</target>
+</phrase>
+<phrase>
+    <source>Hide Toolbar</source>
+    <target>Скрыть панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Print...</source>
+    <target>Печать...</target>
+</phrase>
+<phrase>
+    <source>Print Web page</source>
+    <target>Печать веб-страницы</target>
+</phrase>
+<phrase>
+    <source>Print Preview...</source>
+    <target>Предварительный просмотр...</target>
+</phrase>
+<phrase>
+    <source>Preview Web page</source>
+    <target>Предварительный просмотр веб-страницы</target>
+</phrase>
+<phrase>
+    <source>News Toolbar</source>
+    <target>Панель списка новостей</target>
+</phrase>
+<phrase>
+    <source>Browser Toolbar</source>
+    <target>Панель браузера</target>
+</phrase>
+<phrase>
+    <source>Web Page</source>
+    <target>Веб-страница</target>
+</phrase>
+<phrase>
+    <source>Zoom</source>
+    <target>Масштаб</target>
+</phrase>
+<phrase>
+    <source>Zoom in in browser</source>
+    <target>Увеличение масштаба в браузере</target>
+</phrase>
+<phrase>
+    <source>Zoom out in browser</source>
+    <target>Уменьшение масштаба в браузере</target>
+</phrase>
+<phrase>
+    <source>100%</source>
+    <target>100%</target>
+</phrase>
+<phrase>
+    <source>Reset zoom in browser</source>
+    <target>Сброс масштаба в браузере</target>
+</phrase>
+<phrase>
+    <source>Full Screen</source>
+    <target>Во весь экран</target>
+</phrase>
 </QPH>
