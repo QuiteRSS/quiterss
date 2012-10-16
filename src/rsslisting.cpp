@@ -1,4 +1,4 @@
-#include <QtCore>
+﻿#include <QtCore>
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
@@ -96,7 +96,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   notificationWidget = NULL;
   feedIdOld = -2;
   openingLink_ = false;
-  timerLinkOpening_.invalidate();
 
   createFeedsDock();
   createToolBarNull();
@@ -160,6 +159,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   translator_ = new QTranslator(this);
   appInstallTranslator();
+
+  installEventFilter(this);
 }
 
 /*!****************************************************************************/
@@ -234,28 +235,11 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
           this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
 }
 
-/*! \brief Обработка деактивации окна при открытии ссылки в браузере в фоне **/
-bool RSSListing::event(QEvent *e)
-{
-  // Если производится открытие ссылки, то запускаем таймер
-  if (openingLink_) {
-    openingLink_ = false;
-    timerLinkOpening_.start();
-  }
-
-  if (timerLinkOpening_.isValid()) {
-    if (timerLinkOpening_.hasExpired(openingLinkTimeout_))
-      timerLinkOpening_.invalidate();
-    else if (openLinkInBackground_)
-      activateWindow();
-  }
-
-  return QMainWindow::event(e);
-}
-
 /*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
+  static int deactivateState = 0;
+
   static bool tabFixed = false;
   if (obj == feedsView_->viewport()) {
     if (event->type() == QEvent::ToolTip) {
@@ -286,6 +270,34 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       }
     }
     return false;
+  }
+  // Обработка открытия ссылки во внешнем браузере в фоне
+  else if ((event->type() == QEvent::WindowDeactivate) && (openingLink_)) {
+    openingLink_ = false;
+    timerLinkOpening_.start(openingLinkTimeout_, this);
+    deactivateState = 1;
+    return QMainWindow::eventFilter(obj, event);
+  }
+  // Отрисовалась деактивация
+  else if ((deactivateState == 1) && (event->type() == QEvent::Paint)) {
+    deactivateState = 2;
+    return QMainWindow::eventFilter(obj, event);
+  }
+  // Деактивация произведена. Переактивируемся
+  else if ((deactivateState == 2) && timerLinkOpening_.isActive()) {
+    deactivateState = 3;
+    if (!isActiveWindow()) {
+      setWindowState(windowState() & ~Qt::WindowActive);
+      show();
+      raise();
+      activateWindow();
+    }
+    return QMainWindow::eventFilter(obj, event);
+  }
+  // Отрисовалась активация
+  else if ((deactivateState == 3) && (event->type() == QEvent::Paint)) {
+    deactivateState = 0;
+    return QMainWindow::eventFilter(obj, event);
   } else {
     // pass the event on to the parent class
     return QMainWindow::eventFilter(obj, event);
@@ -433,6 +445,18 @@ void RSSListing::timerEvent(QTimerEvent *event)
       updateFeedsTime = updateFeedsTime*60;
     updateFeedsTimer_.start(updateFeedsTime, this);
     slotTimerUpdateFeeds();
+  }
+  // Отбработка передачи ссылки во внешний браузер фоном
+  else if (event->timerId() == timerLinkOpening_.timerId()) {
+    timerLinkOpening_.stop();
+    if (!isActiveWindow()) {
+      setWindowState(windowState() & ~Qt::WindowActive);
+      show();
+      raise();
+      activateWindow();
+    }
+    setFocus();
+    qDebug() << "----------------------------------------------";
   }
 }
 

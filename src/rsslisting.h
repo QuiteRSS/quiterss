@@ -79,9 +79,7 @@ public:
 
   bool autoLoadImages_;
   bool openLinkInBackground_;
-  int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
   bool openingLink_;  //!< флаг открытия ссылки
-  QElapsedTimer timerLinkOpening_;
 
   int externalBrowserOn_;
   QString externalBrowser_;
@@ -128,7 +126,6 @@ protected:
   virtual void closeEvent(QCloseEvent*);
   virtual void changeEvent(QEvent*);
   virtual void showEvent(QShowEvent*);
-  virtual bool event(QEvent *e);
   void timerEvent(QTimerEvent* event);
 
 private:
@@ -358,6 +355,10 @@ private:
 
   bool storeDBMemory_;
   bool storeDBMemoryT_;
+
+  int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
+  QBasicTimer timerLinkOpening_;
+
 
 private slots:
   void slotProgressBarUpdate();
