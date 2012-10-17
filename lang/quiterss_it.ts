@@ -1603,7 +1603,7 @@
         <location filename="../src/rsslisting.cpp" line="3280"/>
         <location filename="../src/rsslisting.cpp" line="3281"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Schermo Intero</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4522"/>
@@ -1825,17 +1825,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Print Web page</source>
-        <translation>Stampa Pagina Web</translation>
+        <translation>Stampa la Pagina Web</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>Print Preview...</source>
-        <translation>Stampa Anteprima...</translation>
+        <translation>Anteprima di Stampa...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Preview Web page</source>
-        <translation>Anteprima Pagina Web</translation>
+        <translation>Anteprima della Pagina Web</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3275"/>
