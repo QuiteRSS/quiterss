@@ -1927,7 +1927,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Print Web page</source>
-        <translation>Weboldal nyomtatása</translation>
+        <translation>Weblap nyomtatása</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
@@ -1958,13 +1958,13 @@
         <location filename="../src/rsslisting.cpp" line="3280"/>
         <location filename="../src/rsslisting.cpp" line="3281"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Teljes képernyő</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4522"/>
         <location filename="../src/rsslisting.cpp" line="4533"/>
         <source>Web Page</source>
-        <translation>Weboldal</translation>
+        <translation>Weblap</translation>
     </message>
     <message>
         <source>Toolbar</source>
