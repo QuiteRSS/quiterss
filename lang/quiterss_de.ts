@@ -20,7 +20,7 @@
         <translation>Die Autoren:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="42"/>
+        <location filename="../src/aboutdialog.cpp" line="41"/>
         <source>Acknowledgements:</source>
         <translation>Danksagungen:</translation>
     </message>

@@ -20,7 +20,7 @@
         <translation>De auteurs:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="42"/>
+        <location filename="../src/aboutdialog.cpp" line="41"/>
         <source>Acknowledgements:</source>
         <translation>Met dank aan:</translation>
     </message>
@@ -658,7 +658,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="78"/>
         <source>Show static icon</source>
-        <translation>Show statische pictogram</translation>
+        <translation>Toon statische pictogram</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="79"/>
@@ -764,7 +764,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="185"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Open links in externe browser in de achtergrond.(experimenteel)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -789,7 +789,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="409"/>
         <source>Show maximum of</source>
-        <translation>Show maximum van</translation>
+        <translation>Toon maximum van</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="411"/>
@@ -814,7 +814,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>News panel font (Title, Author)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuws panel lettertype.(Naam, Auteur)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="593"/>
@@ -904,7 +904,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
         <source>Show system tray icon</source>
-        <translation>Show systeemvak pictogram</translation>
+        <translation>Toon systeemvak pictogram</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="230"/>
@@ -934,7 +934,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="316"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Show nieuws beschrijving in plaats van webpagina laden</translation>
+        <translation>Toon nieuws beschrijving in plaats van webpagina laden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="351"/>
@@ -1014,7 +1014,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="423"/>
         <source>Only show selected feeds:</source>
-        <translation>Show alleen geselecteerde feeds:</translation>
+        <translation>Toon alleen geselecteerde feeds:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="436"/>
@@ -1298,17 +1298,17 @@
         <location filename="../src/rsslisting.cpp" line="3207"/>
         <location filename="../src/rsslisting.cpp" line="3276"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoofdwerkbalk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3208"/>
         <source>Customize Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Aanpassen Werkbalk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3214"/>
         <source>Hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberg Werkbalk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3230"/>
@@ -1318,7 +1318,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3236"/>
         <source>Show Window</source>
-        <translation>Show Venster</translation>
+        <translation>Toon Venster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3238"/>
@@ -1353,7 +1353,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3247"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation>Show/Verberg Structuur Feeds</translation>
+        <translation>Toon/Verberg Structuur Feeds</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3249"/>
@@ -1378,72 +1378,72 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3262"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3263"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Inzoomen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3264"/>
         <source>Zoom in in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>InZoomen in browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3265"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitzoomen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3266"/>
         <source>Zoom out in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Uitzoomen in browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3267"/>
         <source>100%</source>
-        <translation type="unfinished"></translation>
+        <translation>100%</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3268"/>
         <source>Reset zoom in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstel zoom in browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3270"/>
         <source>Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Afdrukken...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Print Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Web pagina Afdrukken</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Voorbeeld Afdrukken...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Preview Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Voorbeeld van Webpagina</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3275"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkbalken</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3277"/>
         <source>News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuws werkbalk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3278"/>
         <source>Browser Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Browser Werkbalk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3280"/>
@@ -1465,7 +1465,7 @@
         <location filename="../src/rsslisting.cpp" line="4522"/>
         <location filename="../src/rsslisting.cpp" line="4533"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Web Pagina</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1843"/>
@@ -1502,24 +1502,24 @@
         <location filename="../src/rsslisting.cpp" line="3157"/>
         <location filename="../src/rsslisting.cpp" line="3163"/>
         <source>Show All</source>
-        <translation>Show Alles</translation>
+        <translation>Toon Alles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3158"/>
         <location filename="../src/rsslisting.cpp" line="3164"/>
         <source>Show New</source>
-        <translation>Show Nieuw</translation>
+        <translation>Toon Nieuw</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3159"/>
         <location filename="../src/rsslisting.cpp" line="3165"/>
         <source>Show Unread</source>
-        <translation>Show Ongelezen</translation>
+        <translation>Toon Ongelezen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3166"/>
         <source>Show Star</source>
-        <translation>Show Ster</translation>
+        <translation>Toon Ster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3170"/>
@@ -1781,12 +1781,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3160"/>
         <source>Show Starred Feeds</source>
-        <translation>Show Sterren Feeds</translation>
+        <translation>Toon Sterren Feeds</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3167"/>
         <source>Show Unread or Star</source>
-        <translation>Show Ongelezen of Ster</translation>
+        <translation>Toon Ongelezen of Ster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3168"/>
@@ -1796,7 +1796,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3171"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation>Show Over Venster</translation>
+        <translation>Toon Over Venster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3173"/>
@@ -1806,7 +1806,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3174"/>
         <source>Report a Problem...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapporteer een Probleem...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3176"/>
@@ -1877,7 +1877,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Browser</translation>
     </message>
     <message>
         <source>Toolbar</source>
@@ -2015,7 +2015,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="35"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Update</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>

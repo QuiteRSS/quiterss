@@ -20,7 +20,7 @@
         <translation>Les auteurs :</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="42"/>
+        <location filename="../src/aboutdialog.cpp" line="41"/>
         <source>Acknowledgements:</source>
         <translation>Merci à :</translation>
     </message>
@@ -811,7 +811,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="185"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir les liens dans un navigateur externe en arrière-plan (expérimental)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="201"/>
@@ -871,7 +871,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>News panel font (Title, Author)</source>
-        <translation type="unfinished"></translation>
+        <translation>Police du panneau d&apos;articles (titre, auteur)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="593"/>
@@ -1066,10 +1066,6 @@
     <message>
         <source>Russian (%1)</source>
         <translation type="obsolete">Russe (%1)</translation>
-    </message>
-    <message>
-        <source>Id</source>
-        <translation type="obsolete">Id</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="577"/>
@@ -1531,7 +1527,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3174"/>
         <source>Report a Problem...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapporter un problème...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3176"/>
@@ -1609,7 +1605,7 @@
         <location filename="../src/rsslisting.cpp" line="4522"/>
         <location filename="../src/rsslisting.cpp" line="4533"/>
         <source>Web Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Page web</translation>
     </message>
     <message>
         <source>editFeedsTree_</source>
@@ -1785,72 +1781,72 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3262"/>
         <source>Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3263"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Agrandir</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3264"/>
         <source>Zoom in in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Agrandir dans le navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3265"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Rétrécir</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3266"/>
         <source>Zoom out in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Rétrécir dans le navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3267"/>
         <source>100%</source>
-        <translation type="unfinished"></translation>
+        <translation>100%</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3268"/>
         <source>Reset zoom in browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Réinitialiser le zoom dans le navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3270"/>
         <source>Print...</source>
-        <translation type="unfinished"></translation>
+        <translation>Imprimer...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3271"/>
         <source>Print Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Imprimer la page web</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3272"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu avant impression...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3273"/>
         <source>Preview Web page</source>
-        <translation type="unfinished"></translation>
+        <translation>Aperçu de la page web</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3275"/>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Barres d&apos;outils</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3277"/>
         <source>News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils des articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3278"/>
         <source>Browser Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils du navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3700"/>
@@ -1944,7 +1940,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3204"/>
@@ -1960,12 +1956,12 @@
         <location filename="../src/rsslisting.cpp" line="3207"/>
         <location filename="../src/rsslisting.cpp" line="3276"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils principale</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3208"/>
         <source>Customize Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3209"/>
@@ -1985,7 +1981,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3214"/>
         <source>Hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Cacher la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3217"/>
@@ -2059,7 +2055,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="35"/>
         <source>&amp;Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Mettre à &amp;jour</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="40"/>
