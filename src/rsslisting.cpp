@@ -270,6 +270,17 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       }
     }
     return false;
+  } else if (obj == statusBar()) {
+    if (event->type() == QEvent::MouseButtonRelease) {
+      if (windowState() & Qt::WindowMaximized) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        if ((mouseEvent->pos().x() > (statusBar()->width()-statusBar()->height())) &&
+            (mouseEvent->pos().y() > 0)) {
+          setFullScreen();
+        }
+      }
+    }
+    return false;
   }
   // Обработка открытия ссылки во внешнем браузере в фоне
   else if ((event->type() == QEvent::WindowDeactivate) && (openingLink_)) {
@@ -601,6 +612,7 @@ void RSSListing::createStatusBar()
   QToolButton *fullScreenButton = new QToolButton(this);
   fullScreenButton->setDefaultAction(fullScreenAct_);
   fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  statusBar()->installEventFilter(this);
 
   statusBar()->addPermanentWidget(progressBar_);
   statusUnread_ = new QLabel(this);
