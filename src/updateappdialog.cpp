@@ -61,7 +61,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
   }
 
-  page.mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/"));
+  page.mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/wiki/runAplication"));
   connect(&page, SIGNAL(loadFinished(bool)),
            this, SLOT(renderStatistics()));
 
