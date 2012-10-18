@@ -3,6 +3,8 @@
 
 #include <QtGui>
 #include <QNetworkReply>
+#include <QWebPage>
+#include <QWebFrame>
 
 class UpdateAppDialog : public QDialog
 {
@@ -21,6 +23,8 @@ private:
 
   QPushButton *updateButton_;
 
+  QWebPage page;
+
 public:
   explicit UpdateAppDialog(const QString &lang, QSettings *settings,
                            QWidget *parent, bool show = true);
@@ -30,6 +34,7 @@ private slots:
   void finishUpdatesChecking();
   void slotFinishHistoryReply();
   void updaterRun();
+  void renderStatistics();
 
 signals:
   void signalNewVersion(bool newVersion);

@@ -61,8 +61,10 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
   }
 
-  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
-  connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
+  page.mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/"));
+  connect(&page, SIGNAL(loadFinished(bool)),
+           this, SLOT(renderStatistics()));
+
 }
 
 void UpdateAppDialog::closeDialog()
@@ -112,9 +114,9 @@ void UpdateAppDialog::finishUpdatesChecking()
     info = tr("Error checking updates");
   }
 
-  if (!showDialog_)
+  if (!showDialog_) {
     emit signalNewVersion(newVersion);
-  else {
+  } else {
     infoLabel->setText(info);
 
 #if defined(Q_OS_WIN)
@@ -145,4 +147,10 @@ void UpdateAppDialog::updaterRun()
   QString updaterFile = QCoreApplication::applicationDirPath() + "/Updater.exe";
   ShellExecute(0, 0, (wchar_t *)updaterFile.utf16(), 0, 0, SW_SHOWNORMAL);
 #endif
+}
+
+void UpdateAppDialog::renderStatistics()
+{
+  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
+  connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
 }
