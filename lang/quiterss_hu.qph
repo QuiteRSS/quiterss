@@ -62,7 +62,7 @@
 </phrase>
 <phrase>
     <source>Media files (all types)</source>
-    <target>Médiafájlok (valamennyi típus)</target>
+    <target>Médiafájlok (összes típus)</target>
 </phrase>
 <phrase>
     <source>Video files</source>
@@ -218,7 +218,7 @@
 </phrase>
 <phrase>
     <source>Port:</source>
-    <target></target>
+    <target>Port:</target>
 </phrase>
 <phrase>
     <source>Network Connections</source>
@@ -318,7 +318,7 @@
 </phrase>
 <phrase>
     <source>Mark current news read</source>
-    <target></target>
+    <target>Az aktuális hírek megjelölése olvasotként</target>
 </phrase>
 <phrase>
     <source>Mark all news Read</source>
@@ -1364,5 +1364,81 @@
 <phrase>
     <source>Sort by Title</source>
     <target>Rendezés cím szerint</target>
+</phrase>
+<phrase>
+    <source>Open links in external browser in background (experimental)</source>
+    <target>Hivatkozások megnyitása külső böngészőben a háttérben (kísérleti)</target>
+</phrase>
+<phrase>
+    <source>News panel font (Title, Author)</source>
+    <target>Hírek panel betűtípus (Cím, Szerző)</target>
+</phrase>
+<phrase>
+    <source>Report a Problem...</source>
+    <target>Hibajelentés...</target>
+</phrase>
+<phrase>
+    <source>Main Toolbar</source>
+    <target>Fő eszköztár</target>
+</phrase>
+<phrase>
+    <source>Customize Toolbar</source>
+    <target>Eszköztár testreszabása</target>
+</phrase>
+<phrase>
+    <source>Hide Toolbar</source>
+    <target>Eszköztár rejtése</target>
+</phrase>
+<phrase>
+    <source>Print...</source>
+    <target>Nyomtatás...</target>
+</phrase>
+<phrase>
+    <source>Print Web page</source>
+    <target>Weblap nyomtatása</target>
+</phrase>
+<phrase>
+    <source>Print Preview...</source>
+    <target>Nyomtatási kép...</target>
+</phrase>
+<phrase>
+    <source>Preview Web page</source>
+    <target>Weboldal előnézet</target>
+</phrase>
+<phrase>
+    <source>News Toolbar</source>
+    <target>Hírek eszköztár</target>
+</phrase>
+<phrase>
+    <source>Browser Toolbar</source>
+    <target>Böngésző eszköztár</target>
+</phrase>
+<phrase>
+    <source>Web Page</source>
+    <target>Weblap</target>
+</phrase>
+<phrase>
+    <source>Zoom</source>
+    <target>Nagyítás</target>
+</phrase>
+<phrase>
+    <source>Zoom in in browser</source>
+    <target>Nagyítás a böngészőben</target>
+</phrase>
+<phrase>
+    <source>Zoom out in browser</source>
+    <target>Lekicsinyítés a böngészőben</target>
+</phrase>
+<phrase>
+    <source>100%</source>
+    <target>100%</target>
+</phrase>
+<phrase>
+    <source>Reset zoom in browser</source>
+    <target>Nagyítás visszaállítása a böngészőben</target>
+</phrase>
+<phrase>
+    <source>Full Screen</source>
+    <target>Teljes képernyő</target>
 </phrase>
 </QPH>
