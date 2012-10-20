@@ -17,6 +17,8 @@ public:
   void editFeed(QString urlFeed, QString action, QString name = "");
   void requestFeedsList();
   void requestUnreadCount();
+  void requestFeed(QString urlFeed, int ot = 0);
+  void editItem(QString urlFeed, QString itemId, QString action);
 
   QString email_;
   QString passwd_;
@@ -33,6 +35,7 @@ private:
   QNetworkAccessManager managerHttpPost_;
   QNetworkAccessManager managerFeedsList_;
   QNetworkAccessManager managerUnreadCount_;
+  QNetworkAccessManager managerFeed_;
 
   QString sid_;
   QString auth_;
@@ -52,6 +55,7 @@ private slots:
   void replyHttpPost(QNetworkReply *reply);
   void replyFeedsList(QNetworkReply *reply);
   void replyUnreadCount(QNetworkReply *reply);
+  void replyFeed(QNetworkReply *reply);
 
 };
 

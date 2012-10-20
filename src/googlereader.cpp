@@ -20,6 +20,8 @@ GoogleReader::GoogleReader(QString email, QString passwd, QObject *parent) :
           this, SLOT(replyFeedsList(QNetworkReply *)));
   connect(&managerUnreadCount_, SIGNAL(finished(QNetworkReply *)),
           this, SLOT(replyUnreadCount(QNetworkReply*)));
+  connect(&managerFeed_, SIGNAL(finished(QNetworkReply *)),
+          this, SLOT(replyFeed(QNetworkReply *)));
 
   requestSidAuth();
 }
@@ -171,4 +173,57 @@ void GoogleReader::replyUnreadCount(QNetworkReply *reply)
   } else {
     qCritical() << "Error requestUnreadCount: " << reply->errorString();
   }
+}
+
+//! Запрос новостей ленты
+void GoogleReader::requestFeed(QString urlFeed, int ot)
+{
+  QUrl params;
+  params.setUrl("http://www.google.com/reader/api/0/stream/contents/" +
+                QString("feed/%1").arg(urlFeed));
+
+
+  QDateTime dtLocalTime = QDateTime::currentDateTime();
+  QDateTime dt = QDateTime::fromString("1970-01-01T00:00:00", Qt::ISODate);
+  int nTimeShift = dt.secsTo(dtLocalTime);
+  params.addQueryItem("ck", QString::number(nTimeShift));
+  if (ot)
+    params.addQueryItem("ot", QString::number(ot));
+  params.addQueryItem("client", "QuiteRSS");
+
+  sendHttpGet(params, &managerFeed_);
+}
+
+//! Ответ на запрос новостей ленты
+void GoogleReader::replyFeed(QNetworkReply *reply)
+{
+  QString dataStr;
+  if (reply->error() == QNetworkReply::NoError) {
+    dataStr = QString::fromUtf8(reply->readAll());
+    qCritical() << dataStr;
+  } else {
+    qCritical() << "Error requestUnreadCount: " << reply->errorString();
+  }
+}
+
+//! Пометка новости прочитанной или звездой
+void GoogleReader::editItem(QString urlFeed, QString itemId, QString action)
+{
+  QUrl params;
+  params.addQueryItem("client", "QuiteRSS");
+  if (action == "read")
+    params.addQueryItem("a", "user/-/state/com.google/read");
+  else if (action == "unread")
+    params.addQueryItem("r", "user/-/state/com.google/read");
+  else if (action == "starred")
+    params.addQueryItem("a", "user/-/state/com.google/starred");
+  else if (action == "unstarred")
+    params.addQueryItem("r", "user/-/state/com.google/starred");
+  params.addQueryItem("async", "true");
+  params.addQueryItem("s", QString("feed/%1").arg(urlFeed));
+  params.addQueryItem("i", QString("tag:google.com,2005:reader/item/%1").arg(itemId));
+  params.addQueryItem("T", token_);
+
+  sendHttpPost(QUrl("http://www.google.com/reader/api/0/edit-tag"),
+               params);
 }
