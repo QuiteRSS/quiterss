@@ -478,7 +478,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("English (EN)")
-           << QString(STRFILEVER).section('.', 0, 2)
+           << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_EN"));
@@ -502,7 +502,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Deutsch (DE)")
-           << QString(STRFILEVER).section('.', 0, 2)
+           << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_DE"));
@@ -534,7 +534,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Русский (RU)")
-           << QString(STRFILEVER).section('.', 0, 2)
+           << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_RU"));

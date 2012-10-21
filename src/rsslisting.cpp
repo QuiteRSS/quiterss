@@ -49,7 +49,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     settings_(settings),
     dataDirPath_(dataDirPath)
 {
-  setWindowTitle(QString("QuiteRSS v") + QString(STRFILEVER).section('.', 0, 2));
+  setWindowTitle(QString("QuiteRSS v%1").arg(STRPRODUCTVER));
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;

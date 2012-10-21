@@ -30,7 +30,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
       "<CENTER><IMG BORDER=\"10\" SRC=\":/images/images/logo_text.png\"></CENTER>"
       "<P><RIGHT>" + tr("Version ") +
-      + "<B>" + QString(STRFILEVER).section('.', 0, 2) + "</B>"
+      + "<B>" + QString(STRPRODUCTVER) + "</B>"
       + QString(" (%1)").arg(STRDATE) + "</P>"
       "<HR>"
       + tr("The authors:") +

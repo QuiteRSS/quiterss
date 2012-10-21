@@ -80,7 +80,7 @@ void UpdateAppDialog::finishUpdatesChecking()
   bool newVersion = false;
 
   if (reply_->error() == QNetworkReply::NoError) {
-    QString version = QString(STRFILEVER).section('.', 0, 2);
+    QString version = STRPRODUCTVER;
     QString date = STRDATE;
 
     QString str = QLatin1String(reply_->readAll());
