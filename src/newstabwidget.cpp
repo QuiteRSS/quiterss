@@ -466,8 +466,8 @@ void NewsTabWidget::retranslateStrings() {
   webPanelAuthorLabel_->setText(tr("Author:"));
 
   webHomePageAct_->setText(tr("Home"));
-  webExternalBrowserAct_->setText(tr("Open in External Browser"));
-  urlExternalBrowserAct_->setText(tr("Open in External Browser"));
+  webExternalBrowserAct_->setText(tr("Open Page in External Browser"));
+  urlExternalBrowserAct_->setText(tr("Open Link in External Browser"));
 
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
