@@ -84,8 +84,8 @@ void UpdateAppDialog::finishUpdatesChecking()
     QString date = STRDATE;
 
     QString str = QLatin1String(reply_->readAll());
-    QString curVersion = str.section('"', 1, 1).section('.', 0, 2);
-    QString curDate = str.section('"', 3).left(10);
+    QString curVersion = str.section('"', 5, 5).section('\\', 0, 0);
+    QString curDate = str.section('"', 3, 3).section('\\', 0, 0);
 
     if (version.contains(curVersion)) {
       str =
