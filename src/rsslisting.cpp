@@ -3187,6 +3187,7 @@ void RSSListing::retranslateStrings() {
 
   openInBrowserAct_->setText(tr("Open in Browser"));
   openInExternalBrowserAct_->setText(tr("Open in External Browser"));
+  openInExternalBrowserAct_->setToolTip(tr("Open News in External Browser"));
   openNewsNewTabAct_->setText(tr("Open in New Tab"));
   openNewsNewTabAct_->setToolTip(tr("Open News in New Tab"));
   openNewsBackgroundTabAct_->setText(tr("Open in Background Tab"));
