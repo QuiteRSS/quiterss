@@ -1834,6 +1834,8 @@ void RSSListing::slotImportFeeds()
   }
   db_.commit();
 
+  file.close();
+
   if (requestUrlCount) {
     updateAllFeedsAct_->setEnabled(false);
     updateFeedAct_->setEnabled(false);
@@ -3868,6 +3870,7 @@ void RSSListing::setStyleApp(QAction *pAct)
   QFile file(fileString);
   file.open(QFile::ReadOnly);
   qApp->setStyleSheet(QLatin1String(file.readAll()));
+  file.close();
 }
 
 //! Переключение фокуса между деревом лент, списком новостей и браузером

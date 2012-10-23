@@ -121,6 +121,7 @@ QSettings *settings_;
   QFile file(fileString);
   file.open(QFile::ReadOnly);
   app.setStyleSheet(QLatin1String(file.readAll()));
+  file.close();
 
 //#if defined(QT_NO_DEBUG_OUTPUT)
 //  qInstallMsgHandler(logMessageOutput);

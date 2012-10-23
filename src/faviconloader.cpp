@@ -131,6 +131,7 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
             if (icon.save(&buffer, "ICO")) {
               emit signalIconRecived(feedUrl.toString(), faviconData);
             }
+            buffer.close();
           } else if (cntRequests == 0) {
             QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
             get(link, feedUrl, 1);
