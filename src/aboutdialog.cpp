@@ -1,74 +1,104 @@
 #include "aboutdialog.h"
 #include "VersionNo.h"
+#if QT_VERSION >= 0x040800
+#include <sqlite_qt48x/sqlite3.h>
+#else
+#include <sqlite_qt47x/sqlite3.h>
+#endif
 
-AboutDialog::AboutDialog(QWidget *parent) :
+AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setObjectName("AboutDialog");
+  setMinimumWidth(500);
 
-  QBoxLayout *aboutlayout = new QHBoxLayout(this);
-  aboutlayout->setAlignment(Qt::AlignCenter);
-  aboutlayout->setMargin(0);
-  aboutlayout->setSpacing(10);
+  QTabWidget *tabWidget = new QTabWidget();
 
-  QLabel *logo = new QLabel(this);
-  logo->setObjectName("logoLabel");
-  logo->setFixedWidth(110);
-  logo->setAlignment(Qt::AlignTop|Qt::AlignHCenter);
-  logo->setPixmap(QPixmap(":/images/images/logo.png"));
-  aboutlayout->addWidget(logo);
+  QLabel *logoLabel = new QLabel();
+  logoLabel->setObjectName("logoLabel");
+  logoLabel->setFixedWidth(100);
+  logoLabel->setAlignment(Qt::AlignTop|Qt::AlignHCenter);
+  logoLabel->setPixmap(QPixmap(":/images/images/logo.png"));
 
-  QBoxLayout *layout = new QVBoxLayout();
-  layout->setAlignment(Qt::AlignCenter);
-  layout->setMargin(10);
-  layout->setSpacing(10);
-  aboutlayout->addLayout(layout);
-
-  QString info =
+  QString appInfo =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
-      "<CENTER><IMG BORDER=\"10\" SRC=\":/images/images/logo_text.png\"></CENTER>"
-      "<P><RIGHT>" + tr("Version ") +
+      "<CENTER><BR>"
+      "<IMG SRC=\":/images/images/logo.png\">"
+      "<BR><IMG SRC=\":/images/images/logo_text.png\">"
+      "<P>" + tr("Version ")
       + "<B>" + QString(STRPRODUCTVER) + "</B>"
       + QString(" (%1)").arg(STRDATE) + "</P>"
-      "<HR>"
-      + tr("The authors:") +
-      "<UL>"
-      "<li>Aleksey Khokhryakov   <a href='mailto:aleksey.khokhryakov@gmail.com'>e-mail</a></li>"
-      "<li>Shilyaev Egor   <a href='mailto:egor.shilyaev@gmail.com'>e-mail</a></li>"
-      "</UL>"
-      + tr("Acknowledgements:") +
-      "<UL>"
-      "<li>Kalinin Andrey</li>"
-      "<li>Elbert Pol</li>"
-      "<li>TI_Eugene</li>"
-      "<li>Glad Deschrijver</li>"
-      "<li>ZityiSoft</li>"
-      "<li>" + QString::fromUtf8("Åke Engelbrektson") + "</li>"
-      "<li>" + "Korolev Andrey aka Zavulon" + "</li>"
-      "<li>" + "Elohin Igor\'" + "</li>"
-      "<li>" + "Vascom" + "</li>"
-      "<li>" + "Ozzii" + "</li>"
-      "<li>" + "Sergey Borisov aka NaturKeks" + "</li>"
-      "<li>" + "H.Mohamadi" + "</li>"
-      "<li>" + "ZeroWis" + "</li>"
-      "</UL>"
-      "<HR>"
+      + "<BR>"
+      + tr("QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader")
+      + "<P>" + tr("Includes: ")
+      + QString("Qt-%1, SQLite-%2").arg(QT_VERSION_STR).arg(SQLITE_VERSION)
+      + "</P>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
       + QString("<br><a href=\"%1/\">%1</a>").arg("www.quiterss.ucoz.ru") +
-      "<p>&copy; 2011-2012 QuiteRSS Team</p>"
-      "</body></html>";
-  QLabel *infoLabel = new QLabel(info, this);
-  infoLabel->setMinimumWidth(250);
+      "<P>&copy; 2011-2012 QuiteRSS Team "
+      + QString("<a href=\"%1/\">E-mail</a>").arg("quiterssteam@gmail.com") + "</P>"
+      "</CENTER></body></html>";
+  QLabel *infoLabel = new QLabel(appInfo);
   infoLabel->setOpenExternalLinks(true);
-  infoLabel->setStyleSheet("Color: #000000;");
-  layout->addWidget(infoLabel);
 
+  QHBoxLayout *mainLayout = new QHBoxLayout();
+//  mainLayout->addWidget(logoLabel);
+  mainLayout->addWidget(infoLabel);
+  QWidget *mainWidget = new QWidget();
+  mainWidget->setLayout(mainLayout);
+
+  QTextEdit *authorsTextEdit = new QTextEdit(this);
+  authorsTextEdit->setFocusPolicy(Qt::NoFocus);
+  QFile file;
+  file.setFileName(":/file/AUTHORS");
+  file.open(QFile::ReadOnly);
+  authorsTextEdit->setText(QString::fromUtf8(file.readAll()));
+  file.close();
+
+  QHBoxLayout *authorsLayout = new QHBoxLayout();
+  authorsLayout->addWidget(authorsTextEdit);
+  QWidget *authorsWidget = new QWidget();
+  authorsWidget->setLayout(authorsLayout);
+
+  QTextBrowser *historyTextBrowser = new QTextBrowser();
+  historyTextBrowser->setOpenExternalLinks(true);
+  if (lang.contains("ru", Qt::CaseInsensitive))
+    file.setFileName(":/file/HISTORY_RU");
+  else
+    file.setFileName(":/file/HISTORY_EN");
+  file.open(QFile::ReadOnly);
+  historyTextBrowser->setHtml(QString::fromUtf8(file.readAll()));
+  file.close();
+
+  QHBoxLayout *historyLayout = new QHBoxLayout();
+  historyLayout->addWidget(historyTextBrowser);
+  QWidget *historyWidget = new QWidget();
+  historyWidget->setLayout(historyLayout);
+
+  QTextEdit *licenseTextEdit = new QTextEdit();
+  licenseTextEdit->setFocusPolicy(Qt::NoFocus);
+  file.setFileName(":/file/COPYING");
+  file.open(QFile::ReadOnly);
+  QString str = QString(QString::fromUtf8(file.readAll())).section("-----", 1, 1);
+  licenseTextEdit->setText(str);
+  file.close();
+
+  QHBoxLayout *licenseLayout = new QHBoxLayout();
+  licenseLayout->addWidget(licenseTextEdit);
+
+  QWidget *licenseWidget = new QWidget();
+  licenseWidget->setLayout(licenseLayout);
+
+  tabWidget->addTab(mainWidget, tr("Version"));
+  tabWidget->addTab(authorsWidget, tr("Authors"));
+  tabWidget->addTab(historyWidget, tr("History"));
+  tabWidget->addTab(licenseWidget, tr("License"));
 
   QLayout *buttonLayout = new QHBoxLayout();
   buttonLayout->setAlignment(Qt::AlignRight);
-  QPushButton *closeButton = new QPushButton(tr("&Close"), this);
+  QPushButton *closeButton = new QPushButton(tr("&Close"));
   closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
   closeButton->setDefault(true);
@@ -76,5 +106,8 @@ AboutDialog::AboutDialog(QWidget *parent) :
   connect(closeButton, SIGNAL(clicked()), SLOT(close()));
   buttonLayout->addWidget(closeButton);
 
+  QVBoxLayout *layout = new QVBoxLayout();
+  layout->addWidget(tabWidget);
   layout->addLayout(buttonLayout);
+  setLayout(layout);
 }

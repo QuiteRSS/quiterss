@@ -204,17 +204,6 @@ QHeaderView::up-arrow {
 	width: 20px;
 }
 
-#AboutDialog, #UpdateAppDialog {
-	background: #f9f9f9;
-}
-
-#logoLabel {
-	background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
-								stop:0 #31B1FF,
-								stop:1 #f9f9f9);
-	padding-top: 10px;
-}
-
 #contentLabel_ {
 	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 										stop:0 #e0e0e0,

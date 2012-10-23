@@ -2923,7 +2923,7 @@ void RSSListing::setFeedRead(int feedId, int type)
 
 void RSSListing::slotShowAboutDlg()
 {
-  AboutDialog *aboutDialog = new AboutDialog(this);
+  AboutDialog *aboutDialog = new AboutDialog(langFileName_, this);
   aboutDialog->exec();
   delete aboutDialog;
 }

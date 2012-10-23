@@ -89,4 +89,10 @@
         <file alias="system2Style">style/system2.qss</file>
         <file alias="pinkStyle">style/pink.qss</file>
     </qresource>
+    <qresource prefix="/file">
+        <file>AUTHORS</file>
+        <file>COPYING</file>
+        <file>HISTORY_EN</file>
+        <file>HISTORY_RU</file>
+    </qresource>
 </RCC>
