@@ -12,19 +12,13 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setObjectName("AboutDialog");
-  setMinimumWidth(500);
+  setMinimumWidth(440);
 
   QTabWidget *tabWidget = new QTabWidget();
 
-  QLabel *logoLabel = new QLabel();
-  logoLabel->setObjectName("logoLabel");
-  logoLabel->setFixedWidth(100);
-  logoLabel->setAlignment(Qt::AlignTop|Qt::AlignHCenter);
-  logoLabel->setPixmap(QPixmap(":/images/images/logo.png"));
-
   QString appInfo =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
-      "<CENTER><BR>"
+      "<CENTER>"
       "<IMG SRC=\":/images/images/logo.png\">"
       "<BR><IMG SRC=\":/images/images/logo_text.png\">"
       "<P>" + tr("Version ")
@@ -44,7 +38,6 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   infoLabel->setOpenExternalLinks(true);
 
   QHBoxLayout *mainLayout = new QHBoxLayout();
-//  mainLayout->addWidget(logoLabel);
   mainLayout->addWidget(infoLabel);
   QWidget *mainWidget = new QWidget();
   mainWidget->setLayout(mainLayout);
