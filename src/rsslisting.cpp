@@ -1923,21 +1923,21 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 
   // очередь запросов пуста
   if (0 == result) {
-    if (showMessageOn_) { // result=0 может приходить несколько раз
-      statusBar()->showMessage(QString(tr("Update done")), 3000);
-      showMessageOn_ = false;
-    }
-    updateAllFeedsAct_->setEnabled(true);
-    updateFeedAct_->setEnabled(true);
-    progressBar_->hide();
-    progressBar_->setValue(0);
-    progressBar_->setMaximum(0);
+//    if (showMessageOn_) { // result=0 может приходить несколько раз
+//      statusBar()->showMessage(QString(tr("Update done")), 3000);
+//      showMessageOn_ = false;
+//    }
+//    updateAllFeedsAct_->setEnabled(true);
+//    updateFeedAct_->setEnabled(true);
+//    progressBar_->hide();
+//    progressBar_->setValue(0);
+//    progressBar_->setMaximum(0);
   }
   // в очереди запросов осталось _result_ запросов
   else if (0 < result) {
-    progressBar_->setValue(progressBar_->maximum() - result);
-    if (showMessageOn_)
-      statusBar()->showMessage(progressBar_->text());
+//    progressBar_->setValue(progressBar_->maximum() - result);
+//    if (showMessageOn_)
+//      statusBar()->showMessage(progressBar_->text());
   }
 }
 
@@ -1986,8 +1986,24 @@ void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
 
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
-  if (updateFeedsCount_ > 0) updateFeedsCount_--;
-  if (updateFeedsCount_ == 0) emit signalShowNotification();
+  if (updateFeedsCount_ > 0) {
+    updateFeedsCount_--;
+    progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
+    if (showMessageOn_)
+      statusBar()->showMessage(progressBar_->text());
+  }
+  if (updateFeedsCount_ == 0) {
+    emit signalShowNotification();
+    if (showMessageOn_) {
+      statusBar()->showMessage(QString(tr("Update done")), 3000);
+      showMessageOn_ = false;
+    }
+    updateAllFeedsAct_->setEnabled(true);
+    updateFeedAct_->setEnabled(true);
+    progressBar_->hide();
+    progressBar_->setValue(0);
+    progressBar_->setMaximum(0);
+  }
 
   if (!changed) return;
 
