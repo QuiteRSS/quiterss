@@ -841,6 +841,9 @@ void RSSListing::createActions()
   filterNewsStar_ = new QAction(this);
   filterNewsStar_->setObjectName("filterNewsStar_");
   filterNewsStar_->setCheckable(true);
+  filterNewsNotStarred_ = new QAction(this);
+  filterNewsNotStarred_->setObjectName("filterNewsNotStarred_");
+  filterNewsNotStarred_->setCheckable(true);
   filterNewsUnreadStar_ = new QAction(this);
   filterNewsUnreadStar_->setObjectName("filterNewsUnreadStar_");
   filterNewsUnreadStar_->setCheckable(true);
@@ -1278,6 +1281,8 @@ void RSSListing::createMenu()
   newsFilterGroup_->addAction(filterNewsUnread_);
   newsFilterMenu_->addAction(filterNewsStar_);
   newsFilterGroup_->addAction(filterNewsStar_);
+  newsFilterMenu_->addAction(filterNewsNotStarred_);
+  newsFilterGroup_->addAction(filterNewsNotStarred_);
   newsFilterMenu_->addAction(filterNewsUnreadStar_);
   newsFilterGroup_->addAction(filterNewsUnreadStar_);
   newsFilterMenu_->addSeparator();
@@ -2855,6 +2860,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     newsFilterStr.append(QString("read < 2 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsStar_") {
     newsFilterStr.append(QString("starred = 1 AND deleted = 0"));
+  } else if (pAct->objectName() == "filterNewsNotStarred_") {
+    newsFilterStr.append(QString("starred = 0 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnreadStar_") {
     newsFilterStr.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsDeleted_") {
@@ -3193,8 +3200,9 @@ void RSSListing::retranslateStrings() {
   filterNewsAll_->setText(tr("Show All"));
   filterNewsNew_->setText(tr("Show New"));
   filterNewsUnread_->setText(tr("Show Unread"));
-  filterNewsStar_->setText(tr("Show Star"));
-  filterNewsUnreadStar_->setText(tr("Show Unread or Star"));
+  filterNewsStar_->setText(tr("Show Starred"));
+  filterNewsNotStarred_->setText(tr("Show Not Starred"));
+  filterNewsUnreadStar_->setText(tr("Show Unread or Starred"));
   filterNewsDeleted_->setText(tr("Show Deleted"));
 
   aboutAct_ ->setText(tr("About..."));
@@ -4062,6 +4070,8 @@ void RSSListing::creatFeedTab(int feedId)
       feedIdFilter.append(QString("read < 2 AND deleted = 0"));
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsStar_") {
       feedIdFilter.append(QString("starred = 1 AND deleted = 0"));
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsNotStarred_") {
+      feedIdFilter.append(QString("starred = 0 AND deleted = 0"));
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsUnreadStar_") {
       feedIdFilter.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsDeleted_") {
