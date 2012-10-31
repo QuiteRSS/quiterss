@@ -30,10 +30,6 @@ HEADERS += \
     src/addfeedwizard.h \
     src/newstabwidget.h \
     src/logfile.h \
-    src/treeeditdialog.h \
-    src/treemodeldb.h \
-    src/treeitemdb.h \
-    src/treeviewdb.h \
     src/findtext.h \
     src/notifications.h \
     src/findfeed.h \
@@ -67,10 +63,6 @@ SOURCES += \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
     src/logfile.cpp \
-    src/treeeditdialog.cpp \
-    src/treemodeldb.cpp \
-    src/treeitemdb.cpp \
-    src/treeviewdb.cpp \
     src/findtext.cpp \
     src/notifications.cpp \
     src/findfeed.cpp \
