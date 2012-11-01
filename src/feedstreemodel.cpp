@@ -80,7 +80,11 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
           return icon;
         }
       }
-      return QPixmap(":/images/feed");
+      if (QyurSqlTreeModel::index(index.row(), proxyColumnByOriginal("xmlUrl")).
+          data(Qt::EditRole).toString().isEmpty())
+        return QPixmap(":/images/folder");
+      else
+        return QPixmap(":/images/feed");
     }
   } else if (role == Qt::TextAlignmentRole) {
     if (QyurSqlTreeModel::proxyColumnByOriginal("id") == index.column()) {
