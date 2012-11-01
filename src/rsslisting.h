@@ -9,6 +9,8 @@
 #include "faviconloader.h"
 #include "feedsmodel.h"
 #include "feedsview.h"
+#include "feedstreemodel.h"
+#include "feedstreeview.h"
 #include "findfeed.h"
 #include "newsheader.h"
 #include "newsmodel.h"
@@ -36,6 +38,8 @@ public:
   QSqlDatabase db_;
   FeedsModel *feedsModel_;
   FeedsView *feedsView_;
+  FeedsTreeModel *feedsTreeModel_;
+  FeedsTreeView *feedsTreeView_;
   QTabWidget *tabWidget_;
   WebView *webView_;
 

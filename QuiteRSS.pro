@@ -33,7 +33,9 @@ HEADERS += \
     src/findtext.h \
     src/notifications.h \
     src/findfeed.h \
-    src/googlereader.h
+    src/googlereader.h \
+    src/feedstreeview.h \
+    src/feedstreemodel.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -66,7 +68,9 @@ SOURCES += \
     src/findtext.cpp \
     src/notifications.cpp \
     src/findfeed.cpp \
-    src/googlereader.cpp
+    src/googlereader.cpp \
+    src/feedstreeview.cpp \
+    src/feedstreemodel.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
@@ -82,6 +86,7 @@ RCC_DIR = $${BUILD_DIR}/rcc/
 
 include(3rdparty/sqlite.pri)
 include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
+include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
 win32 {

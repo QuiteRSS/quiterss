@@ -356,6 +356,9 @@ void RSSListing::slotCloseApp()
     } else {
       oldState = windowState();
 
+      qDebug() << QString::number(oldState, 16)
+          << QString::number(((QWindowStateChangeEvent*)event)->oldState(), 16);
+
       if (tabWidget_->count() &&
           !(((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMinimized)) {
         QString stateStr;
@@ -475,6 +478,12 @@ void RSSListing::createFeedsDock()
   feedsModel_ = new FeedsModel(this);
   feedsModel_->setTable("feeds");
   feedsModel_->select();
+  feedsTreeModel_ = new FeedsTreeModel("feeds",
+      QStringList() << QObject::tr("ID") << QObject::tr("PARENTID") << QObject::tr("TEXT")
+          << QObject::tr("UNREAD") << QObject::tr("UNDELETECOUNT") << QObject::tr("UPDATED"),
+      QStringList() << "id" << "parentId" << "text" << "unread" << "undeleteCount" << "updated",
+      0,
+      "text");
 
   feedsView_ = new FeedsView(this);
   feedsView_->setFrameStyle(QFrame::NoFrame);
@@ -486,6 +495,27 @@ void RSSListing::createFeedsDock()
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("unread"), QHeaderView::ResizeToContents);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("undeleteCount"), QHeaderView::ResizeToContents);
   feedsView_->header()->setResizeMode(feedsModel_->fieldIndex("updated"), QHeaderView::ResizeToContents);
+  feedsTreeView_ = new FeedsTreeView(this);
+  feedsTreeView_->setFrameStyle(QFrame::NoFrame);
+  feedsTreeView_->setModel(feedsTreeModel_);
+  for (int i = 0; i < feedsTreeModel_->columnCount(); ++i)
+    feedsTreeView_->hideColumn(i);
+  feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal("text"));
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+
+  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"),Qt::AscendingOrder);
+  feedsTreeView_->setColumnHidden("id", true);
+  feedsTreeView_->setColumnHidden("parentId", true);
+  feedsTreeView_->setSelectionBehavior(QAbstractItemView::SelectRows);
+  feedsTreeView_->setSelectionMode(QAbstractItemView::SingleSelection);
+  feedsTreeView_->setDragDropMode(QAbstractItemView::InternalMove);
+  feedsTreeView_->setDragEnabled(true);
+  feedsTreeView_->setAcceptDrops(true);
+  feedsTreeView_->setDropIndicatorShown(true);
+  feedsTreeView_->setHeaderHidden(false);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);
@@ -529,6 +559,7 @@ void RSSListing::createFeedsDock()
   feedsLayout->setSpacing(0);
   feedsLayout->addWidget(findFeedsWidget_);
   feedsLayout->addWidget(feedsView_, 1);
+  feedsLayout->addWidget(feedsTreeView_, 1);
   QFrame *feedsWidget_ = new QFrame(this);
   feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   feedsWidget_->setLayout(feedsLayout);
@@ -1416,6 +1447,7 @@ void RSSListing::readSettings()
 
   formatDateTime_ = settings_->value("formatDataTime", "dd.MM.yy hh:mm").toString();
   feedsModel_->formatDateTime_ = formatDateTime_;
+  feedsTreeModel_->formatDateTime_ = formatDateTime_;
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -3978,6 +4010,10 @@ void RSSListing::feedsColumnVisible(QAction *action)
 {
   int idx = action->data().toInt();
   feedsView_->setColumnHidden(idx, !action->isChecked());
+  if (action->isChecked())
+    feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal(idx));
+  else
+    feedsTreeView_->hideColumn(feedsTreeModel_->proxyColumnByOriginal(idx));
 }
 
 //! Установка позиции браузера
