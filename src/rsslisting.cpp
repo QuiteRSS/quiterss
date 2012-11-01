@@ -558,6 +558,7 @@ void RSSListing::createFeedsDock()
   feedsLayout->setSpacing(0);
   feedsLayout->addWidget(findFeedsWidget_);
   feedsLayout->addWidget(feedsView_, 1);
+  feedsLayout->addSpacing(4);
   feedsLayout->addWidget(feedsTreeView_, 1);
   QFrame *feedsWidget_ = new QFrame(this);
   feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
@@ -581,6 +582,8 @@ void RSSListing::createFeedsDock()
   connect(feedsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
   connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
+  connect(feedsTreeView_, SIGNAL(pressed(QModelIndex)),
+          this, SLOT(slotFeedClicked(QModelIndex)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
 
@@ -2192,6 +2195,43 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   }
   feedIdOld = feedsModel_->index(
       feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+
+  if (indexTab != -1) {
+    tabWidget_->setCurrentIndex(indexTab);
+  }
+}
+
+void RSSListing::slotFeedClicked(QModelIndex index)
+{
+  int feedIdCur = feedsTreeModel_->index(
+      index.row(), feedsTreeView_->columnIndex("id"), index.parent()).
+      data().toInt();
+
+  // Поиск уже открытого таба с этой лентой
+  int indexTab = -1;
+  for (int i = 0; i < tabWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+    if (widget->feedId_ == feedIdCur) {
+      indexTab = i;
+      break;
+    }
+  }
+
+  qDebug() << feedIdCur << feedIdOld << indexTab;
+
+  if ((feedIdCur != feedIdOld) || (indexTab == -1)) {
+    if (tabWidget_->currentIndex() != 0) {
+      tabWidget_->setCurrentIndex(0);
+      feedsView_->setCurrentIndex(index);
+    }
+
+    //! При переходе на другую ленту метим старую просмотренной
+    setFeedRead(feedIdOld, 0);
+
+//    slotFeedsTreeSelected(index, true);
+    feedsView_->repaint();
+  }
+  feedIdOld = feedIdCur;
 
   if (indexTab != -1) {
     tabWidget_->setCurrentIndex(indexTab);

@@ -103,6 +103,7 @@ public slots:
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
+  void slotFeedClicked(QModelIndex index);
   void slotFeedsTreeSelected(QModelIndex index, bool clicked = false,
                              bool createTab = false);
   void slotGetFeed();
