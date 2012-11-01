@@ -515,7 +515,6 @@ void RSSListing::createFeedsDock()
   feedsTreeView_->setDragEnabled(true);
   feedsTreeView_->setAcceptDrops(true);
   feedsTreeView_->setDropIndicatorShown(true);
-  feedsTreeView_->setHeaderHidden(false);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);
@@ -677,6 +676,11 @@ void RSSListing::createActions()
   addFeedAct_->setObjectName("addFeedAct");
   addFeedAct_->setIcon(QIcon(":/images/add"));
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
+
+  addFolderAct_ = new QAction(this);
+  addFolderAct_->setObjectName("addCategoryAct");
+  addFolderAct_->setIcon(QIcon(":/images/addCategory"));
+  connect(addFolderAct_, SIGNAL(triggered()), this, SLOT(addFolder()));
 
   openFeedNewTabAct_ = new QAction(this);
   openFeedNewTabAct_->setObjectName("openNewTabAct");
@@ -1141,6 +1145,7 @@ void RSSListing::createMenu()
   fileMenu_ = new QMenu(this);
   menuBar()->addMenu(fileMenu_);
   fileMenu_->addAction(addFeedAct_);
+  fileMenu_->addAction(addFolderAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
@@ -1723,6 +1728,28 @@ void RSSListing::addFeed()
   slotUpdateFeed(addFeedWizard->feedUrlString_, true);
 
   delete addFeedWizard;
+}
+
+void RSSListing::addFolder()
+{
+  QSqlQuery q(db_);
+
+  // Вычисляем номер ряда для папки, вставляемой в корень
+  int rowToParent = 0;
+  q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
+  qDebug() << q.lastQuery();
+  qDebug() << q.lastError();
+  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+
+  // Добавляем папку
+  q.prepare("INSERT INTO feeds(text, created, rowToParent) "
+            "VALUES (:text, :feedCreateTime, :rowToParent)");
+  q.bindValue(":text", "New folder");
+  q.bindValue(":feedCreateTime",
+              QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
+  q.bindValue(":rowToParent", rowToParent);
+  q.exec();
+  q.finish();
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -2976,6 +3003,7 @@ void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
   feedContextMenu_->addAction(addFeedAct_);
+  feedContextMenu_->addAction(addFolderAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(openFeedNewTabAct_);
   feedContextMenu_->addSeparator();
@@ -3166,6 +3194,9 @@ void RSSListing::retranslateStrings() {
 
   addFeedAct_->setText(tr("&Add Feed..."));
   addFeedAct_->setToolTip(tr("Add New Feed"));
+
+  addFolderAct_->setText(tr("&Add Folder..."));
+  addFolderAct_->setToolTip(tr("Add New Folder"));
 
   openFeedNewTabAct_->setText(tr("Open in New Tab"));
 

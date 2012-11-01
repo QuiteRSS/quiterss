@@ -98,6 +98,7 @@ public:
 
 public slots:
   void addFeed();
+  void addFolder();
   void deleteFeed();
   void slotImportFeeds();
   void slotExportFeeds();
@@ -175,6 +176,7 @@ private:
   QStringList listDefaultShortcut_;
 
   QAction *addFeedAct_;
+  QAction *addFolderAct_;
   QAction *deleteFeedAct_;
   QAction *importFeedsAct_;
   QAction *exportFeedsAct_;
