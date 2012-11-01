@@ -1755,6 +1755,8 @@ void RSSListing::addFolder()
   q.bindValue(":rowToParent", rowToParent);
   q.exec();
   q.finish();
+
+  feedsTreeModel_->refresh();
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -1800,6 +1802,7 @@ void RSSListing::deleteFeed()
     feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
     slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
   }
+  feedsTreeModel_->refresh();
 }
 
 /*! \brief Импорт лент из OPML-файла ******************************************/
