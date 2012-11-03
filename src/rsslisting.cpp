@@ -2,7 +2,7 @@
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
-#include <Psapi.h>
+#include <psapi.h>
 #endif
 
 #include "aboutdialog.h"
