@@ -2298,6 +2298,8 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   // FIXME: (arhohryakov:05.11.2012)
   // Зачем мы переустанавливаем фильтр лент?
+  // FIXME: (egor.shilyaev:05.11.2012)
+  // Чтобы лента вдруг не исчезла, когда попадёт под фильтрацию =)
 //  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
 //  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
@@ -3065,8 +3067,9 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-  // FIXME: (arhohryakov:05.11.2012)
-  // Нужен комментарий, для чего мы текущего фида изменяем поле read с "1" на "2"
+  // Помеченные новости как "Прочитанные" убираем с глаз долой
+  // read=1 - отображаются не зависимо от фильтра
+  // read=2 - не будут отображаться
   if (clicked) {
     QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").
         arg(feedId);
@@ -3139,8 +3142,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // FIXME: (arhohryakov(05.11.2012)
-  // Зачем нам знать, какой фильтр отработал?
+  // Запоминаем выбранный фильтр, для включения при следующем запуске программы
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction = pAct;
 }
