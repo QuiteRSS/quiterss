@@ -104,6 +104,8 @@ public slots:
   void slotExportFeeds();
   void slotFeedsTreeClicked(QModelIndex index);
   void slotFeedClicked(QModelIndex index);
+  void slotFeedSelected(QModelIndex index, bool clicked = false,
+                        bool createTab = false);
   void slotFeedsTreeSelected(QModelIndex index, bool clicked = false,
                              bool createTab = false);
   void slotGetFeed();

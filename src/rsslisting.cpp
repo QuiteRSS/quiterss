@@ -2228,13 +2228,138 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     //! При переходе на другую ленту метим старую просмотренной
     setFeedRead(feedIdOld, 0);
 
-//    slotFeedsTreeSelected(index, true);
+    slotFeedSelected(index, true);
     feedsView_->repaint();
   }
   feedIdOld = feedIdCur;
 
   if (indexTab != -1) {
     tabWidget_->setCurrentIndex(indexTab);
+  }
+}
+
+/** @brief Обработка самого выбора ленты **************************************/
+void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
+                                  bool createTab)
+{
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << "--------------------------------";
+  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+
+  int feedRow = index.row();
+  int feedId = feedsTreeModel_->index(
+      feedRow, feedsTreeModel_->proxyColumnByOriginal("id"), index.parent())
+      .data().toInt();
+
+  // Открытие или создание вкладки с лентой
+  if ((!tabWidget_->count() && clicked) || createTab) {
+    int indexTab = tabWidget_->addTab( new NewsTabWidget(feedId, this), "");
+    createNewsTab(indexTab);
+
+    tabBar_->setTabButton(indexTab,
+                          QTabBar::LeftSide,
+                          currentNewsTab->newsTitleLabel_);
+    if (indexTab == 0)
+      currentNewsTab->closeButton_->setVisible(false);
+
+    emit signalCurrentTab(indexTab, true);
+  } else {
+    currentNewsTab->feedId_ = feedId;
+    currentNewsTab->setSettings(false);
+    if (index.isValid())
+      currentNewsTab->setVisible(true);
+  }
+
+  //! Устанавливаем иконку для открытой вкладки
+  QPixmap iconTab;
+  QByteArray byteArray = feedsTreeModel_->index(
+      feedRow, feedsTreeModel_->proxyColumnByOriginal("image"), index.parent())
+      .data().toByteArray();
+  if (!byteArray.isNull()) {
+    iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+  } else {
+    iconTab.load(":/images/feed");
+  }
+  currentNewsTab->newsIconTitle_->setPixmap(iconTab);
+
+  //! Устанавливаем текст для открытой вкладки
+  QString tabText = feedsTreeModel_->index(
+      feedRow, feedsTreeModel_->proxyColumnByOriginal("text"), index.parent())
+      .data().toString();
+  currentNewsTab->newsTitleLabel_->setToolTip(tabText);
+  tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
+        tabText, Qt::ElideRight, currentNewsTab->newsTextTitle_->width() - 15);
+  currentNewsTab->newsTextTitle_->setText(tabText);
+
+  feedProperties_->setEnabled(index.isValid());
+  if (!index.isValid())
+    currentNewsTab->setVisible(false);
+
+  // FIXME: (arhohryakov:05.11.2012)
+  // Зачем мы переустанавливаем фильтр лент?
+//  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+
+//  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+
+  setNewsFilter(newsFilterGroup_->checkedAction(), false);
+
+  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+
+  if (newsModel_->rowCount() != 0) {
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+  }
+
+  // выбор новости ленты, отображамой ранее
+  int newsRow = -1;
+  int newsIdCur = feedsTreeModel_->index(
+      feedRow, feedsTreeModel_->proxyColumnByOriginal("currentNews"), index.parent())
+      .data().toInt();
+  if ((openingFeedAction_ == 0) || !clicked) {
+    for (int i = 0; i < newsModel_->rowCount(); i++) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
+          newsIdCur) {
+        newsRow = i;
+        break;
+      }
+    }
+  } else if (openingFeedAction_ == 1) {
+    newsRow = 0;
+  } else if (openingFeedAction_ == 3) {
+    for (int i = newsModel_->rowCount()-1; i >= 0; i--) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+        newsRow = i;
+        break;
+      }
+    }
+  }
+
+  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+
+  newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+
+  if (newsRow == -1)
+    newsView_->verticalScrollBar()->setValue(newsRow);
+
+  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+
+  if (clicked) {
+    if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+      qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+    } else {
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, 6));
+      qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+      QSqlQuery q(db_);
+      int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+      q.exec(qStr);
+      qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+    }
+  } else {
+    slotUpdateStatus();
+    qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
   }
 }
 
