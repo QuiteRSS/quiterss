@@ -549,10 +549,20 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       }
     }
 
+    // Запись текущей новости в ленту
     QSqlQuery q(rsslisting_->db_);
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
         arg(newsId).arg(feedId_);
     q.exec(qStr);
+
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+
+    QModelIndex feedIndex = rsslisting_->feedsTreeModel_->getIndexById(feedId_, 0);
+    rsslisting_->feedsTreeModel_->setData(
+        rsslisting_->feedsTreeModel_->index(feedIndex.row(),
+            rsslisting_->feedsTreeModel_->proxyColumnByOriginal("currentNews"),
+            feedIndex.parent()),
+        newsId);
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
