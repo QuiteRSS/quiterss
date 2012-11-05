@@ -3051,6 +3051,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     feedsFilterAction = pAct;
 }
 
+/** @brief Установка фильтра для таблицы новостей *****************************/
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
   if (currentNewsTab == NULL) return;
@@ -3064,6 +3065,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
+  // FIXME: (arhohryakov:05.11.2012)
+  // Нужен комментарий, для чего мы текущего фида изменяем поле read с "1" на "2"
   if (clicked) {
     QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").
         arg(feedId);
@@ -3071,8 +3074,10 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     q.exec(qStr);
   }
 
+  // Создаем фильтр по ленте
   newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
 
+  // ... добавляем фильтр из "фильтра"
   if (pAct->objectName() == "filterNewsAll_") {
     newsFilterStr.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
@@ -3094,6 +3099,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   else
     currentNewsTab->setVisibleAction(false);
 
+  // ... добавляем фильтр из "поиска"
   QString filterStr = newsFilterStr;
   if (currentNewsTab->findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct") {
     filterStr.append(
@@ -3111,9 +3117,14 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
                              currentNewsTab->newsHeader_->sortIndicatorOrder());
   }
 
+  // TODO:(arhohryakov:05.11.2012)
+  // Переустановка иконки строки поиска. Думается, что нужно её делать не здесь,
+  // а непосредственно при выборе
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
+  // Если слот был вызван непосредственным нажатием пользователя,
+  // возвращаем курсор на текущий индекс
   if (clicked) {
     int newsRow = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -3128,6 +3139,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
+  // FIXME: (arhohryakov(05.11.2012)
+  // Зачем нам знать, какой фильтр отработал?
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction = pAct;
 }
