@@ -521,22 +521,22 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  int indexId;
+  int newsId;
 
-  indexId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
   if (!index.isValid()) {
     hideWebContent();
     rsslisting_->slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
-    currentNewsIdOld = indexId;
+    currentNewsIdOld = newsId;
     currentFeedIdOld = feedId_;
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
-  if (!((indexId == currentNewsIdOld) && (feedId_ == currentFeedIdOld) &&
+  if (!((newsId == currentNewsIdOld) && (feedId_ == currentFeedIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
-      clicked) {
+        clicked) {
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -551,7 +551,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
     QSqlQuery q(rsslisting_->db_);
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
-        arg(indexId).arg(feedId_);
+        arg(newsId).arg(feedId_);
     q.exec(qStr);
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -566,7 +566,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   }
   rsslisting_->slotUpdateStatus();
 
-  currentNewsIdOld = indexId;
+  currentNewsIdOld = newsId;
   currentFeedIdOld = feedId_;
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
