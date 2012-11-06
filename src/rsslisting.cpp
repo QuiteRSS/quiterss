@@ -1265,7 +1265,7 @@ void RSSListing::createMenu()
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
   feedsToolBar_->addAction(feedsFilter_);
-  feedsFilterAction = NULL;
+  feedsFilterAction_ = NULL;
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
   feedsColumnsMenu_ = new QMenu(this);
@@ -3002,6 +3002,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
         feedsView_->currentIndex().row(),
         feedsModel_->fieldIndex("unread")).data(Qt::EditRole).toInt();
 
+  // Создаем фильтр лент из "фильтра"
   QString strFilter;
   if (pAct->objectName() == "filterFeedsAll_") {
     strFilter = "";
@@ -3019,6 +3020,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     strFilter = QString("label LIKE '\%starred\%'");
   }
 
+  // ... добавляем фильтр из "поиска"
   if (findFeedsWidget_->isVisible()) {
     if (pAct->objectName() != "filterFeedsAll_")
       strFilter.append(" AND ");
@@ -3029,6 +3031,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     }
   }
 
+  // Установка фильтра
   feedsModel_->setFilter(strFilter);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->setFilter(strFilter);
   // ... и обновление дерева
@@ -3037,6 +3040,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
+  // Восстановление курсора на ранее отображаемую ленту
   int rowFeeds = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
     if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == feedId) {
@@ -3053,8 +3057,10 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
   }
 
+  // Сохраняем фильтр для дальнейшего использования при включении последнего
+  // использованного фильтра
   if (pAct->objectName() != "filterFeedsAll_")
-    feedsFilterAction = pAct;
+    feedsFilterAction_ = pAct;
 }
 
 /** @brief Установка фильтра для таблицы новостей *****************************/
@@ -3305,9 +3311,9 @@ void RSSListing::setCurrentFeed()
 void RSSListing::slotFeedsFilter()
 {
   if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
-    if (feedsFilterAction != NULL) {
-      feedsFilterAction->setChecked(true);
-      setFeedsFilter(feedsFilterAction);
+    if (feedsFilterAction_ != NULL) {
+      feedsFilterAction_->setChecked(true);
+      setFeedsFilter(feedsFilterAction_);
     } else {
       feedsFilterMenu_->popup(
             feedsToolBar_->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));

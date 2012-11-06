@@ -248,7 +248,7 @@ private:
   QActionGroup *feedsFilterGroup_;
   QActionGroup *browserZoomGroup_;
 
-  QAction *feedsFilterAction;
+  QAction *feedsFilterAction_; //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра
   QAction *newsFilterAction_;  //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра
 
   QAction *showUnreadCount_;
