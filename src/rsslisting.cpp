@@ -2296,13 +2296,10 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   if (!index.isValid())
     currentNewsTab->setVisible(false);
 
-  // FIXME: (arhohryakov:05.11.2012)
-  // Зачем мы переустанавливаем фильтр лент?
-  // FIXME: (egor.shilyaev:05.11.2012)
-  // Чтобы лента вдруг не исчезла, когда попадёт под фильтрацию =)
-//  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+  // Переустанавливаем фильтр, чтобы текущая лента не исчезала при изменении фильтра лент
+  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
-//  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
@@ -2995,7 +2992,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
 
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
-  int id = feedsModel_->index(
+  int feedId = feedsModel_->index(
         feedsView_->currentIndex().row(),
         feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
   int newCount = feedsModel_->index(
@@ -3012,12 +3009,12 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     if (clicked && !newCount) {
       strFilter = QString("newCount > 0");
     } else
-      strFilter = QString("(newCount > 0 OR id=='%1')").arg(id);
+      strFilter = QString("(newCount > 0 OR id=='%1')").arg(feedId);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
     if (clicked && !unRead) {
       strFilter = QString("unread > 0");
     } else
-      strFilter = QString("(unread > 0 OR id=='%1')").arg(id);
+      strFilter = QString("(unread > 0 OR id=='%1')").arg(feedId);
   } else if (pAct->objectName() == "filterFeedsStarred_") {
     strFilter = QString("label LIKE '\%starred\%'");
   }
@@ -3033,17 +3030,24 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   }
 
   feedsModel_->setFilter(strFilter);
+  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->setFilter(strFilter);
+  // ... и обновление дерева
+  feedsTreeModel_->refresh();
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   int rowFeeds = -1;
   for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == id) {
+    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == feedId) {
       rowFeeds = i;
     }
   }
   feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+  // ... то же у дерева
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
+  feedsTreeView_->setCurrentIndex(feedIndex);
 
   if (clicked && (tabWidget_->currentIndex() == 0)) {
     slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
