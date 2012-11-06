@@ -3130,9 +3130,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
                              currentNewsTab->newsHeader_->sortIndicatorOrder());
   }
 
-  // TODO:(arhohryakov:05.11.2012)
-  // Переустановка иконки строки поиска. Думается, что нужно её делать не здесь,
-  // а непосредственно при выборе
+  // Переустановка иконки нужна при вызове слота непосредственным кликом пользователя
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
