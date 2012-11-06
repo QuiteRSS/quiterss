@@ -249,7 +249,7 @@ private:
   QActionGroup *browserZoomGroup_;
 
   QAction *feedsFilterAction;
-  QAction *newsFilterAction;
+  QAction *newsFilterAction_;  //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра
 
   QAction *showUnreadCount_;
   QAction *showUndeleteCount_;

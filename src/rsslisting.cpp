@@ -1324,7 +1324,7 @@ void RSSListing::createMenu()
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
-  newsFilterAction = NULL;
+  newsFilterAction_ = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
   newsMenu_->addSeparator();
@@ -3142,9 +3142,10 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // Запоминаем выбранный фильтр, для включения при следующем запуске программы
+  // Запоминаем выбранный фильтр, для использования именно его при следующем включении фильтра,
+  // если включается последний используемый фильтр
   if (pAct->objectName() != "filterNewsAll_")
-    newsFilterAction = pAct;
+    newsFilterAction_ = pAct;
 }
 
 void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
@@ -3316,9 +3317,9 @@ void RSSListing::slotFeedsFilter()
 void RSSListing::slotNewsFilter()
 {
   if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
-    if (newsFilterAction != NULL) {
-      newsFilterAction->setChecked(true);
-      setNewsFilter(newsFilterAction);
+    if (newsFilterAction_ != NULL) {
+      newsFilterAction_->setChecked(true);
+      setNewsFilter(newsFilterAction_);
     } else {
       newsFilterMenu_->popup(
             currentNewsTab->newsToolBar_->mapToGlobal(
