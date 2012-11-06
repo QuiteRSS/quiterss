@@ -69,9 +69,12 @@ void FeedsTreeView::setSelectIndex()
   selectIndex = currentIndex();
 }
 
+/** @brief Обновление курсора без пролистывания списка ************************/
 void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
 {
+  setUpdatesEnabled(false);
   int topRow = verticalScrollBar()->value();
   setCurrentIndex(index);
   verticalScrollBar()->setValue(topRow);
+  setUpdatesEnabled(true);
 }
