@@ -26,9 +26,9 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
 {
   if (!indexAt(event->pos()).isValid()) return;
 
-  selectIndex = indexAt(event->pos());
+  selectIndex_ = indexAt(event->pos());
   if ((event->buttons() & Qt::MiddleButton)) {
-    if (selectIndex.isValid())
+    if (selectIndex_.isValid())
       emit signalMiddleClicked();
   } else if (event->buttons() & Qt::RightButton) {
 
@@ -60,13 +60,13 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
 /*virtual*/ void FeedsTreeView::currentChanged(const QModelIndex &current,
                                            const QModelIndex &previous)
 {
-  selectIndex = current;
+  selectIndex_ = current;
   QTreeView::currentChanged(current, previous);
 }
 
 void FeedsTreeView::setSelectIndex()
 {
-  selectIndex = currentIndex();
+  selectIndex_ = currentIndex();
 }
 
 /** @brief Обновление курсора без пролистывания списка ************************/

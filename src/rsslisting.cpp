@@ -1767,16 +1767,18 @@ void RSSListing::addFolder()
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
 void RSSListing::deleteFeed()
 {
-  if (feedsView_->selectIndex.isValid()) {
-    int id = feedsModel_->record(
-          feedsView_->selectIndex.row()).field("id").value().toInt();
+  if (feedsTreeView_->selectIndex_.isValid()) {
+    int id = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
     msgBox.setWindowTitle(tr("Delete Feed"));
     msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
-                   arg(feedsModel_->record(feedsView_->selectIndex.row())
-                       .field("text").value().toString()));
+        arg(feedsTreeModel_->index(
+                feedsTreeView_->selectIndex_.row(),
+                feedsTreeModel_->proxyColumnByOriginal("text"),
+                feedsTreeView_->selectIndex_.parent())
+            .data().toString()));
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
 
@@ -2133,7 +2135,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     }
   }
 
-  feedsView_->selectIndex = feedsView_->currentIndex();
+  feedsTreeView_->selectIndex_ = feedsTreeView_->currentIndex();
 
   // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
   if (parseFeedId == currentNewsTab->feedId_) {
@@ -2930,10 +2932,8 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   QString qStr;
 
   int feedId;
-  if (feedsView_->selectIndex.isValid())
-    feedId = feedsModel_->index(
-            feedsView_->selectIndex.row(),
-            feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  if (feedsTreeView_->selectIndex_.isValid())
+    feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
   else
     feedId = currentNewsTab->feedId_;
 
@@ -3633,12 +3633,12 @@ void RSSListing::showContextMenuToolBar(const QPoint &p)
 
 void RSSListing::slotShowFeedPropertiesDlg()
 {
-  if (!feedsView_->selectIndex.isValid()){
+  if (!feedsTreeView_->selectIndex_.isValid()){
     feedProperties_->setEnabled(false);
     return;
   }
 
-  QModelIndex index = feedsView_->selectIndex;
+  QModelIndex index = feedsTreeView_->selectIndex_;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(this);
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
@@ -3757,7 +3757,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
 void RSSListing::slotFeedMenuShow()
 {
-  feedProperties_->setEnabled(feedsTreeView_->selectIndex.isValid());
+  feedProperties_->setEnabled(feedsTreeView_->selectIndex_.isValid());
 }
 
 //! Обновление информации в трее: значок и текст подсказки
@@ -3946,10 +3946,9 @@ void RSSListing::showNewsFiltersDlg(bool newFilter)
 
 void RSSListing::showFilterRulesDlg()
 {
-  if (!feedsView_->selectIndex.isValid()) return;
+  if (!feedsTreeView_->selectIndex_.isValid()) return;
 
-  int feedId = feedsModel_->record(
-        feedsView_->selectIndex.row()).field("id").value().toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
 
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         this, -1, feedId);
@@ -4153,8 +4152,10 @@ void RSSListing::slotSwitchFocus()
 //! Открытие ленты в новой вкладке
 void RSSListing::slotOpenFeedNewTab()
 {
-  feedsView_->setCurrentIndex(feedsView_->selectIndex);
-  slotFeedsTreeSelected(feedsView_->selectIndex, true, true);
+//  feedsView_->setCurrentIndex(feedsView_->selectIndex);
+//  slotFeedsTreeSelected(feedsView_->selectIndex, true, true);
+  feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex_);
+  slotFeedSelected(feedsTreeView_->selectIndex_, true, true);
 }
 
 //! Закрытие вкладки

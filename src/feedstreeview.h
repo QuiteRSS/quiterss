@@ -10,7 +10,7 @@ class FeedsTreeView : public QyurSqlTreeView
   Q_OBJECT
 public:
   FeedsTreeView(QWidget * parent = 0);
-  QModelIndex selectIndex;
+  QModelIndex selectIndex_;
 
 public slots:
   void setSelectIndex();
