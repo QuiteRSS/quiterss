@@ -1909,6 +1909,8 @@ void RSSListing::slotImportFeeds()
   QModelIndex index = feedsView_->currentIndex();
   feedsModel_->select();
   feedsView_->updateCurrentIndex(index);
+
+  feedsTreeModel_->refresh();
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
