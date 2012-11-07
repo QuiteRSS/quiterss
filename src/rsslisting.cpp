@@ -2185,6 +2185,10 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
     if (tabWidget_->currentIndex() != 0) {
       tabWidget_->setCurrentIndex(0);
       feedsView_->setCurrentIndex(index);
+    } else {
+      if (indexTab != -1) {
+        tabWidget_->setCurrentIndex(indexTab);
+      }
     }
 
     //! При переходе на другую ленту метим старую просмотренной
@@ -2195,10 +2199,6 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
   }
   feedIdOld = feedsModel_->index(
       feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
-
-  if (indexTab != -1) {
-    tabWidget_->setCurrentIndex(indexTab);
-  }
 }
 
 void RSSListing::slotFeedClicked(QModelIndex index)
