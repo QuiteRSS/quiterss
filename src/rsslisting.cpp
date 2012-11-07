@@ -580,10 +580,12 @@ void RSSListing::createFeedsDock()
   connect(feedsView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
   connect(feedsView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
-  connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuFeed(const QPoint &)));
+//  connect(feedsView_, SIGNAL(customContextMenuRequested(QPoint)),
+//          this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsTreeView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedClicked(QModelIndex)));
+  connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
           this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
 
@@ -3210,16 +3212,18 @@ void RSSListing::createMenuFeed()
   feedContextMenu_->addAction(setFilterNewsAct_);
   feedContextMenu_->addAction(feedProperties_);
 
+//  connect(feedContextMenu_, SIGNAL(aboutToHide()),
+//          feedsView_, SLOT(setSelectIndex()), Qt::QueuedConnection);
   connect(feedContextMenu_, SIGNAL(aboutToHide()),
-          feedsView_, SLOT(setSelectIndex()), Qt::QueuedConnection);
+          feedsTreeView_, SLOT(setSelectIndex()), Qt::QueuedConnection);
   connect(feedContextMenu_, SIGNAL(aboutToShow()),
           this, SLOT(slotFeedMenuShow()));
 }
 
 void RSSListing::showContextMenuFeed(const QPoint &p)
 {
-  if (feedsView_->indexAt(p).isValid())
-    feedContextMenu_->popup(feedsView_->viewport()->mapToGlobal(p));
+  if (feedsTreeView_->indexAt(p).isValid())
+    feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
 }
 
 void RSSListing::setAutoLoadImages(bool set)
@@ -3753,8 +3757,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
 void RSSListing::slotFeedMenuShow()
 {
-  if (feedsView_->selectIndex.isValid()) feedProperties_->setEnabled(true);
-  else feedProperties_->setEnabled(false);
+  feedProperties_->setEnabled(feedsTreeView_->selectIndex.isValid());
 }
 
 //! Обновление информации в трее: значок и текст подсказки
