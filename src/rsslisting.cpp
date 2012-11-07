@@ -2866,9 +2866,7 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 
 void RSSListing::markFeedRead()
 {
-  int feedId = feedsModel_->index(
-            feedsView_->selectIndex.row(),
-            feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
 
   db_.transaction();
   QSqlQuery q(db_);
