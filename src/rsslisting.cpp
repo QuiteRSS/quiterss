@@ -4617,6 +4617,11 @@ void RSSListing::feedsModelReload()
     }
   }
   feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+  feedsTreeModel_->refresh();
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
+  feedsTreeView_->setCurrentIndex(feedIndex);
 }
 
 void RSSListing::setCurrentTab(int index, bool updateTab)
