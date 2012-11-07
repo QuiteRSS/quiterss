@@ -2248,9 +2248,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
 
   int feedRow = index.row();
-  int feedId = feedsTreeModel_->index(
-      feedRow, feedsTreeModel_->proxyColumnByOriginal("id"), index.parent())
-      .data().toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(index);
 
   // Открытие или создание вкладки с лентой
   if ((!tabWidget_->count() && clicked) || createTab) {
