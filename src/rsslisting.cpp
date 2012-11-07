@@ -2305,11 +2305,6 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
 
-  if (newsModel_->rowCount() != 0) {
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-  }
-
   // выбор новости ленты, отображамой ранее
   int newsRow = -1;
   int newsIdCur = feedsTreeModel_->index(
@@ -2420,11 +2415,6 @@ void RSSListing::slotFeedsTreeSelected(QModelIndex index, bool clicked,
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-  if (newsModel_->rowCount() != 0) {
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-  }
 
   // выбор новости ленты, отображамой ранее
   int newsRow = -1;
@@ -3122,6 +3112,10 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << filterStr;
   newsModel_->setFilter(filterStr);
+
+  while (newsModel_->canFetchMore())
+    newsModel_->fetchMore();
+
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   if ((currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("read")) ||
@@ -3886,9 +3880,6 @@ void RSSListing::markAllFeedsOld()
     int currentRow = newsView_->currentIndex().row();
 
     setNewsFilter(newsFilterGroup_->checkedAction(), false);
-
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
 
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }

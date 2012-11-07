@@ -803,9 +803,6 @@ void NewsTabWidget::markNewsRead()
 
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
@@ -880,9 +877,6 @@ void NewsTabWidget::markNewsStar()
 
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
@@ -929,9 +923,6 @@ void NewsTabWidget::deleteNews()
     rsslisting_->db_.commit();
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
   }
-
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
 
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
@@ -996,9 +987,6 @@ void NewsTabWidget::restoreNews()
     rsslisting_->db_.commit();
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
   }
-
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
 
   if (curIndex.row() == newsModel_->rowCount())
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
