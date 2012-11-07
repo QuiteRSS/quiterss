@@ -2980,15 +2980,16 @@ void RSSListing::slotUpdateStatus(bool openFeed)
 
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
-  int feedId = feedsModel_->index(
-        feedsView_->currentIndex().row(),
-        feedsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  int newCount = feedsModel_->index(
-        feedsView_->currentIndex().row(),
-        feedsModel_->fieldIndex("newCount")).data(Qt::EditRole).toInt();
-  int unRead = feedsModel_->index(
-        feedsView_->currentIndex().row(),
-        feedsModel_->fieldIndex("unread")).data(Qt::EditRole).toInt();
+  QModelIndex index = feedsTreeView_->currentIndex();
+  int feedId = feedsTreeModel_->getIdByIndex(index);
+  int newCount = feedsTreeModel_->index(
+        index.row(),
+        feedsTreeModel_->proxyColumnByOriginal("newCount"),
+        index.parent()).data(Qt::EditRole).toInt();
+  int unRead = feedsTreeModel_->index(
+        index.row(),
+        feedsTreeModel_->proxyColumnByOriginal("unread"),
+        index.parent()).data(Qt::EditRole).toInt();
 
   // Создаем фильтр лент из "фильтра"
   QString strFilter;
