@@ -584,6 +584,8 @@ void RSSListing::createFeedsDock()
 //          this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsTreeView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedClicked(QModelIndex)));
+  connect(feedsTreeView_, SIGNAL(signalMiddleClicked()),
+          this, SLOT(slotOpenFeedNewTab()));
   connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
@@ -4152,8 +4154,6 @@ void RSSListing::slotSwitchFocus()
 //! Открытие ленты в новой вкладке
 void RSSListing::slotOpenFeedNewTab()
 {
-//  feedsView_->setCurrentIndex(feedsView_->selectIndex);
-//  slotFeedsTreeSelected(feedsView_->selectIndex, true, true);
   feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex_);
   slotFeedSelected(feedsTreeView_->selectIndex_, true, true);
 }
@@ -4213,6 +4213,10 @@ void RSSListing::slotTabCurrentChanged(int index)
         }
       }
       feedsView_->setCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, 0);
+      feedsTreeView_->setCurrentIndex(feedIndex);
+
       setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
       slotUpdateNews();
