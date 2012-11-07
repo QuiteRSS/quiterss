@@ -2203,9 +2203,9 @@ void RSSListing::slotFeedsTreeClicked(QModelIndex index)
 
 void RSSListing::slotFeedClicked(QModelIndex index)
 {
-  int feedIdCur = feedsTreeModel_->index(
-      index.row(), feedsTreeView_->columnIndex("id"), index.parent()).
-      data().toInt();
+  static int feedIdOld = -2;
+
+  int feedIdCur = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
 
   // Поиск уже открытого таба с этой лентой
   int indexTab = -1;
@@ -2222,14 +2222,14 @@ void RSSListing::slotFeedClicked(QModelIndex index)
   if ((feedIdCur != feedIdOld) || (indexTab == -1)) {
     if (tabWidget_->currentIndex() != 0) {
       tabWidget_->setCurrentIndex(0);
-      feedsView_->setCurrentIndex(index);
+      feedsTreeView_->setCurrentIndex(index);
     }
 
     //! При переходе на другую ленту метим старую просмотренной
     setFeedRead(feedIdOld, 0);
 
     slotFeedSelected(index, true);
-    feedsView_->repaint();
+    feedsTreeView_->repaint();
   }
   feedIdOld = feedIdCur;
 
