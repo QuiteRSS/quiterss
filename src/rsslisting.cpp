@@ -2791,9 +2791,10 @@ void RSSListing::slotGetFeed()
 {
   playSoundNewNews_ = false;
 
+  QModelIndex index = feedsTreeView_->currentIndex();
   persistentUpdateThread_->requestUrl(
-        feedsModel_->record(feedsView_->selectIndex.row()).field("xmlUrl").value().toString(),
-        QDateTime::fromString(feedsModel_->record(feedsView_->selectIndex.row()).field("lastBuildDate").value().toString(), Qt::ISODate)
+        feedsTreeModel_->index(index.row(), feedsTreeModel_->proxyColumnByOriginal("xmlUrl"), index.parent()).data().toString(),
+        QDateTime::fromString(feedsTreeModel_->index(index.row(), feedsTreeModel_->proxyColumnByOriginal("lastBuildDate"), index.parent()).data().toString(), Qt::ISODate)
         );
   showProgressBar(1);
 }
