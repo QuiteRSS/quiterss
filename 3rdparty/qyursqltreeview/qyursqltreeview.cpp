@@ -378,7 +378,9 @@ int QyurSqlTreeModel::getIdByIndex(const QModelIndex& index) const {
 }
 
 int QyurSqlTreeModel::getParidByIndex(const QModelIndex& index) const {
-	return static_cast<UserData*>(index.internalPointer())->parid;
+  if (index.isValid())
+    return static_cast<UserData*>(index.internalPointer())->parid;
+  return 0;
 }
 
 int QyurSqlTreeModel::getRootParentId() const {
