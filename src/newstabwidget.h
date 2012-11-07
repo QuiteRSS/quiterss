@@ -5,8 +5,8 @@
 #include <QtSql>
 #include <QtWebKit>
 
-#include "feedsmodel.h"
-#include "feedsview.h"
+#include "feedstreemodel.h"
+#include "feedstreeview.h"
 #include "findtext.h"
 #include "newsheader.h"
 #include "newsmodel.h"
@@ -30,8 +30,8 @@ private:
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
 
-  FeedsModel *feedsModel_;
-  FeedsView *feedsView_;
+  FeedsTreeModel *feedsTreeModel_;
+  FeedsTreeView *feedsTreeView_;
 
   QFrame *lineWebWidget;
   QWidget *webWidget_;

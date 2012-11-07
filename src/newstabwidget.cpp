@@ -13,8 +13,8 @@ NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
     feedId_(feedId)
 {
   rsslisting_ = qobject_cast<RSSListing*>(parent);
-  feedsView_ = rsslisting_->feedsView_;
-  feedsModel_ = rsslisting_->feedsModel_;
+  feedsTreeView_ = rsslisting_->feedsTreeView_;
+  feedsTreeModel_ = rsslisting_->feedsTreeModel_;
 
   currentNewsIdOld = -1;
   currentFeedIdOld = -1;
@@ -768,8 +768,7 @@ void NewsTabWidget::markNewsRead()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
 
   int cnt = indexes.count();
   if (cnt == 0) return;
@@ -803,11 +802,11 @@ void NewsTabWidget::markNewsRead()
 
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
+    int newsIdCur =
+        feedsTreeModel_->dataField(feedsTreeView_->currentIndex(), "currentNews").toInt();
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          feedsModel_->index(feedsView_->currentIndex().row(),
-                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsIdCur) {
         row = i;
         break;
       }
@@ -877,11 +876,11 @@ void NewsTabWidget::markNewsStar()
 
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
 
+    int newsIdCur =
+        feedsTreeModel_->dataField(feedsTreeView_->currentIndex(), "currentNews").toInt();
     int row = -1;
     for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          feedsModel_->index(feedsView_->currentIndex().row(),
-                             feedsModel_->fieldIndex("currentNews")).data().toInt()) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() == newsIdCur) {
         row = i;
         break;
       }
@@ -900,8 +899,7 @@ void NewsTabWidget::deleteNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
@@ -937,8 +935,7 @@ void NewsTabWidget::deleteAllNewsList()
 {
   QModelIndex curIndex;
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
 
   rsslisting_->db_.transaction();
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
@@ -966,8 +963,7 @@ void NewsTabWidget::restoreNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  int feedId = feedsModel_->index(
-      feedsView_->currentIndex().row(), feedsModel_->fieldIndex("id")).data().toInt();
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
@@ -1047,9 +1043,11 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
   //   новость обновляется именно у него
   if (authorString.isEmpty()) {
-    authorName = feedsModel_->record(feedsView_->currentIndex().row()).field("author_name").value().toString();
-    authorEmail = feedsModel_->record(feedsView_->currentIndex().row()).field("author_email").value().toString();
-    authorUri = feedsModel_->record(feedsView_->currentIndex().row()).field("author_uri").value().toString();
+    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
+    authorEmail = feedsTreeModel_->dataField(currentIndex, "author_email").toString();
+    authorUri   = feedsTreeModel_->dataField(currentIndex, "author_uri").toString();
+
     //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
     authorString = authorName;
     if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
@@ -1083,8 +1081,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 void NewsTabWidget::slotLinkClicked(QUrl url)
 {
     if (url.host().isEmpty()) {
-      QUrl hostUrl(feedsModel_->record(feedsView_->currentIndex().row()).
-                   field("htmlUrl").value().toUrl());
+      QModelIndex currentIndex = feedsTreeView_->currentIndex();
+      QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
+
       url.setScheme(hostUrl.scheme());
       url.setHost(hostUrl.host());
     }

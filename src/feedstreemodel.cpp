@@ -96,6 +96,16 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
   return QyurSqlTreeModel::data(index, role);
 }
 
+QVariant FeedsTreeModel::dataField(const QModelIndex &index, const QString &fieldName) const
+{
+  return
+      QyurSqlTreeModel::index(
+          index.row(),
+          proxyColumnByOriginal(fieldName),
+          index.parent())
+      .data(Qt::EditRole);
+}
+
 /*virtual*/ bool	FeedsTreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   return QyurSqlTreeModel::setData(index, value, role);

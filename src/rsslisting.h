@@ -7,8 +7,6 @@
 
 #include "dbmemfilethread.h"
 #include "faviconloader.h"
-#include "feedsmodel.h"
-#include "feedsview.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
@@ -36,8 +34,6 @@ public:
 
   QSettings *settings_;
   QSqlDatabase db_;
-  FeedsModel *feedsModel_;
-  FeedsView *feedsView_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
   QTabWidget *tabWidget_;
@@ -102,12 +98,9 @@ public slots:
   void deleteFeed();
   void slotImportFeeds();
   void slotExportFeeds();
-  void slotFeedsTreeClicked(QModelIndex index);
   void slotFeedClicked(QModelIndex index);
   void slotFeedSelected(QModelIndex index, bool clicked = false,
                         bool createTab = false);
-  void slotFeedsTreeSelected(QModelIndex index, bool clicked = false,
-                             bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
   void showOptionDlg();
