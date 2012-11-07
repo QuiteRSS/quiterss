@@ -1770,7 +1770,7 @@ void RSSListing::addFolder()
 void RSSListing::deleteFeed()
 {
   if (feedsTreeView_->selectIndex_.isValid()) {
-    int id = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
+    int deleteId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
@@ -1788,30 +1788,36 @@ void RSSListing::deleteFeed()
 
     db_.transaction();
     QSqlQuery q(db_);
-    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
-    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
+    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(deleteId));
+    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(deleteId));
     q.exec("VACUUM");
     q.finish();
     db_.commit();
 
-    int rowFeeds = feedsView_->currentIndex().row();
-    int currentId = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
-    feedsModel_->select();
+//    int rowFeeds = feedsView_->currentIndex().row();
+//    int currentId = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
+//    feedsModel_->select();
 
-    if (currentId == id) {
-      if (feedsModel_->rowCount() == rowFeeds) rowFeeds--;
-    } else {
-      rowFeeds = -1;
-      for (int i = 0; i < feedsModel_->rowCount(); i++) {
-        if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentId) {
-          rowFeeds = i;
-        }
-      }
-    }
-    feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
-    slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+//    if (currentId == deleteId) {
+//      if (feedsModel_->rowCount() == rowFeeds) rowFeeds--;
+//    } else {
+//      rowFeeds = -1;
+//      for (int i = 0; i < feedsModel_->rowCount(); i++) {
+//        if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == currentId) {
+//          rowFeeds = i;
+//        }
+//      }
+//    }
+//    feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+
+    int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+    feedsTreeModel_->refresh();
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
+    feedsTreeView_->setCurrentIndex(feedIndex);
+
+//    slotFeedsTreeClicked(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+    slotFeedClicked(feedsTreeView_->selectIndex_);
   }
-  feedsTreeModel_->refresh();
 }
 
 /*! \brief Импорт лент из OPML-файла ******************************************/
@@ -1912,11 +1918,11 @@ void RSSListing::slotImportFeeds()
     showProgressBar(requestUrlCount);
   }
 
-  QModelIndex index = feedsView_->currentIndex();
-  feedsModel_->select();
-  feedsView_->updateCurrentIndex(index);
-
+  int feedId = feedsTreeModel_->getIdByIndex(feedsView_->currentIndex());
+  int feedParId = feedsTreeModel_->getParidByIndex(feedsView_->currentIndex());
   feedsTreeModel_->refresh();
+  QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+  feedsTreeView_->setCurrentIndex(index);
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
@@ -3633,6 +3639,7 @@ void RSSListing::showContextMenuToolBar(const QPoint &p)
   mainToolbarMenu_->popup(mainToolbar_->mapToGlobal(p));
 }
 
+// TODO: (arhohryakov:07.11.2012) Replace all feedsModel_->record(
 void RSSListing::slotShowFeedPropertiesDlg()
 {
   if (!feedsTreeView_->selectIndex_.isValid()){
@@ -3734,14 +3741,18 @@ void RSSListing::slotShowFeedPropertiesDlg()
   q.addBindValue(id);
   q.exec();
 
-  QModelIndex currentIndex = feedsView_->currentIndex();
-  feedsModel_->select();
-  feedsView_->updateCurrentIndex(currentIndex);
+  int feedId = feedsTreeModel_->getIdByIndex(feedsView_->currentIndex());
+  int feedParId = feedsTreeModel_->getParidByIndex(feedsView_->currentIndex());
+  feedsTreeModel_->refresh();
+  QModelIndex currentIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  feedsTreeView_->setCurrentIndex(currentIndex);
 
   if (currentIndex == index) {
     QPixmap iconTab;
-    byteArray = feedsModel_->index(
-          index.row(), feedsModel_->fieldIndex("image")).data().toByteArray();
+    byteArray = feedsTreeModel_->index(
+          index.row(),
+          feedsTreeModel_->proxyColumnByOriginal("image"),
+          index.parent()).data().toByteArray();
     if (!byteArray.isNull()) {
       iconTab.loadFromData(QByteArray::fromBase64(byteArray));
     } else {
@@ -3749,7 +3760,9 @@ void RSSListing::slotShowFeedPropertiesDlg()
     }
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
-    QString tabText = feedsModel_->index(index.row(), feedsModel_->fieldIndex("text")).data().toString();
+    QString tabText = feedsTreeModel_->index(index.row(),
+        feedsTreeModel_->proxyColumnByOriginal("text"),
+        index.parent()).data().toString();
     currentNewsTab->newsTitleLabel_->setToolTip(tabText);
     tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
@@ -4606,16 +4619,16 @@ void RSSListing::slotOpenNewsBackgroundTab()
 //! Перечитывание модели лент
 void RSSListing::feedsModelReload()
 {
-  int rowFeeds = feedsView_->currentIndex().row();
-  int id = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
-  feedsModel_->select();
-  rowFeeds = -1;
-  for (int i = 0; i < feedsModel_->rowCount(); i++) {
-    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
-      rowFeeds = i;
-    }
-  }
-  feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
+//  int rowFeeds = feedsView_->currentIndex().row();
+//  int id = feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("id")).data().toInt();
+//  feedsModel_->select();
+//  rowFeeds = -1;
+//  for (int i = 0; i < feedsModel_->rowCount(); i++) {
+//    if (feedsModel_->index(i, feedsModel_->fieldIndex("id")).data().toInt() == id) {
+//      rowFeeds = i;
+//    }
+//  }
+//  feedsView_->updateCurrentIndex(feedsModel_->index(rowFeeds, feedsModel_->fieldIndex("text")));
 
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
   feedsTreeModel_->refresh();
