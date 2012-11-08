@@ -3765,17 +3765,40 @@ void RSSListing::slotNewVersion(bool newVersion)
   }
 }
 
-/*! \brief Обработка клавиш Up/Down в дереве лент *****************************/
+/*! \brief Обработка клавиш Key_Up в дереве лент ******************************/
 void RSSListing::slotFeedUpPressed()
 {
-  QModelIndex index = feedsTreeView_->indexAbove(feedsTreeView_->currentIndex());
+  QModelIndex index = feedsTreeView_->currentIndex();
+
+  // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по лентам
+  if (!index.isValid())
+    index = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+  else
+    index = feedsTreeView_->indexAbove(index);
+
+  // Если индекса "выше" не существует
+  if (!index.isValid())
+    index = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
 
+/*! \brief Обработка клавиш Key_Down в дереве лент ****************************/
 void RSSListing::slotFeedDownPressed()
 {
-  QModelIndex index = feedsTreeView_->indexBelow(feedsTreeView_->currentIndex());
+  QModelIndex index = feedsTreeView_->currentIndex();
+
+  // Если нет текущего индекса устанавливаем его в начало, т.к. мы хотим "опускаться" по лентам
+  if (!index.isValid())
+    index = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+  else
+    index = feedsTreeView_->indexBelow(index);
+
+  // Если индекса "ниже" не существует
+  if (!index.isValid())
+    index = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
