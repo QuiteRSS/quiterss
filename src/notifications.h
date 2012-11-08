@@ -8,8 +8,8 @@ class NewsItem : public QWidget
 {
   Q_OBJECT
 public:
-  NewsItem(int idFeed, int idNews, int width, QWidget * parent = 0) :
-    QWidget(parent), feedId_(idFeed), newsId_(idNews)
+  NewsItem(int idFeed, int parIdFeed, int idNews, int width, QWidget * parent = 0) :
+    QWidget(parent), feedId_(idFeed), feedParId_(parIdFeed), newsId_(idNews)
   {
     read = false;
 
@@ -44,6 +44,7 @@ public:
             this, SLOT(markRead()));
   }
   int feedId_;
+  int feedParId_;
   int newsId_;
   QLabel *iconNews;
   QLabel *titleNews;
@@ -54,7 +55,7 @@ protected:
   bool eventFilter(QObject *obj, QEvent *event)
   {
     if(event->type() == QEvent::MouseButtonPress) {
-      emit signalTitleClicked(feedId_, newsId_);
+      emit signalTitleClicked(feedId_, feedParId_, newsId_);
       return true;
     } else {
       return QObject::eventFilter(obj, event);
@@ -74,7 +75,7 @@ private slots:
 
 signals:
   void signalMarkRead(int);
-  void signalTitleClicked(int, int);
+  void signalTitleClicked(int, int, int);
 
 };
 
@@ -121,7 +122,7 @@ private slots:
 signals:
   void signalShow();
   void signalDelete();
-  void signalOpenNews(int feedId, int newsId);
+  void signalOpenNews(int feedId, int feedParId, int newsId);
 
 };
 

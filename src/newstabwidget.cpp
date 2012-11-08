@@ -8,9 +8,9 @@
 
 RSSListing *rsslisting_;
 
-NewsTabWidget::NewsTabWidget(int feedId, QWidget *parent)
+NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
   : QWidget(parent),
-    feedId_(feedId)
+    feedId_(feedId), feedParId_(feedParId)
 {
   rsslisting_ = qobject_cast<RSSListing*>(parent);
   feedsTreeView_ = rsslisting_->feedsTreeView_;
@@ -557,7 +557,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-    QModelIndex feedIndex = rsslisting_->feedsTreeModel_->getIndexById(feedId_, 0);
+    QModelIndex feedIndex = rsslisting_->feedsTreeModel_->getIndexById(feedId_, feedParId_);
     rsslisting_->feedsTreeModel_->setData(
         rsslisting_->feedsTreeModel_->index(feedIndex.row(),
             rsslisting_->feedsTreeModel_->proxyColumnByOriginal("currentNews"),

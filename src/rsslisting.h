@@ -158,7 +158,7 @@ private:
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, int feedParId = 0);
-  void creatFeedTab(int feedId);
+  void creatFeedTab(int feedId, int feedParId);
   void feedsModelReload();
   void cleanUp();
 
@@ -422,7 +422,7 @@ private slots:
 
   void showNotification();
   void deleteNotification();
-  void slotOpenNew(int feedId, int newsId);
+  void slotOpenNew(int feedId, int feedParId, int newsId);
 
   void slotFindFeeds(QString text);
   void slotSelectFind();

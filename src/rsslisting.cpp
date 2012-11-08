@@ -1691,6 +1691,7 @@ void RSSListing::writeSettings()
   NewsTabWidget* widget = (NewsTabWidget*)tabWidget_->widget(0);
 
   settings_->setValue("feedSettings/currentId", widget->feedId_);
+  settings_->setValue("feedSettings/currentParId", widget->feedParId_);
   settings_->setValue("feedSettings/filterName",
                       feedsFilterGroup_->checkedAction()->objectName());
   settings_->setValue("newsSettings/filterName",
@@ -1768,8 +1769,9 @@ void RSSListing::deleteFeed()
     db_.commit();
 
     int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+    int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
     feedsTreeModel_->refresh();
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
     feedsTreeView_->setCurrentIndex(feedIndex);
 
     slotFeedClicked(feedsTreeView_->selectIndex_);
@@ -2202,7 +2204,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   // Открытие или создание вкладки с лентой
   if ((!tabWidget_->count() && clicked) || createTab) {
-    int indexTab = tabWidget_->addTab( new NewsTabWidget(feedId, this), "");
+    int indexTab = tabWidget_->addTab( new NewsTabWidget(feedId, feedParId, this), "");
     createNewsTab(indexTab);
 
     tabBar_->setTabButton(indexTab,
@@ -2767,10 +2769,15 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   QString qStr;
 
   int feedId;
-  if (feedsTreeView_->selectIndex_.isValid())
+  int feedParId;
+  if (feedsTreeView_->selectIndex_.isValid()) {
     feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
-  else
+    feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
+  }
+  else {
     feedId = currentNewsTab->feedId_;
+    feedParId = currentNewsTab->feedParId_;
+  }
 
   int newCountOld = 0;
   qStr = QString("SELECT newCount FROM feeds WHERE id=='%1'").
@@ -2778,7 +2785,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
 
-  recountFeedCounts(feedId, 0);
+  recountFeedCounts(feedId, feedParId);
 
   int newCount = 0;
   int unreadCount = 0;
@@ -3118,17 +3125,18 @@ void RSSListing::setCurrentFeed()
 {
   qApp->processEvents();
 
-  int id = settings_->value("feedSettings/currentId", 0).toInt();
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(id, 0);
+  int feedId = settings_->value("feedSettings/currentId", 0).toInt();
+  int feedParId = settings_->value("feedSettings/currentParId", 0).toInt();
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
   tabCurrentUpdateOff_ = true;
   slotFeedClicked(feedIndex);
   tabCurrentUpdateOff_ = false;
 
   QSqlQuery q(db_);
-  q.exec(QString("SELECT id FROM feeds WHERE displayOnStartup=1"));
+  q.exec(QString("SELECT id, parentId FROM feeds WHERE displayOnStartup=1"));
   while(q.next()) {
-    creatFeedTab(q.value(0).toInt());
+    creatFeedTab(q.value(0).toInt(), q.value(1).toInt());
   }
 }
 
@@ -3536,7 +3544,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
     return;
   }
 
-  int id = feedsTreeModel_->getIdByIndex(index);
+  int feedId = feedsTreeModel_->getIdByIndex(index);
+  int feedParId = feedsTreeModel_->getParidByIndex(index);
 
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
@@ -3552,11 +3561,9 @@ void RSSListing::slotShowFeedPropertiesDlg()
     q.addBindValue("starred");
   else
     q.addBindValue("");
-  q.addBindValue(id);
+  q.addBindValue(feedId);
   q.exec();
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-  int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
   feedsTreeModel_->refresh();
   QModelIndex currentIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(currentIndex);
@@ -3671,7 +3678,7 @@ void RSSListing::markAllFeedsRead()
 
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(0);
 
-    QModelIndex index = feedsTreeModel_->getIndexById(widget->feedId_, 0);
+    QModelIndex index = feedsTreeModel_->getIndexById(widget->feedId_, widget->feedParId_);
 
     if (!index.isValid()) {
       widget->newsModel_->setFilter("feedId=-1");
@@ -4034,7 +4041,7 @@ void RSSListing::slotTabCurrentChanged(int index)
         widget->hide();
       createNewsTab(index);
 
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, 0);
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedParId_);
       feedsTreeView_->setCurrentIndex(feedIndex);
 
       setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
@@ -4075,7 +4082,7 @@ void RSSListing::setBrowserPosition(QAction *action)
 //! Создание вкладки только с браузером
 QWebPage *RSSListing::createWebTab()
 {
-  NewsTabWidget *widget = new NewsTabWidget(-1, this);
+  NewsTabWidget *widget = new NewsTabWidget(-1, -1, this);
   int indexTab = tabWidget_->addTab(widget, "");
 
   tabBar_->setTabButton(indexTab,
@@ -4098,14 +4105,14 @@ QWebPage *RSSListing::createWebTab()
   return widget->webView_->page();
 }
 
-void RSSListing::creatFeedTab(int feedId)
+void RSSListing::creatFeedTab(int feedId, int feedParId)
 {
   QSqlQuery q(db_);
   q.exec(QString("SELECT text, image, currentNews FROM feeds WHERE id LIKE '%1'").
-         arg(feedId));
+         arg(feedParId));
 
   if (q.next()) {
-    NewsTabWidget *widget = new NewsTabWidget(feedId, this);
+    NewsTabWidget *widget = new NewsTabWidget(feedParId, feedParId, this);
     int indexTab = tabWidget_->addTab(widget, "");
     widget->setSettings();
     widget->retranslateStrings();
@@ -4130,7 +4137,7 @@ void RSSListing::creatFeedTab(int feedId)
           tabText, Qt::ElideRight, 114);
     widget->newsTextTitle_->setText(tabText);
 
-    QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
+    QString feedIdFilter(QString("feedId=%1 AND ").arg(feedParId));
     if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
       feedIdFilter.append("deleted = 0");
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsNew_") {
@@ -4175,7 +4182,7 @@ void RSSListing::creatFeedTab(int feedId)
       widget->slotNewsViewSelected(widget->newsModel_->index(-1, widget->newsModel_->fieldIndex("title")));
       QSqlQuery q(db_);
       int newsId = widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedParId);
       q.exec(qStr);
     }
   }
@@ -4426,8 +4433,9 @@ void RSSListing::slotOpenNewsBackgroundTab()
 void RSSListing::feedsModelReload()
 {
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+  int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
   feedsTreeModel_->refresh();
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
 }
 
@@ -4459,8 +4467,8 @@ void RSSListing::showNotification()
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
   connect(notificationWidget, SIGNAL(signalDelete()),
           this, SLOT(deleteNotification()));
-  connect(notificationWidget, SIGNAL(signalOpenNews(int,int)),
-          this, SLOT(slotOpenNew(int,int)));
+  connect(notificationWidget, SIGNAL(signalOpenNews(int,int,int)),
+          this, SLOT(slotOpenNew(int,int,int)));
 
   notificationWidget->show();
 }
@@ -4473,7 +4481,7 @@ void RSSListing::deleteNotification()
 }
 
 //! Показать новость при клике в окне уведомления входящих новостей
-void RSSListing::slotOpenNew(int feedId, int newsId)
+void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
 {
   deleteNotification();
 
@@ -4485,7 +4493,7 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   openNewsWebViewOn_ = true;
   feedIdOld = -2;
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
   slotFeedClicked(feedIndex);
 
@@ -4532,7 +4540,7 @@ void RSSListing::findFeedVisible(bool visible)
   } else {
     findFeeds_->clear();
     ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->setFilter("");
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, 0);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedId_);
     feedsTreeView_->setCurrentIndex(feedIndex);
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   }

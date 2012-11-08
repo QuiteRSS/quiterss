@@ -112,14 +112,16 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   QSqlQuery q(*db_);
   int cnt = 0;
   foreach (int idFeed, idFeedList_) {
-    QString qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
+    QString qStr = QString("SELECT text, image, parentId FROM feeds WHERE id=='%1'").
         arg(idFeed);
     q.exec(qStr);
     QString titleFeed;
     QPixmap iconFeed;
+    int parIdFeed;
     if (q.next()) {
       titleFeed = q.value(0).toString();
       QByteArray byteArray = q.value(1).toByteArray();
+      parIdFeed = q.value(2).toInt();
       if (!byteArray.isNull()) {
         iconFeed.loadFromData(QByteArray::fromBase64(byteArray));
       }
@@ -139,15 +141,15 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
         stackedWidget_->addWidget(pageWidget);
       } else cnt++;
 
-      NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(),
+      NewsItem *newsItem = new NewsItem(idFeed, parIdFeed, q.value(0).toInt(),
                                         widthTitleNews_, this);
       if (!iconFeed.isNull())
         newsItem->iconNews->setPixmap(iconFeed);
       newsItem->iconNews->setToolTip(titleFeed);
       connect(newsItem, SIGNAL(signalMarkRead(int)),
               this, SLOT(markRead(int)));
-      connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
-              this, SIGNAL(signalOpenNews(int, int)));
+      connect(newsItem, SIGNAL(signalTitleClicked(int, int, int)),
+              this, SIGNAL(signalOpenNews(int, int, int)));
 
       newsItem->titleNews->setFont(QFont(fontFamily, fontSize));
       QString titleStr = newsItem->titleNews->fontMetrics().elidedText(

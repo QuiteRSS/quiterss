@@ -63,7 +63,7 @@ private:
   bool webToolbarShow_;
 
 public:
-  explicit NewsTabWidget(int feedId, QWidget *parent);
+  explicit NewsTabWidget(int feedId, int feedParId, QWidget *parent);
 
   void retranslateStrings();
   void setSettings(bool newTab = true);
@@ -86,6 +86,7 @@ public:
   void setVisibleAction(bool show);
 
   int feedId_;
+  int feedParId_;
   bool autoLoadImages_;
 
   FindTextContent *findText_;
