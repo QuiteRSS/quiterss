@@ -2185,6 +2185,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
 
   int feedId = feedsTreeModel_->getIdByIndex(index);
+  int feedParId = feedsTreeModel_->getParidByIndex(index);
 
   // Открытие или создание вкладки с лентой
   if ((!tabWidget_->count() && clicked) || createTab) {
@@ -2237,7 +2238,8 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   // выбор новости ленты, отображамой ранее
   int newsRow = -1;
-  int newsIdCur = feedsTreeModel_->dataField(index, "currentNews").toInt();
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
   if ((openingFeedAction_ == 0) || !clicked) {
     for (int i = 0; i < newsModel_->rowCount(); i++) {
       if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
