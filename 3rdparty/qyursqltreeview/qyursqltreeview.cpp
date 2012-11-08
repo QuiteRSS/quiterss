@@ -217,6 +217,13 @@ void QyurSqlTreeModel::sort(int column, Qt::SortOrder order) {
 	d->clear();
 }
 
+void QyurSqlTreeModel::setFilter(const QString &filter) {
+  Q_D(QyurSqlTreeModel);
+  d->sourceModel.setFilter(filter);
+  reset();
+  d->clear();
+}
+
 bool QyurSqlTreeModel::setData(const QModelIndex& index, const QVariant& value, int role) {
 	Q_D(QyurSqlTreeModel);
 	return d->sourceModel.setData(mapToSource(index),value,role);

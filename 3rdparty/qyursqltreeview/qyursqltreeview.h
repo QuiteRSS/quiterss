@@ -49,6 +49,7 @@ public:
 	int rowCount(const QModelIndex& parent=QModelIndex()) const;
 	bool setData(const QModelIndex& index, const QVariant& value, int role =Qt::EditRole);
 	void sort(int column, Qt::SortOrder order=Qt::AscendingOrder);
+  void setFilter(const QString &filter);
 	QVariant headerData(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const;
 	QSqlTableModel* getSourceModel();
 
