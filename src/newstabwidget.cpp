@@ -567,7 +567,9 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     QWebSettings::globalSettings()->clearMemoryCaches();
-    webView_->setHtml("");
+    emit emit signalWebViewSetContent("");
+
+    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     updateWebView(index);
 
@@ -1322,7 +1324,7 @@ void NewsTabWidget::slotSelectFind()
 
 void NewsTabWidget::hideWebContent()
 {
-  webView_->setHtml("");
+  emit signalWebViewSetContent("");
   webPanel_->hide();
   setWebToolbarVisible(false, false);
 }
