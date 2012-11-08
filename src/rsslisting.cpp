@@ -2252,31 +2252,31 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-
-  // выбор новости ленты, отображамой ранее
-  int newsRow = -1;
   int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
+
+  // Поиск новости ленты, отображамой ранее
+  int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
-    for (int i = 0; i < newsModel_->rowCount(); i++) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt() ==
-          newsIdCur) {
-        newsRow = i;
-        break;
-      }
-    }
+    QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
+    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
+
+    if (indexList.isEmpty()) newsRow = -1;
+    else newsRow = indexList.at(0).row();
+
   } else if (openingFeedAction_ == 1) {
     newsRow = 0;
   } else if (openingFeedAction_ == 3) {
-    for (int i = newsModel_->rowCount()-1; i >= 0; i--) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-        newsRow = i;
-        break;
-      }
-    }
+    QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
+    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
+
+    if (indexList.isEmpty()) newsRow = -1;
+    else newsRow = indexList.at(0).row();
+
   }
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
+  // ВЫбор новости ленты, отображамой ранее
   newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
 
   if (newsRow == -1)
