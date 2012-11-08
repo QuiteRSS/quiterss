@@ -157,7 +157,7 @@ private:
   void refreshInfoTray();
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
-  void recountFeedCounts(int feedId, QModelIndex index = QModelIndex());
+  void recountFeedCounts(int feedId, int feedParId = 0);
   void creatFeedTab(int feedId);
   void feedsModelReload();
   void cleanUp();

@@ -1979,7 +1979,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
  *    количество непрочитанных новостей,
  *    количество новых новостей
  ******************************************************************************/
-void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
+void RSSListing::recountFeedCounts(int feedId, int feedParId)
 {
   QSqlQuery q(db_);
   QString qStr;
@@ -2008,14 +2008,29 @@ void RSSListing::recountFeedCounts(int feedId, QModelIndex index)
 
   //! Установка количества непрочитанных новостей в ленту
   //! Установка количества новых новостей в ленту
-
-  qDebug() << __FUNCTION__ << __LINE__ << index;
-
   qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
       "WHERE id=='%4'").
       arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
   q.exec(qStr);
   db_.commit();
+
+  QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex indexUnread   = feedsTreeModel_->index(index.row(),
+      feedsTreeModel_->proxyColumnByOriginal("unread"),
+      index.parent());
+  QModelIndex indexNew      = feedsTreeModel_->index(index.row(),
+      feedsTreeModel_->proxyColumnByOriginal("newCount"),
+      index.parent());
+  QModelIndex indexUndelete = feedsTreeModel_->index(index.row(),
+      feedsTreeModel_->proxyColumnByOriginal("undeleteCount"),
+      index.parent());
+  feedsTreeModel_->setData(indexUnread, unreadCount);
+  feedsTreeView_->update(indexUnread);
+  feedsTreeModel_->setData(indexNew, newCount);
+  feedsTreeView_->update(indexNew);
+  feedsTreeModel_->setData(indexUndelete, undeleteCount);
+  feedsTreeView_->update(indexUndelete);
+  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 }
 
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
@@ -2154,8 +2169,6 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     }
   }
 
-  qDebug() << feedIdCur << feedIdOld << indexTab;
-
   if ((feedIdCur != feedIdOld) || (indexTab == -1)) {
     if (tabWidget_->currentIndex() != 0) {
       tabWidget_->setCurrentIndex(0);
@@ -2182,7 +2195,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   QElapsedTimer timer;
   timer.start();
   qDebug() << "--------------------------------";
-  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   int feedId = feedsTreeModel_->getIdByIndex(index);
   int feedParId = feedsTreeModel_->getParidByIndex(index);
@@ -2227,18 +2240,21 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   if (!index.isValid())
     currentNewsTab->setVisible(false);
 
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+
   // Переустанавливаем фильтр, чтобы текущая лента не исчезала при изменении фильтра лент
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
-  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
 
-  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
 
   // выбор новости ленты, отображамой ранее
   int newsRow = -1;
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
   if ((openingFeedAction_ == 0) || !clicked) {
     for (int i = 0; i < newsModel_->rowCount(); i++) {
@@ -2259,31 +2275,35 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     }
   }
 
-  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
 
   if (newsRow == -1)
     newsView_->verticalScrollBar()->setValue(newsRow);
 
-  qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (clicked) {
+    feedsTreeView_->setCurrentIndex(feedIndex);
+
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+
     if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
       currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-      qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+      qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
     } else {
-      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, 6));
-      qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
+      qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
       QSqlQuery q(db_);
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
-      qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+      qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
     }
   } else {
     slotUpdateStatus();
-    qDebug() << "Tree:" <<__FUNCTION__ << __LINE__ << timer.elapsed();
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
   }
 }
 
@@ -2758,7 +2778,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   q.exec(qStr);
   if (q.next()) newCountOld = q.value(0).toInt();
 
-  recountFeedCounts(feedId, feedsTreeView_->currentIndex());
+  recountFeedCounts(feedId, 0);
 
   int newCount = 0;
   int unreadCount = 0;
@@ -2781,7 +2801,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
     playSoundNewNews();
   }
 
-  feedsModelReload();
+//  feedsModelReload();
 
   if (openFeed) {
     statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
@@ -2800,6 +2820,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   QModelIndex index = feedsTreeView_->currentIndex();
   int feedId = feedsTreeModel_->getIdByIndex(index);
+  int feedParId = feedsTreeModel_->getParidByIndex(index);
   int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
   int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
 
@@ -2832,22 +2853,40 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     }
   }
 
+  QElapsedTimer timer;
+  timer.start();
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << strFilter;
+
+  static QString strFilterOld = QString();
+
+  if (strFilterOld.compare(strFilter) == 0) {
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "No filter changes";
+    return;
+  }
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "Applying new filter";
+  strFilterOld = strFilter;
+
   // Установка фильтра
-  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->setFilter(strFilter);
-  // ... и обновление дерева
-  feedsTreeModel_->refresh();
+  feedsTreeModel_->setFilter(strFilter);
+
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   // Восстановление курсора на ранее отображаемую ленту
-  // ... то же у дерева
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, 0);
-  feedsTreeView_->setCurrentIndex(feedIndex);
+  if (clicked) {
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+    feedsTreeView_->setCurrentIndex(feedIndex);
 
-  if (clicked && (tabWidget_->currentIndex() == 0)) {
-    slotFeedClicked(feedIndex);
+    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+
+    if (tabWidget_->currentIndex() == 0) {
+      slotFeedClicked(feedIndex);
+    }
   }
+
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   // Сохраняем фильтр для дальнейшего использования при включении последнего
   // использованного фильтра
