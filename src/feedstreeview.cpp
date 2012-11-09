@@ -196,6 +196,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
                      dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
+  QBrush brush = qApp->palette().brush(QPalette::Highlight);
 
   QPainter painter;
   painter.begin(this->viewport());
@@ -204,14 +205,33 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 
   if (qAbs(rectText.top() - dragPos_.y()) < 3) {
     qDebug() << "^^^" << dragIndex.row();
-    painter.drawLine(0, rectText.top(), width(), rectText.top());
+    painter.setPen(QPen(brush, 2));
+    painter.drawLine(rectText.topLeft().x()-2, rectText.top(),
+                     viewport()->width()-2, rectText.top());
+    painter.drawLine(rectText.topLeft().x()-2, rectText.top()-2,
+                     rectText.topLeft().x()-2, rectText.top()+2);
+    painter.drawLine(viewport()->width()-2, rectText.top()-2,
+                     viewport()->width()-2, rectText.top()+2);
   }
   else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
     qDebug() << "___" << dragIndex.row();
-    painter.drawLine(0, rectText.bottom(), width(), rectText.bottom());
+    painter.setPen(QPen(brush, 2));
+    painter.drawLine(rectText.bottomLeft().x()-2, rectText.bottom(),
+                     viewport()->width()-2, rectText.bottom());
+    painter.drawLine(rectText.topLeft().x()-2, rectText.bottom()-2,
+                     rectText.topLeft().x()-2, rectText.bottom()+2);
+    painter.drawLine(viewport()->width()-2, rectText.bottom()-2,
+                     viewport()->width()-2, rectText.bottom()+2);
   }
   else {
     qDebug() << "===" << dragIndex.row();
+    painter.setPen(QPen(brush, 1, Qt::DashLine));
+    painter.setOpacity(0.5);
+    painter.drawRect(rectText);
+
+    painter.setPen(QPen());
+    painter.setBrush(brush);
+    painter.setOpacity(0.1);
     painter.drawRect(rectText);
   }
 
