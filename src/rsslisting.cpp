@@ -496,12 +496,6 @@ void RSSListing::createFeedsDock()
   feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"),Qt::AscendingOrder);
   feedsTreeView_->setColumnHidden("id", true);
   feedsTreeView_->setColumnHidden("parentId", true);
-  feedsTreeView_->setSelectionBehavior(QAbstractItemView::SelectRows);
-  feedsTreeView_->setSelectionMode(QAbstractItemView::SingleSelection);
-  feedsTreeView_->setDragDropMode(QAbstractItemView::InternalMove);
-  feedsTreeView_->setDragEnabled(true);
-  feedsTreeView_->setAcceptDrops(true);
-  feedsTreeView_->setDropIndicatorShown(true);
 
   //! Create title DockWidget
   feedsTitleLabel_ = new QLabel(this);

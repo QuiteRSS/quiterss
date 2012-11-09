@@ -18,11 +18,17 @@ public slots:
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);
+  virtual void mouseReleaseEvent(QMouseEvent*event);
   virtual void mouseMoveEvent(QMouseEvent*);
   virtual void mouseDoubleClickEvent(QMouseEvent*);
   virtual void keyPressEvent(QKeyEvent*);
   virtual void currentChanged(const QModelIndex &current,
                               const QModelIndex &previous);
+  void dragEnterEvent(QDragEnterEvent *event);
+  void dragLeaveEvent(QDragLeaveEvent *event);
+  void dragMoveEvent(QDragMoveEvent *event);
+  void dropEvent(QDropEvent *event);
+  void paintEvent(QPaintEvent *event);
 
 signals:
   void signalDoubleClicked(QModelIndex index);
@@ -32,6 +38,12 @@ signals:
   void pressKeyHome();
   void pressKeyEnd();
 
+private:
+  bool isDraging_;
+  QPoint dragPos_;
+  QPoint dragStartPos_;
+
+  void handleDrop(QDropEvent *e);
 };
 
 #endif // FEEDSTREEVIEW_H

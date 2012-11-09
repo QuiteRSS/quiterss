@@ -110,3 +110,18 @@ QVariant FeedsTreeModel::dataField(const QModelIndex &index, const QString &fiel
 {
   return QyurSqlTreeModel::setData(index, value, role);
 }
+
+Qt::ItemFlags FeedsTreeModel::flags(const QModelIndex &index) const
+{
+  Qt::ItemFlags defaultFlags = QyurSqlTreeModel::flags(index);
+
+  if (index.isValid())
+    return Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | defaultFlags;
+  else
+    return Qt::ItemIsDropEnabled | defaultFlags;
+}
+
+Qt::DropActions FeedsTreeModel::supportedDropActions() const
+{
+  return Qt::MoveAction;
+}
