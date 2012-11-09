@@ -2729,7 +2729,10 @@ void RSSListing::markFeedRead()
 
   if (currentNewsTab->feedId_ == feedId) {
     if (tabWidget_->currentIndex() == 0) {
-      QModelIndex index = feedsTreeView_->indexBelow(feedsTreeView_->currentIndex());
+      QModelIndex indexCur = feedsTreeView_->currentIndex();
+      QModelIndex index = feedsTreeView_->indexBelow(indexCur);
+      if (!index.isValid())
+        index = feedsTreeView_->indexAbove(indexCur);
       feedsTreeView_->setCurrentIndex(index);
       slotFeedClicked(index);
     } else {
