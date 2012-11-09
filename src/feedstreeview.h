@@ -37,9 +37,9 @@ signals:
   void pressKeyDown();
   void pressKeyHome();
   void pressKeyEnd();
+  void signalDropped(QModelIndex &what, QModelIndex &where);
 
 private:
-  bool isDraging_;
   QPoint dragPos_;
   QPoint dragStartPos_;
 

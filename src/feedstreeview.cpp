@@ -1,11 +1,11 @@
+#include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "delegatewithoutfocus.h"
 
 FeedsTreeView::FeedsTreeView(QWidget * parent) :
   QyurSqlTreeView(parent)
 {
-  isDraging_ = false;
-  dragPos_ = QPoint();
+  dragPos_ =      QPoint();
   dragStartPos_ = QPoint();
 
   setObjectName("feedsTreeView_");
@@ -66,7 +66,6 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   event->accept();
 
   qDebug() << "Drag start";
-  isDraging_ = true;
   dragPos_ = event->pos();
 
   QMimeData *mimeData = new QMimeData;
@@ -109,6 +108,8 @@ void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
   qDebug() << "DragEnter";
 //  if (event->mimeData()->hasFormat("image/x-puzzle-piece"))
     event->accept();
+    dragPos_ = event->pos();
+    viewport()->update();
 //  else
 //    event->ignore();
 }
@@ -119,6 +120,7 @@ void FeedsTreeView::dragLeaveEvent(QDragLeaveEvent *event)
 //  QRect updateRect = highlightedRect;
   dragPos_ = QPoint();
   viewport()->update();
+
   event->accept();
 }
 
@@ -126,19 +128,38 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
 //  QyurSqlTreeView::dragMoveEvent(event);
 
-  if (indexAt(event->pos()).isValid() && (dropIndicatorPosition() != QAbstractItemView::QAbstractItemView::OnViewport))
-    event->accept();
-  else
+  if (dragPos_.isNull()) {
     event->ignore();
+    viewport()->update();
+    return;
+  }
 
-  if (isDraging_) dragPos_ = event->pos();
+  dragPos_ = event->pos();
+  QModelIndex dragIndex = indexAt(dragPos_);
+
+  QString feedUrl =
+      ((FeedsTreeModel*)model())->dataField(dragIndex, "xmlUrl").toString();
+
+  // обработка категорий
+  if (feedUrl.isEmpty()) {
+    if (dragIndex == currentIndex().parent())
+      event->ignore();  // категория уже является родителем
+    else
+      event->accept();
+  }
+  // обработка лент
+  else {
+    if (dragIndex.parent() == currentIndex().parent())
+      event->ignore();  // не перемещаем ленту внутри категории
+    else
+      event->accept();
+  }
 
   viewport()->update();
 }
 
 void FeedsTreeView::dropEvent(QDropEvent *event)
 {
-  isDraging_ = false;
   dragPos_ = QPoint();
   viewport()->update();
 
@@ -154,30 +175,43 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 
   if (dragPos_.isNull()) return;
 
-  QPainter painter;
-  painter.begin(this->viewport());
+  QModelIndex dragIndex = indexAt(dragPos_);
+  QString feedUrl =
+      ((FeedsTreeModel*)model())->dataField(dragIndex, "xmlUrl").toString();
 
-  //    painter.setBrush(QColor("#ffcccc"));
-  painter.setPen(Qt::DashLine);
+  // Обработка категорий
+  if (feedUrl.isEmpty()) {
+    if (dragIndex == currentIndex().parent())
+      return;
+  }
+  // Обработка лент
+  else
+    if (dragIndex.parent() == currentIndex().parent())
+      return;
 
-  QModelIndex index = indexAt(dragPos_);
+
   QModelIndex indexText =
-      model()->index(index.row(),
+      model()->index(dragIndex.row(),
                      ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
-                     index.parent());
+                     dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
 
+  QPainter painter;
+  painter.begin(this->viewport());
+
+  painter.setPen(Qt::DashLine);
+
   if (qAbs(rectText.top() - dragPos_.y()) < 3) {
-    qDebug() << "^^^" << index.row();
+    qDebug() << "^^^" << dragIndex.row();
     painter.drawLine(0, rectText.top(), width(), rectText.top());
   }
   else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
-    qDebug() << "___" << index.row();
+    qDebug() << "___" << dragIndex.row();
     painter.drawLine(0, rectText.bottom(), width(), rectText.bottom());
   }
   else {
-    qDebug() << "===" << index.row();
+    qDebug() << "===" << dragIndex.row();
     painter.drawRect(rectText);
   }
 
@@ -204,6 +238,5 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
 {
   QModelIndex indexWhat = currentIndex();
   QModelIndex indexWhere = indexAt(e->pos());
-//  emit signalDropped(indexWhat, indexWhere);
-  qDebug() << indexWhat << indexWhere;
+  emit signalDropped(indexWhat, indexWhere);
 }

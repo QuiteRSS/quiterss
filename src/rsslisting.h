@@ -438,6 +438,8 @@ private slots:
 
   void setFullScreen();
 
+  void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere);
+
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
