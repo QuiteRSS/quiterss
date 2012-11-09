@@ -117,7 +117,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
     q.exec(qStr);
     QString titleFeed;
     QPixmap iconFeed;
-    int parIdFeed;
+    int parIdFeed = -1;
     if (q.next()) {
       titleFeed = q.value(0).toString();
       QByteArray byteArray = q.value(1).toByteArray();
