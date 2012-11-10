@@ -31,7 +31,7 @@ void loadModules(QSplashScreen* psplash)
       qApp->processEvents();
       splashProgress.setValue(i);
       psplash->showMessage("Loading: " + QString::number(i) + "%",
-                           Qt::AlignRight | Qt::AlignTop, Qt::white);
+                           Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
     }
   }
 }
@@ -44,7 +44,7 @@ void createSplashScreen()
   splash->setContentsMargins(5, 0, 5, 0);
   splash->setEnabled(false);
   splash->showMessage("Prepare loading...",
-                      Qt::AlignRight | Qt::AlignTop, Qt::white);
+                      Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
   splash->setAttribute(Qt::WA_DeleteOnClose);
   splash->show();
 }
@@ -135,7 +135,7 @@ QSettings *settings_;
   if (versionDB != kDbVersion)
     splash->showMessage(QString("Converting database to version %1...").
                         arg(kDbVersion),
-                        Qt::AlignRight | Qt::AlignTop, Qt::white);
+                        Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
 
   RSSListing rsslisting(settings_, dataDirPath_);
 
