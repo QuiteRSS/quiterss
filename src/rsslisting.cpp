@@ -1982,6 +1982,11 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
  ******************************************************************************/
 void RSSListing::recountFeedCounts(int feedId, int feedParId)
 {
+  QModelIndex indexFolder = feedsTreeModel_->getIndexById(feedId, feedParId);
+  if (indexFolder.sibling(indexFolder.row(), feedsTreeView_->columnIndex("xmlUrl")).
+      data().toString().isEmpty())
+    return;
+
   QSqlQuery q(db_);
   QString qStr;
 
