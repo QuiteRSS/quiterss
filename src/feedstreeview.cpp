@@ -179,6 +179,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   QString feedUrl =
       ((FeedsTreeModel*)model())->dataField(dragIndex, "xmlUrl").toString();
 
+  bool drawParent = false;
   // Обработка категорий
   if (feedUrl.isEmpty()) {
     if (dragIndex == currentIndex().parent())
@@ -188,10 +189,15 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   else
     if (dragIndex.parent() == currentIndex().parent())
       return;
+    else drawParent = true;
 
-
-  QModelIndex indexText =
-      model()->index(dragIndex.row(),
+  QModelIndex indexText;
+  if (drawParent)
+    indexText = model()->index(dragIndex.parent().row(),
+                               ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                               dragIndex.parent().parent());
+  else
+    indexText = model()->index(dragIndex.row(),
                      ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
                      dragIndex.parent());
 
@@ -203,27 +209,27 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 
   painter.setPen(Qt::DashLine);
 
-  if (qAbs(rectText.top() - dragPos_.y()) < 3) {
-    qDebug() << "^^^" << dragIndex.row();
-    painter.setPen(QPen(brush, 2));
-    painter.drawLine(rectText.topLeft().x()-2, rectText.top(),
-                     viewport()->width()-2, rectText.top());
-    painter.drawLine(rectText.topLeft().x()-2, rectText.top()-2,
-                     rectText.topLeft().x()-2, rectText.top()+2);
-    painter.drawLine(viewport()->width()-2, rectText.top()-2,
-                     viewport()->width()-2, rectText.top()+2);
-  }
-  else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
-    qDebug() << "___" << dragIndex.row();
-    painter.setPen(QPen(brush, 2));
-    painter.drawLine(rectText.bottomLeft().x()-2, rectText.bottom(),
-                     viewport()->width()-2, rectText.bottom());
-    painter.drawLine(rectText.topLeft().x()-2, rectText.bottom()-2,
-                     rectText.topLeft().x()-2, rectText.bottom()+2);
-    painter.drawLine(viewport()->width()-2, rectText.bottom()-2,
-                     viewport()->width()-2, rectText.bottom()+2);
-  }
-  else {
+//  if (qAbs(rectText.top() - dragPos_.y()) < 3) {
+//    qDebug() << "^^^" << dragIndex.row();
+//    painter.setPen(QPen(brush, 2));
+//    painter.drawLine(rectText.topLeft().x()-2, rectText.top(),
+//                     viewport()->width()-2, rectText.top());
+//    painter.drawLine(rectText.topLeft().x()-2, rectText.top()-2,
+//                     rectText.topLeft().x()-2, rectText.top()+2);
+//    painter.drawLine(viewport()->width()-2, rectText.top()-2,
+//                     viewport()->width()-2, rectText.top()+2);
+//  }
+//  else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
+//    qDebug() << "___" << dragIndex.row();
+//    painter.setPen(QPen(brush, 2));
+//    painter.drawLine(rectText.bottomLeft().x()-2, rectText.bottom(),
+//                     viewport()->width()-2, rectText.bottom());
+//    painter.drawLine(rectText.topLeft().x()-2, rectText.bottom()-2,
+//                     rectText.topLeft().x()-2, rectText.bottom()+2);
+//    painter.drawLine(viewport()->width()-2, rectText.bottom()-2,
+//                     viewport()->width()-2, rectText.bottom()+2);
+//  }
+//  else {
     qDebug() << "===" << dragIndex.row();
     painter.setPen(QPen(brush, 1, Qt::DashLine));
     painter.setOpacity(0.5);
@@ -233,7 +239,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
     painter.setBrush(brush);
     painter.setOpacity(0.1);
     painter.drawRect(rectText);
-  }
+//  }
 
   painter.end();
 }
@@ -257,6 +263,32 @@ void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
 void FeedsTreeView::handleDrop(QDropEvent *e)
 {
   QModelIndex indexWhat = currentIndex();
-  QModelIndex indexWhere = indexAt(e->pos());
+  QModelIndex indexWhere;
+
+  QModelIndex dropIndex = indexAt(e->pos());
+  QString feedUrl =
+      ((FeedsTreeModel*)model())->dataField(dropIndex, "xmlUrl").toString();
+
+  bool drawParent = false;
+  // Обработка категорий
+  if (feedUrl.isEmpty()) {
+    if (dropIndex == currentIndex().parent())
+      return;
+  }
+  // Обработка лент
+  else
+    if (dropIndex.parent() == currentIndex().parent())
+      return;
+    else drawParent = true;
+
+  if (drawParent)
+    indexWhere = model()->index(dropIndex.parent().row(),
+                               ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                               dropIndex.parent().parent());
+  else
+    indexWhere = model()->index(dropIndex.row(),
+                     ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                     dropIndex.parent());
+
   emit signalDropped(indexWhat, indexWhere);
 }
