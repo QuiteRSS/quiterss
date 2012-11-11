@@ -1769,6 +1769,7 @@ void RSSListing::deleteFeed()
     int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
     int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
     feedsTreeModel_->refresh();
+    slotSortFeeds();  // почему-то это позволяет папкам "не схлапываться"
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
     feedsTreeView_->setCurrentIndex(feedIndex);
 
@@ -2024,6 +2025,32 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
   feedsTreeView_->update(indexNew);
   feedsTreeModel_->setData(indexUndelete, undeleteCount);
   feedsTreeView_->update(indexUndelete);
+
+  // Пересчитываем счетчики для всех родителей
+  while (index.parent().isValid()) {
+    QModelIndex indexParent = index.parent();
+
+    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount) FROM feeds WHERE parentId=='%1'").
+        arg(feedsTreeModel_->getIdByIndex(indexParent));
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCount   = q.value(0).toInt();
+      newCount      = q.value(1).toInt();
+      undeleteCount = q.value(2).toInt();
+    }
+    indexUnread   = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+    indexNew      = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+    indexUndelete = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+    feedsTreeModel_->setData(indexUnread, unreadCount);
+    feedsTreeView_->update(indexUnread);
+    feedsTreeModel_->setData(indexNew, newCount);
+    feedsTreeView_->update(indexNew);
+    feedsTreeModel_->setData(indexUndelete, undeleteCount);
+    feedsTreeView_->update(indexUndelete);
+
+    index = index.parent();
+  }
+
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 }
 
@@ -2053,13 +2080,15 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   //! Ппоиск идентификатора ленты в таблице лент по URL
   //! + достаем предыдущее значение количества новых новостей
   int parseFeedId = 0;
+  int parseFeedParId = 0;
   int newCountOld = 0;
   QSqlQuery q(db_);
-  q.exec(QString("SELECT id, newCount FROM feeds WHERE xmlUrl LIKE '%1'").
+  q.exec(QString("SELECT id, newCount, parentId FROM feeds WHERE xmlUrl LIKE '%1'").
          arg(url.toString()));
   if (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
     newCountOld = q.value(q.record().indexOf("newCount")).toInt();
+    parseFeedParId = q.value(q.record().indexOf("parentId")).toInt();
   }
 
   //! Устанавливаем время обновления ленты
@@ -2071,7 +2100,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 
   setUserFilter(parseFeedId);
 
-  recountFeedCounts(parseFeedId);
+  recountFeedCounts(parseFeedId, parseFeedParId);
 
   //! Достаём новое значение количества новых новостей
   int newCount = 0;
@@ -2208,6 +2237,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     emit signalCurrentTab(indexTab, true);
   } else {
     currentNewsTab->feedId_ = feedId;
+    currentNewsTab->feedParId_ = feedParId;
     currentNewsTab->setSettings(false);
     if (index.isValid())
       currentNewsTab->setVisible(true);
@@ -3559,7 +3589,23 @@ void RSSListing::slotShowFeedPropertiesDlg()
   q.addBindValue(feedId);
   q.exec();
 
-  feedsTreeModel_->refresh();
+  QModelIndex indexText    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("text"));
+  QModelIndex indexUrl     = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("xmlUrl"));
+  QModelIndex indexStartup = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayOnStartup"));
+  QModelIndex indexImages  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayEmbeddedImages"));
+  QModelIndex indexLabel   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("label"));
+  feedsTreeModel_->setData(indexText, properties.general.text);
+  feedsTreeView_->update(indexText);
+  feedsTreeModel_->setData(indexUrl, properties.general.url);
+  feedsTreeView_->update(indexUrl);
+  feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
+  feedsTreeView_->update(indexStartup);
+  feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
+  feedsTreeView_->update(indexImages);
+  feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
+  feedsTreeView_->update(indexLabel);
+  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
+
   QModelIndex currentIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(currentIndex);
 

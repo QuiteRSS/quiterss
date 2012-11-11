@@ -4,7 +4,6 @@
 
 #include "feedstreemodel.h"
 
-//FeedsTreeModel::FeedsTreeModel(QObject *parent) : QyurSqlTreeModel(parent)
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
     const QStringList& captions, const QStringList& fieldNames,
     int rootParentId, const QString& decoratedField, QObject* parent) :
@@ -18,29 +17,28 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
   if (role == Qt::FontRole) {
     QFont font = font_;
     if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
-      if ((0 < QyurSqlTreeModel::index(index.row(), proxyColumnByOriginal("unread"), index.parent()).data(Qt::EditRole).toInt()) &&
+      if ((0 < index.sibling(index.row(), proxyColumnByOriginal("unread")).data(Qt::EditRole).toInt()) &&
           (QyurSqlTreeModel::proxyColumnByOriginal("unread") != index.column()))
         font.setBold(true);
     }
     return font;
   } else if (role == Qt::DisplayRole){
     if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
-      if (0 == QyurSqlTreeModel::index(index.row(), proxyColumnByOriginal("unread"), index.parent()).data(Qt::EditRole).toInt()) {
+      int unread = index.sibling(index.row(), proxyColumnByOriginal("unread")).data(Qt::EditRole).toInt();
+      if (0 == unread) {
         return QVariant();
       } else {
-        QString qStr = QString("(%1)").
-            arg(QyurSqlTreeModel::index(index.row(), proxyColumnByOriginal("unread"), index.parent()).data(Qt::EditRole).toInt());
+        QString qStr = QString("(%1)").arg(unread);
         return qStr;
       }
     } else if (QyurSqlTreeModel::proxyColumnByOriginal("undeleteCount") == index.column()) {
       QString qStr = QString("(%1)").
-          arg(QyurSqlTreeModel::index(index.row(), proxyColumnByOriginal("undeleteCount"), index.parent()).data(Qt::EditRole).toInt());
+          arg(index.sibling(index.row(), proxyColumnByOriginal("undeleteCount")).data(Qt::EditRole).toInt());
       return qStr;
     } else if (QyurSqlTreeModel::proxyColumnByOriginal("updated") == index.column()) {
       QDateTime dtLocal;
-      QString strDate = QyurSqlTreeModel::index(
-            index.row(), proxyColumnByOriginal("updated"), index.parent())
-            .data(Qt::EditRole).toString();
+      QString strDate = index.sibling(index.row(), proxyColumnByOriginal("updated")).
+          data(Qt::EditRole).toString();
 
       if (!strDate.isNull()) {
         QDateTime dtLocalTime = QDateTime::currentDateTime();
@@ -66,15 +64,14 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
     if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
       brush = qApp->palette().brush(QPalette::Link);
     } else if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
-      if (QyurSqlTreeModel::index(index.row(), proxyColumnByOriginal("newCount"), index.parent()).data(Qt::EditRole).toInt() > 0) {
+      if (index.sibling(index.row(), proxyColumnByOriginal("newCount")).data(Qt::EditRole).toInt() > 0) {
         brush = qApp->palette().brush(QPalette::Link);
       }
     }
     return brush;
   } else if (role == Qt::DecorationRole) {
     if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
-      QByteArray byteArray = QyurSqlTreeModel::index(
-          index.row(), proxyColumnByOriginal("image"), index.parent()).
+      QByteArray byteArray = index.sibling(index.row(), proxyColumnByOriginal("image")).
           data(Qt::EditRole).toByteArray();
       if (!byteArray.isNull()) {
         QPixmap icon;
@@ -82,8 +79,7 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
           return icon;
         }
       }
-      if (QyurSqlTreeModel::index(
-          index.row(), proxyColumnByOriginal("xmlUrl"), index.parent()).
+      if (index.sibling(index.row(), proxyColumnByOriginal("xmlUrl")).
           data(Qt::EditRole).toString().isEmpty())
         return QPixmap(":/images/folder");
       else
@@ -101,16 +97,7 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
 
 QVariant FeedsTreeModel::dataField(const QModelIndex &index, const QString &fieldName) const
 {
-  return
-//      QyurSqlTreeModel::index(
-//          index.row(),
-//          proxyColumnByOriginal(fieldName),
-//          index.parent())
-//      .data(Qt::EditRole);
-      index.sibling(
-          index.row(),
-          proxyColumnByOriginal(fieldName))
-      .data(Qt::EditRole);
+  return index.sibling(index.row(),proxyColumnByOriginal(fieldName)).data(Qt::EditRole);
 }
 
 /*virtual*/ bool	FeedsTreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
