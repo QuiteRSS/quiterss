@@ -2025,6 +2025,32 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
   feedsTreeView_->update(indexNew);
   feedsTreeModel_->setData(indexUndelete, undeleteCount);
   feedsTreeView_->update(indexUndelete);
+
+  // Пересчитываем счетчики для всех родителей
+  while (index.parent().isValid()) {
+    QModelIndex indexParent = index.parent();
+
+    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount) FROM feeds WHERE parentId=='%1'").
+        arg(feedsTreeModel_->getIdByIndex(indexParent));
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCount   = q.value(0).toInt();
+      newCount      = q.value(1).toInt();
+      undeleteCount = q.value(2).toInt();
+    }
+    indexUnread   = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+    indexNew      = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+    indexUndelete = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+    feedsTreeModel_->setData(indexUnread, unreadCount);
+    feedsTreeView_->update(indexUnread);
+    feedsTreeModel_->setData(indexNew, newCount);
+    feedsTreeView_->update(indexNew);
+    feedsTreeModel_->setData(indexUndelete, undeleteCount);
+    feedsTreeView_->update(indexUndelete);
+
+    index = index.parent();
+  }
+
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 }
 
