@@ -37,7 +37,6 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
   if (!indexAt(event->pos()).isValid()) return;
 
   selectIndex_ = indexAt(event->pos());
-  qDebug() << selectIndex_ << selectIndex_.flags();
   if ((event->buttons() & Qt::MiddleButton)) {
     if (selectIndex_.isValid())
       emit signalMiddleClicked();
@@ -65,7 +64,6 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
   event->accept();
 
-  qDebug() << "Drag start";
   dragPos_ = event->pos();
 
   QMimeData *mimeData = new QMimeData;
@@ -76,7 +74,6 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   drag->setHotSpot(event->pos() + QPoint(10,10));
 
   Qt::DropAction dropAction = drag->exec();
-  qDebug() << "dropAction : " << dropAction;
 }
 
 /*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
@@ -106,29 +103,20 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
 void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
 {
-  qDebug() << "DragEnter";
-//  if (event->mimeData()->hasFormat("image/x-puzzle-piece"))
-    event->accept();
-    dragPos_ = event->pos();
-    viewport()->update();
-//  else
-//    event->ignore();
+  event->accept();
+  dragPos_ = event->pos();
+  viewport()->update();
 }
 
 void FeedsTreeView::dragLeaveEvent(QDragLeaveEvent *event)
 {
-  qDebug() << "DragLeave";
-//  QRect updateRect = highlightedRect;
+  event->accept();
   dragPos_ = QPoint();
   viewport()->update();
-
-  event->accept();
 }
 
 void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
-//  QyurSqlTreeView::dragMoveEvent(event);
-
   if (dragPos_.isNull()) {
     event->ignore();
     viewport()->update();
@@ -166,7 +154,6 @@ void FeedsTreeView::dropEvent(QDropEvent *event)
 
   event->setDropAction(Qt::MoveAction);
   event->accept();
-  qDebug() << "Drag finished";
   handleDrop(event);
 }
 
@@ -211,7 +198,6 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   painter.setPen(Qt::DashLine);
 
 //  if (qAbs(rectText.top() - dragPos_.y()) < 3) {
-//    qDebug() << "^^^" << dragIndex.row();
 //    painter.setPen(QPen(brush, 2));
 //    painter.drawLine(rectText.topLeft().x()-2, rectText.top(),
 //                     viewport()->width()-2, rectText.top());
@@ -221,7 +207,6 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 //                     viewport()->width()-2, rectText.top()+2);
 //  }
 //  else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
-//    qDebug() << "___" << dragIndex.row();
 //    painter.setPen(QPen(brush, 2));
 //    painter.drawLine(rectText.bottomLeft().x()-2, rectText.bottom(),
 //                     viewport()->width()-2, rectText.bottom());
@@ -231,7 +216,6 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 //                     viewport()->width()-2, rectText.bottom()+2);
 //  }
 //  else {
-    qDebug() << "===" << dragIndex.row();
     painter.setPen(QPen(brush, 1, Qt::DashLine));
     painter.setOpacity(0.5);
     painter.drawRect(rectText);

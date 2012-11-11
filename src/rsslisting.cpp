@@ -3605,7 +3605,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedsTreeView_->update(indexLabel);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
-//  feedsTreeModel_->refresh();
   QModelIndex currentIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(currentIndex);
 
