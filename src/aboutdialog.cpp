@@ -5,6 +5,7 @@
 #else
 #include <sqlite_qt47x/sqlite3.h>
 #endif
+#include <qyursqltreeview.h>
 
 AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
@@ -15,6 +16,8 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   setMinimumWidth(440);
 
   QTabWidget *tabWidget = new QTabWidget();
+
+  QyurSqlTreeView treeView;
 
   QString appInfo =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
@@ -27,7 +30,9 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader")
       + "<P>" + tr("Includes: ")
-      + QString("Qt-%1, SQLite-%2").arg(QT_VERSION_STR).arg(SQLITE_VERSION)
+      + QString("Qt-%1, SQLite-%2, QyurSqlTreeView-%3").
+      arg(QT_VERSION_STR).arg(SQLITE_VERSION).
+      arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value())
       + "</P>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
       + QString("<br><a href=\"%1/\">%1</a>").arg("www.quiterss.ucoz.ru") +
