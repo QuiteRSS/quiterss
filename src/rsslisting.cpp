@@ -4662,73 +4662,13 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
+  int feedId       = feedsTreeModel_->getIdByIndex(indexWhat);
+  int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
 
-  qDebug() << indexWhat << indexWhere;
-  qDebug() << indexParId << indexParId.data();
-//  feedsTreeModel_->setData(indexParId, feedsTreeModel_->getIdByIndex(indexWhere));
-  qDebug() << indexParId << indexParId.data();
+  feedsTreeModel_->setData(indexParId, feedParIdNew);
+  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
-//  feedsTreeModel_->refresh();
+  feedsTreeModel_->refresh();
 
-//  QModelIndex indexUndelete = feedsTreeModel_->index(index.row(),
-//      feedsTreeModel_->proxyColumnByOriginal("undeleteCount"),
-//      index.parent());
-//  feedsTreeModel_->setData(indexUndelete, undeleteCount);
-//  feedsTreeView_->update(indexUndelete);
-
-
-//  // поиск количества потомков у нового родителя
-//  int newRowToParent = feedsTreeModel_->rowCount(indexWhere);
-
-//  reassambleParent(indexWhat);
-
-//  // перемещение узла к новому родителю
-//  QSqlQuery q(*db_);
-//  q.prepare("UPDATE feeds SET parentId=:parentId, rowToParent=:rowToParent "
-//            "WHERE id=:id");
-//  q.bindValue(":parentId", indexWhere.data(Qt::UserRole));
-//  q.bindValue(":rowToParent", newRowToParent);
-//  q.bindValue(":id", indexWhat.data(Qt::UserRole));
-//  q.exec();
-
-//  // помечаем, что у нового родителя теперь есть дети
-//  // (на всякий случай, если у него их ещё не было)
-//  q.prepare("UPDATE feeds SET hasChildren=1 WHERE id=:id");
-//  q.bindValue(":id", indexWhere.data(Qt::UserRole));
-//  q.exec();
-
-//  renewModel();
+  feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedId, feedParIdNew));
 }
-
-//! перекомпоновка лент родителя index (чтобы не осталось "дырки" в нумерации)
-//void TreeEditDialog::reassambleParent(QModelIndex index)
-//{
-//  db_->transaction();
-//  QSqlQuery q(*db_);
-//  q.prepare("SELECT id, rowToParent FROM feeds WHERE parentId=:parentId");
-//  if (index.parent().isValid())
-//    q.bindValue(":parentId", index.parent().data(Qt::UserRole));
-//  else
-//    q.bindValue(":parentId", 0);
-//  q.exec();
-//  bool hasChildren = false;  //! флаг того, что у старого родителя ещё остались дети
-//  while (q.next()) {
-//    hasChildren = true;
-//    int id = q.value(0).toInt();
-//    int rowToParent = q.value(1).toInt();
-//    if (index.row() < rowToParent) {
-//      QSqlQuery q2(*db_);
-//      q2.prepare("UPDATE feeds SET rowToParent=:reoToParent WHERE id=:id");
-//      q2.bindValue(":rowToParent", rowToParent-1);
-//      q2.bindValue(":id", id);
-//      q2.exec();
-//    }
-//  }
-//  // если детей не осталось, то помечаем, что у родителя не осталось детей
-//  if (!hasChildren) {
-//    q.prepare("UPDATE feeds SET hasChildren=0 WHERE id=:id");
-//    q.bindValue(":id", index.parent().data(Qt::UserRole));
-//    q.exec();
-//  }
-//  db_->commit();
-//}
