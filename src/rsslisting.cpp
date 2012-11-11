@@ -2029,24 +2029,37 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
   // Пересчитываем счетчики для всех родителей
   while (index.parent().isValid()) {
     QModelIndex indexParent = index.parent();
+    int parentId            = feedsTreeModel_->getIdByIndex(indexParent);
+    QModelIndex indexUpdated;
+    QString updated;
 
-    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount) FROM feeds WHERE parentId=='%1'").
-        arg(feedsTreeModel_->getIdByIndex(indexParent));
+    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), max(updated) FROM feeds WHERE parentId=='%1'").
+        arg(parentId);
     q.exec(qStr);
     if (q.next()) {
       unreadCount   = q.value(0).toInt();
       newCount      = q.value(1).toInt();
       undeleteCount = q.value(2).toInt();
+      updated       = q.value(3).toString();
     }
+    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', updated='%4' "
+        "WHERE id=='%5'").
+        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
+        arg(parentId);
+    q.exec(qStr);
+    qDebug() << q.lastQuery() << q.lastError();
     indexUnread   = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
     indexNew      = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
     indexUndelete = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+    indexUpdated  = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("updated"));
     feedsTreeModel_->setData(indexUnread, unreadCount);
     feedsTreeView_->update(indexUnread);
     feedsTreeModel_->setData(indexNew, newCount);
     feedsTreeView_->update(indexNew);
     feedsTreeModel_->setData(indexUndelete, undeleteCount);
     feedsTreeView_->update(indexUndelete);
+    feedsTreeModel_->setData(indexUpdated, updated);
+    feedsTreeView_->update(indexUpdated);
 
     index = index.parent();
   }
