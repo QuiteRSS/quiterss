@@ -2237,6 +2237,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     emit signalCurrentTab(indexTab, true);
   } else {
     currentNewsTab->feedId_ = feedId;
+    currentNewsTab->feedParId_ = feedParId;
     currentNewsTab->setSettings(false);
     if (index.isValid())
       currentNewsTab->setVisible(true);
