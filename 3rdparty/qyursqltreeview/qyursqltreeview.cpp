@@ -155,7 +155,9 @@ QyurSqlTreeModel::QyurSqlTreeModel(const QString& tableName, const QStringList& 
 	d->sourceModel.setTable(tableName/*.toUpper()*/);
 	d->indexOfId= d->sourceModel.record().indexOf(fieldNames[Id].toUpper());
 	Q_ASSERT(d->indexOfId>=0);
-	d->indexOfParid= d->sourceModel.record().indexOf(fieldNames[ParentId].toUpper());
+//	d->indexOfParid= d->sourceModel.record().indexOf(fieldNames[ParentId].toUpper());
+	d->indexOfParid= d->sourceModel.record().indexOf(
+			fieldNames[fieldNames.indexOf(QString("parentId"))].toUpper());
 	Q_ASSERT(d->indexOfParid>=0);
 	for (int i=0; i<qMin(fieldNames.size(),captions.size()); i++)
 		d->sourceModel.setHeaderData(d->sourceModel.record().indexOf(fieldNames[i]),Qt::Horizontal,captions[i]);

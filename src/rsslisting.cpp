@@ -476,9 +476,10 @@ void RSSListing::timerEvent(QTimerEvent *event)
 void RSSListing::createFeedsDock()
 {
   feedsTreeModel_ = new FeedsTreeModel("feeds",
-      QStringList() << QObject::tr("ID") << QObject::tr("PARENTID") << QObject::tr("TEXT")
-          << QObject::tr("UNREAD") << QObject::tr("UNDELETECOUNT") << QObject::tr("UPDATED"),
-      QStringList() << "id" << "parentId" << "text" << "unread" << "undeleteCount" << "updated",
+      QStringList() << QObject::tr("ID") << QObject::tr("TEXT")
+          << QObject::tr("UNREAD") << QObject::tr("UNDELETECOUNT") << QObject::tr("PARENTID") << QObject::tr("UPDATED"),
+//      QStringList() << "id" << "parentId" << "text" << "unread" << "undeleteCount" << "updated",
+      QStringList() << "id" << "text" << "unread" << "undeleteCount" << "parentId" << "updated",
       0,
       "text");
 
