@@ -2015,15 +2015,9 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
   db_.commit();
 
   QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
-  QModelIndex indexUnread   = feedsTreeModel_->index(index.row(),
-      feedsTreeModel_->proxyColumnByOriginal("unread"),
-      index.parent());
-  QModelIndex indexNew      = feedsTreeModel_->index(index.row(),
-      feedsTreeModel_->proxyColumnByOriginal("newCount"),
-      index.parent());
-  QModelIndex indexUndelete = feedsTreeModel_->index(index.row(),
-      feedsTreeModel_->proxyColumnByOriginal("undeleteCount"),
-      index.parent());
+  QModelIndex indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+  QModelIndex indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+  QModelIndex indexUndelete = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
   feedsTreeModel_->setData(indexUnread, unreadCount);
   feedsTreeView_->update(indexUnread);
   feedsTreeModel_->setData(indexNew, newCount);

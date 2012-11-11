@@ -102,10 +102,14 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
 QVariant FeedsTreeModel::dataField(const QModelIndex &index, const QString &fieldName) const
 {
   return
-      QyurSqlTreeModel::index(
+//      QyurSqlTreeModel::index(
+//          index.row(),
+//          proxyColumnByOriginal(fieldName),
+//          index.parent())
+//      .data(Qt::EditRole);
+      index.sibling(
           index.row(),
-          proxyColumnByOriginal(fieldName),
-          index.parent())
+          proxyColumnByOriginal(fieldName))
       .data(Qt::EditRole);
 }
 
