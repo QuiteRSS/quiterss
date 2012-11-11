@@ -81,9 +81,10 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
 /*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  if (!indexAt(event->pos()).isValid()) return;
+  QyurSqlTreeView::mouseDoubleClickEvent(event);
+//  if (!indexAt(event->pos()).isValid()) return;
 
-  emit signalDoubleClicked(indexAt(event->pos()));
+//  emit signalDoubleClicked(indexAt(event->pos()));
 }
 
 /*virtual*/ void FeedsTreeView::keyPressEvent(QKeyEvent *event)
