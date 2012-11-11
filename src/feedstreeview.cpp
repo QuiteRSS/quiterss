@@ -73,7 +73,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   drag->setMimeData(mimeData);
   drag->setHotSpot(event->pos() + QPoint(10,10));
 
-  Qt::DropAction dropAction = drag->exec();
+  drag->exec();
 }
 
 /*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
