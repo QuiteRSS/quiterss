@@ -1769,6 +1769,7 @@ void RSSListing::deleteFeed()
     int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
     int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
     feedsTreeModel_->refresh();
+    slotSortFeeds();  // почему-то это позволяет папкам "не схлапываться"
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
     feedsTreeView_->setCurrentIndex(feedIndex);
 
