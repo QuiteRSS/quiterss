@@ -2760,9 +2760,6 @@ void RSSListing::markFeedRead()
     QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
         arg(feedId);
     q.exec(qStr);
-    qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
-        arg(feedId);
-    q.exec(qStr);
     qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
         arg(feedId);
     q.exec(qStr);
@@ -2773,10 +2770,10 @@ void RSSListing::markFeedRead()
     QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
         arg(feedId);
     q.exec(qStr);
-    qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
-        arg(feedId);
-    q.exec(qStr);
   }
+  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+      arg(feedId);
+  q.exec(qStr);
   db_.commit();
 
   if (currentNewsTab->feedId_ == feedId) {
