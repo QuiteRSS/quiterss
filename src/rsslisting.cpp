@@ -2766,7 +2766,10 @@ void RSSListing::markFeedRead()
     qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
         arg(feedId);
     q.exec(qStr);
-  } else {
+  }
+  // \FIXME: (arhohryakov:12.11.2012)
+  // В каком случае мы попадаем в ветку "else"?
+  else {
     QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
         arg(feedId);
     q.exec(qStr);
