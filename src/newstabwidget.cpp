@@ -566,7 +566,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     QWebSettings::globalSettings()->clearMemoryCaches();
-    emit emit signalWebViewSetContent("");
+    emit signalWebViewSetContent("");
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
