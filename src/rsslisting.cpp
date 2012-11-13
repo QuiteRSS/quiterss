@@ -2756,8 +2756,9 @@ void RSSListing::markFeedRead()
 
   db_.transaction();
   QSqlQuery q(db_);
+  QString qStr;
   if (currentNewsTab->feedId_ == feedId) {
-    QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
+    qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
         arg(feedId);
     q.exec(qStr);
     qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
