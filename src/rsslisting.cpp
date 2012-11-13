@@ -3072,7 +3072,7 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
 
   if (update) {
     recountFeedCounts(feedId, feedParId);
-    if (feedReadtype != 2) {
+    if (feedReadtype != FeedReadPlaceToTray) {
       refreshInfoTray();
       feedsModelReload();
     }

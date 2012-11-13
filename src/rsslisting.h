@@ -361,6 +361,12 @@ private:
   int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
   QBasicTimer timerLinkOpening_;
 
+  enum FeedReedType {
+    FeedReadTypeSwitchingFeed,
+    FeedReadClosingTab,
+    FeedReadPlaceToTray,
+    FeedReadTypeCount
+  };
 
 private slots:
   void slotProgressBarUpdate();
@@ -368,13 +374,6 @@ private slots:
   void updateIconToolBarNull(bool feedsDockVisible);
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
-
-  enum FeedReedType {
-    FeedReadTypeSwitchingFeed,
-    FeedReadClosingTab,
-    FeedReadPlaceToTray,
-    FeedReadCount
-  };
   void setFeedRead(int feedId, int feedParId, FeedReedType feedReadtype);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
