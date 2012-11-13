@@ -179,7 +179,7 @@ RSSListing::~RSSListing()
   if (q.next()) cleanUpDB = q.value(0).toBool();
   else q.exec("INSERT INTO info(name, value) VALUES ('cleanUpAllDB_0.10.0', 'true')");
 
-  q.exec("SELECT id FROM feeds");
+  q.exec("SELECT id FROM feeds WHERE xmlUrl!=''");
   while (q.next()) {
     QString feedId = q.value(0).toString();
     QSqlQuery qt(db_);
@@ -3930,13 +3930,17 @@ void RSSListing::feedsCleanUp(QString feedId)
 {
   int cntT = 0;
   int cntNews = 0;
+  int feedParentId = 0;
 
   QSqlQuery q(db_);
   QString qStr;
-  qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").
+  qStr = QString("SELECT undeleteCount, parentId FROM feeds WHERE id=='%1'").
       arg(feedId);
   q.exec(qStr);
-  if (q.next()) cntNews = q.value(0).toInt();
+  if (q.next()) {
+    cntNews = q.value(0).toInt();
+    feedParentId = q.value(1).toInt();
+  }
 
   qStr = QString("SELECT deleted, received, id, read, starred, published "
       "FROM news WHERE feedId=='%1'")
@@ -4005,6 +4009,30 @@ void RSSListing::feedsCleanUp(QString feedId)
       "WHERE id=='%4'").
       arg(unreadCount).arg(undeleteCount).arg(feedId);
   q.exec(qStr);
+
+  // Пересчет всех родителей
+  while (0 < feedParentId) {
+    // Подсчет суммы для всех лент в одним родителем
+    qStr = QString("SELECT sum(unread), sum(undeleteCount) "
+        "FROM feeds WHERE parentId=='%1'").arg(feedParentId);
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCount   = q.value(0).toInt();
+      undeleteCount = q.value(1).toInt();
+    }
+
+    qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+        arg(unreadCount).arg(undeleteCount).arg(feedParentId);
+    q.exec(qStr);
+
+    // Переходим к предыдущему родителю
+    feedParentId = 0;
+    qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
+        arg(feedParentId);
+    q.exec(qStr);
+    if (q.next()) feedParentId = q.value(1).toInt();
+
+  }
 }
 
 //! Установка стиля оформления приложения
