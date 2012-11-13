@@ -369,7 +369,7 @@ private slots:
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
 
-  void setFeedRead(int feedId, int type);
+  void setFeedRead(int feedId, int feedParId, int type);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
 

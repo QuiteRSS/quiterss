@@ -401,7 +401,7 @@ void RSSListing::slotPlaceToTray()
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (markReadMinimize_)
-    setFeedRead(currentNewsTab->feedId_, 2);
+    setFeedRead(currentNewsTab->feedId_, currentNewsTab->feedParId_, 2);
   if (clearStatusNew_)
     markAllFeedsOld();
   idFeedList_.clear();
@@ -2197,8 +2197,10 @@ void RSSListing::slotUpdateNews()
 void RSSListing::slotFeedClicked(QModelIndex index)
 {
   static int feedIdOld = -2;
+  static int feedParIdOld = -2;
 
   int feedIdCur = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+  int feedParIdCur = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
 
   // Поиск уже открытого таба с этой лентой
   int indexTab = -1;
@@ -2217,12 +2219,13 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     }
 
     //! При переходе на другую ленту метим старую просмотренной
-    setFeedRead(feedIdOld, 0);
+    setFeedRead(feedIdOld, feedParIdOld, 0);
 
     slotFeedSelected(index, true);
     feedsTreeView_->repaint();
   }
   feedIdOld = feedIdCur;
+  feedParIdOld = feedParIdCur;
 
   if (indexTab != -1) {
     tabWidget_->setCurrentIndex(indexTab);
@@ -3047,7 +3050,7 @@ void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
 }
 
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
-void RSSListing::setFeedRead(int feedId, int type)
+void RSSListing::setFeedRead(int feedId, int feedParId, int type)
 {
   if (feedId <= -1) return;
 
@@ -3068,7 +3071,7 @@ void RSSListing::setFeedRead(int feedId, int type)
   db_.commit();
 
   if (update) {
-    recountFeedCounts(feedId);
+    recountFeedCounts(feedId, feedParId);
     if (type != 2) {
       refreshInfoTray();
       feedsModelReload();
@@ -4087,7 +4090,7 @@ void RSSListing::slotTabCloseRequested(int index)
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
 
     if (widget->feedId_ > -1) {
-      setFeedRead(widget->feedId_, 1);
+      setFeedRead(widget->feedId_, widget->feedParId_, 1);
 
       QString stateStr;
       if(isMinimized()) {
