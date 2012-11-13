@@ -2018,7 +2018,6 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
       "WHERE id=='%4'").
       arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
   q.exec(qStr);
-  db_.commit();
 
   QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
   QModelIndex indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
@@ -2068,6 +2067,7 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
 
     index = index.parent();
   }
+  db_.commit();
 
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 }
