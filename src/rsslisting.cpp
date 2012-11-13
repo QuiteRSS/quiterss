@@ -401,7 +401,7 @@ void RSSListing::slotPlaceToTray()
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (markReadMinimize_)
-    setFeedRead(currentNewsTab->feedId_, currentNewsTab->feedParId_, 2);
+    setFeedRead(currentNewsTab->feedId_, currentNewsTab->feedParId_, FeedReadPlaceToTray);
   if (clearStatusNew_)
     markAllFeedsOld();
   idFeedList_.clear();
@@ -2219,7 +2219,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     }
 
     //! При переходе на другую ленту метим старую просмотренной
-    setFeedRead(feedIdOld, feedParIdOld, 0);
+    setFeedRead(feedIdOld, feedParIdOld, FeedReadTypeSwitchingFeed);
 
     slotFeedSelected(index, true);
     feedsTreeView_->repaint();
@@ -3050,16 +3050,16 @@ void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
 }
 
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
-void RSSListing::setFeedRead(int feedId, int feedParId, int type)
+void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtype)
 {
   if (feedId <= -1) return;
 
   bool update = false;
   db_.transaction();
   QSqlQuery q(db_);
-  if ((markReadSwitchingFeed_ && (type == 0)) ||
-      (markReadClosingTab_ && (type == 1)) ||
-      (markReadMinimize_ && (type == 2))) {
+  if (((feedReadtype == FeedReadTypeSwitchingFeed) && markReadSwitchingFeed_) ||
+      ((feedReadtype == FeedReadClosingTab)        && markReadClosingTab_) ||
+      ((feedReadtype == FeedReadPlaceToTray)       && markReadMinimize_)) {
     q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1'").arg(feedId));
     update = true;
   }
@@ -3072,7 +3072,7 @@ void RSSListing::setFeedRead(int feedId, int feedParId, int type)
 
   if (update) {
     recountFeedCounts(feedId, feedParId);
-    if (type != 2) {
+    if (feedReadtype != 2) {
       refreshInfoTray();
       feedsModelReload();
     }
@@ -4090,7 +4090,7 @@ void RSSListing::slotTabCloseRequested(int index)
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
 
     if (widget->feedId_ > -1) {
-      setFeedRead(widget->feedId_, widget->feedParId_, 1);
+      setFeedRead(widget->feedId_, widget->feedParId_, FeedReadClosingTab);
 
       QString stateStr;
       if(isMinimized()) {
