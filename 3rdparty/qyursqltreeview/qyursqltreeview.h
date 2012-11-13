@@ -73,7 +73,7 @@ class QyurSqlTreeView: public QTreeView {
 	Q_DISABLE_COPY(QyurSqlTreeView)
 	Q_CLASSINFO("Author", "Yuri Yurachkovsky")
 	Q_CLASSINFO("e-mail", "yura_79@mail.ru")
-	Q_CLASSINFO("Version", "0.90")
+	Q_CLASSINFO("Version", "0.92")
 	Q_CLASSINFO("Qt version", "4.3.3")
 	QyurSqlTreeViewPrivate* d_ptr;
 public:
