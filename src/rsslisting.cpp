@@ -2677,7 +2677,7 @@ void RSSListing::slotGetFeed()
 {
   playSoundNewNews_ = false;
 
-  QModelIndex index = feedsTreeView_->currentIndex();
+  QModelIndex index = feedsTreeView_->selectIndex_;
   persistentUpdateThread_->requestUrl(
         feedsTreeModel_->dataField(index, "xmlUrl").toUrl(),
         QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate)
@@ -2752,7 +2752,7 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 
 void RSSListing::markFeedRead()
 {
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
 
   db_.transaction();
   QSqlQuery q(db_);
@@ -2765,8 +2765,6 @@ void RSSListing::markFeedRead()
         arg(feedId);
     q.exec(qStr);
   }
-  // \FIXME: (arhohryakov:12.11.2012)
-  // В каком случае мы попадаем в ветку "else"?
   else {
     QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
         arg(feedId);
