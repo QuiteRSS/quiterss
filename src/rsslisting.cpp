@@ -3373,8 +3373,8 @@ void RSSListing::retranslateStrings() {
 
   markFeedRead_->setText(tr("Mark Read"));
   markFeedRead_->setToolTip(tr("Mark Feed Read"));
-  feedProperties_->setText(tr("Feed Properties"));
-  feedProperties_->setToolTip(tr("Feed Properties"));
+  feedProperties_->setText(tr("Properties"));
+  feedProperties_->setToolTip(tr("Properties"));
 
   fileMenu_->setTitle(tr("&File"));
   editMenu_->setTitle(tr("&Edit"));
@@ -3537,7 +3537,12 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   QModelIndex index = feedsTreeView_->selectIndex_;
 
-  FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(this);
+  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
+  bool isFeed = true;
+  if (feedUrl.isEmpty())
+    isFeed = false;
+
+  FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
 
   QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
@@ -3545,7 +3550,11 @@ void RSSListing::slotShowFeedPropertiesDlg()
     QPixmap icon;
     icon.loadFromData(QByteArray::fromBase64(byteArray));
     feedPropertiesDialog->setWindowIcon(icon);
-  } else feedPropertiesDialog->setWindowIcon(QPixmap(":/images/feed"));
+  } else if (isFeed) {
+    feedPropertiesDialog->setWindowIcon(QPixmap(":/images/feed"));
+  } else {
+    feedPropertiesDialog->setWindowIcon(QPixmap(":/images/folder"));
+  }
   QString str(feedPropertiesDialog->windowTitle() +
               " '" +
               feedsTreeModel_->dataField(index, "text").toString() +

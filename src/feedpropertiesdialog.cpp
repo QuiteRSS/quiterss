@@ -1,11 +1,12 @@
 /*This file is prepared for Doxygen automatic documentation generation.*/
 #include "feedpropertiesdialog.h"
 
-FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent) :
-  QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent) :
+  QDialog(parent, Qt::MSWindowsFixedSizeDialogHint),
+  isFeed_(isFeed)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
-  setWindowTitle(tr("Feed Properties"));
+  setWindowTitle(tr("Properties"));
 
   // Основное окно
   QVBoxLayout *layoutMain = new QVBoxLayout(this);
@@ -72,6 +73,17 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
 
+  if (!isFeed_) {
+    btnLoadTitle->hide();
+    labelURLCapt->hide();
+    editURL->hide();
+    labelHomepageCapt->hide();
+    labelHomepage->hide();
+    starredOn_->hide();
+    loadImagesOn->hide();
+    displayOnStartup->hide();
+  }
+
   return tab;
 }
 //------------------------------------------------------------------------------
@@ -80,6 +92,8 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   createdFeed_ = new QLabel();
   lastUpdateFeed_ = new QLabel();
   newsCount_ = new QLabel();
+
+  QLabel *descriptionLabel = new QLabel(tr("Description:"));
 
   descriptionText_ = new QTextEdit();
   descriptionText_->setReadOnly(true);
@@ -91,7 +105,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   layoutGrid->addWidget(lastUpdateFeed_, 1, 1);
   layoutGrid->addWidget(new QLabel(tr("News count:")), 2, 0);
   layoutGrid->addWidget(newsCount_, 2, 1);
-  layoutGrid->addWidget(new QLabel(tr("Description:")), 3, 0, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(descriptionLabel, 3, 0, 1, 1, Qt::AlignTop);
   layoutGrid->addWidget(descriptionText_, 3, 1, 1, 1, Qt::AlignTop);
 
   QVBoxLayout *layoutMain = new QVBoxLayout();
@@ -100,6 +114,11 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
 
   QWidget *tab = new QWidget();
   tab->setLayout(layoutMain);
+
+  if (!isFeed_) {
+    descriptionLabel->hide();
+    descriptionText_->hide();
+  }
 
   return tab;
 }
