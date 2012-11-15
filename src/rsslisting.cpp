@@ -1766,8 +1766,24 @@ void RSSListing::deleteFeed()
     q.finish();
     db_.commit();
 
-    int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-    int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
+    // Если удаляется лента на которой стоит фокус и эта лента последняя,
+    // то курсор нужно ставить на предыдущую ленту, чтобы не курсор пропадал.
+    // Иначе курсор ставим на ранее сфокусированную ленту
+    int feedId, feedParId;
+    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    feedId = feedsTreeModel_->getIdByIndex(currentIndex);
+
+    // Сравниваем идентификаторы, т.к. сам selectedIndex после скрытия
+    // всплывающего меню устанавливается на currentIndex()
+    if (feedId == deleteId) {
+      QModelIndex index = feedsTreeView_->indexBelow(currentIndex);
+      if (!index.isValid())
+        index = feedsTreeView_->indexAbove(currentIndex);
+      currentIndex = index;
+    }
+    feedId = feedsTreeModel_->getIdByIndex(currentIndex);
+    feedParId = feedsTreeModel_->getParidByIndex(currentIndex);
+
     feedsTreeModel_->refresh();
     slotSortFeeds();  // почему-то это позволяет папкам "не схлапываться"
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
