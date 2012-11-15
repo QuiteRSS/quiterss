@@ -3665,6 +3665,9 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
 void RSSListing::slotFeedMenuShow()
 {
+  deleteFeedAct_->setEnabled(
+      0 == feedsTreeModel_->rowCount(feedsTreeView_->selectIndex_));
+
   feedProperties_->setEnabled(feedsTreeView_->selectIndex_.isValid());
 }
 
