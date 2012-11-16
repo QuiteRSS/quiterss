@@ -145,6 +145,20 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   }
 
   viewport()->update();
+
+  if (shouldAutoScroll(event->pos()))
+    startAutoScroll();
+}
+
+bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
+{
+    if (!hasAutoScroll())
+        return false;
+    QRect area = viewport()->rect();
+    return (pos.y() - area.top() < autoScrollMargin())
+        || (area.bottom() - pos.y() < autoScrollMargin())
+        || (pos.x() - area.left() < autoScrollMargin())
+        || (area.right() - pos.x() < autoScrollMargin());
 }
 
 void FeedsTreeView::dropEvent(QDropEvent *event)

@@ -44,6 +44,7 @@ private:
   QPoint dragStartPos_;
 
   void handleDrop(QDropEvent *e);
+  bool shouldAutoScroll(const QPoint &pos) const;
 };
 
 #endif // FEEDSTREEVIEW_H
