@@ -2040,11 +2040,8 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
   QModelIndex indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
   QModelIndex indexUndelete = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
   feedsTreeModel_->setData(indexUnread, unreadCount);
-  feedsTreeView_->update(indexUnread);
   feedsTreeModel_->setData(indexNew, newCount);
-  feedsTreeView_->update(indexNew);
   feedsTreeModel_->setData(indexUndelete, undeleteCount);
-  feedsTreeView_->update(indexUndelete);
 
   // Пересчитываем счетчики для всех родителей
   while (index.parent().isValid()) {
@@ -2072,13 +2069,9 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
     indexUndelete = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
     indexUpdated  = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("updated"));
     feedsTreeModel_->setData(indexUnread, unreadCount);
-    feedsTreeView_->update(indexUnread);
     feedsTreeModel_->setData(indexNew, newCount);
-    feedsTreeView_->update(indexNew);
     feedsTreeModel_->setData(indexUndelete, undeleteCount);
-    feedsTreeView_->update(indexUndelete);
     feedsTreeModel_->setData(indexUpdated, updated);
-    feedsTreeView_->update(indexUpdated);
 
     index = index.parent();
   }
@@ -3638,15 +3631,10 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex indexImages  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayEmbeddedImages"));
   QModelIndex indexLabel   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("label"));
   feedsTreeModel_->setData(indexText, properties.general.text);
-  feedsTreeView_->update(indexText);
   feedsTreeModel_->setData(indexUrl, properties.general.url);
-  feedsTreeView_->update(indexUrl);
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
-  feedsTreeView_->update(indexStartup);
   feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
-  feedsTreeView_->update(indexImages);
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
-  feedsTreeView_->update(indexLabel);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
   QModelIndex currentIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
