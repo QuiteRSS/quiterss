@@ -3069,14 +3069,14 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
 {
   if (feedId <= -1) return;
 
-  bool update = false;
+//  bool update = false;
   db_.transaction();
   QSqlQuery q(db_);
   if (((feedReadtype == FeedReadTypeSwitchingFeed) && markReadSwitchingFeed_) ||
       ((feedReadtype == FeedReadClosingTab)        && markReadClosingTab_) ||
       ((feedReadtype == FeedReadPlaceToTray)       && markReadMinimize_)) {
     q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1'").arg(feedId));
-    update = true;
+//    update = true;
   }
   else
     q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
@@ -3085,12 +3085,12 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
   q.exec(QString("UPDATE feeds SET newCount=0 WHERE id='%1'").arg(feedId));
   db_.commit();
 
-  if (update) {
+//  if (update) {
     recountFeedCounts(feedId, feedParId);
     if (feedReadtype != FeedReadPlaceToTray) {
       refreshInfoTray();
     }
-  }
+//  }
 }
 
 void RSSListing::slotShowAboutDlg()
