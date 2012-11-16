@@ -2067,7 +2067,6 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
         arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
         arg(parentId);
     q.exec(qStr);
-    qDebug() << q.lastQuery() << q.lastError();
     indexUnread   = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
     indexNew      = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
     indexUndelete = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
