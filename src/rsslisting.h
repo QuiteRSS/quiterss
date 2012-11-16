@@ -36,6 +36,7 @@ public:
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
+#define TAB_WIDGET_PERMANENT 0
   QTabWidget *tabWidget_;
   WebView *webView_;
 

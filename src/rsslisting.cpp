@@ -2229,8 +2229,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
   }
 
   if ((feedIdCur != feedIdOld) || (indexTab == -1)) {
-    if (tabWidget_->currentIndex() != 0) {
-      tabWidget_->setCurrentIndex(0);
+    if (tabWidget_->currentIndex() != TAB_WIDGET_PERMANENT) {
+      tabWidget_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       feedsTreeView_->setCurrentIndex(index);
     }
 
@@ -2791,8 +2791,9 @@ void RSSListing::markFeedRead()
   q.exec(qStr);
   db_.commit();
 
+  // Обновляем ленту, на которой стоит фокус
   if (currentNewsTab->feedId_ == feedId) {
-    if (tabWidget_->currentIndex() == 0) {
+    if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
       QModelIndex indexCur = feedsTreeView_->currentIndex();
       QModelIndex index = feedsTreeView_->indexBelow(indexCur);
       if (!index.isValid())
@@ -2811,7 +2812,9 @@ void RSSListing::markFeedRead()
 
       slotUpdateStatus();
     }
-  } else {
+  }
+  // Обновляем ленту, на которой нет фокуса
+  else {
     slotUpdateStatus(false);
   }
 }
@@ -2946,7 +2949,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-    if (tabWidget_->currentIndex() == 0) {
+    if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
       slotFeedClicked(feedIndex);
     }
   }
@@ -3754,7 +3757,7 @@ void RSSListing::markAllFeedsRead()
   q.exec("UPDATE feeds SET newCount=0, unread=0");
   db_.commit();
 
-  if (tabWidget_->currentIndex() == 0) {
+  if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
     QModelIndex index =
         feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
     feedsTreeView_->setCurrentIndex(index);
