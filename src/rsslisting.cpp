@@ -3089,7 +3089,6 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
     recountFeedCounts(feedId, feedParId);
     if (feedReadtype != FeedReadPlaceToTray) {
       refreshInfoTray();
-      feedsModelReload();
     }
   }
 }
