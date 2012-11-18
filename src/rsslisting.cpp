@@ -2080,6 +2080,76 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 }
 
+/**
+ * @brief Пересчёт счетчиков для указанных категорий
+ * @details Пересчет производится прямо в базе. Необходим "reselect" модели
+ * @param feedParIdOld - идентификор старого родителя для пересчёта
+ * @param feedParIdNew - идентификор нового родителя для пересчёта
+ ******************************************************************************/
+void RSSListing::recountFeedCategories(int feedParIdOld, int feedParIdNew)
+{
+  QSqlQuery q(db_);
+  QString qStr;
+  int unreadCount;
+  int undeleteCount;
+
+  int feedParentId = feedParIdOld;
+  // Пересчет всех родителей
+  while (0 < feedParentId) {
+    // Подсчет суммы для всех лент c одним родителем
+    qStr = QString("SELECT sum(unread), sum(undeleteCount) "
+        "FROM feeds WHERE parentId=='%1'").arg(feedParentId);
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCount   = q.value(0).toInt();
+      undeleteCount = q.value(1).toInt();
+    }
+
+    qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+        arg(unreadCount).arg(undeleteCount).arg(feedParentId);
+    q.exec(qStr);
+
+    // Переходим к предыдущему родителю
+    feedParentId = 0;
+    qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
+        arg(feedParentId);
+    q.exec(qStr);
+    if (q.next()) feedParentId = q.value(0).toInt();
+
+  }
+
+  feedParentId = feedParIdNew;
+  // Пересчет всех родителей
+  while (0 < feedParentId) {
+    // Подсчет суммы для всех лент c одним родителем
+    qStr = QString("SELECT sum(unread), sum(undeleteCount) "
+                   "FROM feeds WHERE parentId=='%1'").arg(feedParentId);
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCount   = q.value(0).toInt();
+      undeleteCount = q.value(1).toInt();
+    }
+
+    qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+        arg(unreadCount).arg(undeleteCount).arg(feedParentId);
+    q.exec(qStr);
+
+    // Переходим к предыдущему родителю
+    feedParentId = 0;
+    qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
+        arg(feedParentId);
+    q.exec(qStr);
+    if (q.next()) feedParentId = q.value(0).toInt();
+
+  }
+
+}
+
+/**
+ * @brief RSSListing::slotUpdateFeed
+ * @param url
+ * @param changed
+ ******************************************************************************/
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
   if (updateFeedsCount_ > 0) {
@@ -4770,6 +4840,8 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 
   feedsTreeModel_->setData(indexParId, feedParIdNew);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
+
+  recountFeedCategories(feedsTreeModel_->getParidByIndex(indexWhat), feedParIdNew);
 
   feedsTreeModel_->refresh();
 

@@ -159,6 +159,7 @@ private:
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, int feedParId = 0);
+  void recountFeedCategories(int feedParIdOld, int feedParIdNew);
   void creatFeedTab(int feedId, int feedParId);
   void feedsModelReload();
   void cleanUp();
