@@ -2083,66 +2083,43 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
 /**
  * @brief Пересчёт счетчиков для указанных категорий
  * @details Пересчет производится прямо в базе. Необходим "reselect" модели
- * @param feedParIdOld - идентификор старого родителя для пересчёта
- * @param feedParIdNew - идентификор нового родителя для пересчёта
+ * @param categoriesList - список идентификаторов категорий для обработки
  ******************************************************************************/
-void RSSListing::recountFeedCategories(int feedParIdOld, int feedParIdNew)
+void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
 {
   QSqlQuery q(db_);
   QString qStr;
   int unreadCount;
   int undeleteCount;
 
-  int feedParentId = feedParIdOld;
-  // Пересчет всех родителей
-  while (0 < feedParentId) {
-    // Подсчет суммы для всех лент c одним родителем
-    qStr = QString("SELECT sum(unread), sum(undeleteCount) "
-        "FROM feeds WHERE parentId=='%1'").arg(feedParentId);
-    q.exec(qStr);
-    if (q.next()) {
-      unreadCount   = q.value(0).toInt();
-      undeleteCount = q.value(1).toInt();
+  foreach (int categoryIdStart, categoriesList) {
+    if (categoryIdStart < 1) continue;
+
+    int categoryId = categoryIdStart;
+    // Пересчет всех родителей
+    while (0 < categoryId) {
+      // Подсчет суммы для всех лент c одним родителем
+      qStr = QString("SELECT sum(unread), sum(undeleteCount) "
+                     "FROM feeds WHERE parentId=='%1'").arg(categoryId);
+      q.exec(qStr);
+      if (q.next()) {
+        unreadCount   = q.value(0).toInt();
+        undeleteCount = q.value(1).toInt();
+      }
+
+      qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+          arg(unreadCount).arg(undeleteCount).arg(categoryId);
+      q.exec(qStr);
+
+      // Переходим к предыдущему родителю
+      categoryId = 0;
+      qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
+          arg(categoryId);
+      q.exec(qStr);
+      if (q.next()) categoryId = q.value(0).toInt();
+
     }
-
-    qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
-        arg(unreadCount).arg(undeleteCount).arg(feedParentId);
-    q.exec(qStr);
-
-    // Переходим к предыдущему родителю
-    feedParentId = 0;
-    qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
-        arg(feedParentId);
-    q.exec(qStr);
-    if (q.next()) feedParentId = q.value(0).toInt();
-
   }
-
-  feedParentId = feedParIdNew;
-  // Пересчет всех родителей
-  while (0 < feedParentId) {
-    // Подсчет суммы для всех лент c одним родителем
-    qStr = QString("SELECT sum(unread), sum(undeleteCount) "
-                   "FROM feeds WHERE parentId=='%1'").arg(feedParentId);
-    q.exec(qStr);
-    if (q.next()) {
-      unreadCount   = q.value(0).toInt();
-      undeleteCount = q.value(1).toInt();
-    }
-
-    qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
-        arg(unreadCount).arg(undeleteCount).arg(feedParentId);
-    q.exec(qStr);
-
-    // Переходим к предыдущему родителю
-    feedParentId = 0;
-    qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
-        arg(feedParentId);
-    q.exec(qStr);
-    if (q.next()) feedParentId = q.value(0).toInt();
-
-  }
-
 }
 
 /**
@@ -4841,7 +4818,9 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
   feedsTreeModel_->setData(indexParId, feedParIdNew);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
-  recountFeedCategories(feedsTreeModel_->getParidByIndex(indexWhat), feedParIdNew);
+  QList<int> categoriesList;
+  categoriesList << feedsTreeModel_->getParidByIndex(indexWhat) << feedParIdNew;
+  recountFeedCategories(categoriesList);
 
   feedsTreeModel_->refresh();
 
