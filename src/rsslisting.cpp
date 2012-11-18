@@ -2100,8 +2100,6 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
 {
   QSqlQuery q(db_);
   QString qStr;
-  int unreadCount;
-  int undeleteCount;
 
   foreach (int categoryIdStart, categoriesList) {
     if (categoryIdStart < 1) continue;
@@ -2109,6 +2107,9 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
     int categoryId = categoryIdStart;
     // Пересчет всех родителей
     while (0 < categoryId) {
+      int unreadCount = -1;
+      int undeleteCount = -1;
+
       // Подсчет суммы для всех лент c одним родителем
       qStr = QString("SELECT sum(unread), sum(undeleteCount) "
                      "FROM feeds WHERE parentId=='%1'").arg(categoryId);
@@ -2118,9 +2119,11 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
         undeleteCount = q.value(1).toInt();
       }
 
-      qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
-          arg(unreadCount).arg(undeleteCount).arg(categoryId);
-      q.exec(qStr);
+      if (unreadCount != -1) {
+        qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+            arg(unreadCount).arg(undeleteCount).arg(categoryId);
+        q.exec(qStr);
+      }
 
       // Переходим к предыдущему родителю
       categoryId = 0;
