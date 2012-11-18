@@ -53,8 +53,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
   // поиск идентификатора ленты с таблице лент
   int parseFeedId = 0;
   QSqlQuery q(*db);
-  q.exec(QString("select id from feeds where xmlUrl like '%1'").
-         arg(url.toString()));
+
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", url.toString());
+  q.exec();
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
   }
@@ -62,6 +64,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url.toString());
+    emit feedUpdated(url, false);
     return;
   }
 
