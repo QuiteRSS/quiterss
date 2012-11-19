@@ -2902,6 +2902,9 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   if (q.next()) newCountOld = q.value(0).toInt();
 
   recountFeedCounts(feedId, feedParId);
+  // Обновляем представление принудительно.
+  // Например после slotSetItemRead() самостоятельно не обновляется
+  feedsTreeView_->viewport()->update();
 
   int newCount = 0;
   int unreadCount = 0;
