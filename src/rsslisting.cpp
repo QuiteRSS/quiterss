@@ -2939,6 +2939,13 @@ void RSSListing::slotUpdateStatus(bool openFeed)
   }
 }
 
+/**
+ * @brief Установка фильтра для отображения лент и их категорий
+ * @param pAct тип выбранного фильтра
+ * @param clicked Установка фильтра пользователем или вызов функции из программы:
+ *    true  - метод вызван непосредственно после действий пользователя
+ *    false - метод вызван внутрипрограммно
+ ******************************************************************************/
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   QModelIndex index = feedsTreeView_->currentIndex();
@@ -2947,6 +2954,12 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
   int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
 
+  QList<int> parentIdList;  //*< Список всех родителей ленты
+  while (index.parent().isValid()) {
+    parentIdList << feedsTreeModel_->getParidByIndex(index);
+    index = index.parent();
+  }
+
   // Создаем фильтр лент из "фильтра"
   QString strFilter;
   if (pAct->objectName() == "filterFeedsAll_") {
@@ -2954,13 +2967,21 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   } else if (pAct->objectName() == "filterFeedsNew_") {
     if (clicked && !newCount) {
       strFilter = QString("newCount > 0");
-    } else
-      strFilter = QString("(newCount > 0 OR id=='%1')").arg(feedId);
+    } else {
+      strFilter = QString("(newCount > 0 OR id=='%1'").arg(feedId);
+      foreach (int parentId, parentIdList)
+        strFilter.append(QString(" OR id=='%1'").arg(parentId));
+      strFilter.append(")");
+    }
   } else if (pAct->objectName() == "filterFeedsUnread_") {
     if (clicked && !unRead) {
       strFilter = QString("unread > 0");
-    } else
-      strFilter = QString("(unread > 0 OR id=='%1')").arg(feedId);
+    } else {
+      strFilter = QString("(unread > 0 OR id=='%1'").arg(feedId);
+      foreach (int parentId, parentIdList)
+        strFilter.append(QString(" OR id=='%1'").arg(parentId));
+      strFilter.append(")");
+    }
   } else if (pAct->objectName() == "filterFeedsStarred_") {
     strFilter = QString("label LIKE '\%starred\%'");
   }
