@@ -213,8 +213,9 @@ void AddFeedWizard::addFeed()
 
   QSqlQuery q(*db_);
   int duplicateFoundId = -1;
-  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-         arg(feedUrlString_));
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", feedUrlString_);
+  q.exec();
   if (q.next()) duplicateFoundId = q.value(0).toInt();
 
   if (0 <= duplicateFoundId) {
@@ -253,8 +254,9 @@ void AddFeedWizard::deleteFeed()
   int id = -1;
 
   QSqlQuery q(*db_);
-  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-         arg(feedUrlString_));
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", feedUrlString_);
+  q.exec();
   if (q.next()) id = q.value(0).toInt();
   if (id >= 0) {
     q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
@@ -331,8 +333,9 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
 
           QSqlQuery q(*db_);
           int duplicateFoundId = -1;
-          q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-                 arg(linkFeed));
+          q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+          q.bindValue(":xmlUrl", linkFeed);
+          q.exec();
           if (q.next()) duplicateFoundId = q.value(0).toInt();
 
           if (0 <= duplicateFoundId) {
@@ -345,14 +348,16 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
             selectedPage = false;
             button(QWizard::CancelButton)->setEnabled(true);
           } else {
-            q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-                   arg(feedUrlString_));
+            q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+            q.bindValue(":xmlUrl", feedUrlString_);
+            q.exec();
             if (q.next()) parseFeedId = q.value(0).toInt();
 
             feedUrlString_ = linkFeed;
-            db_->exec(QString("UPDATE feeds SET xmlUrl = '%1' WHERE id == '%2'").
-                      arg(linkFeed).
-                      arg(parseFeedId));
+            q.prepare("UPDATE feeds SET xmlUrl = :xmlUrl WHERE id == :id");
+            q.bindValue(":xmlUrl", linkFeed);
+            q.bindValue(":id", parseFeedId);
+            q.exec();
 
             emit startGetUrlTimer();
             persistentUpdateThread_->requestUrl(linkFeed, QDateTime());
@@ -376,9 +381,12 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
     }
 
     emit xmlReadyParse(data_, url_);
-    QSqlQuery q = db_->exec(QString("UPDATE feeds SET lastBuildDate = '%1' WHERE xmlUrl == '%2'").
-                            arg(dtReply.toString(Qt::ISODate)).
-                            arg(url_.toString()));
+    QSqlQuery q(*db_);
+    q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
+              "WHERE xmlUrl == :xmlUrl");
+    q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
+    q.bindValue(":xmlUrl", url_.toString());
+    q.exec();
     qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
     qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
   }
@@ -405,8 +413,9 @@ void AddFeedWizard::slotUpdateFeed(const QUrl &url, const bool &)
   if (titleFeedAsName_->isChecked()) {
     int parseFeedId = 0;
     QSqlQuery q(*db_);
-    q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-           arg(url.toString()));
+    q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+    q.bindValue(":xmlUrl", url.toString());
+    q.exec();
     if (q.next()) parseFeedId = q.value(0).toInt();
 
     q.exec(QString("SELECT title FROM feeds WHERE id=='%1'").
@@ -428,8 +437,9 @@ void AddFeedWizard::finish()
 {
   int parseFeedId = 0;
   QSqlQuery q(*db_);
-  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-         arg(feedUrlString_));
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", feedUrlString_);
+  q.exec();
   if (q.next()) parseFeedId = q.value(0).toInt();
 
   q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").

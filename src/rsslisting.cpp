@@ -1736,8 +1736,6 @@ void RSSListing::addFolder()
   // Вычисляем номер ряда для папки, вставляемой в корень
   int rowToParent = 0;
   q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
-  qDebug() << q.lastQuery();
-  qDebug() << q.lastError();
   if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
 
   // Добавляем папку
@@ -1848,7 +1846,7 @@ void RSSListing::slotImportFeeds()
           QString textString(xml.attributes().value("text").toString());
           QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
           bool duplicateFound = false;
-          q.exec("select xmlUrl from feeds");
+          q.exec("SELECT xmlUrl FROM feeds");
           while (q.next()) {
             if (q.record().value(0).toString() == xmlUrlString) {
               duplicateFound = true;
@@ -1937,7 +1935,7 @@ void RSSListing::slotExportFeeds()
   xml.writeEndElement(); // </head>
 
   QSqlQuery q(db_);
-  q.exec("select * from feeds where xmlUrl is not null");
+  q.exec("SELECT * FROM feeds WHERE xmlUrl IS NOT NULL");
 
   xml.writeStartElement("body");
   while (q.next()) {
@@ -1971,9 +1969,12 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   if (!url_.isEmpty()) {
     if (!data_.isEmpty()) {
       emit xmlReadyParse(data_, url_);
-      QSqlQuery q = db_.exec(QString("update feeds set lastBuildDate = '%1' where xmlUrl == '%2'").
-                             arg(dtReply.toString(Qt::ISODate)).
-                             arg(url_.toString()));
+      QSqlQuery q(db_);
+      q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
+                "WHERE xmlUrl == :xmlUrl");
+      q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
+      q.bindValue(":xmlUrl",        url_.toString());
+      q.exec();
       qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
       qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
     } else {
@@ -2170,8 +2171,9 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   int parseFeedParId = 0;
   int newCountOld = 0;
   QSqlQuery q(db_);
-  q.exec(QString("SELECT id, newCount, parentId FROM feeds WHERE xmlUrl LIKE '%1'").
-         arg(url.toString()));
+  q.prepare("SELECT id, newCount, parentId FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", url.toString());
+  q.exec();
   if (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
     newCountOld = q.value(q.record().indexOf("newCount")).toInt();
@@ -2762,7 +2764,7 @@ void RSSListing::slotGetAllFeeds()
   playSoundNewNews_ = false;
 
   QSqlQuery q(db_);
-  q.exec("select xmlUrl, lastBuildDate from feeds where xmlUrl is not null");
+  q.exec("SELECT xmlUrl, lastBuildDate FROM feeds WHERE xmlUrl IS NOT NULL");
   qDebug() << q.lastError();
   while (q.next()) {
     persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
@@ -3673,8 +3675,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
   delete feedPropertiesDialog;
 
   QSqlQuery q(db_);
-  q.prepare("update feeds set text = ?, xmlUrl = ?, displayOnStartup = ?, "
-            "displayEmbeddedImages = ?, label = ? where id == ?");
+  q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
+            "displayEmbeddedImages = ?, label = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -3856,13 +3858,14 @@ void RSSListing::markAllFeedsOld()
 void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
 {
   QSqlQuery q(db_);
-  q.prepare("update feeds set image = ? where xmlUrl == ?");
+  q.prepare("UPDATE feeds SET image = ? WHERE xmlUrl == ?");
   q.addBindValue(byteArray.toBase64());
   q.addBindValue(strUrl);
   q.exec();
 
-  q.exec(QString("SELECT id FROM feeds WHERE xmlUrl LIKE '%1'").
-         arg(strUrl));
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE ':xmlUrl'");
+  q.bindValue(":xmlUrl", strUrl);
+  q.exec();
   if (q.next()) {
     for (int i = 0; i < tabWidget_->count(); i++) {
       NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
