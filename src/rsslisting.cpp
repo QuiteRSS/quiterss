@@ -1935,7 +1935,7 @@ void RSSListing::slotExportFeeds()
   xml.writeEndElement(); // </head>
 
   QSqlQuery q(db_);
-  q.exec("SELECT * FROM feeds WHERE xmlUrl IS NOT NULL");
+  q.exec("SELECT * FROM feeds WHERE xmlUrl!=''");
 
   xml.writeStartElement("body");
   while (q.next()) {
@@ -2764,7 +2764,7 @@ void RSSListing::slotGetAllFeeds()
   playSoundNewNews_ = false;
 
   QSqlQuery q(db_);
-  q.exec("SELECT xmlUrl, lastBuildDate FROM feeds WHERE xmlUrl IS NOT NULL");
+  q.exec("SELECT xmlUrl, lastBuildDate FROM feeds WHERE xmlUrl!=''");
   qDebug() << q.lastError();
   while (q.next()) {
     persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
