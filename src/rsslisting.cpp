@@ -2119,9 +2119,10 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
 }
 
 /**
- * @brief RSSListing::slotUpdateFeed
- * @param url
- * @param changed
+ * @brief Обновление отображения ленты
+ * @details Проиводится после обновления ленты или после добавления ленты
+ * @param url URL-адрес обновляемой ленты
+ * @param changed Признак того, что лента действительно была обновлена
  ******************************************************************************/
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
@@ -2140,8 +2141,8 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 
   if (!changed) return;
 
-  //! Ппоиск идентификатора ленты в таблице лент по URL
-  //! + достаем предыдущее значение количества новых новостей
+  // Поиск идентификатора ленты в таблице лент по URL
+  // + достаем предыдущее значение количества новых новостей
   int parseFeedId = 0;
   int parseFeedParId = 0;
   int newCountOld = 0;
@@ -2155,7 +2156,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     parseFeedParId = q.value(q.record().indexOf("parentId")).toInt();
   }
 
-  //! Устанавливаем время обновления ленты
+  // Устанавливаем время обновления ленты
   q.prepare("UPDATE feeds SET updated=? WHERE id=?");
   q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                        "yyyy-MM-ddTHH:mm:ss"));
@@ -2166,12 +2167,12 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 
   recountFeedCounts(parseFeedId, parseFeedParId);
 
-  //! Достаём новое значение количества новых новостей
+  // Достаём новое значение количества новых новостей
   int newCount = 0;
   q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(parseFeedId));
   if (q.next()) newCount = q.value(0).toInt();
 
-  //! Действия после получения новых новостей: трей, звук
+  // Действия после получения новых новостей: трей, звук
   if (!isActiveWindow() && (newCount > newCountOld) &&
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
@@ -2181,6 +2182,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
     playSoundNewNews();
   }
 
+  // Управление уведомлениями
   if (isActiveWindow()) {
     idFeedList_.clear();
     cntNewNewsList_.clear();
