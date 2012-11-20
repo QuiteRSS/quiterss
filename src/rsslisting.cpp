@@ -2992,6 +2992,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
   // Установка фильтра
   feedsTreeModel_->setFilter(strFilter);
+  feedsTreeView_->restoreExpanded();
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
