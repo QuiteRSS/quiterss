@@ -1798,7 +1798,7 @@ void RSSListing::deleteFeed()
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
     feedsTreeView_->setCurrentIndex(feedIndex);
 
-    slotFeedClicked(feedsTreeView_->selectIndex_);
+    slotFeedClicked(feedIndex);
   }
 }
 
