@@ -625,11 +625,11 @@ void RSSListing::createStatusBar()
 {
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
+  progressBar_->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
   progressBar_->setFixedWidth(100);
-  progressBar_->setFixedHeight(14);
+  progressBar_->setFixedHeight(15);
   progressBar_->setMinimum(0);
   progressBar_->setMaximum(0);
-  progressBar_->setTextVisible(false);
   progressBar_->setVisible(false);
   statusBar()->setMinimumHeight(22);
 
@@ -1983,25 +1983,6 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
   }
   data_.clear();
   url_.clear();
-
-  // очередь запросов пуста
-  if (0 == result) {
-//    if (showMessageOn_) { // result=0 может приходить несколько раз
-//      statusBar()->showMessage(QString(tr("Update done")), 3000);
-//      showMessageOn_ = false;
-//    }
-//    updateAllFeedsAct_->setEnabled(true);
-//    updateFeedAct_->setEnabled(true);
-//    progressBar_->hide();
-//    progressBar_->setValue(0);
-//    progressBar_->setMaximum(0);
-  }
-  // в очереди запросов осталось _result_ запросов
-  else if (0 < result) {
-//    progressBar_->setValue(progressBar_->maximum() - result);
-//    if (showMessageOn_)
-//      statusBar()->showMessage(progressBar_->text());
-  }
 }
 
 /*! Обновление счётчиков ленты:
@@ -2147,20 +2128,14 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
     progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
-    if (showMessageOn_)
-      statusBar()->showMessage(progressBar_->text());
   }
-  if (updateFeedsCount_ == 0) {
+  if (updateFeedsCount_ <= 0) {
     emit signalShowNotification();
-    if (showMessageOn_) {
-      statusBar()->showMessage(QString(tr("Update done")), 3000);
-      showMessageOn_ = false;
-    }
-    updateAllFeedsAct_->setEnabled(true);
-    updateFeedAct_->setEnabled(true);
     progressBar_->hide();
     progressBar_->setValue(0);
     progressBar_->setMaximum(0);
+    updateAllFeedsAct_->setEnabled(true);
+    updateFeedAct_->setEnabled(true);
   }
 
   if (!changed) return;
@@ -2736,9 +2711,8 @@ void RSSListing::showProgressBar(int addToMaximum)
   updateFeedsCount_ = addToMaximum;
   idFeedList_.clear();
   cntNewNewsList_.clear();
-  showMessageOn_ = true;
-  statusBar()->showMessage(progressBar_->text());
   progressBar_->show();
+  progressBar_->setValue(0);
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
   emit startGetUrlTimer();
 }
@@ -3347,7 +3321,7 @@ void RSSListing::appInstallTranslator()
 void RSSListing::retranslateStrings() {
   feedsTitleLabel_->setText(tr("Feeds"));
 
-  progressBar_->setFormat(tr("Update feeds... (%p%)"));
+  progressBar_->setFormat(tr("%p%"));
 
   QString str = statusUnread_->text();
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");

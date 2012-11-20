@@ -140,7 +140,6 @@ QToolBar {
 #progressBar_ {
 	border: 1px solid #DE951C;
 	border-radius: 3px;
-	text-align: center;
 }
 
 #progressBar_::chunk {

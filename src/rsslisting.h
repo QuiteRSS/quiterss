@@ -341,7 +341,6 @@ private:
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
 
-  bool showMessageOn_;
   int updateFeedsCount_;
   QList<int> idFeedList_;
   QList<int> cntNewNewsList_;
