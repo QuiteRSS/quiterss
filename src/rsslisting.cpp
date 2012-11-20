@@ -1748,7 +1748,7 @@ void RSSListing::addFolder()
   q.exec();
   q.finish();
 
-  feedsTreeModel_->refresh();
+  feedsModelReload();
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -1778,7 +1778,7 @@ void RSSListing::deleteFeed()
     // Если удаляется лента на которой стоит фокус и эта лента последняя,
     // то курсор нужно ставить на предыдущую ленту, чтобы не курсор пропадал.
     // Иначе курсор ставим на ранее сфокусированную ленту
-    int feedId, feedParId;
+    int feedId;
     QModelIndex currentIndex = feedsTreeView_->currentIndex();
     feedId = feedsTreeModel_->getIdByIndex(currentIndex);
 
@@ -1790,15 +1790,9 @@ void RSSListing::deleteFeed()
         index = feedsTreeView_->indexAbove(currentIndex);
       currentIndex = index;
     }
-    feedId = feedsTreeModel_->getIdByIndex(currentIndex);
-    feedParId = feedsTreeModel_->getParidByIndex(currentIndex);
-
-    feedsTreeModel_->refresh();
-    slotSortFeeds();  // почему-то это позволяет папкам "не схлапываться"
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-    feedsTreeView_->setCurrentIndex(feedIndex);
-
-    slotFeedClicked(feedIndex);
+    feedsTreeView_->setCurrentIndex(currentIndex);
+    feedsModelReload();
+    slotFeedClicked(feedsTreeView_->currentIndex());
   }
 }
 
@@ -1900,11 +1894,7 @@ void RSSListing::slotImportFeeds()
     showProgressBar(requestUrlCount);
   }
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-  int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
-  feedsTreeModel_->refresh();
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
-  feedsTreeView_->setCurrentIndex(index);
+  feedsModelReload();
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
@@ -4584,12 +4574,12 @@ void RSSListing::feedsModelReload()
   int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
   feedsTreeModel_->refresh();
 
-  feedsTreeView_->verticalScrollBar()->setValue(topRow);
   feedsTreeView_->restoreExpanded();
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
 
+  feedsTreeView_->verticalScrollBar()->setValue(topRow);
   feedsTreeView_->setUpdatesEnabled(true);
 }
 
@@ -4821,7 +4811,6 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
-//  int feedId       = feedsTreeModel_->getIdByIndex(indexWhat);
   int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
 
   feedsTreeModel_->setData(indexParId, feedParIdNew);
@@ -4830,10 +4819,6 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
   QList<int> categoriesList;
   categoriesList << feedsTreeModel_->getParidByIndex(indexWhat) << feedParIdNew;
   recountFeedCategories(categoriesList);
-
-//  feedsTreeModel_->refresh();
-
-//  feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedId, feedParIdNew));
 
   feedsModelReload();
 }
