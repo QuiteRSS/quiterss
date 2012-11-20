@@ -2378,9 +2378,6 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (clicked) {
-    feedsTreeView_->restoreExpanded();
-    feedsTreeView_->setCurrentIndex(feedIndex);
-
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
     if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
@@ -3000,10 +2997,10 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   // Восстановление курсора на ранее отображаемую ленту
-  if (clicked) {
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-    feedsTreeView_->setCurrentIndex(feedIndex);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  feedsTreeView_->setCurrentIndex(feedIndex);
 
+  if (clicked) {
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
     if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
