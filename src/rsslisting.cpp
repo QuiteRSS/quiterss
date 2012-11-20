@@ -4814,11 +4814,16 @@ void RSSListing::setFullScreen()
   }
 }
 
+/**
+ * @brief Перемещение индекса после Drag & Drop
+ * @param indexWhat Индекс, который перемещаем
+ * @param indexWhere Индекс, куда перемещаем
+ ******************************************************************************/
 void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
-  int feedId       = feedsTreeModel_->getIdByIndex(indexWhat);
+//  int feedId       = feedsTreeModel_->getIdByIndex(indexWhat);
   int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
 
   feedsTreeModel_->setData(indexParId, feedParIdNew);
@@ -4828,7 +4833,9 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
   categoriesList << feedsTreeModel_->getParidByIndex(indexWhat) << feedParIdNew;
   recountFeedCategories(categoriesList);
 
-  feedsTreeModel_->refresh();
+//  feedsTreeModel_->refresh();
 
-  feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedId, feedParIdNew));
+//  feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedId, feedParIdNew));
+
+  feedsModelReload();
 }
