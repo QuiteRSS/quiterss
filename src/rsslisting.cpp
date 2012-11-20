@@ -1759,9 +1759,16 @@ void RSSListing::deleteFeed()
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
-    msgBox.setWindowTitle(tr("Delete Feed"));
-    msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
-        arg(feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "text").toString()));
+    QString feedUrl = feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "xmlUrl").toString();
+    if (feedUrl.isEmpty()) {
+      msgBox.setWindowTitle(tr("Delete Folder"));
+      msgBox.setText(QString(tr("Are you sure to delete the folder '%1'?")).
+          arg(feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "text").toString()));
+    } else {
+      msgBox.setWindowTitle(tr("Delete Feed"));
+      msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
+          arg(feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "text").toString()));
+    }
     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     msgBox.setDefaultButton(QMessageBox::No);
 
@@ -4572,14 +4579,14 @@ void RSSListing::feedsModelReload()
 
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
   int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
-  feedsTreeModel_->refresh();
 
+  feedsTreeModel_->refresh();
   feedsTreeView_->restoreExpanded();
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
-
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
+
   feedsTreeView_->setUpdatesEnabled(true);
 }
 
