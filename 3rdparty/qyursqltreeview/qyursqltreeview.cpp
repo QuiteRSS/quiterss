@@ -481,6 +481,12 @@ void QyurSqlTreeView::restore(int parentId, int id) {
 		setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first,pair.second),true);
 }
 
+void QyurSqlTreeView::restoreExpanded() {
+	Q_D(QyurSqlTreeView);
+	foreach(QyurIntPair pair, d->expandedNodeList)
+		setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first,pair.second),true);
+}
+
 //void QyurSqlTreeView::slotCustomContextMenuRequested(const QPoint&) {
 //	Q_D(QyurSqlTreeView);
 //	d->actions[QyurSqlTreeViewPrivate::Edit]->setEnabled(selectionModel()->selectedRows().size()==1);

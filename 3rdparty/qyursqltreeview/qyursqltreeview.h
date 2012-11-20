@@ -81,6 +81,7 @@ public:
 	~QyurSqlTreeView();
 	void setColumnHidden(const QString& column, bool hide); 
 	int columnIndex(const QString& fieldName) const;
+	void restoreExpanded();
 private slots:
 //	void slotCustomContextMenuRequested(const QPoint&);
 //	void slotMenuExec(int);
@@ -94,6 +95,6 @@ protected slots:
 	//beforeDelete(int) and beforeUpdate(int, QSqlRecord&), when you need to handle delete and update.
 private:
 //	bool executeDialog(bool insertMode, int parentId);
-	void restore(int parentId=0, int id=-1); 
+	void restore(int parentId=0, int id=-1);
 };
 #endif
