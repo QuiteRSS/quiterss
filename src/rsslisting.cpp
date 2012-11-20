@@ -2310,12 +2310,19 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   }
 
   //! Устанавливаем иконку для открытой вкладки
+  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
+  bool isFeed = true;
+  if (feedUrl.isEmpty())
+    isFeed = false;
+
   QPixmap iconTab;
-  QByteArray byteArray = feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "image").toByteArray();
+  QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
   if (!byteArray.isNull()) {
     iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-  } else {
+  } else if (isFeed) {
     iconTab.load(":/images/feed");
+  } else {
+    iconTab.load(":/images/folder");
   }
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
@@ -2474,14 +2481,14 @@ void RSSListing::showOptionDlg()
     treeItem << q.value(0).toString() << q.value(1).toString();
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
 
-    QPixmap iconTab;
+    QPixmap iconItem;
     QByteArray byteArray = q.value(2).toByteArray();
     if (!byteArray.isNull()) {
-      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+      iconItem.loadFromData(QByteArray::fromBase64(byteArray));
     } else {
-      iconTab.load(":/images/feed");
+      iconItem.load(":/images/feed");
     }
-    treeWidgetItem->setIcon(0, iconTab);
+    treeWidgetItem->setIcon(0, iconItem);
 
     optionsDialog->feedsTreeNotify_->topLevelItem(0)->addChild(treeWidgetItem);
     treeWidgetItem->setCheckState(0, Qt::Unchecked);
@@ -3704,8 +3711,10 @@ void RSSListing::slotShowFeedPropertiesDlg()
     byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
     if (!byteArray.isNull()) {
       iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-    } else {
+    } else if (isFeed) {
       iconTab.load(":/images/feed");
+    } else {
+      iconTab.load(":/images/folder");
     }
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
@@ -4245,7 +4254,7 @@ QWebPage *RSSListing::createWebTab()
 void RSSListing::creatFeedTab(int feedId, int feedParId)
 {
   QSqlQuery q(db_);
-  q.exec(QString("SELECT text, image, currentNews FROM feeds WHERE id=='%1'").
+  q.exec(QString("SELECT text, image, currentNews, xmlUrl FROM feeds WHERE id=='%1'").
          arg(feedId));
 
   if (q.next()) {
@@ -4258,13 +4267,19 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
                           QTabBar::LeftSide,
                           widget->newsTitleLabel_);
 
+    bool isFeed = true;
+    if (q.value(3).toString().isEmpty())
+      isFeed = false;
+
     //! Устанавливаем иконку и текст для открытой вкладки
     QPixmap iconTab;
     QByteArray byteArray = q.value(1).toByteArray();
     if (!byteArray.isNull()) {
       iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-    } else {
+    } else if (isFeed) {
       iconTab.load(":/images/feed");
+    } else {
+      iconTab.load(":/images/folder");
     }
     widget->newsIconTitle_->setPixmap(iconTab);
 
