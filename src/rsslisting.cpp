@@ -2247,8 +2247,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
   static int feedIdOld = -2;
   static int feedParIdOld = -2;
 
-  int feedIdCur = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-  int feedParIdCur = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
+  int feedIdCur = feedsTreeModel_->getIdByIndex(index);
+  int feedParIdCur = feedsTreeModel_->getParidByIndex(index);
 
   // Поиск уже открытого таба с этой лентой
   int indexTab = -1;
@@ -2261,23 +2261,23 @@ void RSSListing::slotFeedClicked(QModelIndex index)
   }
 
   if ((feedIdCur != feedIdOld) || (indexTab == -1)) {
-    if (tabWidget_->currentIndex() != TAB_WIDGET_PERMANENT) {
+    if ((tabWidget_->currentIndex() != TAB_WIDGET_PERMANENT) && (indexTab == -1)) {
       tabWidget_->setCurrentIndex(TAB_WIDGET_PERMANENT);
-      feedsTreeView_->setCurrentIndex(index);
+      feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
+    } else if (indexTab != -1) {
+      tabWidget_->setCurrentIndex(indexTab);
     }
 
     //! При переходе на другую ленту метим старую просмотренной
     setFeedRead(feedIdOld, feedParIdOld, FeedReadTypeSwitchingFeed);
 
-    slotFeedSelected(index, true);
+    slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur), true);
     feedsTreeView_->repaint();
+  } else if (indexTab != -1) {
+    tabWidget_->setCurrentIndex(indexTab);
   }
   feedIdOld = feedIdCur;
   feedParIdOld = feedParIdCur;
-
-  if (indexTab != -1) {
-    tabWidget_->setCurrentIndex(indexTab);
-  }
 }
 
 /** @brief Обработка самого выбора ленты **************************************/
@@ -4248,11 +4248,11 @@ QWebPage *RSSListing::createWebTab()
 void RSSListing::creatFeedTab(int feedId, int feedParId)
 {
   QSqlQuery q(db_);
-  q.exec(QString("SELECT text, image, currentNews FROM feeds WHERE id LIKE '%1'").
-         arg(feedParId));
+  q.exec(QString("SELECT text, image, currentNews FROM feeds WHERE id=='%1'").
+         arg(feedId));
 
   if (q.next()) {
-    NewsTabWidget *widget = new NewsTabWidget(feedParId, feedParId, this);
+    NewsTabWidget *widget = new NewsTabWidget(feedId, feedParId, this);
     int indexTab = tabWidget_->addTab(widget, "");
     widget->setSettings();
     widget->retranslateStrings();
@@ -4277,7 +4277,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
           tabText, Qt::ElideRight, 114);
     widget->newsTextTitle_->setText(tabText);
 
-    QString feedIdFilter(QString("feedId=%1 AND ").arg(feedParId));
+    QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
     if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
       feedIdFilter.append("deleted = 0");
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsNew_") {
@@ -4322,7 +4322,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
       widget->slotNewsViewSelected(widget->newsModel_->index(-1, widget->newsModel_->fieldIndex("title")));
       QSqlQuery q(db_);
       int newsId = widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedParId);
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
     }
   }
