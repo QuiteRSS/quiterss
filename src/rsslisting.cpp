@@ -2378,6 +2378,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   if (clicked) {
+    feedsTreeView_->restoreExpanded();
     feedsTreeView_->setCurrentIndex(feedIndex);
 
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
@@ -4570,14 +4571,28 @@ void RSSListing::slotOpenNewsBackgroundTab()
   QApplication::sendEvent(this, pe);
 }
 
-//! Перечитывание модели лент
+/**
+ * @brief Полное обновление модели лент
+ * @details Производит перечитывание модели, сброс прокси модели и
+ *    восстановление курсора на прежнее место
+ ******************************************************************************/
 void RSSListing::feedsModelReload()
 {
+  feedsTreeView_->setUpdatesEnabled(false);
+
+  int topRow = feedsTreeView_->verticalScrollBar()->value();
+
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
   int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
   feedsTreeModel_->refresh();
+
+  feedsTreeView_->verticalScrollBar()->setValue(topRow);
+  feedsTreeView_->restoreExpanded();
+
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
+
+  feedsTreeView_->setUpdatesEnabled(true);
 }
 
 void RSSListing::setCurrentTab(int index, bool updateTab)
