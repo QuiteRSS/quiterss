@@ -3697,7 +3697,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
   }
 
   int feedId = feedsTreeModel_->getIdByIndex(index);
-  int feedParId = feedsTreeModel_->getParidByIndex(index);
 
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
@@ -3728,10 +3727,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
-  QModelIndex currentIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-  feedsTreeView_->setCurrentIndex(currentIndex);
-
-  if (currentIndex == index) {
+  if (feedsTreeView_->currentIndex() == index) {
     QPixmap iconTab;
     byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
     if (!byteArray.isNull()) {
