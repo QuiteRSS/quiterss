@@ -32,7 +32,52 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
   setDropIndicatorShown(true);
 }
 
-/*virtual*/ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
+/**
+ * @brief Поиск следующей непрочитанной ленты
+ * details Производится поиск следующай непрочитанная лента. Если следующей
+ *    ленты нет, то ищется предыдущая непрочитанная лента
+ * @param index Индекс, от которого начинаем искать
+ * @return найденный индекс либо QModelIndex()
+ ******************************************************************************/
+QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
+{
+  // ищем следующую непрочитанную, исключая категории
+  QModelIndex index = indexBelow(indexCur);
+  while (index.isValid()) {
+
+    QString feedUrl = ((FeedsTreeModel*)model())->dataField(index, "xmlUrl").toString();
+    int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
+    if (!feedUrl.isEmpty() && (0 < feedUnreadCount))
+      return index;  // нашли
+
+    index = indexBelow(index);
+  }
+
+  // ищем предыдущую непрочитанную, исключая категории
+  index = indexAbove(indexCur);
+  while (index.isValid()) {
+
+    QString feedUrl = ((FeedsTreeModel*)model())->dataField(index, "xmlUrl").toString();
+    int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
+    if (!feedUrl.isEmpty() && (0 < feedUnreadCount))
+      return index;  // нашли
+
+    index = indexAbove(index);
+  }
+
+  // не нашли
+  return QModelIndex();
+}
+
+/**
+ * @brief Собственная обработка нажатия мыши
+ * @details Фиксирует нажатый индекс в selectedIndex_, обрабатывает нажатие
+ *    вредней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
+ *    вызывает стандартный обработчик
+ * @param event Стьруктура, содержащая данные события
+ * @sa selectedIndex_
+ ******************************************************************************/
+void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 {
   if (!indexAt(event->pos()).isValid()) return;
 

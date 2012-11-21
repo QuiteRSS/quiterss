@@ -12,6 +12,8 @@ public:
   FeedsTreeView(QWidget * parent = 0);
   QModelIndex selectIndex_;
 
+  QModelIndex indexNextUnread(const QModelIndex &indexCur);
+
 public slots:
   void setSelectIndex();
   void updateCurrentIndex(const QModelIndex &index);
