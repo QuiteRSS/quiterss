@@ -92,6 +92,7 @@ public:
 
   QCheckBox *onlySelectedFeeds_;
   QTreeWidget *feedsTreeNotify_;
+  bool itemNotChecked_;
 
   // fonts
   QTreeWidget *fontTree;
