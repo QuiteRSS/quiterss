@@ -2827,12 +2827,10 @@ void RSSListing::markFeedRead()
   // Обновляем ленту, на которой стоит фокус
   if (currentNewsTab->feedId_ == feedId) {
     if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
-      QModelIndex indexCur = feedsTreeView_->currentIndex();
-      QModelIndex index = feedsTreeView_->indexBelow(indexCur);
-      if (!index.isValid())
-        index = feedsTreeView_->indexAbove(indexCur);
-      feedsTreeView_->setCurrentIndex(index);
-      slotFeedClicked(index);
+      QModelIndex indexNextUnread =
+          feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
+      feedsTreeView_->setCurrentIndex(indexNextUnread);
+      slotFeedClicked(indexNextUnread);
     } else {
       int currentRow = newsView_->currentIndex().row();
 
