@@ -428,14 +428,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   feedsTreeNotify_->header()->hide();
   feedsTreeNotify_->setEnabled(false);
 
+  itemNotChecked_ = true;
+
   treeItem.clear();
-  treeItem << tr("Feeds") << "Id";
+  treeItem << "Feeds" << "Id";
   feedsTreeNotify_->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("All Feeds") << "-1";
+  treeItem << tr("All Feeds") << "0";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(0, Qt::Unchecked);
+  treeWidgetItem->setCheckState(0, Qt::Checked);
   feedsTreeNotify_->addTopLevelItem(treeWidgetItem);
   connect(feedsTreeNotify_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this, SLOT(feedsTreeNotifyItemChanged(QTreeWidgetItem*,int)));
@@ -1042,50 +1044,34 @@ void OptionsDialog::selectionSoundNotifer()
 
 void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column)
 {
-  static bool rootChecked = false;
-  static bool notRootChecked = false;
+  if ((column != 0) || itemNotChecked_) return;
 
-  if (column != 0) return;
-
-  if (feedsTreeNotify_->indexOfTopLevelItem(item) == 0) {
-    if (!rootChecked) {
-      notRootChecked = true;
-      if (item->checkState(0) == Qt::Unchecked) {
-        for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
-          feedsTreeNotify_->topLevelItem(0)->child(i)->setCheckState(0, Qt::Unchecked);
-        }
-      } else {
-        for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
-          feedsTreeNotify_->topLevelItem(0)->child(i)->setCheckState(0, Qt::Checked);
+  itemNotChecked_ = true;
+  if (item->checkState(0) == Qt::Unchecked) {
+    if (item->childCount()) {
+      QTreeWidgetItem *childItem = feedsTreeNotify_->itemBelow(item);
+      while (childItem) {
+        childItem->setCheckState(0, Qt::Unchecked);
+        childItem = feedsTreeNotify_->itemBelow(childItem);
+        if (childItem) {
+          if (item->parent() == childItem->parent()) break;
         }
       }
-      notRootChecked = false;
     }
-  } else {
-    if (!notRootChecked) {
-      bool childCheckedOn = false;
-      for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
-        if (feedsTreeNotify_->topLevelItem(0)->child(i)->checkState(0)) {
-          childCheckedOn = true;
-          break;
-        }
-      }     
-      rootChecked = true;
-      if (childCheckedOn) {
-        for (int i = 0; i < feedsTreeNotify_->topLevelItem(0)->childCount(); i++) {
-          if (!feedsTreeNotify_->topLevelItem(0)->child(i)->checkState(0)) {
-            childCheckedOn = false;
-            break;
-          }
-        }
-        if (childCheckedOn)
-          feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Checked);
-        else
-          feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
-      } else {
-        feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+    QTreeWidgetItem *parentItem = item->parent();
+    while (parentItem) {
+      parentItem->setCheckState(0, Qt::Unchecked);
+      parentItem = parentItem->parent();
+    }
+  } else if (item->childCount()) {
+    QTreeWidgetItem *childItem = feedsTreeNotify_->itemBelow(item);
+    while (childItem) {
+      childItem->setCheckState(0, Qt::Checked);
+      childItem = feedsTreeNotify_->itemBelow(childItem);
+      if (childItem) {
+        if (item->parent() == childItem->parent()) break;
       }
-      rootChecked = false;
     }
   }
+  itemNotChecked_ = false;
 }

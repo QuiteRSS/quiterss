@@ -2474,39 +2474,64 @@ void RSSListing::showOptionDlg()
 
   QSqlQuery q(db_);
   db_.transaction();
-  QString qStr = QString("SELECT text, id, image FROM feeds");
-  q.exec(qStr);
-  while (q.next()) {
-    QStringList treeItem;
-    treeItem << q.value(0).toString() << q.value(1).toString();
-    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
 
-    QPixmap iconItem;
-    QByteArray byteArray = q.value(2).toByteArray();
-    if (!byteArray.isNull()) {
-      iconItem.loadFromData(QByteArray::fromBase64(byteArray));
-    } else {
-      iconItem.load(":/images/feed");
-    }
-    treeWidgetItem->setIcon(0, iconItem);
+  QQueue<int> parentIds;
+  parentIds.enqueue(0);
+  while (!parentIds.empty()) {
+    int parentId = parentIds.dequeue();
+    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1'").
+        arg(parentId);
+    q.exec(qStr);
+    while (q.next()) {
+      QString feedText = q.value(0).toString();
+      QString feedId = q.value(1).toString();
+      QByteArray byteArray = q.value(2).toByteArray();
+      QString xmlUrl = q.value(3).toString();
 
-    optionsDialog->feedsTreeNotify_->topLevelItem(0)->addChild(treeWidgetItem);
-    treeWidgetItem->setCheckState(0, Qt::Unchecked);
+      QStringList treeItem;
+      treeItem << feedText << feedId;
+      QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
 
-    QSqlQuery q1(db_);
-    qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
-        arg(q.value(1).toInt());
-    q1.exec(qStr);
-    if (q1.next()) {
-      if (q1.value(0).toInt() == 1)
-        treeWidgetItem->setCheckState(0, Qt::Checked);
-    } else {
-      qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
-          arg(q.value(1).toInt());
+      treeWidgetItem->setCheckState(0, Qt::Unchecked);
+      QSqlQuery q1(db_);
+      qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
+          arg(feedId);
       q1.exec(qStr);
+      if (q1.next()) {
+        if (q1.value(0).toInt() == 1)
+          treeWidgetItem->setCheckState(0, Qt::Checked);
+      } else {
+        qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
+            arg(feedId);
+        q1.exec(qStr);
+      }
+      if (treeWidgetItem->checkState(0) == Qt::Unchecked)
+        optionsDialog->feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+
+      QPixmap iconItem;
+      if (!byteArray.isNull()) {
+        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
+      } else if (!xmlUrl.isEmpty()) {
+        iconItem.load(":/images/feed");
+      } else {
+        iconItem.load(":/images/folder");
+      }
+      treeWidgetItem->setIcon(0, iconItem);
+
+      QList<QTreeWidgetItem *> treeItems =
+            optionsDialog->feedsTreeNotify_->findItems(QString::number(parentId),
+                                                       Qt::MatchFixedString | Qt::MatchRecursive,
+                                                       1);
+      treeItems.at(0)->addChild(treeWidgetItem);
+      parentIds.enqueue(feedId.toInt());
     }
   }
   db_.commit();
+  optionsDialog->itemNotChecked_ = false;
+  if (titleSortFeedsAct_->isChecked())
+    optionsDialog->feedsTreeNotify_->sortByColumn(0, Qt::AscendingOrder);
+  else
+    optionsDialog->feedsTreeNotify_->sortByColumn(1, Qt::AscendingOrder);
   optionsDialog->feedsTreeNotify_->expandAll();
 
   optionsDialog->setLanguage(langFileName_);
@@ -2635,16 +2660,18 @@ void RSSListing::showOptionDlg()
   onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
 
   QTreeWidgetItem *treeWidgetItem =
-      optionsDialog->feedsTreeNotify_->topLevelItem(0);
+      optionsDialog->feedsTreeNotify_->itemBelow(optionsDialog->feedsTreeNotify_->topLevelItem(0));
   db_.transaction();
-  for (int i = 0; i < treeWidgetItem->childCount(); i++) {
+  while (treeWidgetItem) {
     int check = 0;
-    if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked)
+    if (treeWidgetItem->checkState(0) == Qt::Checked)
       check = 1;
 
-    qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
-        arg(check).arg(treeWidgetItem->child(i)->text(1).toInt());
+    QString qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
+        arg(check).arg(treeWidgetItem->text(1).toInt());
     q.exec(qStr);
+
+    treeWidgetItem = optionsDialog->feedsTreeNotify_->itemBelow(treeWidgetItem);
   }
   db_.commit();
 
