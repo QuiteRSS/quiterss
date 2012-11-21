@@ -2312,7 +2312,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   //! Устанавливаем иконку для открытой вкладки
   QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
   bool isFeed = true;
-  if (feedUrl.isEmpty())
+  if (feedUrl.isEmpty() && index.isValid())
     isFeed = false;
 
   QPixmap iconTab;
