@@ -2891,9 +2891,9 @@ void RSSListing::slotUpdateStatus(bool openFeed)
 
   int feedId;
   int feedParId;
-  if (feedsTreeView_->selectIndex_.isValid()) {
+  if (feedsTreeView_->selectIndex_.isValid() && !openFeed) {
     feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
-    feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
+    feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->selectIndex_);
   }
   else {
     feedId = currentNewsTab->feedId_;
