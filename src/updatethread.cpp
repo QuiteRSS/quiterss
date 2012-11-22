@@ -30,11 +30,11 @@ void UpdateThread::run()
 }
 
 /*! \brief Постановка сетевого адреса в очередь запросов **********************/
-void UpdateThread::requestUrl(const QUrl &url, const QDateTime &date)
+void UpdateThread::requestUrl(const QString &urlString, const QDateTime &date)
 {
-  urlsQueue_.enqueue(url);
+  urlsQueue_.enqueue(QUrl::fromEncoded(urlString.toLocal8Bit()));
   dateQueue_.enqueue(date);
-  qDebug() << "urlsQueue_ <<" << url << "count=" << urlsQueue_.count();
+  qDebug() << "urlsQueue_ <<" << urlString << "count=" << urlsQueue_.count();
   //  emit startGetUrlTimer();
 }
 

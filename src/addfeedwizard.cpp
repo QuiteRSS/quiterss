@@ -316,8 +316,8 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
         rx.setPattern("href=\"([^\"]+)");
         pos = rx.indexIn(str);
         if (pos > -1) {
-          QString linkFeed = rx.cap(1);
-          QUrl url(linkFeed);
+          QString linkFeedString = rx.cap(1);
+          QUrl url(linkFeedString);
           if (url.host().isEmpty()) {
             url.setScheme(url_.scheme());
             url.setHost(url_.host());
@@ -327,14 +327,14 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
               url.setPath(str+url.path());
             }
           }
-          linkFeed = url.toString();
-          qDebug() << "Parse feed URL, valid:" << linkFeed;
+          linkFeedString = url.toString();
+          qDebug() << "Parse feed URL, valid:" << linkFeedString;
           int parseFeedId = 0;
 
           QSqlQuery q(*db_);
           int duplicateFoundId = -1;
           q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-          q.bindValue(":xmlUrl", linkFeed);
+          q.bindValue(":xmlUrl", linkFeedString);
           q.exec();
           if (q.next()) duplicateFoundId = q.value(0).toInt();
 
@@ -353,14 +353,14 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
             q.exec();
             if (q.next()) parseFeedId = q.value(0).toInt();
 
-            feedUrlString_ = linkFeed;
+            feedUrlString_ = linkFeedString;
             q.prepare("UPDATE feeds SET xmlUrl = :xmlUrl WHERE id == :id");
-            q.bindValue(":xmlUrl", linkFeed);
+            q.bindValue(":xmlUrl", linkFeedString);
             q.bindValue(":id", parseFeedId);
             q.exec();
 
             emit startGetUrlTimer();
-            persistentUpdateThread_->requestUrl(linkFeed, QDateTime());
+            persistentUpdateThread_->requestUrl(linkFeedString, QDateTime());
           }
         }
       }

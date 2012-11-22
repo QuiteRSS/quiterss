@@ -46,7 +46,7 @@ private:
 public:
   explicit UpdateThread(QObject *parent = 0);
   ~UpdateThread();
-  void requestUrl(const QUrl &url, const QDateTime &date);
+  void requestUrl(const QString &urlString, const QDateTime &date);
   void setProxy(const QNetworkProxy proxy);
 
 signals:

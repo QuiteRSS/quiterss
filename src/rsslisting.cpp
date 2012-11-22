@@ -2145,7 +2145,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   int newCountOld = 0;
   QSqlQuery q(db_);
   q.prepare("SELECT id, newCount, parentId FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", url.toString());
+  q.bindValue(":xmlUrl", url.toEncoded());
   q.exec();
   if (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
@@ -2755,7 +2755,7 @@ void RSSListing::slotGetFeed()
 
   QModelIndex index = feedsTreeView_->selectIndex_;
   persistentUpdateThread_->requestUrl(
-        feedsTreeModel_->dataField(index, "xmlUrl").toUrl(),
+        feedsTreeModel_->dataField(index, "xmlUrl").toString(),
         QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate)
         );
   showProgressBar(1);
