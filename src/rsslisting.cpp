@@ -670,34 +670,41 @@ void RSSListing::createActions()
   addFeedAct_ = new QAction(this);
   addFeedAct_->setObjectName("addFeedAct");
   addFeedAct_->setIcon(QIcon(":/images/add"));
+  this->addAction(addFeedAct_);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   addFolderAct_ = new QAction(this);
   addFolderAct_->setObjectName("addCategoryAct");
   addFolderAct_->setIcon(QIcon(":/images/addCategory"));
+  this->addAction(addFolderAct_);
   connect(addFolderAct_, SIGNAL(triggered()), this, SLOT(addFolder()));
 
   openFeedNewTabAct_ = new QAction(this);
   openFeedNewTabAct_->setObjectName("openNewTabAct");
+  this->addAction(openFeedNewTabAct_);
   connect(openFeedNewTabAct_, SIGNAL(triggered()), this, SLOT(slotOpenFeedNewTab()));
 
   deleteFeedAct_ = new QAction(this);
   deleteFeedAct_->setObjectName("deleteFeedAct");
   deleteFeedAct_->setIcon(QIcon(":/images/delete"));
+  this->addAction(deleteFeedAct_);
   connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
 
   importFeedsAct_ = new QAction(this);
   importFeedsAct_->setObjectName("importFeedsAct");
   importFeedsAct_->setIcon(QIcon(":/images/importFeeds"));
+  this->addAction(importFeedsAct_);
   connect(importFeedsAct_, SIGNAL(triggered()), this, SLOT(slotImportFeeds()));
 
   exportFeedsAct_ = new QAction(this);
   exportFeedsAct_->setObjectName("exportFeedsAct");
   exportFeedsAct_->setIcon(QIcon(":/images/exportFeeds"));
+  this->addAction(exportFeedsAct_);
   connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
 
   exitAct_ = new QAction(this);
   exitAct_->setObjectName("exitAct");
+  this->addAction(exitAct_);
   connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
 
   mainToolbarToggle_ = new QAction(this);
@@ -772,6 +779,7 @@ void RSSListing::createActions()
 
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
+  this->addAction(autoLoadImagesToggle_);
 
   printAct_ = new QAction(this);
   printAct_->setObjectName("printAct");
@@ -787,25 +795,31 @@ void RSSListing::createActions()
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
   zoomInAct_->setIcon(QIcon(":/images/zoomIn"));
+  this->addAction(zoomInAct_);
   zoomOutAct_ = new QAction(this);
   zoomOutAct_->setObjectName("zoomOutAct");
   zoomOutAct_->setIcon(QIcon(":/images/zoomOut"));
+  this->addAction(zoomOutAct_);
   zoomTo100Act_ = new QAction(this);
   zoomTo100Act_->setObjectName("zoomTo100Act");
+  this->addAction(zoomTo100Act_);
 
   updateFeedAct_ = new QAction(this);
   updateFeedAct_->setObjectName("updateFeedAct");
   updateFeedAct_->setIcon(QIcon(":/images/updateFeed"));
+  this->addAction(updateFeedAct_);
   connect(updateFeedAct_, SIGNAL(triggered()), this, SLOT(slotGetFeed()));
 
   updateAllFeedsAct_ = new QAction(this);
   updateAllFeedsAct_->setObjectName("updateAllFeedsAct");
   updateAllFeedsAct_->setIcon(QIcon(":/images/updateAllFeeds"));
+  this->addAction(updateAllFeedsAct_);
   connect(updateAllFeedsAct_, SIGNAL(triggered()), this, SLOT(slotGetAllFeeds()));
 
   markAllFeedsRead_ = new QAction(this);
   markAllFeedsRead_->setObjectName("markAllFeedRead");
   markAllFeedsRead_->setIcon(QIcon(":/images/markReadAll"));
+  this->addAction(markAllFeedsRead_);
   connect(markAllFeedsRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
 
   titleSortFeedsAct_ = new QAction(this);
@@ -815,21 +829,28 @@ void RSSListing::createActions()
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
+  this->addAction(markNewsRead_);
 
   markAllNewsRead_ = new QAction(this);
   markAllNewsRead_->setObjectName("markAllNewsRead");
   markAllNewsRead_->setIcon(QIcon(":/images/markReadAll"));
+  this->addAction(markAllNewsRead_);
 
   setNewsFiltersAct_ = new QAction(this);
+  setNewsFiltersAct_->setObjectName("setNewsFiltersAct");
   setNewsFiltersAct_->setIcon(QIcon(":/images/filterOff"));
+  this->addAction(setNewsFiltersAct_);
   connect(setNewsFiltersAct_, SIGNAL(triggered()), this, SLOT(showNewsFiltersDlg()));
   setFilterNewsAct_ = new QAction(this);
+  setFilterNewsAct_->setObjectName("setFilterNewsAct");
   setFilterNewsAct_->setIcon(QIcon(":/images/filterOff"));
+  this->addAction(setFilterNewsAct_);
   connect(setFilterNewsAct_, SIGNAL(triggered()), this, SLOT(showFilterRulesDlg()));
 
   optionsAct_ = new QAction(this);
   optionsAct_->setObjectName("optionsAct");
   optionsAct_->setIcon(QIcon(":/images/options"));
+  this->addAction(optionsAct_);
   connect(optionsAct_, SIGNAL(triggered()), this, SLOT(showOptionDlg()));
 
   feedsFilter_ = new QAction(this);
@@ -903,6 +924,7 @@ void RSSListing::createActions()
   markStarAct_ = new QAction(this);
   markStarAct_->setObjectName("markStarAct");
   markStarAct_->setIcon(QIcon(":/images/starOn"));
+  this->addAction(markStarAct_);
 
   deleteNewsAct_ = new QAction(this);
   deleteNewsAct_->setObjectName("deleteNewsAct");
@@ -919,11 +941,13 @@ void RSSListing::createActions()
   markFeedRead_ = new QAction(this);
   markFeedRead_->setObjectName("markFeedRead");
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
+  this->addAction(markFeedRead_);
   connect(markFeedRead_, SIGNAL(triggered()), this, SLOT(markFeedRead()));
 
   feedProperties_ = new QAction(this);
   feedProperties_->setObjectName("feedProperties");
   feedProperties_->setIcon(QIcon(":/images/preferencesFeed"));
+  this->addAction(feedProperties_);
   connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
 
   feedKeyUpAct_ = new QAction(this);
