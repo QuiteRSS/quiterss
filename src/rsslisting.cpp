@@ -1722,8 +1722,8 @@ void RSSListing::addFeed()
   cntNewNewsList_.clear();
 
   emit startGetUrlTimer();
-  faviconLoader->requestUrl(addFeedWizard->htmlUrlString_,
-                            addFeedWizard->feedUrlString_);
+  faviconLoader->slotRequestUrl(addFeedWizard->htmlUrlString_,
+                                addFeedWizard->feedUrlString_);
   slotUpdateFeed(addFeedWizard->feedUrlString_, true);
 
   delete addFeedWizard;
@@ -1872,7 +1872,7 @@ void RSSListing::slotImportFeeds()
             q.finish();
 
             persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
-            faviconLoader->requestUrl(
+            faviconLoader->slotRequestUrl(
                   xml.attributes().value("htmlUrl").toString(), xmlUrlString);
             requestUrlCount++;
           }
@@ -3684,8 +3684,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   feedPropertiesDialog->setFeedProperties(properties);
 
-  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QUrl, QUrl)),
-          faviconLoader, SLOT(requestUrl(QUrl, QUrl)));
+  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QString,QUrl)),
+          faviconLoader, SLOT(slotRequestUrl(QString,QUrl)));
   connect(feedPropertiesDialog, SIGNAL(startGetUrlTimer()),
           this, SIGNAL(startGetUrlTimer()));
 

@@ -17,7 +17,7 @@ public:
   ~FaviconLoader();
 
 public slots:
-  void requestUrl(const QUrl &url, const QUrl &feedUrl);
+  void slotRequestUrl(const QString &urlString, const QUrl &feedUrl);
 
 protected:
   virtual void run();

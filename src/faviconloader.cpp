@@ -31,9 +31,9 @@ FaviconLoader::~FaviconLoader()
   exec();
 }
 
-void FaviconLoader::requestUrl(const QUrl &url, const QUrl &feedUrl)
+void FaviconLoader::slotRequestUrl(const QString &urlString, const QUrl &feedUrl)
 {
-  urlsQueue_.enqueue(url);
+  urlsQueue_.enqueue(QUrl::fromEncoded(urlString.toLocal8Bit()));
   feedsQueue_.enqueue(feedUrl);
 }
 
