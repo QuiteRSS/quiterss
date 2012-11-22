@@ -3765,7 +3765,7 @@ void RSSListing::refreshInfoTray()
   int newCount = 0;
   int unreadCount = 0;
   QSqlQuery q(db_);
-  q.exec("SELECT newCount, unread FROM feeds");
+  q.exec("SELECT newCount, unread FROM feeds WHERE xmlUrl!=''");
   while (q.next()) {
     newCount    += q.value(0).toInt();
     unreadCount += q.value(1).toInt();
