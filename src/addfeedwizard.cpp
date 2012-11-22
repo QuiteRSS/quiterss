@@ -414,7 +414,7 @@ void AddFeedWizard::slotUpdateFeed(const QUrl &url, const bool &)
     int parseFeedId = 0;
     QSqlQuery q(*db_);
     q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-    q.bindValue(":xmlUrl", url.toString());
+    q.bindValue(":xmlUrl", url.toEncoded());
     q.exec();
     if (q.next()) parseFeedId = q.value(0).toInt();
 
