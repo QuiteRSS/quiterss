@@ -3618,6 +3618,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   }
 
   QModelIndex index = feedsTreeView_->selectIndex_;
+  int feedId = feedsTreeModel_->getIdByIndex(index);
 
   QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
   bool isFeed = true;
@@ -3695,8 +3696,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
     delete feedPropertiesDialog;
     return;
   }
-
-  int feedId = feedsTreeModel_->getIdByIndex(index);
 
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
