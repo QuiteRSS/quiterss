@@ -206,6 +206,7 @@ public:
   explicit FilterRulesDialog(QWidget *parent, int filterId, int feedId = -1);
 
   int filterId_;
+  bool itemNotChecked_;
 
 signals:
 

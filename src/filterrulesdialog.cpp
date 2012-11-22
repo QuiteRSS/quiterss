@@ -18,51 +18,76 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   feedsTree->setColumnHidden(1, true);
   feedsTree->header()->setMovable(false);
 
+  itemNotChecked_ = false;
+
   QStringList treeItem;
   treeItem << tr("Feeds") << "Id";
   feedsTree->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("All Feeds") << "-1";
+  treeItem << tr("All Feeds") << "0";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(0, Qt::Unchecked);
+  treeWidgetItem->setCheckState(0, Qt::Checked);
   feedsTree->addTopLevelItem(treeWidgetItem);
+
+  QSqlQuery q(rssl_->db_);
+  QQueue<int> parentIds;
+  parentIds.enqueue(0);
+  while (!parentIds.empty()) {
+    int parentId = parentIds.dequeue();
+    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1'").
+        arg(parentId);
+    q.exec(qStr);
+    while (q.next()) {
+      QString feedText = q.value(0).toString();
+      QString feedIdT = q.value(1).toString();
+      QByteArray byteArray = q.value(2).toByteArray();
+      QString xmlUrl = q.value(3).toString();
+
+      treeItem.clear();
+      treeItem << feedText << feedIdT;
+      treeWidgetItem = new QTreeWidgetItem(treeItem);
+
+      if (feedId == feedIdT.toInt())
+        treeWidgetItem->setCheckState(0, Qt::Checked);
+      else
+        treeWidgetItem->setCheckState(0, Qt::Unchecked);
+
+      QPixmap iconItem;
+      if (!byteArray.isNull()) {
+        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
+      } else if (!xmlUrl.isEmpty()) {
+        iconItem.load(":/images/feed");
+      } else {
+        iconItem.load(":/images/folder");
+      }
+      treeWidgetItem->setIcon(0, iconItem);
+
+      QList<QTreeWidgetItem *> treeItems =
+          feedsTree->findItems(QString::number(parentId),
+                               Qt::MatchFixedString | Qt::MatchRecursive,
+                               1);
+      treeItems.at(0)->addChild(treeWidgetItem);
+      parentIds.enqueue(feedIdT.toInt());
+    }
+  }
+  feedsTree->expandAll();
+
+  if (feedId != -1) {
+    int rowCount = 0;
+    QTreeWidgetItem *childItem = feedsTree->topLevelItem(0);
+    while (childItem) {
+      if (childItem->text(1).toInt() == feedId) break;
+      rowCount++;
+      childItem = feedsTree->itemBelow(childItem);
+    }
+    feedsTree->verticalScrollBar()->setValue(rowCount);
+    feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+  }
   connect(feedsTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this, SLOT(feedItemChanged(QTreeWidgetItem*,int)));
 
-  int rowFeed = - 1;
-  QSqlQuery q(rssl_->db_);
-  QString qStr = QString("SELECT text, id, image FROM feeds");
-  q.exec(qStr);
-  while (q.next()) {
-    treeItem.clear();
-    treeItem << q.value(0).toString() << q.value(1).toString();
-    QTreeWidgetItem *treeWidgetItem1 = new QTreeWidgetItem(treeItem);
-
-    QPixmap iconTab;
-    QByteArray byteArray = q.value(2).toByteArray();
-    if (!byteArray.isNull()) {
-      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-    } else {
-      iconTab.load(":/images/feed");
-    }
-    treeWidgetItem1->setIcon(0, iconTab);
-
-    treeWidgetItem->addChild(treeWidgetItem1);
-    if (feedId == q.value(1).toInt()) {
-      rowFeed = feedsTree->topLevelItem(0)->childCount();
-      treeWidgetItem1->setCheckState(0, Qt::Checked);
-      feedsTree->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
-    } else {
-      treeWidgetItem1->setCheckState(0, Qt::Unchecked);
-    }
-  }
-
-  feedsTree->expandAll();
-  feedsTree->verticalScrollBar()->setValue(rowFeed);
-
   filterName = new LineEdit(this);
-
   QHBoxLayout *filterNamelayout = new QHBoxLayout();
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
   filterNamelayout->addWidget(filterName);
@@ -202,14 +227,25 @@ void FilterRulesDialog::setData()
 
     matchComboBox_->setCurrentIndex(q.value(1).toInt());
 
+    itemNotChecked_ = true;
     QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-        if (strIdFeed == feedsTree->topLevelItem(0)->child(i)->text(1)) {
-          feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Checked);
-        }
-      }
+      QList<QTreeWidgetItem *> treeItems =
+          feedsTree->findItems(strIdFeed,
+                               Qt::MatchFixedString | Qt::MatchRecursive,
+                               1);
+      if (treeItems.count())
+        treeItems.at(0)->setCheckState(0, Qt::Checked);
     }
+    QTreeWidgetItem *treeItem = feedsTree->itemBelow(feedsTree->topLevelItem(0));
+    while (treeItem) {
+      if (treeItem->checkState(0) == Qt::Unchecked) {
+        feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+        break;
+      }
+      treeItem = feedsTree->itemBelow(treeItem);
+    }
+    itemNotChecked_ = false;
 
     qStr = QString("SELECT field, condition, content "
         "FROM filterConditions WHERE idFilter=='%1'").
@@ -266,14 +302,13 @@ void FilterRulesDialog::acceptDialog()
   }
 
   QString strIdFeeds;
-  QTreeWidgetItem *treeWidgetItem =
-      feedsTree->topLevelItem(0);
-
-  for (int i = 0; i < treeWidgetItem->childCount(); i++) {
-    if (treeWidgetItem->child(i)->checkState(0) == Qt::Checked) {
+  QTreeWidgetItem *treeItem = feedsTree->itemBelow(feedsTree->topLevelItem(0));
+  while (treeItem) {
+    if (treeItem->checkState(0) == Qt::Checked) {
       strIdFeeds.append(",");
-      strIdFeeds.append(treeWidgetItem->child(i)->text(1));
+      strIdFeeds.append(treeItem->text(1));
     }
+    treeItem = feedsTree->itemBelow(treeItem);
   }
   strIdFeeds.append(",");
 
@@ -383,52 +418,36 @@ void FilterRulesDialog::selectMatch(int index)
 
 void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)
 {
-  static bool rootChecked = false;
-  static bool notRootChecked = false;
-
-  if (column != 0) return;
-
-  if (feedsTree->indexOfTopLevelItem(item) == 0) {
-    if (!rootChecked) {
-      notRootChecked = true;
-      if (item->checkState(0) == Qt::Unchecked) {
-        for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-          feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Unchecked);
-        }
-      } else {
-        for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-          feedsTree->topLevelItem(0)->child(i)->setCheckState(0, Qt::Checked);
+  if ((column != 0) || itemNotChecked_) return;
+  qCritical() << "*01";
+  itemNotChecked_ = true;
+  if (item->checkState(0) == Qt::Unchecked) {
+    if (item->childCount()) {
+      QTreeWidgetItem *childItem = feedsTree->itemBelow(item);
+      while (childItem) {
+        childItem->setCheckState(0, Qt::Unchecked);
+        childItem = feedsTree->itemBelow(childItem);
+        if (childItem) {
+          if (item->parent() == childItem->parent()) break;
         }
       }
-      notRootChecked = false;
     }
-  } else {
-    if (!notRootChecked) {
-      bool childChecked = false;
-      for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-        if (feedsTree->topLevelItem(0)->child(i)->checkState(0)) {
-          childChecked = true;
-          break;
-        }
+    QTreeWidgetItem *parentItem = item->parent();
+    while (parentItem) {
+      parentItem->setCheckState(0, Qt::Unchecked);
+      parentItem = parentItem->parent();
+    }
+  } else if (item->childCount()) {
+    QTreeWidgetItem *childItem = feedsTree->itemBelow(item);
+    while (childItem) {
+      childItem->setCheckState(0, Qt::Checked);
+      childItem = feedsTree->itemBelow(childItem);
+      if (childItem) {
+        if (item->parent() == childItem->parent()) break;
       }
-      rootChecked = true;
-      if (childChecked) {
-        for (int i = 0; i < feedsTree->topLevelItem(0)->childCount(); i++) {
-          if (!feedsTree->topLevelItem(0)->child(i)->checkState(0)) {
-            childChecked = false;
-            break;
-          }
-        }
-        if (childChecked)
-          feedsTree->topLevelItem(0)->setCheckState(0, Qt::Checked);
-        else
-          feedsTree->topLevelItem(0)->setCheckState(0, Qt::PartiallyChecked);
-      }
-      else
-        feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
-      rootChecked = false;
     }
   }
+  itemNotChecked_ = false;
 }
 
 ItemCondition *FilterRulesDialog::addCondition()
