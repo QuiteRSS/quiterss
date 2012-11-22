@@ -419,7 +419,7 @@ void FilterRulesDialog::selectMatch(int index)
 void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)
 {
   if ((column != 0) || itemNotChecked_) return;
-  qCritical() << "*01";
+
   itemNotChecked_ = true;
   if (item->checkState(0) == Qt::Unchecked) {
     if (item->childCount()) {

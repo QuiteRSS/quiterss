@@ -1724,6 +1724,8 @@ void RSSListing::addFeed()
   emit startGetUrlTimer();
   faviconLoader->slotRequestUrl(addFeedWizard->htmlUrlString_,
                                 addFeedWizard->feedUrlString_);
+
+  feedsModelReload();
   slotUpdateFeed(addFeedWizard->feedUrlString_, true);
 
   delete addFeedWizard;
