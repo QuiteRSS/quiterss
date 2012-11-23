@@ -19,12 +19,10 @@ HEADERS += \
     src/newsview.h \
     src/newsmodel.h \
     src/newsheader.h \
-    src/feedsmodel.h \
     src/delegatewithoutfocus.h \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/feedsview.h \
     src/updateobject.h \
     src/faviconloader.h \
     src/dbmemfilethread.h \
@@ -55,12 +53,10 @@ SOURCES += \
     src/newsmodel.cpp \
     src/newsheader.cpp \
     src/main.cpp \
-    src/feedsmodel.cpp \
     src/delegatewithoutfocus.cpp \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/feedsview.cpp \
     src/updateobject.cpp \
     src/faviconloader.cpp \
     src/dbmemfilethread.cpp \
