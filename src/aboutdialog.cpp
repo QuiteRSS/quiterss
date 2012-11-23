@@ -1,5 +1,6 @@
 #include "aboutdialog.h"
 #include "VersionNo.h"
+#include "VersionRev.h"
 #if QT_VERSION >= 0x040800
 #include <sqlite_qt48x/sqlite3.h>
 #else
@@ -24,9 +25,10 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       "<CENTER>"
       "<IMG SRC=\":/images/images/logo.png\">"
       "<BR><IMG SRC=\":/images/images/logo_text.png\">"
-      "<P>" + tr("Version ")
-      + "<B>" + QString(STRPRODUCTVER) + "</B>"
-      + QString(" (%1)").arg(STRDATE) + "</P>"
+      "<P>"
+      + tr("Version ") + "<B>" + QString(STRPRODUCTVER) + "</B>" + QString(" (%1)").arg(STRDATE) + "<BR>"
+      + tr("Revision ") + QString(HG_REVISION)
+      + "</P>"
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader")
       + "<P>" + tr("Includes: ")
