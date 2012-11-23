@@ -465,107 +465,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   //} notifier
 
   //{ language
-  languageFileList_ = new QTreeWidget();
-  languageFileList_->setObjectName("languageFileList_");
-  languageFileList_->setColumnCount(5);
-  languageFileList_->setColumnHidden(0, true);
-  languageFileList_->setColumnWidth(1, 120);
-  languageFileList_->setColumnWidth(2, 80);
-  languageFileList_->setColumnWidth(3, 120);
-
-  treeItem.clear();
-  treeItem << "Id" << tr("Language") << tr("Version")
-           << tr("Author") << tr("Contact");
-  languageFileList_->setHeaderLabels(treeItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("English (EN)")
-           << QString(STRPRODUCTVER)
-           << "QuiteRSS Team" << "";
-  QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_EN"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("فارسی (FA)")
-           << "0.10.3"
-           << "H.Mohamadi" << "";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_FA"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Français (FR)")
-           << "0.10.3"
-           << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_FR"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Deutsch (DE)")
-           << QString(STRPRODUCTVER)
-           << "QuiteRSS Team" << "";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_DE"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Magyar (HU)")
-           << "0.10.3"
-           << "ZityiSoft" << "zityisoft@gmail.com";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_HU"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Italiano (IT)")
-           << "0.10.3"
-           << "ZeroWis" << "lightflash@hotmail.it";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_IT"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Nederlands (NL)")
-           << "0.10.3"
-           << "TeLLie" << "elbert.pol@gmail.com";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_NL"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Русский (RU)")
-           << QString(STRPRODUCTVER)
-           << "QuiteRSS Team" << "";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_RU"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Српски (SR)")
-           << "0.10.3"
-           << "Ozzii" << "ozzii.translate@gmail.com";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SR"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-  treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("Svenska (SV)")
-           << "0.10.3"
-           << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
-  languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SV"));
-  languageFileList_->addTopLevelItem(languageItem);
-
-
-  QVBoxLayout *languageLayout = new QVBoxLayout();
-  languageLayout->setMargin(0);
-  languageLayout->addWidget(new QLabel(tr("Choose language:")));
-  languageLayout->addWidget(languageFileList_);
-
-  languageWidget_ = new QWidget();
-  languageWidget_->setLayout(languageLayout);
+  createLanguageWidget();
   //} language
 
   //{ fonts
@@ -770,6 +670,120 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
   } else {
     return QDialog::eventFilter(obj, event);
   }
+}
+
+void OptionsDialog::createLanguageWidget()
+{
+  languageFileList_ = new QTreeWidget();
+  languageFileList_->setObjectName("languageFileList_");
+  languageFileList_->setColumnCount(5);
+  languageFileList_->setColumnHidden(0, true);
+  languageFileList_->setColumnWidth(1, 120);
+  languageFileList_->setColumnWidth(2, 80);
+  languageFileList_->setColumnWidth(3, 120);
+
+  QStringList treeItem;
+  treeItem.clear();
+  treeItem << "Id" << tr("Language") << tr("Version")
+           << tr("Author") << tr("Contact");
+  languageFileList_->setHeaderLabels(treeItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("English (EN)")
+           << QString(STRPRODUCTVER)
+           << "QuiteRSS Team" << "";
+  QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_EN"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Español (ES)")
+           << "0.10.3"
+           << "nightshade" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_ES"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("فارسی (FA)")
+           << "0.10.3"
+           << "H.Mohamadi" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_FA"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Français (FR)")
+           << "0.10.3"
+           << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_FR"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Deutsch (DE)")
+           << QString(STRPRODUCTVER)
+           << "QuiteRSS Team" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_DE"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Magyar (HU)")
+           << "0.10.3"
+           << "ZityiSoft" << "zityisoft@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_HU"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Italiano (IT)")
+           << "0.10.3"
+           << "ZeroWis" << "lightflash@hotmail.it";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_IT"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Nederlands (NL)")
+           << "0.10.3"
+           << "TeLLie" << "elbert.pol@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_NL"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Русский (RU)")
+           << QString(STRPRODUCTVER)
+           << "QuiteRSS Team" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_RU"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Српски (SR)")
+           << "0.10.3"
+           << "Ozzii" << "ozzii.translate@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_SR"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Svenska (SV)")
+           << "0.10.3"
+           << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_SV"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+
+  QVBoxLayout *languageLayout = new QVBoxLayout();
+  languageLayout->setMargin(0);
+  languageLayout->addWidget(new QLabel(tr("Choose language:")));
+  languageLayout->addWidget(languageFileList_);
+
+  languageWidget_ = new QWidget();
+  languageWidget_->setLayout(languageLayout);
 }
 
 void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()

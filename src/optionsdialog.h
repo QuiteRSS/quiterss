@@ -160,6 +160,7 @@ private:
   LineEdit *editPassword_;
 
   // language
+  void createLanguageWidget();
   QTreeWidget *languageFileList_;
 
   // internal variables for options
