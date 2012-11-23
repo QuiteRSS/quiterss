@@ -1,3 +1,10 @@
+VERSION_REV = $$system(hg parents --template '{rev}')
+count(VERSION_REV, 1) {
+  DEFINE_HASH = $$sprintf("%1define", $$LITERAL_HASH)
+  message($$DEFINE_HASH $$VERSION_REV)
+  system(echo "$$DEFINE_HASH HG_REVISION \"$$VERSION_REV\"" > src\\VersionRev.h)
+}
+
 QT += core gui network xml webkit sql
 
 TEMPLATE = app
@@ -35,7 +42,8 @@ HEADERS += \
     src/findfeed.h \
     src/googlereader.h \
     src/feedstreeview.h \
-    src/feedstreemodel.h
+    src/feedstreemodel.h \
+    src/VersionRev.h
 
 SOURCES += \
     src/updatethread.cpp \
