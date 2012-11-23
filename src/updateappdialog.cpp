@@ -103,9 +103,9 @@ void UpdateAppDialog::finishUpdatesChecking()
     }
     info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"
-        "<p>" + tr("Your version is: ") +
+        "<p>" + tr("Your version is:") + " " +
         "<B>" + version + "</B>" + QString(" (%1)").arg(date) +
-        "<BR>" + tr("Current version is: ") +
+        "<BR>" + tr("Current version is:") + " " +
         "<B>" + curVersion + "</B>" + QString(" (%1)").arg(curDate) +
         "<p>" + str +
         "</body></html>";

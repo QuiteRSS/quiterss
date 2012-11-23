@@ -26,13 +26,13 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       "<IMG SRC=\":/images/images/logo.png\">"
       "<BR><IMG SRC=\":/images/images/logo_text.png\">"
       "<P>"
-      + tr("Version ") + "<B>" + QString(STRPRODUCTVER) + "</B>" + QString(" (%1)").arg(STRDATE) + "<BR>"
-      + tr("Revision ") + QString(HG_REVISION)
+      + tr("Version") + " " + "<B>" + QString(STRPRODUCTVER) + "</B>" + QString(" (%1)").arg(STRDATE) + "<BR>"
+      + tr("Revision") + " " + QString(HG_REVISION)
       + "</P>"
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader")
-      + "<P>" + tr("Includes: ")
-      + QString("Qt-%1, SQLite-%2, QyurSqlTreeView-%3").
+      + "<P>" + tr("Includes:")
+      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3").
       arg(QT_VERSION_STR).arg(SQLITE_VERSION).
       arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value())
       + "</P>"
