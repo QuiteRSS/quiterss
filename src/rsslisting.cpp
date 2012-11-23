@@ -1781,7 +1781,10 @@ void RSSListing::addFolder()
 void RSSListing::deleteFeed()
 {
   if (feedsTreeView_->selectIndex_.isValid()) {
-    int deleteId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
+    int feedDeleteId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
+
+    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    int feedCurrentId = feedsTreeModel_->getIdByIndex(currentIndex);
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
@@ -1802,22 +1805,18 @@ void RSSListing::deleteFeed()
 
     db_.transaction();
     QSqlQuery q(db_);
-    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(deleteId));
-    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(deleteId));
+    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedDeleteId));
+    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedDeleteId));
     q.exec("VACUUM");
     q.finish();
     db_.commit();
 
     // Если удаляется лента на которой стоит фокус и эта лента последняя,
     // то курсор нужно ставить на предыдущую ленту, чтобы не курсор пропадал.
-    // Иначе курсор ставим на ранее сфокусированную ленту
-    int feedId;
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
-    feedId = feedsTreeModel_->getIdByIndex(currentIndex);
-
+    // Иначе курсор ставим на ранее сфокусированную ленту.
     // Сравниваем идентификаторы, т.к. сам selectedIndex после скрытия
     // всплывающего меню устанавливается на currentIndex()
-    if (feedId == deleteId) {
+    if (feedCurrentId == feedDeleteId) {
       QModelIndex index = feedsTreeView_->indexBelow(currentIndex);
       if (!index.isValid())
         index = feedsTreeView_->indexAbove(currentIndex);
@@ -4879,13 +4878,14 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
+  int feedParIdOld = feedsTreeModel_->getParidByIndex(indexWhere);
   int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
 
   feedsTreeModel_->setData(indexParId, feedParIdNew);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
   QList<int> categoriesList;
-  categoriesList << feedsTreeModel_->getParidByIndex(indexWhat) << feedParIdNew;
+  categoriesList << feedParIdOld << feedParIdNew;
   recountFeedCategories(categoriesList);
 
   feedsModelReload();
