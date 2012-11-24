@@ -41,7 +41,8 @@ HEADERS += \
     src/googlereader.h \
     src/feedstreeview.h \
     src/feedstreemodel.h \
-    src/VersionRev.h
+    src/VersionRev.h \
+    src/splashscreen.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -74,7 +75,8 @@ SOURCES += \
     src/findfeed.cpp \
     src/googlereader.cpp \
     src/feedstreeview.cpp \
-    src/feedstreemodel.cpp
+    src/feedstreemodel.cpp \
+    src/splashscreen.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

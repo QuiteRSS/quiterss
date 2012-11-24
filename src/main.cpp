@@ -6,48 +6,7 @@
 #include "logfile.h"
 #include "VersionNo.h"
 #include "rsslisting.h"
-
-QSplashScreen *splash;
-
-void loadModules(QSplashScreen* psplash)
-{
-  QElapsedTimer time;
-  time.start();
-
-  QProgressBar splashProgress;
-  splashProgress.setObjectName("splashProgress");
-  splashProgress.setTextVisible(false);
-  splashProgress.setFixedHeight(10);
-  splashProgress.setMaximum(100);
-
-  QVBoxLayout *layout = new QVBoxLayout();
-  layout->addStretch(1);
-  layout->addWidget(&splashProgress);
-  splash->setLayout(layout);
-  for (int i = 0; i < 100; ) {
-    if (time.elapsed() >= 1) {
-      time.start();
-      ++i;
-      qApp->processEvents();
-      splashProgress.setValue(i);
-      psplash->showMessage("Loading: " + QString::number(i) + "%",
-                           Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
-    }
-  }
-}
-
-void createSplashScreen()
-{
-  splash = 0;
-  splash = new QSplashScreen(QPixmap(":/images/images/splashScreen.png"));
-  splash->setFixedSize(splash->pixmap().width(), splash->pixmap().height());
-  splash->setContentsMargins(5, 0, 5, 0);
-  splash->setEnabled(false);
-  splash->showMessage("Prepare loading...",
-                      Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
-  splash->setAttribute(Qt::WA_DeleteOnClose);
-  splash->show();
-}
+#include "splashscreen.h"
 
 int main(int argc, char **argv)
 {
@@ -135,12 +94,14 @@ QSettings *settings_;
   QString versionDB = settings_->value("versionDB", "1.0").toString();
   if (versionDB != kDbVersion) showSplashScreen_ = true;
 
-  if (showSplashScreen_)
-    createSplashScreen();
-  if (versionDB != kDbVersion)
-    splash->showMessage(QString("Converting database to version %1...").
-                        arg(kDbVersion),
-                        Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
+  SplashScreen *splashScreen = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
+  if (showSplashScreen_) {
+    splashScreen->show();
+    if (versionDB != kDbVersion)
+      splashScreen->showMessage(QString("Converting database to version %1...").
+                          arg(kDbVersion),
+                          Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
+  }
 
   RSSListing rsslisting(settings_, dataDirPath_);
 
@@ -149,13 +110,12 @@ QSettings *settings_;
                    &rsslisting, SLOT(receiveMessage(const QString&)));
 
   if (showSplashScreen_)
-    loadModules(splash);
+    splashScreen->loadModules();
 
   if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
 
-  if (showSplashScreen_)
-    splash->finish(&rsslisting);
+  splashScreen->finish(&rsslisting);
 
   rsslisting.setCurrentFeed();
 
