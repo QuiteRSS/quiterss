@@ -180,6 +180,8 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   if (feedUrl.isEmpty()) {
     if (dragIndex == currentIndex().parent())
       event->ignore();  // категория уже является родителем
+    else if (dragIndex == currentIndex())
+      event->ignore();  // не перемещаем категорию саму на себя
     else
       event->accept();
   }
@@ -187,6 +189,8 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   else {
     if (dragIndex.parent() == currentIndex().parent())
       event->ignore();  // не перемещаем ленту внутри категории
+    else if (dragIndex.parent() == currentIndex())
+      event->ignore();  // не перемещаем категорию внутри категории
     else
       event->accept();
   }
@@ -231,15 +235,17 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   bool drawParent = false;
   // Обработка категорий
   if (feedUrl.isEmpty()) {
-    if (dragIndex == currentIndex().parent())
+    if ((dragIndex == currentIndex().parent()) ||
+        (dragIndex == currentIndex()))
       return;
   }
   // Обработка лент
-  else
-    if (dragIndex.parent() == currentIndex().parent())
+  else {
+    if ((dragIndex.parent() == currentIndex().parent()) ||
+        (dragIndex.parent() == currentIndex()))
       return;
     else drawParent = true;
-
+  }
   QModelIndex indexText;
   if (drawParent)
     indexText = model()->index(dragIndex.parent().row(),
