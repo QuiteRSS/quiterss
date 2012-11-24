@@ -699,7 +699,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Español (ES)")
            << "0.10.3"
-           << "nightshade" << "";
+           << QString::fromUtf8("Cesar Muñoz") << "csarg@live.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_ES"));
   languageFileList_->addTopLevelItem(languageItem);

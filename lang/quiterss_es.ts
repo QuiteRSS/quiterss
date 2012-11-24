@@ -672,12 +672,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="90"/>
         <source>Single click instead of double click for show window</source>
-        <translation>Un solo click en lugar de dos para mostrar la ventana</translation>
+        <translation>Un solo click en lugar de dos para mostrar la ventana principal</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="91"/>
         <source>Clear status new on minimize to tray</source>
-        <translation>Reiniciar elementos nuevos al minimizar al área de notificación</translation>
+        <translation>Reiniciar el contador de elementos nuevos al minimizar al área de notificación</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="92"/>
@@ -687,7 +687,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="95"/>
         <source>Move to the system tray when:</source>
-        <translation>Mover al área de notificación cuando:</translation>
+        <translation>Mover al área de notificación:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="97"/>
@@ -697,7 +697,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="119"/>
         <source>System proxy configuration (if available)</source>
-        <translation>Configuración del proxy del sistema (si esta disponible)</translation>
+        <translation>Usar configuración de proxy del sistema (si esta disponible)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="122"/>
@@ -861,17 +861,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="258"/>
         <source>Open news</source>
-        <translation>Noticias Abiertas</translation>
+        <translation>Abrir Noticias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
         <source>Nothing to do</source>
-        <translation>Nada para hacer</translation>
+        <translation>No hacer nada</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Opening feed:</source>
-        <translation>Abriendo canal:</translation>
+        <translation>Al abrir canal:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="305"/>
@@ -948,12 +948,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="375"/>
         <source>Reading</source>
-        <translation>Lelendo</translation>
+        <translation>Leyendo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="376"/>
         <source>Clean Up</source>
-        <translation>Limpiar</translation>
+        <translation>Limpieza</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="380"/>
@@ -1008,7 +1008,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="423"/>
         <source>Only show selected feeds:</source>
-        <translation>Solo mostrar los canales seleccionados:</translation>
+        <translation>Solo mostrar para los canales seleccionados:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="436"/>
@@ -1323,12 +1323,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3240"/>
         <source>Previous News</source>
-        <translation>Noticias Anteriores</translation>
+        <translation>Noticia Anterior</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3241"/>
         <source>Next News</source>
-        <translation>Noticias Siguientes</translation>
+        <translation>Noticia Siguiente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3243"/>
@@ -1589,7 +1589,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3232"/>
         <source>Bottom</source>
-        <translation>Final</translation>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3233"/>
@@ -1859,7 +1859,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3203"/>
         <source>&amp;Browser</source>
-        <translation>&amp;Explorador...</translation>
+        <translation>&amp;Explorador</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3212"/>
@@ -1899,7 +1899,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3223"/>
         <source>System2</source>
-        <translation>System2</translation>
+        <translation>Sistema2</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3224"/>
@@ -1929,17 +1929,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3254"/>
         <source>Count News Unread</source>
-        <translation>Contar noticias nuevas</translation>
+        <translation>Contador de noticias nuevas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3255"/>
         <source>Count News All</source>
-        <translation>Contar todas las noticias</translation>
+        <translation>Número total de noticias</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3256"/>
         <source>Last Updated</source>
-        <translation>Ultimas actualizadas</translation>
+        <translation>Ultimas Actualizaciones</translation>
     </message>
 </context>
 <context>
