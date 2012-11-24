@@ -1679,9 +1679,9 @@ void RSSListing::writeSettings()
     settings_->setValue("NewsHeaderState",
                         currentNewsTab->newsHeader_->saveState());
 
-    settings_->setValue("NewsTabSplitter",
+    settings_->setValue("NewsTabSplitterGeometry",
                         currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
-    settings_->setValue("NewsTabSplitter",
+    settings_->setValue("NewsTabSplitterState",
                         currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
@@ -4168,9 +4168,9 @@ void RSSListing::slotTabCloseRequested(int index)
       settings_->setValue("NewsHeaderState",
                           widget->newsHeader_->saveState());
 
-      settings_->setValue("NewsTabSplitter",
+      settings_->setValue("NewsTabSplitterGeometry",
                           widget->newsTabWidgetSplitter_->saveGeometry());
-      settings_->setValue("NewsTabSplitter",
+      settings_->setValue("NewsTabSplitterState",
                           widget->newsTabWidgetSplitter_->saveState());
     }
 

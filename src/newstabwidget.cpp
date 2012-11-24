@@ -81,10 +81,10 @@ NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
 
 
   if (feedId_ > -1) {
-    newsTabWidgetSplitter_->restoreGeometry(
-          rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
     newsTabWidgetSplitter_->restoreState(
-          rsslisting_->settings_->value("NewsTabSplitter").toByteArray());
+          rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
+    newsTabWidgetSplitter_->restoreGeometry(
+          rsslisting_->settings_->value("NewsTabSplitterGeometry").toByteArray());
 
     if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
         (rsslisting_->browserPosition_ == LEFT_POSITION)) {
