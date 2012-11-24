@@ -83,16 +83,7 @@ void NewsHeader::init(QWidget *rsslisting)
   RSSListing *rsslisting_ = qobject_cast<RSSListing*>(rsslisting);
 
   restoreState(rsslisting_->settings_->value("NewsHeaderState").toByteArray());
-
-  QString stateStr;
-  if (rsslisting_->windowState() & Qt::WindowMaximized)
-    stateStr = "Maximized";
-  int logicalIndex = 0;
-  QStringList widthStrList = rsslisting_->settings_->value(
-        "NewsHeaderSectionSize" + stateStr).toStringList();
-  foreach (const QString &widthStr, widthStrList) {
-    resizeSection(logicalIndex++, widthStr.toInt());
-  }
+  restoreGeometry(rsslisting_->settings_->value("NewsHeaderGeometry").toByteArray());
 
   createMenu();
 
@@ -149,15 +140,23 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     if (tWidth > newWidth) {
       minSize = true;
       size = tWidth - newWidth;
+      int titleSectionSize = sectionSize(model_->fieldIndex("title"));
+      if ((titleSectionSize - size) >= 40) {
+        widthCol[visualIndex(model_->fieldIndex("title"))] = size;
+        size = 0;
+      }
     } else {
       size = newWidth - tWidth;
+      widthCol[visualIndex(model_->fieldIndex("title"))] = size;
+      size = 0;
     }
     int countCol = 0;
     bool sizeOne = false;
     while (size) {
       int lIdx = logicalIndex(idxColSize);
       if (!isSectionHidden(lIdx)) {
-        if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx))) {
+        if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx) ||
+              (model_->fieldIndex("title") == lIdx))) {
           if (((sectionSize(lIdx) >= 40) && !minSize) ||
               ((sectionSize(lIdx) - widthCol[idxColSize] > 40) && minSize)) {
             widthCol[idxColSize]++;

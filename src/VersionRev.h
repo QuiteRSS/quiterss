@@ -1,1 +1,1 @@
-#define HG_REVISION "1577" 
+#define HG_REVISION "1578" 

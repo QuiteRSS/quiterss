@@ -366,30 +366,6 @@ void RSSListing::slotCloseApp()
       }
     } else {
       oldState = windowState();
-
-      qDebug() << QString::number(oldState, 16)
-          << QString::number(((QWindowStateChangeEvent*)event)->oldState(), 16);
-
-      if (tabWidget_->count() &&
-          !(((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMinimized)) {
-        QString stateStr;
-        if (((QWindowStateChangeEvent*)event)->oldState() & Qt::WindowMaximized)
-          stateStr = "Maximized";
-        QStringList widthStrList;
-        for (int i = 0; i < currentNewsTab->newsHeader_->count(); i++) {
-          widthStrList << QString::number(currentNewsTab->newsHeader_->sectionSize(i));
-        }
-        settings_->setValue("NewsHeaderSectionSize" + stateStr, widthStrList);
-
-        stateStr = "";
-        if (windowState() & Qt::WindowMaximized)
-          stateStr = "Maximized";
-        int logicalIndex = 0;
-        widthStrList = settings_->value("NewsHeaderSectionSize" + stateStr).toStringList();
-        foreach (const QString &widthStr, widthStrList) {
-          currentNewsTab->newsHeader_->resizeSection(logicalIndex++, widthStr.toInt());
-        }
-      }
     }
   } else if(event->type() == QEvent::ActivationChange) {
     if (isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
@@ -1694,20 +1670,10 @@ void RSSListing::writeSettings()
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
   if (tabWidget_->count()) {
-    QString stateStr;
-    if(isMinimized()) {
-      if (oldState & Qt::WindowMaximized)
-        stateStr = "Maximized";
-    } else {
-      if (windowState() & Qt::WindowMaximized)
-        stateStr = "Maximized";
-    }
-    QStringList widthStrList;
-    for (int i = 0; i < currentNewsTab->newsHeader_->count(); i++) {
-      widthStrList << QString::number(currentNewsTab->newsHeader_->sectionSize(i));
-    }
-    settings_->setValue("NewsHeaderSectionSize" + stateStr, widthStrList);
-    settings_->setValue("NewsHeaderState", currentNewsTab->newsHeader_->saveState());
+    settings_->setValue("NewsHeaderGeometry",
+                        currentNewsTab->newsHeader_->saveGeometry());
+    settings_->setValue("NewsHeaderState",
+                        currentNewsTab->newsHeader_->saveState());
 
     settings_->setValue("NewsTabSplitter",
                         currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
@@ -4193,20 +4159,10 @@ void RSSListing::slotTabCloseRequested(int index)
     if (widget->feedId_ > -1) {
       setFeedRead(widget->feedId_, widget->feedParId_, FeedReadClosingTab);
 
-      QString stateStr;
-      if(isMinimized()) {
-        if (oldState & Qt::WindowMaximized)
-          stateStr = "Maximized";
-      } else {
-        if (windowState() & Qt::WindowMaximized)
-          stateStr = "Maximized";
-      }
-      QStringList widthStrList;
-      for (int i = 0; i < widget->newsHeader_->count(); i++) {
-        widthStrList << QString::number(widget->newsHeader_->sectionSize(i));
-      }
-      settings_->setValue("NewsHeaderSectionSize" + stateStr, widthStrList);
-      settings_->setValue("NewsHeaderState", widget->newsHeader_->saveState());
+      settings_->setValue("NewsHeaderGeometry",
+                          widget->newsHeader_->saveGeometry());
+      settings_->setValue("NewsHeaderState",
+                          widget->newsHeader_->saveState());
 
       settings_->setValue("NewsTabSplitter",
                           widget->newsTabWidgetSplitter_->saveGeometry());
@@ -4855,17 +4811,14 @@ void RSSListing::setFullScreen()
 #ifdef Q_WS_X11
     show();
     raise();
-    setWindowState( windowState() | Qt::WindowFullScreen );
+    setWindowState(windowState() | Qt::WindowFullScreen);
 #else
-    setWindowState( windowState() | Qt::WindowFullScreen );
-    show();
-    raise();
+    setWindowState(windowState() | Qt::WindowFullScreen);
 #endif
   } else {
     menuBar()->show();
     mainToolbar_->show();
-    setWindowState( windowState() ^ Qt::WindowFullScreen );
-    show();
+    setWindowState(windowState() & ~Qt::WindowFullScreen);
   }
 }
 
