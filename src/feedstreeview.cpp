@@ -72,7 +72,7 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
 /**
  * @brief Собственная обработка нажатия мыши
  * @details Фиксирует нажатый индекс в selectedIndex_, обрабатывает нажатие
- *    вредней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
+ *    средней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
  *    вызывает стандартный обработчик
  * @param event Стьруктура, содержащая данные события
  * @sa selectedIndex_
@@ -81,7 +81,9 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 {
   if (!indexAt(event->pos()).isValid()) return;
 
-  selectIndex_ = indexAt(event->pos());
+  QRect rectText = visualRect(indexAt(event->pos()));
+  if (event->pos().x() >= rectText.x())
+    selectIndex_ = indexAt(event->pos());
   if ((event->buttons() & Qt::MiddleButton)) {
     if (selectIndex_.isValid())
       emit signalMiddleClicked();

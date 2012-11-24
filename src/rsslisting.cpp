@@ -3204,8 +3204,11 @@ void RSSListing::createMenuFeed()
 
 void RSSListing::showContextMenuFeed(const QPoint &p)
 {
-  if (feedsTreeView_->indexAt(p).isValid())
-    feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
+  if (feedsTreeView_->indexAt(p).isValid()) {
+    QRect rectText = feedsTreeView_->visualRect(feedsTreeView_->indexAt(p));
+    if (p.x() >= rectText.x())
+      feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
+  }
 }
 
 void RSSListing::setAutoLoadImages(bool set)
