@@ -425,7 +425,9 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 void RSSListing::slotShowWindows(bool trayClick)
 {
   if (!trayClick || isHidden()){
-    if (oldState & Qt::WindowMaximized) {
+    if (oldState & Qt::WindowFullScreen) {
+      show();
+    } else if (oldState & Qt::WindowMaximized) {
       showMaximized();
     } else {
       showNormal();
@@ -1550,6 +1552,8 @@ void RSSListing::readSettings()
   resize(800, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
+  if (isFullScreen())
+    menuBar()->hide();
 
   toolBarNull_->setStyleSheet("QToolBar { border: none; padding: 0px;}");
   if (feedsDockArea_ == Qt::LeftDockWidgetArea) {
