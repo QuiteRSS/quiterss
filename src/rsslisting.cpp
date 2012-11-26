@@ -2752,6 +2752,7 @@ void RSSListing::myEmptyWorkingSet()
 /*! \brief Показ статус бара после запрос обновления ленты ********************/
 void RSSListing::showProgressBar(int addToMaximum)
 {
+  if (addToMaximum == 0) return;
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
   updateFeedsCount_ = addToMaximum;
   idFeedList_.clear();
@@ -2765,14 +2766,32 @@ void RSSListing::showProgressBar(int addToMaximum)
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetFeed()
 {
+  int feedCount = 0;
+
   playSoundNewNews_ = false;
 
   QModelIndex index = feedsTreeView_->selectIndex_;
-  persistentUpdateThread_->requestUrl(
-        feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-        QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate)
-        );
-  showProgressBar(1);
+  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
+  if (feedUrl.isEmpty()) {
+    QSqlQuery q(db_);
+    QString qStr = QString("SELECT xmlUrl, lastBuildDate FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
+        arg(feedsTreeModel_->dataField(index, "id").toInt());
+    q.exec(qStr);
+    qDebug() << q.lastError();
+    while (q.next()) {
+      persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
+                                          q.record().value(1).toDateTime());
+      ++feedCount;
+    }
+  } else {
+    persistentUpdateThread_->requestUrl(
+          feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+          QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate)
+          );
+    feedCount = 1;
+  }
+
+  showProgressBar(feedCount);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
