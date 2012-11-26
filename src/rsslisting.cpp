@@ -998,6 +998,13 @@ void RSSListing::createActions()
   connect(fullScreenAct_, SIGNAL(triggered()),
           this, SLOT(setFullScreen()));
 
+  stayOnTopAct_ = new QAction(this);
+  stayOnTopAct_->setObjectName("stayOnTopAct");
+  stayOnTopAct_->setCheckable(true);
+  this->addAction(stayOnTopAct_);
+  connect(stayOnTopAct_, SIGNAL(triggered()),
+          this, SLOT(setStayOnTop()));
+
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
   connect(markAllNewsRead_, SIGNAL(triggered()),
@@ -1095,6 +1102,9 @@ void RSSListing::createShortcut()
 
   fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
   listActions_.append(fullScreenAct_);
+
+  stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
+  listActions_.append(stayOnTopAct_);
 
   loadActionShortcuts();
 }
@@ -1226,6 +1236,7 @@ void RSSListing::createMenu()
   viewMenu_->addMenu(browserPositionMenu_);
   viewMenu_->addMenu(styleMenu_);
   viewMenu_->addSeparator();
+  viewMenu_->addAction(stayOnTopAct_);
   viewMenu_->addAction(fullScreenAct_);
   menuBar()->addMenu(viewMenu_);
 
@@ -1547,6 +1558,12 @@ void RSSListing::readSettings()
   openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
   openingLinkTimeout_ = settings_->value("openingLinkTimeout", 1000).toInt();
 
+  stayOnTopAct_->setChecked(settings_->value("stayOnTop", false).toBool());
+  if (stayOnTopAct_->isChecked())
+    setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+  else
+    setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
+
   settings_->endGroup();
 
   resize(800, 600);
@@ -1668,6 +1685,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("openLinkInBackground", openLinkInBackground_);
   settings_->setValue("openingLinkTimeout", openingLinkTimeout_);
+
+  settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
 
   settings_->endGroup();
 
@@ -3541,6 +3560,9 @@ void RSSListing::retranslateStrings() {
   fullScreenAct_->setText(tr("Full Screen"));
   fullScreenAct_->setToolTip(tr("Full Screen"));
 
+  stayOnTopAct_->setText(tr("Stay On Top"));
+  stayOnTopAct_->setToolTip(tr("Stay On Top"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
@@ -4827,6 +4849,15 @@ void RSSListing::setFullScreen()
     mainToolbar_->show();
     setWindowState(windowState() & ~Qt::WindowFullScreen);
   }
+}
+
+void RSSListing::setStayOnTop()
+{
+  if (stayOnTopAct_->isChecked())
+    setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+  else
+    setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
+  show();
 }
 
 /**

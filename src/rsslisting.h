@@ -253,6 +253,7 @@ private:
 
   QAction *findFeedAct_;
   QAction *fullScreenAct_;
+  QAction *stayOnTopAct_;
 
   QMenu *fileMenu_;
   QMenu *editMenu_;
@@ -443,6 +444,7 @@ private slots:
   void slotPrintPreview();
 
   void setFullScreen();
+  void setStayOnTop();
 
   void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere);
 
