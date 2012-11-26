@@ -2861,31 +2861,62 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
 
 void RSSListing::markFeedRead()
 {
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
-
-  db_.transaction();
-  QSqlQuery q(db_);
+  bool openFeed = false;
   QString qStr;
-  if (currentNewsTab->feedId_ == feedId) {
-    qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
-        arg(feedId);
+  QModelIndex index = feedsTreeView_->selectIndex_;
+  int id = feedsTreeModel_->getIdByIndex(index);
+  if (currentNewsTab->feedId_ == id)
+    openFeed = true;
+
+  QSqlQuery q(db_);
+  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
+  if (feedUrl.isEmpty()) {
+    QString feeds;
+    qStr = QString("SELECT id FROM feeds WHERE parentId='%1'").arg(id);
     q.exec(qStr);
-    qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
-        arg(feedId);
+    if (q.next()) {
+      if (currentNewsTab->feedId_ == q.value(0).toInt())
+        openFeed = true;
+      feeds.append(QString("feedId='%1'").arg(q.value(0).toInt()));
+    }
+    while (q.next()) {
+      if (currentNewsTab->feedId_ == q.value(0).toInt())
+        openFeed = true;
+      feeds.append(QString(" OR feedId='%1'").arg(q.value(0).toInt()));
+    }
+    if (!feeds.isEmpty()) {
+      qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND (%1)").
+          arg(feeds);
+      q.exec(qStr);
+    }
+    qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE parentId='%1'").
+        arg(id);
     q.exec(qStr);
+    qStr = QString("UPDATE news SET new=0 WHERE parentId='%1' AND new=1").
+        arg(id);
+    q.exec(qStr);
+  } else {
+    db_.transaction();
+    if (openFeed) {
+      qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
+          arg(id);
+      q.exec(qStr);
+      qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
+          arg(id);
+      q.exec(qStr);
+    } else {
+      QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+          arg(id);
+      q.exec(qStr);
+    }
+    qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+        arg(id);
+    q.exec(qStr);
+    db_.commit();
   }
-  else {
-    QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
-        arg(feedId);
-    q.exec(qStr);
-  }
-  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
-      arg(feedId);
-  q.exec(qStr);
-  db_.commit();
 
   // Обновляем ленту, на которой стоит фокус
-  if (currentNewsTab->feedId_ == feedId) {
+  if (openFeed) {
     if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
       QModelIndex indexNextUnread =
           feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
