@@ -158,4 +158,5 @@ OTHER_FILES += \
     HISTORY_EN \
     README \
     COPYING \
-    AUTHORS
+    AUTHORS \
+    TODO
