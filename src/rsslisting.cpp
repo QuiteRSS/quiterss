@@ -3342,10 +3342,25 @@ void RSSListing::loadSettingsFeeds()
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 }
 
-void RSSListing::setCurrentFeed()
+/**
+ * @brief Восстановление состояние лент во время запуска приложения
+ *----------------------------------------------------------------------------*/
+void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
 
+  QSqlQuery q(db_);
+
+  //* Восстановление развернутости узлов
+  q.exec("SELECT id, parentId FROM feeds WHERE f_Expanded=1");
+  while (q.next()) {
+    int feedId    = q.value(0).toInt();
+    int feedParId = q.value(1).toInt();
+    QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+    feedsTreeView_->setExpanded(index, true);
+  }
+
+  //* Восстановление текущей ленты
   int feedId = settings_->value("feedSettings/currentId", 0).toInt();
   int feedParId = settings_->value("feedSettings/currentParId", 0).toInt();
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
@@ -3354,7 +3369,7 @@ void RSSListing::setCurrentFeed()
   slotFeedClicked(feedIndex);
   tabCurrentUpdateOff_ = false;
 
-  QSqlQuery q(db_);
+  //* Открытие лент во вкладках
   q.exec(QString("SELECT id, parentId FROM feeds WHERE displayOnStartup=1"));
   while(q.next()) {
     creatFeedTab(q.value(0).toInt(), q.value(1).toInt());

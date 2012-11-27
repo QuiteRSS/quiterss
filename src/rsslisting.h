@@ -30,7 +30,7 @@ public:
   bool showTrayIcon_;
   bool startingTray_;
   QSystemTrayIcon *traySystem;
-  void setCurrentFeed();
+  void restoreFeedsOnStartUp();
 
   QSettings *settings_;
   QSqlDatabase db_;
