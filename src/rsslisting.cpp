@@ -212,6 +212,17 @@ RSSListing::~RSSListing()
   }
   recountFeedCategories(categoriesList);
 
+  // Запоминание развернутости узлов
+  // Проходим по всем узлам и сохраняем их состояние развернутости в базе
+  QModelIndex index = feedsTreeModel_->index(0, 0);
+  while (index.isValid()) {
+    int feedId = feedsTreeModel_->getIdByIndex(index);
+    q.prepare("UPDATE feeds SET f_Expanded=:f_Expanded WHERE id==:id");
+    q.bindValue(":f_Expanded", QVariant(feedsTreeView_->isExpanded(index)).toInt());
+    q.bindValue(":id", feedId);
+    q.exec();
+    index = feedsTreeView_->indexBelow(index);
+  }
 
   q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
