@@ -206,7 +206,7 @@ RSSListing::~RSSListing()
   // Запускаем пересчёт всех категорий, т.к. при чистке лент могли измениться
   // их счетчики
   QList<int> categoriesList;
-  q.exec("SELECT id FROM feeds WHERE xmlUrl==''");
+  q.exec("SELECT id FROM feeds WHERE (xmlUrl='' OR xmlUrl IS NULL)");
   while (q.next()) {
     categoriesList << q.value(0).toInt();
   }
