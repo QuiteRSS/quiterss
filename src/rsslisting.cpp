@@ -1828,7 +1828,12 @@ void RSSListing::deleteFeed()
   }
 }
 
-/*! \brief Импорт лент из OPML-файла ******************************************/
+/**
+ * @brief Импорт лент из OPML-файла
+ *
+ *  ВЫзывает диалог выбора файла *.opml. Добавляет все ленты из файла в базу,
+ *  сохраняя дерево папок. Если URL ленты уже есть в базе, лента не добавляется
+ *----------------------------------------------------------------------------*/
 void RSSListing::slotImportFeeds()
 {
   playSoundNewNews_ = false;
@@ -1857,6 +1862,14 @@ void RSSListing::slotImportFeeds()
   int elementCount = 0;
   int outlineCount = 0;
   int requestUrlCount = 0;
+  QSqlQuery q(db_);
+
+  //* Хранит иерархию outline'ов. Каждый следующий outline может быть вложенным.
+  //* Поэтому при нахождении очередного outline'а мы складываем его в стек. А
+  //* когда этот outline заканчивается, то достаем его из стека. Верхний элемент
+  //* стека всегда является родителем текущего outline'а
+  QStack<int> parentIdsStack;
+  parentIdsStack.push(0);
   while (!xml.atEnd()) {
     xml.readNext();
     if (xml.isStartElement()) {
@@ -1866,35 +1879,47 @@ void RSSListing::slotImportFeeds()
         qDebug() << outlineCount << "+:" << xml.prefix().toString()
                  << ":" << xml.name().toString();
 
-        if (!xml.attributes().value("xmlUrl").isEmpty()) {
-          QSqlQuery q(db_);
+        QString textString(xml.attributes().value("text").toString());
+        QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
 
-          QString textString(xml.attributes().value("text").toString());
-          QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
+        // Найдена папка
+        if (xmlUrlString.isEmpty()) {
+          // Добавляем папку
+          q.prepare("INSERT INTO feeds(text, title, created) "
+                    "VALUES (:text, :title, :feedCreateTime)");
+          q.bindValue(":text", textString);
+          q.bindValue(":title", textString);
+          q.bindValue(":feedCreateTime",
+                      QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+          q.exec();
+          qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
+          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+        }
+        // Найдена лента
+        else {
+
           bool duplicateFound = false;
-          q.exec("SELECT xmlUrl FROM feeds");
-          while (q.next()) {
-            if (q.record().value(0).toString() == xmlUrlString) {
-              duplicateFound = true;
-              break;
-            }
-          }
+          q.prepare("SELECT id FROM feeds WHERE xmlUrl=:xmlUrl");
+          q.bindValue(":xmlUrl", xmlUrlString);
+          q.exec();
+          if (q.next())
+            duplicateFound = true;
 
           if (duplicateFound) {
             qDebug() << "duplicate feed:" << xmlUrlString << textString;
           } else {
-            QString qStr = QString("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl) "
-                                   "VALUES(?, ?, ?, ?, ?)");
-            q.prepare(qStr);
+            q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId) "
+                      "VALUES(?, ?, ?, ?, ?, ?, ?)");
             q.addBindValue(textString);
             q.addBindValue(xml.attributes().value("title").toString());
             q.addBindValue(xml.attributes().value("description").toString());
             q.addBindValue(xmlUrlString);
             q.addBindValue(xml.attributes().value("htmlUrl").toString());
+            q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+            q.addBindValue(parentIdsStack.top());
             q.exec();
             qDebug() << q.lastQuery() << q.boundValues();
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
-            q.finish();
 
             persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
             faviconLoader->slotRequestUrl(
@@ -1902,9 +1927,11 @@ void RSSListing::slotImportFeeds()
             requestUrlCount++;
           }
         }
+        parentIdsStack.push(q.lastInsertId().toInt());
       }
     } else if (xml.isEndElement()) {
       if (xml.name() == "outline") {
+        parentIdsStack.pop();
         ++outlineCount;
       }
       ++elementCount;
