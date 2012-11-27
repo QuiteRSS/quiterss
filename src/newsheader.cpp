@@ -144,6 +144,9 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       if ((titleSectionSize - size) >= 40) {
         widthCol[visualIndex(model_->fieldIndex("title"))] = size;
         size = 0;
+      } else {
+        widthCol[visualIndex(model_->fieldIndex("title"))] = titleSectionSize - 40;
+        size = size + 40 - titleSectionSize;
       }
     } else {
       size = newWidth - tWidth;
@@ -177,7 +180,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 
     for (int i = count()-1; i >= 0; i--) {
       int lIdx = logicalIndex(i);
-      if (!isSectionHidden(lIdx) && (sectionSize(lIdx) >= 40)) {
+      if ((!isSectionHidden(lIdx) && (sectionSize(lIdx) >= 40)) ||
+          (model_->fieldIndex("title") == lIdx)) {
         if (!minSize) {
           resizeSection(lIdx, sectionSize(lIdx) + widthCol[i]);
         } else {
