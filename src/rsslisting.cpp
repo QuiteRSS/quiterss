@@ -1884,28 +1884,43 @@ void RSSListing::slotImportFeeds()
 
         // Найдена папка
         if (xmlUrlString.isEmpty()) {
-          // Добавляем папку
-          q.prepare("INSERT INTO feeds(text, title, created) "
-                    "VALUES (:text, :title, :feedCreateTime)");
+
+          // Если такая папка уже есть в базе, то ленты добавляем в нее
+          bool isFolderDuplicated = false;
+          q.prepare("SELECT id FROM feeds WHERE text=:text AND (xmlUrl='' OR xmlUrl IS NULL)");
           q.bindValue(":text", textString);
-          q.bindValue(":title", textString);
-          q.bindValue(":feedCreateTime",
-                      QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
           q.exec();
-          qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
-          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+          if (q.next()) {
+            isFolderDuplicated = true;
+            parentIdsStack.push(q.value(0).toInt());
+          }
+
+          // Если такой папки еще нет, создаем ее
+          if (!isFolderDuplicated) {
+            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created) "
+                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime)");
+            q.bindValue(":text", textString);
+            q.bindValue(":title", textString);
+            q.bindValue(":xmlUrl", "");
+            q.bindValue(":feedCreateTime",
+                        QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+            q.exec();
+            parentIdsStack.push(q.lastInsertId().toInt());
+            qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
+            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+          }
         }
         // Найдена лента
         else {
 
-          bool duplicateFound = false;
+          bool isFeedDuplicated = false;
           q.prepare("SELECT id FROM feeds WHERE xmlUrl=:xmlUrl");
           q.bindValue(":xmlUrl", xmlUrlString);
           q.exec();
           if (q.next())
-            duplicateFound = true;
+            isFeedDuplicated = true;
 
-          if (duplicateFound) {
+          if (isFeedDuplicated) {
             qDebug() << "duplicate feed:" << xmlUrlString << textString;
           } else {
             q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId) "
@@ -1926,8 +1941,8 @@ void RSSListing::slotImportFeeds()
                   xml.attributes().value("htmlUrl").toString(), xmlUrlString);
             requestUrlCount++;
           }
+          parentIdsStack.push(q.lastInsertId().toInt());
         }
-        parentIdsStack.push(q.lastInsertId().toInt());
       }
     } else if (xml.isEndElement()) {
       if (xml.name() == "outline") {
@@ -1936,6 +1951,7 @@ void RSSListing::slotImportFeeds()
       }
       ++elementCount;
     }
+    qDebug() << parentIdsStack;
   }
   if (xml.error()) {
     statusBar()->showMessage(QString("Import error: Line=%1, ErrorString=%2").
