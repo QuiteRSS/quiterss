@@ -48,7 +48,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
       treeItem << feedText << feedIdT;
       treeWidgetItem = new QTreeWidgetItem(treeItem);
 
-      if (feedId == feedIdT.toInt())
+      if ((feedId == feedIdT.toInt()) || (feedId == parentId))
         treeWidgetItem->setCheckState(0, Qt::Checked);
       else
         treeWidgetItem->setCheckState(0, Qt::Unchecked);
