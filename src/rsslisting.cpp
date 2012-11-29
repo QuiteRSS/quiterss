@@ -1999,19 +1999,51 @@ void RSSListing::slotExportFeeds()
   xml.writeTextElement("dateModified", QDateTime::currentDateTime().toString());
   xml.writeEndElement(); // </head>
 
-  QSqlQuery q(db_);
-  q.exec("SELECT * FROM feeds WHERE xmlUrl!=''");
+  // Создаем модель и представление для экспорта.
+  // Раскрываем представление, чтобы пройтись по всем веткам
+  FeedsTreeModel exportTreeModel("feeds",
+      QStringList() << QObject::tr("ID") << QObject::tr("TEXT") << QObject::tr("PARENTID"),
+      QStringList() << "id" << "text" << "parentId",
+      0,
+      "text");
+  FeedsTreeView exportTreeView(this);
+  exportTreeView.setModel(&exportTreeModel);
+  if (titleSortFeedsAct_->isChecked())
+    exportTreeView.sortByColumn(exportTreeView.columnIndex("text"), Qt::AscendingOrder);
+  else
+    exportTreeView.sortByColumn(exportTreeView.columnIndex("id"), Qt::AscendingOrder);
+  exportTreeView.expandAll();
 
-  xml.writeStartElement("body");
-  while (q.next()) {
-    QString value = q.record().value(q.record().indexOf("text")).toString();
-    xml.writeEmptyElement("outline");
-    xml.writeAttribute("text", value);
-    value = q.record().value(q.record().indexOf("htmlUrl")).toString();
-    xml.writeAttribute("htmlUrl", value);
-    value = q.record().value(q.record().indexOf("xmlUrl")).toString();
-    xml.writeAttribute("xmlUrl", value);
+  QModelIndex index = exportTreeModel.index(0, 0);
+  QStack<int> parentIdsStack;
+  parentIdsStack.push(0);
+  while (index.isValid()) {
+    int feedId = exportTreeModel.getIdByIndex(index);
+    int feedParId = exportTreeModel.getParidByIndex(index);
+
+    // Родитель отличается от предыдущего, закрываем категорию
+    if (feedParId != parentIdsStack.top()) {
+      xml.writeEndElement();  // "outline"
+      parentIdsStack.pop();
+    }
+
+    // Нашли категорию. Открываем ее
+    if (exportTreeModel.dataField(index, "xmlUrl").toString().isEmpty()) {
+      parentIdsStack.push(feedId);
+      xml.writeStartElement("outline");  // Начало категории
+      xml.writeAttribute("text", exportTreeModel.dataField(index, "text").toString());
+    }
+    // Нашли ленту. Сохраняем
+    else {
+      xml.writeEmptyElement("outline");
+      xml.writeAttribute("text",    exportTreeModel.dataField(index, "text").toString());
+      xml.writeAttribute("htmlUrl", exportTreeModel.dataField(index, "htmlUrl").toString());
+      xml.writeAttribute("xmlUrl",  exportTreeModel.dataField(index, "xmlUrl").toString());
+    }
+
+    index = exportTreeView.indexBelow(index);
   }
+
   xml.writeEndElement(); // </body>
 
   xml.writeEndElement(); // </opml>
