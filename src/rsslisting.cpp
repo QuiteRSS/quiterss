@@ -304,16 +304,15 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     return false;
   }
   // Обработка открытия ссылки во внешнем браузере в фоне
-  else if ((event->type() == QEvent::WindowDeactivate) && (openingLink_)) {
+  else if ((event->type() == QEvent::WindowDeactivate) && (openingLink_) &&
+           openLinkInBackground_) {
     openingLink_ = false;
     timerLinkOpening_.start(openingLinkTimeout_, this);
     deactivateState = 1;
-    return QMainWindow::eventFilter(obj, event);
   }
   // Отрисовалась деактивация
-  else if ((deactivateState == 1) && (event->type() == QEvent::Paint)) {
+  else if ((event->type() == QEvent::Paint) && (deactivateState == 1)) {
     deactivateState = 2;
-    return QMainWindow::eventFilter(obj, event);
   }
   // Деактивация произведена. Переактивируемся
   else if ((deactivateState == 2) && timerLinkOpening_.isActive()) {
@@ -324,16 +323,13 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       raise();
       activateWindow();
     }
-    return QMainWindow::eventFilter(obj, event);
   }
   // Отрисовалась активация
   else if ((deactivateState == 3) && (event->type() == QEvent::Paint)) {
     deactivateState = 0;
-    return QMainWindow::eventFilter(obj, event);
-  } else {
-    // pass the event on to the parent class
-    return QMainWindow::eventFilter(obj, event);
   }
+  // pass the event on to the parent class
+  return QMainWindow::eventFilter(obj, event);
 }
 
 /*! \brief ОБработка событий закрытия окна ************************************/
