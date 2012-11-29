@@ -63,6 +63,7 @@ private slots:
   void slotProgressBarUpdate();
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
+  void newFolder();
 
 };
 

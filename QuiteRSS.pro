@@ -42,7 +42,8 @@ HEADERS += \
     src/feedstreeview.h \
     src/feedstreemodel.h \
     src/VersionRev.h \
-    src/splashscreen.h
+    src/splashscreen.h \
+    src/addfolderdialog.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -76,7 +77,8 @@ SOURCES += \
     src/googlereader.cpp \
     src/feedstreeview.cpp \
     src/feedstreemodel.cpp \
-    src/splashscreen.cpp
+    src/splashscreen.cpp \
+    src/addfolderdialog.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

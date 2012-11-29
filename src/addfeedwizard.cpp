@@ -1,4 +1,5 @@
 #include "addfeedwizard.h"
+#include "addfolderdialog.h"
 
 extern QString kCreateNewsTableQuery;
 
@@ -207,6 +208,8 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
 
   connect(nameFeedEdit_, SIGNAL(textChanged(const QString&)),
           this, SLOT(nameFeedEditChanged(const QString&)));
+  connect(newFolderButton, SIGNAL(clicked()),
+          this, SLOT(newFolder()));
 
   return page;
 }
@@ -521,4 +524,56 @@ void AddFeedWizard::finish()
   q.exec();
 
   accept();
+}
+
+/*! \brief Добавление новой папки *********************************************/
+void AddFeedWizard::newFolder()
+{
+  AddFolderDialog *addFolderDialog = new AddFolderDialog(this, db_);
+  QList<QTreeWidgetItem *> treeItems =
+      addFolderDialog->foldersTree_->findItems(foldersTree_->currentItem()->text(1),
+                                               Qt::MatchFixedString | Qt::MatchRecursive,
+                                               1);
+  addFolderDialog->foldersTree_->setCurrentItem(treeItems.at(0));
+
+  if (addFolderDialog->exec() == QDialog::Rejected) {
+    delete addFolderDialog;
+    return;
+  }
+
+  int folderId = 0;
+  QString folderText = addFolderDialog->nameFeedEdit_->text();
+  int parentId = addFolderDialog->foldersTree_->currentItem()->text(1).toInt();
+
+  QSqlQuery q(*db_);
+
+  // Вычисляем номер ряда для папки
+  int rowToParent = 0;
+  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
+      arg(parentId);
+  q.exec(qStr);
+  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+
+  // Добавляем папку
+  q.prepare("INSERT INTO feeds(text, created, parentId, rowToParent) "
+            "VALUES (:text, :feedCreateTime, :parentId, :rowToParent)");
+  q.bindValue(":text", folderText);
+  q.bindValue(":feedCreateTime",
+              QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
+  q.bindValue(":parentId", parentId);
+  q.bindValue(":rowToParent", rowToParent);
+  q.exec();
+
+  folderId = q.lastInsertId().toInt();
+
+  treeItems = foldersTree_->findItems(QString::number(parentId),
+                                      Qt::MatchFixedString | Qt::MatchRecursive,
+                                      1);
+  QStringList treeItem;
+  treeItem << folderText << QString::number(folderId);
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeItems.at(0)->addChild(treeWidgetItem);
+  foldersTree_->setCurrentItem(treeWidgetItem);
+
+  delete addFolderDialog;
 }
