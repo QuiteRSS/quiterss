@@ -29,6 +29,7 @@ private:
   QProgressBar *progressBar_;
   bool selectedPage;
   bool finishOn;
+  QTreeWidget *foldersTree_;
 
 public:
   explicit AddFeedWizard(QWidget *parent, QSqlDatabase *db);
