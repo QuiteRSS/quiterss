@@ -34,7 +34,6 @@ HEADERS += \
     src/webview.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
-    src/logfile.h \
     src/findtext.h \
     src/notifications.h \
     src/findfeed.h \
@@ -70,7 +69,6 @@ SOURCES += \
     src/webview.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
-    src/logfile.cpp \
     src/findtext.cpp \
     src/notifications.cpp \
     src/findfeed.cpp \

@@ -3,7 +3,6 @@
 #include <qtsingleapplication.h>
 
 #include "db_func.h"
-#include "logfile.h"
 #include "VersionNo.h"
 #include "rsslisting.h"
 #include "splashscreen.h"
@@ -86,10 +85,6 @@ QSettings *settings_;
   file.open(QFile::ReadOnly);
   app.setStyleSheet(QLatin1String(file.readAll()));
   file.close();
-
-//#if defined(QT_NO_DEBUG_OUTPUT)
-//  qInstallMsgHandler(logMessageOutput);
-//#endif
 
   QString versionDB = settings_->value("versionDB", "1.0").toString();
   if (versionDB != kDbVersion) showSplashScreen_ = true;
