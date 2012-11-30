@@ -45,9 +45,9 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
   QModelIndex index = indexBelow(indexCur);
   while (index.isValid()) {
 
-    QString feedUrl = ((FeedsTreeModel*)model())->dataField(index, "xmlUrl").toString();
+    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
     int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
-    if (!feedUrl.isEmpty() && (0 < feedUnreadCount))
+    if (!isFeedFolder && (0 < feedUnreadCount))
       return index;  // нашли
 
     index = indexBelow(index);
@@ -57,9 +57,9 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
   index = indexAbove(indexCur);
   while (index.isValid()) {
 
-    QString feedUrl = ((FeedsTreeModel*)model())->dataField(index, "xmlUrl").toString();
+    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
     int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
-    if (!feedUrl.isEmpty() && (0 < feedUnreadCount))
+    if (!isFeedFolder && (0 < feedUnreadCount))
       return index;  // нашли
 
     index = indexAbove(index);
@@ -173,11 +173,8 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   dragPos_ = event->pos();
   QModelIndex dragIndex = indexAt(dragPos_);
 
-  QString feedUrl =
-      ((FeedsTreeModel*)model())->dataField(dragIndex, "xmlUrl").toString();
-
   // обработка категорий
-  if (feedUrl.isEmpty()) {
+  if (((FeedsTreeModel*)model())->isFolder(dragIndex)) {
     if (dragIndex == currentIndex().parent())
       event->ignore();  // категория уже является родителем
     else if (dragIndex == currentIndex())
@@ -229,12 +226,10 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   if (dragPos_.isNull()) return;
 
   QModelIndex dragIndex = indexAt(dragPos_);
-  QString feedUrl =
-      ((FeedsTreeModel*)model())->dataField(dragIndex, "xmlUrl").toString();
 
   bool drawParent = false;
   // Обработка категорий
-  if (feedUrl.isEmpty()) {
+  if (((FeedsTreeModel*)model())->isFolder(dragIndex)) {
     if ((dragIndex == currentIndex().parent()) ||
         (dragIndex == currentIndex()))
       return;
@@ -318,12 +313,10 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
   QModelIndex indexWhere;
 
   QModelIndex dropIndex = indexAt(e->pos());
-  QString feedUrl =
-      ((FeedsTreeModel*)model())->dataField(dropIndex, "xmlUrl").toString();
 
   bool drawParent = false;
   // Обработка категорий
-  if (feedUrl.isEmpty()) {
+  if (((FeedsTreeModel*)model())->isFolder(dropIndex)) {
     if (dropIndex == currentIndex().parent())
       return;
   }
