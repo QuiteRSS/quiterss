@@ -18,9 +18,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     resize(450, 350);
 
     QVBoxLayout *updateApplayout = new QVBoxLayout(this);
+    updateApplayout->setMargin(5);
     updateApplayout->setAlignment(Qt::AlignCenter);
-    updateApplayout->setMargin(10);
-    updateApplayout->setSpacing(10);
 
     infoLabel = new QLabel(tr("Checking for updates..."), this);
     infoLabel->setOpenExternalLinks(true);

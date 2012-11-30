@@ -107,6 +107,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   buttonLayout->addWidget(closeButton);
 
   QVBoxLayout *layout = new QVBoxLayout();
+  layout->setMargin(5);
   layout->addWidget(tabWidget);
   layout->addLayout(buttonLayout);
   setLayout(layout);

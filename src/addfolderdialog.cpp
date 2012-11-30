@@ -47,8 +47,8 @@ AddFolderDialog::AddFolderDialog(QWidget *parent, QSqlDatabase *db)
 
       QList<QTreeWidgetItem *> treeItems =
             foldersTree_->findItems(QString::number(parentId),
-                                                       Qt::MatchFixedString | Qt::MatchRecursive,
-                                                       1);
+                                    Qt::MatchFixedString | Qt::MatchRecursive,
+                                    1);
       treeItems.at(0)->addChild(treeWidgetItem);
       parentIds.enqueue(folderId.toInt());
     }
@@ -62,11 +62,11 @@ AddFolderDialog::AddFolderDialog(QWidget *parent, QSqlDatabase *db)
   buttonBox_->button(QDialogButtonBox::Ok)->setEnabled(false);
 
   QVBoxLayout *layoutMain = new QVBoxLayout(this);
+  layoutMain->setMargin(5);
   layoutMain->addWidget(new QLabel(tr("Name:")));
   layoutMain->addWidget(nameFeedEdit_);
   layoutMain->addWidget(new QLabel(tr("Location:")));
   layoutMain->addWidget(foldersTree_);
-  layoutMain->addSpacing(5);
   layoutMain->addWidget(buttonBox_);
   setLayout(layoutMain);
 
