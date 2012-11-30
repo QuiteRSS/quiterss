@@ -4137,20 +4137,20 @@ void RSSListing::slotNewVersion(bool newVersion)
 /*! \brief Обработка клавиш Key_Up в дереве лент ******************************/
 void RSSListing::slotFeedUpPressed()
 {
-  QModelIndex index = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexAfter;
 
   // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по лентам
   if (!index.isValid())
-    index = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+    indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
   else
-    index = feedsTreeView_->indexAbove(index);
+    indexAfter = feedsTreeView_->indexAbove(indexBefore);
 
   // Если индекса "выше" не существует
-  if (!index.isValid())
-    index = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+  if (!indexAfter.isValid()) return;
 
-  feedsTreeView_->setCurrentIndex(index);
-  slotFeedClicked(index);
+  feedsTreeView_->setCurrentIndex(indexAfter);
+  slotFeedClicked(indexAfter);
 }
 
 /*! \brief Обработка клавиш Key_Down в дереве лент ****************************/
