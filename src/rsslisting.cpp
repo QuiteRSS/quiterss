@@ -133,11 +133,11 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
           this, SLOT(slotCommitDataRequest(QSessionManager&)));
 
-  faviconLoader = new FaviconLoader(this);
+  faviconLoader_ = new FaviconLoader(this);
   connect(this, SIGNAL(startGetUrlTimer()),
-          faviconLoader, SIGNAL(startGetUrlTimer()));
-  connect(faviconLoader, SIGNAL(signalIconRecived(const QString&, const QByteArray &)),
-          this, SLOT(slotIconFeedLoad(const QString&, const QByteArray &)));
+          faviconLoader_, SIGNAL(startGetUrlTimer()));
+  connect(faviconLoader_, SIGNAL(signalIconRecived(const QString&, const QByteArray&, const int&)),
+          this, SLOT(slotIconFeedLoad(const QString&, const QByteArray&, const int&)));
 
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
@@ -169,7 +169,7 @@ RSSListing::~RSSListing()
 
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
-  faviconLoader->quit();
+  faviconLoader_->quit();
 
   QSqlQuery q(db_);
 
@@ -237,7 +237,7 @@ RSSListing::~RSSListing()
 
   while (persistentUpdateThread_->isRunning());
   while (persistentParseThread_->isRunning());
-  while (faviconLoader->isRunning());
+  while (faviconLoader_->isRunning());
 
   db_.close();
 
@@ -1742,7 +1742,7 @@ void RSSListing::addFeed()
   cntNewNewsList_.clear();
 
   emit startGetUrlTimer();
-  faviconLoader->slotRequestUrl(addFeedWizard->htmlUrlString_,
+  faviconLoader_->slotRequestUrl(addFeedWizard->htmlUrlString_,
                                 addFeedWizard->feedUrlString_);
 
   feedsModelReload();
@@ -1933,7 +1933,7 @@ void RSSListing::slotImportFeeds()
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
 
             persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
-            faviconLoader->slotRequestUrl(
+            faviconLoader_->slotRequestUrl(
                   xml.attributes().value("htmlUrl").toString(), xmlUrlString);
             requestUrlCount++;
           }
@@ -3853,7 +3853,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedPropertiesDialog->setFeedProperties(properties);
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QString,QUrl)),
-          faviconLoader, SLOT(slotRequestUrl(QString,QUrl)));
+          faviconLoader_, SLOT(slotRequestUrl(QString,QUrl)));
   connect(feedPropertiesDialog, SIGNAL(startGetUrlTimer()),
           this, SIGNAL(startGetUrlTimer()));
 
@@ -4047,7 +4047,7 @@ void RSSListing::markAllFeedsOld()
   refreshInfoTray();
 }
 
-void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray)
+void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray, const int &cntQueue)
 {
   QSqlQuery q(db_);
   q.prepare("UPDATE feeds SET image = ? WHERE xmlUrl == ?");
@@ -4074,7 +4074,8 @@ void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteA
     }
   }
 
-  feedsModelReload();
+  if (!cntQueue)
+    feedsModelReload();
 }
 
 void RSSListing::playSoundNewNews()

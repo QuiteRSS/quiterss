@@ -41,7 +41,7 @@ private:
 signals:
   void startGetUrlTimer();
   void signalGet(const QNetworkRequest &request);
-  void signalIconRecived(const QString& strUrl, const QByteArray& byteArray);
+  void signalIconRecived(const QString& strUrl, const QByteArray& byteArray, const int &cntQueue);
 };
 
 #endif // FAVICONLOADER_H

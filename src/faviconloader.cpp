@@ -129,7 +129,7 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
             QBuffer    buffer(&faviconData);
             buffer.open(QIODevice::WriteOnly);
             if (icon.save(&buffer, "ICO")) {
-              emit signalIconRecived(feedUrl.toString(), faviconData);
+              emit signalIconRecived(feedUrl.toString(), faviconData, feedsQueue_.count());
             }
             buffer.close();
           } else if (cntRequests == 0) {
