@@ -653,15 +653,20 @@ void RSSListing::createTray()
  ******************************************************************************/
 void RSSListing::createActions()
 {
+  newAct_ = new QAction(this);
+  newAct_->setObjectName("newAct");
+  newAct_->setIcon(QIcon(":/images/add"));
+  connect(newAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
+
   addFeedAct_ = new QAction(this);
   addFeedAct_->setObjectName("addFeedAct");
-  addFeedAct_->setIcon(QIcon(":/images/add"));
+  addFeedAct_->setIcon(QIcon(":/images/feed"));
   this->addAction(addFeedAct_);
   connect(addFeedAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   addFolderAct_ = new QAction(this);
-  addFolderAct_->setObjectName("addCategoryAct");
-  addFolderAct_->setIcon(QIcon(":/images/addCategory"));
+  addFolderAct_->setObjectName("addFolderAct");
+  addFolderAct_->setIcon(QIcon(":/images/folder"));
   this->addAction(addFolderAct_);
   connect(addFolderAct_, SIGNAL(triggered()), this, SLOT(addFolder()));
 
@@ -1045,6 +1050,8 @@ void RSSListing::createShortcut()
 {
   addFeedAct_->setShortcut(QKeySequence(QKeySequence::New));
   listActions_.append(addFeedAct_);
+  addFolderAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_N));
+  listActions_.append(addFolderAct_);
   deleteFeedAct_->setShortcut(QKeySequence());
   listActions_.append(deleteFeedAct_);
   exitAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));  // standart on other OS
@@ -1158,10 +1165,15 @@ void RSSListing::saveActionShortcuts()
 /*! \brief Создание главного меню *********************************************/
 void RSSListing::createMenu()
 {
+  newMenu_ = new QMenu(this);
+  newMenu_->addAction(addFeedAct_);
+  newMenu_->addAction(addFolderAct_);
+  newAct_->setMenu(newMenu_);
+
+
   fileMenu_ = new QMenu(this);
   menuBar()->addMenu(fileMenu_);
-  fileMenu_->addAction(addFeedAct_);
-  fileMenu_->addAction(addFolderAct_);
+  fileMenu_->addAction(newAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
@@ -1387,12 +1399,13 @@ void RSSListing::createToolBar()
   mainToolbarMenu_->addAction(toolBarToggle_);
 
   mainToolbar_ = new QToolBar(this);
-  addToolBar(mainToolbar_);
   mainToolbar_->setObjectName("ToolBar_General");
   mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
   mainToolbar_->setMovable(false);
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
-  mainToolbar_->addAction(addFeedAct_);
+  addToolBar(mainToolbar_);
+
+  mainToolbar_->addAction(newAct_);
   mainToolbar_->addSeparator();
   mainToolbar_->addAction(updateFeedAct_);
   mainToolbar_->addAction(updateAllFeedsAct_);
@@ -3343,8 +3356,7 @@ void RSSListing::slotShowAboutDlg()
 void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
-  feedContextMenu_->addAction(addFeedAct_);
-  feedContextMenu_->addAction(addFolderAct_);
+  feedContextMenu_->addAction(newAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(openFeedNewTabAct_);
   feedContextMenu_->addSeparator();
@@ -3542,6 +3554,9 @@ void RSSListing::retranslateStrings() {
       QString("\n") +
       QString(tr("Unread News: %1")).arg(str.section(": ", 2));
   traySystem->setToolTip(info);
+
+  newAct_->setText(tr("New"));
+  newAct_->setToolTip(tr("Add New Feed"));
 
   addFeedAct_->setText(tr("&Add Feed..."));
   addFeedAct_->setToolTip(tr("Add New Feed"));
@@ -3761,6 +3776,7 @@ void RSSListing::retranslateStrings() {
 
 void RSSListing::setToolBarStyle(QAction *pAct)
 {
+  mainToolbar_->widgetForAction(newAct_)->setMinimumWidth(10);
   if (pAct->objectName() == "toolBarStyleI_") {
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonIconOnly);
   } else if (pAct->objectName() == "toolBarStyleT_") {
@@ -3769,6 +3785,7 @@ void RSSListing::setToolBarStyle(QAction *pAct)
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   } else {
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    mainToolbar_->widgetForAction(newAct_)->setMinimumWidth(60);
   }
 }
 
