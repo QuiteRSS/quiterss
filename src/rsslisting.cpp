@@ -4141,7 +4141,7 @@ void RSSListing::slotFeedUpPressed()
   QModelIndex indexAfter;
 
   // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по лентам
-  if (!index.isValid())
+  if (!indexBefore.isValid())
     indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
   else
     indexAfter = feedsTreeView_->indexAbove(indexBefore);
