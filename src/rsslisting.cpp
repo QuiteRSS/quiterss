@@ -4765,8 +4765,6 @@ void RSSListing::slotOpenNewsBackgroundTab()
  ******************************************************************************/
 void RSSListing::feedsModelReload()
 {
-  feedsTreeView_->setUpdatesEnabled(false);
-
   int topRow = feedsTreeView_->verticalScrollBar()->value();
 
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
@@ -4778,8 +4776,6 @@ void RSSListing::feedsModelReload()
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
-
-  feedsTreeView_->setUpdatesEnabled(true);
 }
 
 void RSSListing::setCurrentTab(int index, bool updateTab)
