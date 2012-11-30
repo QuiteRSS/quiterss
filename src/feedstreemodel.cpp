@@ -79,8 +79,7 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
           return icon;
         }
       }
-      if (index.sibling(index.row(), proxyColumnByOriginal("xmlUrl")).
-          data(Qt::EditRole).toString().isEmpty())
+      if (isFolder(index))
         return QPixmap(":/images/folder");
       else
         return QPixmap(":/images/feed");
@@ -118,4 +117,19 @@ Qt::ItemFlags FeedsTreeModel::flags(const QModelIndex &index) const
 Qt::DropActions FeedsTreeModel::supportedDropActions() const
 {
   return Qt::MoveAction;
+}
+
+/**
+ * @brief Проверка, что узел является категорией, а не лентой
+ *
+ *  Если поле xmlUrl пустое, то узел считается категорией
+ * @param index Проверяемый узел
+ * @return Признал ленты
+ * @retval true Узел - категория
+ * @retval false Узел - лента
+ *----------------------------------------------------------------------------*/
+bool FeedsTreeModel::isFolder(const QModelIndex &index) const
+{
+  return index.sibling(index.row(), proxyColumnByOriginal("xmlUrl"))
+      .data(Qt::EditRole).toString().isEmpty();
 }

@@ -1784,8 +1784,7 @@ void RSSListing::deleteFeed()
 
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Question);
-    QString feedUrl = feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "xmlUrl").toString();
-    if (feedUrl.isEmpty()) {
+    if (feedsTreeModel_->isFolder(feedsTreeView_->selectIndex_)) {
       msgBox.setWindowTitle(tr("Delete Folder"));
       msgBox.setText(QString(tr("Are you sure to delete the folder '%1'?")).
           arg(feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "text").toString()));
@@ -2024,7 +2023,7 @@ void RSSListing::slotExportFeeds()
     }
 
     // Нашли категорию. Открываем ее
-    if (exportTreeModel.dataField(index, "xmlUrl").toString().isEmpty()) {
+    if (exportTreeModel.isFolder(index)) {
       parentIdsStack.push(feedId);
       xml.writeStartElement("outline");  // Начало категории
       xml.writeAttribute("text", exportTreeModel.dataField(index, "text").toString());
@@ -2084,9 +2083,9 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
  ******************************************************************************/
 void RSSListing::recountFeedCounts(int feedId, int feedParId)
 {
+  // Игнорируем категории
   QModelIndex indexFolder = feedsTreeModel_->getIndexById(feedId, feedParId);
-  if (indexFolder.sibling(indexFolder.row(), feedsTreeView_->columnIndex("xmlUrl")).
-      data().toString().isEmpty())
+  if (feedsTreeModel_->isFolder(indexFolder))
     return;
 
   QSqlQuery q(db_);
@@ -2406,10 +2405,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   }
 
   //! Устанавливаем иконку для открытой вкладки
-  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
-  bool isFeed = true;
-  if (feedUrl.isEmpty() && index.isValid())
-    isFeed = false;
+  bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
 
   QPixmap iconTab;
   QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
@@ -2853,8 +2849,7 @@ void RSSListing::slotGetFeed()
   playSoundNewNews_ = false;
 
   QModelIndex index = feedsTreeView_->selectIndex_;
-  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
-  if (feedUrl.isEmpty()) {
+  if (feedsTreeModel_->isFolder(index)) {
     QSqlQuery q(db_);
     QString qStr = QString("SELECT xmlUrl, lastBuildDate FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
         arg(feedsTreeModel_->dataField(index, "id").toInt());
@@ -2951,8 +2946,7 @@ void RSSListing::markFeedRead()
     openFeed = true;
 
   QSqlQuery q(db_);
-  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
-  if (feedUrl.isEmpty()) {
+  if (feedsTreeModel_->isFolder(index)) {
     QString feeds;
     qStr = QString("SELECT id FROM feeds WHERE parentId='%1'").arg(id);
     q.exec(qStr);
@@ -3787,10 +3781,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex index = feedsTreeView_->selectIndex_;
   int feedId = feedsTreeModel_->getIdByIndex(index);
 
-  QString feedUrl = feedsTreeModel_->dataField(index, "xmlUrl").toString();
-  bool isFeed = true;
-  if (feedUrl.isEmpty())
-    isFeed = false;
+  bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
   feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());

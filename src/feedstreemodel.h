@@ -18,6 +18,7 @@ public:
   virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
   Qt::ItemFlags flags(const QModelIndex &index) const;
   Qt::DropActions supportedDropActions() const;
+  bool isFolder(const QModelIndex &index) const;
   QFont font_;
   QString formatDateTime_;
 };
