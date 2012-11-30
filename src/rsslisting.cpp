@@ -7,6 +7,7 @@
 
 #include "aboutdialog.h"
 #include "addfeedwizard.h"
+#include "addfolderdialog.h"
 #include "db_func.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
@@ -1753,22 +1754,38 @@ void RSSListing::addFeed()
 
 void RSSListing::addFolder()
 {
+  AddFolderDialog *addFolderDialog = new AddFolderDialog(this, &db_);
+
+  if (addFolderDialog->exec() == QDialog::Rejected) {
+    delete addFolderDialog;
+    return;
+  }
+
+  QString folderText = addFolderDialog->nameFeedEdit_->text();
+  int parentId = addFolderDialog->foldersTree_->currentItem()->text(1).toInt();
+
   QSqlQuery q(db_);
 
-  // Вычисляем номер ряда для папки, вставляемой в корень
+  // Вычисляем номер ряда для папки
   int rowToParent = 0;
-  q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
+  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
+      arg(parentId);
+  q.exec(qStr);
   if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
 
   // Добавляем папку
-  q.prepare("INSERT INTO feeds(text, created, rowToParent) "
-            "VALUES (:text, :feedCreateTime, :rowToParent)");
-  q.bindValue(":text", "New folder");
+  q.prepare("INSERT INTO feeds(text, created, parentId, rowToParent) "
+            "VALUES (:text, :feedCreateTime, :parentId, :rowToParent)");
+  q.bindValue(":text", folderText);
   q.bindValue(":feedCreateTime",
               QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
+  q.bindValue(":parentId", parentId);
   q.bindValue(":rowToParent", rowToParent);
   q.exec();
-  q.finish();
+
+//  folderId = q.lastInsertId().toInt();
+
+  delete addFolderDialog;
 
   feedsModelReload();
 }

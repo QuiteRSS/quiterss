@@ -158,7 +158,7 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
     int parentId = parentIds.dequeue();
-    QString qStr = QString("SELECT text, id FROM feeds WHERE parentId='%1' AND xmlUrl=''").
+    QString qStr = QString("SELECT text, id FROM feeds WHERE parentId='%1' AND (xmlUrl='' OR xmlUrl IS NULL)").
         arg(parentId);
     q.exec(qStr);
     while (q.next()) {
