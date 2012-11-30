@@ -4156,20 +4156,20 @@ void RSSListing::slotFeedUpPressed()
 /*! \brief Обработка клавиш Key_Down в дереве лент ****************************/
 void RSSListing::slotFeedDownPressed()
 {
-  QModelIndex index = feedsTreeView_->currentIndex();
+  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexAfter;
 
   // Если нет текущего индекса устанавливаем его в начало, т.к. мы хотим "опускаться" по лентам
-  if (!index.isValid())
-    index = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+  if (!indexBefore.isValid())
+    indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
   else
-    index = feedsTreeView_->indexBelow(index);
+    indexAfter = feedsTreeView_->indexBelow(indexBefore);
 
   // Если индекса "ниже" не существует
-  if (!index.isValid())
-    index = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+  if (!indexAfter.isValid()) return;
 
-  feedsTreeView_->setCurrentIndex(index);
-  slotFeedClicked(index);
+  feedsTreeView_->setCurrentIndex(indexAfter);
+  slotFeedClicked(indexAfter);
 }
 
 /*! \brief Обработка клавиш Home/End в дереве лент *****************************/
