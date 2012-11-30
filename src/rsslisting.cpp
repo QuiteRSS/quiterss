@@ -3833,6 +3833,11 @@ void RSSListing::slotShowFeedPropertiesDlg()
       feedsTreeModel_->dataField(index, "displayOnStartup").toInt();
   properties.display.displayEmbeddedImages =
       feedsTreeModel_->dataField(index, "displayEmbeddedImages").toInt();
+  if (feedsTreeModel_->dataField(index, "displayNews").toString().isEmpty())
+    properties.display.displayNews = !showDescriptionNews_;
+  else
+    properties.display.displayNews =
+        feedsTreeModel_->dataField(index, "displayNews").toInt();
 
   if (feedsTreeModel_->dataField(index, "label").toString().contains("starred"))
     properties.general.starred = true;
@@ -3877,11 +3882,12 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   QSqlQuery q(db_);
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
-            "displayEmbeddedImages = ?, label = ? WHERE id == ?");
+            "displayEmbeddedImages = ?, displayNews = ?, label = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
   q.addBindValue(properties.display.displayEmbeddedImages);
+  q.addBindValue(properties.display.displayNews);
   if (properties.general.starred)
     q.addBindValue("starred");
   else
@@ -3893,11 +3899,13 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex indexUrl     = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("xmlUrl"));
   QModelIndex indexStartup = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayOnStartup"));
   QModelIndex indexImages  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayEmbeddedImages"));
+  QModelIndex indexNews    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayNews"));
   QModelIndex indexLabel   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("label"));
   feedsTreeModel_->setData(indexText, properties.general.text);
   feedsTreeModel_->setData(indexUrl, properties.general.url);
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
   feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
+  feedsTreeModel_->setData(indexNews, properties.display.displayNews);
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 

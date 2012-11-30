@@ -1059,7 +1059,14 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   webPanelAuthor_->setVisible(!authorString.isEmpty());
   setWebToolbarVisible(false, false);
 
-  if (!rsslisting_->showDescriptionNews_) {
+  bool showDescriptionNews_ = rsslisting_->showDescriptionNews_;
+
+  QVariant displayNews =
+      feedsTreeModel_->dataField(feedsTreeView_->currentIndex(), "displayNews");
+  if (!displayNews.toString().isEmpty())
+    showDescriptionNews_ = !displayNews.toInt();
+
+  if (!showDescriptionNews_) {
     QString linkString = newsModel_->record(
           index.row()).field("link_href").value().toString();
     if (linkString.isEmpty())
