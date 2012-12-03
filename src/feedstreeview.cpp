@@ -3,7 +3,8 @@
 #include "delegatewithoutfocus.h"
 
 FeedsTreeView::FeedsTreeView(QWidget * parent) :
-  QyurSqlTreeView(parent)
+//    QyurSqlTreeView(parent)
+    QTreeView(parent)
 {
   dragPos_ =      QPoint();
   dragStartPos_ = QPoint();
@@ -70,6 +71,26 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
 }
 
 /**
+ * @brief Установка признака скрытности для колонки
+ * @param column Номер колонки
+ * @param hide Признак, что колонка скрыта
+ *----------------------------------------------------------------------------*/
+void FeedsTreeView::setColumnHidden(const QString &column, bool hide)
+{
+  QTreeView::setColumnHidden(columnIndex(column), hide);
+}
+
+/**
+ * @brief Получение индекса колонки исходной модели по её названию
+ * @param fieldName Название колонки
+ * @return Индекс колонки в исходной модели
+ *----------------------------------------------------------------------------*/
+int FeedsTreeView::columnIndex(const QString &fieldName) const
+{
+  return ((FeedsTreeModel*) model())->proxyColumnByOriginal(fieldName);
+}
+
+/**
  * @brief Собственная обработка нажатия мыши
  * @details Фиксирует нажатый индекс в selectedIndex_, обрабатывает нажатие
  *    средней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
@@ -92,14 +113,16 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
   } else {
     dragStartPos_ = event->pos();
 
-    QyurSqlTreeView::mousePressEvent(event);
+//    QyurSqlTreeView::mousePressEvent(event);
+    QTreeView::mousePressEvent(event);
   }
 }
 
 void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 {
   dragStartPos_ = QPoint();
-  QyurSqlTreeView::mouseReleaseEvent(event);
+//  QyurSqlTreeView::mouseReleaseEvent(event);
+  QTreeView::mouseReleaseEvent(event);
 }
 
 /*virtual*/ void FeedsTreeView::mouseMoveEvent(QMouseEvent *event)
@@ -125,7 +148,8 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
 /*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  QyurSqlTreeView::mouseDoubleClickEvent(event);
+//  QyurSqlTreeView::mouseDoubleClickEvent(event);
+  QTreeView::mouseDoubleClickEvent(event);
 //  if (!indexAt(event->pos()).isValid()) return;
 
 //  emit signalDoubleClicked(indexAt(event->pos()));
@@ -145,7 +169,8 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
                                            const QModelIndex &previous)
 {
   selectIndex_ = current;
-  QyurSqlTreeView::currentChanged(current, previous);
+//  QyurSqlTreeView::currentChanged(current, previous);
+  QTreeView::currentChanged(current, previous);
 }
 
 void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
@@ -221,7 +246,8 @@ void FeedsTreeView::dropEvent(QDropEvent *event)
 
 void FeedsTreeView::paintEvent(QPaintEvent *event)
 {
-  QyurSqlTreeView::paintEvent(event);
+//  QyurSqlTreeView::paintEvent(event);
+  QTreeView::paintEvent(event);
 
   if (dragPos_.isNull()) return;
 
@@ -244,11 +270,11 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   QModelIndex indexText;
   if (drawParent)
     indexText = model()->index(dragIndex.parent().row(),
-                               ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                               ((FeedsTreeModel*)model())->proxyColumnByOriginal("text"),
                                dragIndex.parent().parent());
   else
     indexText = model()->index(dragIndex.row(),
-                     ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                     ((FeedsTreeModel*)model())->proxyColumnByOriginal("text"),
                      dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
@@ -328,11 +354,11 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
 
   if (drawParent)
     indexWhere = model()->index(dropIndex.parent().row(),
-                               ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                               ((FeedsTreeModel*)model())->proxyColumnByOriginal("text"),
                                dropIndex.parent().parent());
   else
     indexWhere = model()->index(dropIndex.row(),
-                     ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                     ((FeedsTreeModel*)model())->proxyColumnByOriginal("text"),
                      dropIndex.parent());
 
   emit signalDropped(indexWhat, indexWhere);

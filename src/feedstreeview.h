@@ -3,9 +3,10 @@
 
 #include <QtGui>
 
-#include <qyursqltreeview.h>
+//#include <qyursqltreeview.h>
 
-class FeedsTreeView : public QyurSqlTreeView
+//class FeedsTreeView : public QyurSqlTreeView
+class FeedsTreeView : public QTreeView
 {
   Q_OBJECT
 public:
@@ -13,6 +14,8 @@ public:
   QModelIndex selectIndex_;
 
   QModelIndex indexNextUnread(const QModelIndex &indexCur);
+  void setColumnHidden(const QString& column, bool hide);
+  int columnIndex(const QString& fieldName) const;
 
 public slots:
   void setSelectIndex();

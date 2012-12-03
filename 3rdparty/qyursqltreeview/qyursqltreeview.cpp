@@ -219,12 +219,12 @@ void QyurSqlTreeModel::sort(int column, Qt::SortOrder order) {
 	d->clear();
 }
 
-void QyurSqlTreeModel::setFilter(const QString &filter) {
-  Q_D(QyurSqlTreeModel);
-  d->sourceModel.setFilter(filter);
-  reset();
-  d->clear();
-}
+//void QyurSqlTreeModel::setFilter(const QString &filter) {
+//  Q_D(QyurSqlTreeModel);
+//  d->sourceModel.setFilter(filter);
+//  reset();
+//  d->clear();
+//}
 
 bool QyurSqlTreeModel::setData(const QModelIndex& index, const QVariant& value, int role) {
 	Q_D(QyurSqlTreeModel);
@@ -452,11 +452,13 @@ QyurSqlTreeView::~QyurSqlTreeView() {
 void QyurSqlTreeView::slotAddExpanded(const QModelIndex& index) {
 	Q_D(QyurSqlTreeView);
 	d->expandedNodeList.append(QyurIntPair( ((QyurSqlTreeModel*) model())->getIdByIndex(index), ((QyurSqlTreeModel*) model())->getParidByIndex(index)) );
+	qDebug() << __PRETTY_FUNCTION__ << d->expandedNodeList;
 }
 
 void QyurSqlTreeView::slotRemoveExpanded(const QModelIndex& index) {
 	Q_D(QyurSqlTreeView);
 	d->expandedNodeList.removeAll(QyurIntPair( ((QyurSqlTreeModel*) model())->getIdByIndex(index), ((QyurSqlTreeModel*) model())->getParidByIndex(index)) );
+	qDebug() << __PRETTY_FUNCTION__ << d->expandedNodeList;
 }
 
 void QyurSqlTreeView::slotSortByColumnAndSelect(int column) {
@@ -483,6 +485,7 @@ void QyurSqlTreeView::restore(int parentId, int id) {
 
 void QyurSqlTreeView::restoreExpanded() {
 	Q_D(QyurSqlTreeView);
+	qDebug() << __PRETTY_FUNCTION__ << d->expandedNodeList;
 	foreach(QyurIntPair pair, d->expandedNodeList)
 		setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first,pair.second),true);
 }
