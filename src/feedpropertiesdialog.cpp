@@ -51,6 +51,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
   displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
+  showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
@@ -69,6 +70,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addWidget(starredOn_);
   layoutGeneralMain->addWidget(loadImagesOn);
   layoutGeneralMain->addWidget(displayOnStartup);
+  layoutGeneralMain->addWidget(showDescriptionNews_);
   layoutGeneralMain->addStretch();
 
   connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
@@ -82,6 +84,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
     starredOn_->hide();
     loadImagesOn->hide();
     displayOnStartup->hide();
+    showDescriptionNews_->hide();
   }
 
   return tab;
@@ -134,6 +137,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
   loadImagesOn->setChecked(feedProperties.display.displayEmbeddedImages);
+  showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
 
   descriptionText_->setText(feedProperties.status.description);
   if (feedProperties.status.createdTime.isValid())
@@ -164,6 +168,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
   feedProperties.display.displayEmbeddedImages = loadImagesOn->isChecked();
+  feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   return(feedProperties);
 }
 //------------------------------------------------------------------------------

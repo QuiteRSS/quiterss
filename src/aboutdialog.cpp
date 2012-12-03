@@ -50,7 +50,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   mainWidget->setLayout(mainLayout);
 
   QTextEdit *authorsTextEdit = new QTextEdit(this);
-  authorsTextEdit->setFocusPolicy(Qt::NoFocus);
+  authorsTextEdit->setReadOnly(true);
   QFile file;
   file.setFileName(":/file/AUTHORS");
   file.open(QFile::ReadOnly);
@@ -78,7 +78,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   historyWidget->setLayout(historyLayout);
 
   QTextEdit *licenseTextEdit = new QTextEdit();
-  licenseTextEdit->setFocusPolicy(Qt::NoFocus);
+  licenseTextEdit->setReadOnly(true);
   file.setFileName(":/file/COPYING");
   file.open(QFile::ReadOnly);
   QString str = QString(QString::fromUtf8(file.readAll())).section("-----", 1, 1);

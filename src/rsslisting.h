@@ -173,6 +173,7 @@ private:
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
 
+  QAction *newAct_;
   QAction *addFeedAct_;
   QAction *addFolderAct_;
   QAction *deleteFeedAct_;
@@ -256,6 +257,7 @@ private:
   QAction *stayOnTopAct_;
 
   QMenu *fileMenu_;
+  QMenu *newMenu_;
   QMenu *editMenu_;
   QMenu *viewMenu_;
   QMenu *toolbarsMenu_;
