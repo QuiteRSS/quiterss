@@ -3187,11 +3187,17 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   if (findFeedsWidget_->isVisible()) {
     if (pAct->objectName() != "filterFeedsAll_")
       strFilter.append(" AND ");
+
+    // обязательно добавляем отображение категорий, чтобы найденные внутри
+    // ленты смогли отображаться
+    strFilter.append("(");
+    strFilter.append(QString("((xmlUrl = '') OR (xmlUrl IS NULL)) OR "));
     if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
       strFilter.append(QString("text LIKE '\%%1\%'").arg(findFeeds_->text()));
     } else {
       strFilter.append(QString("xmlUrl LIKE '\%%1\%'").arg(findFeeds_->text()));
     }
+    strFilter.append(")");
   }
 
   QElapsedTimer timer;
