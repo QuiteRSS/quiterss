@@ -442,7 +442,7 @@
 </phrase>
 <phrase>
     <source> Unread: %1 </source>
-    <target> Непрочитанных: %1 </target>
+    <target>Непрочитанных: %1</target>
 </phrase>
 <phrase>
     <source> All: %1 </source>
@@ -1440,5 +1440,85 @@
 <phrase>
     <source>Full Screen</source>
     <target>Во весь экран</target>
+</phrase>
+<phrase>
+    <source>Revision</source>
+    <target>Ревизия</target>
+</phrase>
+<phrase>
+    <source>History</source>
+    <target>История</target>
+</phrase>
+<phrase>
+    <source>License</source>
+    <target>Лицензия</target>
+</phrase>
+<phrase>
+    <source>New Folder...</source>
+    <target>Новая папка...</target>
+</phrase>
+<phrase>
+    <source>Add Folder</source>
+    <target>Добавление папки</target>
+</phrase>
+<phrase>
+    <source>Name:</source>
+    <target>Имя:</target>
+</phrase>
+<phrase>
+    <source>Open Page in External Browser</source>
+    <target>Открыть страницу во внешнем браузере</target>
+</phrase>
+<phrase>
+    <source>Open Link in External Browser</source>
+    <target>Открыть ссылку во внешнем браузере</target>
+</phrase>
+<phrase>
+    <source>Delete Folder</source>
+    <target>Удалить папку</target>
+</phrase>
+<phrase>
+    <source>Add New Folder</source>
+    <target>Добавить новую папку</target>
+</phrase>
+<phrase>
+    <source>Stay On Top</source>
+    <target>Поверх всех окон</target>
+</phrase>
+<phrase>
+    <source>Show Not Starred</source>
+    <target>Показать без звёздочки</target>
+</phrase>
+<phrase>
+    <source>Open News in External Browser</source>
+    <target>Открыть новость во внешнем браузере</target>
+</phrase>
+<phrase>
+    <source>Your version is:</source>
+    <target>Ваша версия:</target>
+</phrase>
+<phrase>
+    <source>Current version is:</source>
+    <target>Текущая версия:</target>
+</phrase>
+<phrase>
+    <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
+    <target>QuiteRSS - кросс-платформенная читалка RSS/Atom новостей с открытым исходным кодом</target>
+</phrase>
+<phrase>
+    <source>Unread: %1</source>
+    <target>Непрочитанных: %1</target>
+</phrase>
+<phrase>
+    <source>All: %1</source>
+    <target>Всего: %1</target>
+</phrase>
+<phrase>
+    <source>&amp;Feed...</source>
+    <target>Новостную &amp;ленту...</target>
+</phrase>
+<phrase>
+    <source>F&amp;older...</source>
+    <target>&amp;Папку...</target>
 </phrase>
 </QPH>

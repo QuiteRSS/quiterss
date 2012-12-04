@@ -1380,4 +1380,76 @@
     <source>Full Screen</source>
     <target>Vollbild</target>
 </phrase>
+<phrase>
+    <source>Revision</source>
+    <target>Revision</target>
+</phrase>
+<phrase>
+    <source>Includes:</source>
+    <target>Inklusive:</target>
+</phrase>
+<phrase>
+    <source>Authors</source>
+    <target>Autoren</target>
+</phrase>
+<phrase>
+    <source>History</source>
+    <target>Geschichte</target>
+</phrase>
+<phrase>
+    <source>License</source>
+    <target>Lizenz</target>
+</phrase>
+<phrase>
+    <source>Open Page in External Browser</source>
+    <target>Seite öffnen im externen Browser</target>
+</phrase>
+<phrase>
+    <source>Open Link in External Browser</source>
+    <target>Link öffnen in einem externen Browser</target>
+</phrase>
+<phrase>
+    <source>New Folder...</source>
+    <target>Neuer Ordner...</target>
+</phrase>
+<phrase>
+    <source>Location:</source>
+    <target>Location:</target>
+</phrase>
+<phrase>
+    <source>Stay On Top</source>
+    <target>Im Vordergrund</target>
+</phrase>
+<phrase>
+    <source>Properties</source>
+    <target>Eigenschaften</target>
+</phrase>
+<phrase>
+    <source>Delete Folder</source>
+    <target>Ordner löschen</target>
+</phrase>
+<phrase>
+    <source>Are you sure to delete the folder &apos;%1&apos;?</source>
+    <target>Sind Sie sicher, um den Ordner &quot;%1&quot; löschen?</target>
+</phrase>
+<phrase>
+    <source>Name:</source>
+    <target>Name:</target>
+</phrase>
+<phrase>
+    <source>F&amp;older...</source>
+    <target>&amp;Ordner...</target>
+</phrase>
+<phrase>
+    <source>Add New Folder</source>
+    <target>Hinzufügen neuen Ordner</target>
+</phrase>
+<phrase>
+    <source>Open News in External Browser</source>
+    <target>Artikel öffnen im externen Browser</target>
+</phrase>
+<phrase>
+    <source>Show Not Starred</source>
+    <target>Anzeigen ohne Stern</target>
+</phrase>
 </QPH>
