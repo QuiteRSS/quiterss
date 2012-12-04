@@ -4900,23 +4900,7 @@ void RSSListing::slotFindFeeds(QString text)
 {
   if (!findFeedsWidget_->isVisible()) return;
 
-  QString filterStr;
-  if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
-    filterStr = "";
-  } else if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsNew_") {
-    filterStr = QString("newCount > 0 AND ");
-  } else if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsUnread_") {
-    filterStr = QString("unread > 0 AND ");
-  } else if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsStarred_") {
-    filterStr = QString("label LIKE '\%starred\%' AND ");
-  }
-
-  if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
-    filterStr.append(QString("text LIKE '\%%1\%'").arg(text));
-  } else {
-    filterStr.append(QString("xmlUrl LIKE '\%%1\%'").arg(text));
-  }
-  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->setFilter(filterStr);
+  setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 }
 
 void RSSListing::slotSelectFind()
@@ -4931,9 +4915,7 @@ void RSSListing::findFeedVisible(bool visible)
     findFeeds_->setFocus();
   } else {
     findFeeds_->clear();
-    ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->setFilter("");
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedId_);
-    feedsTreeView_->setCurrentIndex(feedIndex);
+    // ВЫзываем фильтр явно, т.к. слот не вызовется, потому что widget не виден
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   }
 }
