@@ -173,7 +173,7 @@ private:
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
 
-  QAction *newAct_;
+  QAction *addAct_;
   QAction *addFeedAct_;
   QAction *addFolderAct_;
   QAction *deleteFeedAct_;

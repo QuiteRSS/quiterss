@@ -652,10 +652,10 @@ void RSSListing::createTray()
  ******************************************************************************/
 void RSSListing::createActions()
 {
-  newAct_ = new QAction(this);
-  newAct_->setObjectName("newAct");
-  newAct_->setIcon(QIcon(":/images/add"));
-  connect(newAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
+  addAct_ = new QAction(this);
+  addAct_->setObjectName("newAct");
+  addAct_->setIcon(QIcon(":/images/add"));
+  connect(addAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   addFeedAct_ = new QAction(this);
   addFeedAct_->setObjectName("addFeedAct");
@@ -1167,12 +1167,12 @@ void RSSListing::createMenu()
   newMenu_ = new QMenu(this);
   newMenu_->addAction(addFeedAct_);
   newMenu_->addAction(addFolderAct_);
-  newAct_->setMenu(newMenu_);
+  addAct_->setMenu(newMenu_);
 
 
   fileMenu_ = new QMenu(this);
   menuBar()->addMenu(fileMenu_);
-  fileMenu_->addAction(newAct_);
+  fileMenu_->addAction(addAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
@@ -1404,7 +1404,7 @@ void RSSListing::createToolBar()
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
   addToolBar(mainToolbar_);
 
-  mainToolbar_->addAction(newAct_);
+  mainToolbar_->addAction(addAct_);
   mainToolbar_->addSeparator();
   mainToolbar_->addAction(updateFeedAct_);
   mainToolbar_->addAction(updateAllFeedsAct_);
@@ -3102,8 +3102,8 @@ void RSSListing::slotUpdateStatus(bool openFeed)
 //  feedsModelReload();
 
   if (openFeed) {
-    statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(unreadCount));
-    statusAll_->setText(QString(tr(" All: %1 ")).arg(allCount));
+    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
+    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
   }
   if (feedId > 0) {
     statusUnread_->setVisible(true);
@@ -3355,7 +3355,7 @@ void RSSListing::slotShowAboutDlg()
 void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
-  feedContextMenu_->addAction(newAct_);
+  feedContextMenu_->addAction(addAct_);
   feedContextMenu_->addSeparator();
   feedContextMenu_->addAction(openFeedNewTabAct_);
   feedContextMenu_->addSeparator();
@@ -3539,10 +3539,10 @@ void RSSListing::retranslateStrings() {
 
   QString str = statusUnread_->text();
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
-  statusUnread_->setText(QString(tr(" Unread: %1 ")).arg(str));
+  statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(str));
   str = statusAll_->text();
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
-  statusAll_->setText(QString(tr(" All: %1 ")).arg(str));
+  statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(str));
 
   str = traySystem->toolTip();
   QString info =
@@ -3552,13 +3552,13 @@ void RSSListing::retranslateStrings() {
       QString(tr("Unread News: %1")).arg(str.section(": ", 2));
   traySystem->setToolTip(info);
 
-  newAct_->setText(tr("New"));
-  newAct_->setToolTip(tr("Add New Feed"));
+  addAct_->setText(tr("&Add"));
+  addAct_->setToolTip(tr("Add New Feed"));
 
-  addFeedAct_->setText(tr("&Add Feed..."));
+  addFeedAct_->setText(tr("&Feed..."));
   addFeedAct_->setToolTip(tr("Add New Feed"));
 
-  addFolderAct_->setText(tr("&Add Folder..."));
+  addFolderAct_->setText(tr("F&older..."));
   addFolderAct_->setToolTip(tr("Add New Folder"));
 
   openFeedNewTabAct_->setText(tr("Open in New Tab"));
@@ -3773,7 +3773,7 @@ void RSSListing::retranslateStrings() {
 
 void RSSListing::setToolBarStyle(QAction *pAct)
 {
-  mainToolbar_->widgetForAction(newAct_)->setMinimumWidth(10);
+  mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(10);
   if (pAct->objectName() == "toolBarStyleI_") {
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonIconOnly);
   } else if (pAct->objectName() == "toolBarStyleT_") {
@@ -3782,7 +3782,7 @@ void RSSListing::setToolBarStyle(QAction *pAct)
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   } else {
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    mainToolbar_->widgetForAction(newAct_)->setMinimumWidth(60);
+    mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(60);
   }
 }
 
