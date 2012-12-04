@@ -2026,7 +2026,7 @@ void RSSListing::slotExportFeeds()
   // Создаем модель и представление для экспорта.
   // Раскрываем представление, чтобы пройтись по всем веткам
   FeedsTreeModel exportTreeModel("feeds",
-      QStringList() << QObject::tr("ID") << QObject::tr("TEXT") << QObject::tr("PARENTID"),
+      QStringList() << "ID" << "TEXT" << "PARENTID",
       QStringList() << "id" << "text" << "parentId",
       0,
       "text");
