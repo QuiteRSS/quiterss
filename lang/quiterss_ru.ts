@@ -2156,7 +2156,7 @@
         <location filename="../src/rsslisting.cpp" line="3645"/>
         <location filename="../src/rsslisting.cpp" line="3646"/>
         <source>Properties</source>
-        <translation></translation>
+        <translation>Свойства</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3666"/>
