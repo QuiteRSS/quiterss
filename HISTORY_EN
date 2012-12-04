@@ -2,6 +2,23 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.10.3+</B> (õõ Nov 2012)
+<UL>
+<LI>Main: Feed categories (folders)</LI>
+<BR>
+<LI>Added: View mode "Stay On Top"</LI>
+<LI>Added: Feed property "Show news' description instead of loading web page"</LI>
+<LI>Added: News filter "Show Not Starred"</LI>
+<LI>Added: Language: Spanish</LI>
+<BR>
+<LI>Changed: GUI. Some Visual tweaks</LI>
+<BR>
+<LI>Fixed: Feed opened in own tab duplicates in default tab</LI>
+<LI>Fixed: Updating link containing special chars</LI>
+<LI>Fixed: Shortcuts in full screen mode</LI>
+<LI>Fixed: Disbling experimental option "Open link in external browser in background"</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.10.3</B> (17 Oct 2012)
 <UL>
 <LI>Added: Full screen mode</LI>
