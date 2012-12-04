@@ -473,9 +473,7 @@ void RSSListing::timerEvent(QTimerEvent *event)
 void RSSListing::createFeedsDock()
 {
   feedsTreeModel_ = new FeedsTreeModel("feeds",
-      QStringList() << QObject::tr("ID") << QObject::tr("TEXT")
-          << QObject::tr("UNREAD") << QObject::tr("UNDELETECOUNT") << QObject::tr("PARENTID") << QObject::tr("UPDATED"),
-//      QStringList() << "id" << "parentId" << "text" << "unread" << "undeleteCount" << "updated",
+      QStringList() << "ID" << "TEXT" << "UNREAD" << "UNDELETECOUNT" << "PARENTID" << "UPDATED",
       QStringList() << "id" << "text" << "unread" << "undeleteCount" << "parentId" << "updated",
       0,
       "text");
@@ -611,6 +609,7 @@ void RSSListing::createStatusBar()
 {
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
+  progressBar_->setFormat("%p%");
   progressBar_->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
   progressBar_->setFixedWidth(100);
   progressBar_->setFixedHeight(15);
@@ -3559,8 +3558,6 @@ void RSSListing::appInstallTranslator()
 
 void RSSListing::retranslateStrings() {
   feedsTitleLabel_->setText(tr("Feeds"));
-
-  progressBar_->setFormat(tr("%p%"));
 
   QString str = statusUnread_->text();
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
