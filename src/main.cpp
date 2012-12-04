@@ -110,9 +110,10 @@ QSettings *settings_;
   if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
 
-  splashScreen->finish(&rsslisting);
-
   rsslisting.restoreFeedsOnStartUp();
+
+  if (showSplashScreen_)
+    splashScreen->finish(&rsslisting);
 
   if (rsslisting.showTrayIcon_) {
     qApp->processEvents();
