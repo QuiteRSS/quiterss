@@ -13,37 +13,37 @@
         <location filename="../src/aboutdialog.cpp" line="29"/>
         <location filename="../src/aboutdialog.cpp" line="94"/>
         <source>Version</source>
-        <translation type="unfinished">Version</translation>
+        <translation>Version</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="30"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation>Revision</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation type="unfinished"></translation>
+        <translation>QuiteRSS är en plattformsoberoende RSS/Atom flödesläsare</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="34"/>
         <source>Includes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkluderar:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="95"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Upphovsmän</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historik</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="97"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licens</translation>
     </message>
     <message>
         <source>Version </source>
@@ -97,17 +97,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="146"/>
         <source>Feeds</source>
-        <translation type="unfinished">Flöden</translation>
+        <translation>Flöden</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="150"/>
         <source>All Feeds</source>
-        <translation type="unfinished">Alla flöden</translation>
+        <translation>Alla flöden</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="188"/>
         <source>New Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny mapp...</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="203"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="205"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plats:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="276"/>
@@ -142,27 +142,27 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="8"/>
         <source>Add Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till mapp</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="20"/>
         <source>Feeds</source>
-        <translation type="unfinished">Flöden</translation>
+        <translation>Flöden</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
         <source>All Feeds</source>
-        <translation type="unfinished">Alla flöden</translation>
+        <translation>Alla flöden</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="66"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Namn:</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="68"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Plats:</translation>
     </message>
 </context>
 <context>
@@ -221,7 +221,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="54"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished">Visa nyhetsbeskrivning istället för att läsa in webbsidan</translation>
+        <translation>Visa nyhetsbeskrivning istället för att läsa in webbsidan</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="105"/>
@@ -246,7 +246,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="9"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Egenskaper</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="146"/>
@@ -709,12 +709,12 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="469"/>
         <source>Open Page in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna sidan i extern webbläsare</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="470"/>
         <source>Open Link in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna länk i extern webbläsare</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="473"/>
@@ -2025,13 +2025,13 @@
         <location filename="../src/rsslisting.cpp" line="3105"/>
         <location filename="../src/rsslisting.cpp" line="3542"/>
         <source>Unread: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Oläst: %1 </translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3106"/>
         <location filename="../src/rsslisting.cpp" line="3545"/>
         <source>All: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3391"/>
@@ -2113,12 +2113,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="1817"/>
         <source>Delete Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort mapp</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1818"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du verkligen ta bort &apos;%1&apos;?</translation>
     </message>
     <message>
         <source>New</source>
@@ -2127,7 +2127,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3562"/>
         <source>Add New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till ny mapp</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3585"/>
@@ -2317,13 +2317,13 @@
         <location filename="../src/rsslisting.cpp" line="3730"/>
         <location filename="../src/rsslisting.cpp" line="3731"/>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Helskärmsläge</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3733"/>
         <location filename="../src/rsslisting.cpp" line="3734"/>
         <source>Stay On Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Alltid överst</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4988"/>
@@ -2352,43 +2352,43 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3555"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3558"/>
         <source>&amp;Feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Flöde...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3561"/>
         <source>F&amp;older...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mapp...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3616"/>
         <source>Show Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa stjärnmärkta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3617"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa icke stjärnmärkta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3618"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa olästa eller stjärnmärkta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3629"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna nyhet i extern webbläsare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3645"/>
         <location filename="../src/rsslisting.cpp" line="3646"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Egenskaper</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3666"/>
@@ -2590,12 +2590,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="105"/>
         <source>Your version is:</source>
-        <translation type="unfinished"></translation>
+        <translation>Din version är:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="107"/>
         <source>Current version is:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuell version: </translation>
     </message>
     <message>
         <source>Your version is: </source>
