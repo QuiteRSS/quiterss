@@ -50,7 +50,7 @@
 </phrase>
 <phrase>
     <source>Stretch to window</source>
-    <target>Ablakméretűvé nyújtás</target>
+    <target>Ablakméretre nyújtás</target>
 </phrase>
 <phrase>
     <source>Mute</source>
@@ -1440,5 +1440,85 @@
 <phrase>
     <source>Full Screen</source>
     <target>Teljes képernyő</target>
+</phrase>
+<phrase>
+    <source>Revision</source>
+    <target>Felülvizsgálat</target>
+</phrase>
+<phrase>
+    <source>History</source>
+    <target>Előzmény</target>
+</phrase>
+<phrase>
+    <source>License</source>
+    <target>Licenc</target>
+</phrase>
+<phrase>
+    <source>New Folder...</source>
+    <target>Új mappa...</target>
+</phrase>
+<phrase>
+    <source>Add Folder</source>
+    <target>Mappa hozzáadása</target>
+</phrase>
+<phrase>
+    <source>Name:</source>
+    <target>Név:</target>
+</phrase>
+<phrase>
+    <source>Open Page in External Browser</source>
+    <target>Lap megnyitása külső böngészőben</target>
+</phrase>
+<phrase>
+    <source>Open Link in External Browser</source>
+    <target>Link megnyitása külső böngészőben</target>
+</phrase>
+<phrase>
+    <source>Delete Folder</source>
+    <target>Mappa törlése</target>
+</phrase>
+<phrase>
+    <source>Add New Folder</source>
+    <target>Új mappa hozzáadása</target>
+</phrase>
+<phrase>
+    <source>Stay On Top</source>
+    <target>Mindig felül</target>
+</phrase>
+<phrase>
+    <source>Show Not Starred</source>
+    <target>A nem csillagozott megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Open News in External Browser</source>
+    <target>Hírek megnyitása külső böngészőben</target>
+</phrase>
+<phrase>
+    <source>Your version is:</source>
+    <target>Az Ön verziója:</target>
+</phrase>
+<phrase>
+    <source>Current version is:</source>
+    <target>Aktuális verzió:</target>
+</phrase>
+<phrase>
+    <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
+    <target>A QuiteRSS egy nyílt forrású kereszt-platformos RSS/Atom hírolvasó</target>
+</phrase>
+<phrase>
+    <source>Unread: %1</source>
+    <target>Olvasatlan: %1</target>
+</phrase>
+<phrase>
+    <source>All: %1</source>
+    <target>Összes: %1</target>
+</phrase>
+<phrase>
+    <source>&amp;Feed...</source>
+    <target>Hírcsatorna...</target>
+</phrase>
+<phrase>
+    <source>F&amp;older...</source>
+    <target>Mappa...</target>
 </phrase>
 </QPH>

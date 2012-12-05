@@ -613,44 +613,50 @@
 <context>
     <name>NewsHeader</name>
     <message>
-        <location filename="../src/newsheader.cpp" line="52"/>
-        <location filename="../src/newsheader.cpp" line="356"/>
+        <location filename="../src/newsheader.cpp" line="53"/>
+        <location filename="../src/newsheader.cpp" line="371"/>
+        <source>Feed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/newsheader.cpp" line="54"/>
+        <location filename="../src/newsheader.cpp" line="372"/>
         <source>Title</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="53"/>
-        <location filename="../src/newsheader.cpp" line="357"/>
+        <location filename="../src/newsheader.cpp" line="55"/>
+        <location filename="../src/newsheader.cpp" line="373"/>
         <source>Published</source>
         <translation>Publicerad</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="54"/>
-        <location filename="../src/newsheader.cpp" line="358"/>
+        <location filename="../src/newsheader.cpp" line="56"/>
+        <location filename="../src/newsheader.cpp" line="374"/>
         <source>Received</source>
         <translation>Mottagen</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="55"/>
-        <location filename="../src/newsheader.cpp" line="359"/>
+        <location filename="../src/newsheader.cpp" line="57"/>
+        <location filename="../src/newsheader.cpp" line="375"/>
         <source>Author</source>
         <translation>Författare</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="56"/>
-        <location filename="../src/newsheader.cpp" line="360"/>
+        <location filename="../src/newsheader.cpp" line="58"/>
+        <location filename="../src/newsheader.cpp" line="376"/>
         <source>Category</source>
         <translation>Kategori</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="57"/>
-        <location filename="../src/newsheader.cpp" line="361"/>
+        <location filename="../src/newsheader.cpp" line="59"/>
+        <location filename="../src/newsheader.cpp" line="377"/>
         <source>Read</source>
         <translation>Läst</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="58"/>
-        <location filename="../src/newsheader.cpp" line="362"/>
+        <location filename="../src/newsheader.cpp" line="60"/>
+        <location filename="../src/newsheader.cpp" line="378"/>
         <source>Star</source>
         <translation>Stjärna</translation>
     </message>
@@ -1324,17 +1330,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3785"/>
+        <location filename="../src/rsslisting.cpp" line="3787"/>
         <source>&amp;Step up</source>
         <translation>&amp;Upp ett steg</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3786"/>
+        <location filename="../src/rsslisting.cpp" line="3788"/>
         <source>Step &amp;down</source>
         <translation>&amp;Ner ett steg</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3787"/>
+        <location filename="../src/rsslisting.cpp" line="3789"/>
         <source>&amp;Select All</source>
         <translation>&amp;Markera alla</translation>
     </message>
@@ -1342,17 +1348,17 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3764"/>
+        <location filename="../src/rsslisting.cpp" line="3766"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3765"/>
+        <location filename="../src/rsslisting.cpp" line="3767"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3766"/>
+        <location filename="../src/rsslisting.cpp" line="3768"/>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
     </message>
@@ -1360,37 +1366,37 @@
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3768"/>
+        <location filename="../src/rsslisting.cpp" line="3770"/>
         <source>&amp;Undo</source>
         <translation>&amp;Ångra</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3769"/>
+        <location filename="../src/rsslisting.cpp" line="3771"/>
         <source>&amp;Redo</source>
         <translation>&amp;Upprepa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3770"/>
+        <location filename="../src/rsslisting.cpp" line="3772"/>
         <source>Cu&amp;t</source>
         <translation>K&amp;lipp ut</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3771"/>
+        <location filename="../src/rsslisting.cpp" line="3773"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopiera</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3772"/>
+        <location filename="../src/rsslisting.cpp" line="3774"/>
         <source>&amp;Paste</source>
         <translation>Klistra &amp;in</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3773"/>
+        <location filename="../src/rsslisting.cpp" line="3775"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3774"/>
+        <location filename="../src/rsslisting.cpp" line="3776"/>
         <source>Select All</source>
         <translation>Markera alla</translation>
     </message>
@@ -1398,7 +1404,7 @@
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3789"/>
+        <location filename="../src/rsslisting.cpp" line="3791"/>
         <source>Select IM</source>
         <translation>Välj IM</translation>
     </message>
@@ -1406,42 +1412,42 @@
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3776"/>
+        <location filename="../src/rsslisting.cpp" line="3778"/>
         <source>&amp;Undo</source>
         <translation>&amp;Ångra</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3777"/>
+        <location filename="../src/rsslisting.cpp" line="3779"/>
         <source>&amp;Redo</source>
         <translation>&amp;Upprepa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3778"/>
+        <location filename="../src/rsslisting.cpp" line="3780"/>
         <source>Cu&amp;t</source>
         <translation>K&amp;lipp ut</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3779"/>
+        <location filename="../src/rsslisting.cpp" line="3781"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopiera</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3780"/>
+        <location filename="../src/rsslisting.cpp" line="3782"/>
         <source>&amp;Paste</source>
         <translation>Klistra &amp;in</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3781"/>
+        <location filename="../src/rsslisting.cpp" line="3783"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3782"/>
+        <location filename="../src/rsslisting.cpp" line="3784"/>
         <source>Select All</source>
         <translation>Markera alla</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3783"/>
+        <location filename="../src/rsslisting.cpp" line="3785"/>
         <source>Copy &amp;Link Location</source>
         <translation>K&amp;opiera länk</translation>
     </message>
@@ -1449,22 +1455,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3791"/>
+        <location filename="../src/rsslisting.cpp" line="3793"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3792"/>
+        <location filename="../src/rsslisting.cpp" line="3794"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Tillbaka</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3793"/>
+        <location filename="../src/rsslisting.cpp" line="3795"/>
         <source>&amp;Finish</source>
         <translation>&amp;Slutför</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3794"/>
+        <location filename="../src/rsslisting.cpp" line="3796"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Nästa &gt;</translation>
     </message>
@@ -1523,7 +1529,7 @@
         <translation type="obsolete">Läs inte in bilder i nyhetsvyn</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3566"/>
+        <location filename="../src/rsslisting.cpp" line="3568"/>
         <source>Feeds</source>
         <translation>Flöden</translation>
     </message>
@@ -1540,7 +1546,7 @@
         <translation type="obsolete">Lägg till nytt flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3594"/>
+        <location filename="../src/rsslisting.cpp" line="3596"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Ta bort...</translation>
     </message>
@@ -1557,7 +1563,7 @@
         <translation type="obsolete">Importera flöden från OPML-fil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3603"/>
+        <location filename="../src/rsslisting.cpp" line="3605"/>
         <source>E&amp;xit</source>
         <translation>A&amp;vsluta</translation>
     </message>
@@ -1594,83 +1600,83 @@
         <translation type="obsolete">Ta bort markerad nyhet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3671"/>
+        <location filename="../src/rsslisting.cpp" line="3673"/>
         <source>Mark Read</source>
         <translation>Markera som läst</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3685"/>
-        <location filename="../src/rsslisting.cpp" line="3754"/>
+        <location filename="../src/rsslisting.cpp" line="3687"/>
+        <location filename="../src/rsslisting.cpp" line="3756"/>
         <source>Main Toolbar</source>
         <translation>Verktygsrad</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3686"/>
+        <location filename="../src/rsslisting.cpp" line="3688"/>
         <source>Customize Toolbar</source>
         <translation>Anpassa verktygsrad</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3692"/>
+        <location filename="../src/rsslisting.cpp" line="3694"/>
         <source>Hide Toolbar</source>
         <translation>Dölj verktygsrad</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3708"/>
+        <location filename="../src/rsslisting.cpp" line="3710"/>
         <source>Browser Position</source>
         <translation>Webbläsarposition</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3714"/>
+        <location filename="../src/rsslisting.cpp" line="3716"/>
         <source>Show Window</source>
         <translation>Visa fönster</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3716"/>
+        <location filename="../src/rsslisting.cpp" line="3718"/>
         <source>Previous Feed</source>
         <translation>Föregående flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3717"/>
+        <location filename="../src/rsslisting.cpp" line="3719"/>
         <source>Next Feed</source>
         <translation>Nästa flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3718"/>
+        <location filename="../src/rsslisting.cpp" line="3720"/>
         <source>Previous News</source>
         <translation>Föregående nyhet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3719"/>
+        <location filename="../src/rsslisting.cpp" line="3721"/>
         <source>Next News</source>
         <translation>Nästa nyhet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3721"/>
+        <location filename="../src/rsslisting.cpp" line="3723"/>
         <source>Switch Focus Between Panels</source>
         <translation>Växla fokus mellan vyer</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3723"/>
+        <location filename="../src/rsslisting.cpp" line="3725"/>
         <source>Switch Focus Between Panels (Tree Feeds, List News, Browser)</source>
         <translation>Växla fokus mellan vyer (Flödeslista, Nyhetslista Webbläsare)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3725"/>
+        <location filename="../src/rsslisting.cpp" line="3727"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Visa/Dölj flödeslista</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3727"/>
+        <location filename="../src/rsslisting.cpp" line="3729"/>
         <source>Minimize to Tray</source>
         <translation>Minimera till meddelandefältet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3729"/>
+        <location filename="../src/rsslisting.cpp" line="3731"/>
         <source>Minimize Application to Tray</source>
         <translation>Minimera programmet till meddelandefältet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3731"/>
+        <location filename="../src/rsslisting.cpp" line="3733"/>
         <source>Columns</source>
         <translation>Kolumner</translation>
     </message>
@@ -1687,12 +1693,12 @@
         <translation type="obsolete">Senast uppdaterad</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4197"/>
+        <location filename="../src/rsslisting.cpp" line="4199"/>
         <source>Check for updates</source>
         <translation>Sök efter uppdateringar</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4198"/>
+        <location filename="../src/rsslisting.cpp" line="4200"/>
         <source>A new version of QuiteRSS...</source>
         <translation>En ny version av QuiteRSS...</translation>
     </message>
@@ -1743,7 +1749,7 @@
         <translation type="obsolete">Markera alla flöden som lästa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3621"/>
+        <location filename="../src/rsslisting.cpp" line="3623"/>
         <source>Mark Read/Unread</source>
         <translation>Markera som läst/oläst</translation>
     </message>
@@ -1768,31 +1774,31 @@
         <translation type="obsolete">Filtrera nyheter...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3631"/>
+        <location filename="../src/rsslisting.cpp" line="3633"/>
         <source>Options...</source>
         <translation>Alternativ...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3634"/>
-        <location filename="../src/rsslisting.cpp" line="3640"/>
+        <location filename="../src/rsslisting.cpp" line="3636"/>
+        <location filename="../src/rsslisting.cpp" line="3642"/>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3635"/>
-        <location filename="../src/rsslisting.cpp" line="3641"/>
+        <location filename="../src/rsslisting.cpp" line="3637"/>
+        <location filename="../src/rsslisting.cpp" line="3643"/>
         <source>Show All</source>
         <translation>Visa alla</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3636"/>
-        <location filename="../src/rsslisting.cpp" line="3642"/>
+        <location filename="../src/rsslisting.cpp" line="3638"/>
+        <location filename="../src/rsslisting.cpp" line="3644"/>
         <source>Show New</source>
         <translation>Visa nya</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3637"/>
-        <location filename="../src/rsslisting.cpp" line="3643"/>
+        <location filename="../src/rsslisting.cpp" line="3639"/>
+        <location filename="../src/rsslisting.cpp" line="3645"/>
         <source>Show Unread</source>
         <translation>Visa olästa</translation>
     </message>
@@ -1801,7 +1807,7 @@
         <translation type="obsolete">Visa stjärnmärkta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3649"/>
+        <location filename="../src/rsslisting.cpp" line="3651"/>
         <source>About...</source>
         <translation>Om...</translation>
     </message>
@@ -1826,12 +1832,12 @@
         <translation type="obsolete">Öppna nyheter i bakgrundsflik</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3662"/>
+        <location filename="../src/rsslisting.cpp" line="3664"/>
         <source>Star</source>
         <translation>Stjärna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3664"/>
+        <location filename="../src/rsslisting.cpp" line="3666"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
@@ -1853,37 +1859,37 @@
         <translation type="obsolete">Redigera flödesträd</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3676"/>
+        <location filename="../src/rsslisting.cpp" line="3678"/>
         <source>&amp;File</source>
         <translation>&amp;Arkiv</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3677"/>
+        <location filename="../src/rsslisting.cpp" line="3679"/>
         <source>&amp;Edit</source>
         <translation>&amp;Redigera</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3678"/>
+        <location filename="../src/rsslisting.cpp" line="3680"/>
         <source>&amp;View</source>
         <translation>&amp;Visa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3679"/>
+        <location filename="../src/rsslisting.cpp" line="3681"/>
         <source>Fee&amp;ds</source>
         <translation>&amp;Flöden</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3680"/>
+        <location filename="../src/rsslisting.cpp" line="3682"/>
         <source>&amp;News</source>
         <translation>&amp;Nyheter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3682"/>
+        <location filename="../src/rsslisting.cpp" line="3684"/>
         <source>&amp;Tools</source>
         <translation>V&amp;erktyg</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3683"/>
+        <location filename="../src/rsslisting.cpp" line="3685"/>
         <source>&amp;Help</source>
         <translation>&amp;Hjälp</translation>
     </message>
@@ -1892,17 +1898,17 @@
         <translation type="obsolete">Verktygsrad</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3687"/>
+        <location filename="../src/rsslisting.cpp" line="3689"/>
         <source>Style</source>
         <translation>Stil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3688"/>
+        <location filename="../src/rsslisting.cpp" line="3690"/>
         <source>Icon</source>
         <translation>Ikon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3689"/>
+        <location filename="../src/rsslisting.cpp" line="3691"/>
         <source>Text</source>
         <translation>Text</translation>
     </message>
@@ -1923,7 +1929,7 @@
         <translation type="obsolete">Tema</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3700"/>
+        <location filename="../src/rsslisting.cpp" line="3702"/>
         <source>System</source>
         <translation>System</translation>
     </message>
@@ -1932,22 +1938,22 @@
         <translation type="obsolete">Webbläsarposition</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3709"/>
+        <location filename="../src/rsslisting.cpp" line="3711"/>
         <source>Top</source>
         <translation>Överst</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3710"/>
+        <location filename="../src/rsslisting.cpp" line="3712"/>
         <source>Bottom</source>
         <translation>Underst</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3711"/>
+        <location filename="../src/rsslisting.cpp" line="3713"/>
         <source>Right</source>
         <translation>Höger</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3712"/>
+        <location filename="../src/rsslisting.cpp" line="3714"/>
         <source>Left</source>
         <translation>Vänster</translation>
     </message>
@@ -1988,7 +1994,7 @@
         <translation type="obsolete">Minimera till meddelandefältet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4474"/>
+        <location filename="../src/rsslisting.cpp" line="4476"/>
         <source>Loading...</source>
         <translation>Läser in...</translation>
     </message>
@@ -2022,44 +2028,44 @@
         <translation>OPML-filer (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3127"/>
-        <location filename="../src/rsslisting.cpp" line="3570"/>
+        <location filename="../src/rsslisting.cpp" line="3124"/>
+        <location filename="../src/rsslisting.cpp" line="3572"/>
         <source>Unread: %1</source>
         <translation>Oläst: %1 </translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3128"/>
-        <location filename="../src/rsslisting.cpp" line="3573"/>
+        <location filename="../src/rsslisting.cpp" line="3125"/>
+        <location filename="../src/rsslisting.cpp" line="3575"/>
         <source>All: %1</source>
         <translation>Alla: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3419"/>
-        <location filename="../src/rsslisting.cpp" line="3606"/>
+        <location filename="../src/rsslisting.cpp" line="3421"/>
+        <location filename="../src/rsslisting.cpp" line="3608"/>
         <source>Load Images</source>
         <translation>Läs in bilder</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3423"/>
-        <location filename="../src/rsslisting.cpp" line="3609"/>
+        <location filename="../src/rsslisting.cpp" line="3425"/>
+        <location filename="../src/rsslisting.cpp" line="3611"/>
         <source>No Load Images</source>
         <translation>Läs inte in bilder</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3424"/>
-        <location filename="../src/rsslisting.cpp" line="3610"/>
+        <location filename="../src/rsslisting.cpp" line="3426"/>
+        <location filename="../src/rsslisting.cpp" line="3612"/>
         <source>No Load Images to News View</source>
         <translation>Läs inte in bilder i nyhetsvyn</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3578"/>
-        <location filename="../src/rsslisting.cpp" line="4000"/>
+        <location filename="../src/rsslisting.cpp" line="3580"/>
+        <location filename="../src/rsslisting.cpp" line="4002"/>
         <source>New News: %1</source>
         <translation>Nya nyheter: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3580"/>
-        <location filename="../src/rsslisting.cpp" line="4002"/>
+        <location filename="../src/rsslisting.cpp" line="3582"/>
+        <location filename="../src/rsslisting.cpp" line="4004"/>
         <source>Unread News: %1</source>
         <translation>Olästa nyheter: %1</translation>
     </message>
@@ -2068,45 +2074,45 @@
         <translation type="obsolete">&amp;Lägg till flöde...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3584"/>
-        <location filename="../src/rsslisting.cpp" line="3587"/>
+        <location filename="../src/rsslisting.cpp" line="3586"/>
+        <location filename="../src/rsslisting.cpp" line="3589"/>
         <source>Add New Feed</source>
         <translation>Lägg till nytt flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3592"/>
-        <location filename="../src/rsslisting.cpp" line="3658"/>
+        <location filename="../src/rsslisting.cpp" line="3594"/>
+        <location filename="../src/rsslisting.cpp" line="3660"/>
         <source>Open in New Tab</source>
         <translation>Öppna i ny flik</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3595"/>
+        <location filename="../src/rsslisting.cpp" line="3597"/>
         <source>Delete Selected Feed</source>
         <translation>Ta bort markerat flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3597"/>
+        <location filename="../src/rsslisting.cpp" line="3599"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Importera flöden...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3598"/>
+        <location filename="../src/rsslisting.cpp" line="3600"/>
         <source>Import Feeds from OPML File</source>
         <translation>Importera flöden från OPML-fil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3600"/>
+        <location filename="../src/rsslisting.cpp" line="3602"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Exportera flöden...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3601"/>
+        <location filename="../src/rsslisting.cpp" line="3603"/>
         <source>Export Feeds to OPML File</source>
         <translation>Exportera flöden till OPML-fil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3420"/>
-        <location filename="../src/rsslisting.cpp" line="3607"/>
+        <location filename="../src/rsslisting.cpp" line="3422"/>
+        <location filename="../src/rsslisting.cpp" line="3609"/>
         <source>Auto Load Images to News View</source>
         <translation>Läs in bilder i nyhetsvyn automatiskt</translation>
     </message>
@@ -2125,63 +2131,63 @@
         <translation type="obsolete">Ny</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3590"/>
+        <location filename="../src/rsslisting.cpp" line="3592"/>
         <source>Add New Folder</source>
         <translation>Lägg till ny mapp</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3613"/>
+        <location filename="../src/rsslisting.cpp" line="3615"/>
         <source>Update Feed</source>
         <translation>Uppdatera flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3614"/>
+        <location filename="../src/rsslisting.cpp" line="3616"/>
         <source>Update Current Feed</source>
         <translation>Uppdatera aktuellt flöde</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3616"/>
+        <location filename="../src/rsslisting.cpp" line="3618"/>
         <source>Update All</source>
         <translation>Uppdatera alla</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3617"/>
+        <location filename="../src/rsslisting.cpp" line="3619"/>
         <source>Update All Feeds</source>
         <translation>Uppdatera alla flöden</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3619"/>
+        <location filename="../src/rsslisting.cpp" line="3621"/>
         <source>Mark All Feeds Read</source>
         <translation>Markera alla flöden som lästa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3622"/>
+        <location filename="../src/rsslisting.cpp" line="3624"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Markera aktuella nyheter som lästa/olästa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3624"/>
-        <location filename="../src/rsslisting.cpp" line="3625"/>
+        <location filename="../src/rsslisting.cpp" line="3626"/>
+        <location filename="../src/rsslisting.cpp" line="3627"/>
         <source>Mark All News Read</source>
         <translation>Markera alla nyheter som lästa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3628"/>
+        <location filename="../src/rsslisting.cpp" line="3630"/>
         <source>News Filters...</source>
         <translation>Nyhetsfilter...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3629"/>
+        <location filename="../src/rsslisting.cpp" line="3631"/>
         <source>Filter News...</source>
         <translation>Filtrera nyheter...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3632"/>
+        <location filename="../src/rsslisting.cpp" line="3634"/>
         <source>Open Options Dialog</source>
         <translation>Öppna inställningar</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3638"/>
+        <location filename="../src/rsslisting.cpp" line="3640"/>
         <source>Show Starred Feeds</source>
         <translation>Visa stjärnmärkta </translation>
     </message>
@@ -2190,82 +2196,82 @@
         <translation type="obsolete">Visa olästa eller stjärnmärkta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3647"/>
+        <location filename="../src/rsslisting.cpp" line="3649"/>
         <source>Show Deleted</source>
         <translation>Visa borttagna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3650"/>
+        <location filename="../src/rsslisting.cpp" line="3652"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Visa &apos;Om&apos;</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3652"/>
+        <location filename="../src/rsslisting.cpp" line="3654"/>
         <source>Check for Updates...</source>
         <translation>Sök efter updateringar...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3653"/>
+        <location filename="../src/rsslisting.cpp" line="3655"/>
         <source>Report a Problem...</source>
         <translation>Rapportera ett problem</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3655"/>
+        <location filename="../src/rsslisting.cpp" line="3657"/>
         <source>Open in Browser</source>
         <translation>Öppna i webbläsare</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3656"/>
+        <location filename="../src/rsslisting.cpp" line="3658"/>
         <source>Open in External Browser</source>
         <translation>Öpnna i extern webbläsare</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3659"/>
+        <location filename="../src/rsslisting.cpp" line="3661"/>
         <source>Open News in New Tab</source>
         <translation>Öppna nyhet i ny flik</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3660"/>
+        <location filename="../src/rsslisting.cpp" line="3662"/>
         <source>Open in Background Tab</source>
         <translation>Öppna i bakgrunden</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3661"/>
+        <location filename="../src/rsslisting.cpp" line="3663"/>
         <source>Open News in Background Tab</source>
         <translation>Öppna nyheter i bakgrundsflik</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3663"/>
+        <location filename="../src/rsslisting.cpp" line="3665"/>
         <source>Mark News Star</source>
         <translation>Stjärnmärk nyhet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3665"/>
+        <location filename="../src/rsslisting.cpp" line="3667"/>
         <source>Delete Selected News</source>
         <translation>Ta bort markerade nyheter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3666"/>
+        <location filename="../src/rsslisting.cpp" line="3668"/>
         <source>Delete All News</source>
         <translation>Ta bort alla nyheter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3667"/>
+        <location filename="../src/rsslisting.cpp" line="3669"/>
         <source>Delete All News from List</source>
         <translation>Ta bort alla nyheter från listan</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3668"/>
+        <location filename="../src/rsslisting.cpp" line="3670"/>
         <source>Restore</source>
         <translation>Återställ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3669"/>
+        <location filename="../src/rsslisting.cpp" line="3671"/>
         <source>Restore News</source>
         <translation>Återställ nyheter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3672"/>
+        <location filename="../src/rsslisting.cpp" line="3674"/>
         <source>Mark Feed Read</source>
         <translation>Markera flödet som läst</translation>
     </message>
@@ -2274,60 +2280,60 @@
         <translation type="obsolete">Flödesegenskaper</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3681"/>
+        <location filename="../src/rsslisting.cpp" line="3683"/>
         <source>&amp;Browser</source>
         <translation>&amp;Webbläsare</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3748"/>
+        <location filename="../src/rsslisting.cpp" line="3750"/>
         <source>Print...</source>
         <translation>Skriv ut...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3749"/>
+        <location filename="../src/rsslisting.cpp" line="3751"/>
         <source>Print Web page</source>
         <translation>Skriv ut webbsida</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3750"/>
+        <location filename="../src/rsslisting.cpp" line="3752"/>
         <source>Print Preview...</source>
         <translation>Förhandsgranskning...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3751"/>
+        <location filename="../src/rsslisting.cpp" line="3753"/>
         <source>Preview Web page</source>
         <translation>Förhandsgranska webbsida</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3753"/>
+        <location filename="../src/rsslisting.cpp" line="3755"/>
         <source>Toolbars</source>
         <translation>Verktygsfält</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3755"/>
+        <location filename="../src/rsslisting.cpp" line="3757"/>
         <source>News Toolbar</source>
         <translation>Nyhetsverktyg</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3756"/>
+        <location filename="../src/rsslisting.cpp" line="3758"/>
         <source>Browser Toolbar</source>
         <translation>Webbläsarverktyg</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3758"/>
-        <location filename="../src/rsslisting.cpp" line="3759"/>
+        <location filename="../src/rsslisting.cpp" line="3760"/>
+        <location filename="../src/rsslisting.cpp" line="3761"/>
         <source>Full Screen</source>
         <translation>Helskärmsläge</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3761"/>
-        <location filename="../src/rsslisting.cpp" line="3762"/>
+        <location filename="../src/rsslisting.cpp" line="3763"/>
+        <location filename="../src/rsslisting.cpp" line="3764"/>
         <source>Stay On Top</source>
         <translation>Alltid överst</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4998"/>
-        <location filename="../src/rsslisting.cpp" line="5009"/>
+        <location filename="../src/rsslisting.cpp" line="5000"/>
+        <location filename="../src/rsslisting.cpp" line="5011"/>
         <source>Web Page</source>
         <translation>Webbsida</translation>
     </message>
@@ -2336,12 +2342,12 @@
         <translation type="obsolete">Verktygsfält</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3690"/>
+        <location filename="../src/rsslisting.cpp" line="3692"/>
         <source>Text Beside Icon</source>
         <translation>Text bredvid ikon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3691"/>
+        <location filename="../src/rsslisting.cpp" line="3693"/>
         <source>Text Under Icon</source>
         <translation>Text under ikon</translation>
     </message>
@@ -2350,153 +2356,153 @@
         <translation type="obsolete">Visa verktygsfält</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3583"/>
+        <location filename="../src/rsslisting.cpp" line="3585"/>
         <source>&amp;Add</source>
         <translation>&amp;Lägg till</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3586"/>
+        <location filename="../src/rsslisting.cpp" line="3588"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Flöde...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3589"/>
+        <location filename="../src/rsslisting.cpp" line="3591"/>
         <source>F&amp;older...</source>
         <translation>&amp;Mapp...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3644"/>
+        <location filename="../src/rsslisting.cpp" line="3646"/>
         <source>Show Starred</source>
         <translation>Visa stjärnmärkta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3645"/>
+        <location filename="../src/rsslisting.cpp" line="3647"/>
         <source>Show Not Starred</source>
         <translation>Visa icke stjärnmärkta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3646"/>
+        <location filename="../src/rsslisting.cpp" line="3648"/>
         <source>Show Unread or Starred</source>
         <translation>Visa olästa eller stjärnmärkta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3657"/>
+        <location filename="../src/rsslisting.cpp" line="3659"/>
         <source>Open News in External Browser</source>
         <translation>Öppna nyhet i extern webbläsare</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3673"/>
-        <location filename="../src/rsslisting.cpp" line="3674"/>
+        <location filename="../src/rsslisting.cpp" line="3675"/>
+        <location filename="../src/rsslisting.cpp" line="3676"/>
         <source>Properties</source>
         <translation>Egenskaper</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3694"/>
+        <location filename="../src/rsslisting.cpp" line="3696"/>
         <source>Icon Size</source>
         <translation>Ikonstorlek</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3695"/>
+        <location filename="../src/rsslisting.cpp" line="3697"/>
         <source>Big</source>
         <translation>Stor</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3696"/>
+        <location filename="../src/rsslisting.cpp" line="3698"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3697"/>
+        <location filename="../src/rsslisting.cpp" line="3699"/>
         <source>Small</source>
         <translation>Liten</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3699"/>
+        <location filename="../src/rsslisting.cpp" line="3701"/>
         <source>Application Style</source>
         <translation>Programstil</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3701"/>
+        <location filename="../src/rsslisting.cpp" line="3703"/>
         <source>System2</source>
         <translation>System2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3702"/>
+        <location filename="../src/rsslisting.cpp" line="3704"/>
         <source>Green</source>
         <translation>Grön</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3703"/>
+        <location filename="../src/rsslisting.cpp" line="3705"/>
         <source>Orange</source>
         <translation>Orange</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3704"/>
+        <location filename="../src/rsslisting.cpp" line="3706"/>
         <source>Purple</source>
         <translation>Purpur</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3705"/>
+        <location filename="../src/rsslisting.cpp" line="3707"/>
         <source>Pink</source>
         <translation>Rosa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3706"/>
+        <location filename="../src/rsslisting.cpp" line="3708"/>
         <source>Gray</source>
         <translation>Grå</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3732"/>
+        <location filename="../src/rsslisting.cpp" line="3734"/>
         <source>Count News Unread</source>
         <translation>Antal olästa nyheter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3733"/>
+        <location filename="../src/rsslisting.cpp" line="3735"/>
         <source>Count News All</source>
         <translation>Antal nyheter</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3734"/>
+        <location filename="../src/rsslisting.cpp" line="3736"/>
         <source>Last Updated</source>
         <translation>Senast uppdaterad</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3736"/>
+        <location filename="../src/rsslisting.cpp" line="3738"/>
         <source>Sort by Title</source>
         <translation>Sortera efter titel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3740"/>
+        <location filename="../src/rsslisting.cpp" line="3742"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3741"/>
+        <location filename="../src/rsslisting.cpp" line="3743"/>
         <source>Zoom In</source>
         <translation>Zooma in</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3742"/>
+        <location filename="../src/rsslisting.cpp" line="3744"/>
         <source>Zoom in in browser</source>
         <translation>Zooma in i webbläsare</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3743"/>
+        <location filename="../src/rsslisting.cpp" line="3745"/>
         <source>Zoom Out</source>
         <translation>Zooma ut</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3744"/>
+        <location filename="../src/rsslisting.cpp" line="3746"/>
         <source>Zoom out in browser</source>
         <translation>Zooma ut i webbläsare</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3745"/>
+        <location filename="../src/rsslisting.cpp" line="3747"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3746"/>
+        <location filename="../src/rsslisting.cpp" line="3748"/>
         <source>Reset zoom in browser</source>
         <translation>Återställ zoom-nivå i webbläsare</translation>
     </message>
@@ -2505,7 +2511,7 @@
         <translation type="obsolete">Titel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3738"/>
+        <location filename="../src/rsslisting.cpp" line="3740"/>
         <source>Search Feed</source>
         <translation>Sök flöde</translation>
     </message>
