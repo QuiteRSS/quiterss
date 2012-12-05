@@ -2491,27 +2491,24 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-  int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
-
   // Поиск новости ленты, отображамой ранее
   int newsRow = -1;
   if ((openingFeedAction_ == 0) || !clicked) {
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+    int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
 
     if (indexList.isEmpty()) newsRow = -1;
-    else newsRow = indexList.at(0).row();
-
+    else newsRow = indexList.first().row();
   } else if (openingFeedAction_ == 1) {
     newsRow = 0;
   } else if (openingFeedAction_ == 3) {
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
-    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
+    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
 
     if (indexList.isEmpty()) newsRow = -1;
-    else newsRow = indexList.at(0).row();
-
+    else newsRow = indexList.last().row();
   }
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
@@ -3253,7 +3250,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   QModelIndex index = newsView_->currentIndex();
 
   int feedId = currentNewsTab->feedId_;
-  int feedParId = currentNewsTab->feedParId_;
+//  int feedParId = currentNewsTab->feedParId_;
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
