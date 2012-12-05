@@ -74,6 +74,9 @@ void NewsHeader::init(QWidget *rsslisting)
   moveSection(visualIndex(model_->fieldIndex("starred")), 0);
   resizeSection(model_->fieldIndex("starred"), 25);
   setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
+  moveSection(visualIndex(model_->fieldIndex("feedId")), 1);
+  resizeSection(model_->fieldIndex("feedId"), 25);
+  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("title")), 2);
   moveSection(visualIndex(model_->fieldIndex("read")), 3);
   resizeSection(model_->fieldIndex("read"), 25);
@@ -87,10 +90,6 @@ void NewsHeader::init(QWidget *rsslisting)
 
   restoreState(rsslisting_->settings_->value("NewsHeaderState").toByteArray());
   restoreGeometry(rsslisting_->settings_->value("NewsHeaderGeometry").toByteArray());
-
-  moveSection(visualIndex(model_->fieldIndex("feedId")), visualIndex(model_->fieldIndex("title")));
-  resizeSection(model_->fieldIndex("feedId"), 25);
-  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
 
   createMenu();
 

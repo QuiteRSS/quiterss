@@ -122,7 +122,7 @@ void NewsTabWidget::createNewsList()
 {
   newsView_ = new NewsView(this);
   newsView_->setFrameStyle(QFrame::NoFrame);
-  newsModel_ = new NewsModel(this, newsView_);
+  newsModel_ = new NewsModel(this, newsView_, &rsslisting_->db_);
   newsModel_->setTable("news");
   newsModel_->setFilter("feedId=-1");
   newsHeader_ = new NewsHeader(newsModel_, newsView_);

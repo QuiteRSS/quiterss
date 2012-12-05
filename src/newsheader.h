@@ -12,7 +12,6 @@ private:
 
   QTreeView *view_;
   NewsModel *model_;
-
   QMenu *viewMenu_;
   QActionGroup *pActGroup_;
   QPushButton *buttonColumnView;

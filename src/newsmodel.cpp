@@ -1,8 +1,9 @@
 #include "newsmodel.h"
 
-NewsModel::NewsModel(QObject *parent, QTreeView *view)
+NewsModel::NewsModel(QObject *parent, QTreeView *view, QSqlDatabase *db)
   : QSqlTableModel(parent),
-    view_(view)
+    view_(view),
+    db_(db)
 {
   setEditStrategy(QSqlTableModel::OnFieldChange);
 }
@@ -27,6 +28,28 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
         icon.addFile(":/images/bulletNew");
       else icon.addFile(":/images/bulletNoNew");
+      return icon;
+    } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
+      QPixmap icon;
+      QByteArray byteArray;
+      bool isFeed = true;
+
+      QSqlQuery q(*db_);
+      q.exec(QString("SELECT image, xmlUrl FROM feeds WHERE id=='%1'").
+             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
+      if (q.next()) {
+        byteArray = q.value(0).toByteArray();
+        if (q.value(1).toString().isEmpty())
+          isFeed = false;
+      }
+      if (!byteArray.isNull()) {
+        icon.loadFromData(QByteArray::fromBase64(byteArray));
+      } else if (isFeed) {
+        icon.load(":/images/feed");
+      } else {
+        icon.load(":/images/folder");
+      }
+
       return icon;
     }
   } else if (role == Qt::DisplayRole) {
