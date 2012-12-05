@@ -52,6 +52,15 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 
       return icon;
     }
+  } else if (role == Qt::ToolTipRole) {
+    if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
+      QSqlQuery q(*db_);
+      q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
+             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
+      if (q.next())
+        return q.value(0).toString();
+    }
+    return QString("");
   } else if (role == Qt::DisplayRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
       return QVariant();
