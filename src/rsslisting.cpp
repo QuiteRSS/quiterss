@@ -473,7 +473,7 @@ void RSSListing::timerEvent(QTimerEvent *event)
 void RSSListing::createFeedsDock()
 {
   feedsTreeModel_ = new FeedsTreeModel("feeds",
-      QStringList() << "ID" << "TEXT" << "UNREAD" << "UNDELETECOUNT" << "PARENTID" << "UPDATED",
+      QStringList() << "" << "" << "" << "" << "" << "",
       QStringList() << "id" << "text" << "unread" << "undeleteCount" << "parentId" << "updated",
       0,
       "text");
@@ -2026,7 +2026,7 @@ void RSSListing::slotExportFeeds()
   // Создаем модель и представление для экспорта.
   // Раскрываем представление, чтобы пройтись по всем веткам
   FeedsTreeModel exportTreeModel("feeds",
-      QStringList() << "ID" << "TEXT" << "PARENTID",
+      QStringList() << "" << "" << "",
       QStringList() << "id" << "text" << "parentId",
       0,
       "text");
