@@ -37,12 +37,22 @@ int main(int argc, char **argv)
 #endif
   app.setQuitOnLastWindowClosed(false);
 
-QString dataDirPath_;
-QSettings *settings_;
+  QString dataDirPath_;
+  QSettings *settings_;
 
 #if defined(PORTABLE)
-  if (PORTABLE) {
-    dataDirPath_ = QCoreApplication::applicationDirPath();
+  bool portable = true;
+  dataDirPath_ = QCoreApplication::applicationDirPath();
+
+  QString fileName;
+  fileName = dataDirPath_ + QDir::separator() + "portable.dat";
+  if (!QFile::exists(fileName)) {
+    fileName = dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini";
+    if (!QFile::exists(fileName))
+      portable = false;
+  }
+
+  if (portable) {
     settings_ = new QSettings(
           dataDirPath_ + QDir::separator() + QCoreApplication::applicationName() + ".ini",
           QSettings::IniFormat);

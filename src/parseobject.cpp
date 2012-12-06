@@ -15,11 +15,12 @@ void ParseObject::slotParse(QSqlDatabase *db,
 {
   QString appFilePath;
 #if defined(PORTABLE)
-  if (PORTABLE) {
+  QString fileName = QCoreApplication::applicationDirPath() +
+      QDir::separator() + "portable.dat";
+  if (QFile::exists(fileName))
     appFilePath = QCoreApplication::applicationDirPath();
-  } else {
+  else
     appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-  }
 #else
   appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 #endif
