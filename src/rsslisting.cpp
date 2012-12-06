@@ -1475,6 +1475,7 @@ void RSSListing::readSettings()
 
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
+  prevMarkNewsReadOn_= settings_->value("prevMarkNewsReadOn", false).toBool();
   markReadSwitchingFeed_ = settings_->value("markReadSwitchingFeed", false).toBool();
   markReadClosingTab_ = settings_->value("markReadClosingTab", false).toBool();
   markReadMinimize_ = settings_->value("markReadMinimize", false).toBool();
@@ -1655,6 +1656,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
+  settings_->setValue("prevMarkNewsReadOn", prevMarkNewsReadOn_);
   settings_->setValue("markReadSwitchingFeed", markReadSwitchingFeed_);
   settings_->setValue("markReadClosingTab", markReadClosingTab_);
   settings_->setValue("markReadMinimize", markReadMinimize_);
@@ -2583,6 +2585,7 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
+  optionsDialog->prevMarkNewsReadOn_->setChecked(prevMarkNewsReadOn_);
   optionsDialog->markReadSwitchingFeed_->setChecked(markReadSwitchingFeed_);
   optionsDialog->markReadClosingTab_->setChecked(markReadClosingTab_);
   optionsDialog->markReadMinimize_->setChecked(markReadMinimize_);
@@ -2773,6 +2776,7 @@ void RSSListing::showOptionDlg()
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
+  prevMarkNewsReadOn_ = optionsDialog->prevMarkNewsReadOn_->isChecked();
   markReadSwitchingFeed_ = optionsDialog->markReadSwitchingFeed_->isChecked();
   markReadClosingTab_ = optionsDialog->markReadClosingTab_->isChecked();
   markReadMinimize_ = optionsDialog->markReadMinimize_->isChecked();
@@ -3363,6 +3367,9 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
   else
     q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
   q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
+
+  if (prevMarkNewsReadOn_)
+    q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
 
   q.exec(QString("UPDATE feeds SET newCount=0 WHERE id='%1'").arg(feedId));
   db_.commit();

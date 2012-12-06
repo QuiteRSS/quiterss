@@ -302,7 +302,10 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QWidget *generalFeedsWidget_ = new QWidget();
   generalFeedsWidget_->setLayout(generalFeedsLayout);
 //
-  markNewsReadOn_ = new QCheckBox(tr("Mark selected news as read after"));
+  autoMarkNewsReadOn_ = new QGroupBox(tr("Mark selected news as read:"));
+  autoMarkNewsReadOn_->setCheckable(true);
+  markNewsReadOn_ = new QRadioButton(tr("after"));
+  prevMarkNewsReadOn_ = new QRadioButton(tr("after transition to next news"));
   markNewsReadTime_ = new QSpinBox();
   markNewsReadTime_->setEnabled(false);
   markNewsReadTime_->setRange(0, 100);
@@ -322,8 +325,13 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   readingFeedsLayout1->addWidget(new QLabel(tr("seconds")));
   readingFeedsLayout1->addStretch();
 
+  QVBoxLayout *readingFeedsLayout2 = new QVBoxLayout();
+  readingFeedsLayout2->addLayout(readingFeedsLayout1);
+  readingFeedsLayout2->addWidget(prevMarkNewsReadOn_);
+  autoMarkNewsReadOn_->setLayout(readingFeedsLayout2);
+
   QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
-  readingFeedsLayout->addLayout(readingFeedsLayout1);
+  readingFeedsLayout->addWidget(autoMarkNewsReadOn_);
   readingFeedsLayout->addWidget(markReadSwitchingFeed_);
   readingFeedsLayout->addWidget(markReadClosingTab_);
   readingFeedsLayout->addWidget(markReadMinimize_);

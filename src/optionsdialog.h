@@ -62,7 +62,9 @@ public:
   QCheckBox *openNewsWebViewOn_;
   QRadioButton *nottoOpenNews_;
 
-  QCheckBox *markNewsReadOn_;
+  QGroupBox *autoMarkNewsReadOn_;
+  QRadioButton *markNewsReadOn_;
+  QRadioButton *prevMarkNewsReadOn_;
   QSpinBox *markNewsReadTime_;
   QCheckBox *markReadSwitchingFeed_;
   QCheckBox *markReadClosingTab_;
