@@ -142,6 +142,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalRefreshInfoTray()),
+          SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
 
   loadSettingsFeeds();
 
@@ -2313,7 +2315,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
-  refreshInfoTray();
+  emit signalRefreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
   }
@@ -2707,7 +2709,7 @@ void RSSListing::showOptionDlg()
   closingTray_ = optionsDialog->closingTray_->isChecked();
   behaviorIconTray_ = optionsDialog->behaviorIconTray();
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
-    refreshInfoTray();
+    emit signalRefreshInfoTray();
   } else {
 #if defined(QT_NO_DEBUG_OUTPUT)
     traySystem->setIcon(QIcon(":/images/quiterss16"));
@@ -3108,7 +3110,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
-  refreshInfoTray();
+  emit signalRefreshInfoTray();
   if (newCount > newCountOld) {
     playSoundNewNews();
   }
@@ -3368,7 +3370,7 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
 //  if (update) {
     recountFeedCounts(feedId, feedParId);
     if (feedReadtype != FeedReadPlaceToTray) {
-      refreshInfoTray();
+      emit signalRefreshInfoTray();
     }
 //  }
 }
@@ -3987,7 +3989,7 @@ void RSSListing::slotFeedMenuShow()
 }
 
 //! Обновление информации в трее: значок и текст подсказки
-void RSSListing::refreshInfoTray()
+void RSSListing::slotRefreshInfoTray()
 {
   if (!showTrayIcon_) return;
 
@@ -3995,10 +3997,10 @@ void RSSListing::refreshInfoTray()
   int newCount = 0;
   int unreadCount = 0;
   QSqlQuery q(db_);
-  q.exec("SELECT newCount, unread FROM feeds WHERE xmlUrl!=''");
-  while (q.next()) {
-    newCount    += q.value(0).toInt();
-    unreadCount += q.value(1).toInt();
+  q.exec("SELECT sum(newCount), sum(unread) FROM feeds WHERE xmlUrl!=''");
+  if (q.next()) {
+    newCount    = q.value(0).toInt();
+    unreadCount = q.value(1).toInt();
   }
 
   // Установка текста всплывающей подсказки
@@ -4088,7 +4090,7 @@ void RSSListing::markAllFeedsRead()
     }
   }
 
-  refreshInfoTray();
+  emit signalRefreshInfoTray();
 }
 
 //! Помечаем все ленты не новыми
@@ -4109,7 +4111,7 @@ void RSSListing::markAllFeedsOld()
 
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }
-  refreshInfoTray();
+  emit signalRefreshInfoTray();
 }
 
 void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray, const int &cntQueue)

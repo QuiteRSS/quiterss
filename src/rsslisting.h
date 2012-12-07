@@ -157,7 +157,6 @@ private:
   bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
   void appInstallTranslator();
   void retranslateStrings();
-  void refreshInfoTray();
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, int feedParId = 0);
@@ -452,6 +451,8 @@ private slots:
 
   void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere);
 
+  void slotRefreshInfoTray();
+
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
@@ -459,6 +460,7 @@ signals:
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
   void signalCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
+  void signalRefreshInfoTray();
 
 };
 
