@@ -77,7 +77,16 @@ def preparePath(path):
     
 def copyLangFiles():
   print "---- Copying language files..."
+  
   shutil.copytree(quiterssReleaseAbsPath + "\\lang", prepareAbsPath + "\\lang")
+  
+  global prepareFileList
+  langFiles = os.listdir(prepareAbsPath + "\\lang")
+  for langFile in langFiles:
+    langPath = '\\lang\\' + langFile
+    print langPath
+    prepareFileList.append(langPath)
+    
   print "Done"
 
 def copyFileList(fileList, src):
