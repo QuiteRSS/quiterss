@@ -1,0 +1,44 @@
+1.	Создать папку под релиз  (желательно чтобы можно было назначить первый раз путь к ней)
+2.	Скопировать папку с файлами из релиза проекта QuiteRSS "..\release\target\lang\" в созданную папку
+3.	Скопировать файл из проекта QuiteRSS "..\release\target\QuiteRSS.exe"
+4.	Скопировать папки с файлами и файлы из исходников QuiteRSS:
+·	\sound\notification.wav
+·	AUTHORS
+·	COPYING
+·	HISTORY_EN
+·	HISTORY_RU
+·	README
+·	TODO (не знаю надо ли его, или он только для нас?)	
+5.	Скопировать папки с файлами и файлы из QtSDK
+·	\sqldrivers\qsqlite4.dll
+·	\iconengines\qsvgicon4.dll
+·	\imageformats\qgif4.dll
+·	\imageformats\qico4.dll
+·	\imageformats\qjpeg4.dll
+·	\imageformats\qmng4.dll
+·	\imageformats\qsvg4.dll
+·	\imageformats\qtga4.dll
+·	\imageformats\qtiff4.dll
+·	\phonon_backend\phonon_ds94.dll
+·	\sqldrivers\qsqlite4.dll
+·	\libeay32.dll
+·	\libgcc_s_dw2-1.dll
+·	\libssl32.dll
+·	\mingwm10.dll
+·	\phonon4.dll
+·	\QtCore4.dll
+·	\QtGui4.dll
+·	\QtNetwork4.dll
+·	\QtSql4.dll
+·	\QtSvg4.dll
+·	\QtWebKit4.dll
+·	\QtXml4.dll
+·	\ssleay32.dll
+6.	Скопировать папки с файлами и файлы из проекта :
+·	..\release\target\7za.exe
+·	..\release\target\Updater.exe
+7.	Создать файл file_list.md5 со списком фалов и их контрольными суммами (пример прилагается)
+8.	Скопировать с заменой файл file_list.md5 в папку file (локальная копия репозитория file)
+9.	Каждый файл в релизной папке упаковать в 7z. Папки оставить как есть
+10.	Скопировать с заменой упакованные файлы с папками в папку file/windows
+11.	Закоммитить и протолкнуть в хранилище
