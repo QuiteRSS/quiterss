@@ -25,12 +25,16 @@ def copyLangFiles():
   shutil.copytree(quiterssReleaseAbsPath + "\\lang", prepareAbsPath + "\\lang")
   print "Done"
 
-
+def copyExeFile():
+  print "---- Copying exe-file..."
+  shutil.copy(quiterssReleaseAbsPath + "\\QuiteRSS.exe", prepareAbsPath + "\\QuiteRSS.exe")
+  print "Done"
 
 def main():
   print "QuiteRSS prepare-install"
   preparePath(prepareAbsPath)
   copyLangFiles()
+  copyExeFile()
 
 if __name__ == '__main__':
   main()
