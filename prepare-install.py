@@ -13,13 +13,18 @@ quiterssSourceAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS"
 quiterssReleaseAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS-build-desktop_Release\\release\\target"
 prepareAbsPath  = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS_prepare-install"
 
+# Список файлов состоит из относительного пути папки, содержащей файл,
+# и имени файла, который необходимо скопировать
+idDir  = 0
+idName = 1
 filesFromSource = [
-  '\\AUTHORS',
-  '\\COPYING',
-  '\\HISTORY_EN',
-  '\\HISTORY_RU',
-  '\\README',
-  '\\TODO'
+  ['\\sound', 'notification.wav'],
+  ['', 'AUTHORS'],
+  ['', 'COPYING'],
+  ['', 'HISTORY_EN'],
+  ['', 'HISTORY_RU'],
+  ['', 'README'],
+  ['', 'TODO']
 ]
 
 def preparePath(path):
@@ -41,16 +46,20 @@ def copyExeFile():
   shutil.copy(quiterssReleaseAbsPath + "\\QuiteRSS.exe", prepareAbsPath + "\\QuiteRSS.exe")
   print "Done"
 
-def copySoundFromSource():
-  print "---- Copying sound files..."
-  shutil.copytree(quiterssSourceAbsPath + "\\sound", prepareAbsPath + "\\sound")
-  print "Done"
-
 def copyFilesFromSource():
   print "---- Copying files from source..."
+  
+  # Перебираем список файлов
   for file in filesFromSource:
-    print "copying: " + quiterssSourceAbsPath+file
-    shutil.copy(quiterssSourceAbsPath + file, prepareAbsPath + file)
+    print file[idDir] + '\\' + file[idName]
+    
+    # Если есть имя папки, то создаём её
+    if file[idDir]:
+      shutil.copytree(quiterssSourceAbsPath + file[idDir], prepareAbsPath + file[idDir])
+      
+    # Копируем файл
+    shutil.copy(quiterssSourceAbsPath + file[idDir] + '\\' + file[idName], prepareAbsPath + file[idDir] + '\\' + file[idName])
+    
   print "Done"
 
 def main():
@@ -58,7 +67,6 @@ def main():
   preparePath(prepareAbsPath)
   copyLangFiles()
   copyExeFile()
-  copySoundFromSource()
   copyFilesFromSource()
 
 if __name__ == '__main__':
