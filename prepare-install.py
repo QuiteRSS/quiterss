@@ -63,7 +63,6 @@ filesFromQtSDKBin = [
   ['', 'ssleay32.dll']
 ]
 
-
 def preparePath(path):
   print "---- Preparing path: " + path
   if (os.path.exists(path)):
