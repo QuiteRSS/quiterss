@@ -1,3 +1,5 @@
+#include <QSqlTableModel>
+
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "delegatewithoutfocus.h"
@@ -30,6 +32,9 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
   setDragEnabled(true);
   setAcceptDrops(true);
   setDropIndicatorShown(true);
+
+  connect(this, SIGNAL(expanded(const QModelIndex&)), SLOT(slotExpanded(const QModelIndex&)));
+  connect(this, SIGNAL(collapsed(const QModelIndex&)), SLOT(slotCollapsed(const QModelIndex&)));
 }
 
 /**
@@ -207,6 +212,24 @@ bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
         || (area.bottom() - pos.y() < autoScrollMargin())
         || (pos.x() - area.left() < autoScrollMargin())
         || (area.right() - pos.x() < autoScrollMargin());
+}
+
+/** @brief ОБработка разворачивания узла
+ *----------------------------------------------------------------------------*/
+void FeedsTreeView::slotExpanded(const QModelIndex &index)
+{
+  QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
+  model()->setData(indexExpanded, 1);
+  ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->submitAll();
+}
+
+/** @brief Обработка сворачивания узла
+ *----------------------------------------------------------------------------*/
+void FeedsTreeView::slotCollapsed(const QModelIndex &index)
+{
+  QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
+  model()->setData(indexExpanded, 0);
+  ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->submitAll();
 }
 
 void FeedsTreeView::dropEvent(QDropEvent *event)

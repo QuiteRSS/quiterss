@@ -213,18 +213,6 @@ RSSListing::~RSSListing()
   }
   recountFeedCategories(categoriesList);
 
-  // Запоминание развернутости узлов
-  // Проходим по всем узлам и сохраняем их состояние развернутости в базе
-  QModelIndex index = feedsTreeModel_->index(0, 0);
-  while (index.isValid()) {
-    int feedId = feedsTreeModel_->getIdByIndex(index);
-    q.prepare("UPDATE feeds SET f_Expanded=:f_Expanded WHERE id==:id");
-    q.bindValue(":f_Expanded", QVariant(feedsTreeView_->isExpanded(index)).toInt());
-    q.bindValue(":id", feedId);
-    q.exec();
-    index = feedsTreeView_->indexBelow(index);
-  }
-
   q.exec("UPDATE feeds SET newCount=0");
   q.exec("VACUUM");
   q.finish();
@@ -3219,7 +3207,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
   // Установка фильтра
   feedsTreeModel_->setFilter(strFilter);
-  feedsTreeView_->restoreExpanded();
+  expandNodes();
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -3482,16 +3470,7 @@ void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
 
-  QSqlQuery q(db_);
-
-  //* Восстановление развернутости узлов
-  q.exec("SELECT id, parentId FROM feeds WHERE f_Expanded=1");
-  while (q.next()) {
-    int feedId    = q.value(0).toInt();
-    int feedParId = q.value(1).toInt();
-    QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
-    feedsTreeView_->setExpanded(index, true);
-  }
+  expandNodes();
 
   //* Восстановление текущей ленты
   int feedId = settings_->value("feedSettings/currentId", 0).toInt();
@@ -3503,9 +3482,25 @@ void RSSListing::restoreFeedsOnStartUp()
   tabCurrentUpdateOff_ = false;
 
   //* Открытие лент во вкладках
+  QSqlQuery q(db_);
   q.exec(QString("SELECT id, parentId FROM feeds WHERE displayOnStartup=1"));
   while(q.next()) {
     creatFeedTab(q.value(0).toInt(), q.value(1).toInt());
+  }
+}
+
+/** @brief Разворачивание узлов, имеющих флаг развернутости в базе
+ *----------------------------------------------------------------------------*/
+void RSSListing::expandNodes()
+{
+  //* Восстановление развернутости узлов
+  QSqlQuery q(db_);
+  q.exec("SELECT id, parentId FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
+  while (q.next()) {
+    int feedId    = q.value(0).toInt();
+    int feedParId = q.value(1).toInt();
+    QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+    feedsTreeView_->setExpanded(index, true);
   }
 }
 
@@ -4842,7 +4837,7 @@ void RSSListing::feedsModelReload()
   int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
 
   feedsTreeModel_->refresh();
-  feedsTreeView_->restoreExpanded();
+  expandNodes();
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);

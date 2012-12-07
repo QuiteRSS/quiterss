@@ -31,6 +31,7 @@ public:
   bool startingTray_;
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
+  void expandNodes();
 
   QSettings *settings_;
   QSqlDatabase db_;
