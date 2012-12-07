@@ -5077,7 +5077,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
-  int feedParIdOld = feedsTreeModel_->getParidByIndex(indexWhere);
+  int feedParIdOld = feedsTreeModel_->getParidByIndex(indexWhat);
   int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
 
   feedsTreeModel_->setData(indexParId, feedParIdNew);
