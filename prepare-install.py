@@ -6,6 +6,7 @@
 @author aleksey.hohryakov@gmail.com
 '''
 
+import hashlib
 import os
 import shutil
 
@@ -63,6 +64,8 @@ filesFromQtSDKBin = [
   ['', 'ssleay32.dll']
 ]
 
+prepareFileList = []
+
 def preparePath(path):
   print "---- Preparing path: " + path
   if (os.path.exists(path)):
@@ -83,6 +86,8 @@ def copyFileList(fileList, src):
   '''
   print "---- Copying files from " + src
   
+  global prepareFileList
+  
   # Перебираем список файлов
   for file in fileList:
     print file[idDir] + '\\' + file[idName]
@@ -96,8 +101,26 @@ def copyFileList(fileList, src):
       shutil.copy(src + file[idDir] + '\\' + file[idName], prepareAbsPath + file[idDir] + '\\' + file[idName])
     except (IOError, os.error), why:
       print str(why)
+      
+    prepareFileList.append(file[idDir] + '\\' + file[idName])
     
   print "Done"
+
+def createMD5(fileList, path):
+  '''
+  Формирование md5-файла
+  '''
+  print "---- Create md5-file for all files in " + path
+  
+  f = open(path + '\quiterss.md5', 'w')
+  for file in fileList:
+    fileName = path + file
+    fileHash = hashlib.md5(open(fileName, 'r').read()).hexdigest()
+    line = fileHash + ' *' + file[1:]
+    f.write(line + '\n')
+    print line
+    
+  f.close()
 
 def main():
   print "QuiteRSS prepare-install"
@@ -107,6 +130,7 @@ def main():
   copyFileList(filesFromSource, quiterssSourceAbsPath)
   copyFileList(filesFromQtSDKPlugins, qtsdkAbsPath + '\\plugins')
   copyFileList(filesFromQtSDKBin, qtsdkAbsPath + '\\bin')
+  createMD5(prepareFileList, prepareAbsPath)
 
 if __name__ == '__main__':
   main()
