@@ -567,7 +567,6 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     rsslisting_->feedsTreeModel_->setData(
           feedIndex.sibling(feedIndex.row(), rsslisting_->feedsTreeModel_->proxyColumnByOriginal("currentNews")),
           newsId);
-    ((QSqlTableModel*)(rsslisting_->feedsTreeModel_->sourceModel()))->submitAll();
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 

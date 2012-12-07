@@ -2148,6 +2148,24 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
     q.exec(qStr);
     if (q.next()) newCount = q.value(0).toInt();
 
+    int unreadCountOld = 0;
+    int newCountOld = 0;
+    int undeleteCountOld = 0;
+    qStr = QString("SELECT unread, newCount, undeleteCount FROM feeds WHERE id=='%1'").
+        arg(feedId);
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCountOld = q.value(0).toInt();
+      newCountOld = q.value(1).toInt();
+      undeleteCountOld = q.value(2).toInt();
+    }
+
+    if ((unreadCount == unreadCountOld) && (newCount == newCountOld) &&
+        (undeleteCount == undeleteCountOld)) {
+      db_.commit();
+      return;
+    }
+
     // Установка количества непрочитанных новостей в ленту
     // Установка количества новых новостей в ленту
     qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
@@ -2207,8 +2225,6 @@ void RSSListing::recountFeedCounts(int feedId, int feedParId)
       l_feedParId = q.value(0).toInt();
   }
   db_.commit();
-
-  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 }
 
 /**
@@ -3958,7 +3974,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
   feedsTreeModel_->setData(indexNews, properties.display.displayNews);
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
-  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
   if (feedsTreeView_->currentIndex() == index) {
     QPixmap iconTab;
