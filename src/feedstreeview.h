@@ -47,6 +47,10 @@ private:
 
   void handleDrop(QDropEvent *e);
   bool shouldAutoScroll(const QPoint &pos) const;
+
+private slots:
+  void slotExpanded(const QModelIndex&index);
+  void slotCollapsed(const QModelIndex&index);
 };
 
 #endif // FEEDSTREEVIEW_H
