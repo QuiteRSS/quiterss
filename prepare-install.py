@@ -77,22 +77,6 @@ def copyExeFile():
   shutil.copy(quiterssReleaseAbsPath + "\\QuiteRSS.exe", prepareAbsPath + "\\QuiteRSS.exe")
   print "Done"
 
-def copyFilesFromSource():
-  print "---- Copying files from source..."
-  
-  # Перебираем список файлов
-  for file in filesFromSource:
-    print file[idDir] + '\\' + file[idName]
-    
-    # Если есть имя папки, то создаём её
-    if file[idDir]:
-      shutil.copytree(quiterssSourceAbsPath + file[idDir], prepareAbsPath + file[idDir])
-      
-    # Копируем файл
-    shutil.copy(quiterssSourceAbsPath + file[idDir] + '\\' + file[idName], prepareAbsPath + file[idDir] + '\\' + file[idName])
-    
-  print "Done"
-
 def copyFileList(fileList, src):
   '''
   Копирование файлов из списка fileList из папки src
@@ -120,7 +104,7 @@ def main():
   preparePath(prepareAbsPath)
   copyLangFiles()
   copyExeFile()
-  copyFilesFromSource()
+  copyFileList(filesFromSource, quiterssSourceAbsPath)
   copyFileList(filesFromQtSDKPlugins, qtsdkAbsPath + '\\plugins')
   copyFileList(filesFromQtSDKBin, qtsdkAbsPath + '\\bin')
 
