@@ -25,10 +25,11 @@ filesFromSource = [
 def preparePath(path):
   print "---- Preparing path: " + path
   if (os.path.exists(path)):
-    print "Path exists"
-  else:
-    os.makedirs(path)
-    print "Path created"
+    print "Path exists. Remove it"
+    shutil.rmtree(path)
+  
+  os.makedirs(path)
+  print "Path created"
     
 def copyLangFiles():
   print "---- Copying language files..."
