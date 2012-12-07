@@ -28,6 +28,12 @@ filesFromSource = [
   ['', 'TODO']
 ]
 
+filesFromRelease = [
+  ['', 'QuiteRSS.exe'],
+  ['', '7za.exe'],
+  ['', 'Updater.exe']
+]
+
 filesFromQtSDKPlugins = [
   ['\\sqldrivers', 'qsqlite4.dll'],
   ['\\iconengines', 'qsvgicon4.dll'],
@@ -72,11 +78,6 @@ def copyLangFiles():
   shutil.copytree(quiterssReleaseAbsPath + "\\lang", prepareAbsPath + "\\lang")
   print "Done"
 
-def copyExeFile():
-  print "---- Copying exe-file..."
-  shutil.copy(quiterssReleaseAbsPath + "\\QuiteRSS.exe", prepareAbsPath + "\\QuiteRSS.exe")
-  print "Done"
-
 def copyFileList(fileList, src):
   '''
   Копирование файлов из списка fileList из папки src
@@ -103,7 +104,7 @@ def main():
   print "QuiteRSS prepare-install"
   preparePath(prepareAbsPath)
   copyLangFiles()
-  copyExeFile()
+  copyFileList(filesFromRelease, quiterssReleaseAbsPath)
   copyFileList(filesFromSource, quiterssSourceAbsPath)
   copyFileList(filesFromQtSDKPlugins, qtsdkAbsPath + '\\plugins')
   copyFileList(filesFromQtSDKBin, qtsdkAbsPath + '\\bin')
