@@ -16,7 +16,7 @@ quiterssSourceAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS"
 quiterssReleaseAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS-build-desktop_Release\\release\\target"
 prepareAbsPath  = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS_prepare-install"
 quiterssFileRepoPath = 'e:\\Work\\_Useful\\QtProjects\\QuiteRss.File - copy'
-packerPath = 'e:\\Work\\_Utilities\\7za\\7za'
+packerPath = 'e:\\Work\\_Utilities\\7za\\7za.exe'
 
 # Список файлов состоит из относительного пути папки, содержащей файл,
 # и имени файла, который необходимо скопировать
