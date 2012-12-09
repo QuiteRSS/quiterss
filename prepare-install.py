@@ -104,7 +104,7 @@ def copyFileList(fileList, src):
     
     # Если есть имя папки, то создаём её
     if file[idDir] and (not os.path.exists(prepareAbsPath + file[idDir])):
-      shutil.copytree(src + file[idDir], prepareAbsPath + file[idDir])
+      os.makedirs(prepareAbsPath + file[idDir])
       
     # Копируем файл, обрабатывая ошибки
     try:
