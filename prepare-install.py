@@ -9,12 +9,14 @@
 import hashlib
 import os
 import shutil
+from subprocess import call
 
 qtsdkAbsPath = 'c:\\QtSDK\\Desktop\\Qt\\4.8.0\\mingw'
 quiterssSourceAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS"
 quiterssReleaseAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS-build-desktop_Release\\release\\target"
 prepareAbsPath  = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS_prepare-install"
 quiterssFileRepoPath = 'e:\\Work\\_Useful\\QtProjects\\QuiteRss.File - copy'
+packerPath = 'e:\\Work\\_Utilities\\7za\\7za'
 
 # Список файлов состоит из относительного пути папки, содержащей файл,
 # и имени файла, который необходимо скопировать
@@ -138,6 +140,18 @@ def copyMD5():
   shutil.copy(prepareAbsPath + '\\file_list.md5', quiterssFileRepoPath + '\\file_list.md5')
   print "Done"
 
+def packFiles(fileList, path):
+  '''
+  Пакуем каждый файл в индивидуальный архив
+  '''
+  print '---- Pack files'
+  for file in fileList:
+    packCmdLine = packerPath + ' a "' + path + file + '.7z" "' + path + file + '"'
+    print 'subprocess.call(' + packCmdLine + ')'
+    call(packCmdLine);
+  
+  print "Done"
+
 def main():
   print "QuiteRSS prepare-install"
   preparePath(prepareAbsPath)
@@ -148,6 +162,7 @@ def main():
   copyFileList(filesFromQtSDKBin, qtsdkAbsPath + '\\bin')
   createMD5(prepareFileList, prepareAbsPath)
   copyMD5()
+  packFiles(prepareFileList, prepareAbsPath)
 
 if __name__ == '__main__':
   main()
