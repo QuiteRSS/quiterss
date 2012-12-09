@@ -152,6 +152,20 @@ def packFiles(fileList, path):
   
   print "Done"
 
+def copyPackedFiles():
+  print '---- Copying packed files to quiterss.file-repo.windows'
+  
+  prepareFileList7z = []
+  for file in prepareFileList:
+    prepareFileList7z.append(file + '.7z')
+  
+  for file in prepareFileList7z:
+    print 'copying: ' + file
+    shutil.copy(prepareAbsPath + file, quiterssFileRepoPath + '\\windows' + file)
+  
+  print 'Done'
+  
+
 def main():
   print "QuiteRSS prepare-install"
   preparePath(prepareAbsPath)
@@ -163,6 +177,7 @@ def main():
   createMD5(prepareFileList, prepareAbsPath)
   copyMD5()
   packFiles(prepareFileList, prepareAbsPath)
+  copyPackedFiles()
 
 if __name__ == '__main__':
   main()
