@@ -164,7 +164,21 @@ def copyPackedFiles():
     shutil.copy(prepareAbsPath + file, quiterssFileRepoPath + '\\windows' + file)
   
   print 'Done'
+
+def updateFileRepo():
+  print '---- Updating repo: ' + quiterssFileRepoPath
   
+  callLine = 'hg commit --cwd "' + quiterssFileRepoPath + '"' \
+      + ' --addremove --subrepos --message "update windows install files"'
+  print 'call(' + callLine + ')'
+  call(callLine)
+  
+  callLine = 'hg log --cwd "' + quiterssFileRepoPath + '"' \
+      + ' --verbose --limit 1'
+  print 'call(' + callLine + ')'
+  call(callLine)
+  
+  print 'Done'
 
 def main():
   print "QuiteRSS prepare-install"
@@ -178,6 +192,7 @@ def main():
   copyMD5()
   packFiles(prepareFileList, prepareAbsPath)
   copyPackedFiles()
+  updateFileRepo()
 
 if __name__ == '__main__':
   main()
