@@ -172,11 +172,18 @@ def updateFileRepo():
       + ' --addremove --subrepos --message "update windows install files"'
   print 'call(' + callLine + ')'
   call(callLine)
+  print ""
   
   callLine = 'hg log --cwd "' + quiterssFileRepoPath + '"' \
       + ' --verbose --limit 1'
   print 'call(' + callLine + ')'
   call(callLine)
+  print ""
+  
+  # callLine = 'hg push --cwd "' + quiterssFileRepoPath + '"'
+  # print 'call(' + callLine + ')'
+  # call(callLine)
+  # print ""
   
   print 'Done'
 
