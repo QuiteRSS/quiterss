@@ -14,6 +14,7 @@ qtsdkAbsPath = 'c:\\QtSDK\\Desktop\\Qt\\4.8.0\\mingw'
 quiterssSourceAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS"
 quiterssReleaseAbsPath = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS-build-desktop_Release\\release\\target"
 prepareAbsPath  = "e:\\Work\\_Useful\\QtProjects\\QuiteRSS_prepare-install"
+quiterssFileRepoPath = 'e:\\Work\\_Useful\\QtProjects\\QuiteRss.File - copy'
 
 # Список файлов состоит из относительного пути папки, содержащей файл,
 # и имени файла, который необходимо скопировать
@@ -130,6 +131,12 @@ def createMD5(fileList, path):
     print line
     
   f.close()
+  print "Done"
+
+def copyMD5():
+  print "---- Copying md5-file to quiterss.file-repo"
+  shutil.copy(prepareAbsPath + '\\file_list.md5', quiterssFileRepoPath + '\\file_list.md5')
+  print "Done"
 
 def main():
   print "QuiteRSS prepare-install"
@@ -140,6 +147,7 @@ def main():
   copyFileList(filesFromQtSDKPlugins, qtsdkAbsPath + '\\plugins')
   copyFileList(filesFromQtSDKBin, qtsdkAbsPath + '\\bin')
   createMD5(prepareFileList, prepareAbsPath)
+  copyMD5()
 
 if __name__ == '__main__':
   main()
