@@ -121,7 +121,7 @@ def createMD5(fileList, path):
   '''
   print "---- Create md5-file for all files in " + path
   
-  f = open(path + '\quiterss.md5', 'w')
+  f = open(path + '\\file_list.md5', 'w')
   for file in fileList:
     fileName = path + file
     fileHash = hashlib.md5(open(fileName, 'r').read()).hexdigest()
