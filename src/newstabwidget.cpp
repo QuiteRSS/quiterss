@@ -1092,25 +1092,25 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
 void NewsTabWidget::slotLinkClicked(QUrl url)
 {
-    if (url.host().isEmpty()) {
-      QModelIndex currentIndex = feedsTreeView_->currentIndex();
-      QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
+  if (url.host().isEmpty()) {
+    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
 
-      url.setScheme(hostUrl.scheme());
-      url.setHost(hostUrl.host());
-    }
-    if (!rsslisting_->externalBrowserOn_) {
-      if (!webView_->midButtonClick) {
-        if (!webControlPanel_->isVisible()) {
-          webView_->history()->clear();
-          setWebToolbarVisible(true, false);
-        }
-        webView_->load(url);
-      } else {
-        qobject_cast<WebView*>(rsslisting_->createWebTab()->view())->load(url);
+    url.setScheme(hostUrl.scheme());
+    url.setHost(hostUrl.host());
+  }
+  if (!rsslisting_->externalBrowserOn_) {
+    if (!webView_->midButtonClick) {
+      if (!webControlPanel_->isVisible()) {
+        webView_->history()->clear();
+        setWebToolbarVisible(true, false);
       }
-    } else openUrl(url);
-    webView_->midButtonClick = false;
+      webView_->load(url);
+    } else {
+      qobject_cast<WebView*>(rsslisting_->createWebTab()->view())->load(url);
+    }
+  } else openUrl(url);
+  webView_->midButtonClick = false;
 }
 
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
@@ -1174,8 +1174,7 @@ void NewsTabWidget::webHomePage()
 //! Открытие отображаемой страницы во внешнем браузере
 void NewsTabWidget::openPageInExternalBrowser()
 {
-  rsslisting_->openingLink_ = true;
-  QDesktopServices::openUrl(webView_->url());
+  openUrl(webView_->url());
 }
 
 //! Открытие новости в браузере
@@ -1196,7 +1195,6 @@ void NewsTabWidget::openInExternalBrowserNews()
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  rsslisting_->openingLink_ = true;
   openUrl(linkString.simplified());
 }
 
@@ -1371,8 +1369,14 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 //! Открытие ссылки во внешнем браузере
 void NewsTabWidget::openUrlInExternalBrowser()
 {
-  rsslisting_->openingLink_ = true;
-  QDesktopServices::openUrl(linkUrl_);
+  if (linkUrl_.host().isEmpty()) {
+    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
+
+    linkUrl_.setScheme(hostUrl.scheme());
+    linkUrl_.setHost(hostUrl.host());
+  }
+  openUrl(linkUrl_);
 }
 
 void NewsTabWidget::setVisibleAction(bool show)

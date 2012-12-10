@@ -5075,8 +5075,11 @@ void RSSListing::setStayOnTop()
  ******************************************************************************/
 void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
+  feedsTreeView_->setCursor(Qt::WaitCursor);
+
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
+  int feedId = feedsTreeModel_->getIdByIndex(indexWhat);
   int feedParIdOld = feedsTreeModel_->getParidByIndex(indexWhat);
   int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
 
@@ -5087,5 +5090,11 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
   categoriesList << feedParIdOld << feedParIdNew;
   recountFeedCategories(categoriesList);
 
-  feedsModelReload();
+  feedsTreeModel_->refresh();
+  expandNodes();
+
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParIdNew);
+  feedsTreeView_->setCurrentIndex(feedIndex);
+
+  feedsTreeView_->setCursor(Qt::ArrowCursor);
 }

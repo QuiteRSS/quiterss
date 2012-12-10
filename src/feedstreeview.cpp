@@ -275,12 +275,11 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
                      dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
+  rectText.setWidth(rectText.width()-1);
   QBrush brush = qApp->palette().brush(QPalette::Highlight);
 
   QPainter painter;
   painter.begin(this->viewport());
-
-  painter.setPen(Qt::DashLine);
 
 //  if (qAbs(rectText.top() - dragPos_.y()) < 3) {
 //    painter.setPen(QPen(brush, 2));
