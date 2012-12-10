@@ -3030,9 +3030,6 @@ void RSSListing::markFeedRead()
           arg(feeds);
       q.exec(qStr);
     }
-    qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE parentId='%1'").
-        arg(id);
-    q.exec(qStr);
     qStr = QString("UPDATE news SET new=0 WHERE parentId='%1' AND new=1").
         arg(id);
     q.exec(qStr);
@@ -3040,9 +3037,6 @@ void RSSListing::markFeedRead()
     db_.transaction();
     if (openFeed) {
       qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
-          arg(id);
-      q.exec(qStr);
-      qStr = QString("UPDATE feeds SET newCount=0, unread=0 WHERE id='%1'").
           arg(id);
       q.exec(qStr);
     } else {
@@ -4509,8 +4503,10 @@ QWebPage *RSSListing::createWebTab()
   widget->setSettings();
   widget->retranslateStrings();
 
-  if (QApplication::keyboardModifiers() != Qt::ControlModifier)
+  if (QApplication::keyboardModifiers() != Qt::ControlModifier) {
+    currentNewsTab = widget;
     emit signalCurrentTab(indexTab);
+  }
 
   return widget->webView_->page();
 }
