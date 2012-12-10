@@ -302,14 +302,14 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   QWidget *generalFeedsWidget_ = new QWidget();
   generalFeedsWidget_->setLayout(generalFeedsLayout);
 //
-  autoMarkNewsReadOn_ = new QGroupBox(tr("Mark selected news as read:"));
-  autoMarkNewsReadOn_->setCheckable(true);
-  markNewsReadOn_ = new QRadioButton(tr("after"));
-  prevMarkNewsReadOn_ = new QRadioButton(tr("after transition to next news"));
+  markNewsReadOn_ = new QGroupBox(tr("Mark news as read:"));
+  markNewsReadOn_->setCheckable(true);
+  markCurNewsRead_ = new QRadioButton(tr("on selecting. With timeout"));
+  markPrevNewsRead_ = new QRadioButton(tr("after switching to another news"));
   markNewsReadTime_ = new QSpinBox();
   markNewsReadTime_->setEnabled(false);
   markNewsReadTime_->setRange(0, 100);
-  connect(markNewsReadOn_, SIGNAL(toggled(bool)),
+  connect(markCurNewsRead_, SIGNAL(toggled(bool)),
           markNewsReadTime_, SLOT(setEnabled(bool)));
   markReadSwitchingFeed_ = new QCheckBox(tr("Mark displayed news as read when switching feeds"));
   markReadClosingTab_ = new QCheckBox(tr("Mark displayed news as read when closing tab"));
@@ -320,18 +320,18 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
 
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
-  readingFeedsLayout1->addWidget(markNewsReadOn_);
+  readingFeedsLayout1->addWidget(markCurNewsRead_);
   readingFeedsLayout1->addWidget(markNewsReadTime_);
   readingFeedsLayout1->addWidget(new QLabel(tr("seconds")));
   readingFeedsLayout1->addStretch();
 
   QVBoxLayout *readingFeedsLayout2 = new QVBoxLayout();
   readingFeedsLayout2->addLayout(readingFeedsLayout1);
-  readingFeedsLayout2->addWidget(prevMarkNewsReadOn_);
-  autoMarkNewsReadOn_->setLayout(readingFeedsLayout2);
+  readingFeedsLayout2->addWidget(markPrevNewsRead_);
+  markNewsReadOn_->setLayout(readingFeedsLayout2);
 
   QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
-  readingFeedsLayout->addWidget(autoMarkNewsReadOn_);
+  readingFeedsLayout->addWidget(markNewsReadOn_);
   readingFeedsLayout->addWidget(markReadSwitchingFeed_);
   readingFeedsLayout->addWidget(markReadClosingTab_);
   readingFeedsLayout->addWidget(markReadMinimize_);

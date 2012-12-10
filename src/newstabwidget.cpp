@@ -523,7 +523,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
   int newsId;
   newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  if (rsslisting_->prevMarkNewsReadOn_ &&
+  if (rsslisting_->markNewsReadOn_ && rsslisting_->markPrevNewsRead_ &&
       (newsId != currentNewsIdOld) && (feedId_ == currentFeedIdOld)) {
     QModelIndex startIndex = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(startIndex, Qt::EditRole, currentNewsIdOld);
@@ -547,7 +547,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_->stop();
-    if (rsslisting_->markNewsReadOn_) {
+    if (rsslisting_->markNewsReadOn_ && rsslisting_->markCurNewsRead_) {
       if (rsslisting_->markNewsReadTime_ == 0) {
         slotSetItemRead(newsView_->currentIndex(), 1);
       } else {

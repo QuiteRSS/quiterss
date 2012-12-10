@@ -73,8 +73,9 @@ public:
   QString formatDateTime_;
 
   bool markNewsReadOn_;
-  bool prevMarkNewsReadOn_;
+  bool markCurNewsRead_;
   int  markNewsReadTime_;
+  bool markPrevNewsRead_;
   bool markReadSwitchingFeed_;
   bool markReadClosingTab_;
   bool markReadMinimize_;

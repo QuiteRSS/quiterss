@@ -1464,8 +1464,9 @@ void RSSListing::readSettings()
   openNewsWebViewOn_ = settings_->value("openNewsWebViewOn", true).toBool();
 
   markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
+  markCurNewsRead_ = settings_->value("markCurNewsRead", true).toBool();
   markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
-  prevMarkNewsReadOn_= settings_->value("prevMarkNewsReadOn", false).toBool();
+  markPrevNewsRead_= settings_->value("markPrevNewsRead", false).toBool();
   markReadSwitchingFeed_ = settings_->value("markReadSwitchingFeed", false).toBool();
   markReadClosingTab_ = settings_->value("markReadClosingTab", false).toBool();
   markReadMinimize_ = settings_->value("markReadMinimize", false).toBool();
@@ -1645,8 +1646,9 @@ void RSSListing::writeSettings()
   settings_->setValue("openNewsWebViewOn", openNewsWebViewOn_);
 
   settings_->setValue("markNewsReadOn", markNewsReadOn_);
+  settings_->setValue("markCurNewsRead", markCurNewsRead_);
   settings_->setValue("markNewsReadTime", markNewsReadTime_);
-  settings_->setValue("prevMarkNewsReadOn", prevMarkNewsReadOn_);
+  settings_->setValue("markPrevNewsRead", markPrevNewsRead_);
   settings_->setValue("markReadSwitchingFeed", markReadSwitchingFeed_);
   settings_->setValue("markReadClosingTab", markReadClosingTab_);
   settings_->setValue("markReadMinimize", markReadMinimize_);
@@ -2593,8 +2595,9 @@ void RSSListing::showOptionDlg()
   optionsDialog->openNewsWebViewOn_->setChecked(openNewsWebViewOn_);
 
   optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
+  optionsDialog->markCurNewsRead_->setChecked(markCurNewsRead_);
   optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
-  optionsDialog->prevMarkNewsReadOn_->setChecked(prevMarkNewsReadOn_);
+  optionsDialog->markPrevNewsRead_->setChecked(markPrevNewsRead_);
   optionsDialog->markReadSwitchingFeed_->setChecked(markReadSwitchingFeed_);
   optionsDialog->markReadClosingTab_->setChecked(markReadClosingTab_);
   optionsDialog->markReadMinimize_->setChecked(markReadMinimize_);
@@ -2784,8 +2787,9 @@ void RSSListing::showOptionDlg()
   openNewsWebViewOn_ = optionsDialog->openNewsWebViewOn_->isChecked();
 
   markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
+  markCurNewsRead_ = optionsDialog->markCurNewsRead_->isChecked();
   markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
-  prevMarkNewsReadOn_ = optionsDialog->prevMarkNewsReadOn_->isChecked();
+  markPrevNewsRead_ = optionsDialog->markPrevNewsRead_->isChecked();
   markReadSwitchingFeed_ = optionsDialog->markReadSwitchingFeed_->isChecked();
   markReadClosingTab_ = optionsDialog->markReadClosingTab_->isChecked();
   markReadMinimize_ = optionsDialog->markReadMinimize_->isChecked();
@@ -3377,7 +3381,7 @@ void RSSListing::setFeedRead(int feedId, int feedParId, FeedReedType feedReadtyp
     q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
   q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
 
-  if (prevMarkNewsReadOn_)
+  if (markNewsReadOn_ && markPrevNewsRead_)
     q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
 
   q.exec(QString("UPDATE feeds SET newCount=0 WHERE id='%1'").arg(feedId));
@@ -3458,7 +3462,7 @@ void RSSListing::setAutoLoadImages(bool set)
 
 void RSSListing::loadSettingsFeeds()
 {
-  markNewsReadOn_ = false;
+  markCurNewsRead_ = false;
   behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", NEW_COUNT_ICON_TRAY).toInt();
 
   QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
