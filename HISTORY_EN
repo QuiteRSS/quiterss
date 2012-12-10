@@ -2,13 +2,14 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.10.3+</B> (õõ Nov 2012)
+<P><B>Version 0.11.0</B> (10 Dec 2012)
 <UL>
 <LI>Main: Feed categories (folders)</LI>
 <BR>
 <LI>Added: View mode "Stay On Top"</LI>
 <LI>Added: Feed property "Show news' description instead of loading web page"</LI>
 <LI>Added: News filter "Show Not Starred"</LI>
+<LI>Added: Option "Mark news as read: after switching to another news"</LI>
 <LI>Added: Language: Spanish</LI>
 <BR>
 <LI>Changed: GUI. Some Visual tweaks</LI>
