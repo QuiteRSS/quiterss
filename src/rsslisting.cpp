@@ -4078,29 +4078,22 @@ void RSSListing::markAllFeedsRead()
   q.exec("UPDATE feeds SET newCount=0, unread=0");
   db_.commit();
 
+  feedsModelReload();
+
   if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
     QModelIndex index =
         feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
     feedsTreeView_->setCurrentIndex(index);
     slotFeedClicked(index);
   } else {
-    feedsModelReload();
+    int currentRow = newsView_->currentIndex().row();
 
-    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(0);
+    newsModel_->select();
 
-    QModelIndex index = feedsTreeModel_->getIndexById(widget->feedId_, widget->feedParId_);
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
 
-    if (!index.isValid()) {
-      widget->newsModel_->setFilter("feedId=-1");
-
-      QPixmap iconTab;
-      iconTab.load(":/images/feed");
-      widget->newsIconTitle_->setPixmap(iconTab);
-      widget->newsTextTitle_->setText("");
-
-      feedProperties_->setEnabled(false);
-      widget->setVisible(false);
-    }
+    newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }
 
   emit signalRefreshInfoTray();
