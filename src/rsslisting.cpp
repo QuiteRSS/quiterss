@@ -92,7 +92,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   currentNewsTab = NULL;
   newsView_ = NULL;
-  webView_ = NULL;
   notificationWidget = NULL;
   feedIdOld = -2;
   openingLink_ = false;
@@ -592,7 +591,6 @@ void RSSListing::createNewsTab(int index)
 
   newsModel_ = currentNewsTab->newsModel_;
   newsView_ = currentNewsTab->newsView_;  
-  webView_ = currentNewsTab->webView_;
 }
 
 void RSSListing::createStatusBar()
@@ -4359,7 +4357,7 @@ void RSSListing::slotSwitchFocus()
   if (feedsTreeView_->hasFocus()) {
     newsView_->setFocus();
   } else if (newsView_->hasFocus()) {
-    webView_->setFocus();
+    currentNewsTab->webView_->setFocus();
   } else {
     feedsTreeView_->setFocus();
   }
@@ -4966,12 +4964,12 @@ void RSSListing::slotSortFeeds()
 void RSSListing::browserZoom(QAction *action)
 {
   if (action->objectName() == "zoomInAct") {
-    webView_->setZoomFactor(webView_->zoomFactor()+0.1);
+    currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()+0.1);
   } else if (action->objectName() == "zoomOutAct") {
-    if (webView_->zoomFactor() > 0.1)
-      webView_->setZoomFactor(webView_->zoomFactor()-0.1);
+    if (currentNewsTab->webView_->zoomFactor() > 0.1)
+      currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()-0.1);
   } else {
-    webView_->setZoomFactor(1);
+    currentNewsTab->webView_->setZoomFactor(1);
   }
 }
 
@@ -4987,7 +4985,7 @@ void RSSListing::slotPrint()
   QPrinter printer;
   printer.setDocName(tr("Web Page"));
   QPrintDialog *printDlg = new QPrintDialog(&printer);
-  connect(printDlg, SIGNAL(accepted(QPrinter*)), webView_, SLOT(print(QPrinter*)));
+  connect(printDlg, SIGNAL(accepted(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
   printDlg->exec();
   delete printDlg;
 }
@@ -5000,7 +4998,7 @@ void RSSListing::slotPrintPreview()
   QPrintPreviewDialog *prevDlg = new QPrintPreviewDialog(&printer);
   prevDlg->setWindowFlags(prevDlg->windowFlags() | Qt::WindowMaximizeButtonHint);
   prevDlg->resize(650, 800);
-  connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), webView_, SLOT(print(QPrinter*)));
+  connect(prevDlg, SIGNAL(paintRequested(QPrinter*)), currentNewsTab->webView_, SLOT(print(QPrinter*)));
   prevDlg->exec();
   delete prevDlg;
 }

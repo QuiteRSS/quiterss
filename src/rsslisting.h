@@ -39,7 +39,8 @@ public:
   FeedsTreeView *feedsTreeView_;
 #define TAB_WIDGET_PERMANENT 0
   QTabWidget *tabWidget_;
-  WebView *webView_;
+
+  NewsTabWidget *currentNewsTab;
 
   QAction *newsToolbarToggle_;
   QAction *browserToolbarToggle_;
@@ -290,8 +291,6 @@ private:
   Qt::DockWidgetArea feedsDockArea_;
 
   NewsView *newsView_;
-
-  NewsTabWidget *currentNewsTab;
 
   QProgressBar *progressBar_;
   QLabel *statusUnread_;

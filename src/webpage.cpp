@@ -32,7 +32,7 @@ QWebPage *WebPage::createWindow(WebWindowType type)
     parent_ = parent_->parent();
   }
   RSSListing *rsslisting_ = qobject_cast<RSSListing*>(parent_);
-  if (rsslisting_->webView_->midButtonClick)
+  if (rsslisting_->currentNewsTab->webView_->midButtonClick)
     return rsslisting_->createWebTab();
   else return this;
 }
