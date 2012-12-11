@@ -360,12 +360,9 @@ void NewsFiltersDialog::applyFilter()
     }
   }
 
-  if (feedId == -1)
-    rssl_->slotUpdateStatus(false);
-  else {
+  if (feedId != -1)
     rssl_->slotUpdateNews();
-    rssl_->slotUpdateStatus();
-  }
+  rssl_->slotUpdateStatus(feedId);
 }
 
 void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)

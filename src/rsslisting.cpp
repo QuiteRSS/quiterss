@@ -2364,7 +2364,7 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
   if (parseFeedId == currentNewsTab->feedId_) {
     slotUpdateNews();
-    slotUpdateStatus();
+    slotUpdateStatus(parseFeedId);
   }
   // иначе обновляем модель лент
   else {
@@ -2550,7 +2550,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
       qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
     }
   } else {
-    slotUpdateStatus();
+    slotUpdateStatus(feedId);
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
   }
 }
@@ -3067,35 +3067,26 @@ void RSSListing::markFeedRead()
 
       newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
-      slotUpdateStatus();
+      slotUpdateStatus(id);
     }
   }
   // Обновляем ленту, на которой нет фокуса
   else {
-    slotUpdateStatus(false);
+    slotUpdateStatus(id);
   }
 }
 
-/*! \brief Обновление статуса либо выбранной ленты, либо ленты текущей вкладки
- *  \param openFeed признак обновления ленты во время её открытия:
- *           true - ленты обносляется при открытии
- *           false - обновление ленты производится без её открытия
- ******************************************************************************/
-void RSSListing::slotUpdateStatus(bool openFeed)
+/*! \brief Обновление статуса либо выбранной ленты, либо ленты текущей вкладки*/
+void RSSListing::slotUpdateStatus(int feedId)
 {
   QSqlQuery q(db_);
   QString qStr;
 
-  int feedId;
-  int feedParId;
-  if (feedsTreeView_->selectIndex_.isValid() && !openFeed) {
-    feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
-    feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->selectIndex_);
-  }
-  else {
-    feedId = currentNewsTab->feedId_;
-    feedParId = currentNewsTab->feedParId_;
-  }
+  int feedParId = 0;
+  qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) feedParId = q.value(0).toInt();
 
   int newCountOld = 0;
   qStr = QString("SELECT newCount FROM feeds WHERE id=='%1'").
@@ -3129,9 +3120,7 @@ void RSSListing::slotUpdateStatus(bool openFeed)
     playSoundNewNews();
   }
 
-//  feedsModelReload();
-
-  if (openFeed) {
+  if (feedId == currentNewsTab->feedId_) {
     statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
   }

@@ -534,7 +534,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
   if (!index.isValid()) {
     hideWebContent();
-    rsslisting_->slotUpdateStatus();  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
+    rsslisting_->slotUpdateStatus(feedId_);  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     currentNewsIdOld = newsId;
     currentFeedIdOld = feedId_;
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
@@ -579,7 +579,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   }
-  rsslisting_->slotUpdateStatus();
+  rsslisting_->slotUpdateStatus(feedId_);
 
   currentNewsIdOld = newsId;
   currentFeedIdOld = feedId_;
@@ -740,7 +740,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
     newsView_->verticalScrollBar()->setValue(topRow);
   }
 
-  rsslisting_->slotUpdateStatus();
+  rsslisting_->slotUpdateStatus(feedId_);
 }
 
 //! Пометка новости звездочкой (избранная)
@@ -817,7 +817,7 @@ void NewsTabWidget::markNewsRead()
       }
     }
     newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-    rsslisting_->slotUpdateStatus();
+    rsslisting_->slotUpdateStatus(feedId_);
   }
 }
 
@@ -843,7 +843,7 @@ void NewsTabWidget::markAllNewsRead()
 
   newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
-  rsslisting_->slotUpdateStatus();
+  rsslisting_->slotUpdateStatus(feedId_);
 }
 
 //! Пометка выбранных новостей звездочкой (избранные)
@@ -891,7 +891,7 @@ void NewsTabWidget::markNewsStar()
       }
     }
     newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-    rsslisting_->slotUpdateStatus();
+    rsslisting_->slotUpdateStatus(feedId_);
   }
 }
 
@@ -932,7 +932,7 @@ void NewsTabWidget::deleteNews()
   else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
-  rsslisting_->slotUpdateStatus();
+  rsslisting_->slotUpdateStatus(feedId_);
 }
 
 //! Удаление всех новостей из списка
@@ -956,7 +956,7 @@ void NewsTabWidget::deleteAllNewsList()
   curIndex = newsModel_->index(-1, newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
-  rsslisting_->slotUpdateStatus();
+  rsslisting_->slotUpdateStatus(feedId_);
 }
 
 //! Восстановление новостей
@@ -994,7 +994,7 @@ void NewsTabWidget::restoreNews()
   else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
-  rsslisting_->slotUpdateStatus();
+  rsslisting_->slotUpdateStatus(feedId_);
 }
 
 //! Сортировка новостей по "star" или по "read"

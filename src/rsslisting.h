@@ -119,7 +119,7 @@ public slots:
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(const QUrl &url, const bool &changed);
   void slotUpdateNews();
-  void slotUpdateStatus(bool openFeed = true);
+  void slotUpdateStatus(int feedId);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
