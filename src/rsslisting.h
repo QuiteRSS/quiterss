@@ -160,7 +160,7 @@ private:
   void retranslateStrings();
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
-  void recountFeedCounts(int feedId, int feedParId = 0);
+  void recountFeedCounts(int feedId);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
   void feedsModelReload();
@@ -380,7 +380,7 @@ private slots:
   void updateIconToolBarNull(bool feedsDockVisible);
   void slotDockLocationChanged(Qt::DockWidgetArea area);
   void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
-  void setFeedRead(int feedId, int feedParId, FeedReedType feedReadtype);
+  void setFeedRead(int feedId, FeedReedType feedReadtype);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
 
