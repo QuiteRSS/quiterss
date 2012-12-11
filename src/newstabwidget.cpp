@@ -615,6 +615,8 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
 void NewsTabWidget::slotNewsUpPressed()
 {
+  if (feedId_ == -1) return;
+
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
       newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
@@ -638,6 +640,8 @@ void NewsTabWidget::slotNewsUpPressed()
 
 void NewsTabWidget::slotNewsDownPressed()
 {
+  if (feedId_ == -1) return;
+
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
       newsView_->setCurrentIndex(newsModel_->index(0, newsModel_->fieldIndex("title")));
@@ -770,6 +774,8 @@ void NewsTabWidget::slotReadTimer()
 //! Отметить выделенные новости прочитанными
 void NewsTabWidget::markNewsRead()
 {
+  if (feedId_ == -1) return;
+
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
@@ -824,6 +830,7 @@ void NewsTabWidget::markNewsRead()
 //! Отметить все новости в ленте прочитанными
 void NewsTabWidget::markAllNewsRead()
 {
+  if (feedId_ == -1) return;
   if (newsModel_->rowCount() == 0) return;
 
   QSqlQuery q(rsslisting_->db_);
@@ -849,6 +856,8 @@ void NewsTabWidget::markAllNewsRead()
 //! Пометка выбранных новостей звездочкой (избранные)
 void NewsTabWidget::markNewsStar()
 {
+  if (feedId_ == -1) return;
+
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
@@ -898,6 +907,8 @@ void NewsTabWidget::markNewsStar()
 //! Удаление новости
 void NewsTabWidget::deleteNews()
 {
+  if (feedId_ == -1) return;
+
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
@@ -938,6 +949,8 @@ void NewsTabWidget::deleteNews()
 //! Удаление всех новостей из списка
 void NewsTabWidget::deleteAllNewsList()
 {
+  if (feedId_ == -1) return;
+
   QModelIndex curIndex;
 
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
@@ -962,6 +975,8 @@ void NewsTabWidget::deleteAllNewsList()
 //! Восстановление новостей
 void NewsTabWidget::restoreNews()
 {
+  if (feedId_ == -1) return;
+
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 

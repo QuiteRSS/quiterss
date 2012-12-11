@@ -3221,6 +3221,11 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
   if (currentNewsTab == NULL) return;
+  if (currentNewsTab->feedId_ == -1) {
+    filterNewsAll_->setChecked(true);
+    return;
+  }
+
   QElapsedTimer timer;
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -4419,9 +4424,10 @@ void RSSListing::slotTabCurrentChanged(int index)
     } else {
       statusUnread_->setVisible(false);
       statusAll_->setVisible(false);
-      widget->setSettings();
-      widget->retranslateStrings();
-      widget->setFocus();
+      currentNewsTab = widget;
+      currentNewsTab->setSettings();
+      currentNewsTab->retranslateStrings();
+      currentNewsTab->setFocus();
     }
   }
 }
