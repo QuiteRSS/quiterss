@@ -2471,9 +2471,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
     currentNewsTab->setSettings(false);
-    if (index.isValid())
-      currentNewsTab->setVisible(true);
   }
+
+  currentNewsTab->setVisible(index.isValid());
+  statusUnread_->setVisible(index.isValid());
+  statusAll_->setVisible(index.isValid());
 
   //! Устанавливаем иконку для открытой вкладки
   bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
@@ -2497,8 +2499,6 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   currentNewsTab->newsTextTitle_->setText(tabText);
 
   feedProperties_->setEnabled(index.isValid());
-  if (!index.isValid())
-    currentNewsTab->setVisible(false);
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -4417,8 +4417,8 @@ void RSSListing::slotTabCurrentChanged(int index)
       currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
       currentNewsTab->newsView_->setFocus();
 
-      statusUnread_->setVisible(true);
-      statusAll_->setVisible(true);
+      statusUnread_->setVisible(widget->feedId_);
+      statusAll_->setVisible(widget->feedId_);
     } else {
       statusUnread_->setVisible(false);
       statusAll_->setVisible(false);
