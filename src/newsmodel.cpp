@@ -5,7 +5,7 @@ NewsModel::NewsModel(QObject *parent, QTreeView *view, QSqlDatabase *db)
     view_(view),
     db_(db)
 {
-  setEditStrategy(QSqlTableModel::OnFieldChange);
+  setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
 QVariant NewsModel::data(const QModelIndex &index, int role) const

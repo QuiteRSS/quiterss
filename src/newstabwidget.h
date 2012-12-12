@@ -51,7 +51,6 @@ private:
   QTimer *markNewsReadTimer_;
 
   int currentNewsIdOld;
-  int currentFeedIdOld;
 
   int webDefaultFontSize_;
   int webDefaultFixedFontSize_;

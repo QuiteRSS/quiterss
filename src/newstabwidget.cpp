@@ -17,7 +17,6 @@ NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
   feedsTreeModel_ = rsslisting_->feedsTreeModel_;
 
   currentNewsIdOld = -1;
-  currentFeedIdOld = -1;
 
   newsIconTitle_ = new QLabel();
   newsTextTitle_ = new QLabel();
@@ -453,6 +452,9 @@ void NewsTabWidget::setSettings(bool newTab)
     }
   }
 
+  if (feedId_ > -1)
+    rsslisting_->slotUpdateStatus(feedId_, false);
+
   rsslisting_->autoLoadImages_ = !autoLoadImages_;
   rsslisting_->setAutoLoadImages(false);
   webView_->settings()->setAttribute(
@@ -524,7 +526,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   int newsId;
   newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
   if (rsslisting_->markNewsReadOn_ && rsslisting_->markPrevNewsRead_ &&
-      (newsId != currentNewsIdOld) && (feedId_ == currentFeedIdOld)) {
+      (newsId != currentNewsIdOld)) {
     QModelIndex startIndex = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(startIndex, Qt::EditRole, currentNewsIdOld);
     if (!indexList.isEmpty()) {
@@ -534,14 +536,12 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
   if (!index.isValid()) {
     hideWebContent();
-    rsslisting_->slotUpdateStatus(feedId_);  // необходимо, когда выбрана другая лента, но новость в ней не выбрана
     currentNewsIdOld = newsId;
-    currentFeedIdOld = feedId_;
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
-  if (!((newsId == currentNewsIdOld) && (feedId_ == currentFeedIdOld) &&
+  if (!((newsId == currentNewsIdOld) &&
         newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
         clicked) {
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -577,12 +577,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     updateWebView(index);
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
   }
-  rsslisting_->slotUpdateStatus(feedId_);
-
   currentNewsIdOld = newsId;
-  currentFeedIdOld = feedId_;
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
@@ -714,37 +710,38 @@ void NewsTabWidget::slotNewsPageDownPressed()
 //! Пометка новости прочитанной
 void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 {
-  if (!index.isValid()) return;
+  if (!index.isValid() || (newsModel_->rowCount() == 0)) return;
 
-  if (newsModel_->rowCount() != 0) {
-    int topRow = newsView_->verticalScrollBar()->value();
-    QModelIndex curIndex = newsView_->currentIndex();
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
+  bool changed = false;
+  int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  QSqlQuery q(rsslisting_->db_);
+
+  if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
+    newsModel_->setData(
+          newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
+          0);
+    q.exec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
+  }
+  if (read == 1) {
+    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
       newsModel_->setData(
-            newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
-            0);
+            newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
+            1);
+      q.exec(QString("UPDATE news SET read=1 WHERE id=='%1'").arg(newsId));
+      changed = true;
     }
-    if (read == 1) {
-      if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
-        newsModel_->setData(
-              newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
-              1);
-      }
-    } else {
+  } else {
+    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != 0) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             0);
+      q.exec(QString("UPDATE news SET read=0 WHERE id=='%1'").arg(newsId));
+      changed = true;
     }
-
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-
-    if (newsView_->currentIndex() != curIndex)
-      newsView_->setCurrentIndex(curIndex);
-    newsView_->verticalScrollBar()->setValue(topRow);
   }
 
-  rsslisting_->slotUpdateStatus(feedId_);
+  if (changed)
+    rsslisting_->slotUpdateStatus(feedId_);
 }
 
 //! Пометка новости звездочкой (избранная)
@@ -752,17 +749,14 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
 {
   if (!index.isValid()) return;
 
-  int topRow = newsView_->verticalScrollBar()->value();
-  QModelIndex curIndex = newsView_->currentIndex();
   newsModel_->setData(
         newsModel_->index(index.row(), newsModel_->fieldIndex("starred")),
         starred);
 
-  while (newsModel_->canFetchMore())
-    newsModel_->fetchMore();
-
-  newsView_->setCurrentIndex(curIndex);
-  newsView_->verticalScrollBar()->setValue(topRow);
+  int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  QSqlQuery q(rsslisting_->db_);
+  q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
+         arg(starred).arg(newsId));
 }
 
 void NewsTabWidget::slotReadTimer()
@@ -849,7 +843,6 @@ void NewsTabWidget::markAllNewsRead()
     newsModel_->fetchMore();
 
   newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
-
   rsslisting_->slotUpdateStatus(feedId_);
 }
 
@@ -900,7 +893,6 @@ void NewsTabWidget::markNewsStar()
       }
     }
     newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
-    rsslisting_->slotUpdateStatus(feedId_);
   }
 }
 
@@ -924,6 +916,7 @@ void NewsTabWidget::deleteNews()
 
     newsModel_->setData(
           newsModel_->index(row, newsModel_->fieldIndex("deleted")), 1);
+    newsModel_->submitAll();
   } else {
     rsslisting_->db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
@@ -987,10 +980,10 @@ void NewsTabWidget::restoreNews()
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
-    int row = curIndex.row();
 
     newsModel_->setData(
-          newsModel_->index(row, newsModel_->fieldIndex("deleted")), 0);
+          newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleted")), 0);
+    newsModel_->submitAll();
   } else {
     rsslisting_->db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
