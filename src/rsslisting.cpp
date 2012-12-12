@@ -2112,11 +2112,18 @@ void RSSListing::recountFeedCounts(int feedId)
   QSqlQuery q(db_);
   QString qStr;
 
+  db_.transaction();
+
   int feedParId = 0;
-  qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
+  bool isFolder = false;
+  qStr = QString("SELECT parentId, xmlUrl FROM feeds WHERE id=='%1'").
       arg(feedId);
   q.exec(qStr);
-  if (q.next()) feedParId = q.value(0).toInt();
+  if (q.next()) {
+    feedParId = q.value(0).toInt();
+    if (q.value(1).toString().isEmpty())
+      isFolder = true;
+  }
 
   QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
   QModelIndex indexParent = QModelIndex();
@@ -2127,13 +2134,6 @@ void RSSListing::recountFeedCounts(int feedId)
   int undeleteCount = 0;
   int unreadCount = 0;
   int newCount = 0;
-
-  bool isFolder = false;
-  q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=%1").arg(feedId));
-  if (q.next() && (q.value(0).toString().isEmpty()))
-    isFolder = true;
-
-  db_.transaction();
 
   if (!isFolder) {
     // Подсчет всех новостей (не помеченных удаленными)
@@ -2149,7 +2149,7 @@ void RSSListing::recountFeedCounts(int feedId)
     if (q.next()) unreadCount = q.value(0).toInt();
 
     // Подсчет новых новостей
-    qStr = QString("SELECT count(new) FROM news WHERE feedId='%1' AND new==1 AND deleted==0").
+    qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
         arg(feedId);
     q.exec(qStr);
     if (q.next()) newCount = q.value(0).toInt();
@@ -2192,13 +2192,14 @@ void RSSListing::recountFeedCounts(int feedId)
   }
 
   // Пересчитываем счетчики для всех родителей
-  if (isFolder)
-    feedParId = feedId;
+  if (isFolder) feedParId = feedId;
+
   int l_feedParId = feedParId;
   while (l_feedParId) {
     QString updated;
 
-    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), max(updated) FROM feeds WHERE parentId=='%1'").
+    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), "
+                   "max(updated) FROM feeds WHERE parentId=='%1'").
         arg(l_feedParId);
     q.exec(qStr);
     if (q.next()) {
@@ -2207,8 +2208,8 @@ void RSSListing::recountFeedCounts(int feedId)
       undeleteCount = q.value(2).toInt();
       updated       = q.value(3).toString();
     }
-    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', updated='%4' "
-                   "WHERE id=='%5'").
+    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', "
+                   "updated='%4' WHERE id=='%5'").
         arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
         arg(l_feedParId);
     q.exec(qStr);
@@ -2226,9 +2227,8 @@ void RSSListing::recountFeedCounts(int feedId)
       indexParent = indexParent.parent();
     }
 
-    q.exec(QString("SELECT parentId FROM feeds WHERE id=%1").arg(l_feedParId));
-    if (q.next())
-      l_feedParId = q.value(0).toInt();
+    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
+    if (q.next()) l_feedParId = q.value(0).toInt();
   }
   db_.commit();
 }
