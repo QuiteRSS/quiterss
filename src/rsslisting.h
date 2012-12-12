@@ -120,7 +120,7 @@ public slots:
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(const QUrl &url, const bool &changed);
   void slotUpdateNews();
-  void slotUpdateStatus(int feedId);
+  void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
@@ -161,7 +161,7 @@ private:
   void retranslateStrings();
   void playSoundNewNews();
   void feedsCleanUp(QString feedId);
-  void recountFeedCounts(int feedId);
+  void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
   void feedsModelReload();

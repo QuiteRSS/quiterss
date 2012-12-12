@@ -613,8 +613,10 @@ void RSSListing::createStatusBar()
 
   statusBar()->addPermanentWidget(progressBar_);
   statusUnread_ = new QLabel(this);
+  statusUnread_->hide();
   statusBar()->addPermanentWidget(statusUnread_);
   statusAll_ = new QLabel(this);
+  statusAll_->hide();
   statusBar()->addPermanentWidget(statusAll_);
   statusBar()->addPermanentWidget(fullScreenButton);
   statusBar()->setVisible(true);
@@ -2107,7 +2109,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
  *  дереве, то производится обновление отображения
  * @param feedId идентификатор ленты
  *----------------------------------------------------------------------------*/
-void RSSListing::recountFeedCounts(int feedId)
+void RSSListing::recountFeedCounts(int feedId, bool update)
 {
   QSqlQuery q(db_);
   QString qStr;
@@ -2231,6 +2233,9 @@ void RSSListing::recountFeedCounts(int feedId)
     if (q.next()) l_feedParId = q.value(0).toInt();
   }
   db_.commit();
+
+  if (update)
+    feedsTreeView_->viewport()->update();
 }
 
 /**
@@ -2324,7 +2329,6 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   setUserFilter(parseFeedId);
 
   recountFeedCounts(parseFeedId);
-  feedsTreeView_->viewport()->update();
 
   // Достаём новое значение количества новых новостей
   int newCount = 0;
@@ -2556,9 +2560,6 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
       q.exec(qStr);
       qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
     }
-  } else {
-    slotUpdateStatus(feedId);
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
   }
 }
 
@@ -3084,12 +3085,11 @@ void RSSListing::markFeedRead()
 }
 
 /*! \brief Обновление статуса либо выбранной ленты, либо ленты текущей вкладки*/
-void RSSListing::slotUpdateStatus(int feedId)
+void RSSListing::slotUpdateStatus(int feedId, bool changed)
 {
-  recountFeedCounts(feedId);
-  // Обновляем представление принудительно.
-  // Например после slotSetItemRead() самостоятельно не обновляется
-  feedsTreeView_->viewport()->update();
+  if (changed) {
+    recountFeedCounts(feedId);
+  }
 
   emit signalRefreshInfoTray();
 
@@ -3352,7 +3352,7 @@ void RSSListing::setFeedRead(int feedId, FeedReedType feedReadtype)
   db_.commit();
 
 //  if (update) {
-    recountFeedCounts(feedId);
+    recountFeedCounts(feedId, false);
     if (feedReadtype != FeedReadPlaceToTray) {
       emit signalRefreshInfoTray();
     }
