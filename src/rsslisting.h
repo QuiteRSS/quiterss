@@ -458,7 +458,7 @@ signals:
   void signalCloseApp();
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
-  void signalCurrentTab(int index, bool updateTab = false);
+  void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();
 

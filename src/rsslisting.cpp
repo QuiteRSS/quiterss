@@ -117,7 +117,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
-  connect(this, SIGNAL(signalCurrentTab(int,bool)),
+  connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
 
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
@@ -2470,7 +2470,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
 
-    emit signalCurrentTab(indexTab, true);
+    emit signalSetCurrentTab(indexTab, true);
   } else {
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
@@ -4469,7 +4469,7 @@ QWebPage *RSSListing::createWebTab()
 
   if (QApplication::keyboardModifiers() != Qt::ControlModifier) {
     currentNewsTab = widget;
-    emit signalCurrentTab(indexTab);
+    emit signalSetCurrentTab(indexTab);
   }
 
   return widget->webView_->page();
