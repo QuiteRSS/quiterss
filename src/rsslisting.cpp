@@ -2234,8 +2234,12 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
   }
   db_.commit();
 
-  if (update)
+  if (update) {
     feedsTreeView_->viewport()->update();
+    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  }
 }
 
 /**
