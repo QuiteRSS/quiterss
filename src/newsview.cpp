@@ -25,7 +25,7 @@ NewsView::NewsView(QWidget * parent)
   QSqlTableModel *model_ = (QSqlTableModel*)model();
   if (event->buttons() & Qt::LeftButton) {
     if (index.column() == model_->fieldIndex("starred")) {
-      if (model_->index(index.row(), model_->fieldIndex("starred")).data(Qt::EditRole).toInt() == 0) {
+      if (index.data(Qt::EditRole).toInt() == 0) {
         emit signalSetItemStar(index, 1);
       } else {
         emit signalSetItemStar(index, 0);
@@ -33,7 +33,7 @@ NewsView::NewsView(QWidget * parent)
       event->ignore();
       return;
     } else if (index.column() == model_->fieldIndex("read")) {
-      if (model_->index(index.row(), model_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+      if (index.data(Qt::EditRole).toInt() == 0) {
         emit signalSetItemRead(index, 1);
       } else {
         emit signalSetItemRead(index, 0);

@@ -50,8 +50,6 @@ private:
 
   QTimer *markNewsReadTimer_;
 
-  int currentNewsIdOld;
-
   int webDefaultFontSize_;
   int webDefaultFixedFontSize_;
 
@@ -86,6 +84,7 @@ public:
 
   int feedId_;
   int feedParId_;
+  int currentNewsIdOld;
   bool autoLoadImages_;
 
   FindTextContent *findText_;
