@@ -4414,7 +4414,6 @@ void RSSListing::slotTabCurrentChanged(int index)
       setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
       slotUpdateNews();
-      currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
       currentNewsTab->newsView_->setFocus();
 
       statusUnread_->setVisible(widget->feedId_);
