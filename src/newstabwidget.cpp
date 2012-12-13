@@ -363,11 +363,9 @@ void NewsTabWidget::createWebWidget()
 
   if (feedId_ > -1) {
     QSqlQuery q(rsslisting_->db_);
-    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id='%1'").
+    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
-    if (q.next()) {
-      autoLoadImages_ = q.value(0).toInt();
-    }
+    if (q.next()) autoLoadImages_ = q.value(0).toInt();
   }
 
   webDefaultFontSize_ =
@@ -445,11 +443,9 @@ void NewsTabWidget::setSettings(bool newTab)
           QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
   } else if (feedId_ > -1) {
     QSqlQuery q(rsslisting_->db_);
-    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id='%1'").
+    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
-    if (q.next()) {
-      autoLoadImages_ = q.value(0).toInt();
-    }
+    if (q.next()) autoLoadImages_ = q.value(0).toInt();
   }
 
   if (feedId_ > -1)
@@ -773,8 +769,6 @@ void NewsTabWidget::markNewsRead()
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-
   int cnt = indexes.count();
   if (cnt == 0) return;
 
@@ -800,8 +794,8 @@ void NewsTabWidget::markNewsRead()
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(rsslisting_->db_);
-      q.exec(QString("UPDATE news SET new=0, read='%1' WHERE feedId='%2' AND id=='%3'").
-             arg(markRead).arg(feedId).arg(newsId));
+      q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
+             arg(markRead).arg(newsId));
     }
     rsslisting_->db_.commit();
 
@@ -876,7 +870,7 @@ void NewsTabWidget::markNewsStar()
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
-      q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%3'").
+      q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
              arg(markStar).arg(newsId));
     }
     rsslisting_->db_.commit();
@@ -907,8 +901,6 @@ void NewsTabWidget::deleteNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-
   if (cnt == 1) {
     curIndex = indexes.at(0);
     int row = curIndex.row();
@@ -923,9 +915,8 @@ void NewsTabWidget::deleteNews()
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(rsslisting_->db_);
-      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
-                     "WHERE feedId='%1' AND id=='%2'").
-          arg(feedId).arg(newsId));
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
+             arg(newsId));
     }
     rsslisting_->db_.commit();
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
@@ -946,15 +937,12 @@ void NewsTabWidget::deleteAllNewsList()
 
   QModelIndex curIndex;
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-
   rsslisting_->db_.transaction();
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
     QSqlQuery q(rsslisting_->db_);
-    q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 "
-                   "WHERE feedId='%1' AND id=='%2'").
-           arg(feedId).arg(newsId));
+    q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
+           arg(newsId));
   }
   rsslisting_->db_.commit();
   rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
@@ -976,8 +964,6 @@ void NewsTabWidget::restoreNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-
   if (cnt == 1) {
     curIndex = indexes.at(0);
 
@@ -990,8 +976,8 @@ void NewsTabWidget::restoreNews()
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       QSqlQuery q(rsslisting_->db_);
-      q.exec(QString("UPDATE news SET deleted=0 WHERE feedId='%1' AND id=='%2'").
-          arg(feedId).arg(newsId));
+      q.exec(QString("UPDATE news SET deleted=0 WHERE id=='%1'").
+             arg(newsId));
     }
     rsslisting_->db_.commit();
     rsslisting_->setNewsFilter(rsslisting_->newsFilterGroup_->checkedAction(), false);
@@ -1010,12 +996,10 @@ void NewsTabWidget::slotSort(int column, int order)
 {
   QString qStr;
   if (column == newsModel_->fieldIndex("read")) {
-    qStr = QString("UPDATE news SET rights=read WHERE feedId='%1'").
-        arg(feedId_);
+    qStr = QString("UPDATE news SET rights=read WHERE feedId=='%1'").arg(feedId_);
   }
   else if (column == newsModel_->fieldIndex("starred")) {
-    qStr = QString("UPDATE news SET rights=starred WHERE feedId='%1'").
-        arg(feedId_);
+    qStr = QString("UPDATE news SET rights=starred WHERE feedId=='%1'").arg(feedId_);
   }
   QSqlQuery q(rsslisting_->db_);
   q.exec(qStr);
