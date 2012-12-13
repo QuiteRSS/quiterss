@@ -788,10 +788,10 @@ void NewsTabWidget::markNewsRead()
     }
 
     rsslisting_->db_.transaction();
+    QSqlQuery q(rsslisting_->db_);
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
-      QSqlQuery q(rsslisting_->db_);
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
              arg(markRead).arg(newsId));
     }
@@ -926,9 +926,9 @@ void NewsTabWidget::deleteAllNewsList()
   QModelIndex curIndex;
 
   rsslisting_->db_.transaction();
+  QSqlQuery q(rsslisting_->db_);
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
-    QSqlQuery q(rsslisting_->db_);
     q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
            arg(newsId));
   }
