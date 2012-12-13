@@ -85,6 +85,7 @@ public:
   bool autoLoadImages_;
   bool openLinkInBackground_;
   bool openingLink_;  //!< флаг открытия ссылки
+  bool openLinkInBackgroundEmbedded_;
 
   int externalBrowserOn_;
   QString externalBrowser_;

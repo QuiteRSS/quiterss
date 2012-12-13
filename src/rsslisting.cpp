@@ -1568,6 +1568,7 @@ void RSSListing::readSettings()
   }
 
   openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
+  openLinkInBackgroundEmbedded_ = settings_->value("openLinkInBackgroundEmbedded", false).toBool();
   openingLinkTimeout_ = settings_->value("openingLinkTimeout", 1000).toInt();
 
   stayOnTopAct_->setChecked(settings_->value("stayOnTop", false).toBool());
@@ -1698,6 +1699,7 @@ void RSSListing::writeSettings()
   settings_->setValue("browserPosition", browserPosition_);
 
   settings_->setValue("openLinkInBackground", openLinkInBackground_);
+  settings_->setValue("openLinkInBackgroundEmbedded", openLinkInBackgroundEmbedded_);
   settings_->setValue("openingLinkTimeout", openingLinkTimeout_);
 
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
@@ -2593,6 +2595,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
   optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
+  optionsDialog->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
@@ -2777,6 +2780,7 @@ void RSSListing::showOptionDlg()
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
+  openLinkInBackgroundEmbedded_ = optionsDialog->openLinkInBackgroundEmbedded_->isChecked();
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
