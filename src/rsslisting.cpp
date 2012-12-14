@@ -193,8 +193,8 @@ RSSListing::~RSSListing()
   QString qStr = QString("UPDATE news SET description='', content='', received='', "
                          "author_name='', author_uri='', author_email='', "
                          "category='', new='', read='', starred='', deleted=2 ");
-  if (cleanUpDB) qStr.append("WHERE AND deleted==1");
-  else qStr.append("WHERE AND deleted!=0");
+  if (cleanUpDB) qStr.append("WHERE deleted==1");
+  else qStr.append("WHERE deleted!=0");
   q.exec(qStr);
 
   // Запускаем пересчёт всех категорий, т.к. при чистке лент могли измениться
