@@ -10,6 +10,9 @@ NewsModel::NewsModel(QObject *parent, QTreeView *view, QSqlDatabase *db)
 
 QVariant NewsModel::data(const QModelIndex &index, int role) const
 {
+  if (index.row() > (view_->verticalScrollBar()->value() + view_->verticalScrollBar()->pageStep()))
+    return QSqlTableModel::data(index, role);
+
   if (role == Qt::DecorationRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
       QIcon icon;
