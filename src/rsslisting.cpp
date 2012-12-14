@@ -3341,7 +3341,7 @@ void RSSListing::setFeedRead(int feedId, FeedReedType feedReadtype)
   if (((feedReadtype == FeedReadTypeSwitchingFeed) && markReadSwitchingFeed_) ||
       ((feedReadtype == FeedReadClosingTab)        && markReadClosingTab_) ||
       ((feedReadtype == FeedReadPlaceToTray)       && markReadMinimize_)) {
-    q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1'").arg(feedId));
+    q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
 //    update = true;
   }
   else
