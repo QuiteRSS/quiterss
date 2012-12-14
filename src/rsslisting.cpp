@@ -4452,9 +4452,21 @@ QWebPage *RSSListing::createWebTab()
   widget->setSettings();
   widget->retranslateStrings();
 
-  if (QApplication::keyboardModifiers() != Qt::ControlModifier) {
-    currentNewsTab = widget;
-    emit signalSetCurrentTab(indexTab);
+  // Открытие вкладки во встроенном браузере фоном
+  if (openLinkInBackgroundEmbedded_) {
+    // ..., но при нажатой клавише контрол переключаемся на вкладку
+    if (QApplication::keyboardModifiers() == Qt::ControlModifier) {
+      currentNewsTab = widget;
+      emit signalSetCurrentTab(indexTab);
+    }
+  }
+  // Открытие вкладки во встроенном браузере с переключением на вкладку
+  else {
+    // ..., только если не нажата клавиша контрол
+    if (QApplication::keyboardModifiers() != Qt::ControlModifier) {
+      currentNewsTab = widget;
+      emit signalSetCurrentTab(indexTab);
+    }
   }
 
   return widget->webView_->page();
