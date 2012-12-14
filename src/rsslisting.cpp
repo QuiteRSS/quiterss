@@ -2466,7 +2466,8 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   // Открытие или создание вкладки с лентой
   if ((!tabWidget_->count() && clicked) || createTab) {
-    int indexTab = tabWidget_->addTab( new NewsTabWidget(feedId, feedParId, this), "");
+    NewsTabWidget *widget = new NewsTabWidget(feedId, feedParId, this);
+    int indexTab = tabWidget_->addTab(widget, "");
     createNewsTab(indexTab);
 
     tabBar_->setTabButton(indexTab,

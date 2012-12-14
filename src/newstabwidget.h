@@ -27,6 +27,7 @@ private:
   void createWebWidget();
   bool openUrl(const QUrl &url);
 
+  QSqlDatabase *db_;
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
 
