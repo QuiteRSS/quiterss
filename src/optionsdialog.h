@@ -49,6 +49,7 @@ public:
   QCheckBox *javaScriptEnable_;
   QCheckBox *pluginsEnable_;
   QCheckBox *openLinkInBackground_;
+  QCheckBox *openLinkInBackgroundEmbedded_;
 
   // feeds
   QCheckBox *updateFeedsStartUp_;

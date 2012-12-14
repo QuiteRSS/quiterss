@@ -85,6 +85,7 @@ public:
   bool autoLoadImages_;
   bool openLinkInBackground_;
   bool openingLink_;  //!< флаг открытия ссылки
+  bool openLinkInBackgroundEmbedded_;
 
   int externalBrowserOn_;
   QString externalBrowser_;
@@ -458,7 +459,7 @@ signals:
   void signalCloseApp();
   void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
-  void signalCurrentTab(int index, bool updateTab = false);
+  void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();
 

@@ -1090,7 +1090,8 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
       }
       webView_->load(url);
     } else {
-      qobject_cast<WebView*>(rsslisting_->createWebTab()->view())->load(url);
+      QWebPage *webPage = rsslisting_->createWebTab();
+      qobject_cast<WebView*>(webPage->view())->load(url);
     }
   } else openUrl(url);
   webView_->midButtonClick = false;

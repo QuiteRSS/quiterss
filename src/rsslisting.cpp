@@ -117,7 +117,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabWidget_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
-  connect(this, SIGNAL(signalCurrentTab(int,bool)),
+  connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
 
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
@@ -1568,6 +1568,7 @@ void RSSListing::readSettings()
   }
 
   openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
+  openLinkInBackgroundEmbedded_ = settings_->value("openLinkInBackgroundEmbedded", false).toBool();
   openingLinkTimeout_ = settings_->value("openingLinkTimeout", 1000).toInt();
 
   stayOnTopAct_->setChecked(settings_->value("stayOnTop", false).toBool());
@@ -1698,6 +1699,7 @@ void RSSListing::writeSettings()
   settings_->setValue("browserPosition", browserPosition_);
 
   settings_->setValue("openLinkInBackground", openLinkInBackground_);
+  settings_->setValue("openLinkInBackgroundEmbedded", openLinkInBackgroundEmbedded_);
   settings_->setValue("openingLinkTimeout", openingLinkTimeout_);
 
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
@@ -2473,7 +2475,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
 
-    emit signalCurrentTab(indexTab, true);
+    emit signalSetCurrentTab(indexTab, true);
   } else {
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
@@ -2592,6 +2594,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
   optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
+  optionsDialog->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
@@ -2776,6 +2779,7 @@ void RSSListing::showOptionDlg()
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
+  openLinkInBackgroundEmbedded_ = optionsDialog->openLinkInBackgroundEmbedded_->isChecked();
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
@@ -4466,7 +4470,7 @@ QWebPage *RSSListing::createWebTab()
 
   if (QApplication::keyboardModifiers() != Qt::ControlModifier) {
     currentNewsTab = widget;
-    emit signalCurrentTab(indexTab);
+    emit signalSetCurrentTab(indexTab);
   }
 
   return widget->webView_->page();
