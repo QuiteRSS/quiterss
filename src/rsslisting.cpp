@@ -2333,6 +2333,9 @@ void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
   q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(parseFeedId));
   if (q.next()) newCount = q.value(0).toInt();
 
+  if (newCount > newCountOld)
+    feedsModelReload();
+
   // Действия после получения новых новостей: трей, звук
   if (!isActiveWindow() && (newCount > newCountOld) &&
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
