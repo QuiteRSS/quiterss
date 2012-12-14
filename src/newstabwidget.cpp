@@ -737,8 +737,10 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
     }
   }
 
-  if (changed)
+  if (changed) {
+    newsView_->viewport()->update();
     rsslisting_->slotUpdateStatus(feedId_);
+  }
 }
 
 //! Пометка новости звездочкой (избранная)
