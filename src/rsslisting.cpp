@@ -2185,11 +2185,77 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
       feedsTreeModel_->setData(indexUndelete, undeleteCount);
       indexParent = index.parent();
     }
+  } else {
+    feedParId = feedId;
+    bool changed = false;
+    QSqlQuery q1(db_);
+    qStr = QString("SELECT id FROM feeds WHERE parentId=='%1'").
+        arg(feedId);
+    q1.exec(qStr);
+    while (q1.next()) {
+      feedId = q1.value(0).toInt();
+      QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+      // Подсчет всех новостей (не помеченных удаленными)
+      qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
+          arg(feedId);
+      q.exec(qStr);
+      if (q.next()) undeleteCount = q.value(0).toInt();
+
+      // Подсчет непрочитанных новостей
+      qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
+          arg(feedId);
+      q.exec(qStr);
+      if (q.next()) unreadCount = q.value(0).toInt();
+
+      // Подсчет новых новостей
+      qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
+          arg(feedId);
+      q.exec(qStr);
+      if (q.next()) newCount = q.value(0).toInt();
+
+      int unreadCountOld = 0;
+      int newCountOld = 0;
+      int undeleteCountOld = 0;
+      qStr = QString("SELECT unread, newCount, undeleteCount FROM feeds WHERE id=='%1'").
+          arg(feedId);
+      q.exec(qStr);
+      if (q.next()) {
+        unreadCountOld = q.value(0).toInt();
+        newCountOld = q.value(1).toInt();
+        undeleteCountOld = q.value(2).toInt();
+      }
+
+      if ((unreadCount == unreadCountOld) && (newCount == newCountOld) &&
+          (undeleteCount == undeleteCountOld)) {
+        continue;
+      }
+      changed = true;
+
+      // Установка количества непрочитанных новостей в ленту
+      // Установка количества новых новостей в ленту
+      qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
+                     "WHERE id=='%4'").
+          arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
+      q.exec(qStr);
+
+      // Обновление отображения ленты, если оно существует
+      if (index.isValid()) {
+        indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+        indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+        indexUndelete = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+        feedsTreeModel_->setData(indexUnread, unreadCount);
+        feedsTreeModel_->setData(indexNew, newCount);
+        feedsTreeModel_->setData(indexUndelete, undeleteCount);
+        indexParent = index.parent();
+      }
+    }
+    if (!changed) {
+      db_.commit();
+      return;
+    }
   }
 
   // Пересчитываем счетчики для всех родителей
-  if (isFolder) feedParId = feedId;
-
   int l_feedParId = feedParId;
   while (l_feedParId) {
     QString updated;
@@ -3013,53 +3079,44 @@ void RSSListing::markFeedRead()
   bool openFeed = false;
   QString qStr;
   QModelIndex index = feedsTreeView_->selectIndex_;
+  bool isFolder = feedsTreeModel_->isFolder(index);
   int id = feedsTreeModel_->getIdByIndex(index);
   if (currentNewsTab->feedId_ == id)
     openFeed = true;
 
+  db_.transaction();
   QSqlQuery q(db_);
-  if (feedsTreeModel_->isFolder(index)) {
-    QString feeds;
-    qStr = QString("SELECT id FROM feeds WHERE parentId='%1'").arg(id);
+  if (isFolder) {
+    if (currentNewsTab->feedParId_ == id)
+      openFeed = true;
+
+    qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND deleted==0 "
+                   "AND feedId IN (SELECT id FROM feeds WHERE parentId=='%1')").
+        arg(id);
     q.exec(qStr);
-    if (q.next()) {
-      if (currentNewsTab->feedId_ == q.value(0).toInt())
-        openFeed = true;
-      feeds.append(QString("feedId='%1'").arg(q.value(0).toInt()));
-    }
-    while (q.next()) {
-      if (currentNewsTab->feedId_ == q.value(0).toInt())
-        openFeed = true;
-      feeds.append(QString(" OR feedId='%1'").arg(q.value(0).toInt()));
-    }
-    if (!feeds.isEmpty()) {
-      qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND (%1)").
-          arg(feeds);
-      q.exec(qStr);
-    }
-    qStr = QString("UPDATE news SET new=0 WHERE parentId='%1' AND new=1").
+    qStr = QString("UPDATE news SET new=0 WHERE new==1 "
+                   "AND feedId IN (SELECT id FROM feeds WHERE parentId=='%1')").
         arg(id);
     q.exec(qStr);
   } else {
-    db_.transaction();
     if (openFeed) {
-      qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").
+      qStr = QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read!=2 AND deleted==0").
           arg(id);
       q.exec(qStr);
     } else {
-      QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
+      QString qStr = QString("UPDATE news SET read=1 WHERE feedId=='%1' AND read==0").
           arg(id);
       q.exec(qStr);
     }
-    qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
+    qStr = QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").
         arg(id);
     q.exec(qStr);
-    db_.commit();
   }
-
+  db_.commit();
   // Обновляем ленту, на которой стоит фокус
   if (openFeed) {
-    if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
+    if ((tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) &&
+        !isFolder) {
       QModelIndex indexNextUnread =
           feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
       feedsTreeView_->setCurrentIndex(indexNextUnread);
