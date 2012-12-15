@@ -101,6 +101,7 @@ public:
   QWidget *webControlPanel_;
 
   QLabel *newsIconTitle_;
+  QMovie *newsIconMovie_;
   QLabel *newsTextTitle_;
   QWidget *newsTitleLabel_;
   QToolButton *closeButton_;

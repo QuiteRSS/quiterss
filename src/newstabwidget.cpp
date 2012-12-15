@@ -20,6 +20,8 @@ NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
   currentNewsIdOld = -1;
 
   newsIconTitle_ = new QLabel();
+  newsIconMovie_ = new QMovie(":/images/loading");
+  newsIconTitle_->setMovie(newsIconMovie_);
   newsTextTitle_ = new QLabel();
 
   closeButton_ = new QToolButton();
@@ -1116,12 +1118,24 @@ void NewsTabWidget::slotSetValue(int value)
 
 void NewsTabWidget::slotLoadStarted()
 {
+  if (feedId_ == -1) {
+    newsIconTitle_->setMovie(newsIconMovie_);
+    newsIconMovie_->start();
+  }
+
   webViewProgress_->setValue(0);
   webViewProgress_->show();
 }
 
 void NewsTabWidget::slotLoadFinished(bool)
 {
+  if (feedId_ == -1) {
+    newsIconMovie_->stop();
+    QPixmap iconTab;
+    iconTab.load(":/images/webPage");
+    newsIconTitle_->setPixmap(iconTab);
+  }
+
   webViewProgress_->hide();
   if ((!webView_->url().isValid() ||
       (webView_->url().toString() == "about:blank")) && (feedId_ > -1)) {

@@ -4447,10 +4447,6 @@ QWebPage *RSSListing::createWebTab()
 
   widget->newsTextTitle_->setText(tr("Loading..."));
 
-  QPixmap iconTab;
-  iconTab.load(":/images/webPage");
-  widget->newsIconTitle_->setPixmap(iconTab);
-
   widget->autoLoadImages_ = currentNewsTab->autoLoadImages_;
   widget->setSettings();
   widget->retranslateStrings();
