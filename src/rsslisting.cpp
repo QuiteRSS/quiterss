@@ -382,6 +382,7 @@ void RSSListing::slotPlaceToTray()
   cntNewNewsList_.clear();
 
   if (storeDBMemory_) {
+    db_.commit();
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
   writeSettings();
