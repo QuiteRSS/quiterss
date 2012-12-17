@@ -8,9 +8,9 @@ class DBMemFileThread : public QThread
 {
   Q_OBJECT
 public:
-  explicit DBMemFileThread( QObject *pParent = 0);
+  explicit DBMemFileThread(QSqlDatabase memdb, QString filename, QObject *pParent = 0);
   ~DBMemFileThread();
-  void sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
+  void sqliteDBMemFile(bool save, QThread::Priority priority = QThread::NormalPriority);
 
 protected:
   virtual void run();

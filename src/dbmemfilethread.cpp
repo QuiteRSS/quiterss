@@ -6,10 +6,12 @@
 #endif
 #include <QDebug>
 
-DBMemFileThread::DBMemFileThread(QObject *pParent)
+DBMemFileThread::DBMemFileThread(QSqlDatabase memdb, QString filename, QObject *pParent)
   :QThread(pParent)
 {
   qDebug() << "DBMemFileThread::constructor";
+  memdb_ = memdb;
+  filename_ = filename;
 }
 
 DBMemFileThread::~DBMemFileThread()
@@ -120,9 +122,8 @@ DBMemFileThread::~DBMemFileThread()
   qDebug() << "sqliteDBMemFile(): return code =" << rc;
 }
 
-void DBMemFileThread::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save)
+void DBMemFileThread::sqliteDBMemFile(bool save, QThread::Priority priority)
 {
-  memdb_ = memdb;
-  filename_ = filename;
   save_ = save;
+  start(priority);
 }
