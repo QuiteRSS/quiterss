@@ -381,11 +381,12 @@ void RSSListing::slotPlaceToTray()
   idFeedList_.clear();
   cntNewNewsList_.clear();
 
+  writeSettings();
+
   if (storeDBMemory_) {
     db_.commit();
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
-  writeSettings();
 }
 
 /*! \brief Обработка событий трея *********************************************/
@@ -418,6 +419,7 @@ void RSSListing::slotShowWindows(bool trayClick)
       showMaximized();
     } else {
       showNormal();
+      restoreGeometry(settings_->value("GeometryState").toByteArray());
     }
     activateWindow();
   } else {
