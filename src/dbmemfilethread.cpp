@@ -6,10 +6,12 @@
 #endif
 #include <QDebug>
 
-DBMemFileThread::DBMemFileThread(QObject *pParent)
+DBMemFileThread::DBMemFileThread(QSqlDatabase memdb, QString filename, QObject *pParent)
   :QThread(pParent)
 {
   qDebug() << "DBMemFileThread::constructor";
+  memdb_ = memdb;
+  filename_ = filename;
 }
 
 DBMemFileThread::~DBMemFileThread()
@@ -36,15 +38,18 @@ DBMemFileThread::~DBMemFileThread()
 */
 /*virtual*/ void DBMemFileThread::run()
 {
-  qDebug() << "sqliteDBMemFile(): save =" << save_;
-  bool state = false;
+//  qDebug() << "sqliteDBMemFile(): save =" << save_;
+  if (save_) qDebug() << "sqliteDBMemFile(): from memory to file";
+  else qDebug() << "sqliteDBMemFile(): from file to memory" ;
+  int state = false;
+  int rc;                   /* Function return code */
   QVariant v = memdb_.driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
     // v.data() returns a pointer to the handle
     sqlite3 * handle = *static_cast<sqlite3 **>(v.data());
     if (handle != 0) {  // check that it is not NULL
       sqlite3 * pInMemory = handle;
-      int rc;                   /* Function return code */
+//      int rc;                   /* Function return code */
       sqlite3 *pFile;           /* Database connection opened on zFilename */
       sqlite3_backup *pBackup;  /* Backup object used to copy data */
       sqlite3 *pTo;             /* Database to copy to (pFile or pInMemory) */
@@ -75,27 +80,50 @@ DBMemFileThread::~DBMemFileThread()
         ** connection pTo. If no error occurred, then the error code belonging
         ** to pTo is set to SQLITE_OK.
         */
+
         pBackup = sqlite3_backup_init(pTo, "main", pFrom, "main");
-        if (pBackup) {
-          (void)sqlite3_backup_step(pBackup, -1);
-          (void)sqlite3_backup_finish(pBackup);
-        }
-        rc = sqlite3_errcode(pTo);
+//        if (pBackup) {
+//          qCritical() << "backuping...";
+//          (void)sqlite3_backup_step(pBackup, -1);
+//          (void)sqlite3_backup_finish(pBackup);
+//        }
+//        rc = sqlite3_errcode(pTo);
+
+        /* Each iteration of this loop copies 5 database pages from database
+        ** pDb to the backup database. If the return value of backup_step()
+        ** indicates that there are still further pages to copy, sleep for
+        ** 250 ms before repeating. */
+        do {
+          rc = sqlite3_backup_step(pBackup, 10000);
+
+          int remaining = sqlite3_backup_remaining(pBackup);
+          int pagecount = sqlite3_backup_pagecount(pBackup);
+          qCritical() << rc << "backup " << pagecount << "remain" << remaining;
+
+          if( rc==SQLITE_OK || rc==SQLITE_BUSY || rc==SQLITE_LOCKED ){
+            sqlite3_sleep(100);
+          }
+        } while( rc==SQLITE_OK || rc==SQLITE_BUSY || rc==SQLITE_LOCKED );
+
+        /* Release resources allocated by backup_init(). */
+        (void)sqlite3_backup_finish(pBackup);
       }
 
       /* Close the database connection opened on database file zFilename
       ** and return the result of this function. */
       (void)sqlite3_close(pFile);
 
+      qCritical() << "sqlite3_libversion() = " << sqlite3_libversion();
+      qCritical() << "sqlite3_backup_init(): error = " << rc;
+
       if (rc == SQLITE_OK) state = true;
     }
   }
-  qDebug() << "sqliteDBMemFile(): return =" << state;
+  qDebug() << "sqliteDBMemFile(): return code =" << rc;
 }
 
-void DBMemFileThread::sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save)
+void DBMemFileThread::sqliteDBMemFile(bool save, QThread::Priority priority)
 {
-  memdb_ = memdb;
-  filename_ = filename;
   save_ = save;
+  start(priority);
 }

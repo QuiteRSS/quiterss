@@ -157,7 +157,6 @@ private:
   void createStatusBar();
   void createTray();
   void loadSettingsFeeds();
-  bool sqliteDBMemFile(QSqlDatabase memdb, QString filename, bool save);
   void appInstallTranslator();
   void retranslateStrings();
   void playSoundNewNews();

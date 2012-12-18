@@ -287,7 +287,7 @@ void NewsTabWidget::createWebWidget()
   webToolBar_->addAction(webExternalBrowserAct_);
 
   QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
-  webControlPanelHLayout->setMargin(2);
+  webControlPanelHLayout->setContentsMargins(2, 0, 2, 0);
   webControlPanelHLayout->setSpacing(2);
   webControlPanelHLayout->addWidget(webToolBar_);
   webControlPanelHLayout->addStretch(1);
@@ -1065,7 +1065,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (linkString.isEmpty())
       linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
+    webPanel_->hide();
     setWebToolbarVisible(true, false);
+
     webView_->load(QUrl(linkString.simplified()));
   } else {
     QString content = newsModel_->record(index.row()).field("content").value().toString();
@@ -1091,6 +1093,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     if (!webView_->midButtonClick) {
       if (!webControlPanel_->isVisible()) {
         webView_->history()->clear();
+        webPanel_->hide();
         setWebToolbarVisible(true, false);
       }
       webView_->load(url);

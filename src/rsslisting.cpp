@@ -67,9 +67,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   db_.open();
 
   if (storeDBMemory_) {
-    dbMemFileThread_ = new DBMemFileThread(this);
-    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, false);
-    dbMemFileThread_->start(QThread::NormalPriority);
+    dbMemFileThread_ = new DBMemFileThread(db_, dbFileName_, this);
+    dbMemFileThread_->sqliteDBMemFile(false);
     while(dbMemFileThread_->isRunning()) qApp->processEvents();
   }
 
@@ -212,8 +211,7 @@ RSSListing::~RSSListing()
   db_.commit();
 
   if (storeDBMemory_) {
-    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-    dbMemFileThread_->start();
+    dbMemFileThread_->sqliteDBMemFile(true);
     while(dbMemFileThread_->isRunning());
   }
 
@@ -384,8 +382,8 @@ void RSSListing::slotPlaceToTray()
   cntNewNewsList_.clear();
 
   if (storeDBMemory_) {
-    dbMemFileThread_->sqliteDBMemFile(db_, dbFileName_, true);
-    dbMemFileThread_->start(QThread::LowestPriority);
+    db_.commit();
+    dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
   writeSettings();
 }
