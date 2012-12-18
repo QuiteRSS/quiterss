@@ -13,6 +13,8 @@ public:
   QModelIndex selectIndex_;
 
   QModelIndex indexNextUnread(const QModelIndex &indexCur);
+  QModelIndex indexPrevious(const QModelIndex &indexCur);
+  QModelIndex indexNext(const QModelIndex &indexCur);
 
 public slots:
   void setSelectIndex();

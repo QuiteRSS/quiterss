@@ -407,6 +407,8 @@ private slots:
   void slotFeedDownPressed();
   void slotFeedHomePressed();
   void slotFeedEndPressed();
+  void slotFeedPrevious();
+  void slotFeedNext();
   void setStyleApp(QAction*);
   void slotSwitchFocus();
   void slotOpenFeedNewTab();

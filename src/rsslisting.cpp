@@ -924,12 +924,12 @@ void RSSListing::createActions()
 
   feedKeyUpAct_ = new QAction(this);
   feedKeyUpAct_->setObjectName("feedKeyUp");
-  connect(feedKeyUpAct_, SIGNAL(triggered()), this, SLOT(slotFeedUpPressed()));
+  connect(feedKeyUpAct_, SIGNAL(triggered()), this, SLOT(slotFeedPrevious()));
   this->addAction(feedKeyUpAct_);
 
   feedKeyDownAct_ = new QAction(this);
   feedKeyDownAct_->setObjectName("feedKeyDownAct");
-  connect(feedKeyDownAct_, SIGNAL(triggered()), this, SLOT(slotFeedDownPressed()));
+  connect(feedKeyDownAct_, SIGNAL(triggered()), this, SLOT(slotFeedNext()));
   this->addAction(feedKeyDownAct_);
 
   newsKeyUpAct_ = new QAction(this);
@@ -4271,6 +4271,44 @@ void RSSListing::slotFeedDownPressed()
     indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
   else
     indexAfter = feedsTreeView_->indexBelow(indexBefore);
+
+  // Если индекса "ниже" не существует
+  if (!indexAfter.isValid()) return;
+
+  feedsTreeView_->setCurrentIndex(indexAfter);
+  slotFeedClicked(indexAfter);
+}
+
+/*! \brief Обработка горячей клавиши перемещения на предыдущую ленту **********/
+void RSSListing::slotFeedPrevious()
+{
+  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexAfter;
+
+  // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по лентам
+  if (!indexBefore.isValid())
+    indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+  else
+    indexAfter = feedsTreeView_->indexPrevious(indexBefore);
+
+  // Если индекса "выше" не существует
+  if (!indexAfter.isValid()) return;
+
+  feedsTreeView_->setCurrentIndex(indexAfter);
+  slotFeedClicked(indexAfter);
+}
+
+/*! \brief Обработка горячей клавиши перемещения на следующую ленту ***********/
+void RSSListing::slotFeedNext()
+{
+  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexAfter;
+
+  // Если нет текущего индекса устанавливаем его в начало, т.к. мы хотим "опускаться" по лентам
+  if (!indexBefore.isValid())
+    indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+  else
+    indexAfter = feedsTreeView_->indexNext(indexBefore);
 
   // Если индекса "ниже" не существует
   if (!indexAfter.isValid()) return;

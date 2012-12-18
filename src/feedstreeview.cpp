@@ -75,6 +75,46 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
 }
 
 /**
+ * @brief Поиск следующей ленты
+ * @param index Индекс, от которого начинаем искать
+ * @return найденный индекс либо QModelIndex()
+ ******************************************************************************/
+QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur)
+{
+  QModelIndex index = indexAbove(indexCur);
+  while (index.isValid()) {
+    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
+    if (!isFeedFolder)
+      return index;  // нашли
+
+    index = indexAbove(index);
+  }
+
+  // не нашли
+  return QModelIndex();
+}
+
+/**
+ * @brief Поиск предыдущей ленты
+ * @param index Индекс, от которого начинаем искать
+ * @return найденный индекс либо QModelIndex()
+ ******************************************************************************/
+QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur)
+{
+  QModelIndex index = indexBelow(indexCur);
+  while (index.isValid()) {
+    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
+    if (!isFeedFolder)
+      return index;  // нашли
+
+    index = indexBelow(index);
+  }
+
+  // не нашли
+  return QModelIndex();
+}
+
+/**
  * @brief Собственная обработка нажатия мыши
  * @details Фиксирует нажатый индекс в selectedIndex_, обрабатывает нажатие
  *    средней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
