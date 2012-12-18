@@ -1560,7 +1560,7 @@ void RSSListing::readSettings()
   }
 
   openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
-  openLinkInBackgroundEmbedded_ = settings_->value("openLinkInBackgroundEmbedded", false).toBool();
+  openLinkInBackgroundEmbedded_ = settings_->value("openLinkInBackgroundEmbedded", true).toBool();
   openingLinkTimeout_ = settings_->value("openingLinkTimeout", 1000).toInt();
 
   stayOnTopAct_->setChecked(settings_->value("stayOnTop", false).toBool());
