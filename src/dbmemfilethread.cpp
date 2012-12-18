@@ -41,7 +41,6 @@ DBMemFileThread::~DBMemFileThread()
 //  qDebug() << "sqliteDBMemFile(): save =" << save_;
   if (save_) qDebug() << "sqliteDBMemFile(): from memory to file";
   else qDebug() << "sqliteDBMemFile(): from file to memory" ;
-  int state = false;
   int rc;                   /* Function return code */
   QVariant v = memdb_.driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
@@ -49,7 +48,6 @@ DBMemFileThread::~DBMemFileThread()
     sqlite3 * handle = *static_cast<sqlite3 **>(v.data());
     if (handle != 0) {  // check that it is not NULL
       sqlite3 * pInMemory = handle;
-//      int rc;                   /* Function return code */
       sqlite3 *pFile;           /* Database connection opened on zFilename */
       sqlite3_backup *pBackup;  /* Backup object used to copy data */
       sqlite3 *pTo;             /* Database to copy to (pFile or pInMemory) */
@@ -98,7 +96,7 @@ DBMemFileThread::~DBMemFileThread()
 
           int remaining = sqlite3_backup_remaining(pBackup);
           int pagecount = sqlite3_backup_pagecount(pBackup);
-          qCritical() << rc << "backup " << pagecount << "remain" << remaining;
+          qDebug() << rc << "backup " << pagecount << "remain" << remaining;
 
           if( rc==SQLITE_OK || rc==SQLITE_BUSY || rc==SQLITE_LOCKED ){
             sqlite3_sleep(100);
@@ -113,10 +111,8 @@ DBMemFileThread::~DBMemFileThread()
       ** and return the result of this function. */
       (void)sqlite3_close(pFile);
 
-      qCritical() << "sqlite3_libversion() = " << sqlite3_libversion();
-      qCritical() << "sqlite3_backup_init(): error = " << rc;
-
-      if (rc == SQLITE_OK) state = true;
+      qDebug() << "sqlite3_libversion() = " << sqlite3_libversion();
+      qDebug() << "sqlite3_backup_step(): return code = " << rc;
     }
   }
   qDebug() << "sqliteDBMemFile(): return code =" << rc;
