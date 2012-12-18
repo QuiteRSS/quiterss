@@ -9,7 +9,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   setContextMenuPolicy(Qt::CustomContextMenu);
   setMovable(true);
   setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
-  setMinimumSectionSize(25);
+  setMinimumSectionSize(23);
   setStretchLastSection(false);
 
   pActGroup_ = NULL;
@@ -66,20 +66,20 @@ void NewsHeader::init(QWidget *rsslisting)
   model_->setHeaderData(model_->fieldIndex("feedId"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal,
-                        QIcon(":/images/readSection"), Qt::DecorationRole);
+                        QPixmap(":/images/readSection"), Qt::DecorationRole);
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal,
-                        QIcon(":/images/starSection"), Qt::DecorationRole);
+                        QPixmap(":/images/starSection"), Qt::DecorationRole);
 
   moveSection(visualIndex(model_->fieldIndex("starred")), 0);
-  resizeSection(model_->fieldIndex("starred"), 25);
+  resizeSection(model_->fieldIndex("starred"), 23);
   setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("feedId")), 1);
-  resizeSection(model_->fieldIndex("feedId"), 25);
+  resizeSection(model_->fieldIndex("feedId"), 23);
   setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("title")), 2);
   moveSection(visualIndex(model_->fieldIndex("read")), 3);
-  resizeSection(model_->fieldIndex("read"), 25);
+  resizeSection(model_->fieldIndex("read"), 23);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("author_name")), 4);
   resizeSection(model_->fieldIndex("author_name"), 100);
@@ -331,7 +331,7 @@ void NewsHeader::columnVisible(QAction *action)
     if ((model_->fieldIndex("starred") == idx) ||
         (model_->fieldIndex("read") == idx) ||
         (model_->fieldIndex("feedId") == idx))
-      resizeSection(idx, 25);
+      resizeSection(idx, 23);
     else
       resizeSection(idx, 40);
   }
@@ -352,7 +352,7 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
           resizeSection(lIdx, 45);
           break;
         } else {
-          resizeSection(lIdx, 25);
+          resizeSection(lIdx, 23);
           break;
         }
       }
@@ -405,8 +405,8 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("feedId"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal,
-                        QIcon(":/images/readSection"), Qt::DecorationRole);
+                        QPixmap(":/images/readSection"), Qt::DecorationRole);
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal,
-                        QIcon(":/images/starSection"), Qt::DecorationRole);
+                        QPixmap(":/images/starSection"), Qt::DecorationRole);
 }
