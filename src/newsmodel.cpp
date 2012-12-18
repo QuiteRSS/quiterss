@@ -16,7 +16,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   if (role == Qt::DecorationRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
       QPixmap icon;
-      if (0 == QSqlTableModel::index(index.row(), fieldIndex("read")).data(Qt::EditRole).toInt())
+      if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
+        icon.load(":/images/bulletNew");
+      else if (0 == QSqlTableModel::index(index.row(), fieldIndex("read")).data(Qt::EditRole).toInt())
         icon.load(":/images/bulletUnread");
       else icon.load(":/images/bulletRead");
       return icon;
@@ -64,6 +66,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
     else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
       return QVariant();
+    } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
+      return QVariant();
     }
     else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;
@@ -106,8 +110,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return qApp->palette().brush(QPalette::AlternateBase);
     }
   } else if (role == Qt::TextColorRole) {
-    if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
-      return qApp->palette().brush(QPalette::Link);
     return qApp->palette().brush(QPalette::WindowText);
   }
   return QSqlTableModel::data(index, role);

@@ -9,7 +9,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   setContextMenuPolicy(Qt::CustomContextMenu);
   setMovable(true);
   setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
-  setMinimumSectionSize(23);
+  setMinimumSectionSize(22);
   setStretchLastSection(false);
 
   pActGroup_ = NULL;
@@ -72,15 +72,9 @@ void NewsHeader::init(QWidget *rsslisting)
                         QPixmap(":/images/starSection"), Qt::DecorationRole);
 
   moveSection(visualIndex(model_->fieldIndex("starred")), 0);
-  resizeSection(model_->fieldIndex("starred"), 23);
-  setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("feedId")), 1);
-  resizeSection(model_->fieldIndex("feedId"), 23);
-  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("title")), 2);
   moveSection(visualIndex(model_->fieldIndex("read")), 3);
-  resizeSection(model_->fieldIndex("read"), 23);
-  setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
   moveSection(visualIndex(model_->fieldIndex("author_name")), 4);
   resizeSection(model_->fieldIndex("author_name"), 100);
   moveSection(visualIndex(model_->fieldIndex("category")), 5);
@@ -90,6 +84,13 @@ void NewsHeader::init(QWidget *rsslisting)
 
   restoreState(rsslisting_->settings_->value("NewsHeaderState").toByteArray());
   restoreGeometry(rsslisting_->settings_->value("NewsHeaderGeometry").toByteArray());
+
+  resizeSection(model_->fieldIndex("starred"), 22);
+  setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
+  resizeSection(model_->fieldIndex("feedId"), 22);
+  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
+  resizeSection(model_->fieldIndex("read"), 22);
+  setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
 
   createMenu();
 
@@ -331,7 +332,7 @@ void NewsHeader::columnVisible(QAction *action)
     if ((model_->fieldIndex("starred") == idx) ||
         (model_->fieldIndex("read") == idx) ||
         (model_->fieldIndex("feedId") == idx))
-      resizeSection(idx, 23);
+      resizeSection(idx, 22);
     else
       resizeSection(idx, 40);
   }
@@ -352,7 +353,7 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
           resizeSection(lIdx, 45);
           break;
         } else {
-          resizeSection(lIdx, 23);
+          resizeSection(lIdx, 22);
           break;
         }
       }

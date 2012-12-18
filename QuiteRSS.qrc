@@ -20,7 +20,6 @@
         <file>images/sortIndicatorA.png</file>
         <file>images/sortIndicatorD.png</file>
         <file alias="bulletNew">images/bulletNew.png</file>
-        <file alias="bulletNoNew">images/bulletNoNew.png</file>
         <file alias="imagesOff">images/imagesOff.png</file>
         <file alias="imagesOn">images/imagesOn.png</file>
         <file alias="importFeeds">images/ImportFeeds.png</file>
