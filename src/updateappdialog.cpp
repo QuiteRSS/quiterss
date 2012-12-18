@@ -111,6 +111,8 @@ void UpdateAppDialog::finishUpdatesChecking()
   } else {
     //    qDebug() << reply_->error() << reply_->errorString();
     info = tr("Error checking updates");
+    if (showDialog_)
+      history_->setText("");
   }
 
   if (!showDialog_) {
