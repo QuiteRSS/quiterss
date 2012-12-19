@@ -81,6 +81,7 @@
         <file>images/quiterss_debug.ico</file>
         <file alias="flag_ES">images/flag_spain.png</file>
         <file alias="loading">images/loading.gif</file>
+        <file>images/trash.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

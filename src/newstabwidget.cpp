@@ -5,11 +5,10 @@
 #include <qt_windows.h>
 #endif
 
-
 RSSListing *rsslisting_;
 
-NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
-  : QWidget(parent),
+NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedParId)
+  : QWidget(parent), type_(type),
     feedId_(feedId), feedParId_(feedParId)
 {
   rsslisting_ = qobject_cast<RSSListing*>(parent);
@@ -52,13 +51,13 @@ NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
   newsTitleLabel_->setLayout(newsTitleLayout);
   newsTitleLabel_->setVisible(false);
 
-  if (feedId_ > -1) {
+  if (type_ != TAB_WEB) {
     createNewsList();
     createMenuNews();
   }
   createWebWidget();
 
-  if (feedId_ > -1) {
+  if (type_ != TAB_WEB) {
     newsTabWidgetSplitter_ = new QSplitter(this);
     newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
 
@@ -75,14 +74,14 @@ NewsTabWidget::NewsTabWidget(int feedId, int feedParId, QWidget *parent)
   QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
   layout->setSpacing(0);
-  if (feedId_ > -1)
+  if (type_ != TAB_WEB)
     layout->addWidget(newsTabWidgetSplitter_);
   else
     layout->addWidget(webWidget_);
   setLayout(layout);
 
 
-  if (feedId_ > -1) {
+  if (type_ != TAB_WEB) {
     newsTabWidgetSplitter_->restoreState(
           rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
     newsTabWidgetSplitter_->restoreGeometry(
@@ -305,7 +304,7 @@ void NewsTabWidget::createWebWidget()
   webControlPanel_->setObjectName("webControlPanel_");
   webControlPanel_->setLayout(webControlPanelLayout);
 
-  if (feedId_ > -1)
+  if (type_ != TAB_WEB)
     setWebToolbarVisible(false, false);
   else
     setWebToolbarVisible(true, false);
@@ -364,7 +363,7 @@ void NewsTabWidget::createWebWidget()
 
   webPanelTitle_->installEventFilter(this);
 
-  if (feedId_ > -1) {
+  if (type_ != TAB_WEB) {
     QSqlQuery q(*db_);
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
@@ -411,7 +410,7 @@ void NewsTabWidget::createWebWidget()
 void NewsTabWidget::setSettings(bool newTab)
 {
   if (newTab) {
-    if (feedId_ > -1) {
+    if (type_ != TAB_WEB) {
       newsView_->setFont(
             QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
       newsModel_->formatDateTime_ = rsslisting_->formatDateTime_;
@@ -430,7 +429,7 @@ void NewsTabWidget::setSettings(bool newTab)
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);
 
     if ((!webView_->url().isValid() ||
-        (webView_->url().toString() == "about:blank")) && (feedId_ > -1)) {
+        (webView_->url().toString() == "about:blank")) && (type_ != TAB_WEB)) {
       webView_->settings()->setFontSize(
             QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
     }
@@ -444,14 +443,14 @@ void NewsTabWidget::setSettings(bool newTab)
           QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
     webView_->settings()->setAttribute(
           QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
-  } else if (feedId_ > -1) {
+  } else if (type_ != TAB_WEB) {
     QSqlQuery q(*db_);
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
     if (q.next()) autoLoadImages_ = q.value(0).toInt();
   }
 
-  if (feedId_ > -1)
+  if (type_ != TAB_WEB)
     rsslisting_->slotUpdateStatus(feedId_, false);
 
   rsslisting_->autoLoadImages_ = !autoLoadImages_;
@@ -480,7 +479,7 @@ void NewsTabWidget::retranslateStrings() {
   webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
   webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
 
-  if (feedId_ > -1) {
+  if (type_ != TAB_WEB) {
     findText_->retranslateStrings();
     newsHeader_->retranslateStrings();
   }
@@ -610,7 +609,7 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
 void NewsTabWidget::slotNewsUpPressed()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
@@ -635,7 +634,7 @@ void NewsTabWidget::slotNewsUpPressed()
 
 void NewsTabWidget::slotNewsDownPressed()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
@@ -767,7 +766,7 @@ void NewsTabWidget::slotReadTimer()
 //! Отметить выделенные новости прочитанными
 void NewsTabWidget::markNewsRead()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
@@ -822,7 +821,7 @@ void NewsTabWidget::markNewsRead()
 //! Отметить все новости в ленте прочитанными
 void NewsTabWidget::markAllNewsRead()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
   if (newsModel_->rowCount() == 0) return;
 
   QSqlQuery q(*db_);
@@ -847,7 +846,7 @@ void NewsTabWidget::markAllNewsRead()
 //! Пометка выбранных новостей звездочкой (избранные)
 void NewsTabWidget::markNewsStar()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
@@ -884,7 +883,7 @@ void NewsTabWidget::markNewsStar()
 //! Удаление новости
 void NewsTabWidget::deleteNews()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(newsModel_->fieldIndex("deleted"));
@@ -926,7 +925,7 @@ void NewsTabWidget::deleteNews()
 //! Удаление всех новостей из списка
 void NewsTabWidget::deleteAllNewsList()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   QModelIndex curIndex;
 
@@ -948,7 +947,7 @@ void NewsTabWidget::deleteAllNewsList()
 //! Восстановление новостей
 void NewsTabWidget::restoreNews()
 {
-  if (feedId_ == -1) return;
+  if (type_ == TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(newsModel_->fieldIndex("deleted"));
@@ -1121,7 +1120,7 @@ void NewsTabWidget::slotSetValue(int value)
 
 void NewsTabWidget::slotLoadStarted()
 {
-  if (feedId_ == -1) {
+  if (type_ == TAB_WEB) {
     newsIconTitle_->setMovie(newsIconMovie_);
     newsIconMovie_->start();
   }
@@ -1132,7 +1131,7 @@ void NewsTabWidget::slotLoadStarted()
 
 void NewsTabWidget::slotLoadFinished(bool)
 {
-  if (feedId_ == -1) {
+  if (type_ == TAB_WEB) {
     newsIconMovie_->stop();
     QPixmap iconTab;
     iconTab.load(":/images/webPage");
@@ -1141,7 +1140,7 @@ void NewsTabWidget::slotLoadFinished(bool)
 
   webViewProgress_->hide();
   if ((!webView_->url().isValid() ||
-      (webView_->url().toString() == "about:blank")) && (feedId_ > -1)) {
+      (webView_->url().toString() == "about:blank")) && (type_ != TAB_WEB)) {
     webView_->settings()->setFontSize(
           QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
   } else {
@@ -1168,7 +1167,7 @@ void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
 //! Переход на краткое содержание новости
 void NewsTabWidget::webHomePage()
 {
-  if (feedId_ > -1) {
+  if (type_ != TAB_WEB) {
     updateWebView(newsView_->currentIndex());
   } else {
     webView_->history()->goToItem(webView_->history()->itemAt(0));
@@ -1239,7 +1238,7 @@ void NewsTabWidget::slotTabClose()
 //! Вывод на вкладке названия открытой странички браузера
 void NewsTabWidget::webTitleChanged(QString title)
 {
-  if ((feedId_ == -1) && !title.isEmpty()) {
+  if ((type_ == TAB_WEB) && !title.isEmpty()) {
     QString tabText = title;
     newsTitleLabel_->setToolTip(tabText);
     tabText = newsTextTitle_->fontMetrics().elidedText(

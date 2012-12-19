@@ -18,6 +18,12 @@
 #define RIGHT_POSITION  2
 #define LEFT_POSITION   3
 
+#define TAB_FEED       0
+#define TAB_WEB        1
+#define TAB_CAT_DEL    2
+#define TAB_CAT_STAR   3
+#define TAB_CAT_LABEL  4
+
 class NewsTabWidget : public QWidget
 {
   Q_OBJECT
@@ -61,7 +67,7 @@ private:
   bool webToolbarShow_;
 
 public:
-  explicit NewsTabWidget(int feedId, int feedParId, QWidget *parent);
+  explicit NewsTabWidget(QWidget *parent, int type, int feedId = -1, int feedParId = -1);
 
   void retranslateStrings();
   void setSettings(bool newTab = true);
@@ -83,6 +89,7 @@ public:
 
   void setVisibleAction(bool show);
 
+  int type_;
   int feedId_;
   int feedParId_;
   int currentNewsIdOld;

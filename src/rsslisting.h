@@ -455,6 +455,8 @@ private slots:
 
   void slotRefreshInfoTray();
 
+  void slotCategoryClicked(QTreeWidgetItem *, int);
+
 signals:
   void signalPlaceToTray();
   void signalCloseApp();

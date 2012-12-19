@@ -511,11 +511,46 @@ void RSSListing::createFeedsDock()
   findFeedsWidget_->hide();
   findFeedsWidget_->setLayout(findFeedsLayout);
 
+  QTreeWidget *specialCategoryTree_ = new QTreeWidget(this);
+  specialCategoryTree_->setFrameStyle(QFrame::NoFrame);
+  specialCategoryTree_->setColumnCount(2);
+  specialCategoryTree_->setColumnHidden(1, true);
+  specialCategoryTree_->header()->hide();
+
+  QStringList treeItem;
+  treeItem.clear();
+  treeItem << "Category" << "Id";
+  specialCategoryTree_->setHeaderLabels(treeItem);
+
+  treeItem.clear();
+  treeItem << tr("Deleted") << "-2";
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
+  specialCategoryTree_->addTopLevelItem(treeWidgetItem);
+  treeItem.clear();
+  treeItem << tr("Starred") << "-3";
+  treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
+  specialCategoryTree_->addTopLevelItem(treeWidgetItem);
+
+  QSplitter *splitter = new QSplitter(Qt::Vertical);
+  splitter->setHandleWidth(1);
+  splitter->setStyleSheet(
+        QString("QSplitter::handle {background: %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
+  splitter->addWidget(feedsTreeView_);
+  splitter->addWidget(specialCategoryTree_);
+
+  QList <int> sizes;
+  sizes << 600 << 50;
+  splitter->setSizes(sizes);
+
   QVBoxLayout *feedsLayout = new QVBoxLayout();
   feedsLayout->setMargin(0);
   feedsLayout->setSpacing(0);
   feedsLayout->addWidget(findFeedsWidget_);
-  feedsLayout->addWidget(feedsTreeView_, 1);
+  feedsLayout->addWidget(splitter, 1);
+
   QFrame *feedsWidget_ = new QFrame(this);
   feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   feedsWidget_->setLayout(feedsLayout);
@@ -550,6 +585,8 @@ void RSSListing::createFeedsDock()
           this, SLOT(slotSelectFind()));
   connect(findFeeds_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
+  connect(specialCategoryTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+          this, SLOT(slotCategoryClicked(QTreeWidgetItem*,int)));
 
   feedsTreeView_->viewport()->installEventFilter(this);
 }
@@ -2527,7 +2564,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 
   // Открытие или создание вкладки с лентой
   if ((!tabWidget_->count() && clicked) || createTab) {
-    NewsTabWidget *widget = new NewsTabWidget(feedId, feedParId, this);
+    NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
     int indexTab = tabWidget_->addTab(widget, "");
     createNewsTab(indexTab);
 
@@ -3274,7 +3311,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
   if (currentNewsTab == NULL) return;
-  if (currentNewsTab->feedId_ == -1) {
+  if (currentNewsTab->type_ == TAB_WEB) {
     filterNewsAll_->setChecked(true);
     return;
   }
@@ -3472,7 +3509,7 @@ void RSSListing::setAutoLoadImages(bool set)
     widget->webView_->settings()->setAttribute(
           QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
-      if ((widget->webView_->history()->count() == 0) && (widget->feedId_ > -1))
+      if ((widget->webView_->history()->count() == 0) && (widget->type_ == TAB_FEED))
         currentNewsTab->updateWebView(newsView_->currentIndex());
       else widget->webView_->reload();
     }
@@ -4460,7 +4497,7 @@ void RSSListing::slotTabCloseRequested(int index)
   if (index != 0) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
 
-    if (widget->feedId_ > -1) {
+    if (widget->type_ == TAB_FEED) {
       setFeedRead(widget->feedId_, FeedReadClosingTab);
 
       settings_->setValue("NewsHeaderGeometry",
@@ -4487,7 +4524,7 @@ void RSSListing::slotTabCurrentChanged(int index)
 
   if (tabWidget_->count()) {
     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
-    if (widget->feedId_ > -1) {
+    if (widget->type_ == TAB_FEED) {
       if (widget->feedId_ == 0)
         widget->hide();
       createNewsTab(index);
@@ -4502,13 +4539,17 @@ void RSSListing::slotTabCurrentChanged(int index)
 
       statusUnread_->setVisible(widget->feedId_);
       statusAll_->setVisible(widget->feedId_);
-    } else {
+    } else if (widget->type_ == TAB_WEB) {
       statusUnread_->setVisible(false);
       statusAll_->setVisible(false);
       currentNewsTab = widget;
       currentNewsTab->setSettings();
       currentNewsTab->retranslateStrings();
       currentNewsTab->setFocus();
+    } else {
+      createNewsTab(index);
+      slotUpdateNews();
+      newsView_->setFocus();
     }
   }
 }
@@ -4533,7 +4574,7 @@ void RSSListing::setBrowserPosition(QAction *action)
 //! Создание вкладки только с браузером
 QWebPage *RSSListing::createWebTab()
 {
-  NewsTabWidget *widget = new NewsTabWidget(-1, -1, this);
+  NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
   int indexTab = tabWidget_->addTab(widget, "");
 
   tabBar_->setTabButton(indexTab,
@@ -4573,7 +4614,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
          arg(feedId));
 
   if (q.next()) {
-    NewsTabWidget *widget = new NewsTabWidget(feedId, feedParId, this);
+    NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
     int indexTab = tabWidget_->addTab(widget, "");
     widget->setSettings();
     widget->retranslateStrings();
@@ -4922,7 +4963,7 @@ void RSSListing::setCurrentTab(int index, bool updateTab)
 //! Установить фокус в строку поиска (CTRL+F)
 void RSSListing::findText()
 {
-  if (currentNewsTab->feedId_ > -1)
+  if (currentNewsTab->type_ != TAB_WEB)
     currentNewsTab->findText_->setFocus();
 }
 
@@ -5148,4 +5189,59 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
   feedsTreeView_->setCurrentIndex(feedIndex);
 
   feedsTreeView_->setCursor(Qt::ArrowCursor);
+}
+
+void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
+{
+  int type = item->text(1).toInt();
+
+  int indexTab = -1;
+  for (int i = 0; i < tabWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+    if (widget->type_ == type) {
+      indexTab = i;
+      break;
+    }
+  }
+  if (indexTab == -1) {
+    NewsTabWidget *widget = new NewsTabWidget(this, type);
+    int indexTab = tabWidget_->addTab(widget, "");
+    createNewsTab(indexTab);
+    tabBar_->setTabButton(indexTab,
+                          QTabBar::LeftSide,
+                          widget->newsTitleLabel_);
+
+    //! Устанавливаем иконку и текст для открытой вкладки
+    currentNewsTab->newsIconTitle_->setPixmap(item->icon(0).pixmap(16,16));
+
+    QString tabText(item->text(0));
+    currentNewsTab->newsTitleLabel_->setToolTip(tabText);
+    tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
+          tabText, Qt::ElideRight, 114);
+    currentNewsTab->newsTextTitle_->setText(tabText);
+
+    switch (type) {
+    case -2:
+      newsModel_->setFilter("feedId > 0 AND deleted = 1");
+      break;
+    case -3:
+      newsModel_->setFilter("feedId > 0 AND deleted = 0 AND starred = 1");
+      break;
+    }
+
+    if (newsModel_->rowCount() != 0) {
+      while (newsModel_->canFetchMore())
+        newsModel_->fetchMore();
+    }
+
+    if ((currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("read")) ||
+        currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("starred")) {
+      currentNewsTab->slotSort(currentNewsTab->newsHeader_->sortIndicatorSection(),
+                               currentNewsTab->newsHeader_->sortIndicatorOrder());
+    }
+
+    emit signalSetCurrentTab(indexTab, true);
+  } else {
+    emit signalSetCurrentTab(indexTab);
+  }
 }
