@@ -523,12 +523,12 @@ void RSSListing::createFeedsDock()
   specialCategoryTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("Deleted") << "-2";
+  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL);
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
   specialCategoryTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
-  treeItem << tr("Starred") << "-3";
+  treeItem << tr("Starred") << QString::number(TAB_CAT_STAR);
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
   specialCategoryTree_->addTopLevelItem(treeWidgetItem);
@@ -5221,10 +5221,10 @@ void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
     currentNewsTab->newsTextTitle_->setText(tabText);
 
     switch (type) {
-    case -2:
+    case TAB_CAT_DEL:
       newsModel_->setFilter("feedId > 0 AND deleted = 1");
       break;
-    case -3:
+    case TAB_CAT_STAR:
       newsModel_->setFilter("feedId > 0 AND deleted = 0 AND starred = 1");
       break;
     }

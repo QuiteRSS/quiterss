@@ -142,9 +142,14 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->markStarAct_);
   newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
-  newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->newsFilter_);
+
+  if (type_ == TAB_FEED) {
+    newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
+    newsToolBar_->addSeparator();
+    newsToolBar_->addAction(rsslisting_->newsFilter_);
+  } else if (type_ == TAB_CAT_DEL) {
+    newsToolBar_->addAction(rsslisting_->restoreNewsAct_);
+  }
 
   findText_ = new FindTextContent(this);
   findText_->setFixedWidth(200);
@@ -457,6 +462,19 @@ void NewsTabWidget::setSettings(bool newTab)
   rsslisting_->setAutoLoadImages(false);
   webView_->settings()->setAttribute(
         QWebSettings::AutoLoadImages, autoLoadImages_);
+
+  if (type_ != TAB_FEED) {
+    if (type_ == TAB_CAT_DEL) {
+      rsslisting_->deleteNewsAct_->setEnabled(false);
+      rsslisting_->deleteAllNewsAct_->setEnabled(false);
+      setVisibleAction(true);
+    }
+    rsslisting_->newsFilter_->setEnabled(false);
+  } else {
+    rsslisting_->deleteNewsAct_->setEnabled(true);
+    rsslisting_->deleteAllNewsAct_->setEnabled(true);
+    rsslisting_->newsFilter_->setEnabled(true);
+  }
 }
 
 //! Перезагрузка перевода
