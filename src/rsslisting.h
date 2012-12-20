@@ -37,6 +37,7 @@ public:
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
+  QTreeWidget *specialCategoryTree_;
 #define TAB_WIDGET_PERMANENT 0
   QTabWidget *tabWidget_;
 
@@ -358,7 +359,7 @@ private:
   FindFeed *findFeeds_;
   QWidget *findFeedsWidget_;
 
-  int feedIdOld;
+  int feedIdOld_;
 
   bool storeDBMemory_;
   bool storeDBMemoryT_;

@@ -92,7 +92,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   currentNewsTab = NULL;
   newsView_ = NULL;
   notificationWidget = NULL;
-  feedIdOld = -2;
+  feedIdOld_ = -2;
   openingLink_ = false;
 
   createFeedsDock();
@@ -511,7 +511,7 @@ void RSSListing::createFeedsDock()
   findFeedsWidget_->hide();
   findFeedsWidget_->setLayout(findFeedsLayout);
 
-  QTreeWidget *specialCategoryTree_ = new QTreeWidget(this);
+  specialCategoryTree_ = new QTreeWidget(this);
   specialCategoryTree_->setFrameStyle(QFrame::NoFrame);
   specialCategoryTree_->setColumnCount(2);
   specialCategoryTree_->setColumnHidden(1, true);
@@ -2516,8 +2516,6 @@ void RSSListing::slotUpdateNews()
 /*! \brief Обработка нажатия в дереве лент ************************************/
 void RSSListing::slotFeedClicked(QModelIndex index)
 {
-  static int feedIdOld = -2;
-
   int feedIdCur = feedsTreeModel_->getIdByIndex(index);
   int feedParIdCur = feedsTreeModel_->getParidByIndex(index);
 
@@ -2531,7 +2529,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     }
   }
 
-  if ((feedIdCur != feedIdOld) || (indexTab == -1)) {
+  if ((feedIdCur != feedIdOld_) || (indexTab == -1)) {
     if ((tabWidget_->currentIndex() != TAB_WIDGET_PERMANENT) && (indexTab == -1)) {
       tabWidget_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
@@ -2540,14 +2538,14 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     }
 
     //! При переходе на другую ленту метим старую просмотренной
-    setFeedRead(feedIdOld, FeedReadTypeSwitchingFeed);
+    setFeedRead(feedIdOld_, FeedReadTypeSwitchingFeed);
 
     slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur), true);
     feedsTreeView_->repaint();
   } else if (indexTab != -1) {
     tabWidget_->setCurrentIndex(indexTab);
   }
-  feedIdOld = feedIdCur;
+  feedIdOld_ = feedIdCur;
 }
 
 /** @brief Обработка самого выбора ленты **************************************/
@@ -4520,37 +4518,48 @@ void RSSListing::slotTabCloseRequested(int index)
 //! Переключение между вкладками
 void RSSListing::slotTabCurrentChanged(int index)
 {
+  if (!tabWidget_->count()) return;
+
+  NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
+  if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
+    specialCategoryTree_->setCurrentIndex(QModelIndex());
+  if (widget->type_ != TAB_FEED)
+    feedsTreeView_->setCurrentIndex(QModelIndex());
+
   if (tabCurrentUpdateOff_) return;
 
-  if (tabWidget_->count()) {
-    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
-    if (widget->type_ == TAB_FEED) {
-      if (widget->feedId_ == 0)
-        widget->hide();
-      createNewsTab(index);
+  if (widget->type_ == TAB_FEED) {
+    if (widget->feedId_ == 0)
+      widget->hide();
+    createNewsTab(index);
 
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedParId_);
-      feedsTreeView_->setCurrentIndex(feedIndex);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedParId_);
+    feedsTreeView_->setCurrentIndex(feedIndex);
 
-      setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+    setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
-      slotUpdateNews();
-      currentNewsTab->newsView_->setFocus();
+    slotUpdateNews();
+    currentNewsTab->newsView_->setFocus();
 
-      statusUnread_->setVisible(widget->feedId_);
-      statusAll_->setVisible(widget->feedId_);
-    } else if (widget->type_ == TAB_WEB) {
-      statusUnread_->setVisible(false);
-      statusAll_->setVisible(false);
-      currentNewsTab = widget;
-      currentNewsTab->setSettings();
-      currentNewsTab->retranslateStrings();
-      currentNewsTab->setFocus();
-    } else {
-      createNewsTab(index);
-      slotUpdateNews();
-      newsView_->setFocus();
-    }
+    statusUnread_->setVisible(widget->feedId_);
+    statusAll_->setVisible(widget->feedId_);
+  } else if (widget->type_ == TAB_WEB) {
+    statusUnread_->setVisible(false);
+    statusAll_->setVisible(false);
+    currentNewsTab = widget;
+    currentNewsTab->setSettings();
+    currentNewsTab->retranslateStrings();
+    currentNewsTab->setFocus();
+  } else {
+    QList<QTreeWidgetItem *> treeItems =
+        specialCategoryTree_->findItems(QString::number(widget->type_),
+                                        Qt::MatchFixedString,
+                                        1);
+    specialCategoryTree_->setCurrentItem(treeItems.at(0));
+
+    createNewsTab(index);
+    slotUpdateNews();
+    newsView_->setFocus();
   }
 }
 
@@ -5005,7 +5014,6 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
 
   openingFeedAction_ = 0;
   openNewsWebViewOn_ = true;
-  feedIdOld = -2;
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
@@ -5239,6 +5247,8 @@ void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
       currentNewsTab->slotSort(currentNewsTab->newsHeader_->sortIndicatorSection(),
                                currentNewsTab->newsHeader_->sortIndicatorOrder());
     }
+
+    currentNewsTab->hideWebContent();
 
     emit signalSetCurrentTab(indexTab, true);
   } else {

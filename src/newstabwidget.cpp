@@ -141,15 +141,13 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->addAction(rsslisting_->markAllNewsRead_);
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->markStarAct_);
-  newsToolBar_->addSeparator();
 
-  if (type_ == TAB_FEED) {
-    newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
-    newsToolBar_->addSeparator();
-    newsToolBar_->addAction(rsslisting_->newsFilter_);
-  } else if (type_ == TAB_CAT_DEL) {
-    newsToolBar_->addAction(rsslisting_->restoreNewsAct_);
-  }
+  newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
+  newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->newsFilter_);
+  newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->restoreNewsAct_);
 
   findText_ = new FindTextContent(this);
   findText_->setFixedWidth(200);
@@ -291,7 +289,7 @@ void NewsTabWidget::createWebWidget()
   webToolBar_->addAction(webExternalBrowserAct_);
 
   QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
-  webControlPanelHLayout->setContentsMargins(2, 0, 2, 0);
+  webControlPanelHLayout->setMargin(2);
   webControlPanelHLayout->setSpacing(2);
   webControlPanelHLayout->addWidget(webToolBar_);
   webControlPanelHLayout->addStretch(1);
@@ -463,17 +461,24 @@ void NewsTabWidget::setSettings(bool newTab)
   webView_->settings()->setAttribute(
         QWebSettings::AutoLoadImages, autoLoadImages_);
 
-  if (type_ != TAB_FEED) {
+  if (type_ != TAB_WEB) {
+    newsToolBar_->actions().at(4)->setVisible(type_ != TAB_CAT_DEL);
+    newsToolBar_->actions().at(5)->setVisible(type_ != TAB_CAT_DEL);
+    newsToolBar_->actions().at(6)->setVisible(type_ == TAB_FEED);
+    newsToolBar_->actions().at(7)->setVisible(type_ == TAB_FEED);
+    newsToolBar_->actions().at(8)->setVisible(type_ == TAB_CAT_DEL);
+    newsToolBar_->actions().at(9)->setVisible(type_ == TAB_CAT_DEL);
+
     if (type_ == TAB_CAT_DEL) {
       rsslisting_->deleteNewsAct_->setEnabled(false);
       rsslisting_->deleteAllNewsAct_->setEnabled(false);
       setVisibleAction(true);
+    } else {
+      rsslisting_->deleteNewsAct_->setEnabled(true);
+      rsslisting_->deleteAllNewsAct_->setEnabled(true);
     }
-    rsslisting_->newsFilter_->setEnabled(false);
-  } else {
-    rsslisting_->deleteNewsAct_->setEnabled(true);
-    rsslisting_->deleteAllNewsAct_->setEnabled(true);
-    rsslisting_->newsFilter_->setEnabled(true);
+
+    rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);
   }
 }
 
