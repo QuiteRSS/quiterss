@@ -518,6 +518,9 @@ void RSSListing::createFeedsDock()
   newsCategoriesTree_->setColumnHidden(1, true);
   newsCategoriesTree_->header()->hide();
 
+  DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
+  newsCategoriesTree_->setItemDelegate(itemDelegate);
+
   QStringList treeItem;
   treeItem.clear();
   treeItem << "Category" << "Type";
@@ -3231,6 +3234,23 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
     statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
   }
+  if ((currentNewsTab->type_ != TAB_WEB) && (currentNewsTab->type_ != TAB_FEED)) {
+    QSqlQuery q(db_);
+    int allCount = 0;
+    QString qStr = QString("SELECT count(id) FROM news WHERE ");
+    switch (currentNewsTab->type_) {
+    case TAB_CAT_DEL:
+      qStr.append("feedId > 0 AND deleted = 1");
+      break;
+    case TAB_CAT_STAR:
+      qStr.append("feedId > 0 AND deleted = 0 AND starred = 1");
+      break;
+    }
+    q.exec(qStr);
+    if (q.next()) allCount = q.value(0).toInt();
+
+    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+  }
 }
 
 /**
@@ -3877,6 +3897,11 @@ void RSSListing::retranslateStrings() {
 
   stayOnTopAct_->setText(tr("Stay On Top"));
   stayOnTopAct_->setToolTip(tr("Stay On Top"));
+
+  if (newsCategoriesTree_->isHidden())
+    showCategoriesButton_->setToolTip(tr("Show Categories"));
+  else
+    showCategoriesButton_->setToolTip(tr("Hide Categories"));
 
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -4573,7 +4598,7 @@ void RSSListing::slotTabCurrentChanged(int index)
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
     slotUpdateNews();
-    currentNewsTab->newsView_->setFocus();
+    newsView_->setFocus();
 
     statusUnread_->setVisible(widget->feedId_);
     statusAll_->setVisible(widget->feedId_);
@@ -4594,6 +4619,25 @@ void RSSListing::slotTabCurrentChanged(int index)
     createNewsTab(index);
     slotUpdateNews();
     newsView_->setFocus();
+
+    QSqlQuery q(db_);
+    int allCount = 0;
+    QString qStr = QString("SELECT count(id) FROM news WHERE ");
+    switch (currentNewsTab->type_) {
+    case TAB_CAT_DEL:
+      qStr.append("feedId > 0 AND deleted = 1");
+      break;
+    case TAB_CAT_STAR:
+      qStr.append("feedId > 0 AND deleted = 0 AND starred = 1");
+      break;
+    }
+    q.exec(qStr);
+    if (q.next()) allCount = q.value(0).toInt();
+
+    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+
+    statusUnread_->setVisible(false);
+    statusAll_->setVisible(true);
   }
 }
 
@@ -5292,6 +5336,25 @@ void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
   } else {
     emit signalSetCurrentTab(indexTab);
   }
+
+  QSqlQuery q(db_);
+  int allCount = 0;
+  QString qStr = QString("SELECT count(id) FROM news WHERE ");
+  switch (type) {
+  case TAB_CAT_DEL:
+    qStr.append("feedId > 0 AND deleted = 1");
+    break;
+  case TAB_CAT_STAR:
+    qStr.append("feedId > 0 AND deleted = 0 AND starred = 1");
+    break;
+  }
+  q.exec(qStr);
+  if (q.next()) allCount = q.value(0).toInt();
+
+  statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+
+  statusUnread_->setVisible(false);
+  statusAll_->setVisible(true);
 }
 
 /**
@@ -5302,11 +5365,13 @@ void RSSListing::showCategoryWidget()
   static QByteArray splitterState;
   if (newsCategoriesTree_->isHidden()) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
+    showCategoriesButton_->setToolTip(tr("Hide Categories"));
     newsCategoriesTree_->show();
     feedsDockSplitter_->restoreState(splitterState);
   } else {
     splitterState = feedsDockSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
+    showCategoriesButton_->setToolTip(tr("Show Categories"));
     newsCategoriesTree_->hide();
     QList <int> sizes;
     sizes << height() << 20;
@@ -5323,6 +5388,7 @@ void RSSListing::feedsSplitterMoved(int pos, int)
     int height = pos + categoriesPanel_->height() + 2;
     if (height < feedsDockSplitter_->height()) {
       showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
+      showCategoriesButton_->setToolTip(tr("Hide Categories"));
       newsCategoriesTree_->show();
     }
   }
