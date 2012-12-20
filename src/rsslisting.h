@@ -37,7 +37,7 @@ public:
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
-  QTreeWidget *categoryTree_;
+  QTreeWidget *newsCategoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
   QTabWidget *tabWidget_;
 
@@ -374,10 +374,10 @@ private:
     FeedReadTypeCount
   };
 
-  QFrame *categoryPanel_;
-  QToolButton *showCategoryButton_;
-  QWidget *categoryWidget_;
-  QSplitter *feedsSplitter_;
+  QFrame *categoriesPanel_;
+  QToolButton *showCategoriesButton_;
+  QWidget *categoriesWidget_;
+  QSplitter *feedsDockSplitter_;
 
 private slots:
   void slotProgressBarUpdate();
