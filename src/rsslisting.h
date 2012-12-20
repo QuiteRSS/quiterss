@@ -37,7 +37,7 @@ public:
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
-  QTreeWidget *specialCategoryTree_;
+  QTreeWidget *categoryTree_;
 #define TAB_WIDGET_PERMANENT 0
   QTabWidget *tabWidget_;
 
@@ -374,6 +374,11 @@ private:
     FeedReadTypeCount
   };
 
+  QFrame *categoryPanel_;
+  QToolButton *showCategoryButton_;
+  QWidget *categoryWidget_;
+  QSplitter *feedsSplitter_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsDock();
@@ -456,7 +461,9 @@ private slots:
 
   void slotRefreshInfoTray();
 
-  void slotCategoryClicked(QTreeWidgetItem *, int);
+  void slotCategoryClicked(QTreeWidgetItem *item, int);
+  void showCategoryWidget();
+  void feedsSplitterMoved(int pos, int);
 
 signals:
   void signalPlaceToTray();

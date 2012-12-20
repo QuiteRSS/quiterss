@@ -511,45 +511,74 @@ void RSSListing::createFeedsDock()
   findFeedsWidget_->hide();
   findFeedsWidget_->setLayout(findFeedsLayout);
 
-  specialCategoryTree_ = new QTreeWidget(this);
-  specialCategoryTree_->setFrameStyle(QFrame::NoFrame);
-  specialCategoryTree_->setColumnCount(2);
-  specialCategoryTree_->setColumnHidden(1, true);
-  specialCategoryTree_->header()->hide();
+  categoryTree_ = new QTreeWidget(this);
+  categoryTree_->setFrameStyle(QFrame::NoFrame);
+  categoryTree_->setColumnCount(2);
+  categoryTree_->setColumnHidden(1, true);
+  categoryTree_->header()->hide();
 
   QStringList treeItem;
   treeItem.clear();
   treeItem << "Category" << "Type";
-  specialCategoryTree_->setHeaderLabels(treeItem);
+  categoryTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
   treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL);
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
-  specialCategoryTree_->addTopLevelItem(treeWidgetItem);
+  categoryTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Starred") << QString::number(TAB_CAT_STAR);
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
-  specialCategoryTree_->addTopLevelItem(treeWidgetItem);
+  categoryTree_->addTopLevelItem(treeWidgetItem);
 
-  QSplitter *splitter = new QSplitter(Qt::Vertical);
-  splitter->setHandleWidth(1);
-  splitter->setStyleSheet(
+  showCategoryButton_ = new QToolButton(this);
+  showCategoryButton_->setMaximumSize(16, 16);
+  showCategoryButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
+  showCategoryButton_->setAutoRaise(true);
+
+  QHBoxLayout *categoryPanelLayout = new QHBoxLayout();
+  categoryPanelLayout->setMargin(2);
+  categoryPanelLayout->addSpacing(2);
+  categoryPanelLayout->addWidget(new QLabel(tr("Category")), 1);
+  categoryPanelLayout->addWidget(showCategoryButton_);
+
+  categoryPanel_ = new QFrame(this);
+  categoryPanel_->setFrameStyle(QFrame::Panel | QFrame::Raised);
+  categoryPanel_->setStyleSheet(
+          QString("QFrame {background: %1;}").
+          arg(qApp->palette().color(QPalette::Light).name()));
+  categoryPanel_->setLayout(categoryPanelLayout);
+
+  QVBoxLayout *categoryLayout = new QVBoxLayout();
+  categoryLayout->setMargin(0);
+  categoryLayout->setSpacing(0);
+  categoryLayout->addWidget(categoryPanel_);
+  categoryLayout->addWidget(categoryTree_, 1);
+
+  categoryWidget_ = new QWidget(this);
+  categoryWidget_->setObjectName("categoryWidget");
+  categoryWidget_->setLayout(categoryLayout);
+
+  feedsSplitter_ = new QSplitter(Qt::Vertical);
+  feedsSplitter_->setChildrenCollapsible(false);
+  feedsSplitter_->setHandleWidth(1);
+  feedsSplitter_->setStyleSheet(
         QString("QSplitter::handle {background: %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
-  splitter->addWidget(feedsTreeView_);
-  splitter->addWidget(specialCategoryTree_);
+  feedsSplitter_->addWidget(feedsTreeView_);
+  feedsSplitter_->addWidget(categoryWidget_);
 
   QList <int> sizes;
-  sizes << 600 << 50;
-  splitter->setSizes(sizes);
+  sizes << 600 << 20;
+  feedsSplitter_->setSizes(sizes);
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
   feedsLayout->setMargin(0);
   feedsLayout->setSpacing(0);
   feedsLayout->addWidget(findFeedsWidget_);
-  feedsLayout->addWidget(splitter, 1);
+  feedsLayout->addWidget(feedsSplitter_, 1);
 
   QFrame *feedsWidget_ = new QFrame(this);
   feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
@@ -585,8 +614,13 @@ void RSSListing::createFeedsDock()
           this, SLOT(slotSelectFind()));
   connect(findFeeds_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
-  connect(specialCategoryTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+
+  connect(categoryTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoryClicked(QTreeWidgetItem*,int)));
+  connect(showCategoryButton_, SIGNAL(clicked()),
+          this, SLOT(showCategoryWidget()));
+  connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
+          this, SLOT(feedsSplitterMoved(int,int)));
 
   feedsTreeView_->viewport()->installEventFilter(this);
 }
@@ -4522,7 +4556,7 @@ void RSSListing::slotTabCurrentChanged(int index)
 
   NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
-    specialCategoryTree_->setCurrentIndex(QModelIndex());
+    categoryTree_->setCurrentIndex(QModelIndex());
   if (widget->type_ != TAB_FEED)
     feedsTreeView_->setCurrentIndex(QModelIndex());
 
@@ -4552,10 +4586,10 @@ void RSSListing::slotTabCurrentChanged(int index)
     currentNewsTab->setFocus();
   } else {
     QList<QTreeWidgetItem *> treeItems =
-        specialCategoryTree_->findItems(QString::number(widget->type_),
+        categoryTree_->findItems(QString::number(widget->type_),
                                         Qt::MatchFixedString,
                                         1);
-    specialCategoryTree_->setCurrentItem(treeItems.at(0));
+    categoryTree_->setCurrentItem(treeItems.at(0));
 
     createNewsTab(index);
     slotUpdateNews();
@@ -5199,6 +5233,10 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
   feedsTreeView_->setCursor(Qt::ArrowCursor);
 }
 
+/**
+ * @brief Обработка нажатия в дереве категорий
+ * @param item пункт по которому кликаем
+ ******************************************************************************/
 void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
 {
   int type = item->text(1).toInt();
@@ -5253,5 +5291,39 @@ void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
     emit signalSetCurrentTab(indexTab, true);
   } else {
     emit signalSetCurrentTab(indexTab);
+  }
+}
+
+/**
+ * @brief Показ/скрытие дерева категорий
+ ******************************************************************************/
+void RSSListing::showCategoryWidget()
+{
+  static QByteArray splitterState;
+  if (categoryTree_->isHidden()) {
+    showCategoryButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
+    categoryTree_->show();
+    feedsSplitter_->restoreState(splitterState);
+  } else {
+    splitterState = feedsSplitter_->saveState();
+    showCategoryButton_->setIcon(QIcon(":/images/images/panel_show.png"));
+    categoryTree_->hide();
+    QList <int> sizes;
+    sizes << height() << 20;
+    feedsSplitter_->setSizes(sizes);
+  }
+}
+
+/**
+ * @brief Перемещение сплитера между деревом лент и деревом категорий
+ ******************************************************************************/
+void RSSListing::feedsSplitterMoved(int pos, int)
+{
+  if (categoryTree_->isHidden()) {
+    int height = pos + categoryPanel_->height() + 2;
+    if (height < feedsSplitter_->height()) {
+      showCategoryButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
+      categoryTree_->show();
+    }
   }
 }
