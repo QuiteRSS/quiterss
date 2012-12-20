@@ -519,7 +519,7 @@ void RSSListing::createFeedsDock()
 
   QStringList treeItem;
   treeItem.clear();
-  treeItem << "Category" << "Id";
+  treeItem << "Category" << "Type";
   specialCategoryTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -1737,7 +1737,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
-  if (tabWidget_->count()) {
+  if (tabWidget_->count() && (currentNewsTab->type_ == TAB_FEED)) {
     settings_->setValue("NewsHeaderGeometry",
                         currentNewsTab->newsHeader_->saveGeometry());
     settings_->setValue("NewsHeaderState",
