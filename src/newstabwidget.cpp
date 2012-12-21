@@ -17,6 +17,7 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
   feedsTreeModel_ = rsslisting_->feedsTreeModel_;
 
   currentNewsIdOld = -1;
+  autoLoadImages_ = true;
 
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
@@ -366,13 +367,6 @@ void NewsTabWidget::createWebWidget()
 
   webPanelTitle_->installEventFilter(this);
 
-  if (type_ != TAB_WEB) {
-    QSqlQuery q(*db_);
-    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
-           arg(feedId_));
-    if (q.next()) autoLoadImages_ = q.value(0).toInt();
-  }
-
   webDefaultFontSize_ =
       webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
   webDefaultFixedFontSize_ =
@@ -446,15 +440,17 @@ void NewsTabWidget::setSettings(bool newTab)
           QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
     webView_->settings()->setAttribute(
           QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
-  } else if (type_ != TAB_WEB) {
+  }
+
+  if (type_ != TAB_WEB)
+    rsslisting_->slotUpdateStatus(feedId_, false);
+
+  if (type_ == TAB_FEED) {
     QSqlQuery q(*db_);
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
     if (q.next()) autoLoadImages_ = q.value(0).toInt();
   }
-
-  if (type_ != TAB_WEB)
-    rsslisting_->slotUpdateStatus(feedId_, false);
 
   rsslisting_->autoLoadImages_ = !autoLoadImages_;
   rsslisting_->setAutoLoadImages(false);

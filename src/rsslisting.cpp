@@ -3555,13 +3555,14 @@ void RSSListing::setAutoLoadImages(bool set)
     autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
   }
 
-  if (newsView_ && set) {
+  if (set) {
     NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(tabWidget_->currentWidget());
     widget->autoLoadImages_ = autoLoadImages_;
     widget->webView_->settings()->setAttribute(
           QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
-      if ((widget->webView_->history()->count() == 0) && (widget->type_ == TAB_FEED))
+      if ((widget->webView_->history()->count() == 0) &&
+          (widget->type_ == TAB_FEED) && newsView_)
         currentNewsTab->updateWebView(newsView_->currentIndex());
       else widget->webView_->reload();
     }
