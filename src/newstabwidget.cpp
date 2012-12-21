@@ -18,6 +18,7 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
 
   currentNewsIdOld = -1;
   autoLoadImages_ = true;
+  pageLoaded_ = false;
 
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
@@ -1161,16 +1162,6 @@ void NewsTabWidget::slotLoadFinished(bool)
   }
 
   webViewProgress_->hide();
-  if ((!webView_->url().isValid() ||
-      (webView_->url().toString() == "about:blank")) && (type_ != TAB_WEB)) {
-    webView_->settings()->setFontSize(
-          QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
-  } else {
-    webView_->settings()->setFontSize(
-          QWebSettings::DefaultFontSize, webDefaultFontSize_);
-    webView_->settings()->setFontSize(
-          QWebSettings::DefaultFixedFontSize, webDefaultFixedFontSize_);
-  }
 }
 
 //! Слот для асинхронного обновления новости
@@ -1266,6 +1257,23 @@ void NewsTabWidget::webTitleChanged(QString title)
     tabText = newsTextTitle_->fontMetrics().elidedText(
           tabText, Qt::ElideRight, 114);
     newsTextTitle_->setText(tabText);
+  }
+
+  if ((!webView_->url().isValid() ||
+       (webView_->url().toString() == "about:blank")) && (type_ != TAB_WEB)) {
+    if (pageLoaded_) {
+      webView_->settings()->setFontSize(
+            QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
+      pageLoaded_ = false;
+    }
+  } else {
+    if (!pageLoaded_) {
+      webView_->settings()->setFontSize(
+            QWebSettings::DefaultFontSize, webDefaultFontSize_);
+      webView_->settings()->setFontSize(
+            QWebSettings::DefaultFixedFontSize, webDefaultFixedFontSize_);
+      pageLoaded_ = true;
+    }
   }
 }
 

@@ -66,6 +66,8 @@ private:
   QWidget *newsPanelWidget_;
   bool webToolbarShow_;
 
+  bool pageLoaded_;
+
 public:
   explicit NewsTabWidget(QWidget *parent, int type, int feedId = -1, int feedParId = -1);
 
