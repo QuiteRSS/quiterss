@@ -326,12 +326,15 @@ void NewsTabWidget::createWebWidget()
   webPanelTitle_ = new QLabel(this);
   webPanelTitle_->setObjectName("webPanelTitle_");
 
+  webPanelDate_ = new QLabel(this);
+
   QGridLayout *webPanelLayout1 = new QGridLayout();
   webPanelLayout1->setMargin(5);
   webPanelLayout1->setSpacing(5);
   webPanelLayout1->setColumnStretch(1, 1);
   webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0);
   webPanelLayout1->addWidget(webPanelTitle_, 0, 1);
+  webPanelLayout1->addWidget(webPanelDate_, 0, 2, 1, 1, Qt::AlignRight);
   webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0);
   webPanelLayout1->addWidget(webPanelAuthor_, 1, 1);
 
@@ -419,6 +422,8 @@ void NewsTabWidget::setSettings(bool newTab)
     webPanelTitleLabel_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelTitle_->setFont(
+          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
+    webPanelDate_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelAuthorLabel_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
@@ -1043,6 +1048,23 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     linkString_ = newsModel_->record(index.row()).field("link_alternate").value().toString();
   panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
   webPanelTitle_->setText(panelTitleStr);
+
+  QDateTime dtLocal;
+  QString strDate = newsModel_->record(index.row()).field("published").value().toString();
+
+  if (!strDate.isNull()) {
+    QDateTime dtLocalTime = QDateTime::currentDateTime();
+    QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+    int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+    QDateTime dt = QDateTime::fromString(strDate, Qt::ISODate);
+    dtLocal = dt.addSecs(nTimeShift);
+  } else {
+    dtLocal = QDateTime::fromString(
+          newsModel_->record(index.row()).field("received").value().toString(),
+          Qt::ISODate);
+  }
+  webPanelDate_->setText(dtLocal.toString(rsslisting_->formatDateTime_));
 
   // Формируем панель автора из автора новости
   QString authorString;
