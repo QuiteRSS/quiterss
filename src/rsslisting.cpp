@@ -122,8 +122,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabBar_ = qFindChild<QTabBar*>(tabWidget_);
   tabBar_->installEventFilter(this);
 
-  tabCurrentUpdateOff_ = false;
-
   setCentralWidget(tabWidget_);
 
   connect(this, SIGNAL(signalCloseApp()),
@@ -2608,7 +2606,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
     if (indexTab == 0)
       currentNewsTab->closeButton_->setVisible(false);
 
-    emit signalSetCurrentTab(indexTab, true);
+    emit signalSetCurrentTab(indexTab);
   } else {
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
@@ -3555,15 +3553,14 @@ void RSSListing::setAutoLoadImages(bool set)
   }
 
   if (set) {
-    NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(tabWidget_->currentWidget());
-    widget->autoLoadImages_ = autoLoadImages_;
-    widget->webView_->settings()->setAttribute(
+    currentNewsTab->autoLoadImages_ = autoLoadImages_;
+    currentNewsTab->webView_->settings()->setAttribute(
           QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
-      if ((widget->webView_->history()->count() == 0) &&
-          (widget->type_ == TAB_FEED) && newsView_)
+      if ((currentNewsTab->webView_->history()->count() == 0) &&
+          (currentNewsTab->type_ == TAB_FEED))
         currentNewsTab->updateWebView(newsView_->currentIndex());
-      else widget->webView_->reload();
+      else currentNewsTab->webView_->reload();
     }
   }
 }
@@ -3610,9 +3607,9 @@ void RSSListing::restoreFeedsOnStartUp()
     feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   } else feedIndex = QModelIndex();
   feedsTreeView_->setCurrentIndex(feedIndex);
-  tabCurrentUpdateOff_ = true;
+  updateCurrentTab_ = false;
   slotFeedClicked(feedIndex);
-  tabCurrentUpdateOff_ = false;
+  updateCurrentTab_ = true;
 
   //* Открытие лент во вкладках
   QSqlQuery q(db_);
@@ -4588,7 +4585,7 @@ void RSSListing::slotTabCurrentChanged(int index)
   if (widget->type_ != TAB_FEED)
     feedsTreeView_->setCurrentIndex(QModelIndex());
 
-  if (tabCurrentUpdateOff_) return;
+  if (!updateCurrentTab_) return;
 
   if (widget->type_ == TAB_FEED) {
     if (widget->feedId_ == 0)
@@ -4673,7 +4670,6 @@ QWebPage *RSSListing::createWebTab()
 
   widget->newsTextTitle_->setText(tr("Loading..."));
 
-  widget->autoLoadImages_ = currentNewsTab->autoLoadImages_;
   widget->setSettings();
   widget->retranslateStrings();
 
@@ -5043,11 +5039,11 @@ void RSSListing::feedsModelReload()
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
 }
 
-void RSSListing::setCurrentTab(int index, bool updateTab)
+void RSSListing::setCurrentTab(int index, bool updateCurrentTab)
 {
-  tabCurrentUpdateOff_ = updateTab;
+  updateCurrentTab_ = updateCurrentTab;
   tabWidget_->setCurrentIndex(index);
-  tabCurrentUpdateOff_ = false;
+  updateCurrentTab_ = true;
 }
 
 //! Установить фокус в строку поиска (CTRL+F)
@@ -5335,9 +5331,9 @@ void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
 
     currentNewsTab->hideWebContent();
 
-    emit signalSetCurrentTab(indexTab, true);
-  } else {
     emit signalSetCurrentTab(indexTab);
+  } else {
+    emit signalSetCurrentTab(indexTab, true);
   }
 
   QSqlQuery q(db_);

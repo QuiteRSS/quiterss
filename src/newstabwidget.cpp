@@ -55,6 +55,8 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
   if (type_ != TAB_WEB) {
     createNewsList();
     createMenuNews();
+  } else {
+    autoLoadImages_ = rsslisting_->autoLoadImages_;
   }
   createWebWidget();
 
@@ -442,8 +444,6 @@ void NewsTabWidget::setSettings(bool newTab)
           QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
   }
 
-  if (type_ != TAB_WEB)
-    rsslisting_->slotUpdateStatus(feedId_, false);
 
   if (type_ == TAB_FEED) {
     QSqlQuery q(*db_);
@@ -452,12 +452,15 @@ void NewsTabWidget::setSettings(bool newTab)
     if (q.next()) autoLoadImages_ = q.value(0).toInt();
   }
 
-  rsslisting_->autoLoadImages_ = !autoLoadImages_;
-  rsslisting_->setAutoLoadImages(false);
   webView_->settings()->setAttribute(
         QWebSettings::AutoLoadImages, autoLoadImages_);
 
+  rsslisting_->autoLoadImages_ = !autoLoadImages_;
+  rsslisting_->setAutoLoadImages(false);
+
   if (type_ != TAB_WEB) {
+    rsslisting_->slotUpdateStatus(feedId_, false);
+
     newsToolBar_->actions().at(4)->setVisible(type_ != TAB_CAT_DEL);
     newsToolBar_->actions().at(5)->setVisible(type_ != TAB_CAT_DEL);
     newsToolBar_->actions().at(6)->setVisible(type_ == TAB_FEED);

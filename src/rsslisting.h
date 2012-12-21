@@ -352,7 +352,7 @@ private:
 
   bool reopenFeedStartup_;
 
-  bool tabCurrentUpdateOff_;
+  bool updateCurrentTab_;
 
   NotificationWidget *notificationWidget;
 
@@ -435,7 +435,7 @@ private slots:
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();
   void slotOpenNewsBackgroundTab();
-  void setCurrentTab(int index, bool updateTab = false);
+  void setCurrentTab(int index, bool updateCurrentTab = false);
   void findText();
 
   void showNotification();
