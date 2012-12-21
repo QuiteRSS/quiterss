@@ -1793,7 +1793,6 @@ void RSSListing::writeSettings()
   settings_->setValue("networkProxy/password", networkProxy_.password());
 
   NewsTabWidget* widget = (NewsTabWidget*)tabWidget_->widget(0);
-
   settings_->setValue("feedSettings/currentId", widget->feedId_);
   settings_->setValue("feedSettings/currentParId", widget->feedParId_);
   settings_->setValue("feedSettings/filterName",
@@ -3604,9 +3603,12 @@ void RSSListing::restoreFeedsOnStartUp()
   expandNodes();
 
   //* Восстановление текущей ленты
-  int feedId = settings_->value("feedSettings/currentId", 0).toInt();
-  int feedParId = settings_->value("feedSettings/currentParId", 0).toInt();
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex feedIndex;
+  if (reopenFeedStartup_) {
+    int feedId = settings_->value("feedSettings/currentId", 0).toInt();
+    int feedParId = settings_->value("feedSettings/currentParId", 0).toInt();
+    feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  } else feedIndex = QModelIndex();
   feedsTreeView_->setCurrentIndex(feedIndex);
   tabCurrentUpdateOff_ = true;
   slotFeedClicked(feedIndex);
