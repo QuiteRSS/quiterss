@@ -463,7 +463,7 @@ private slots:
   void slotRefreshInfoTray();
 
   void slotCategoriesClicked(QTreeWidgetItem *item, int);
-  void showCategories();
+  void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
 
 signals:
