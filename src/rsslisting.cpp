@@ -521,7 +521,7 @@ void RSSListing::createFeedsDock()
 
   QStringList treeItem;
   treeItem.clear();
-  treeItem << "Category" << "Type";
+  treeItem << "Categories" << "Type";
   newsCategoriesTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -535,6 +535,8 @@ void RSSListing::createFeedsDock()
   treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
 
+  categoriesLabel_ = new QLabel(this);
+
   showCategoriesButton_ = new QToolButton(this);
   showCategoriesButton_->setMaximumSize(16, 16);
   showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
@@ -543,7 +545,7 @@ void RSSListing::createFeedsDock()
   QHBoxLayout *categoriesPanelLayout = new QHBoxLayout();
   categoriesPanelLayout->setMargin(2);
   categoriesPanelLayout->addSpacing(2);
-  categoriesPanelLayout->addWidget(new QLabel(tr("Category")), 1);
+  categoriesPanelLayout->addWidget(categoriesLabel_, 1);
   categoriesPanelLayout->addWidget(showCategoriesButton_);
 
   categoriesPanel_ = new QFrame(this);
@@ -617,9 +619,9 @@ void RSSListing::createFeedsDock()
           this, SLOT(slotSelectFind()));
 
   connect(newsCategoriesTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
-          this, SLOT(slotCategoryClicked(QTreeWidgetItem*,int)));
+          this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
   connect(showCategoriesButton_, SIGNAL(clicked()),
-          this, SLOT(showCategoryWidget()));
+          this, SLOT(showNewsCategoriesTree()));
   connect(feedsDockSplitter_, SIGNAL(splitterMoved(int,int)),
           this, SLOT(feedsSplitterMoved(int,int)));
 
@@ -3898,6 +3900,7 @@ void RSSListing::retranslateStrings() {
   stayOnTopAct_->setText(tr("Stay On Top"));
   stayOnTopAct_->setToolTip(tr("Stay On Top"));
 
+  categoriesLabel_->setText(tr("Categories"));
   if (newsCategoriesTree_->isHidden())
     showCategoriesButton_->setToolTip(tr("Show Categories"));
   else
@@ -5280,7 +5283,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
  * @brief Обработка нажатия в дереве категорий
  * @param item пункт по которому кликаем
  ******************************************************************************/
-void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
+void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
 {
   int type = item->text(1).toInt();
 
@@ -5359,7 +5362,7 @@ void RSSListing::slotCategoryClicked(QTreeWidgetItem *item, int)
 /**
  * @brief Показ/скрытие дерева категорий
  ******************************************************************************/
-void RSSListing::showCategoryWidget()
+void RSSListing::showNewsCategoriesTree()
 {
   static QByteArray splitterState;
   if (newsCategoriesTree_->isHidden()) {

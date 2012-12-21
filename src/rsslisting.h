@@ -375,6 +375,7 @@ private:
   };
 
   QFrame *categoriesPanel_;
+  QLabel *categoriesLabel_;
   QToolButton *showCategoriesButton_;
   QWidget *categoriesWidget_;
   QSplitter *feedsDockSplitter_;
@@ -461,8 +462,8 @@ private slots:
 
   void slotRefreshInfoTray();
 
-  void slotCategoryClicked(QTreeWidgetItem *item, int);
-  void showCategoryWidget();
+  void slotCategoriesClicked(QTreeWidgetItem *item, int);
+  void showCategories();
   void feedsSplitterMoved(int pos, int);
 
 signals:
