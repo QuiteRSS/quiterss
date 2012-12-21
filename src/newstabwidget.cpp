@@ -1064,7 +1064,11 @@ void NewsTabWidget::updateWebView(QModelIndex index)
           newsModel_->record(index.row()).field("received").value().toString(),
           Qt::ISODate);
   }
-  webPanelDate_->setText(dtLocal.toString(rsslisting_->formatDateTime_));
+  if (QDateTime::currentDateTime().date() == dtLocal.date())
+    strDate = dtLocal.toString("hh:mm");
+  else
+    strDate = dtLocal.toString(rsslisting_->formatDateTime_);
+  webPanelDate_->setText(strDate);
 
   // Формируем панель автора из автора новости
   QString authorString;
