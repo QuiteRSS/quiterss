@@ -109,7 +109,8 @@ void NewsTabWidget::showEvent(QShowEvent *)
   QString titleStr, panelTitleStr;
   titleStr = webPanelTitle_->fontMetrics().elidedText(
         titleString_, Qt::ElideRight, webPanelTitle_->width());
-  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
+      arg(linkString_).arg(titleStr);
   webPanelTitle_->setText(panelTitleStr);
 }
 
@@ -118,7 +119,8 @@ void NewsTabWidget::resizeEvent(QResizeEvent *)
   QString titleStr, panelTitleStr;
   titleStr = webPanelTitle_->fontMetrics().elidedText(
         titleString_, Qt::ElideRight, webPanelTitle_->width());
-  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
+      arg(linkString_).arg(titleStr);
   webPanelTitle_->setText(panelTitleStr);
 }
 
@@ -326,6 +328,7 @@ void NewsTabWidget::createWebWidget()
 
   webPanelTitle_ = new QLabel(this);
   webPanelTitle_->setObjectName("webPanelTitle_");
+  webPanelTitle_->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
   webPanelDate_ = new QLabel(this);
 
@@ -422,8 +425,9 @@ void NewsTabWidget::setSettings(bool newTab)
 
 //    webPanelTitleLabel_->setFont(
 //          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
-    webPanelTitle_->setFont(
-          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
+    QFont font = QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_);
+    font.setBold(true);
+    webPanelTitle_->setFont(font);
     webPanelDate_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
 //    webPanelAuthorLabel_->setFont(
@@ -1051,7 +1055,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   linkString_ = newsModel_->record(index.row()).field("link_href").value().toString();
   if (linkString_.isEmpty())
     linkString_ = newsModel_->record(index.row()).field("link_alternate").value().toString();
-  panelTitleStr = QString("<a href='%1'>%2</a>").arg(linkString_).arg(titleStr);
+  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
+      arg(linkString_).arg(titleStr);
   webPanelTitle_->setText(panelTitleStr);
 
   QDateTime dtLocal;
@@ -1082,8 +1087,12 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
   //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
   authorString = authorName;
-  if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
-  if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+  if (!authorEmail.isEmpty())
+    authorString.append(QString(" <a href='mailto:%1' style=\"text-decoration:none;\">e-mail</a>").
+                        arg(authorEmail));
+  if (!authorUri.isEmpty())
+    authorString.append(QString(" <a href='%1' style=\"text-decoration:none;\">page</a>").
+                        arg(authorUri));
 
   // Если авора новости нет, формируем панель автора из автора ленты
   // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
@@ -1096,8 +1105,12 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
     //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
     authorString = authorName;
-    if (!authorEmail.isEmpty()) authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
-    if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+    if (!authorEmail.isEmpty())
+      authorString.append(QString(" <a href='mailto:%1' style=\"text-decoration:none;\">e-mail</a>").
+                          arg(authorEmail));
+    if (!authorUri.isEmpty())
+      authorString.append(QString(" <a href='%1' style=\"text-decoration:none;\">page</a>").
+                          arg(authorUri));
   }
 
   webPanelAuthor_->setText(QString(tr("Author: %1")).arg(authorString));
