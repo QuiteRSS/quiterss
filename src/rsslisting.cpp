@@ -936,9 +936,6 @@ void RSSListing::createActions()
   filterNewsUnreadStar_ = new QAction(this);
   filterNewsUnreadStar_->setObjectName("filterNewsUnreadStar_");
   filterNewsUnreadStar_->setCheckable(true);
-  filterNewsDeleted_ = new QAction(this);
-  filterNewsDeleted_->setObjectName("filterNewsDeleted_");
-  filterNewsDeleted_->setCheckable(true);
 
   aboutAct_ = new QAction(this);
   aboutAct_->setObjectName("AboutAct_");
@@ -1396,9 +1393,6 @@ void RSSListing::createMenu()
   newsFilterGroup_->addAction(filterNewsNotStarred_);
   newsFilterMenu_->addAction(filterNewsUnreadStar_);
   newsFilterGroup_->addAction(filterNewsUnreadStar_);
-  newsFilterMenu_->addSeparator();
-  newsFilterMenu_->addAction(filterNewsDeleted_);
-  newsFilterGroup_->addAction(filterNewsDeleted_);
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
@@ -3408,14 +3402,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     newsFilterStr.append(QString("starred = 0 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnreadStar_") {
     newsFilterStr.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
-  } else if (pAct->objectName() == "filterNewsDeleted_") {
-    newsFilterStr.append(QString("deleted = 1"));
   }
-
-  if (pAct->objectName() == "filterNewsDeleted_")
-    currentNewsTab->setVisibleAction(true);
-  else
-    currentNewsTab->setVisibleAction(false);
 
   // ... добавляем фильтр из "поиска"
   QString filterStr = newsFilterStr;
@@ -3783,7 +3770,6 @@ void RSSListing::retranslateStrings() {
   filterNewsStar_->setText(tr("Show Starred"));
   filterNewsNotStarred_->setText(tr("Show Not Starred"));
   filterNewsUnreadStar_->setText(tr("Show Unread or Starred"));
-  filterNewsDeleted_->setText(tr("Show Deleted"));
 
   aboutAct_ ->setText(tr("About..."));
   aboutAct_->setToolTip(tr("Show 'About' Dialog"));
@@ -4747,8 +4733,6 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
       feedIdFilter.append(QString("starred = 0 AND deleted = 0"));
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsUnreadStar_") {
       feedIdFilter.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
-    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsDeleted_") {
-      feedIdFilter.append(QString("deleted = 1"));
     }
     widget->newsModel_->setFilter(feedIdFilter);
 
