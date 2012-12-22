@@ -317,8 +317,8 @@ void NewsTabWidget::createWebWidget()
     setWebToolbarVisible(true, false);
 
   //! Create web panel
-  webPanelTitleLabel_ = new QLabel(this);
-  webPanelAuthorLabel_ = new QLabel(this);
+//  webPanelTitleLabel_ = new QLabel(this);
+//  webPanelAuthorLabel_ = new QLabel(this);
 
   webPanelAuthor_ = new QLabel(this);
   webPanelAuthor_->setObjectName("webPanelAuthor_");
@@ -331,12 +331,12 @@ void NewsTabWidget::createWebWidget()
   QGridLayout *webPanelLayout1 = new QGridLayout();
   webPanelLayout1->setMargin(5);
   webPanelLayout1->setSpacing(5);
-  webPanelLayout1->setColumnStretch(1, 1);
-  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0);
-  webPanelLayout1->addWidget(webPanelTitle_, 0, 1);
-  webPanelLayout1->addWidget(webPanelDate_, 0, 2, 1, 1, Qt::AlignRight);
-  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0);
-  webPanelLayout1->addWidget(webPanelAuthor_, 1, 1);
+  webPanelLayout1->setColumnStretch(0, 1);
+//  webPanelLayout1->addWidget(webPanelTitleLabel_, 0, 0);
+  webPanelLayout1->addWidget(webPanelTitle_, 0, 0);
+  webPanelLayout1->addWidget(webPanelDate_, 0, 1, 1, 1, Qt::AlignRight);
+//  webPanelLayout1->addWidget(webPanelAuthorLabel_, 1, 0);
+  webPanelLayout1->addWidget(webPanelAuthor_, 1, 0);
 
   QFrame *webPanelLine = new QFrame(this);
   webPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
@@ -419,14 +419,14 @@ void NewsTabWidget::setSettings(bool newTab)
       newsModel_->formatDateTime_ = rsslisting_->formatDateTime_;
     }
 
-    webPanelTitleLabel_->setFont(
-          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
+//    webPanelTitleLabel_->setFont(
+//          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelTitle_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelDate_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
-    webPanelAuthorLabel_->setFont(
-          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
+//    webPanelAuthorLabel_->setFont(
+//          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
     webPanelAuthor_->setFont(
           QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
 
@@ -490,8 +490,12 @@ void NewsTabWidget::setSettings(bool newTab)
 //! Перезагрузка перевода
 void NewsTabWidget::retranslateStrings() {
   webViewProgress_->setFormat(tr("Loading... (%p%)"));
-  webPanelTitleLabel_->setText(tr("Title:"));
-  webPanelAuthorLabel_->setText(tr("Author:"));
+//  webPanelTitleLabel_->setText(tr("Title:"));
+
+  QString str = webPanelAuthor_->text();
+  str = str.right(str.length() - str.indexOf(':') - 2);
+  webPanelAuthor_->setText(QString(tr("Author: %1")).arg(str));
+//  webPanelAuthorLabel_->setText(tr("Author:"));
 
   webHomePageAct_->setText(tr("Home"));
   webExternalBrowserAct_->setText(tr("Open Page in External Browser"));
@@ -1095,8 +1099,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (!authorUri.isEmpty())   authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
   }
 
-  webPanelAuthor_->setText(authorString);
-  webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
+  webPanelAuthor_->setText(QString(tr("Author: %1")).arg(authorString));
+//  webPanelAuthor_->setText(tr("Author:") + " " + authorString);
+//  webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
   webPanelAuthor_->setVisible(!authorString.isEmpty());
   setWebToolbarVisible(false, false);
 
