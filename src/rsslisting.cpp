@@ -4557,7 +4557,6 @@ void RSSListing::slotTabCloseRequested(int index)
                           widget->newsTabWidgetSplitter_->saveState());
     }
 
-    // @FIXME(hohryakov:2012.12.21): Почему мы удаляем в такой последовательности?
     QWidget *newsTitleLabel = widget->newsTitleLabel_;
     delete widget;
     delete newsTitleLabel;
