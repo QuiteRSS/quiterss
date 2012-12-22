@@ -322,6 +322,7 @@ void NewsTabWidget::createWebWidget()
 
   webPanelAuthor_ = new QLabel(this);
   webPanelAuthor_->setObjectName("webPanelAuthor_");
+  webPanelAuthor_->hide();
 
   webPanelTitle_ = new QLabel(this);
   webPanelTitle_->setObjectName("webPanelTitle_");
