@@ -1642,6 +1642,10 @@ void RSSListing::readSettings()
   resize(800, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
+
+  newsCategoriesTree_->setVisible(settings_->value("NewsCategoriesTreeVisible", true).toBool());
+  feedsDockSplitter_->restoreState(settings_->value("FeedsDockSplitterState").toByteArray());
+
   if (isFullScreen())
     menuBar()->hide();
 
@@ -1768,6 +1772,13 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
+
+  bool newsCategoriesTreeVisible = true;
+  if (categoriesWidget_->height() <= (categoriesPanel_->height()+2))
+    newsCategoriesTreeVisible = false;
+  settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
+  settings_->setValue("FeedsDockSplitterState", feedsDockSplitter_->saveState());
+
   if (tabWidget_->count() && (currentNewsTab->type_ == TAB_FEED)) {
     settings_->setValue("NewsHeaderGeometry",
                         currentNewsTab->newsHeader_->saveGeometry());
