@@ -81,9 +81,14 @@ void ParseObject::slotParse(QSqlDatabase *db,
   bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
 
   xml.readNext();
-  if (xml.documentEncoding().toString().contains("utf-8", Qt::CaseInsensitive)) {
+  if (xml.documentVersion().isEmpty()) {
     xml.clear();
-    xml.addData(QString::fromUtf8(xmlData.trimmed()));
+    xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
+  } else {
+    if (xml.documentEncoding().toString().contains("utf-8", Qt::CaseInsensitive)) {
+      xml.clear();
+      xml.addData(QString::fromUtf8(xmlData.trimmed()));
+    }
   }
 
   xml.readNext();
