@@ -104,24 +104,9 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
   }
 }
 
-void NewsTabWidget::showEvent(QShowEvent *)
-{
-  QString titleStr, panelTitleStr;
-  titleStr = webPanelTitle_->fontMetrics().elidedText(
-        titleString_, Qt::ElideRight, webPanelTitle_->width());
-  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
-      arg(linkString_).arg(titleStr);
-  webPanelTitle_->setText(panelTitleStr);
-}
-
 void NewsTabWidget::resizeEvent(QResizeEvent *)
 {
-  QString titleStr, panelTitleStr;
-  titleStr = webPanelTitle_->fontMetrics().elidedText(
-        titleString_, Qt::ElideRight, webPanelTitle_->width());
-  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
-      arg(linkString_).arg(titleStr);
-  webPanelTitle_->setText(panelTitleStr);
+  setTitleWebPanel();
 }
 
 //! Создание новостного списка и всех сопутствующих панелей
@@ -537,6 +522,8 @@ bool NewsTabWidget::eventFilter(QObject *obj, QEvent *event)
                             Qt::ControlModifier);
         QApplication::sendEvent(webPanelTitle_, pe);
       }
+    } else if (event->type() == QEvent::Show) {
+      setTitleWebPanel();
     }
     return false;
   } else {
@@ -1046,18 +1033,12 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     return;
   }
 
-  webPanel_->show();
-
-  QString titleStr, panelTitleStr;
   titleString_ = newsModel_->record(index.row()).field("title").value().toString();
-  titleStr = webPanelTitle_->fontMetrics().elidedText(
-        titleString_, Qt::ElideRight, webPanelTitle_->width());
   linkString_ = newsModel_->record(index.row()).field("link_href").value().toString();
   if (linkString_.isEmpty())
     linkString_ = newsModel_->record(index.row()).field("link_alternate").value().toString();
-  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
-      arg(linkString_).arg(titleStr);
-  webPanelTitle_->setText(panelTitleStr);
+
+  setTitleWebPanel();
 
   QDateTime dtLocal;
   QString strDate = newsModel_->record(index.row()).field("published").value().toString();
@@ -1117,7 +1098,6 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 //  webPanelAuthor_->setText(tr("Author:") + " " + authorString);
 //  webPanelAuthorLabel_->setVisible(!authorString.isEmpty());
   webPanelAuthor_->setVisible(!authorString.isEmpty());
-  setWebToolbarVisible(false, false);
 
   bool showDescriptionNews_ = rsslisting_->showDescriptionNews_;
 
@@ -1127,16 +1107,19 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     showDescriptionNews_ = !displayNews.toInt();
 
   if (!showDescriptionNews_) {
+    webPanel_->hide();
+    setWebToolbarVisible(true, false);
+
     QString linkString = newsModel_->record(
           index.row()).field("link_href").value().toString();
     if (linkString.isEmpty())
       linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-    webPanel_->hide();
-    setWebToolbarVisible(true, false);
-
     webView_->load(QUrl(linkString.simplified()));
   } else {
+    setWebToolbarVisible(false, false);
+    webPanel_->show();
+
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     if (content.isEmpty()) {
       content = newsModel_->record(index.row()).field("description").value().toString();
@@ -1466,4 +1449,18 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
   if (!checked) webToolbarShow_ = show;
   webControlPanel_->setVisible(webToolbarShow_ &
                                rsslisting_->browserToolbarToggle_->isChecked());
+}
+
+void NewsTabWidget::setTitleWebPanel()
+{
+  QString titleStr, panelTitleStr;
+  titleStr = webPanelTitle_->fontMetrics().elidedText(
+        titleString_, Qt::ElideRight, webPanelTitle_->width());
+  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
+      arg(linkString_).arg(titleStr);
+  webPanelTitle_->setText(panelTitleStr);
+  if (titleString_ != titleStr)
+    webPanelTitle_->setToolTip(titleString_);
+  else
+    webPanelTitle_->setToolTip("");
 }

@@ -32,6 +32,7 @@ private:
   void createMenuNews();
   void createWebWidget();
   bool openUrl(const QUrl &url);
+  void setTitleWebPanel();
 
   QSqlDatabase *db_;
   QWidget *newsWidget_;
@@ -134,7 +135,6 @@ public slots:
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
-  void showEvent(QShowEvent *);
   void resizeEvent(QResizeEvent *);
 
 private slots:
