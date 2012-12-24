@@ -50,6 +50,20 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       }
 
       return icon;
+    } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
+      QPixmap icon;
+
+      QSqlQuery q(*db_);
+      q.exec(QString("SELECT image FROM labels WHERE id=='%1'").
+             arg(index.data(Qt::EditRole).toInt()));
+      if (q.next()) {
+        QByteArray byteArray;
+        byteArray = q.value(0).toByteArray();
+        if (!byteArray.isNull())
+          icon.loadFromData(byteArray);
+      }
+
+      return icon;
     }
   } else if (role == Qt::ToolTipRole) {
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
@@ -98,6 +112,12 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       if (QDateTime::currentDateTime().date() == dateTime.date()) {
         return dateTime.toString("hh:mm");
       } else return dateTime.toString(formatDateTime_.left(formatDateTime_.length()-6));
+    } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
+      QSqlQuery q(*db_);
+      q.exec(QString("SELECT name FROM labels WHERE id=='%1'").
+             arg(index.data(Qt::EditRole).toInt()));
+      if (q.next())
+        return q.value(0).toString();
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();

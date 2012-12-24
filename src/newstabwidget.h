@@ -79,6 +79,7 @@ public:
   void markNewsRead();
   void markAllNewsRead();
   void markNewsStar();
+  void setLabelNews(int labelId);
   void deleteNews();
   void deleteAllNewsList();
   void restoreNews();

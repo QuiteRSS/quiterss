@@ -1070,6 +1070,31 @@ void RSSListing::createActions()
   connect(stayOnTopAct_, SIGNAL(triggered()),
           this, SLOT(setStayOnTop()));
 
+  newsLabelGroup_ = new QActionGroup(this);
+  newsLabelGroup_->setExclusive(false);
+  QSqlQuery q(db_);
+  q.exec("SELECT id, name, image FROM labels ORDER BY num");
+  while (q.next()) {
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+    QAction *action = new QAction(QIcon(imageLabel), nameLabel, this);
+    action->setCheckable(true);
+    action->setData(q.value(0));
+    newsLabelGroup_->addAction(action);
+  }
+  newsLabelAction_ = new QAction(this);
+  newsLabelAction_->setIcon(QIcon(":/images/images/label_red.png"));
+  newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
+
+  connect(newsLabelAction_, SIGNAL(triggered()),
+          this, SLOT(setDefaultLabelNews()));
+  connect(newsLabelGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setLabelNews(QAction*)));
+
+
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
   connect(markAllNewsRead_, SIGNAL(triggered()),
@@ -1372,6 +1397,13 @@ void RSSListing::createMenu()
   newsMenu_->addAction(markAllNewsRead_);
   newsMenu_->addSeparator();
   newsMenu_->addAction(markStarAct_);
+
+  newsLabelMenu_ = new QMenu(this);
+  newsLabelMenu_->addActions(newsLabelGroup_->actions());
+  newsLabelAction_->setMenu(newsLabelMenu_);
+  newsMenu_->addAction(newsLabelAction_);
+  connect(newsLabelMenu_, SIGNAL(aboutToShow()),
+          this, SLOT(getLabelNews()));
   newsMenu_->addSeparator();
 
   newsFilterGroup_ = new QActionGroup(this);
@@ -3903,6 +3935,8 @@ void RSSListing::retranslateStrings() {
   else
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
 
+  newsLabelAction_->setText(tr("Label"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
@@ -5388,5 +5422,42 @@ void RSSListing::feedsSplitterMoved(int pos, int)
       showCategoriesButton_->setToolTip(tr("Hide Categories"));
       newsCategoriesTree_->show();
     }
+  }
+}
+
+/**
+ * @brief Установка метки для новости
+ ******************************************************************************/
+void RSSListing::setLabelNews(QAction *action)
+{
+  newsLabelAction_->setIcon(action->icon());
+  newsLabelAction_->setData(action->text());
+  newsLabelAction_->setData(action->data());
+
+  currentNewsTab->setLabelNews(action->data().toInt());
+}
+
+/**
+ * @brief Установка последней выбранной метки для новости
+ ******************************************************************************/
+void RSSListing::setDefaultLabelNews()
+{
+  currentNewsTab->setLabelNews(newsLabelAction_->data().toInt());
+}
+
+/**
+ * @brief Получение списка меток выбранной новости
+ ******************************************************************************/
+void RSSListing::getLabelNews()
+{
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
+        newsModel_->fieldIndex("label"));
+
+  if (indexes.count() > 1) return;
+  int labelId = indexes.at(0).data(Qt::EditRole).toInt();
+  for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
+    newsLabelGroup_->actions().at(i)->setChecked(false);
+    if (newsLabelGroup_->actions().at(i)->data().toInt() == labelId)
+      newsLabelGroup_->actions().at(i)->setChecked(true);
   }
 }

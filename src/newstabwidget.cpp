@@ -132,7 +132,7 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->addAction(rsslisting_->markAllNewsRead_);
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->markStarAct_);
-
+  newsToolBar_->addAction(rsslisting_->newsLabelAction_);
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
   newsToolBar_->addSeparator();
@@ -223,6 +223,7 @@ void NewsTabWidget::createMenuNews()
   newsContextMenu_->addAction(rsslisting_->markAllNewsRead_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->markStarAct_);
+  newsContextMenu_->addAction(rsslisting_->newsLabelAction_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->updateFeedAct_);
   newsContextMenu_->addSeparator();
@@ -457,12 +458,12 @@ void NewsTabWidget::setSettings(bool newTab)
   if (type_ != TAB_WEB) {
     rsslisting_->slotUpdateStatus(feedId_, false);
 
-    newsToolBar_->actions().at(4)->setVisible(type_ != TAB_CAT_DEL);
     newsToolBar_->actions().at(5)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(6)->setVisible(type_ == TAB_FEED);
+    newsToolBar_->actions().at(6)->setVisible(type_ != TAB_CAT_DEL);
     newsToolBar_->actions().at(7)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(8)->setVisible(type_ == TAB_CAT_DEL);
+    newsToolBar_->actions().at(8)->setVisible(type_ == TAB_FEED);
     newsToolBar_->actions().at(9)->setVisible(type_ == TAB_CAT_DEL);
+    newsToolBar_->actions().at(10)->setVisible(type_ == TAB_CAT_DEL);
 
     if (type_ == TAB_CAT_DEL) {
       rsslisting_->deleteNewsAct_->setEnabled(false);
@@ -1494,4 +1495,30 @@ void NewsTabWidget::setTitleWebPanel()
     webPanelTitle_->setToolTip(titleString_);
   else
     webPanelTitle_->setToolTip("");
+}
+
+/**
+ * @brief Установка метки для новости
+ ******************************************************************************/
+void NewsTabWidget::setLabelNews(int labelId)
+{
+  if (type_ == TAB_WEB) return;
+
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
+        newsModel_->fieldIndex("label"));
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
+  db_->transaction();
+  for (int i = cnt-1; i >= 0; --i) {
+    QModelIndex curIndex = indexes.at(0);
+    newsModel_->setData(curIndex, labelId);
+
+    int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+    QSqlQuery q(*db_);
+    q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
+           arg(labelId).arg(newsId));
+  }
+  db_->commit();
 }

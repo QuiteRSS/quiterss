@@ -62,7 +62,9 @@ public:
   QAction *printAct_;
   QAction *printPreviewAct_;
   QAction *restoreNewsAct_;
+  QAction *newsLabelAction_;
   QActionGroup *newsFilterGroup_;
+  QActionGroup *newsLabelGroup_;
 
   QString newsFontFamily_;
   int newsFontSize_;
@@ -280,6 +282,7 @@ private:
   QMenu *feedContextMenu_;
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
+  QMenu *newsLabelMenu_;
   QMenu *feedsColumnsMenu_;
   QMenu *browserZoomMenu_;
 
@@ -464,6 +467,10 @@ private slots:
   void slotCategoriesClicked(QTreeWidgetItem *item, int);
   void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
+
+  void setLabelNews(QAction *action);
+  void setDefaultLabelNews();
+  void getLabelNews();
 
 signals:
   void signalPlaceToTray();
