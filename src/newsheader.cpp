@@ -44,7 +44,6 @@ void NewsHeader::init(QWidget *rsslisting)
   showSection(model_->fieldIndex("feedId"));
   showSection(model_->fieldIndex("title"));
   showSection(model_->fieldIndex("published"));
-  showSection(model_->fieldIndex("received"));
   showSection(model_->fieldIndex("author_name"));
   showSection(model_->fieldIndex("read"));
   showSection(model_->fieldIndex("starred"));
@@ -72,9 +71,9 @@ void NewsHeader::init(QWidget *rsslisting)
                         QPixmap(":/images/starSection"), Qt::DecorationRole);
 
   moveSection(visualIndex(model_->fieldIndex("starred")), 0);
-  moveSection(visualIndex(model_->fieldIndex("feedId")), 1);
-  moveSection(visualIndex(model_->fieldIndex("title")), 2);
-  moveSection(visualIndex(model_->fieldIndex("read")), 3);
+  moveSection(visualIndex(model_->fieldIndex("read")), 1);
+  moveSection(visualIndex(model_->fieldIndex("feedId")), 2);
+  moveSection(visualIndex(model_->fieldIndex("title")), 3);
   moveSection(visualIndex(model_->fieldIndex("author_name")), 4);
   resizeSection(model_->fieldIndex("author_name"), 100);
   moveSection(visualIndex(model_->fieldIndex("category")), 5);
