@@ -57,6 +57,7 @@ void NewsHeader::init(QWidget *rsslisting)
   model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
+  model_->setHeaderData(model_->fieldIndex("label"), Qt::Horizontal, tr("Label"));
   for (int i = 0; i < count(); i++) {
     model_->setHeaderData(i, Qt::Horizontal,
                           model_->headerData(i, Qt::Horizontal, Qt::DisplayRole),
@@ -114,7 +115,8 @@ void NewsHeader::createMenu()
         (lIdx == model_->fieldIndex("author_name")) ||
         (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
-        (lIdx == model_->fieldIndex("starred"))) {
+        (lIdx == model_->fieldIndex("starred")) ||
+        (lIdx == model_->fieldIndex("label"))) {
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
                                Qt::Horizontal, Qt::EditRole).toString());
@@ -376,6 +378,7 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
+  model_->setHeaderData(model_->fieldIndex("label"), Qt::Horizontal, tr("Label"));
 
   if (pActGroup_) delete pActGroup_;
   pActGroup_ = new QActionGroup(viewMenu_);
@@ -391,7 +394,8 @@ void NewsHeader::retranslateStrings()
         (lIdx == model_->fieldIndex("author_name")) ||
         (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
-        (lIdx == model_->fieldIndex("starred"))) {
+        (lIdx == model_->fieldIndex("starred")) ||
+        (lIdx == model_->fieldIndex("label"))) {
       QAction *action = pActGroup_->addAction(
             model_->headerData(lIdx,
                                Qt::Horizontal, Qt::EditRole).toString());

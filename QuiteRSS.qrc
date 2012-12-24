@@ -84,6 +84,12 @@
         <file>images/trash.png</file>
         <file>images/panel_hide.png</file>
         <file>images/panel_show.png</file>
+        <file>images/label_gray.png</file>
+        <file>images/label_green.png</file>
+        <file>images/label_orange.png</file>
+        <file>images/label_purple.png</file>
+        <file>images/label_red.png</file>
+        <file>images/label_yellow.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
