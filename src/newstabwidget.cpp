@@ -1359,11 +1359,21 @@ void NewsTabWidget::slotFindText(const QString &text)
     int newsId = newsModel_->index(
           newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-    QString filterStr = rsslisting_->newsFilterStr +
-        QString(" AND (title LIKE '\%%1\%' OR author_name LIKE '\%%1\%' OR category LIKE '\%%1\%')").
-        arg(text);
-
-    newsModel_->setFilter(filterStr);   
+    QString filterStr;
+    switch (type_) {
+    case TAB_CAT_DEL:
+      filterStr = "feedId > 0 AND deleted = 1";
+      break;
+    case TAB_CAT_STAR:
+      filterStr = "feedId > 0 AND deleted = 0 AND starred = 1";
+      break;
+    default:
+      filterStr = rsslisting_->newsFilterStr;
+    }
+    filterStr.append(
+          QString(" AND (title LIKE '\%%1\%' OR author_name LIKE '\%%1\%' OR category LIKE '\%%1\%')").
+          arg(text));
+    newsModel_->setFilter(filterStr);
 
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
@@ -1382,9 +1392,30 @@ void NewsTabWidget::slotSelectFind()
   if (findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct")
     webView_->findText("", QWebPage::HighlightAllOccurrences);
   else {
-    QModelIndex index = newsView_->currentIndex();
-    newsModel_->setFilter(rsslisting_->newsFilterStr);
-    newsView_->setCurrentIndex(index);
+    int newsId = newsModel_->index(
+          newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+
+    QString filterStr;
+    switch (type_) {
+    case TAB_CAT_DEL:
+      filterStr = "feedId > 0 AND deleted = 1";
+      break;
+    case TAB_CAT_STAR:
+      filterStr = "feedId > 0 AND deleted = 0 AND starred = 1";
+      break;
+    default:
+      filterStr = rsslisting_->newsFilterStr;
+    }
+    newsModel_->setFilter(filterStr);
+
+    QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
+    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
+    if (indexList.count()) {
+      int newsRow = indexList.first().row();
+      newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+    } else {
+      currentNewsIdOld = newsId;
+    }
   }
   slotFindText(findText_->text());
 }
