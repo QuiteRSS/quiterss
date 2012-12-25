@@ -52,17 +52,24 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return icon;
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
       QPixmap icon;
-
-      QSqlQuery q(*db_);
-      q.exec(QString("SELECT image FROM labels WHERE id=='%1'").
-             arg(index.data(Qt::EditRole).toInt()));
-      if (q.next()) {
-        QByteArray byteArray;
-        byteArray = q.value(0).toByteArray();
-        if (!byteArray.isNull())
-          icon.loadFromData(byteArray);
+      QByteArray byteArray;
+      int num = -1;
+      QStringList strLabelIdList = index.data(Qt::EditRole).toString().
+          split(",", QString::SkipEmptyParts);
+      foreach (QString strLabelId, strLabelIdList) {
+        QSqlQuery q(*db_);
+        q.exec(QString("SELECT num, image FROM labels WHERE id=='%1'").
+               arg(strLabelId));
+        if (q.next()) {
+          if ((q.value(0).toInt() < num) || (num == -1)) {
+            num = q.value(0).toInt();
+            byteArray = q.value(1).toByteArray();
+          }
+        }
       }
 
+      if (!byteArray.isNull())
+        icon.loadFromData(byteArray);
       return icon;
     }
   } else if (role == Qt::ToolTipRole) {
@@ -113,11 +120,19 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         return dateTime.toString("hh:mm");
       } else return dateTime.toString(formatDateTime_.left(formatDateTime_.length()-6));
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
-      QSqlQuery q(*db_);
-      q.exec(QString("SELECT name FROM labels WHERE id=='%1'").
-             arg(index.data(Qt::EditRole).toInt()));
-      if (q.next())
-        return q.value(0).toString();
+      QString nameLabels;
+      QStringList strLabelIdList = index.data(Qt::EditRole).toString().
+          split(",", QString::SkipEmptyParts);
+      foreach (QString strLabelId, strLabelIdList) {
+        QSqlQuery q(*db_);
+        q.exec(QString("SELECT name FROM labels WHERE id=='%1'").
+               arg(strLabelId));
+        if (q.next()) {
+          nameLabels.append(q.value(0).toString());
+          nameLabels.append(", ");
+        }
+      }
+      return nameLabels.left(nameLabels.length()-2);
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();

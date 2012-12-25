@@ -5430,11 +5430,13 @@ void RSSListing::feedsSplitterMoved(int pos, int)
  ******************************************************************************/
 void RSSListing::setLabelNews(QAction *action)
 {
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
   newsLabelAction_->setIcon(action->icon());
   newsLabelAction_->setData(action->text());
   newsLabelAction_->setData(action->data());
 
-  currentNewsTab->setLabelNews(action->data().toInt());
+  currentNewsTab->setLabelNews(action->data().toInt(), action->isChecked());
 }
 
 /**
@@ -5442,22 +5444,49 @@ void RSSListing::setLabelNews(QAction *action)
  ******************************************************************************/
 void RSSListing::setDefaultLabelNews()
 {
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
   currentNewsTab->setLabelNews(newsLabelAction_->data().toInt());
 }
 
 /**
- * @brief Получение списка меток выбранной новости
+ * @brief Получение меток назначенных выбранной новости
  ******************************************************************************/
 void RSSListing::getLabelNews()
 {
-  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
-        newsModel_->fieldIndex("label"));
-
-  if (indexes.count() > 1) return;
-  int labelId = indexes.at(0).data(Qt::EditRole).toInt();
   for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
     newsLabelGroup_->actions().at(i)->setChecked(false);
-    if (newsLabelGroup_->actions().at(i)->data().toInt() == labelId)
-      newsLabelGroup_->actions().at(i)->setChecked(true);
+  }
+
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
+        newsModel_->fieldIndex("label"));
+  if (!indexes.count()) return;
+
+  if (indexes.count() == 1) {
+    QModelIndex index = indexes.at(0);
+    QStringList strLabelIdList = index.data(Qt::EditRole).toString().split(",", QString::SkipEmptyParts);
+    foreach (QString strLabelId, strLabelIdList) {
+      for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
+        if (newsLabelGroup_->actions().at(i)->data().toString() == strLabelId)
+          newsLabelGroup_->actions().at(i)->setChecked(true);
+      }
+    }
+  } else {
+    for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
+      bool check = false;
+      QString strLabelId = newsLabelGroup_->actions().at(i)->data().toString();
+      for (int y = indexes.count()-1; y >= 0; --y) {
+        QModelIndex index = indexes.at(y);
+        QString strIdLabels = index.data(Qt::EditRole).toString();
+        if (!strIdLabels.contains(QString(",%1,").arg(strLabelId))) {
+          check = false;
+          break;
+        }
+        check = true;
+      }
+      newsLabelGroup_->actions().at(i)->setChecked(check);
+    }
   }
 }

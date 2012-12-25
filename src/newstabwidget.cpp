@@ -1498,9 +1498,9 @@ void NewsTabWidget::setTitleWebPanel()
 }
 
 /**
- * @brief Установка метки для новости
+ * @brief Установка метки для выбранных новостей
  ******************************************************************************/
-void NewsTabWidget::setLabelNews(int labelId)
+void NewsTabWidget::setLabelNews(int labelId, bool set)
 {
   if (type_ == TAB_WEB) return;
 
@@ -1510,15 +1510,44 @@ void NewsTabWidget::setLabelNews(int labelId)
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  db_->transaction();
-  for (int i = cnt-1; i >= 0; --i) {
-    QModelIndex curIndex = indexes.at(0);
-    newsModel_->setData(curIndex, labelId);
+  if (cnt == 1) {
+    QModelIndex index = indexes.at(0);
+    QString strIdLabels = index.data(Qt::EditRole).toString();
+    if (set) {
+      if (strIdLabels.isEmpty()) strIdLabels.append(",");
+      strIdLabels.append(QString::number(labelId));
+      strIdLabels.append(",");
+    } else {
+      strIdLabels.replace(QString(",%1,").arg(labelId), ",");
+    }
+    newsModel_->setData(index, strIdLabels);
 
-    int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+    int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).
+        data(Qt::EditRole).toInt();
     QSqlQuery q(*db_);
     q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
-           arg(labelId).arg(newsId));
+           arg(strIdLabels).arg(newsId));
+  } else {
+    db_->transaction();
+    for (int i = cnt-1; i >= 0; --i) {
+      QModelIndex index = indexes.at(i);
+      QString strIdLabels = index.data(Qt::EditRole).toString();
+      if (set) {
+        if (strIdLabels.contains(QString(",%1,").arg(labelId))) continue;
+        if (strIdLabels.isEmpty()) strIdLabels.append(",");
+        strIdLabels.append(QString::number(labelId));
+        strIdLabels.append(",");
+      } else {
+        strIdLabels.replace(QString(",%1,").arg(labelId), ",");
+      }
+      newsModel_->setData(index, strIdLabels);
+
+      int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).
+          data(Qt::EditRole).toInt();
+      QSqlQuery q(*db_);
+      q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
+             arg(strIdLabels).arg(newsId));
+    }
+    db_->commit();
   }
-  db_->commit();
 }
