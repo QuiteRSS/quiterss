@@ -66,6 +66,8 @@ public:
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
 
+  QMenu *newsLabelMenu_;
+
   QString newsFontFamily_;
   int newsFontSize_;
   QString panelNewsFontFamily_;
@@ -282,7 +284,6 @@ private:
   QMenu *feedContextMenu_;
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
-  QMenu *newsLabelMenu_;
   QMenu *feedsColumnsMenu_;
   QMenu *browserZoomMenu_;
 

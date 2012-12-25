@@ -40,6 +40,12 @@ NewsView::NewsView(QWidget * parent)
       }
       event->ignore();
       return;
+    } else if (index.column() == model_->fieldIndex("label")) {
+      if (QApplication::keyboardModifiers() == Qt::NoModifier) {
+        emit signaNewslLabelClicked(index);
+        event->ignore();
+        return;
+      }
     }
   } else if ((event->buttons() & Qt::MiddleButton)) {
     emit signalSetItemRead(index, 1);

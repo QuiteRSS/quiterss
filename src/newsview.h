@@ -25,6 +25,7 @@ signals:
   void signalSetItemStar(QModelIndex index, int starred);
   void signalDoubleClicked(QModelIndex index);
   void signalMiddleClicked(QModelIndex index);
+  void signaNewslLabelClicked(QModelIndex index);
   void pressKeyUp();
   void pressKeyDown();
   void pressKeyHome();

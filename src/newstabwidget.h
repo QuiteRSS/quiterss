@@ -165,6 +165,8 @@ private slots:
 
   void setWebToolbarVisible(bool show = true, bool checked = true);
 
+  void slotNewslLabelClicked(QModelIndex index);
+
 };
 
 #endif // NEWSTABWIDGET_H

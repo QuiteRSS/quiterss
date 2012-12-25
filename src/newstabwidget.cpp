@@ -191,6 +191,8 @@ void NewsTabWidget::createNewsList()
           this, SLOT(slotNewsViewDoubleClicked(QModelIndex)));
   connect(newsView_, SIGNAL(signalMiddleClicked(QModelIndex)),
           this, SLOT(slotNewsMiddleClicked(QModelIndex)));
+  connect(newsView_, SIGNAL(signaNewslLabelClicked(QModelIndex)),
+          this, SLOT(slotNewslLabelClicked(QModelIndex)));
   connect(markNewsReadTimer_, SIGNAL(timeout()),
           this, SLOT(slotReadTimer()));
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
@@ -1527,6 +1529,10 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
     QSqlQuery q(*db_);
     q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
            arg(strIdLabels).arg(newsId));
+    if (newsId != currentNewsIdOld) {
+      newsView_->selectionModel()->select(
+            index, QItemSelectionModel::Deselect|QItemSelectionModel::Rows);
+    }
   } else {
     db_->transaction();
     for (int i = cnt-1; i >= 0; --i) {
@@ -1547,7 +1553,22 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
       QSqlQuery q(*db_);
       q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
              arg(strIdLabels).arg(newsId));
+      if (newsId != currentNewsIdOld) {
+        newsView_->selectionModel()->select(
+              index, QItemSelectionModel::Deselect|QItemSelectionModel::Rows);
+      }
     }
     db_->commit();
   }
+}
+
+void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
+{
+  if (!newsView_->selectionModel()->isSelected(index)) {
+    newsView_->selectionModel()->clearSelection();
+    newsView_->selectionModel()->select(
+          index, QItemSelectionModel::Select|QItemSelectionModel::Rows);
+  }
+  rsslisting_->newsLabelMenu_->popup(
+        newsView_->viewport()->mapToGlobal(newsView_->visualRect(index).bottomLeft()));
 }
