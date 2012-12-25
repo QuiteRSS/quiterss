@@ -120,19 +120,17 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         return dateTime.toString("hh:mm");
       } else return dateTime.toString(formatDateTime_.left(formatDateTime_.length()-6));
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
-      QString nameLabels;
-      QStringList strLabelIdList = index.data(Qt::EditRole).toString().
-          split(",", QString::SkipEmptyParts);
-      foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q(*db_);
-        q.exec(QString("SELECT name FROM labels WHERE id=='%1'").
-               arg(strLabelId));
-        if (q.next()) {
-          nameLabels.append(q.value(0).toString());
-          nameLabels.append(", ");
+      QStringList nameLabelList;
+      QString strIdLabels = index.data(Qt::EditRole).toString();
+      QSqlQuery q(*db_);
+      q.exec("SELECT id, name FROM labels ORDER BY num");
+      while (q.next()) {
+        QString strLabelId = q.value(0).toString();
+        if (strIdLabels.contains(QString(",%1,").arg(strLabelId))) {
+          nameLabelList << q.value(1).toString();
         }
       }
-      return nameLabels.left(nameLabels.length()-2);
+      return nameLabelList.join(", ");
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();
