@@ -143,6 +143,28 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return qApp->palette().brush(QPalette::AlternateBase);
     }
   } else if (role == Qt::TextColorRole) {
+    if (QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).isValid()) {
+      QString strColor;
+      int num = -1;
+      QStringList strLabelIdList =
+          QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).toString().
+          split(",", QString::SkipEmptyParts);
+      foreach (QString strLabelId, strLabelIdList) {
+        QSqlQuery q(*db_);
+        q.exec(QString("SELECT num, color_text FROM labels WHERE id=='%1'").
+               arg(strLabelId));
+        if (q.next()) {
+          if ((q.value(0).toInt() < num) || (num == -1)) {
+            num = q.value(0).toInt();
+            strColor = q.value(1).toString();
+          }
+        }
+      }
+
+      if (!strColor.isEmpty())
+        return QColor(QString("#%1").arg(strColor));
+    }
+
     return qApp->palette().brush(QPalette::WindowText);
   }
   return QSqlTableModel::data(index, role);
