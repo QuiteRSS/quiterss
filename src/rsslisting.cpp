@@ -280,6 +280,11 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       }
     }
     return false;
+  } else if (obj == categoriesLabel_) {
+    if (event->type() == QEvent::MouseButtonRelease) {
+      showNewsCategoriesTree();
+    }
+    return false;
   }
   // Обработка открытия ссылки во внешнем браузере в фоне
   else if ((event->type() == QEvent::WindowDeactivate) && (openingLink_) &&
@@ -559,10 +564,10 @@ void RSSListing::createFeedsDock()
   newsCategoriesTree_->expandAll();
 
   categoriesLabel_ = new QLabel(this);
+  categoriesLabel_->setObjectName("categoriesLabel_");
 
   showCategoriesButton_ = new QToolButton(this);
   showCategoriesButton_->setMaximumSize(16, 16);
-  showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
   showCategoriesButton_->setAutoRaise(true);
 
   QHBoxLayout *categoriesPanelLayout = new QHBoxLayout();
@@ -649,6 +654,7 @@ void RSSListing::createFeedsDock()
           this, SLOT(feedsSplitterMoved(int,int)));
 
   feedsTreeView_->viewport()->installEventFilter(this);
+  categoriesLabel_->installEventFilter(this);
 }
 
 void RSSListing::createToolBarNull()
@@ -1698,7 +1704,15 @@ void RSSListing::readSettings()
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
-  newsCategoriesTree_->setVisible(settings_->value("NewsCategoriesTreeVisible", true).toBool());
+  bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
+  newsCategoriesTree_->setVisible(showCategories);
+  if (showCategories) {
+    showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
+    showCategoriesButton_->setToolTip(tr("Hide Categories"));
+  } else {
+    showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
+    showCategoriesButton_->setToolTip(tr("Show Categories"));
+  }
   feedsDockSplitter_->restoreState(settings_->value("FeedsDockSplitterState").toByteArray());
 
   if (isFullScreen())
