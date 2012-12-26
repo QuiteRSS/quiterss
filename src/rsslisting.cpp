@@ -1004,7 +1004,6 @@ void RSSListing::createActions()
   this->addAction(deleteNewsAct_);
   deleteAllNewsAct_ = new QAction(this);
   deleteAllNewsAct_->setObjectName("deleteAllNewsAct");
-//  deleteAllNewsAct_->setIcon(QIcon(":/images/delete"));
   this->addAction(deleteAllNewsAct_);
 
   restoreNewsAct_ = new QAction(this);
@@ -1278,31 +1277,24 @@ void RSSListing::createMenu()
   newMenu_->addAction(addFolderAct_);
   addAct_->setMenu(newMenu_);
 
-
   fileMenu_ = new QMenu(this);
-  menuBar()->addMenu(fileMenu_);
   fileMenu_->addAction(addAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
   fileMenu_->addSeparator();
   fileMenu_->addAction(exitAct_);
+  menuBar()->addMenu(fileMenu_);
 
   editMenu_ = new QMenu(this);
-//  menuBar()->addMenu(editMenu_);
   editMenu_->setVisible(false);
+//  menuBar()->addMenu(editMenu_);
 
   toolbarsMenu_ = new QMenu(this);
   toolbarsMenu_->addAction(mainToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
   toolbarsMenu_->addAction(browserToolbarToggle_);
 
-  customizeToolbarMenu_ = new QMenu(this);
-  toolBarStyleMenu_ = new QMenu(this);
-  toolBarStyleMenu_->addAction(toolBarStyleI_);
-  toolBarStyleMenu_->addAction(toolBarStyleT_);
-  toolBarStyleMenu_->addAction(toolBarStyleTbI_);
-  toolBarStyleMenu_->addAction(toolBarStyleTuI_);
   toolBarStyleGroup_ = new QActionGroup(this);
   toolBarStyleGroup_->addAction(toolBarStyleI_);
   toolBarStyleGroup_->addAction(toolBarStyleT_);
@@ -1311,10 +1303,9 @@ void RSSListing::createMenu()
   connect(toolBarStyleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setToolBarStyle(QAction*)));
 
-  toolBarIconSizeMenu_ = new QMenu(this);
-  toolBarIconSizeMenu_->addAction(toolBarIconBig_);
-  toolBarIconSizeMenu_->addAction(toolBarIconNormal_);
-  toolBarIconSizeMenu_->addAction(toolBarIconSmall_);
+  toolBarStyleMenu_ = new QMenu(this);
+  toolBarStyleMenu_->addActions(toolBarStyleGroup_->actions());
+
   toolBarIconSizeGroup_ = new QActionGroup(this);
   toolBarIconSizeGroup_->addAction(toolBarIconBig_);
   toolBarIconSizeGroup_->addAction(toolBarIconNormal_);
@@ -1322,17 +1313,13 @@ void RSSListing::createMenu()
   connect(toolBarIconSizeGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setToolBarIconSize(QAction*)));
 
+  toolBarIconSizeMenu_ = new QMenu(this);
+  toolBarIconSizeMenu_->addActions(toolBarIconSizeGroup_->actions());
+
+  customizeToolbarMenu_ = new QMenu(this);
   customizeToolbarMenu_->addMenu(toolBarStyleMenu_);
   customizeToolbarMenu_->addMenu(toolBarIconSizeMenu_);
 
-  styleMenu_ = new QMenu(this);
-  styleMenu_->addAction(systemStyle_);
-  styleMenu_->addAction(system2Style_);
-  styleMenu_->addAction(greenStyle_);
-  styleMenu_->addAction(orangeStyle_);
-  styleMenu_->addAction(purpleStyle_);
-  styleMenu_->addAction(pinkStyle_);
-  styleMenu_->addAction(grayStyle_);
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
   styleGroup_->addAction(system2Style_);
@@ -1344,11 +1331,9 @@ void RSSListing::createMenu()
   connect(styleGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setStyleApp(QAction*)));
 
-  browserPositionMenu_ = new QMenu(this);
-  browserPositionMenu_->addAction(topBrowserPositionAct_);
-  browserPositionMenu_->addAction(bottomBrowserPositionAct_);
-  browserPositionMenu_->addAction(rightBrowserPositionAct_);
-  browserPositionMenu_->addAction(leftBrowserPositionAct_);
+  styleMenu_ = new QMenu(this);
+  styleMenu_->addActions(styleGroup_->actions());
+
   browserPositionGroup_ = new QActionGroup(this);
   browserPositionGroup_->addAction(topBrowserPositionAct_);
   browserPositionGroup_->addAction(bottomBrowserPositionAct_);
@@ -1356,6 +1341,9 @@ void RSSListing::createMenu()
   browserPositionGroup_->addAction(leftBrowserPositionAct_);
   connect(browserPositionGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setBrowserPosition(QAction*)));
+
+  browserPositionMenu_ = new QMenu(this);
+  browserPositionMenu_->addActions(browserPositionGroup_->actions());
 
   viewMenu_  = new QMenu(this);
   viewMenu_->addMenu(toolbarsMenu_);
@@ -1369,29 +1357,26 @@ void RSSListing::createMenu()
   menuBar()->addMenu(viewMenu_);
 
   feedMenu_ = new QMenu(this);
-  menuBar()->addMenu(feedMenu_);
   feedMenu_->addAction(updateFeedAct_);
   feedMenu_->addAction(updateAllFeedsAct_);
   feedMenu_->addSeparator();
   feedMenu_->addAction(markFeedRead_);
   feedMenu_->addAction(markAllFeedsRead_);
   feedMenu_->addSeparator();
+  menuBar()->addMenu(feedMenu_);
 
   feedsFilterGroup_ = new QActionGroup(this);
   feedsFilterGroup_->setExclusive(true);
+  feedsFilterGroup_->addAction(filterFeedsAll_);
+  feedsFilterGroup_->addAction(filterFeedsNew_);
+  feedsFilterGroup_->addAction(filterFeedsUnread_);
+  feedsFilterGroup_->addAction(filterFeedsStarred_);
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setFeedsFilter(QAction*)));
 
   feedsFilterMenu_ = new QMenu(this);
-  feedsFilterMenu_->addAction(filterFeedsAll_);
-  feedsFilterGroup_->addAction(filterFeedsAll_);
-  feedsFilterMenu_->addSeparator();
-  feedsFilterMenu_->addAction(filterFeedsNew_);
-  feedsFilterGroup_->addAction(filterFeedsNew_);
-  feedsFilterMenu_->addAction(filterFeedsUnread_);
-  feedsFilterGroup_->addAction(filterFeedsUnread_);
-  feedsFilterMenu_->addAction(filterFeedsStarred_);
-  feedsFilterGroup_->addAction(filterFeedsStarred_);
+  feedsFilterMenu_->addActions(feedsFilterGroup_->actions());
+  feedsFilterMenu_->insertSeparator(filterFeedsNew_);
 
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
@@ -1399,11 +1384,6 @@ void RSSListing::createMenu()
   feedsFilterAction_ = NULL;
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
-  feedsColumnsMenu_ = new QMenu(this);
-  feedsColumnsMenu_->addAction(showUnreadCount_);
-  feedsColumnsMenu_->addAction(showUndeleteCount_);
-  feedsColumnsMenu_->addAction(showLastUpdated_);
-  feedMenu_->addMenu(feedsColumnsMenu_);
   feedsColumnsGroup_ = new QActionGroup(this);
   feedsColumnsGroup_->setExclusive(false);
   feedsColumnsGroup_->addAction(showUnreadCount_);
@@ -1411,6 +1391,10 @@ void RSSListing::createMenu()
   feedsColumnsGroup_->addAction(showLastUpdated_);
   connect(feedsColumnsGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(feedsColumnVisible(QAction*)));
+
+  feedsColumnsMenu_ = new QMenu(this);
+  feedsColumnsMenu_->addActions(feedsColumnsGroup_->actions());
+  feedMenu_->addMenu(feedsColumnsMenu_);
 
   feedMenu_->addAction(titleSortFeedsAct_);
 
@@ -1423,11 +1407,11 @@ void RSSListing::createMenu()
   connect(feedMenu_, SIGNAL(aboutToShow()), this, SLOT(slotFeedMenuShow()));
 
   newsMenu_ = new QMenu(this);
-  menuBar()->addMenu(newsMenu_);
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
   newsMenu_->addSeparator();
   newsMenu_->addAction(markStarAct_);
+  menuBar()->addMenu(newsMenu_);
 
   newsLabelMenu_ = new QMenu(this);
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
@@ -1439,23 +1423,18 @@ void RSSListing::createMenu()
 
   newsFilterGroup_ = new QActionGroup(this);
   newsFilterGroup_->setExclusive(true);
+  newsFilterGroup_->addAction(filterNewsAll_);
+  newsFilterGroup_->addAction(filterNewsNew_);
+  newsFilterGroup_->addAction(filterNewsUnread_);
+  newsFilterGroup_->addAction(filterNewsStar_);
+  newsFilterGroup_->addAction(filterNewsNotStarred_);
+  newsFilterGroup_->addAction(filterNewsUnreadStar_);
   connect(newsFilterGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setNewsFilter(QAction*)));
 
   newsFilterMenu_ = new QMenu(this);
-  newsFilterMenu_->addAction(filterNewsAll_);
-  newsFilterGroup_->addAction(filterNewsAll_);
-  newsFilterMenu_->addSeparator();
-  newsFilterMenu_->addAction(filterNewsNew_);
-  newsFilterGroup_->addAction(filterNewsNew_);
-  newsFilterMenu_->addAction(filterNewsUnread_);
-  newsFilterGroup_->addAction(filterNewsUnread_);
-  newsFilterMenu_->addAction(filterNewsStar_);
-  newsFilterGroup_->addAction(filterNewsStar_);
-  newsFilterMenu_->addAction(filterNewsNotStarred_);
-  newsFilterGroup_->addAction(filterNewsNotStarred_);
-  newsFilterMenu_->addAction(filterNewsUnreadStar_);
-  newsFilterGroup_->addAction(filterNewsUnreadStar_);
+  newsFilterMenu_->addActions(newsFilterGroup_->actions());
+  newsFilterMenu_->insertSeparator(filterNewsNew_);
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
@@ -1469,18 +1448,17 @@ void RSSListing::createMenu()
   browserMenu_ = new QMenu(this);
   menuBar()->addMenu(browserMenu_);
 
-  browserZoomMenu_ = new QMenu(this);
-  browserZoomMenu_->setIcon(QIcon(":/images/zoom"));
-  browserZoomMenu_->addAction(zoomInAct_);
-  browserZoomMenu_->addAction(zoomOutAct_);
-  browserZoomMenu_->addSeparator();
-  browserZoomMenu_->addAction(zoomTo100Act_);
   browserZoomGroup_ = new QActionGroup(this);
   browserZoomGroup_->addAction(zoomInAct_);
   browserZoomGroup_->addAction(zoomOutAct_);
   browserZoomGroup_->addAction(zoomTo100Act_);
   connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(browserZoom(QAction*)));
+
+  browserZoomMenu_ = new QMenu(this);
+  browserZoomMenu_->setIcon(QIcon(":/images/zoom"));
+  browserZoomMenu_->addActions(browserZoomGroup_->actions());
+  browserZoomMenu_->insertSeparator(zoomTo100Act_);
 
   browserMenu_->addAction(autoLoadImagesToggle_);
   browserMenu_->addMenu(browserZoomMenu_);
@@ -1489,17 +1467,17 @@ void RSSListing::createMenu()
   browserMenu_->addAction(printPreviewAct_);
 
   toolsMenu_ = new QMenu(this);
-  menuBar()->addMenu(toolsMenu_);
   toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
+  menuBar()->addMenu(toolsMenu_);
 
   helpMenu_ = new QMenu(this);
-  menuBar()->addMenu(helpMenu_);
   helpMenu_->addAction(updateAppAct_);
   helpMenu_->addSeparator();
   helpMenu_->addAction(reportProblemAct_);
   helpMenu_->addAction(aboutAct_);
+  menuBar()->addMenu(helpMenu_);
 }
 
 /*! \brief Создание ToolBar ***************************************************/
