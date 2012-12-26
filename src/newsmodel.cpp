@@ -18,13 +18,13 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       QPixmap icon;
       if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
         icon.load(":/images/bulletNew");
-      else if (0 == QSqlTableModel::index(index.row(), fieldIndex("read")).data(Qt::EditRole).toInt())
+      else if (0 == index.data(Qt::EditRole).toInt())
         icon.load(":/images/bulletUnread");
       else icon.load(":/images/bulletRead");
       return icon;
     } else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
       QPixmap icon;
-      if (0 == QSqlTableModel::index(index.row(), fieldIndex("starred")).data(Qt::EditRole).toInt())
+      if (0 == index.data(Qt::EditRole).toInt())
         icon.load(":/images/starOff");
       else icon.load(":/images/starOn");
       return icon;
@@ -76,7 +76,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       QSqlQuery q(*db_);
       q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
-             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
+             arg(index.data(Qt::EditRole).toInt()));
       if (q.next())
         return q.value(0).toString();
     }
@@ -92,8 +92,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
     else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;
-      QString strDate = QSqlTableModel::index(
-            index.row(), fieldIndex("published")).data(Qt::EditRole).toString();
+      QString strDate = index.data(Qt::EditRole).toString();
 
       if (!strDate.isNull()) {
         QDateTime dtLocalTime = QDateTime::currentDateTime();
@@ -114,7 +113,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
     else if (QSqlTableModel::fieldIndex("received") == index.column()) {
       QDateTime dateTime = QDateTime::fromString(
-            QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
+            index.data(Qt::EditRole).toString(),
             Qt::ISODate);
       if (QDateTime::currentDateTime().date() == dateTime.date()) {
         return dateTime.toString("hh:mm");
@@ -149,6 +148,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       QStringList strLabelIdList =
           QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).toString().
           split(",", QString::SkipEmptyParts);
+
       foreach (QString strLabelId, strLabelIdList) {
         QSqlQuery q(*db_);
         q.exec(QString("SELECT num, color_text FROM labels WHERE id=='%1'").
@@ -164,7 +164,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       if (!strColor.isEmpty())
         return QColor(QString("#%1").arg(strColor));
     }
-
     return qApp->palette().brush(QPalette::WindowText);
   }
   return QSqlTableModel::data(index, role);
