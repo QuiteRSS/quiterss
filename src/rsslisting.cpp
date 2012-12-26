@@ -5364,9 +5364,7 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
                             QTabBar::LeftSide,
                             widget->newsTitleLabel_);
     } else {
-      currentNewsTab = (NewsTabWidget*)tabWidget_->widget(indexTab);
-      newsModel_ = currentNewsTab->newsModel_;
-      newsView_ = currentNewsTab->newsView_;
+      createNewsTab(indexTab);
     }
 
     //! Устанавливаем иконку и текст для открытой вкладки
