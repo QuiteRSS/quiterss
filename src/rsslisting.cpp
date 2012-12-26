@@ -512,8 +512,9 @@ void RSSListing::createFeedsDock()
   newsCategoriesTree_ = new QTreeWidget(this);
   newsCategoriesTree_->setObjectName("newsCategoriesTree_");
   newsCategoriesTree_->setFrameStyle(QFrame::NoFrame);
-  newsCategoriesTree_->setColumnCount(2);
+  newsCategoriesTree_->setColumnCount(3);
   newsCategoriesTree_->setColumnHidden(1, true);
+  newsCategoriesTree_->setColumnHidden(2, true);
   newsCategoriesTree_->header()->hide();
 
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
@@ -521,19 +522,41 @@ void RSSListing::createFeedsDock()
 
   QStringList treeItem;
   treeItem.clear();
-  treeItem << "Categories" << "Type";
+  treeItem << "Categories" << "Type" << "Id";
   newsCategoriesTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL);
+  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL) << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
-  treeItem << tr("Starred") << QString::number(TAB_CAT_STAR);
+  treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
+  treeItem.clear();
+  treeItem << tr("Label") << QString::number(TAB_CAT_LABEL) << "0";
+  treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setIcon(0, QIcon(":/images/images/label_orange.png"));
+  newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
+
+  QSqlQuery q(db_);
+  q.exec("SELECT id, name, image FROM labels ORDER BY num");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+    treeItem.clear();
+    treeItem << nameLabel << QString::number(TAB_CAT_LABEL) << QString::number(idLabel);
+    QTreeWidgetItem *childItem = new QTreeWidgetItem(treeItem);
+    childItem->setIcon(0, QIcon(imageLabel));
+    treeWidgetItem->addChild(childItem);
+  }
+  newsCategoriesTree_->expandAll();
 
   categoriesLabel_ = new QLabel(this);
 
@@ -3273,15 +3296,8 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
   if ((currentNewsTab->type_ != TAB_WEB) && (currentNewsTab->type_ != TAB_FEED)) {
     QSqlQuery q(db_);
     int allCount = 0;
-    QString qStr = QString("SELECT count(id) FROM news WHERE ");
-    switch (currentNewsTab->type_) {
-    case TAB_CAT_DEL:
-      qStr.append("feedId > 0 AND deleted = 1");
-      break;
-    case TAB_CAT_STAR:
-      qStr.append("feedId > 0 AND deleted = 0 AND starred = 1");
-      break;
-    }
+    QString qStr = QString("SELECT count(id) FROM news WHERE %1").
+        arg(currentNewsTab->categoryFilterStr_);
     q.exec(qStr);
     if (q.next()) allCount = q.value(0).toInt();
 
@@ -4644,10 +4660,16 @@ void RSSListing::slotTabCurrentChanged(int index)
     currentNewsTab->retranslateStrings();
     currentNewsTab->setFocus();
   } else {
-    QList<QTreeWidgetItem *> treeItems =
-        newsCategoriesTree_->findItems(QString::number(widget->type_),
-                                        Qt::MatchFixedString,
-                                        1);
+    QList<QTreeWidgetItem *> treeItems;
+    if (widget->type_ == TAB_CAT_LABEL) {
+      treeItems = newsCategoriesTree_->findItems(QString::number(widget->labelId_),
+                                                 Qt::MatchFixedString|Qt::MatchRecursive,
+                                                 2);
+    } else {
+      treeItems = newsCategoriesTree_->findItems(QString::number(widget->type_),
+                                                 Qt::MatchFixedString,
+                                                 1);
+    }
     newsCategoriesTree_->setCurrentItem(treeItems.at(0));
 
     createNewsTab(index);
@@ -4656,15 +4678,8 @@ void RSSListing::slotTabCurrentChanged(int index)
 
     QSqlQuery q(db_);
     int allCount = 0;
-    QString qStr = QString("SELECT count(id) FROM news WHERE ");
-    switch (currentNewsTab->type_) {
-    case TAB_CAT_DEL:
-      qStr.append("feedId > 0 AND deleted = 1");
-      break;
-    case TAB_CAT_STAR:
-      qStr.append("feedId > 0 AND deleted = 0 AND starred = 1");
-      break;
-    }
+    QString qStr = QString("SELECT count(id) FROM news WHERE %1").
+        arg(currentNewsTab->categoryFilterStr_);
     q.exec(qStr);
     if (q.next()) allCount = q.value(0).toInt();
 
@@ -5324,13 +5339,19 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
       break;
     }
   }
-  if (indexTab == -1) {
-    NewsTabWidget *widget = new NewsTabWidget(this, type);
-    int indexTab = tabWidget_->addTab(widget, "");
-    createNewsTab(indexTab);
-    tabBar_->setTabButton(indexTab,
-                          QTabBar::LeftSide,
-                          widget->newsTitleLabel_);
+  if ((indexTab == -1) || (type == TAB_CAT_LABEL)) {
+    if (indexTab == -1) {
+      NewsTabWidget *widget = new NewsTabWidget(this, type);
+      indexTab = tabWidget_->addTab(widget, "");
+      createNewsTab(indexTab);
+      tabBar_->setTabButton(indexTab,
+                            QTabBar::LeftSide,
+                            widget->newsTitleLabel_);
+    } else {
+      currentNewsTab = (NewsTabWidget*)tabWidget_->widget(indexTab);
+      newsModel_ = currentNewsTab->newsModel_;
+      newsView_ = currentNewsTab->newsView_;
+    }
 
     //! Устанавливаем иконку и текст для открытой вкладки
     currentNewsTab->newsIconTitle_->setPixmap(item->icon(0).pixmap(16,16));
@@ -5341,14 +5362,27 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
           tabText, Qt::ElideRight, 114);
     currentNewsTab->newsTextTitle_->setText(tabText);
 
+    currentNewsTab->labelId_ = item->text(2).toInt();
+
     switch (type) {
     case TAB_CAT_DEL:
-      newsModel_->setFilter("feedId > 0 AND deleted = 1");
+      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 1";
       break;
     case TAB_CAT_STAR:
-      newsModel_->setFilter("feedId > 0 AND deleted = 0 AND starred = 1");
+      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND starred = 1";
+      break;
+    case TAB_CAT_LABEL:
+      if (currentNewsTab->labelId_ != 0) {
+        currentNewsTab->categoryFilterStr_ =
+            QString("feedId > 0 AND deleted = 0 AND label LIKE '\%,%1,\%'").
+            arg(currentNewsTab->labelId_);
+      } else {
+        currentNewsTab->categoryFilterStr_ =
+            QString("feedId > 0 AND deleted = 0 AND label!='' AND label!=','");
+      }
       break;
     }
+    newsModel_->setFilter(currentNewsTab->categoryFilterStr_);
 
     if (newsModel_->rowCount() != 0) {
       while (newsModel_->canFetchMore())
@@ -5370,15 +5404,9 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
 
   QSqlQuery q(db_);
   int allCount = 0;
-  QString qStr = QString("SELECT count(id) FROM news WHERE ");
-  switch (type) {
-  case TAB_CAT_DEL:
-    qStr.append("feedId > 0 AND deleted = 1");
-    break;
-  case TAB_CAT_STAR:
-    qStr.append("feedId > 0 AND deleted = 0 AND starred = 1");
-    break;
-  }
+  QString qStr = QString("SELECT count(id) FROM news WHERE %1").
+      arg(currentNewsTab->categoryFilterStr_);
+
   q.exec(qStr);
   if (q.next()) allCount = q.value(0).toInt();
 

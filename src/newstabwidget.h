@@ -99,6 +99,8 @@ public:
   int feedParId_;
   int currentNewsIdOld;
   bool autoLoadImages_;
+  int labelId_;
+  QString categoryFilterStr_;
 
   FindTextContent *findText_;
 
