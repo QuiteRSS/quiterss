@@ -543,7 +543,7 @@ void RSSListing::createFeedsDock()
   treeItem.clear();
   treeItem << tr("Label") << QString::number(TAB_CAT_LABEL) << "0";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/images/label_orange.png"));
+  treeWidgetItem->setIcon(0, QIcon(":/images/label_3"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q(db_);
@@ -1115,8 +1115,10 @@ void RSSListing::createActions()
     newsLabelGroup_->addAction(action);
   }
   newsLabelAction_ = new QAction(this);
-  newsLabelAction_->setIcon(QIcon(":/images/images/label_red.png"));
-  newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
+  if (newsLabelGroup_->actions().count()) {
+    newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
+    newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
+  }
 
   connect(newsLabelAction_, SIGNAL(triggered()),
           this, SLOT(setDefaultLabelNews()));

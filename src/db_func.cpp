@@ -324,6 +324,40 @@ const QString kCreateFilterActionsTable(
     "params varchar "           // параметры действия
     ")");
 
+const QString kCreateLabelsTable(
+    "CREATE TABLE labels("
+    "id integer primary key, "
+    "name varchar, "            // имя метки
+    "image blob, "              // картинка метки
+    "color_text varchar, "      // цвет текста новости в списке
+    "color_bg varchar, "        // цвет фона новости в списке
+    "num integer "              // номер по порядку, для сортировки
+    ")");
+
+void initLabelsTable(QSqlDatabase *db)
+{
+  QSqlQuery q(*db);
+  q.exec(kCreateLabelsTable);
+  QStringList strNameLabels;
+  strNameLabels << "Important" << "Work" << "Personal"
+                << "To Do" << "Later" << "Amusingly";
+  for (int i = 0; i < 6; i++) {
+    q.prepare("INSERT INTO labels(name, image) "
+              "VALUES (:name, :image)");
+    q.bindValue(":name", strNameLabels.at(i));
+
+    QFile file(QString(":/images/label_%1").arg(i+1));
+    file.open(QFile::ReadOnly);
+    q.bindValue(":image", file.readAll());
+    file.close();
+
+    q.exec();
+
+    int labelId = q.lastInsertId().toInt();
+    q.exec(QString("UPDATE labels SET num='%1' WHERE id=='%1'").arg(labelId));
+  }
+}
+
 //-----------------------------------------------------------------------------
 QString initDB(const QString dbFileName)
 {
@@ -360,6 +394,9 @@ QString initDB(const QString dbFileName)
         "name text, "         // имя параметра
         "value text"          // значение параметра
         ")");
+    // Создаём таблицу меток
+    initLabelsTable(&db);
+    //
     db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
     QSqlQuery q(db);
     q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
@@ -575,6 +612,16 @@ QString initDB(const QString dbFileName)
         qDebug() << "dbVersion =" << dbVersionString;
       }
     }
+    // Создаём таблицу меток
+    bool createTable = false;
+    q.exec("SELECT count(name) FROM sqlite_master WHERE name='labels'");
+    if (q.next()) {
+      if (q.value(0).toInt()) createTable = true;
+    }
+    if (!createTable) {
+      initLabelsTable(&db);
+    }
+    //
     db.commit();
     db.exec("VACUUM");
     db.close();
