@@ -1496,7 +1496,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
   if (cnt == 1) {
     QModelIndex index = indexes.at(0);
     QString strIdLabels = index.data(Qt::EditRole).toString();
-    if (set) {
+    if (set && !strIdLabels.contains(QString(",%1,").arg(labelId))) {
       if (strIdLabels.isEmpty()) strIdLabels.append(",");
       strIdLabels.append(QString::number(labelId));
       strIdLabels.append(",");
