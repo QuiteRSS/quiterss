@@ -32,16 +32,19 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   treeItem << "4" << tr("Feeds");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "5" << tr("Notifications");
+  treeItem << "5" << tr("Labels");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "6" << tr("Language");
+  treeItem << "6" << tr("Notifications");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "7" << tr("Fonts");
+  treeItem << "7" << tr("Language");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "8" << tr("Keyboard Shortcuts");
+  treeItem << "8" << tr("Fonts");
+  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "9" << tr("Keyboard Shortcuts");
   categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   //{ general
@@ -386,6 +389,10 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   feedsWidget_->addTab(cleanUpFeedsWidget_, tr("Clean Up"));
   //} feeds
 
+  //{ labels
+  createLabelsWidget();
+  //} labels
+
   //{ notifier
   soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
   soundNewNews_->setChecked(true);
@@ -483,7 +490,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   fontTree->setObjectName("fontTree");
   fontTree->setColumnCount(3);
   fontTree->setColumnHidden(0, true);
-  fontTree->setColumnWidth(1, 200);
+  fontTree->setColumnWidth(1, 260);
 
   treeItem.clear();
   treeItem << "Id" << tr("Type") << tr("Font");
@@ -593,6 +600,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
   contentStack_->addWidget(networkConnectionsWidget_);
   contentStack_->addWidget(browserWidget_);
   contentStack_->addWidget(feedsWidget_);
+  contentStack_->addWidget(labelsWidget_);
   contentStack_->addWidget(notifierWidget_);
   contentStack_->addWidget(languageWidget_);
   contentStack_->addWidget(fontsWidget_);
@@ -794,6 +802,65 @@ void OptionsDialog::createLanguageWidget()
 
   languageWidget_ = new QWidget();
   languageWidget_->setLayout(languageLayout);
+}
+
+void OptionsDialog::createLabelsWidget()
+{
+  labelsTree_ = new QTreeWidget(this);
+  labelsTree_->setObjectName("labelsTree_");
+  labelsTree_->setColumnCount(5);
+  labelsTree_->setColumnHidden(0, true);
+  labelsTree_->setColumnHidden(2, true);
+  labelsTree_->setColumnHidden(3, true);
+  labelsTree_->setColumnHidden(4, true);
+  labelsTree_->header()->hide();
+//  labelsTree_->setSortingEnabled(false);
+//  labelsTree_->header()->resizeSection(1, 150);
+//  labelsTree_->header()->setMovable(false);
+
+//  QStringList treeItem;
+//  treeItem << "Id" << "Name" << "Color_text" << "Color_bg" << "Num";
+//  labelsTree_->setHeaderLabels(treeItem);
+
+  QPushButton *newButton = new QPushButton(tr("New..."), this);
+//  connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
+  QPushButton *editButton = new QPushButton(tr("Edit..."), this);
+  editButton->setEnabled(false);
+//  connect(editButton, SIGNAL(clicked()), this, SLOT(editFilter()));
+  QPushButton *deleteButton = new QPushButton(tr("Delete..."), this);
+  deleteButton->setEnabled(false);
+//  connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilter()));
+
+  QPushButton *moveUpButton = new QPushButton(tr("Move up"), this);
+  moveUpButton->setEnabled(false);
+//  connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveUpFilter()));
+  QPushButton *moveDownButton = new QPushButton(tr("Move down"), this);
+  moveDownButton->setEnabled(false);
+//  connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
+
+  QVBoxLayout *buttonsLayout = new QVBoxLayout();
+  buttonsLayout->addWidget(newButton);
+  buttonsLayout->addWidget(editButton);
+  buttonsLayout->addWidget(deleteButton);
+  buttonsLayout->addSpacing(10);
+  buttonsLayout->addWidget(moveUpButton);
+  buttonsLayout->addWidget(moveDownButton);
+  buttonsLayout->addStretch();
+
+  QHBoxLayout *labelsLayout = new QHBoxLayout();
+  labelsLayout->setMargin(0);
+  labelsLayout->addWidget(labelsTree_);
+  labelsLayout->addLayout(buttonsLayout);
+
+  labelsWidget_ = new QWidget(this);
+  labelsWidget_->setLayout(labelsLayout);
+
+//  connect(labelsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
+//          this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+//  connect(labelsTree_, SIGNAL(doubleClicked(QModelIndex)),
+//          this, SLOT(editFilter()));
+//  connect(labelsTree_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+//          this, SLOT(slotItemChanged(QTreeWidgetItem*,int)));
 }
 
 void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()

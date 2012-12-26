@@ -83,6 +83,9 @@ public:
   QCheckBox *neverUnreadCleanUp_;
   QCheckBox *neverStarCleanUp_;
 
+  // labels
+  QTreeWidget *labelsTree_;
+
   // nitifier
   QCheckBox *soundNewNews_;
   QLineEdit *editSoundNotifer_;
@@ -139,6 +142,7 @@ private:
   QFrame *networkConnectionsWidget_;
   QFrame *browserWidget_;
   QTabWidget *feedsWidget_;
+  QWidget *labelsWidget_;
   QFrame *notifierWidget_;
   QWidget *languageWidget_;
   QWidget *fontsWidget_;
@@ -161,6 +165,9 @@ private:
   LineEdit *editPort_;
   LineEdit *editUser_;
   LineEdit *editPassword_;
+
+  // Labels
+  void createLabelsWidget();
 
   // language
   void createLanguageWidget();

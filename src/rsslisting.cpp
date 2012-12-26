@@ -2829,8 +2829,11 @@ void RSSListing::showOptionDlg()
   optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
 
   QSqlQuery q(db_);
-  db_.transaction();
 
+//  optionsDialog->labelsTree_;
+
+
+  db_.transaction();
   QQueue<int> parentIds;
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
