@@ -44,9 +44,7 @@ private:
   QFrame *lineWebWidget;
   QWidget *webWidget_;
   QLabel *webPanelTitle_;
-//  QLabel *webPanelTitleLabel_;
   QLabel *webPanelDate_;
-//  QLabel *webPanelAuthorLabel_;
   QLabel *webPanelAuthor_;
   QProgressBar *webViewProgress_;
   QLabel *webViewProgressLabel_;
