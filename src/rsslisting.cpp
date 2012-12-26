@@ -1103,14 +1103,16 @@ void RSSListing::createActions()
   QSqlQuery q(db_);
   q.exec("SELECT id, name, image FROM labels ORDER BY num");
   while (q.next()) {
+    int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
     QByteArray byteArray = q.value(2).toByteArray();
     QPixmap imageLabel;
     if (!byteArray.isNull())
       imageLabel.loadFromData(byteArray);
     QAction *action = new QAction(QIcon(imageLabel), nameLabel, this);
+    action->setObjectName(QString("labelAction_%1").arg(idLabel));
     action->setCheckable(true);
-    action->setData(q.value(0));
+    action->setData(idLabel);
     newsLabelGroup_->addAction(action);
   }
   newsLabelAction_ = new QAction(this);
@@ -1227,6 +1229,8 @@ void RSSListing::createShortcut()
 
   stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
   listActions_.append(stayOnTopAct_);
+
+  listActions_.append(newsLabelGroup_->actions());
 
   loadActionShortcuts();
 }
