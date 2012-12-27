@@ -157,7 +157,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       }
 
       if (!strColor.isEmpty())
-        return QColor(QString("#%1").arg(strColor));
+        return QColor(strColor);
     }
     if ((index.column() == view_->header()->sortIndicatorSection()) &&
         (!view_->selectionModel()->isSelected(index))) {
@@ -184,7 +184,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       }
 
       if (!strColor.isEmpty())
-        return QColor(QString("#%1").arg(strColor));
+        return QColor(strColor);
     }
     return qApp->palette().brush(QPalette::WindowText);
   }

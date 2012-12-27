@@ -807,6 +807,8 @@ void OptionsDialog::createLanguageWidget()
 
 void OptionsDialog::createLabelsWidget()
 {
+  idLabels_.clear();
+
   labelsTree_ = new QTreeWidget(this);
   labelsTree_->setObjectName("labelsTree_");
   labelsTree_->setColumnCount(5);
@@ -834,9 +836,9 @@ void OptionsDialog::createLabelsWidget()
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
     treeWidgetItem->setIcon(1, QIcon(imageLabel));
     if (!colorText.isEmpty())
-      treeWidgetItem->setData(1, Qt::TextColorRole, QColor(QString("#%1").arg(colorText)));
+      treeWidgetItem->setData(1, Qt::TextColorRole, QColor(colorText));
     if (!colorBg.isEmpty())
-      treeWidgetItem->setData(1, Qt::BackgroundColorRole, QColor(QString("#%1").arg(colorBg)));
+      treeWidgetItem->setData(1, Qt::BackgroundColorRole, QColor(colorBg));
     labelsTree_->addTopLevelItem(treeWidgetItem);
   }
 
@@ -1191,17 +1193,23 @@ void OptionsDialog::newLabel()
 
 void OptionsDialog::editLabel()
 {
+  int labelRow = labelsTree_->currentIndex().row();
+  addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
 
 }
 
 void OptionsDialog::deleteLabel()
 {
+  int labelRow = labelsTree_->currentIndex().row();
+  addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
 
 }
 
 void OptionsDialog::moveUpLabel()
 {
   int labelRow = labelsTree_->currentIndex().row();
+  addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
+  addIdLabelList(labelsTree_->topLevelItem(labelRow-1)->text(0));
 
   int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
   int num2 = labelsTree_->topLevelItem(labelRow-1)->text(4).toInt();
@@ -1215,24 +1223,14 @@ void OptionsDialog::moveUpLabel()
     moveUpLabelButton_->setEnabled(false);
   if (labelsTree_->currentIndex().row() != (labelsTree_->topLevelItemCount()-1))
     moveDownLabelButton_->setEnabled(true);
-
-//  QSqlQuery q(*db_);
-//  int labelId = labelsTree_->topLevelItem(labelRow)->text(0).toInt();
-//  int labelNum = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
-//  QString qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
-//      arg(labelNum).arg(labelId);
-//  q.exec(qStr);
-
-//  labelId = labelsTree_->topLevelItem(labelRow-1)->text(0).toInt();
-//  labelNum = labelsTree_->topLevelItem(labelRow-1)->text(4).toInt();
-//  qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
-//      arg(labelNum).arg(labelId);
-//  q.exec(qStr);
 }
 
 void OptionsDialog::moveDownLabel()
 {
   int labelRow = labelsTree_->currentIndex().row();
+
+  addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
+  addIdLabelList(labelsTree_->topLevelItem(labelRow+1)->text(0));
 
   int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
   int num2 = labelsTree_->topLevelItem(labelRow+1)->text(4).toInt();
@@ -1246,19 +1244,6 @@ void OptionsDialog::moveDownLabel()
     moveDownLabelButton_->setEnabled(false);
   if (labelsTree_->currentIndex().row() != 0)
     moveUpLabelButton_->setEnabled(true);
-
-//  QSqlQuery q(*db_);
-//  int labelId = labelsTree_->topLevelItem(labelRow)->text(0).toInt();
-//  int labelNum = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
-//  QString qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
-//      arg(labelNum).arg(labelId);
-//  q.exec(qStr);
-
-//  labelId = labelsTree_->topLevelItem(labelRow+1)->text(0).toInt();
-//  labelNum = labelsTree_->topLevelItem(labelRow+1)->text(4).toInt();
-//  qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
-//      arg(labelNum).arg(labelId);
-//  q.exec(qStr);
 }
 
 void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
@@ -1287,34 +1272,56 @@ void OptionsDialog::applyLabels()
 {
   db_->transaction();
   QSqlQuery q(*db_);
-//  q.exec("DELETE FROM labels");
-  for (int i = 0; i < labelsTree_->topLevelItemCount(); i++) {
-//    int idLabel = q.value(0).toInt();
-//    QString nameLabel = q.value(1).toString();
-//    QByteArray byteArray = q.value(2).toByteArray();
-//    QString colorText = q.value(3).toString();
-//    QString colorBg = q.value(4).toString();
-//    int numLabel = labelsTree_->topLevelItem(i)->text(4).toInt();
-//    int labelId = labelsTree_->topLevelItem(i)->text(0).toInt();
 
-//    int labelNum = ;
-//    QString qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
-//        arg(labelNum).arg(labelId);
-//    q.exec(qStr);
+  foreach (QString idLabel, idLabels_) {
+    QList<QTreeWidgetItem *> treeItems =
+        labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
+    if (treeItems.count() == 0) {
+      q.exec(QString("DELETE FROM labels WHERE id=='%1'").arg(idLabel));
+    } else {
+      QString nameLabel = treeItems.at(0)->text(1);
+      QPixmap icon = treeItems.at(0)->icon(1).pixmap(16, 16);
+      QByteArray iconData;
+      QBuffer    buffer(&iconData);
+      buffer.open(QIODevice::WriteOnly);
+      icon.save(&buffer, "PNG");
+      buffer.close();
+      QString colorText = treeItems.at(0)->text(2);
+      QString colorBg = treeItems.at(0)->text(3);
+      int numLabel = treeItems.at(0)->text(4).toInt();
 
-//    q.prepare("INSERT INTO labels(name, image, ) "
-//              "VALUES (:name, :image)");
-//    q.bindValue(":name", strNameLabels.at(i));
-
-//    QFile file(QString(":/images/label_%1").arg(i+1));
-//    file.open(QFile::ReadOnly);
-//    q.bindValue(":image", file.readAll());
-//    file.close();
-
-//    q.exec();
-
-//    int labelId = q.lastInsertId().toInt();
-//    q.exec(QString("UPDATE labels SET num='%1' WHERE id=='%1'").arg(labelId));
+      q.exec(QString("SELECT * FROM labels WHERE id=='%1'").arg(idLabel));
+      if (q.next()) {
+        q.prepare("UPDATE labels SET name=?, image=?, color_text=?, color_bg=?, num=? "
+                  "WHERE id=?");
+        q.addBindValue(nameLabel);
+        q.addBindValue(iconData);
+        q.addBindValue(colorText);
+        q.addBindValue(colorBg);
+        q.addBindValue(numLabel);
+        q.addBindValue(idLabel);
+        q.exec();
+      } else {
+        q.prepare("INSERT INTO labels(name, image, color_text, color_bg, num) "
+                  "VALUES (:name, :image, :color_text, :color_bg, :num)");
+        q.bindValue(":name", nameLabel);
+        q.bindValue(":image", iconData);
+        q.bindValue(":color_text", colorText);
+        q.bindValue(":color_bg", colorBg);
+        q.bindValue(":num", numLabel);
+        q.exec();
+      }
+    }
   }
+
   db_->commit();
+}
+
+/**
+ * @brief Добавление ид редактированной метки
+ * @param idLabel ид метки
+ ******************************************************************************/
+void OptionsDialog::addIdLabelList(QString idLabel)
+{
+  if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
 }
