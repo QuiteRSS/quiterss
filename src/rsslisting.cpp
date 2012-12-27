@@ -2759,7 +2759,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 void RSSListing::showOptionDlg()
 {
   static int index = 0;
-  OptionsDialog *optionsDialog = new OptionsDialog(this);
+  OptionsDialog *optionsDialog = new OptionsDialog(this, &db_);
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
   optionsDialog->setCurrentItem(index);
 
@@ -2829,10 +2829,6 @@ void RSSListing::showOptionDlg()
   optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
 
   QSqlQuery q(db_);
-
-//  optionsDialog->labelsTree_;
-
-
   db_.transaction();
   QQueue<int> parentIds;
   parentIds.enqueue(0);

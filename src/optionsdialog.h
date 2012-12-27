@@ -2,6 +2,7 @@
 #define OPTIONSDIALOG_H
 
 #include <QtGui>
+#include <QtSql>
 #include <QNetworkProxy>
 #include "lineedit.h"
 
@@ -14,7 +15,7 @@ class OptionsDialog : public QDialog
 {
   Q_OBJECT
 public:
-  explicit OptionsDialog(QWidget *parent = 0);
+  explicit OptionsDialog(QWidget *parent, QSqlDatabase *db);
   QNetworkProxy proxy();
   void setProxy(const QNetworkProxy proxy);
   QString language();
@@ -127,12 +128,20 @@ private slots:
   void selectionBrowser();
   void selectionSoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
+  void newLabel();
+  void editLabel();
+  void deleteLabel();
+  void moveUpLabel();
+  void moveDownLabel();
+  void slotCurrentLabelChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
   void signalShortcutTreeUpDownPressed();
 
 private:
+  QSqlDatabase *db_;
+
   QLabel *contentLabel_;
   QStackedWidget *contentStack_;
   QTreeWidget *categoriesTree;
@@ -168,6 +177,12 @@ private:
 
   // Labels
   void createLabelsWidget();
+  void applyLabels();
+  QPushButton *newLabelButton_;
+  QPushButton *editLabelButton_;
+  QPushButton *deleteLabelButton_;
+  QPushButton *moveUpLabelButton_;
+  QPushButton *moveDownLabelButton_;
 
   // language
   void createLanguageWidget();

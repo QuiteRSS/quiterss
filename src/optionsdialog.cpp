@@ -1,8 +1,9 @@
 #include "optionsdialog.h"
 #include "VersionNo.h"
 
-OptionsDialog::OptionsDialog(QWidget *parent) :
-  QDialog(parent)
+OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
+  QDialog(parent),
+  db_(db)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
@@ -814,37 +815,54 @@ void OptionsDialog::createLabelsWidget()
   labelsTree_->setColumnHidden(3, true);
   labelsTree_->setColumnHidden(4, true);
   labelsTree_->header()->hide();
-//  labelsTree_->setSortingEnabled(false);
-//  labelsTree_->header()->resizeSection(1, 150);
-//  labelsTree_->header()->setMovable(false);
 
-//  QStringList treeItem;
-//  treeItem << "Id" << "Name" << "Color_text" << "Color_bg" << "Num";
-//  labelsTree_->setHeaderLabels(treeItem);
+  QSqlQuery q(*db_);
+  q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QString colorText = q.value(3).toString();
+    QString colorBg = q.value(4).toString();
+    int numLabel = q.value(5).toInt();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+    QStringList strTreeItem;
+    strTreeItem << QString::number(idLabel) << nameLabel
+                << colorText << colorBg << QString::number(numLabel);
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+    treeWidgetItem->setIcon(1, QIcon(imageLabel));
+    if (!colorText.isEmpty())
+      treeWidgetItem->setData(1, Qt::TextColorRole, QColor(QString("#%1").arg(colorText)));
+    if (!colorBg.isEmpty())
+      treeWidgetItem->setData(1, Qt::BackgroundColorRole, QColor(QString("#%1").arg(colorBg)));
+    labelsTree_->addTopLevelItem(treeWidgetItem);
+  }
 
-  QPushButton *newButton = new QPushButton(tr("New..."), this);
-//  connect(newButton, SIGNAL(clicked()), this, SLOT(newFilter()));
-  QPushButton *editButton = new QPushButton(tr("Edit..."), this);
-  editButton->setEnabled(false);
-//  connect(editButton, SIGNAL(clicked()), this, SLOT(editFilter()));
-  QPushButton *deleteButton = new QPushButton(tr("Delete..."), this);
-  deleteButton->setEnabled(false);
-//  connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteFilter()));
+  newLabelButton_ = new QPushButton(tr("New..."), this);
+  connect(newLabelButton_, SIGNAL(clicked()), this, SLOT(newLabel()));
+  editLabelButton_ = new QPushButton(tr("Edit..."), this);
+  editLabelButton_->setEnabled(false);
+  connect(editLabelButton_, SIGNAL(clicked()), this, SLOT(editLabel()));
+  deleteLabelButton_ = new QPushButton(tr("Delete..."), this);
+  deleteLabelButton_->setEnabled(false);
+  connect(deleteLabelButton_, SIGNAL(clicked()), this, SLOT(deleteLabel()));
 
-  QPushButton *moveUpButton = new QPushButton(tr("Move up"), this);
-  moveUpButton->setEnabled(false);
-//  connect(moveUpButton, SIGNAL(clicked()), this, SLOT(moveUpFilter()));
-  QPushButton *moveDownButton = new QPushButton(tr("Move down"), this);
-  moveDownButton->setEnabled(false);
-//  connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
+  moveUpLabelButton_ = new QPushButton(tr("Move up"), this);
+  moveUpLabelButton_->setEnabled(false);
+  connect(moveUpLabelButton_, SIGNAL(clicked()), this, SLOT(moveUpLabel()));
+  moveDownLabelButton_ = new QPushButton(tr("Move down"), this);
+  moveDownLabelButton_->setEnabled(false);
+  connect(moveDownLabelButton_, SIGNAL(clicked()), this, SLOT(moveDownLabel()));
 
   QVBoxLayout *buttonsLayout = new QVBoxLayout();
-  buttonsLayout->addWidget(newButton);
-  buttonsLayout->addWidget(editButton);
-  buttonsLayout->addWidget(deleteButton);
+  buttonsLayout->addWidget(newLabelButton_);
+  buttonsLayout->addWidget(editLabelButton_);
+  buttonsLayout->addWidget(deleteLabelButton_);
   buttonsLayout->addSpacing(10);
-  buttonsLayout->addWidget(moveUpButton);
-  buttonsLayout->addWidget(moveDownButton);
+  buttonsLayout->addWidget(moveUpLabelButton_);
+  buttonsLayout->addWidget(moveDownLabelButton_);
   buttonsLayout->addStretch();
 
   QHBoxLayout *labelsLayout = new QHBoxLayout();
@@ -855,12 +873,10 @@ void OptionsDialog::createLabelsWidget()
   labelsWidget_ = new QWidget(this);
   labelsWidget_->setLayout(labelsLayout);
 
-//  connect(labelsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
-//          this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
-//  connect(labelsTree_, SIGNAL(doubleClicked(QModelIndex)),
-//          this, SLOT(editFilter()));
-//  connect(labelsTree_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
-//          this, SLOT(slotItemChanged(QTreeWidgetItem*,int)));
+  connect(labelsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
+          this, SLOT(slotCurrentLabelChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+  connect(labelsTree_, SIGNAL(doubleClicked(QModelIndex)),
+          this, SLOT(editLabel()));
 }
 
 void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()
@@ -950,6 +966,7 @@ void OptionsDialog::applyProxy()
 void OptionsDialog::acceptSlot()
 {
   applyProxy();
+  applyLabels();
   accept();
 }
 
@@ -1165,4 +1182,139 @@ void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column
     }
   }
   itemNotChecked_ = false;
+}
+
+void OptionsDialog::newLabel()
+{
+
+}
+
+void OptionsDialog::editLabel()
+{
+
+}
+
+void OptionsDialog::deleteLabel()
+{
+
+}
+
+void OptionsDialog::moveUpLabel()
+{
+  int labelRow = labelsTree_->currentIndex().row();
+
+  int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
+  int num2 = labelsTree_->topLevelItem(labelRow-1)->text(4).toInt();
+  labelsTree_->topLevelItem(labelRow-1)->setText(4, QString::number(num1));
+  labelsTree_->topLevelItem(labelRow)->setText(4, QString::number(num2));
+
+  QTreeWidgetItem *treeWidgetItem = labelsTree_->takeTopLevelItem(labelRow-1);
+  labelsTree_->insertTopLevelItem(labelRow, treeWidgetItem);
+
+  if (labelsTree_->currentIndex().row() == 0)
+    moveUpLabelButton_->setEnabled(false);
+  if (labelsTree_->currentIndex().row() != (labelsTree_->topLevelItemCount()-1))
+    moveDownLabelButton_->setEnabled(true);
+
+//  QSqlQuery q(*db_);
+//  int labelId = labelsTree_->topLevelItem(labelRow)->text(0).toInt();
+//  int labelNum = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
+//  QString qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
+//      arg(labelNum).arg(labelId);
+//  q.exec(qStr);
+
+//  labelId = labelsTree_->topLevelItem(labelRow-1)->text(0).toInt();
+//  labelNum = labelsTree_->topLevelItem(labelRow-1)->text(4).toInt();
+//  qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
+//      arg(labelNum).arg(labelId);
+//  q.exec(qStr);
+}
+
+void OptionsDialog::moveDownLabel()
+{
+  int labelRow = labelsTree_->currentIndex().row();
+
+  int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
+  int num2 = labelsTree_->topLevelItem(labelRow+1)->text(4).toInt();
+  labelsTree_->topLevelItem(labelRow+1)->setText(4, QString::number(num1));
+  labelsTree_->topLevelItem(labelRow)->setText(4, QString::number(num2));
+
+  QTreeWidgetItem *treeWidgetItem = labelsTree_->takeTopLevelItem(labelRow+1);
+  labelsTree_->insertTopLevelItem(labelRow, treeWidgetItem);
+
+  if (labelsTree_->currentIndex().row() == (labelsTree_->topLevelItemCount()-1))
+    moveDownLabelButton_->setEnabled(false);
+  if (labelsTree_->currentIndex().row() != 0)
+    moveUpLabelButton_->setEnabled(true);
+
+//  QSqlQuery q(*db_);
+//  int labelId = labelsTree_->topLevelItem(labelRow)->text(0).toInt();
+//  int labelNum = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
+//  QString qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
+//      arg(labelNum).arg(labelId);
+//  q.exec(qStr);
+
+//  labelId = labelsTree_->topLevelItem(labelRow+1)->text(0).toInt();
+//  labelNum = labelsTree_->topLevelItem(labelRow+1)->text(4).toInt();
+//  qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
+//      arg(labelNum).arg(labelId);
+//  q.exec(qStr);
+}
+
+void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
+                                           QTreeWidgetItem *)
+{
+  if (labelsTree_->indexOfTopLevelItem(current) == 0)
+    moveUpLabelButton_->setEnabled(false);
+  else moveUpLabelButton_->setEnabled(true);
+
+  if (labelsTree_->indexOfTopLevelItem(current) == (labelsTree_->topLevelItemCount()-1))
+    moveDownLabelButton_->setEnabled(false);
+  else moveDownLabelButton_->setEnabled(true);
+
+  if (labelsTree_->indexOfTopLevelItem(current) < 0) {
+    editLabelButton_->setEnabled(false);
+    deleteLabelButton_->setEnabled(false);
+    moveUpLabelButton_->setEnabled(false);
+    moveDownLabelButton_->setEnabled(false);
+  } else {
+    editLabelButton_->setEnabled(true);
+    deleteLabelButton_->setEnabled(true);
+  }
+}
+
+void OptionsDialog::applyLabels()
+{
+  db_->transaction();
+  QSqlQuery q(*db_);
+//  q.exec("DELETE FROM labels");
+  for (int i = 0; i < labelsTree_->topLevelItemCount(); i++) {
+//    int idLabel = q.value(0).toInt();
+//    QString nameLabel = q.value(1).toString();
+//    QByteArray byteArray = q.value(2).toByteArray();
+//    QString colorText = q.value(3).toString();
+//    QString colorBg = q.value(4).toString();
+//    int numLabel = labelsTree_->topLevelItem(i)->text(4).toInt();
+//    int labelId = labelsTree_->topLevelItem(i)->text(0).toInt();
+
+//    int labelNum = ;
+//    QString qStr = QString("UPDATE labels SET num='%1' WHERE id=='%2'").
+//        arg(labelNum).arg(labelId);
+//    q.exec(qStr);
+
+//    q.prepare("INSERT INTO labels(name, image, ) "
+//              "VALUES (:name, :image)");
+//    q.bindValue(":name", strNameLabels.at(i));
+
+//    QFile file(QString(":/images/label_%1").arg(i+1));
+//    file.open(QFile::ReadOnly);
+//    q.bindValue(":image", file.readAll());
+//    file.close();
+
+//    q.exec();
+
+//    int labelId = q.lastInsertId().toInt();
+//    q.exec(QString("UPDATE labels SET num='%1' WHERE id=='%1'").arg(labelId));
+  }
+  db_->commit();
 }
