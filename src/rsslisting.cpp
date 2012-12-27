@@ -2917,7 +2917,15 @@ void RSSListing::showOptionDlg()
     return;
   }
 
+  foreach (QAction *action, listActions_) {
+    QString objectName = action->objectName();
+    if (objectName.contains("labelAction_")) {
+      listActions_.removeOne(action);
+      delete action;
+    }
+  }
   optionsDialog->saveActionShortcut(listActions_, newsLabelGroup_);
+  listActions_.append(newsLabelGroup_->actions());
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
@@ -3023,20 +3031,6 @@ void RSSListing::showOptionDlg()
   widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
   onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
-
-//  newsLabelMenu_->clear();
-
-//  q.exec("SELECT id, name, image FROM labels ORDER BY num");
-//  while (q.next()) {
-//    int idLabel = q.value(0).toInt();
-//    foreach (QAction *action, listActions_) {
-//      QString objectName = action->objectName();
-//      if (objectName.contains("labelAction_") && (action->data().toInt() == idLabel)) {
-//        newsLabelMenu_->addAction(action);
-//        break;
-//      }
-//    }
-//  }
 
   QTreeWidgetItem *treeWidgetItem =
       optionsDialog->feedsTreeNotify_->itemBelow(optionsDialog->feedsTreeNotify_->topLevelItem(0));

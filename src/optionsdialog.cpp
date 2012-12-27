@@ -1071,18 +1071,10 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
 
 void OptionsDialog::saveActionShortcut(QList<QAction *> actions, QActionGroup *labelGroup)
 {
-  foreach (QAction *action, actions) {
-    QString objectName = action->objectName();
-    if (objectName.contains("labelAction_")) {
-      actions.removeOne(action);
-      delete action;
-    }
-  }
-
   for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
     QString objectName = shortcutTree_->topLevelItem(i)->text(4);
     if (objectName.contains("labelAction_")) {
-      QAction *action = new QAction(labelGroup->parent());
+      QAction *action = new QAction(parent());
       action->setIcon(shortcutTree_->topLevelItem(i)->icon(1));
       action->setText(shortcutTree_->topLevelItem(i)->text(1));
       action->setShortcut(QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
@@ -1090,13 +1082,13 @@ void OptionsDialog::saveActionShortcut(QList<QAction *> actions, QActionGroup *l
       action->setCheckable(true);
       action->setData(shortcutTree_->topLevelItem(i)->text(5));
       labelGroup->addAction(action);
+      actions.append(action);
     } else {
       int id = shortcutTree_->topLevelItem(i)->text(0).toInt();
       actions.at(id)->setShortcut(
             QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
     }
   }
-  actions.append(labelGroup->actions());
 }
 
 void OptionsDialog::slotShortcutTreeUpDownPressed()
