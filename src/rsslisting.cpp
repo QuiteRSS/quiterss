@@ -1230,6 +1230,7 @@ void RSSListing::createShortcut()
   stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
   listActions_.append(stayOnTopAct_);
 
+  //! Действия меток добавлять последними
   listActions_.append(newsLabelGroup_->actions());
 
   loadActionShortcuts();
@@ -2761,6 +2762,7 @@ void RSSListing::showOptionDlg()
   static int index = 0;
   OptionsDialog *optionsDialog = new OptionsDialog(this, &db_);
   optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
+
   optionsDialog->setCurrentItem(index);
 
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
@@ -2915,7 +2917,12 @@ void RSSListing::showOptionDlg()
     return;
   }
 
-  optionsDialog->saveActionShortcut(listActions_);
+  optionsDialog->saveActionShortcut(listActions_, newsLabelGroup_);
+  newsLabelMenu_->addActions(newsLabelGroup_->actions());
+  if (newsLabelGroup_->actions().count()) {
+    newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
+    newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
+  }
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
@@ -3017,31 +3024,19 @@ void RSSListing::showOptionDlg()
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
   onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
 
-  foreach (QAction *action, newsLabelGroup_->actions()) {
-    listActions_.removeOne(action);
-    delete action;
-  }
+//  newsLabelMenu_->clear();
 
-  q.exec("SELECT id, name, image FROM labels ORDER BY num");
-  while (q.next()) {
-    int idLabel = q.value(0).toInt();
-    QString nameLabel = q.value(1).toString();
-    QByteArray byteArray = q.value(2).toByteArray();
-    QPixmap imageLabel;
-    if (!byteArray.isNull())
-      imageLabel.loadFromData(byteArray);
-    QAction *action = new QAction(QIcon(imageLabel), nameLabel, this);
-    action->setObjectName(QString("labelAction_%1").arg(idLabel));
-    action->setCheckable(true);
-    action->setData(idLabel);
-    newsLabelGroup_->addAction(action);
-  }
-  if (newsLabelGroup_->actions().count()) {
-    newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
-    newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
-    listActions_.append(newsLabelGroup_->actions());
-    newsLabelMenu_->addActions(newsLabelGroup_->actions());
-  }
+//  q.exec("SELECT id, name, image FROM labels ORDER BY num");
+//  while (q.next()) {
+//    int idLabel = q.value(0).toInt();
+//    foreach (QAction *action, listActions_) {
+//      QString objectName = action->objectName();
+//      if (objectName.contains("labelAction_") && (action->data().toInt() == idLabel)) {
+//        newsLabelMenu_->addAction(action);
+//        break;
+//      }
+//    }
+//  }
 
   QTreeWidgetItem *treeWidgetItem =
       optionsDialog->feedsTreeNotify_->itemBelow(optionsDialog->feedsTreeNotify_->topLevelItem(0));

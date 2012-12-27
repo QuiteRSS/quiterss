@@ -106,13 +106,13 @@ public:
 
   // shortcut
   void loadActionShortcut(QList<QAction *> actions, QStringList *list);
-  void saveActionShortcut(QList<QAction *> actions);
+  void saveActionShortcut(QList<QAction *> actions, QActionGroup *labelGroup);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
-  void slotCategoriesItemClicked(QTreeWidgetItem* item, int column);
+  void slotCategoriesItemClicked(QTreeWidgetItem* item, int);
   void slotCategoriesTreeKeyUpDownPressed();
   void manualProxyToggle(bool checked);
   void updateProxy();
@@ -178,7 +178,7 @@ private:
   // Labels
   void createLabelsWidget();
   void applyLabels();
-  void addIdLabelList(QString idLabel);
+  void addIdLabelList(QString idLabel, int type = 0);
   QStringList idLabels_;
   QPushButton *newLabelButton_;
   QPushButton *editLabelButton_;
@@ -194,9 +194,9 @@ private:
   QNetworkProxy networkProxy_;
 
   // shortcut
+  QStringList *listDefaultShortcut_;
   QTreeWidget *shortcutTree_;
   LineEdit *editShortcut_;
-  QStringList *listDefaultShortcut_;
   QGroupBox *editShortcutBox;
 
 };

@@ -538,9 +538,11 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   //{ shortcut
   shortcutTree_ = new QTreeWidget();
   shortcutTree_->setObjectName("shortcutTree");
-  shortcutTree_->setSortingEnabled(true);
-  shortcutTree_->setColumnCount(4);
+  shortcutTree_->setSortingEnabled(false);
+  shortcutTree_->setColumnCount(6);
   shortcutTree_->hideColumn(0);
+  shortcutTree_->hideColumn(4);
+  shortcutTree_->hideColumn(5);
   shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
   shortcutTree_->header()->setStretchLastSection(false);
   shortcutTree_->header()->setResizeMode(1, QHeaderView::ResizeToContents);
@@ -548,7 +550,8 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   shortcutTree_->header()->setResizeMode(3, QHeaderView::ResizeToContents);
 
   treeItem.clear();
-  treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut");
+  treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut")
+           << "ObjectName" << "Data";
   shortcutTree_->setHeaderLabels(treeItem);
 
   editShortcut_ = new LineEdit();
@@ -886,9 +889,8 @@ void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()
   slotCategoriesItemClicked(categoriesTree->currentItem(), 1);
 }
 
-void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int column)
+void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int)
 {
-  Q_UNUSED(column)
   contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
   contentStack_->setCurrentIndex(item->data(0, Qt::DisplayRole).toInt());
 }
@@ -1040,16 +1042,16 @@ void  OptionsDialog::intervalTimeChang(QString str)
 
 void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *list)
 {
-  QStringList treeItem;
-  int id = 0;
-
+  shortcutTree_->clear();
   QListIterator<QAction *> iter(actions);
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
 
-    treeItem.clear();
-    treeItem << QString::number(id) << pAction->text().remove("&")
-             << pAction->toolTip() << pAction->shortcut();
+    QStringList treeItem;
+    treeItem << QString::number(shortcutTree_->topLevelItemCount())
+             << pAction->text().remove("&")
+             << pAction->toolTip() << pAction->shortcut()
+             << pAction->objectName() << pAction->data().toString();
     QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
 
     if (pAction->icon().isNull())
@@ -1062,20 +1064,39 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
       } else item->setIcon(1, pAction->icon());
     }
     shortcutTree_->addTopLevelItem(item);
-
-    ++id;
   }
 
   listDefaultShortcut_ = list;
 }
 
-void OptionsDialog::saveActionShortcut(QList<QAction *> actions)
-{ 
-  for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
-    int id = shortcutTree_->topLevelItem(i)->text(0).toInt();
-    actions.at(id)->setShortcut(
-          QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
+void OptionsDialog::saveActionShortcut(QList<QAction *> actions, QActionGroup *labelGroup)
+{
+  foreach (QAction *action, actions) {
+    QString objectName = action->objectName();
+    if (objectName.contains("labelAction_")) {
+      actions.removeOne(action);
+      delete action;
+    }
   }
+
+  for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
+    QString objectName = shortcutTree_->topLevelItem(i)->text(4);
+    if (objectName.contains("labelAction_")) {
+      QAction *action = new QAction(labelGroup->parent());
+      action->setIcon(shortcutTree_->topLevelItem(i)->icon(1));
+      action->setText(shortcutTree_->topLevelItem(i)->text(1));
+      action->setShortcut(QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
+      action->setObjectName(shortcutTree_->topLevelItem(i)->text(4));
+      action->setCheckable(true);
+      action->setData(shortcutTree_->topLevelItem(i)->text(5));
+      labelGroup->addAction(action);
+    } else {
+      int id = shortcutTree_->topLevelItem(i)->text(0).toInt();
+      actions.at(id)->setShortcut(
+            QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
+    }
+  }
+  actions.append(labelGroup->actions());
 }
 
 void OptionsDialog::slotShortcutTreeUpDownPressed()
@@ -1321,7 +1342,33 @@ void OptionsDialog::applyLabels()
  * @brief Добавление ид редактированной метки
  * @param idLabel ид метки
  ******************************************************************************/
-void OptionsDialog::addIdLabelList(QString idLabel)
+void OptionsDialog::addIdLabelList(QString idLabel, int type)
 {
+  if (type == 0) {
+//    QListIterator<QAction *> iter(listActions_);
+//    while (iter.hasNext()) {
+//      QAction *pAction = iter.next();
+//      QString objectName = pAction->objectName();
+//      if (objectName.contains("labelAction_") && (pAction->data().toString() == idLabel)) {
+//        QList<QTreeWidgetItem *> treeItems =
+//            labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
+//        if (treeItems.count() == 0) {
+//          delete pAction;
+//        } else {
+//          pAction->setIcon(treeItems.at(0)->icon(1));
+//          pAction->setText(treeItems.at(0)->text(1));
+//        }
+//        break;
+//      }
+//    }
+  } else {
+//    QList<QTreeWidgetItem *> treeItems =
+//        labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
+//    QAction *pAction = new QAction(treeItems.at(0)->icon(1),
+//                                   treeItems.at(0)->text(1),
+//                                   parent());
+//    listActions_.append(pAction);
+  }
+
   if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
 }
