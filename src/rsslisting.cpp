@@ -2932,6 +2932,26 @@ void RSSListing::showOptionDlg()
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
 
+  QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(2);
+  while (labelTreeItem->childCount()) {
+    labelTreeItem->removeChild(labelTreeItem->child(0));
+  }
+
+  q.exec("SELECT id, name, image FROM labels ORDER BY num");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+    QStringList dataItem;
+    dataItem << nameLabel << QString::number(TAB_CAT_LABEL) << QString::number(idLabel);
+    QTreeWidgetItem *childItem = new QTreeWidgetItem(dataItem);
+    childItem->setIcon(0, QIcon(imageLabel));
+    labelTreeItem->addChild(childItem);
+  }
+
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
 

@@ -178,7 +178,7 @@ private:
   // Labels
   void createLabelsWidget();
   void applyLabels();
-  void addIdLabelList(QString idLabel, int type = 0);
+  void addIdLabelList(QString idLabel);
   QStringList idLabels_;
   QPushButton *newLabelButton_;
   QPushButton *editLabelButton_;

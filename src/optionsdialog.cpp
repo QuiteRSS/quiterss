@@ -1221,16 +1221,23 @@ void OptionsDialog::deleteLabel()
 void OptionsDialog::moveUpLabel()
 {
   int labelRow = labelsTree_->currentIndex().row();
+
   addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
   addIdLabelList(labelsTree_->topLevelItem(labelRow-1)->text(0));
+
+  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
+        labelsTree_->topLevelItem(labelRow)->text(0), Qt::MatchFixedString, 5);
+  int indexItem = shortcutTree_->indexOfTopLevelItem(treeItems.first());
+  QTreeWidgetItem *treeItem = shortcutTree_->takeTopLevelItem(indexItem-1);
+  shortcutTree_->insertTopLevelItem(indexItem, treeItem);
 
   int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
   int num2 = labelsTree_->topLevelItem(labelRow-1)->text(4).toInt();
   labelsTree_->topLevelItem(labelRow-1)->setText(4, QString::number(num1));
   labelsTree_->topLevelItem(labelRow)->setText(4, QString::number(num2));
 
-  QTreeWidgetItem *treeWidgetItem = labelsTree_->takeTopLevelItem(labelRow-1);
-  labelsTree_->insertTopLevelItem(labelRow, treeWidgetItem);
+  treeItem = labelsTree_->takeTopLevelItem(labelRow-1);
+  labelsTree_->insertTopLevelItem(labelRow, treeItem);
 
   if (labelsTree_->currentIndex().row() == 0)
     moveUpLabelButton_->setEnabled(false);
@@ -1245,13 +1252,19 @@ void OptionsDialog::moveDownLabel()
   addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
   addIdLabelList(labelsTree_->topLevelItem(labelRow+1)->text(0));
 
+  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
+        labelsTree_->topLevelItem(labelRow)->text(0), Qt::MatchFixedString, 5);
+  int indexItem = shortcutTree_->indexOfTopLevelItem(treeItems.first());
+  QTreeWidgetItem *treeItem = shortcutTree_->takeTopLevelItem(indexItem+1);
+  shortcutTree_->insertTopLevelItem(indexItem, treeItem);
+
   int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
   int num2 = labelsTree_->topLevelItem(labelRow+1)->text(4).toInt();
   labelsTree_->topLevelItem(labelRow+1)->setText(4, QString::number(num1));
   labelsTree_->topLevelItem(labelRow)->setText(4, QString::number(num2));
 
-  QTreeWidgetItem *treeWidgetItem = labelsTree_->takeTopLevelItem(labelRow+1);
-  labelsTree_->insertTopLevelItem(labelRow, treeWidgetItem);
+  treeItem = labelsTree_->takeTopLevelItem(labelRow+1);
+  labelsTree_->insertTopLevelItem(labelRow, treeItem);
 
   if (labelsTree_->currentIndex().row() == (labelsTree_->topLevelItemCount()-1))
     moveDownLabelButton_->setEnabled(false);
@@ -1334,33 +1347,7 @@ void OptionsDialog::applyLabels()
  * @brief Добавление ид редактированной метки
  * @param idLabel ид метки
  ******************************************************************************/
-void OptionsDialog::addIdLabelList(QString idLabel, int type)
+void OptionsDialog::addIdLabelList(QString idLabel)
 {
-  if (type == 0) {
-//    QListIterator<QAction *> iter(listActions_);
-//    while (iter.hasNext()) {
-//      QAction *pAction = iter.next();
-//      QString objectName = pAction->objectName();
-//      if (objectName.contains("labelAction_") && (pAction->data().toString() == idLabel)) {
-//        QList<QTreeWidgetItem *> treeItems =
-//            labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
-//        if (treeItems.count() == 0) {
-//          delete pAction;
-//        } else {
-//          pAction->setIcon(treeItems.at(0)->icon(1));
-//          pAction->setText(treeItems.at(0)->text(1));
-//        }
-//        break;
-//      }
-//    }
-  } else {
-//    QList<QTreeWidgetItem *> treeItems =
-//        labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
-//    QAction *pAction = new QAction(treeItems.at(0)->icon(1),
-//                                   treeItems.at(0)->text(1),
-//                                   parent());
-//    listActions_.append(pAction);
-  }
-
   if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
 }
