@@ -1,4 +1,5 @@
 #include "optionsdialog.h"
+#include "labeldialog.h"
 #include "VersionNo.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
@@ -1202,7 +1203,12 @@ void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column
 
 void OptionsDialog::newLabel()
 {
+  LabelDialog *labelDialog = new LabelDialog(this);
 
+  if (labelDialog->exec() == QDialog::Rejected) {
+    delete labelDialog;
+    return;
+  }
 }
 
 void OptionsDialog::editLabel()
