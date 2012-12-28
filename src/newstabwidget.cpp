@@ -1541,6 +1541,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
     }
     db_->commit();
   }
+  newsView_->viewport()->update();
 }
 
 void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
