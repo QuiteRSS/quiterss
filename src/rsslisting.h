@@ -181,6 +181,8 @@ private:
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
 
+  bool updateChacking_;
+
   QAction *addAct_;
   QAction *addFeedAct_;
   QAction *addFolderAct_;

@@ -1683,6 +1683,8 @@ void RSSListing::readSettings()
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
+  updateChacking_ = settings_->value("updateChacking", true).toBool();
+
   settings_->endGroup();
 
   resize(800, 600);
@@ -1821,6 +1823,8 @@ void RSSListing::writeSettings()
   settings_->setValue("openingLinkTimeout", openingLinkTimeout_);
 
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
+
+  settings_->setValue("updateChacking", updateChacking_);
 
   settings_->endGroup();
 
@@ -4400,6 +4404,8 @@ void RSSListing::showFilterRulesDlg()
 
 void RSSListing::slotUpdateAppChacking()
 {
+  if (!updateChacking_) return;
+
   updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(bool)),
           this, SLOT(slotNewVersion(bool)), Qt::QueuedConnection);
