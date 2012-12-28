@@ -181,7 +181,7 @@ private:
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
 
-  bool updateChacking_;
+  bool updateCheck_;
 
   QAction *addAct_;
   QAction *addFeedAct_;
@@ -413,7 +413,7 @@ private slots:
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
-  void slotUpdateAppChacking();
+  void slotUpdateAppCheck();
   void slotNewVersion(bool newVersion);
   void slotFeedUpPressed();
   void slotFeedDownPressed();

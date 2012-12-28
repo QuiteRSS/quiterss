@@ -153,7 +153,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     updateFeedsTime = updateFeedsTime*60;
   updateFeedsTimer_.start(updateFeedsTime, this);
 
-  QTimer::singleShot(10000, this, SLOT(slotUpdateAppChacking()));
+  QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
   translator_ = new QTranslator(this);
   appInstallTranslator();
@@ -1683,7 +1683,7 @@ void RSSListing::readSettings()
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
-  updateChacking_ = settings_->value("updateChacking", true).toBool();
+  updateCheck_ = settings_->value("updateCheck", true).toBool();
 
   settings_->endGroup();
 
@@ -1824,7 +1824,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
 
-  settings_->setValue("updateChacking", updateChacking_);
+  settings_->setValue("updateCheck", updateCheck_);
 
   settings_->endGroup();
 
@@ -4402,9 +4402,9 @@ void RSSListing::showFilterRulesDlg()
   showNewsFiltersDlg(true);
 }
 
-void RSSListing::slotUpdateAppChacking()
+void RSSListing::slotUpdateAppCheck()
 {
-  if (!updateChacking_) return;
+  if (!updateCheck_) return;
 
   updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(bool)),
