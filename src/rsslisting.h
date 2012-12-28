@@ -384,6 +384,7 @@ private:
   QToolButton *showCategoriesButton_;
   QWidget *categoriesWidget_;
   QSplitter *feedsDockSplitter_;
+  QByteArray feedsDockSplitterState_;
 
 private slots:
   void slotProgressBarUpdate();

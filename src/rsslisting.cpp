@@ -1691,6 +1691,8 @@ void RSSListing::readSettings()
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
+  feedsDockSplitterState_ = settings_->value("FeedsDockSplitterState").toByteArray();
+  feedsDockSplitter_->restoreState(feedsDockSplitterState_);
   bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
   newsCategoriesTree_->setVisible(showCategories);
   if (showCategories) {
@@ -1699,8 +1701,10 @@ void RSSListing::readSettings()
   } else {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
+    QList <int> sizes;
+    sizes << height() << 20;
+    feedsDockSplitter_->setSizes(sizes);
   }
-  feedsDockSplitter_->restoreState(settings_->value("FeedsDockSplitterState").toByteArray());
 
   if (isFullScreen())
     menuBar()->hide();
@@ -1832,10 +1836,13 @@ void RSSListing::writeSettings()
   settings_->setValue("ToolBarsState", saveState());
 
   bool newsCategoriesTreeVisible = true;
-  if (categoriesWidget_->height() <= (categoriesPanel_->height()+2))
+  if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
     newsCategoriesTreeVisible = false;
+    settings_->setValue("FeedsDockSplitterState", feedsDockSplitterState_);
+  } else {
+    settings_->setValue("FeedsDockSplitterState", feedsDockSplitter_->saveState());
+  }
   settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
-  settings_->setValue("FeedsDockSplitterState", feedsDockSplitter_->saveState());
 
   if (tabWidget_->count() && (currentNewsTab->type_ == TAB_FEED)) {
     settings_->setValue("NewsHeaderGeometry",
@@ -5457,14 +5464,13 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
  ******************************************************************************/
 void RSSListing::showNewsCategoriesTree()
 {
-  static QByteArray splitterState;
   if (newsCategoriesTree_->isHidden()) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
     newsCategoriesTree_->show();
-    feedsDockSplitter_->restoreState(splitterState);
+    feedsDockSplitter_->restoreState(feedsDockSplitterState_);
   } else {
-    splitterState = feedsDockSplitter_->saveState();
+    feedsDockSplitterState_ = feedsDockSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
     newsCategoriesTree_->hide();
