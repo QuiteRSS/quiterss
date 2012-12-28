@@ -1099,6 +1099,7 @@ void OptionsDialog::slotShortcutTreeUpDownPressed()
 void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int)
 {
   editShortcut_->setText(item->text(3));
+  editShortcut_->setFocus();
   editShortcutBox->setEnabled(true);
 }
 
