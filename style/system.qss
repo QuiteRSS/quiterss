@@ -35,7 +35,7 @@ QHeaderView::up-arrow {
 }
 
 #webViewProgress_::chunk {
-	width: 20px;
+	width: 10px;
 }
 
 QStatusBar #progressBar_{

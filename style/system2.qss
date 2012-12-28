@@ -140,6 +140,10 @@ QHeaderView::up-arrow {
 	text-align: center;
 }
 
+#webViewProgress_::chunk {
+	width: 10px;
+}
+
 #contentLabel_ {
 	background-color: #888888;
 	color: #FFFFFF;

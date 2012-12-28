@@ -137,12 +137,17 @@ QToolBar {
 								stop: 0.5 #B7E7FB, stop: 1.0 #B7E7FB);
 }
 
-#progressBar_ {
-	border: 1px solid #aa3434;
-	border-radius: 3px;
+#progressBar_, #splashProgress {
+	border: 1px solid #A5A5A5;
+	border-radius: 2px;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #f4f4f4,
+								stop:0.4 #ECECEC
+								stop:0.5 #DEDEDE,
+								stop:1 #f4f4f4);
 }
 
-#progressBar_::chunk {
+#progressBar_::chunk, #splashProgress::chunk {
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 								stop:0 #ee7a7a,
 								stop:0.4 #e87070,
@@ -192,8 +197,15 @@ QHeaderView::up-arrow {
 }
 
 #webViewProgress_ {
-	border: 1px solid #aa3434;
+	border: 1px solid #A5A5A5;
+	border-left: none;
+	border-right: none;
 	text-align: center;
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+								stop:0 #f4f4f4,
+								stop:0.4 #ECECEC
+								stop:0.5 #DEDEDE,
+								stop:1 #f4f4f4);
 }
 
 #webViewProgress_::chunk {
@@ -202,7 +214,7 @@ QHeaderView::up-arrow {
 								stop:0.4 #e87070,
 								stop:0.5 #e46060,
 								stop:1 #ec7a7a);
-	width: 20px;
+	width: 10px;
 }
 
 #contentLabel_ {
@@ -234,18 +246,6 @@ QMainWindow::separator {
 
 #infoWidgetFR, #actionsWidgetFR {
 	background: white;
-}
-
-#splashProgress {
-	border: 1px solid #aa3434;
-}
-
-#splashProgress::chunk {
-	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #ee7a7a,
-								stop:0.4 #e87070,
-								stop:0.5 #e46060,
-								stop:1 #ec7a7a);
 }
 
 #notificationWidget {
