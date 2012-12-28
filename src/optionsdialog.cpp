@@ -1217,6 +1217,14 @@ void OptionsDialog::deleteLabel()
   int labelRow = labelsTree_->currentIndex().row();
   addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
 
+  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
+        labelsTree_->topLevelItem(labelRow)->text(0), Qt::MatchFixedString, 5);
+  int indexItem = shortcutTree_->indexOfTopLevelItem(treeItems.first());
+  QTreeWidgetItem *treeItem = shortcutTree_->takeTopLevelItem(indexItem);
+  delete treeItem;
+
+  treeItem = labelsTree_->takeTopLevelItem(labelRow);
+  delete treeItem;
 }
 
 void OptionsDialog::moveUpLabel()
