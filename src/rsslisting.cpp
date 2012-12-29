@@ -1692,17 +1692,17 @@ void RSSListing::readSettings()
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
   feedsDockSplitterState_ = settings_->value("FeedsDockSplitterState").toByteArray();
-  feedsDockSplitter_->restoreState(feedsDockSplitterState_);
   bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
   newsCategoriesTree_->setVisible(showCategories);
   if (showCategories) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
+    feedsDockSplitter_->restoreState(feedsDockSplitterState_);
   } else {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
     QList <int> sizes;
-    sizes << height() << 20;
+    sizes << height() << 10;
     feedsDockSplitter_->setSizes(sizes);
   }
 
