@@ -25,14 +25,25 @@ LabelDialog::LabelDialog(QWidget *parent)
   iconButton_->setPopupMode(QToolButton::MenuButtonPopup);
   iconButton_->setMenu(iconMenu);
 
-  QPixmap pixmap(14, 14);
-  pixmap.fill(QColor("#555555"));
+  QMenu *colorTextMenu = new QMenu();
+  colorTextMenu->addAction(tr("Default"));
+  colorTextMenu->addSeparator();
+  colorTextMenu->addAction(tr("Select color..."));
+
   colorTextButton_ = new QToolButton(this);
   colorTextButton_->setIconSize(QSize(16, 16));
-  colorTextButton_->setIcon(pixmap);
+  colorTextButton_->setPopupMode(QToolButton::MenuButtonPopup);
+  colorTextButton_->setMenu(colorTextMenu);
+
+  QMenu *colorBgMenu = new QMenu();
+  colorBgMenu->addAction(tr("Default"));
+  colorBgMenu->addSeparator();
+  colorBgMenu->addAction(tr("Select color..."));
 
   colorBgButton_ = new QToolButton(this);
   colorBgButton_->setIconSize(QSize(16, 16));
+  colorBgButton_->setPopupMode(QToolButton::MenuButtonPopup);
+  colorBgButton_->setMenu(colorBgMenu);
 
   buttonBox_ = new QDialogButtonBox(
         QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -68,6 +79,38 @@ LabelDialog::LabelDialog(QWidget *parent)
           iconButton_, SLOT(showMenu()));
   connect(iconMenu, SIGNAL(triggered(QAction*)),
           this, SLOT(selectIcon(QAction*)));
+  connect(newIcon, SIGNAL(triggered()),
+          this, SLOT(loadIcon()));
+  connect(colorTextButton_, SIGNAL(clicked()),
+          colorTextButton_, SLOT(showMenu()));
+  connect(colorTextMenu->actions().at(0), SIGNAL(triggered()),
+          this, SLOT(defaultColorText()));
+  connect(colorTextMenu->actions().at(2), SIGNAL(triggered()),
+          this, SLOT(selectColorText()));
+  connect(colorBgButton_, SIGNAL(clicked()),
+          colorBgButton_, SLOT(showMenu()));
+  connect(colorBgMenu->actions().at(0), SIGNAL(triggered()),
+          this, SLOT(defaultColorBg()));
+  connect(colorBgMenu->actions().at(2), SIGNAL(triggered()),
+          this, SLOT(selectColorBg()));
+}
+
+void LabelDialog::loadData()
+{
+  iconButton_->setIcon(icon_);
+
+  QPixmap pixmap(14, 14);
+  if (!colorTextStr_.isEmpty())
+    pixmap.fill(QColor(colorTextStr_));
+  else
+    pixmap.fill(QColor(0, 0, 0, 0));
+  colorTextButton_->setIcon(pixmap);
+
+  if (!colorBgStr_.isEmpty())
+    pixmap.fill(QColor(colorBgStr_));
+  else
+    pixmap.fill(QColor(0, 0, 0, 0));
+  colorBgButton_->setIcon(pixmap);
 }
 
 void LabelDialog::nameEditChanged(const QString& text)
@@ -78,4 +121,85 @@ void LabelDialog::nameEditChanged(const QString& text)
 void LabelDialog::selectIcon(QAction *action)
 {
   iconButton_->setIcon(action->icon());
+}
+
+void LabelDialog::loadIcon()
+{
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Select Image"),
+                                                  QDir::homePath(),
+                                                  tr("Image files (*.jpg; *.jpeg; *.png; *.bmp)"));
+
+  if (fileName.isNull()) return;
+
+  QFile file(fileName);
+  if (!file.open(QIODevice::ReadOnly)) {
+    QMessageBox msgBox;
+    msgBox.setText(tr("Load icon: can't open a file"));
+    msgBox.exec();
+    return;
+  }
+
+  QPixmap pixmap;
+  if (pixmap.loadFromData(file.readAll())) {
+    pixmap = pixmap.scaled(16, 16, Qt::IgnoreAspectRatio,
+                           Qt::SmoothTransformation);
+  }
+  icon_.addPixmap(pixmap);
+  iconButton_->setIcon(icon_);
+
+  file.close();
+}
+
+void LabelDialog::defaultColorText()
+{
+  colorTextStr_ = "";
+  QPixmap pixmap(14, 14);
+  pixmap.fill(QColor(0, 0, 0, 0));
+  colorTextButton_->setIcon(pixmap);
+}
+
+void LabelDialog::selectColorText()
+{
+
+  QColorDialog *colorDialog = new QColorDialog(this);
+
+  if (colorDialog->exec() == QDialog::Rejected) {
+    delete colorDialog;
+    return;
+  }
+
+  QColor color = colorDialog->selectedColor();
+  delete colorDialog;
+
+  colorTextStr_ = color.name();
+  QPixmap pixmap(14, 14);
+  pixmap.fill(color);
+  colorTextButton_->setIcon(pixmap);
+}
+
+void LabelDialog::defaultColorBg()
+{
+  colorBgStr_ = "";
+  QPixmap pixmap(14, 14);
+  pixmap.fill(QColor(0, 0, 0, 0));
+  colorBgButton_->setIcon(pixmap);
+}
+
+void LabelDialog::selectColorBg()
+{
+
+  QColorDialog *colorDialog = new QColorDialog(this);
+
+  if (colorDialog->exec() == QDialog::Rejected) {
+    delete colorDialog;
+    return;
+  }
+
+  QColor color = colorDialog->selectedColor();
+  delete colorDialog;
+
+  colorBgStr_ = color.name();
+  QPixmap pixmap(14, 14);
+  pixmap.fill(color);
+  colorBgButton_->setIcon(pixmap);
 }

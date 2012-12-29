@@ -840,9 +840,9 @@ void OptionsDialog::createLabelsWidget()
     QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
     treeWidgetItem->setIcon(1, QIcon(imageLabel));
     if (!colorText.isEmpty())
-      treeWidgetItem->setData(1, Qt::TextColorRole, QColor(colorText));
+      treeWidgetItem->setTextColor(1, QColor(colorText));
     if (!colorBg.isEmpty())
-      treeWidgetItem->setData(1, Qt::BackgroundColorRole, QColor(colorBg));
+      treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
     labelsTree_->addTopLevelItem(treeWidgetItem);
   }
 
@@ -1054,7 +1054,6 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
              << pAction->toolTip() << pAction->shortcut()
              << pAction->objectName() << pAction->data().toString();
     QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
-
     if (pAction->icon().isNull())
       item->setIcon(1, QIcon(":/images/images/noicon.png"));
     else {
@@ -1209,13 +1208,86 @@ void OptionsDialog::newLabel()
     delete labelDialog;
     return;
   }
+
+  QString nameLabel = labelDialog->nameEdit_->text();
+  QString colorText = labelDialog->colorTextStr_;
+  QString colorBg = labelDialog->colorBgStr_;
+
+  int idLabel = 0;
+  for (int i = 0; i < labelsTree_->topLevelItemCount(); i++) {
+    QString str = labelsTree_->topLevelItem(i)->text(0);
+    if (idLabel < str.toInt())
+      idLabel = str.toInt();
+  }
+  idLabel = idLabel + 1;
+
+  QStringList strTreeItem;
+  strTreeItem << QString::number(idLabel) << nameLabel
+              << colorText << colorBg
+              << QString::number(idLabel);
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+  treeWidgetItem->setIcon(1, labelDialog->icon_);
+  if (!colorText.isEmpty())
+    treeWidgetItem->setTextColor(1, QColor(colorText));
+  if (!colorBg.isEmpty())
+    treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+  labelsTree_->addTopLevelItem(treeWidgetItem);
+  addIdLabelList(treeWidgetItem->text(0));
+
+  strTreeItem.clear();
+  strTreeItem << QString::number(shortcutTree_->topLevelItemCount())
+           << nameLabel << nameLabel << ""
+           << QString("labelAction_%1").arg(idLabel) << QString::number(idLabel);
+  treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+  treeWidgetItem->setIcon(1, labelDialog->icon_);
+  shortcutTree_->addTopLevelItem(treeWidgetItem);
+
+  delete labelDialog;
 }
 
 void OptionsDialog::editLabel()
 {
-  int labelRow = labelsTree_->currentIndex().row();
-  addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
+  QTreeWidgetItem *treeWidgetItem = labelsTree_->currentItem();
 
+  QString idLabelStr = treeWidgetItem->text(0);
+  QString nameLabel = treeWidgetItem->text(1);
+  QString colorText = treeWidgetItem->text(2);
+  QString colorBg = treeWidgetItem->text(3);
+
+  LabelDialog *labelDialog = new LabelDialog(this);
+
+  labelDialog->nameEdit_->setText(nameLabel);
+  labelDialog->icon_ = treeWidgetItem->icon(1);
+  labelDialog->colorTextStr_ = colorText;
+  labelDialog->colorBgStr_ = colorBg;
+  labelDialog->loadData();
+
+  if (labelDialog->exec() == QDialog::Rejected) {
+    delete labelDialog;
+    return;
+  }
+
+  nameLabel = labelDialog->nameEdit_->text();
+  colorText = labelDialog->colorTextStr_;
+  colorBg = labelDialog->colorBgStr_;
+
+  treeWidgetItem->setText(1, nameLabel);
+  treeWidgetItem->setText(2, colorText);
+  treeWidgetItem->setText(3, colorBg);
+  treeWidgetItem->setIcon(1, labelDialog->icon_);
+  if (!colorText.isEmpty())
+    treeWidgetItem->setTextColor(1, QColor(colorText));
+  if (!colorBg.isEmpty())
+    treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+  addIdLabelList(idLabelStr);
+
+  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
+        idLabelStr, Qt::MatchFixedString, 5);
+  treeWidgetItem = treeItems.first();
+  treeWidgetItem->setIcon(1, labelDialog->icon_);
+  treeWidgetItem->setText(1 , nameLabel);
+
+  delete labelDialog;
 }
 
 void OptionsDialog::deleteLabel()

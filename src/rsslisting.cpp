@@ -5503,7 +5503,7 @@ void RSSListing::setLabelNews(QAction *action)
   if (currentNewsTab->type_ == TAB_WEB) return;
 
   newsLabelAction_->setIcon(action->icon());
-  newsLabelAction_->setData(action->text());
+  newsLabelAction_->setText(action->text());
   newsLabelAction_->setData(action->data());
 
   currentNewsTab->setLabelNews(action->data().toInt(), action->isChecked());

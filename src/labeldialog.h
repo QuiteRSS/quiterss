@@ -16,12 +16,21 @@ private:
 private slots:
   void nameEditChanged(const QString&);
   void selectIcon(QAction *action);
+  void loadIcon();
+  void defaultColorText();
+  void selectColorText();
+  void defaultColorBg();
+  void selectColorBg();
 
 public:
   explicit LabelDialog(QWidget *parent);
 
-  LineEdit *nameEdit_;
+  void loadData();
 
+  LineEdit *nameEdit_;
+  QIcon icon_;
+  QString colorTextStr_;
+  QString colorBgStr_;
 };
 
 #endif // NEWSLABELDIALOG_H
