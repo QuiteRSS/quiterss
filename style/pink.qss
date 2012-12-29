@@ -113,7 +113,7 @@ QToolBar {
 }
 
 #pushButtonNull {
-	background: #ffd8d8;
+	background: #E8E8E8;
 	border-style: none;
 }
 
@@ -210,10 +210,10 @@ QHeaderView::up-arrow {
 
 #webViewProgress_::chunk {
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #ee7a7a,
-								stop:0.4 #e87070,
-								stop:0.5 #e46060,
-								stop:1 #ec7a7a);
+								stop:0 #e0e0e0,
+								stop:0.4 #d9d9d9
+								stop:0.5 #cbcbcb,
+								stop:1 #e0e0e0);
 	width: 10px;
 }
 
