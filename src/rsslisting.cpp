@@ -2948,6 +2948,18 @@ void RSSListing::showOptionDlg()
     labelTreeItem->removeChild(labelTreeItem->child(0));
   }
 
+  bool closeTab = true;
+  int indexTab = -1;
+  int tabLabelId = -1;
+  for (int i = 0; i < tabWidget_->count(); i++) {
+     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+     if (widget->type_ == TAB_CAT_LABEL) {
+       indexTab = i;
+       tabLabelId = widget->labelId_;
+       break;
+     }
+  }
+
   q.exec("SELECT id, name, image FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
@@ -2961,6 +2973,17 @@ void RSSListing::showOptionDlg()
     QTreeWidgetItem *childItem = new QTreeWidgetItem(dataItem);
     childItem->setIcon(0, QIcon(imageLabel));
     labelTreeItem->addChild(childItem);
+
+    if (idLabel == tabLabelId) closeTab = false;
+  }
+
+  if (closeTab && indexTab && tabLabelId) {
+    slotTabCloseRequested(indexTab);
+  } else if (indexTab && tabLabelId) {
+//    if (tabWidget_->currentIndex() == indexTab)
+//      updateCurrentTab_ = false;
+//    slotTabCurrentChanged(indexTab);
+//    updateCurrentTab_ = true;
   }
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
@@ -4710,6 +4733,14 @@ void RSSListing::slotTabCurrentChanged(int index)
       treeItems = newsCategoriesTree_->findItems(QString::number(widget->labelId_),
                                                  Qt::MatchFixedString|Qt::MatchRecursive,
                                                  2);
+      //! Устанавливаем иконку и текст для открытой вкладки
+//      widget->newsIconTitle_->setPixmap(treeItems.at(0)->icon(0).pixmap(16,16));
+
+//      QString tabText(treeItems.at(0)->text(0));
+//      widget->newsTitleLabel_->setToolTip(tabText);
+//      tabText = widget->newsTextTitle_->fontMetrics().elidedText(
+//            tabText, Qt::ElideRight, 114);
+//      widget->newsTextTitle_->setText(tabText);
     } else {
       treeItems = newsCategoriesTree_->findItems(QString::number(widget->type_),
                                                  Qt::MatchFixedString,
