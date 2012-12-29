@@ -2974,16 +2974,24 @@ void RSSListing::showOptionDlg()
     childItem->setIcon(0, QIcon(imageLabel));
     labelTreeItem->addChild(childItem);
 
-    if (idLabel == tabLabelId) closeTab = false;
+    if (idLabel == tabLabelId) {
+      closeTab = false;
+      NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(indexTab);
+      //! Устанавливаем иконку и текст для открытой вкладки
+      widget->newsIconTitle_->setPixmap(imageLabel);
+      QString tabText(nameLabel);
+      widget->newsTitleLabel_->setToolTip(tabText);
+      tabText = widget->newsTextTitle_->fontMetrics().elidedText(
+            tabText, Qt::ElideRight, 114);
+      widget->newsTextTitle_->setText(tabText);
+    }
   }
 
-  if (closeTab && indexTab && tabLabelId) {
+  if (closeTab && (indexTab > 0) && (tabLabelId > 0)) {
     slotTabCloseRequested(indexTab);
-  } else if (indexTab && tabLabelId) {
-//    if (tabWidget_->currentIndex() == indexTab)
-//      updateCurrentTab_ = false;
-//    slotTabCurrentChanged(indexTab);
-//    updateCurrentTab_ = true;
+  }
+  if ((tabWidget_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
+    slotUpdateNews();
   }
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
@@ -4733,14 +4741,6 @@ void RSSListing::slotTabCurrentChanged(int index)
       treeItems = newsCategoriesTree_->findItems(QString::number(widget->labelId_),
                                                  Qt::MatchFixedString|Qt::MatchRecursive,
                                                  2);
-      //! Устанавливаем иконку и текст для открытой вкладки
-//      widget->newsIconTitle_->setPixmap(treeItems.at(0)->icon(0).pixmap(16,16));
-
-//      QString tabText(treeItems.at(0)->text(0));
-//      widget->newsTitleLabel_->setToolTip(tabText);
-//      tabText = widget->newsTextTitle_->fontMetrics().elidedText(
-//            tabText, Qt::ElideRight, 114);
-//      widget->newsTextTitle_->setText(tabText);
     } else {
       treeItems = newsCategoriesTree_->findItems(QString::number(widget->type_),
                                                  Qt::MatchFixedString,
