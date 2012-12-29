@@ -120,6 +120,7 @@ void LabelDialog::nameEditChanged(const QString& text)
 
 void LabelDialog::selectIcon(QAction *action)
 {
+  icon_ = action->icon();
   iconButton_->setIcon(action->icon());
 }
 

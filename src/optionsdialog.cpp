@@ -1391,6 +1391,14 @@ void OptionsDialog::applyLabels()
         labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
     if (treeItems.count() == 0) {
       q.exec(QString("DELETE FROM labels WHERE id=='%1'").arg(idLabel));
+      q.exec(QString("SELECT id, label FROM news WHERE label LIKE '\%,%1,\%'").arg(idLabel));
+      while (q.next()) {
+        QString strIdLabels = q.value(1).toString();
+        strIdLabels.replace(QString(",%1,").arg(idLabel), ",");
+        QSqlQuery q1(*db_);
+        q1.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
+               arg(strIdLabels).arg(q.value(0).toInt()));
+      }
     } else {
       QString nameLabel = treeItems.at(0)->text(1);
       QPixmap icon = treeItems.at(0)->icon(1).pixmap(16, 16);
