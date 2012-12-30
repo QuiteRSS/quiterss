@@ -2943,55 +2943,57 @@ void RSSListing::showOptionDlg()
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
 
-  QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(2);
-  while (labelTreeItem->childCount()) {
-    labelTreeItem->removeChild(labelTreeItem->child(0));
-  }
-
-  bool closeTab = true;
-  int indexTab = -1;
-  int tabLabelId = -1;
-  for (int i = 0; i < tabWidget_->count(); i++) {
-     NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
-     if (widget->type_ == TAB_CAT_LABEL) {
-       indexTab = i;
-       tabLabelId = widget->labelId_;
-       break;
-     }
-  }
-
-  q.exec("SELECT id, name, image FROM labels ORDER BY num");
-  while (q.next()) {
-    int idLabel = q.value(0).toInt();
-    QString nameLabel = q.value(1).toString();
-    QByteArray byteArray = q.value(2).toByteArray();
-    QPixmap imageLabel;
-    if (!byteArray.isNull())
-      imageLabel.loadFromData(byteArray);
-    QStringList dataItem;
-    dataItem << nameLabel << QString::number(TAB_CAT_LABEL) << QString::number(idLabel);
-    QTreeWidgetItem *childItem = new QTreeWidgetItem(dataItem);
-    childItem->setIcon(0, QIcon(imageLabel));
-    labelTreeItem->addChild(childItem);
-
-    if (idLabel == tabLabelId) {
-      closeTab = false;
-      NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(indexTab);
-      //! Устанавливаем иконку и текст для открытой вкладки
-      widget->newsIconTitle_->setPixmap(imageLabel);
-      QString tabText(nameLabel);
-      widget->newsTitleLabel_->setToolTip(tabText);
-      tabText = widget->newsTextTitle_->fontMetrics().elidedText(
-            tabText, Qt::ElideRight, 114);
-      widget->newsTextTitle_->setText(tabText);
+  if (optionsDialog->idLabels_.count()) {
+    QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(2);
+    while (labelTreeItem->childCount()) {
+      labelTreeItem->removeChild(labelTreeItem->child(0));
     }
-  }
 
-  if (closeTab && (indexTab > 0) && (tabLabelId > 0)) {
-    slotTabCloseRequested(indexTab);
-  }
-  if ((tabWidget_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
-    slotUpdateNews();
+    bool closeTab = true;
+    int indexTab = -1;
+    int tabLabelId = -1;
+    for (int i = 0; i < tabWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+      if (widget->type_ == TAB_CAT_LABEL) {
+        indexTab = i;
+        tabLabelId = widget->labelId_;
+        break;
+      }
+    }
+
+    q.exec("SELECT id, name, image FROM labels ORDER BY num");
+    while (q.next()) {
+      int idLabel = q.value(0).toInt();
+      QString nameLabel = q.value(1).toString();
+      QByteArray byteArray = q.value(2).toByteArray();
+      QPixmap imageLabel;
+      if (!byteArray.isNull())
+        imageLabel.loadFromData(byteArray);
+      QStringList dataItem;
+      dataItem << nameLabel << QString::number(TAB_CAT_LABEL) << QString::number(idLabel);
+      QTreeWidgetItem *childItem = new QTreeWidgetItem(dataItem);
+      childItem->setIcon(0, QIcon(imageLabel));
+      labelTreeItem->addChild(childItem);
+
+      if (idLabel == tabLabelId) {
+        closeTab = false;
+        NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(indexTab);
+        //! Устанавливаем иконку и текст для открытой вкладки
+        widget->newsIconTitle_->setPixmap(imageLabel);
+        QString tabText(nameLabel);
+        widget->newsTitleLabel_->setToolTip(tabText);
+        tabText = widget->newsTextTitle_->fontMetrics().elidedText(
+              tabText, Qt::ElideRight, 114);
+        widget->newsTextTitle_->setText(tabText);
+      }
+    }
+
+    if (closeTab && (indexTab > 0) && (tabLabelId > 0)) {
+      slotTabCloseRequested(indexTab);
+    }
+    if ((tabWidget_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
+      slotUpdateNews();
+    }
   }
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();

@@ -85,6 +85,7 @@ public:
   QCheckBox *neverStarCleanUp_;
 
   // labels
+  QStringList idLabels_;
   QTreeWidget *labelsTree_;
 
   // nitifier
@@ -179,7 +180,6 @@ private:
   void createLabelsWidget();
   void applyLabels();
   void addIdLabelList(QString idLabel);
-  QStringList idLabels_;
   QPushButton *newLabelButton_;
   QPushButton *editLabelButton_;
   QPushButton *deleteLabelButton_;
