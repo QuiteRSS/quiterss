@@ -1298,6 +1298,7 @@ void NewsTabWidget::webTitleChanged(QString title)
 //! Открытие новости в новой вкладке
 void NewsTabWidget::openNewsNewTab()
 {
+  if (type_ == TAB_WEB) return;
   slotNewsMiddleClicked(newsView_->currentIndex());
 }
 
