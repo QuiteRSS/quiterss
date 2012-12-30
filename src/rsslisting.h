@@ -265,6 +265,10 @@ private:
   QAction *fullScreenAct_;
   QAction *stayOnTopAct_;
 
+  QAction *closeTabAct_;
+  QAction *nextTabAct_;
+  QAction *prevTabAct_;
+
   QMenu *fileMenu_;
   QMenu *newMenu_;
   QMenu *editMenu_;
@@ -476,6 +480,10 @@ private slots:
   void setLabelNews(QAction *action);
   void setDefaultLabelNews();
   void getLabelNews();
+
+  void slotCloseTab();
+  void slotNextTab();
+  void slotPrevTab();
 
 signals:
   void signalPlaceToTray();

@@ -1127,6 +1127,21 @@ void RSSListing::createActions()
   connect(newsLabelGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setLabelNews(QAction*)));
 
+  closeTabAct_ = new QAction(this);
+  closeTabAct_->setObjectName("closeTabAct");
+  this->addAction(closeTabAct_);
+  connect(closeTabAct_, SIGNAL(triggered()), this, SLOT(slotCloseTab()));
+
+  nextTabAct_ = new QAction(this);
+  nextTabAct_->setObjectName("nextTabAct");
+  this->addAction(nextTabAct_);
+  connect(nextTabAct_, SIGNAL(triggered()), this, SLOT(slotNextTab()));
+
+  prevTabAct_ = new QAction(this);
+  prevTabAct_->setObjectName("prevTabAct");
+  this->addAction(closeTabAct_);
+  connect(prevTabAct_, SIGNAL(triggered()), this, SLOT(slotPrevTab()));
+
 
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
@@ -1230,6 +1245,12 @@ void RSSListing::createShortcut()
 
   stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
   listActions_.append(stayOnTopAct_);
+
+
+  closeTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
+  listActions_.append(closeTabAct_);
+  listActions_.append(nextTabAct_);
+  listActions_.append(prevTabAct_);
 
   //! Действия меток добавлять последними
   listActions_.append(newsLabelGroup_->actions());
@@ -4030,6 +4051,10 @@ void RSSListing::retranslateStrings() {
 
   newsLabelAction_->setText(tr("Label"));
 
+  closeTabAct_->setText(tr("Close tab"));
+  nextTabAct_->setText(tr("Switch to next tab"));
+  prevTabAct_->setText(tr("Switch to previous tab"));
+
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");
@@ -5594,4 +5619,28 @@ void RSSListing::getLabelNews()
       newsLabelGroup_->actions().at(i)->setChecked(check);
     }
   }
+}
+
+/**
+ * @brief Закрытие открытой вкладки
+ ******************************************************************************/
+void RSSListing::slotCloseTab()
+{
+  slotTabCloseRequested(tabWidget_->currentIndex());
+}
+
+/**
+ * @brief Переключение на следующую вкладку
+ ******************************************************************************/
+void RSSListing::slotNextTab()
+{
+  tabWidget_->setCurrentIndex(tabWidget_->currentIndex()+1);
+}
+
+/**
+ * @brief Переключение на предыдущую вкладку
+ ******************************************************************************/
+void RSSListing::slotPrevTab()
+{
+  tabWidget_->setCurrentIndex(tabWidget_->currentIndex()-1);
 }
