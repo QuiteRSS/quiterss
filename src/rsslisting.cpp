@@ -1702,7 +1702,7 @@ void RSSListing::readSettings()
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
     QList <int> sizes;
-    sizes << height() << 10;
+    sizes << QApplication::desktop()->height() << 20;
     feedsDockSplitter_->setSizes(sizes);
   }
 
