@@ -191,6 +191,31 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   return QSqlTableModel::data(index, role);
 }
 
+/*virtual*/ QVariant NewsModel::headerData(int section,
+                                           Qt::Orientation orientation,
+                                           int role) const
+{
+  if (role == Qt::DisplayRole) {
+    QString text = QSqlTableModel::headerData(section, orientation, role).toString();
+    if (text.isEmpty()) return QVariant();
+
+    int stopColFix = 0;
+    for (int i = view_->header()->count()-1; i >= 0; i--) {
+      int lIdx = view_->header()->logicalIndex(i);
+      if (!view_->header()->isSectionHidden(lIdx)) {
+        stopColFix = lIdx;
+        break;
+      }
+    }
+    int padding = 3;
+    if (stopColFix == section) padding = padding + 20;
+    text = view_->header()->fontMetrics().elidedText(
+          text, Qt::ElideRight, view_->header()->sectionSize(section)-padding);
+    return text;
+  }
+  return QSqlTableModel::headerData(section, orientation, role);
+}
+
 /*virtual*/ bool	NewsModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   return QSqlTableModel::setData(index, value, role);
