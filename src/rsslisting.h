@@ -371,6 +371,7 @@ private:
 
   int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
   QBasicTimer timerLinkOpening_;
+  int openNewsTab_;
 
   enum FeedReedType {
     FeedReadTypeSwitchingFeed,

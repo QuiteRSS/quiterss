@@ -94,6 +94,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   notificationWidget = NULL;
   feedIdOld_ = -2;
   openingLink_ = false;
+  openNewsTab_ = 0;
 
   createFeedsDock();
   createToolBarNull();
@@ -4802,20 +4803,23 @@ QWebPage *RSSListing::createWebTab()
 
   // Открытие вкладки во встроенном браузере фоном
   if (openLinkInBackgroundEmbedded_) {
-    // ..., но при нажатой клавише контрол переключаемся на вкладку
-    if (QApplication::keyboardModifiers() == Qt::ControlModifier) {
+    // ..., но при нажатой клавише контрол и не при открытии новости в фоне переключаемся на вкладку
+    if (((QApplication::keyboardModifiers() == Qt::ControlModifier) ||
+        (openNewsTab_ == 1)) && (openNewsTab_ != 2)) {
       currentNewsTab = widget;
       emit signalSetCurrentTab(indexTab);
     }
   }
   // Открытие вкладки во встроенном браузере с переключением на вкладку
   else {
-    // ..., только если не нажата клавиша контрол
-    if (QApplication::keyboardModifiers() != Qt::ControlModifier) {
+    // ..., только если не нажата клавиша контрол и не открытие новости в фоне
+    if (((QApplication::keyboardModifiers() != Qt::ControlModifier) ||
+        (openNewsTab_ == 1)) && (openNewsTab_ != 2)) {
       currentNewsTab = widget;
       emit signalSetCurrentTab(indexTab);
     }
   }
+  openNewsTab_ = 0;
 
   return widget->webView_->page();
 }
@@ -5132,16 +5136,14 @@ void RSSListing::openInExternalBrowserNews()
 
 void RSSListing::slotOpenNewsNewTab()
 {
+  openNewsTab_ = 1;
   currentNewsTab->openNewsNewTab();
 }
 
 void RSSListing::slotOpenNewsBackgroundTab()
 {
+  openNewsTab_ = 2;
   currentNewsTab->openNewsNewTab();
-  QKeyEvent* pe = new QKeyEvent(QEvent::KeyPress,
-                                Qt::ControlModifier,
-                                Qt::NoModifier);
-  QApplication::sendEvent(this, pe);
 }
 
 /**
