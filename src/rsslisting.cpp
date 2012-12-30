@@ -1197,7 +1197,7 @@ void RSSListing::createShortcut()
   listActions_.append(markStarAct_);
 
   listActions_.append(openInBrowserAct_);
-  openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_O));
+  openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_Space));
   listActions_.append(openInExternalBrowserAct_);
   openInExternalBrowserAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_O));
   openNewsNewTabAct_->setShortcut(QKeySequence(Qt::Key_T));
