@@ -25,7 +25,10 @@ void RSSListing::receiveMessage(const QString& message)
   if (!message.isEmpty()){
     QStringList params = message.split('\n');
     foreach (QString param, params) {
-      if (param == "--show") slotShowWindows();
+      if (param == "--show") {
+        if (closeApp_) return;
+        slotShowWindows();
+      }
       if (param == "--exit") slotClose();
       if (param.contains("feed:", Qt::CaseInsensitive)) {
         QClipboard *clipboard = QApplication::clipboard();
@@ -51,6 +54,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 {
   setWindowTitle(QString("QuiteRSS v%1").arg(STRPRODUCTVER));
   setContextMenuPolicy(Qt::CustomContextMenu);
+
+  closeApp_ = false;
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   QString versionDB = initDB(dbFileName_);
@@ -331,6 +336,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 /*! \brief Обработка события выхода из приложения *****************************/
 void RSSListing::slotClose()
 {
+  closeApp_ = true;
   traySystem->hide();
   hide();
   writeSettings();

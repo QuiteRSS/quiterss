@@ -183,6 +183,8 @@ private:
 
   bool updateCheck_;
 
+  bool closeApp_;
+
   QAction *addAct_;
   QAction *addFeedAct_;
   QAction *addFolderAct_;
