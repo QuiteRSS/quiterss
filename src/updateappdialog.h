@@ -21,7 +21,8 @@ private:
   QLabel *infoLabel;
   QTextBrowser *history_;
 
-  QPushButton *updateButton_;
+  QPushButton *installButton_;
+  QCheckBox *remindAboutVersion_;
 
   QWebPage page;
 
@@ -37,7 +38,7 @@ private slots:
   void renderStatistics();
 
 signals:
-  void signalNewVersion(bool newVersion);
+  void signalNewVersion(QString newVersion);
 
 };
 

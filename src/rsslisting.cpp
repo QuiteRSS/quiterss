@@ -4479,15 +4479,15 @@ void RSSListing::slotUpdateAppCheck()
   if (!updateCheck_) return;
 
   updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
-  connect(updateAppDialog_, SIGNAL(signalNewVersion(bool)),
-          this, SLOT(slotNewVersion(bool)), Qt::QueuedConnection);
+  connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
+          this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);
 }
 
-void RSSListing::slotNewVersion(bool newVersion)
+void RSSListing::slotNewVersion(QString newVersion)
 {
   delete updateAppDialog_;
 
-  if (newVersion) {
+  if (!newVersion.isEmpty()) {
     traySystem->showMessage(tr("Check for updates"),
                             tr("A new version of QuiteRSS..."));
     connect(traySystem, SIGNAL(messageClicked()),

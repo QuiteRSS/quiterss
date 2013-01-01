@@ -422,7 +422,7 @@ private slots:
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
   void slotUpdateAppCheck();
-  void slotNewVersion(bool newVersion);
+  void slotNewVersion(QString newVersion);
   void slotFeedUpPressed();
   void slotFeedDownPressed();
   void slotFeedHomePressed();

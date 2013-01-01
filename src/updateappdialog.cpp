@@ -31,10 +31,15 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     history_->setOpenExternalLinks(true);
     updateApplayout->addWidget(history_, 1);
 
-    updateButton_ = new QPushButton(tr("&Update"), this);
-    updateButton_->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    updateButton_->hide();
-    connect(updateButton_, SIGNAL(clicked()), SLOT(updaterRun()));
+    remindAboutVersion_ = new QCheckBox(tr("Don't remind about this version"), this);
+    remindAboutVersion_->setChecked(settings_->value("remindAboutVersion", false).toBool());
+    remindAboutVersion_->hide();
+    updateApplayout->addWidget(remindAboutVersion_, 0);
+
+    installButton_ = new QPushButton(tr("&Install"), this);
+    installButton_->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    installButton_->hide();
+    connect(installButton_, SIGNAL(clicked()), SLOT(updaterRun()));
 
     QPushButton *closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setDefault(true);
@@ -43,7 +48,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     connect(closeButton, SIGNAL(clicked()), SLOT(close()));
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->addWidget(updateButton_);
+    buttonLayout->addWidget(installButton_);
     buttonLayout->addStretch(1);
     buttonLayout->addWidget(closeButton);
     updateApplayout->addLayout(buttonLayout);
@@ -68,6 +73,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
 
 void UpdateAppDialog::closeDialog()
 {
+  settings_->setValue("remindAboutVersion", remindAboutVersion_->isChecked());
   settings_->setValue("updateAppDlg/geometry", saveGeometry());
 }
 
@@ -76,7 +82,7 @@ void UpdateAppDialog::finishUpdatesChecking()
   reply_->deleteLater();
 
   QString info;
-  bool newVersion = false;
+  QString newVersion = "";
 
   if (reply_->error() == QNetworkReply::NoError) {
     QString version = STRPRODUCTVER;
@@ -98,7 +104,7 @@ void UpdateAppDialog::finishUpdatesChecking()
           "<p>" + QString("<a href=\"%1\">%2</a>").
           arg("http://code.google.com/p/quite-rss/downloads/list").
           arg(tr("Click here to go to the download page"));
-      newVersion = true;
+      newVersion = curVersion;
     }
     info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"
@@ -115,16 +121,38 @@ void UpdateAppDialog::finishUpdatesChecking()
       history_->setText("");
   }
 
+  bool remind = settings_->value("remindAboutVersion", false).toBool();
+  QString currentVersion = settings_->value("currentVersionApp", "").toString();
   if (!showDialog_) {
+    if (!newVersion.isEmpty()) {
+      if (currentVersion != newVersion) {
+        settings_->setValue("currentVersionApp", newVersion);
+        settings_->setValue("remindAboutVersion", false);
+      } else if (remind) {
+          newVersion = "";
+      }
+    }
+
     emit signalNewVersion(newVersion);
   } else {
     infoLabel->setText(info);
 
 #if defined(Q_OS_WIN)
     if (QFile::exists(QCoreApplication::applicationDirPath() + "/Updater.exe") &&
-        newVersion)
-      updateButton_->show();
+        !newVersion.isEmpty())
+      installButton_->show();
 #endif
+
+    if (!newVersion.isEmpty()) {
+      if (currentVersion != newVersion) {
+        settings_->setValue("currentVersionApp", newVersion);
+        settings_->setValue("remindAboutVersion", false);
+        remindAboutVersion_->setChecked(false);
+        remindAboutVersion_->show();
+      } else if (!remind) {
+          remindAboutVersion_->show();
+      }
+    }
   }
 }
 
