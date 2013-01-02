@@ -3,7 +3,7 @@
 #include "VersionNo.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
-  QDialog(parent),
+  Dialog(parent),
   db_(db)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -634,22 +634,17 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   sizes << 150 << 600;
   splitter->setSizes(sizes);
 
-  buttonBox_ = new QDialogButtonBox(
-        QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+  pageLayout->addWidget(splitter);
 
-  QVBoxLayout *mainLayout = new QVBoxLayout();
-  mainLayout->setMargin(5);
-  mainLayout->addWidget(splitter);
-  mainLayout->addWidget(buttonBox_);
-
-  setLayout(mainLayout);
+  buttonBox->addButton(QDialogButtonBox::Ok);
+  buttonBox->addButton(QDialogButtonBox::Cancel);
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptDialog()));
 
   connect(categoriesTree, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesItemClicked(QTreeWidgetItem*,int)));
   connect(this, SIGNAL(signalCategoriesTreeKeyUpDownPressed()),
           SLOT(slotCategoriesTreeKeyUpDownPressed()), Qt::QueuedConnection);
-  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(acceptSlot()));
-  connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
+
   connect(manualProxyButton_, SIGNAL(toggled(bool)),
           this, SLOT(manualProxyToggle(bool)));
 
@@ -968,7 +963,7 @@ void OptionsDialog::applyProxy()
   networkProxy_.setPassword(editPassword_->text());
 }
 
-void OptionsDialog::acceptSlot()
+void OptionsDialog::acceptDialog()
 {
   applyProxy();
   applyLabels();

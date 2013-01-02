@@ -1,16 +1,15 @@
 #ifndef ADDFOLDERDIALOG_H
 #define ADDFOLDERDIALOG_H
 
-#include <QtGui>
 #include <QtSql>
+#include "dialog.h"
 #include "lineedit.h"
 
-class AddFolderDialog : public QDialog
+class AddFolderDialog : public Dialog
 {
   Q_OBJECT
 private:
   QSqlDatabase *db_;
-  QDialogButtonBox *buttonBox_;
 
 private slots:
   void nameFeedEditChanged(const QString&);

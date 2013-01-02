@@ -1,9 +1,9 @@
 #ifndef NEWSFILTERSDIALOG_H
 #define NEWSFILTERSDIALOG_H
 
-#include <QtGui>
+#include "dialog.h"
 
-class NewsFiltersDialog : public QDialog
+class NewsFiltersDialog : public Dialog
 {
   Q_OBJECT
 private:

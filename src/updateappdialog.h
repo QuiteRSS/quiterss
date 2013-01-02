@@ -1,12 +1,12 @@
 #ifndef UPDATEAPPDIALOG_H
 #define UPDATEAPPDIALOG_H
 
-#include <QtGui>
 #include <QNetworkReply>
 #include <QWebPage>
 #include <QWebFrame>
+#include "dialog.h"
 
-class UpdateAppDialog : public QDialog
+class UpdateAppDialog : public Dialog
 {
   Q_OBJECT
 private:

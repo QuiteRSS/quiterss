@@ -1,7 +1,7 @@
 #ifndef FEEDPROPERTIESDIALOG_H
 #define FEEDPROPERTIESDIALOG_H
 
-#include <QtGui>
+#include "dialog.h"
 #include "lineedit.h"
 
 //! Настройки ленты
@@ -74,7 +74,7 @@ typedef struct {
 } FEED_PROPERTIES;
 
 //! Виджет настроек ленты
-class FeedPropertiesDialog : public QDialog
+class FeedPropertiesDialog : public Dialog
 {
   Q_OBJECT
 public:
@@ -84,11 +84,9 @@ public:
   void setFeedProperties(FEED_PROPERTIES properties); //!< Передать свойства ленты в диалог
 
 private:
-  QDialogButtonBox *buttonBox;
   QTabWidget *tabWidget;
 
   // Вкладка "Общие"
-  QWidget *tabGeneral; //!< Виджет вкладки
   LineEdit *editURL; //!< строка ссылки на ленту
   LineEdit *editTitle; //!< Заголовок ленты
   QLabel *labelHomepage; //!< Ссылка на домашнюю страницу
@@ -105,7 +103,7 @@ private:
   QLabel *lastUpdateFeed_;
   QLabel *newsCount_;
 
-  QWidget *CreateStatusTab(); //!< Создание вкладки
+  QWidget *CreateStatusTab(); //!< Создание вкладки "Статус"
 
   FEED_PROPERTIES feedProperties;
 

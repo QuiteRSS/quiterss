@@ -43,7 +43,8 @@ HEADERS += \
     src/VersionRev.h \
     src/splashscreen.h \
     src/addfolderdialog.h \
-    src/labeldialog.h
+    src/labeldialog.h \
+    src/dialog.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -78,7 +79,8 @@ SOURCES += \
     src/feedstreemodel.cpp \
     src/splashscreen.cpp \
     src/addfolderdialog.cpp \
-    src/labeldialog.cpp
+    src/labeldialog.cpp \
+    src/dialog.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

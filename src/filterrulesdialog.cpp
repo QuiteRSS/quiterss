@@ -2,7 +2,7 @@
 #include "filterrulesdialog.h"
 
 FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
-  : QDialog(parent),
+  : Dialog(parent),
     filterId_(filterId)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -111,7 +111,8 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   conditionScrollArea->setWidgetResizable(true);
 
   conditionLayout = new QVBoxLayout();
-  conditionLayout->setMargin(5);
+  conditionLayout->setMargin(1);
+  conditionLayout->setSpacing(1);
   if (filterId_ == -1)
     addCondition();
 
@@ -134,7 +135,8 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   actionsScrollArea->setFocusPolicy(Qt::NoFocus);
 
   actionsLayout = new QVBoxLayout();
-  actionsLayout->setMargin(5);
+  actionsLayout->setMargin(1);
+  actionsLayout->setSpacing(1);
   if (filterId_ == -1)
     addAction();
 
@@ -185,32 +187,23 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   warningWidget_->setLayout(warningLayout);
   warningWidget_->setVisible(false);
 
-  buttonBox = new QDialogButtonBox(
-        QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+  buttonsLayout->insertWidget(0, warningWidget_, 1);
+  buttonBox->addButton(QDialogButtonBox::Ok);
+  buttonBox->addButton(QDialogButtonBox::Cancel);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptDialog()));
-  connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-  QHBoxLayout *statusLayout = new QHBoxLayout();
-  statusLayout->setMargin(0);
-  statusLayout->addWidget(warningWidget_, 1);
-  statusLayout->addWidget(buttonBox);
-
-  QVBoxLayout *mainLayout = new QVBoxLayout();
-  mainLayout->setMargin(5);
-  mainLayout->addWidget(mainSpliter);
-  mainLayout->addLayout(statusLayout);
-  setLayout(mainLayout);
+  pageLayout->addWidget(mainSpliter);
 
   setData();
+
+  filterName->setFocus();
+  filterName->selectAll();
+
+  restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
 
   connect(filterName, SIGNAL(textChanged(QString)),
           this, SLOT(filterNameChanged(QString)));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
-
-  restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
-
-  filterName->setFocus();
-  filterName->selectAll();
 }
 
 void FilterRulesDialog::setData()

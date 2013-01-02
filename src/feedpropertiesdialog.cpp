@@ -2,31 +2,22 @@
 #include "feedpropertiesdialog.h"
 
 FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent) :
-  QDialog(parent, Qt::MSWindowsFixedSizeDialogHint),
+  Dialog(parent, Qt::MSWindowsFixedSizeDialogHint),
   isFeed_(isFeed)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Properties"));
-
-  // Основное окно
-  QVBoxLayout *layoutMain = new QVBoxLayout(this);
-  layoutMain->setMargin(5);
-  tabWidget = new QTabWidget();
-  buttonBox = new QDialogButtonBox(
-        QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-  layoutMain->addWidget(tabWidget);
-  layoutMain->addWidget(buttonBox);
-
-  tabGeneral = CreateGeneralTab();
-  tabWidget->addTab(tabGeneral, tr("General"));
-
-  tabWidget->addTab(CreateStatusTab(), tr("Status"));
-
-  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-  connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-
   setMinimumWidth(400);
   setMinimumHeight(300);
+
+  tabWidget = new QTabWidget();
+  tabWidget->addTab(CreateGeneralTab(), tr("General"));
+  tabWidget->addTab(CreateStatusTab(), tr("Status"));
+  pageLayout->addWidget(tabWidget);
+
+  buttonBox->addButton(QDialogButtonBox::Ok);
+  buttonBox->addButton(QDialogButtonBox::Cancel);
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateGeneralTab()

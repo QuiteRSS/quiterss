@@ -1,7 +1,7 @@
 #include "addfolderdialog.h"
 
 AddFolderDialog::AddFolderDialog(QWidget *parent, QSqlDatabase *db)
-  : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint),
+  : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint),
     db_(db)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -57,26 +57,21 @@ AddFolderDialog::AddFolderDialog(QWidget *parent, QSqlDatabase *db)
   foldersTree_->expandAll();
   foldersTree_->sortByColumn(0, Qt::AscendingOrder);
 
-  buttonBox_ = new QDialogButtonBox(
-        QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-  buttonBox_->button(QDialogButtonBox::Ok)->setEnabled(false);
+  pageLayout->addWidget(new QLabel(tr("Name:")));
+  pageLayout->addWidget(nameFeedEdit_);
+  pageLayout->addWidget(new QLabel(tr("Location:")));
+  pageLayout->addWidget(foldersTree_);
 
-  QVBoxLayout *layoutMain = new QVBoxLayout(this);
-  layoutMain->setMargin(5);
-  layoutMain->addWidget(new QLabel(tr("Name:")));
-  layoutMain->addWidget(nameFeedEdit_);
-  layoutMain->addWidget(new QLabel(tr("Location:")));
-  layoutMain->addWidget(foldersTree_);
-  layoutMain->addWidget(buttonBox_);
-  setLayout(layoutMain);
+  buttonBox->addButton(QDialogButtonBox::Ok);
+  buttonBox->addButton(QDialogButtonBox::Cancel);
+  buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
 
-  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
-  connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
   connect(nameFeedEdit_, SIGNAL(textChanged(const QString&)),
           this, SLOT(nameFeedEditChanged(const QString&)));
 }
 
 void AddFolderDialog::nameFeedEditChanged(const QString& text)
 {
-  buttonBox_->button(QDialogButtonBox::Ok)->setEnabled(!text.isEmpty());
+  buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!text.isEmpty());
 }

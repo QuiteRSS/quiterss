@@ -1,7 +1,7 @@
 #ifndef FILTERRULES_H
 #define FILTERRULES_H
 
-#include <QtGui>
+#include "dialog.h"
 #include "lineedit.h"
 
 class ItemCondition : public QWidget
@@ -178,7 +178,7 @@ signals:
   void signalDeleteAction(ItemAction *item);
 };
 
-class FilterRulesDialog : public QDialog
+class FilterRulesDialog : public Dialog
 {
   Q_OBJECT
 private:
@@ -187,7 +187,6 @@ private:
   QSettings *settings_;
   LineEdit *filterName;
   QTreeWidget *feedsTree;
-  QDialogButtonBox *buttonBox;
 
   QComboBox *matchComboBox_;
 

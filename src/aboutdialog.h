@@ -1,9 +1,9 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <QtGui>
+#include "dialog.h"
 
-class AboutDialog : public QDialog
+class AboutDialog : public Dialog
 {
   Q_OBJECT
 public:

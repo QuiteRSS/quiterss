@@ -7,7 +7,7 @@
 
 UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
                                  QWidget *parent, bool show)
-  : QDialog(parent),
+  : Dialog(parent),
     settings_(settings),
     showDialog_(show)
 {
@@ -17,41 +17,29 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     setObjectName("UpdateAppDialog");
     resize(450, 350);
 
-    QVBoxLayout *updateApplayout = new QVBoxLayout(this);
-    updateApplayout->setMargin(5);
-    updateApplayout->setAlignment(Qt::AlignCenter);
-
     infoLabel = new QLabel(tr("Checking for updates..."), this);
     infoLabel->setOpenExternalLinks(true);
-    updateApplayout->addWidget(infoLabel, 0);
 
     history_ = new QTextBrowser(this);
     history_->setObjectName("history_");
     history_->setText(tr("Loading history..."));
     history_->setOpenExternalLinks(true);
-    updateApplayout->addWidget(history_, 1);
 
     remindAboutVersion_ = new QCheckBox(tr("Don't remind about this version"), this);
     remindAboutVersion_->setChecked(settings_->value("remindAboutVersion", false).toBool());
     remindAboutVersion_->hide();
-    updateApplayout->addWidget(remindAboutVersion_, 0);
+
+    pageLayout->addWidget(infoLabel, 0);
+    pageLayout->addWidget(history_, 1);
+    pageLayout->addWidget(remindAboutVersion_, 0);
 
     installButton_ = new QPushButton(tr("&Install"), this);
     installButton_->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     installButton_->hide();
+    buttonsLayout->insertWidget(0, installButton_, 1);
     connect(installButton_, SIGNAL(clicked()), SLOT(updaterRun()));
 
-    QPushButton *closeButton = new QPushButton(tr("&Close"), this);
-    closeButton->setDefault(true);
-    closeButton->setFocus(Qt::OtherFocusReason);
-    closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->addWidget(installButton_);
-    buttonLayout->addStretch(1);
-    buttonLayout->addWidget(closeButton);
-    updateApplayout->addLayout(buttonLayout);
+    buttonBox->addButton(QDialogButtonBox::Close);
 
     QString urlHistory;
     if (lang.contains("ru", Qt::CaseInsensitive))

@@ -1,17 +1,16 @@
 #ifndef NEWSLABELDIALOG_H
 #define NEWSLABELDIALOG_H
 
-#include <QtGui>
+#include "dialog.h"
 #include "lineedit.h"
 
-class LabelDialog : public QDialog
+class LabelDialog : public Dialog
 {
   Q_OBJECT
 private:
   QToolButton *iconButton_;
   QToolButton *colorTextButton_;
   QToolButton *colorBgButton_;
-  QDialogButtonBox *buttonBox_;
 
 private slots:
   void nameEditChanged(const QString&);

@@ -1,9 +1,9 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include <QtGui>
 #include <QtSql>
 #include <QNetworkProxy>
+#include "dialog.h"
 #include "lineedit.h"
 
 #define STATIC_ICON_TRAY        0
@@ -11,7 +11,7 @@
 #define NEW_COUNT_ICON_TRAY     2
 #define UNREAD_COUNT_ICON_TRAY  3
 
-class OptionsDialog : public QDialog
+class OptionsDialog : public Dialog
 {
   Q_OBJECT
 public:
@@ -118,7 +118,7 @@ private slots:
   void manualProxyToggle(bool checked);
   void updateProxy();
   void applyProxy();
-  void acceptSlot();
+  void acceptDialog();
   void slotFontChange();
   void slotFontReset();
   void intervalTimeChang(QString str);
@@ -157,8 +157,6 @@ private:
   QWidget *languageWidget_;
   QWidget *fontsWidget_;
   QWidget *shortcutWidget_;
-
-  QDialogButtonBox *buttonBox_;
 
   // systemTray
   QRadioButton *staticIconTray_;

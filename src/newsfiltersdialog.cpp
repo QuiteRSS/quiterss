@@ -3,7 +3,7 @@
 #include "rsslisting.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
-  : QDialog(parent),
+  : Dialog(parent),
     settings_(settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -76,39 +76,28 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   moveDownButton->setEnabled(false);
   connect(moveDownButton, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
-  QVBoxLayout *buttonsLayout = new QVBoxLayout();
-  buttonsLayout->addWidget(newButton);
-  buttonsLayout->addWidget(editButton);
-  buttonsLayout->addWidget(deleteButton);
-  buttonsLayout->addSpacing(10);
-  buttonsLayout->addWidget(moveUpButton);
-  buttonsLayout->addWidget(moveDownButton);
-  buttonsLayout->addStretch();
+  QVBoxLayout *buttonsVLayout = new QVBoxLayout();
+  buttonsVLayout->addWidget(newButton);
+  buttonsVLayout->addWidget(editButton);
+  buttonsVLayout->addWidget(deleteButton);
+  buttonsVLayout->addSpacing(10);
+  buttonsVLayout->addWidget(moveUpButton);
+  buttonsVLayout->addWidget(moveDownButton);
+  buttonsVLayout->addStretch();
 
-  QHBoxLayout *layoutH1 = new QHBoxLayout();
-  layoutH1->setMargin(0);
-  layoutH1->addWidget(filtersTree);
-  layoutH1->addLayout(buttonsLayout);
+  QHBoxLayout *mainlayout = new QHBoxLayout();
+  mainlayout->setMargin(0);
+  mainlayout->addWidget(filtersTree);
+  mainlayout->addLayout(buttonsVLayout);
 
-  QPushButton *closeButton = new QPushButton(tr("&Close"), this);
-  closeButton->setDefault(true);
-  closeButton->setFocus(Qt::OtherFocusReason);
-  connect(closeButton, SIGNAL(clicked()), SLOT(close()));
+  pageLayout->addLayout(mainlayout);
 
   applyFilterButton = new QPushButton(tr("Apply Selected Filter"), this);
   applyFilterButton->setEnabled(false);
+  buttonsLayout->insertWidget(0, applyFilterButton);
   connect(applyFilterButton, SIGNAL(clicked()), SLOT(applyFilter()));
 
-  QHBoxLayout *mainButtonsLayout = new QHBoxLayout();
-  mainButtonsLayout->addWidget(applyFilterButton);
-  mainButtonsLayout->addStretch();
-  mainButtonsLayout->addWidget(closeButton);
-
-  QVBoxLayout *mainlayout = new QVBoxLayout();
-  mainlayout->setMargin(5);
-  mainlayout->addLayout(layoutH1);
-  mainlayout->addLayout(mainButtonsLayout);
-  setLayout(mainlayout);
+  buttonBox->addButton(QDialogButtonBox::Close);
 
   connect(filtersTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));

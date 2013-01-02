@@ -9,7 +9,7 @@
 #include <qyursqltreeview.h>
 
 AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
-  QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+  Dialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -96,19 +96,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   tabWidget->addTab(historyWidget, tr("History"));
   tabWidget->addTab(licenseWidget, tr("License"));
 
-  QLayout *buttonLayout = new QHBoxLayout();
-  buttonLayout->setAlignment(Qt::AlignRight);
-  QPushButton *closeButton = new QPushButton(tr("&Close"));
-  closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  pageLayout->addWidget(tabWidget);
 
-  closeButton->setDefault(true);
-  closeButton->setFocus(Qt::OtherFocusReason);
-  connect(closeButton, SIGNAL(clicked()), SLOT(close()));
-  buttonLayout->addWidget(closeButton);
-
-  QVBoxLayout *layout = new QVBoxLayout();
-  layout->setMargin(5);
-  layout->addWidget(tabWidget);
-  layout->addLayout(buttonLayout);
-  setLayout(layout);
+  buttonBox->addButton(QDialogButtonBox::Close);
 }

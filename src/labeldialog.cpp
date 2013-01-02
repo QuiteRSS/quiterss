@@ -1,7 +1,7 @@
 #include "labeldialog.h"
 
 LabelDialog::LabelDialog(QWidget *parent)
-  : QDialog(parent, Qt::MSWindowsFixedSizeDialogHint)
+  : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("New Label"));
@@ -45,10 +45,6 @@ LabelDialog::LabelDialog(QWidget *parent)
   colorBgButton_->setPopupMode(QToolButton::MenuButtonPopup);
   colorBgButton_->setMenu(colorBgMenu);
 
-  buttonBox_ = new QDialogButtonBox(
-        QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-  buttonBox_->button(QDialogButtonBox::Ok)->setEnabled(false);
-
   QHBoxLayout *layoutH1 = new QHBoxLayout();
   layoutH1->addWidget(new QLabel(tr("Name:")));
   layoutH1->addWidget(nameEdit_, 1);
@@ -64,15 +60,14 @@ LabelDialog::LabelDialog(QWidget *parent)
   layoutH2->addWidget(colorBgButton_);
   layoutH2->addStretch(1);
 
-  QVBoxLayout *layoutMain = new QVBoxLayout();
-  layoutMain->setMargin(5);
-  layoutMain->addLayout(layoutH1);
-  layoutMain->addLayout(layoutH2);
-  layoutMain->addWidget(buttonBox_);
-  setLayout(layoutMain);
+  pageLayout->addLayout(layoutH1);
+  pageLayout->addLayout(layoutH2);
 
-  connect(buttonBox_, SIGNAL(accepted()), this, SLOT(accept()));
-  connect(buttonBox_, SIGNAL(rejected()), this, SLOT(reject()));
+  buttonBox->addButton(QDialogButtonBox::Ok);
+  buttonBox->addButton(QDialogButtonBox::Cancel);
+  buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+
   connect(nameEdit_, SIGNAL(textChanged(const QString&)),
           this, SLOT(nameEditChanged(const QString&)));
   connect(iconButton_, SIGNAL(clicked()),
@@ -115,7 +110,7 @@ void LabelDialog::loadData()
 
 void LabelDialog::nameEditChanged(const QString& text)
 {
-  buttonBox_->button(QDialogButtonBox::Ok)->setEnabled(!text.isEmpty());
+  buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!text.isEmpty());
 }
 
 void LabelDialog::selectIcon(QAction *action)
