@@ -607,6 +607,7 @@ void RSSListing::createFeedsDock()
         arg(qApp->palette().color(QPalette::Dark).name()));
   feedsDockSplitter_->addWidget(feedsTreeView_);
   feedsDockSplitter_->addWidget(categoriesWidget_);
+  feedsDockSplitter_->setStretchFactor(0, 1);
 
   QList <int> sizes;
   sizes << 600 << 20;
