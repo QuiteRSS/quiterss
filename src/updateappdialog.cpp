@@ -96,11 +96,11 @@ void UpdateAppDialog::finishUpdatesChecking()
     }
     info =
         "<html><style>a { color: blue; text-decoration: none; }</style><body>"
-        "<p>" + tr("Your version is:") + " " +
-        "<B>" + version + "</B>" + QString(" (%1)").arg(date) +
-        "<BR>" + tr("Current version is:") + " " +
+        "<table><tr><td>" + tr("Your version is:") + " </td><td>" +
+        "<B> " + version + "</B>" + QString(" (%1)").arg(date) + " </td></tr>" +
+        "<tr><td>" + tr("Current version is:") + " </td><td>" +
         "<B>" + curVersion + "</B>" + QString(" (%1)").arg(curDate) +
-        "<p>" + str +
+        "</td></tr></table><p>" + str +
         "</body></html>";
   } else {
     //    qDebug() << reply_->error() << reply_->errorString();
