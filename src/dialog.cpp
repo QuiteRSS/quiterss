@@ -3,7 +3,7 @@
 Dialog::Dialog(QWidget *parent, Qt::WindowFlags f) : QDialog(parent, f)
 {
   pageLayout = new QVBoxLayout();
-  pageLayout->setMargin(10);
+  pageLayout->setContentsMargins(10, 10, 10, 5);
   pageLayout->setSpacing(5);
 
   buttonBox = new QDialogButtonBox();

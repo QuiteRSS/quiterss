@@ -590,8 +590,9 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
 
   contentLabel_ = new QLabel();
   contentLabel_->setObjectName("contentLabel_");
+  contentLabel_->setAlignment(Qt::AlignCenter);
   contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
-  contentLabel_->setMinimumHeight(30);
+  contentLabel_->setMinimumHeight(36);
   contentLabel_->setMargin(4);
   QFont fontContentLabel = contentLabel_->font();
   fontContentLabel.setBold(true);
@@ -611,15 +612,6 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   contentStack_->addWidget(fontsWidget_);
   contentStack_->addWidget(shortcutWidget_);
 
-  QVBoxLayout *contentLayout = new QVBoxLayout();
-  contentLayout->setMargin(0);
-  contentLayout->addWidget(contentLabel_);
-  contentLayout->addWidget(contentStack_);
-
-  QWidget *contentWidget = new QWidget();
-  contentWidget->setObjectName("contentWidget");
-  contentWidget->setLayout(contentLayout);
-
   QVBoxLayout *categoriesTreeLayout = new QVBoxLayout();
   categoriesTreeLayout->setMargin(0);
   categoriesTreeLayout->addWidget(categoriesTree);
@@ -629,12 +621,13 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   QSplitter *splitter = new QSplitter();
   splitter->setChildrenCollapsible(false);
   splitter->addWidget(categoriesTreeWidget);
-  splitter->addWidget(contentWidget);
+  splitter->addWidget(contentStack_);
   QList<int> sizes;
   sizes << 150 << 600;
   splitter->setSizes(sizes);
 
-  pageLayout->addWidget(splitter);
+  pageLayout->addWidget(contentLabel_);
+  pageLayout->addWidget(splitter, 1);
 
   buttonBox->addButton(QDialogButtonBox::Ok);
   buttonBox->addButton(QDialogButtonBox::Cancel);
