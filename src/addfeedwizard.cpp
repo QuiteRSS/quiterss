@@ -138,6 +138,7 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
   nameFeedEdit_ = new LineEdit(this);
 
   foldersTree_ = new QTreeWidget(this);
+  foldersTree_->setObjectName("foldersTree_");
   foldersTree_->setColumnCount(2);
   foldersTree_->setColumnHidden(1, true);
   foldersTree_->header()->hide();
