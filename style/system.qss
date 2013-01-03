@@ -59,12 +59,30 @@ QHeaderView::up-arrow {
 	color: #FFFFFF;
 }
 
+#categoriesTree {
+	padding: 1px;
+}
+
+#categoriesTree::item, #fontTree::item, 
+#languageFileList_::item, #filtersTree::item,
+#shortcutTree::item, #labelsTree_::item {
+	min-height: 20px;
+}
+
+#foldersTree_::item, #feedsTreeFR::item, #feedsTreeNotify_::item {
+	min-height: 18px;
+}
+
 QStatusBar #progressBar_{
 	margin-right: 5px;
 }
 
 QMainWindow::separator {
 	border: none;
+}
+
+#infoWidgetFR, #actionsWidgetFR {
+	background: white;
 }
 
 #notificationWidget {

@@ -16,16 +16,8 @@ class OptionsDialog : public Dialog
   Q_OBJECT
 public:
   explicit OptionsDialog(QWidget *parent, QSqlDatabase *db);
-  QNetworkProxy proxy();
-  void setProxy(const QNetworkProxy proxy);
-  QString language();
-  void setLanguage(QString langFileName);
   int currentIndex();
   void setCurrentItem(int index);
-  void setBehaviorIconTray(int behavior);
-  int behaviorIconTray();
-  void setOpeningFeed(int action);
-  int getOpeningFeed();
 
   // general
   QCheckBox *showSplashScreen_;
@@ -33,6 +25,8 @@ public:
   QCheckBox *storeDBMemory_;
 
   // systemTray
+  void setBehaviorIconTray(int behavior);
+  int behaviorIconTray();
   QGroupBox *showTrayIconBox_;
   QCheckBox *startingTray_;
   QCheckBox *minimizingTray_;
@@ -40,6 +34,10 @@ public:
   QCheckBox *singleClickTray_;
   QCheckBox *clearStatusNew_;
   QCheckBox *emptyWorking_;
+
+  // network connection
+  QNetworkProxy proxy();
+  void setProxy(const QNetworkProxy proxy);
 
   // browser
   QRadioButton *embeddedBrowserOn_;
@@ -53,6 +51,8 @@ public:
   QCheckBox *openLinkInBackgroundEmbedded_;
 
   // feeds
+  void setOpeningFeed(int action);
+  int getOpeningFeed();
   QCheckBox *updateFeedsStartUp_;
   QCheckBox *updateFeeds_;
   QSpinBox *updateFeedsTime_;
@@ -102,8 +102,12 @@ public:
   QTreeWidget *feedsTreeNotify_;
   bool itemNotChecked_;
 
+  // language
+  QString language();
+  void setLanguage(QString langFileName);
+
   // fonts
-  QTreeWidget *fontTree;
+  QTreeWidget *fontsTree_;
 
   // shortcut
   void loadActionShortcut(QList<QAction *> actions, QStringList *list);
@@ -144,10 +148,11 @@ private:
   QSqlDatabase *db_;
 
   QLabel *contentLabel_;
+  QTreeWidget *categoriesTree_;
   QStackedWidget *contentStack_;
-  QTreeWidget *categoriesTree;
 
   //stack widgets
+  QFrame *generalWidget_;
   QFrame *traySystemWidget_;
   QFrame *networkConnectionsWidget_;
   QFrame *browserWidget_;
@@ -158,13 +163,18 @@ private:
   QWidget *fontsWidget_;
   QWidget *shortcutWidget_;
 
+  // general
+  void createGeneralWidget();
+
   // systemTray
+  void createTraySystemWidget();
   QRadioButton *staticIconTray_;
   QRadioButton *changeIconTray_;
   QRadioButton *newCountTray_;
   QRadioButton *unreadCountTray_;
 
   // network connection
+  void createNetworkConnectionsWidget();
   QRadioButton *systemProxyButton_;
   QRadioButton *directConnectionButton_;
   QRadioButton *manualProxyButton_;
@@ -173,8 +183,18 @@ private:
   LineEdit *editPort_;
   LineEdit *editUser_;
   LineEdit *editPassword_;
+  QNetworkProxy networkProxy_;
 
-  // Labels
+  // browser
+  void createBrowserWidget();
+
+  // feeds
+  void createFeedsWidget();
+
+  // notifier
+  void createNotifierWidget();
+
+  // labels
   void createLabelsWidget();
   void applyLabels();
   void addIdLabelList(QString idLabel);
@@ -188,10 +208,11 @@ private:
   void createLanguageWidget();
   QTreeWidget *languageFileList_;
 
-  // internal variables for options
-  QNetworkProxy networkProxy_;
+  // fonts
+  void createFontsWidget();
 
   // shortcut
+  void createShortcutWidget();
   QStringList *listDefaultShortcut_;
   QTreeWidget *shortcutTree_;
   LineEdit *editShortcut_;

@@ -170,8 +170,12 @@ QHeaderView::up-arrow {
 }
 
 #categoriesTree::item, #fontTree::item, 
-#languageFileList_::item, #feedsTreeFR::item,
-#filtersTree::item, #shortcutTree::item {
+#languageFileList_::item, #filtersTree::item,
+#shortcutTree::item, #labelsTree_::item {
+	min-height: 20px;
+}
+
+#foldersTree_::item, #feedsTreeFR::item, #feedsTreeNotify_::item {
 	min-height: 18px;
 }
 

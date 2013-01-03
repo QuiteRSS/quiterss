@@ -9,47 +9,164 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
 
-  categoriesTree = new QTreeWidget();
-  categoriesTree->setObjectName("categoriesTree");
-  categoriesTree->setHeaderHidden(true);
-  categoriesTree->setColumnCount(3);
-  categoriesTree->setColumnHidden(0, true);
-  categoriesTree->header()->setStretchLastSection(false);
-  categoriesTree->header()->resizeSection(2, 5);
-  categoriesTree->header()->setResizeMode(1, QHeaderView::Stretch);
-  categoriesTree->setMinimumWidth(150);
+  contentLabel_ = new QLabel();
+  contentLabel_->setObjectName("contentLabel_");
+  contentLabel_->setAlignment(Qt::AlignCenter);
+  contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  contentLabel_->setMinimumHeight(36);
+  contentLabel_->setMargin(4);
+  QFont fontContentLabel = contentLabel_->font();
+  fontContentLabel.setBold(true);
+  fontContentLabel.setPointSize(fontContentLabel.pointSize()+2);
+  contentLabel_->setFont(fontContentLabel);
+
+  categoriesTree_ = new QTreeWidget();
+  categoriesTree_->setObjectName("categoriesTree");
+  categoriesTree_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+  categoriesTree_->setHeaderHidden(true);
+  categoriesTree_->setColumnCount(3);
+  categoriesTree_->setColumnHidden(0, true);
+  categoriesTree_->header()->setStretchLastSection(false);
+  categoriesTree_->header()->resizeSection(2, 5);
+  categoriesTree_->header()->setResizeMode(1, QHeaderView::Stretch);
+  categoriesTree_->setMinimumWidth(150);
   QStringList treeItem;
   treeItem << "0" << tr("General");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "1" << tr("System Tray");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "2" << tr("Network Connections");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "3" << tr("Browser");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "4" << tr("Feeds");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "5" << tr("Labels");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "6" << tr("Notifications");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "7" << tr("Language");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "8" << tr("Fonts");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "9" << tr("Keyboard Shortcuts");
-  categoriesTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
-  //{ general
+  createGeneralWidget();
+
+  createTraySystemWidget();
+
+  createNetworkConnectionsWidget();
+
+  createBrowserWidget();
+
+  createFeedsWidget();
+
+  createLabelsWidget();
+
+  createNotifierWidget();
+
+  createLanguageWidget();
+
+  createFontsWidget();
+
+  createShortcutWidget();
+
+  contentStack_ = new QStackedWidget();
+  contentStack_->setObjectName("contentStack_");
+  contentStack_->addWidget(generalWidget_);
+  contentStack_->addWidget(traySystemWidget_);
+  contentStack_->addWidget(networkConnectionsWidget_);
+  contentStack_->addWidget(browserWidget_);
+  contentStack_->addWidget(feedsWidget_);
+  contentStack_->addWidget(labelsWidget_);
+  contentStack_->addWidget(notifierWidget_);
+  contentStack_->addWidget(languageWidget_);
+  contentStack_->addWidget(fontsWidget_);
+  contentStack_->addWidget(shortcutWidget_);
+
+  QSplitter *splitter = new QSplitter();
+  splitter->setChildrenCollapsible(false);
+  splitter->addWidget(categoriesTree_);
+  splitter->addWidget(contentStack_);
+  QList<int> sizes;
+  sizes << 150 << 600;
+  splitter->setSizes(sizes);
+
+  pageLayout->addWidget(contentLabel_);
+  pageLayout->addWidget(splitter, 1);
+
+  buttonBox->addButton(QDialogButtonBox::Ok);
+  buttonBox->addButton(QDialogButtonBox::Cancel);
+  connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptDialog()));
+
+  connect(categoriesTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
+          this, SLOT(slotCategoriesItemClicked(QTreeWidgetItem*,int)));
+  connect(this, SIGNAL(signalCategoriesTreeKeyUpDownPressed()),
+          SLOT(slotCategoriesTreeKeyUpDownPressed()), Qt::QueuedConnection);
+
+  categoriesTree_->installEventFilter(this);
+
+  resize(700, 500);
+}
+
+
+void OptionsDialog::acceptDialog()
+{
+  applyProxy();
+  applyLabels();
+  accept();
+}
+
+bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
+{
+  if (event->type() == QEvent::KeyPress) {
+    QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+    if (obj != editShortcut_) {
+      if ((keyEvent->key() == Qt::Key_Up) ||
+          (keyEvent->key() == Qt::Key_Down)) {
+        if (obj == categoriesTree_)
+          emit signalCategoriesTreeKeyUpDownPressed();
+        else if (obj == shortcutTree_)
+          emit signalShortcutTreeUpDownPressed();
+      }
+    } else {
+      if (((keyEvent->key() < Qt::Key_Shift) ||
+          (keyEvent->key() > Qt::Key_Alt)) &&
+          !(((keyEvent->key() == Qt::Key_Return) || (keyEvent->key() == Qt::Key_Enter)) &&
+            ((keyEvent->modifiers() == Qt::NoModifier) || (keyEvent->modifiers() == Qt::KeypadModifier))) &&
+          !((keyEvent->modifiers() & Qt::ControlModifier) &&
+            (keyEvent->key() == Qt::Key_F))) {
+        QString str;
+        if ((keyEvent->modifiers() & Qt::ShiftModifier) ||
+            (keyEvent->modifiers() & Qt::ControlModifier) ||
+            (keyEvent->modifiers() & Qt::AltModifier))
+          str.append(QKeySequence(keyEvent->modifiers()).toString());
+        str.append(QKeySequence(keyEvent->key()).toString());
+        editShortcut_->setText(str);
+        shortcutTree_->currentItem()->setText(3, str);
+      }
+      return true;
+    }
+    return false;
+  } else {
+    return QDialog::eventFilter(obj, event);
+  }
+}
+
+/** @brief Создание виджета "Общие"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createGeneralWidget()
+{
   showSplashScreen_ = new QCheckBox(tr("Show splash screen on startup"));
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
 
@@ -61,12 +178,15 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   generalLayout->addStretch();
   generalLayout->addWidget(storeDBMemory_);
 
-  QFrame *generalWidget_ = new QFrame();
-  generalWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  generalWidget_ = new QFrame();
+  generalWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   generalWidget_->setLayout(generalLayout);
-  //} general
+}
 
-  //{ system tray
+/** @brief Создание виджета "Системный трей"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createTraySystemWidget()
+{
   showTrayIconBox_ = new QGroupBox(tr("Show system tray icon"));
   showTrayIconBox_->setCheckable(true);
   showTrayIconBox_->setChecked(false);
@@ -115,14 +235,16 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   boxTrayLayout->addWidget(showTrayIconBox_);
 
   traySystemWidget_ = new QFrame();
-  traySystemWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  traySystemWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   traySystemWidget_->setLayout(boxTrayLayout);
-  //} system tray
+}
 
-  //{ networkConnections
+/** @brief Создание виджета "Сетевые подключения"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createNetworkConnectionsWidget()
+{
   systemProxyButton_ = new QRadioButton(
         tr("System proxy configuration (if available)"));
-  //  systemProxyButton_->setEnabled(false);
   directConnectionButton_ = new QRadioButton(
         tr("Direct connection to the Internet"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
@@ -166,17 +288,22 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
 
   manualWidget_ = new QWidget();
   manualWidget_->setEnabled(false);  // т.к. при создании соответствующая радио-кнока не выбрана
-  // @TODO(arhohryakov:2011.12.08): убрать границу и заголовок группы
   manualWidget_->setLayout(manualLayout);
 
   networkConnectionsLayout->addWidget(manualWidget_);
 
   networkConnectionsWidget_ = new QFrame();
-  networkConnectionsWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  networkConnectionsWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   networkConnectionsWidget_->setLayout(networkConnectionsLayout);
-  //} networkConnections
 
-  //{ browser
+  connect(manualProxyButton_, SIGNAL(toggled(bool)),
+          this, SLOT(manualProxyToggle(bool)));
+}
+
+/** @brief Создание виджета "Браузер"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createBrowserWidget()
+{
   embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
   standartBrowserOn_ = new QRadioButton(tr("Use standard external browser"));
   externalBrowserOn_ = new QRadioButton(tr("Use following external browser:"));
@@ -213,7 +340,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   browserLayoutV->addStretch();
 
   browserWidget_ = new QFrame();
-  browserWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  browserWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   browserWidget_->setLayout(browserLayoutV);
 
   connect(externalBrowserOn_, SIGNAL(toggled(bool)),
@@ -230,9 +357,13 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   editExternalBrowser_->setVisible(false);
   selectionExternalBrowser_->setVisible(false);
 #endif
-  //} browser
+}
 
-  //{ feeds
+/** @brief Создание виджета "Новостные ленты"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createFeedsWidget()
+{
+//! tab "General"
   updateFeedsStartUp_ = new QCheckBox(
         tr("Automatically update the feeds on startup"));
   updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
@@ -252,12 +383,12 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   connect(intervalTime_, SIGNAL(currentIndexChanged(QString)),
           this, SLOT(intervalTimeChang(QString)));
 
-  QHBoxLayout *updateFeedsLayout1 = new QHBoxLayout();
-  updateFeedsLayout1->setMargin(0);
-  updateFeedsLayout1->addWidget(updateFeeds_);
-  updateFeedsLayout1->addWidget(updateFeedsTime_);
-  updateFeedsLayout1->addWidget(intervalTime_);
-  updateFeedsLayout1->addStretch();
+  QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
+  updateFeedsLayout->setMargin(0);
+  updateFeedsLayout->addWidget(updateFeeds_);
+  updateFeedsLayout->addWidget(updateFeedsTime_);
+  updateFeedsLayout->addWidget(intervalTime_);
+  updateFeedsLayout->addStretch();
 
   positionLastNews_ = new QRadioButton(tr("Position on last opened news"));
   positionFirstNews_ = new QRadioButton(tr("Position at top of list news"));
@@ -299,16 +430,17 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
 
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
-  generalFeedsLayout->addLayout(updateFeedsLayout1);
+  generalFeedsLayout->addLayout(updateFeedsLayout);
   generalFeedsLayout->addSpacing(10);
   generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
   generalFeedsLayout->addLayout(formatDateLayout);
   generalFeedsLayout->addStretch();
 
-  QWidget *generalFeedsWidget_ = new QWidget();
-  generalFeedsWidget_->setLayout(generalFeedsLayout);
-//
+  QWidget *generalFeedsWidget = new QWidget();
+  generalFeedsWidget->setLayout(generalFeedsLayout);
+
+//! tab "Reading"
   markNewsReadOn_ = new QGroupBox(tr("Mark news as read:"));
   markNewsReadOn_->setCheckable(true);
   markCurNewsRead_ = new QRadioButton(tr("on selecting. With timeout"));
@@ -346,9 +478,10 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   readingFeedsLayout->addWidget(showDescriptionNews_);
   readingFeedsLayout->addStretch();
 
-  QWidget *readingFeedsWidget_ = new QWidget();
-  readingFeedsWidget_->setLayout(readingFeedsLayout);
-//
+  QWidget *readingFeedsWidget = new QWidget();
+  readingFeedsWidget->setLayout(readingFeedsLayout);
+
+//! tab "Clean Up"
   dayCleanUpOn_ = new QCheckBox(tr("Maximum age of news in days to keep:"));
   maxDayCleanUp_ = new QSpinBox();
   maxDayCleanUp_->setEnabled(false);
@@ -367,35 +500,109 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   neverUnreadCleanUp_ = new QCheckBox(tr("Never delete unread news"));
   neverStarCleanUp_ = new QCheckBox(tr("Never delete starred news"));
 
-  QGridLayout *cleanUpFeedsLayout1 = new QGridLayout();
-  cleanUpFeedsLayout1->setMargin(0);
-  cleanUpFeedsLayout1->setColumnStretch(1, 1);
-  cleanUpFeedsLayout1->addWidget(dayCleanUpOn_, 0, 0, 1, 1);
-  cleanUpFeedsLayout1->addWidget(maxDayCleanUp_, 0, 1, 1, 1, Qt::AlignLeft);
-  cleanUpFeedsLayout1->addWidget(newsCleanUpOn_, 1, 0, 1, 1);
-  cleanUpFeedsLayout1->addWidget(maxNewsCleanUp_, 1, 1, 1, 1, Qt::AlignLeft);
-  cleanUpFeedsLayout1->addWidget(readCleanUp_, 2, 0, 1, 1);
-  cleanUpFeedsLayout1->addWidget(neverUnreadCleanUp_, 3, 0, 1, 1);
-  cleanUpFeedsLayout1->addWidget(neverStarCleanUp_, 4, 0, 1, 1);
+  QGridLayout *cleanUpFeedsLayout = new QGridLayout();
+  cleanUpFeedsLayout->setColumnStretch(1, 1);
+  cleanUpFeedsLayout->setRowStretch(5, 1);
+  cleanUpFeedsLayout->addWidget(dayCleanUpOn_, 0, 0, 1, 1);
+  cleanUpFeedsLayout->addWidget(maxDayCleanUp_, 0, 1, 1, 1, Qt::AlignLeft);
+  cleanUpFeedsLayout->addWidget(newsCleanUpOn_, 1, 0, 1, 1);
+  cleanUpFeedsLayout->addWidget(maxNewsCleanUp_, 1, 1, 1, 1, Qt::AlignLeft);
+  cleanUpFeedsLayout->addWidget(readCleanUp_, 2, 0, 1, 1);
+  cleanUpFeedsLayout->addWidget(neverUnreadCleanUp_, 3, 0, 1, 1);
+  cleanUpFeedsLayout->addWidget(neverStarCleanUp_, 4, 0, 1, 1);
 
-  QVBoxLayout *cleanUpFeedsLayout = new QVBoxLayout();
-  cleanUpFeedsLayout->addLayout(cleanUpFeedsLayout1);
-  cleanUpFeedsLayout->addStretch();
-
-  QWidget *cleanUpFeedsWidget_ = new QWidget();
-  cleanUpFeedsWidget_->setLayout(cleanUpFeedsLayout);
+  QWidget *cleanUpFeedsWidget = new QWidget();
+  cleanUpFeedsWidget->setLayout(cleanUpFeedsLayout);
 
   feedsWidget_ = new QTabWidget();
-  feedsWidget_->addTab(generalFeedsWidget_, tr("General"));
-  feedsWidget_->addTab(readingFeedsWidget_, tr("Reading"));
-  feedsWidget_->addTab(cleanUpFeedsWidget_, tr("Clean Up"));
-  //} feeds
+  feedsWidget_->addTab(generalFeedsWidget, tr("General"));
+  feedsWidget_->addTab(readingFeedsWidget, tr("Reading"));
+  feedsWidget_->addTab(cleanUpFeedsWidget, tr("Clean Up"));
+}
 
-  //{ labels
-  createLabelsWidget();
-  //} labels
+/** @brief Создание виджета "Метки"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createLabelsWidget()
+{
+  idLabels_.clear();
 
-  //{ notifier
+  labelsTree_ = new QTreeWidget(this);
+  labelsTree_->setObjectName("labelsTree_");
+  labelsTree_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+  labelsTree_->setColumnCount(5);
+  labelsTree_->setColumnHidden(0, true);
+  labelsTree_->setColumnHidden(2, true);
+  labelsTree_->setColumnHidden(3, true);
+  labelsTree_->setColumnHidden(4, true);
+  labelsTree_->header()->hide();
+
+  QSqlQuery q(*db_);
+  q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QString colorText = q.value(3).toString();
+    QString colorBg = q.value(4).toString();
+    int numLabel = q.value(5).toInt();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+    QStringList strTreeItem;
+    strTreeItem << QString::number(idLabel) << nameLabel
+                << colorText << colorBg << QString::number(numLabel);
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+    treeWidgetItem->setIcon(1, QIcon(imageLabel));
+    if (!colorText.isEmpty())
+      treeWidgetItem->setTextColor(1, QColor(colorText));
+    if (!colorBg.isEmpty())
+      treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+    labelsTree_->addTopLevelItem(treeWidgetItem);
+  }
+
+  newLabelButton_ = new QPushButton(tr("New..."), this);
+  connect(newLabelButton_, SIGNAL(clicked()), this, SLOT(newLabel()));
+  editLabelButton_ = new QPushButton(tr("Edit..."), this);
+  editLabelButton_->setEnabled(false);
+  connect(editLabelButton_, SIGNAL(clicked()), this, SLOT(editLabel()));
+  deleteLabelButton_ = new QPushButton(tr("Delete..."), this);
+  deleteLabelButton_->setEnabled(false);
+  connect(deleteLabelButton_, SIGNAL(clicked()), this, SLOT(deleteLabel()));
+
+  moveUpLabelButton_ = new QPushButton(tr("Move up"), this);
+  moveUpLabelButton_->setEnabled(false);
+  connect(moveUpLabelButton_, SIGNAL(clicked()), this, SLOT(moveUpLabel()));
+  moveDownLabelButton_ = new QPushButton(tr("Move down"), this);
+  moveDownLabelButton_->setEnabled(false);
+  connect(moveDownLabelButton_, SIGNAL(clicked()), this, SLOT(moveDownLabel()));
+
+  QVBoxLayout *buttonsLayout = new QVBoxLayout();
+  buttonsLayout->addWidget(newLabelButton_);
+  buttonsLayout->addWidget(editLabelButton_);
+  buttonsLayout->addWidget(deleteLabelButton_);
+  buttonsLayout->addSpacing(10);
+  buttonsLayout->addWidget(moveUpLabelButton_);
+  buttonsLayout->addWidget(moveDownLabelButton_);
+  buttonsLayout->addStretch();
+
+  QHBoxLayout *labelsLayout = new QHBoxLayout();
+  labelsLayout->setMargin(0);
+  labelsLayout->addWidget(labelsTree_);
+  labelsLayout->addLayout(buttonsLayout);
+
+  labelsWidget_ = new QWidget(this);
+  labelsWidget_->setLayout(labelsLayout);
+
+  connect(labelsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
+          this, SLOT(slotCurrentLabelChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+  connect(labelsTree_, SIGNAL(doubleClicked(QModelIndex)),
+          this, SLOT(editLabel()));
+}
+
+/** @brief Создание виджета "Уведомления"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createNotifierWidget()
+{
   soundNewNews_ = new QCheckBox(tr("Play sound for incoming new news"));
   soundNewNews_->setChecked(true);
   editSoundNotifer_ = new LineEdit();
@@ -442,6 +649,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
 
   feedsTreeNotify_ = new QTreeWidget(this);
+  feedsTreeNotify_->setObjectName("feedsTreeNotify_");
   feedsTreeNotify_->setColumnCount(2);
   feedsTreeNotify_->setColumnHidden(1, true);
   feedsTreeNotify_->header()->hide();
@@ -449,7 +657,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
 
   itemNotChecked_ = true;
 
-  treeItem.clear();
+  QStringList treeItem;
   treeItem << "Feeds" << "Id";
   feedsTreeNotify_->setHeaderLabels(treeItem);
 
@@ -479,210 +687,12 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   notifierMainLayout->addWidget(showNotifyOn_, 1);
 
   notifierWidget_ = new QFrame();
-  notifierWidget_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  notifierWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   notifierWidget_->setLayout(notifierMainLayout);
-  //} notifier
-
-  //{ language
-  createLanguageWidget();
-  //} language
-
-  //{ fonts
-  fontTree = new QTreeWidget();
-  fontTree->setObjectName("fontTree");
-  fontTree->setColumnCount(3);
-  fontTree->setColumnHidden(0, true);
-  fontTree->setColumnWidth(1, 260);
-
-  treeItem.clear();
-  treeItem << "Id" << tr("Type") << tr("Font");
-  fontTree->setHeaderLabels(treeItem);
-
-  treeItem.clear();
-  treeItem << "0" << tr("Feeds list font");
-  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-  treeItem.clear();
-  treeItem << "1" << tr("News list font");
-  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-  treeItem.clear();
-  treeItem << "2" << tr("News panel font (Title, Author)");
-  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-  treeItem.clear();
-  treeItem << "3" << tr("News font");
-  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-  treeItem.clear();
-  treeItem << "4" << tr("Notification font");
-  fontTree->addTopLevelItem(new QTreeWidgetItem(treeItem));
-
-  fontTree->setCurrentItem(fontTree->topLevelItem(0));
-  connect(fontTree, SIGNAL(doubleClicked(QModelIndex)),
-          this, SLOT(slotFontChange()));
-
-  QPushButton *fontChange = new QPushButton(tr("Change..."));
-  connect(fontChange, SIGNAL(clicked()), this, SLOT(slotFontChange()));
-  QPushButton *fontReset = new QPushButton(tr("Reset"));
-  connect(fontReset, SIGNAL(clicked()), this, SLOT(slotFontReset()));
-  QVBoxLayout *fontsButtonLayout = new QVBoxLayout();
-  fontsButtonLayout->addWidget(fontChange);
-  fontsButtonLayout->addWidget(fontReset);
-  fontsButtonLayout->addStretch(1);
-
-  QHBoxLayout *fontsLayout = new QHBoxLayout();
-  fontsLayout->setMargin(0);
-  fontsLayout->addWidget(fontTree, 1);
-  fontsLayout->addLayout(fontsButtonLayout);
-
-  fontsWidget_ = new QWidget();
-  fontsWidget_->setLayout(fontsLayout);
-  //} fonts
-
-  //{ shortcut
-  shortcutTree_ = new QTreeWidget();
-  shortcutTree_->setObjectName("shortcutTree");
-  shortcutTree_->setSortingEnabled(false);
-  shortcutTree_->setColumnCount(6);
-  shortcutTree_->hideColumn(0);
-  shortcutTree_->hideColumn(4);
-  shortcutTree_->hideColumn(5);
-  shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
-  shortcutTree_->header()->setStretchLastSection(false);
-  shortcutTree_->header()->setResizeMode(1, QHeaderView::ResizeToContents);
-  shortcutTree_->header()->setResizeMode(2, QHeaderView::Stretch);
-  shortcutTree_->header()->setResizeMode(3, QHeaderView::ResizeToContents);
-
-  treeItem.clear();
-  treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut")
-           << "ObjectName" << "Data";
-  shortcutTree_->setHeaderLabels(treeItem);
-
-  editShortcut_ = new LineEdit();
-  QPushButton *resetShortcutButton = new QPushButton(tr("Reset"));
-
-  QHBoxLayout *editShortcutLayout = new QHBoxLayout();
-  editShortcutLayout->addWidget(new QLabel(tr("Shortcut:")));
-  editShortcutLayout->addWidget(editShortcut_, 1);
-  editShortcutLayout->addWidget(resetShortcutButton);
-
-  editShortcutBox = new QGroupBox();
-  editShortcutBox->setEnabled(false);
-  editShortcutBox->setLayout(editShortcutLayout);
-
-  QVBoxLayout *shortcutLayout = new QVBoxLayout();
-  shortcutLayout->setMargin(0);
-  shortcutLayout->addWidget(shortcutTree_, 1);
-  shortcutLayout->addWidget(editShortcutBox);
-
-  shortcutWidget_ = new QWidget();
-  shortcutWidget_->setLayout(shortcutLayout);
-
-  connect(shortcutTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
-          this, SLOT(shortcutTreeClicked(QTreeWidgetItem*,int)));
-  connect(this, SIGNAL(signalShortcutTreeUpDownPressed()),
-          SLOT(slotShortcutTreeUpDownPressed()), Qt::QueuedConnection);
-  connect(editShortcut_, SIGNAL(signalClear()),
-          this, SLOT(slotClearShortcut()));
-  connect(resetShortcutButton, SIGNAL(clicked()),
-          this, SLOT(slotResetShortcut()));
-
-  shortcutTree_->installEventFilter(this);
-  editShortcut_->installEventFilter(this);
-  //} shortcut
-
-  contentLabel_ = new QLabel();
-  contentLabel_->setObjectName("contentLabel_");
-  contentLabel_->setAlignment(Qt::AlignCenter);
-  contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
-  contentLabel_->setMinimumHeight(36);
-  contentLabel_->setMargin(4);
-  QFont fontContentLabel = contentLabel_->font();
-  fontContentLabel.setBold(true);
-  fontContentLabel.setPointSize(fontContentLabel.pointSize()+2);
-  contentLabel_->setFont(fontContentLabel);
-
-  contentStack_ = new QStackedWidget();
-  contentStack_->setObjectName("contentStack_");
-  contentStack_->addWidget(generalWidget_);
-  contentStack_->addWidget(traySystemWidget_);
-  contentStack_->addWidget(networkConnectionsWidget_);
-  contentStack_->addWidget(browserWidget_);
-  contentStack_->addWidget(feedsWidget_);
-  contentStack_->addWidget(labelsWidget_);
-  contentStack_->addWidget(notifierWidget_);
-  contentStack_->addWidget(languageWidget_);
-  contentStack_->addWidget(fontsWidget_);
-  contentStack_->addWidget(shortcutWidget_);
-
-  QVBoxLayout *categoriesTreeLayout = new QVBoxLayout();
-  categoriesTreeLayout->setMargin(0);
-  categoriesTreeLayout->addWidget(categoriesTree);
-  QWidget *categoriesTreeWidget = new QWidget();
-  categoriesTreeWidget->setLayout(categoriesTreeLayout);
-
-  QSplitter *splitter = new QSplitter();
-  splitter->setChildrenCollapsible(false);
-  splitter->addWidget(categoriesTreeWidget);
-  splitter->addWidget(contentStack_);
-  QList<int> sizes;
-  sizes << 150 << 600;
-  splitter->setSizes(sizes);
-
-  pageLayout->addWidget(contentLabel_);
-  pageLayout->addWidget(splitter, 1);
-
-  buttonBox->addButton(QDialogButtonBox::Ok);
-  buttonBox->addButton(QDialogButtonBox::Cancel);
-  connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptDialog()));
-
-  connect(categoriesTree, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
-          this, SLOT(slotCategoriesItemClicked(QTreeWidgetItem*,int)));
-  connect(this, SIGNAL(signalCategoriesTreeKeyUpDownPressed()),
-          SLOT(slotCategoriesTreeKeyUpDownPressed()), Qt::QueuedConnection);
-
-  connect(manualProxyButton_, SIGNAL(toggled(bool)),
-          this, SLOT(manualProxyToggle(bool)));
-
-  categoriesTree->installEventFilter(this);
-
-  // не нужно, т.к. после создания окна из главного окна передаются настройки
-  //  manualProxyToggle(manualProxyButton_->isChecked());
 }
 
-bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
-{
-  if (event->type() == QEvent::KeyPress) {
-    QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
-    if (obj != editShortcut_) {
-      if ((keyEvent->key() == Qt::Key_Up) ||
-          (keyEvent->key() == Qt::Key_Down)) {
-        if (obj == categoriesTree)
-          emit signalCategoriesTreeKeyUpDownPressed();
-        else if (obj == shortcutTree_)
-          emit signalShortcutTreeUpDownPressed();
-      }
-    } else {
-      if (((keyEvent->key() < Qt::Key_Shift) ||
-          (keyEvent->key() > Qt::Key_Alt)) &&
-          !(((keyEvent->key() == Qt::Key_Return) || (keyEvent->key() == Qt::Key_Enter)) &&
-            ((keyEvent->modifiers() == Qt::NoModifier) || (keyEvent->modifiers() == Qt::KeypadModifier))) &&
-          !((keyEvent->modifiers() & Qt::ControlModifier) &&
-            (keyEvent->key() == Qt::Key_F))) {
-        QString str;
-        if ((keyEvent->modifiers() & Qt::ShiftModifier) ||
-            (keyEvent->modifiers() & Qt::ControlModifier) ||
-            (keyEvent->modifiers() & Qt::AltModifier))
-          str.append(QKeySequence(keyEvent->modifiers()).toString());
-        str.append(QKeySequence(keyEvent->key()).toString());
-        editShortcut_->setText(str);
-        shortcutTree_->currentItem()->setText(3, str);
-      }
-      return true;
-    }
-    return false;
-  } else {
-    return QDialog::eventFilter(obj, event);
-  }
-}
-
+/** @brief Создание виджета "Язык"
+ *----------------------------------------------------------------------------*/
 void OptionsDialog::createLanguageWidget()
 {
   languageFileList_ = new QTreeWidget();
@@ -797,85 +807,115 @@ void OptionsDialog::createLanguageWidget()
   languageWidget_->setLayout(languageLayout);
 }
 
-void OptionsDialog::createLabelsWidget()
+/** @brief Создание виджета "Шрифты"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createFontsWidget()
 {
-  idLabels_.clear();
+  fontsTree_ = new QTreeWidget();
+  fontsTree_->setObjectName("fontTree");
+  fontsTree_->setColumnCount(3);
+  fontsTree_->setColumnHidden(0, true);
+  fontsTree_->setColumnWidth(1, 260);
 
-  labelsTree_ = new QTreeWidget(this);
-  labelsTree_->setObjectName("labelsTree_");
-  labelsTree_->setColumnCount(5);
-  labelsTree_->setColumnHidden(0, true);
-  labelsTree_->setColumnHidden(2, true);
-  labelsTree_->setColumnHidden(3, true);
-  labelsTree_->setColumnHidden(4, true);
-  labelsTree_->header()->hide();
+  QStringList treeItem;
+  treeItem << "Id" << tr("Type") << tr("Font");
+  fontsTree_->setHeaderLabels(treeItem);
 
-  QSqlQuery q(*db_);
-  q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
-  while (q.next()) {
-    int idLabel = q.value(0).toInt();
-    QString nameLabel = q.value(1).toString();
-    QByteArray byteArray = q.value(2).toByteArray();
-    QString colorText = q.value(3).toString();
-    QString colorBg = q.value(4).toString();
-    int numLabel = q.value(5).toInt();
-    QPixmap imageLabel;
-    if (!byteArray.isNull())
-      imageLabel.loadFromData(byteArray);
-    QStringList strTreeItem;
-    strTreeItem << QString::number(idLabel) << nameLabel
-                << colorText << colorBg << QString::number(numLabel);
-    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
-    treeWidgetItem->setIcon(1, QIcon(imageLabel));
-    if (!colorText.isEmpty())
-      treeWidgetItem->setTextColor(1, QColor(colorText));
-    if (!colorBg.isEmpty())
-      treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
-    labelsTree_->addTopLevelItem(treeWidgetItem);
-  }
+  treeItem.clear();
+  treeItem << "0" << tr("Feeds list font");
+  fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "1" << tr("News list font");
+  fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "2" << tr("News panel font (Title, Author)");
+  fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "3" << tr("News font");
+  fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "4" << tr("Notification font");
+  fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
-  newLabelButton_ = new QPushButton(tr("New..."), this);
-  connect(newLabelButton_, SIGNAL(clicked()), this, SLOT(newLabel()));
-  editLabelButton_ = new QPushButton(tr("Edit..."), this);
-  editLabelButton_->setEnabled(false);
-  connect(editLabelButton_, SIGNAL(clicked()), this, SLOT(editLabel()));
-  deleteLabelButton_ = new QPushButton(tr("Delete..."), this);
-  deleteLabelButton_->setEnabled(false);
-  connect(deleteLabelButton_, SIGNAL(clicked()), this, SLOT(deleteLabel()));
+  fontsTree_->setCurrentItem(fontsTree_->topLevelItem(0));
+  connect(fontsTree_, SIGNAL(doubleClicked(QModelIndex)),
+          this, SLOT(slotFontChange()));
 
-  moveUpLabelButton_ = new QPushButton(tr("Move up"), this);
-  moveUpLabelButton_->setEnabled(false);
-  connect(moveUpLabelButton_, SIGNAL(clicked()), this, SLOT(moveUpLabel()));
-  moveDownLabelButton_ = new QPushButton(tr("Move down"), this);
-  moveDownLabelButton_->setEnabled(false);
-  connect(moveDownLabelButton_, SIGNAL(clicked()), this, SLOT(moveDownLabel()));
+  QPushButton *fontChange = new QPushButton(tr("Change..."));
+  connect(fontChange, SIGNAL(clicked()), this, SLOT(slotFontChange()));
+  QPushButton *fontReset = new QPushButton(tr("Reset"));
+  connect(fontReset, SIGNAL(clicked()), this, SLOT(slotFontReset()));
+  QVBoxLayout *fontsButtonLayout = new QVBoxLayout();
+  fontsButtonLayout->addWidget(fontChange);
+  fontsButtonLayout->addWidget(fontReset);
+  fontsButtonLayout->addStretch(1);
 
-  QVBoxLayout *buttonsLayout = new QVBoxLayout();
-  buttonsLayout->addWidget(newLabelButton_);
-  buttonsLayout->addWidget(editLabelButton_);
-  buttonsLayout->addWidget(deleteLabelButton_);
-  buttonsLayout->addSpacing(10);
-  buttonsLayout->addWidget(moveUpLabelButton_);
-  buttonsLayout->addWidget(moveDownLabelButton_);
-  buttonsLayout->addStretch();
+  QHBoxLayout *fontsLayout = new QHBoxLayout();
+  fontsLayout->setMargin(0);
+  fontsLayout->addWidget(fontsTree_, 1);
+  fontsLayout->addLayout(fontsButtonLayout);
 
-  QHBoxLayout *labelsLayout = new QHBoxLayout();
-  labelsLayout->setMargin(0);
-  labelsLayout->addWidget(labelsTree_);
-  labelsLayout->addLayout(buttonsLayout);
+  fontsWidget_ = new QWidget();
+  fontsWidget_->setLayout(fontsLayout);
+}
 
-  labelsWidget_ = new QWidget(this);
-  labelsWidget_->setLayout(labelsLayout);
+/** @brief Создание виджета "Горячие клавиши"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createShortcutWidget()
+{
+  shortcutTree_ = new QTreeWidget();
+  shortcutTree_->setObjectName("shortcutTree");
+  shortcutTree_->setSortingEnabled(false);
+  shortcutTree_->setColumnCount(6);
+  shortcutTree_->hideColumn(0);
+  shortcutTree_->hideColumn(4);
+  shortcutTree_->hideColumn(5);
+  shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
+  shortcutTree_->header()->setStretchLastSection(false);
+  shortcutTree_->header()->setResizeMode(1, QHeaderView::ResizeToContents);
+  shortcutTree_->header()->setResizeMode(2, QHeaderView::Stretch);
+  shortcutTree_->header()->setResizeMode(3, QHeaderView::ResizeToContents);
 
-  connect(labelsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
-          this, SLOT(slotCurrentLabelChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
-  connect(labelsTree_, SIGNAL(doubleClicked(QModelIndex)),
-          this, SLOT(editLabel()));
+  QStringList treeItem;
+  treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut")
+           << "ObjectName" << "Data";
+  shortcutTree_->setHeaderLabels(treeItem);
+
+  editShortcut_ = new LineEdit();
+  QPushButton *resetShortcutButton = new QPushButton(tr("Reset"));
+
+  QHBoxLayout *editShortcutLayout = new QHBoxLayout();
+  editShortcutLayout->addWidget(new QLabel(tr("Shortcut:")));
+  editShortcutLayout->addWidget(editShortcut_, 1);
+  editShortcutLayout->addWidget(resetShortcutButton);
+
+  editShortcutBox = new QGroupBox();
+  editShortcutBox->setEnabled(false);
+  editShortcutBox->setLayout(editShortcutLayout);
+
+  QVBoxLayout *shortcutLayout = new QVBoxLayout();
+  shortcutLayout->setMargin(0);
+  shortcutLayout->addWidget(shortcutTree_, 1);
+  shortcutLayout->addWidget(editShortcutBox);
+
+  shortcutWidget_ = new QWidget();
+  shortcutWidget_->setLayout(shortcutLayout);
+
+  connect(shortcutTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
+          this, SLOT(shortcutTreeClicked(QTreeWidgetItem*,int)));
+  connect(this, SIGNAL(signalShortcutTreeUpDownPressed()),
+          SLOT(slotShortcutTreeUpDownPressed()), Qt::QueuedConnection);
+  connect(editShortcut_, SIGNAL(signalClear()),
+          this, SLOT(slotClearShortcut()));
+  connect(resetShortcutButton, SIGNAL(clicked()),
+          this, SLOT(slotResetShortcut()));
+
+  editShortcut_->installEventFilter(this);
 }
 
 void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()
 {
-  slotCategoriesItemClicked(categoriesTree->currentItem(), 1);
+  slotCategoriesItemClicked(categoriesTree_->currentItem(), 1);
 }
 
 void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int)
@@ -898,29 +938,6 @@ void OptionsDialog::setProxy(const QNetworkProxy proxy)
 {
   networkProxy_ = proxy;
   updateProxy();
-}
-
-QString OptionsDialog::language()
-{
-  QString langFileName = languageFileList_->currentItem()->data(1, Qt::DisplayRole).toString();
-  return langFileName.section("(", 1).replace(")", "");
-}
-
-void OptionsDialog::setLanguage(QString langFileName)
-{
-  // установка курсора на выбранный файл
-  langFileName = QString("(%1)").arg(langFileName);
-
-  QList<QTreeWidgetItem*> list =
-      languageFileList_->findItems(langFileName, Qt::MatchContains, 1);
-  if (list.count()) {
-    languageFileList_->setCurrentItem(list.at(0));
-  } else {
-    // если не удалось найти, выбираем английский
-    QList<QTreeWidgetItem*> list =
-        languageFileList_->findItems("(en)", Qt::MatchContains, 1);
-    languageFileList_->setCurrentItem(list.at(0));
-  }
 }
 
 void OptionsDialog::updateProxy()
@@ -956,49 +973,65 @@ void OptionsDialog::applyProxy()
   networkProxy_.setPassword(editPassword_->text());
 }
 
-void OptionsDialog::acceptDialog()
+QString OptionsDialog::language()
 {
-  applyProxy();
-  applyLabels();
-  accept();
+  QString langFileName = languageFileList_->currentItem()->data(1, Qt::DisplayRole).toString();
+  return langFileName.section("(", 1).replace(")", "");
+}
+
+void OptionsDialog::setLanguage(QString langFileName)
+{
+  // установка курсора на выбранный файл
+  langFileName = QString("(%1)").arg(langFileName);
+
+  QList<QTreeWidgetItem*> list =
+      languageFileList_->findItems(langFileName, Qt::MatchContains, 1);
+  if (list.count()) {
+    languageFileList_->setCurrentItem(list.at(0));
+  } else {
+    // если не удалось найти, выбираем английский
+    QList<QTreeWidgetItem*> list =
+        languageFileList_->findItems("(en)", Qt::MatchContains, 1);
+    languageFileList_->setCurrentItem(list.at(0));
+  }
 }
 
 void OptionsDialog::slotFontChange()
 {
   bool bOk;
   QFont curFont;
-  curFont.setFamily(fontTree->currentItem()->text(2).section(", ", 0, 0));
-  curFont.setPointSize(fontTree->currentItem()->text(2).section(", ", 1).toInt());
+  curFont.setFamily(fontsTree_->currentItem()->text(2).section(", ", 0, 0));
+  curFont.setPointSize(fontsTree_->currentItem()->text(2).section(", ", 1).toInt());
 
   QFont font = QFontDialog::getFont(&bOk, curFont);
   if (bOk) {
     QString strFont = QString("%1, %2").
         arg(font.family()).
         arg(font.pointSize());
-    fontTree->currentItem()->setText(2, strFont);
+    fontsTree_->currentItem()->setText(2, strFont);
   }
 }
 
 void OptionsDialog::slotFontReset()
 {
-  switch (fontTree->currentItem()->text(0).toInt()) {
-  case 3: fontTree->currentItem()->setText(
+  switch (fontsTree_->currentItem()->text(0).toInt()) {
+  case 3: fontsTree_->currentItem()->setText(
           2, QString("%1, 12").arg(qApp->font().family()));
     break;
-  default: fontTree->currentItem()->setText(
+  default: fontsTree_->currentItem()->setText(
           2, QString("%1, 8").arg(qApp->font().family()));
   }
 }
 
 int OptionsDialog::currentIndex()
 {
-  return categoriesTree->currentItem()->text(0).toInt();
+  return categoriesTree_->currentItem()->text(0).toInt();
 }
 
 void OptionsDialog::setCurrentItem(int index)
 {
-  categoriesTree->setCurrentItem(categoriesTree->topLevelItem(index), 1);
-  slotCategoriesItemClicked(categoriesTree->topLevelItem(index), 1);
+  categoriesTree_->setCurrentItem(categoriesTree_->topLevelItem(index), 1);
+  slotCategoriesItemClicked(categoriesTree_->topLevelItem(index), 1);
 }
 
 void OptionsDialog::setBehaviorIconTray(int behavior)
@@ -1087,8 +1120,8 @@ void OptionsDialog::slotShortcutTreeUpDownPressed()
 void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int)
 {
   editShortcut_->setText(item->text(3));
-  editShortcut_->setFocus();
   editShortcutBox->setEnabled(true);
+  editShortcut_->setFocus();
 }
 
 void OptionsDialog::slotClearShortcut()
