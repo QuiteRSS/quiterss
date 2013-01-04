@@ -113,22 +113,59 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createStatusBar();
   createTray();
 
-  tabWidget_ = new QTabWidget(this);
-  tabWidget_->setObjectName("tabWidget_");
-  tabWidget_->setFocusPolicy(Qt::NoFocus);
-  tabWidget_->setMovable(true);
-
-  connect(tabWidget_, SIGNAL(tabCloseRequested(int)),
+  tabBar_ = new QTabBar(this);
+  tabBar_->setMovable(true);
+  tabBar_->setExpanding(false);
+  connect(tabBar_, SIGNAL(tabCloseRequested(int)),
           this, SLOT(slotTabCloseRequested(int)));
-  connect(tabWidget_, SIGNAL(currentChanged(int)),
+  connect(tabBar_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
   connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
-
-  tabBar_ = qFindChild<QTabBar*>(tabWidget_);
   tabBar_->installEventFilter(this);
 
-  setCentralWidget(tabWidget_);
+  QHBoxLayout *tabBarLayout = new QHBoxLayout();
+  tabBarLayout->setContentsMargins(2, 0, 0, 0);
+  tabBarLayout->setSpacing(0);
+  tabBarLayout->addWidget(tabBar_);
+
+  QWidget *tabBarWidget = new QWidget(this);
+  tabBarWidget->setObjectName("tabBarWidget");
+  tabBarWidget->setStyleSheet(
+        QString("#tabBarWidget {border-bottom: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
+  tabBarWidget->setLayout(tabBarLayout);
+
+  stackedWidget_ = new QStackedWidget(this);
+  stackedWidget_->setObjectName("stackedWidget_");
+  stackedWidget_->setFrameStyle(QFrame::NoFrame);
+  stackedWidget_->setStyleSheet(
+        QString("#stackedWidget_ {background: %1;}").
+        arg(qApp->palette().color(QPalette::Light).name()));
+
+  QSplitter *splitter = new QSplitter(this);
+  splitter->setHandleWidth(1);
+  splitter->setStyleSheet(
+        QString("QSplitter::handle {background: %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
+  splitter->setChildrenCollapsible(false);
+  splitter->addWidget(feedsWidget_);
+  splitter->addWidget(stackedWidget_);
+  splitter->setStretchFactor(1, 1);
+  QList <int> sizes;
+  sizes << 180 << 1900;
+  splitter->setSizes(sizes);
+
+  QVBoxLayout *mainLayout = new QVBoxLayout();
+  mainLayout->setMargin(0);
+  mainLayout->setSpacing(0);
+  mainLayout->addWidget(tabBarWidget);
+  mainLayout->addWidget(splitter, 1);
+
+  QWidget *centralWidget = new QWidget(this);
+  centralWidget->setLayout(mainLayout);
+
+  setCentralWidget(centralWidget);
 
   connect(this, SIGNAL(signalCloseApp()),
           SLOT(slotCloseApp()), Qt::QueuedConnection);
@@ -236,8 +273,8 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 
 /*virtual*/ void RSSListing::showEvent(QShowEvent*)
 {
-  connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-          this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
+//  connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
+//          this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
 }
 
 /*!****************************************************************************/
@@ -483,34 +520,29 @@ void RSSListing::createFeedsDock()
   feedsTreeView_->setColumnHidden("id", true);
   feedsTreeView_->setColumnHidden("parentId", true);
 
-  //! Create title DockWidget
-  feedsTitleLabel_ = new QLabel(this);
-  feedsTitleLabel_->setObjectName("feedsTitleLabel_");
-  feedsTitleLabel_->setAttribute(Qt::WA_TransparentForMouseEvents);
-  feedsTitleLabel_->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
-
   feedsToolBar_ = new QToolBar(this);
-  feedsToolBar_->setStyleSheet("QToolBar { border: none; padding: 1px; }");
+  feedsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   feedsToolBar_->setIconSize(QSize(18, 18));
 
   QHBoxLayout *feedsPanelLayout = new QHBoxLayout();
-  feedsPanelLayout->setMargin(0);
-  feedsPanelLayout->setSpacing(0);
-  feedsPanelLayout->addWidget(feedsTitleLabel_, 0);
-  feedsPanelLayout->addStretch(1);
-  feedsPanelLayout->addWidget(feedsToolBar_, 0);
-  feedsPanelLayout->addSpacing(5);
+  feedsPanelLayout->setMargin(2);
+  feedsPanelLayout->addWidget(feedsToolBar_, 1);
+
+  QFrame *line = new QFrame(this);
+  line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
+
+  QVBoxLayout *feedsPanelLayoutV = new QVBoxLayout();
+  feedsPanelLayoutV->setMargin(0);
+  feedsPanelLayoutV->setSpacing(0);
+  feedsPanelLayoutV->addLayout(feedsPanelLayout);
+  feedsPanelLayoutV->addWidget(line);
 
   QWidget *feedsPanel = new QWidget(this);
   feedsPanel->setObjectName("feedsPanel");
-  feedsPanel->setLayout(feedsPanelLayout);
-
-  //! Create feeds DockWidget
-  setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
-  setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
-  setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
-  setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
-  setDockOptions(QMainWindow::AnimatedDocks|QMainWindow::AllowNestedDocks);
+  feedsPanel->setStyleSheet(
+        QString("#feedsPanel {background: %1;}").
+        arg(qApp->palette().color(QPalette::Light).name()));
+  feedsPanel->setLayout(feedsPanelLayoutV);
 
   findFeeds_ = new FindFeed(this);
   QVBoxLayout *findFeedsLayout = new QVBoxLayout();
@@ -582,11 +614,12 @@ void RSSListing::createFeedsDock()
   categoriesPanelLayout->addWidget(categoriesLabel_, 1);
   categoriesPanelLayout->addWidget(showCategoriesButton_);
 
-  categoriesPanel_ = new QFrame(this);
-  categoriesPanel_->setFrameStyle(QFrame::Panel | QFrame::Raised);
+  categoriesPanel_ = new QWidget(this);
+  categoriesPanel_->setObjectName("categoriesPanel_");
   categoriesPanel_->setStyleSheet(
-          QString("QFrame {background: %1;}").
-          arg(qApp->palette().color(QPalette::Light).name()));
+        QString("#categoriesPanel_ {background: %1; border-bottom: 1px solid %2;}").
+        arg(qApp->palette().color(QPalette::Light).name()).
+        arg(qApp->palette().color(QPalette::Dark).name()));
   categoriesPanel_->setLayout(categoriesPanelLayout);
 
   QVBoxLayout *categoriesLayout = new QVBoxLayout();
@@ -598,37 +631,30 @@ void RSSListing::createFeedsDock()
   categoriesWidget_ = new QWidget(this);
   categoriesWidget_->setLayout(categoriesLayout);
 
-  feedsDockSplitter_ = new QSplitter(Qt::Vertical);
-  feedsDockSplitter_->setChildrenCollapsible(false);
-  feedsDockSplitter_->setHandleWidth(1);
-  feedsDockSplitter_->setStyleSheet(
+  feedsSplitter_ = new QSplitter(Qt::Vertical);
+  feedsSplitter_->setChildrenCollapsible(false);
+  feedsSplitter_->setHandleWidth(1);
+  feedsSplitter_->setStyleSheet(
         QString("QSplitter::handle {background: %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
-  feedsDockSplitter_->addWidget(feedsTreeView_);
-  feedsDockSplitter_->addWidget(categoriesWidget_);
-  feedsDockSplitter_->setStretchFactor(0, 1);
+  feedsSplitter_->addWidget(feedsTreeView_);
+  feedsSplitter_->addWidget(categoriesWidget_);
+  feedsSplitter_->setStretchFactor(0, 1);
 
   QList <int> sizes;
   sizes << 600 << 20;
-  feedsDockSplitter_->setSizes(sizes);
+  feedsSplitter_->setSizes(sizes);
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
   feedsLayout->setMargin(0);
   feedsLayout->setSpacing(0);
+  feedsLayout->addWidget(feedsPanel);
   feedsLayout->addWidget(findFeedsWidget_);
-  feedsLayout->addWidget(feedsDockSplitter_, 1);
+  feedsLayout->addWidget(feedsSplitter_, 1);
 
-  QFrame *feedsWidget_ = new QFrame(this);
-  feedsWidget_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+  feedsWidget_ = new QFrame(this);
+  feedsWidget_->setFrameStyle(QFrame::NoFrame);
   feedsWidget_->setLayout(feedsLayout);
-
-  feedsDock_ = new QDockWidget(this);
-  feedsDock_->setObjectName("feedsDock");
-  feedsDock_->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea);
-  feedsDock_->setFeatures(QDockWidget::DockWidgetMovable);
-  feedsDock_->setTitleBarWidget(feedsPanel);
-  feedsDock_->setWidget(feedsWidget_);
-  addDockWidget(Qt::LeftDockWidgetArea, feedsDock_);
 
   connect(feedsTreeView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotFeedClicked(QModelIndex)));
@@ -643,9 +669,6 @@ void RSSListing::createFeedsDock()
   connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex&,QModelIndex&)),
           this, SLOT(slotMoveIndex(QModelIndex&,QModelIndex&)));
 
-  connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-          this, SLOT(slotFeedsDockLocationChanged(Qt::DockWidgetArea)));
-
   connect(findFeeds_, SIGNAL(textChanged(QString)),
           this, SLOT(slotFindFeeds(QString)));
   connect(findFeeds_, SIGNAL(signalSelectFind()),
@@ -657,7 +680,7 @@ void RSSListing::createFeedsDock()
           this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
   connect(showCategoriesButton_, SIGNAL(clicked()),
           this, SLOT(showNewsCategoriesTree()));
-  connect(feedsDockSplitter_, SIGNAL(splitterMoved(int,int)),
+  connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
           this, SLOT(feedsSplitterMoved(int,int)));
 
   feedsTreeView_->viewport()->installEventFilter(this);
@@ -680,13 +703,13 @@ void RSSListing::createToolBarNull()
   connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
   toolBarNull_->installEventFilter(this);
 
-  connect(feedsDock_, SIGNAL(visibilityChanged(bool)),
-          this, SLOT(updateIconToolBarNull(bool)));
+//  connect(feedsDock_, SIGNAL(visibilityChanged(bool)),
+//          this, SLOT(updateIconToolBarNull(bool)));
 }
 
 void RSSListing::createNewsTab(int index)
 {
-  currentNewsTab = (NewsTabWidget*)tabWidget_->widget(index);
+  currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(index);
   currentNewsTab->setSettings();
   currentNewsTab->retranslateStrings();
   currentNewsTab->setBrowserPosition();
@@ -1725,13 +1748,13 @@ void RSSListing::readSettings()
   if (showCategories) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
-    feedsDockSplitter_->restoreState(feedsDockSplitterState_);
+    feedsSplitter_->restoreState(feedsDockSplitterState_);
   } else {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
     QList <int> sizes;
     sizes << QApplication::desktop()->height() << 20;
-    feedsDockSplitter_->setSizes(sizes);
+    feedsSplitter_->setSizes(sizes);
   }
 
   if (isFullScreen())
@@ -1868,11 +1891,11 @@ void RSSListing::writeSettings()
     newsCategoriesTreeVisible = false;
     settings_->setValue("FeedsDockSplitterState", feedsDockSplitterState_);
   } else {
-    settings_->setValue("FeedsDockSplitterState", feedsDockSplitter_->saveState());
+    settings_->setValue("FeedsDockSplitterState", feedsSplitter_->saveState());
   }
   settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
 
-  if (tabWidget_->count() && (currentNewsTab->type_ == TAB_FEED)) {
+  if (stackedWidget_->count() && (currentNewsTab->type_ == TAB_FEED)) {
     settings_->setValue("NewsHeaderGeometry",
                         currentNewsTab->newsHeader_->saveGeometry());
     settings_->setValue("NewsHeaderState",
@@ -1890,7 +1913,7 @@ void RSSListing::writeSettings()
   settings_->setValue("networkProxy/user",     networkProxy_.user());
   settings_->setValue("networkProxy/password", networkProxy_.password());
 
-  NewsTabWidget* widget = (NewsTabWidget*)tabWidget_->widget(0);
+  NewsTabWidget* widget = (NewsTabWidget*)stackedWidget_->widget(0);
   settings_->setValue("feedSettings/currentId", widget->feedId_);
   settings_->setValue("feedSettings/currentParId", widget->feedParId_);
   settings_->setValue("feedSettings/filterName",
@@ -2655,8 +2678,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
 
   // Поиск уже открытого таба с этой лентой
   int indexTab = -1;
-  for (int i = 0; i < tabWidget_->count(); i++) {
-    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
     if (widget->feedId_ == feedIdCur) {
       indexTab = i;
       break;
@@ -2664,11 +2687,11 @@ void RSSListing::slotFeedClicked(QModelIndex index)
   }
 
   if ((feedIdCur != feedIdOld_) || (indexTab == -1)) {
-    if ((tabWidget_->currentIndex() != TAB_WIDGET_PERMANENT) && (indexTab == -1)) {
-      tabWidget_->setCurrentIndex(TAB_WIDGET_PERMANENT);
+    if ((stackedWidget_->currentIndex() != TAB_WIDGET_PERMANENT) && (indexTab == -1)) {
+      stackedWidget_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
     } else if (indexTab != -1) {
-      tabWidget_->setCurrentIndex(indexTab);
+      stackedWidget_->setCurrentIndex(indexTab);
     }
 
     //! При переходе на другую ленту метим старую просмотренной
@@ -2677,7 +2700,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur), true);
     feedsTreeView_->repaint();
   } else if (indexTab != -1) {
-    tabWidget_->setCurrentIndex(indexTab);
+    stackedWidget_->setCurrentIndex(indexTab);
   }
   feedIdOld_ = feedIdCur;
 }
@@ -2695,11 +2718,12 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
   int feedParId = feedsTreeModel_->getParidByIndex(index);
 
   // Открытие или создание вкладки с лентой
-  if ((!tabWidget_->count() && clicked) || createTab) {
+  if ((!stackedWidget_->count() && clicked) || createTab) {
     NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
-    int indexTab = tabWidget_->addTab(widget, "");
+    int indexTab = stackedWidget_->addWidget(widget);
     createNewsTab(indexTab);
 
+    tabBar_->addTab("");
     tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           currentNewsTab->newsTitleLabel_);
@@ -2933,8 +2957,8 @@ void RSSListing::showOptionDlg()
     bool closeTab = true;
     int indexTab = -1;
     int tabLabelId = -1;
-    for (int i = 0; i < tabWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
       if (widget->type_ == TAB_CAT_LABEL) {
         indexTab = i;
         tabLabelId = widget->labelId_;
@@ -2959,7 +2983,7 @@ void RSSListing::showOptionDlg()
 
       if (idLabel == tabLabelId) {
         closeTab = false;
-        NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(indexTab);
+        NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(indexTab);
         //! Устанавливаем иконку и текст для открытой вкладки
         widget->newsIconTitle_->setPixmap(imageLabel);
         QString tabText(nameLabel);
@@ -2973,7 +2997,7 @@ void RSSListing::showOptionDlg()
     if (closeTab && (indexTab > 0) && (tabLabelId > 0)) {
       slotTabCloseRequested(indexTab);
     }
-    if ((tabWidget_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
+    if ((stackedWidget_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
       slotUpdateNews();
     }
   }
@@ -3215,7 +3239,7 @@ void RSSListing::slotProgressBarUpdate()
 
 void RSSListing::slotVisibledFeedsDock()
 {
-  feedsDock_->setVisible(!feedsDock_->isVisible());
+//  feedsDock_->setVisible(!feedsDock_->isVisible());
 }
 
 void RSSListing::updateIconToolBarNull(bool feedsDockVisible)
@@ -3244,7 +3268,7 @@ void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
   } else {
     toolBarNull_->hide();
   }
-  updateIconToolBarNull(feedsDock_->isVisible());
+//  updateIconToolBarNull(feedsDock_->isVisible());
 }
 
 void RSSListing::markFeedRead()
@@ -3288,7 +3312,7 @@ void RSSListing::markFeedRead()
   db_.commit();
   // Обновляем ленту, на которой стоит фокус
   if (openFeed) {
-    if ((tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) &&
+    if ((stackedWidget_->currentIndex() == TAB_WIDGET_PERMANENT) &&
         !isFolder) {
       QModelIndex indexNextUnread =
           feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
@@ -3440,7 +3464,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   if (clicked) {
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-    if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
+    if (stackedWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
       slotFeedClicked(feedIndex);
     }
   }
@@ -3789,9 +3813,8 @@ void RSSListing::appInstallTranslator()
   else retranslateStrings();
 }
 
-void RSSListing::retranslateStrings() {
-  feedsTitleLabel_->setText(tr("Feeds"));
-
+void RSSListing::retranslateStrings()
+{
   QString str = statusUnread_->text();
   str = str.right(str.length() - str.indexOf(':') - 1).replace(" ", "");
   statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(str));
@@ -4295,7 +4318,7 @@ void RSSListing::markAllFeedsRead()
 
   feedsModelReload();
 
-  if (tabWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
+  if (stackedWidget_->currentIndex() == TAB_WIDGET_PERMANENT) {
     QModelIndex index =
         feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
     feedsTreeView_->setCurrentIndex(index);
@@ -4347,8 +4370,8 @@ void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteA
   q.bindValue(":xmlUrl", strUrl);
   q.exec();
   if (q.next()) {
-    for (int i = 0; i < tabWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
       if (widget->feedId_ == q.value(0).toInt()) {
         QPixmap iconTab;
         if (!byteArray.isNull()) {
@@ -4650,7 +4673,7 @@ void RSSListing::slotOpenFeedNewTab()
 void RSSListing::slotTabCloseRequested(int index)
 {
   if (index != 0) {
-    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
 
     if (widget->type_ == TAB_FEED) {
       setFeedRead(widget->feedId_, FeedReadClosingTab);
@@ -4667,6 +4690,8 @@ void RSSListing::slotTabCloseRequested(int index)
     }
 
     QWidget *newsTitleLabel = widget->newsTitleLabel_;
+    stackedWidget_->removeWidget(widget);
+    tabBar_->removeTab(index);
     delete widget;
     delete newsTitleLabel;
   }
@@ -4675,15 +4700,17 @@ void RSSListing::slotTabCloseRequested(int index)
 //! Переключение между вкладками
 void RSSListing::slotTabCurrentChanged(int index)
 {
-  if (!tabWidget_->count()) return;
+  if (!stackedWidget_->count()) return;
 
-  NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(index);
+  NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
     newsCategoriesTree_->setCurrentIndex(QModelIndex());
   if (widget->type_ != TAB_FEED)
     feedsTreeView_->setCurrentIndex(QModelIndex());
 
   if (!updateCurrentTab_) return;
+
+  stackedWidget_->setCurrentIndex(index);
 
   if (widget->type_ == TAB_FEED) {
     if (widget->feedId_ == 0)
@@ -4759,8 +4786,8 @@ void RSSListing::setBrowserPosition(QAction *action)
 QWebPage *RSSListing::createWebTab()
 {
   NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
-  int indexTab = tabWidget_->addTab(widget, "");
-
+  int indexTab = stackedWidget_->addWidget(widget);
+  tabBar_->addTab("");
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
@@ -4801,10 +4828,11 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
 
   if (q.next()) {
     NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
-    int indexTab = tabWidget_->addTab(widget, "");
+    int indexTab = stackedWidget_->addWidget(widget);
     widget->setSettings();
     widget->retranslateStrings();
     widget->setBrowserPosition();
+    tabBar_->addTab("");
     tabBar_->setTabButton(indexTab,
                           QTabBar::LeftSide,
                           widget->newsTitleLabel_);
@@ -5138,7 +5166,7 @@ void RSSListing::feedsModelReload()
 void RSSListing::setCurrentTab(int index, bool updateCurrentTab)
 {
   updateCurrentTab_ = updateCurrentTab;
-  tabWidget_->setCurrentIndex(index);
+  stackedWidget_->setCurrentIndex(index);
   updateCurrentTab_ = true;
 }
 
@@ -5386,8 +5414,8 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   int type = item->text(1).toInt();
 
   int indexTab = -1;
-  for (int i = 0; i < tabWidget_->count(); i++) {
-    NewsTabWidget *widget = (NewsTabWidget*)tabWidget_->widget(i);
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
     if (widget->type_ == type) {
       indexTab = i;
       break;
@@ -5396,8 +5424,9 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   if ((indexTab == -1) || (type == TAB_CAT_LABEL)) {
     if (indexTab == -1) {
       NewsTabWidget *widget = new NewsTabWidget(this, type);
-      indexTab = tabWidget_->addTab(widget, "");
+      indexTab = stackedWidget_->addWidget(widget);
       createNewsTab(indexTab);
+      tabBar_->addTab("");
       tabBar_->setTabButton(indexTab,
                             QTabBar::LeftSide,
                             widget->newsTitleLabel_);
@@ -5477,15 +5506,15 @@ void RSSListing::showNewsCategoriesTree()
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
     newsCategoriesTree_->show();
-    feedsDockSplitter_->restoreState(feedsDockSplitterState_);
+    feedsSplitter_->restoreState(feedsDockSplitterState_);
   } else {
-    feedsDockSplitterState_ = feedsDockSplitter_->saveState();
+    feedsDockSplitterState_ = feedsSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
     newsCategoriesTree_->hide();
     QList <int> sizes;
     sizes << height() << 20;
-    feedsDockSplitter_->setSizes(sizes);
+    feedsSplitter_->setSizes(sizes);
   }
 }
 
@@ -5496,7 +5525,7 @@ void RSSListing::feedsSplitterMoved(int pos, int)
 {
   if (newsCategoriesTree_->isHidden()) {
     int height = pos + categoriesPanel_->height() + 2;
-    if (height < feedsDockSplitter_->height()) {
+    if (height < feedsSplitter_->height()) {
       showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
       showCategoriesButton_->setToolTip(tr("Hide Categories"));
       newsCategoriesTree_->show();
@@ -5575,7 +5604,7 @@ void RSSListing::getLabelNews()
  ******************************************************************************/
 void RSSListing::slotCloseTab()
 {
-  slotTabCloseRequested(tabWidget_->currentIndex());
+  slotTabCloseRequested(stackedWidget_->currentIndex());
 }
 
 /**
@@ -5583,7 +5612,7 @@ void RSSListing::slotCloseTab()
  ******************************************************************************/
 void RSSListing::slotNextTab()
 {
-  tabWidget_->setCurrentIndex(tabWidget_->currentIndex()+1);
+  stackedWidget_->setCurrentIndex(stackedWidget_->currentIndex()+1);
 }
 
 /**
@@ -5591,5 +5620,5 @@ void RSSListing::slotNextTab()
  ******************************************************************************/
 void RSSListing::slotPrevTab()
 {
-  tabWidget_->setCurrentIndex(tabWidget_->currentIndex()-1);
+  stackedWidget_->setCurrentIndex(stackedWidget_->currentIndex()-1);
 }

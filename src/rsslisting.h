@@ -39,7 +39,7 @@ public:
   FeedsTreeView *feedsTreeView_;
   QTreeWidget *newsCategoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
-  QTabWidget *tabWidget_;
+  QStackedWidget *stackedWidget_;
 
   NewsTabWidget *currentNewsTab;
 
@@ -176,7 +176,8 @@ private:
 
   QString dbFileName_;
   NewsModel *newsModel_;
-  QTabBar* tabBar_;
+  QTabBar *tabBar_;
+  QFrame *feedsWidget_;
 
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
@@ -297,7 +298,6 @@ private:
 
   QToolBar *mainToolbar_;
 
-  QLabel *feedsTitleLabel_;
   QToolBar *feedsToolBar_;
   QDockWidget *feedsDock_;
   Qt::DockWidgetArea feedsDockArea_;
@@ -386,11 +386,11 @@ private:
     FeedReadTypeCount
   };
 
-  QFrame *categoriesPanel_;
+  QWidget *categoriesPanel_;
   QLabel *categoriesLabel_;
   QToolButton *showCategoriesButton_;
   QWidget *categoriesWidget_;
-  QSplitter *feedsDockSplitter_;
+  QSplitter *feedsSplitter_;
   QByteArray feedsDockSplitterState_;
 
 private slots:
