@@ -17,6 +17,7 @@
 #include "notifications.h"
 #include "parsethread.h"
 #include "updateappdialog.h"
+#include "updatedelayer.h"
 #include "updatethread.h"
 #include "webview.h"
 
@@ -125,6 +126,7 @@ public slots:
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(const QUrl &url, const bool &changed);
+  void slotFeedDelayedUpdate(const QUrl &url, const bool &changed);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
@@ -144,6 +146,7 @@ private:
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
   QNetworkProxy networkProxy_;
+  UpdateDelayer updateDelayer_;
 
   void showProgressBar(int addToMaximum);
   void createFeedsDock();

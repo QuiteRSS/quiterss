@@ -147,6 +147,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(this, SIGNAL(signalRefreshInfoTray()),
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
 
+  connect(&updateDelayer_, SIGNAL(signalUpdateNeeded(QUrl,bool)),
+          this, SLOT(slotFeedDelayedUpdate(QUrl,bool)));
+
   loadSettingsFeeds();
 
   setStyleSheet("QMainWindow::separator { width: 1px; }");
@@ -2519,13 +2522,25 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
   }
 }
 
-/**
- * @brief Обновление отображения ленты
- * @details Проиводится после обновления ленты или после добавления ленты
+/** @brief Обработка сигнала на обновление отображения ленты
+ *
+ *  Проиводится после обновления ленты или после добавления ленты
+ *  В действительности производится задержка обновления
  * @param url URL-адрес обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
- ******************************************************************************/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
+{
+  updateDelayer_.delayUpdate(url, changed);
+}
+
+/** @brief Обновление отображения ленты
+ *
+ *  Проиводится после некоторой задержки
+ * @param url URL-адрес обновляемой ленты
+ * @param changed Признак того, что лента действительно была обновлена
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotFeedDelayedUpdate(const QUrl &url, const bool &changed)
 {
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;

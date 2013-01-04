@@ -44,7 +44,8 @@ HEADERS += \
     src/splashscreen.h \
     src/addfolderdialog.h \
     src/labeldialog.h \
-    src/dialog.h
+    src/dialog.h \
+    src/updatedelayer.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -80,7 +81,8 @@ SOURCES += \
     src/splashscreen.cpp \
     src/addfolderdialog.cpp \
     src/labeldialog.cpp \
-    src/dialog.cpp
+    src/dialog.cpp \
+    src/updatedelayer.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
