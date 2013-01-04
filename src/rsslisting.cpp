@@ -4319,7 +4319,7 @@ void RSSListing::markAllFeedsOld()
 {
   db_.transaction();
   QSqlQuery q(db_);
-  q.exec("UPDATE news SET new=0");
+  q.exec("UPDATE news SET new=0 WHERE new==1");
   q.exec("UPDATE feeds SET newCount=0");
   db_.commit();
 
