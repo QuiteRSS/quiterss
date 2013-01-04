@@ -340,7 +340,6 @@ void RSSListing::slotClose()
   traySystem->hide();
   hide();
   writeSettings();
-  saveActionShortcuts();
   emit signalCloseApp();
 }
 
@@ -2800,10 +2799,8 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
 void RSSListing::showOptionDlg()
 {
   static int index = 0;
-  OptionsDialog *optionsDialog = new OptionsDialog(this, &db_);
-  optionsDialog->restoreGeometry(settings_->value("options/geometry").toByteArray());
 
-  optionsDialog->setCurrentItem(index);
+  OptionsDialog *optionsDialog = new OptionsDialog(this);
 
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
@@ -2870,61 +2867,6 @@ void RSSListing::showOptionDlg()
   optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
   optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
 
-  QSqlQuery q(db_);
-  db_.transaction();
-  QQueue<int> parentIds;
-  parentIds.enqueue(0);
-  while (!parentIds.empty()) {
-    int parentId = parentIds.dequeue();
-    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1'").
-        arg(parentId);
-    q.exec(qStr);
-    while (q.next()) {
-      QString feedText = q.value(0).toString();
-      QString feedId = q.value(1).toString();
-      QByteArray byteArray = q.value(2).toByteArray();
-      QString xmlUrl = q.value(3).toString();
-
-      QStringList treeItem;
-      treeItem << feedText << feedId;
-      QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-
-      treeWidgetItem->setCheckState(0, Qt::Unchecked);
-      QSqlQuery q1(db_);
-      qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
-          arg(feedId);
-      q1.exec(qStr);
-      if (q1.next()) {
-        if (q1.value(0).toInt() == 1)
-          treeWidgetItem->setCheckState(0, Qt::Checked);
-      } else {
-        qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
-            arg(feedId);
-        q1.exec(qStr);
-      }
-      if (treeWidgetItem->checkState(0) == Qt::Unchecked)
-        optionsDialog->feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
-
-      QPixmap iconItem;
-      if (!byteArray.isNull()) {
-        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
-      } else if (!xmlUrl.isEmpty()) {
-        iconItem.load(":/images/feed");
-      } else {
-        iconItem.load(":/images/folder");
-      }
-      treeWidgetItem->setIcon(0, iconItem);
-
-      QList<QTreeWidgetItem *> treeItems =
-            optionsDialog->feedsTreeNotify_->findItems(QString::number(parentId),
-                                                       Qt::MatchFixedString | Qt::MatchRecursive,
-                                                       1);
-      treeItems.at(0)->addChild(treeWidgetItem);
-      parentIds.enqueue(feedId.toInt());
-    }
-  }
-  db_.commit();
-  optionsDialog->itemNotChecked_ = false;
   if (titleSortFeedsAct_->isChecked())
     optionsDialog->feedsTreeNotify_->sortByColumn(0, Qt::AscendingOrder);
   else
@@ -2947,15 +2889,20 @@ void RSSListing::showOptionDlg()
   optionsDialog->fontsTree_->topLevelItem(4)->setText(2, strFont);
 
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
-//
+
+
+//! Показ диалога настроек
+
+  optionsDialog->setCurrentItem(index);
   int result = optionsDialog->exec();
-  settings_->setValue("options/geometry", optionsDialog->saveGeometry());
   index = optionsDialog->currentIndex();
 
   if (result == QDialog::Rejected) {
     delete optionsDialog;
     return;
   }
+
+//! Применение настроек
 
   foreach (QAction *action, listActions_) {
     QString objectName = action->objectName();
@@ -2990,6 +2937,7 @@ void RSSListing::showOptionDlg()
       }
     }
 
+    QSqlQuery q(db_);
     q.exec("SELECT id, name, image FROM labels ORDER BY num");
     while (q.next()) {
       int idLabel = q.value(0).toInt();
@@ -3124,22 +3072,6 @@ void RSSListing::showOptionDlg()
   widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
   onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
-
-  QTreeWidgetItem *treeWidgetItem =
-      optionsDialog->feedsTreeNotify_->itemBelow(optionsDialog->feedsTreeNotify_->topLevelItem(0));
-  db_.transaction();
-  while (treeWidgetItem) {
-    int check = 0;
-    if (treeWidgetItem->checkState(0) == Qt::Checked)
-      check = 1;
-
-    QString qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
-        arg(check).arg(treeWidgetItem->text(1).toInt());
-    q.exec(qStr);
-
-    treeWidgetItem = optionsDialog->feedsTreeNotify_->itemBelow(treeWidgetItem);
-  }
-  db_.commit();
 
   if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
     langFileName_ = optionsDialog->language();

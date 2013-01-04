@@ -1,18 +1,20 @@
 #include "optionsdialog.h"
 #include "labeldialog.h"
 #include "VersionNo.h"
+#include "rsslisting.h"
 
-OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
-  Dialog(parent),
-  db_(db)
+OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
 
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  db_ = rssl_->db_;
+
   contentLabel_ = new QLabel();
   contentLabel_->setObjectName("contentLabel_");
   contentLabel_->setAlignment(Qt::AlignCenter);
-  contentLabel_->setFrameStyle(QFrame::Box | QFrame::Sunken);
+  contentLabel_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
   contentLabel_->setMinimumHeight(36);
   contentLabel_->setMargin(4);
   QFont fontContentLabel = contentLabel_->font();
@@ -108,6 +110,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   buttonBox->addButton(QDialogButtonBox::Ok);
   buttonBox->addButton(QDialogButtonBox::Cancel);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptDialog()));
+  connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
   connect(categoriesTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesItemClicked(QTreeWidgetItem*,int)));
@@ -117,14 +120,22 @@ OptionsDialog::OptionsDialog(QWidget *parent, QSqlDatabase *db) :
   categoriesTree_->installEventFilter(this);
 
   resize(700, 500);
-}
 
+  restoreGeometry(rssl_->settings_->value("options/geometry").toByteArray());
+}
 
 void OptionsDialog::acceptDialog()
 {
   applyProxy();
   applyLabels();
+  applyNotifier();
   accept();
+}
+
+void OptionsDialog::closeDialog()
+{
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  rssl_->settings_->setValue("options/geometry", saveGeometry());
 }
 
 bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
@@ -536,7 +547,7 @@ void OptionsDialog::createLabelsWidget()
   labelsTree_->setColumnHidden(4, true);
   labelsTree_->header()->hide();
 
-  QSqlQuery q(*db_);
+  QSqlQuery q(db_);
   q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
@@ -655,7 +666,7 @@ void OptionsDialog::createNotifierWidget()
   feedsTreeNotify_->header()->hide();
   feedsTreeNotify_->setEnabled(false);
 
-  itemNotChecked_ = true;
+  itemNotChecked_ = false;
 
   QStringList treeItem;
   treeItem << "Feeds" << "Id";
@@ -689,6 +700,61 @@ void OptionsDialog::createNotifierWidget()
   notifierWidget_ = new QFrame();
   notifierWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   notifierWidget_->setLayout(notifierMainLayout);
+
+  QSqlQuery q(db_);
+  db_.transaction();
+  QQueue<int> parentIds;
+  parentIds.enqueue(0);
+  while (!parentIds.empty()) {
+    int parentId = parentIds.dequeue();
+    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1'").
+        arg(parentId);
+    q.exec(qStr);
+    while (q.next()) {
+      QString feedText = q.value(0).toString();
+      QString feedId = q.value(1).toString();
+      QByteArray byteArray = q.value(2).toByteArray();
+      QString xmlUrl = q.value(3).toString();
+
+      QStringList treeItem;
+      treeItem << feedText << feedId;
+      QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+
+      treeWidgetItem->setCheckState(0, Qt::Unchecked);
+      QSqlQuery q1(db_);
+      qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
+          arg(feedId);
+      q1.exec(qStr);
+      if (q1.next()) {
+        if (q1.value(0).toInt() == 1)
+          treeWidgetItem->setCheckState(0, Qt::Checked);
+      } else {
+        qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
+            arg(feedId);
+        q1.exec(qStr);
+      }
+      if (treeWidgetItem->checkState(0) == Qt::Unchecked)
+        feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+
+      QPixmap iconItem;
+      if (!byteArray.isNull()) {
+        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
+      } else if (!xmlUrl.isEmpty()) {
+        iconItem.load(":/images/feed");
+      } else {
+        iconItem.load(":/images/folder");
+      }
+      treeWidgetItem->setIcon(0, iconItem);
+
+      QList<QTreeWidgetItem *> treeItems =
+            feedsTreeNotify_->findItems(QString::number(parentId),
+                                                       Qt::MatchFixedString | Qt::MatchRecursive,
+                                                       1);
+      treeItems.at(0)->addChild(treeWidgetItem);
+      parentIds.enqueue(feedId.toInt());
+    }
+  }
+  db_.commit();
 }
 
 /** @brief Создание виджета "Язык"
@@ -1404,8 +1470,8 @@ void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
 
 void OptionsDialog::applyLabels()
 {
-  db_->transaction();
-  QSqlQuery q(*db_);
+  db_.transaction();
+  QSqlQuery q(db_);
 
   foreach (QString idLabel, idLabels_) {
     QList<QTreeWidgetItem *> treeItems =
@@ -1416,7 +1482,7 @@ void OptionsDialog::applyLabels()
       while (q.next()) {
         QString strIdLabels = q.value(1).toString();
         strIdLabels.replace(QString(",%1,").arg(idLabel), ",");
-        QSqlQuery q1(*db_);
+        QSqlQuery q1(db_);
         q1.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
                arg(strIdLabels).arg(q.value(0).toInt()));
       }
@@ -1456,7 +1522,7 @@ void OptionsDialog::applyLabels()
     }
   }
 
-  db_->commit();
+  db_.commit();
 }
 
 /**
@@ -1466,4 +1532,23 @@ void OptionsDialog::applyLabels()
 void OptionsDialog::addIdLabelList(QString idLabel)
 {
   if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
+}
+
+void OptionsDialog::applyNotifier()
+{
+  QTreeWidgetItem *treeWidgetItem =
+      feedsTreeNotify_->itemBelow(feedsTreeNotify_->topLevelItem(0));
+  db_.transaction();
+  while (treeWidgetItem) {
+    int check = 0;
+    if (treeWidgetItem->checkState(0) == Qt::Checked)
+      check = 1;
+    QSqlQuery q(db_);
+    QString qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
+        arg(check).arg(treeWidgetItem->text(1).toInt());
+    q.exec(qStr);
+
+    treeWidgetItem = feedsTreeNotify_->itemBelow(treeWidgetItem);
+  }
+  db_.commit();
 }
