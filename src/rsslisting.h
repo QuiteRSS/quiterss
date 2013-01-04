@@ -456,7 +456,7 @@ private slots:
   void deleteNotification();
   void slotOpenNew(int feedId, int feedParId, int newsId);
 
-  void slotFindFeeds(QString text);
+  void slotFindFeeds(QString);
   void slotSelectFind();
   void findFeedVisible(bool visible);
 

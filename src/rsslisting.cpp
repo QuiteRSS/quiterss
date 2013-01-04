@@ -701,7 +701,7 @@ void RSSListing::createStatusBar()
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
   progressBar_->setFormat("%p%");
-  progressBar_->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+  progressBar_->setAlignment(Qt::AlignCenter);
   progressBar_->setFixedWidth(100);
   progressBar_->setFixedHeight(15);
   progressBar_->setMinimum(0);
@@ -5262,7 +5262,7 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
   newsView_->setCurrentIndex(index);
 }
 
-void RSSListing::slotFindFeeds(QString text)
+void RSSListing::slotFindFeeds(QString)
 {
   if (!findFeedsWidget_->isVisible()) return;
 
