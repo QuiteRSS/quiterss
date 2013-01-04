@@ -2790,6 +2790,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool clicked,
       int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
       q.exec(qStr);
+
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+      feedsTreeModel_->setData(
+            feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
+            newsId);
       qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
     }
   }
@@ -5176,14 +5181,19 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
 {
   deleteNotification();
 
+  openingFeedAction_ = 0;
+  openNewsWebViewOn_ = true;
+  if (feedIdOld_ == feedId) feedIdOld_ = -2;
+
   QSqlQuery q(db_);
   QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
   q.exec(qStr);
 
-  openingFeedAction_ = 0;
-  openNewsWebViewOn_ = true;
-
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  feedsTreeModel_->setData(
+        feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
+        newsId);
+
   feedsTreeView_->setCurrentIndex(feedIndex);
   slotFeedClicked(feedIndex);
 
