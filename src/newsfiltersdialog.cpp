@@ -344,7 +344,7 @@ void NewsFiltersDialog::applyFilter()
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
       rssl_->setUserFilter(strIdFeed.toInt(), filterId);
-      NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->tabWidget_->currentWidget());
+      NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
   }

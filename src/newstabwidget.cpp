@@ -1263,7 +1263,7 @@ void NewsTabWidget::setBrowserPosition()
 //! Закрытие вкладки по кнопке х
 void NewsTabWidget::slotTabClose()
 {
-  rsslisting_->slotTabCloseRequested(rsslisting_->tabWidget_->indexOf(this));
+  rsslisting_->slotTabCloseRequested(rsslisting_->stackedWidget_->indexOf(this));
 }
 
 //! Вывод на вкладке названия открытой странички браузера

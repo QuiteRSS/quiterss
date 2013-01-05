@@ -15,7 +15,7 @@ class OptionsDialog : public Dialog
 {
   Q_OBJECT
 public:
-  explicit OptionsDialog(QWidget *parent, QSqlDatabase *db);
+  explicit OptionsDialog(QWidget *parent);
   int currentIndex();
   void setCurrentItem(int index);
 
@@ -123,6 +123,7 @@ private slots:
   void updateProxy();
   void applyProxy();
   void acceptDialog();
+  void closeDialog();
   void slotFontChange();
   void slotFontReset();
   void intervalTimeChang(QString str);
@@ -145,7 +146,7 @@ signals:
   void signalShortcutTreeUpDownPressed();
 
 private:
-  QSqlDatabase *db_;
+  QSqlDatabase db_;
 
   QLabel *contentLabel_;
   QTreeWidget *categoriesTree_;
@@ -193,6 +194,7 @@ private:
 
   // notifier
   void createNotifierWidget();
+  void applyNotifier();
 
   // labels
   void createLabelsWidget();

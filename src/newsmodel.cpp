@@ -207,7 +207,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         break;
       }
     }
-    int padding = 3;
+    int padding = 8;
     if (stopColFix == section) padding = padding + 20;
     text = view_->header()->fontMetrics().elidedText(
           text, Qt::ElideRight, view_->header()->sectionSize(section)-padding);
