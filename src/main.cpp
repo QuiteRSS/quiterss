@@ -97,12 +97,13 @@ int main(int argc, char **argv)
   file.close();
 
   QString versionDB = settings_->value("versionDB", "1.0").toString();
-  if (versionDB != kDbVersion) showSplashScreen_ = true;
+  if ((versionDB != kDbVersion) && QFile(settings_->fileName()).exists())
+    showSplashScreen_ = true;
 
   SplashScreen *splashScreen = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
   if (showSplashScreen_) {
     splashScreen->show();
-    if (versionDB != kDbVersion)
+    if ((versionDB != kDbVersion) && QFile(settings_->fileName()).exists())
       splashScreen->showMessage(QString("Converting database to version %1...").
                           arg(kDbVersion),
                           Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
