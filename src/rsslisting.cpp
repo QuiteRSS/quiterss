@@ -186,7 +186,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(this, SIGNAL(signalRefreshInfoTray()),
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
 
-  updateDelayer_ = new UpdateDelayer();
+  updateDelayer_ = new UpdateDelayer(this);
   connect(updateDelayer_, SIGNAL(signalUpdateNeeded(QUrl,bool)),
           this, SLOT(slotUpdateFeedDelayed(QUrl,bool)));
 
