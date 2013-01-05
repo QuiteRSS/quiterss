@@ -648,7 +648,7 @@ void RSSListing::createFeedsDock()
   feedsSplitter_->setStretchFactor(0, 1);
 
   QList <int> sizes;
-  sizes << 600 << 20;
+  sizes << 600 << 210;
   feedsSplitter_->setSizes(sizes);
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
