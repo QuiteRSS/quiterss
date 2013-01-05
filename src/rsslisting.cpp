@@ -101,7 +101,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   openingLink_ = false;
   openNewsTab_ = 0;
 
-  createFeedsDock();
+  createFeedsWidget();
   createToolBarNull();
 
   createActions();
@@ -127,7 +127,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabBar_->installEventFilter(this);
 
   QHBoxLayout *tabBarLayout = new QHBoxLayout();
-  tabBarLayout->setContentsMargins(2, 0, 0, 0);
+  tabBarLayout->setContentsMargins(5, 0, 0, 0);
   tabBarLayout->setSpacing(0);
   tabBarLayout->addWidget(tabBar_);
 
@@ -158,11 +158,15 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   sizes << 180 << 1900;
   splitter->setSizes(sizes);
 
+  QHBoxLayout *mainLayout1 = new QHBoxLayout();
+  mainLayout1->addWidget(pushButtonNull_);
+  mainLayout1->addWidget(splitter, 1);
+
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(0);
   mainLayout->setSpacing(0);
   mainLayout->addWidget(tabBarWidget);
-  mainLayout->addWidget(splitter, 1);
+  mainLayout->addLayout(mainLayout1, 1);
 
   QWidget *centralWidget = new QWidget(this);
   centralWidget->setLayout(mainLayout);
@@ -277,12 +281,6 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
   commitDataRequest_ = true;
 }
 
-/*virtual*/ void RSSListing::showEvent(QShowEvent*)
-{
-//  connect(feedsDock_, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)),
-//          this, SLOT(slotDockLocationChanged(Qt::DockWidgetArea)), Qt::UniqueConnection);
-}
-
 /*!****************************************************************************/
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
@@ -292,11 +290,6 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   if (obj == feedsTreeView_->viewport()) {
     if (event->type() == QEvent::ToolTip) {
       return true;
-    }
-    return false;
-  } else if (obj == toolBarNull_) {
-    if (event->type() == QEvent::MouseButtonRelease) {
-      slotVisibledFeedsDock();
     }
     return false;
   } else if (obj == tabBar_) {
@@ -503,7 +496,7 @@ void RSSListing::timerEvent(QTimerEvent *event)
   }
 }
 
-void RSSListing::createFeedsDock()
+void RSSListing::createFeedsWidget()
 {
   feedsTreeModel_ = new FeedsTreeModel("feeds",
       QStringList() << "" << "" << "" << "" << "" << "",
@@ -695,22 +688,14 @@ void RSSListing::createFeedsDock()
 
 void RSSListing::createToolBarNull()
 {
-  toolBarNull_ = new QToolBar(this);
-  toolBarNull_->setObjectName("toolBarNull");
-  toolBarNull_->setMovable(false);
-  toolBarNull_->setFixedWidth(6);
-  addToolBar(Qt::LeftToolBarArea, toolBarNull_);
-
   pushButtonNull_ = new QPushButton(this);
   pushButtonNull_->setObjectName("pushButtonNull");
+  pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+  pushButtonNull_->setFixedWidth(6);
   pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   pushButtonNull_->setFocusPolicy(Qt::NoFocus);
-  toolBarNull_->addWidget(pushButtonNull_);
-  connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsDock()));
-  toolBarNull_->installEventFilter(this);
-
-//  connect(feedsDock_, SIGNAL(visibilityChanged(bool)),
-//          this, SLOT(updateIconToolBarNull(bool)));
+  pushButtonNull_->setStyleSheet("background: #E8E8E8; border: none; padding: 0px;");
+  connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsWidget()));
 }
 
 void RSSListing::createNewsTab(int index)
@@ -1080,10 +1065,10 @@ void RSSListing::createActions()
   connect(switchFocusAct_, SIGNAL(triggered()), this, SLOT(slotSwitchFocus()));
   this->addAction(switchFocusAct_);
 
-  visibleFeedsDockAct_ = new QAction(this);
-  visibleFeedsDockAct_->setObjectName("visibleFeedsDockAct");
-  connect(visibleFeedsDockAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsDock()));
-  this->addAction(visibleFeedsDockAct_);
+  visibleFeedsWidgetAct_ = new QAction(this);
+  visibleFeedsWidgetAct_->setObjectName("visibleFeedsWidgetAct");
+  connect(visibleFeedsWidgetAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsWidget()));
+  this->addAction(visibleFeedsWidgetAct_);
 
   showUnreadCount_ = new QAction(this);
   showUnreadCount_->setData(feedsTreeModel_->proxyColumnByOriginal("unread"));
@@ -1258,8 +1243,8 @@ void RSSListing::createShortcut()
   switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
   listActions_.append(switchFocusAct_);
 
-  visibleFeedsDockAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
-  listActions_.append(visibleFeedsDockAct_);
+  visibleFeedsWidgetAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
+  listActions_.append(visibleFeedsWidgetAct_);
 
   listActions_.append(placeToTrayAct_);
 
@@ -1748,13 +1733,13 @@ void RSSListing::readSettings()
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
-  feedsDockSplitterState_ = settings_->value("FeedsDockSplitterState").toByteArray();
+  feedsWidgetSplitterState_ = settings_->value("FeedsWidgetSplitterState").toByteArray();
   bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
   newsCategoriesTree_->setVisible(showCategories);
   if (showCategories) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
-    feedsSplitter_->restoreState(feedsDockSplitterState_);
+    feedsSplitter_->restoreState(feedsWidgetSplitterState_);
   } else {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
@@ -1765,15 +1750,6 @@ void RSSListing::readSettings()
 
   if (isFullScreen())
     menuBar()->hide();
-
-  toolBarNull_->setStyleSheet("QToolBar { border: none; padding: 0px;}");
-  if (feedsDockArea_ == Qt::LeftDockWidgetArea) {
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
-  } else if (feedsDockArea_ == Qt::RightDockWidgetArea) {
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
-  } else {
-    pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
-  }
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
                           settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
@@ -1895,9 +1871,9 @@ void RSSListing::writeSettings()
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
     newsCategoriesTreeVisible = false;
-    settings_->setValue("FeedsDockSplitterState", feedsDockSplitterState_);
+    settings_->setValue("FeedsWidgetSplitterState", feedsWidgetSplitterState_);
   } else {
-    settings_->setValue("FeedsDockSplitterState", feedsSplitter_->saveState());
+    settings_->setValue("FeedsWidgetSplitterState", feedsSplitter_->saveState());
   }
   settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
 
@@ -3254,39 +3230,20 @@ void RSSListing::slotProgressBarUpdate()
     QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
-void RSSListing::slotVisibledFeedsDock()
+void RSSListing::slotVisibledFeedsWidget()
 {
-//  feedsDock_->setVisible(!feedsDock_->isVisible());
+  feedsWidget_->setVisible(!feedsWidget_->isVisible());
+  updateIconToolBarNull(feedsWidget_->isVisible());
 }
 
-void RSSListing::updateIconToolBarNull(bool feedsDockVisible)
+void RSSListing::updateIconToolBarNull(bool feedsWidgetVisible)
 {
-  if (feedsDockArea_ == Qt::LeftDockWidgetArea) {
-    if (feedsDockVisible)
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
-    else
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
-  } else if (feedsDockArea_ == Qt::RightDockWidgetArea) {
-    if (feedsDockVisible)
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
-    else
-      pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
-  }
+  if (feedsWidgetVisible)
+    pushButtonNull_->setIcon(QIcon(":/images/images/triangleR.png"));
+  else
+    pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
 }
 
-void RSSListing::slotDockLocationChanged(Qt::DockWidgetArea area)
-{
-  if (area == Qt::LeftDockWidgetArea) {
-    toolBarNull_->show();
-    addToolBar(Qt::LeftToolBarArea, toolBarNull_);
-  } else if (area == Qt::RightDockWidgetArea) {
-    toolBarNull_->show();
-    addToolBar(Qt::RightToolBarArea, toolBarNull_);
-  } else {
-    toolBarNull_->hide();
-  }
-//  updateIconToolBarNull(feedsDock_->isVisible());
-}
 
 void RSSListing::markFeedRead()
 {
@@ -3592,11 +3549,6 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   // если включается последний используемый фильтр
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction_ = pAct;
-}
-
-void RSSListing::slotFeedsDockLocationChanged(Qt::DockWidgetArea area)
-{
-  feedsDockArea_ = area;
 }
 
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
@@ -3988,7 +3940,7 @@ void RSSListing::retranslateStrings()
   switchFocusAct_->setToolTip(
         tr("Switch Focus Between Panels (Tree Feeds, List News, Browser)"));
 
-  visibleFeedsDockAct_->setText(tr("Show/Hide Tree Feeds"));
+  visibleFeedsWidgetAct_->setText(tr("Show/Hide Tree Feeds"));
 
   placeToTrayAct_->setText(tr("Minimize to Tray"));
   placeToTrayAct_->setToolTip(
@@ -5508,9 +5460,9 @@ void RSSListing::showNewsCategoriesTree()
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
     newsCategoriesTree_->show();
-    feedsSplitter_->restoreState(feedsDockSplitterState_);
+    feedsSplitter_->restoreState(feedsWidgetSplitterState_);
   } else {
-    feedsDockSplitterState_ = feedsSplitter_->saveState();
+    feedsWidgetSplitterState_ = feedsSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
     newsCategoriesTree_->hide();

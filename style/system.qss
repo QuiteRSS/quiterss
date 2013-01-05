@@ -14,7 +14,7 @@
 	min-height: 20px;
 }
 
-#pushButtonNull {
+QToolBar {
 	border-style: none;
 }
 

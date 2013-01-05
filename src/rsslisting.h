@@ -138,7 +138,6 @@ protected:
   bool eventFilter(QObject *obj, QEvent *ev);
   virtual void closeEvent(QCloseEvent*);
   virtual void changeEvent(QEvent*);
-  virtual void showEvent(QShowEvent*);
   void timerEvent(QTimerEvent* event);
 
 private:
@@ -148,7 +147,7 @@ private:
   UpdateDelayer *updateDelayer_;
 
   void showProgressBar(int addToMaximum);
-  void createFeedsDock();
+  void createFeedsWidget();
   void createNewsTab(int index);
   void createToolBarNull();
   void createActions();
@@ -245,7 +244,7 @@ private:
   QAction *feedKeyUpAct_;
   QAction *feedKeyDownAct_;
   QAction *switchFocusAct_;
-  QAction *visibleFeedsDockAct_;
+  QAction *visibleFeedsWidgetAct_;
   QAction *openFeedNewTabAct_;
   QAction *placeToTrayAct_;
 
@@ -303,8 +302,6 @@ private:
   QToolBar *mainToolbar_;
 
   QToolBar *feedsToolBar_;
-  QDockWidget *feedsDock_;
-  Qt::DockWidgetArea feedsDockArea_;
 
   NewsView *newsView_;
 
@@ -312,7 +309,6 @@ private:
   QLabel *statusUnread_;
   QLabel *statusAll_;
 
-  QToolBar *toolBarNull_;
   QPushButton *pushButtonNull_;
 
   QByteArray data_;
@@ -395,14 +391,12 @@ private:
   QToolButton *showCategoriesButton_;
   QWidget *categoriesWidget_;
   QSplitter *feedsSplitter_;
-  QByteArray feedsDockSplitterState_;
+  QByteArray feedsWidgetSplitterState_;
 
 private slots:
   void slotProgressBarUpdate();
-  void slotVisibledFeedsDock();
-  void updateIconToolBarNull(bool feedsDockVisible);
-  void slotDockLocationChanged(Qt::DockWidgetArea area);
-  void slotFeedsDockLocationChanged(Qt::DockWidgetArea area);
+  void slotVisibledFeedsWidget();
+  void updateIconToolBarNull(bool feedsWidgetVisible);
   void setFeedRead(int feedId, FeedReedType feedReadtype);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);

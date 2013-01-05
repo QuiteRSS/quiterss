@@ -112,11 +112,6 @@ QToolBar {
 	border-style: none;
 }
 
-#pushButtonNull {
-	background: #E8E8E8;
-	border-style: none;
-}
-
 #buttonColumnView {
 	border: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #f0f0f0, stop: 1.0 #D5D5D5);
