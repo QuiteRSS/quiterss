@@ -9,14 +9,30 @@
  * @file updatedelayer.h
  *---------------------------------------------------------------------------*/
 
+#include <QElapsedTimer>
+#include <QList>
 #include <QObject>
+#include <QPair>
+#include <QTimer>
 #include <QUrl>
 
 class UpdateDelayer : public QObject
 {
   Q_OBJECT
+
+  QList<QUrl> feedUrlList_;
+  QList<bool> feedChangedList_;
+
+  int delayValue_;
+  QTimer *delayTimer_;
+
+  QElapsedTimer timer_;  // таймер для отладочного вывода
+
+private slots:
+  void slotDelayTimerTimeout();
+
 public:
-  explicit UpdateDelayer(QObject *parent = 0);
+  explicit UpdateDelayer(QObject *parent = 0, int delayValue = 3000);
   void delayUpdate(const QUrl &feedUrl, const bool &feedChanged);
 
 public slots:

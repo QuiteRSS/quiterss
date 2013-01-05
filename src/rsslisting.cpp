@@ -147,8 +147,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(this, SIGNAL(signalRefreshInfoTray()),
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
 
-  connect(&updateDelayer_, SIGNAL(signalUpdateNeeded(QUrl,bool)),
-          this, SLOT(slotFeedDelayedUpdate(QUrl,bool)));
+  updateDelayer_ = new UpdateDelayer();
+  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(QUrl,bool)),
+          this, SLOT(slotUpdateFeedDelayed(QUrl,bool)));
 
   loadSettingsFeeds();
 
@@ -1922,7 +1923,7 @@ void RSSListing::addFeed()
                                 addFeedWizard->feedUrlString_);
 
   feedsModelReload();
-  slotUpdateFeed(addFeedWizard->feedUrlString_, true);
+  slotUpdateFeedDelayed(addFeedWizard->feedUrlString_, true);
 
   delete addFeedWizard;
 }
@@ -2524,23 +2525,23 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
 
 /** @brief Обработка сигнала на обновление отображения ленты
  *
- *  Проиводится после обновления ленты или после добавления ленты
+ *  Производится после обновления ленты и после добавления ленты
  *  В действительности производится задержка обновления
  * @param url URL-адрес обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
  *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
 {
-  updateDelayer_.delayUpdate(url, changed);
+  updateDelayer_->delayUpdate(url, changed);
 }
 
 /** @brief Обновление отображения ленты
  *
- *  Проиводится после некоторой задержки
+ *  Слот вызывается по сигналу от UpdateDelayer'а после некоторой задержки
  * @param url URL-адрес обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
  *---------------------------------------------------------------------------*/
-void RSSListing::slotFeedDelayedUpdate(const QUrl &url, const bool &changed)
+void RSSListing::slotUpdateFeedDelayed(const QUrl &url, const bool &changed)
 {
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
