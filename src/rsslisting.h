@@ -110,8 +110,7 @@ public slots:
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedClicked(QModelIndex index);
-  void slotFeedSelected(QModelIndex index, bool clicked = false,
-                        bool createTab = false);
+  void slotFeedSelected(QModelIndex index, bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
   void showOptionDlg();
@@ -171,6 +170,8 @@ private:
   void creatFeedTab(int feedId, int feedParId);
   void feedsModelReload();
   void cleanUp();
+
+  int addTab(NewsTabWidget *widget);
 
   QString dataDirPath_;
 

@@ -404,6 +404,24 @@ void NewsTabWidget::setSettings(bool newTab)
       newsView_->setFont(
             QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
       newsModel_->formatDateTime_ = rsslisting_->formatDateTime_;
+
+      newsToolBar_->actions().at(5)->setVisible(type_ == TAB_FEED);
+      newsToolBar_->actions().at(6)->setVisible(type_ == TAB_FEED);
+      newsToolBar_->actions().at(7)->setVisible(type_ != TAB_CAT_DEL);
+      newsToolBar_->actions().at(8)->setVisible(type_ != TAB_CAT_DEL);
+      newsToolBar_->actions().at(9)->setVisible(type_ == TAB_CAT_DEL);
+      newsToolBar_->actions().at(10)->setVisible(type_ == TAB_CAT_DEL);
+
+      if (type_ == TAB_CAT_DEL) {
+        rsslisting_->deleteNewsAct_->setEnabled(false);
+        rsslisting_->deleteAllNewsAct_->setEnabled(false);
+        setVisibleAction(true);
+      } else {
+        rsslisting_->deleteNewsAct_->setEnabled(true);
+        rsslisting_->deleteAllNewsAct_->setEnabled(true);
+      }
+
+      rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);
     }
 
     QFont font = QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_);
@@ -434,7 +452,6 @@ void NewsTabWidget::setSettings(bool newTab)
           QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
   }
 
-
   if (type_ == TAB_FEED) {
     QSqlQuery q(*db_);
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
@@ -450,24 +467,6 @@ void NewsTabWidget::setSettings(bool newTab)
 
   if (type_ != TAB_WEB) {
     rsslisting_->slotUpdateStatus(feedId_, false);
-
-    newsToolBar_->actions().at(5)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(6)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(7)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(8)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(9)->setVisible(type_ == TAB_CAT_DEL);
-    newsToolBar_->actions().at(10)->setVisible(type_ == TAB_CAT_DEL);
-
-    if (type_ == TAB_CAT_DEL) {
-      rsslisting_->deleteNewsAct_->setEnabled(false);
-      rsslisting_->deleteAllNewsAct_->setEnabled(false);
-      setVisibleAction(true);
-    } else {
-      rsslisting_->deleteNewsAct_->setEnabled(true);
-      rsslisting_->deleteAllNewsAct_->setEnabled(true);
-    }
-
-    rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);
   }
 }
 
