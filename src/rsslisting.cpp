@@ -722,6 +722,10 @@ void RSSListing::createStatusBar()
   progressBar_->setVisible(false);
   statusBar()->setMinimumHeight(22);
 
+  QToolButton *loadImagesButton = new QToolButton(this);
+  loadImagesButton->setDefaultAction(autoLoadImagesToggle_);
+  loadImagesButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+
   QToolButton *fullScreenButton = new QToolButton(this);
   fullScreenButton->setDefaultAction(fullScreenAct_);
   fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
@@ -734,6 +738,7 @@ void RSSListing::createStatusBar()
   statusAll_ = new QLabel(this);
   statusAll_->hide();
   statusBar()->addPermanentWidget(statusAll_);
+  statusBar()->addPermanentWidget(loadImagesButton);
   statusBar()->addPermanentWidget(fullScreenButton);
   statusBar()->setVisible(true);
 }
