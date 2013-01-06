@@ -146,7 +146,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
               QString("QSplitter::handle {background: qlineargradient("
                       "x1: 0, y1: 0, x2: 0, y2: 1,"
                       "stop: 0 %1, stop: 0.07 %2);}").
-              arg(feedsPanel_->palette().color(feedsPanel_->backgroundRole()).name()).
+              arg(feedsPanel_->palette().background().color().name()).
               arg(qApp->palette().color(QPalette::Dark).name()));
   mainSplitter_->setChildrenCollapsible(false);
   mainSplitter_->addWidget(feedsWidget_);
@@ -4618,7 +4618,7 @@ void RSSListing::setStyleApp(QAction *pAct)
               QString("QSplitter::handle {background: qlineargradient("
                       "x1: 0, y1: 0, x2: 0, y2: 1,"
                       "stop: 0 %1, stop: 0.07 %2);}").
-              arg(feedsPanel_->palette().color(feedsPanel_->backgroundRole()).name()).
+              arg(feedsPanel_->palette().background().color().name()).
               arg(qApp->palette().color(QPalette::Dark).name()));
 }
 
