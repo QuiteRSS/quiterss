@@ -68,6 +68,7 @@ QTabWidget::tab-bar {
 QTabBar::tab {
 	background-color: transparent;
 	border: 1px solid gray;
+	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	min-width: 20px;
@@ -88,12 +89,20 @@ QTabBar::tab:selected {
 	padding-bottom: 5px;
 }
 
+QTabBar::tab:hover:!selected {
+	border-bottom: 1px solid gray;
+}
+
 QTabBar QToolButton {
 	border: 1px solid gray;
 	border-radius: 2px;
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #ffffff, stop: 0.4 #fafafa,
 								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
+}
+
+#tabBarWidget {
+	border-bottom: 1px solid gray;
 }
 
 QToolBar {

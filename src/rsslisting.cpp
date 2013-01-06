@@ -133,36 +133,34 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   QWidget *tabBarWidget = new QWidget(this);
   tabBarWidget->setObjectName("tabBarWidget");
-  tabBarWidget->setStyleSheet(
-        QString("#tabBarWidget {border-bottom: 1px solid %1;}").
-        arg(qApp->palette().color(QPalette::Dark).name()));
   tabBarWidget->setLayout(tabBarLayout);
 
   stackedWidget_ = new QStackedWidget(this);
   stackedWidget_->setObjectName("stackedWidget_");
   stackedWidget_->setFrameStyle(QFrame::NoFrame);
 
-  QSplitter *splitter = new QSplitter(this);
-  splitter ->setFrameStyle(QFrame::NoFrame);
-  splitter->setHandleWidth(1);
-  splitter->setStyleSheet(
-        QString("QSplitter::handle {background: qlineargradient("
-                "x1: 0, y1: 0, x2: 0, y2: 1,"
-                "stop: 0 #ffffff, stop: 0.1 %1);}").
-        arg(qApp->palette().color(QPalette::Dark).name()));
-  splitter->setChildrenCollapsible(false);
-  splitter->addWidget(feedsWidget_);
-  splitter->addWidget(stackedWidget_);
-  splitter->setStretchFactor(1, 1);
+  mainSplitter_ = new QSplitter(this);
+  mainSplitter_ ->setFrameStyle(QFrame::NoFrame);
+  mainSplitter_->setHandleWidth(1);
+  mainSplitter_->setStyleSheet(
+              QString("QSplitter::handle {background: qlineargradient("
+                      "x1: 0, y1: 0, x2: 0, y2: 1,"
+                      "stop: 0 %1, stop: 0.07 %2);}").
+              arg(feedsPanel_->palette().color(feedsPanel_->backgroundRole()).name()).
+              arg(qApp->palette().color(QPalette::Dark).name()));
+  mainSplitter_->setChildrenCollapsible(false);
+  mainSplitter_->addWidget(feedsWidget_);
+  mainSplitter_->addWidget(stackedWidget_);
+  mainSplitter_->setStretchFactor(1, 1);
 
   #define FEEDS_WIDTH 180
   QList <int> sizes;
   sizes << FEEDS_WIDTH << QApplication::desktop()->width();
-  splitter->setSizes(sizes);
+  mainSplitter_->setSizes(sizes);
 
   QHBoxLayout *mainLayout1 = new QHBoxLayout();
   mainLayout1->addWidget(pushButtonNull_);
-  mainLayout1->addWidget(splitter, 1);
+  mainLayout1->addWidget(mainSplitter_, 1);
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(0);
@@ -4615,6 +4613,13 @@ void RSSListing::setStyleApp(QAction *pAct)
   file.open(QFile::ReadOnly);
   qApp->setStyleSheet(QLatin1String(file.readAll()));
   file.close();
+
+  mainSplitter_->setStyleSheet(
+              QString("QSplitter::handle {background: qlineargradient("
+                      "x1: 0, y1: 0, x2: 0, y2: 1,"
+                      "stop: 0 %1, stop: 0.07 %2);}").
+              arg(feedsPanel_->palette().color(feedsPanel_->backgroundRole()).name()).
+              arg(qApp->palette().color(QPalette::Dark).name()));
 }
 
 //! Переключение фокуса между деревом лент, списком новостей и браузером
