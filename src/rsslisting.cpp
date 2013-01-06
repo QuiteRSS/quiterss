@@ -154,8 +154,11 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   splitter->addWidget(feedsWidget_);
   splitter->addWidget(stackedWidget_);
   splitter->setStretchFactor(1, 1);
+
+  #define FEEDS_WIDTH 180
+  #define NEWS_WIDTH 1900
   QList <int> sizes;
-  sizes << 180 << 1900;
+  sizes << FEEDS_WIDTH << NEWS_WIDTH;
   splitter->setSizes(sizes);
 
   QHBoxLayout *mainLayout1 = new QHBoxLayout();
