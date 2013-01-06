@@ -24,6 +24,7 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
   newsIconMovie_ = new QMovie(":/images/loading");
   newsIconTitle_->setMovie(newsIconMovie_);
   newsTextTitle_ = new QLabel();
+  newsTextTitle_->setObjectName("newsTextTitle_");
 
   closeButton_ = new QToolButton();
   closeButton_->setFixedSize(15, 15);
@@ -48,7 +49,7 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
 
   newsTitleLabel_ = new QWidget();
   newsTitleLabel_->setObjectName("newsTitleLabel_");
-  newsTitleLabel_->setStyleSheet("min-height: 16px;");
+  newsTitleLabel_->setMinimumHeight(16);
   newsTitleLabel_->setFixedWidth(148);
   newsTitleLabel_->setLayout(newsTitleLayout);
   newsTitleLabel_->setVisible(false);
@@ -150,17 +151,13 @@ void NewsTabWidget::createNewsList()
   newsPanelLayout->addStretch(1);
   newsPanelLayout->addWidget(findText_);
 
-  QFrame *line = new QFrame(this);
-  line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-
-  QVBoxLayout *newsPanelLayoutV = new QVBoxLayout();
-  newsPanelLayoutV->setMargin(0);
-  newsPanelLayoutV->setSpacing(0);
-  newsPanelLayoutV->addLayout(newsPanelLayout);
-  newsPanelLayoutV->addWidget(line);
-
   newsPanelWidget_ = new QWidget(this);
-  newsPanelWidget_->setLayout(newsPanelLayoutV);
+  newsPanelWidget_->setObjectName("newsPanelWidget_");
+  newsPanelWidget_->setStyleSheet(
+        QString("#newsPanelWidget_ {border-bottom: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
+
+  newsPanelWidget_->setLayout(newsPanelLayout);
   if (!rsslisting_->newsToolbarToggle_->isChecked())
     newsPanelWidget_->hide();
 
@@ -282,23 +279,17 @@ void NewsTabWidget::createWebWidget()
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   webToolBar_->addAction(webExternalBrowserAct_);
 
-  QHBoxLayout *webControlPanelHLayout = new QHBoxLayout();
-  webControlPanelHLayout->setMargin(2);
-  webControlPanelHLayout->setSpacing(2);
-  webControlPanelHLayout->addWidget(webToolBar_);
-  webControlPanelHLayout->addStretch(1);
-
-  QFrame *webControlPanelLine = new QFrame(this);
-  webControlPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-
-  QVBoxLayout *webControlPanelLayout = new QVBoxLayout();
-  webControlPanelLayout->setMargin(0);
-  webControlPanelLayout->setSpacing(0);
-  webControlPanelLayout->addLayout(webControlPanelHLayout);
-  webControlPanelLayout->addWidget(webControlPanelLine);
+  QHBoxLayout *webControlPanelLayout = new QHBoxLayout();
+  webControlPanelLayout->setMargin(2);
+  webControlPanelLayout->setSpacing(2);
+  webControlPanelLayout->addWidget(webToolBar_);
+  webControlPanelLayout->addStretch(1);
 
   webControlPanel_ = new QWidget(this);
   webControlPanel_->setObjectName("webControlPanel_");
+  webControlPanel_->setStyleSheet(
+        QString("#webControlPanel_ {border-bottom: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
   webControlPanel_->setLayout(webControlPanelLayout);
 
   if (type_ != TAB_WEB)
@@ -317,25 +308,19 @@ void NewsTabWidget::createWebWidget()
 
   webPanelDate_ = new QLabel(this);
 
-  QGridLayout *webPanelLayout1 = new QGridLayout();
-  webPanelLayout1->setMargin(5);
-  webPanelLayout1->setSpacing(5);
-  webPanelLayout1->setColumnStretch(0, 1);
-  webPanelLayout1->addWidget(webPanelTitle_, 0, 0);
-  webPanelLayout1->addWidget(webPanelDate_, 0, 1, 1, 1, Qt::AlignRight);
-  webPanelLayout1->addWidget(webPanelAuthor_, 1, 0);
-
-  QFrame *webPanelLine = new QFrame(this);
-  webPanelLine->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-
-  QVBoxLayout *webPanelLayout = new QVBoxLayout();
-  webPanelLayout->setMargin(0);
-  webPanelLayout->setSpacing(0);
-  webPanelLayout->addLayout(webPanelLayout1);
-  webPanelLayout->addWidget(webPanelLine);
+  QGridLayout *webPanelLayout = new QGridLayout();
+  webPanelLayout->setMargin(5);
+  webPanelLayout->setSpacing(5);
+  webPanelLayout->setColumnStretch(0, 1);
+  webPanelLayout->addWidget(webPanelTitle_, 0, 0);
+  webPanelLayout->addWidget(webPanelDate_, 0, 1, 1, 1, Qt::AlignRight);
+  webPanelLayout->addWidget(webPanelAuthor_, 1, 0);
 
   webPanel_ = new QWidget(this);
   webPanel_->setObjectName("webPanel_");
+  webPanel_->setStyleSheet(
+          QString("#webPanel_ {border-bottom: 1px solid %1;}").
+          arg(qApp->palette().color(QPalette::Dark).name()));
   webPanel_->setLayout(webPanelLayout);
   webPanel_->setVisible(false);
 

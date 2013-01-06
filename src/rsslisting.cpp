@@ -113,7 +113,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createStatusBar();
   createTray();
 
-  tabBar_ = new QTabBar(this);
+  tabBar_ = new QTabBar();
   tabBar_->addTab("");
   tabBar_->setIconSize(QSize(16, 16));
   tabBar_->setMovable(true);
@@ -141,14 +141,14 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   stackedWidget_ = new QStackedWidget(this);
   stackedWidget_->setObjectName("stackedWidget_");
   stackedWidget_->setFrameStyle(QFrame::NoFrame);
-  stackedWidget_->setStyleSheet(
-        QString("#stackedWidget_ {background: %1;}").
-        arg(qApp->palette().color(QPalette::Light).name()));
 
   QSplitter *splitter = new QSplitter(this);
+  splitter ->setFrameStyle(QFrame::NoFrame);
   splitter->setHandleWidth(1);
   splitter->setStyleSheet(
-        QString("QSplitter::handle {background: %1;}").
+        QString("QSplitter::handle {background: qlineargradient("
+                "x1: 0, y1: 0, x2: 0, y2: 1,"
+                "stop: 0 #ffffff, stop: 0.1 %1);}").
         arg(qApp->palette().color(QPalette::Dark).name()));
   splitter->setChildrenCollapsible(false);
   splitter->addWidget(feedsWidget_);
@@ -529,21 +529,12 @@ void RSSListing::createFeedsWidget()
   feedsPanelLayout->setMargin(2);
   feedsPanelLayout->addWidget(feedsToolBar_, 1);
 
-  QFrame *line = new QFrame(this);
-  line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
-
-  QVBoxLayout *feedsPanelLayoutV = new QVBoxLayout();
-  feedsPanelLayoutV->setMargin(0);
-  feedsPanelLayoutV->setSpacing(0);
-  feedsPanelLayoutV->addLayout(feedsPanelLayout);
-  feedsPanelLayoutV->addWidget(line);
-
-  QWidget *feedsPanel = new QWidget(this);
-  feedsPanel->setObjectName("feedsPanel");
-  feedsPanel->setStyleSheet(
-        QString("#feedsPanel {background: %1;}").
-        arg(qApp->palette().color(QPalette::Light).name()));
-  feedsPanel->setLayout(feedsPanelLayoutV);
+  feedsPanel_ = new QWidget(this);
+  feedsPanel_->setObjectName("feedsPanel_");
+  feedsPanel_->setStyleSheet(
+        QString("#feedsPanel_ {border-bottom: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
+  feedsPanel_->setLayout(feedsPanelLayout);
 
   findFeeds_ = new FindFeed(this);
   QVBoxLayout *findFeedsLayout = new QVBoxLayout();
@@ -556,6 +547,9 @@ void RSSListing::createFeedsWidget()
   newsCategoriesTree_ = new QTreeWidget(this);
   newsCategoriesTree_->setObjectName("newsCategoriesTree_");
   newsCategoriesTree_->setFrameStyle(QFrame::NoFrame);
+  newsCategoriesTree_->setStyleSheet(
+        QString("#newsCategoriesTree_ {border-top: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
   newsCategoriesTree_->setColumnCount(3);
   newsCategoriesTree_->setColumnHidden(1, true);
   newsCategoriesTree_->setColumnHidden(2, true);
@@ -617,10 +611,6 @@ void RSSListing::createFeedsWidget()
 
   categoriesPanel_ = new QWidget(this);
   categoriesPanel_->setObjectName("categoriesPanel_");
-  categoriesPanel_->setStyleSheet(
-        QString("#categoriesPanel_ {background: %1; border-bottom: 1px solid %2;}").
-        arg(qApp->palette().color(QPalette::Light).name()).
-        arg(qApp->palette().color(QPalette::Dark).name()));
   categoriesPanel_->setLayout(categoriesPanelLayout);
 
   QVBoxLayout *categoriesLayout = new QVBoxLayout();
@@ -650,7 +640,7 @@ void RSSListing::createFeedsWidget()
   QVBoxLayout *feedsLayout = new QVBoxLayout();
   feedsLayout->setMargin(0);
   feedsLayout->setSpacing(0);
-  feedsLayout->addWidget(feedsPanel);
+  feedsLayout->addWidget(feedsPanel_);
   feedsLayout->addWidget(findFeedsWidget_);
   feedsLayout->addWidget(feedsSplitter_, 1);
 

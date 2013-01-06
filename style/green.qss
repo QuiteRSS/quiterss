@@ -1,7 +1,7 @@
 /* QuiteRSS Green Style */
 
 QMenuBar {
-	background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 										stop:0 #e0eee0,
 										stop:0.4 #d8eed8,
 										stop:0.5 #cceecc,
@@ -43,6 +43,14 @@ QMenuBar::item:pressed {
 
 #feedsTreeView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
+}
+
+#categoriesLabel_, #newsTextTitle_ {
+	color: #000000;
+}
+
+#feedsPanel_, #categoriesPanel_, #stackedWidget_ {
+	background: white;
 }
 
 QTabWidget::pane { /* Рамка виджета со вкладками */

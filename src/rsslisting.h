@@ -180,6 +180,7 @@ private:
   QString dbFileName_;
   NewsModel *newsModel_;
   QTabBar *tabBar_;
+  QWidget *feedsPanel_;
   QFrame *feedsWidget_;
 
   QList<QAction *> listActions_;

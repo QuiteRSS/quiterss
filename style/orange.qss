@@ -45,6 +45,14 @@ QMenuBar::item:pressed {
 	min-height: 20px;
 }
 
+#categoriesLabel_, #newsTextTitle_ {
+	color: #000000;
+}
+
+#feedsPanel_, #categoriesPanel_, #stackedWidget_ {
+	background: white;
+}
+
 QTabWidget::pane { /* Рамка виджета со вкладками */
 	background: white;
 	border: 1px solid gray;
@@ -86,26 +94,6 @@ QTabBar QToolButton {
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 								stop: 0 #ffffff, stop: 0.4 #fafafa,
 								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
-}
-
-#tabWidget_::pane {
-	border-right: none;
-	border-bottom: none;
-}
-
-#feedsTitleLabel_ {
-	margin-left: 3px;
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #ffffff, stop: 0.4 #fafafa,
-								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
-	border: 1px solid grey;
-	border-bottom: 0px solid #D5D5D5;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	padding: 4px;
-	vertical-align:middle;
-	color: #000000;
-	min-height: 17px;
 }
 
 QToolBar {
