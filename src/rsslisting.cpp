@@ -640,8 +640,10 @@ void RSSListing::createFeedsWidget()
   feedsSplitter_->addWidget(categoriesWidget_);
   feedsSplitter_->setStretchFactor(0, 1);
 
+  #define FEEDS_HEIGHT 600
+  #define CATEGORIES_HEIGHT 210
   QList <int> sizes;
-  sizes << 600 << 210;
+  sizes << FEEDS_HEIGHT << CATEGORIES_HEIGHT;
   feedsSplitter_->setSizes(sizes);
 
   QVBoxLayout *feedsLayout = new QVBoxLayout();
