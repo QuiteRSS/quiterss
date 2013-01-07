@@ -6,7 +6,7 @@
 UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
     : QObject(parent), delayValue_(delayValue)
 {
-  delayTimer_ = new QTimer;
+  delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
 }
