@@ -39,6 +39,7 @@ public:
   LineEdit *urlFeedEdit_;
   QString htmlUrlString_;
   QString feedUrlString_;
+  int feedId_;
 
 protected:
   virtual bool validateCurrentPage();
@@ -50,7 +51,7 @@ signals:
   void xmlReadyParse(const QByteArray &data, const QUrl &url);
 
 public slots:
-  void slotUpdateFeed(const QUrl &url, const bool &);
+  void slotUpdateFeed(int feedId, const bool &);
 
 private slots:
   void urlFeedEditChanged(const QString&);

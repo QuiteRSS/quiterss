@@ -124,8 +124,8 @@ public slots:
   void myEmptyWorkingSet();
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
-  void slotUpdateFeed(const QUrl &url, const bool &changed);
-  void slotUpdateFeedDelayed(const QUrl &url, const bool &changed);
+  void slotUpdateFeed(int feedId, const bool &changed);
+  void slotUpdateFeedDelayed(int feedId, const bool &changed);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
@@ -394,6 +394,8 @@ private:
   QWidget *categoriesWidget_;
   QSplitter *feedsSplitter_;
   QByteArray feedsWidgetSplitterState_;
+
+  QElapsedTimer timer_;
 
 private slots:
   void slotProgressBarUpdate();

@@ -191,8 +191,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
 
   updateDelayer_ = new UpdateDelayer(this);
-  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(QUrl,bool)),
-          this, SLOT(slotUpdateFeedDelayed(QUrl,bool)));
+  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int, bool)),
+          this, SLOT(slotUpdateFeedDelayed(int, bool)));
 
   loadSettingsFeeds();
 
@@ -1919,7 +1919,7 @@ void RSSListing::addFeed()
                                 addFeedWizard->feedUrlString_);
 
   feedsModelReload();
-  slotUpdateFeedDelayed(addFeedWizard->feedUrlString_, true);
+  slotUpdateFeedDelayed(addFeedWizard->feedId_, true);
 
   delete addFeedWizard;
 }
@@ -2039,6 +2039,10 @@ void RSSListing::slotImportFeeds()
     return;
   }
 
+  timer_.start();
+  qCritical() << "Start update";
+  qCritical() << "------------------------------------------------------------";
+
   db_.transaction();
 
   QXmlStreamReader xml(&file);
@@ -2152,8 +2156,10 @@ void RSSListing::slotImportFeeds()
     updateFeedAct_->setEnabled(false);
     showProgressBar(requestUrlCount);
   }
-
+  qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
+  qCritical() << "Start update: " << timer_.elapsed() << requestUrlCount;
+  qCritical() << "------------------------------------------------------------";
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
@@ -2259,7 +2265,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
       qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
       qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
     } else {
-      slotUpdateFeed(url_, false);
+      slotUpdateFeed(0, false);
     }
   }
   data_.clear();
@@ -2526,18 +2532,18 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
  * @param url URL-адрес обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(const QUrl &url, const bool &changed)
+void RSSListing::slotUpdateFeed(int feedId, const bool &changed)
 {
-  updateDelayer_->delayUpdate(url, changed);
+  updateDelayer_->delayUpdate(feedId, changed);
 }
 
 /** @brief Обновление отображения ленты
  *
  *  Слот вызывается по сигналу от UpdateDelayer'а после некоторой задержки
- * @param url URL-адрес обновляемой ленты
+ * @param feedId Id обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeedDelayed(const QUrl &url, const bool &changed)
+void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
 {
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
@@ -2550,37 +2556,24 @@ void RSSListing::slotUpdateFeedDelayed(const QUrl &url, const bool &changed)
     progressBar_->setMaximum(0);
     updateAllFeedsAct_->setEnabled(true);
     updateFeedAct_->setEnabled(true);
+    qCritical() << "Stop update: " << timer_.elapsed();
+    qCritical() << "------------------------------------------------------------";
   }
 
   if (!changed) return;
 
-  // Поиск идентификатора ленты в таблице лент по URL
-  // + достаем предыдущее значение количества новых новостей
-  int parseFeedId = 0;
+  // Достаем предыдущее значение количества новых новостей
   int newCountOld = 0;
   QSqlQuery q(db_);
-  q.prepare("SELECT id, newCount FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", url.toEncoded());
-  q.exec();
-  if (q.next()) {
-    parseFeedId = q.value(q.record().indexOf("id")).toInt();
-    newCountOld = q.value(q.record().indexOf("newCount")).toInt();
-  }
+  q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(feedId));
+  if (q.next()) newCountOld = q.value(0).toInt();
+  setUserFilter(feedId);
 
-  // Устанавливаем время обновления ленты
-  q.prepare("UPDATE feeds SET updated=? WHERE id=?");
-  q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
-                                       "yyyy-MM-ddTHH:mm:ss"));
-  q.addBindValue(parseFeedId);
-  q.exec();
-
-  setUserFilter(parseFeedId);
-
-  recountFeedCounts(parseFeedId);
+  recountFeedCounts(feedId);
 
   // Достаём новое значение количества новых новостей
   int newCount = 0;
-  q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(parseFeedId));
+  q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(feedId));
   if (q.next()) newCount = q.value(0).toInt();
 
   if (newCount > newCountOld)
@@ -2604,15 +2597,15 @@ void RSSListing::slotUpdateFeedDelayed(const QUrl &url, const bool &changed)
   if (((newCount - newCountOld) > 0) && !isActiveWindow()) {
     if (onlySelectedFeeds_) {
       q.exec(QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
-             arg(parseFeedId));
+             arg(feedId));
       if (q.next()) {
         if (q.value(0).toInt() == 1) {
-          idFeedList_.append(parseFeedId);
+          idFeedList_.append(feedId);
           cntNewNewsList_.append(newCount - newCountOld);
         }
       }
     } else {
-      idFeedList_.append(parseFeedId);
+      idFeedList_.append(feedId);
       cntNewNewsList_.append(newCount - newCountOld);
     }
   }
@@ -2620,12 +2613,12 @@ void RSSListing::slotUpdateFeedDelayed(const QUrl &url, const bool &changed)
   feedsTreeView_->selectIndex_ = feedsTreeView_->currentIndex();
 
   // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
-  if (parseFeedId == currentNewsTab->feedId_) {
+  if (feedId == currentNewsTab->feedId_) {
     slotUpdateNews();
     int unreadCount = 0;
     int allCount = 0;
     QString qStr = QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
-        arg(parseFeedId);
+        arg(feedId);
     q.exec(qStr);
     if (q.next()) {
       unreadCount = q.value(0).toInt();
@@ -3216,6 +3209,10 @@ void RSSListing::slotGetAllFeeds()
     updateFeedAct_->setEnabled(false);
     showProgressBar(feedCount);
   }
+
+  timer_.start();
+  qCritical() << "Start update";
+  qCritical() << "------------------------------------------------------------";
 }
 
 void RSSListing::slotProgressBarUpdate()
@@ -4872,7 +4869,6 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
 void RSSListing::setUserFilter(int feedId, int filterId)
 {
   QSqlQuery q(db_);
-  db_.transaction();
   bool onlyNew = true;
 
   if (filterId != -1) {
@@ -4901,13 +4897,13 @@ void RSSListing::setUserFilter(int feedId, int filterId)
       if (!qStr1.isNull()) qStr1.append(",");
       switch (q1.value(0).toInt()) {
       case 0: // action -> Mark news as read
-        qStr1.append(" read=2");
+        qStr1.append(" new=0, read=2");
         break;
       case 1: // action -> Add star
         qStr1.append(" starred=1");
         break;
       case 2: // action -> Delete
-        qStr1.append(" read=2, deleted=1");
+        qStr1.append(" new=0, read=2, deleted=1");
         break;
       }
     }
@@ -5030,12 +5026,8 @@ void RSSListing::setUserFilter(int feedId, int filterId)
       }
       qStr.append(qStr1).append(")");
       q1.exec(qStr);
-//      qCritical() << qStr;
     }
   }
-  q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND read=2 AND new=1")
-         .arg(feedId));
-  db_.commit();
 }
 
 //! Открытие новости клавишей Enter

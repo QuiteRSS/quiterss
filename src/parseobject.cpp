@@ -65,7 +65,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url.toString());
-    emit feedUpdated(url, false);
+    emit feedUpdated(parseFeedId, false);
     return;
   }
 
@@ -433,10 +433,18 @@ void ParseObject::slotParse(QSqlDatabase *db,
         arg(xml.lineNumber()).arg(xml.errorString());
     qDebug() << str;
   }
+
+  // Устанавливаем время обновления ленты
+  q.prepare("UPDATE feeds SET updated=? WHERE id=?");
+  q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
+                                       "yyyy-MM-ddTHH:mm:ss"));
+  q.addBindValue(parseFeedId);
+  q.exec();
+
   db->commit();
   qDebug() << "=================== parseXml:finish ===========================";
 
-  emit feedUpdated(url, feedChanged);
+  emit feedUpdated(parseFeedId, feedChanged);
 }
 
 QString ParseObject::parseDate(QString dateString, QString urlString)

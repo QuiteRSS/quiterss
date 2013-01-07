@@ -473,21 +473,15 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(const QUrl &url, const bool &)
+void AddFeedWizard::slotUpdateFeed(int feedId, const bool &)
 {
-  qDebug() << "ParseDone" << url.toString();
+  qDebug() << "ParseDone" << feedId;
   selectedPage = true;
 
   if (titleFeedAsName_->isChecked()) {
-    int parseFeedId = 0;
     QSqlQuery q(*db_);
-    q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-    q.bindValue(":xmlUrl", url.toEncoded());
-    q.exec();
-    if (q.next()) parseFeedId = q.value(0).toInt();
-
     q.exec(QString("SELECT title FROM feeds WHERE id=='%1'").
-           arg(parseFeedId));
+           arg(feedId));
     if (q.next()) nameFeedEdit_->setText(q.value(0).toString());
     nameFeedEdit_->selectAll();
     nameFeedEdit_->setFocus();
@@ -523,6 +517,8 @@ void AddFeedWizard::finish()
   q.addBindValue(parentId);
   q.addBindValue(parseFeedId);
   q.exec();
+
+  feedId_ = parseFeedId;
 
   accept();
 }

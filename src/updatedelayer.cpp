@@ -13,32 +13,32 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
 }
 
-/** @brief Обработка постановки URL-ленты в очередь на обновление
+/** @brief Обработка постановки Id-ленты в очередь на обновление
  *
  *  Лента добавляется в очередь и запускается таймер, если он ещё не запущен
- * @param feedUrl URL-ленты
+ * @param feedId Id-ленты
  * @param feedChanged Флаг того, что ленты действительно изменялась
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::delayUpdate(const QUrl &feedUrl, const bool &feedChanged)
+void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged)
 {
-  int feedUrlIndex = feedUrlList_.indexOf(feedUrl);
+  int feedIdIndex = feedIdList_.indexOf(feedId);
   // Если лента уже есть в списке
-  if (-1 < feedUrlIndex) {
+  if ((-1 < feedIdIndex) && feedId) {
     // Если лента изменялясь, то устанавливаем этот флаг принудительно
     if (feedChanged) {
-      feedChangedList_[feedUrlIndex] = feedChanged;  // i.e. true
+      feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
     }
   }
   // иначе добавляем ленту
   else {
-    feedUrlList_.append(feedUrl);
+    feedIdList_.append(feedId);
     feedChangedList_.append(feedChanged);
-    qCritical() << feedUrl.toString() << "добавлен в очередь на обновление";
+    qCritical() << feedId << "добавлен в очередь на обновление";
   }
 
   // Запуск таймера, если добавили первую ленту в список
   // Своеобразная защита от запуска во время обработки таймаута
-  if (feedUrlList_.size() == 1) {
+  if (feedIdList_.size() == 1) {
     delayTimer_->start(delayValue_);
     timer_.start();
   }
@@ -56,16 +56,16 @@ void UpdateDelayer::slotDelayTimerTimeout()
   qCritical() << "Delayed update: " << "______________________________________";
 
   // Обрабатываем все ленты на момент срабатывания таймера
-  for (int i = feedUrlList_.size(); 0 < i; --i) {
-    qCritical() << "feedUrlList_.size() =" << feedUrlList_.size();
-    QUrl feedUrl = feedUrlList_.takeFirst();
+  for (int i = feedIdList_.size(); 0 < i; --i) {
+    qCritical() << "feedIdList_.size() =" << feedIdList_.size();
+    int feedId = feedIdList_.takeFirst();
     bool feedChanged = feedChangedList_.takeFirst();
 
-    qCritical() << "Delayed update: " << timer_.elapsed() << feedUrl.toString() << feedChanged << "start";
+    qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "start";
 
-    emit signalUpdateNeeded(feedUrl, feedChanged);
+    emit signalUpdateNeeded(feedId, feedChanged);
 
-    qCritical() << "Delayed update: " << timer_.elapsed() << feedUrl.toString() << feedChanged << "finish";
+    qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "finish";
 
     qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
 
@@ -76,7 +76,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
   qCritical() << "Delayed update: " << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
 
   // Если список пополнился во время обработки, запускаем таймер обновления вновь
-  if (feedUrlList_.size()) {
+  if (feedIdList_.size()) {
     delayTimer_->start(delayValue_);
     timer_.start();
   }
