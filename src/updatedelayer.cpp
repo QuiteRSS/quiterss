@@ -3,6 +3,8 @@
 
 #include "updatedelayer.h"
 
+#define UPDATE_INTERVAL 3000
+
 UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
     : QObject(parent), delayValue_(delayValue)
 {
@@ -66,6 +68,9 @@ void UpdateDelayer::slotDelayTimerTimeout()
     qCritical() << "Delayed update: " << timer_.elapsed() << feedUrl.toString() << feedChanged << "finish";
 
     qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
+
+    // Прерываем обновление, чтобы "отморозить" интерфейс
+    if (delayValue_ + UPDATE_INTERVAL < timer_.elapsed()) break;
   }
 
   qCritical() << "Delayed update: " << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
