@@ -28,14 +28,17 @@ class UpdateDelayer : public QObject
 
   QElapsedTimer timer_;  // таймер для отладочного вывода
 
+  bool next_;
+
 private slots:
   void slotDelayTimerTimeout();
 
 public:
-  explicit UpdateDelayer(QObject *parent = 0, int delayValue = 3000);
+  explicit UpdateDelayer(QObject *parent = 0, int delayValue = 100);
   void delayUpdate(int feedId, const bool &feedChanged);
 
 public slots:
+  void slotNext();
 
 signals:
   void signalUpdateNeeded(int feedId, const bool &feedChanged);

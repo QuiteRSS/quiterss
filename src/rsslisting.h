@@ -497,6 +497,7 @@ signals:
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();
+  void signalNextUpdate();
 
 };
 

@@ -8,6 +8,7 @@
 UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
     : QObject(parent), delayValue_(delayValue)
 {
+  next_ = true;
   delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
@@ -38,8 +39,10 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged)
 
   // Запуск таймера, если добавили первую ленту в список
   // Своеобразная защита от запуска во время обработки таймаута
-  if (feedIdList_.size() == 1) {
-    delayTimer_->start(delayValue_);
+  if ((feedIdList_.size() == 1) && next_) {
+    qCritical() << "***************";
+    next_ = false;
+    delayTimer_->start(0);
     timer_.start();
   }
 
@@ -56,8 +59,8 @@ void UpdateDelayer::slotDelayTimerTimeout()
   qCritical() << "Delayed update: " << "______________________________________";
 
   // Обрабатываем все ленты на момент срабатывания таймера
-  for (int i = feedIdList_.size(); 0 < i; --i) {
-    qCritical() << "feedIdList_.size() =" << feedIdList_.size();
+//  for (int i = feedIdList_.size(); 0 < i; --i) {
+    qCritical() << "feedIdList_.size() = " << feedIdList_.size();
     int feedId = feedIdList_.takeFirst();
     bool feedChanged = feedChangedList_.takeFirst();
 
@@ -67,18 +70,29 @@ void UpdateDelayer::slotDelayTimerTimeout()
 
     qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "finish";
 
-    qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
+//    qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
 
     // Прерываем обновление, чтобы "отморозить" интерфейс
-    if (delayValue_ + UPDATE_INTERVAL < timer_.elapsed()) break;
-  }
+//    if (delayValue_ + UPDATE_INTERVAL < timer_.elapsed()) break;
+//  }
 
   qCritical() << "Delayed update: " << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
 
   // Если список пополнился во время обработки, запускаем таймер обновления вновь
+//  if (feedIdList_.size()) {
+//    delayTimer_->start(delayValue_);
+//    timer_.start();
+//  }
+}
+
+void UpdateDelayer::slotNext()
+{
+  qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
   if (feedIdList_.size()) {
     delayTimer_->start(delayValue_);
     timer_.start();
+  } else {
+    next_ = true;
   }
 }
 

@@ -193,6 +193,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   updateDelayer_ = new UpdateDelayer(this);
   connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int, bool)),
           this, SLOT(slotUpdateFeedDelayed(int, bool)));
+  connect(this, SIGNAL(signalNextUpdate()),
+          updateDelayer_, SLOT(slotNext()));
 
   loadSettingsFeeds();
 
@@ -2560,7 +2562,10 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
     qCritical() << "------------------------------------------------------------";
   }
 
-  if (!changed) return;
+  if (!changed) {
+    emit signalNextUpdate();
+    return;
+  }
 
   // Достаем предыдущее значение количества новых новостей
   int newCountOld = 0;
@@ -2627,6 +2632,8 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
     statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
   }
+
+  emit signalNextUpdate();
 }
 
 //! Обновление списка новостей
