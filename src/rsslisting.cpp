@@ -4352,7 +4352,6 @@ void RSSListing::slotIconFeedLoad(int feedId, const QByteArray &byteArray, const
   }
 
   if (!cntQueue) {
-//    qCritical() << "*01" << feedId << cntQueue;
     feedsModelReload();
   }
 }

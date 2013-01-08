@@ -142,7 +142,10 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
               q.addBindValue(feedId);
               q.exec();
 
-              emit signalIconRecived(feedId, faviconData, feedsQueue_.count());
+              int cnt = 1;
+              if (!feedsQueue_.count() && !currentFeeds_.count())
+                cnt = 0;
+              emit signalIconRecived(feedId, faviconData, cnt);
             }
             buffer.close();
           } else if (cntRequests == 0) {
