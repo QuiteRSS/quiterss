@@ -169,7 +169,6 @@ private:
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
-  void feedsModelReload();
   void cleanUp();
 
   int addTab(NewsTabWidget *widget);
@@ -404,6 +403,7 @@ private slots:
   void setFeedRead(int feedId, FeedReedType feedReadtype);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
+  void feedsModelReload();
 
   void slotShowAboutDlg();
 

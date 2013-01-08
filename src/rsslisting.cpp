@@ -195,6 +195,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotUpdateFeedDelayed(int, bool, int)));
   connect(this, SIGNAL(signalNextUpdate()),
           updateDelayer_, SLOT(slotNext()));
+  connect(updateDelayer_, SIGNAL(signalUpdateModel()),
+          this, SLOT(feedsModelReload()));
 
   loadSettingsFeeds();
 
@@ -2557,9 +2559,6 @@ void RSSListing::slotUpdateFeed(int feedId, const bool &changed, int newCount)
  *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newCount)
 {
-//  QElapsedTimer timer1;
-//  timer1.start();
-
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
     progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
@@ -2579,10 +2578,7 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newC
     emit signalNextUpdate();
     return;
   }
-//  qCritical() << "update: **********";
-//  if (newCount > 0)
-    feedsModelReload();
-//  qCritical() << "update: " << timer1.elapsed();
+
   // Действия после получения новых новостей: трей, звук
   if (!isActiveWindow() && (newCount > 0) &&
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
@@ -4356,7 +4352,7 @@ void RSSListing::slotIconFeedLoad(int feedId, const QByteArray &byteArray, const
   }
 
   if (!cntQueue) {
-    qCritical() << "*01";
+//    qCritical() << "*01" << feedId << cntQueue;
     feedsModelReload();
   }
 }

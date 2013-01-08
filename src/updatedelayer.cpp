@@ -12,6 +12,10 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
   delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
+
+  updateModelTimer_ = new QTimer(this);
+  updateModelTimer_->setSingleShot(true);
+  connect(updateModelTimer_, SIGNAL(timeout()), this, SIGNAL(signalUpdateModel()));
 }
 
 /** @brief Обработка постановки Id-ленты в очередь на обновление
@@ -30,13 +34,15 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
       newCountList_[feedIdIndex] = newCount;
     }
+    qCritical() << "Add feed update0: " << feedId;
   }
   // иначе добавляем ленту
   else {
     feedIdList_.append(feedId);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
-    qCritical() << feedId << "добавлен в очередь на обновление";
+
+    qCritical() << "Add feed update1: " << feedId;
   }
 
   // Запуск таймера, если добавили первую ленту в список
@@ -45,56 +51,44 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
     next_ = false;
     delayTimer_->start(10);
     timer_.start();
+
+    if (!updateModelTimer_->isActive())
+      updateModelTimer_->start(UPDATE_INTERVAL);
   }
 
 }
 
 /** @brief Обработка срабатывания таймера
  *
- *  Производится обновление всех накопившихся лент.
- *  Используется счетчик, так как во время обновления список может пополняться.
- *  Обновляем новые через паузу.
+ *  Производится обновление следующей в очереди ленты
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotDelayTimerTimeout()
 {
-  qCritical() << "Delayed update: " << "______________________________________";
+  int feedId = feedIdList_.takeFirst();
+  bool feedChanged = feedChangedList_.takeFirst();
+  int newCount = newCountList_.takeFirst();
 
-  // Обрабатываем все ленты на момент срабатывания таймера
-//  for (int i = feedIdList_.size(); 0 < i; --i) {
-    qCritical() << "feedIdList_.size() = " << feedIdList_.size();
-    int feedId = feedIdList_.takeFirst();
-    bool feedChanged = feedChangedList_.takeFirst();
-    int newCount = newCountList_.takeFirst();
+  qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "start";
 
-    qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "start";
+  emit signalUpdateNeeded(feedId, feedChanged, newCount);
 
-    emit signalUpdateNeeded(feedId, feedChanged, newCount);
-
-    qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "finish";
-
-//    qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
-
-    // Прерываем обновление, чтобы "отморозить" интерфейс
-//    if (delayValue_ + UPDATE_INTERVAL < timer_.elapsed()) break;
-//  }
-
-  qCritical() << "Delayed update: " << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
-
-  // Если список пополнился во время обработки, запускаем таймер обновления вновь
-//  if (feedIdList_.size()) {
-//    delayTimer_->start(delayValue_);
-//    timer_.start();
-//  }
+  qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "finish";
 }
 
+/** @brief Запуск таймера при наличии в очереди лент
+ *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotNext()
 {
   qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
   if (feedIdList_.size()) {
     delayTimer_->start(delayValue_);
     timer_.start();
+
+    if (!updateModelTimer_->isActive())
+      updateModelTimer_->start(UPDATE_INTERVAL);
   } else {
     next_ = true;
+    if (!updateModelTimer_->isActive())
+      updateModelTimer_->start(UPDATE_INTERVAL);
   }
 }
-
