@@ -510,10 +510,11 @@ void OptionsDialog::createFeedsWidget()
   readCleanUp_ = new QCheckBox(tr("Delete read news"));
   neverUnreadCleanUp_ = new QCheckBox(tr("Never delete unread news"));
   neverStarCleanUp_ = new QCheckBox(tr("Never delete starred news"));
+  neverLabelCleanUp_ = new QCheckBox(tr("Never delete labeled news"));
 
   QGridLayout *cleanUpFeedsLayout = new QGridLayout();
   cleanUpFeedsLayout->setColumnStretch(1, 1);
-  cleanUpFeedsLayout->setRowStretch(5, 1);
+  cleanUpFeedsLayout->setRowStretch(6, 1);
   cleanUpFeedsLayout->addWidget(dayCleanUpOn_, 0, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(maxDayCleanUp_, 0, 1, 1, 1, Qt::AlignLeft);
   cleanUpFeedsLayout->addWidget(newsCleanUpOn_, 1, 0, 1, 1);
@@ -521,6 +522,7 @@ void OptionsDialog::createFeedsWidget()
   cleanUpFeedsLayout->addWidget(readCleanUp_, 2, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(neverUnreadCleanUp_, 3, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(neverStarCleanUp_, 4, 0, 1, 1);
+  cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
 
   QWidget *cleanUpFeedsWidget = new QWidget();
   cleanUpFeedsWidget->setLayout(cleanUpFeedsLayout);

@@ -357,6 +357,7 @@ private:
   bool readCleanUp_;
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
+  bool neverLabelCleanUp_;
 
   int updateFeedsCount_;
   QList<int> idFeedList_;

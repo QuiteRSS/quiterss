@@ -1630,6 +1630,7 @@ void RSSListing::readSettings()
   readCleanUp_ = settings_->value("readClearUp", false).toBool();
   neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
+  neverLabelCleanUp_ = settings_->value("neverLabelClearUp", true).toBool();
 
   externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
   if (!externalBrowserOn_) {
@@ -1820,6 +1821,7 @@ void RSSListing::writeSettings()
   settings_->setValue("readClearUp", readCleanUp_);
   settings_->setValue("neverUnreadClearUp", neverUnreadCleanUp_);
   settings_->setValue("neverStarClearUp", neverStarCleanUp_);
+  settings_->setValue("neverLabelClearUp", neverLabelCleanUp_);
 
   settings_->setValue("externalBrowserOn", externalBrowserOn_);
   settings_->setValue("externalBrowser", externalBrowser_);
@@ -2875,6 +2877,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->readCleanUp_->setChecked(readCleanUp_);
   optionsDialog->neverUnreadCleanUp_->setChecked(neverUnreadCleanUp_);
   optionsDialog->neverStarCleanUp_->setChecked(neverStarCleanUp_);
+  optionsDialog->neverLabelCleanUp_->setChecked(neverLabelCleanUp_);
 
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
   optionsDialog->editSoundNotifer_->setText(soundNotifyPath_);
@@ -3081,6 +3084,7 @@ void RSSListing::showOptionDlg()
   readCleanUp_ = optionsDialog->readCleanUp_->isChecked();
   neverUnreadCleanUp_ = optionsDialog->neverUnreadCleanUp_->isChecked();
   neverStarCleanUp_ = optionsDialog->neverStarCleanUp_->isChecked();
+  neverLabelCleanUp_ = optionsDialog->neverLabelCleanUp_->isChecked();
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
   soundNotifyPath_ = optionsDialog->editSoundNotifer_->text();
@@ -4534,6 +4538,7 @@ void RSSListing::feedsCleanUp(QString feedId)
       .arg(feedId);
   if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
   if (neverStarCleanUp_) qStr.append(" AND starred==0");
+  if (neverLabelCleanUp_) qStr.append(" AND (label=='' OR label==',')");
   q.exec(qStr);
   while (q.next()) {
     int newsId = q.value(0).toInt();

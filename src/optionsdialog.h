@@ -83,6 +83,7 @@ public:
   QCheckBox *readCleanUp_;
   QCheckBox *neverUnreadCleanUp_;
   QCheckBox *neverStarCleanUp_;
+  QCheckBox *neverLabelCleanUp_;
 
   // labels
   QStringList idLabels_;
