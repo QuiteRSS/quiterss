@@ -688,7 +688,6 @@ void RSSListing::createToolBarNull()
   pushButtonNull_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   pushButtonNull_->setFocusPolicy(Qt::NoFocus);
   pushButtonNull_->setStyleSheet("background: #E8E8E8; border: none; padding: 0px;");
-  connect(pushButtonNull_, SIGNAL(clicked()), this, SLOT(slotVisibledFeedsWidget()));
 }
 
 void RSSListing::createNewsTab(int index)
@@ -1065,7 +1064,9 @@ void RSSListing::createActions()
 
   visibleFeedsWidgetAct_ = new QAction(this);
   visibleFeedsWidgetAct_->setObjectName("visibleFeedsWidgetAct");
+  visibleFeedsWidgetAct_->setCheckable(true);
   connect(visibleFeedsWidgetAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsWidget()));
+  connect(pushButtonNull_, SIGNAL(clicked()), visibleFeedsWidgetAct_, SLOT(trigger()));
   this->addAction(visibleFeedsWidgetAct_);
 
   showUnreadCount_ = new QAction(this);
@@ -1732,6 +1733,10 @@ void RSSListing::readSettings()
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
+  mainSplitter_->restoreState(settings_->value("MainSplitterState").toByteArray());
+  visibleFeedsWidgetAct_->setChecked(settings_->value("FeedsWidgetVisible", true).toBool());
+  slotVisibledFeedsWidget();
+
   feedsWidgetSplitterState_ = settings_->value("FeedsWidgetSplitterState").toByteArray();
   bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
   newsCategoriesTree_->setVisible(showCategories);
@@ -1867,6 +1872,9 @@ void RSSListing::writeSettings()
 
   settings_->setValue("GeometryState", saveGeometry());
   settings_->setValue("ToolBarsState", saveState());
+
+  settings_->setValue("MainSplitterState", mainSplitter_->saveState());
+  settings_->setValue("FeedsWidgetVisible", visibleFeedsWidgetAct_->isChecked());
 
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
@@ -3235,8 +3243,8 @@ void RSSListing::slotProgressBarUpdate()
 
 void RSSListing::slotVisibledFeedsWidget()
 {
-  feedsWidget_->setVisible(!feedsWidget_->isVisible());
-  updateIconToolBarNull(feedsWidget_->isVisible());
+  feedsWidget_->setVisible(visibleFeedsWidgetAct_->isChecked());
+  updateIconToolBarNull(visibleFeedsWidgetAct_->isChecked());
 }
 
 void RSSListing::updateIconToolBarNull(bool feedsWidgetVisible)
