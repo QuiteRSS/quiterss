@@ -451,7 +451,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
     emit xmlReadyParse(data_, url_);
     QSqlQuery q(*db_);
     q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
-              "WHERE xmlUrl == :xmlUrl");
+              "WHERE xmlUrl LIKE :xmlUrl");
     q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
     q.bindValue(":xmlUrl", url_.toString());
     q.exec();

@@ -4,11 +4,11 @@
 
 #include "parsethread.h"
 
-ParseThread::ParseThread(QObject *parent, QSqlDatabase *db) :
-  QThread(parent)
+ParseThread::ParseThread(QObject *parent, QSqlDatabase *db)
+  : QThread(parent),
+    db_(db)
 {
   qDebug() << "ParseThread::constructor";
-  db_ = db;
   start(LowestPriority);
 }
 

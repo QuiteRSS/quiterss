@@ -3,8 +3,9 @@
 #include <QPixmap>
 #include <QBuffer>
 
-FaviconLoader::FaviconLoader(QObject *pParent)
-  :QThread(pParent)
+FaviconLoader::FaviconLoader(QObject *pParent, QSqlDatabase *db)
+  : QThread(pParent),
+    db_(db)
 {
   qDebug() << "FaviconLoader::constructor";
   start();
@@ -63,7 +64,7 @@ void FaviconLoader::get(const QUrl &getUrl,
                         const QUrl &feedUrl, const int &cntRequests)
 {
   QNetworkRequest request(getUrl);
-  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1; U; YB/3.5.1; ru) Presto/2.10.229 Version/11.62");
+  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.10.229 Version/11.62");
   emit signalGet(request);
 
   currentUrls_.append(getUrl);
@@ -129,7 +130,19 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
             QBuffer    buffer(&faviconData);
             buffer.open(QIODevice::WriteOnly);
             if (icon.save(&buffer, "ICO")) {
-              emit signalIconRecived(feedUrl.toString(), faviconData, feedsQueue_.count());
+              QSqlQuery q(*db_);
+              int feedId = 0;
+              q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+              q.bindValue(":xmlUrl", feedUrl.toString());
+              q.exec();
+              if (q.next()) feedId = q.value(0).toInt();
+
+              q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
+              q.addBindValue(faviconData.toBase64());
+              q.addBindValue(feedId);
+              q.exec();
+
+              emit signalIconRecived(feedId, faviconData, feedsQueue_.count());
             }
             buffer.close();
           } else if (cntRequests == 0) {

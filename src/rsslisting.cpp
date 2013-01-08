@@ -179,11 +179,11 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
           this, SLOT(slotCommitDataRequest(QSessionManager&)));
 
-  faviconLoader_ = new FaviconLoader(this);
+  faviconLoader_ = new FaviconLoader(this, &db_);
   connect(this, SIGNAL(startGetUrlTimer()),
           faviconLoader_, SIGNAL(startGetUrlTimer()));
-  connect(faviconLoader_, SIGNAL(signalIconRecived(const QString&, const QByteArray&, const int&)),
-          this, SLOT(slotIconFeedLoad(const QString&, const QByteArray&, const int&)));
+  connect(faviconLoader_, SIGNAL(signalIconRecived(int, const QByteArray&, const int&)),
+          this, SLOT(slotIconFeedLoad(int, const QByteArray&, const int&)));
 
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
@@ -2114,7 +2114,7 @@ void RSSListing::slotImportFeeds()
         else {
 
           bool isFeedDuplicated = false;
-          q.prepare("SELECT id FROM feeds WHERE xmlUrl=:xmlUrl");
+          q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
           q.bindValue(":xmlUrl", xmlUrlString);
           q.exec();
           if (q.next())
@@ -2270,7 +2270,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
       emit xmlReadyParse(data_, url_);
       QSqlQuery q(db_);
       q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
-                "WHERE xmlUrl == :xmlUrl");
+                "WHERE xmlUrl LIKE :xmlUrl");
       q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
       q.bindValue(":xmlUrl",        url_.toString());
       q.exec();
@@ -4339,35 +4339,26 @@ void RSSListing::markAllFeedsOld()
   emit signalRefreshInfoTray();
 }
 
-void RSSListing::slotIconFeedLoad(const QString &strUrl, const QByteArray &byteArray, const int &cntQueue)
+void RSSListing::slotIconFeedLoad(int feedId, const QByteArray &byteArray, const int &cntQueue)
 {
-  QSqlQuery q(db_);
-  q.prepare("UPDATE feeds SET image = ? WHERE xmlUrl == ?");
-  q.addBindValue(byteArray.toBase64());
-  q.addBindValue(strUrl);
-  q.exec();
-
-  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE ':xmlUrl'");
-  q.bindValue(":xmlUrl", strUrl);
-  q.exec();
-  if (q.next()) {
-    for (int i = 0; i < stackedWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-      if (widget->feedId_ == q.value(0).toInt()) {
-        QPixmap iconTab;
-        if (!byteArray.isNull()) {
-          iconTab.loadFromData(byteArray);
-        } else {
-          iconTab.load(":/images/feed");
-        }
-        widget->newsIconTitle_->setPixmap(iconTab);
-        break;
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+    if (widget->feedId_ == feedId) {
+      QPixmap iconTab;
+      if (!byteArray.isNull()) {
+        iconTab.loadFromData(byteArray);
+      } else {
+        iconTab.load(":/images/feed");
       }
+      widget->newsIconTitle_->setPixmap(iconTab);
+      break;
     }
   }
 
-  if (!cntQueue)
+  if (!cntQueue) {
+    qCritical() << "*01";
     feedsModelReload();
+  }
 }
 
 void RSSListing::playSoundNewNews()

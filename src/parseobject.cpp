@@ -52,10 +52,10 @@ void ParseObject::slotParse(QSqlDatabase *db,
   QString categoryString;
 
   qDebug() << "=================== parseXml:start ============================";
-  // поиск идентификатора ленты с таблице лент
+
+  // поиск идентификатора ленты в таблице лент
   int parseFeedId = 0;
   QSqlQuery q(*db);
-
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", url.toEncoded());
   q.exec();

@@ -1,6 +1,7 @@
 #ifndef FAVICONLOADER_H
 #define FAVICONLOADER_H
 
+#include <QtSql>
 #include <QThread>
 #include <QNetworkReply>
 #include <QQueue>
@@ -13,7 +14,7 @@ class FaviconLoader : public QThread
 {
   Q_OBJECT
 public:
-  explicit FaviconLoader( QObject *pParent = 0);
+  explicit FaviconLoader( QObject *pParent, QSqlDatabase *db);
   ~FaviconLoader();
 
 public slots:
@@ -27,6 +28,7 @@ private slots:
   void slotFinished(QNetworkReply *reply);
 
 private:  
+  QSqlDatabase *db_;
   QList<QUrl> currentUrls_;
   QList<QUrl> currentFeeds_;
   QList<int> currentCntRequests_;
@@ -41,7 +43,7 @@ private:
 signals:
   void startGetUrlTimer();
   void signalGet(const QNetworkRequest &request);
-  void signalIconRecived(const QString& strUrl, const QByteArray& byteArray, const int &cntQueue);
+  void signalIconRecived(int feedId, const QByteArray &byteArray, const int &cntQueue);
 };
 
 #endif // FAVICONLOADER_H
