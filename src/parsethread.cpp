@@ -28,8 +28,8 @@ void ParseThread::run()
   parseObject_ = new ParseObject();
   connect(this, SIGNAL(signalReadyParse(QSqlDatabase*,QByteArray,QUrl)),
           parseObject_, SLOT(slotParse(QSqlDatabase*,QByteArray,QUrl)));
-  connect(parseObject_, SIGNAL(feedUpdated(int, bool)),
-          this->parent(), SLOT(slotUpdateFeed(int, bool)));
+  connect(parseObject_, SIGNAL(feedUpdated(int, bool, int)),
+          this->parent(), SLOT(slotUpdateFeed(int, bool, int)));
 
   exec();
 }

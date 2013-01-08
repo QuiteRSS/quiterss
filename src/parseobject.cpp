@@ -66,7 +66,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(url.toString());
-    emit feedUpdated(parseFeedId, false);
+    emit feedUpdated(parseFeedId, false, 0);
     return;
   }
 
@@ -442,13 +442,16 @@ void ParseObject::slotParse(QSqlDatabase *db,
   q.addBindValue(parseFeedId);
   q.exec();
 
-  if (feedChanged)
+  int newCount = 0;
+  if (feedChanged) {
     setUserFilter(db, parseFeedId);
+    newCount = recountFeedCounts(db, parseFeedId);
+  }
 
   db->commit();
   qDebug() << "=================== parseXml:finish ===========================";
 
-  emit feedUpdated(parseFeedId, feedChanged);
+  emit feedUpdated(parseFeedId, feedChanged, newCount);
 }
 
 QString ParseObject::parseDate(QString dateString, QString urlString)
@@ -527,4 +530,95 @@ QString ParseObject::parseDate(QString dateString, QString urlString)
 
   qWarning() << __LINE__ << "parseDate: error with" << dateString << urlString;
   return QString();
+}
+
+/** @brief Обновление счётчиков ленты и всех родительский категорий
+ *
+ *  Обновляются поля: количество непрочитанных новостей,
+ *  количество новых новостей, дата последнего обновления у категорий
+ * @param db - база данных
+ * @param feedId - идентификатор ленты
+ *----------------------------------------------------------------------------*/
+int ParseObject::recountFeedCounts(QSqlDatabase *db, int feedId)
+{
+  QSqlQuery q(*db);
+  QString qStr;
+
+  int feedParId = 0;
+  q.exec(QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(feedId));
+  if (q.next()) feedParId = q.value(0).toInt();
+
+  int undeleteCount = 0;
+  int unreadCount = 0;
+  int newNewsCount = 0;
+
+  // Подсчет всех новостей (не помеченных удаленными)
+  qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) undeleteCount = q.value(0).toInt();
+
+  // Подсчет непрочитанных новостей
+  qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) unreadCount = q.value(0).toInt();
+
+  // Подсчет новых новостей
+  qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) newNewsCount = q.value(0).toInt();
+
+  int unreadCountOld = 0;
+  int newCountOld = 0;
+  int undeleteCountOld = 0;
+  qStr = QString("SELECT unread, newCount, undeleteCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) {
+    unreadCountOld = q.value(0).toInt();
+    newCountOld = q.value(1).toInt();
+    undeleteCountOld = q.value(2).toInt();
+  }
+
+  if ((unreadCount == unreadCountOld) && (newNewsCount == newCountOld) &&
+      (undeleteCount == undeleteCountOld)) {
+    return 0;
+  }
+
+  // Установка количества непрочитанных новостей в ленту
+  // Установка количества новых новостей в ленту
+  qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
+                 "WHERE id=='%4'").
+      arg(unreadCount).arg(newNewsCount).arg(undeleteCount).arg(feedId);
+  q.exec(qStr);
+
+  // Пересчитываем счетчики для всех родителей
+  int l_feedParId = feedParId;
+  while (l_feedParId) {
+    QString updated;
+    int newCount = 0;
+
+    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), "
+                   "max(updated) FROM feeds WHERE parentId=='%1'").
+        arg(l_feedParId);
+    q.exec(qStr);
+    if (q.next()) {
+      unreadCount   = q.value(0).toInt();
+      newCount      = q.value(1).toInt();
+      undeleteCount = q.value(2).toInt();
+      updated       = q.value(3).toString();
+    }
+    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', "
+                   "updated='%4' WHERE id=='%5'").
+        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
+        arg(l_feedParId);
+    q.exec(qStr);
+
+    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
+    if (q.next()) l_feedParId = q.value(0).toInt();
+  }
+
+  return (newNewsCount - newCountOld);
 }

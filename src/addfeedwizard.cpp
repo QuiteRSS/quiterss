@@ -473,10 +473,11 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(int feedId, const bool &)
+void AddFeedWizard::slotUpdateFeed(int feedId, const bool &, int newCount)
 {
   qDebug() << "ParseDone" << feedId;
   selectedPage = true;
+  newCount_ = newCount;
 
   if (titleFeedAsName_->isChecked()) {
     QSqlQuery q(*db_);

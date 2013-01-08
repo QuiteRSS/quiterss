@@ -20,7 +20,7 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
  * @param feedId Id-ленты
  * @param feedChanged Флаг того, что ленты действительно изменялась
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged)
+void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCount)
 {
   int feedIdIndex = feedIdList_.indexOf(feedId);
   // Если лента уже есть в списке
@@ -28,21 +28,22 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged)
     // Если лента изменялясь, то устанавливаем этот флаг принудительно
     if (feedChanged) {
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
+      newCountList_[feedIdIndex] = newCount;
     }
   }
   // иначе добавляем ленту
   else {
     feedIdList_.append(feedId);
     feedChangedList_.append(feedChanged);
+    newCountList_.append(newCount);
     qCritical() << feedId << "добавлен в очередь на обновление";
   }
 
   // Запуск таймера, если добавили первую ленту в список
   // Своеобразная защита от запуска во время обработки таймаута
   if ((feedIdList_.size() == 1) && next_) {
-    qCritical() << "***************";
     next_ = false;
-    delayTimer_->start(0);
+    delayTimer_->start(10);
     timer_.start();
   }
 
@@ -63,10 +64,11 @@ void UpdateDelayer::slotDelayTimerTimeout()
     qCritical() << "feedIdList_.size() = " << feedIdList_.size();
     int feedId = feedIdList_.takeFirst();
     bool feedChanged = feedChangedList_.takeFirst();
+    int newCount = newCountList_.takeFirst();
 
     qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "start";
 
-    emit signalUpdateNeeded(feedId, feedChanged);
+    emit signalUpdateNeeded(feedId, feedChanged, newCount);
 
     qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "finish";
 

@@ -13,9 +13,10 @@ public:
 
 private:
   QString parseDate(QString dateString, QString urlString);
+  int recountFeedCounts(QSqlDatabase *db, int feedId);
 
 signals:
-  void feedUpdated(int feedId, const bool &changed);
+  void feedUpdated(int feedId, const bool &changed, int newCount);
 
 public slots:
   void slotParse(QSqlDatabase *db,

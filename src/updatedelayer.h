@@ -22,6 +22,7 @@ class UpdateDelayer : public QObject
 
   QList<int> feedIdList_;
   QList<bool> feedChangedList_;
+  QList<int> newCountList_;
 
   int delayValue_;
   QTimer *delayTimer_;
@@ -35,13 +36,13 @@ private slots:
 
 public:
   explicit UpdateDelayer(QObject *parent = 0, int delayValue = 100);
-  void delayUpdate(int feedId, const bool &feedChanged);
+  void delayUpdate(int feedId, const bool &feedChanged, int newCount);
 
 public slots:
   void slotNext();
 
 signals:
-  void signalUpdateNeeded(int feedId, const bool &feedChanged);
+  void signalUpdateNeeded(int feedId, const bool &feedChanged, int newCount);
 };
 
 #endif // UPDATEDELAYER_H

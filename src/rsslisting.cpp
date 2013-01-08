@@ -191,8 +191,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
 
   updateDelayer_ = new UpdateDelayer(this);
-  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int, bool)),
-          this, SLOT(slotUpdateFeedDelayed(int, bool)));
+  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int, bool, int)),
+          this, SLOT(slotUpdateFeedDelayed(int, bool, int)));
   connect(this, SIGNAL(signalNextUpdate()),
           updateDelayer_, SLOT(slotNext()));
 
@@ -1931,7 +1931,7 @@ void RSSListing::addFeed()
                                 addFeedWizard->feedUrlString_);
 
   feedsModelReload();
-  slotUpdateFeedDelayed(addFeedWizard->feedId_, true);
+  slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_);
 
   delete addFeedWizard;
 }
@@ -2277,7 +2277,7 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
       qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
       qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
     } else {
-      slotUpdateFeed(0, false);
+      slotUpdateFeed(0, false, 0);
     }
   }
   data_.clear();
@@ -2544,9 +2544,9 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
  * @param url URL-адрес обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(int feedId, const bool &changed)
+void RSSListing::slotUpdateFeed(int feedId, const bool &changed, int newCount)
 {
-  updateDelayer_->delayUpdate(feedId, changed);
+  updateDelayer_->delayUpdate(feedId, changed, newCount);
 }
 
 /** @brief Обновление отображения ленты
@@ -2555,8 +2555,11 @@ void RSSListing::slotUpdateFeed(int feedId, const bool &changed)
  * @param feedId Id обновляемой ленты
  * @param changed Признак того, что лента действительно была обновлена
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
+void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newCount)
 {
+//  QElapsedTimer timer1;
+//  timer1.start();
+
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
     progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
@@ -2576,30 +2579,17 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
     emit signalNextUpdate();
     return;
   }
-
-  // Достаем предыдущее значение количества новых новостей
-  int newCountOld = 0;
-  QSqlQuery q(db_);
-  q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(feedId));
-  if (q.next()) newCountOld = q.value(0).toInt();
-
-  recountFeedCounts(feedId);
-
-  // Достаём новое значение количества новых новостей
-  int newCount = 0;
-  q.exec(QString("SELECT newCount FROM feeds WHERE id=='%1'").arg(feedId));
-  if (q.next()) newCount = q.value(0).toInt();
-
-  if (newCount > newCountOld)
+//  qCritical() << "update: **********";
+//  if (newCount > 0)
     feedsModelReload();
-
+//  qCritical() << "update: " << timer1.elapsed();
   // Действия после получения новых новостей: трей, звук
-  if (!isActiveWindow() && (newCount > newCountOld) &&
+  if (!isActiveWindow() && (newCount > 0) &&
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
   emit signalRefreshInfoTray();
-  if (newCount > newCountOld) {
+  if (newCount > 0) {
     playSoundNewNews();
   }
 
@@ -2608,19 +2598,29 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
     idFeedList_.clear();
     cntNewNewsList_.clear();
   }
-  if (((newCount - newCountOld) > 0) && !isActiveWindow()) {
+  if ((newCount > 0) && !isActiveWindow()) {
+    int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
+      QSqlQuery q(db_);
       q.exec(QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
              arg(feedId));
       if (q.next()) {
         if (q.value(0).toInt() == 1) {
-          idFeedList_.append(feedId);
-          cntNewNewsList_.append(newCount - newCountOld);
+          if (-1 < feedIdIndex) {
+            cntNewNewsList_[feedIdIndex] = newCount;
+          } else {
+            idFeedList_.append(feedId);
+            cntNewNewsList_.append(newCount);
+          }
         }
       }
     } else {
-      idFeedList_.append(feedId);
-      cntNewNewsList_.append(newCount - newCountOld);
+      if (-1 < feedIdIndex) {
+        cntNewNewsList_[feedIdIndex] = newCount;
+      } else {
+        idFeedList_.append(feedId);
+        cntNewNewsList_.append(newCount);
+      }
     }
   }
 
@@ -2631,6 +2631,7 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed)
     slotUpdateNews();
     int unreadCount = 0;
     int allCount = 0;
+    QSqlQuery q(db_);
     QString qStr = QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
         arg(feedId);
     q.exec(qStr);
