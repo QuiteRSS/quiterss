@@ -3,6 +3,9 @@
 #ifndef DB_FUNC_H
 #define DB_FUNC_H
 
+#include <QtCore>
+#include <QtSql>
+
 extern QString kDbName;
 extern QString kDbVersion;
 
@@ -11,5 +14,12 @@ extern QString kDbVersion;
  * \param[in] dbFileName путь файла базы
  ******************************************************************************/
 QString initDB(const QString dbFileName);
+
+/** @brief Применение пользовательских фильтров
+ * @param db - база данных
+ * @param feedId - Id ленты
+ * @param filterId - Id конкретного фильтра
+ *---------------------------------------------------------------------------*/
+void setUserFilter(QSqlDatabase *db, int feedId, int filterId = -1);
 
 #endif

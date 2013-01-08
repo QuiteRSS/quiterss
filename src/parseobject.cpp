@@ -4,6 +4,7 @@
 
 #include "parseobject.h"
 #include "VersionNo.h"
+#include "db_func.h"
 
 ParseObject::ParseObject(QObject *parent) :
   QObject(parent)
@@ -440,6 +441,9 @@ void ParseObject::slotParse(QSqlDatabase *db,
                                        "yyyy-MM-ddTHH:mm:ss"));
   q.addBindValue(parseFeedId);
   q.exec();
+
+  if (feedChanged)
+    setUserFilter(db, parseFeedId);
 
   db->commit();
   qDebug() << "=================== parseXml:finish ===========================";

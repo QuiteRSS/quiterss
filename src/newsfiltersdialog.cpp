@@ -1,6 +1,7 @@
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
 #include "rsslisting.h"
+#include "db_func.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   : Dialog(parent),
@@ -343,7 +344,7 @@ void NewsFiltersDialog::applyFilter()
   if (q.next()) {
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      rssl_->setUserFilter(strIdFeed.toInt(), filterId);
+      setUserFilter(&rssl_->db_, strIdFeed.toInt(), filterId);
       NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
