@@ -5156,7 +5156,8 @@ void RSSListing::setFullScreen()
 #endif
   } else {
     menuBar()->show();
-    mainToolbar_->show();
+    if (mainToolbarToggle_->isChecked())
+      mainToolbar_->show();
     setWindowState(windowState() & ~Qt::WindowFullScreen);
   }
 }
