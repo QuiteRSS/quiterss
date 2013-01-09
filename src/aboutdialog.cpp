@@ -27,7 +27,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       "<BR><IMG SRC=\":/images/images/logo_text.png\">"
       "<P>"
       + tr("Version") + " " + "<B>" + QString(STRPRODUCTVER) + "</B>" + QString(" (%1)").arg(STRDATE) + "<BR>"
-      + tr("Revision") + " " + QString(HG_REVISION)
+      + tr("Revision") + " " + QString("%1").arg(HG_REVISION)
       + "</P>"
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news reader")
@@ -38,7 +38,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + "</P>"
       + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
       + QString("<br><a href=\"%1/\">%1</a>").arg("www.quiterss.ucoz.ru") +
-      "<P>&copy; 2011-2012 QuiteRSS Team "
+      "<P>Copyright &copy; 2011-2013 QuiteRSS Team "
       + QString("<a href=\"%1/\">E-mail</a>").arg("quiterssteam@gmail.com") + "</P>"
       "</CENTER></body></html>";
   QLabel *infoLabel = new QLabel(appInfo);

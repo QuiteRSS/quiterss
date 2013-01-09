@@ -9,7 +9,7 @@ IDI_ICON1               ICON    DISCARDABLE     "QuiteRSS.ico"
 #endif
 #include "src/VersionNo.h"
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION FILEVER
+ FILEVERSION FILEVER_FULL
  PRODUCTVERSION PRODUCTVER
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -28,10 +28,10 @@ BEGIN
             VALUE "CompanyName", "QuiteRSS Team\0"
             VALUE "Comments", "Application\0"
             VALUE "FileDescription", "QuiteRSS\0"
-            VALUE "FileVersion", STRFILEVER
+            VALUE "FileVersion", STRFILEVER_FULL
             VALUE "InternalName", "QuiteRSS\0"
 	    VALUE "OriginalFilename", "QuiteRSS.exe\0"
-            VALUE "LegalCopyright", "Aleksey Khokhryakov\0"
+            VALUE "LegalCopyright", "Copyright © 2011-2013 QuiteRSS Team\0"
             VALUE "ProductName", "QuiteRSS\0"
             VALUE "ProductVersion", STRPRODUCTVER
         END
