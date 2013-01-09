@@ -260,8 +260,13 @@ void FilterRulesDialog::setData()
     q.exec(qStr);
     while (q.next()) {
       ItemAction *itemAction = addAction();
-      itemAction->comboBox1->setCurrentIndex(q.value(0).toInt());
-      itemAction->comboBox2->setCurrentIndex(q.value(1).toInt());
+      int action = q.value(0).toInt();
+      itemAction->comboBox1->setCurrentIndex(action);
+      if (action == 3) {
+        int index = itemAction->comboBox2->findData(q.value(1).toInt());
+        itemAction->comboBox2->setCurrentIndex(index);
+      }
+
     }
   }
 }
@@ -348,7 +353,7 @@ void FilterRulesDialog::acceptDialog()
       q.prepare(qStr);
       q.addBindValue(filterId_);
       q.addBindValue(itemAction->comboBox1->currentIndex());
-      q.addBindValue(itemAction->comboBox2->currentIndex());
+      q.addBindValue(itemAction->comboBox2->itemData(itemAction->comboBox2->currentIndex()));
       q.exec();
     }
   } else {
@@ -388,7 +393,7 @@ void FilterRulesDialog::acceptDialog()
       q.prepare(qStr);
       q.addBindValue(filterId_);
       q.addBindValue(itemAction->comboBox1->currentIndex());
-      q.addBindValue(itemAction->comboBox2->currentIndex());
+      q.addBindValue(itemAction->comboBox2->itemData(itemAction->comboBox2->currentIndex()));
       q.exec();
     }
   }
@@ -480,6 +485,21 @@ ItemAction *FilterRulesDialog::addAction()
   actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
   actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
   ItemAction *itemAction = new ItemAction(this);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  QSqlQuery q(rssl_->db_);
+  q.exec("SELECT id, name, image FROM labels ORDER BY num");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+
+    itemAction->comboBox2->addItem(QIcon(imageLabel), nameLabel, idLabel);
+  }
+
   actionsLayout->addWidget(itemAction);
   actionsLayout->addStretch();
   actionsLayout->addSpacing(25);

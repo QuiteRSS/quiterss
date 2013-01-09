@@ -654,30 +654,38 @@ void setUserFilter(QSqlDatabase *db, int feedId, int filterId)
 
     QString qStr("UPDATE news SET");
     QString qStr1;
+    QString qStr2;
 
     QSqlQuery q1(*db);
-    q1.exec(QString("SELECT action FROM filterActions "
+    q1.exec(QString("SELECT action, params FROM filterActions "
                     "WHERE idFilter=='%1'").arg(filterId));
     while (q1.next()) {
-      if (!qStr1.isNull()) qStr1.append(",");
       switch (q1.value(0).toInt()) {
       case 0: // action -> Mark news as read
+        if (!qStr1.isNull()) qStr1.append(",");
         qStr1.append(" new=0, read=2");
         break;
       case 1: // action -> Add star
+        if (!qStr1.isNull()) qStr1.append(",");
         qStr1.append(" starred=1");
         break;
       case 2: // action -> Delete
+        if (!qStr1.isNull()) qStr1.append(",");
         qStr1.append(" new=0, read=2, deleted=1");
+        break;
+      case 3: // action -> Add Label
+        if (qStr2.isEmpty()) qStr2.append(" label=,");
+        qStr2.append(QString("%1,").arg(q1.value(1).toInt()));
         break;
       }
     }
-    qStr.append(qStr1);
+    qCritical() << qStr1+qStr2;
+    qStr.append(qStr1+qStr2);
     qStr.append(QString(" WHERE feedId='%1' AND deleted=0").arg(feedId));
 
     if (onlyNew) qStr.append(" AND new=1");
 
-    QString qStr2;
+    qStr2.clear();
     switch (filterType) {
     case 1: // Match all conditions
       qStr2.append("AND ");
