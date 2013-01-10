@@ -801,8 +801,8 @@ void setUserFilter(QSqlDatabase *db, int feedId, int filterId)
         }
       }
       qStr.append(qStr1).append(")");
-      q1.exec(qStr);
-//      qCritical() << qStr;
     }
+    q1.exec(qStr);
+//    qCritical() << qStr;
   }
 }
