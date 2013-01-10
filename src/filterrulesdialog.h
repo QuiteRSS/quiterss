@@ -126,7 +126,7 @@ public:
     comboBox1 = new QComboBox(this);
     itemList /*<< tr("Move News to")  << tr("Copy News to")*/
              << tr("Mark News as Read") << tr("Add Star")
-             << tr("Delete");
+             << tr("Delete") << tr("Add Label");
     comboBox1->addItems(itemList);
 
     comboBox2 = new QComboBox(this);
@@ -170,7 +170,7 @@ private slots:
 
   void currentIndexChanged(int index)
   {
-    if (index < 0/*2*/) comboBox2->setVisible(true);
+    if (index == 3) comboBox2->setVisible(true);
     else comboBox2->setVisible(false);
   }
 
