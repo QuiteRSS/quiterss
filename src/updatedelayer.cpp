@@ -34,15 +34,12 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
       newCountList_[feedIdIndex] = newCount;
     }
-    qCritical() << "Add feed update0: " << feedId;
   }
   // иначе добавляем ленту
   else {
     feedIdList_.append(feedId);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
-
-    qCritical() << "Add feed update1: " << feedId;
   }
 
   // Запуск таймера, если добавили первую ленту в список
@@ -67,12 +64,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
   int feedId = feedIdList_.takeFirst();
   bool feedChanged = feedChangedList_.takeFirst();
   int newCount = newCountList_.takeFirst();
-
-  qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "start";
-
   emit signalUpdateNeeded(feedId, feedChanged, newCount);
-
-  qCritical() << "Delayed update: " << timer_.elapsed() << feedId << feedChanged << "finish";
 }
 
 /** @brief Запуск таймера при наличии в очереди лент
