@@ -203,37 +203,33 @@ void ParseObject::slotParse(QSqlDatabase *db,
         qDebug() << "link_href:" << linkString;
         qDebug() << "title:"     << titleString;
         qDebug() << "published:" << rssPubDateString;
+
+        qStr.clear();
+        if (!rssPubDateString.isEmpty()) {  // поиск по pubDate
+          qStr.append(" AND published=:published");
+        }
+
         if (!rssGuidString.isEmpty()) {        // поиск по guid
-          q.prepare("SELECT * FROM news WHERE feedId=:feedId AND guid=:guid AND title LIKE :title");
-          q.bindValue(":feedId", parseFeedId);
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND guid=:guid "
+                    "AND title LIKE :title%1").arg(qStr));
           q.bindValue(":guid", rssGuidString);
-          q.bindValue(":title", titleString);
-          q.exec();
         }
         else if (!linkString.isEmpty()) {     // поиск по link_href
-          q.prepare("SELECT * FROM news WHERE feedId=:id AND link_href=:link_href AND title LIKE :title");
-          q.bindValue(":id", parseFeedId);
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND link_href=:link_href "
+                    "AND title LIKE :title%1").arg(qStr));
           q.bindValue(":link_href", linkString);
-          q.bindValue(":title", titleString);
-          q.exec();
+        } else {
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND title LIKE :title%1").
+                    arg(qStr));
         }
-        else if (rssPubDateString.isEmpty()) {  // поиск по title, т.к. поле pubDate пустое
-          q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title");
-          q.bindValue(":id", parseFeedId);
-          q.bindValue(":title", titleString);
-          q.exec();
-        }
-        else {                                 // поиск по title и pubDate
-          q.prepare("SELECT * FROM news WHERE feedId=:id AND title LIKE :title AND published=:published");
-          q.bindValue(":id", parseFeedId);
-          q.bindValue(":title", titleString);
-          q.bindValue(":published", rssPubDateString);
-          q.exec();
-        }
+        q.bindValue(":id", parseFeedId);
+        q.bindValue(":title", titleString);
+        if (!qStr.isEmpty()) q.bindValue(":published", rssPubDateString);
+        q.exec();
 
         // проверка правильности запроса
         if (q.lastError().isValid())
-          qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
+          qDebug() << "ERROR: " << q.lastError().text();
         else {
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
