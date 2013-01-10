@@ -6,30 +6,21 @@
 #include "VersionNo.h"
 #include "db_func.h"
 
-ParseObject::ParseObject(QObject *parent) :
-  QObject(parent)
+ParseObject::ParseObject(QString dataDirPath, QObject *parent)
+  : QObject(parent),
+    dataDirPath_(dataDirPath)
 {
 }
 
 void ParseObject::slotParse(QSqlDatabase *db,
                             const QByteArray &xmlData, const QUrl &url)
 {
-  QString appFilePath;
-#if defined(PORTABLE)
-  QString fileName = QCoreApplication::applicationDirPath() +
-      QDir::separator() + "portable.dat";
-  if (QFile::exists(fileName))
-    appFilePath = QCoreApplication::applicationDirPath();
-  else
-    appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#else
-  appFilePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-
-  QFile file(appFilePath + QDir::separator() + "lastfeed.dat");
-  file.open(QIODevice::WriteOnly);
-  file.write(xmlData);
-  file.close();
+  if (!dataDirPath_.isEmpty()) {
+    QFile file(dataDirPath_ + QDir::separator() + "lastfeed.dat");
+    file.open(QIODevice::WriteOnly);
+    file.write(xmlData);
+    file.close();
+  }
 
   QString currentTag;
   QString currentTagText;

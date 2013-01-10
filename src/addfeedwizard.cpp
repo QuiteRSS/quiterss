@@ -3,7 +3,7 @@
 
 extern QString kCreateNewsTableQuery;
 
-AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db)
+AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db, QString dataDirPath)
   : QWizard(parent),
     db_(db)
 {
@@ -24,7 +24,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db)
           this, SLOT(receiveXml(QByteArray, QUrl)));
   connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
           this, SLOT(getUrlDone(int,QDateTime)));
-  persistentParseThread_ = new ParseThread(this, db_);
+  persistentParseThread_ = new ParseThread(this, db_, dataDirPath);
   persistentParseThread_->setObjectName("persistentParseThread_");
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
           persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),

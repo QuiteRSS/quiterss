@@ -32,7 +32,7 @@ private:
   QTreeWidget *foldersTree_;
 
 public:
-  explicit AddFeedWizard(QWidget *parent, QSqlDatabase *db);
+  explicit AddFeedWizard(QWidget *parent, QSqlDatabase *db, QString dataDirPath);
   ~AddFeedWizard();
 
   LineEdit *nameFeedEdit_;

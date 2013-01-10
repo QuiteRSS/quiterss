@@ -9,9 +9,10 @@ class ParseObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit ParseObject(QObject *parent = 0);
+  explicit ParseObject(QString dataDirPath, QObject *parent = 0);
 
 private:
+  QString dataDirPath_;
   QString parseDate(QString dateString, QString urlString);
   int recountFeedCounts(QSqlDatabase *db, int feedId);
 

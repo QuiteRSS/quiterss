@@ -174,6 +174,7 @@ private:
   int addTab(NewsTabWidget *widget);
 
   QString dataDirPath_;
+  QString lastFeedPath_;
 
   QString dbFileName_;
   NewsModel *newsModel_;

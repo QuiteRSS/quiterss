@@ -77,6 +77,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     while(dbMemFileThread_->isRunning()) qApp->processEvents();
   }
 
+  if (settings_->value("Settings/createLastFeed", false).toBool())
+    lastFeedPath_ = dataDirPath_;
+
   persistentUpdateThread_ = new UpdateThread(this);
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");
   connect(this, SIGNAL(startGetUrlTimer()),
@@ -86,7 +89,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
           this, SLOT(getUrlDone(int,QDateTime)));
 
-  persistentParseThread_ = new ParseThread(this, &db_);
+  persistentParseThread_ = new ParseThread(this, &db_, lastFeedPath_);
   persistentParseThread_->setObjectName("persistentParseThread_");
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
           persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
@@ -1776,6 +1779,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("storeDBMemory", storeDBMemoryT_);
 
+  settings_->setValue("createLastFeed", !lastFeedPath_.isEmpty());
+
   settings_->setValue("showTrayIcon", showTrayIcon_);
   settings_->setValue("startingTray", startingTray_);
   settings_->setValue("minimizingTray", minimizingTray_);
@@ -1917,7 +1922,7 @@ void RSSListing::writeSettings()
 /*! \brief Добавление ленты в список лент *************************************/
 void RSSListing::addFeed()
 {
-  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, &db_);
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, &db_, lastFeedPath_);
 
   if (addFeedWizard->exec() == QDialog::Rejected) {
     delete addFeedWizard;
