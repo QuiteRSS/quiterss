@@ -292,7 +292,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         }
 
         if (!atomIdString.isEmpty()) {       // поиск по guid
-          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND guid=:guid %1").arg(qStr));
+          q.prepare("SELECT * FROM news WHERE feedId=:id AND guid=:guid");
           q.bindValue(":guid", atomIdString);
         } else {
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
