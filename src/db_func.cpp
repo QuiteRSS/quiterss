@@ -674,13 +674,16 @@ void setUserFilter(QSqlDatabase *db, int feedId, int filterId)
         qStr1.append(" new=0, read=2, deleted=1");
         break;
       case 3: // action -> Add Label
-        if (qStr2.isEmpty()) qStr2.append(" label=,");
         qStr2.append(QString("%1,").arg(q1.value(1).toInt()));
         break;
       }
     }
-    qCritical() << qStr1+qStr2;
-    qStr.append(qStr1+qStr2);
+
+    if (!qStr2.isEmpty()) {
+      if (!qStr1.isNull()) qStr1.append(",");
+      qStr1.append(QString(" label=',%1'").arg(qStr2));
+    }
+    qStr.append(qStr1);
     qStr.append(QString(" WHERE feedId='%1' AND deleted=0").arg(feedId));
 
     if (onlyNew) qStr.append(" AND new=1");
@@ -799,6 +802,7 @@ void setUserFilter(QSqlDatabase *db, int feedId, int filterId)
       }
       qStr.append(qStr1).append(")");
       q1.exec(qStr);
+//      qCritical() << qStr;
     }
   }
 }
