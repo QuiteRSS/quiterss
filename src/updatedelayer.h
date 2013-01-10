@@ -30,7 +30,7 @@ private:
 
   QElapsedTimer timer_;  // таймер для отладочного вывода
 
-  bool next_;
+  bool nextUpdateFeed_;
 
 private slots:
   void slotDelayTimerTimeout();
@@ -40,7 +40,7 @@ public:
   void delayUpdate(int feedId, const bool &feedChanged, int newCount);
 
 public slots:
-  void slotNext();
+  void slotNextUpdateFeed();
 
 signals:
   void signalUpdateNeeded(int feedId, const bool &feedChanged, int newCount);

@@ -8,7 +8,7 @@
 UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
     : QObject(parent), delayValue_(delayValue)
 {
-  next_ = true;
+  nextUpdateFeed_ = true;
   delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
@@ -44,8 +44,8 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
 
   // Запуск таймера, если добавили первую ленту в список
   // Своеобразная защита от запуска во время обработки таймаута
-  if ((feedIdList_.size() == 1) && next_) {
-    next_ = false;
+  if ((feedIdList_.size() == 1) && nextUpdateFeed_) {
+    nextUpdateFeed_ = false;
     delayTimer_->start(10);
     timer_.start();
 
@@ -69,7 +69,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
 
 /** @brief Запуск таймера при наличии в очереди лент
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::slotNext()
+void UpdateDelayer::slotNextUpdateFeed()
 {
   qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
   if (feedIdList_.size()) {
@@ -79,7 +79,7 @@ void UpdateDelayer::slotNext()
     if (!updateModelTimer_->isActive())
       updateModelTimer_->start(UPDATE_INTERVAL);
   } else {
-    next_ = true;
+    nextUpdateFeed_ = true;
     if (!updateModelTimer_->isActive())
       updateModelTimer_->start(UPDATE_INTERVAL);
   }
