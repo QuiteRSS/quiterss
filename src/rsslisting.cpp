@@ -580,7 +580,7 @@ void RSSListing::createFeedsWidget()
   treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
-  treeItem << tr("Label") << QString::number(TAB_CAT_LABEL) << "0";
+  treeItem << tr("Labels") << QString::number(TAB_CAT_LABEL) << "0";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/label_3"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);

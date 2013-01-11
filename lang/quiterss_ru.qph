@@ -1521,4 +1521,88 @@
     <source>F&amp;older...</source>
     <target>&amp;Папку...</target>
 </phrase>
+<phrase>
+    <source>Add Label</source>
+    <target>Добавить метку</target>
+</phrase>
+<phrase>
+    <source>New Label</source>
+    <target>Новая метка</target>
+</phrase>
+<phrase>
+    <source>Important</source>
+    <target>Вожно</target>
+</phrase>
+<phrase>
+    <source>Work</source>
+    <target>Работа</target>
+</phrase>
+<phrase>
+    <source>Personal</source>
+    <target>Личное</target>
+</phrase>
+<phrase>
+    <source>To Do</source>
+    <target>Сделать</target>
+</phrase>
+<phrase>
+    <source>Later</source>
+    <target>Позже</target>
+</phrase>
+<phrase>
+    <source>Amusingly</source>
+    <target>Забавно</target>
+</phrase>
+<phrase>
+    <source>Load icon...</source>
+    <target>Загрузить иконку...</target>
+</phrase>
+<phrase>
+    <source>Select color...</source>
+    <target>Выбрать цвет...</target>
+</phrase>
+<phrase>
+    <source>Color text:</source>
+    <target>Цвет текста:</target>
+</phrase>
+<phrase>
+    <source>Color background:</source>
+    <target>Цвет фона:</target>
+</phrase>
+<phrase>
+    <source>Select Image</source>
+    <target>Выберите изображение</target>
+</phrase>
+<phrase>
+    <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
+    <target>Файлы изображений (*.jpg; *.jpeg; *.png; *.bmp)</target>
+</phrase>
+<phrase>
+    <source>Load icon: can&apos;t open a file</source>
+    <target>Загрузка иконки: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>Label</source>
+    <target>Метка</target>
+</phrase>
+<phrase>
+    <source>Feed</source>
+    <target>Лента</target>
+</phrase>
+<phrase>
+    <source>&amp;Install</source>
+    <target>&amp;Установить</target>
+</phrase>
+<phrase>
+    <source>Don&apos;t remind about this version</source>
+    <target>Не напоминать об этой версии</target>
+</phrase>
+<phrase>
+    <source>Deleted</source>
+    <target>Удаленные</target>
+</phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Избранные</target>
+</phrase>
 </QPH>

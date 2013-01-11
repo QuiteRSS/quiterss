@@ -5,43 +5,43 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="14"/>
+        <location filename="../src/aboutdialog.cpp" line="13"/>
         <source>About</source>
         <translation>درباره</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="29"/>
-        <location filename="../src/aboutdialog.cpp" line="94"/>
+        <location filename="../src/aboutdialog.cpp" line="28"/>
+        <location filename="../src/aboutdialog.cpp" line="93"/>
         <source>Version</source>
         <translation>نسخه</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="30"/>
+        <location filename="../src/aboutdialog.cpp" line="29"/>
         <source>Revision</source>
         <translation>ویرایش</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="33"/>
+        <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
         <translation>کوآیت آر اِس اِس یک برنامه متن باز خواننده اخبار آر اِس اِس/اِی تی لو اِم هست</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="34"/>
+        <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>Includes:</source>
         <translation>شامل:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="95"/>
+        <location filename="../src/aboutdialog.cpp" line="94"/>
         <source>Authors</source>
         <translation>برنامه نویسان</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="96"/>
+        <location filename="../src/aboutdialog.cpp" line="95"/>
         <source>History</source>
         <translation>تاریخچه</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="97"/>
+        <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>License</source>
         <translation>مجوز</translation>
     </message>
@@ -58,9 +58,8 @@
         <translation type="obsolete">با تشکر از:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="101"/>
         <source>&amp;Close</source>
-        <translation>&amp;بستن</translation>
+        <translation type="obsolete">&amp;بستن</translation>
     </message>
 </context>
 <context>
@@ -87,44 +86,44 @@
         <translation>آدرس فید یا آدرس وبسایت:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="146"/>
+        <location filename="../src/addfeedwizard.cpp" line="147"/>
         <source>Feeds</source>
         <translation>فیدها</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="150"/>
+        <location filename="../src/addfeedwizard.cpp" line="151"/>
         <source>All Feeds</source>
         <translation>تمام فیدها</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="188"/>
+        <location filename="../src/addfeedwizard.cpp" line="189"/>
         <source>New Folder...</source>
         <translation>پوشه جدید...</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="203"/>
+        <location filename="../src/addfeedwizard.cpp" line="204"/>
         <source>Displayed name:</source>
         <translation>نام نمایش داده شده:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="205"/>
+        <location filename="../src/addfeedwizard.cpp" line="206"/>
         <source>Location:</source>
         <translation>مکان:</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="276"/>
-        <location filename="../src/addfeedwizard.cpp" line="464"/>
+        <location filename="../src/addfeedwizard.cpp" line="277"/>
+        <location filename="../src/addfeedwizard.cpp" line="465"/>
         <source>URL error!</source>
         <translation>خطای آدرس!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="289"/>
-        <location filename="../src/addfeedwizard.cpp" line="409"/>
+        <location filename="../src/addfeedwizard.cpp" line="290"/>
+        <location filename="../src/addfeedwizard.cpp" line="410"/>
         <source>Duplicate feed!</source>
         <translation>فید تکراری!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="435"/>
+        <location filename="../src/addfeedwizard.cpp" line="436"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>آدرس فید را نمیتوان یافت!</translation>
     </message>
@@ -137,22 +136,22 @@
         <translation>افزودن پوشه</translation>
     </message>
     <message>
-        <location filename="../src/addfolderdialog.cpp" line="20"/>
+        <location filename="../src/addfolderdialog.cpp" line="21"/>
         <source>Feeds</source>
         <translation>فیدها</translation>
     </message>
     <message>
-        <location filename="../src/addfolderdialog.cpp" line="24"/>
+        <location filename="../src/addfolderdialog.cpp" line="25"/>
         <source>All Feeds</source>
         <translation>تمام فیدها</translation>
     </message>
     <message>
-        <location filename="../src/addfolderdialog.cpp" line="66"/>
+        <location filename="../src/addfolderdialog.cpp" line="61"/>
         <source>Name:</source>
         <translation>نام:</translation>
     </message>
     <message>
-        <location filename="../src/addfolderdialog.cpp" line="68"/>
+        <location filename="../src/addfolderdialog.cpp" line="63"/>
         <source>Location:</source>
         <translation>مکان:</translation>
     </message>
@@ -160,17 +159,17 @@
 <context>
     <name>FeedPropertiesDialog</name>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="51"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="42"/>
         <source>Starred</source>
         <translation>ستاره دار</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="52"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="43"/>
         <source>Load images</source>
         <translation>بارگیری عکس ها</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="37"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="28"/>
         <source>Title:</source>
         <translation>عنوان:</translation>
     </message>
@@ -179,47 +178,47 @@
         <translation type="obsolete">مشخصات فید</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="23"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Status</source>
         <translation>وضعيت</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="39"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="30"/>
         <source>Feed URL:</source>
         <translation>آدرس فید:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
         <source>Load Feed Title</source>
         <translation>بارگیری عنوان فید:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="53"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display feed in new tab on startup</source>
         <translation>نمایش فید در تب جدید در اِستارت آپ</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="54"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>نمایش توضیحات اخبار بجای بارگیری صفحه وب</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="105"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="96"/>
         <source>Created:</source>
         <translation>ايجاد شده:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="98"/>
         <source>Last update:</source>
         <translation>آخرین بروزرسانی:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="109"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="100"/>
         <source>News count:</source>
         <translation>تعداد اخبار:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
         <source>Description:</source>
         <translation>توضيحات:</translation>
     </message>
@@ -229,27 +228,27 @@
         <translation>مشخصات</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="146"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="137"/>
         <source>Long ago ;-)</source>
         <translation>مدت ها پیش ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="152"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="143"/>
         <source>new</source>
         <translation>جدید</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="154"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
         <source>unread</source>
         <translation>خوانده نشده</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="38"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="29"/>
         <source>Homepage:</source>
         <translation>صفحه خانگی:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="21"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="14"/>
         <source>General</source>
         <translation>عمومی</translation>
     </message>
@@ -292,17 +291,17 @@
         <translation>تمام فیدها</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="148"/>
+        <location filename="../src/filterrulesdialog.cpp" line="150"/>
         <source>Perform these actions:</source>
         <translation>اجرای این عملکردها:</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="285"/>
+        <location filename="../src/filterrulesdialog.cpp" line="283"/>
         <source>Please enter name for the filter.</source>
         <translation>لطفا نام فیلتر را وارد کنید</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="297"/>
+        <location filename="../src/filterrulesdialog.cpp" line="295"/>
         <source>Please enter search condition for the news filter.</source>
         <translation>لطفا شرط جستجو برای فیلتر اخبار را وارد کنید</translation>
     </message>
@@ -354,6 +353,11 @@
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Delete</source>
         <translation>حذف</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="129"/>
+        <source>Add Label</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -468,64 +472,153 @@
     </message>
 </context>
 <context>
+    <name>LabelDialog</name>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="7"/>
+        <source>New Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="13"/>
+        <source>Important</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="13"/>
+        <source>Work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="13"/>
+        <source>Personal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="14"/>
+        <source>To Do</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="14"/>
+        <source>Later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="14"/>
+        <source>Amusingly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="20"/>
+        <source>Load icon...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="29"/>
+        <location filename="../src/labeldialog.cpp" line="39"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="31"/>
+        <location filename="../src/labeldialog.cpp" line="41"/>
+        <source>Select color...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="49"/>
+        <source>Name:</source>
+        <translation type="unfinished">نام:</translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="53"/>
+        <source>Icon:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="56"/>
+        <source>Color text:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="59"/>
+        <source>Color background:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="124"/>
+        <source>Select Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="126"/>
+        <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/labeldialog.cpp" line="133"/>
+        <source>Load icon: can&apos;t open a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NewsFiltersDialog</name>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="10"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="11"/>
         <source>News Filters</source>
         <translation>فیلتر اخبار</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="24"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="25"/>
         <source>Feeds</source>
         <translation>فیدها</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="24"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="25"/>
         <source>Name Filter</source>
         <translation>فیلتر نام</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="63"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="64"/>
         <source>New...</source>
         <translation>جدید..</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="65"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="66"/>
         <source>Edit...</source>
         <translation>ویرایش..</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="68"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="69"/>
         <source>Delete...</source>
         <translation>حذف..</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="72"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="73"/>
         <source>Move up</source>
         <translation>انتقال به بالا</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="75"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="76"/>
         <source>Move down</source>
         <translation>انتقال به پایین</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="93"/>
         <source>&amp;Close</source>
-        <translation>&amp;بستن</translation>
+        <translation type="obsolete">&amp;بستن</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="98"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="96"/>
         <source>Apply Selected Filter</source>
         <translation>اِعمال فیلتر انتخاب شده</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="225"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="215"/>
         <source>Delete Filter</source>
         <translation>حذف فیلتر</translation>
     </message>
     <message>
-        <location filename="../src/newsfiltersdialog.cpp" line="226"/>
+        <location filename="../src/newsfiltersdialog.cpp" line="216"/>
         <source>Are you sure to delete the filter &apos;%1&apos;?</source>
         <translation>آیا میخواهید فیلتر &apos;%1&apos; حذف شود؟</translation>
     </message>
@@ -533,52 +626,58 @@
 <context>
     <name>NewsHeader</name>
     <message>
-        <location filename="../src/newsheader.cpp" line="53"/>
-        <location filename="../src/newsheader.cpp" line="371"/>
+        <location filename="../src/newsheader.cpp" line="52"/>
+        <location filename="../src/newsheader.cpp" line="373"/>
         <source>Feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="54"/>
-        <location filename="../src/newsheader.cpp" line="372"/>
+        <location filename="../src/newsheader.cpp" line="53"/>
+        <location filename="../src/newsheader.cpp" line="374"/>
         <source>Title</source>
         <translation>عنوان</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="55"/>
-        <location filename="../src/newsheader.cpp" line="373"/>
+        <location filename="../src/newsheader.cpp" line="54"/>
+        <location filename="../src/newsheader.cpp" line="375"/>
         <source>Published</source>
         <translation>تاریخ انتشار</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="56"/>
-        <location filename="../src/newsheader.cpp" line="374"/>
+        <location filename="../src/newsheader.cpp" line="55"/>
+        <location filename="../src/newsheader.cpp" line="376"/>
         <source>Received</source>
         <translation>دریافت شده</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="57"/>
-        <location filename="../src/newsheader.cpp" line="375"/>
+        <location filename="../src/newsheader.cpp" line="56"/>
+        <location filename="../src/newsheader.cpp" line="377"/>
         <source>Author</source>
         <translation>سازنده</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="58"/>
-        <location filename="../src/newsheader.cpp" line="376"/>
+        <location filename="../src/newsheader.cpp" line="57"/>
+        <location filename="../src/newsheader.cpp" line="378"/>
         <source>Category</source>
         <translation>دسته</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="59"/>
-        <location filename="../src/newsheader.cpp" line="377"/>
+        <location filename="../src/newsheader.cpp" line="58"/>
+        <location filename="../src/newsheader.cpp" line="379"/>
         <source>Read</source>
         <translation>خواندن</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="60"/>
-        <location filename="../src/newsheader.cpp" line="378"/>
+        <location filename="../src/newsheader.cpp" line="59"/>
+        <location filename="../src/newsheader.cpp" line="380"/>
         <source>Star</source>
         <translation>ستاره</translation>
+    </message>
+    <message>
+        <location filename="../src/newsheader.cpp" line="60"/>
+        <location filename="../src/newsheader.cpp" line="381"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -592,37 +691,35 @@
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="464"/>
+        <location filename="../src/newstabwidget.cpp" line="460"/>
         <source>Loading... (%p%)</source>
         <translation>بارگیری... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="465"/>
         <source>Title:</source>
-        <translation>عنوان:</translation>
+        <translation type="obsolete">عنوان:</translation>
+    </message>
+    <message>
+        <source>Author:</source>
+        <translation type="obsolete">سازنده:</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="466"/>
-        <source>Author:</source>
-        <translation>سازنده:</translation>
-    </message>
-    <message>
-        <location filename="../src/newstabwidget.cpp" line="468"/>
         <source>Home</source>
         <translation>خانه</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="469"/>
+        <location filename="../src/newstabwidget.cpp" line="467"/>
         <source>Open Page in External Browser</source>
         <translation>بازکردن صفحه در مرورگر خارجی</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="470"/>
+        <location filename="../src/newstabwidget.cpp" line="468"/>
         <source>Open Link in External Browser</source>
         <translation>بازکردن لینک در مرورگر خارجی</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="472"/>
+        <location filename="../src/newstabwidget.cpp" line="470"/>
         <source>Open Link</source>
         <translation>بازکردن لینک</translation>
     </message>
@@ -631,47 +728,53 @@
         <translation type="obsolete">بازکردن در مرورگر خارجی</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="473"/>
+        <location filename="../src/newstabwidget.cpp" line="464"/>
+        <location filename="../src/newstabwidget.cpp" line="1083"/>
+        <source>Author: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="471"/>
         <source>Open in New Tab</source>
         <translation>بازکردن در تب جدید</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="474"/>
+        <location filename="../src/newstabwidget.cpp" line="472"/>
         <source>Save Link...</source>
         <translation>ذخیره لینک..</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="475"/>
+        <location filename="../src/newstabwidget.cpp" line="473"/>
         <source>Copy Link</source>
         <translation>کپی لینک</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="476"/>
+        <location filename="../src/newstabwidget.cpp" line="474"/>
         <source>Copy</source>
         <translation>کپی</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="477"/>
+        <location filename="../src/newstabwidget.cpp" line="475"/>
         <source>Go Back</source>
         <translation>برگرد</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="478"/>
+        <location filename="../src/newstabwidget.cpp" line="476"/>
         <source>Go Forward</source>
         <translation>بروجلو</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="479"/>
+        <location filename="../src/newstabwidget.cpp" line="477"/>
         <source>Stop</source>
         <translation>توقف</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="480"/>
+        <location filename="../src/newstabwidget.cpp" line="478"/>
         <source>Reload</source>
         <translation>بارگیری مجدد</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="487"/>
+        <location filename="../src/newstabwidget.cpp" line="485"/>
         <source>Close Tab</source>
         <translation>بستن تب</translation>
     </message>
@@ -694,439 +797,493 @@
 <context>
     <name>OptionsDialog</name>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="8"/>
+        <location filename="../src/optionsdialog.cpp" line="9"/>
         <source>Options</source>
         <translation>گزینه ها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="26"/>
+        <location filename="../src/optionsdialog.cpp" line="44"/>
         <source>Network Connections</source>
         <translation>ارتباطات شبکه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="29"/>
+        <location filename="../src/optionsdialog.cpp" line="47"/>
         <source>Browser</source>
         <translation>مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="32"/>
+        <location filename="../src/optionsdialog.cpp" line="50"/>
         <source>Feeds</source>
         <translation>فیدها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="35"/>
+        <location filename="../src/optionsdialog.cpp" line="53"/>
+        <source>Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="56"/>
         <source>Notifications</source>
         <translation>اطلاع رسانی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="38"/>
-        <location filename="../src/optionsdialog.cpp" line="687"/>
+        <location filename="../src/optionsdialog.cpp" line="59"/>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Language</source>
         <translation>زبان</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="41"/>
+        <location filename="../src/optionsdialog.cpp" line="62"/>
         <source>Fonts</source>
         <translation>فونت ها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="49"/>
+        <location filename="../src/optionsdialog.cpp" line="184"/>
         <source>Reopen last opened feeds on startup</source>
         <translation>بازکردن مجدد آخرین فید بازشده در اِستارت آپ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="51"/>
+        <location filename="../src/optionsdialog.cpp" line="186"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>(ذخیره پایگاه داده در حافظه (برنامه باید ریستارت شود</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="69"/>
+        <location filename="../src/optionsdialog.cpp" line="207"/>
         <source>starting QuiteRSS</source>
         <translation>شروع برنامه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="70"/>
+        <location filename="../src/optionsdialog.cpp" line="208"/>
         <source>minimizing QuiteRSS</source>
         <translation>کمینه کردن برنامه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="71"/>
+        <location filename="../src/optionsdialog.cpp" line="209"/>
         <source>closing QuiteRSS</source>
         <translation>بستن برنامه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="78"/>
+        <location filename="../src/optionsdialog.cpp" line="216"/>
         <source>Show static icon</source>
         <translation>نمایش آیکون استاتیک</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="79"/>
+        <location filename="../src/optionsdialog.cpp" line="217"/>
         <source>Change icon for incoming new news</source>
         <translation>تغیر آیکون برای اخبار جدید ورودی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="80"/>
+        <location filename="../src/optionsdialog.cpp" line="218"/>
         <source>Show count of new news</source>
         <translation>تعداد نمایش اخبار جدید</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="81"/>
+        <location filename="../src/optionsdialog.cpp" line="219"/>
         <source>Show count of unread news</source>
         <translation>تعداد نمایش اخبار خوانده نشده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="90"/>
+        <location filename="../src/optionsdialog.cpp" line="228"/>
         <source>Single click instead of double click for show window</source>
         <translation>یک بار کلیک بجای دومرتبه کلیک برای نمایش پنجره</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="91"/>
+        <location filename="../src/optionsdialog.cpp" line="229"/>
         <source>Clear status new on minimize to tray</source>
         <translation>پاکسازی وضعیت جدید در کمینه کنار ساعت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="92"/>
+        <location filename="../src/optionsdialog.cpp" line="230"/>
         <source>Empty working set on minimize to tray</source>
         <translation>خالی کردن مجموعه کاری در کمینه کنار ساعت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="95"/>
+        <location filename="../src/optionsdialog.cpp" line="233"/>
         <source>Move to the system tray when:</source>
         <translation>انتقال به کنارساعت حین:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="97"/>
+        <location filename="../src/optionsdialog.cpp" line="235"/>
         <source>Tray icon behavior:</source>
         <translation>رفتار آیکون کنارساعت:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="119"/>
+        <location filename="../src/optionsdialog.cpp" line="260"/>
         <source>System proxy configuration (if available)</source>
         <translation>تنظیمات پراکسی سیستم،اگرموجود بود</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="122"/>
+        <location filename="../src/optionsdialog.cpp" line="262"/>
         <source>Direct connection to the Internet</source>
         <translation>ارتباط مستقیم به اینترنت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="123"/>
+        <location filename="../src/optionsdialog.cpp" line="263"/>
         <source>Manual proxy configuration:</source>
         <translation>پیکربندی دستی پراکسی:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="138"/>
+        <location filename="../src/optionsdialog.cpp" line="278"/>
         <source>Proxy server:</source>
         <translation>سرور پراکسی:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="140"/>
+        <location filename="../src/optionsdialog.cpp" line="280"/>
         <source>Port:</source>
         <translation>پورت:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="148"/>
+        <location filename="../src/optionsdialog.cpp" line="288"/>
         <source>Username:</source>
         <translation>نام کاربر:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="150"/>
+        <location filename="../src/optionsdialog.cpp" line="290"/>
         <source>Password:</source>
         <translation>رمزعبور:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="175"/>
+        <location filename="../src/optionsdialog.cpp" line="320"/>
         <source>Use embedded browser</source>
         <translation>استفاده از مرورگر جاسازشده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="177"/>
+        <location filename="../src/optionsdialog.cpp" line="322"/>
         <source>Use following external browser:</source>
         <translation>استفاده از مرورگر خارجی زیر:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="180"/>
-        <location filename="../src/optionsdialog.cpp" line="383"/>
+        <location filename="../src/optionsdialog.cpp" line="325"/>
+        <location filename="../src/optionsdialog.cpp" line="624"/>
         <source>Browse...</source>
         <translation>جستجو..</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="182"/>
+        <location filename="../src/optionsdialog.cpp" line="327"/>
         <source>Enable JavaScript</source>
         <translation>فعالسازی جاوا اسکریپت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="183"/>
+        <location filename="../src/optionsdialog.cpp" line="328"/>
         <source>Enable plug-ins</source>
         <translation>فعالسازی افزونه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="185"/>
+        <location filename="../src/optionsdialog.cpp" line="330"/>
+        <source>Open links in embedded browser in background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="331"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>(بازکردن لینک ها در مرورگر خارجی در پس زمینه (آزمایشی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="257"/>
+        <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Position on unread news</source>
         <translation>موقعیت در اخبار خوانده نشده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="276"/>
+        <location filename="../src/optionsdialog.cpp" line="427"/>
         <source>Dec</source>
         <translation>دسامبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="277"/>
+        <location filename="../src/optionsdialog.cpp" line="428"/>
         <source>December</source>
         <translation>دسامبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="397"/>
+        <location filename="../src/optionsdialog.cpp" line="457"/>
+        <source>Mark news as read:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="459"/>
+        <source>on selecting. With timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="460"/>
+        <source>after switching to another news</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="515"/>
+        <source>Never delete labeled news</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="578"/>
+        <source>New...</source>
+        <translation type="unfinished">جدید..</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="580"/>
+        <source>Edit...</source>
+        <translation type="unfinished">ویرایش..</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="583"/>
+        <source>Delete...</source>
+        <translation type="unfinished">حذف..</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="587"/>
+        <source>Move up</source>
+        <translation type="unfinished">انتقال به بالا</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="590"/>
+        <source>Move down</source>
+        <translation type="unfinished">انتقال به پایین</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Display notification for incoming news</source>
         <translation>نمایش اطلاع رسانی برای اخبار ورودی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="409"/>
+        <location filename="../src/optionsdialog.cpp" line="650"/>
         <source>Show maximum of</source>
         <translation>نمایش حداکثر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="411"/>
+        <location filename="../src/optionsdialog.cpp" line="652"/>
         <source>news on page notification</source>
         <translation>اخبار در صفحه اطلاع رسانی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="414"/>
+        <location filename="../src/optionsdialog.cpp" line="655"/>
         <source>Width news list</source>
         <translation>عرض لیست اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="416"/>
+        <location filename="../src/optionsdialog.cpp" line="657"/>
         <source>pixels</source>
         <translation>پیکسل</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="419"/>
+        <location filename="../src/optionsdialog.cpp" line="660"/>
         <source>Close notification after</source>
         <translation>بستن اطلاع رسانی بعداز</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>News panel font (Title, Author)</source>
         <translation>(فونت پنل اخبار (عنوان،نویسنده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="495"/>
+        <location filename="../src/optionsdialog.cpp" line="907"/>
         <source>Notification font</source>
         <translation>فونت اطلاع رسانی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="964"/>
+        <location filename="../src/optionsdialog.cpp" line="1153"/>
         <source>Load images</source>
         <translation>بارگیری عکس ها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="965"/>
+        <location filename="../src/optionsdialog.cpp" line="1154"/>
         <source>Auto load images to news view</source>
         <translation>بارگیری خودکار عکس در مشاهده اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1038"/>
-        <location filename="../src/optionsdialog.cpp" line="1053"/>
+        <location filename="../src/optionsdialog.cpp" line="1239"/>
+        <location filename="../src/optionsdialog.cpp" line="1254"/>
         <source>Open File...</source>
         <translation>بازکردن فايل..</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="231"/>
+        <location filename="../src/optionsdialog.cpp" line="382"/>
         <source>Automatically update the feeds every</source>
         <translation>بروزرسانی خودکار فید هر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="241"/>
-        <location filename="../src/optionsdialog.cpp" line="938"/>
+        <location filename="../src/optionsdialog.cpp" line="392"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>minutes</source>
         <translation>دقيقه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="241"/>
-        <location filename="../src/optionsdialog.cpp" line="940"/>
+        <location filename="../src/optionsdialog.cpp" line="392"/>
+        <location filename="../src/optionsdialog.cpp" line="1130"/>
         <source>hours</source>
         <translation>ساعت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="255"/>
+        <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Position on last opened news</source>
         <translation>موقعیت در آخرین اخبار بازشده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="256"/>
+        <location filename="../src/optionsdialog.cpp" line="407"/>
         <source>Position at top of list news</source>
         <translation>موقعیت در بالای لیست اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="258"/>
+        <location filename="../src/optionsdialog.cpp" line="409"/>
         <source>Open news</source>
         <translation>بازکردن اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="259"/>
+        <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Nothing to do</source>
         <translation>کاری انجام نده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="297"/>
+        <location filename="../src/optionsdialog.cpp" line="448"/>
         <source>Opening feed:</source>
         <translation>بازکردن فید:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="305"/>
         <source>Mark selected news as read after</source>
-        <translation>نشانه اخبار انتخاب شده به خوانده شده بعداز</translation>
+        <translation type="obsolete">نشانه اخبار انتخاب شده به خوانده شده بعداز</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="322"/>
-        <location filename="../src/optionsdialog.cpp" line="421"/>
+        <location filename="../src/optionsdialog.cpp" line="477"/>
+        <location filename="../src/optionsdialog.cpp" line="662"/>
         <source>seconds</source>
         <translation>ثانیه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="20"/>
-        <location filename="../src/optionsdialog.cpp" line="374"/>
+        <location filename="../src/optionsdialog.cpp" line="38"/>
+        <location filename="../src/optionsdialog.cpp" line="533"/>
         <source>General</source>
         <translation>عمومی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="48"/>
+        <location filename="../src/optionsdialog.cpp" line="183"/>
         <source>Show splash screen on startup</source>
         <translation>نمایش اِسپلش اسکرین در اِستارت آپ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="65"/>
+        <location filename="../src/optionsdialog.cpp" line="203"/>
         <source>Show system tray icon</source>
         <translation>نمایش آیکون کنارساعت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="230"/>
+        <location filename="../src/optionsdialog.cpp" line="381"/>
         <source>Automatically update the feeds on startup</source>
         <translation>بروزرسانی خودکار فید در اِستارت آپ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="344"/>
+        <location filename="../src/optionsdialog.cpp" line="505"/>
         <source>Maximum number of news to keep:</source>
         <translation>حداکثر تعداد اخبار برای حفظ کردن:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="337"/>
+        <location filename="../src/optionsdialog.cpp" line="498"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>حداکثر سن اخبار در روز برای حفظ کردن:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="201"/>
+        <location filename="../src/optionsdialog.cpp" line="347"/>
         <source>Browser selection:</source>
         <translation>انتخاب مرورگر:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="203"/>
+        <location filename="../src/optionsdialog.cpp" line="349"/>
         <source>Content:</source>
         <translation>محتوا:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="316"/>
+        <location filename="../src/optionsdialog.cpp" line="471"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>نمایش توضیحات اخبار بجای بارگیری صفحه وب</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="351"/>
+        <location filename="../src/optionsdialog.cpp" line="512"/>
         <source>Delete read news</source>
         <translation>حذف اخبار خوانده شده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="352"/>
+        <location filename="../src/optionsdialog.cpp" line="513"/>
         <source>Never delete unread news</source>
         <translation>هرگز اخبار خوانده نشده را پاک نکن</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="353"/>
+        <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Never delete starred news</source>
         <translation>هرگز اخبار ستاره دار شده را پاک نکن</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="375"/>
+        <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Reading</source>
         <translation>خواندن</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="376"/>
+        <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Clean Up</source>
         <translation>پاکسازی</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="380"/>
+        <location filename="../src/optionsdialog.cpp" line="621"/>
         <source>Play sound for incoming new news</source>
         <translation>پخش صدا برای ورودی جدید اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="782"/>
+        <location filename="../src/optionsdialog.cpp" line="873"/>
         <source>Choose language:</source>
         <translation>انتخاب زبان:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="687"/>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Version</source>
         <translation>نسخه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="23"/>
+        <location filename="../src/optionsdialog.cpp" line="41"/>
         <source>System Tray</source>
         <translation>کنارساعت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="44"/>
+        <location filename="../src/optionsdialog.cpp" line="65"/>
         <source>Keyboard Shortcuts</source>
         <translation>میانبرهای صفحه کلید</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="176"/>
+        <location filename="../src/optionsdialog.cpp" line="321"/>
         <source>Use standard external browser</source>
         <translation>استفاده از مرورگر خارجی استاندارد:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="289"/>
+        <location filename="../src/optionsdialog.cpp" line="440"/>
         <source>Display format for date and time:</source>
         <translation>فرمت نمایش تاریخ و زمان:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="311"/>
+        <location filename="../src/optionsdialog.cpp" line="466"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>نشانه اخبار نمایش داده شده بعنوان خوانده شده حین تعویض فیدها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="312"/>
+        <location filename="../src/optionsdialog.cpp" line="467"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>نشانه اخبار نمایش داده شده بعنوان خوانده شده حین بستن تب</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="313"/>
+        <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>نشانه اخبار نمایش داده شده به خوانده شده در کمینه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="423"/>
+        <location filename="../src/optionsdialog.cpp" line="664"/>
         <source>Only show selected feeds:</source>
         <translation>فقط فیدهای انتخاب شده را نشان بده:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="438"/>
+        <location filename="../src/optionsdialog.cpp" line="680"/>
         <source>All Feeds</source>
         <translation>تمام فیدها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="688"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Author</source>
         <translation>سازنده</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="688"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Contact</source>
         <translation>تماس</translation>
     </message>
@@ -1135,58 +1292,58 @@
         <translation type="obsolete">شناسه</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="479"/>
+        <location filename="../src/optionsdialog.cpp" line="891"/>
         <source>Type</source>
         <translation>نوع</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="479"/>
+        <location filename="../src/optionsdialog.cpp" line="891"/>
         <source>Font</source>
         <translation>فونت</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="483"/>
+        <location filename="../src/optionsdialog.cpp" line="895"/>
         <source>Feeds list font</source>
         <translation>فونت لیست فیدها</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="486"/>
+        <location filename="../src/optionsdialog.cpp" line="898"/>
         <source>News list font</source>
         <translation>فونت لیست اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="492"/>
+        <location filename="../src/optionsdialog.cpp" line="904"/>
         <source>News font</source>
         <translation>فونت اخبار</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="502"/>
+        <location filename="../src/optionsdialog.cpp" line="914"/>
         <source>Change...</source>
         <translation>تغییر..</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="504"/>
-        <location filename="../src/optionsdialog.cpp" line="537"/>
+        <location filename="../src/optionsdialog.cpp" line="916"/>
+        <location filename="../src/optionsdialog.cpp" line="955"/>
         <source>Reset</source>
         <translation>ریست</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="533"/>
+        <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Action</source>
         <translation>اقدام</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="533"/>
+        <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Description</source>
         <translation>توضيحات</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="533"/>
+        <location filename="../src/optionsdialog.cpp" line="950"/>
         <source>Shortcut</source>
         <translation>میانبر</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="540"/>
+        <location filename="../src/optionsdialog.cpp" line="958"/>
         <source>Shortcut:</source>
         <translation>میانبر:</translation>
     </message>
@@ -1194,17 +1351,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3787"/>
+        <location filename="../src/rsslisting.cpp" line="4047"/>
         <source>&amp;Step up</source>
         <translation>گام به بالا</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3788"/>
+        <location filename="../src/rsslisting.cpp" line="4048"/>
         <source>Step &amp;down</source>
         <translation>گام به پایین</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3789"/>
+        <location filename="../src/rsslisting.cpp" line="4049"/>
         <source>&amp;Select All</source>
         <translation>&amp;انتخاب همه</translation>
     </message>
@@ -1212,17 +1369,17 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3766"/>
+        <location filename="../src/rsslisting.cpp" line="4026"/>
         <source>Cancel</source>
         <translation>لغو</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3767"/>
+        <location filename="../src/rsslisting.cpp" line="4027"/>
         <source>&amp;Yes</source>
         <translation>&amp;بله</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3768"/>
+        <location filename="../src/rsslisting.cpp" line="4028"/>
         <source>&amp;No</source>
         <translation>&amp;خير</translation>
     </message>
@@ -1230,37 +1387,37 @@
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3770"/>
+        <location filename="../src/rsslisting.cpp" line="4030"/>
         <source>&amp;Undo</source>
         <translation>&amp;آندو</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3771"/>
+        <location filename="../src/rsslisting.cpp" line="4031"/>
         <source>&amp;Redo</source>
         <translation>&amp;ریدو</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3772"/>
+        <location filename="../src/rsslisting.cpp" line="4032"/>
         <source>Cu&amp;t</source>
         <translation>&amp;کات</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3773"/>
+        <location filename="../src/rsslisting.cpp" line="4033"/>
         <source>&amp;Copy</source>
         <translation>&amp;کپی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3774"/>
+        <location filename="../src/rsslisting.cpp" line="4034"/>
         <source>&amp;Paste</source>
         <translation>&amp;چسباندن</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3775"/>
+        <location filename="../src/rsslisting.cpp" line="4035"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3776"/>
+        <location filename="../src/rsslisting.cpp" line="4036"/>
         <source>Select All</source>
         <translation>انتخاب همه</translation>
     </message>
@@ -1268,7 +1425,7 @@
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3791"/>
+        <location filename="../src/rsslisting.cpp" line="4051"/>
         <source>Select IM</source>
         <translation>آی اِم را انتخاب کنید</translation>
     </message>
@@ -1276,42 +1433,42 @@
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3778"/>
+        <location filename="../src/rsslisting.cpp" line="4038"/>
         <source>&amp;Undo</source>
         <translation>&amp;آندو</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3779"/>
+        <location filename="../src/rsslisting.cpp" line="4039"/>
         <source>&amp;Redo</source>
         <translation>&amp;ریدو</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3780"/>
+        <location filename="../src/rsslisting.cpp" line="4040"/>
         <source>Cu&amp;t</source>
         <translation>&amp;کات</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3781"/>
+        <location filename="../src/rsslisting.cpp" line="4041"/>
         <source>&amp;Copy</source>
         <translation>&amp;کپی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3782"/>
+        <location filename="../src/rsslisting.cpp" line="4042"/>
         <source>&amp;Paste</source>
         <translation>&amp;چسباندن</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3783"/>
+        <location filename="../src/rsslisting.cpp" line="4043"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3784"/>
+        <location filename="../src/rsslisting.cpp" line="4044"/>
         <source>Select All</source>
         <translation>انتخاب همه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3785"/>
+        <location filename="../src/rsslisting.cpp" line="4045"/>
         <source>Copy &amp;Link Location</source>
         <translation>کپی &amp;مکان لینک</translation>
     </message>
@@ -1319,22 +1476,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3793"/>
+        <location filename="../src/rsslisting.cpp" line="4053"/>
         <source>Cancel</source>
         <translation>لغو</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3794"/>
+        <location filename="../src/rsslisting.cpp" line="4054"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;قبلی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3795"/>
+        <location filename="../src/rsslisting.cpp" line="4055"/>
         <source>&amp;Finish</source>
         <translation>پ&amp;ايان</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3796"/>
+        <location filename="../src/rsslisting.cpp" line="4056"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;بعدی &gt;</translation>
     </message>
@@ -1342,17 +1499,17 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1822"/>
+        <location filename="../src/rsslisting.cpp" line="2017"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>آیا میخواهید فید &apos;%1&apos; را حذف کنید؟</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1870"/>
+        <location filename="../src/rsslisting.cpp" line="2065"/>
         <source>Import canceled</source>
         <translation>واردکردن:لغو شد</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1878"/>
+        <location filename="../src/rsslisting.cpp" line="2073"/>
         <source>Import: can&apos;t open a file</source>
         <translation>واردکردن:فایل را نمیتوان بازکرد</translation>
     </message>
@@ -1365,256 +1522,280 @@
         <translation type="obsolete"> همه: %1 </translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3568"/>
         <source>Feeds</source>
-        <translation>فیدها</translation>
+        <translation type="obsolete">فیدها</translation>
     </message>
     <message>
         <source>Update feeds... (%p%)</source>
         <translation type="obsolete">بروزرسانی فیدها... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3585"/>
+        <location filename="../src/rsslisting.cpp" line="3833"/>
         <source>&amp;Add</source>
         <translation>&amp;افزودن</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3588"/>
+        <location filename="../src/rsslisting.cpp" line="3836"/>
         <source>&amp;Feed...</source>
         <translation>&amp;فید...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3591"/>
+        <location filename="../src/rsslisting.cpp" line="3839"/>
         <source>F&amp;older...</source>
         <translation>&amp;پوشه...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3596"/>
+        <location filename="../src/rsslisting.cpp" line="3844"/>
         <source>&amp;Delete...</source>
         <translation>&amp;حذف..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3605"/>
+        <location filename="../src/rsslisting.cpp" line="3853"/>
         <source>E&amp;xit</source>
         <translation>خ&amp;روج</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3646"/>
+        <location filename="../src/rsslisting.cpp" line="3894"/>
         <source>Show Starred</source>
         <translation>نمایش ستاره دار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3647"/>
+        <location filename="../src/rsslisting.cpp" line="3895"/>
         <source>Show Not Starred</source>
         <translation>نمایش بی ستاره ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3648"/>
+        <location filename="../src/rsslisting.cpp" line="3896"/>
         <source>Show Unread or Starred</source>
         <translation>نمایش خوانده نشده یا ستاره دار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3659"/>
+        <location filename="../src/rsslisting.cpp" line="3906"/>
         <source>Open News in External Browser</source>
         <translation>بازکردن اخبار در مرورگر خارجی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3673"/>
+        <location filename="../src/rsslisting.cpp" line="3920"/>
         <source>Mark Read</source>
         <translation>نشانه به خوانده شده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3675"/>
-        <location filename="../src/rsslisting.cpp" line="3676"/>
+        <location filename="../src/rsslisting.cpp" line="3922"/>
+        <location filename="../src/rsslisting.cpp" line="3923"/>
         <source>Properties</source>
         <translation>مشخصات</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3687"/>
-        <location filename="../src/rsslisting.cpp" line="3756"/>
+        <location filename="../src/rsslisting.cpp" line="3934"/>
+        <location filename="../src/rsslisting.cpp" line="4003"/>
         <source>Main Toolbar</source>
         <translation>نوارابزار اصلی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3688"/>
+        <location filename="../src/rsslisting.cpp" line="3935"/>
         <source>Customize Toolbar</source>
         <translation>سفارشی کردن نوار ابزار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3694"/>
+        <location filename="../src/rsslisting.cpp" line="3941"/>
         <source>Hide Toolbar</source>
         <translation>مخفی کردن نوارابزار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3710"/>
+        <location filename="../src/rsslisting.cpp" line="3957"/>
         <source>Browser Position</source>
         <translation>موقعیت مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3716"/>
+        <location filename="../src/rsslisting.cpp" line="3963"/>
         <source>Show Window</source>
         <translation>نمایش پنجره</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3718"/>
+        <location filename="../src/rsslisting.cpp" line="3965"/>
         <source>Previous Feed</source>
         <translation>فید قبلی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3719"/>
+        <location filename="../src/rsslisting.cpp" line="3966"/>
         <source>Next Feed</source>
         <translation>فید بعدی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3720"/>
+        <location filename="../src/rsslisting.cpp" line="3967"/>
         <source>Previous News</source>
         <translation>اخبار قبلی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3721"/>
+        <location filename="../src/rsslisting.cpp" line="3968"/>
         <source>Next News</source>
         <translation>اخبار بعدی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3723"/>
+        <location filename="../src/rsslisting.cpp" line="3970"/>
         <source>Switch Focus Between Panels</source>
         <translation>تعویض کانون بین پنل ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3725"/>
+        <location filename="../src/rsslisting.cpp" line="3972"/>
         <source>Switch Focus Between Panels (Tree Feeds, List News, Browser)</source>
         <translation>تعویض کانون بین پنل ها:فید درختی،لیست اخبار،مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3727"/>
+        <location filename="../src/rsslisting.cpp" line="3974"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>نمایش/عدم نمایش فیدهای درختی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3729"/>
+        <location filename="../src/rsslisting.cpp" line="3976"/>
         <source>Minimize to Tray</source>
         <translation>کمینه کنار ساعت</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3731"/>
+        <location filename="../src/rsslisting.cpp" line="3978"/>
         <source>Minimize Application to Tray</source>
         <translation>کمینه برنامه کنارساعت</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3733"/>
+        <location filename="../src/rsslisting.cpp" line="3980"/>
         <source>Columns</source>
         <translation>ستون ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3738"/>
+        <location filename="../src/rsslisting.cpp" line="3985"/>
         <source>Sort by Title</source>
         <translation>مرتبسازی با عنوان</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3742"/>
+        <location filename="../src/rsslisting.cpp" line="3989"/>
         <source>Zoom</source>
         <translation>زوم</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3743"/>
+        <location filename="../src/rsslisting.cpp" line="3990"/>
         <source>Zoom In</source>
         <translation>بزرگنمایی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3744"/>
+        <location filename="../src/rsslisting.cpp" line="3991"/>
         <source>Zoom in in browser</source>
         <translation>بزرگنمایی در مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3745"/>
+        <location filename="../src/rsslisting.cpp" line="3992"/>
         <source>Zoom Out</source>
         <translation>کوچکنمایی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3746"/>
+        <location filename="../src/rsslisting.cpp" line="3993"/>
         <source>Zoom out in browser</source>
         <translation>کوچکنمایی در مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3747"/>
+        <location filename="../src/rsslisting.cpp" line="3994"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3748"/>
+        <location filename="../src/rsslisting.cpp" line="3995"/>
         <source>Reset zoom in browser</source>
         <translation>ریست زوم در مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3750"/>
+        <location filename="../src/rsslisting.cpp" line="3997"/>
         <source>Print...</source>
         <translation>چاپ...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3751"/>
+        <location filename="../src/rsslisting.cpp" line="3998"/>
         <source>Print Web page</source>
         <translation>چاپ صفحه وب</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3752"/>
+        <location filename="../src/rsslisting.cpp" line="3999"/>
         <source>Print Preview...</source>
         <translation>پیشنمایش چاپ...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3753"/>
+        <location filename="../src/rsslisting.cpp" line="4000"/>
         <source>Preview Web page</source>
         <translation>پیشنمایش صفحه وب</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3755"/>
+        <location filename="../src/rsslisting.cpp" line="4002"/>
         <source>Toolbars</source>
         <translation>نوارابزارها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3757"/>
+        <location filename="../src/rsslisting.cpp" line="4004"/>
+        <source>Feeds Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4005"/>
         <source>News Toolbar</source>
         <translation>نوارابزار اخبار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3758"/>
+        <location filename="../src/rsslisting.cpp" line="4006"/>
         <source>Browser Toolbar</source>
         <translation>نوارابزار مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3760"/>
-        <location filename="../src/rsslisting.cpp" line="3761"/>
+        <location filename="../src/rsslisting.cpp" line="4008"/>
+        <location filename="../src/rsslisting.cpp" line="4009"/>
         <source>Full Screen</source>
         <translation>تمام صفحه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3763"/>
-        <location filename="../src/rsslisting.cpp" line="3764"/>
+        <location filename="../src/rsslisting.cpp" line="4011"/>
+        <location filename="../src/rsslisting.cpp" line="4012"/>
         <source>Stay On Top</source>
         <translation>ماندن در بالا</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4199"/>
+        <location filename="../src/rsslisting.cpp" line="4014"/>
+        <source>Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4022"/>
+        <source>Close tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4023"/>
+        <source>Switch to next tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4024"/>
+        <source>Switch to previous tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4443"/>
         <source>Check for updates</source>
         <translation>بررسی برای بروزرسانی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4200"/>
+        <location filename="../src/rsslisting.cpp" line="4444"/>
         <source>A new version of QuiteRSS...</source>
         <translation>یک نسخه جدید برنامه...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5000"/>
-        <location filename="../src/rsslisting.cpp" line="5011"/>
+        <location filename="../src/rsslisting.cpp" line="5148"/>
+        <location filename="../src/rsslisting.cpp" line="5159"/>
         <source>Web Page</source>
         <translation>صفحه وب</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2006"/>
+        <location filename="../src/rsslisting.cpp" line="2207"/>
         <source>Export canceled</source>
         <translation>خروجیگیری لغو شد</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2012"/>
+        <location filename="../src/rsslisting.cpp" line="2213"/>
         <source>Export: can&apos;t open a file</source>
         <translation>خروجیگیری:فایل را نمیتوان بازکرد</translation>
     </message>
@@ -1623,36 +1804,36 @@
         <translation type="obsolete">بروزرسانی انجام شد</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3623"/>
+        <location filename="../src/rsslisting.cpp" line="3871"/>
         <source>Mark Read/Unread</source>
         <translation>نشانه خوانده/خوانده نشده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3633"/>
+        <location filename="../src/rsslisting.cpp" line="3881"/>
         <source>Options...</source>
         <translation>گزینه ها..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3636"/>
-        <location filename="../src/rsslisting.cpp" line="3642"/>
+        <location filename="../src/rsslisting.cpp" line="3884"/>
+        <location filename="../src/rsslisting.cpp" line="3890"/>
         <source>Filter</source>
         <translation>فیلتر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3637"/>
-        <location filename="../src/rsslisting.cpp" line="3643"/>
+        <location filename="../src/rsslisting.cpp" line="3885"/>
+        <location filename="../src/rsslisting.cpp" line="3891"/>
         <source>Show All</source>
         <translation>نمايش همه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3638"/>
-        <location filename="../src/rsslisting.cpp" line="3644"/>
+        <location filename="../src/rsslisting.cpp" line="3886"/>
+        <location filename="../src/rsslisting.cpp" line="3892"/>
         <source>Show New</source>
         <translation>نمایش جدید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3639"/>
-        <location filename="../src/rsslisting.cpp" line="3645"/>
+        <location filename="../src/rsslisting.cpp" line="3887"/>
+        <location filename="../src/rsslisting.cpp" line="3893"/>
         <source>Show Unread</source>
         <translation>نمایش خوانده نشده</translation>
     </message>
@@ -1661,165 +1842,201 @@
         <translation type="obsolete">نمایش ستاره</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3651"/>
+        <location filename="../src/rsslisting.cpp" line="3898"/>
         <source>About...</source>
         <translation>درباره..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3664"/>
+        <location filename="../src/rsslisting.cpp" line="3911"/>
         <source>Star</source>
         <translation>ستاره</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3666"/>
+        <location filename="../src/rsslisting.cpp" line="3913"/>
         <source>Delete</source>
         <translation>حذف</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3678"/>
+        <location filename="../src/rsslisting.cpp" line="3925"/>
         <source>&amp;File</source>
         <translation>&amp;فایل</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3679"/>
+        <location filename="../src/rsslisting.cpp" line="3926"/>
         <source>&amp;Edit</source>
         <translation>&amp;ويرايش</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3680"/>
+        <location filename="../src/rsslisting.cpp" line="3927"/>
         <source>&amp;View</source>
         <translation>&amp;مشاهده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3681"/>
+        <location filename="../src/rsslisting.cpp" line="3928"/>
         <source>Fee&amp;ds</source>
         <translation>فید&amp;ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3682"/>
+        <location filename="../src/rsslisting.cpp" line="3929"/>
         <source>&amp;News</source>
         <translation>اخبار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3684"/>
+        <location filename="../src/rsslisting.cpp" line="3931"/>
         <source>&amp;Tools</source>
         <translation>&amp;ابزارها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3685"/>
+        <location filename="../src/rsslisting.cpp" line="3932"/>
         <source>&amp;Help</source>
         <translation>&amp;راهنما</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3689"/>
+        <location filename="../src/rsslisting.cpp" line="3936"/>
         <source>Style</source>
         <translation>سبک</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3690"/>
+        <location filename="../src/rsslisting.cpp" line="3937"/>
         <source>Icon</source>
         <translation>آیکون</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3691"/>
+        <location filename="../src/rsslisting.cpp" line="3938"/>
         <source>Text</source>
         <translation>متن</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3702"/>
+        <location filename="../src/rsslisting.cpp" line="3949"/>
         <source>System</source>
         <translation>سيستم</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3711"/>
+        <location filename="../src/rsslisting.cpp" line="3958"/>
         <source>Top</source>
         <translation>بالا</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3712"/>
+        <location filename="../src/rsslisting.cpp" line="3959"/>
         <source>Bottom</source>
         <translation>پائين</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3713"/>
+        <location filename="../src/rsslisting.cpp" line="3960"/>
         <source>Right</source>
         <translation>راست</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3714"/>
+        <location filename="../src/rsslisting.cpp" line="3961"/>
         <source>Left</source>
         <translation>چپ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3740"/>
+        <location filename="../src/rsslisting.cpp" line="3987"/>
         <source>Search Feed</source>
         <translation>جستجوی فید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4476"/>
+        <location filename="../src/rsslisting.cpp" line="4790"/>
         <source>Loading...</source>
         <translation>بارگیری..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1821"/>
+        <location filename="../src/rsslisting.cpp" line="2016"/>
         <source>Delete Feed</source>
         <translation>حذف فید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1865"/>
-        <location filename="../src/rsslisting.cpp" line="2001"/>
+        <location filename="../src/rsslisting.cpp" line="573"/>
+        <source>Deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="578"/>
+        <source>Starred</source>
+        <translation type="unfinished">ستاره دار</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="583"/>
+        <location filename="../src/rsslisting.cpp" line="4020"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="1764"/>
+        <location filename="../src/rsslisting.cpp" line="4018"/>
+        <location filename="../src/rsslisting.cpp" line="5347"/>
+        <location filename="../src/rsslisting.cpp" line="5370"/>
+        <source>Hide Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="1768"/>
+        <location filename="../src/rsslisting.cpp" line="4016"/>
+        <location filename="../src/rsslisting.cpp" line="5353"/>
+        <source>Show Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2060"/>
+        <location filename="../src/rsslisting.cpp" line="2202"/>
         <source>Select OPML-File</source>
         <translation>فایل اُپی اِم اِل را انتخاب کنید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1867"/>
+        <location filename="../src/rsslisting.cpp" line="2062"/>
         <source>OPML-Files (*.opml *.xml)</source>
         <translation>فایل اُپی اِم اِل (*.opml *.xml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2003"/>
+        <location filename="../src/rsslisting.cpp" line="2204"/>
         <source>OPML-Files (*.opml)</source>
         <translation>فایل اُپی اِم اِل (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3124"/>
-        <location filename="../src/rsslisting.cpp" line="3572"/>
+        <location filename="../src/rsslisting.cpp" line="2659"/>
+        <location filename="../src/rsslisting.cpp" line="3364"/>
+        <location filename="../src/rsslisting.cpp" line="3820"/>
         <source>Unread: %1</source>
         <translation>خوانده نشده: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3125"/>
-        <location filename="../src/rsslisting.cpp" line="3575"/>
+        <location filename="../src/rsslisting.cpp" line="2660"/>
+        <location filename="../src/rsslisting.cpp" line="3365"/>
+        <location filename="../src/rsslisting.cpp" line="3375"/>
+        <location filename="../src/rsslisting.cpp" line="3823"/>
+        <location filename="../src/rsslisting.cpp" line="4760"/>
+        <location filename="../src/rsslisting.cpp" line="5334"/>
         <source>All: %1</source>
         <translation>همه: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3421"/>
-        <location filename="../src/rsslisting.cpp" line="3608"/>
+        <location filename="../src/rsslisting.cpp" line="3660"/>
+        <location filename="../src/rsslisting.cpp" line="3856"/>
         <source>Load Images</source>
         <translation>بارگیری عکس ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3425"/>
-        <location filename="../src/rsslisting.cpp" line="3611"/>
+        <location filename="../src/rsslisting.cpp" line="3664"/>
+        <location filename="../src/rsslisting.cpp" line="3859"/>
         <source>No Load Images</source>
         <translation>عکسی بارگیری نکن</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3426"/>
-        <location filename="../src/rsslisting.cpp" line="3612"/>
+        <location filename="../src/rsslisting.cpp" line="3665"/>
+        <location filename="../src/rsslisting.cpp" line="3860"/>
         <source>No Load Images to News View</source>
         <translation>عکسی برای مشاهده اخبار بارگیری نکن</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3580"/>
-        <location filename="../src/rsslisting.cpp" line="4002"/>
+        <location filename="../src/rsslisting.cpp" line="3828"/>
+        <location filename="../src/rsslisting.cpp" line="4261"/>
         <source>New News: %1</source>
         <translation>اخبار جدید: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3582"/>
-        <location filename="../src/rsslisting.cpp" line="4004"/>
+        <location filename="../src/rsslisting.cpp" line="3830"/>
+        <location filename="../src/rsslisting.cpp" line="4263"/>
         <source>Unread News: %1</source>
         <translation>اخبار خوانده نشده: %1</translation>
     </message>
@@ -1828,55 +2045,55 @@
         <translation type="obsolete">افزودن فید..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3586"/>
-        <location filename="../src/rsslisting.cpp" line="3589"/>
+        <location filename="../src/rsslisting.cpp" line="3834"/>
+        <location filename="../src/rsslisting.cpp" line="3837"/>
         <source>Add New Feed</source>
         <translation>افزودن فید جدید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3594"/>
-        <location filename="../src/rsslisting.cpp" line="3660"/>
+        <location filename="../src/rsslisting.cpp" line="3842"/>
+        <location filename="../src/rsslisting.cpp" line="3907"/>
         <source>Open in New Tab</source>
         <translation>بازکردن در تب جدید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3597"/>
+        <location filename="../src/rsslisting.cpp" line="3845"/>
         <source>Delete Selected Feed</source>
         <translation>حذف فید انتخاب شده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3599"/>
+        <location filename="../src/rsslisting.cpp" line="3847"/>
         <source>&amp;Import Feeds...</source>
         <translation>واردکردن فیدها..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3600"/>
+        <location filename="../src/rsslisting.cpp" line="3848"/>
         <source>Import Feeds from OPML File</source>
         <translation>واردکردن فید از فایل اُپی اِم اِل</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3602"/>
+        <location filename="../src/rsslisting.cpp" line="3850"/>
         <source>&amp;Export Feeds...</source>
         <translation>خروجیگیری فیدها..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3603"/>
+        <location filename="../src/rsslisting.cpp" line="3851"/>
         <source>Export Feeds to OPML File</source>
         <translation>خروجیگیری فید به فایل اُپی اِم اِل</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3422"/>
-        <location filename="../src/rsslisting.cpp" line="3609"/>
+        <location filename="../src/rsslisting.cpp" line="3661"/>
+        <location filename="../src/rsslisting.cpp" line="3857"/>
         <source>Auto Load Images to News View</source>
         <translation>بارگیری خودکار عکس در مشاهده اخبار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1817"/>
+        <location filename="../src/rsslisting.cpp" line="2012"/>
         <source>Delete Folder</source>
         <translation>حذف پوشه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1818"/>
+        <location filename="../src/rsslisting.cpp" line="2013"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>آیا میخواهید پوشه &apos;%1&apos; را حذف کنید؟</translation>
     </message>
@@ -1885,63 +2102,63 @@
         <translation type="obsolete">جدید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3592"/>
+        <location filename="../src/rsslisting.cpp" line="3840"/>
         <source>Add New Folder</source>
         <translation>افزودن پوشه جدید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3615"/>
+        <location filename="../src/rsslisting.cpp" line="3863"/>
         <source>Update Feed</source>
         <translation>بروزرسانی فید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3616"/>
+        <location filename="../src/rsslisting.cpp" line="3864"/>
         <source>Update Current Feed</source>
         <translation>بروزرسانی فید فعلی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3618"/>
+        <location filename="../src/rsslisting.cpp" line="3866"/>
         <source>Update All</source>
         <translation>بروزرسانی همه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3619"/>
+        <location filename="../src/rsslisting.cpp" line="3867"/>
         <source>Update All Feeds</source>
         <translation>بروزرسانی همه فیدها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3621"/>
+        <location filename="../src/rsslisting.cpp" line="3869"/>
         <source>Mark All Feeds Read</source>
         <translation>نشانه همه فیدها بخوانده شده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3624"/>
+        <location filename="../src/rsslisting.cpp" line="3872"/>
         <source>Mark Current News Read/Unread</source>
         <translation>نشانه اخبار فعلی به خوانده/خوانده نشده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3626"/>
-        <location filename="../src/rsslisting.cpp" line="3627"/>
+        <location filename="../src/rsslisting.cpp" line="3874"/>
+        <location filename="../src/rsslisting.cpp" line="3875"/>
         <source>Mark All News Read</source>
         <translation>نشانه همه اخبار بخوانده شده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3630"/>
+        <location filename="../src/rsslisting.cpp" line="3878"/>
         <source>News Filters...</source>
         <translation>فیلتر اخبار...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3631"/>
+        <location filename="../src/rsslisting.cpp" line="3879"/>
         <source>Filter News...</source>
         <translation>فیلتر اخبار...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3634"/>
+        <location filename="../src/rsslisting.cpp" line="3882"/>
         <source>Open Options Dialog</source>
         <translation>بازکردن پنجره گزینه ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3640"/>
+        <location filename="../src/rsslisting.cpp" line="3888"/>
         <source>Show Starred Feeds</source>
         <translation>نمایش فید ستاره دار</translation>
     </message>
@@ -1950,82 +2167,81 @@
         <translation type="obsolete">نمایش خوانده نشده و یا ستاره</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3649"/>
         <source>Show Deleted</source>
-        <translation>نمایش حذف شده ها</translation>
+        <translation type="obsolete">نمایش حذف شده ها</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3652"/>
+        <location filename="../src/rsslisting.cpp" line="3899"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>نمایش پنجره،درباره</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3654"/>
+        <location filename="../src/rsslisting.cpp" line="3901"/>
         <source>Check for Updates...</source>
         <translation>بررسی برای بروزرسانی..</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3655"/>
+        <location filename="../src/rsslisting.cpp" line="3902"/>
         <source>Report a Problem...</source>
         <translation>گزارش یک مشکل...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3657"/>
+        <location filename="../src/rsslisting.cpp" line="3904"/>
         <source>Open in Browser</source>
         <translation>بازکردن در مرورگر</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3658"/>
+        <location filename="../src/rsslisting.cpp" line="3905"/>
         <source>Open in External Browser</source>
         <translation>بازکردن در مرورگر خارجی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3661"/>
+        <location filename="../src/rsslisting.cpp" line="3908"/>
         <source>Open News in New Tab</source>
         <translation>بازکردن اخبار در تب جدید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3662"/>
+        <location filename="../src/rsslisting.cpp" line="3909"/>
         <source>Open in Background Tab</source>
         <translation>بازکردن در تب پس زمینه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3663"/>
+        <location filename="../src/rsslisting.cpp" line="3910"/>
         <source>Open News in Background Tab</source>
         <translation>بازکردن اخبار در تب پس زمینه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3665"/>
+        <location filename="../src/rsslisting.cpp" line="3912"/>
         <source>Mark News Star</source>
         <translation>نشانه اخبار به ستاره</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3667"/>
+        <location filename="../src/rsslisting.cpp" line="3914"/>
         <source>Delete Selected News</source>
         <translation>حذف اخبار انتخاب شده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3668"/>
+        <location filename="../src/rsslisting.cpp" line="3915"/>
         <source>Delete All News</source>
         <translation>حذف همه اخبار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3669"/>
+        <location filename="../src/rsslisting.cpp" line="3916"/>
         <source>Delete All News from List</source>
         <translation>حذف همه اخبار از لیست</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3670"/>
+        <location filename="../src/rsslisting.cpp" line="3917"/>
         <source>Restore</source>
         <translation>بازگردانی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3671"/>
+        <location filename="../src/rsslisting.cpp" line="3918"/>
         <source>Restore News</source>
         <translation>بازگردانی اخبار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3674"/>
+        <location filename="../src/rsslisting.cpp" line="3921"/>
         <source>Mark Feed Read</source>
         <translation>نشانه فید به خوانده شده</translation>
     </message>
@@ -2034,7 +2250,7 @@
         <translation type="obsolete">مشخصات فید</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3683"/>
+        <location filename="../src/rsslisting.cpp" line="3930"/>
         <source>&amp;Browser</source>
         <translation>&amp;مرورگر</translation>
     </message>
@@ -2043,12 +2259,12 @@
         <translation type="obsolete">نوار ابزار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3692"/>
+        <location filename="../src/rsslisting.cpp" line="3939"/>
         <source>Text Beside Icon</source>
         <translation>متن درکنار آیکون</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3693"/>
+        <location filename="../src/rsslisting.cpp" line="3940"/>
         <source>Text Under Icon</source>
         <translation>متن زیر آیکون</translation>
     </message>
@@ -2057,72 +2273,72 @@
         <translation type="obsolete">نمایش نوارابزار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3696"/>
+        <location filename="../src/rsslisting.cpp" line="3943"/>
         <source>Icon Size</source>
         <translation>اندازه آیکون</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3697"/>
+        <location filename="../src/rsslisting.cpp" line="3944"/>
         <source>Big</source>
         <translation>بزرگ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3698"/>
+        <location filename="../src/rsslisting.cpp" line="3945"/>
         <source>Normal</source>
         <translation>عادی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3699"/>
+        <location filename="../src/rsslisting.cpp" line="3946"/>
         <source>Small</source>
         <translation>کوچک</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3701"/>
+        <location filename="../src/rsslisting.cpp" line="3948"/>
         <source>Application Style</source>
         <translation>سبک برنامه</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3703"/>
+        <location filename="../src/rsslisting.cpp" line="3950"/>
         <source>System2</source>
         <translation>سیستم2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3704"/>
+        <location filename="../src/rsslisting.cpp" line="3951"/>
         <source>Green</source>
         <translation>سبز</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3705"/>
+        <location filename="../src/rsslisting.cpp" line="3952"/>
         <source>Orange</source>
         <translation>نارنجی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3706"/>
+        <location filename="../src/rsslisting.cpp" line="3953"/>
         <source>Purple</source>
         <translation>ارغواني</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3707"/>
+        <location filename="../src/rsslisting.cpp" line="3954"/>
         <source>Pink</source>
         <translation>صورتی</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3708"/>
+        <location filename="../src/rsslisting.cpp" line="3955"/>
         <source>Gray</source>
         <translation>خاکستری</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3734"/>
+        <location filename="../src/rsslisting.cpp" line="3981"/>
         <source>Count News Unread</source>
         <translation>تعداد اخبار خوانده نشده</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3735"/>
+        <location filename="../src/rsslisting.cpp" line="3982"/>
         <source>Count News All</source>
         <translation>تعداد همه اخبار</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3736"/>
+        <location filename="../src/rsslisting.cpp" line="3983"/>
         <source>Last Updated</source>
         <translation>آخرین بروزرسانی</translation>
     </message>
@@ -2135,47 +2351,55 @@
         <translation>بررسی برای بروزرسانی</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="24"/>
+        <location filename="../src/updateappdialog.cpp" line="20"/>
         <source>Checking for updates...</source>
         <translation>درحال بررسی برای بروزرسانی...</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="30"/>
+        <location filename="../src/updateappdialog.cpp" line="25"/>
         <source>Loading history...</source>
         <translation>بارگیری تاریخچه..</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="34"/>
         <source>&amp;Update</source>
-        <translation>&amp;بروزرسانی</translation>
+        <translation type="obsolete">&amp;بروزرسانی</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="39"/>
         <source>&amp;Close</source>
-        <translation>&amp;بستن</translation>
+        <translation type="obsolete">&amp;بستن</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="92"/>
+        <location filename="../src/updateappdialog.cpp" line="28"/>
+        <source>Don&apos;t remind about this version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/updateappdialog.cpp" line="36"/>
+        <source>&amp;Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/updateappdialog.cpp" line="86"/>
         <source>You already have the latest version</source>
         <translation>شما جدیدترین نسخه را دارید</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="97"/>
+        <location filename="../src/updateappdialog.cpp" line="91"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>نسخه جدید برنامه موجود است!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="100"/>
+        <location filename="../src/updateappdialog.cpp" line="94"/>
         <source>Click here to go to the download page</source>
         <translation>برای رفتن به صفحه دانلود اینجا کلیک کنید</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="105"/>
+        <location filename="../src/updateappdialog.cpp" line="99"/>
         <source>Your version is:</source>
         <translation>نسخه شما هست:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="107"/>
+        <location filename="../src/updateappdialog.cpp" line="101"/>
         <source>Current version is:</source>
         <translation>نسخه فعلی هست:</translation>
     </message>
@@ -2188,7 +2412,7 @@
         <translation type="obsolete">نسخه فعلی: </translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="113"/>
+        <location filename="../src/updateappdialog.cpp" line="107"/>
         <source>Error checking updates</source>
         <translation>خطا بررسی بروزرسانی</translation>
     </message>
