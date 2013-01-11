@@ -198,7 +198,7 @@ private:
   QAction *exportFeedsAct_;
   QAction *mainToolbarToggle_;
   QAction *feedsToolbarToggle_;
-  QAction *toolBarToggle_;
+  QAction *toolBarHide_;
   QAction *toolBarStyleI_;
   QAction *toolBarStyleT_;
   QAction *toolBarStyleTbI_;
@@ -490,6 +490,8 @@ private slots:
   void slotCloseTab();
   void slotNextTab();
   void slotPrevTab();
+
+  void hideMainToolbar();
 
 signals:
   void signalPlaceToTray();

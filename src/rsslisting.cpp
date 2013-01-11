@@ -842,7 +842,7 @@ void RSSListing::createActions()
   toolBarIconSmall_->setObjectName("toolBarIconSmall_");
   toolBarIconSmall_->setCheckable(true);
 
-  toolBarToggle_ = new QAction(this);
+  toolBarHide_ = new QAction(this);
 
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
@@ -1543,7 +1543,7 @@ void RSSListing::createToolBar()
   mainToolbarMenu_ = new QMenu(this);
   mainToolbarMenu_->addActions(customizeToolbarMenu_->actions());
   mainToolbarMenu_->addSeparator();
-  mainToolbarMenu_->addAction(toolBarToggle_);
+  mainToolbarMenu_->addAction(toolBarHide_);
 
   mainToolbar_ = new QToolBar(this);
   mainToolbar_->setObjectName("ToolBar_General");
@@ -1562,12 +1562,10 @@ void RSSListing::createToolBar()
   mainToolbar_->addAction(autoLoadImagesToggle_);
   mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
-  connect(mainToolbar_, SIGNAL(visibilityChanged(bool)),
-          mainToolbarToggle_, SLOT(setChecked(bool)));
   connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
           mainToolbar_, SLOT(setVisible(bool)));
-  connect(toolBarToggle_, SIGNAL(triggered()),
-          mainToolbar_, SLOT(hide()));
+  connect(toolBarHide_, SIGNAL(triggered()),
+          this, SLOT(hideMainToolbar()));
   connect(autoLoadImagesToggle_, SIGNAL(triggered()),
           this, SLOT(setAutoLoadImages()));
   connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
@@ -1677,10 +1675,13 @@ void RSSListing::readSettings()
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
   onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
 
+  mainToolbarToggle_->setChecked(settings_->value("mainToolbarShow", true).toBool());
   feedsToolbarToggle_->setChecked(settings_->value("feedsToolbarShow", true).toBool());
   newsToolbarToggle_->setChecked(settings_->value("newsToolbarShow", true).toBool());
   browserToolbarToggle_->setChecked(settings_->value("browserToolbarShow", true).toBool());
 
+  if (!mainToolbarToggle_->isChecked())
+    mainToolbar_->hide();
   if (!feedsToolbarToggle_->isChecked())
     feedsPanel_->hide();
 
@@ -1858,6 +1859,7 @@ void RSSListing::writeSettings()
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
   settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
+  settings_->setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
   settings_->setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
   settings_->setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings_->setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
@@ -3931,7 +3933,7 @@ void RSSListing::retranslateStrings()
   toolBarStyleT_->setText(tr("Text"));
   toolBarStyleTbI_->setText(tr("Text Beside Icon"));
   toolBarStyleTuI_->setText(tr("Text Under Icon"));
-  toolBarToggle_->setText(tr("Hide Toolbar"));
+  toolBarHide_->setText(tr("Hide Toolbar"));
 
   toolBarIconSizeMenu_->setTitle(tr("Icon Size"));
   toolBarIconBig_->setText(tr("Big"));
@@ -5441,4 +5443,10 @@ int RSSListing::addTab(NewsTabWidget *widget)
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
   return indexTab;
+}
+
+void RSSListing::hideMainToolbar()
+{
+  mainToolbarToggle_->setChecked(false);
+  mainToolbar_->hide();
 }
