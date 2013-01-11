@@ -622,7 +622,10 @@ QString initDB(const QString dbFileName)
     if (!createTable) {
       initLabelsTable(&db);
     } else {
-      q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
+      q.exec("SELECT count(currentNews) FROM labels");
+      if (!q.next()) {
+        q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
+      }
     }
     //
     db.commit();
