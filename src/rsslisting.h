@@ -197,6 +197,7 @@ private:
   QAction *importFeedsAct_;
   QAction *exportFeedsAct_;
   QAction *mainToolbarToggle_;
+  QAction *feedsToolbarToggle_;
   QAction *toolBarToggle_;
   QAction *toolBarStyleI_;
   QAction *toolBarStyleT_;

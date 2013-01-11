@@ -807,10 +807,15 @@ void RSSListing::createActions()
 
   mainToolbarToggle_ = new QAction(this);
   mainToolbarToggle_->setCheckable(true);
+  feedsToolbarToggle_ = new QAction(this);
+  feedsToolbarToggle_->setCheckable(true);
   newsToolbarToggle_ = new QAction(this);
   newsToolbarToggle_->setCheckable(true);
   browserToolbarToggle_ = new QAction(this);
   browserToolbarToggle_->setCheckable(true);
+
+  connect(feedsToolbarToggle_, SIGNAL(toggled(bool)),
+          feedsPanel_, SLOT(setVisible(bool)));
 
   toolBarStyleI_ = new QAction(this);
   toolBarStyleI_->setObjectName("toolBarStyleI_");
@@ -1343,6 +1348,7 @@ void RSSListing::createMenu()
 
   toolbarsMenu_ = new QMenu(this);
   toolbarsMenu_->addAction(mainToolbarToggle_);
+  toolbarsMenu_->addAction(feedsToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
   toolbarsMenu_->addAction(browserToolbarToggle_);
 
@@ -1671,8 +1677,12 @@ void RSSListing::readSettings()
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
   onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
 
+  feedsToolbarToggle_->setChecked(settings_->value("feedsToolbarShow", true).toBool());
   newsToolbarToggle_->setChecked(settings_->value("newsToolbarShow", true).toBool());
   browserToolbarToggle_->setChecked(settings_->value("browserToolbarShow", true).toBool());
+
+  if (!feedsToolbarToggle_->isChecked())
+    feedsPanel_->hide();
 
   QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
@@ -1848,6 +1858,7 @@ void RSSListing::writeSettings()
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
   settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
+  settings_->setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
   settings_->setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings_->setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
 
@@ -3983,6 +3994,7 @@ void RSSListing::retranslateStrings()
 
   toolbarsMenu_->setTitle(tr("Toolbars"));
   mainToolbarToggle_->setText(tr("Main Toolbar"));
+  feedsToolbarToggle_->setText(tr("Feeds Toolbar"));
   newsToolbarToggle_->setText(tr("News Toolbar"));
   browserToolbarToggle_->setText(tr("Browser Toolbar"));
 
