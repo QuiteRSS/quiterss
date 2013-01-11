@@ -211,8 +211,8 @@ QHeaderView::up-arrow {
 
 #contentLabel_ {
 	background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-										stop:0.1 #e0eee0,
-										stop:0.5 #ACEEAC,
+										stop:0.1 #d8eed8,
+										stop:0.5 #B8EEB8,
 										stop:0.9 #d8eed8);
 	color: #000000;
 }

@@ -1,1 +1,1 @@
-#define HG_REVISION 1878 
+#define HG_REVISION 1882 

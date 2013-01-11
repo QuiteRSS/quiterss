@@ -14,7 +14,9 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   contentLabel_ = new QLabel();
   contentLabel_->setObjectName("contentLabel_");
   contentLabel_->setAlignment(Qt::AlignCenter);
-  contentLabel_->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+  contentLabel_->setStyleSheet(
+        QString("#contentLabel_ {border: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
   contentLabel_->setMinimumHeight(36);
   contentLabel_->setMargin(4);
   QFont fontContentLabel = contentLabel_->font();
