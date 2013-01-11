@@ -553,18 +553,28 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       }
     }
 
-    // Запись текущей новости в ленту
-    QSqlQuery q(*db_);
-    QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
-        arg(newsId).arg(feedId_);
-    q.exec(qStr);
+    if (type_ == TAB_FEED) {
+      // Запись текущей новости в ленту
+      QSqlQuery q(*db_);
+      QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
+          arg(newsId).arg(feedId_);
+      q.exec(qStr);
 
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
+      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_, feedParId_);
-    feedsTreeModel_->setData(
-          feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
-          newsId);
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+      feedsTreeModel_->setData(
+            feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
+            newsId);
+    } else if (type_ == TAB_CAT_LABEL) {
+      QSqlQuery q(*db_);
+      QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
+          arg(newsId).
+          arg(rsslisting_->newsCategoriesTree_->currentItem()->text(2).toInt());
+      q.exec(qStr);
+
+      rsslisting_->newsCategoriesTree_->currentItem()->setText(3, QString::number(newsId));
+    }
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 

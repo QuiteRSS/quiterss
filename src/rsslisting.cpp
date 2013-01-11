@@ -555,9 +555,10 @@ void RSSListing::createFeedsWidget()
   newsCategoriesTree_->setStyleSheet(
         QString("#newsCategoriesTree_ {border-top: 1px solid %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
-  newsCategoriesTree_->setColumnCount(3);
+  newsCategoriesTree_->setColumnCount(4);
   newsCategoriesTree_->setColumnHidden(1, true);
   newsCategoriesTree_->setColumnHidden(2, true);
+  newsCategoriesTree_->setColumnHidden(3, true);
   newsCategoriesTree_->header()->hide();
 
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
@@ -565,7 +566,7 @@ void RSSListing::createFeedsWidget()
 
   QStringList treeItem;
   treeItem.clear();
-  treeItem << "Categories" << "Type" << "Id";
+  treeItem << "Categories" << "Type" << "Id" << "CurrentNews";
   newsCategoriesTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -585,16 +586,18 @@ void RSSListing::createFeedsWidget()
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q(db_);
-  q.exec("SELECT id, name, image FROM labels ORDER BY num");
+  q.exec("SELECT id, name, image, currentNews FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
     QByteArray byteArray = q.value(2).toByteArray();
+    QString currentNews = q.value(3).toString();
     QPixmap imageLabel;
     if (!byteArray.isNull())
       imageLabel.loadFromData(byteArray);
     treeItem.clear();
-    treeItem << nameLabel << QString::number(TAB_CAT_LABEL) << QString::number(idLabel);
+    treeItem << nameLabel << QString::number(TAB_CAT_LABEL)
+             << QString::number(idLabel) << currentNews;
     QTreeWidgetItem *childItem = new QTreeWidgetItem(treeItem);
     childItem->setIcon(0, QIcon(imageLabel));
     treeWidgetItem->addChild(childItem);
@@ -2981,16 +2984,18 @@ void RSSListing::showOptionDlg()
     }
 
     QSqlQuery q(db_);
-    q.exec("SELECT id, name, image FROM labels ORDER BY num");
+    q.exec("SELECT id, name, image, currentNews FROM labels ORDER BY num");
     while (q.next()) {
       int idLabel = q.value(0).toInt();
       QString nameLabel = q.value(1).toString();
       QByteArray byteArray = q.value(2).toByteArray();
+      QString currentNews = q.value(3).toString();
       QPixmap imageLabel;
       if (!byteArray.isNull())
         imageLabel.loadFromData(byteArray);
       QStringList dataItem;
-      dataItem << nameLabel << QString::number(TAB_CAT_LABEL) << QString::number(idLabel);
+      dataItem << nameLabel << QString::number(TAB_CAT_LABEL)
+               << QString::number(idLabel) << currentNews;
       QTreeWidgetItem *childItem = new QTreeWidgetItem(dataItem);
       childItem->setIcon(0, QIcon(imageLabel));
       labelTreeItem->addChild(childItem);
@@ -5286,7 +5291,32 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
                                currentNewsTab->newsHeader_->sortIndicatorOrder());
     }
 
-    currentNewsTab->hideWebContent();
+    // Поиск новости ленты, отображамой ранее
+    int newsRow = -1;
+    if (openingFeedAction_ == 0) {
+      int newsIdCur = item->text(3).toInt();
+      QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
+      QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
+
+      if (!indexList.isEmpty()) newsRow = indexList.first().row();
+    } else if (openingFeedAction_ == 1) {
+      newsRow = 0;
+    } else if (openingFeedAction_ == 3) {
+      QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
+      QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+
+      if (!indexList.isEmpty()) newsRow = indexList.last().row();
+    }
+
+    // Выбор новости ленты, отображамой ранее
+    newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+    if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
+
+    if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+    } else {
+      currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
+    }
 
     emit signalSetCurrentTab(indexTab);
   } else {
