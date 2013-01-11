@@ -331,7 +331,8 @@ const QString kCreateLabelsTable(
     "image blob, "              // картинка метки
     "color_text varchar, "      // цвет текста новости в списке
     "color_bg varchar, "        // цвет фона новости в списке
-    "num integer "              // номер по порядку, для сортировки
+    "num integer, "             // номер по порядку, для сортировки
+    "currentNews integer "      // отображаемая новость
     ")");
 
 void initLabelsTable(QSqlDatabase *db)
@@ -620,6 +621,8 @@ QString initDB(const QString dbFileName)
     }
     if (!createTable) {
       initLabelsTable(&db);
+    } else {
+      q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
     }
     //
     db.commit();
