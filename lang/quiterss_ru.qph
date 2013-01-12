@@ -1605,4 +1605,60 @@
     <source>Starred</source>
     <target>Избранные</target>
 </phrase>
+<phrase>
+    <source>Copy Image</source>
+    <target>Копировать изображение</target>
+</phrase>
+<phrase>
+    <source>Copy Image Address</source>
+    <target>Скопировать адрес изображения</target>
+</phrase>
+<phrase>
+    <source>Open links in embedded browser in background</source>
+    <target>Открывать ссылки в встроенном браузере в фоновом режиме</target>
+</phrase>
+<phrase>
+    <source>after switching to another news</source>
+    <target>после переключения на другую новость</target>
+</phrase>
+<phrase>
+    <source>on selecting. With timeout</source>
+    <target>при выборе. С задержкой</target>
+</phrase>
+<phrase>
+    <source>Labels</source>
+    <target>Метки</target>
+</phrase>
+<phrase>
+    <source>Never delete labeled news</source>
+    <target>Никогда не удалять новости с метками</target>
+</phrase>
+<phrase>
+    <source>Close</source>
+    <target>Закрыть</target>
+</phrase>
+<phrase>
+    <source>Hide Categories</source>
+    <target>Скрыть категории</target>
+</phrase>
+<phrase>
+    <source>Show Categories</source>
+    <target>Показать категории</target>
+</phrase>
+<phrase>
+    <source>Feeds Toolbar</source>
+    <target>Панель новостных лент</target>
+</phrase>
+<phrase>
+    <source>Categories</source>
+    <target>Категории</target>
+</phrase>
+<phrase>
+    <source>Switch to previous tab</source>
+    <target>Перейти к предыдущей вкладке</target>
+</phrase>
+<phrase>
+    <source>Switch to next tab</source>
+    <target>Перейти к следующей вкладке</target>
+</phrase>
 </QPH>

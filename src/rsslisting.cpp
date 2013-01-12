@@ -4023,6 +4023,11 @@ void RSSListing::retranslateStrings()
   nextTabAct_->setText(tr("Switch to next tab"));
   prevTabAct_->setText(tr("Switch to previous tab"));
 
+  newsCategoriesTree_->topLevelItem(0)->setText(0, tr("Deleted"));
+  newsCategoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
+  newsCategoriesTree_->topLevelItem(2)->setText(0, tr("Labels"));
+
+  QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
   QApplication::translate("QDialogButtonBox", "&No");

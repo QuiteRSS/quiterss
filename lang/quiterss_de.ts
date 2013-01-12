@@ -416,7 +416,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Add Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinzufügen Label</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -551,89 +551,89 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="7"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Neues Label</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Important</source>
-        <translation type="unfinished"></translation>
+        <translation>Wichtig</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeiten</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Persönliche</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>To Do</source>
-        <translation type="unfinished"></translation>
+        <translation>Machen</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>Später</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Amusingly</source>
-        <translation type="unfinished"></translation>
+        <translation>Amüsant</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="20"/>
         <source>Load icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hochladen das Symbol...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="29"/>
         <location filename="../src/labeldialog.cpp" line="39"/>
         <source>Default</source>
-        <translation type="unfinished">Standart</translation>
+        <translation>Standart</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <location filename="../src/labeldialog.cpp" line="41"/>
         <source>Select color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie Farbe...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished">Name:</translation>
+        <translation>Name:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="53"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation>Symbol:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="56"/>
         <source>Color text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe Text:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="59"/>
         <source>Color background:</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe Hintergrund:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="124"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie Bild</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Image-Dateien (*.jpg; *.jpeg; *.png; *.bmp)</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
         <source>Load icon: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Hochladen das Symbol: kann keine Datei öffnen</translation>
     </message>
 </context>
 <context>
@@ -720,7 +720,7 @@
         <location filename="../src/newsheader.cpp" line="52"/>
         <location filename="../src/newsheader.cpp" line="373"/>
         <source>Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="53"/>
@@ -768,7 +768,7 @@
         <location filename="../src/newsheader.cpp" line="60"/>
         <location filename="../src/newsheader.cpp" line="381"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Label</translation>
     </message>
 </context>
 <context>
@@ -822,9 +822,9 @@
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="464"/>
-        <location filename="../src/newstabwidget.cpp" line="1083"/>
+        <location filename="../src/newstabwidget.cpp" line="1085"/>
         <source>Author: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor: %1</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="467"/>
@@ -877,7 +877,17 @@
         <translation>Neu laden</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="485"/>
+        <location filename="../src/newstabwidget.cpp" line="479"/>
+        <source>Copy Image</source>
+        <translation>Grafik kopieren</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="480"/>
+        <source>Copy Image Address</source>
+        <translation>Kopieren Sie Adresse Grafik</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="487"/>
         <source>Close Tab</source>
         <translation>Tab schließen</translation>
     </message>
@@ -1093,7 +1103,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne Links in intern Browser im Hintergrund</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
@@ -1253,7 +1263,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
@@ -1283,17 +1293,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="457"/>
         <source>Mark news as read:</source>
-        <translation type="unfinished"></translation>
+        <translation>Artikel als gelesen markieren:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>bei der Auswahl. Mit Erwartung</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"></translation>
+        <translation>nach dem Übergang einem anderen Artikel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="466"/>
@@ -1333,7 +1343,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>Labeled Artikel nie löschen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
@@ -1348,27 +1358,27 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="578"/>
         <source>New...</source>
-        <translation type="unfinished">Neu...</translation>
+        <translation>Neu...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="580"/>
         <source>Edit...</source>
-        <translation type="unfinished">Bearbeiten...</translation>
+        <translation>Bearbeiten...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="583"/>
         <source>Delete...</source>
-        <translation type="unfinished">Löschen...</translation>
+        <translation>Löschen...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Move up</source>
-        <translation type="unfinished">Nach oben</translation>
+        <translation>Nach oben</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
         <source>Move down</source>
-        <translation type="unfinished">Nach unten</translation>
+        <translation>Nach unten</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="621"/>
@@ -1514,17 +1524,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4047"/>
+        <location filename="../src/rsslisting.cpp" line="4052"/>
         <source>&amp;Step up</source>
         <translation>&amp;Inkrementieren</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4048"/>
+        <location filename="../src/rsslisting.cpp" line="4053"/>
         <source>Step &amp;down</source>
         <translation>&amp;Dekrementieren</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4049"/>
+        <location filename="../src/rsslisting.cpp" line="4054"/>
         <source>&amp;Select All</source>
         <translation>&amp;Alles auswählen</translation>
     </message>
@@ -1532,17 +1542,22 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4026"/>
+        <location filename="../src/rsslisting.cpp" line="4030"/>
+        <source>Close</source>
+        <translation>Schließen</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4031"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4027"/>
+        <location filename="../src/rsslisting.cpp" line="4032"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4028"/>
+        <location filename="../src/rsslisting.cpp" line="4033"/>
         <source>&amp;No</source>
         <translation>&amp;Nein</translation>
     </message>
@@ -1550,37 +1565,37 @@
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4030"/>
+        <location filename="../src/rsslisting.cpp" line="4035"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4031"/>
+        <location filename="../src/rsslisting.cpp" line="4036"/>
         <source>&amp;Redo</source>
         <translation>Wieder&amp;herstellen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4032"/>
+        <location filename="../src/rsslisting.cpp" line="4037"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Ausschneiden</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4033"/>
+        <location filename="../src/rsslisting.cpp" line="4038"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopieren</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4034"/>
+        <location filename="../src/rsslisting.cpp" line="4039"/>
         <source>&amp;Paste</source>
         <translation>Einf&amp;ügen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4035"/>
+        <location filename="../src/rsslisting.cpp" line="4040"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4036"/>
+        <location filename="../src/rsslisting.cpp" line="4041"/>
         <source>Select All</source>
         <translation>Alles auswählen</translation>
     </message>
@@ -1588,7 +1603,7 @@
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4051"/>
+        <location filename="../src/rsslisting.cpp" line="4056"/>
         <source>Select IM</source>
         <translation>Eingabemethode auswählen</translation>
     </message>
@@ -1596,42 +1611,42 @@
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4038"/>
+        <location filename="../src/rsslisting.cpp" line="4043"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4039"/>
+        <location filename="../src/rsslisting.cpp" line="4044"/>
         <source>&amp;Redo</source>
         <translation>Wieder&amp;herstellen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4040"/>
+        <location filename="../src/rsslisting.cpp" line="4045"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Ausschneiden</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4041"/>
+        <location filename="../src/rsslisting.cpp" line="4046"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopieren</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4042"/>
+        <location filename="../src/rsslisting.cpp" line="4047"/>
         <source>&amp;Paste</source>
         <translation>Einf&amp;ügen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4043"/>
+        <location filename="../src/rsslisting.cpp" line="4048"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4044"/>
+        <location filename="../src/rsslisting.cpp" line="4049"/>
         <source>Select All</source>
         <translation>Alles auswählen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4045"/>
+        <location filename="../src/rsslisting.cpp" line="4050"/>
         <source>Copy &amp;Link Location</source>
         <translation>&amp;Link-Adresse kopieren</translation>
     </message>
@@ -1639,22 +1654,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4053"/>
+        <location filename="../src/rsslisting.cpp" line="4058"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4054"/>
+        <location filename="../src/rsslisting.cpp" line="4059"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Back</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4055"/>
+        <location filename="../src/rsslisting.cpp" line="4060"/>
         <source>&amp;Finish</source>
         <translation>Ab&amp;schließen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4056"/>
+        <location filename="../src/rsslisting.cpp" line="4061"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Next &gt;</translation>
     </message>
@@ -1893,17 +1908,17 @@
         <translation type="obsolete">Zuletzt aktualisiert</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4443"/>
+        <location filename="../src/rsslisting.cpp" line="4448"/>
         <source>Check for updates</source>
         <translation>Nach Updates suchen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4444"/>
+        <location filename="../src/rsslisting.cpp" line="4449"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Eine neue Version von QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4790"/>
+        <location filename="../src/rsslisting.cpp" line="4795"/>
         <source>Loading...</source>
         <translation>Laden...</translation>
     </message>
@@ -2223,8 +2238,8 @@
         <location filename="../src/rsslisting.cpp" line="3365"/>
         <location filename="../src/rsslisting.cpp" line="3375"/>
         <location filename="../src/rsslisting.cpp" line="3823"/>
-        <location filename="../src/rsslisting.cpp" line="4760"/>
-        <location filename="../src/rsslisting.cpp" line="5334"/>
+        <location filename="../src/rsslisting.cpp" line="4765"/>
+        <location filename="../src/rsslisting.cpp" line="5339"/>
         <source>All: %1</source>
         <translation>Alle: %1</translation>
     </message>
@@ -2252,13 +2267,13 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3828"/>
-        <location filename="../src/rsslisting.cpp" line="4261"/>
+        <location filename="../src/rsslisting.cpp" line="4266"/>
         <source>New News: %1</source>
         <translation>Neu Artikel: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3830"/>
-        <location filename="../src/rsslisting.cpp" line="4263"/>
+        <location filename="../src/rsslisting.cpp" line="4268"/>
         <source>Unread News: %1</source>
         <translation>Ungelesene Artikel: %1</translation>
     </message>
@@ -2311,34 +2326,41 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="573"/>
+        <location filename="../src/rsslisting.cpp" line="4026"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Gelöscht</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="578"/>
+        <location filename="../src/rsslisting.cpp" line="4027"/>
         <source>Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>Stern</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="583"/>
+        <location filename="../src/rsslisting.cpp" line="4028"/>
+        <source>Labels</source>
+        <translation>Labels</translation>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="4020"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1764"/>
         <location filename="../src/rsslisting.cpp" line="4018"/>
-        <location filename="../src/rsslisting.cpp" line="5347"/>
-        <location filename="../src/rsslisting.cpp" line="5370"/>
+        <location filename="../src/rsslisting.cpp" line="5352"/>
+        <location filename="../src/rsslisting.cpp" line="5375"/>
         <source>Hide Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbergen Sie Kategorien</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1768"/>
         <location filename="../src/rsslisting.cpp" line="4016"/>
-        <location filename="../src/rsslisting.cpp" line="5353"/>
+        <location filename="../src/rsslisting.cpp" line="5358"/>
         <source>Show Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigen Sie Kategorien</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2012"/>
@@ -2774,7 +2796,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4004"/>
         <source>Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Feeds Werkzeugleiste</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4005"/>
@@ -2801,26 +2823,26 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4014"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4022"/>
         <source>Close tab</source>
-        <translation type="unfinished">Tab schließen</translation>
+        <translation>Tab schließen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4023"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Schalten auf der nächsten Tab</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4024"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Schalten zur vorigen Tab</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5148"/>
-        <location filename="../src/rsslisting.cpp" line="5159"/>
+        <location filename="../src/rsslisting.cpp" line="5153"/>
+        <location filename="../src/rsslisting.cpp" line="5164"/>
         <source>Web Page</source>
         <translation>Web Page</translation>
     </message>
@@ -2874,12 +2896,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="28"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Erinnere mich nicht zu dieser Version</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="36"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Install</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="86"/>

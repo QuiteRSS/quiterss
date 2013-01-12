@@ -1452,4 +1452,132 @@
     <source>Show Not Starred</source>
     <target>Anzeigen ohne Stern</target>
 </phrase>
+<phrase>
+    <source>Add Label</source>
+    <target>Hinzufügen Label</target>
+</phrase>
+<phrase>
+    <source>New Label</source>
+    <target>Neues Label</target>
+</phrase>
+<phrase>
+    <source>Important</source>
+    <target>Wichtig</target>
+</phrase>
+<phrase>
+    <source>Work</source>
+    <target>Arbeiten</target>
+</phrase>
+<phrase>
+    <source>Personal</source>
+    <target>Persönliche</target>
+</phrase>
+<phrase>
+    <source>To Do</source>
+    <target>Machen</target>
+</phrase>
+<phrase>
+    <source>Later</source>
+    <target>Später</target>
+</phrase>
+<phrase>
+    <source>Amusingly</source>
+    <target>Amüsant</target>
+</phrase>
+<phrase>
+    <source>Load icon...</source>
+    <target>Hochladen das Symbol...</target>
+</phrase>
+<phrase>
+    <source>Select color...</source>
+    <target>Wählen Sie Farbe...</target>
+</phrase>
+<phrase>
+    <source>Color text:</source>
+    <target>Farbe Text:</target>
+</phrase>
+<phrase>
+    <source>Color background:</source>
+    <target>Farbe Hintergrund:</target>
+</phrase>
+<phrase>
+    <source>Select Image</source>
+    <target>Wählen Sie Bild</target>
+</phrase>
+<phrase>
+    <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
+    <target>Image-Dateien (*.jpg; *.jpeg; *.png; *.bmp)</target>
+</phrase>
+<phrase>
+    <source>Load icon: can&apos;t open a file</source>
+    <target>Hochladen das Symbol: kann keine Datei öffnen</target>
+</phrase>
+<phrase>
+    <source>Label</source>
+    <target>Label</target>
+</phrase>
+<phrase>
+    <source>Feed</source>
+    <target>Feed</target>
+</phrase>
+<phrase>
+    <source>Copy Image</source>
+    <target>Grafik kopieren</target>
+</phrase>
+<phrase>
+    <source>Copy Image Address</source>
+    <target>Kopieren Sie Adresse Grafik</target>
+</phrase>
+<phrase>
+    <source>Open links in embedded browser in background</source>
+    <target>Öffne Links in intern Browser im Hintergrund</target>
+</phrase>
+<phrase>
+    <source>on selecting. With timeout</source>
+    <target>bei der Auswahl. Mit Erwartung</target>
+</phrase>
+<phrase>
+    <source>after switching to another news</source>
+    <target>nach dem Übergang einem anderen Artikel</target>
+</phrase>
+<phrase>
+    <source>Never delete labeled news</source>
+    <target>Labeled Artikel nie löschen</target>
+</phrase>
+<phrase>
+    <source>&amp;Install</source>
+    <target>&amp;Install</target>
+</phrase>
+<phrase>
+    <source>Don&apos;t remind about this version</source>
+    <target>Erinnere mich nicht zu dieser Version</target>
+</phrase>
+<phrase>
+    <source>Deleted</source>
+    <target>Gelöscht</target>
+</phrase>
+<phrase>
+    <source>Hide Categories</source>
+    <target>Verbergen Sie Kategorien</target>
+</phrase>
+<phrase>
+    <source>Show Categories</source>
+    <target>Zeigen Sie Kategorien</target>
+</phrase>
+<phrase>
+    <source>Feeds Toolbar</source>
+    <target>Feeds Werkzeugleiste</target>
+</phrase>
+<phrase>
+    <source>Categories</source>
+    <target>Kategorien</target>
+</phrase>
+<phrase>
+    <source>Switch to previous tab</source>
+    <target>Schalten zur vorigen Tab</target>
+</phrase>
+<phrase>
+    <source>Switch to next tab</source>
+    <target>Schalten auf der nächsten Tab</target>
+</phrase>
 </QPH>
