@@ -1521,4 +1521,144 @@
     <source>F&amp;older...</source>
     <target>Mappa...</target>
 </phrase>
+<phrase>
+    <source>Add Label</source>
+    <target>Címke hozzáadása</target>
+</phrase>
+<phrase>
+    <source>New Label</source>
+    <target>Új címke</target>
+</phrase>
+<phrase>
+    <source>Important</source>
+    <target>Fontos</target>
+</phrase>
+<phrase>
+    <source>Work</source>
+    <target>Munka</target>
+</phrase>
+<phrase>
+    <source>Personal</source>
+    <target>Személyes</target>
+</phrase>
+<phrase>
+    <source>To Do</source>
+    <target>Végrehajtás</target>
+</phrase>
+<phrase>
+    <source>Later</source>
+    <target>Később</target>
+</phrase>
+<phrase>
+    <source>Amusingly</source>
+    <target>Viccesen</target>
+</phrase>
+<phrase>
+    <source>Load icon...</source>
+    <target>Ikon betöltése...</target>
+</phrase>
+<phrase>
+    <source>Select color...</source>
+    <target>Szín kiválasztása...</target>
+</phrase>
+<phrase>
+    <source>Color text:</source>
+    <target>Szövegszín:</target>
+</phrase>
+<phrase>
+    <source>Color background:</source>
+    <target>Háttérszín:</target>
+</phrase>
+<phrase>
+    <source>Select Image</source>
+    <target>Kép kiválasztása</target>
+</phrase>
+<phrase>
+    <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
+    <target>Képfájlok (*.jpg; *.jpeg; *.png; *.bmp)</target>
+</phrase>
+<phrase>
+    <source>Load icon: can&apos;t open a file</source>
+    <target>Ikon betöltése: a fájl nem nyitható meg</target>
+</phrase>
+<phrase>
+    <source>Label</source>
+    <target>Címke</target>
+</phrase>
+<phrase>
+    <source>Feed</source>
+    <target>Hírcsatorna</target>
+</phrase>
+<phrase>
+    <source>&amp;Install</source>
+    <target>&amp;Telepítés</target>
+</phrase>
+<phrase>
+    <source>Don&apos;t remind about this version</source>
+    <target>Ne emlékeztessen erről a verzióról</target>
+</phrase>
+<phrase>
+    <source>Deleted</source>
+    <target>Törölt</target>
+</phrase>
+<phrase>
+    <source>Starred</source>
+    <target>Csillagozott</target>
+</phrase>
+<phrase>
+    <source>Copy Image</source>
+    <target>Kép másolása</target>
+</phrase>
+<phrase>
+    <source>Copy Image Address</source>
+    <target>A kép címének másolása</target>
+</phrase>
+<phrase>
+    <source>Open links in embedded browser in background</source>
+    <target>Hivatkozások megnyitása beágyazott böngészőben a háttérben</target>
+</phrase>
+<phrase>
+    <source>after switching to another news</source>
+    <target>másik hírre váltás után</target>
+</phrase>
+<phrase>
+    <source>on selecting. With timeout</source>
+    <target>kijelölésnél. Késleltetéssel</target>
+</phrase>
+<phrase>
+    <source>Labels</source>
+    <target>Címkék</target>
+</phrase>
+<phrase>
+    <source>Never delete labeled news</source>
+    <target>Soha ne törölje a megjelölt híreket</target>
+</phrase>
+<phrase>
+    <source>Close</source>
+    <target>Bezárás</target>
+</phrase>
+<phrase>
+    <source>Hide Categories</source>
+    <target>Kategóriák rejtése</target>
+</phrase>
+<phrase>
+    <source>Show Categories</source>
+    <target>Kategóriák megjelenítése</target>
+</phrase>
+<phrase>
+    <source>Feeds Toolbar</source>
+    <target>Hírcsatorna eszköztár</target>
+</phrase>
+<phrase>
+    <source>Categories</source>
+    <target>Kategóriák</target>
+</phrase>
+<phrase>
+    <source>Switch to previous tab</source>
+    <target>Váltás az előző lapra</target>
+</phrase>
+<phrase>
+    <source>Switch to next tab</source>
+    <target>Váltás a következő lapra</target>
+</phrase>
 </QPH>
