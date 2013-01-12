@@ -477,7 +477,9 @@ void NewsTabWidget::retranslateStrings() {
   webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
   webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
   webView_->page()->action(QWebPage::CopyImageToClipboard)->setText(tr("Copy Image"));
+#if QT_VERSION >= 0x040800
   webView_->page()->action(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy Image Address"));
+#endif
 
   if (type_ != TAB_WEB) {
     findText_->retranslateStrings();
