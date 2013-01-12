@@ -369,7 +369,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Add Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi Etichetta</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -488,89 +488,89 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="7"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuova Etichetta</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Important</source>
-        <translation type="unfinished"></translation>
+        <translation>Importante</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Lavoro</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Personale</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>To Do</source>
-        <translation type="unfinished"></translation>
+        <translation>Da Fare</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>Più Tardi</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Amusingly</source>
-        <translation type="unfinished"></translation>
+        <translation>Divertente</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="20"/>
         <source>Load icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Carica icona...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="29"/>
         <location filename="../src/labeldialog.cpp" line="39"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation>Predefinito</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <location filename="../src/labeldialog.cpp" line="41"/>
         <source>Select color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona colore...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished">Nome:</translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="53"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation>Icona:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="56"/>
         <source>Color text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore testo:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="59"/>
         <source>Color background:</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore sfondo:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="124"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona Immagine</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>File Immagine (*.jpg; *.jpeg; *.png; *.bmp)</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
         <source>Load icon: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Carica icona: impossibile aprire un file</translation>
     </message>
 </context>
 <context>
@@ -641,7 +641,7 @@
         <location filename="../src/newsheader.cpp" line="52"/>
         <location filename="../src/newsheader.cpp" line="373"/>
         <source>Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="53"/>
@@ -689,7 +689,7 @@
         <location filename="../src/newsheader.cpp" line="60"/>
         <location filename="../src/newsheader.cpp" line="381"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etichetta</translation>
     </message>
 </context>
 <context>
@@ -747,7 +747,7 @@
         <location filename="../src/newstabwidget.cpp" line="464"/>
         <location filename="../src/newstabwidget.cpp" line="1085"/>
         <source>Author: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Autore: %1</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="471"/>
@@ -792,12 +792,12 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="479"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia Immagine</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="480"/>
         <source>Copy Image Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia Indirizzo Immagine</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="487"/>
@@ -876,7 +876,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Etichette</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
@@ -1032,7 +1032,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri i collegamenti nel browser integrato in secondo piano</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
@@ -1067,47 +1067,47 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="457"/>
         <source>Mark news as read:</source>
-        <translation type="unfinished"></translation>
+        <translation>Segna notizie come lette:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>sulla selezione. Con timeout</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"></translation>
+        <translation>dopo essere passato a un&apos;altra notizia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>Non cancellare le notizie etichettate</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="578"/>
         <source>New...</source>
-        <translation type="unfinished">Nuovo...</translation>
+        <translation>Nuovo...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="580"/>
         <source>Edit...</source>
-        <translation type="unfinished">Modifica...</translation>
+        <translation>Modifica...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="583"/>
         <source>Delete...</source>
-        <translation type="unfinished">Elimina...</translation>
+        <translation>Elimina...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Move up</source>
-        <translation type="unfinished">Sposta Su</translation>
+        <translation>Sposta Su</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
         <source>Move down</source>
-        <translation type="unfinished">Sposta Giù</translation>
+        <translation>Sposta Giù</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
@@ -1425,7 +1425,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4030"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4031"/>
@@ -1724,18 +1724,18 @@
         <location filename="../src/rsslisting.cpp" line="573"/>
         <location filename="../src/rsslisting.cpp" line="4026"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminati</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="578"/>
         <location filename="../src/rsslisting.cpp" line="4027"/>
         <source>Starred</source>
-        <translation type="unfinished">Segna con una Stella</translation>
+        <translation>Segnati con una Stella</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4020"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etichetta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1764"/>
@@ -1743,20 +1743,20 @@
         <location filename="../src/rsslisting.cpp" line="5352"/>
         <location filename="../src/rsslisting.cpp" line="5375"/>
         <source>Hide Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi Categorie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="583"/>
         <location filename="../src/rsslisting.cpp" line="4028"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Etichette</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1768"/>
         <location filename="../src/rsslisting.cpp" line="4016"/>
         <location filename="../src/rsslisting.cpp" line="5358"/>
         <source>Show Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra Categorie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2659"/>
@@ -2219,7 +2219,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4004"/>
         <source>Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra degli Strumenti dei Feed</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4005"/>
@@ -2240,22 +2240,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4014"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Categorie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4022"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi scheda</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4023"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Passa alla scheda successiva</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4024"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Passa alla scheda precedente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4448"/>
@@ -2476,12 +2476,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="28"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Non ricordare questa versione</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="36"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Installa</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="86"/>

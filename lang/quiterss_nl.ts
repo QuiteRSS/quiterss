@@ -357,7 +357,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Add Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Label toevoegen</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -395,7 +395,7 @@
         <location filename="../src/filterrulesdialog.h" line="23"/>
         <location filename="../src/filterrulesdialog.h" line="92"/>
         <source>Category</source>
-        <translation>Categorie</translation>
+        <translation>Groep</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="23"/>
@@ -476,89 +476,89 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="7"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuwe label</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Important</source>
-        <translation type="unfinished"></translation>
+        <translation>Belangrijk</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>Werk</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Persoonlijk</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>To Do</source>
-        <translation type="unfinished"></translation>
+        <translation>Te Doen</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>Later</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Amusingly</source>
-        <translation type="unfinished"></translation>
+        <translation>Vermakelijk</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="20"/>
         <source>Load icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>Laadt pictogram...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="29"/>
         <location filename="../src/labeldialog.cpp" line="39"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standaard</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <location filename="../src/labeldialog.cpp" line="41"/>
         <source>Select color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteer kleur...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished">Naam:</translation>
+        <translation>Naam:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="53"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pictogram:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="56"/>
         <source>Color text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst kleur:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="59"/>
         <source>Color background:</source>
-        <translation type="unfinished"></translation>
+        <translation>Achtergrond kleur:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="124"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteer Afbeelding</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Afbeelding bestanden (*.jpg;*.jpeg;*.png;*.bmp)</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
         <source>Load icon: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Laadt pictogram:Kan bestand niet openen</translation>
     </message>
 </context>
 <context>
@@ -629,7 +629,7 @@
         <location filename="../src/newsheader.cpp" line="52"/>
         <location filename="../src/newsheader.cpp" line="373"/>
         <source>Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="53"/>
@@ -659,7 +659,7 @@
         <location filename="../src/newsheader.cpp" line="57"/>
         <location filename="../src/newsheader.cpp" line="378"/>
         <source>Category</source>
-        <translation>Categorie</translation>
+        <translation>Groep</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="58"/>
@@ -677,7 +677,7 @@
         <location filename="../src/newsheader.cpp" line="60"/>
         <location filename="../src/newsheader.cpp" line="381"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Label</translation>
     </message>
 </context>
 <context>
@@ -731,7 +731,7 @@
         <location filename="../src/newstabwidget.cpp" line="464"/>
         <location filename="../src/newstabwidget.cpp" line="1085"/>
         <source>Author: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Auteur: %1</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="471"/>
@@ -776,12 +776,12 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="479"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Copieer Afbeelding</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="480"/>
         <source>Copy Image Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Copieer Afbeelding Adres</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="487"/>
@@ -833,7 +833,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="56"/>
@@ -985,7 +985,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"></translation>
+        <translation>Open links in externe browser in de achtergrond</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
@@ -1010,47 +1010,47 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="457"/>
         <source>Mark news as read:</source>
-        <translation type="unfinished"></translation>
+        <translation>Markeer Nieuws als Gelezen:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>het selecteren Met timeout</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"></translation>
+        <translation>na het overschakelen naar een ander nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder nooit gelabeld nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="578"/>
         <source>New...</source>
-        <translation type="unfinished">Nieuw...</translation>
+        <translation>Nieuw...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="580"/>
         <source>Edit...</source>
-        <translation type="unfinished">Bewerk...</translation>
+        <translation>Bewerk...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="583"/>
         <source>Delete...</source>
-        <translation type="unfinished">Verwijder...</translation>
+        <translation>Verwijder...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Move up</source>
-        <translation type="unfinished">Verplaats Omhoog</translation>
+        <translation>Verplaats Omhoog</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
         <source>Move down</source>
-        <translation type="unfinished">Verplaats Omlaag</translation>
+        <translation>Verplaats Omlaag</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
@@ -1381,7 +1381,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4030"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluit</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4031"/>
@@ -1744,7 +1744,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4004"/>
         <source>Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Feeds Werkbalk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4005"/>
@@ -1771,22 +1771,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4014"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Groepen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4022"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Sluit Tabblad</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4023"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Naar het volgende tabblad</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4024"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Naar het vorige tabblad</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4448"/>
@@ -1973,18 +1973,18 @@
         <location filename="../src/rsslisting.cpp" line="573"/>
         <location filename="../src/rsslisting.cpp" line="4026"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="578"/>
         <location filename="../src/rsslisting.cpp" line="4027"/>
         <source>Starred</source>
-        <translation type="unfinished">Een Ster</translation>
+        <translation>Een Ster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4020"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1764"/>
@@ -1992,20 +1992,20 @@
         <location filename="../src/rsslisting.cpp" line="5352"/>
         <location filename="../src/rsslisting.cpp" line="5375"/>
         <source>Hide Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberg Groepen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="583"/>
         <location filename="../src/rsslisting.cpp" line="4028"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Labels</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1768"/>
         <location filename="../src/rsslisting.cpp" line="4016"/>
         <location filename="../src/rsslisting.cpp" line="5358"/>
         <source>Show Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon Groepen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2060"/>
@@ -2428,12 +2428,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="28"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"></translation>
+        <translation>Niet meer herinneren aan deze versie</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="36"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Installeer</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="86"/>
