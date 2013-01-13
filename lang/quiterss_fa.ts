@@ -486,7 +486,7 @@
     <message>
       <location filename="../src/labeldialog.cpp" line="14"/>
       <source>Amusingly</source>
-      <translation type="unfinished"></translation>
+      <translation>مضحک</translation>
     </message>
     <message>
       <location filename="../src/labeldialog.cpp" line="20"/>
