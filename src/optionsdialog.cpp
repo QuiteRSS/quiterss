@@ -797,7 +797,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("فارسی (FA)")
-           << "0.11.0"
+           << "0.12.0"
            << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_FA"));
@@ -821,7 +821,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Magyar (HU)")
-           << "0.11.0"
+           << "0.12.0"
            << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_HU"));
@@ -829,7 +829,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Italiano (IT)")
-           << "0.11.0"
+           << "0.12.0"
            << "ZeroWis" << "lightflash@hotmail.it";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_IT"));
@@ -837,7 +837,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Nederlands (NL)")
-           << "0.11.0"
+           << "0.12.0"
            << "TeLLie" << "elbert.pol@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_NL"));
@@ -853,7 +853,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Српски (SR)")
-           << "0.11.0"
+           << "0.12.0"
            << "Ozzii" << "ozzii.translate@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SR"));
@@ -861,7 +861,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Svenska (SV)")
-           << "0.11.0"
+           << "0.12.0"
            << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SV"));
