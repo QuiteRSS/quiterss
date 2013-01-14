@@ -2,6 +2,23 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.11.0+</B> (10 Jan 2012)
+<UL>
+<LI>Main: Increased productivity of program</LI>
+<BR>
+<LI>Added: News Categories</LI>
+<LI>Added: Labels</LI>
+<LI>Added: Option "Open links in embedded browser in background"</LI>
+<LI>Added: Shortcuts for closing tabs and switch between tabs</LI>
+<BR>
+<LI>Changed: GUI. Redesigned interface</LI>
+<BR>
+<LI>Fixed: Application crash when working with tabs</LI>
+<LI>Fixed: Window size is not restored when opening program from system tray</LI>
+<LI>Fixed: Some feeds are not added</LI>
+<LI>Fixed: Some feeds did not work</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.11.0</B> (10 Dec 2012)
 <UL>
 <LI>Main: Feed categories (folders)</LI>
