@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -13,53 +11,37 @@
         <location filename="../src/aboutdialog.cpp" line="28"/>
         <location filename="../src/aboutdialog.cpp" line="93"/>
         <source>Version</source>
-        <translation type="unfinished">Versión</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="29"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="33"/>
         <source>Includes:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="94"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="95"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="96"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Version </source>
-        <translation type="obsolete">Version</translation>
-    </message>
-    <message>
-        <source>The authors:</source>
-        <translation type="obsolete">Autores:</translation>
-    </message>
-    <message>
-        <source>Acknowledgements:</source>
-        <translation type="obsolete">Agradecimientos:</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete">&amp;Cerrar</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -88,17 +70,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="147"/>
         <source>Feeds</source>
-        <translation type="unfinished">Canales</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="151"/>
         <source>All Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="189"/>
         <source>New Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="204"/>
@@ -108,7 +90,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="206"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="277"/>
@@ -133,27 +115,27 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="8"/>
         <source>Add Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="21"/>
         <source>Feeds</source>
-        <translation type="unfinished">Canales</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="25"/>
         <source>All Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="61"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="63"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -172,10 +154,6 @@
         <location filename="../src/feedpropertiesdialog.cpp" line="28"/>
         <source>Title:</source>
         <translation>Titulo:</translation>
-    </message>
-    <message>
-        <source>Feed Properties</source>
-        <translation type="obsolete">Propiedades del canal</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
@@ -200,7 +178,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished">Mostrar descripción de las noticias en lugar de cargar web</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="96"/>
@@ -225,7 +203,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="9"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="137"/>
@@ -357,7 +335,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Add Label</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -476,89 +454,89 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="7"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Important</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>To Do</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Amusingly</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="20"/>
         <source>Load icon...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="29"/>
         <location filename="../src/labeldialog.cpp" line="39"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <location filename="../src/labeldialog.cpp" line="41"/>
         <source>Select color...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="53"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="56"/>
         <source>Color text:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="59"/>
         <source>Color background:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="124"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
         <source>Load icon: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -604,10 +582,6 @@
         <translation>Mover abajo</translation>
     </message>
     <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete">&amp;Cerrar</translation>
-    </message>
-    <message>
         <location filename="../src/newsfiltersdialog.cpp" line="96"/>
         <source>Apply Selected Filter</source>
         <translation>Aplicar Filtro Seleccionado</translation>
@@ -629,7 +603,7 @@
         <location filename="../src/newsheader.cpp" line="52"/>
         <location filename="../src/newsheader.cpp" line="373"/>
         <source>Feed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="53"/>
@@ -677,7 +651,7 @@
         <location filename="../src/newsheader.cpp" line="60"/>
         <location filename="../src/newsheader.cpp" line="381"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -696,12 +670,10 @@
         <translation>Cargando...(%p%)</translation>
     </message>
     <message>
-        <source>Title:</source>
-        <translation type="obsolete">Titulo:</translation>
-    </message>
-    <message>
-        <source>Author:</source>
-        <translation type="obsolete">Autor:</translation>
+        <location filename="../src/newstabwidget.cpp" line="464"/>
+        <location filename="../src/newstabwidget.cpp" line="1085"/>
+        <source>Author: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="466"/>
@@ -711,27 +683,17 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="467"/>
         <source>Open Page in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="468"/>
         <source>Open Link in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="470"/>
         <source>Open Link</source>
         <translation>Abrir Enlace</translation>
-    </message>
-    <message>
-        <source>Open in External Browser</source>
-        <translation type="obsolete">Abrir en explorador externo</translation>
-    </message>
-    <message>
-        <location filename="../src/newstabwidget.cpp" line="464"/>
-        <location filename="../src/newstabwidget.cpp" line="1085"/>
-        <source>Author: %1</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="471"/>
@@ -776,12 +738,12 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="479"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="480"/>
         <source>Copy Image Address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="487"/>
@@ -829,7 +791,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="56"/>
@@ -981,7 +943,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
@@ -1006,47 +968,47 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="457"/>
         <source>Mark news as read:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="578"/>
         <source>New...</source>
-        <translation type="unfinished">Nuevo...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="580"/>
         <source>Edit...</source>
-        <translation type="unfinished">Editar...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="583"/>
         <source>Delete...</source>
-        <translation type="unfinished">Eliminar...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Move up</source>
-        <translation type="unfinished">Mover arriba</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
         <source>Move down</source>
-        <translation type="unfinished">Mover abajo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
@@ -1145,10 +1107,6 @@
         <location filename="../src/optionsdialog.cpp" line="448"/>
         <source>Opening feed:</source>
         <translation>Al abrir canal:</translation>
-    </message>
-    <message>
-        <source>Mark selected news as read after</source>
-        <translation type="obsolete">Marcar noticia seleccionada como leída después de</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="477"/>
@@ -1377,7 +1335,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4030"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4031"/>
@@ -1525,35 +1483,14 @@
         <translation>Importar: no se puede abrir el archivo</translation>
     </message>
     <message>
-        <source> Unread: %1 </source>
-        <translation type="obsolete">Actualizado: %1</translation>
-    </message>
-    <message>
-        <source> All: %1 </source>
-        <translation type="obsolete">Todos: %1</translation>
-    </message>
-    <message>
-        <source>Feeds</source>
-        <translation type="obsolete">Canales</translation>
-    </message>
-    <message>
-        <source>Update feeds... (%p%)</source>
-        <translation type="obsolete">Canales actualizados...(%p%)</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="3833"/>
-        <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="3836"/>
         <source>&amp;Feed...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3839"/>
         <source>F&amp;older...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3844"/>
@@ -1568,22 +1505,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="3894"/>
         <source>Show Starred</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3895"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3896"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3906"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3920"/>
@@ -1594,7 +1531,7 @@
         <location filename="../src/rsslisting.cpp" line="3922"/>
         <location filename="../src/rsslisting.cpp" line="3923"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3934"/>
@@ -1740,7 +1677,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4004"/>
         <source>Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4005"/>
@@ -1762,27 +1699,27 @@
         <location filename="../src/rsslisting.cpp" line="4011"/>
         <location filename="../src/rsslisting.cpp" line="4012"/>
         <source>Stay On Top</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4014"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4022"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4023"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4024"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4448"/>
@@ -1806,13 +1743,41 @@
         <translation>Exportar Cancelado</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="573"/>
+        <location filename="../src/rsslisting.cpp" line="4026"/>
+        <source>Deleted</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="578"/>
+        <location filename="../src/rsslisting.cpp" line="4027"/>
+        <source>Starred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4020"/>
+        <source>Label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="1764"/>
+        <location filename="../src/rsslisting.cpp" line="4018"/>
+        <location filename="../src/rsslisting.cpp" line="5352"/>
+        <location filename="../src/rsslisting.cpp" line="5375"/>
+        <source>Hide Categories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="1768"/>
+        <location filename="../src/rsslisting.cpp" line="4016"/>
+        <location filename="../src/rsslisting.cpp" line="5358"/>
+        <source>Show Categories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="2213"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Exportar: No se puede abrir el archivo</translation>
-    </message>
-    <message>
-        <source>Update done</source>
-        <translation type="obsolete">Actualización completa</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3871"/>
@@ -1847,10 +1812,6 @@
         <location filename="../src/rsslisting.cpp" line="3893"/>
         <source>Show Unread</source>
         <translation>Mostrar no leídos</translation>
-    </message>
-    <message>
-        <source>Show Star</source>
-        <translation type="obsolete">Mostrar Destacados</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3898"/>
@@ -1958,44 +1919,6 @@
         <translation>Eliminar canal</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="573"/>
-        <location filename="../src/rsslisting.cpp" line="4026"/>
-        <source>Deleted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="578"/>
-        <location filename="../src/rsslisting.cpp" line="4027"/>
-        <source>Starred</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4020"/>
-        <source>Label</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="1764"/>
-        <location filename="../src/rsslisting.cpp" line="4018"/>
-        <location filename="../src/rsslisting.cpp" line="5352"/>
-        <location filename="../src/rsslisting.cpp" line="5375"/>
-        <source>Hide Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="583"/>
-        <location filename="../src/rsslisting.cpp" line="4028"/>
-        <source>Labels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="1768"/>
-        <location filename="../src/rsslisting.cpp" line="4016"/>
-        <location filename="../src/rsslisting.cpp" line="5358"/>
-        <source>Show Categories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="2060"/>
         <location filename="../src/rsslisting.cpp" line="2202"/>
         <source>Select OPML-File</source>
@@ -2010,23 +1933,6 @@
         <location filename="../src/rsslisting.cpp" line="2204"/>
         <source>OPML-Files (*.opml)</source>
         <translation>Archivos (*.opml)</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2659"/>
-        <location filename="../src/rsslisting.cpp" line="3364"/>
-        <location filename="../src/rsslisting.cpp" line="3820"/>
-        <source>Unread: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="2660"/>
-        <location filename="../src/rsslisting.cpp" line="3365"/>
-        <location filename="../src/rsslisting.cpp" line="3375"/>
-        <location filename="../src/rsslisting.cpp" line="3823"/>
-        <location filename="../src/rsslisting.cpp" line="4765"/>
-        <location filename="../src/rsslisting.cpp" line="5339"/>
-        <source>All: %1</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3660"/>
@@ -2057,10 +1963,6 @@
         <location filename="../src/rsslisting.cpp" line="4268"/>
         <source>Unread News: %1</source>
         <translation>Noticias sin leer: %1</translation>
-    </message>
-    <message>
-        <source>&amp;Add Feed...</source>
-        <translation type="obsolete">&amp;Agregar Canal...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3834"/>
@@ -2106,23 +2008,47 @@
         <translation>Cargar imágenes automáticamente al ver noticias</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="583"/>
+        <location filename="../src/rsslisting.cpp" line="4028"/>
+        <source>Labels</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/rsslisting.cpp" line="2012"/>
         <source>Delete Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2013"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>New</source>
-        <translation type="obsolete">Nuevo</translation>
+        <location filename="../src/rsslisting.cpp" line="2659"/>
+        <location filename="../src/rsslisting.cpp" line="3364"/>
+        <location filename="../src/rsslisting.cpp" line="3820"/>
+        <source>Unread: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="2660"/>
+        <location filename="../src/rsslisting.cpp" line="3365"/>
+        <location filename="../src/rsslisting.cpp" line="3375"/>
+        <location filename="../src/rsslisting.cpp" line="3823"/>
+        <location filename="../src/rsslisting.cpp" line="4765"/>
+        <location filename="../src/rsslisting.cpp" line="5339"/>
+        <source>All: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="3833"/>
+        <source>&amp;Add</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3840"/>
         <source>Add New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3863"/>
@@ -2179,14 +2105,6 @@
         <location filename="../src/rsslisting.cpp" line="3888"/>
         <source>Show Starred Feeds</source>
         <translation>Mostrar Destacados</translation>
-    </message>
-    <message>
-        <source>Show Unread or Star</source>
-        <translation type="obsolete">Mostrar destacados o sin leer</translation>
-    </message>
-    <message>
-        <source>Show Deleted</source>
-        <translation type="obsolete">Mostrar Eliminados</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3899"/>
@@ -2262,10 +2180,6 @@
         <location filename="../src/rsslisting.cpp" line="3921"/>
         <source>Mark Feed Read</source>
         <translation>Marcar Canal Como Leído</translation>
-    </message>
-    <message>
-        <source>Feed Properties</source>
-        <translation type="obsolete">Propiedades Del Canal</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3930"/>
@@ -2371,22 +2285,14 @@
         <translation>Cargando historial...</translation>
     </message>
     <message>
-        <source>&amp;Update</source>
-        <translation type="obsolete">&amp;Actualizar</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete">&amp;Cerrar</translation>
-    </message>
-    <message>
         <location filename="../src/updateappdialog.cpp" line="28"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="36"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="86"/>
@@ -2406,20 +2312,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="99"/>
         <source>Your version is:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="101"/>
         <source>Current version is:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your version is: </source>
-        <translation type="obsolete">Tu versión es:</translation>
-    </message>
-    <message>
-        <source>Current version is: </source>
-        <translation type="obsolete">La versión actual es:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="107"/>
