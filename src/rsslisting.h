@@ -64,6 +64,7 @@ public:
   QAction *printPreviewAct_;
   QAction *restoreNewsAct_;
   QAction *newsLabelAction_;
+  QAction *newsLabelMenuAction_;
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
 

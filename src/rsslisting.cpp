@@ -1151,9 +1151,9 @@ void RSSListing::createActions()
   newsLabelAction_ = new QAction(this);
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
+    newsLabelAction_->setText(newsLabelGroup_->actions().at(0)->text());
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
-
   connect(newsLabelAction_, SIGNAL(triggered()),
           this, SLOT(setDefaultLabelNews()));
   connect(newsLabelGroup_, SIGNAL(triggered(QAction*)),
@@ -1475,10 +1475,14 @@ void RSSListing::createMenu()
 
   newsLabelMenu_ = new QMenu(this);
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
+  newsLabelMenuAction_ = new QAction(this);
+  newsLabelMenuAction_->setIcon(QIcon(":/images/label_3"));
   newsLabelAction_->setMenu(newsLabelMenu_);
-  newsMenu_->addAction(newsLabelAction_);
+  newsLabelMenuAction_->setMenu(newsLabelMenu_);
+  newsMenu_->addAction(newsLabelMenuAction_);
   connect(newsLabelMenu_, SIGNAL(aboutToShow()),
           this, SLOT(getLabelNews()));
+
   newsMenu_->addSeparator();
 
   newsFilterGroup_ = new QActionGroup(this);
@@ -2962,6 +2966,7 @@ void RSSListing::showOptionDlg()
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
+    newsLabelAction_->setText(newsLabelGroup_->actions().at(0)->text());
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
 
@@ -4016,7 +4021,7 @@ void RSSListing::retranslateStrings()
   else
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
 
-  newsLabelAction_->setText(tr("Label"));
+  newsLabelMenuAction_->setText(tr("Label"));
 
   closeTabAct_->setText(tr("Close tab"));
   nextTabAct_->setText(tr("Switch to next tab"));

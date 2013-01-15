@@ -222,7 +222,7 @@ void NewsTabWidget::createMenuNews()
   newsContextMenu_->addAction(rsslisting_->markAllNewsRead_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->markStarAct_);
-  newsContextMenu_->addAction(rsslisting_->newsLabelAction_);
+  newsContextMenu_->addAction(rsslisting_->newsLabelMenuAction_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->updateFeedAct_);
   newsContextMenu_->addSeparator();
