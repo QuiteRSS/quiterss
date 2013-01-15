@@ -3603,7 +3603,6 @@ void RSSListing::setFeedRead(int feedId, FeedReedType feedReadtype)
   if (markNewsReadOn_ && markPrevNewsRead_)
     q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
 
-  q.exec(QString("UPDATE feeds SET newCount=0 WHERE id='%1'").arg(feedId));
   db_.commit();
 
 //  if (update) {
