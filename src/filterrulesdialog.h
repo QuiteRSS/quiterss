@@ -20,7 +20,7 @@ public:
 
     QStringList itemList;
     itemList << tr("Title")  << tr("Description")
-             << tr("Author") << tr("Category") << tr("Status")
+             << tr("Author") << tr("Category") << tr("State")
                 /*<< tr("Published") << tr("Received")*/;
     comboBox1->addItems(itemList);
 
