@@ -55,6 +55,7 @@ signals:
   void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
   void signalHead(const QNetworkRequest &request);
   void signalGet(const QNetworkRequest &request);
+  void signalAuthentication(QNetworkReply* reply, QAuthenticator* auth);
 
 private slots:
   void getQueuedUrl();

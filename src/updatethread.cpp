@@ -25,6 +25,9 @@ void UpdateThread::run()
   connect(this, SIGNAL(signalGet(QNetworkRequest)), updateObject_, SLOT(slotGet(QNetworkRequest)));
   connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
+  connect(&updateObject_->manager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+          this, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
+          Qt::BlockingQueuedConnection);
 
   exec();
 }
@@ -92,7 +95,7 @@ void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime
 
     If the HTTP get request has finished, we make the
     user interface available to the user for further input.
- *********************************r*********************************************/
+ *******************************************************************************/
 void UpdateThread::finished(QNetworkReply *reply)
 {
   qDebug() << "reply.finished():" << reply->url().toString();
@@ -113,7 +116,10 @@ void UpdateThread::finished(QNetworkReply *reply)
     qDebug() << "  error retrieving RSS feed:" << reply->error();
     if (!headOk) {
       emit readedXml(NULL, feedUrl);
-      emit getUrlDone(-1);
+      if (reply->error() == QNetworkReply::AuthenticationRequiredError)
+        emit getUrlDone(-2);
+      else
+        emit getUrlDone(-1);
       getQueuedUrl();
     } else {
       get(reply->url(), feedUrl, feedDate);

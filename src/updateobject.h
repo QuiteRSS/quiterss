@@ -7,10 +7,10 @@
 class UpdateObject : public QObject
 {
   Q_OBJECT
-  QNetworkAccessManager manager_;
 
 public:
   explicit UpdateObject(QObject *parent = 0);
+  QNetworkAccessManager manager_;
   
 signals:
   void signalFinished(QNetworkReply *reply);

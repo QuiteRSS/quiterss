@@ -66,6 +66,7 @@ private slots:
   void receiveXml(const QByteArray &data, const QUrl &url);
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void newFolder();
+  void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
 
 };
 

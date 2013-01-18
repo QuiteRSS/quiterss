@@ -1,5 +1,6 @@
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
+#include "authenticationdialog.h"
 
 extern QString kCreateNewsTableQuery;
 
@@ -24,6 +25,8 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db, QString dataDirP
           this, SLOT(receiveXml(QByteArray, QUrl)));
   connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
           this, SLOT(getUrlDone(int,QDateTime)));
+  connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
+          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
   persistentParseThread_ = new ParseThread(this, db_, dataDirPath);
   persistentParseThread_->setObjectName("persistentParseThread_");
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
@@ -461,8 +464,11 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
   data_.clear();
   url_.clear();
 
-  if (result == -1) {
-    textWarning->setText(tr("URL error!"));
+  if (result < 0) {
+    if (result == -1)
+      textWarning->setText(tr("URL error!"));
+    else if (result == -2)
+      textWarning->setText(tr("Host requires authentication!"));
     warningWidget_->setVisible(true);
 
     deleteFeed();
@@ -574,4 +580,13 @@ void AddFeedWizard::newFolder()
   foldersTree_->setCurrentItem(treeWidgetItem);
 
   delete addFolderDialog;
+}
+
+void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
+{
+  AuthenticationDialog *authenticationDialog =
+      new AuthenticationDialog(this, reply, auth);
+
+  authenticationDialog->exec();
+  delete authenticationDialog;
 }
