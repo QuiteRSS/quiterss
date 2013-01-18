@@ -608,6 +608,7 @@ void RSSListing::createFeedsWidget()
   categoriesLabel_->setObjectName("categoriesLabel_");
 
   showCategoriesButton_ = new QToolButton(this);
+  showCategoriesButton_->setFocusPolicy(Qt::NoFocus);
   showCategoriesButton_->setMaximumSize(16, 16);
   showCategoriesButton_->setAutoRaise(true);
 
@@ -723,10 +724,12 @@ void RSSListing::createStatusBar()
   statusBar()->setMinimumHeight(22);
 
   QToolButton *loadImagesButton = new QToolButton(this);
+  loadImagesButton->setFocusPolicy(Qt::NoFocus);
   loadImagesButton->setDefaultAction(autoLoadImagesToggle_);
   loadImagesButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
 
   QToolButton *fullScreenButton = new QToolButton(this);
+  fullScreenButton->setFocusPolicy(Qt::NoFocus);
   fullScreenButton->setDefaultAction(fullScreenAct_);
   fullScreenButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
   statusBar()->installEventFilter(this);

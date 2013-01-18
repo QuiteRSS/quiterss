@@ -14,6 +14,7 @@ FindTextContent::FindTextContent(QWidget *parent)
   findInBrowserAct_->setCheckable(true);
 
   findButton = new QToolButton(this);
+  findButton->setFocusPolicy(Qt::NoFocus);
   QPixmap findPixmap(":/images/selectFindInNews");
   findButton->setIcon(QIcon(findPixmap));
   findButton->setIconSize(findPixmap.size());
@@ -34,6 +35,7 @@ FindTextContent::FindTextContent(QWidget *parent)
           this, SLOT(slotSelectFind(QAction*)));
 
   clearButton = new QToolButton(this);
+  clearButton->setFocusPolicy(Qt::NoFocus);
   QPixmap pixmap(":/images/editClear");
   clearButton->setIcon(QIcon(pixmap));
   clearButton->setIconSize(pixmap.size());

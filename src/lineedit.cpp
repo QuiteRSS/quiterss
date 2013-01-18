@@ -15,6 +15,7 @@ LineEdit::LineEdit(QWidget *parent)
   : QLineEdit(parent)
 {
   clearButton = new QToolButton(this);
+  clearButton->setFocusPolicy(Qt::NoFocus);
   QPixmap pixmap(":/images/editClear");
   clearButton->setIcon(QIcon(pixmap));
   clearButton->setIconSize(pixmap.size());

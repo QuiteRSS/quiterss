@@ -12,6 +12,7 @@ FindFeed::FindFeed(QWidget *parent)
   findLinkAct_->setCheckable(true);
 
   findButton = new QToolButton(this);
+  findButton->setFocusPolicy(Qt::NoFocus);
   QPixmap findPixmap(":/images/selectFindInBrowser");
   findButton->setIcon(QIcon(findPixmap));
   findButton->setIconSize(findPixmap.size());
@@ -32,6 +33,7 @@ FindFeed::FindFeed(QWidget *parent)
           this, SLOT(slotSelectFind(QAction*)));
 
   clearButton = new QToolButton(this);
+  clearButton->setFocusPolicy(Qt::NoFocus);
   QPixmap pixmap(":/images/editClear");
   clearButton->setIcon(QIcon(pixmap));
   clearButton->setIconSize(pixmap.size());
