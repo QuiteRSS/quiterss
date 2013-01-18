@@ -403,6 +403,7 @@ QString initDB(const QString dbFileName)
     q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
     q.bindValue(":version", kDbVersion);
     q.exec();
+    q.finish();
     db.commit();
     db.close();
   } else {
@@ -627,9 +628,9 @@ QString initDB(const QString dbFileName)
         q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
       }
     }
-    //
+    q.finish();
+
     db.commit();
-    db.exec("VACUUM");
     db.close();
   }
   QSqlDatabase::removeDatabase("dbFileName_");

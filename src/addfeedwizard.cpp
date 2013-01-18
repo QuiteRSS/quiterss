@@ -332,7 +332,6 @@ void AddFeedWizard::deleteFeed()
   if (id >= 0) {
     q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
     q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
-    q.exec("VACUUM");
   }
   q.finish();
 }

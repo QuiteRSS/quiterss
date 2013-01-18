@@ -264,9 +264,10 @@ RSSListing::~RSSListing()
   recountFeedCategories(categoriesList);
 
   q.exec("UPDATE feeds SET newCount=0 WHERE newCount!=0");
-  q.exec("VACUUM");
+
   q.finish();
   db_.commit();
+  db_.exec("VACUUM");
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(true);

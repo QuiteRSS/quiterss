@@ -228,7 +228,6 @@ void NewsFiltersDialog::deleteFilter()
   q.exec(QString("DELETE FROM filters WHERE id='%1'").arg(filterId));
   q.exec(QString("DELETE FROM filterConditions WHERE idFilter='%1'").arg(filterId));
   q.exec(QString("DELETE FROM filterActions WHERE idFilter='%1'").arg(filterId));
-  q.exec("VACUUM");
   q.finish();
 
   filtersTree->takeTopLevelItem(filterRow);
