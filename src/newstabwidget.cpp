@@ -377,6 +377,10 @@ void NewsTabWidget::createWebWidget()
   connect(webView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextWebPage(const QPoint &)));
 
+  connect(webView_->page()->networkAccessManager(),
+          SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+          rsslisting_, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+
   connect(rsslisting_->browserToolbarToggle_, SIGNAL(triggered()),
           this, SLOT(setWebToolbarVisible()));
 }

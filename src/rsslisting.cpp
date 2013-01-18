@@ -8,6 +8,7 @@
 #include "aboutdialog.h"
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
+#include "authenticationdialog.h"
 #include "db_func.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
@@ -88,6 +89,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(receiveXml(QByteArray, QUrl)));
   connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
           this, SLOT(getUrlDone(int,QDateTime)));
+  connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
+          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
   persistentParseThread_ = new ParseThread(this, &db_, lastFeedPath_);
   persistentParseThread_->setObjectName("persistentParseThread_");
@@ -5492,4 +5495,15 @@ void RSSListing::hideMainToolbar()
 {
   mainToolbarToggle_->setChecked(false);
   mainToolbar_->hide();
+}
+
+/** @brief Запрос авторизации
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
+{
+  AuthenticationDialog *authenticationDialog =
+      new AuthenticationDialog(this, reply, auth);
+
+  authenticationDialog->exec();
+  delete authenticationDialog;
 }

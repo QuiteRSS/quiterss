@@ -133,6 +133,7 @@ public slots:
   void slotTabCloseRequested(int index);
   QWebPage *createWebTab();
   void setAutoLoadImages(bool set = true);
+  void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
