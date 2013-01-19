@@ -5504,6 +5504,8 @@ void RSSListing::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
   AuthenticationDialog *authenticationDialog =
       new AuthenticationDialog(this, reply, auth);
 
-  authenticationDialog->exec();
+  if (!authenticationDialog->save_->isChecked())
+    authenticationDialog->exec();
+
   delete authenticationDialog;
 }

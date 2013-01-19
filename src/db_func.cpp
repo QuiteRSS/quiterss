@@ -335,6 +335,14 @@ const QString kCreateLabelsTable(
     "currentNews integer "      // отображаемая новость
     ")");
 
+const QString kCreatePasswordsTable(
+    "CREATE TABLE passwords("
+    "id integer primary key, "
+    "server varchar, "          // сервер
+    "username varchar, "        // пользователь
+    "password varchar "         // пароль
+    ")");
+
 void initLabelsTable(QSqlDatabase *db)
 {
   QSqlQuery q(*db);
@@ -397,6 +405,8 @@ QString initDB(const QString dbFileName)
         ")");
     // Создаём таблицу меток
     initLabelsTable(&db);
+    // Создаём таблицу паролей
+    db.exec(kCreatePasswordsTable);
     //
     db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
     QSqlQuery q(db);
@@ -618,7 +628,7 @@ QString initDB(const QString dbFileName)
     bool createTable = false;
     q.exec("SELECT count(name) FROM sqlite_master WHERE name='labels'");
     if (q.next()) {
-      if (q.value(0).toInt()) createTable = true;
+      if (q.value(0).toInt() > 0) createTable = true;
     }
     if (!createTable) {
       initLabelsTable(&db);
@@ -627,7 +637,16 @@ QString initDB(const QString dbFileName)
       if (!q.next()) {
         q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
       }
+    }  
+    // Создаём таблицу паролей
+    createTable = false;
+    q.exec("SELECT count(name) FROM sqlite_master WHERE name='passwords'");
+    if (q.next()) {
+      if (q.value(0).toInt() > 0) createTable = true;
     }
+    if (!createTable)
+      q.exec(kCreatePasswordsTable);
+    //
     q.finish();
 
     db.commit();
