@@ -12,8 +12,7 @@ ParseObject::ParseObject(QString dataDirPath, QObject *parent)
 {
 }
 
-void ParseObject::slotParse(QSqlDatabase *db,
-                            const QByteArray &xmlData, const QUrl &url)
+void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 {
   if (!dataDirPath_.isEmpty()) {
     QFile file(dataDirPath_ + QDir::separator() + "lastfeed.dat");
@@ -48,7 +47,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
   int parseFeedId = 0;
   bool duplicateNewsMode = true;
 
-  QSqlQuery q(*db);
+  QSqlQuery q;
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", url.toEncoded());
   q.exec();
@@ -68,7 +67,8 @@ void ParseObject::slotParse(QSqlDatabase *db,
 
   // собственно сам разбор
   bool feedChanged = false;
-  db->transaction();
+  QSqlDatabase db = QSqlDatabase::database();
+  db.transaction();
   int itemCount = 0;
   QXmlStreamReader xml(xmlData.trimmed());
   xml.setNamespaceProcessing(false);
@@ -102,7 +102,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         if (isHeader) {
           rssPubDateString = parseDate(rssPubDateString, url.toString());
 
-          QSqlQuery q(*db);
+          QSqlQuery q;
           QString qStr("UPDATE feeds "
                        "SET title=?, description=?, htmlUrl=?, author_name=?, pubdate=? "
                        "WHERE id==?");
@@ -133,7 +133,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
         atomUpdatedString = parseDate(atomUpdatedString, url.toString());
 
         if (isHeader) {
-          QSqlQuery q(*db);
+          QSqlQuery q;
           QString qStr ("UPDATE feeds "
                         "SET title=?, description=?, htmlUrl=?, "
                         "author_name=?, author_email=?, "
@@ -199,7 +199,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             toPlainText();
 
         // поиск дубликата статей в базе
-        QSqlQuery q(*db);
+        QSqlQuery q;
         QString qStr;
         qDebug() << "guid:     " << rssGuidString;
         qDebug() << "link_href:" << linkString;
@@ -284,7 +284,7 @@ void ParseObject::slotParse(QSqlDatabase *db,
             toPlainText();
 
         // поиск дубликата статей в базе
-        QSqlQuery q(*db);
+        QSqlQuery q;
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
         qDebug() << "title:" << titleString;
@@ -454,11 +454,11 @@ void ParseObject::slotParse(QSqlDatabase *db,
 
   int newCount = 0;
   if (feedChanged) {
-    setUserFilter(db, parseFeedId);
-    newCount = recountFeedCounts(db, parseFeedId);
+    setUserFilter(parseFeedId);
+    newCount = recountFeedCounts(parseFeedId);
   }
 
-  db->commit();
+  db.commit();
   qDebug() << "=================== parseXml:finish ===========================";
 
   emit feedUpdated(parseFeedId, feedChanged, newCount);
@@ -549,9 +549,9 @@ QString ParseObject::parseDate(QString dateString, QString urlString)
  * @param db - база данных
  * @param feedId - идентификатор ленты
  *----------------------------------------------------------------------------*/
-int ParseObject::recountFeedCounts(QSqlDatabase *db, int feedId)
+int ParseObject::recountFeedCounts(int feedId)
 {
-  QSqlQuery q(*db);
+  QSqlQuery q;
   QString qStr;
 
   int feedParId = 0;

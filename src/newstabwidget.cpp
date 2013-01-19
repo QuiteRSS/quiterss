@@ -12,7 +12,7 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
     feedId_(feedId), feedParId_(feedParId)
 {
   rsslisting_ = qobject_cast<RSSListing*>(parent);
-  db_ = &rsslisting_->db_;
+  db_ = QSqlDatabase::database();
   feedsTreeView_ = rsslisting_->feedsTreeView_;
   feedsTreeModel_ = rsslisting_->feedsTreeModel_;
 
@@ -115,7 +115,7 @@ void NewsTabWidget::createNewsList()
 {
   newsView_ = new NewsView(this);
   newsView_->setFrameStyle(QFrame::NoFrame);
-  newsModel_ = new NewsModel(this, newsView_, db_);
+  newsModel_ = new NewsModel(this, newsView_);
   newsModel_->setTable("news");
   newsModel_->setFilter("feedId=-1");
   newsHeader_ = new NewsHeader(newsModel_, newsView_);
@@ -424,7 +424,7 @@ void NewsTabWidget::setSettings(bool newTab)
   }
 
   if (type_ == TAB_FEED) {
-    QSqlQuery q(*db_);
+    QSqlQuery q;
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
     if (q.next()) autoLoadImages_ = q.value(0).toInt();
@@ -563,7 +563,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
     if (type_ == TAB_FEED) {
       // Запись текущей новости в ленту
-      QSqlQuery q(*db_);
+      QSqlQuery q;
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).arg(feedId_);
       q.exec(qStr);
@@ -575,7 +575,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
             feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
             newsId);
     } else if (type_ == TAB_CAT_LABEL) {
-      QSqlQuery q(*db_);
+      QSqlQuery q;
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).
           arg(rsslisting_->newsCategoriesTree_->currentItem()->text(2).toInt());
@@ -730,7 +730,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 
   bool changed = false;
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  QSqlQuery q(*db_);
+  QSqlQuery q;
 
   if (read == 1) {
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
@@ -770,7 +770,7 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
   newsModel_->setData(index, starred);
 
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
          arg(starred).arg(newsId));
 }
@@ -809,15 +809,15 @@ void NewsTabWidget::markNewsRead()
       }
     }
 
-    db_->transaction();
-    QSqlQuery q(*db_);
+    db_.transaction();
+    QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
              arg(markRead).arg(newsId));
     }
-    db_->commit();
+    db_.commit();
 
     newsModel_->select();
 
@@ -842,7 +842,7 @@ void NewsTabWidget::markAllNewsRead()
   if (type_ == TAB_WEB) return;
   if (newsModel_->rowCount() == 0) return;
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
       arg(feedId_);
   q.exec(qStr);
@@ -890,11 +890,11 @@ void NewsTabWidget::markNewsStar()
       }
     }
 
-    db_->transaction();
+    db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
       slotSetItemStar(indexes.at(i), markStar);
     }
-    db_->commit();
+    db_.commit();
   }
 }
 
@@ -915,15 +915,15 @@ void NewsTabWidget::deleteNews()
     newsModel_->setData(curIndex, 1);
     newsModel_->submitAll();
   } else {
-    db_->transaction();
-    QSqlQuery q(*db_);
+    db_.transaction();
+    QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
              arg(newsId));
     }
-    db_->commit();
+    db_.commit();
 
     newsModel_->select();
   }
@@ -947,14 +947,14 @@ void NewsTabWidget::deleteAllNewsList()
 
   QModelIndex curIndex;
 
-  db_->transaction();
-  QSqlQuery q(*db_);
+  db_.transaction();
+  QSqlQuery q;
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
     q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
            arg(newsId));
   }
-  db_->commit();
+  db_.commit();
 
   newsModel_->select();
 
@@ -978,15 +978,15 @@ void NewsTabWidget::restoreNews()
     newsModel_->setData(curIndex, 0);
     newsModel_->submitAll();
   } else {
-    db_->transaction();
-    QSqlQuery q(*db_);
+    db_.transaction();
+    QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       q.exec(QString("UPDATE news SET deleted=0 WHERE id=='%1'").
              arg(newsId));
     }
-    db_->commit();
+    db_.commit();
 
     newsModel_->select();
   }
@@ -1014,7 +1014,7 @@ void NewsTabWidget::slotSort(int column, int order)
   else if (column == newsModel_->fieldIndex("starred")) {
     qStr = QString("UPDATE news SET rights=starred WHERE feedId=='%1'").arg(feedId_);
   }
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   q.exec(qStr);
   newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }
@@ -1510,7 +1510,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
 
     int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).
         data(Qt::EditRole).toInt();
-    QSqlQuery q(*db_);
+    QSqlQuery q;
     q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
            arg(strIdLabels).arg(newsId));
     if (newsId != currentNewsIdOld) {
@@ -1518,7 +1518,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
             index, QItemSelectionModel::Deselect|QItemSelectionModel::Rows);
     }
   } else {
-    db_->transaction();
+    db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
       QModelIndex index = indexes.at(i);
       QString strIdLabels = index.data(Qt::EditRole).toString();
@@ -1534,7 +1534,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
 
       int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).
           data(Qt::EditRole).toInt();
-      QSqlQuery q(*db_);
+      QSqlQuery q;
       q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
              arg(strIdLabels).arg(newsId));
       if (newsId != currentNewsIdOld) {
@@ -1542,7 +1542,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
               index, QItemSelectionModel::Deselect|QItemSelectionModel::Rows);
       }
     }
-    db_->commit();
+    db_.commit();
   }
   newsView_->viewport()->update();
 }

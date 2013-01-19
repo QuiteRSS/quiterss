@@ -657,9 +657,9 @@ QString initDB(const QString dbFileName)
 }
 
 //-----------------------------------------------------------------------------
-void setUserFilter(QSqlDatabase *db, int feedId, int filterId)
+void setUserFilter(int feedId, int filterId)
 {
-  QSqlQuery q(*db);
+  QSqlQuery q;
   bool onlyNew = true;
 
   if (filterId != -1) {
@@ -682,7 +682,7 @@ void setUserFilter(QSqlDatabase *db, int feedId, int filterId)
     QString qStr1;
     QString qStr2;
 
-    QSqlQuery q1(*db);
+    QSqlQuery q1;
     q1.exec(QString("SELECT action, params FROM filterActions "
                     "WHERE idFilter=='%1'").arg(filterId));
     while (q1.next()) {

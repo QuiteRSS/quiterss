@@ -14,7 +14,7 @@ class FaviconLoader : public QThread
 {
   Q_OBJECT
 public:
-  explicit FaviconLoader( QObject *pParent, QSqlDatabase *db);
+  explicit FaviconLoader( QObject *pParent);
   ~FaviconLoader();
 
 public slots:
@@ -27,8 +27,7 @@ private slots:
   void getQueuedUrl();
   void slotFinished(QNetworkReply *reply);
 
-private:  
-  QSqlDatabase *db_;
+private:
   QList<QUrl> currentUrls_;
   QList<QUrl> currentFeeds_;
   QList<int> currentCntRequests_;

@@ -25,12 +25,11 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   treeItem << "Id" << tr("Name Filter") << tr("Feeds") << "Num";
   filtersTree->setHeaderLabels(treeItem);
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   QString qStr = QString("SELECT id, name, feeds, enable, num FROM filters ORDER BY num");
   q.exec(qStr);
   while (q.next()) {
-    QSqlQuery q1(rssl_->db_);
+    QSqlQuery q1;
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
@@ -130,13 +129,12 @@ void NewsFiltersDialog::newFilter()
   int filterId = filterRulesDialog->filterId_;
   delete filterRulesDialog;
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   QString qStr = QString("SELECT name, feeds, enable FROM filters WHERE id=='%1'").
       arg(filterId);
   q.exec(qStr);
   if (q.next()) {
-    QSqlQuery q1(rssl_->db_);
+    QSqlQuery q1;
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(1).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
@@ -185,13 +183,12 @@ void NewsFiltersDialog::editFilter()
 
   delete filterRulesDialog;
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   QString qStr = QString("SELECT name, feeds FROM filters WHERE id=='%1'").
       arg(filterId);
   q.exec(qStr);
   if (q.next()) {
-    QSqlQuery q1(rssl_->db_);
+    QSqlQuery q1;
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(1).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
@@ -223,8 +220,7 @@ void NewsFiltersDialog::deleteFilter()
   int filterRow = filtersTree->currentIndex().row();
   int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   q.exec(QString("DELETE FROM filters WHERE id='%1'").arg(filterId));
   q.exec(QString("DELETE FROM filterConditions WHERE idFilter='%1'").arg(filterId));
   q.exec(QString("DELETE FROM filterActions WHERE idFilter='%1'").arg(filterId));
@@ -255,8 +251,7 @@ void NewsFiltersDialog::moveUpFilter()
   if (filtersTree->currentIndex().row() != (filtersTree->topLevelItemCount()-1))
     moveDownButton->setEnabled(true);
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
   int filterNum = filtersTree->topLevelItem(filterRow)->text(3).toInt();
   QString qStr = QString("UPDATE filters SET num='%1' WHERE id=='%2'").
@@ -287,8 +282,7 @@ void NewsFiltersDialog::moveDownFilter()
   if (filtersTree->currentIndex().row() != 0)
     moveUpButton->setEnabled(true);
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   int filterId = filtersTree->topLevelItem(filterRow)->text(0).toInt();
   int filterNum = filtersTree->topLevelItem(filterRow)->text(3).toInt();
   QString qStr = QString("UPDATE filters SET num='%1' WHERE id=='%2'").
@@ -336,14 +330,14 @@ void NewsFiltersDialog::applyFilter()
   int feedId = -1;
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   QString qStr = QString("SELECT feeds FROM filters WHERE id='%1'").
       arg(filterId);
   q.exec(qStr);
   if (q.next()) {
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      setUserFilter(&rssl_->db_, strIdFeed.toInt(), filterId);
+      setUserFilter(strIdFeed.toInt(), filterId);
       NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
@@ -360,8 +354,7 @@ void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
     int enable = 0;
     if (item->checkState(1) == Qt::Checked) enable = 1;
 
-    RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-    QSqlQuery q(rssl_->db_);
+    QSqlQuery q;
     QString qStr = QString("UPDATE filters SET enable='%1' WHERE id=='%2'").
         arg(enable).arg(item->text(0).toInt());
     q.exec(qStr);

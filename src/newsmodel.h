@@ -9,10 +9,9 @@ class NewsModel : public QSqlTableModel
   Q_OBJECT
 private:
   QTreeView *view_;
-  QSqlDatabase *db_;
 
 public:
-  NewsModel(QObject *parent, QTreeView *view, QSqlDatabase *db);
+  NewsModel(QObject *parent, QTreeView *view);
   virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
   virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);

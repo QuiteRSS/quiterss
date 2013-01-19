@@ -3,9 +3,8 @@
 #include <QPixmap>
 #include <QBuffer>
 
-FaviconLoader::FaviconLoader(QObject *pParent, QSqlDatabase *db)
-  : QThread(pParent),
-    db_(db)
+FaviconLoader::FaviconLoader(QObject *pParent)
+  : QThread(pParent)
 {
   qDebug() << "FaviconLoader::constructor";
   start();
@@ -130,7 +129,7 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
             QBuffer    buffer(&faviconData);
             buffer.open(QIODevice::WriteOnly);
             if (icon.save(&buffer, "ICO")) {
-              QSqlQuery q(*db_);
+              QSqlQuery q;
               int feedId = 0;
               q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
               q.bindValue(":xmlUrl", feedUrl.toString());

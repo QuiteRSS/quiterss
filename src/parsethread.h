@@ -15,7 +15,6 @@ class ParseThread : public QThread
   Q_OBJECT
 
 private:
-  QSqlDatabase *db_;
   QString dataDirPath_;
   QUrl currentUrl_;
   QByteArray currentXml_;
@@ -28,13 +27,12 @@ private:
   void run();
 
 public:
-  explicit ParseThread(QObject *parent, QSqlDatabase *db, QString dataDirPath);
+  explicit ParseThread(QObject *parent, QString dataDirPath);
   ~ParseThread();
 
 signals:
   void startTimer();
-  void signalReadyParse(QSqlDatabase *db,
-                        const QByteArray &xml, const QUrl &url);
+  void signalReadyParse(const QByteArray &xml, const QUrl &url);
 
 private slots:
   void getQueuedXml();

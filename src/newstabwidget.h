@@ -34,7 +34,7 @@ private:
   bool openUrl(const QUrl &url);
   void setTitleWebPanel();
 
-  QSqlDatabase *db_;
+  QSqlDatabase db_;
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
 

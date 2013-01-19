@@ -1,9 +1,8 @@
 #include "newsmodel.h"
 
-NewsModel::NewsModel(QObject *parent, QTreeView *view, QSqlDatabase *db)
+NewsModel::NewsModel(QObject *parent, QTreeView *view)
   : QSqlTableModel(parent),
-    view_(view),
-    db_(db)
+    view_(view)
 {
   setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
@@ -33,7 +32,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       QByteArray byteArray;
       bool isFeed = true;
 
-      QSqlQuery q(*db_);
+      QSqlQuery q;
       q.exec(QString("SELECT image, xmlUrl FROM feeds WHERE id=='%1'").
              arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
       if (q.next()) {
@@ -57,7 +56,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       QStringList strLabelIdList = index.data(Qt::EditRole).toString().
           split(",", QString::SkipEmptyParts);
       foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q(*db_);
+        QSqlQuery q;
         q.exec(QString("SELECT num, image FROM labels WHERE id=='%1'").
                arg(strLabelId));
         if (q.next()) {
@@ -74,7 +73,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
   } else if (role == Qt::ToolTipRole) {
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
-      QSqlQuery q(*db_);
+      QSqlQuery q;
       q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
              arg(index.data(Qt::EditRole).toInt()));
       if (q.next())
@@ -121,7 +120,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
       QStringList nameLabelList;
       QString strIdLabels = index.data(Qt::EditRole).toString();
-      QSqlQuery q(*db_);
+      QSqlQuery q;
       q.exec("SELECT id, name FROM labels ORDER BY num");
       while (q.next()) {
         QString strLabelId = q.value(0).toString();
@@ -145,7 +144,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
           split(",", QString::SkipEmptyParts);
 
       foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q(*db_);
+        QSqlQuery q;
         q.exec(QString("SELECT num, color_bg FROM labels WHERE id=='%1'").
                arg(strLabelId));
         if (q.next()) {
@@ -172,7 +171,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
           split(",", QString::SkipEmptyParts);
 
       foreach (QString strLabelId, strLabelIdList) {
-        QSqlQuery q(*db_);
+        QSqlQuery q;
         q.exec(QString("SELECT num, color_text FROM labels WHERE id=='%1'").
                arg(strLabelId));
         if (q.next()) {

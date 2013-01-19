@@ -83,7 +83,7 @@ class NotificationWidget : public QWidget
 {
   Q_OBJECT
 public:
-  NotificationWidget(QSqlDatabase *db, QList<int> idFeedList,
+  NotificationWidget(QList<int> idFeedList,
                      QList<int> cntNewNewsList,
                      int countShowNews, int timeShowNews, int widthTitleNews,
                      QString fontFamily, int fontSize,
@@ -106,7 +106,6 @@ private:
 
   QTimer *showTimer_;
 
-  QSqlDatabase *db_;
   QList<int> idFeedList_;
   QList<int> cntNewNewsList_;
   int countShowNews_;

@@ -1,8 +1,7 @@
 #include "notifications.h"
 #include "rsslisting.h"
 
-NotificationWidget::NotificationWidget(QSqlDatabase *db,
-                                       QList<int> idFeedList,
+NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QList<int> cntNewNewsList,
                                        int countShowNews,
                                        int timeShowNews,
@@ -11,7 +10,6 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
                                        int fontSize,
                                        QWidget *parent) :
   QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint),
-  db_(db),
   idFeedList_(idFeedList),
   cntNewNewsList_(cntNewNewsList),
   countShowNews_(countShowNews),
@@ -109,7 +107,7 @@ NotificationWidget::NotificationWidget(QSqlDatabase *db,
   if (cntAllNews > countShowNews_) rightButton_->setEnabled(true);
   else rightButton_->setEnabled(false);
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   int cnt = 0;
   foreach (int idFeed, idFeedList_) {
     QString qStr = QString("SELECT text, image, parentId FROM feeds WHERE id=='%1'").
@@ -230,7 +228,7 @@ void NotificationWidget::previousPage()
 void NotificationWidget::markRead(int id)
 {
   int read = 1;
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
          arg(read).arg(id));
 }

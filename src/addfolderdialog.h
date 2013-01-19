@@ -8,17 +8,15 @@
 class AddFolderDialog : public Dialog
 {
   Q_OBJECT
-private:
-  QSqlDatabase *db_;
-
-private slots:
-  void nameFeedEditChanged(const QString&);
 
 public:
-  explicit AddFolderDialog(QWidget *parent, QSqlDatabase *db);
+  explicit AddFolderDialog(QWidget *parent);
 
   LineEdit *nameFeedEdit_;
   QTreeWidget *foldersTree_;
+
+private slots:
+  void nameFeedEditChanged(const QString&);
 
 };
 

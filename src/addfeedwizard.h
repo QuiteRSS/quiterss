@@ -16,7 +16,6 @@ private:
   void showProgressBar();
   void finish();
 
-  QSqlDatabase *db_;
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
   QByteArray data_;
@@ -32,7 +31,7 @@ private:
   QTreeWidget *foldersTree_;
 
 public:
-  explicit AddFeedWizard(QWidget *parent, QSqlDatabase *db, QString dataDirPath);
+  explicit AddFeedWizard(QWidget *parent, QString dataDirPath);
   ~AddFeedWizard();
 
   LineEdit *nameFeedEdit_;

@@ -1,8 +1,7 @@
 #include "addfolderdialog.h"
 
-AddFolderDialog::AddFolderDialog(QWidget *parent, QSqlDatabase *db)
-  : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint),
-    db_(db)
+AddFolderDialog::AddFolderDialog(QWidget *parent)
+  : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add Folder"));
@@ -28,7 +27,7 @@ AddFolderDialog::AddFolderDialog(QWidget *parent, QSqlDatabase *db)
   foldersTree_->addTopLevelItem(treeWidgetItem);
   foldersTree_->setCurrentItem(treeWidgetItem);
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
   while (!parentIds.empty()) {

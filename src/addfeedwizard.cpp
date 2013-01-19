@@ -4,9 +4,8 @@
 
 extern QString kCreateNewsTableQuery;
 
-AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db, QString dataDirPath)
-  : QWizard(parent),
-    db_(db)
+AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath)
+  : QWizard(parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add Feed"));
@@ -27,7 +26,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QSqlDatabase *db, QString dataDirP
           this, SLOT(getUrlDone(int,QDateTime)));
   connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
-  persistentParseThread_ = new ParseThread(this, db_, dataDirPath);
+  persistentParseThread_ = new ParseThread(this, dataDirPath);
   persistentParseThread_->setObjectName("persistentParseThread_");
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
           persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
@@ -157,7 +156,7 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
   foldersTree_->addTopLevelItem(treeWidgetItem);
   foldersTree_->setCurrentItem(treeWidgetItem);
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
@@ -282,7 +281,7 @@ void AddFeedWizard::addFeed()
     return;
   }
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   int duplicateFoundId = -1;
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrlString_);
@@ -324,7 +323,7 @@ void AddFeedWizard::deleteFeed()
 {
   int id = -1;
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrlString_);
   q.exec();
@@ -401,7 +400,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
           qDebug() << "Parse feed URL, valid:" << linkFeedString;
           int parseFeedId = 0;
 
-          QSqlQuery q(*db_);
+          QSqlQuery q;
           int duplicateFoundId = -1;
           q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
           q.bindValue(":xmlUrl", linkFeedString);
@@ -451,7 +450,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
     }
 
     emit xmlReadyParse(data_, url_);
-    QSqlQuery q(*db_);
+    QSqlQuery q;
     q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
               "WHERE xmlUrl LIKE :xmlUrl");
     q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
@@ -485,7 +484,7 @@ void AddFeedWizard::slotUpdateFeed(int feedId, const bool &, int newCount)
   newCount_ = newCount;
 
   if (titleFeedAsName_->isChecked()) {
-    QSqlQuery q(*db_);
+    QSqlQuery q;
     q.exec(QString("SELECT title FROM feeds WHERE id=='%1'").
            arg(feedId));
     if (q.next()) nameFeedEdit_->setText(q.value(0).toString());
@@ -505,7 +504,7 @@ void AddFeedWizard::finish()
 {
   int parseFeedId = 0;
   int parentId = 0;
-  QSqlQuery q(*db_);
+  QSqlQuery q;
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrlString_);
   q.exec();
@@ -532,7 +531,7 @@ void AddFeedWizard::finish()
 /*! \brief Добавление новой папки *********************************************/
 void AddFeedWizard::newFolder()
 {
-  AddFolderDialog *addFolderDialog = new AddFolderDialog(this, db_);
+  AddFolderDialog *addFolderDialog = new AddFolderDialog(this);
   QList<QTreeWidgetItem *> treeItems =
       addFolderDialog->foldersTree_->findItems(foldersTree_->currentItem()->text(1),
                                                Qt::MatchFixedString | Qt::MatchRecursive,
@@ -548,7 +547,7 @@ void AddFeedWizard::newFolder()
   QString folderText = addFolderDialog->nameFeedEdit_->text();
   int parentId = addFolderDialog->foldersTree_->currentItem()->text(1).toInt();
 
-  QSqlQuery q(*db_);
+  QSqlQuery q;
 
   // Вычисляем номер ряда для папки
   int rowToParent = 0;

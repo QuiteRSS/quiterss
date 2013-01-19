@@ -30,7 +30,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   treeWidgetItem->setCheckState(0, Qt::Checked);
   feedsTree->addTopLevelItem(treeWidgetItem);
 
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
@@ -210,8 +210,7 @@ void FilterRulesDialog::setData()
 {
   if (filterId_ == -1) return;
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   QString qStr = QString("SELECT name, type, feeds FROM filters WHERE id=='%1'").
       arg(filterId_);
   q.exec(qStr);
@@ -310,9 +309,7 @@ void FilterRulesDialog::acceptDialog()
   }
   strIdFeeds.append(",");
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
-
+  QSqlQuery q;
   if (filterId_ == -1) {
     QString qStr = QString("INSERT INTO filters (name, type, feeds) "
                            "VALUES (?, ?, ?)");
@@ -486,8 +483,7 @@ ItemAction *FilterRulesDialog::addAction()
   actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
   ItemAction *itemAction = new ItemAction(this);
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QSqlQuery q(rssl_->db_);
+  QSqlQuery q;
   q.exec("SELECT id, name, image FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();

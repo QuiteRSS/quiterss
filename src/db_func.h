@@ -20,6 +20,6 @@ QString initDB(const QString dbFileName);
  * @param feedId - Id ленты
  * @param filterId - Id конкретного фильтра
  *---------------------------------------------------------------------------*/
-void setUserFilter(QSqlDatabase *db, int feedId, int filterId = -1);
+void setUserFilter(int feedId, int filterId = -1);
 
 #endif

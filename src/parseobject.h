@@ -14,14 +14,13 @@ public:
 private:
   QString dataDirPath_;
   QString parseDate(QString dateString, QString urlString);
-  int recountFeedCounts(QSqlDatabase *db, int feedId);
+  int recountFeedCounts(int feedId);
 
 signals:
   void feedUpdated(int feedId, const bool &changed, int newCount);
 
 public slots:
-  void slotParse(QSqlDatabase *db,
-                 const QByteArray &xmlData, const QUrl &url);
+  void slotParse(const QByteArray &xmlData, const QUrl &url);
 
 };
 

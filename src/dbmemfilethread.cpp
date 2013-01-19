@@ -6,11 +6,11 @@
 #endif
 #include <QDebug>
 
-DBMemFileThread::DBMemFileThread(QSqlDatabase memdb, QString filename, QObject *pParent)
+DBMemFileThread::DBMemFileThread(QString filename, QObject *pParent)
   :QThread(pParent)
 {
   qDebug() << "DBMemFileThread::constructor";
-  memdb_ = memdb;
+  memdb_ = QSqlDatabase::database();
   filename_ = filename;
 }
 

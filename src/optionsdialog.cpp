@@ -9,7 +9,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   setWindowTitle(tr("Options"));
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  db_ = rssl_->db_;
+  db_ = QSqlDatabase::database();
 
   contentLabel_ = new QLabel();
   contentLabel_->setObjectName("contentLabel_");
@@ -551,7 +551,7 @@ void OptionsDialog::createLabelsWidget()
   labelsTree_->setColumnHidden(4, true);
   labelsTree_->header()->hide();
 
-  QSqlQuery q(db_);
+  QSqlQuery q;
   q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
@@ -705,7 +705,7 @@ void OptionsDialog::createNotifierWidget()
   notifierWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   notifierWidget_->setLayout(notifierMainLayout);
 
-  QSqlQuery q(db_);
+  QSqlQuery q;
   db_.transaction();
   QQueue<int> parentIds;
   parentIds.enqueue(0);
@@ -725,7 +725,7 @@ void OptionsDialog::createNotifierWidget()
       QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
 
       treeWidgetItem->setCheckState(0, Qt::Unchecked);
-      QSqlQuery q1(db_);
+      QSqlQuery q1;
       qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
           arg(feedId);
       q1.exec(qStr);
@@ -1475,7 +1475,7 @@ void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
 void OptionsDialog::applyLabels()
 {
   db_.transaction();
-  QSqlQuery q(db_);
+  QSqlQuery q;
 
   foreach (QString idLabel, idLabels_) {
     QList<QTreeWidgetItem *> treeItems =
@@ -1486,7 +1486,7 @@ void OptionsDialog::applyLabels()
       while (q.next()) {
         QString strIdLabels = q.value(1).toString();
         strIdLabels.replace(QString(",%1,").arg(idLabel), ",");
-        QSqlQuery q1(db_);
+        QSqlQuery q1;
         q1.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
                arg(strIdLabels).arg(q.value(0).toInt()));
       }
@@ -1547,7 +1547,7 @@ void OptionsDialog::applyNotifier()
     int check = 0;
     if (treeWidgetItem->checkState(0) == Qt::Checked)
       check = 1;
-    QSqlQuery q(db_);
+    QSqlQuery q;
     QString qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
         arg(check).arg(treeWidgetItem->text(1).toInt());
     q.exec(qStr);
