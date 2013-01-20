@@ -5,8 +5,6 @@
 #include <qt_windows.h>
 #endif
 
-RSSListing *rsslisting_;
-
 NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedParId)
   : QWidget(parent), type_(type),
     feedId_(feedId), feedParId_(feedParId)

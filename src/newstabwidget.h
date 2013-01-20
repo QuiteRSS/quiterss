@@ -13,6 +13,8 @@
 #include "newsview.h"
 #include "webview.h"
 
+class RSSListing;
+
 #define TOP_POSITION    0
 #define BOTTOM_POSITION 1
 #define RIGHT_POSITION  2
@@ -34,6 +36,7 @@ private:
   bool openUrl(const QUrl &url);
   void setTitleWebPanel();
 
+  RSSListing *rsslisting_;
   QSqlDatabase db_;
   QWidget *newsWidget_;
   QMenu *newsContextMenu_;
