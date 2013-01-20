@@ -227,3 +227,10 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   else
     QSqlTableModel::sort(column, order);
 }
+
+/*virtual*/ QModelIndexList NewsModel::match(
+    const QModelIndex &start, int role, const QVariant &value, int hits,
+    Qt::MatchFlags flags) const
+{
+  return QSqlTableModel::match(start, role, value, hits, flags);
+}

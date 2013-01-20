@@ -16,6 +16,11 @@ public:
   virtual QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
   virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
   virtual void sort(int column, Qt::SortOrder order);
+  virtual QModelIndexList match(
+      const QModelIndex &start, int role, const QVariant &value, int hits = 1,
+      Qt::MatchFlags flags =
+      Qt::MatchFlags(Qt::MatchExactly)
+      ) const;
   QString formatDateTime_;
 
 signals:
