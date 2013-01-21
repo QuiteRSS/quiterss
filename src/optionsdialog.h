@@ -141,6 +141,9 @@ private slots:
   void moveUpLabel();
   void moveDownLabel();
   void slotCurrentLabelChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
+  void slotDeletePass();
+  void slotDeleteAllPass();
+  void slotShowPass();
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
@@ -161,6 +164,7 @@ private:
   QTabWidget *feedsWidget_;
   QWidget *labelsWidget_;
   QFrame *notifierWidget_;
+  QWidget *passwordsWidget_;
   QWidget *languageWidget_;
   QWidget *fontsWidget_;
   QWidget *shortcutWidget_;
@@ -206,6 +210,11 @@ private:
   QPushButton *deleteLabelButton_;
   QPushButton *moveUpLabelButton_;
   QPushButton *moveDownLabelButton_;
+
+  // passwords
+  void createPasswordsWidget();
+  void applyPass();
+  QTreeWidget *passTree_;
 
   // language
   void createLanguageWidget();

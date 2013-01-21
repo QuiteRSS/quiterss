@@ -8,7 +8,6 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   db_ = QSqlDatabase::database();
 
   contentLabel_ = new QLabel();
@@ -56,13 +55,16 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   treeItem << "6" << tr("Notifications");
   categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "7" << tr("Language");
+  treeItem << "7" << tr("Passwords");
   categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "8" << tr("Fonts");
+  treeItem << "8" << tr("Language");
   categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "9" << tr("Keyboard Shortcuts");
+  treeItem << "9" << tr("Fonts");
+  categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << "10" << tr("Keyboard Shortcuts");
   categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   createGeneralWidget();
@@ -79,6 +81,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
 
   createNotifierWidget();
 
+  createPasswordsWidget();
+
   createLanguageWidget();
 
   createFontsWidget();
@@ -94,6 +98,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   contentStack_->addWidget(feedsWidget_);
   contentStack_->addWidget(labelsWidget_);
   contentStack_->addWidget(notifierWidget_);
+  contentStack_->addWidget(passwordsWidget_);
   contentStack_->addWidget(languageWidget_);
   contentStack_->addWidget(fontsWidget_);
   contentStack_->addWidget(shortcutWidget_);
@@ -123,6 +128,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
 
   resize(700, 500);
 
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   restoreGeometry(rssl_->settings_->value("options/geometry").toByteArray());
 }
 
@@ -131,6 +137,7 @@ void OptionsDialog::acceptDialog()
   applyProxy();
   applyLabels();
   applyNotifier();
+  applyPass();
   accept();
 }
 
@@ -759,6 +766,60 @@ void OptionsDialog::createNotifierWidget()
     }
   }
   db_.commit();
+}
+
+/** @brief Создание виджета "Пароли"
+ *----------------------------------------------------------------------------*/
+void OptionsDialog::createPasswordsWidget()
+{
+  passTree_ = new QTreeWidget(this);
+  passTree_->setObjectName("labelsTree_");
+  passTree_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+  passTree_->setColumnCount(4);
+  passTree_->setColumnHidden(0, true);
+  passTree_->setColumnHidden(3, true);
+  passTree_->setColumnWidth(1, 250);
+  passTree_->header()->setMinimumSectionSize(22);
+
+  QStringList strTreeItem;
+  strTreeItem.clear();
+  strTreeItem << "Id" << tr("Site") << tr("User") << tr("Password");
+  passTree_->setHeaderLabels(strTreeItem);
+
+  QSqlQuery q;
+  q.exec("SELECT id, server, username, password FROM passwords");
+  while (q.next()) {
+    QString id = q.value(0).toString();
+    QString server = q.value(1).toString();
+    QString user = q.value(2).toString();
+    QString pass = QString::fromUtf8(QByteArray::fromBase64(q.value(3).toByteArray()));
+
+    strTreeItem.clear();
+    strTreeItem << id << server << user << pass;
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+    passTree_->addTopLevelItem(treeWidgetItem);
+  }
+
+  QPushButton *deletePass = new QPushButton(tr("Delete"));
+  connect(deletePass, SIGNAL(clicked()), this, SLOT(slotDeletePass()));
+  QPushButton *deleteAllPass = new QPushButton(tr("Delete All"));
+  connect(deleteAllPass, SIGNAL(clicked()), this, SLOT(slotDeleteAllPass()));
+  QPushButton *showPass = new QPushButton(tr("Show Passwords"));
+  connect(showPass, SIGNAL(clicked()), this, SLOT(slotShowPass()));
+  QVBoxLayout *passButtonLayout = new QVBoxLayout();
+  passButtonLayout->addWidget(deletePass);
+  passButtonLayout->addWidget(deleteAllPass);
+  passButtonLayout->addSpacing(10);
+  passButtonLayout->addWidget(showPass);
+  passButtonLayout->addStretch(1);
+
+  QHBoxLayout *passLayout = new QHBoxLayout();
+  passLayout->setMargin(0);
+  passLayout->addWidget(passTree_);
+  passLayout->addLayout(passButtonLayout);
+
+  passwordsWidget_ = new QWidget();
+  passwordsWidget_->setLayout(passLayout);
 }
 
 /** @brief Создание виджета "Язык"
@@ -1553,6 +1614,39 @@ void OptionsDialog::applyNotifier()
     q.exec(qStr);
 
     treeWidgetItem = feedsTreeNotify_->itemBelow(treeWidgetItem);
+  }
+  db_.commit();
+}
+
+void OptionsDialog::slotDeletePass()
+{
+  passTree_->currentItem()->setHidden(true);
+}
+
+void OptionsDialog::slotDeleteAllPass()
+{
+  for (int i = 0; i < passTree_->topLevelItemCount(); i++) {
+    passTree_->topLevelItem(i)->setHidden(true);
+  }
+}
+
+void OptionsDialog::slotShowPass()
+{
+  if (passTree_->isColumnHidden(3)) {
+    passTree_->showColumn(3);
+    passTree_->setColumnWidth(1, passTree_->columnWidth(1) - passTree_->columnWidth(3));
+  }
+}
+
+void OptionsDialog::applyPass()
+{
+  db_.transaction();
+  QSqlQuery q;
+  for (int i = 0; i < passTree_->topLevelItemCount(); i++) {
+    if (passTree_->isItemHidden(passTree_->topLevelItem(i))) {
+      QString id = passTree_->topLevelItem(i)->text(0);
+      q.exec(QString("DELETE FROM passwords WHERE id=='%1'").arg(id));
+    }
   }
   db_.commit();
 }
