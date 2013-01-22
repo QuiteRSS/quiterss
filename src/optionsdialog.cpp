@@ -14,7 +14,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   contentLabel_->setObjectName("contentLabel_");
   contentLabel_->setAlignment(Qt::AlignCenter);
   contentLabel_->setStyleSheet(
-        QString("#contentLabel_ {border: 1px solid %1;}").
+        QString("#contentLabel_ {border-bottom: 1px solid %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
   contentLabel_->setMinimumHeight(36);
   contentLabel_->setMargin(4);
@@ -22,6 +22,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   fontContentLabel.setBold(true);
   fontContentLabel.setPointSize(fontContentLabel.pointSize()+2);
   contentLabel_->setFont(fontContentLabel);
+  mainLayout->insertWidget(0, contentLabel_);
 
   categoriesTree_ = new QTreeWidget();
   categoriesTree_->setObjectName("categoriesTree");
@@ -111,8 +112,8 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
   sizes << 150 << 600;
   splitter->setSizes(sizes);
 
-  pageLayout->addWidget(contentLabel_);
   pageLayout->addWidget(splitter, 1);
+  pageLayout->setContentsMargins(10, 5, 10, 5);
 
   buttonBox->addButton(QDialogButtonBox::Ok);
   buttonBox->addButton(QDialogButtonBox::Cancel);

@@ -15,7 +15,7 @@ Dialog::Dialog(QWidget *parent, Qt::WindowFlags f) : QDialog(parent, f)
   QFrame *line = new QFrame();
   line->setFrameStyle(QFrame::HLine | QFrame::Sunken);
 
-  QVBoxLayout *mainLayout = new QVBoxLayout();
+  mainLayout = new QVBoxLayout();
   mainLayout->setMargin(0);
   mainLayout->setSpacing(0);
   mainLayout->addLayout(pageLayout, 1);

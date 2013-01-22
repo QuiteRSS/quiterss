@@ -9,6 +9,7 @@ class Dialog : public QDialog
 public:
   explicit Dialog(QWidget *parent, Qt::WindowFlags f = 0);
 
+  QVBoxLayout *mainLayout;
   QVBoxLayout *pageLayout;
   QHBoxLayout *buttonsLayout;
 
