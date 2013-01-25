@@ -1555,3 +1555,21 @@ void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
   rsslisting_->newsLabelMenu_->popup(
         newsView_->viewport()->mapToGlobal(newsView_->visualRect(index).bottomLeft()));
 }
+
+void NewsTabWidget::reduceNewsList()
+{
+  if (type_ == TAB_WEB) return;
+
+  QList <int> sizes = newsTabWidgetSplitter_->sizes();
+  sizes.insert(0, sizes.takeAt(0)-5);
+  newsTabWidgetSplitter_->setSizes(sizes);
+}
+
+void NewsTabWidget::increaseNewsList()
+{
+  if (type_ == TAB_WEB) return;
+
+  QList <int> sizes = newsTabWidgetSplitter_->sizes();
+  sizes.insert(0, sizes.takeAt(0)+5);
+  newsTabWidgetSplitter_->setSizes(sizes);
+}

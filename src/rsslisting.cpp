@@ -1185,6 +1185,17 @@ void RSSListing::createActions()
   this->addAction(closeTabAct_);
   connect(prevTabAct_, SIGNAL(triggered()), this, SLOT(slotPrevTab()));
 
+  reduceNewsListAct_ = new QAction(this);
+  reduceNewsListAct_->setObjectName("reduceNewsListAct");
+  this->addAction(reduceNewsListAct_);
+  connect(reduceNewsListAct_, SIGNAL(triggered()),
+          this, SLOT(reduceNewsList()));
+  increaseNewsListAct_ = new QAction(this);
+  increaseNewsListAct_->setObjectName("increaseNewsListAct");
+  this->addAction(increaseNewsListAct_);
+  connect(increaseNewsListAct_, SIGNAL(triggered()),
+          this, SLOT(increaseNewsList()));
+
 
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
@@ -1291,11 +1302,15 @@ void RSSListing::createShortcut()
   stayOnTopAct_->setShortcut(QKeySequence(Qt::Key_F10));
   listActions_.append(stayOnTopAct_);
 
-
   closeTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
   listActions_.append(closeTabAct_);
   listActions_.append(nextTabAct_);
   listActions_.append(prevTabAct_);
+
+  reduceNewsListAct_->setShortcut(QKeySequence(Qt::ALT+ Qt::Key_Up));
+  listActions_.append(reduceNewsListAct_);
+  increaseNewsListAct_->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Down));
+  listActions_.append(increaseNewsListAct_);
 
   //! Действия меток добавлять последними
   listActions_.append(newsLabelGroup_->actions());
@@ -4047,6 +4062,9 @@ void RSSListing::retranslateStrings()
   newsCategoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
   newsCategoriesTree_->topLevelItem(2)->setText(0, tr("Labels"));
 
+  reduceNewsListAct_->setText(tr("Reduce height of news list"));
+  increaseNewsListAct_->setText(tr("Increase height of news list"));
+
   QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -5529,4 +5547,14 @@ void RSSListing::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
     authenticationDialog->exec();
 
   delete authenticationDialog;
+}
+
+void RSSListing::reduceNewsList()
+{
+  currentNewsTab->reduceNewsList();
+}
+
+void RSSListing::increaseNewsList()
+{
+  currentNewsTab->increaseNewsList();
 }

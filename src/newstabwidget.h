@@ -95,6 +95,9 @@ public:
 
   void setVisibleAction(bool show);
 
+  void reduceNewsList();
+  void increaseNewsList();
+
   int type_;
   int feedId_;
   int feedParId_;

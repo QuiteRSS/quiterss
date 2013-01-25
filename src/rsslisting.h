@@ -280,6 +280,9 @@ private:
   QAction *nextTabAct_;
   QAction *prevTabAct_;
 
+  QAction *reduceNewsListAct_;
+  QAction *increaseNewsListAct_;
+
   QMenu *fileMenu_;
   QMenu *newMenu_;
   QMenu *editMenu_;
@@ -496,6 +499,9 @@ private slots:
   void slotPrevTab();
 
   void hideMainToolbar();
+
+  void reduceNewsList();
+  void increaseNewsList();
 
 signals:
   void signalPlaceToTray();
