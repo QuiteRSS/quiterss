@@ -248,6 +248,7 @@ private:
   QAction *feedKeyUpAct_;
   QAction *feedKeyDownAct_;
   QAction *switchFocusAct_;
+  QAction *switchFocusPrevAct_;
   QAction *visibleFeedsWidgetAct_;
   QAction *openFeedNewTabAct_;
   QAction *placeToTrayAct_;
@@ -437,6 +438,7 @@ private slots:
   void slotFeedNext();
   void setStyleApp(QAction*);
   void slotSwitchFocus();
+  void slotSwitchPrevFocus();
   void slotOpenFeedNewTab();
   void slotTabCurrentChanged(int index);
   void feedsColumnVisible(QAction *action);

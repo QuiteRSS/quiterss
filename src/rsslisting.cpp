@@ -1081,6 +1081,10 @@ void RSSListing::createActions()
   switchFocusAct_->setObjectName("switchFocusAct");
   connect(switchFocusAct_, SIGNAL(triggered()), this, SLOT(slotSwitchFocus()));
   this->addAction(switchFocusAct_);
+  switchFocusPrevAct_ = new QAction(this);
+  switchFocusPrevAct_->setObjectName("switchFocusPrevAct");
+  connect(switchFocusPrevAct_, SIGNAL(triggered()), this, SLOT(slotSwitchPrevFocus()));
+  this->addAction(switchFocusPrevAct_);
 
   visibleFeedsWidgetAct_ = new QAction(this);
   visibleFeedsWidgetAct_->setObjectName("visibleFeedsWidgetAct");
@@ -1261,6 +1265,8 @@ void RSSListing::createShortcut()
 
   switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
   listActions_.append(switchFocusAct_);
+  switchFocusPrevAct_->setShortcut(QKeySequence(Qt::SHIFT+Qt::Key_Tab));
+  listActions_.append(switchFocusPrevAct_);
 
   visibleFeedsWidgetAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
   listActions_.append(visibleFeedsWidgetAct_);
@@ -3978,9 +3984,12 @@ void RSSListing::retranslateStrings()
   newsKeyUpAct_->setText(tr("Previous News"));
   newsKeyDownAct_->setText(tr("Next News"));
 
-  switchFocusAct_->setText(tr("Switch Focus Between Panels"));
+  switchFocusAct_->setText(tr("Switch Focus to Next Panel"));
   switchFocusAct_->setToolTip(
-        tr("Switch Focus Between Panels (Tree Feeds, List News, Browser)"));
+        tr("Switch Focus to Next Panel (Tree Feeds, List News, Browser)"));
+  switchFocusPrevAct_->setText(tr("Switch Focus to Previous Panel"));
+  switchFocusPrevAct_->setToolTip(
+        tr("Switch Focus to Previous Panel (Tree Feeds, Browser, List News)"));
 
   visibleFeedsWidgetAct_->setText(tr("Show/Hide Tree Feeds"));
 
@@ -4672,6 +4681,18 @@ void RSSListing::slotSwitchFocus()
     newsView_->setFocus();
   } else if (newsView_->hasFocus()) {
     currentNewsTab->webView_->setFocus();
+  } else {
+    feedsTreeView_->setFocus();
+  }
+}
+
+//! Переключение фокуса между деревом лент, списком новостей и браузером
+void RSSListing::slotSwitchPrevFocus()
+{
+  if (feedsTreeView_->hasFocus()) {
+    currentNewsTab->webView_->setFocus();
+  } else if (currentNewsTab->webView_->hasFocus()) {
+    newsView_->setFocus();
   } else {
     feedsTreeView_->setFocus();
   }
