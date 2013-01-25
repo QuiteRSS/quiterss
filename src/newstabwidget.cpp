@@ -98,7 +98,7 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
     }
     newsTabWidgetSplitter_->setHandleWidth(1);
     newsTabWidgetSplitter_->setStyleSheet(
-          QString("QSplitter::handle {background: %1;}").
+          QString("QSplitter::handle {background: %1; margin-top: 1px; margin-bottom: 1px;}").
           arg(qApp->palette().color(QPalette::Dark).name()));
   }
 }
