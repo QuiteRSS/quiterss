@@ -127,7 +127,6 @@ private slots:
   void closeDialog();
   void slotFontChange();
   void slotFontReset();
-  void intervalTimeChang(QString str);
   void shortcutTreeClicked(QTreeWidgetItem* item, int);
   void slotShortcutTreeUpDownPressed();
   void slotClearShortcut();

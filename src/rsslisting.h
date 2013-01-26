@@ -322,11 +322,12 @@ private:
   QByteArray data_;
   QUrl url_;
 
-  QBasicTimer updateFeedsTimer_;
+  QTimer *updateFeedsTimer_;
   bool autoUpdatefeedsStartUp_;
   bool autoUpdatefeeds_;
   int  autoUpdatefeedsTime_;
   int  autoUpdatefeedsInterval_;
+  bool updateFeedsStart_;
 
   QTranslator *translator_;
   QString langFileName_;

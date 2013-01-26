@@ -210,11 +210,20 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   readSettings();
 
+  updateFeedsStart_ = false;
+  updateFeedsCount_ = 0;
   if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
-  int updateFeedsTime = autoUpdatefeedsTime_*60000;
-  if (autoUpdatefeedsInterval_ == 1)
+
+  updateFeedsTimer_ = new QTimer(this);
+  connect(updateFeedsTimer_, SIGNAL(timeout()),
+          this, SLOT(slotTimerUpdateFeeds()));
+
+  int updateFeedsTime = autoUpdatefeedsTime_*1000;
+  if (autoUpdatefeedsInterval_ == 0)
     updateFeedsTime = updateFeedsTime*60;
-  updateFeedsTimer_.start(updateFeedsTime, this);
+  else if (autoUpdatefeedsInterval_ == 1)
+    updateFeedsTime = updateFeedsTime*60*60;
+  updateFeedsTimer_->start(updateFeedsTime);
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
@@ -485,16 +494,8 @@ void RSSListing::slotShowWindows(bool trayClick)
 
 void RSSListing::timerEvent(QTimerEvent *event)
 {
-  if (event->timerId() == updateFeedsTimer_.timerId()) {
-    updateFeedsTimer_.stop();
-    int updateFeedsTime = autoUpdatefeedsTime_*60000;
-    if (autoUpdatefeedsInterval_ == 1)
-      updateFeedsTime = updateFeedsTime*60;
-    updateFeedsTimer_.start(updateFeedsTime, this);
-    slotTimerUpdateFeeds();
-  }
   // Отбработка передачи ссылки во внешний браузер фоном
-  else if (event->timerId() == timerLinkOpening_.timerId()) {
+  if (event->timerId() == timerLinkOpening_.timerId()) {
     timerLinkOpening_.stop();
     if (!isActiveWindow()) {
       setWindowState(windowState() & ~Qt::WindowActive);
@@ -1977,9 +1978,9 @@ void RSSListing::addFeed()
     return;
   }
 
-  updateFeedsCount_ = -1;
-  idFeedList_.clear();
-  cntNewNewsList_.clear();
+//  updateFeedsCount_ = -1;
+//  idFeedList_.clear();
+//  cntNewNewsList_.clear();
 
   emit startGetUrlTimer();
   faviconLoader_->slotRequestUrl(addFeedWizard->htmlUrlString_,
@@ -2087,8 +2088,6 @@ void RSSListing::deleteFeed()
  *----------------------------------------------------------------------------*/
 void RSSListing::slotImportFeeds()
 {
-  playSoundNewNews_ = false;
-
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-File"),
                                                   QDir::homePath(),
                                                   tr("OPML-Files (*.opml *.xml)"));
@@ -2105,6 +2104,8 @@ void RSSListing::slotImportFeeds()
     statusBar()->showMessage(tr("Import: can't open a file"), 3000);
     return;
   }
+
+  updateFeedsStart_ = true;
 
   timer_.start();
   qCritical() << "Start update";
@@ -2218,11 +2219,8 @@ void RSSListing::slotImportFeeds()
 
   file.close();
 
-  if (requestUrlCount) {
-    updateAllFeedsAct_->setEnabled(false);
-    updateFeedAct_->setEnabled(false);
-    showProgressBar(requestUrlCount);
-  }
+  showProgressBar(requestUrlCount);
+
   qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
   qCritical() << "Start update: " << timer_.elapsed() << requestUrlCount;
@@ -2621,8 +2619,8 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newC
     progressBar_->hide();
     progressBar_->setValue(0);
     progressBar_->setMaximum(0);
-    updateAllFeedsAct_->setEnabled(true);
-    updateFeedAct_->setEnabled(true);
+    updateFeedsCount_ = 0;
+    updateFeedsStart_ = false;
     qCritical() << "Stop update: " << timer_.elapsed();
     qCritical() << "------------------------------------------------------------";
   }
@@ -2909,7 +2907,7 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
-  optionsDialog->intervalTime_->setCurrentIndex(autoUpdatefeedsInterval_);
+  optionsDialog->intervalTime_->setCurrentIndex(autoUpdatefeedsInterval_+1);
   optionsDialog->updateFeedsTime_->setValue(autoUpdatefeedsTime_);
 
   optionsDialog->setOpeningFeed(openingFeedAction_);
@@ -3114,16 +3112,24 @@ void RSSListing::showOptionDlg()
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();
-  autoUpdatefeedsTime_ = optionsDialog->updateFeedsTime_->value();
-  autoUpdatefeedsInterval_ = optionsDialog->intervalTime_->currentIndex();
-  if (updateFeedsTimer_.isActive() && !autoUpdatefeeds_) {
-    updateFeedsTimer_.stop();
-  } else if (!updateFeedsTimer_.isActive() && autoUpdatefeeds_) {
-    int updateFeedsTime = autoUpdatefeedsTime_*60000;
-    if (autoUpdatefeedsInterval_ == 1)
+  int updateTime = optionsDialog->updateFeedsTime_->value();
+  int updateInterval = optionsDialog->intervalTime_->currentIndex()-1;
+
+  if (!autoUpdatefeeds_)
+    updateFeedsTimer_->stop();
+
+  if (autoUpdatefeeds_ && ((updateTime != autoUpdatefeedsTime_) ||
+      (updateInterval != autoUpdatefeedsInterval_))) {
+    updateFeedsTimer_->stop();
+    int updateFeedsTime = updateTime*1000;
+    if (updateInterval == 0)
       updateFeedsTime = updateFeedsTime*60;
-    updateFeedsTimer_.start(updateFeedsTime, this);
+    else if (updateInterval == 1)
+      updateFeedsTime = updateFeedsTime*60*60;
+    updateFeedsTimer_->start(updateFeedsTime);
   }
+  autoUpdatefeedsTime_ = updateTime;
+  autoUpdatefeedsInterval_ = updateInterval;
 
   openingFeedAction_ = optionsDialog->getOpeningFeed();
   openNewsWebViewOn_ = optionsDialog->openNewsWebViewOn_->isChecked();
@@ -3222,13 +3228,15 @@ void RSSListing::myEmptyWorkingSet()
 /*! \brief Показ статус бара после запрос обновления ленты ********************/
 void RSSListing::showProgressBar(int addToMaximum)
 {
-  if (addToMaximum == 0) return;
+  if (addToMaximum == 0) {
+    updateFeedsStart_ = false;
+    return;
+  }
+  playSoundNewNews_ = false;
+
   progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
-  updateFeedsCount_ = addToMaximum;
-  idFeedList_.clear();
-  cntNewNewsList_.clear();
+  updateFeedsCount_ = updateFeedsCount_ + addToMaximum;
   progressBar_->show();
-  progressBar_->setValue(0);
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
   emit startGetUrlTimer();
 }
@@ -3236,9 +3244,10 @@ void RSSListing::showProgressBar(int addToMaximum)
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetFeed()
 {
-  int feedCount = 0;
+  if (updateFeedsStart_) return;
+  updateFeedsStart_ = true;
 
-  playSoundNewNews_ = false;
+  int feedCount = 0;
 
   QModelIndex index = feedsTreeView_->selectIndex_;
   if (feedsTreeModel_->isFolder(index)) {
@@ -3266,9 +3275,10 @@ void RSSListing::slotGetFeed()
 /*! \brief Обновление ленты (действие) ****************************************/
 void RSSListing::slotGetAllFeeds()
 {
-  int feedCount = 0;
+  if (updateFeedsStart_) return;
+  updateFeedsStart_ = true;
 
-  playSoundNewNews_ = false;
+  int feedCount = 0;
 
   QSqlQuery q;
   q.exec("SELECT xmlUrl, lastBuildDate FROM feeds WHERE xmlUrl!=''");
@@ -3279,11 +3289,7 @@ void RSSListing::slotGetAllFeeds()
     ++feedCount;
   }
 
-  if (feedCount) {
-    updateAllFeedsAct_->setEnabled(false);
-    updateFeedAct_->setEnabled(false);
-    showProgressBar(feedCount);
-  }
+  showProgressBar(feedCount);
 
   timer_.start();
   qCritical() << "Start update";
@@ -3820,9 +3826,7 @@ void RSSListing::slotNewsFilter()
 
 void RSSListing::slotTimerUpdateFeeds()
 {
-  if (autoUpdatefeeds_ && updateAllFeedsAct_->isEnabled()) {
-    slotGetAllFeeds();
-  }
+  if (autoUpdatefeeds_) slotGetAllFeeds();
 }
 
 void RSSListing::slotShowUpdateAppDlg()
@@ -5067,6 +5071,9 @@ void RSSListing::showNotification()
         idFeedList_, cntNewNewsList_,
         countShowNewsNotify_, timeShowNewsNotify_, widthTitleNewsNotify_,
         notificationFontFamily_, notificationFontSize_);
+
+  idFeedList_.clear();
+  cntNewNewsList_.clear();
 
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
   connect(notificationWidget, SIGNAL(signalDelete()),

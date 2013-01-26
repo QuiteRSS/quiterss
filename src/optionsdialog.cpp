@@ -390,19 +390,17 @@ void OptionsDialog::createFeedsWidget()
   updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
   updateFeedsTime_ = new QSpinBox();
   updateFeedsTime_->setEnabled(false);
-  updateFeedsTime_->setRange(5, 9999);
+  updateFeedsTime_->setRange(1, 9999);
   connect(updateFeeds_, SIGNAL(toggled(bool)),
           updateFeedsTime_, SLOT(setEnabled(bool)));
 
   intervalTime_ = new QComboBox(this);
   intervalTime_->setEnabled(false);
   QStringList intervalList;
-  intervalList << tr("minutes")  << tr("hours");
+  intervalList << tr("seconds") << tr("minutes")  << tr("hours");
   intervalTime_->addItems(intervalList);
   connect(updateFeeds_, SIGNAL(toggled(bool)),
           intervalTime_, SLOT(setEnabled(bool)));
-  connect(intervalTime_, SIGNAL(currentIndexChanged(QString)),
-          this, SLOT(intervalTimeChang(QString)));
 
   QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
   updateFeedsLayout->setMargin(0);
@@ -1183,15 +1181,6 @@ int OptionsDialog::behaviorIconTray()
   else if (newCountTray_->isChecked())    return NEW_COUNT_ICON_TRAY;
   else if (unreadCountTray_->isChecked()) return UNREAD_COUNT_ICON_TRAY;
   else return STATIC_ICON_TRAY;
-}
-
-void  OptionsDialog::intervalTimeChang(QString str)
-{
-  if (str == tr("minutes")) {
-    updateFeedsTime_->setRange(5, 9999);
-  } else if (str == tr("hours")) {
-    updateFeedsTime_->setRange(1, 9999);
-  }
 }
 
 void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *list)
