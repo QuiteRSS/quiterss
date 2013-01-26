@@ -226,6 +226,11 @@ void QyurSqlTreeModel::setFilter(const QString &filter) {
   d->clear();
 }
 
+QString QyurSqlTreeModel::filter() {
+  Q_D(QyurSqlTreeModel);
+  return d->sourceModel.filter();
+}
+
 bool QyurSqlTreeModel::setData(const QModelIndex& index, const QVariant& value, int role) {
 	Q_D(QyurSqlTreeModel);
 	return d->sourceModel.setData(mapToSource(index),value,role);
