@@ -2840,7 +2840,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
     newsRow = 0;
   } else if (openingFeedAction_ == 3) {
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
-    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+    QModelIndexList indexList;
+    if (newsView_->header()->sortIndicatorOrder() == Qt::DescendingOrder)
+      indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+    else
+      indexList = newsModel_->match(index, Qt::EditRole, 0);
 
     if (!indexList.isEmpty()) newsRow = indexList.last().row();
   }
@@ -5358,7 +5362,11 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
       newsRow = 0;
     } else if (openingFeedAction_ == 3) {
       QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
-      QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+      QModelIndexList indexList;
+      if (newsView_->header()->sortIndicatorOrder() == Qt::DescendingOrder)
+        indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+      else
+        indexList = newsModel_->match(index, Qt::EditRole, 0);
 
       if (!indexList.isEmpty()) newsRow = indexList.last().row();
     }
