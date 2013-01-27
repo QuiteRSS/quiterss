@@ -1275,9 +1275,9 @@ void RSSListing::createShortcut()
   openNewsBackgroundTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_T));
   listActions_.append(openNewsBackgroundTabAct_);
 
-  switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_Tab));
+  switchFocusAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Tab));
   listActions_.append(switchFocusAct_);
-  switchFocusPrevAct_->setShortcut(QKeySequence(Qt::SHIFT+Qt::Key_Tab));
+  switchFocusPrevAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Tab));
   listActions_.append(switchFocusPrevAct_);
 
   visibleFeedsWidgetAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
