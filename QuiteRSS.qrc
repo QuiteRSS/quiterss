@@ -90,6 +90,7 @@
         <file alias="label_6">images/label_purple.png</file>
         <file alias="label_1">images/label_red.png</file>
         <file alias="label_5">images/label_yellow.png</file>
+        <file alias="save_as">images/save_as.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

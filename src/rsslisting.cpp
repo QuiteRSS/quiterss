@@ -906,6 +906,12 @@ void RSSListing::createActions()
   this->addAction(printPreviewAct_);
   connect(printPreviewAct_, SIGNAL(triggered()), this, SLOT(slotPrintPreview()));
 
+  savePageAsAct_ = new QAction(this);
+  savePageAsAct_->setObjectName("savePageAsAct");
+  savePageAsAct_->setIcon(QIcon(":/images/save_as"));
+  this->addAction(savePageAsAct_);
+//  connect(savePageAsAct_, SIGNAL(triggered()), this, SLOT(slotSavePageAs()));
+
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
   zoomInAct_->setIcon(QIcon(":/images/zoomIn"));
@@ -1297,6 +1303,9 @@ void RSSListing::createShortcut()
   printPreviewAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_P));
   listActions_.append(printPreviewAct_);
 
+  savePageAsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_S));
+  listActions_.append(savePageAsAct_);
+
   fullScreenAct_->setShortcut(QKeySequence(Qt::Key_F11));
   listActions_.append(fullScreenAct_);
 
@@ -1558,6 +1567,8 @@ void RSSListing::createMenu()
   browserMenu_->addSeparator();
   browserMenu_->addAction(printAct_);
   browserMenu_->addAction(printPreviewAct_);
+  browserMenu_->addSeparator();
+  browserMenu_->addAction(savePageAsAct_);
 
   toolsMenu_ = new QMenu(this);
   toolsMenu_->addAction(setNewsFiltersAct_);
@@ -4041,6 +4052,9 @@ void RSSListing::retranslateStrings()
   printAct_->setToolTip(tr("Print Web page"));
   printPreviewAct_->setText(tr("Print Preview..."));
   printPreviewAct_->setToolTip(tr("Preview Web page"));
+
+  savePageAsAct_->setText(tr("Save As..."));
+  savePageAsAct_->setToolTip(tr("Save Page As..."));
 
   toolbarsMenu_->setTitle(tr("Toolbars"));
   mainToolbarToggle_->setText(tr("Main Toolbar"));

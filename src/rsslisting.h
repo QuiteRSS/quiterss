@@ -62,6 +62,7 @@ public:
   QAction *autoLoadImagesToggle_;
   QAction *printAct_;
   QAction *printPreviewAct_;
+  QAction *savePageAsAct_;
   QAction *restoreNewsAct_;
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;

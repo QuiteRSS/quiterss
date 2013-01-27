@@ -1436,6 +1436,8 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
     webMenu_->addSeparator();
     webMenu_->addAction(rsslisting_->printAct_);
     webMenu_->addAction(rsslisting_->printPreviewAct_);
+    webMenu_->addSeparator();
+    webMenu_->addAction(rsslisting_->savePageAsAct_);
   }
 
   webMenu_->popup(webView_->mapToGlobal(p));
