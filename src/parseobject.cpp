@@ -49,7 +49,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
   QSqlQuery q;
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", url.toEncoded());
+  q.bindValue(":xmlUrl", url.toString());
   q.exec();
   while (q.next()) {
     parseFeedId = q.value(q.record().indexOf("id")).toInt();
