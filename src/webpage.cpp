@@ -1,6 +1,7 @@
 #include <QAction>
 #include <QNetworkRequest>
 #include <QDesktopServices>
+#include <QSslError>
 #include "rsslisting.h"
 #include "webpage.h"
 
