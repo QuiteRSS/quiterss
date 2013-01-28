@@ -910,7 +910,7 @@ void RSSListing::createActions()
   savePageAsAct_->setObjectName("savePageAsAct");
   savePageAsAct_->setIcon(QIcon(":/images/save_as"));
   this->addAction(savePageAsAct_);
-//  connect(savePageAsAct_, SIGNAL(triggered()), this, SLOT(slotSavePageAs()));
+  connect(savePageAsAct_, SIGNAL(triggered()), this, SLOT(slotSavePageAs()));
 
   zoomInAct_ = new QAction(this);
   zoomInAct_->setObjectName("zoomInAct");
@@ -5586,4 +5586,20 @@ void RSSListing::reduceNewsList()
 void RSSListing::increaseNewsList()
 {
   currentNewsTab->increaseNewsList();
+}
+
+void RSSListing::slotSavePageAs()
+{
+  QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
+                                                  QDir::homePath(),
+                                                  tr("HTML-File (*.html)"));
+  if (fileName.isNull()) return;
+
+  QFile file(fileName);
+  if (!file.open(QIODevice::WriteOnly)) {
+    statusBar()->showMessage(tr("Save As: can't open a file"), 3000);
+    return;
+  }
+  file.write(currentNewsTab->webView_->page()->mainFrame()->toHtml().toUtf8());
+  file.close();
 }

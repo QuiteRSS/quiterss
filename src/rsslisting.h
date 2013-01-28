@@ -481,6 +481,8 @@ private slots:
   void slotPrint();
   void slotPrintPreview();
 
+  void slotSavePageAs();
+
   void setFullScreen();
   void setStayOnTop();
 
