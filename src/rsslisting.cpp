@@ -1189,7 +1189,7 @@ void RSSListing::createActions()
 
   prevTabAct_ = new QAction(this);
   prevTabAct_->setObjectName("prevTabAct");
-  this->addAction(closeTabAct_);
+  this->addAction(prevTabAct_);
   connect(prevTabAct_, SIGNAL(triggered()), this, SLOT(slotPrevTab()));
 
   reduceNewsListAct_ = new QAction(this);
