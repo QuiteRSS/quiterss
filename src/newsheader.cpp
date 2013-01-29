@@ -85,6 +85,9 @@ void NewsHeader::init(QWidget *rsslisting)
   restoreState(rsslisting_->settings_->value("NewsHeaderState").toByteArray());
   restoreGeometry(rsslisting_->settings_->value("NewsHeaderGeometry").toByteArray());
 
+  hideSection(model_->fieldIndex("deleteDate"));
+  hideSection(model_->fieldIndex("feedParentId"));
+
   resizeSection(model_->fieldIndex("starred"), 22);
   setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("feedId"), 22);
