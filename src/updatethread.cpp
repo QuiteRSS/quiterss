@@ -33,12 +33,13 @@ void UpdateThread::run()
 }
 
 /*! \brief Постановка сетевого адреса в очередь запросов **********************/
-void UpdateThread::requestUrl(const QString &urlString, const QDateTime &date)
+void UpdateThread::requestUrl(const QString &urlString, const QDateTime &date,
+                              const QString	&userInfo)
 {
   urlsQueue_.enqueue(QUrl::fromEncoded(urlString.toLocal8Bit()));
   dateQueue_.enqueue(date);
+  userInfo_.enqueue(userInfo);
   qDebug() << "urlsQueue_ <<" << urlString << "count=" << urlsQueue_.count();
-  //  emit startGetUrlTimer();
 }
 
 /*! \brief Обработка очереди запросов *****************************************/
@@ -47,10 +48,16 @@ void UpdateThread::getQueuedUrl()
   if (REPLY_MAX_COUNT <= currentFeeds_.size()) return;
 
   if (!urlsQueue_.isEmpty()) {
-    QUrl feedUrl = urlsQueue_.dequeue();
+    QUrl getUrl = urlsQueue_.dequeue();
+    QUrl feedUrl = getUrl;
+    QString userInfo = userInfo_.dequeue();
+    if (!userInfo.isEmpty()) {
+      getUrl.setUserInfo(userInfo);
+      getUrl.addQueryItem("auth", "http");
+    }
     QDateTime currentDate = dateQueue_.dequeue();
     qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << urlsQueue_.count();
-    head(feedUrl, feedUrl, currentDate);
+    head(getUrl, feedUrl, currentDate);
     if (currentFeeds_.size() < REPLY_MAX_COUNT) emit startGetUrlTimer();
   } else {
     qDebug() << "urlsQueue_ -- count=" << urlsQueue_.count();

@@ -72,7 +72,7 @@ void AddFeedWizard::changeEvent(QEvent *event)
       urlFeedEdit_->setText(clipboard_->text());
       urlFeedEdit_->selectAll();
       urlFeedEdit_->setFocus();
-    } else urlFeedEdit_->setText("http://");
+    }
   }
 }
 
@@ -324,19 +324,26 @@ void AddFeedWizard::addFeed()
     qDebug() << q.lastError();
     if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
 
+    int auth = 0;
+    QString userInfo;
+    if (authentication_->isChecked()) {
+      auth = 1;
+      userInfo = QString("%1:%2").arg(user_->text()).arg(pass_->text());
+    }
+
     // Добавляем ленту
-    q.prepare("INSERT INTO feeds(xmlUrl, created, rowToParent) "
-              "VALUES (:feedUrl, :feedCreateTime, :rowToParent)");
+    q.prepare("INSERT INTO feeds(xmlUrl, created, rowToParent, authentication) "
+              "VALUES (:feedUrl, :feedCreateTime, :rowToParent, :authentication)");
     q.bindValue(":feedUrl", feedUrlString_);
     q.bindValue(":feedCreateTime",
         QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
     q.bindValue(":rowToParent", rowToParent);
+    q.bindValue(":authentication", auth);
     q.exec();
-
 
     q.finish();
 
-    persistentUpdateThread_->requestUrl(feedUrlString_, QDateTime());
+    persistentUpdateThread_->requestUrl(feedUrlString_, QDateTime(), userInfo);
   }
 }
 
@@ -449,6 +456,8 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
             q.bindValue(":id", parseFeedId);
             q.exec();
 
+            authentication_->setChecked(false);
+
             emit startGetUrlTimer();
             persistentUpdateThread_->requestUrl(linkFeedString, QDateTime());
           }
@@ -538,11 +547,32 @@ void AddFeedWizard::finish()
   if (foldersTree_->currentItem()->text(1) != "0")
     parentId = foldersTree_->currentItem()->text(1).toInt();
 
-  q.prepare("UPDATE feeds SET text = ?, parentId = ? WHERE id == ?");
+  int auth = 0;
+  if (authentication_->isChecked()) auth = 1;
+
+  q.prepare("UPDATE feeds SET text = ?, parentId = ?, authentication = ? WHERE id == ?");
   q.addBindValue(nameFeedEdit_->text());
   q.addBindValue(parentId);
+  q.addBindValue(auth);
   q.addBindValue(parseFeedId);
   q.exec();
+
+  if (auth) {
+    QUrl url(feedUrlString_);
+    QString server = url.host();
+
+    q.prepare("SELECT * FROM passwords WHERE server=?");
+    q.addBindValue(server);
+    q.exec();
+    if (!q.next()) {
+      q.prepare("INSERT INTO passwords (server, username, password) "
+                "VALUES (:server, :username, :password)");
+      q.bindValue(":server", server);
+      q.bindValue(":username", user_->text());
+      q.bindValue(":password", pass_->text().toUtf8().toBase64());
+      q.exec();
+    }
+  }
 
   feedId_ = parseFeedId;
 

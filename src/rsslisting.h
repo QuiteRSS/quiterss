@@ -173,6 +173,7 @@ private:
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
   void cleanUp();
+  QString getUserInfo(QUrl url, int auth);
 
   int addTab(NewsTabWidget *widget);
 

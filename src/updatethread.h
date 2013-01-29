@@ -26,6 +26,7 @@ private:
 
   QQueue<QUrl> urlsQueue_;
   QQueue<QDateTime> dateQueue_;
+  QQueue<QString> userInfo_;
 
   QString itemString;
   QString titleString;
@@ -46,7 +47,7 @@ private:
 public:
   explicit UpdateThread(QObject *parent = 0);
   ~UpdateThread();
-  void requestUrl(const QString &urlString, const QDateTime &date);
+  void requestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo = "");
   void setProxy(const QNetworkProxy proxy);
 
 signals:

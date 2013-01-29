@@ -3263,20 +3263,25 @@ void RSSListing::slotGetFeed()
   QModelIndex index = feedsTreeView_->selectIndex_;
   if (feedsTreeModel_->isFolder(index)) {
     QSqlQuery q;
-    QString qStr = QString("SELECT xmlUrl, lastBuildDate FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
+    QString qStr = QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
         arg(feedsTreeModel_->dataField(index, "id").toInt());
     q.exec(qStr);
     qDebug() << q.lastError();
     while (q.next()) {
+      QString userInfo = getUserInfo(q.record().value(0).toString(),
+                                     q.record().value(2).toInt());
       persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
-                                          q.record().value(1).toDateTime());
+                                          q.record().value(1).toDateTime(),
+                                          userInfo);
       ++feedCount;
     }
   } else {
+    QString userInfo = getUserInfo(feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+                                   feedsTreeModel_->dataField(index, "authentication").toInt());
     persistentUpdateThread_->requestUrl(
           feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-          QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate)
-          );
+          QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate),
+          userInfo);
     feedCount = 1;
   }
 
@@ -3292,11 +3297,14 @@ void RSSListing::slotGetAllFeeds()
   int feedCount = 0;
 
   QSqlQuery q;
-  q.exec("SELECT xmlUrl, lastBuildDate FROM feeds WHERE xmlUrl!=''");
+  q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
   qDebug() << q.lastError();
   while (q.next()) {
+    QString userInfo = getUserInfo(q.record().value(0).toString(),
+                                   q.record().value(2).toInt());
     persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
-                                        q.record().value(1).toDateTime());
+                                        q.record().value(1).toDateTime(),
+                                        userInfo);
     ++feedCount;
   }
 
@@ -5602,4 +5610,20 @@ void RSSListing::slotSavePageAs()
   }
   file.write(currentNewsTab->webView_->page()->mainFrame()->toHtml().toUtf8());
   file.close();
+}
+
+QString RSSListing::getUserInfo(QUrl url, int auth)
+{
+  QString userInfo;
+  if (auth == 1) {
+    QSqlQuery q;
+    q.prepare("SELECT username, password FROM passwords WHERE server=?");
+    q.addBindValue(url.host());
+    q.exec();
+    if (q.next()) {
+      userInfo = QString("%1:%2").arg(q.record().value(0).toString()).
+          arg(q.record().value(1).toString());
+    }
+  }
+  return userInfo;
 }
