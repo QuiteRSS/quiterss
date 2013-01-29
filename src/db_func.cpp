@@ -7,7 +7,7 @@
 #include <QtSql>
 
 QString kDbName    = "feeds.db";
-QString kDbVersion = "0.10.0";
+QString kDbVersion = "0.12.1";
 
 const QString kCreateFeedsTableQuery_v0_1_0(
     "CREATE TABLE feeds("
@@ -206,7 +206,11 @@ const QString kCreateFeedsTableQuery(
     "lastDisplayed text, "           // время последнего просмотра ленты
     // -- added in v0.10.0 --`
     "f_Expanded integer default 1, "  // флаг раскрытости категории дерева
-    "flags text"                    // другие флаги перечисляемые текстом (могут быть, например "focused", "hidden")
+    "flags text, "                    // другие флаги перечисляемые текстом (могут быть, например "focused", "hidden")
+    "authentication integer default 0, "    // включение авторизации, устанавливается при добавлении ленты
+    "duplicateNewsMode integer default 0, " // режим работы с дубликатами новостей
+    "typeFeed integer default 0 "           // на будущее
+
     // -- changed in v0.10.0 -- исправлено в тексте выше
     // "displayEmbeddedImages integer default 1, "  // отображать изображения встроенные в новость
     // "hasChildren integer default 0, "  // наличие потомков. По умолчанию - нет
@@ -286,7 +290,9 @@ const QString kCreateNewsTableQuery(
     "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
     "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
     "contributor varchar, "                // участник (через табы)
-    "rights varchar "                      // права
+    "rights varchar, "                     // права
+    "deleteDate varchar, "                 // дата удаления новости
+    "feedParentId integer default 0 "      // идентификатор родителя ленты из таблицы feeds
     ")");
 
 const QString kCreateFiltersTable_v0_9_0(
@@ -620,33 +626,51 @@ QString initDB(const QString dbFileName)
 
         qDebug() << "DB converted to version =" << kDbVersion;
       }
+      // Версия базы 0.10.0
+      else if (dbVersionString == "0.10.0") {
+        // Добавление полей для таблицы лент
+        q.exec("ALTER TABLE feeds ADD COLUMN authentication integer default 0");
+        q.exec("ALTER TABLE feeds ADD COLUMN duplicateNewsMode integer default 0");
+        q.exec("ALTER TABLE feeds ADD COLUMN typeFeed integer default 0");
+
+        // Добавление полей для таблицы новостей
+        q.exec("ALTER TABLE news ADD COLUMN deleteDate varchar");
+        q.exec("ALTER TABLE news ADD COLUMN feedParentId integer default 0");
+
+        // Создаём таблицу меток
+        bool createTable = false;
+        q.exec("SELECT count(name) FROM sqlite_master WHERE name='labels'");
+        if (q.next()) {
+          if (q.value(0).toInt() > 0) createTable = true;
+        }
+        if (!createTable) {
+          initLabelsTable(&db);
+        } else {
+          q.exec("SELECT count(currentNews) FROM labels");
+          if (!q.next()) {
+            q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
+          }
+        }
+        // Создаём таблицу паролей
+        createTable = false;
+        q.exec("SELECT count(name) FROM sqlite_master WHERE name='passwords'");
+        if (q.next()) {
+          if (q.value(0).toInt() > 0) createTable = true;
+        }
+        if (!createTable)
+          q.exec(kCreatePasswordsTable);
+
+        // Обновляем таблицу с информацией
+        q.prepare("UPDATE info SET value=:version WHERE name='version'");
+        q.bindValue(":version", kDbVersion);
+        q.exec();
+
+        qDebug() << "DB converted to version =" << kDbVersion;
+      }
       else {
         qDebug() << "dbVersion =" << dbVersionString;
       }
     }
-    // Создаём таблицу меток
-    bool createTable = false;
-    q.exec("SELECT count(name) FROM sqlite_master WHERE name='labels'");
-    if (q.next()) {
-      if (q.value(0).toInt() > 0) createTable = true;
-    }
-    if (!createTable) {
-      initLabelsTable(&db);
-    } else {
-      q.exec("SELECT count(currentNews) FROM labels");
-      if (!q.next()) {
-        q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
-      }
-    }  
-    // Создаём таблицу паролей
-    createTable = false;
-    q.exec("SELECT count(name) FROM sqlite_master WHERE name='passwords'");
-    if (q.next()) {
-      if (q.value(0).toInt() > 0) createTable = true;
-    }
-    if (!createTable)
-      q.exec(kCreatePasswordsTable);
-    //
     q.finish();
 
     db.commit();
