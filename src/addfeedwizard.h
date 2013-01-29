@@ -23,6 +23,9 @@ private:
   QWizardPage *createUrlFeedPage();
   QWizardPage *createNameFeedPage();
   QCheckBox *titleFeedAsName_;
+  QGroupBox *authentication_;
+  LineEdit *user_;
+  LineEdit *pass_;
   QLabel *textWarning;
   QWidget *warningWidget_;
   QProgressBar *progressBar_;

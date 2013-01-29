@@ -90,6 +90,23 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
         tr("Use title of the feed as displayed name"), this);
   titleFeedAsName_->setChecked(true);
 
+  authentication_ = new QGroupBox(this);
+  authentication_->setTitle(tr("Server requires authentication:"));
+  authentication_->setCheckable(true);
+  authentication_->setChecked(false);
+
+  user_ = new LineEdit(this);
+  pass_ = new LineEdit(this);
+  pass_->setEchoMode(QLineEdit::Password);
+
+  QGridLayout *authenticationLayout = new QGridLayout();
+  authenticationLayout->addWidget(new QLabel(tr("Username:")), 2, 0);
+  authenticationLayout->addWidget(user_, 2, 1);
+  authenticationLayout->addWidget(new QLabel(tr("Password:")), 3, 0);
+  authenticationLayout->addWidget(pass_, 3, 1);
+
+  authentication_->setLayout(authenticationLayout);
+
   QLabel *iconWarning = new QLabel(this);
   iconWarning->setPixmap(QPixmap(":/images/warning"));
   textWarning = new QLabel(this);
@@ -118,6 +135,8 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   layout->addWidget(new QLabel(tr("Feed URL or website address:")));
   layout->addWidget(urlFeedEdit_);
   layout->addWidget(titleFeedAsName_);
+  layout->addSpacing(10);
+  layout->addWidget(authentication_);
   layout->addStretch(0);
   layout->addWidget(warningWidget_);
   layout->addWidget(progressBar_);
@@ -313,6 +332,8 @@ void AddFeedWizard::addFeed()
         QLocale::c().toString(QDateTime::currentDateTimeUtc(), "yyyy-MM-ddTHH:mm:ss"));
     q.bindValue(":rowToParent", rowToParent);
     q.exec();
+
+
     q.finish();
 
     persistentUpdateThread_->requestUrl(feedUrlString_, QDateTime());
