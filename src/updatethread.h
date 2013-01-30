@@ -23,6 +23,9 @@ private:
   QList<QUrl> currentFeeds_;
   QList<QDateTime> currentDates_;
   QList<bool> currentHead_;
+  QList<int> currentTime_;
+  QList<QUrl> requestUrl_;
+  QList<QNetworkReply*> networkReply_;
 
   QQueue<QUrl> urlsQueue_;
   QQueue<QDateTime> dateQueue_;
@@ -37,6 +40,8 @@ private:
   QString guidString;
 
   QTimer *getUrlTimer_;
+  QTimer *timeout_;
+  int requestTimeout_;
 
   UpdateObject *updateObject_;
 
@@ -45,7 +50,7 @@ private:
   void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
 
 public:
-  explicit UpdateThread(QObject *parent = 0);
+  explicit UpdateThread(QObject *parent, int requestTimeout = 90);
   ~UpdateThread();
   void requestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo = "");
   void setProxy(const QNetworkProxy proxy);
@@ -61,6 +66,8 @@ signals:
 private slots:
   void getQueuedUrl();
   void finished(QNetworkReply *reply);
+  void slotNetworkReply(QNetworkReply *reply);
+  void slotRequestTimeout();
 
 public slots:
 

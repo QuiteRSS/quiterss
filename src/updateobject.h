@@ -14,6 +14,7 @@ public:
   
 signals:
   void signalFinished(QNetworkReply *reply);
+  void signalNetworkReply(QNetworkReply *reply);
   
 public slots:
   void slotHead(const QNetworkRequest &request);

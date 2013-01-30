@@ -16,12 +16,12 @@ UpdateObject::UpdateObject(QObject *parent) :
 
 void UpdateObject::slotHead(const QNetworkRequest &request)
 {
-  manager_.head(request);
+  emit signalNetworkReply(manager_.head(request));
 }
 
 void UpdateObject::slotGet(const QNetworkRequest &request)
 {
-  manager_.get(request);
+  emit signalNetworkReply(manager_.get(request));
 }
 
 void UpdateObject::handleSslErrors(QNetworkReply* reply, const QList<QSslError> &errors)

@@ -1,10 +1,16 @@
 #include <QDebug>
 #include "updatethread.h"
 
-UpdateThread::UpdateThread(QObject *parent) :
-  QThread(parent)
+UpdateThread::UpdateThread(QObject *parent, int requestTimeout) :
+  QThread(parent),
+  requestTimeout_(requestTimeout)
 {
   qDebug() << "UpdateThread::constructor";
+
+  timeout_ = new QTimer(this);
+  timeout_->start(1000);
+  connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
+
   start();
 }
 
@@ -23,6 +29,8 @@ void UpdateThread::run()
   updateObject_ = new UpdateObject();
   connect(this, SIGNAL(signalHead(QNetworkRequest)), updateObject_, SLOT(slotHead(QNetworkRequest)));
   connect(this, SIGNAL(signalGet(QNetworkRequest)), updateObject_, SLOT(slotGet(QNetworkRequest)));
+  connect(updateObject_, SIGNAL(signalNetworkReply(QNetworkReply*)),
+          this, SLOT(slotNetworkReply(QNetworkReply*)));
   connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
   connect(&updateObject_->manager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
@@ -77,6 +85,7 @@ void UpdateThread::get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime 
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
   currentHead_.append(false);
+  currentTime_.append(requestTimeout_);
 }
 
 void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date)
@@ -90,6 +99,7 @@ void UpdateThread::head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
   currentHead_.append(true);
+  currentTime_.append(requestTimeout_);
 }
 
 /*! \brief Завершение обработки сетевого запроса
@@ -114,58 +124,67 @@ void UpdateThread::finished(QNetworkReply *reply)
   qDebug() << reply->header(QNetworkRequest::SetCookieHeader);
 
   int currentReplyIndex = currentUrls_.indexOf(reply->url());
-  currentUrls_.removeAt(currentReplyIndex);
-  QUrl feedUrl       = currentFeeds_.takeAt(currentReplyIndex);
-  QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
-  bool headOk = currentHead_.takeAt(currentReplyIndex);
 
-  if (reply->error() != QNetworkReply::NoError) {
-    qDebug() << "  error retrieving RSS feed:" << reply->error();
-    if (!headOk) {
-      emit readedXml(NULL, feedUrl);
-      if (reply->error() == QNetworkReply::AuthenticationRequiredError)
-        emit getUrlDone(-2);
-      else
-        emit getUrlDone(-1);
-      getQueuedUrl();
-    } else {
-      get(reply->url(), feedUrl, feedDate);
-    }
-  }
-  else {
-    QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-    if (redirectionTarget.isValid()) {
-      if (reply->operation() == QNetworkAccessManager::HeadOperation) {
-        qDebug() << objectName() << "  head redirect...";
-        if (redirectionTarget.host().isNull())
-          redirectionTarget.setUrl("http://"+feedUrl.host()+redirectionTarget.toString());
-        head(redirectionTarget, feedUrl, feedDate);
+  if (currentReplyIndex >= 0) {
+    currentTime_.removeAt(currentReplyIndex);
+    currentUrls_.removeAt(currentReplyIndex);
+    QUrl feedUrl       = currentFeeds_.takeAt(currentReplyIndex);
+    QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
+    bool headOk = currentHead_.takeAt(currentReplyIndex);
+
+    if (reply->error() != QNetworkReply::NoError) {
+      qDebug() << "  error retrieving RSS feed:" << reply->error();
+      if (!headOk) {
+        emit readedXml(NULL, feedUrl);
+        if (reply->error() == QNetworkReply::AuthenticationRequiredError)
+          emit getUrlDone(-2);
+        else
+          emit getUrlDone(-1);
+        getQueuedUrl();
       } else {
-        qDebug() << objectName() << "  get redirect...";
-        if (redirectionTarget.host().isNull())
-          redirectionTarget.setUrl("http://"+feedUrl.host()+redirectionTarget.toString());
-        get(redirectionTarget, feedUrl, feedDate);
-      }
-    } else {
-      QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
-      QDateTime replyLocalDate = QDateTime(replyDate.date(), replyDate.time());
-
-      qDebug() << feedDate << replyDate << replyLocalDate;
-      qDebug() << feedDate.toMSecsSinceEpoch() << replyDate.toMSecsSinceEpoch() << replyLocalDate.toMSecsSinceEpoch();
-      if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
-          ((!feedDate.isValid()) || (!replyLocalDate.isValid()) || (feedDate < replyLocalDate))) {
         get(reply->url(), feedUrl, feedDate);
       }
-      else {
-        QByteArray data = reply->readAll();
-        emit readedXml(data, feedUrl);
-        emit getUrlDone(urlsQueue_.count(), replyLocalDate);
+    }
+    else {
+      QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+      if (redirectionTarget.isValid()) {
+        if (reply->operation() == QNetworkAccessManager::HeadOperation) {
+          qDebug() << objectName() << "  head redirect...";
+          if (redirectionTarget.host().isNull())
+            redirectionTarget.setUrl("http://"+feedUrl.host()+redirectionTarget.toString());
+          head(redirectionTarget, feedUrl, feedDate);
+        } else {
+          qDebug() << objectName() << "  get redirect...";
+          if (redirectionTarget.host().isNull())
+            redirectionTarget.setUrl("http://"+feedUrl.host()+redirectionTarget.toString());
+          get(redirectionTarget, feedUrl, feedDate);
+        }
+      } else {
+        QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
+        QDateTime replyLocalDate = QDateTime(replyDate.date(), replyDate.time());
 
-        getQueuedUrl();
+        qDebug() << feedDate << replyDate << replyLocalDate;
+        qDebug() << feedDate.toMSecsSinceEpoch() << replyDate.toMSecsSinceEpoch() << replyLocalDate.toMSecsSinceEpoch();
+        if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
+            ((!feedDate.isValid()) || (!replyLocalDate.isValid()) || (feedDate < replyLocalDate))) {
+          get(reply->url(), feedUrl, feedDate);
+        }
+        else {
+          QByteArray data = reply->readAll();
+          emit readedXml(data, feedUrl);
+          emit getUrlDone(urlsQueue_.count(), replyLocalDate);
+
+          getQueuedUrl();
+        }
       }
     }
+  } else {
+    qCritical() << "Request Url error: " << reply->url().toString() << reply->errorString();
   }
-  reply->deleteLater();
+
+  int replyIndex = requestUrl_.indexOf(reply->url());
+  requestUrl_.removeAt(replyIndex);
+  networkReply_.takeAt(replyIndex)->deleteLater();
 }
 
 void UpdateThread::setProxy(const QNetworkProxy proxy)
@@ -175,4 +194,33 @@ void UpdateThread::setProxy(const QNetworkProxy proxy)
     QNetworkProxyFactory::setUseSystemConfiguration(true);
   else
     QNetworkProxy::setApplicationProxy(networkProxy_);
+}
+
+void UpdateThread::slotNetworkReply(QNetworkReply *reply)
+{
+  requestUrl_.append(reply->url());
+  networkReply_.append(reply);
+}
+
+void UpdateThread::slotRequestTimeout()
+{
+  for (int i = currentTime_.count() - 1; i >= 0; i--) {
+    int time = currentTime_.at(i) - 1;
+    if (time <= 0) {
+      QUrl url = currentUrls_.takeAt(i);
+      currentTime_.removeAt(i);
+      currentDates_.removeAt(i);
+      currentHead_.removeAt(i);
+      QUrl feedUrl = currentFeeds_.takeAt(i);
+      emit readedXml(NULL, feedUrl);
+      emit getUrlDone(-3);
+      getQueuedUrl();
+
+      int replyIndex = requestUrl_.indexOf(url);
+      requestUrl_.removeAt(replyIndex);
+      networkReply_.takeAt(replyIndex)->deleteLater();
+    } else {
+      currentTime_.replace(i, time);
+    }
+  }
 }

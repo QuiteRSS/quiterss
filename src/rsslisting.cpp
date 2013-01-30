@@ -81,7 +81,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   if (settings_->value("Settings/createLastFeed", false).toBool())
     lastFeedPath_ = dataDirPath_;
 
-  persistentUpdateThread_ = new UpdateThread(this);
+  int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
+  persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");
   connect(this, SIGNAL(startGetUrlTimer()),
           persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
