@@ -47,7 +47,8 @@ HEADERS += \
     src/dialog.h \
     src/updatedelayer.h \
     src/authenticationdialog.h \
-    src/networkmanager.h
+    src/networkmanager.h \
+    src/cookiejar.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -86,7 +87,8 @@ SOURCES += \
     src/dialog.cpp \
     src/updatedelayer.cpp \
     src/authenticationdialog.cpp \
-    src/networkmanager.cpp
+    src/networkmanager.cpp \
+    src/cookiejar.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

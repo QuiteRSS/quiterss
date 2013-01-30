@@ -81,7 +81,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   if (settings_->value("Settings/createLastFeed", false).toBool())
     lastFeedPath_ = dataDirPath_;
 
-  cookieJar_ = new QNetworkCookieJar(this);
+  cookieJar_ = new CookieJar(dataDirPath_, this);
   networkManager_ = new NetworkManager(this, cookieJar_);
   connect(networkManager_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
@@ -403,6 +403,7 @@ void RSSListing::slotClose()
   traySystem->hide();
   hide();
   writeSettings();
+  cookieJar_->saveCookies();
   emit signalCloseApp();
 }
 
@@ -454,6 +455,7 @@ void RSSListing::slotPlaceToTray()
   cntNewNewsList_.clear();
 
   writeSettings();
+  cookieJar_->saveCookies();
 
   if (storeDBMemory_) {
     db_.commit();
@@ -5607,6 +5609,8 @@ void RSSListing::increaseNewsList()
   currentNewsTab->increaseNewsList();
 }
 
+/** @brief Сохранение открытой страницы браузера в файл
+ *----------------------------------------------------------------------------*/
 void RSSListing::slotSavePageAs()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
@@ -5623,6 +5627,10 @@ void RSSListing::slotSavePageAs()
   file.close();
 }
 
+/** @brief Получение из БД пароля и логина для авторизации
+ * @param url - ссылка на сайт, которому нужна авторизация
+ * @param auth - флаг включения авторизации
+ *----------------------------------------------------------------------------*/
 QString RSSListing::getUserInfo(QUrl url, int auth)
 {
   QString userInfo;

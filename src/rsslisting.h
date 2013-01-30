@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QtWebKit>
 
+#include "cookiejar.h"
 #include "dbmemfilethread.h"
 #include "faviconloader.h"
 #include "feedstreemodel.h"
@@ -107,7 +108,7 @@ public:
 
   int oldState;
 
-  QNetworkCookieJar *cookieJar_;
+  CookieJar *cookieJar_;
   NetworkManager *networkManager_;
 
 public slots:
