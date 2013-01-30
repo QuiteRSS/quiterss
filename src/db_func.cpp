@@ -721,7 +721,9 @@ void setUserFilter(int feedId, int filterId)
         break;
       case 2: // action -> Delete
         if (!qStr1.isNull()) qStr1.append(",");
-        qStr1.append(" new=0, read=2, deleted=1");
+        qStr1.append(" new=0, read=2, deleted=1, ");
+        qStr1.append(QString("deleteDate='%1'").
+            arg(QDateTime::currentDateTime().toString(Qt::ISODate)));
         break;
       case 3: // action -> Add Label
         qStr2.append(QString("%1,").arg(q1.value(1).toInt()));

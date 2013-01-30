@@ -5374,11 +5374,15 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
       while (newsModel_->canFetchMore())
         newsModel_->fetchMore();
     }
-
-    if ((currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("read")) ||
-        currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("starred")) {
-      currentNewsTab->slotSort(currentNewsTab->newsHeader_->sortIndicatorSection(),
-                               currentNewsTab->newsHeader_->sortIndicatorOrder());
+    if (type == TAB_CAT_DEL){
+      currentNewsTab->newsHeader_->setSortIndicator(newsModel_->fieldIndex("deleteDate"),
+                                                    Qt::DescendingOrder);
+    } else {
+      if ((currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("read")) ||
+          currentNewsTab->newsHeader_->sortIndicatorSection() == newsModel_->fieldIndex("starred")) {
+        currentNewsTab->slotSort(currentNewsTab->newsHeader_->sortIndicatorSection(),
+                                 currentNewsTab->newsHeader_->sortIndicatorOrder());
+      }
     }
 
     // Поиск новости ленты, отображамой ранее

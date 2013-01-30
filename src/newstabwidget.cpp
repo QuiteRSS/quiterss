@@ -911,6 +911,8 @@ void NewsTabWidget::deleteNews()
     curIndex = indexes.at(0);
     slotSetItemRead(curIndex, 1);
     newsModel_->setData(curIndex, 1);
+    newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")),
+                        QDateTime::currentDateTime().toString(Qt::ISODate));
     newsModel_->submitAll();
   } else {
     db_.transaction();
@@ -918,8 +920,8 @@ void NewsTabWidget::deleteNews()
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
-      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
-             arg(newsId));
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+             arg(QDateTime::currentDateTime().toString(Qt::ISODate)).arg(newsId));
     }
     db_.commit();
 
@@ -949,8 +951,8 @@ void NewsTabWidget::deleteAllNewsList()
   QSqlQuery q;
   for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
-    q.exec(QString("UPDATE news SET new=0, read=2, deleted=1 WHERE id=='%1'").
-           arg(newsId));
+    q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+           arg(QDateTime::currentDateTime().toString(Qt::ISODate)).arg(newsId));
   }
   db_.commit();
 
