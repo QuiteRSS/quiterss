@@ -10,6 +10,7 @@
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
+#include "networkmanager.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newstabwidget.h"
@@ -105,6 +106,9 @@ public:
   QString newsFilterStr;
 
   int oldState;
+
+  QNetworkCookieJar *cookieJar_;
+  NetworkManager *networkManager_;
 
 public slots:
   void addFeed();

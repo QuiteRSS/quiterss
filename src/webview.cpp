@@ -3,11 +3,11 @@
 #include "webpage.h"
 #include "webview.h"
 
-WebView::WebView(QWidget *parent) :
+WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager) :
   QWebView(parent)
 {
   setContextMenuPolicy(Qt::CustomContextMenu);
-  setPage(new WebPage(this));
+  setPage(new WebPage(this, networkManager));
   midButtonClick = false;
   QPalette pal(qApp->palette());
   pal.setColor(QPalette::Base, Qt::white);

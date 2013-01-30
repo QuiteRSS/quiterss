@@ -1,5 +1,7 @@
 #include "updateappdialog.h"
 #include "VersionNo.h"
+#include <QNetworkCookie>
+#include "rsslisting.h"
 
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
@@ -53,10 +55,11 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
   }
 
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  page.setNetworkAccessManager(rssl_->networkManager_);
   page.mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/wiki/runAplication"));
   connect(&page, SIGNAL(loadFinished(bool)),
            this, SLOT(renderStatistics()));
-
 }
 
 void UpdateAppDialog::closeDialog()

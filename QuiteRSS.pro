@@ -46,7 +46,8 @@ HEADERS += \
     src/labeldialog.h \
     src/dialog.h \
     src/updatedelayer.h \
-    src/authenticationdialog.h
+    src/authenticationdialog.h \
+    src/networkmanager.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -84,7 +85,8 @@ SOURCES += \
     src/labeldialog.cpp \
     src/dialog.cpp \
     src/updatedelayer.cpp \
-    src/authenticationdialog.cpp
+    src/authenticationdialog.cpp \
+    src/networkmanager.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

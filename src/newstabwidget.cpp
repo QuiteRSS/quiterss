@@ -237,7 +237,7 @@ void NewsTabWidget::showContextMenuNews(const QPoint &p)
 //! Создание веб-виджета и панели управления
 void NewsTabWidget::createWebWidget()
 {
-  webView_ = new WebView(this);
+  webView_ = new WebView(this, rsslisting_->networkManager_);
 
   webMenu_ = new QMenu(webView_);
 

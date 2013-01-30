@@ -7,7 +7,7 @@ class WebView : public QWebView
 {
   Q_OBJECT
 public:
-  explicit WebView(QWidget *parent = 0);
+  explicit WebView(QWidget *parent, QNetworkAccessManager *networkManager);
 
   bool midButtonClick;
   bool rightButtonClick;

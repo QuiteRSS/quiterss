@@ -81,6 +81,11 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   if (settings_->value("Settings/createLastFeed", false).toBool())
     lastFeedPath_ = dataDirPath_;
 
+  cookieJar_ = new QNetworkCookieJar(this);
+  networkManager_ = new NetworkManager(this, cookieJar_);
+  connect(networkManager_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
+          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");

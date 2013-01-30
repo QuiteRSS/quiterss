@@ -8,15 +8,12 @@ class WebPage : public QWebPage
 {
   Q_OBJECT
 public:
-  explicit WebPage(QWidget *parent = 0);
+  explicit WebPage(QWidget *parent, QNetworkAccessManager *networkManager);
 
   bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
 
 protected slots:
   QWebPage *createWindow(WebWindowType type);
-
-private slots:
-  void handleSslErrors(QNetworkReply* reply, const QList<QSslError> &errors);
 
 };
 
