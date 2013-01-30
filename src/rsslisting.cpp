@@ -262,7 +262,8 @@ RSSListing::~RSSListing()
 
   QString qStr = QString("UPDATE news SET description='', content='', received='', "
                          "author_name='', author_uri='', author_email='', "
-                         "category='', new='', read='', starred='', deleted=2 ");
+                         "category='', new='', read='', starred='', label='', "
+                         "deleteDate='', feedParentId='', deleted=2 ");
   if (cleanUpDB) qStr.append("WHERE deleted==1");
   else qStr.append("WHERE deleted!=0");
   q.exec(qStr);
