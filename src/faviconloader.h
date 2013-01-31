@@ -33,9 +33,6 @@ private:
   QList<int> currentCntRequests_;
   QQueue<QUrl> urlsQueue_;
   QQueue<QUrl> feedsQueue_;
-  QTimer *getUrlTimer_;
-
-  UpdateObject *updateObject_;
 
   void get(const QUrl &getUrl, const QUrl &feedUrl, const int &cnt);
 

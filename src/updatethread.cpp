@@ -6,11 +6,6 @@ UpdateThread::UpdateThread(QObject *parent, int requestTimeout) :
   requestTimeout_(requestTimeout)
 {
   qDebug() << "UpdateThread::constructor";
-
-  timeout_ = new QTimer(this);
-  timeout_->start(1000);
-  connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
-
   start();
 }
 
@@ -21,19 +16,26 @@ UpdateThread::~UpdateThread()
 
 void UpdateThread::run()
 {
-  getUrlTimer_ = new QTimer();
-  getUrlTimer_->setSingleShot(true);
-  connect(this, SIGNAL(startGetUrlTimer()), getUrlTimer_, SLOT(start()));
-  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
+  QTimer timeout_;
+  connect(&timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
+  timeout_.start(1000);
 
-  updateObject_ = new UpdateObject();
-  connect(this, SIGNAL(signalHead(QNetworkRequest)), updateObject_, SLOT(slotHead(QNetworkRequest)));
-  connect(this, SIGNAL(signalGet(QNetworkRequest)), updateObject_, SLOT(slotGet(QNetworkRequest)));
-  connect(updateObject_, SIGNAL(signalNetworkReply(QNetworkReply*)),
+  QTimer getUrlTimer_;
+  getUrlTimer_.setSingleShot(true);
+  connect(this, SIGNAL(startGetUrlTimer()), &getUrlTimer_, SLOT(start()));
+  connect(&getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
+
+  UpdateObject updateObject_;
+  connect(this, SIGNAL(signalHead(QNetworkRequest)),
+          &updateObject_, SLOT(slotHead(QNetworkRequest)));
+  connect(this, SIGNAL(signalGet(QNetworkRequest)),
+          &updateObject_, SLOT(slotGet(QNetworkRequest)));
+  connect(&updateObject_, SIGNAL(signalNetworkReply(QNetworkReply*)),
           this, SLOT(slotNetworkReply(QNetworkReply*)));
-  connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+  connect(&updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
-  connect(&updateObject_->manager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+  connect(&updateObject_.networkManager_,
+          SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
 

@@ -38,12 +38,7 @@ private:
   QString commentsString;
   QString pubDateString;
   QString guidString;
-
-  QTimer *getUrlTimer_;
-  QTimer *timeout_;
   int requestTimeout_;
-
-  UpdateObject *updateObject_;
 
   void run();
   void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);

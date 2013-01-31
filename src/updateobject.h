@@ -1,7 +1,7 @@
 #ifndef UPDATEOBJECT_H
 #define UPDATEOBJECT_H
 
-#include <QNetworkAccessManager>
+#include "networkmanager.h"
 #include <QObject>
 
 class UpdateObject : public QObject
@@ -10,7 +10,7 @@ class UpdateObject : public QObject
 
 public:
   explicit UpdateObject(QObject *parent = 0);
-  QNetworkAccessManager manager_;
+  NetworkManager networkManager_;
   
 signals:
   void signalFinished(QNetworkReply *reply);
@@ -19,9 +19,6 @@ signals:
 public slots:
   void slotHead(const QNetworkRequest &request);
   void slotGet(const QNetworkRequest &request);
-
-private slots:
-  void handleSslErrors(QNetworkReply* reply, const QList<QSslError> &errors);
   
 };
 
