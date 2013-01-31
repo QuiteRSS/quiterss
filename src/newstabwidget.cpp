@@ -976,6 +976,7 @@ void NewsTabWidget::restoreNews()
   if (cnt == 1) {
     curIndex = indexes.at(0);
     newsModel_->setData(curIndex, 0);
+    newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")), "");
     newsModel_->submitAll();
   } else {
     db_.transaction();
@@ -983,7 +984,7 @@ void NewsTabWidget::restoreNews()
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
-      q.exec(QString("UPDATE news SET deleted=0 WHERE id=='%1'").
+      q.exec(QString("UPDATE news SET deleted=0, deleteDate='' WHERE id=='%1'").
              arg(newsId));
     }
     db_.commit();
