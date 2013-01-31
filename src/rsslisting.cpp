@@ -82,8 +82,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     lastFeedPath_ = dataDirPath_;
 
   cookieJar_ = new CookieJar(dataDirPath_, this);
-  networkManager_ = new NetworkManager(this, cookieJar_);
-  connect(networkManager_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
+  networkManager_ = new NetworkManager(this);
+  networkManager_->setCookieJar(cookieJar_);
+  connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();

@@ -4,15 +4,11 @@
 #include <QDebug>
 
 
-NetworkManager::NetworkManager(QObject* parent, QNetworkCookieJar *cookieJar)
+NetworkManager::NetworkManager(QObject* parent)
   : QNetworkAccessManager(parent)
 {
-  setCookieJar(cookieJar);
-
   connect(this, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError> &)),
           SLOT(handleSslErrors(QNetworkReply*, const QList<QSslError> &)));
-  connect(this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)));
 }
 
 NetworkManager::~NetworkManager()
