@@ -61,6 +61,8 @@ public:
   QAction *deleteAllNewsAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
+  QAction *prevUnreadNewsAct_;
+  QAction *nextUnreadNewsAct_;
   QAction *autoLoadImagesToggle_;
   QAction *printAct_;
   QAction *printPreviewAct_;
@@ -515,6 +517,9 @@ private slots:
   void increaseNewsList();
 
   void restoreLastNews();
+
+  void prevUnreadNews();
+  void nextUnreadNews();
 
 signals:
   void signalPlaceToTray();

@@ -133,6 +133,9 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->addAction(rsslisting_->markStarAct_);
   newsToolBar_->addAction(rsslisting_->newsLabelAction_);
   newsToolBar_->addSeparator();
+  newsToolBar_->addAction(rsslisting_->prevUnreadNewsAct_);
+  newsToolBar_->addAction(rsslisting_->nextUnreadNewsAct_);
+  newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->newsFilter_);
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
@@ -437,12 +440,12 @@ void NewsTabWidget::setSettings(bool newTab)
   if (type_ != TAB_WEB) {
     rsslisting_->slotUpdateStatus(feedId_, false);
 
-    newsToolBar_->actions().at(5)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(6)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(7)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(8)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(9)->setVisible(type_ == TAB_CAT_DEL);
-    newsToolBar_->actions().at(10)->setVisible(type_ == TAB_CAT_DEL);
+    newsToolBar_->actions().at(8)->setVisible(type_ == TAB_FEED);
+    newsToolBar_->actions().at(9)->setVisible(type_ == TAB_FEED);
+    newsToolBar_->actions().at(10)->setVisible(type_ != TAB_CAT_DEL);
+    newsToolBar_->actions().at(11)->setVisible(type_ != TAB_CAT_DEL);
+    newsToolBar_->actions().at(12)->setVisible(type_ == TAB_CAT_DEL);
+    newsToolBar_->actions().at(13)->setVisible(type_ == TAB_CAT_DEL);
 
     if (type_ == TAB_CAT_DEL) {
       rsslisting_->deleteNewsAct_->setEnabled(false);
