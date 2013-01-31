@@ -66,6 +66,7 @@ public:
   QAction *printPreviewAct_;
   QAction *savePageAsAct_;
   QAction *restoreNewsAct_;
+  QAction *restoreLastNewsAct_;
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;
   QActionGroup *newsFilterGroup_;
@@ -512,6 +513,8 @@ private slots:
 
   void reduceNewsList();
   void increaseNewsList();
+
+  void restoreLastNews();
 
 signals:
   void signalPlaceToTray();

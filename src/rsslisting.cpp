@@ -1064,6 +1064,12 @@ void RSSListing::createActions()
   restoreNewsAct_ = new QAction(this);
   restoreNewsAct_->setIcon(QIcon(":/images/images/arrow_turn_left.png"));
 
+  restoreLastNewsAct_ = new QAction(this);
+  restoreLastNewsAct_->setObjectName("restoreLastNewsAct");
+  restoreLastNewsAct_->setIcon(QIcon(":/images/images/arrow_turn_left.png"));
+  this->addAction(restoreLastNewsAct_);
+  connect(restoreLastNewsAct_, SIGNAL(triggered()), this, SLOT(restoreLastNews()));
+
   markFeedRead_ = new QAction(this);
   markFeedRead_->setObjectName("markFeedRead");
   markFeedRead_->setIcon(QIcon(":/images/markRead"));
@@ -1331,6 +1337,9 @@ void RSSListing::createShortcut()
   listActions_.append(reduceNewsListAct_);
   increaseNewsListAct_->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Down));
   listActions_.append(increaseNewsListAct_);
+
+  restoreLastNewsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+  listActions_.append(restoreLastNewsAct_);
 
   //! Действия меток добавлять последними
   listActions_.append(newsLabelGroup_->actions());
@@ -3986,6 +3995,8 @@ void RSSListing::retranslateStrings()
   restoreNewsAct_->setText(tr("Restore"));
   restoreNewsAct_->setToolTip(tr("Restore News"));
 
+  restoreLastNewsAct_->setText(tr("Restore last deleted news"));
+
   markFeedRead_->setText(tr("Mark Read"));
   markFeedRead_->setToolTip(tr("Mark Feed Read"));
   feedProperties_->setText(tr("Properties"));
@@ -5646,4 +5657,34 @@ QString RSSListing::getUserInfo(QUrl url, int auth)
     }
   }
   return userInfo;
+}
+
+/** @brief Восстановление последней удалённой новости
+ *----------------------------------------------------------------------------*/
+void RSSListing::restoreLastNews()
+{
+  QSqlQuery q;
+  q.exec("SELECT id, feedId FROM news WHERE deleted=1 AND deleteDate!='' ORDER BY deleteDate DESC");
+  if (q.next()) {
+    QModelIndex curIndex = newsView_->currentIndex();
+    int newsIdCur = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+
+    int newsId = q.value(0).toInt();
+    int feedId = q.value(1).toInt();
+    q.exec(QString("UPDATE news SET deleted=0, deleteDate='' WHERE id=='%1'").
+           arg(newsId));
+
+    newsModel_->select();
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
+    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
+    if (indexList.count()) {
+      int newsRow = indexList.first().row();
+      newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+    }
+    slotUpdateStatus(feedId);
+  }
 }
