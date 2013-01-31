@@ -4130,8 +4130,8 @@ void RSSListing::retranslateStrings()
   newsCategoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
   newsCategoriesTree_->topLevelItem(2)->setText(0, tr("Labels"));
 
-  reduceNewsListAct_->setText(tr("Reduce height of news list"));
-  increaseNewsListAct_->setText(tr("Increase height of news list"));
+  reduceNewsListAct_->setText(tr("Decrease news list/increase browser"));
+  increaseNewsListAct_->setText(tr("Increase news list/decrease browser"));
 
   QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
