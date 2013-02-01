@@ -129,7 +129,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="499"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер требует авторизации!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="501"/>
@@ -1772,12 +1772,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4102"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить как...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4103"/>
         <source>Save Page As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить страницу как...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4105"/>
@@ -1834,12 +1834,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4133"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Уменьшение списка новостей/увеличение браузера</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4134"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Увеличение списка новостей/уменьшение браузера</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -2299,7 +2299,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4012"/>
         <source>Restore last deleted news</source>
-        <translation type="unfinished"></translation>
+        <translation>Восстановление последней удалёной новости</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4015"/>
@@ -2379,32 +2379,32 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4064"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Следующая непрочитанная новость</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4065"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Предыдущая непрочитанная новость</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4067"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Переключить фокус на следующую панель</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4069"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Переключить фокус на следующую панель (дерево лент, список новостей, браузер)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4070"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Переключить фокус на предыдущую панель</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4072"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"></translation>
+        <translation>Переключить фокус на предыдущую панель (дерево лент, список новостей, браузер)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4081"/>
@@ -2424,17 +2424,21 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5645"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить как</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5647"/>
+        <source>HTML-Files (*.html)</source>
+        <translation>HTML-файлы (*.html)</translation>
+    </message>
+    <message>
         <source>HTML-File (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">HTML-файл (*.html)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5652"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить как: не может открыть файл</translation>
     </message>
 </context>
 <context>

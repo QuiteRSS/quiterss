@@ -2416,7 +2416,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5647"/>
-        <source>HTML-File (*.html)</source>
+        <source>HTML-Files (*.html)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

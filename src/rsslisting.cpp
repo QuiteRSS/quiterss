@@ -5644,7 +5644,7 @@ void RSSListing::slotSavePageAs()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
                                                   QDir::homePath(),
-                                                  tr("HTML-File (*.html)"));
+                                                  tr("HTML-Files (*.html)"));
   if (fileName.isNull()) return;
 
   QFile file(fileName);

@@ -1575,7 +1575,7 @@
 </phrase>
 <phrase>
     <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
-    <target>Файлы изображений (*.jpg; *.jpeg; *.png; *.bmp)</target>
+    <target>Файлы изображений (*.jpg *.jpeg *.png *.bmp)</target>
 </phrase>
 <phrase>
     <source>Load icon: can&apos;t open a file</source>
@@ -1660,5 +1660,101 @@
 <phrase>
     <source>Switch to next tab</source>
     <target>Перейти к следующей вкладке</target>
+</phrase>
+<phrase>
+    <source>State</source>
+    <target>Состояние</target>
+</phrase>
+<phrase>
+    <source>Show Passwords</source>
+    <target>Показать пароли</target>
+</phrase>
+<phrase>
+    <source>User</source>
+    <target>Пользователь</target>
+</phrase>
+<phrase>
+    <source>Site</source>
+    <target>Сайт</target>
+</phrase>
+<phrase>
+    <source>Server:</source>
+    <target>Сервер:</target>
+</phrase>
+<phrase>
+    <source>Server requires authentication:</source>
+    <target>Сервер требует авторизации:</target>
+</phrase>
+<phrase>
+    <source>Request timeout!</source>
+    <target>Таймаут запроса!</target>
+</phrase>
+<phrase>
+    <source>Message:</source>
+    <target>Сообщение:</target>
+</phrase>
+<phrase>
+    <source>Save password</source>
+    <target>Запомнить пароль</target>
+</phrase>
+<phrase>
+    <source>Authorization required</source>
+    <target>Требуется авторизация</target>
+</phrase>
+<phrase>
+    <source>Save As...</source>
+    <target>Сохранить как...</target>
+</phrase>
+<phrase>
+    <source>Save Page As...</source>
+    <target>Сохранить страницу как...</target>
+</phrase>
+<phrase>
+    <source>Decrease news list/increase browser</source>
+    <target>Уменьшение списка новостей/увеличение браузера</target>
+</phrase>
+<phrase>
+    <source>Increase news list/decrease browser</source>
+    <target>Увеличение списка новостей/уменьшение браузера</target>
+</phrase>
+<phrase>
+    <source>Restore last deleted news</source>
+    <target>Восстановление последней удалёной новости</target>
+</phrase>
+<phrase>
+    <source>Next Unread News</source>
+    <target>Следующая непрочитанная новость</target>
+</phrase>
+<phrase>
+    <source>Previous Unread News</source>
+    <target>Предыдущая непрочитанная новость</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Next Panel</source>
+    <target>Переключить фокус на следующую панель</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
+    <target>Переключить фокус на следующую панель (дерево лент, список новостей, браузер)</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
+    <target>Переключить фокус на предыдущую панель (дерево лент, список новостей, браузер)</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Previous Panel</source>
+    <target>Переключить фокус на предыдущую панель</target>
+</phrase>
+<phrase>
+    <source>HTML-File (*.html)</source>
+    <target>HTML-файл (*.html)</target>
+</phrase>
+<phrase>
+    <source>Save As: can&apos;t open a file</source>
+    <target>Сохранить как: не может открыть файл</target>
+</phrase>
+<phrase>
+    <source>HTML-Files (*.html)</source>
+    <target>HTML-файлы (*.html)</target>
 </phrase>
 </QPH>
