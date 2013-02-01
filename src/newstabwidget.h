@@ -98,6 +98,8 @@ public:
   void reduceNewsList();
   void increaseNewsList();
 
+  int findUnreadNews(bool next);
+
   int type_;
   int feedId_;
   int feedParId_;

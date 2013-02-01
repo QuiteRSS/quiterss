@@ -518,8 +518,8 @@ private slots:
 
   void restoreLastNews();
 
-  void prevUnreadNews();
   void nextUnreadNews();
+  void prevUnreadNews();
 
 signals:
   void signalPlaceToTray();

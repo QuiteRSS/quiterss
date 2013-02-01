@@ -42,32 +42,36 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
  * details Производится поиск следующай непрочитанная лента. Если следующей
  *    ленты нет, то ищется предыдущая непрочитанная лента
  * @param index Индекс, от которого начинаем искать
+ * @param next Условие поиска: 1 - ищёт следующую, 2 - ищет предыдущую,
+ * 0 - ищет следующую, если не находит, то ищет предыдущую
  * @return найденный индекс либо QModelIndex()
  ******************************************************************************/
-QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur)
+QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next)
 {
-  // ищем следующую непрочитанную, исключая категории
-  QModelIndex index = indexBelow(indexCur);
-  while (index.isValid()) {
+  if (next != 2) {
+    // ищем следующую непрочитанную, исключая категории
+    QModelIndex index = indexBelow(indexCur);
+    while (index.isValid()) {
+      bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
+      int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
+      if (!isFeedFolder && (0 < feedUnreadCount))
+        return index;  // нашли
 
-    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
-    int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
-    if (!isFeedFolder && (0 < feedUnreadCount))
-      return index;  // нашли
-
-    index = indexBelow(index);
+      index = indexBelow(index);
+    }
   }
 
-  // ищем предыдущую непрочитанную, исключая категории
-  index = indexAbove(indexCur);
-  while (index.isValid()) {
+  if (next != 1) {
+    // ищем предыдущую непрочитанную, исключая категории
+    QModelIndex index = indexAbove(indexCur);
+    while (index.isValid()) {
+      bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
+      int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
+      if (!isFeedFolder && (0 < feedUnreadCount))
+        return index;  // нашли
 
-    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
-    int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
-    if (!isFeedFolder && (0 < feedUnreadCount))
-      return index;  // нашли
-
-    index = indexAbove(index);
+      index = indexAbove(index);
+    }
   }
 
   // не нашли

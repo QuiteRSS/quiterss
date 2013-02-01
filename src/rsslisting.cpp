@@ -1219,16 +1219,16 @@ void RSSListing::createActions()
   connect(increaseNewsListAct_, SIGNAL(triggered()),
           this, SLOT(increaseNewsList()));
 
-  prevUnreadNewsAct_ = new QAction(this);
-  prevUnreadNewsAct_->setObjectName("prevUnreadNewsAct");
-  prevUnreadNewsAct_->setIcon(QIcon(":/images/moveUp"));
-  this->addAction(prevUnreadNewsAct_);
-  connect(prevUnreadNewsAct_, SIGNAL(triggered()), this, SLOT(prevUnreadNews()));
   nextUnreadNewsAct_ = new QAction(this);
   nextUnreadNewsAct_->setObjectName("nextUnreadNewsAct");
   nextUnreadNewsAct_->setIcon(QIcon(":/images/moveDown"));
   this->addAction(nextUnreadNewsAct_);
   connect(nextUnreadNewsAct_, SIGNAL(triggered()), this, SLOT(nextUnreadNews()));
+  prevUnreadNewsAct_ = new QAction(this);
+  prevUnreadNewsAct_->setObjectName("prevUnreadNewsAct");
+  prevUnreadNewsAct_->setIcon(QIcon(":/images/moveUp"));
+  this->addAction(prevUnreadNewsAct_);
+  connect(prevUnreadNewsAct_, SIGNAL(triggered()), this, SLOT(prevUnreadNews()));
 
 
   connect(markNewsRead_, SIGNAL(triggered()),
@@ -1290,8 +1290,8 @@ void RSSListing::createShortcut()
   newsKeyDownAct_->setShortcut(QKeySequence(Qt::Key_Right));
   listActions_.append(newsKeyDownAct_);
 
-  listActions_.append(prevUnreadNewsAct_);
   listActions_.append(nextUnreadNewsAct_);
+  listActions_.append(prevUnreadNewsAct_);
 
   listActions_.append(importFeedsAct_);
   listActions_.append(exportFeedsAct_);
@@ -4061,8 +4061,8 @@ void RSSListing::retranslateStrings()
   newsKeyUpAct_->setText(tr("Previous News"));
   newsKeyDownAct_->setText(tr("Next News"));
 
-  prevUnreadNewsAct_->setText(tr("Previous Unread News"));
   nextUnreadNewsAct_->setText(tr("Next Unread News"));
+  prevUnreadNewsAct_->setText(tr("Previous Unread News"));
 
   switchFocusAct_->setText(tr("Switch Focus to Next Panel"));
   switchFocusAct_->setToolTip(
@@ -5706,36 +5706,50 @@ void RSSListing::restoreLastNews()
   }
 }
 
-/** @brief Переход на предыдущую непрочитанную новость
- *----------------------------------------------------------------------------*/
-void RSSListing::prevUnreadNews()
-{
-  int newsRow = -1;
-  int newsRowCur = newsView_->currentIndex().row();
-  QModelIndex index = newsModel_->index(newsRowCur, newsModel_->fieldIndex("read"));
-  QModelIndexList indexList;
-  indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
-  if (!indexList.isEmpty()) newsRow = indexList.last().row();
-  if ((newsRow >= newsRowCur) || (newsRow == -1)) return;
-
-  index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
-  newsView_->setCurrentIndex(index);
-  currentNewsTab->slotNewsViewSelected(index);
-}
-
 /** @brief Переход на следующую непрочитанную новость
  *----------------------------------------------------------------------------*/
 void RSSListing::nextUnreadNews()
 {
-  int newsRow = -1;
-  int newsRowCur = newsView_->currentIndex().row();
-  QModelIndex index = newsModel_->index(newsRowCur+1, newsModel_->fieldIndex("read"));
-  QModelIndexList indexList;
-  indexList = newsModel_->match(index, Qt::EditRole, 0);
-  if (!indexList.isEmpty()) newsRow = indexList.first().row();
-  if ((newsRow <= newsRowCur) || (newsRow == -1)) return;
+  int newsRow = currentNewsTab->findUnreadNews(true);
 
-  index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
+  int newsRowCur = newsView_->currentIndex().row();
+  if ((newsRow <= newsRowCur) || (newsRow == -1)) {
+    QModelIndex indexPrevUnread =
+        feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
+    if (indexPrevUnread.isValid()) {
+      openingFeedAction_ = 3;
+      feedsTreeView_->setCurrentIndex(indexPrevUnread);
+      slotFeedClicked(indexPrevUnread);
+      openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
+    }
+    return;
+  }
+
+  QModelIndex index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
+  newsView_->setCurrentIndex(index);
+  currentNewsTab->slotNewsViewSelected(index);
+}
+
+/** @brief Переход на предыдущую непрочитанную новость
+ *----------------------------------------------------------------------------*/
+void RSSListing::prevUnreadNews()
+{
+  int newsRow = currentNewsTab->findUnreadNews(false);
+
+  int newsRowCur = newsView_->currentIndex().row();
+  if ((newsRow >= newsRowCur) || (newsRow == -1)) {
+    QModelIndex indexNextUnread =
+        feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 2);
+    if (indexNextUnread.isValid()) {
+      openingFeedAction_ = 3;
+      feedsTreeView_->setCurrentIndex(indexNextUnread);
+      slotFeedClicked(indexNextUnread);
+      openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
+    }
+    return;
+  }
+
+  QModelIndex index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(index);
   currentNewsTab->slotNewsViewSelected(index);
 }

@@ -133,8 +133,8 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->addAction(rsslisting_->markStarAct_);
   newsToolBar_->addAction(rsslisting_->newsLabelAction_);
   newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->prevUnreadNewsAct_);
   newsToolBar_->addAction(rsslisting_->nextUnreadNewsAct_);
+  newsToolBar_->addAction(rsslisting_->prevUnreadNewsAct_);
   newsToolBar_->addSeparator();
   newsToolBar_->addAction(rsslisting_->newsFilter_);
   newsToolBar_->addSeparator();
@@ -1580,4 +1580,26 @@ void NewsTabWidget::increaseNewsList()
   QList <int> sizes = newsTabWidgetSplitter_->sizes();
   sizes.insert(0, sizes.takeAt(0)+5);
   newsTabWidgetSplitter_->setSizes(sizes);
+}
+
+/** @brief Поиск непрочитанной новости
+ * @param next Условие поиска: true - ищет следующую, иначе предыдущую
+ *----------------------------------------------------------------------------*/
+int NewsTabWidget::findUnreadNews(bool next)
+{
+  int newsRow = -1;
+
+  int newsRowCur = newsView_->currentIndex().row();
+  QModelIndex index;
+  QModelIndexList indexList;
+  if (next) {
+    index = newsModel_->index(newsRowCur+1, newsModel_->fieldIndex("read"));
+    indexList = newsModel_->match(index, Qt::EditRole, 0);
+  } else {
+    index = newsModel_->index(newsRowCur, newsModel_->fieldIndex("read"));
+    indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+  }
+  if (!indexList.isEmpty()) newsRow = indexList.last().row();
+
+  return newsRow;
 }

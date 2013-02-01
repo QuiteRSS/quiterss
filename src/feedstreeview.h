@@ -12,7 +12,7 @@ public:
   FeedsTreeView(QWidget * parent = 0);
   QModelIndex selectIndex_;
 
-  QModelIndex indexNextUnread(const QModelIndex &indexCur);
+  QModelIndex indexNextUnread(const QModelIndex &indexCur, int next = 0);
   QModelIndex indexPrevious(const QModelIndex &indexCur);
   QModelIndex indexNext(const QModelIndex &indexCur);
 
