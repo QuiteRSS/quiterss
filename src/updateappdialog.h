@@ -14,6 +14,7 @@ private:
   QSettings *settings_;
   bool showDialog_;
 
+  QWebPage *page_;
   QNetworkAccessManager *networkManager_;
   QNetworkReply *reply_;
   QNetworkReply *historyReply_;
@@ -24,11 +25,10 @@ private:
   QPushButton *installButton_;
   QCheckBox *remindAboutVersion_;
 
-  QWebPage page;
-
 public:
   explicit UpdateAppDialog(const QString &lang, QSettings *settings,
                            QWidget *parent, bool show = true);
+  ~UpdateAppDialog();
 
 private slots:
   void closeDialog();

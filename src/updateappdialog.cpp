@@ -46,6 +46,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
 
     buttonBox->addButton(QDialogButtonBox::Close);
 
+    renderStatistics();
+
     QString urlHistory;
     if (lang.contains("ru", Qt::CaseInsensitive))
       urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_RU";
@@ -56,12 +58,17 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
     restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
+  } else {
+    page_ = new QWebPage(this);
+    page_->setNetworkAccessManager(networkManager_);
+    page_->mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/wiki/runAplication"));
+    connect(page_, SIGNAL(loadFinished(bool)),
+            this, SLOT(renderStatistics()));
   }
+}
 
-  page.setNetworkAccessManager(networkManager_);
-  page.mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/wiki/runAplication"));
-  connect(&page, SIGNAL(loadFinished(bool)),
-           this, SLOT(renderStatistics()));
+UpdateAppDialog::~UpdateAppDialog()
+{
 }
 
 void UpdateAppDialog::closeDialog()
