@@ -13,6 +13,9 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     settings_(settings),
     showDialog_(show)
 {
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  networkManager_ = rssl_->networkManager_;
+
   if (showDialog_) {
     setWindowTitle(tr("Check for Updates"));
     setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -47,7 +50,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     if (lang.contains("ru", Qt::CaseInsensitive))
       urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_RU";
     else urlHistory = "http://quite-rss.googlecode.com/hg/HISTORY_EN";
-    historyReply_ = manager_.get(QNetworkRequest(QUrl(urlHistory)));
+    historyReply_ = networkManager_->get(QNetworkRequest(QUrl(urlHistory)));
     connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 
     connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
@@ -55,8 +58,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
   }
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  page.setNetworkAccessManager(rssl_->networkManager_);
+  page.setNetworkAccessManager(networkManager_);
   page.mainFrame()->load(QUrl("http://code.google.com/p/quite-rss/wiki/runAplication"));
   connect(&page, SIGNAL(loadFinished(bool)),
            this, SLOT(renderStatistics()));
@@ -171,6 +173,6 @@ void UpdateAppDialog::updaterRun()
 
 void UpdateAppDialog::renderStatistics()
 {
-  reply_ = manager_.get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
+  reply_ = networkManager_->get(QNetworkRequest(QUrl("http://quite-rss.googlecode.com/hg/src/VersionNo.h")));
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
 }

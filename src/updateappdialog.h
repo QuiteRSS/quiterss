@@ -14,7 +14,7 @@ private:
   QSettings *settings_;
   bool showDialog_;
 
-  QNetworkAccessManager manager_;
+  QNetworkAccessManager *networkManager_;
   QNetworkReply *reply_;
   QNetworkReply *historyReply_;
 
