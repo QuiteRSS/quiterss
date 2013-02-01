@@ -82,7 +82,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     lastFeedPath_ = dataDirPath_;
 
   cookieJar_ = new CookieJar(dataDirPath_, this);
-  networkManager_ = new NetworkManager(this);
+  networkManager_ = new NetworkManager(parent);
   networkManager_->setCookieJar(cookieJar_);
   connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
@@ -248,10 +248,6 @@ RSSListing::~RSSListing()
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
   faviconLoader_->quit();
-
-  delete stackedWidget_;
-  if (updateAppDialog_ != NULL)
-    delete updateAppDialog_;
 
   db_.transaction();
   QSqlQuery q;
@@ -4543,7 +4539,6 @@ void RSSListing::showFilterRulesDlg()
 
 void RSSListing::slotUpdateAppCheck()
 {
-  updateAppDialog_ = NULL;
   if (!updateCheck_) return;
 
   updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
@@ -4554,7 +4549,6 @@ void RSSListing::slotUpdateAppCheck()
 void RSSListing::slotNewVersion(QString newVersion)
 {
   delete updateAppDialog_;
-  updateAppDialog_ = NULL;
 
   if (!newVersion.isEmpty()) {
     traySystem->showMessage(tr("Check for updates"),
