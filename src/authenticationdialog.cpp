@@ -34,7 +34,7 @@ AuthenticationDialog::AuthenticationDialog(QWidget *parent, QNetworkReply *reply
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(new QLabel(tr("Server:")), 0, 0);
     layout->addWidget(new QLabel(reply->url().host()), 0, 1);
-    layout->addWidget(new QLabel(tr("Massage:")), 1, 0);
+    layout->addWidget(new QLabel(tr("Message:")), 1, 0);
     layout->addWidget(new QLabel(auth->realm()), 1, 1);
     layout->addWidget(new QLabel(tr("Username:")), 2, 0);
     layout->addWidget(user_, 2, 1);

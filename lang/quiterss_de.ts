@@ -128,7 +128,7 @@
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="499"/>
-        <source>Host requires authentication!</source>
+        <source>Server requires authentication!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -184,7 +184,7 @@
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="37"/>
-        <source>Massage:</source>
+        <source>Message:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
