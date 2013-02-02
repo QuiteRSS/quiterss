@@ -67,17 +67,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="94"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server vereist verificatie:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="103"/>
         <source>Username:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation>Gebruikersnaam:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="105"/>
         <source>Password:</source>
-        <translation type="unfinished">Paswoord:</translation>
+        <translation>Wachtwoord:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="135"/>
@@ -129,12 +129,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="499"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"></translation>
+        <translation>Server vereist verificatie!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="501"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aanvraag time-out!</translation>
     </message>
 </context>
 <context>
@@ -170,32 +170,32 @@
     <message>
         <location filename="../src/authenticationdialog.cpp" line="9"/>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslaan wachtwoord</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="27"/>
         <source>Authorization required</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificatie vereist</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="35"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="37"/>
         <source>Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bericht:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="39"/>
         <source>Username:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation>Gebruikersnaam:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="41"/>
         <source>Password:</source>
-        <translation type="unfinished">Paswoord:</translation>
+        <translation>Wachtwoord:</translation>
     </message>
 </context>
 <context>
@@ -448,7 +448,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="23"/>
         <source>State</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="28"/>
@@ -458,7 +458,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="28"/>
         <source>Starred</source>
-        <translation type="unfinished">Een Ster</translation>
+        <translation>Een Ster</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="35"/>
@@ -595,7 +595,7 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Afbeelding bestanden (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
     <message>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
@@ -869,7 +869,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="59"/>
         <source>Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Wachtwoorden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="62"/>
@@ -985,7 +985,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Password:</source>
-        <translation>Paswoord:</translation>
+        <translation>Wachtwoord:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="328"/>
@@ -1116,32 +1116,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Website</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebruiker</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Wachtwoord</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="802"/>
         <source>Delete</source>
-        <translation type="unfinished">Verwijder</translation>
+        <translation>Verwijder</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder Alles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="806"/>
         <source>Show Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon wachtwoorden</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
@@ -1480,7 +1480,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4145"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished">&amp;Plakken</translation>
+        <translation>&amp;Plakken</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4146"/>
@@ -1772,12 +1772,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4102"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslaan Als...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4103"/>
         <source>Save Page As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pagina Opslaan Als...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4105"/>
@@ -1834,12 +1834,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4133"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Verlaag nieuwslijst/verhoog browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4134"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Verhoog nieuwslijst/verlaag browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -2299,7 +2299,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4012"/>
         <source>Restore last deleted news</source>
-        <translation type="unfinished"></translation>
+        <translation>Herstel laatst verwijderde nieuws</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4015"/>
@@ -2379,32 +2379,32 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4064"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Volgende Ongelezen Nieuws</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4065"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorige Ongelezen Nieuws</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4067"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel Focus op Volgend Venster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4069"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel Focus op Volgend Venster (Tree Feeds, NieuwsLijst, Browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4070"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel Focus op Vorig Venster</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4072"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"></translation>
+        <translation>Schakel Focus op Vorig Venster (Tree Feeds, NieuwsLijst, Browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4081"/>
@@ -2424,17 +2424,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5645"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslaan Als</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5647"/>
-        <source>HTML-Files (*.html)</source>
-        <translation type="unfinished"></translation>
+        <source>HTML-File (*.html)</source>
+        <translation>HTML Bestand (*.html)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5652"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Opslaan Als: kan een bestand niet openen</translation>
     </message>
 </context>
 <context>

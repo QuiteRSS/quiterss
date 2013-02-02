@@ -72,12 +72,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="103"/>
         <source>Username:</source>
-        <translation type="unfinished">Benutzername:</translation>
+        <translation>Benutzername:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="105"/>
         <source>Password:</source>
-        <translation type="unfinished">Kennwort:</translation>
+        <translation>Kennwort:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="135"/>

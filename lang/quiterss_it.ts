@@ -67,17 +67,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="94"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"></translation>
+        <translation>Il server richiede l'autenticazione:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="103"/>
         <source>Username:</source>
-        <translation type="unfinished">Nome Utente:</translation>
+        <translation>Nome Utente:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="105"/>
         <source>Password:</source>
-        <translation type="unfinished">Password:</translation>
+        <translation>Password:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="135"/>
@@ -129,12 +129,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="499"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"></translation>
+        <translation>Il server richiede l'autenticazione!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="501"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"></translation>
+        <translation>Timeout della richiesta!</translation>
     </message>
 </context>
 <context>
@@ -170,32 +170,32 @@
     <message>
         <location filename="../src/authenticationdialog.cpp" line="9"/>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva password</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="27"/>
         <source>Authorization required</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorizzazione necessaria</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="35"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="37"/>
         <source>Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>Messaggio:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="39"/>
         <source>Username:</source>
-        <translation type="unfinished">Nome Utente:</translation>
+        <translation>Nome Utente:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="41"/>
         <source>Password:</source>
-        <translation type="unfinished">Password:</translation>
+        <translation>Password:</translation>
     </message>
 </context>
 <context>
@@ -448,7 +448,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="23"/>
         <source>State</source>
-        <translation type="unfinished"></translation>
+        <translation>Stato</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="28"/>
@@ -595,7 +595,7 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>File Immagine (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
     <message>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
@@ -869,7 +869,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="59"/>
         <source>Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="62"/>
@@ -1046,7 +1046,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="465"/>
         <source>on selecting. With timeout</source>
-        <translation>sulla selezione. Con timeout</translation>
+        <translation>se selezionate. Con timeout di</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="466"/>
@@ -1101,7 +1101,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="661"/>
         <source>Width news list</source>
-        <translation>Larghezza della lista notizie</translation>
+        <translation>Larghezza dell'elenco notizie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="663"/>
@@ -1116,32 +1116,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Sito</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Utente</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="802"/>
         <source>Delete</source>
-        <translation type="unfinished">Elimina</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>Elimina Tutto</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="806"/>
         <source>Show Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra Password</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
@@ -1340,7 +1340,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="670"/>
         <source>Only show selected feeds:</source>
-        <translation>Monstra solo i Feed selezionati:</translation>
+        <translation>Mostra solo i Feed selezionati:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="686"/>
@@ -1375,7 +1375,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="958"/>
         <source>News list font</source>
-        <translation>Carattere della lista delle notizie</translation>
+        <translation>Carattere dell'elenco notizie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
@@ -1687,7 +1687,7 @@
     </message>
     <message>
         <source>Switch Focus Between Panels (Tree Feeds, List News, Browser)</source>
-        <translation type="obsolete">Sposta la Selezione tra i Pannelli (Albero dei Feed, Lista delle Notizie, Browser)</translation>
+        <translation type="obsolete">Sposta la Selezione tra i Pannelli (Albero dei Feed, Elenco Notizie, Browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4074"/>
@@ -1772,12 +1772,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4102"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva come...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4103"/>
         <source>Save Page As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva Pagina come...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4105"/>
@@ -1834,12 +1834,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4133"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuisci elenco notizie/Aumenta browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4134"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumenta elenco notizie/Diminuisci browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -2299,7 +2299,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4012"/>
         <source>Restore last deleted news</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina l'ultima notizia eliminata</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4015"/>
@@ -2379,32 +2379,32 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4064"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Notizia Non Letta Successiva</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4065"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Notizia Non Letta Precedente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4067"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposta la Selezione al Riquadro Successivo</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4069"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposta la Selezione al Riquadro Successivo (Albero dei Feed, Elenco Notizie, Browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4070"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposta la Selezione al Riquadro Precedente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4072"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposta la Selezione al Riquadro Precedente (Albero dei Feed, Elenco Notizie, Browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4081"/>
@@ -2424,17 +2424,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5645"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva come</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5647"/>
         <source>HTML-Files (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>File HTML (*.html)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5652"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva come: impossibile aprire il file</translation>
     </message>
 </context>
 <context>

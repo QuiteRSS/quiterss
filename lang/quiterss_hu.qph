@@ -1661,4 +1661,100 @@
     <source>Switch to next tab</source>
     <target>Váltás a következő lapra</target>
 </phrase>
+<phrase>
+    <source>State</source>
+    <target>Állapot</target>
+</phrase>
+<phrase>
+    <source>Show Passwords</source>
+    <target>Jelszavak mentése</target>
+</phrase>
+<phrase>
+    <source>User</source>
+    <target>Felhasználó</target>
+</phrase>
+<phrase>
+    <source>Site</source>
+    <target>Oldal</target>
+</phrase>
+<phrase>
+    <source>Server:</source>
+    <target>Kiszolgáló:</target>
+</phrase>
+<phrase>
+    <source>Server requires authentication:</source>
+    <target>Kiszolgáló hitelesítés szükséges:</target>
+</phrase>
+<phrase>
+    <source>Request timeout!</source>
+    <target>Kérelem időtúllépése!</target>
+</phrase>
+<phrase>
+    <source>Message:</source>
+    <target>Üzenet:</target>
+</phrase>
+<phrase>
+    <source>Save password</source>
+    <target>Jelszó mentése</target>
+</phrase>
+<phrase>
+    <source>Authorization required</source>
+    <target>Engedélyezés szükséges</target>
+</phrase>
+<phrase>
+    <source>Save As...</source>
+    <target>Mentés másként...</target>
+</phrase>
+<phrase>
+    <source>Save Page As...</source>
+    <target>Oldal mentése mint...</target>
+</phrase>
+<phrase>
+    <source>Decrease news list/increase browser</source>
+    <target>Hírek lista csökkentése/böngésző növelése</target>
+</phrase>
+<phrase>
+    <source>Increase news list/decrease browser</source>
+    <target>Hírek lista növelése/böngésző csökkentése</target>
+</phrase>
+<phrase>
+    <source>Restore last deleted news</source>
+    <target>Az utoljára törölt hírek visszaállítása</target>
+</phrase>
+<phrase>
+    <source>Next Unread News</source>
+    <target>Következő olvasatlan hírek</target>
+</phrase>
+<phrase>
+    <source>Previous Unread News</source>
+    <target>Előző olvasatlan hírek</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Next Panel</source>
+    <target>Fókuszváltás a következő panelra</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
+    <target>Fókuszváltás a következő panelra (Hírcsatorna-fa, Hírek lista, Böngésző)</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
+    <target>Fókuszváltás az előző panelra (Hírcsatorna-fa, Hírek lista, Böngésző)</target>
+</phrase>
+<phrase>
+    <source>Switch Focus to Previous Panel</source>
+    <target>Fókuszváltás az előző panelra</target>
+</phrase>
+<phrase>
+    <source>HTML-File (*.html)</source>
+    <target>HTML-fájl (*.html)</target>
+</phrase>
+<phrase>
+    <source>Save As: can&apos;t open a file</source>
+    <target>Mentés másként: nem lehet megnyitni egy fájlt</target>
+</phrase>
+<phrase>
+    <source>HTML-Files (*.html)</source>
+    <target>HTML-fájlok (*.html)</target>
+</phrase>
 </QPH>
