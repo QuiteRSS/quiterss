@@ -67,17 +67,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="94"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"></translation>
+        <translation>Le serveur requiert une authentification :</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="103"/>
         <source>Username:</source>
-        <translation type="unfinished">Nom d&apos;utilisateur :</translation>
+        <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="105"/>
         <source>Password:</source>
-        <translation type="unfinished">Mot de passe :</translation>
+        <translation>Mot de passe :</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="135"/>
@@ -129,12 +129,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="499"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"></translation>
+        <translation>Le serveur requiert une authentification!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="501"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"></translation>
+        <translation>Délai de la requête dépassé!</translation>
     </message>
 </context>
 <context>
@@ -170,32 +170,32 @@
     <message>
         <location filename="../src/authenticationdialog.cpp" line="9"/>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer le mot de passe</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="27"/>
         <source>Authorization required</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorisation requise</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="35"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Serveur :</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="37"/>
         <source>Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>Message :</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="39"/>
         <source>Username:</source>
-        <translation type="unfinished">Nom d&apos;utilisateur :</translation>
+        <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="41"/>
         <source>Password:</source>
-        <translation type="unfinished">Mot de passe :</translation>
+        <translation>Mot de passe :</translation>
     </message>
 </context>
 <context>
@@ -448,7 +448,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="23"/>
         <source>State</source>
-        <translation type="unfinished"></translation>
+        <translation>État</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="28"/>
@@ -595,7 +595,7 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers graphiques (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
     <message>
         <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
@@ -869,7 +869,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="59"/>
         <source>Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Mots de passe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="62"/>
@@ -1116,32 +1116,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>Site</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisateur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="785"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="802"/>
         <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tous</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="806"/>
         <source>Show Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer les mots de passe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
@@ -1772,12 +1772,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4102"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer sous...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4103"/>
         <source>Save Page As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer la page sous...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4105"/>
@@ -1834,12 +1834,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4133"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Réduire la liste des articles/agrandir le navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4134"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Agrandir la liste des articles/réduire le navigateur</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -2026,7 +2026,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4087"/>
         <source>Search Feed</source>
-        <translation>Marquer le flux comme lu</translation>
+        <translation>Chercher flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4913"/>
@@ -2299,7 +2299,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4012"/>
         <source>Restore last deleted news</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer le dernier article supprimé</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4015"/>
@@ -2379,32 +2379,32 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4064"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Article non lu suivant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4065"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>Article non lu précédent</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4067"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus au panneau suivant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4069"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus au panneau suivant (arborescence des flux, liste des articles, navigateur)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4070"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus au panneau précédent</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4072"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le focus au panneau précédent (arborescence des flux, liste des articles, navigateur)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4081"/>
@@ -2424,17 +2424,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5645"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer sous</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5647"/>
         <source>HTML-Files (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichiers HTML (*.html)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5652"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrement: impossible d&apos;ouvrir un fichier</translation>
     </message>
 </context>
 <context>
