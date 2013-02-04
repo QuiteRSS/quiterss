@@ -2,6 +2,26 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.12.0+</B> (xx Feb 2013)
+<UL>
+<LI>Added: Authorization support</LI>
+<LI>Added: Cookies support</LI>
+<LI>Added: Minimum limit of automatic update period set to 1 second</LI>
+<LI>Added: Ability to save browser page ("Browser"->"Save as...")</LI>
+<LI>Added: Shortcut to undelete news: "CTRL+Z" (Undo delete)</LI>
+<LI>Added: More shortcuts</LI>
+<LI>Added: Ability to switch on next/previous unread news</LI>
+<BR>
+<LI>Changed: GUI. Visual tweaks</LI>
+<LI>Changed: Finding unread news depends on sort</LI>
+<LI>Changed: In "Deleted" category news is sorted by delete time stamp</LI>
+<BR>
+<LI>Fixed: Error updating feeds (lasts from 0.10.3+)</LI>
+<LI>Fixed: Automatic cleanup on shutdown</LI>
+<LI>Fixed: Saving cursor position in news list</LI>
+<LI>Fixed: Reset new news counter of feed while selecting one and choose another</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.12.0</B> (14 Jan 2013)
 <UL>
 <LI>Main: Increased productivity of program</LI>
