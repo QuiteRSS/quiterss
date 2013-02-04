@@ -2079,6 +2079,7 @@ void RSSListing::deleteFeed()
 {
   if (feedsTreeView_->selectIndex_.isValid()) {
     int feedDeleteId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
+    int feedParentId = feedsTreeModel_->getParidByIndex(feedsTreeView_->selectIndex_);
 
     QModelIndex currentIndex = feedsTreeView_->currentIndex();
     int feedCurrentId = feedsTreeModel_->getIdByIndex(currentIndex);
@@ -2106,6 +2107,10 @@ void RSSListing::deleteFeed()
     q.exec("VACUUM");
     q.finish();
     db_.commit();
+
+    QList<int> categoriesList;
+    categoriesList << feedParentId;
+    recountFeedCategories(categoriesList);
 
     // Если удаляется лента на которой стоит фокус и эта лента последняя,
     // то курсор нужно ставить на предыдущую ленту, чтобы не курсор пропадал.
@@ -2624,12 +2629,11 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
       }
 
       // Переходим к предыдущему родителю
-      categoryId = 0;
       qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
           arg(categoryId);
+      categoryId = 0;
       q.exec(qStr);
       if (q.next()) categoryId = q.value(0).toInt();
-
     }
   }
 }
