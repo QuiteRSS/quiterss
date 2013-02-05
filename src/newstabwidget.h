@@ -157,7 +157,7 @@ private slots:
   void webHomePage();
   void openPageInExternalBrowser();
   void slotLinkClicked(QUrl url);
-  void slotLinkHovered(const QString &link, const QString &, const QString &);
+  void slotLinkHovered(const QString &link, const QString &str1="", const QString &str2="");
   void slotSetValue(int value);
   void slotLoadStarted();
   void slotLoadFinished(bool);

@@ -361,6 +361,8 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(slotWebTitleLinkClicked(QString)));
   connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
           this, SLOT(slotWebTitleLinkClicked(QString)));
+  connect(webPanelTitle_, SIGNAL(linkHovered(QString)),
+          this, SLOT(slotLinkHovered(QString)));
   connect(this, SIGNAL(signalWebViewSetContent(QString)),
                 SLOT(slotWebViewSetContent(QString)), Qt::QueuedConnection);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
@@ -1175,7 +1177,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
 
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
 {
-  rsslisting_->statusBar()->showMessage(link, 3000);
+  rsslisting_->statusBar()->showMessage(link.simplified(), 3000);
 }
 
 void NewsTabWidget::slotSetValue(int value)
