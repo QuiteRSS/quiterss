@@ -107,11 +107,20 @@ include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
-win32 {
+win32-g++ {
 TARGET = QuiteRSS
 LIBS += libkernel32 \
         libpsapi
 RC_FILE = QuiteRSSApp.rc
+}
+
+win32-msvc* {
+TARGET = QuiteRSS
+LIBS += -lpsapi
+LIBS += -lShell32
+RC_FILE = QuiteRSSApp.rc
+QMAKE_CXXFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
+QMAKE_CFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
 }
 
 os2 {
