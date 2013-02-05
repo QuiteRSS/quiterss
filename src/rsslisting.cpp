@@ -3597,7 +3597,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   QModelIndex index = newsView_->currentIndex();
 
   int feedId = currentNewsTab->feedId_;
-//  int feedParId = currentNewsTab->feedParId_;
+  int feedParId = currentNewsTab->feedParId_;
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
@@ -3612,11 +3612,11 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   }
 
   // Создаем фильтр по котегории или по ленте
-//  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
-//    newsFilterStr = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1)) AND ").arg(feedId);
-//  } else {
+  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
+    newsFilterStr = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1)) AND ").arg(feedId);
+  } else {
     newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
-//  }
+  }
 
   // ... добавляем фильтр из "фильтра"
   if (pAct->objectName() == "filterNewsAll_") {
