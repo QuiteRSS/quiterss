@@ -1248,16 +1248,20 @@ void NewsTabWidget::openInBrowserNews()
 //! Открытие новости во внешнем браузере
 void NewsTabWidget::openInExternalBrowserNews()
 {
-  QModelIndex index = newsView_->currentIndex();
+  if (type_ != TAB_WEB) {
+    QModelIndex index = newsView_->currentIndex();
 
-  if (!index.isValid()) return;
+    if (!index.isValid()) return;
 
-  QString linkString = newsModel_->record(
-        index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+    QString linkString = newsModel_->record(
+          index.row()).field("link_href").value().toString();
+    if (linkString.isEmpty())
+      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  openUrl(linkString.simplified());
+    openUrl(linkString.simplified());
+  } else {
+    openUrl(webView_->url());
+  }
 }
 
 //! Установка позиции браузера
