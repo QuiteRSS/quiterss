@@ -4,10 +4,10 @@
 #define PORTABLE       1
 #endif
 
-#define STRDATE           "14.01.2013\0"
-#define STRPRODUCTVER     "0.12.0\0"
+#define STRDATE           "05.02.2013\0"
+#define STRPRODUCTVER     "0.12.1\0"
 
-#define VERSION           0,12,0
+#define VERSION           0,12,1
 #define PRODUCTVER        VERSION,0
 #define FILEVER           VERSION,HG_REVISION
 
