@@ -144,8 +144,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     bool minSize = false;
     int newWidth = resizeEvent->size().width();
     int size = 0;
-    int widthCol[count()];
-    memset(widthCol, 0, sizeof(widthCol));
+    QVector<int> widthCol(count(), 0);
     static int idxColSize = count()-1;
     int tWidth = 0;
     for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
