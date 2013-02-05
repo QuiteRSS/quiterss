@@ -5714,6 +5714,8 @@ void RSSListing::restoreLastNews()
  *----------------------------------------------------------------------------*/
 void RSSListing::nextUnreadNews()
 {
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
   int newsRow = currentNewsTab->findUnreadNews(true);
 
   int newsRowCur = newsView_->currentIndex().row();
@@ -5738,6 +5740,8 @@ void RSSListing::nextUnreadNews()
  *----------------------------------------------------------------------------*/
 void RSSListing::prevUnreadNews()
 {
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
   int newsRow = currentNewsTab->findUnreadNews(false);
 
   int newsRowCur = newsView_->currentIndex().row();
