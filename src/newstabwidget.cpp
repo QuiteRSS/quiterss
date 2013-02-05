@@ -843,12 +843,23 @@ void NewsTabWidget::markAllNewsRead()
   if (type_ == TAB_WEB) return;
   if (newsModel_->rowCount() == 0) return;
 
+  QString strId;
   QSqlQuery q;
-  QString qStr = QString("UPDATE news SET read=1 WHERE feedId='%1' AND read=0").
-      arg(feedId_);
+  q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
+  if (q.next()) {
+    if (q.value(0).toString().isEmpty()) {
+      strId = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1))").
+          arg(feedId_);
+    } else {
+      strId = QString("feedId='%1'").arg(feedId_);
+    }
+  }
+
+  QString qStr = QString("UPDATE news SET read=1 WHERE %1 AND read=0").
+      arg(strId);
   q.exec(qStr);
-  qStr = QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").
-      arg(feedId_);
+  qStr = QString("UPDATE news SET new=0 WHERE %1 AND new=1").
+      arg(strId);
   q.exec(qStr);
 
   int currentRow = newsView_->currentIndex().row();
@@ -1011,14 +1022,25 @@ void NewsTabWidget::restoreNews()
 //! Сортировка новостей по "star" или по "read"
 void NewsTabWidget::slotSort(int column, int order)
 {
+  QString strId;
+  QSqlQuery q;
+  q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
+  if (q.next()) {
+    if (q.value(0).toString().isEmpty()) {
+      strId = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1))").
+          arg(feedId_);
+    } else {
+      strId = QString("feedId='%1'").arg(feedId_);
+    }
+  }
+
   QString qStr;
   if (column == newsModel_->fieldIndex("read")) {
-    qStr = QString("UPDATE news SET rights=read WHERE feedId=='%1'").arg(feedId_);
+    qStr = QString("UPDATE news SET rights=read WHERE %1").arg(strId);
   }
   else if (column == newsModel_->fieldIndex("starred")) {
-    qStr = QString("UPDATE news SET rights=starred WHERE feedId=='%1'").arg(feedId_);
+    qStr = QString("UPDATE news SET rights=starred WHERE %1").arg(strId);
   }
-  QSqlQuery q;
   q.exec(qStr);
   newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }
