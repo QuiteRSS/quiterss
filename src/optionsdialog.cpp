@@ -1533,7 +1533,7 @@ void OptionsDialog::applyLabels()
         labelsTree_->findItems(idLabel, Qt::MatchFixedString, 0);
     if (treeItems.count() == 0) {
       q.exec(QString("DELETE FROM labels WHERE id=='%1'").arg(idLabel));
-      q.exec(QString("SELECT id, label FROM news WHERE label LIKE '\%,%1,\%'").arg(idLabel));
+      q.exec(QString("SELECT id, label FROM news WHERE label LIKE '%,%1,%'").arg(idLabel));
       while (q.next()) {
         QString strIdLabels = q.value(1).toString();
         strIdLabels.replace(QString(",%1,").arg(idLabel), ",");

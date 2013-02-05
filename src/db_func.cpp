@@ -688,10 +688,10 @@ void setUserFilter(int feedId, int filterId)
 
   if (filterId != -1) {
     onlyNew = false;
-    q.exec(QString("SELECT enable, type FROM filters WHERE id='%1' AND feeds LIKE '\%,%2,\%'").
+    q.exec(QString("SELECT enable, type FROM filters WHERE id='%1' AND feeds LIKE '%,%2,%'").
            arg(filterId).arg(feedId));
   } else {
-    q.exec(QString("SELECT enable, type, id FROM filters WHERE feeds LIKE '\%,%1,\%' ORDER BY num").
+    q.exec(QString("SELECT enable, type, id FROM filters WHERE feeds LIKE '%,%1,%' ORDER BY num").
            arg(feedId));
   }
 
@@ -762,10 +762,10 @@ void setUserFilter(int feedId, int filterId)
         case 0: // field -> Title
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("title LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("title LIKE '%%1%' ").arg(q1.value(2).toString()));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("title NOT LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("title NOT LIKE '%%1%' ").arg(q1.value(2).toString()));
             break;
           case 2: // condition -> is
             qStr1.append(QString("title LIKE '%1' ").arg(q1.value(2).toString()));
@@ -774,30 +774,30 @@ void setUserFilter(int feedId, int filterId)
             qStr1.append(QString("title NOT LIKE '%1' ").arg(q1.value(2).toString()));
             break;
           case 4: // condition -> begins with
-            qStr1.append(QString("title LIKE '%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("title LIKE '%1%' ").arg(q1.value(2).toString()));
             break;
           case 5: // condition -> ends with
-            qStr1.append(QString("title LIKE '\%%1' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("title LIKE '%%1' ").arg(q1.value(2).toString()));
             break;
           }
           break;
         case 1: // field -> Description
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("description LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("description LIKE '%%1%' ").arg(q1.value(2).toString()));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("description NOT LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("description NOT LIKE '%%1%' ").arg(q1.value(2).toString()));
             break;
           }
           break;
         case 2: // field -> Author
           switch (q1.value(1).toInt()) {
           case 0: // condition -> contains
-            qStr1.append(QString("author_name LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("author_name LIKE '%%1%' ").arg(q1.value(2).toString()));
             break;
           case 1: // condition -> doesn't contains
-            qStr1.append(QString("author_name NOT LIKE '\%%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("author_name NOT LIKE '%%1%' ").arg(q1.value(2).toString()));
             break;
           case 2: // condition -> is
             qStr1.append(QString("author_name LIKE '%1' ").arg(q1.value(2).toString()));
@@ -816,10 +816,10 @@ void setUserFilter(int feedId, int filterId)
             qStr1.append(QString("category NOT LIKE '%1' ").arg(q1.value(2).toString()));
             break;
           case 2: // condition -> begins with
-            qStr1.append(QString("category LIKE '%1\%' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("category LIKE '%1%' ").arg(q1.value(2).toString()));
             break;
           case 3: // condition -> ends with
-            qStr1.append(QString("category LIKE '\%%1' ").arg(q1.value(2).toString()));
+            qStr1.append(QString("category LIKE '%%1' ").arg(q1.value(2).toString()));
             break;
           }
           break;

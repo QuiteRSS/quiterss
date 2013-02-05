@@ -3519,7 +3519,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
       strFilter.append(")");
     }
   } else if (pAct->objectName() == "filterFeedsStarred_") {
-    strFilter = QString("label LIKE '\%starred\%'");
+    strFilter = QString("label LIKE '%starred%'");
   }
 
   // ... добавляем фильтр из "поиска"
@@ -3532,9 +3532,9 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     strFilter.append("(");
     strFilter.append(QString("((xmlUrl = '') OR (xmlUrl IS NULL)) OR "));
     if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
-      strFilter.append(QString("text LIKE '\%%1\%'").arg(findFeeds_->text()));
+      strFilter.append(QString("text LIKE '%%1%'").arg(findFeeds_->text()));
     } else {
-      strFilter.append(QString("xmlUrl LIKE '\%%1\%'").arg(findFeeds_->text()));
+      strFilter.append(QString("xmlUrl LIKE '%%1%'").arg(findFeeds_->text()));
     }
     strFilter.append(")");
   }
@@ -3637,7 +3637,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   QString filterStr = newsFilterStr;
   if (currentNewsTab->findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct") {
     filterStr.append(
-        QString(" AND (title LIKE '\%%1\%' OR author_name LIKE '\%%1\%' OR category LIKE '\%%1\%')").
+        QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' OR category LIKE '%%1%')").
         arg(currentNewsTab->findText_->text()));
   }
 
@@ -5400,7 +5400,7 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
     case TAB_CAT_LABEL:
       if (currentNewsTab->labelId_ != 0) {
         currentNewsTab->categoryFilterStr_ =
-            QString("feedId > 0 AND deleted = 0 AND label LIKE '\%,%1,\%'").
+            QString("feedId > 0 AND deleted = 0 AND label LIKE '%,%1,%'").
             arg(currentNewsTab->labelId_);
       } else {
         currentNewsTab->categoryFilterStr_ =
