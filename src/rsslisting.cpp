@@ -5648,7 +5648,8 @@ void RSSListing::slotSavePageAs()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
                                                   QDir::homePath(),
-                                                  tr("HTML-Files (*.html)"));
+                                                  tr("HTML-Files (*.html)")+ ";;" +
+                                                  tr("Text files (*.txt)"));
   if (fileName.isNull()) return;
 
   QFile file(fileName);
@@ -5656,7 +5657,12 @@ void RSSListing::slotSavePageAs()
     statusBar()->showMessage(tr("Save As: can't open a file"), 3000);
     return;
   }
-  file.write(currentNewsTab->webView_->page()->mainFrame()->toHtml().toUtf8());
+  QFileInfo fileInfo(fileName);
+  if (fileInfo.suffix() == "txt") {
+    file.write(currentNewsTab->webView_->page()->mainFrame()->toPlainText().toUtf8());
+  } else {
+    file.write(currentNewsTab->webView_->page()->mainFrame()->toHtml().toUtf8());
+  }
   file.close();
 }
 
