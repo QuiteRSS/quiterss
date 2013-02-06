@@ -42,6 +42,7 @@ public:
   QString htmlUrlString_;
   QString feedUrlString_;
   int feedId_;
+  int feedParentId_;
   int newCount_;
 
 protected:

@@ -2022,13 +2022,13 @@ void RSSListing::addFeed()
     return;
   }
 
-//  updateFeedsCount_ = -1;
-//  idFeedList_.clear();
-//  cntNewNewsList_.clear();
-
   emit startGetUrlTimer();
   faviconLoader_->slotRequestUrl(addFeedWizard->htmlUrlString_,
                                 addFeedWizard->feedUrlString_);
+
+  QList<int> categoriesList;
+  categoriesList << addFeedWizard->feedParentId_;
+  recountFeedCategories(categoriesList);
 
   feedsModelReload();
   slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_);
@@ -2612,19 +2612,21 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
     while (0 < categoryId) {
       int unreadCount = -1;
       int undeleteCount = -1;
+      int newCount = -1;
 
       // Подсчет суммы для всех лент c одним родителем
-      qStr = QString("SELECT sum(unread), sum(undeleteCount) "
+      qStr = QString("SELECT sum(unread), sum(undeleteCount), sum(newCount) "
                      "FROM feeds WHERE parentId=='%1'").arg(categoryId);
       q.exec(qStr);
       if (q.next()) {
         unreadCount   = q.value(0).toInt();
         undeleteCount = q.value(1).toInt();
+        newCount = q.value(2).toInt();
       }
 
       if (unreadCount != -1) {
-        qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
-            arg(unreadCount).arg(undeleteCount).arg(categoryId);
+        qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2', newCount='%3' WHERE id=='%4'").
+            arg(unreadCount).arg(undeleteCount).arg(newCount).arg(categoryId);
         q.exec(qStr);
       }
 

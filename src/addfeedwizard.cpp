@@ -577,6 +577,7 @@ void AddFeedWizard::finish()
   }
 
   feedId_ = parseFeedId;
+  feedParentId_ = parentId;
 
   accept();
 }
