@@ -40,6 +40,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
   QString atomSummaryString;
   QString contentString;
   QString categoryString;
+  QString enclosureUrl;
+  QString enclosureType;
+  QString enclosureLength;
 
   qDebug() << "=================== parseXml:start ============================";
 
@@ -98,13 +101,20 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
         linkBaseString = xml.attributes().value("xml:base").toString();
       }
 
+      if (currentTag == "enclosure") {
+        enclosureUrl = xml.attributes().value("url").toString();
+        enclosureType = xml.attributes().value("type").toString();
+        enclosureLength = xml.attributes().value("length").toString();
+      }
+
       if (currentTag == "item") {  // RSS
         if (isHeader) {
           rssPubDateString = parseDate(rssPubDateString, url.toString());
 
           QSqlQuery q;
           QString qStr("UPDATE feeds "
-                       "SET title=?, description=?, htmlUrl=?, author_name=?, pubdate=? "
+                       "SET title=?, description=?, htmlUrl=?, "
+                       "author_name=?, pubdate=? "
                        "WHERE id==?");
           q.prepare(qStr);
           q.addBindValue(titleString.simplified());
@@ -241,8 +251,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
           // если дубликата нет, добавляем статью в базу
           if (!q.next()) {
             qStr = QString("INSERT INTO news("
-                           "feedId, description, content, guid, title, author_name, published, received, link_href, category) "
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                           "feedId, description, content, guid, title, author_name, published, received, link_href, category, "
+                           "enclosure_url, enclosure_type, enclosure_length) "
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             q.prepare(qStr);
             q.addBindValue(parseFeedId);
             q.addBindValue(rssDescriptionString);
@@ -256,6 +267,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
             q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
             q.addBindValue(linkString);
             q.addBindValue(QTextDocumentFragment::fromHtml(categoryString.simplified()).toPlainText());
+            q.addBindValue(enclosureUrl);
+            q.addBindValue(enclosureType);
+            q.addBindValue(enclosureLength);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << parseFeedId;
@@ -268,6 +282,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
             qDebug() << "       " << QDateTime::currentDateTime().toString();
             qDebug() << "       " << linkString;
             qDebug() << "       " << categoryString;
+            qDebug() << "       " << enclosureUrl;
+            qDebug() << "       " << enclosureType;
+            qDebug() << "       " << enclosureLength;
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }
@@ -334,8 +351,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
             qStr = QString("INSERT INTO news("
                            "feedId, description, content, guid, title, author_name, "
                            "author_uri, author_email, published, received, "
-                           "link_href, link_alternate, category) "
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?)");
+                           "link_href, link_alternate, category, "
+                           "enclosure_url, enclosure_type, enclosure_length) "
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             q.prepare(qStr);
             q.addBindValue(parseFeedId);
             q.addBindValue(atomSummaryString);
@@ -356,6 +374,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
               linkAlternateString = linkBaseString + linkAlternateString;
             q.addBindValue(linkAlternateString);
             q.addBindValue(QTextDocumentFragment::fromHtml(categoryString.simplified()).toPlainText());
+            q.addBindValue(enclosureUrl);
+            q.addBindValue(enclosureType);
+            q.addBindValue(enclosureLength);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << parseFeedId;
@@ -371,6 +392,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
             qDebug() << "       " << linkString;
             qDebug() << "       " << linkAlternateString;
             qDebug() << "       " << categoryString;
+            qDebug() << "       " << enclosureUrl;
+            qDebug() << "       " << enclosureType;
+            qDebug() << "       " << enclosureLength;
             qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }

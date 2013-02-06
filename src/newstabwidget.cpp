@@ -1216,7 +1216,24 @@ void NewsTabWidget::slotLoadFinished(bool)
 void NewsTabWidget::slotWebViewSetContent(QString content)
 {
   webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(content);
+
+  QModelIndex index = newsView_->currentIndex();
+  QString str;
+  QString enclosureUrl = newsModel_->record(index.row()).
+      field("enclosure_url").value().toString();
+  if (!enclosureUrl.isEmpty()) {
+    QString type = newsModel_->record(index.row()).
+        field("enclosure_type").value().toString();
+    if (type.contains("audio")) type = tr("audio");
+    else if (type.contains("video")) type = tr("video");
+    else type = tr("media");
+    str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
+        arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
+        arg(tr("Link to")).arg(type);
+  }
+  str.append(content);
+
+  webView_->setHtml(str);
   webView_->history()->setMaximumItemCount(100);
 }
 
