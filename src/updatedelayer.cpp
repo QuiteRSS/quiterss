@@ -4,6 +4,7 @@
 #include "updatedelayer.h"
 
 #define UPDATE_INTERVAL 3000
+#define MIN_UPDATE_INTERVAL 500
 
 UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
     : QObject(parent), delayValue_(delayValue)
@@ -47,10 +48,14 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
   if ((feedIdList_.size() == 1) && nextUpdateFeed_) {
     nextUpdateFeed_ = false;
     delayTimer_->start(10);
-    timer_.start();
 
-    if (!updateModelTimer_->isActive())
-      updateModelTimer_->start(UPDATE_INTERVAL);
+    if (!updateModelTimer_->isActive()) {
+      updateModelTimer_->start(MIN_UPDATE_INTERVAL);
+    } else {
+      if (updateModelTimer_->interval() == MIN_UPDATE_INTERVAL) {
+        updateModelTimer_->start(UPDATE_INTERVAL - MIN_UPDATE_INTERVAL);
+      }
+    }
   }
 
 }
@@ -74,13 +79,13 @@ void UpdateDelayer::slotNextUpdateFeed()
   qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
   if (feedIdList_.size()) {
     delayTimer_->start(delayValue_);
-    timer_.start();
 
     if (!updateModelTimer_->isActive())
       updateModelTimer_->start(UPDATE_INTERVAL);
   } else {
     nextUpdateFeed_ = true;
-    if (!updateModelTimer_->isActive())
-      updateModelTimer_->start(UPDATE_INTERVAL);
+
+   if (!updateModelTimer_->isActive())
+      updateModelTimer_->start(MIN_UPDATE_INTERVAL);
   }
 }

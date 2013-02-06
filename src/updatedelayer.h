@@ -28,8 +28,6 @@ private:
   QTimer *delayTimer_;
   QTimer *updateModelTimer_;
 
-  QElapsedTimer timer_;  // таймер для отладочного вывода
-
   bool nextUpdateFeed_;
 
 private slots:
