@@ -1610,7 +1610,8 @@ void OptionsDialog::applyNotifier()
 
 void OptionsDialog::slotDeletePass()
 {
-  passTree_->currentItem()->setHidden(true);
+  if (passTree_->topLevelItemCount())
+    passTree_->currentItem()->setHidden(true);
 }
 
 void OptionsDialog::slotDeleteAllPass()
