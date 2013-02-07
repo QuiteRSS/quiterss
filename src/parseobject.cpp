@@ -48,14 +48,15 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
   // поиск идентификатора ленты и режима дубликатов новостей в таблице лент
   int parseFeedId = 0;
-  bool duplicateNewsMode = true;
+  bool duplicateNewsMode = false;
 
   QSqlQuery q;
-  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.prepare("SELECT id, duplicateNewsMode FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", url.toString());
   q.exec();
   while (q.next()) {
-    parseFeedId = q.value(q.record().indexOf("id")).toInt();
+    parseFeedId = q.value(0).toInt();
+    duplicateNewsMode = q.value(1).toBool();
   }
 
   // идентификатор не найден (например, во время запроса удалили ленту)
@@ -218,9 +219,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
         qStr.clear();
         if (!rssPubDateString.isEmpty()) {  // поиск по pubDate
-          qStr.append("AND published=:published");
           if (!duplicateNewsMode)
-            qStr.append(" AND title LIKE :title");
+            qStr.append("AND published=:published");
         } else {
           qStr.append("AND title LIKE :title");
         }
@@ -236,9 +236,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
         }
         q.bindValue(":id", parseFeedId);
         if (!rssPubDateString.isEmpty()) {    // поиск по pubDate
-          q.bindValue(":published", rssPubDateString);
           if (!duplicateNewsMode)
-            q.bindValue(":title", titleString);
+            q.bindValue(":published", rssPubDateString);
         } else {
           q.bindValue(":title", titleString);
         }
@@ -309,9 +308,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
         qStr.clear();
         if (!atomUpdatedString.isEmpty()) {  // поиск по pubDate
-          qStr.append("AND published=:published");
           if (!duplicateNewsMode)
-            qStr.append(" AND title LIKE :title");
+            qStr.append("AND published=:published");
         } else {
           qStr.append("AND title LIKE :title");
         }
@@ -323,7 +321,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
             q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND guid=:guid %1").arg(qStr));
             if (!atomUpdatedString.isEmpty()) {    // поиск по pubDate
               q.bindValue(":published", atomUpdatedString);
-              q.bindValue(":title", titleString);
             } else {
               q.bindValue(":title", titleString);
             }
@@ -332,9 +329,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
         } else {
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
           if (!atomUpdatedString.isEmpty()) {    // поиск по pubDate
-            q.bindValue(":published", atomUpdatedString);
             if (!duplicateNewsMode)
-              q.bindValue(":title", titleString);
+              q.bindValue(":published", atomUpdatedString);
           } else {
             q.bindValue(":title", titleString);
           }
