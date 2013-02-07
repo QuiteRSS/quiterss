@@ -132,7 +132,7 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void receiveXml(const QByteArray &data, const QUrl &url);
+  void receiveXml(const QByteArray &data, const QString &feedUrl);
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void slotUpdateFeed(int feedId, const bool &changed, int newCount);
   void slotUpdateFeedDelayed(int feedId, const bool &changed, int newCount);
@@ -330,7 +330,7 @@ private:
   QPushButton *pushButtonNull_;
 
   QByteArray data_;
-  QUrl url_;
+  QString feedUrl_;
 
   QTimer *updateFeedsTimer_;
   bool autoUpdatefeedsStartUp_;
@@ -525,7 +525,7 @@ signals:
   void signalPlaceToTray();
   void signalCloseApp();
   void startGetUrlTimer();
-  void xmlReadyParse(const QByteArray &data, const QUrl &url);
+  void xmlReadyParse(const QByteArray &data, const QString &feedUrl);
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();

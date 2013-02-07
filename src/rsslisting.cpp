@@ -92,8 +92,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");
   connect(this, SIGNAL(startGetUrlTimer()),
           persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
-  connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
-          this, SLOT(receiveXml(QByteArray, QUrl)));
+  connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QString)),
+          this, SLOT(receiveXml(QByteArray, QString)));
   connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
           this, SLOT(getUrlDone(int,QDateTime)));
   connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
@@ -101,8 +101,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   persistentParseThread_ = new ParseThread(this, lastFeedPath_);
   persistentParseThread_->setObjectName("persistentParseThread_");
-  connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
-          persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
+  connect(this, SIGNAL(xmlReadyParse(QByteArray,QString)),
+          persistentParseThread_, SLOT(parseXml(QByteArray,QString)),
           Qt::QueuedConnection);
 
   cleanUp();
@@ -2356,9 +2356,9 @@ void RSSListing::slotExportFeeds()
   file.close();
 }
 /*! \brief приём xml-файла ****************************************************/
-void RSSListing::receiveXml(const QByteArray &data, const QUrl &url)
+void RSSListing::receiveXml(const QByteArray &data, const QString &feedUrl)
 {
-  url_ = url;
+  feedUrl_ = feedUrl;
   data_.append(data);
 }
 
@@ -2367,23 +2367,23 @@ void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
 {
   qDebug() << "getUrl result =" << result;
 
-  if (!url_.isEmpty()) {
+  if (!feedUrl_.isEmpty()) {
     if (!data_.isEmpty()) {
-      emit xmlReadyParse(data_, url_);
+      emit xmlReadyParse(data_, feedUrl_);
       QSqlQuery q;
       q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
                 "WHERE xmlUrl LIKE :xmlUrl");
       q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
-      q.bindValue(":xmlUrl",        url_.toString());
+      q.bindValue(":xmlUrl",        feedUrl_);
       q.exec();
-      qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
+      qDebug() << feedUrl_ << dtReply.toString(Qt::ISODate);
       qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
     } else {
       slotUpdateFeed(0, false, 0);
     }
   }
   data_.clear();
-  url_.clear();
+  feedUrl_.clear();
 }
 
 /** @brief Обновление счётчиков ленты и всех родительский категорий

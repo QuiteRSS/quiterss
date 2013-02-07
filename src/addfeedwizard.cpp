@@ -20,16 +20,16 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath)
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");
   connect(this, SIGNAL(startGetUrlTimer()),
           persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
-  connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QUrl)),
-          this, SLOT(receiveXml(QByteArray, QUrl)));
+  connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QString)),
+          this, SLOT(receiveXml(QByteArray, QString)));
   connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
           this, SLOT(getUrlDone(int,QDateTime)));
   connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
   persistentParseThread_ = new ParseThread(this, dataDirPath);
   persistentParseThread_->setObjectName("persistentParseThread_");
-  connect(this, SIGNAL(xmlReadyParse(QByteArray,QUrl)),
-          persistentParseThread_, SLOT(parseXml(QByteArray,QUrl)),
+  connect(this, SIGNAL(xmlReadyParse(QByteArray,QString)),
+          persistentParseThread_, SLOT(parseXml(QByteArray,QString)),
           Qt::QueuedConnection);
 
   connect(button(QWizard::BackButton), SIGNAL(clicked()),
@@ -393,15 +393,15 @@ void AddFeedWizard::slotProgressBarUpdate()
     QTimer::singleShot(250, this, SLOT(slotProgressBarUpdate()));
 }
 
-void AddFeedWizard::receiveXml(const QByteArray &data, const QUrl &url)
+void AddFeedWizard::receiveXml(const QByteArray &data, const QString &feedUrl)
 {
-  url_ = url;
+  feedUrl_ = feedUrl;
   data_.append(data);
 }
 
 void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
 {
-  if (!url_.isEmpty() && !data_.isEmpty()) {
+  if (!feedUrl_.isEmpty() && !data_.isEmpty()) {
     QString str = QString::fromUtf8(data_);
 
     if (str.contains("<html", Qt::CaseInsensitive)) {
@@ -415,11 +415,12 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
         if (pos > -1) {
           QString linkFeedString = rx.cap(1);
           QUrl url(linkFeedString);
+          QUrl feedUrl(feedUrl_);
           if (url.host().isEmpty()) {
-            url.setScheme(url_.scheme());
-            url.setHost(url_.host());
-            if (url_.toString().indexOf('?') > -1) {
-              str = url_.path();
+            url.setScheme(feedUrl.scheme());
+            url.setHost(feedUrl.host());
+            if (feedUrl.toString().indexOf('?') > -1) {
+              str = feedUrl.path();
               str = str.left(str.lastIndexOf('/')+1);
               url.setPath(str+url.path());
             }
@@ -475,22 +476,22 @@ void AddFeedWizard::getUrlDone(const int &result, const QDateTime &dtReply)
       }
 
       data_.clear();
-      url_.clear();
+      feedUrl_.clear();
       return;
     }
 
-    emit xmlReadyParse(data_, url_);
+    emit xmlReadyParse(data_, feedUrl_);
     QSqlQuery q;
     q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
               "WHERE xmlUrl LIKE :xmlUrl");
     q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
-    q.bindValue(":xmlUrl", url_.toString());
+    q.bindValue(":xmlUrl", feedUrl_);
     q.exec();
-    qDebug() << url_.toString() << dtReply.toString(Qt::ISODate);
+    qDebug() << feedUrl_ << dtReply.toString(Qt::ISODate);
     qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
   }
   data_.clear();
-  url_.clear();
+  feedUrl_.clear();
 
   if (result < 0) {
     if (result == -1)

@@ -12,7 +12,7 @@ ParseObject::ParseObject(QString dataDirPath, QObject *parent)
 {
 }
 
-void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
+void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
 {
   if (!dataDirPath_.isEmpty()) {
     QFile file(dataDirPath_ + QDir::separator() + "lastfeed.dat");
@@ -52,7 +52,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
   QSqlQuery q;
   q.prepare("SELECT id, duplicateNewsMode FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", url.toString());
+  q.bindValue(":xmlUrl", feedUrl);
   q.exec();
   while (q.next()) {
     parseFeedId = q.value(0).toInt();
@@ -61,12 +61,12 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
-    qDebug() << QString("Feed '%1' not found").arg(url.toString());
+    qDebug() << QString("Feed '%1' not found").arg(feedUrl);
     emit feedUpdated(parseFeedId, false, 0);
     return;
   }
 
-  qDebug() << QString("Feed '%1' found with id = %2").arg(url.toString()).
+  qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).
               arg(parseFeedId);
 
   // собственно сам разбор
@@ -110,7 +110,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
 
       if (currentTag == "item") {  // RSS
         if (isHeader) {
-          rssPubDateString = parseDate(rssPubDateString, url.toString());
+          rssPubDateString = parseDate(rssPubDateString, feedUrl);
 
           QSqlQuery q;
           QString qStr("UPDATE feeds "
@@ -141,7 +141,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
         categoryString.clear();
       }
       if (currentTag == "entry") {  // Atom
-        atomUpdatedString = parseDate(atomUpdatedString, url.toString());
+        atomUpdatedString = parseDate(atomUpdatedString, feedUrl);
 
         if (isHeader) {
           QSqlQuery q;
@@ -204,7 +204,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
     } else if (xml.isEndElement()) {
       // rss::item
       if (xml.name() == "item") {
-        rssPubDateString = parseDate(rssPubDateString, url.toString());
+        rssPubDateString = parseDate(rssPubDateString, feedUrl);
 
         titleString = QTextDocumentFragment::fromHtml(titleString.simplified()).
             toPlainText();
@@ -294,7 +294,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QUrl &url)
       }
       // atom::feed
       else if (xml.name() == "entry") {
-        atomUpdatedString = parseDate(atomUpdatedString, url.toString());
+        atomUpdatedString = parseDate(atomUpdatedString, feedUrl);
 
         titleString = QTextDocumentFragment::fromHtml(titleString.simplified()).
             toPlainText();

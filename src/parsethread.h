@@ -16,9 +16,9 @@ class ParseThread : public QThread
 
 private:
   QString dataDirPath_;
-  QUrl currentUrl_;
+  QString currentFeedUrl_;
   QByteArray currentXml_;
-  QQueue<QUrl> urlsQueue_;
+  QQueue<QString> feedsQueue_;
   QQueue<QByteArray> xmlsQueue_;
 
   QTimer *parseTimer_;
@@ -32,13 +32,13 @@ public:
 
 signals:
   void startTimer();
-  void signalReadyParse(const QByteArray &xml, const QUrl &url);
+  void signalReadyParse(const QByteArray &xml, const QString &feedUrl);
 
 private slots:
   void getQueuedXml();
 
 public slots:
-  void parseXml(const QByteArray &data, const QUrl &url);
+  void parseXml(const QByteArray &data, const QString &feedUrl);
 
 };
 

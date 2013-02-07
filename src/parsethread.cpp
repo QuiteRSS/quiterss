@@ -26,33 +26,33 @@ void ParseThread::run()
   connect(this, SIGNAL(startTimer()), parseTimer_, SLOT(start()));
 
   parseObject_ = new ParseObject(dataDirPath_);
-  connect(this, SIGNAL(signalReadyParse(QByteArray,QUrl)),
-          parseObject_, SLOT(slotParse(QByteArray,QUrl)));
+  connect(this, SIGNAL(signalReadyParse(QByteArray,QString)),
+          parseObject_, SLOT(slotParse(QByteArray,QString)));
   connect(parseObject_, SIGNAL(feedUpdated(int, bool, int)),
           this->parent(), SLOT(slotUpdateFeed(int, bool, int)));
 
   exec();
 }
 
-void ParseThread::parseXml(const QByteArray &data, const QUrl &url)
+void ParseThread::parseXml(const QByteArray &data, const QString &feedUrl)
 {
-  urlsQueue_.enqueue(url);
+  feedsQueue_.enqueue(feedUrl);
   xmlsQueue_.enqueue(data);
-  qDebug() << "xmlsQueue_ <<" << url << "count=" << xmlsQueue_.count();
+  qDebug() << "xmlsQueue_ <<" << feedUrl << "count=" << xmlsQueue_.count();
   emit startTimer();
 }
 
 void ParseThread::getQueuedXml()
 {
-  if (!currentUrl_.isEmpty()) return;
+  if (!currentFeedUrl_.isEmpty()) return;
 
-  while (!urlsQueue_.isEmpty()) {
-    currentUrl_ = urlsQueue_.dequeue();
+  while (!feedsQueue_.isEmpty()) {
+    currentFeedUrl_ = feedsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();
-    qDebug() << "xmlsQueue_ >>" << currentUrl_ << "count=" << xmlsQueue_.count();
+    qDebug() << "xmlsQueue_ >>" << currentFeedUrl_ << "count=" << xmlsQueue_.count();
     //    parse();
-    emit signalReadyParse(currentXml_, currentUrl_);
+    emit signalReadyParse(currentXml_, currentFeedUrl_);
   }
 
-  currentUrl_.clear();
+  currentFeedUrl_.clear();
 }

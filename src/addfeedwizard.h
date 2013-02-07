@@ -19,7 +19,7 @@ private:
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
   QByteArray data_;
-  QUrl url_;
+  QString feedUrl_;
   QWizardPage *createUrlFeedPage();
   QWizardPage *createNameFeedPage();
   QCheckBox *titleFeedAsName_;
@@ -52,7 +52,7 @@ protected:
 
 signals:
   void startGetUrlTimer();
-  void xmlReadyParse(const QByteArray &data, const QUrl &url);
+  void xmlReadyParse(const QByteArray &data, const QString &feedUrl);
 
 public slots:
   void slotUpdateFeed(int feedId, const bool &, int newCount);
@@ -66,7 +66,7 @@ private slots:
   void slotCurrentIdChanged(int);
   void titleFeedAsNameStateChanged(int);
   void slotProgressBarUpdate();
-  void receiveXml(const QByteArray &data, const QUrl &url);
+  void receiveXml(const QByteArray &data, const QString &feedUrl);
   void getUrlDone(const int &result, const QDateTime &dtReply);
   void newFolder();
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);

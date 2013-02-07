@@ -20,14 +20,14 @@ class UpdateThread : public QThread
 private:
   QNetworkProxy networkProxy_;
   QList<QUrl> currentUrls_;
-  QList<QUrl> currentFeeds_;
+  QList<QString> currentFeeds_;
   QList<QDateTime> currentDates_;
   QList<bool> currentHead_;
   QList<int> currentTime_;
   QList<QUrl> requestUrl_;
   QList<QNetworkReply*> networkReply_;
 
-  QQueue<QUrl> urlsQueue_;
+  QQueue<QString> feedsQueue_;
   QQueue<QDateTime> dateQueue_;
   QQueue<QString> userInfo_;
 
@@ -41,8 +41,8 @@ private:
   int requestTimeout_;
 
   void run();
-  void get(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
-  void head(const QUrl &getUrl, const QUrl &feedUrl, const QDateTime &date);
+  void get(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
+  void head(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
 
 public:
   explicit UpdateThread(QObject *parent, int requestTimeout = 90);
@@ -52,7 +52,7 @@ public:
 
 signals:
   void startGetUrlTimer();
-  void readedXml(const QByteArray &xml, const QUrl &url);
+  void readedXml(const QByteArray &xml, const QString &feedUrl);
   void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
   void signalHead(const QNetworkRequest &request);
   void signalGet(const QNetworkRequest &request);
