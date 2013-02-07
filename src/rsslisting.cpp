@@ -2723,21 +2723,37 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newC
 
   feedsTreeView_->selectIndex_ = feedsTreeView_->currentIndex();
 
-  // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
-  if (feedId == currentNewsTab->feedId_) {
-    slotUpdateNews();
-    int unreadCount = 0;
-    int allCount = 0;
+  if (currentNewsTab->type_ == TAB_FEED) {
+    bool folderUpdate = false;
+    int feedParentId = 0;
     QSqlQuery q;
-    QString qStr = QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
-        arg(feedId);
-    q.exec(qStr);
+    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
     if (q.next()) {
-      unreadCount = q.value(0).toInt();
-      allCount    = q.value(1).toInt();
+      feedParentId = q.value(0).toInt();
+      if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
     }
-    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
-    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+
+    while (feedParentId && !folderUpdate) {
+      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
+      if (q.next()) {
+        feedParentId = q.value(0).toInt();
+        if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
+      }
+    }
+
+    // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
+    if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
+      slotUpdateNews();
+      int unreadCount = 0;
+      int allCount = 0;
+      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(feedId));
+      if (q.next()) {
+        unreadCount = q.value(0).toInt();
+        allCount    = q.value(1).toInt();
+      }
+      statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
+      statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+    }
   }
 
   emit signalNextUpdate();
