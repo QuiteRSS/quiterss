@@ -1224,12 +1224,18 @@ void NewsTabWidget::slotWebViewSetContent(QString content)
   if (!enclosureUrl.isEmpty()) {
     QString type = newsModel_->record(index.row()).
         field("enclosure_type").value().toString();
-    if (type.contains("audio")) type = tr("audio");
-    else if (type.contains("video")) type = tr("video");
-    else type = tr("media");
-    str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
-        arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
-        arg(tr("Link to")).arg(type);
+    if (type.contains("image")) {
+      str = QString("<IMG SRC=\"%1\"><p>").
+          arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
+    } else {
+      if (type.contains("audio")) type = tr("audio");
+      else if (type.contains("video")) type = tr("video");
+      else type = tr("media");
+
+      str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
+          arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
+          arg(tr("Link to")).arg(type);
+    }
   }
   str.append(content);
 
