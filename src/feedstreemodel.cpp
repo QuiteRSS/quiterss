@@ -71,24 +71,24 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
     return brush;
   } else if (role == Qt::DecorationRole) {
     if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
-      QByteArray byteArray = index.sibling(index.row(), proxyColumnByOriginal("image")).
-          data(Qt::EditRole).toByteArray();
-      if (!byteArray.isNull()) {
+      if (isFolder(index)) {
+        return QPixmap(":/images/folder");
+      } else {
         QString strDate = index.sibling(index.row(), proxyColumnByOriginal("updated")).
             data(Qt::EditRole).toString();
-        if (!strDate.isEmpty()) {
+        if (strDate.isEmpty())
+          return QPixmap(":/images/feedError");
+
+        QByteArray byteArray = index.sibling(index.row(), proxyColumnByOriginal("image")).
+            data(Qt::EditRole).toByteArray();
+        if (!byteArray.isNull()) {
           QPixmap icon;
           if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
             return icon;
           }
-        } else {
-          return QPixmap(":/images/feedError");
         }
-      }
-      if (isFolder(index))
-        return QPixmap(":/images/folder");
-      else
         return QPixmap(":/images/feed");
+      }
     }
   } else if (role == Qt::TextAlignmentRole) {
     if (QyurSqlTreeModel::proxyColumnByOriginal("id") == index.column()) {
