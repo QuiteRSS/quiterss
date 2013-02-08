@@ -74,9 +74,15 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
       QByteArray byteArray = index.sibling(index.row(), proxyColumnByOriginal("image")).
           data(Qt::EditRole).toByteArray();
       if (!byteArray.isNull()) {
-        QPixmap icon;
-        if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
-          return icon;
+        QString strDate = index.sibling(index.row(), proxyColumnByOriginal("updated")).
+            data(Qt::EditRole).toString();
+        if (!strDate.isEmpty()) {
+          QPixmap icon;
+          if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
+            return icon;
+          }
+        } else {
+          return QPixmap(":/images/feedError");
         }
       }
       if (isFolder(index))
