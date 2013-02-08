@@ -4281,6 +4281,9 @@ void RSSListing::slotShowFeedPropertiesDlg()
   else
     properties.general.starred = false;
 
+  properties.general.duplicateNewsMode =
+      feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
+
   QDateTime dtLocalTime = QDateTime::currentDateTime();
   QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
   int nTimeShift = dtLocalTime.secsTo(dtUTC);
@@ -4319,7 +4322,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   QSqlQuery q;
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
-            "displayEmbeddedImages = ?, displayNews = ?, label = ? WHERE id == ?");
+            "displayEmbeddedImages = ?, displayNews = ?, label = ?, "
+            "duplicateNewsMode = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -4329,6 +4333,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
     q.addBindValue("starred");
   else
     q.addBindValue("");
+  q.addBindValue(properties.general.duplicateNewsMode ? 1 : 0);
   q.addBindValue(feedId);
   q.exec();
 
@@ -4338,12 +4343,14 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex indexImages  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayEmbeddedImages"));
   QModelIndex indexNews    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayNews"));
   QModelIndex indexLabel   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("label"));
+  QModelIndex indexDuplicate = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("duplicateNewsMode"));
   feedsTreeModel_->setData(indexText, properties.general.text);
   feedsTreeModel_->setData(indexUrl, properties.general.url);
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
   feedsTreeModel_->setData(indexImages, properties.display.displayEmbeddedImages);
   feedsTreeModel_->setData(indexNews, properties.display.displayNews);
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
+  feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
 
   if (feedsTreeView_->currentIndex() == index) {
     QPixmap iconTab;

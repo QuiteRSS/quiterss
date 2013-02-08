@@ -43,6 +43,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   loadImagesOn = new QCheckBox(tr("Load images"));
   displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
   showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
+  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicates news"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
@@ -62,6 +63,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addWidget(loadImagesOn);
   layoutGeneralMain->addWidget(displayOnStartup);
   layoutGeneralMain->addWidget(showDescriptionNews_);
+  layoutGeneralMain->addWidget(duplicateNewsMode_);
   layoutGeneralMain->addStretch();
 
   connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
@@ -76,6 +78,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
     loadImagesOn->hide();
     displayOnStartup->hide();
     showDescriptionNews_->hide();
+    duplicateNewsMode_->hide();
   }
 
   return tab;
@@ -129,6 +132,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   starredOn_->setChecked(feedProperties.general.starred);
   loadImagesOn->setChecked(feedProperties.display.displayEmbeddedImages);
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
+  duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
   descriptionText_->setText(feedProperties.status.description);
   if (feedProperties.status.createdTime.isValid())
@@ -160,6 +164,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.starred = starredOn_->isChecked();
   feedProperties.display.displayEmbeddedImages = loadImagesOn->isChecked();
   feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
+  feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
   return(feedProperties);
 }
 //------------------------------------------------------------------------------

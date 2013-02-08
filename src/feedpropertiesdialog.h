@@ -18,12 +18,13 @@ typedef struct {
     bool updateOnStartup; //!< Обновлять при запуске приложения
     int displayOnStartup; //!< Отображать при запуске приложения
     bool starred; //!< Избранная лента
+    bool duplicateNewsMode; //!< Автоматический удалять дубликаты новостей
   } general;
 
   //! Настройки чтения
   struct reading{
     bool markSelectedAsRead; //!< Помечать выбранное как "Прочитано"
-    quint32 markSelectedTime; //!< Время до отметки"Прочитано"
+    quint32 markSelectedTime; //!< Время до отметки "Прочитано"
     bool markReadWhileReading; //!< Mark news as read while reading in newspaper layout
     bool markDisplayedAsReadWhenSwitch; //!< Помечать отображаемые новости как прочитанные при переключении ленты
     bool markDisplayedAsReadWhenClose; //!< Помечать отображаемые новости как прочитанные при закрытии таба
@@ -94,6 +95,7 @@ private:
   QCheckBox *showDescriptionNews_;
   QCheckBox *starredOn_;
   QCheckBox *loadImagesOn;
+  QCheckBox *duplicateNewsMode_;
 
   QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
 
