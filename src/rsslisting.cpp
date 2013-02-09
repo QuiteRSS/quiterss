@@ -2077,56 +2077,57 @@ void RSSListing::addFolder()
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
 void RSSListing::deleteFeed()
 {
-  if (feedsTreeView_->selectIndex_.isValid()) {
-    int feedDeleteId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
-    int feedParentId = feedsTreeModel_->getParidByIndex(feedsTreeView_->selectIndex_);
+  if (!feedsTreeView_->selectIndex().isValid()) return;
 
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
-    int feedCurrentId = feedsTreeModel_->getIdByIndex(currentIndex);
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
+  int feedDeleteId = feedsTreeModel_->getIdByIndex(index);
+  int feedParentId = feedsTreeModel_->getParidByIndex(index);
 
-    QMessageBox msgBox;
-    msgBox.setIcon(QMessageBox::Question);
-    if (feedsTreeModel_->isFolder(feedsTreeView_->selectIndex_)) {
-      msgBox.setWindowTitle(tr("Delete Folder"));
-      msgBox.setText(QString(tr("Are you sure to delete the folder '%1'?")).
-          arg(feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "text").toString()));
-    } else {
-      msgBox.setWindowTitle(tr("Delete Feed"));
-      msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
-          arg(feedsTreeModel_->dataField(feedsTreeView_->selectIndex_, "text").toString()));
-    }
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    msgBox.setDefaultButton(QMessageBox::No);
+  QPersistentModelIndex currentIndex = feedsTreeView_->currentIndex();
+  int feedCurrentId = feedsTreeModel_->getIdByIndex(currentIndex);
 
-    if (msgBox.exec() == QMessageBox::No) return;
-
-    db_.transaction();
-    QSqlQuery q;
-    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedDeleteId));
-    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedDeleteId));
-    q.exec("VACUUM");
-    q.finish();
-    db_.commit();
-
-    QList<int> categoriesList;
-    categoriesList << feedParentId;
-    recountFeedCategories(categoriesList);
-
-    // Если удаляется лента на которой стоит фокус и эта лента последняя,
-    // то курсор нужно ставить на предыдущую ленту, чтобы не курсор пропадал.
-    // Иначе курсор ставим на ранее сфокусированную ленту.
-    // Сравниваем идентификаторы, т.к. сам selectedIndex после скрытия
-    // всплывающего меню устанавливается на currentIndex()
-    if (feedCurrentId == feedDeleteId) {
-      QModelIndex index = feedsTreeView_->indexBelow(currentIndex);
-      if (!index.isValid())
-        index = feedsTreeView_->indexAbove(currentIndex);
-      currentIndex = index;
-    }
-    feedsTreeView_->setCurrentIndex(currentIndex);
-    feedsModelReload();
-    slotFeedClicked(feedsTreeView_->currentIndex());
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Question);
+  if (feedsTreeModel_->isFolder(index)) {
+    msgBox.setWindowTitle(tr("Delete Folder"));
+    msgBox.setText(QString(tr("Are you sure to delete the folder '%1'?")).
+                   arg(feedsTreeModel_->dataField(index, "text").toString()));
+  } else {
+    msgBox.setWindowTitle(tr("Delete Feed"));
+    msgBox.setText(QString(tr("Are you sure to delete the feed '%1'?")).
+                   arg(feedsTreeModel_->dataField(index, "text").toString()));
   }
+  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+  msgBox.setDefaultButton(QMessageBox::No);
+
+  if (msgBox.exec() == QMessageBox::No) return;
+
+  db_.transaction();
+  QSqlQuery q;
+  q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedDeleteId));
+  q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedDeleteId));
+  q.exec("VACUUM");
+  q.finish();
+  db_.commit();
+
+  QList<int> categoriesList;
+  categoriesList << feedParentId;
+  recountFeedCategories(categoriesList);
+
+  // Если удаляется лента на которой стоит фокус и эта лента последняя,
+  // то курсор нужно ставить на предыдущую ленту, чтобы не курсор пропадал.
+  // Иначе курсор ставим на ранее сфокусированную ленту.
+  // Сравниваем идентификаторы, т.к. сам selectedIndex после скрытия
+  // всплывающего меню устанавливается на currentIndex()
+  if (feedCurrentId == feedDeleteId) {
+    QModelIndex index = feedsTreeView_->indexBelow(currentIndex);
+    if (!index.isValid())
+      index = feedsTreeView_->indexAbove(currentIndex);
+    currentIndex = index;
+  }
+  feedsTreeView_->setCurrentIndex(currentIndex);
+  feedsModelReload();
+  slotFeedClicked(feedsTreeView_->currentIndex());
 }
 
 /**
@@ -2721,8 +2722,6 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newC
     }
   }
 
-  feedsTreeView_->selectIndex_ = feedsTreeView_->currentIndex();
-
   if (currentNewsTab->type_ == TAB_FEED) {
     bool folderUpdate = false;
     int feedParentId = 0;
@@ -3315,7 +3314,7 @@ void RSSListing::slotGetFeed()
 
   int feedCount = 0;
 
-  QModelIndex index = feedsTreeView_->selectIndex_;
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
   if (feedsTreeModel_->isFolder(index)) {
     QSqlQuery q;
     QString qStr = QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
@@ -3397,7 +3396,7 @@ void RSSListing::markFeedRead()
 {
   bool openFeed = false;
   QString qStr;
-  QModelIndex index = feedsTreeView_->selectIndex_;
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
   bool isFolder = feedsTreeModel_->isFolder(index);
   int id = feedsTreeModel_->getIdByIndex(index);
   if (currentNewsTab->feedId_ == id)
@@ -4227,14 +4226,14 @@ void RSSListing::showContextMenuToolBar(const QPoint &p)
 
 void RSSListing::slotShowFeedPropertiesDlg()
 {
-  if (!feedsTreeView_->selectIndex_.isValid()){
+  if (!feedsTreeView_->selectIndex().isValid()) {
     feedProperties_->setEnabled(false);
     return;
   }
 
-  QModelIndex index = feedsTreeView_->selectIndex_;
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
   int feedId = feedsTreeModel_->getIdByIndex(index);
-
+  int feedParentId = feedsTreeModel_->getParidByIndex(index);
   bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
@@ -4337,9 +4336,10 @@ void RSSListing::slotShowFeedPropertiesDlg()
   q.addBindValue(feedId);
   q.exec();
 
-  QModelIndex indexText    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("text"));
-  QModelIndex indexUrl     = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("xmlUrl"));
-  QModelIndex indexStartup = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayOnStartup"));
+  index = feedsTreeModel_->getIndexById(feedId, feedParentId);
+  QPersistentModelIndex indexText    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("text"));
+  QPersistentModelIndex indexUrl     = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("xmlUrl"));
+  QPersistentModelIndex indexStartup = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayOnStartup"));
   QModelIndex indexImages  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayEmbeddedImages"));
   QModelIndex indexNews    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayNews"));
   QModelIndex indexLabel   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("label"));
@@ -4375,9 +4375,9 @@ void RSSListing::slotShowFeedPropertiesDlg()
 void RSSListing::slotFeedMenuShow()
 {
   deleteFeedAct_->setEnabled(
-      0 == feedsTreeModel_->rowCount(feedsTreeView_->selectIndex_));
+      0 == feedsTreeModel_->rowCount(feedsTreeView_->selectIndex()));
 
-  feedProperties_->setEnabled(feedsTreeView_->selectIndex_.isValid());
+  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
 //! Обновление информации в трее: значок и текст подсказки
@@ -4548,9 +4548,9 @@ void RSSListing::showNewsFiltersDlg(bool newFilter)
 
 void RSSListing::showFilterRulesDlg()
 {
-  if (!feedsTreeView_->selectIndex_.isValid()) return;
+  if (!feedsTreeView_->selectIndex().isValid()) return;
 
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->selectIndex_);
+  int feedId = feedsTreeView_->selectId_;
 
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         this, -1, feedId);
@@ -4816,8 +4816,9 @@ void RSSListing::slotSwitchPrevFocus()
 //! Открытие ленты в новой вкладке
 void RSSListing::slotOpenFeedNewTab()
 {
-  feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex_);
-  slotFeedSelected(feedsTreeView_->selectIndex_, true);
+  feedsTreeView_->selectIdEn_ = false;
+  feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex());
+  slotFeedSelected(feedsTreeView_->selectIndex(), true);
 }
 
 //! Закрытие вкладки
@@ -5132,6 +5133,7 @@ void RSSListing::feedsModelReload()
   expandNodes();
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  feedsTreeView_->selectIdEn_ = false;
   feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
 }

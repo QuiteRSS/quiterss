@@ -10,13 +10,16 @@ class FeedsTreeView : public QyurSqlTreeView
   Q_OBJECT
 public:
   FeedsTreeView(QWidget * parent = 0);
-  QModelIndex selectIndex_;
+  int selectId_;
+  int selectParentId_;
+  bool selectIdEn_;
 
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int next = 0);
   QModelIndex indexPrevious(const QModelIndex &indexCur);
   QModelIndex indexNext(const QModelIndex &indexCur);
 
 public slots:
+  QPersistentModelIndex selectIndex();
   void setSelectIndex();
   void updateCurrentIndex(const QModelIndex &index);
 

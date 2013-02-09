@@ -9,6 +9,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
 {
   dragPos_ =      QPoint();
   dragStartPos_ = QPoint();
+  selectIdEn_ = true;
 
   setObjectName("feedsTreeView_");
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -131,10 +132,14 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
   if (!indexAt(event->pos()).isValid()) return;
 
   QRect rectText = visualRect(indexAt(event->pos()));
-  if (event->pos().x() >= rectText.x())
-    selectIndex_ = indexAt(event->pos());
+  QModelIndex index;
+  if (event->pos().x() >= rectText.x()) {
+    index = indexAt(event->pos());
+    selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+    selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
+  }
   if ((event->buttons() & Qt::MiddleButton)) {
-    if (selectIndex_.isValid())
+    if (index.isValid())
       emit signalMiddleClicked();
   } else if (event->buttons() & Qt::RightButton) {
 
@@ -193,7 +198,13 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 /*virtual*/ void FeedsTreeView::currentChanged(const QModelIndex &current,
                                            const QModelIndex &previous)
 {
-  selectIndex_ = current;
+  if (selectIdEn_) {
+    QModelIndex index = current;
+    selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+    selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
+  }
+  selectIdEn_ = true;
+
   QyurSqlTreeView::currentChanged(current, previous);
 }
 
@@ -357,9 +368,16 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   painter.end();
 }
 
+QPersistentModelIndex FeedsTreeView::selectIndex()
+{
+  return ((FeedsTreeModel*)model())->getIndexById(selectId_, selectParentId_);
+}
+
 void FeedsTreeView::setSelectIndex()
 {
-  selectIndex_ = currentIndex();
+  QModelIndex index = currentIndex();
+  selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+  selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
 }
 
 /** @brief Обновление курсора без пролистывания списка ************************/
