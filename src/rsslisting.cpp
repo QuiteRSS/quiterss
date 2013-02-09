@@ -5155,7 +5155,11 @@ void RSSListing::findText()
 //! Показать уведовление о входящих новостях
 void RSSListing::showNotification()
 {
-  if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) return;
+  if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) {
+    idFeedList_.clear();
+    cntNewNewsList_.clear();
+    return;
+  }
 
   if (notificationWidget) delete notificationWidget;
   notificationWidget = new NotificationWidget(
