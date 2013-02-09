@@ -850,8 +850,7 @@ void NewsTabWidget::markAllNewsRead()
   q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
   if (q.next()) {
     if (q.value(0).toString().isEmpty()) {
-      strId = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1))").
-          arg(feedId_);
+      strId = QString("(%1)").arg(rsslisting_->getIdFeedsString(feedId_));
     } else {
       strId = QString("feedId='%1'").arg(feedId_);
     }
@@ -1029,8 +1028,7 @@ void NewsTabWidget::slotSort(int column, int order)
   q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
   if (q.next()) {
     if (q.value(0).toString().isEmpty()) {
-      strId = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1))").
-          arg(feedId_);
+      strId = QString("(%1)").arg(rsslisting_->getIdFeedsString(feedId_));
     } else {
       strId = QString("feedId='%1'").arg(feedId_);
     }

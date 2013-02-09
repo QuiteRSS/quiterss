@@ -3408,13 +3408,11 @@ void RSSListing::markFeedRead()
     if (currentNewsTab->feedParId_ == id)
       openFeed = true;
 
-    qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND deleted==0 "
-                   "AND feedId IN (SELECT id FROM feeds WHERE parentId=='%1')").
-        arg(id);
+    qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND deleted==0 AND (%1)").
+        arg(getIdFeedsString(id));
     q.exec(qStr);
-    qStr = QString("UPDATE news SET new=0 WHERE new==1 "
-                   "AND feedId IN (SELECT id FROM feeds WHERE parentId=='%1')").
-        arg(id);
+    qStr = QString("UPDATE news SET new=0 WHERE new==1 AND (%1)").
+        arg(getIdFeedsString(id));
     q.exec(qStr);
   } else {
     if (openFeed) {
@@ -3630,7 +3628,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   // Создаем фильтр по котегории или по ленте
   if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
-    newsFilterStr = QString("(feedId IN (SELECT id FROM feeds WHERE parentId=%1)) AND ").arg(feedId);
+    newsFilterStr = QString("(%1) AND ").arg(getIdFeedsString(feedId));
   } else {
     newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
   }
@@ -5797,4 +5795,46 @@ void RSSListing::prevUnreadNews()
   QModelIndex index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(index);
   currentNewsTab->slotNewsViewSelected(index);
+}
+
+/** @brief Получение списка ИД лент находящихся в указанной папке
+ *----------------------------------------------------------------------------*/
+QList<int> RSSListing::getIdFeedsInList(int idFolder)
+{
+  QList<int> idList;
+  if (idFolder <= 0) return idList;
+
+  QSqlQuery q;
+  QQueue<int> parentIds;
+  parentIds.enqueue(idFolder);
+  while (!parentIds.empty()) {
+    int parentId = parentIds.dequeue();
+    QString qStr = QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").
+        arg(parentId);
+    q.exec(qStr);
+    while (q.next()) {
+      int feedId = q.value(0).toInt();
+      if (!q.value(1).toString().isEmpty())
+        idList << feedId;
+      parentIds.enqueue(feedId);
+    }
+  }
+  return idList;
+}
+
+/** @brief Получение строки из ИД лент находящихся в указанной папке
+ *----------------------------------------------------------------------------*/
+QString RSSListing::getIdFeedsString(int idFolder)
+{
+  QList<int> idList = getIdFeedsInList(idFolder);
+  if (idList.count()) {
+    QString str;
+    foreach (int id, idList) {
+      if (!str.isEmpty()) str.append(" OR ");
+      str.append(QString("feedId=%1").arg(id));
+    }
+    return str;
+  } else {
+    return QString("feedId=-1");
+  }
 }

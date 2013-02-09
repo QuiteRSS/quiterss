@@ -35,6 +35,8 @@ public:
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
   void expandNodes();
+  QList<int> getIdFeedsInList(int idFolder);
+  QString getIdFeedsString(int idFolder);
 
   QSettings *settings_;
   QSqlDatabase db_;
