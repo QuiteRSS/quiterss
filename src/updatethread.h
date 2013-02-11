@@ -52,8 +52,8 @@ public:
 
 signals:
   void startGetUrlTimer();
-  void readedXml(const QByteArray &xml, const QString &feedUrl);
-  void getUrlDone(const int &result, const QDateTime &dtReply = QDateTime());
+  void getUrlDone(const int &result, const QString &feedUrl = "",
+                  const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
   void signalHead(const QNetworkRequest &request);
   void signalGet(const QNetworkRequest &request);
   void signalAuthentication(QNetworkReply* reply, QAuthenticator* auth);

@@ -20,7 +20,8 @@ signals:
   void feedUpdated(int feedId, const bool &changed, int newCount);
 
 public slots:
-  void slotParse(const QByteArray &xmlData, const QString &feedUrl);
+  void slotParse(const QByteArray &xmlData, const QString &feedUrl,
+                 const QDateTime &dtReply);
 
 };
 

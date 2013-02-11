@@ -20,24 +20,26 @@ ParseThread::~ParseThread()
 
 void ParseThread::run()
 {
-  parseTimer_ = new QTimer();
-  parseTimer_->setSingleShot(true);
-  connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
-  connect(this, SIGNAL(startTimer()), parseTimer_, SLOT(start()));
+  QTimer parseTimer;
+  parseTimer.setSingleShot(true);
+  connect(&parseTimer, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
+  connect(this, SIGNAL(startTimer()), &parseTimer, SLOT(start()));
 
   parseObject_ = new ParseObject(dataDirPath_);
-  connect(this, SIGNAL(signalReadyParse(QByteArray,QString)),
-          parseObject_, SLOT(slotParse(QByteArray,QString)));
+  connect(this, SIGNAL(signalReadyParse(QByteArray,QString,QDateTime)),
+          parseObject_, SLOT(slotParse(QByteArray,QString,QDateTime)));
   connect(parseObject_, SIGNAL(feedUpdated(int, bool, int)),
           this->parent(), SLOT(slotUpdateFeed(int, bool, int)));
 
   exec();
 }
 
-void ParseThread::parseXml(const QByteArray &data, const QString &feedUrl)
+void ParseThread::parseXml(const QByteArray &data, const QString &feedUrl,
+                           const QDateTime &dtReply)
 {
   feedsQueue_.enqueue(feedUrl);
   xmlsQueue_.enqueue(data);
+  dtReadyQueue_.enqueue(dtReply);
   qDebug() << "xmlsQueue_ <<" << feedUrl << "count=" << xmlsQueue_.count();
   emit startTimer();
 }
@@ -49,9 +51,10 @@ void ParseThread::getQueuedXml()
   while (!feedsQueue_.isEmpty()) {
     currentFeedUrl_ = feedsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();
+    currentDtReady_ = dtReadyQueue_.dequeue();
     qDebug() << "xmlsQueue_ >>" << currentFeedUrl_ << "count=" << xmlsQueue_.count();
-    //    parse();
-    emit signalReadyParse(currentXml_, currentFeedUrl_);
+
+    emit signalReadyParse(currentXml_, currentFeedUrl_, currentDtReady_);
   }
 
   currentFeedUrl_.clear();

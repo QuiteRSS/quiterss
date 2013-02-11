@@ -92,18 +92,15 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   persistentUpdateThread_->setObjectName("persistentUpdateThread_");
   connect(this, SIGNAL(startGetUrlTimer()),
           persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
-  connect(persistentUpdateThread_, SIGNAL(readedXml(QByteArray, QString)),
-          this, SLOT(receiveXml(QByteArray, QString)));
-  connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QDateTime)),
-          this, SLOT(getUrlDone(int,QDateTime)));
+  connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QString,QByteArray,QDateTime)),
+          this, SLOT(getUrlDone(int,QString,QByteArray,QDateTime)));
   connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
   persistentParseThread_ = new ParseThread(this, lastFeedPath_);
   persistentParseThread_->setObjectName("persistentParseThread_");
-  connect(this, SIGNAL(xmlReadyParse(QByteArray,QString)),
-          persistentParseThread_, SLOT(parseXml(QByteArray,QString)),
-          Qt::QueuedConnection);
+  connect(this, SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
+          persistentParseThread_, SLOT(parseXml(QByteArray,QString,QDateTime)));
 
   cleanUp();
 
@@ -2212,8 +2209,8 @@ void RSSListing::slotImportFeeds()
                         QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
             q.exec();
             parentIdsStack.push(q.lastInsertId().toInt());
-            qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
-            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+//            qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
+//            qDebug() << q.lastError().number() << ": " << q.lastError().text();
           }
         }
         // Найдена лента
@@ -2239,8 +2236,8 @@ void RSSListing::slotImportFeeds()
             q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
             q.addBindValue(parentIdsStack.top());
             q.exec();
-            qDebug() << q.lastQuery() << q.boundValues();
-            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+//            qDebug() << q.lastQuery() << q.boundValues();
+//            qDebug() << q.lastError().number() << ": " << q.lastError().text();
 
             persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
             faviconLoader_->slotRequestUrl(
@@ -2356,35 +2353,18 @@ void RSSListing::slotExportFeeds()
 
   file.close();
 }
-/*! \brief приём xml-файла ****************************************************/
-void RSSListing::receiveXml(const QByteArray &data, const QString &feedUrl)
-{
-  feedUrl_ = feedUrl;
-  data_.append(data);
-}
 
 /*! \brief Обработка окончания запроса ****************************************/
-void RSSListing::getUrlDone(const int &result, const QDateTime &dtReply)
+void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
+                            const QByteArray &data, const QDateTime &dtReply)
 {
   qDebug() << "getUrl result =" << result;
 
-  if (!feedUrl_.isEmpty()) {
-    if (!data_.isEmpty()) {
-      emit xmlReadyParse(data_, feedUrl_);
-      QSqlQuery q;
-      q.prepare("UPDATE feeds SET lastBuildDate = :lastBuildDate "
-                "WHERE xmlUrl LIKE :xmlUrl");
-      q.bindValue(":lastBuildDate", dtReply.toString(Qt::ISODate));
-      q.bindValue(":xmlUrl",        feedUrl_);
-      q.exec();
-      qDebug() << feedUrl_ << dtReply.toString(Qt::ISODate);
-      qDebug() << q.lastQuery() << q.lastError() << q.lastError().text();
-    } else {
-      slotUpdateFeed(0, false, 0);
-    }
+  if (!data.isEmpty()) {
+    emit xmlReadyParse(data, feedUrlStr, dtReply);
+  } else {
+    slotUpdateFeed(0, false, 0);
   }
-  data_.clear();
-  feedUrl_.clear();
 }
 
 /** @brief Обновление счётчиков ленты и всех родительский категорий
@@ -3320,7 +3300,7 @@ void RSSListing::slotGetFeed()
     QString qStr = QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
         arg(feedsTreeModel_->dataField(index, "id").toInt());
     q.exec(qStr);
-    qDebug() << q.lastError();
+//    qDebug() << q.lastError();
     while (q.next()) {
       QString userInfo = getUserInfo(q.record().value(0).toString(),
                                      q.record().value(2).toInt());
@@ -3352,7 +3332,7 @@ void RSSListing::slotGetAllFeeds()
 
   QSqlQuery q;
   q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
-  qDebug() << q.lastError();
+//  qDebug() << q.lastError();
   while (q.next()) {
     QString userInfo = getUserInfo(q.record().value(0).toString(),
                                    q.record().value(2).toInt());

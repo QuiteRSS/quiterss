@@ -12,7 +12,8 @@ ParseObject::ParseObject(QString dataDirPath, QObject *parent)
 {
 }
 
-void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
+void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
+                            const QDateTime &dtReply)
 {
   if (!dataDirPath_.isEmpty()) {
     QFile file(dataDirPath_ + QDir::separator() + "lastfeed.dat");
@@ -44,17 +45,18 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
   QString enclosureType;
   QString enclosureLength;
 
-  qDebug() << "=================== parseXml:start ============================";
+  qCritical() << "=================== parseXml:start ============================";
+  QSqlDatabase db = QSqlDatabase::database();
+  db.transaction();
 
   // поиск идентификатора ленты и режима дубликатов новостей в таблице лент
   int parseFeedId = 0;
   bool duplicateNewsMode = false;
-
   QSqlQuery q;
   q.prepare("SELECT id, duplicateNewsMode FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrl);
   q.exec();
-  while (q.next()) {
+  if (q.next()) {
     parseFeedId = q.value(0).toInt();
     duplicateNewsMode = q.value(1).toBool();
   }
@@ -62,17 +64,22 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(feedUrl);
+    db.commit();
     emit feedUpdated(parseFeedId, false, 0);
     return;
   }
 
-  qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).
-              arg(parseFeedId);
+  // Устанавливаем время получения данных с сервера
+  q.prepare("UPDATE feeds SET lastBuildDate=? WHERE id=?");
+  q.addBindValue(dtReply.toString(Qt::ISODate));
+  q.addBindValue(parseFeedId);
+  q.exec();
+
+  qCritical() << QString("Feed '%1' found with id = %2").arg(feedUrl).
+                 arg(parseFeedId);
 
   // собственно сам разбор
   bool feedChanged = false;
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
   int itemCount = 0;
   QXmlStreamReader xml(xmlData.trimmed());
   xml.setNamespaceProcessing(false);
@@ -112,7 +119,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
         if (isHeader) {
           rssPubDateString = parseDate(rssPubDateString, feedUrl);
 
-          QSqlQuery q;
           QString qStr("UPDATE feeds "
                        "SET title=?, description=?, htmlUrl=?, "
                        "author_name=?, pubdate=? "
@@ -125,9 +131,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
           q.addBindValue(rssPubDateString);
           q.addBindValue(parseFeedId);
           q.exec();
-          qDebug() << "q.exec(" << q.lastQuery() << ")";
-          qDebug() << q.boundValues();
-          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+//          qDebug() << "q.exec(" << q.lastQuery() << ")";
+//          qDebug() << q.boundValues();
+//          qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         isHeader = false;
         titleString.clear();
@@ -144,7 +150,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
         atomUpdatedString = parseDate(atomUpdatedString, feedUrl);
 
         if (isHeader) {
-          QSqlQuery q;
           QString qStr ("UPDATE feeds "
                         "SET title=?, description=?, htmlUrl=?, "
                         "author_name=?, author_email=?, "
@@ -164,9 +169,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
           q.addBindValue(atomUpdatedString);
           q.addBindValue(parseFeedId);
           q.exec();
-          qDebug() << "q.exec(" << q.lastQuery() << ")";
-          qDebug() << q.boundValues();
-          qDebug() << q.lastError().number() << ": " << q.lastError().text();
+//          qDebug() << "q.exec(" << q.lastQuery() << ")";
+//          qDebug() << q.boundValues();
+//          qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         isHeader = false;
         titleString.clear();
@@ -210,7 +215,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
             toPlainText();
 
         // поиск дубликата статей в базе
-        QSqlQuery q;
         QString qStr;
         qDebug() << "guid:     " << rssGuidString;
         qDebug() << "link_href:" << linkString;
@@ -284,12 +288,10 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
             qDebug() << "       " << enclosureUrl;
             qDebug() << "       " << enclosureType;
             qDebug() << "       " << enclosureLength;
-            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+//            qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }
         }
-        q.finish();
-
         ++itemCount;
       }
       // atom::feed
@@ -300,7 +302,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
             toPlainText();
 
         // поиск дубликата статей в базе
-        QSqlQuery q;
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
         qDebug() << "title:" << titleString;
@@ -391,12 +392,10 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
             qDebug() << "       " << enclosureUrl;
             qDebug() << "       " << enclosureType;
             qDebug() << "       " << enclosureLength;
-            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+//            qDebug() << q.lastError().number() << ": " << q.lastError().text();
             feedChanged = true;
           }
         }
-        q.finish();
-
         ++itemCount;
       }
       if (isHeader) {
@@ -478,10 +477,11 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl)
     newCount = recountFeedCounts(parseFeedId);
   }
 
+  q.finish();
   db.commit();
-  qDebug() << "=================== parseXml:finish ===========================";
 
   emit feedUpdated(parseFeedId, feedChanged, newCount);
+  qCritical() << "=================== parseXml:finish ===========================";
 }
 
 QString ParseObject::parseDate(QString dateString, QString urlString)

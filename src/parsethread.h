@@ -18,10 +18,11 @@ private:
   QString dataDirPath_;
   QString currentFeedUrl_;
   QByteArray currentXml_;
+  QDateTime currentDtReady_;
   QQueue<QString> feedsQueue_;
   QQueue<QByteArray> xmlsQueue_;
+  QQueue<QDateTime> dtReadyQueue_;
 
-  QTimer *parseTimer_;
   ParseObject *parseObject_;
 
   void run();
@@ -32,13 +33,15 @@ public:
 
 signals:
   void startTimer();
-  void signalReadyParse(const QByteArray &xml, const QString &feedUrl);
+  void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
+                        const QDateTime &dtReply);
 
 private slots:
   void getQueuedXml();
 
 public slots:
-  void parseXml(const QByteArray &data, const QString &feedUrl);
+  void parseXml(const QByteArray &data, const QString &feedUrl,
+                const QDateTime &dtReply);
 
 };
 
