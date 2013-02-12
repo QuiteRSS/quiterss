@@ -48,14 +48,15 @@ void ParseThread::getQueuedXml()
 {
   if (!currentFeedUrl_.isEmpty()) return;
 
-  while (!feedsQueue_.isEmpty()) {
+  if (!feedsQueue_.isEmpty()) {
     currentFeedUrl_ = feedsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();
     currentDtReady_ = dtReadyQueue_.dequeue();
     qDebug() << "xmlsQueue_ >>" << currentFeedUrl_ << "count=" << xmlsQueue_.count();
 
     emit signalReadyParse(currentXml_, currentFeedUrl_, currentDtReady_);
-  }
 
-  currentFeedUrl_.clear();
+    currentFeedUrl_.clear();
+    emit startTimer();
+  }
 }

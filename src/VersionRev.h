@@ -1,1 +1,1 @@
-#define HG_REVISION 2003 
+#define HG_REVISION 2006 
