@@ -2155,8 +2155,8 @@ void RSSListing::slotImportFeeds()
   updateFeedsStart_ = true;
 
   timer_.start();
-  qCritical() << "Start update";
-  qCritical() << "------------------------------------------------------------";
+//  qCritical() << "Start update";
+//  qCritical() << "------------------------------------------------------------";
 
   db_.transaction();
 
@@ -2268,10 +2268,10 @@ void RSSListing::slotImportFeeds()
 
   showProgressBar(requestUrlCount);
 
-  qCritical() << "Start update: " << timer_.elapsed();
+//  qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
-  qCritical() << "Start update: " << timer_.elapsed() << requestUrlCount;
-  qCritical() << "------------------------------------------------------------";
+//  qCritical() << "Start update: " << timer_.elapsed() << requestUrlCount;
+//  qCritical() << "------------------------------------------------------------";
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
 void RSSListing::slotExportFeeds()
@@ -2652,8 +2652,8 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newC
     progressBar_->setMaximum(0);
     updateFeedsCount_ = 0;
     updateFeedsStart_ = false;
-    qCritical() << "Stop update: " << timer_.elapsed();
-    qCritical() << "------------------------------------------------------------";
+//    qCritical() << "Stop update: " << timer_.elapsed();
+//    qCritical() << "------------------------------------------------------------";
   }
 
   if (!changed) {
@@ -3345,8 +3345,8 @@ void RSSListing::slotGetAllFeeds()
   showProgressBar(feedCount);
 
   timer_.start();
-  qCritical() << "Start update";
-  qCritical() << "------------------------------------------------------------";
+//  qCritical() << "Start update";
+//  qCritical() << "------------------------------------------------------------";
 }
 
 void RSSListing::slotProgressBarUpdate()

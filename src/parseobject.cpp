@@ -45,7 +45,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   QString enclosureType;
   QString enclosureLength;
 
-  qCritical() << "=================== parseXml:start ============================";
+  qDebug() << "=================== parseXml:start ============================";
   QSqlDatabase db = QSqlDatabase::database();
   db.transaction();
 
@@ -75,7 +75,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   q.addBindValue(parseFeedId);
   q.exec();
 
-  qCritical() << QString("Feed '%1' found with id = %2").arg(feedUrl).
+  qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).
                  arg(parseFeedId);
 
   // собственно сам разбор
@@ -481,7 +481,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   db.commit();
 
   emit feedUpdated(parseFeedId, feedChanged, newCount);
-  qCritical() << "=================== parseXml:finish ===========================";
+  qDebug() << "=================== parseXml:finish ===========================";
 }
 
 QString ParseObject::parseDate(QString dateString, QString urlString)
