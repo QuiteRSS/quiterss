@@ -69,12 +69,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     return;
   }
 
-  // Устанавливаем время получения данных с сервера
-  q.prepare("UPDATE feeds SET lastBuildDate=? WHERE id=?");
-  q.addBindValue(dtReply.toString(Qt::ISODate));
-  q.addBindValue(parseFeedId);
-  q.exec();
-
   qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).
                  arg(parseFeedId);
 
@@ -464,10 +458,11 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     qDebug() << str;
   }
 
-  // Устанавливаем время обновления ленты
-  q.prepare("UPDATE feeds SET updated=? WHERE id=?");
+  // Устанавливаем время обновления ленты и время получения данных с сервера
+  q.prepare("UPDATE feeds SET updated=?, lastBuildDate=? WHERE id=?");
   q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                        "yyyy-MM-ddTHH:mm:ss"));
+  q.addBindValue(dtReply.toString(Qt::ISODate));
   q.addBindValue(parseFeedId);
   q.exec();
 
@@ -477,7 +472,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     newCount = recountFeedCounts(parseFeedId);
   }
 
-  q.finish();
   db.commit();
 
   emit feedUpdated(parseFeedId, feedChanged, newCount);
