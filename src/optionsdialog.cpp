@@ -280,6 +280,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
   editPort_->setFixedWidth(60);
   editUser_ = new LineEdit();
   editPassword_ = new LineEdit();
+  editPassword_->setEchoMode(QLineEdit::Password);
 
   QHBoxLayout *addrPortLayout = new QHBoxLayout();
   addrPortLayout->setMargin(0);
