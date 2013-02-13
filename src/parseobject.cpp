@@ -46,8 +46,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   QString enclosureLength;
 
   qDebug() << "=================== parseXml:start ============================";
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
 
   // поиск идентификатора ленты и режима дубликатов новостей в таблице лент
   int parseFeedId = 0;
@@ -64,7 +62,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(feedUrl);
-    db.commit();
     emit feedUpdated(parseFeedId, false, 0);
     return;
   }
@@ -471,8 +468,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     setUserFilter(parseFeedId);
     newCount = recountFeedCounts(parseFeedId);
   }
-
-  db.commit();
 
   emit feedUpdated(parseFeedId, feedChanged, newCount);
   qDebug() << "=================== parseXml:finish ===========================";
