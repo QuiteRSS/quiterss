@@ -18,6 +18,8 @@ class UpdateThread : public QThread
   Q_OBJECT
 
 private:
+  UpdateObject *updateObject_;
+
   QNetworkProxy networkProxy_;
   QList<QUrl> currentUrls_;
   QList<QString> currentFeeds_;

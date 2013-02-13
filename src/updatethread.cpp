@@ -25,16 +25,16 @@ void UpdateThread::run()
   connect(this, SIGNAL(startGetUrlTimer()), &getUrlTimer_, SLOT(start()));
   connect(&getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  UpdateObject updateObject_;
+  updateObject_ = new UpdateObject();
   connect(this, SIGNAL(signalHead(QNetworkRequest)),
-          &updateObject_, SLOT(slotHead(QNetworkRequest)));
+          updateObject_, SLOT(slotHead(QNetworkRequest)));
   connect(this, SIGNAL(signalGet(QNetworkRequest)),
-          &updateObject_, SLOT(slotGet(QNetworkRequest)));
-  connect(&updateObject_, SIGNAL(signalNetworkReply(QNetworkReply*)),
+          updateObject_, SLOT(slotGet(QNetworkRequest)));
+  connect(updateObject_, SIGNAL(signalNetworkReply(QNetworkReply*)),
           this, SLOT(slotNetworkReply(QNetworkReply*)));
-  connect(&updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+  connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
-  connect(&updateObject_.networkManager_,
+  connect(updateObject_->networkManager_,
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
@@ -114,6 +114,10 @@ void UpdateThread::head(const QUrl &getUrl, const QString &feedUrl, const QDateT
  *******************************************************************************/
 void UpdateThread::finished(QNetworkReply *reply)
 {
+  if (!reply) {
+    qCritical() << "*01";
+    return;
+  }
   QUrl replyUrl = reply->url();
 
   qDebug() << "reply.finished():" << replyUrl.toString();
@@ -215,12 +219,11 @@ void UpdateThread::slotRequestTimeout()
       currentDates_.removeAt(i);
       currentHead_.removeAt(i);
 
-      emit getUrlDone(-3);
-      getQueuedUrl();
-
       int replyIndex = requestUrl_.indexOf(url);
       requestUrl_.removeAt(replyIndex);
       networkReply_.takeAt(replyIndex)->deleteLater();
+      emit getUrlDone(-3);
+      getQueuedUrl();
     } else {
       currentTime_.replace(i, time);
     }

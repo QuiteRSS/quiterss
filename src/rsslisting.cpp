@@ -2358,7 +2358,7 @@ void RSSListing::slotExportFeeds()
 void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
                             const QByteArray &data, const QDateTime &dtReply)
 {
-  qDebug() << "getUrl result =" << result;
+  qDebug() << "getUrl result = " << result << "url: " << feedUrlStr;
 
   if (!data.isEmpty()) {
     emit xmlReadyParse(data, feedUrlStr, dtReply);

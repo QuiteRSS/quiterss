@@ -10,7 +10,7 @@ class UpdateObject : public QObject
 
 public:
   explicit UpdateObject(QObject *parent = 0);
-  NetworkManager networkManager_;
+  NetworkManager *networkManager_;
   
 signals:
   void signalFinished(QNetworkReply *reply);
