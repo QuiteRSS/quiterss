@@ -13,8 +13,8 @@ public:
   NetworkManager *networkManager_;
   
 signals:
-  void signalFinished(QNetworkReply *reply);
-  void signalNetworkReply(QNetworkReply *reply);
+  void signalReplyFinished(QNetworkReply *reply);
+  void signalReplyCreated(QNetworkReply *reply);
   
 public slots:
   void slotHead(const QNetworkRequest &request);

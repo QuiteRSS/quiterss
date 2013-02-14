@@ -25,7 +25,7 @@ FaviconLoader::~FaviconLoader()
   UpdateObject updateObject_;
   connect(this, SIGNAL(signalGet(QNetworkRequest)),
           &updateObject_, SLOT(slotGet(QNetworkRequest)));
-  connect(&updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+  connect(&updateObject_, SIGNAL(signalReplyFinished(QNetworkReply*)),
           this, SLOT(slotFinished(QNetworkReply*)));
 
   exec();

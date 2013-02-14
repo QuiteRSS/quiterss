@@ -30,9 +30,9 @@ void UpdateThread::run()
           updateObject_, SLOT(slotHead(QNetworkRequest)));
   connect(this, SIGNAL(signalGet(QNetworkRequest)),
           updateObject_, SLOT(slotGet(QNetworkRequest)));
-  connect(updateObject_, SIGNAL(signalNetworkReply(QNetworkReply*)),
+  connect(updateObject_, SIGNAL(signalReplyCreated(QNetworkReply*)),
           this, SLOT(slotNetworkReply(QNetworkReply*)));
-  connect(updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+  connect(updateObject_, SIGNAL(signalReplyFinished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
   connect(updateObject_->networkManager_,
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
