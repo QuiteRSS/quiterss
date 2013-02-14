@@ -154,14 +154,14 @@ void FaviconLoader::slotFinished(QNetworkReply *reply)
         }
       }
     } else {
-      if (cntRequests == 0) {
-        QString link = QString("http://%1").arg(url.host());
-        get(link, feedUrl, 1);
+      if ((cntRequests == 0) || (cntRequests == 2)) {
+        QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
+        get(link, feedUrl, cntRequests+1);
       }
     }
   } else {
     if ((cntRequests == 0) || (cntRequests == 2)) {
-      QString link = QString("http://%1").arg(url.host());
+      QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
       get(link, feedUrl, cntRequests+1);
     }
   }
