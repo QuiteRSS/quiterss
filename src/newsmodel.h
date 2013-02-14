@@ -21,7 +21,8 @@ public:
       Qt::MatchFlags flags =
       Qt::MatchFlags(Qt::MatchExactly|Qt::MatchWrap)
       ) const;
-  QString formatDateTime_;
+  QString formatDate_;
+  QString formatTime_;
 
 signals:
   void signalSort(int column, int order);

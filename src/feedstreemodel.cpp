@@ -50,9 +50,9 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
 
         QString strResult;
         if (QDateTime::currentDateTime().date() == dtLocal.date())
-          strResult = dtLocal.toString("hh:mm");
+          strResult = dtLocal.toString(formatTime_);
         else
-          strResult = dtLocal.toString(formatDateTime_.left(formatDateTime_.length()-6));
+          strResult = dtLocal.toString(formatDate_);
         return strResult;
       } else {
         return QVariant();

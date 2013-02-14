@@ -20,7 +20,8 @@ public:
   Qt::DropActions supportedDropActions() const;
   bool isFolder(const QModelIndex &index) const;
   QFont font_;
-  QString formatDateTime_;
+  QString formatDate_;
+  QString formatTime_;
 };
 
 #endif  // FEEDSTREEMODEL_H

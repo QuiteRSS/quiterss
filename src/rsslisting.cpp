@@ -1706,9 +1706,10 @@ void RSSListing::readSettings()
 
   showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
 
-  formatDateTime_ = settings_->value("formatDataTime", "dd.MM.yy hh:mm").toString();
-  feedsTreeModel_->formatDateTime_ = formatDateTime_;
-  feedsTreeModel_->formatDateTime_ = formatDateTime_;
+  formatDate_ = settings_->value("formatData", "dd.MM.yy").toString();
+  formatTime_ = settings_->value("formatTime", "hh:mm").toString();
+  feedsTreeModel_->formatDate_ = formatDate_;
+  feedsTreeModel_->formatTime_ = formatTime_;
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -1912,7 +1913,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("showDescriptionNews", showDescriptionNews_);
 
-  settings_->setValue("formatDataTime", formatDateTime_);
+  settings_->setValue("formatData", formatDate_);
+  settings_->setValue("formatTime", formatTime_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -2968,9 +2970,15 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->showDescriptionNews_->setChecked(showDescriptionNews_);
 
-  for (int i = 0; i < optionsDialog->formatDateTime_->count(); i++) {
-    if (optionsDialog->formatDateTime_->itemData(i).toString() == formatDateTime_) {
-      optionsDialog->formatDateTime_->setCurrentIndex(i);
+  for (int i = 0; i < optionsDialog->formatDate_->count(); i++) {
+    if (optionsDialog->formatDate_->itemData(i).toString() == formatDate_) {
+      optionsDialog->formatDate_->setCurrentIndex(i);
+      break;
+    }
+  }
+  for (int i = 0; i < optionsDialog->formatTime_->count(); i++) {
+    if (optionsDialog->formatTime_->itemData(i).toString() == formatTime_) {
+      optionsDialog->formatTime_->setCurrentIndex(i);
       break;
     }
   }
@@ -3189,9 +3197,12 @@ void RSSListing::showOptionDlg()
 
   showDescriptionNews_ = optionsDialog->showDescriptionNews_->isChecked();
 
-  formatDateTime_ = optionsDialog->formatDateTime_->itemData(
-        optionsDialog->formatDateTime_->currentIndex()).toString();
-  feedsTreeModel_->formatDateTime_ = formatDateTime_;
+  formatDate_ = optionsDialog->formatDate_->itemData(
+        optionsDialog->formatDate_->currentIndex()).toString();
+  feedsTreeModel_->formatDate_ = formatDate_;
+  formatTime_ = optionsDialog->formatTime_->itemData(
+        optionsDialog->formatTime_->currentIndex()).toString();
+  feedsTreeModel_->formatTime_ = formatTime_;
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();

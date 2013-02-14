@@ -395,7 +395,8 @@ void NewsTabWidget::setSettings(bool newTab)
     if (type_ != TAB_WEB) {
       newsView_->setFont(
             QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
-      newsModel_->formatDateTime_ = rsslisting_->formatDateTime_;
+      newsModel_->formatDate_ = rsslisting_->formatDate_;
+      newsModel_->formatTime_ = rsslisting_->formatTime_;
     }
 
     QFont font = QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_);
@@ -1076,9 +1077,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
           Qt::ISODate);
   }
   if (QDateTime::currentDateTime().date() == dtLocal.date())
-    strDate = dtLocal.toString("hh:mm");
+    strDate = dtLocal.toString(rsslisting_->formatTime_);
   else
-    strDate = dtLocal.toString(rsslisting_->formatDateTime_);
+    strDate = dtLocal.toString(rsslisting_->formatDate_);
   webPanelDate_->setText(strDate);
 
   // Формируем панель автора из автора новости

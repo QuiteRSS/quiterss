@@ -86,7 +86,8 @@ public:
   int webFontSize_;
   QString notificationFontFamily_;
   int notificationFontSize_;
-  QString formatDateTime_;
+  QString formatDate_;
+  QString formatTime_;
 
   bool markNewsReadOn_;
   bool markCurNewsRead_;

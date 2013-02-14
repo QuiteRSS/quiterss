@@ -427,25 +427,37 @@ void OptionsDialog::createFeedsWidget()
   openingFeedsLayout->addWidget(positionUnreadNews_, 2, 0, 1, 1);
   openingFeedsLayout->addWidget(nottoOpenNews_, 3, 0, 1, 1);
 
-  formatDateTime_ = new QComboBox(this);
-
   QStringList itemList;
-  itemList << "31.12.99 13:37" << "31.12.1999 13:37"
-           << QString("31. %1. 1999 13:37").arg(tr("Dec"))
-           << QString("31. %1 1999 13:37").arg(tr("December"))
-           << "99-12-31 13:37" << "1999-12-31 13:37";
-  formatDateTime_->addItems(itemList);
-  formatDateTime_->setItemData(0, "dd.MM.yy hh:mm");
-  formatDateTime_->setItemData(1, "dd.MM.yyyy hh:mm");
-  formatDateTime_->setItemData(2, "dd. MMM. yyyy hh:mm");
-  formatDateTime_->setItemData(3, "dd. MMMM yyyy hh:mm");
-  formatDateTime_->setItemData(4, "yy-MM-dd hh:mm");
-  formatDateTime_->setItemData(5, "yyyy-MM-dd hh:mm");
+  itemList << "31.12.99" << "31.12.1999"
+           << QString("31. %1. 1999").arg(tr("Dec"))
+           << QString("31. %1 1999").arg(tr("December"))
+           << "99-12-31" << "1999-12-31" << "12/31/1999";
+  formatDate_ = new QComboBox(this);
+  formatDate_->addItems(itemList);
+  formatDate_->setItemData(0, "dd.MM.yy");
+  formatDate_->setItemData(1, "dd.MM.yyyy");
+  formatDate_->setItemData(2, "dd. MMM. yyyy");
+  formatDate_->setItemData(3, "dd. MMMM yyyy");
+  formatDate_->setItemData(4, "yy-MM-dd");
+  formatDate_->setItemData(5, "yyyy-MM-dd");
+  formatDate_->setItemData(6, "MM/dd/yyyy");
+
+  itemList.clear();
+  itemList << "13:37"  << "13:37:09" << "01:37 PM"<< "01:37:09 PM";
+  formatTime_ = new QComboBox(this);
+  formatTime_->addItems(itemList);
+  formatTime_->setItemData(0, "hh:mm");
+  formatTime_->setItemData(1, "hh:mm:ss");
+  formatTime_->setItemData(2, "hh:mm AP");
+  formatTime_->setItemData(3, "hh:mm:ss AP");
 
   QHBoxLayout *formatDateLayout = new QHBoxLayout();
   formatDateLayout->setMargin(0);
-  formatDateLayout->addWidget(new QLabel(tr("Display format for date and time:")));
-  formatDateLayout->addWidget(formatDateTime_);
+  formatDateLayout->addWidget(new QLabel(tr("Display format for date:")));
+  formatDateLayout->addWidget(formatDate_);
+  formatDateLayout->addSpacing(10);
+  formatDateLayout->addWidget(new QLabel(tr("time:")));
+  formatDateLayout->addWidget(formatTime_);
   formatDateLayout->addStretch();
 
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();

@@ -74,7 +74,8 @@ public:
 
   QCheckBox *showDescriptionNews_;
 
-  QComboBox *formatDateTime_;
+  QComboBox *formatDate_;
+  QComboBox *formatTime_;
 
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;
