@@ -7,7 +7,7 @@
 
 #include "cookiejar.h"
 #include "dbmemfilethread.h"
-#include "faviconloader.h"
+#include "faviconthread.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
@@ -353,7 +353,7 @@ private:
   int openingFeedAction_;
   bool openNewsWebViewOn_;
 
-  FaviconLoader *faviconLoader_;
+  FaviconThread *faviconThread_;
 
   DBMemFileThread *dbMemFileThread_;
   bool commitDataRequest_;
@@ -439,7 +439,8 @@ private slots:
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
-  void slotIconFeedLoad(int feedId, const QByteArray &byteArray, const int &cntQueue);
+  void slotIconFeedLoad(const QString &feedUrl, const QByteArray &byteArray,
+                        const int &cntQueue);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
@@ -525,10 +526,10 @@ private slots:
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
-  void startGetUrlTimer();
   void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
   void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
                      const QDateTime &dtReply);
+  void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();

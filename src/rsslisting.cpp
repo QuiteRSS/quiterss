@@ -95,6 +95,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
           persistentParseThread_, SLOT(parseXml(QByteArray,QString,QDateTime)));
 
+  faviconThread_ = new FaviconThread(this);
+
   cleanUp();
 
   currentNewsTab = NULL;
@@ -182,12 +184,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
           this, SLOT(slotCommitDataRequest(QSessionManager&)));
 
-  faviconLoader_ = new FaviconLoader(this);
-  connect(this, SIGNAL(startGetUrlTimer()),
-          faviconLoader_, SIGNAL(startGetUrlTimer()));
-  connect(faviconLoader_, SIGNAL(signalIconRecived(int, const QByteArray&, const int&)),
-          this, SLOT(slotIconFeedLoad(int, const QByteArray&, const int&)));
-
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalRefreshInfoTray()),
@@ -237,7 +233,7 @@ RSSListing::~RSSListing()
 
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
-  faviconLoader_->quit();
+  faviconThread_->quit();
 
   db_.transaction();
   QSqlQuery q;
@@ -286,7 +282,7 @@ RSSListing::~RSSListing()
 
   while (persistentUpdateThread_->isRunning());
   while (persistentParseThread_->isRunning());
-  while (faviconLoader_->isRunning());
+  while (faviconThread_->isRunning());
 
   db_.close();
 
@@ -2023,9 +2019,7 @@ void RSSListing::addFeed()
     return;
   }
 
-  emit startGetUrlTimer();
-  faviconLoader_->slotRequestUrl(addFeedWizard->htmlUrlString_,
-                                addFeedWizard->feedUrlString_);
+  emit faviconRequestUrl(addFeedWizard->htmlUrlString_, addFeedWizard->feedUrlString_);
 
   QList<int> categoriesList;
   categoriesList << addFeedWizard->feedParentId_;
@@ -2244,7 +2238,7 @@ void RSSListing::slotImportFeeds()
 
             ++updateFeedsCount_;
             emit signalRequestUrl(xmlUrlString, QDateTime(), "");
-            faviconLoader_->slotRequestUrl(
+            emit faviconRequestUrl(
                   xml.attributes().value("htmlUrl").toString(), xmlUrlString);
           }
           parentIdsStack.push(q.lastInsertId().toInt());
@@ -4288,10 +4282,8 @@ void RSSListing::slotShowFeedPropertiesDlg()
 
   feedPropertiesDialog->setFeedProperties(properties);
 
-  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QString,QUrl)),
-          faviconLoader_, SLOT(slotRequestUrl(QString,QUrl)));
-  connect(feedPropertiesDialog, SIGNAL(startGetUrlTimer()),
-          this, SIGNAL(startGetUrlTimer()));
+  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QString,QString)),
+          this, SIGNAL(faviconRequestUrl(QString,QString)));
 
   int result = feedPropertiesDialog->exec();
   settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
@@ -4483,24 +4475,49 @@ void RSSListing::markAllFeedsOld()
   emit signalRefreshInfoTray();
 }
 
-void RSSListing::slotIconFeedLoad(int feedId, const QByteArray &byteArray, const int &cntQueue)
+void RSSListing::slotIconFeedLoad(const QString &feedUrl,
+                                  const QByteArray &byteArray,
+                                  const int &cntQueue)
 {
-  for (int i = 0; i < stackedWidget_->count(); i++) {
-    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-    if (widget->feedId_ == feedId) {
-      QPixmap iconTab;
-      if (!byteArray.isNull()) {
-        iconTab.loadFromData(byteArray);
-      } else {
-        iconTab.load(":/images/feed");
-      }
-      widget->newsIconTitle_->setPixmap(iconTab);
-      break;
-    }
-  }
+  int feedId = 0;
+  QPixmap icon;
+  if (icon.loadFromData(byteArray)) {
+    icon = icon.scaled(16, 16, Qt::IgnoreAspectRatio,
+                       Qt::SmoothTransformation);
+    QByteArray faviconData;
+    QBuffer    buffer(&faviconData);
+    buffer.open(QIODevice::WriteOnly);
+    if (icon.save(&buffer, "ICO")) {
+      QSqlQuery q;
+      q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+      q.bindValue(":xmlUrl", feedUrl);
+      q.exec();
+      if (q.next()) feedId = q.value(0).toInt();
 
-  if (!cntQueue) {
-    feedsModelReload();
+      q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
+      q.addBindValue(faviconData.toBase64());
+      q.addBindValue(feedId);
+      q.exec();
+    }
+    buffer.close();
+
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+      if (widget->feedId_ == feedId) {
+        QPixmap iconTab;
+        if (!byteArray.isNull()) {
+          iconTab.loadFromData(byteArray);
+        } else {
+          iconTab.load(":/images/feed");
+        }
+        widget->newsIconTitle_->setPixmap(iconTab);
+        break;
+      }
+    }
+
+    if (!cntQueue) {
+      feedsModelReload();
+    }
   }
 }
 

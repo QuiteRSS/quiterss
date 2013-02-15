@@ -153,7 +153,6 @@ void FeedPropertiesDialog::slotLoadTitle()
 {
   editTitle->setText(feedProperties.general.title);
   emit signalLoadTitle(feedProperties.general.homepage, feedProperties.general.url);
-  emit startGetUrlTimer();
 }
 //------------------------------------------------------------------------------
 FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()

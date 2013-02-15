@@ -118,8 +118,7 @@ private slots:
   void slotLoadTitle();
 
 signals:
-  void signalLoadTitle(const QString &urlString, const QUrl &feedUrl);
-  void startGetUrlTimer();
+  void signalLoadTitle(const QString &urlString, const QString &feedUrl);
 
 };
 

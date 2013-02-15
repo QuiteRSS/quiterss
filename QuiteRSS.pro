@@ -24,7 +24,6 @@ HEADERS += \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
     src/updateobject.h \
-    src/faviconloader.h \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
@@ -48,7 +47,9 @@ HEADERS += \
     src/updatedelayer.h \
     src/authenticationdialog.h \
     src/networkmanager.h \
-    src/cookiejar.h
+    src/cookiejar.h \
+    src/faviconthread.h \
+    src/faviconobject.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -65,7 +66,6 @@ SOURCES += \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
     src/updateobject.cpp \
-    src/faviconloader.cpp \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
@@ -88,7 +88,9 @@ SOURCES += \
     src/updatedelayer.cpp \
     src/authenticationdialog.cpp \
     src/networkmanager.cpp \
-    src/cookiejar.cpp
+    src/cookiejar.cpp \
+    src/faviconthread.cpp \
+    src/faviconobject.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug
