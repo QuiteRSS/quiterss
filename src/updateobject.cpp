@@ -7,15 +7,16 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
   : QObject(parent),
     requestTimeout_(requestTimeout)
 {
-  setObjectName("updateFeedsObject_");
+  setObjectName("updateObject_");
 
-  QTimer *timeout_ = new QTimer();
-  connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
-  timeout_->start(1000);
+  QTimer *timeout = new QTimer();
+  connect(timeout, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
+  timeout->start(1000);
 
-  QTimer *getUrlTimer_ = new QTimer();
-  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
-  getUrlTimer_->start(10);
+  QTimer *getUrlTimer = new QTimer();
+  getUrlTimer->setSingleShot(true);
+  connect(getUrlTimer, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
+  connect(this, SIGNAL(startTimer()), getUrlTimer, SLOT(start()));
 
   networkManager_ = new NetworkManager(this);
   connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
@@ -25,6 +26,46 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
           SLOT(slotHead(QUrl,QString,QDateTime)));
   connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime)),
           SLOT(slotGet(QUrl,QString,QDateTime)));
+}
+
+/** @brief Постановка сетевого адреса в очередь запросов
+ *----------------------------------------------------------------------------*/
+void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
+                              const QString	&userInfo)
+{
+  feedsQueue_.enqueue(urlString);
+  dateQueue_.enqueue(date);
+  userInfo_.enqueue(userInfo);
+
+  emit startTimer();
+
+  qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
+}
+
+/** @brief Обработка очереди запросов по таймеру
+ *----------------------------------------------------------------------------*/
+void UpdateObject::getQueuedUrl()
+{
+  if (REPLY_MAX_COUNT <= currentFeeds_.size()) {
+    emit startTimer();
+    return;
+  }
+
+  if (!feedsQueue_.isEmpty()) {
+    QString feedUrl = feedsQueue_.dequeue();
+    QUrl getUrl = QUrl::fromEncoded(feedUrl.toLocal8Bit());
+    QString userInfo = userInfo_.dequeue();
+    if (!userInfo.isEmpty()) {
+      getUrl.setUserInfo(userInfo);
+      getUrl.addQueryItem("auth", "http");
+    }
+    QDateTime currentDate = dateQueue_.dequeue();
+
+    emit signalHead(getUrl, feedUrl, currentDate);
+    emit startTimer();
+
+    qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
+  }
 }
 
 /** @brief Подготовка и отправка сетевого запроса для получения заголовка
@@ -65,40 +106,6 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
   QNetworkReply *reply = networkManager_->get(request);
   requestUrl_.append(reply->url());
   networkReply_.append(reply);
-}
-
-/** @brief Постановка сетевого адреса в очередь запросов
- *----------------------------------------------------------------------------*/
-void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
-                              const QString	&userInfo)
-{
-  feedsQueue_.enqueue(urlString);
-  dateQueue_.enqueue(date);
-  userInfo_.enqueue(userInfo);
-
-  qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
-}
-
-/** @brief Обработка очереди запросов по таймеру
- *----------------------------------------------------------------------------*/
-void UpdateObject::getQueuedUrl()
-{
-  if (REPLY_MAX_COUNT <= currentFeeds_.size()) return;
-
-  if (!feedsQueue_.isEmpty()) {
-    QString feedUrl = feedsQueue_.dequeue();
-    QUrl getUrl = QUrl::fromEncoded(feedUrl.toLocal8Bit());
-    QString userInfo = userInfo_.dequeue();
-    if (!userInfo.isEmpty()) {
-      getUrl.setUserInfo(userInfo);
-      getUrl.addQueryItem("auth", "http");
-    }
-    QDateTime currentDate = dateQueue_.dequeue();
-
-    emit signalHead(getUrl, feedUrl, currentDate);
-
-    qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
-  }
 }
 
 /** @brief Завершение обработки сетевого запроса

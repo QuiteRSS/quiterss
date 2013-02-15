@@ -11,7 +11,6 @@
 class UpdateObject : public QObject
 {
   Q_OBJECT
-
 public:
   explicit UpdateObject(int requestTimeout, QObject *parent = 0);
   NetworkManager *networkManager_;
@@ -22,6 +21,7 @@ public slots:
   void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
 
 signals:
+  void startTimer();
   void getUrlDone(const int &result, const QString &feedUrl = "",
                   const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
   void signalHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
