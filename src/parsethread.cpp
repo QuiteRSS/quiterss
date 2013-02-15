@@ -1,6 +1,4 @@
-#include <QDateTime>
 #include <QDebug>
-#include <QMessageBox>
 
 #include "parsethread.h"
 

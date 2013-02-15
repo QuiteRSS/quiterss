@@ -1,9 +1,9 @@
 #include <QDebug>
 #include "updatethread.h"
 
-UpdateThread::UpdateThread(QObject *parent, int requestTimeout) :
-  QThread(parent),
-  requestTimeout_(requestTimeout)
+UpdateThread::UpdateThread(QObject *parent, int requestTimeout)
+  : QThread(parent),
+    requestTimeout_(requestTimeout)
 {
   qDebug() << "UpdateThread::constructor";
 

@@ -3,9 +3,9 @@
 
 #define REPLY_MAX_COUNT 8
 
-UpdateObject::UpdateObject(int requestTimeout, QObject *parent) :
-  QObject(parent),
-  requestTimeout_(requestTimeout)
+UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
+  : QObject(parent),
+    requestTimeout_(requestTimeout)
 {
   setObjectName("updateFeedsObject_");
 

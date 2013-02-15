@@ -2,11 +2,10 @@
 #define PARSETHREAD_H
 
 #include <QtSql>
-
+#include <QDateTime>
 #include <QQueue>
 #include <QThread>
 #include <QUrl>
-#include <QXmlStreamReader>
 
 #include "parseobject.h"
 
