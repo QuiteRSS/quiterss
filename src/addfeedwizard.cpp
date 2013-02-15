@@ -17,13 +17,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath)
   addPage(createNameFeedPage());
 
   persistentUpdateThread_ = new UpdateThread(this);
-  persistentUpdateThread_->setObjectName("persistentUpdateThread_");
-  connect(this, SIGNAL(startGetUrlTimer()),
-          persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
-  connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QString,QByteArray,QDateTime)),
-          this, SLOT(getUrlDone(int,QString,QByteArray,QDateTime)));
-  connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
-          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+
   persistentParseThread_ = new ParseThread(this, dataDirPath);
   persistentParseThread_->setObjectName("persistentParseThread_");
   connect(this, SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
@@ -340,7 +334,7 @@ void AddFeedWizard::addFeed()
 
     q.finish();
 
-    persistentUpdateThread_->requestUrl(feedUrlString_, QDateTime(), userInfo);
+    emit signalRequestUrl(feedUrlString_, QDateTime(), userInfo);
   }
 }
 
@@ -380,7 +374,6 @@ void AddFeedWizard::showProgressBar()
 {
   progressBar_->show();
   QTimer::singleShot(250, this, SLOT(slotProgressBarUpdate()));
-  emit startGetUrlTimer();
 }
 
 void AddFeedWizard::slotProgressBarUpdate()
@@ -451,8 +444,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
 
             authentication_->setChecked(false);
 
-            emit startGetUrlTimer();
-            persistentUpdateThread_->requestUrl(linkFeedString, QDateTime());
+            emit signalRequestUrl(linkFeedString, QDateTime(), "");
           }
         }
       }

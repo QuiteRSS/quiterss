@@ -89,13 +89,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
-  persistentUpdateThread_->setObjectName("persistentUpdateThread_");
-  connect(this, SIGNAL(startGetUrlTimer()),
-          persistentUpdateThread_, SIGNAL(startGetUrlTimer()));
-  connect(persistentUpdateThread_, SIGNAL(getUrlDone(int,QString,QByteArray,QDateTime)),
-          this, SLOT(getUrlDone(int,QString,QByteArray,QDateTime)));
-  connect(persistentUpdateThread_, SIGNAL(signalAuthentication(QNetworkReply*,QAuthenticator*)),
-          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
   persistentParseThread_ = new ParseThread(this, lastFeedPath_);
   persistentParseThread_->setObjectName("persistentParseThread_");
@@ -1855,7 +1848,7 @@ void RSSListing::readSettings()
   networkProxy_.setPort(    settings_->value("networkProxy/port",     "").toUInt());
   networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
   networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
-  persistentUpdateThread_->setProxy(networkProxy_);
+  setProxy(networkProxy_);
 }
 
 /*! \brief Запись настроек в ini-файл *****************************************/
@@ -2009,6 +2002,15 @@ void RSSListing::writeSettings()
                       feedsFilterGroup_->checkedAction()->objectName());
   settings_->setValue("newsSettings/filterName",
                       newsFilterGroup_->checkedAction()->objectName());
+}
+
+void RSSListing::setProxy(const QNetworkProxy proxy)
+{
+  networkProxy_ = proxy;
+  if (QNetworkProxy::DefaultProxy == networkProxy_.type())
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
+  else
+    QNetworkProxy::setApplicationProxy(networkProxy_);
 }
 
 /*! \brief Добавление ленты в список лент *************************************/
@@ -2166,7 +2168,6 @@ void RSSListing::slotImportFeeds()
 
   int elementCount = 0;
   int outlineCount = 0;
-  int requestUrlCount = 0;
   QSqlQuery q;
 
   //* Хранит иерархию outline'ов. Каждый следующий outline может быть вложенным.
@@ -2241,10 +2242,10 @@ void RSSListing::slotImportFeeds()
 //            qDebug() << q.lastQuery() << q.boundValues();
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
 
-            persistentUpdateThread_->requestUrl(xmlUrlString, QDateTime());
+            ++updateFeedsCount_;
+            emit signalRequestUrl(xmlUrlString, QDateTime(), "");
             faviconLoader_->slotRequestUrl(
                   xml.attributes().value("htmlUrl").toString(), xmlUrlString);
-            requestUrlCount++;
           }
           parentIdsStack.push(q.lastInsertId().toInt());
         }
@@ -2268,7 +2269,7 @@ void RSSListing::slotImportFeeds()
 
   file.close();
 
-  showProgressBar(requestUrlCount);
+  showProgressBar(updateFeedsCount_);
 
 //  qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
@@ -3135,7 +3136,7 @@ void RSSListing::showOptionDlg()
   else traySystem->hide();
 
   networkProxy_ = optionsDialog->proxy();
-  persistentUpdateThread_->setProxy(networkProxy_);
+  setProxy(networkProxy_);
 
   if (optionsDialog->embeddedBrowserOn_->isChecked())
     externalBrowserOn_ = 0;
@@ -3290,11 +3291,9 @@ void RSSListing::showProgressBar(int addToMaximum)
   }
   playSoundNewNews_ = false;
 
-  progressBar_->setMaximum(progressBar_->maximum() + addToMaximum);
-  updateFeedsCount_ = updateFeedsCount_ + addToMaximum;
+  progressBar_->setMaximum(addToMaximum);
   progressBar_->show();
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
-  emit startGetUrlTimer();
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
@@ -3302,8 +3301,6 @@ void RSSListing::slotGetFeed()
 {
   if (updateFeedsStart_) return;
   updateFeedsStart_ = true;
-
-  int feedCount = 0;
 
   QPersistentModelIndex index = feedsTreeView_->selectIndex();
   if (feedsTreeModel_->isFolder(index)) {
@@ -3313,24 +3310,24 @@ void RSSListing::slotGetFeed()
     q.exec(qStr);
 //    qDebug() << q.lastError();
     while (q.next()) {
+      ++updateFeedsCount_;
       QString userInfo = getUserInfo(q.record().value(0).toString(),
                                      q.record().value(2).toInt());
-      persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
-                                          q.record().value(1).toDateTime(),
-                                          userInfo);
-      ++feedCount;
+      emit signalRequestUrl(q.record().value(0).toString(),
+                            q.record().value(1).toDateTime(),
+                            userInfo);
     }
   } else {
+    updateFeedsCount_ = updateFeedsCount_ + 1;
     QString userInfo = getUserInfo(feedsTreeModel_->dataField(index, "xmlUrl").toString(),
                                    feedsTreeModel_->dataField(index, "authentication").toInt());
-    persistentUpdateThread_->requestUrl(
+    emit signalRequestUrl(
           feedsTreeModel_->dataField(index, "xmlUrl").toString(),
           QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate),
           userInfo);
-    feedCount = 1;
   }
 
-  showProgressBar(feedCount);
+  showProgressBar(updateFeedsCount_);
 }
 
 /*! \brief Обновление ленты (действие) ****************************************/
@@ -3339,21 +3336,19 @@ void RSSListing::slotGetAllFeeds()
   if (updateFeedsStart_) return;
   updateFeedsStart_ = true;
 
-  int feedCount = 0;
-
   QSqlQuery q;
   q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
 //  qDebug() << q.lastError();
   while (q.next()) {
+    ++updateFeedsCount_;
     QString userInfo = getUserInfo(q.record().value(0).toString(),
                                    q.record().value(2).toInt());
-    persistentUpdateThread_->requestUrl(q.record().value(0).toString(),
-                                        q.record().value(1).toDateTime(),
-                                        userInfo);
-    ++feedCount;
+    emit signalRequestUrl(q.record().value(0).toString(),
+                          q.record().value(1).toDateTime(),
+                          userInfo);
   }
 
-  showProgressBar(feedCount);
+  showProgressBar(updateFeedsCount_);
 
   timer_.start();
 //  qCritical() << "Start update";

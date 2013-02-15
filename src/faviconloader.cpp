@@ -22,11 +22,11 @@ FaviconLoader::~FaviconLoader()
   connect(this, SIGNAL(startGetUrlTimer()), &getUrlTimer_, SLOT(start()));
   connect(&getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
-  UpdateObject updateObject_;
-  connect(this, SIGNAL(signalGet(QNetworkRequest)),
-          &updateObject_, SLOT(slotGet(QNetworkRequest)));
-  connect(&updateObject_, SIGNAL(signalReplyFinished(QNetworkReply*)),
-          this, SLOT(slotFinished(QNetworkReply*)));
+//  UpdateObject updateObject_;
+//  connect(this, SIGNAL(signalGet(QNetworkRequest)),
+//          &updateObject_, SLOT(slotGet(QNetworkRequest)));
+//  connect(&updateObject_, SIGNAL(signalFinished(QNetworkReply*)),
+//          this, SLOT(slotFinished(QNetworkReply*)));
 
   exec();
 }

@@ -1,21 +1,210 @@
+#include <QDebug>
 #include "updateobject.h"
 
-UpdateObject::UpdateObject(QObject *parent) :
-  QObject(parent)
+#define REPLY_MAX_COUNT 8
+
+UpdateObject::UpdateObject(int requestTimeout, QObject *parent) :
+  QObject(parent),
+  requestTimeout_(requestTimeout)
 {
-  networkManager_ = new NetworkManager();
+  setObjectName("updateFeedsObject_");
+
+  QTimer *timeout_ = new QTimer();
+  connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
+  timeout_->start(1000);
+
+  QTimer *getUrlTimer_ = new QTimer();
+  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
+  getUrlTimer_->start(10);
+
+  networkManager_ = new NetworkManager(this);
   connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
-          this, SIGNAL(signalReplyFinished(QNetworkReply*)));
+          this, SLOT(finished(QNetworkReply*)));
+
+  connect(this, SIGNAL(signalHead(QUrl,QString,QDateTime)),
+          SLOT(slotHead(QUrl,QString,QDateTime)));
+  connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime)),
+          SLOT(slotGet(QUrl,QString,QDateTime)));
 }
 
-void UpdateObject::slotHead(const QNetworkRequest &request)
+/** @brief Подготовка и отправка сетевого запроса для получения заголовка
+ *----------------------------------------------------------------------------*/
+void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
+                            const QDateTime &date)
 {
+  qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
+  QNetworkRequest request(getUrl);
+  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.10.229 Version/11.62");
+
+  currentUrls_.append(getUrl);
+  currentFeeds_.append(feedUrl);
+  currentDates_.append(date);
+  currentHead_.append(true);
+  currentTime_.append(requestTimeout_);
+
   QNetworkReply *reply = networkManager_->head(request);
-  emit signalReplyCreated(reply);
+  requestUrl_.append(reply->url());
+  networkReply_.append(reply);
 }
 
-void UpdateObject::slotGet(const QNetworkRequest &request)
+/** @brief Подготовка и отправка сетевого запроса для получения всех данных
+ *----------------------------------------------------------------------------*/
+void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
+                           const QDateTime &date)
 {
+  qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
+  QNetworkRequest request(getUrl);
+  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.12");
+
+  currentUrls_.append(getUrl);
+  currentFeeds_.append(feedUrl);
+  currentDates_.append(date);
+  currentHead_.append(false);
+  currentTime_.append(requestTimeout_);
+
   QNetworkReply *reply = networkManager_->get(request);
-  emit signalReplyCreated(reply);
+  requestUrl_.append(reply->url());
+  networkReply_.append(reply);
+}
+
+/** @brief Постановка сетевого адреса в очередь запросов
+ *----------------------------------------------------------------------------*/
+void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
+                              const QString	&userInfo)
+{
+  feedsQueue_.enqueue(urlString);
+  dateQueue_.enqueue(date);
+  userInfo_.enqueue(userInfo);
+
+  qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
+}
+
+/** @brief Обработка очереди запросов по таймеру
+ *----------------------------------------------------------------------------*/
+void UpdateObject::getQueuedUrl()
+{
+  if (REPLY_MAX_COUNT <= currentFeeds_.size()) return;
+
+  if (!feedsQueue_.isEmpty()) {
+    QString feedUrl = feedsQueue_.dequeue();
+    QUrl getUrl = QUrl::fromEncoded(feedUrl.toLocal8Bit());
+    QString userInfo = userInfo_.dequeue();
+    if (!userInfo.isEmpty()) {
+      getUrl.setUserInfo(userInfo);
+      getUrl.addQueryItem("auth", "http");
+    }
+    QDateTime currentDate = dateQueue_.dequeue();
+
+    emit signalHead(getUrl, feedUrl, currentDate);
+
+    qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
+  }
+}
+
+/** @brief Завершение обработки сетевого запроса
+
+    The default behavior is to keep the text edit read only.
+
+    If an error has occurred, the user interface is made available
+    to the user for further input, allowing a new fetch to be
+    started.
+
+    If the HTTP get request has finished, we make the
+    user interface available to the user for further input.
+ *----------------------------------------------------------------------------*/
+void UpdateObject::finished(QNetworkReply *reply)
+{
+  QUrl replyUrl = reply->url();
+
+  qDebug() << "reply.finished():" << replyUrl.toString();
+  qDebug() << reply->header(QNetworkRequest::ContentTypeHeader);
+  qDebug() << reply->header(QNetworkRequest::ContentLengthHeader);
+  qDebug() << reply->header(QNetworkRequest::LocationHeader);
+  qDebug() << reply->header(QNetworkRequest::LastModifiedHeader);
+  qDebug() << reply->header(QNetworkRequest::CookieHeader);
+  qDebug() << reply->header(QNetworkRequest::SetCookieHeader);
+
+  int currentReplyIndex = currentUrls_.indexOf(replyUrl);
+
+  if (currentReplyIndex >= 0) {
+    currentTime_.removeAt(currentReplyIndex);
+    currentUrls_.removeAt(currentReplyIndex);
+    QString feedUrl    = currentFeeds_.takeAt(currentReplyIndex);
+    QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
+    bool headOk = currentHead_.takeAt(currentReplyIndex);
+
+    if (reply->error() != QNetworkReply::NoError) {
+      qDebug() << "  error retrieving RSS feed:" << reply->error();
+      if (!headOk) {
+        if (reply->error() == QNetworkReply::AuthenticationRequiredError)
+          emit getUrlDone(-2);
+        else
+          emit getUrlDone(-1);
+      } else {
+        emit signalGet(replyUrl, feedUrl, feedDate);
+      }
+    } else {
+      QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+      if (redirectionTarget.isValid()) {
+        QString host(QUrl::fromEncoded(feedUrl.toLocal8Bit()).host());
+        if (reply->operation() == QNetworkAccessManager::HeadOperation) {
+          qDebug() << objectName() << "  head redirect...";
+          if (redirectionTarget.host().isNull())
+            redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+          emit signalHead(redirectionTarget, feedUrl, feedDate);
+        } else {
+          qDebug() << objectName() << "  get redirect...";
+          if (redirectionTarget.host().isNull())
+            redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+          emit signalGet(redirectionTarget, feedUrl, feedDate);
+        }
+      } else {
+        QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
+        QDateTime replyLocalDate = QDateTime(replyDate.date(), replyDate.time());
+
+        qDebug() << feedDate << replyDate << replyLocalDate;
+        qDebug() << feedDate.toMSecsSinceEpoch() << replyDate.toMSecsSinceEpoch() << replyLocalDate.toMSecsSinceEpoch();
+        if ((reply->operation() == QNetworkAccessManager::HeadOperation) &&
+            ((!feedDate.isValid()) || (!replyLocalDate.isValid()) || (feedDate < replyLocalDate))) {
+          emit signalGet(replyUrl, feedUrl, feedDate);
+        }
+        else {
+          QByteArray data = reply->readAll();
+
+          emit getUrlDone(feedsQueue_.count(), feedUrl, data, replyLocalDate);
+        }
+      }
+    }
+  } else {
+    qCritical() << "Request Url error: " << replyUrl.toString() << reply->errorString();
+  }
+
+  int replyIndex = requestUrl_.indexOf(replyUrl);
+  if (replyIndex >= 0) {
+    requestUrl_.removeAt(replyIndex);
+    networkReply_.takeAt(replyIndex)->deleteLater();
+  }
+}
+
+/** @brief Тайм-аут для удаления запросов, если нет ответа от сервера
+ *----------------------------------------------------------------------------*/
+void UpdateObject::slotRequestTimeout()
+{
+  for (int i = currentTime_.count() - 1; i >= 0; i--) {
+    int time = currentTime_.at(i) - 1;
+    if (time <= 0) {
+      QUrl url = currentUrls_.takeAt(i);
+      currentTime_.removeAt(i);
+      currentFeeds_.removeAt(i);
+      currentDates_.removeAt(i);
+      currentHead_.removeAt(i);
+
+      int replyIndex = requestUrl_.indexOf(url);
+      requestUrl_.removeAt(replyIndex);
+      networkReply_.takeAt(replyIndex)->deleteLater();
+      emit getUrlDone(-3);
+    } else {
+      currentTime_.replace(i, time);
+    }
+  }
 }

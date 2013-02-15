@@ -49,11 +49,13 @@ protected:
   void changeEvent(QEvent *event);
 
 signals:
-  void startGetUrlTimer();
   void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
                      const QDateTime &dtReply);
+  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
 
 public slots:
+  void getUrlDone(const int &result, const QString &feedUrlStr,
+                  const QByteArray &data, const QDateTime &dtReply);
   void slotUpdateFeed(int feedId, const bool &, int newCount);
 
 private slots:
@@ -65,8 +67,6 @@ private slots:
   void slotCurrentIdChanged(int);
   void titleFeedAsNameStateChanged(int);
   void slotProgressBarUpdate();
-  void getUrlDone(const int &result, const QString &feedUrlStr,
-                  const QByteArray &data, const QDateTime &dtReply);
   void newFolder();
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
 

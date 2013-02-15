@@ -159,6 +159,7 @@ private:
   QNetworkProxy networkProxy_;
   UpdateDelayer *updateDelayer_;
 
+  void setProxy(const QNetworkProxy proxy);
   void showProgressBar(int addToMaximum);
   void createFeedsWidget();
   void createNewsTab(int index);
@@ -525,6 +526,7 @@ signals:
   void signalPlaceToTray();
   void signalCloseApp();
   void startGetUrlTimer();
+  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
   void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
                      const QDateTime &dtReply);
   void signalSetCurrentTab(int index, bool updateTab = false);
