@@ -10,8 +10,50 @@ ParseObject::ParseObject(QString dataDirPath, QObject *parent)
   : QObject(parent),
     dataDirPath_(dataDirPath)
 {
+  setObjectName("parseObject_");
+
+  QTimer *parseTimer = new QTimer();
+  parseTimer->setSingleShot(true);
+  connect(parseTimer, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
+  connect(this, SIGNAL(startTimer()), parseTimer, SLOT(start()));
+
+  connect(this, SIGNAL(signalReadyParse(QByteArray,QString,QDateTime)),
+          SLOT(slotParse(QByteArray,QString,QDateTime)));
 }
 
+/** @brief Постановка xml-данных в очередь запросов
+ *----------------------------------------------------------------------------*/
+void ParseObject::parseXml(const QByteArray &data, const QString &feedUrl,
+                           const QDateTime &dtReply)
+{
+  feedsQueue_.enqueue(feedUrl);
+  xmlsQueue_.enqueue(data);
+  dtReadyQueue_.enqueue(dtReply);
+  qDebug() << "xmlsQueue_ <<" << feedUrl << "count=" << xmlsQueue_.count();
+  emit startTimer();
+}
+
+/** @brief Обработка очереди запросов
+ *----------------------------------------------------------------------------*/
+void ParseObject::getQueuedXml()
+{
+  if (!currentFeedUrl_.isEmpty()) return;
+
+  if (feedsQueue_.count()) {
+    currentFeedUrl_ = feedsQueue_.dequeue();
+    currentXml_ = xmlsQueue_.dequeue();
+    currentDtReady_ = dtReadyQueue_.dequeue();
+    qDebug() << "xmlsQueue_ >>" << currentFeedUrl_ << "count=" << xmlsQueue_.count();
+
+    emit signalReadyParse(currentXml_, currentFeedUrl_, currentDtReady_);
+    emit startTimer();
+
+    currentFeedUrl_.clear();
+  }
+}
+
+/** @brief Разбор xml-данных
+ *----------------------------------------------------------------------------*/
 void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
                             const QDateTime &dtReply)
 {
@@ -473,6 +515,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
+/** @brief Разбор даты и времени
+ *----------------------------------------------------------------------------*/
 QString ParseObject::parseDate(QString dateString, QString urlString)
 {
   QDateTime dt;

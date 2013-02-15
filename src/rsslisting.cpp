@@ -91,9 +91,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
 
   persistentParseThread_ = new ParseThread(this, lastFeedPath_);
-  persistentParseThread_->setObjectName("persistentParseThread_");
-  connect(this, SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
-          persistentParseThread_, SLOT(parseXml(QByteArray,QString,QDateTime)));
 
   faviconThread_ = new FaviconThread(this);
 

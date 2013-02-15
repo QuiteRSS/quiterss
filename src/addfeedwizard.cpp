@@ -17,11 +17,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath)
   addPage(createNameFeedPage());
 
   persistentUpdateThread_ = new UpdateThread(this);
-
   persistentParseThread_ = new ParseThread(this, dataDirPath);
-  persistentParseThread_->setObjectName("persistentParseThread_");
-  connect(this, SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
-          persistentParseThread_, SLOT(parseXml(QByteArray,QString,QDateTime)));
 
   connect(button(QWizard::BackButton), SIGNAL(clicked()),
           this, SLOT(backButtonClicked()));
