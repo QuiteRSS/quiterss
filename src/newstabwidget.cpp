@@ -1647,6 +1647,10 @@ int NewsTabWidget::findUnreadNews(bool next)
   if (next) {
     index = newsModel_->index(newsRowCur+1, newsModel_->fieldIndex("read"));
     indexList = newsModel_->match(index, Qt::EditRole, 0);
+    if (indexList.isEmpty()) {
+      index = newsModel_->index(0, newsModel_->fieldIndex("read"));
+      indexList = newsModel_->match(index, Qt::EditRole, 0);
+    }
   } else {
     index = newsModel_->index(newsRowCur, newsModel_->fieldIndex("read"));
     indexList = newsModel_->match(index, Qt::EditRole, 0, -1);

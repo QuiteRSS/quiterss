@@ -5823,8 +5823,7 @@ void RSSListing::nextUnreadNews()
 
   int newsRow = currentNewsTab->findUnreadNews(true);
 
-  int newsRowCur = newsView_->currentIndex().row();
-  if ((newsRow <= newsRowCur) || (newsRow == -1)) {
+  if (newsRow == -1) {
     QModelIndex indexPrevUnread =
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (indexPrevUnread.isValid()) {
