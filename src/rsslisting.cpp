@@ -3354,10 +3354,11 @@ void RSSListing::slotGetFeed()
   QPersistentModelIndex index = feedsTreeView_->selectIndex();
   if (feedsTreeModel_->isFolder(index)) {
     QSqlQuery q;
-    QString qStr = QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE parentId=='%1' AND xmlUrl!=''").
-        arg(feedsTreeModel_->dataField(index, "id").toInt());
+    QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
+    str.replace("feedId", "id");
+    QString qStr = QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
+        arg(str);
     q.exec(qStr);
-//    qDebug() << q.lastError();
     while (q.next()) {
       ++updateFeedsCount_;
       QString userInfo = getUserInfo(q.record().value(0).toString(),
