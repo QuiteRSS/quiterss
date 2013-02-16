@@ -762,7 +762,9 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 
   if (changed) {
     newsView_->viewport()->update();
-    rsslisting_->slotUpdateStatus(feedId_);
+    int feedId = newsModel_->index(index.row(), newsModel_->fieldIndex("feedId")).
+        data(Qt::EditRole).toInt();
+    rsslisting_->slotUpdateStatus(feedId);
   }
 }
 
