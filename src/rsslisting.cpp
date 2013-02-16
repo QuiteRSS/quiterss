@@ -2469,7 +2469,6 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
           }
         }
 
-        QModelIndex index = feedsTreeModel_->getIndexById(id, parId);
         // Подсчет всех новостей (не помеченных удаленными)
         qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
             arg(id);
@@ -2514,6 +2513,7 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
         q.exec(qStr);
 
         // Обновление отображения ленты, если оно существует
+        QModelIndex index = feedsTreeModel_->getIndexById(id, parId);
         if (index.isValid()) {
           indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
           indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
@@ -3737,30 +3737,41 @@ void RSSListing::setFeedRead(int feedId, FeedReedType feedReadtype)
 {
   if (feedId <= -1) return;
 
-//  bool update = false;
   db_.transaction();
   QSqlQuery q;
   if (((feedReadtype == FeedReadTypeSwitchingFeed) && markReadSwitchingFeed_) ||
       ((feedReadtype == FeedReadClosingTab)        && markReadClosingTab_) ||
       ((feedReadtype == FeedReadPlaceToTray)       && markReadMinimize_)) {
-    q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
-//    update = true;
+    QString str = getIdFeedsString(feedId);
+    if (str == "feedId=-1") {
+      q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
+    } else {
+      q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+    }
+  } else {
+    QString str = getIdFeedsString(feedId);
+    if (str == "feedId=-1") {
+      q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
+    } else {
+      q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+    }
   }
-  else
-    q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
-  q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
+  QString str = getIdFeedsString(feedId);
+  if (str == "feedId=-1") {
+    q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
+  } else {
+    q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(str));
+  }
 
   if (markNewsReadOn_ && markPrevNewsRead_)
     q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
 
   db_.commit();
 
-//  if (update) {
-    recountFeedCounts(feedId, false);
-    if (feedReadtype != FeedReadPlaceToTray) {
-      emit signalRefreshInfoTray();
-    }
-//  }
+  recountFeedCounts(feedId, false);
+  if (feedReadtype != FeedReadPlaceToTray) {
+    emit signalRefreshInfoTray();
+  }
 }
 
 void RSSListing::slotShowAboutDlg()
