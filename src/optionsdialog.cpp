@@ -730,7 +730,7 @@ void OptionsDialog::createNotifierWidget()
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
     int parentId = parentIds.dequeue();
-    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1'").
+    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1' ORDER BY text").
         arg(parentId);
     q.exec(qStr);
     while (q.next()) {
