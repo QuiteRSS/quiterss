@@ -30,14 +30,20 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   q.exec(qStr);
   while (q.next()) {
     QSqlQuery q1;
+    bool isFolder = false;
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
+      if (isFolder) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1 AND xmlUrl!=''").
           arg(strIdFeed);
       q1.exec(qStr);
-      if (q1.next()) strNameFeeds.append(q1.value(0).toString());
+      if (q1.next()) {
+        strNameFeeds.append(q1.value(0).toString());
+        isFolder = true;
+      } else {
+        isFolder = false;
+      }
     }
 
     treeItem.clear();
@@ -50,6 +56,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
       treeWidgetItem->setCheckState(1, Qt::Checked);
     else
       treeWidgetItem->setCheckState(1, Qt::Unchecked);
+    treeWidgetItem->setToolTip(2, strNameFeeds);
     filtersTree->addTopLevelItem(treeWidgetItem);
 
     if (q.value(4).toInt() == 0) {
@@ -135,14 +142,20 @@ void NewsFiltersDialog::newFilter()
   q.exec(qStr);
   if (q.next()) {
     QSqlQuery q1;
+    bool isFolder = false;
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(1).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
+      if (isFolder) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1 AND xmlUrl!=''").
           arg(strIdFeed);
       q1.exec(qStr);
-      if (q1.next()) strNameFeeds.append(q1.value(0).toString());
+      if (q1.next()) {
+        strNameFeeds.append(q1.value(0).toString());
+        isFolder = true;
+      } else {
+        isFolder = false;
+      }
     }
 
     QStringList treeItem;
@@ -154,6 +167,7 @@ void NewsFiltersDialog::newFilter()
       treeWidgetItem->setCheckState(1, Qt::Checked);
     else
       treeWidgetItem->setCheckState(1, Qt::Unchecked);
+    treeWidgetItem->setToolTip(2, strNameFeeds);
     filtersTree->addTopLevelItem(treeWidgetItem);
 
     treeWidgetItem->setText(3, q.value(0).toString());
@@ -189,19 +203,26 @@ void NewsFiltersDialog::editFilter()
   q.exec(qStr);
   if (q.next()) {
     QSqlQuery q1;
+    bool isFolder = false;
     QString strNameFeeds;
     QStringList strIdFeeds = q.value(1).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      if (!strNameFeeds.isNull()) strNameFeeds.append("; ");
+      if (isFolder) strNameFeeds.append("; ");
       qStr = QString("SELECT text FROM feeds WHERE id==%1 AND xmlUrl!=''").
           arg(strIdFeed);
       q1.exec(qStr);
-      if (q1.next()) strNameFeeds.append(q1.value(0).toString());
+      if (q1.next()) {
+        strNameFeeds.append(q1.value(0).toString());
+        isFolder = true;
+      } else {
+        isFolder = false;
+      }
     }
 
     filtersTree->topLevelItem(filterRow)->setText(0, QString::number(filterId));
     filtersTree->topLevelItem(filterRow)->setText(1, q.value(0).toString());
     filtersTree->topLevelItem(filterRow)->setText(2, strNameFeeds);
+    filtersTree->topLevelItem(filterRow)->setToolTip(2, strNameFeeds);
   }
 }
 
