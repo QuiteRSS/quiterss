@@ -50,6 +50,7 @@ public:
 
   QAction *newsToolbarToggle_;
   QAction *browserToolbarToggle_;
+  QAction *categoriesPanelToggle_;
   QAction *newsFilter_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;

@@ -817,9 +817,13 @@ void RSSListing::createActions()
   newsToolbarToggle_->setCheckable(true);
   browserToolbarToggle_ = new QAction(this);
   browserToolbarToggle_->setCheckable(true);
+  categoriesPanelToggle_ = new QAction(this);
+  categoriesPanelToggle_->setCheckable(true);
 
   connect(feedsToolbarToggle_, SIGNAL(toggled(bool)),
           feedsPanel_, SLOT(setVisible(bool)));
+  connect(categoriesPanelToggle_, SIGNAL(toggled(bool)),
+          categoriesWidget_, SLOT(setVisible(bool)));
 
   toolBarStyleI_ = new QAction(this);
   toolBarStyleI_->setObjectName("toolBarStyleI_");
@@ -1408,6 +1412,7 @@ void RSSListing::createMenu()
   toolbarsMenu_->addAction(feedsToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
   toolbarsMenu_->addAction(browserToolbarToggle_);
+  toolbarsMenu_->addAction(categoriesPanelToggle_);
 
   toolBarStyleGroup_ = new QActionGroup(this);
   toolBarStyleGroup_->addAction(toolBarStyleI_);
@@ -1743,6 +1748,8 @@ void RSSListing::readSettings()
   feedsToolbarToggle_->setChecked(settings_->value("feedsToolbarShow", true).toBool());
   newsToolbarToggle_->setChecked(settings_->value("newsToolbarShow", true).toBool());
   browserToolbarToggle_->setChecked(settings_->value("browserToolbarShow", true).toBool());
+  categoriesPanelToggle_->setChecked(settings_->value("categoriesPanelShow", true).toBool());
+  categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
 
   if (!mainToolbarToggle_->isChecked())
     mainToolbar_->hide();
@@ -1928,6 +1935,7 @@ void RSSListing::writeSettings()
   settings_->setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
   settings_->setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings_->setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
+  settings_->setValue("categoriesPanelShow", categoriesPanelToggle_->isChecked());
 
   settings_->setValue("toolBarStyle",
                       toolBarStyleGroup_->checkedAction()->objectName());
@@ -4184,11 +4192,12 @@ void RSSListing::retranslateStrings()
   savePageAsAct_->setText(tr("Save As..."));
   savePageAsAct_->setToolTip(tr("Save Page As..."));
 
-  toolbarsMenu_->setTitle(tr("Toolbars"));
+  toolbarsMenu_->setTitle(tr("Show/Hide"));
   mainToolbarToggle_->setText(tr("Main Toolbar"));
   feedsToolbarToggle_->setText(tr("Feeds Toolbar"));
   newsToolbarToggle_->setText(tr("News Toolbar"));
   browserToolbarToggle_->setText(tr("Browser Toolbar"));
+  categoriesPanelToggle_->setText(tr("Panel Categories"));
 
   fullScreenAct_->setText(tr("Full Screen"));
   fullScreenAct_->setToolTip(tr("Full Screen"));
