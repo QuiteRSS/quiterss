@@ -324,6 +324,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             qDebug() << "       " << enclosureType;
             qDebug() << "       " << enclosureLength;
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            enclosureUrl.clear();
+            enclosureType.clear();
+            enclosureLength.clear();
             feedChanged = true;
           }
         }
@@ -428,6 +431,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             qDebug() << "       " << enclosureType;
             qDebug() << "       " << enclosureLength;
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            enclosureUrl.clear();
+            enclosureType.clear();
+            enclosureLength.clear();
             feedChanged = true;
           }
         }
