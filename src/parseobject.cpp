@@ -123,9 +123,11 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     xml.clear();
     xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
   } else {
-    if (xml.documentEncoding().toString().contains("utf-8", Qt::CaseInsensitive)) {
+    QTextCodec *codec = QTextCodec::codecForName(xml.documentEncoding().toUtf8());
+    if (codec) {
       xml.clear();
-      xml.addData(QString::fromUtf8(xmlData.trimmed()));
+      QString str = codec->toUnicode(xmlData.trimmed());
+      xml.addData(str);
     }
   }
 
