@@ -243,7 +243,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicates news</source>
-        <translation type="unfinished"></translation>
+        <translation>Az ismétlődő hírek automatikus törlése</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
@@ -826,22 +826,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1232"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>audió</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1233"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>videó</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1234"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>média</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1238"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>Hivatkozás a következőhöz:</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1066,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>A dátum megjelenítési formátuma:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>idő:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
@@ -2457,12 +2457,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4195"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenítés/Elrejtés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4200"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Panel-kategóriák</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5773"/>
@@ -2477,7 +2477,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5776"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Szöveges fájlok (*.txt)</translation>
     </message>
     <message>
         <source>HTML-File (*.html)</source>
