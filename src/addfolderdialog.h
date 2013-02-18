@@ -10,7 +10,7 @@ class AddFolderDialog : public Dialog
   Q_OBJECT
 
 public:
-  explicit AddFolderDialog(QWidget *parent);
+  explicit AddFolderDialog(QWidget *parent, int curFolderId = 0);
 
   LineEdit *nameFeedEdit_;
   QTreeWidget *foldersTree_;

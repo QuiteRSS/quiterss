@@ -2030,7 +2030,15 @@ void RSSListing::addFeed()
 
 void RSSListing::addFolder()
 {
-  AddFolderDialog *addFolderDialog = new AddFolderDialog(this);
+  int curFolderId = 0;
+  QPersistentModelIndex curIndex = feedsTreeView_->selectIndex();
+  if (feedsTreeModel_->isFolder(curIndex)) {
+    curFolderId = feedsTreeModel_->getIdByIndex(curIndex);
+  } else {
+    curFolderId = feedsTreeModel_->getParidByIndex(curIndex);
+  }
+
+  AddFolderDialog *addFolderDialog = new AddFolderDialog(this, curFolderId);
 
   if (addFolderDialog->exec() == QDialog::Rejected) {
     delete addFolderDialog;

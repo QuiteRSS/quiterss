@@ -1,6 +1,6 @@
 #include "addfolderdialog.h"
 
-AddFolderDialog::AddFolderDialog(QWidget *parent)
+AddFolderDialog::AddFolderDialog(QWidget *parent, int curFolderId)
   : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -50,6 +50,8 @@ AddFolderDialog::AddFolderDialog(QWidget *parent)
                                     Qt::MatchFixedString | Qt::MatchRecursive,
                                     1);
       treeItems.at(0)->addChild(treeWidgetItem);
+      if (folderId.toInt() == curFolderId)
+        foldersTree_->setCurrentItem(treeWidgetItem);
       parentIds.enqueue(folderId.toInt());
     }
   }
