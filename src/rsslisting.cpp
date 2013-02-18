@@ -4572,8 +4572,8 @@ void RSSListing::slotIconFeedLoad(const QString &feedUrl,
       NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
       if (widget->feedId_ == feedId) {
         QPixmap iconTab;
-        if (!byteArray.isNull()) {
-          iconTab.loadFromData(byteArray);
+        if (!faviconData.isNull()) {
+          iconTab.loadFromData(faviconData);
         } else {
           iconTab.load(":/images/feed");
         }
