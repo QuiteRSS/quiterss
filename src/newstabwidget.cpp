@@ -1239,7 +1239,7 @@ void NewsTabWidget::slotWebViewSetContent(QString content)
     }
   }
   str.append(content);
-qCritical() << "*01" << str;
+
   webView_->setHtml(str);
   webView_->history()->setMaximumItemCount(100);
 }
