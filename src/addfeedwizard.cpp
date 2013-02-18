@@ -4,8 +4,9 @@
 
 extern QString kCreateNewsTableQuery;
 
-AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath)
-  : QWizard(parent)
+AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath, int curFolderId)
+  : QWizard(parent),
+    curFolderId_(curFolderId)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Add Feed"));
@@ -185,6 +186,8 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
                                                        Qt::MatchFixedString | Qt::MatchRecursive,
                                                        1);
       treeItems.at(0)->addChild(treeWidgetItem);
+      if (folderId.toInt() == curFolderId_)
+        foldersTree_->setCurrentItem(treeWidgetItem);
       parentIds.enqueue(folderId.toInt());
     }
   }

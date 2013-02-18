@@ -30,9 +30,10 @@ private:
   bool selectedPage;
   bool finishOn;
   QTreeWidget *foldersTree_;
+  int curFolderId_;
 
 public:
-  explicit AddFeedWizard(QWidget *parent, QString dataDirPath);
+  explicit AddFeedWizard(QWidget *parent, QString dataDirPath, int curFolderId = 0);
   ~AddFeedWizard();
 
   LineEdit *nameFeedEdit_;

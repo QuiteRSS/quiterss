@@ -2009,7 +2009,15 @@ void RSSListing::setProxy(const QNetworkProxy proxy)
 /*! \brief Добавление ленты в список лент *************************************/
 void RSSListing::addFeed()
 {
-  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, lastFeedPath_);
+  int curFolderId = 0;
+  QPersistentModelIndex curIndex = feedsTreeView_->selectIndex();
+  if (feedsTreeModel_->isFolder(curIndex)) {
+    curFolderId = feedsTreeModel_->getIdByIndex(curIndex);
+  } else {
+    curFolderId = feedsTreeModel_->getParidByIndex(curIndex);
+  }
+
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, lastFeedPath_, curFolderId);
 
   if (addFeedWizard->exec() == QDialog::Rejected) {
     delete addFeedWizard;
