@@ -123,7 +123,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     xml.clear();
     xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
   } else {
-    QTextCodec *codec = QTextCodec::codecForName(xml.documentEncoding().toUtf8());
+    QTextCodec *codec = QTextCodec::codecForName(
+                                xml.documentEncoding().string()->toUtf8());
     if (codec) {
       xml.clear();
       QString str = codec->toUnicode(xmlData.trimmed());
