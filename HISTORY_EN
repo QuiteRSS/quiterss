@@ -8,23 +8,23 @@
 <LI>Added: Displaying news of selected folder</LI>
 <LI>Added: Displaying URL of media-content</LI>
 <LI>Added: Ability to save browser page as plain text</LI>
-<LI>Added: Feed's option "Automaticaly delete news' duplicates"</LI>
+<LI>Added: Feed's option "Automatically delete news' duplicates"</LI>
 <LI>Added: Ability to hide Categories ("View->Show/Hide->Panel Categories")</LI>
 <BR>
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: News list/browser size's change step set to 25 pixels instead of 5</LI>
-<LI>Changed: Password for proxy-server displays with asteriks</LI>
+<LI>Changed: Password for proxy-server displays with asterisks</LI>
 <LI>Changed: Date and time format are separated</LI>
 <LI>Changed: Switch to next unread news</LI>
 <BR>
 <LI>Fixed: Application falls while updating feeds!</LI>
 <LI>Fixed: Some feeds aren't processed</LI>
-<LI>Fixed: Application falls while using hotkeys</LI>
+<LI>Fixed: Application falls while using shortcuts</LI>
 <LI>Fixed: Application falls while deleting passwords from empty list</LI>
 <LI>Fixed: Recounting folders' counters while adding new feed</LI>
 <LI>Fixed: Downloading feeds' icons for some feeds</LI>
 </UL>
-<<!---------------------------------------------------------------------------->
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.12.1</B> (5 Feb 2013)
 <UL>
 <LI>Added: Authorization support</LI>
