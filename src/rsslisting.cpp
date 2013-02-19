@@ -2026,8 +2026,11 @@ void RSSListing::addFeed()
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(this, lastFeedPath_, curFolderId);
+  addFeedWizard->restoreGeometry(settings_->value("addFeedWizard/geometry").toByteArray());
 
-  if (addFeedWizard->exec() == QDialog::Rejected) {
+  int result = addFeedWizard->exec();
+  settings_->setValue("addFeedWizard/geometry", addFeedWizard->saveGeometry());
+  if (result == QDialog::Rejected) {
     delete addFeedWizard;
     return;
   }
@@ -4307,7 +4310,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
   bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
-  feedPropertiesDialog->restoreGeometry(settings_->value("feedProperties/geometry").toByteArray());
 
   QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
   if (!byteArray.isNull()) {
@@ -4378,7 +4380,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
           this, SIGNAL(faviconRequestUrl(QString,QString)));
 
   int result = feedPropertiesDialog->exec();
-  settings_->setValue("feedProperties/geometry", feedPropertiesDialog->saveGeometry());
   if (result == QDialog::Rejected) {
     delete feedPropertiesDialog;
     return;

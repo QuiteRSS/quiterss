@@ -43,7 +43,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   loadImagesOn = new QCheckBox(tr("Load images"));
   displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
   showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
-  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicates news"));
+  duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
   QHBoxLayout *layoutGeneralHomepage = new QHBoxLayout();
   labelHomepage = new QLabel();
