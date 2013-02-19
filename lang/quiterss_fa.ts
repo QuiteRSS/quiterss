@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fa">
+<TS version="2.0" language="en">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -241,6 +241,10 @@
         <translation>نمایش توضیحات اخبار بجای بارگیری صفحه وب</translation>
     </message>
     <message>
+        <source>Automatically delete duplicates news</source>
+        <translation type="obsolete">حذف خودکار اخبار تکراری</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Created:</source>
         <translation>ايجاد شده:</translation>
@@ -268,7 +272,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"></translation>
+        <translation>حذف خودکار اخبار تکراری</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="141"/>
@@ -603,10 +607,6 @@
         <translation>فایل های تصویری (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
     <message>
-        <source>Image files (*.jpg; *.jpeg; *.png; *.bmp)</source>
-        <translation type="obsolete">فایل عکس (*.jpg; *.jpeg; *.png; *.bmp)</translation>
-    </message>
-    <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
         <source>Load icon: can&apos;t open a file</source>
         <translation>بارگیری آیکون:فایل را نمیتوان باز کرد</translation>
@@ -826,22 +826,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1232"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>صدا</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1233"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>ویدیو</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1234"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>رسانه</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1238"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>لینک به</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1066,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>فرمت نمایش تاریخ:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>زمان:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
@@ -1351,10 +1351,6 @@
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use standard external browser</source>
         <translation>استفاده از مرورگر خارجی استاندارد:</translation>
-    </message>
-    <message>
-        <source>Display format for date and time:</source>
-        <translation type="obsolete">فرمت نمایش تاریخ و زمان:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
@@ -1716,14 +1712,6 @@
         <translation>اخبار بعدی</translation>
     </message>
     <message>
-        <source>Switch Focus Between Panels</source>
-        <translation type="obsolete">تعویض کانون بین پنل ها</translation>
-    </message>
-    <message>
-        <source>Switch Focus Between Panels (Tree Feeds, List News, Browser)</source>
-        <translation type="obsolete">تعویض کانون بین پنل ها:فید درختی،لیست اخبار،مرورگر</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4167"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>نمایش/عدم نمایش فیدهای درختی</translation>
@@ -1812,10 +1800,6 @@
         <location filename="../src/rsslisting.cpp" line="4196"/>
         <source>Save Page As...</source>
         <translation>ذخیره صفحه بعنوان...</translation>
-    </message>
-    <message>
-        <source>Toolbars</source>
-        <translation type="obsolete">نوارابزارها</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4200"/>
@@ -2457,12 +2441,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4198"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>نمایش/عدم نمایش</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4203"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>پنل دسته بندی ها</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5774"/>
@@ -2477,7 +2461,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5777"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>فایل های متنی (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5782"/>

@@ -241,6 +241,10 @@
         <translation>Toon nieuws beschrijving in plaats van webpagina laden</translation>
     </message>
     <message>
+        <source>Automatically delete duplicates news</source>
+        <translation type="obsolete">Verwijder automatisch dubbel nieuws</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Created:</source>
         <translation>Gemaakt:</translation>
@@ -268,7 +272,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwijder automatisch dubbel nieuws</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="141"/>
@@ -826,22 +830,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1232"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1233"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1234"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>Media</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1238"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>Link met</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1070,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Weergave-indeling voor datum:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tijd:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
@@ -2457,12 +2461,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4198"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Toon/Verberg</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4203"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Venster Groepen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5774"/>
@@ -2472,12 +2476,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5776"/>
         <source>HTML-Files (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-Bestanden (*.htnl)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5777"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst bestanden (*.txt)</translation>
     </message>
     <message>
         <source>HTML-File (*.html)</source>
