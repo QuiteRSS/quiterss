@@ -123,12 +123,14 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     xml.clear();
     xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
   } else {
-    QTextCodec *codec = QTextCodec::codecForName(
-                                xml.documentEncoding().string()->toUtf8());
-    if (codec) {
-      xml.clear();
-      QString str = codec->toUnicode(xmlData.trimmed());
-      xml.addData(str);
+    if (!xml.documentEncoding().isEmpty()) {
+      QTextCodec *codec = QTextCodec::codecForName(
+            xml.documentEncoding().string()->toUtf8());
+      if (codec) {
+        xml.clear();
+        QString str = codec->toUnicode(xmlData.trimmed());
+        xml.addData(str);
+      }
     }
   }
 
