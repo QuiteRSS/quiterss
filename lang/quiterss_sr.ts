@@ -241,6 +241,10 @@
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
+        <source>Automatically delete duplicates news</source>
+        <translation type="obsolete">Аутоматско обриши дупле вести</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Created:</source>
         <translation>Креирано:</translation>
@@ -268,7 +272,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутоматско обриши дупле вести</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="141"/>
@@ -826,22 +830,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1232"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>аудио</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1233"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>видео</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1234"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>медиј</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1238"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>Веза ка</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1070,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи формат датума:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>време:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
@@ -2457,12 +2461,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4198"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи/Сакри</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4203"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно категорије</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5774"/>
@@ -2477,7 +2481,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5777"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Текстуалне датотеке (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5782"/>
