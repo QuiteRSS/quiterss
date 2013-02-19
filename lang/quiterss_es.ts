@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="es">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -268,7 +266,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar noticias duplicadas de forma automática </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="141"/>
@@ -822,22 +820,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1232"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>audio</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1233"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>video</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1234"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>multimedia</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1238"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlazar a</translation>
     </message>
 </context>
 <context>
@@ -1062,12 +1060,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato de la fecha:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hora:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
@@ -1347,10 +1345,6 @@
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use standard external browser</source>
         <translation>Usar explorador externo por defecto</translation>
-    </message>
-    <message>
-        <source>Display format for date and time:</source>
-        <translation type="obsolete">Formato de fecha y hora</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
@@ -1800,10 +1794,6 @@
         <location filename="../src/rsslisting.cpp" line="4196"/>
         <source>Save Page As...</source>
         <translation>Guardar Pagina Como...</translation>
-    </message>
-    <message>
-        <source>Toolbars</source>
-        <translation type="obsolete">Barra de herramientas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4200"/>
@@ -2445,12 +2435,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4198"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar/Ocultar</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4203"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Panel de Categorías</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5774"/>
@@ -2465,7 +2455,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5777"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Archivos de Texto (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5782"/>
