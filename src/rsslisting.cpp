@@ -2026,8 +2026,11 @@ void RSSListing::addFeed()
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(this, lastFeedPath_, curFolderId);
+  addFeedWizard->restoreGeometry(settings_->value("addFeedWizard/geometry").toByteArray());
 
-  if (addFeedWizard->exec() == QDialog::Rejected) {
+  int result = addFeedWizard->exec();
+  settings_->setValue("addFeedWizard/geometry", addFeedWizard->saveGeometry());
+  if (result == QDialog::Rejected) {
     delete addFeedWizard;
     return;
   }
