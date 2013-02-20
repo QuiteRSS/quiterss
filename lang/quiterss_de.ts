@@ -268,7 +268,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"></translation>
+        <translation>Die automatische Entfernung der Duplikate der Neuheiten</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="141"/>
@@ -826,22 +826,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1232"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>audio</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1233"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>video</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1234"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>media</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1238"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbannung auf</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1066,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzeigeformat für Datum:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>zeit:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
@@ -2457,12 +2457,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4198"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>anzeigen/verbergen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4203"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Paneel Kategorien</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5774"/>
@@ -2477,7 +2477,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5777"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>Textdateien (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5782"/>
