@@ -4,7 +4,8 @@ DEPENDPATH += $$PWD
 TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts \
                 lang/quiterss_es.ts lang/quiterss_fr.ts lang/quiterss_hu.ts \
                 lang/quiterss_sv.ts lang/quiterss_sr.ts lang/quiterss_nl.ts \
-                lang/quiterss_fa.ts lang/quiterss_it.ts lang/quiterss_zh_CN.ts
+                lang/quiterss_fa.ts lang/quiterss_it.ts lang/quiterss_zh_CN.ts \
+                lang/quiterss_uk.ts
 
 isEmpty(QMAKE_LRELEASE) {
   Q_WS_WIN:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
