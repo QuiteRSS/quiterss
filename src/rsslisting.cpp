@@ -270,7 +270,8 @@ RSSListing::~RSSListing()
 
   q.finish();
   db_.commit();
-  db_.exec("VACUUM");
+
+  if (!commitDataRequest_) db_.exec("VACUUM");
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(true);
