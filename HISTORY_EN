@@ -5,7 +5,6 @@
 <P><B>Version 0.12.2</B> (20 Feb 2013)
 <UL>
 <LI>Added: Displaying news of selected folder</LI>
-<LI>Added: Displaying news of selected folder</LI>
 <LI>Added: Displaying URL of media-content</LI>
 <LI>Added: Ability to save browser page as plain text</LI>
 <LI>Added: Feed's option "Automatically delete news' duplicates"</LI>
@@ -17,10 +16,10 @@
 <LI>Changed: Date and time format are separated</LI>
 <LI>Changed: Switch to next unread news</LI>
 <BR>
-<LI>Fixed: Application falls while updating feeds!</LI>
+<LI>Fixed: Application crash while updating feeds!</LI>
 <LI>Fixed: Some feeds aren't processed</LI>
-<LI>Fixed: Application falls while using shortcuts</LI>
-<LI>Fixed: Application falls while deleting passwords from empty list</LI>
+<LI>Fixed: Application crash while using shortcuts</LI>
+<LI>Fixed: Application crash while deleting passwords from empty list</LI>
 <LI>Fixed: Recounting folders' counters while adding new feed</LI>
 <LI>Fixed: Downloading feeds' icons for some feeds</LI>
 </UL>
