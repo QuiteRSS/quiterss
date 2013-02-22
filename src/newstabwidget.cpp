@@ -1142,9 +1142,11 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     webPanel_->show();
 
     QString content = newsModel_->record(index.row()).field("content").value().toString();
+    QString description = newsModel_->record(index.row()).field("description").value().toString();
     if (content.isEmpty()) {
-      content = newsModel_->record(index.row()).field("description").value().toString();
-      emit signalWebViewSetContent(content);
+      emit signalWebViewSetContent(description);
+    } else if (description.length() > content.length()) {
+      emit signalWebViewSetContent(description);
     } else {
       emit signalWebViewSetContent(content);
     }
