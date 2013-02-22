@@ -52,6 +52,7 @@ public:
   QAction *browserToolbarToggle_;
   QAction *categoriesPanelToggle_;
   QAction *newsFilter_;
+  QAction *openDescriptionNewsAct_;
   QAction *openInBrowserAct_;
   QAction *openInExternalBrowserAct_;
   QAction *openNewsNewTabAct_;
@@ -74,6 +75,7 @@ public:
   QAction *restoreLastNewsAct_;
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;
+  QAction *findTextAct_;
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
 

@@ -1114,14 +1114,14 @@ void RSSListing::createActions()
   showLastUpdated_->setData(feedsTreeModel_->proxyColumnByOriginal("updated"));
   showLastUpdated_->setCheckable(true);
 
-  QAction *openNewsWebViewAct_ = new QAction(this);
-  openNewsWebViewAct_->setShortcut(QKeySequence(Qt::Key_Return));
-  connect(openNewsWebViewAct_, SIGNAL(triggered()),
+  openDescriptionNewsAct_ = new QAction(this);
+  openDescriptionNewsAct_->setObjectName("openDescriptionNewsAct");
+  connect(openDescriptionNewsAct_, SIGNAL(triggered()),
           this, SLOT(slotOpenNewsWebView()));
-  this->addAction(openNewsWebViewAct_);
+  this->addAction(openDescriptionNewsAct_);
 
-  QAction *findTextAct_ = new QAction(this);
-  findTextAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
+  findTextAct_ = new QAction(this);
+  findTextAct_->setObjectName("findTextAct");
   connect(findTextAct_, SIGNAL(triggered()),
           this, SLOT(findText()));
   this->addAction(findTextAct_);
@@ -1290,6 +1290,8 @@ void RSSListing::createShortcut()
   listActions_.append(markAllNewsRead_);
   listActions_.append(markStarAct_);
 
+  listActions_.append(openDescriptionNewsAct_);
+  openDescriptionNewsAct_->setShortcut(QKeySequence(Qt::Key_Return));
   listActions_.append(openInBrowserAct_);
   openInBrowserAct_->setShortcut(QKeySequence(Qt::Key_Space));
   listActions_.append(openInExternalBrowserAct_);
@@ -1342,6 +1344,9 @@ void RSSListing::createShortcut()
 
   restoreLastNewsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
   listActions_.append(restoreLastNewsAct_);
+
+  findTextAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
+  listActions_.append(findTextAct_);
 
   //! Действия меток добавлять последними
   listActions_.append(newsLabelGroup_->actions());
@@ -4087,6 +4092,8 @@ void RSSListing::retranslateStrings()
   updateAppAct_->setText(tr("Check for Updates..."));
   reportProblemAct_->setText(tr("Report a Problem..."));
 
+  openDescriptionNewsAct_->setText(tr("Open News"));
+  openDescriptionNewsAct_->setToolTip(tr("Open Description News"));
   openInBrowserAct_->setText(tr("Open in Browser"));
   openInExternalBrowserAct_->setText(tr("Open in External Browser"));
   openInExternalBrowserAct_->setToolTip(tr("Open News in External Browser"));
@@ -4227,6 +4234,8 @@ void RSSListing::retranslateStrings()
 
   reduceNewsListAct_->setText(tr("Decrease news list/increase browser"));
   increaseNewsListAct_->setText(tr("Increase news list/decrease browser"));
+
+  findTextAct_->setText(tr("Find"));
 
   QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
