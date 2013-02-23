@@ -1097,12 +1097,12 @@ void RSSListing::createActions()
   connect(switchFocusPrevAct_, SIGNAL(triggered()), this, SLOT(slotSwitchPrevFocus()));
   this->addAction(switchFocusPrevAct_);
 
-  visibleFeedsWidgetAct_ = new QAction(this);
-  visibleFeedsWidgetAct_->setObjectName("visibleFeedsWidgetAct");
-  visibleFeedsWidgetAct_->setCheckable(true);
-  connect(visibleFeedsWidgetAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsWidget()));
-  connect(pushButtonNull_, SIGNAL(clicked()), visibleFeedsWidgetAct_, SLOT(trigger()));
-  this->addAction(visibleFeedsWidgetAct_);
+  feedsWidgetVisibleAct_ = new QAction(this);
+  feedsWidgetVisibleAct_->setObjectName("visibleFeedsWidgetAct");
+  feedsWidgetVisibleAct_->setCheckable(true);
+  connect(feedsWidgetVisibleAct_, SIGNAL(triggered()), this, SLOT(slotVisibledFeedsWidget()));
+  connect(pushButtonNull_, SIGNAL(clicked()), feedsWidgetVisibleAct_, SLOT(trigger()));
+  this->addAction(feedsWidgetVisibleAct_);
 
   showUnreadCount_ = new QAction(this);
   showUnreadCount_->setData(feedsTreeModel_->proxyColumnByOriginal("unread"));
@@ -1306,8 +1306,8 @@ void RSSListing::createShortcut()
   switchFocusPrevAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Tab));
   listActions_.append(switchFocusPrevAct_);
 
-  visibleFeedsWidgetAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
-  listActions_.append(visibleFeedsWidgetAct_);
+  feedsWidgetVisibleAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_D));
+  listActions_.append(feedsWidgetVisibleAct_);
 
   listActions_.append(placeToTrayAct_);
 
@@ -1827,7 +1827,7 @@ void RSSListing::readSettings()
   restoreState(settings_->value("ToolBarsState").toByteArray());
 
   mainSplitter_->restoreState(settings_->value("MainSplitterState").toByteArray());
-  visibleFeedsWidgetAct_->setChecked(settings_->value("FeedsWidgetVisible", true).toBool());
+  feedsWidgetVisibleAct_->setChecked(settings_->value("FeedsWidgetVisible", true).toBool());
   slotVisibledFeedsWidget();
 
   feedsWidgetSplitterState_ = settings_->value("FeedsWidgetSplitterState").toByteArray();
@@ -1973,7 +1973,7 @@ void RSSListing::writeSettings()
   settings_->setValue("ToolBarsState", saveState());
 
   settings_->setValue("MainSplitterState", mainSplitter_->saveState());
-  settings_->setValue("FeedsWidgetVisible", visibleFeedsWidgetAct_->isChecked());
+  settings_->setValue("FeedsWidgetVisible", feedsWidgetVisibleAct_->isChecked());
 
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
@@ -3448,8 +3448,8 @@ void RSSListing::slotProgressBarUpdate()
 
 void RSSListing::slotVisibledFeedsWidget()
 {
-  feedsWidget_->setVisible(visibleFeedsWidgetAct_->isChecked());
-  updateIconToolBarNull(visibleFeedsWidgetAct_->isChecked());
+  feedsWidget_->setVisible(feedsWidgetVisibleAct_->isChecked());
+  updateIconToolBarNull(feedsWidgetVisibleAct_->isChecked());
 }
 
 void RSSListing::updateIconToolBarNull(bool feedsWidgetVisible)
@@ -4172,7 +4172,7 @@ void RSSListing::retranslateStrings()
   switchFocusPrevAct_->setToolTip(
         tr("Switch Focus to Previous Panel (Tree Feeds, Browser, List News)"));
 
-  visibleFeedsWidgetAct_->setText(tr("Show/Hide Tree Feeds"));
+  feedsWidgetVisibleAct_->setText(tr("Show/Hide Tree Feeds"));
 
   placeToTrayAct_->setText(tr("Minimize to Tray"));
   placeToTrayAct_->setToolTip(

@@ -266,7 +266,7 @@ private:
   QAction *feedKeyDownAct_;
   QAction *switchFocusAct_;
   QAction *switchFocusPrevAct_;
-  QAction *visibleFeedsWidgetAct_;
+  QAction *feedsWidgetVisibleAct_;
   QAction *openFeedNewTabAct_;
   QAction *placeToTrayAct_;
 
