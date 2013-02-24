@@ -186,12 +186,14 @@ void OptionsDialog::createGeneralWidget()
 {
   showSplashScreen_ = new QCheckBox(tr("Show splash screen on startup"));
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
+  hideFeedsOpenTab_ = new QCheckBox(tr("Hide feeds tree when opening tabs"));
 
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addWidget(showSplashScreen_);
   generalLayout->addWidget(reopenFeedStartup_);
+  generalLayout->addWidget(hideFeedsOpenTab_);
   generalLayout->addStretch();
   generalLayout->addWidget(storeDBMemory_);
 

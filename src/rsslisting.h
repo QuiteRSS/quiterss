@@ -46,6 +46,8 @@ public:
 #define TAB_WIDGET_PERMANENT 0
   QStackedWidget *stackedWidget_;
 
+  bool showFeedsTabPermanent_;
+
   NewsTabWidget *currentNewsTab;
 
   QAction *newsToolbarToggle_;
@@ -119,6 +121,8 @@ public:
 
   CookieJar *cookieJar_;
   NetworkManager *networkManager_;
+
+  bool hideFeedsOpenTab_;
 
 public slots:
   void addFeed();

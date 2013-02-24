@@ -1820,6 +1820,8 @@ void RSSListing::readSettings()
 
   updateCheck_ = settings_->value("updateCheck", true).toBool();
 
+  hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", true).toBool();
+
   settings_->endGroup();
 
   resize(800, 600);
@@ -1966,6 +1968,8 @@ void RSSListing::writeSettings()
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
 
   settings_->setValue("updateCheck", updateCheck_);
+
+  settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
 
   settings_->endGroup();
 
@@ -3013,6 +3017,7 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
+  optionsDialog->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
 
   optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
 
@@ -3194,6 +3199,7 @@ void RSSListing::showOptionDlg()
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
+  hideFeedsOpenTab_ = optionsDialog->hideFeedsOpenTab_->isChecked();
 
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
 
@@ -3448,6 +3454,10 @@ void RSSListing::slotProgressBarUpdate()
 
 void RSSListing::slotVisibledFeedsWidget()
 {
+  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
+    showFeedsTabPermanent_ = feedsWidgetVisibleAct_->isChecked();
+  }
+
   feedsWidget_->setVisible(feedsWidgetVisibleAct_->isChecked());
   updateIconToolBarNull(feedsWidgetVisibleAct_->isChecked());
 }
@@ -4963,6 +4973,16 @@ void RSSListing::slotTabCurrentChanged(int index)
     newsCategoriesTree_->setCurrentIndex(QModelIndex());
   if (widget->type_ != TAB_FEED)
     feedsTreeView_->setCurrentIndex(QModelIndex());
+
+  if (index == TAB_WIDGET_PERMANENT) {
+    feedsWidgetVisibleAct_->setChecked(showFeedsTabPermanent_);
+    slotVisibledFeedsWidget();
+  } else {
+    if (hideFeedsOpenTab_) {
+      feedsWidgetVisibleAct_->setChecked(false);
+      slotVisibledFeedsWidget();
+    }
+  }
 
   stackedWidget_->setCurrentIndex(index);
 
