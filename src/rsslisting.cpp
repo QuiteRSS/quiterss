@@ -2487,7 +2487,6 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
       feedsTreeModel_->setData(indexUnread, unreadCount);
       feedsTreeModel_->setData(indexNew, newCount);
       feedsTreeModel_->setData(indexUndelete, undeleteCount);
-      indexParent = index.parent();
     }
   } else {
     bool changed = false;
@@ -2550,11 +2549,11 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
         q.exec(qStr);
 
         // Обновление отображения ленты, если оно существует
-        QModelIndex index = feedsTreeModel_->getIndexById(id, parId);
-        if (index.isValid()) {
-          indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
-          indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
-          indexUndelete = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+        QModelIndex index1 = feedsTreeModel_->getIndexById(id, parId);
+        if (index1.isValid()) {
+          indexUnread   = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+          indexNew      = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+          indexUndelete = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
           feedsTreeModel_->setData(indexUnread, unreadCount);
           feedsTreeModel_->setData(indexNew, newCount);
           feedsTreeModel_->setData(indexUndelete, undeleteCount);
@@ -2590,34 +2589,30 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
           q.exec(QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(l_feedParId));
           if (q.next())
             parId = q.value(0).toInt();
-          QModelIndex index = feedsTreeModel_->getIndexById(l_feedParId, parId);
+          QModelIndex index1 = feedsTreeModel_->getIndexById(l_feedParId, parId);
 
           // Обновление отображения ленты, если оно существует
-          if (index.isValid()) {
-            indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
-            indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
-            indexUndelete = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
-            indexUpdated  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updated"));
+          if (index1.isValid()) {
+            indexUnread   = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+            indexNew      = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+            indexUndelete = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+            indexUpdated  = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("updated"));
             feedsTreeModel_->setData(indexUnread, unreadCount);
             feedsTreeModel_->setData(indexNew, newCount);
             feedsTreeModel_->setData(indexUndelete, undeleteCount);
             feedsTreeModel_->setData(indexUpdated, updated);
           }
 
+          if (feedId == l_feedParId) break;
           q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
           if (q.next()) l_feedParId = q.value(0).toInt();
         }
       }
     }
-
-    int parId = 0;
-    q.exec(QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(feedId));
-    if (q.next())
-      parId = q.value(0).toInt();
-    indexParent = feedsTreeModel_->getIndexById(feedId, parId);
   }
 
   // Пересчитываем счетчики для всех родителей
+  indexParent = index.parent();
   int l_feedParId = feedParId;
   while (l_feedParId) {
     QString updated;
