@@ -276,6 +276,9 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
   model()->setData(indexExpanded, 1);
   ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->submitAll();
+
+  while (((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->canFetchMore())
+    ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->fetchMore();
 }
 
 /** @brief Обработка сворачивания узла
