@@ -177,7 +177,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   connect(this, SIGNAL(signalCloseApp()),
           SLOT(slotCloseApp()), Qt::QueuedConnection);
-  commitDataRequest_ = false;
   connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
           this, SLOT(slotCommitDataRequest(QSessionManager&)));
 
@@ -227,6 +226,36 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 RSSListing::~RSSListing()
 {
   qDebug("App_Closing");
+}
+
+void RSSListing::slotCommitDataRequest(QSessionManager &manager)
+{
+  slotClose();
+  manager.release();
+}
+
+/*! \brief Обработка событий закрытия окна ************************************/
+/*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
+{
+  event->ignore();
+
+  if (closingTray_ && showTrayIcon_) {
+    oldState = windowState();
+    emit signalPlaceToTray();
+  } else {
+    slotClose();
+  }
+}
+
+/*! \brief Обработка события выхода из приложения *****************************/
+void RSSListing::slotClose()
+{
+  closeApp_ = true;
+
+  traySystem->hide();
+  hide();
+  writeSettings();
+  cookieJar_->saveCookies();
 
   persistentUpdateThread_->quit();
   persistentParseThread_->quit();
@@ -271,7 +300,7 @@ RSSListing::~RSSListing()
   q.finish();
   db_.commit();
 
-  if (!commitDataRequest_) db_.exec("VACUUM");
+  db_.exec("VACUUM");
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(true);
@@ -285,12 +314,14 @@ RSSListing::~RSSListing()
   db_.close();
 
   QSqlDatabase::removeDatabase(QString());
+
+  emit signalCloseApp();
 }
 
-void RSSListing::slotCommitDataRequest(QSessionManager &manager)
+/*! \brief Завершение приложения **********************************************/
+void RSSListing::slotCloseApp()
 {
-  manager.release();
-  commitDataRequest_ = true;
+  qApp->quit();
 }
 
 /*!****************************************************************************/
@@ -367,35 +398,6 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   }
   // pass the event on to the parent class
   return QMainWindow::eventFilter(obj, event);
-}
-
-/*! \brief ОБработка событий закрытия окна ************************************/
-/*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
-{
-  event->ignore();
-  if (closingTray_ && !commitDataRequest_ && showTrayIcon_) {
-    oldState = windowState();
-    emit signalPlaceToTray();
-  } else {
-    slotClose();
-  }
-}
-
-/*! \brief Обработка события выхода из приложения *****************************/
-void RSSListing::slotClose()
-{
-  closeApp_ = true;
-  traySystem->hide();
-  hide();
-  writeSettings();
-  cookieJar_->saveCookies();
-  emit signalCloseApp();
-}
-
-/*! \brief Завершение приложения **********************************************/
-void RSSListing::slotCloseApp()
-{
-  qApp->quit();
 }
 
 /*! \brief Обработка события изменения состояния окна *************************/

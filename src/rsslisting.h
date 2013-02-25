@@ -363,7 +363,6 @@ private:
   FaviconThread *faviconThread_;
 
   DBMemFileThread *dbMemFileThread_;
-  bool commitDataRequest_;
 
   bool soundNewNews_;
   QString soundNotifyPath_;
