@@ -222,10 +222,21 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 
 /*virtual*/ void NewsModel::sort(int column, Qt::SortOrder order)
 {
+  int newsId = index(view_->currentIndex().row(), fieldIndex("id")).data().toInt();
+
   if ((column == fieldIndex("read")) || (column == fieldIndex("starred")))
     emit signalSort(column, order);
   else
     QSqlTableModel::sort(column, order);
+
+  if (newsId > 0) {
+    QModelIndex startIndex = index(0, fieldIndex("id"));
+    QModelIndexList indexList = match(startIndex, Qt::EditRole, newsId);
+    if (indexList.count()) {
+      int newsRow = indexList.first().row();
+      view_->setCurrentIndex(index(newsRow, fieldIndex("title")));
+    }
+  }
 }
 
 /*virtual*/ QModelIndexList NewsModel::match(
