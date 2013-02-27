@@ -2216,7 +2216,9 @@ void RSSListing::slotImportFeeds()
                  << ":" << xml.name().toString();
 
         QString textString(xml.attributes().value("text").toString());
+        QString titleString(xml.attributes().value("title").toString());
         QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
+        if (textString.isEmpty()) textString = titleString;
 
         // Найдена папка
         if (xmlUrlString.isEmpty()) {
