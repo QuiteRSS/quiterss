@@ -1,4 +1,5 @@
 #include <QSqlTableModel>
+#include <QSqlQuery>
 
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
@@ -275,10 +276,10 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
 {
   QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
   model()->setData(indexExpanded, 1);
-  ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->submitAll();
 
-  while (((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->canFetchMore())
-    ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->fetchMore();
+  int feedId = ((FeedsTreeModel*)model())->getIdByIndex(indexExpanded);
+  QSqlQuery q;
+  q.exec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%2'").arg(feedId));
 }
 
 /** @brief Обработка сворачивания узла
@@ -287,7 +288,10 @@ void FeedsTreeView::slotCollapsed(const QModelIndex &index)
 {
   QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
   model()->setData(indexExpanded, 0);
-  ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->submitAll();
+
+  int feedId = ((FeedsTreeModel*)model())->getIdByIndex(indexExpanded);
+  QSqlQuery q;
+  q.exec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%2'").arg(feedId));
 }
 
 void FeedsTreeView::dropEvent(QDropEvent *event)
