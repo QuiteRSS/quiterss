@@ -2235,8 +2235,8 @@ void RSSListing::slotImportFeeds()
 
           // Если такой папки еще нет, создаем ее
           if (!isFolderDuplicated) {
-            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created) "
-                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime)");
+            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded) "
+                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0 )");
             q.bindValue(":text", textString);
             q.bindValue(":title", textString);
             q.bindValue(":xmlUrl", "");
