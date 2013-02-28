@@ -4587,11 +4587,10 @@ void RSSListing::markAllFeedsOld()
   emit signalRefreshInfoTray();
 }
 
-void RSSListing::slotIconFeedLoad(const QString &feedUrl,
-                                  const QByteArray &byteArray,
-                                  const int &cntQueue)
+void RSSListing::slotIconFeedLoad(const QString &feedUrl, const QByteArray &byteArray)
 {
   int feedId = 0;
+  int feedParId = 0;
   QPixmap icon;
   if (icon.loadFromData(byteArray)) {
     icon = icon.scaled(16, 16, Qt::IgnoreAspectRatio,
@@ -4601,15 +4600,25 @@ void RSSListing::slotIconFeedLoad(const QString &feedUrl,
     buffer.open(QIODevice::WriteOnly);
     if (icon.save(&buffer, "ICO")) {
       QSqlQuery q;
-      q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+      q.prepare("SELECT id, parentId FROM feeds WHERE xmlUrl LIKE :xmlUrl");
       q.bindValue(":xmlUrl", feedUrl);
       q.exec();
-      if (q.next()) feedId = q.value(0).toInt();
+      if (q.next()) {
+        feedId = q.value(0).toInt();
+        feedParId = q.value(1).toInt();
+      }
 
       q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
       q.addBindValue(faviconData.toBase64());
       q.addBindValue(feedId);
       q.exec();
+
+      QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+      if (index.isValid()) {
+        QModelIndex indexImage = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("image"));
+        feedsTreeModel_->setData(indexImage, faviconData.toBase64());
+        feedsTreeView_->viewport()->update();
+      }
     }
     buffer.close();
 
@@ -4625,10 +4634,6 @@ void RSSListing::slotIconFeedLoad(const QString &feedUrl,
         widget->newsIconTitle_->setPixmap(iconTab);
         break;
       }
-    }
-
-    if (!cntQueue) {
-      feedsModelReload();
     }
   }
 }

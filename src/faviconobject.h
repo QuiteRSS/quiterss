@@ -23,8 +23,7 @@ public slots:
 signals:
   void startTimer();
   void signalGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt);
-  void signalIconRecived(const QString &feedUrl, const QByteArray &byteArray,
-                         const int &cntQueue);
+  void signalIconRecived(const QString &feedUrl, const QByteArray &byteArray);
 
 private slots:
   void getQueuedUrl();

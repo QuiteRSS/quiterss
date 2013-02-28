@@ -445,8 +445,7 @@ private slots:
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
-  void slotIconFeedLoad(const QString &feedUrl, const QByteArray &byteArray,
-                        const int &cntQueue);
+  void slotIconFeedLoad(const QString &feedUrl, const QByteArray &byteArray);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();

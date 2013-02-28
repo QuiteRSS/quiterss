@@ -23,8 +23,8 @@ FaviconThread::~FaviconThread()
   faviconObject_ = new FaviconObject();
   connect(parent(), SIGNAL(faviconRequestUrl(QString,QString)),
           faviconObject_, SLOT(requestUrl(QString,QString)));
-  connect(faviconObject_, SIGNAL(signalIconRecived(QString, const QByteArray&, const int&)),
-          parent(), SLOT(slotIconFeedLoad(QString, const QByteArray&, const int&)));
+  connect(faviconObject_, SIGNAL(signalIconRecived(QString, const QByteArray&)),
+          parent(), SLOT(slotIconFeedLoad(QString, const QByteArray&)));
 
   exec();
 }

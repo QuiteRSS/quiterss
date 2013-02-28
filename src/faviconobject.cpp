@@ -131,10 +131,7 @@ void FaviconObject::finished(QNetworkReply *reply)
               emit signalGet(redirectionTarget, feedUrl, 2);
             }
           } else {
-            int cnt = 1;
-            if (!feedsQueue_.count() && !currentFeeds_.count())
-              cnt = 0;
-            emit signalIconRecived(feedUrl, data, cnt);
+            emit signalIconRecived(feedUrl, data);
           }
         }
       } else {
