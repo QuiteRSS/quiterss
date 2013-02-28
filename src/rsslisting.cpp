@@ -5272,6 +5272,9 @@ void RSSListing::feedsModelReload(bool checkFilter)
 {
   if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
     feedsTreeView_->viewport()->update();
+    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
     return;
   }
 
