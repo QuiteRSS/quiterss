@@ -859,11 +859,11 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "0" << QString::fromUtf8("中文 (zh_CN)")
+  treeItem << "0" << QString::fromUtf8("Čeština (cs_CZ)")
            << "0.12.2"
            << QString::fromUtf8("") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_CN"));
+  languageItem->setIcon(1, QIcon(":/images/flag_CZ"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -952,6 +952,14 @@ void OptionsDialog::createLanguageWidget()
            << QString::fromUtf8("") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_UK"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("中文 (zh_CN)")
+           << "0.12.2"
+           << QString::fromUtf8("") << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_CN"));
   languageFileList_->addTopLevelItem(languageItem);
 
 
