@@ -2,7 +2,7 @@
 #include <QtSql>
 #include "faviconobject.h"
 
-#define REPLY_MAX_COUNT 2
+#define REPLY_MAX_COUNT 4
 #define REQUEST_TIMEOUT 30
 
 FaviconObject::FaviconObject(QObject *parent)
