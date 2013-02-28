@@ -668,6 +668,16 @@ int ParseObject::recountFeedCounts(int feedId)
       arg(unreadCount).arg(newNewsCount).arg(undeleteCount).arg(feedId);
   q.exec(qStr);
 
+  FeedCountStruct counts;
+  counts.feedId = feedId;
+  counts.parentId = feedParId;
+  counts.unreadCount = unreadCount;
+  counts.newCount = newNewsCount;
+  counts.undeleteCount = undeleteCount;
+  counts.updated = "";
+
+  emit feedCountsUpdate(counts);
+
   // Пересчитываем счетчики для всех родителей
   int l_feedParId = feedParId;
   while (l_feedParId) {
@@ -690,8 +700,19 @@ int ParseObject::recountFeedCounts(int feedId)
         arg(l_feedParId);
     q.exec(qStr);
 
+    FeedCountStruct counts;
+    counts.feedId = l_feedParId;
+
     q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
     if (q.next()) l_feedParId = q.value(0).toInt();
+
+    counts.parentId = l_feedParId;
+    counts.unreadCount = unreadCount;
+    counts.newCount = newCount;
+    counts.undeleteCount = undeleteCount;
+    counts.updated = updated;
+
+    emit feedCountsUpdate(counts);
   }
 
   return (newNewsCount - newCountOld);

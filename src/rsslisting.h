@@ -146,6 +146,7 @@ public slots:
                   const QByteArray &data, const QDateTime &dtReply);
   void slotUpdateFeed(int feedId, const bool &changed, int newCount);
   void slotUpdateFeedDelayed(int feedId, const bool &changed, int newCount);
+  void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
@@ -429,7 +430,7 @@ private slots:
   void setFeedRead(int feedId, FeedReedType feedReadtype);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
-  void feedsModelReload();
+  void feedsModelReload(bool checkFilter = false);
 
   void slotShowAboutDlg();
 

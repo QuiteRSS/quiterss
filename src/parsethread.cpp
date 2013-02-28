@@ -24,5 +24,9 @@ ParseThread::~ParseThread()
   connect(parseObject_, SIGNAL(feedUpdated(int, bool, int)),
           parent(), SLOT(slotUpdateFeed(int, bool, int)));
 
+  qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
+  connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
+          parent(), SLOT(slotFeedCountsUpdate(FeedCountStruct)));
+
   exec();
 }

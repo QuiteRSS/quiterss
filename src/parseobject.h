@@ -7,6 +7,17 @@
 #include <QObject>
 #include <QUrl>
 
+struct FeedCountStruct{
+  int feedId;
+  int parentId;
+  int unreadCount;
+  int newCount;
+  int undeleteCount;
+  QString updated;
+};
+
+Q_DECLARE_METATYPE(FeedCountStruct)
+
 class ParseObject : public QObject
 {
   Q_OBJECT
@@ -22,6 +33,7 @@ signals:
   void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
                         const QDateTime &dtReply);
   void feedUpdated(int feedId, const bool &changed, int newCount);
+  void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:
   void getQueuedXml();

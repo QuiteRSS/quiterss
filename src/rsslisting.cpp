@@ -190,8 +190,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotUpdateFeedDelayed(int, bool, int)));
   connect(this, SIGNAL(signalNextUpdate()),
           updateDelayer_, SLOT(slotNextUpdateFeed()));
-  connect(updateDelayer_, SIGNAL(signalUpdateModel()),
-          this, SLOT(feedsModelReload()));
+  connect(updateDelayer_, SIGNAL(signalUpdateModel(bool)),
+          this, SLOT(feedsModelReload(bool)));
 
   loadSettingsFeeds();
 
@@ -2660,6 +2660,24 @@ void RSSListing::recountFeedCounts(int feedId, bool update)
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  }
+}
+
+void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
+{
+  QModelIndex index = feedsTreeModel_->getIndexById(counts.feedId, counts.parentId);
+  if (index.isValid()) {
+    QModelIndex indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
+    QModelIndex indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
+    QModelIndex indexUndelete = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("undeleteCount"));
+    feedsTreeModel_->setData(indexUnread, counts.unreadCount);
+    feedsTreeModel_->setData(indexNew, counts.newCount);
+    feedsTreeModel_->setData(indexUndelete, counts.undeleteCount);
+
+    if (!counts.updated.isEmpty()) {
+      QModelIndex indexUpdated  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updated"));
+      feedsTreeModel_->setData(indexUpdated, counts.updated);
+    }
   }
 }
 
@@ -5250,8 +5268,13 @@ void RSSListing::slotOpenNewsBackgroundTab()
  * @details Производит перечитывание модели, сброс прокси модели и
  *    восстановление курсора на прежнее место
  ******************************************************************************/
-void RSSListing::feedsModelReload()
+void RSSListing::feedsModelReload(bool checkFilter)
 {
+  if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
+    feedsTreeView_->viewport()->update();
+    return;
+  }
+
   int topRow = feedsTreeView_->verticalScrollBar()->value();
 
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());

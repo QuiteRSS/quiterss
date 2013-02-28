@@ -42,7 +42,7 @@ public slots:
 
 signals:
   void signalUpdateNeeded(int feedId, const bool &feedChanged, int newCount);
-  void signalUpdateModel();
+  void signalUpdateModel(bool checkFilter = true);
 };
 
 #endif // UPDATEDELAYER_H
