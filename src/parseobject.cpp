@@ -617,10 +617,14 @@ int ParseObject::recountFeedCounts(int feedId)
 {
   QSqlQuery q;
   QString qStr;
+  QString updated;
 
   int feedParId = 0;
-  q.exec(QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(feedId));
-  if (q.next()) feedParId = q.value(0).toInt();
+  q.exec(QString("SELECT parentId, updated FROM feeds WHERE id=='%1'").arg(feedId));
+  if (q.next()) {
+    feedParId = q.value(0).toInt();
+    updated = q.value(1).toString();
+  }
 
   int undeleteCount = 0;
   int unreadCount = 0;
@@ -674,14 +678,14 @@ int ParseObject::recountFeedCounts(int feedId)
   counts.unreadCount = unreadCount;
   counts.newCount = newNewsCount;
   counts.undeleteCount = undeleteCount;
-  counts.updated = "";
+  counts.updated = updated;
 
   emit feedCountsUpdate(counts);
 
   // Пересчитываем счетчики для всех родителей
   int l_feedParId = feedParId;
   while (l_feedParId) {
-    QString updated;
+    updated = "";
     int newCount = 0;
 
     qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), "
