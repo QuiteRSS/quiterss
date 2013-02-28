@@ -118,18 +118,18 @@ int main(int argc, char **argv)
   if (showSplashScreen_)
     splashScreen->loadModules();
 
-  if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
-    rsslisting.show();
-
   rsslisting.restoreFeedsOnStartUp();
 
-  if (showSplashScreen_)
-    splashScreen->finish(&rsslisting);
+  if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
+    rsslisting.show();
 
   if (rsslisting.showTrayIcon_) {
     qApp->processEvents();
     rsslisting.traySystem->show();
   }
+
+  if (showSplashScreen_)
+    splashScreen->finish(&rsslisting);
 
   if (message.contains("feed://", Qt::CaseInsensitive))
     rsslisting.receiveMessage(message);
