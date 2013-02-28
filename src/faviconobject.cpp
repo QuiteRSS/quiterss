@@ -131,6 +131,7 @@ void FaviconObject::finished(QNetworkReply *reply)
               emit signalGet(redirectionTarget, feedUrl, 2);
             }
           } else {
+            // Отправка полученных данных для обработки в основной поток
             emit signalIconRecived(feedUrl, data);
           }
         }
@@ -176,4 +177,28 @@ void FaviconObject::slotRequestTimeout()
       currentTime_.replace(i, time);
     }
   }
+}
+
+/** @brief Сохранение иконки в БД и отправка сигнала для обновления её в модели
+ *----------------------------------------------------------------------------*/
+void FaviconObject::slotIconSave(const QString &feedUrl, const QByteArray &faviconData)
+{
+  int feedId = 0;
+  int feedParId = 0;
+
+  QSqlQuery q;
+  q.prepare("SELECT id, parentId FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", feedUrl);
+  q.exec();
+  if (q.next()) {
+    feedId = q.value(0).toInt();
+    feedParId = q.value(1).toInt();
+  }
+
+  q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
+  q.addBindValue(faviconData.toBase64());
+  q.addBindValue(feedId);
+  q.exec();
+
+  emit signalIconUpdate(feedId, feedParId, faviconData);
 }

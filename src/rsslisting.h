@@ -446,7 +446,8 @@ private slots:
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
-  void slotIconFeedLoad(const QString &feedUrl, const QByteArray &byteArray);
+  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray);
+  void slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
@@ -536,6 +537,7 @@ signals:
   void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
                      const QDateTime &dtReply);
   void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
+  void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();

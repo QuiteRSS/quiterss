@@ -4605,10 +4605,10 @@ void RSSListing::markAllFeedsOld()
   emit signalRefreshInfoTray();
 }
 
-void RSSListing::slotIconFeedLoad(const QString &feedUrl, const QByteArray &byteArray)
+/** @brief Подготовка иконки ленты для сохранения в БД
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray)
 {
-  int feedId = 0;
-  int feedParId = 0;
   QPixmap icon;
   if (icon.loadFromData(byteArray)) {
     icon = icon.scaled(16, 16, Qt::IgnoreAspectRatio,
@@ -4617,41 +4617,33 @@ void RSSListing::slotIconFeedLoad(const QString &feedUrl, const QByteArray &byte
     QBuffer    buffer(&faviconData);
     buffer.open(QIODevice::WriteOnly);
     if (icon.save(&buffer, "ICO")) {
-      QSqlQuery q;
-      q.prepare("SELECT id, parentId FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-      q.bindValue(":xmlUrl", feedUrl);
-      q.exec();
-      if (q.next()) {
-        feedId = q.value(0).toInt();
-        feedParId = q.value(1).toInt();
-      }
-
-      q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
-      q.addBindValue(faviconData.toBase64());
-      q.addBindValue(feedId);
-      q.exec();
-
-      QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
-      if (index.isValid()) {
-        QModelIndex indexImage = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("image"));
-        feedsTreeModel_->setData(indexImage, faviconData.toBase64());
-        feedsTreeView_->viewport()->update();
-      }
+      emit signalIconFeedReady(feedUrl, faviconData);
     }
-    buffer.close();
+  }
+}
 
-    for (int i = 0; i < stackedWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-      if (widget->feedId_ == feedId) {
-        QPixmap iconTab;
-        if (!faviconData.isNull()) {
-          iconTab.loadFromData(faviconData);
-        } else {
-          iconTab.load(":/images/feed");
-        }
-        widget->newsIconTitle_->setPixmap(iconTab);
-        break;
+/** @brief Обновление иконки ленты в модели
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData)
+{
+  QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+  if (index.isValid()) {
+    QModelIndex indexImage = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("image"));
+    feedsTreeModel_->setData(indexImage, faviconData.toBase64());
+    feedsTreeView_->viewport()->update();
+  }
+
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+    if (widget->feedId_ == feedId) {
+      QPixmap iconTab;
+      if (!faviconData.isNull()) {
+        iconTab.loadFromData(faviconData);
+      } else {
+        iconTab.load(":/images/feed");
       }
+      widget->newsIconTitle_->setPixmap(iconTab);
+      break;
     }
   }
 }
