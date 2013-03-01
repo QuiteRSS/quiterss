@@ -2053,7 +2053,10 @@ void RSSListing::addFeed()
   categoriesList << addFeedWizard->feedParentId_;
   recountFeedCategories(categoriesList);
 
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   feedsModelReload();
+  QApplication::restoreOverrideCursor();
+
   slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_);
 
   delete addFeedWizard;
@@ -2102,7 +2105,9 @@ void RSSListing::addFolder()
 
   delete addFolderDialog;
 
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   feedsModelReload();
+  QApplication::restoreOverrideCursor();
 }
 
 /*! \brief Удаление ленты из списка лент с подтверждением *********************/
@@ -2133,12 +2138,12 @@ void RSSListing::deleteFeed()
 
   if (msgBox.exec() == QMessageBox::No) return;
 
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
   db_.transaction();
   QSqlQuery q;
   q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedDeleteId));
   q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedDeleteId));
-  q.exec("VACUUM");
-  q.finish();
   db_.commit();
 
   QList<int> categoriesList;
@@ -2159,6 +2164,8 @@ void RSSListing::deleteFeed()
   feedsTreeView_->setCurrentIndex(currentIndex);
   feedsModelReload();
   slotFeedClicked(feedsTreeView_->currentIndex());
+
+  QApplication::restoreOverrideCursor();
 }
 
 /**
