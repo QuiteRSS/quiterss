@@ -4590,21 +4590,21 @@ void RSSListing::markAllFeedsRead()
 //! Помечаем все ленты не новыми
 void RSSListing::markAllFeedsOld()
 {
-  db_.transaction();
   QSqlQuery q;
-  q.exec("UPDATE news SET new=0 WHERE new==1");
-  q.exec("UPDATE feeds SET newCount=0");
-  db_.commit();
+  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
 
-  feedsModelReload();
+  q.exec("SELECT id FROM feeds WHERE newCount!=0");
+  while (q.next()) {
+    qApp->processEvents();
+    recountFeedCounts(q.value(0).toInt());
+  }
 
   if (currentNewsTab != NULL) {
     int currentRow = newsView_->currentIndex().row();
-
     setNewsFilter(newsFilterGroup_->checkedAction(), false);
-
     newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
   }
+
   emit signalRefreshInfoTray();
 }
 
