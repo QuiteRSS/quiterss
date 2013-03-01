@@ -4557,13 +4557,16 @@ void RSSListing::slotRefreshInfoTray()
 //! Помечаем все ленты прочитанными
 void RSSListing::markAllFeedsRead()
 {
-  db_.transaction();
   QSqlQuery q;
-  q.exec("UPDATE news SET new=0, read=2");
-  q.exec("UPDATE feeds SET newCount=0, unread=0");
-  db_.commit();
 
-  feedsModelReload();
+  q.exec("UPDATE news SET read=2 WHERE read!=2 AND deleted==0");
+  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
+
+  q.exec("SELECT id FROM feeds WHERE unread!=0");
+  while (q.next()) {
+    qApp->processEvents();
+    recountFeedCounts(q.value(0).toInt());
+  }
 
   if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
     QModelIndex index =
