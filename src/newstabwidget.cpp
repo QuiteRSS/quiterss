@@ -648,7 +648,7 @@ void NewsTabWidget::slotNewsUpPressed()
   int value = newsView_->verticalScrollBar()->value();
   int pageStep = newsView_->verticalScrollBar()->pageStep();
   if (row < (value + pageStep/2))
-    newsView_->verticalScrollBar()->setValue(value-1);
+    newsView_->verticalScrollBar()->setValue(row - pageStep/2);
 
   newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
@@ -673,7 +673,7 @@ void NewsTabWidget::slotNewsDownPressed()
   int value = newsView_->verticalScrollBar()->value();
   int pageStep = newsView_->verticalScrollBar()->pageStep();
   if (row > (value + pageStep/2))
-    newsView_->verticalScrollBar()->setValue(value+1);
+    newsView_->verticalScrollBar()->setValue(row - pageStep/2);
 
   newsView_->setCurrentIndex(newsModel_->index(row, newsModel_->fieldIndex("title")));
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
