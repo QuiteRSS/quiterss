@@ -363,8 +363,8 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(slotWebTitleLinkClicked(QString)));
   connect(webPanelTitle_, SIGNAL(linkHovered(QString)),
           this, SLOT(slotLinkHovered(QString)));
-  connect(this, SIGNAL(signalWebViewSetContent(QString)),
-                SLOT(slotWebViewSetContent(QString)), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalWebViewSetContent(QString, bool)),
+                SLOT(slotWebViewSetContent(QString, bool)), Qt::QueuedConnection);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
@@ -1216,32 +1216,34 @@ void NewsTabWidget::slotLoadFinished(bool)
 }
 
 //! Слот для асинхронного обновления новости
-void NewsTabWidget::slotWebViewSetContent(QString content)
+void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
 {
-  webView_->history()->setMaximumItemCount(0);
-
-  QModelIndex index = newsView_->currentIndex();
   QString str;
-  QString enclosureUrl = newsModel_->record(index.row()).
-      field("enclosure_url").value().toString();
-  if (!enclosureUrl.isEmpty()) {
-    QString type = newsModel_->record(index.row()).
-        field("enclosure_type").value().toString();
-    if (type.contains("image")) {
-      str = QString("<IMG SRC=\"%1\"><p>").
-          arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
-    } else {
-      if (type.contains("audio")) type = tr("audio");
-      else if (type.contains("video")) type = tr("video");
-      else type = tr("media");
 
-      str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
-          arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
-          arg(tr("Link to")).arg(type);
+  if (!hide) {
+    QModelIndex index = newsView_->currentIndex();
+    QString enclosureUrl = newsModel_->record(index.row()).
+        field("enclosure_url").value().toString();
+    if (!enclosureUrl.isEmpty()) {
+      QString type = newsModel_->record(index.row()).
+          field("enclosure_type").value().toString();
+      if (type.contains("image")) {
+        str = QString("<IMG SRC=\"%1\"><p>").
+            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
+      } else {
+        if (type.contains("audio")) type = tr("audio");
+        else if (type.contains("video")) type = tr("video");
+        else type = tr("media");
+
+        str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
+            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
+            arg(tr("Link to")).arg(type);
+      }
     }
+    str.append(content);
   }
-  str.append(content);
 
+  webView_->history()->setMaximumItemCount(0);
   webView_->setHtml(str);
   webView_->history()->setMaximumItemCount(100);
 }
@@ -1467,7 +1469,7 @@ void NewsTabWidget::slotSelectFind()
 
 void NewsTabWidget::hideWebContent()
 {
-  emit signalWebViewSetContent("");
+  emit signalWebViewSetContent("", true);
   webPanel_->hide();
   setWebToolbarVisible(false, false);
 }

@@ -129,7 +129,7 @@ public:
   QToolButton *closeButton_;
 
 signals:
-  void signalWebViewSetContent(QString content);
+  void signalWebViewSetContent(QString content, bool hide = false);
 
 public slots:
   void slotNewsViewClicked(QModelIndex index);
@@ -154,7 +154,7 @@ private slots:
   void slotSetItemStar(QModelIndex index, int starred);
   void slotReadTimer();
 
-  void slotWebViewSetContent(QString content);
+  void slotWebViewSetContent(QString content, bool hide = false);
   void slotWebTitleLinkClicked(QString urlStr);
   void webHomePage();
   void openPageInExternalBrowser();
