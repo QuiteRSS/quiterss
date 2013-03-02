@@ -2281,7 +2281,7 @@ void RSSListing::slotImportFeeds()
 //            qDebug() << q.lastQuery() << q.boundValues();
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
 
-            ++updateFeedsCount_;
+            updateFeedsCount_ = updateFeedsCount_ + 2;
             emit signalRequestUrl(xmlUrlString, QDateTime(), "");
             emit faviconRequestUrl(
                   xml.attributes().value("htmlUrl").toString(), xmlUrlString);
@@ -2401,6 +2401,11 @@ void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
                             const QByteArray &data, const QDateTime &dtReply)
 {
   qDebug() << "getUrl result = " << result << "url: " << feedUrlStr;
+
+  if (updateFeedsCount_ > 0) {
+    updateFeedsCount_--;
+    progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
+  }
 
   if (!data.isEmpty()) {
     emit xmlReadyParse(data, feedUrlStr, dtReply);
@@ -3423,7 +3428,7 @@ void RSSListing::slotGetFeed()
         arg(str);
     q.exec(qStr);
     while (q.next()) {
-      ++updateFeedsCount_;
+      updateFeedsCount_ = updateFeedsCount_ + 2;
       QString userInfo = getUserInfo(q.record().value(0).toString(),
                                      q.record().value(2).toInt());
       emit signalRequestUrl(q.record().value(0).toString(),
@@ -3431,7 +3436,7 @@ void RSSListing::slotGetFeed()
                             userInfo);
     }
   } else {
-    updateFeedsCount_ = updateFeedsCount_ + 1;
+    updateFeedsCount_ = updateFeedsCount_ + 2;
     QString userInfo = getUserInfo(feedsTreeModel_->dataField(index, "xmlUrl").toString(),
                                    feedsTreeModel_->dataField(index, "authentication").toInt());
     emit signalRequestUrl(
