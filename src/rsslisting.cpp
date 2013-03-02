@@ -5928,6 +5928,11 @@ void RSSListing::nextUnreadNews()
     return;
   }
 
+  int value = newsView_->verticalScrollBar()->value();
+  int pageStep = newsView_->verticalScrollBar()->pageStep();
+  if (newsRow > (value + pageStep/2))
+    newsView_->verticalScrollBar()->setValue(newsRow - pageStep/2);
+
   QModelIndex index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(index);
   currentNewsTab->slotNewsViewSelected(index);
@@ -5953,6 +5958,11 @@ void RSSListing::prevUnreadNews()
     }
     return;
   }
+
+  int value = newsView_->verticalScrollBar()->value();
+  int pageStep = newsView_->verticalScrollBar()->pageStep();
+  if (newsRow < (value + pageStep/2))
+    newsView_->verticalScrollBar()->setValue(newsRow - pageStep/2);
 
   QModelIndex index = newsModel_->index(newsRow, newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(index);
