@@ -721,6 +721,7 @@ void RSSListing::createStatusBar()
   progressBar_->setFixedHeight(15);
   progressBar_->setMinimum(0);
   progressBar_->setMaximum(0);
+  progressBar_->setValue(0);
   progressBar_->setVisible(false);
   statusBar()->setMinimumHeight(22);
 
