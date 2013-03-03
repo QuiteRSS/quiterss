@@ -3458,7 +3458,7 @@ void RSSListing::slotGetAllFeeds()
   q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
 //  qDebug() << q.lastError();
   while (q.next()) {
-    ++updateFeedsCount_;
+    updateFeedsCount_ = updateFeedsCount_ + 2;
     QString userInfo = getUserInfo(q.record().value(0).toString(),
                                    q.record().value(2).toInt());
     emit signalRequestUrl(q.record().value(0).toString(),
