@@ -556,8 +556,6 @@ void OptionsDialog::createFeedsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createLabelsWidget()
 {
-  idLabels_.clear();
-
   labelsTree_ = new QTreeWidget(this);
   labelsTree_->setObjectName("labelsTree_");
   labelsTree_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
@@ -567,30 +565,6 @@ void OptionsDialog::createLabelsWidget()
   labelsTree_->setColumnHidden(3, true);
   labelsTree_->setColumnHidden(4, true);
   labelsTree_->header()->hide();
-
-  QSqlQuery q;
-  q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
-  while (q.next()) {
-    int idLabel = q.value(0).toInt();
-    QString nameLabel = q.value(1).toString();
-    QByteArray byteArray = q.value(2).toByteArray();
-    QString colorText = q.value(3).toString();
-    QString colorBg = q.value(4).toString();
-    int numLabel = q.value(5).toInt();
-    QPixmap imageLabel;
-    if (!byteArray.isNull())
-      imageLabel.loadFromData(byteArray);
-    QStringList strTreeItem;
-    strTreeItem << QString::number(idLabel) << nameLabel
-                << colorText << colorBg << QString::number(numLabel);
-    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
-    treeWidgetItem->setIcon(1, QIcon(imageLabel));
-    if (!colorText.isEmpty())
-      treeWidgetItem->setTextColor(1, QColor(colorText));
-    if (!colorBg.isEmpty())
-      treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
-    labelsTree_->addTopLevelItem(treeWidgetItem);
-  }
 
   newLabelButton_ = new QPushButton(tr("New..."), this);
   connect(newLabelButton_, SIGNAL(clicked()), this, SLOT(newLabel()));
@@ -629,6 +603,8 @@ void OptionsDialog::createLabelsWidget()
           this, SLOT(slotCurrentLabelChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
   connect(labelsTree_, SIGNAL(doubleClicked(QModelIndex)),
           this, SLOT(editLabel()));
+
+  loadLabelsOk_ = false;
 }
 
 /** @brief Создание виджета "Уведомления"
@@ -722,60 +698,7 @@ void OptionsDialog::createNotifierWidget()
   notifierWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   notifierWidget_->setLayout(notifierMainLayout);
 
-  QSqlQuery q;
-  db_.transaction();
-  QQueue<int> parentIds;
-  parentIds.enqueue(0);
-  while (!parentIds.empty()) {
-    int parentId = parentIds.dequeue();
-    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1' ORDER BY text").
-        arg(parentId);
-    q.exec(qStr);
-    while (q.next()) {
-      QString feedText = q.value(0).toString();
-      QString feedId = q.value(1).toString();
-      QByteArray byteArray = q.value(2).toByteArray();
-      QString xmlUrl = q.value(3).toString();
-
-      QStringList treeItem;
-      treeItem << feedText << feedId;
-      QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-
-      treeWidgetItem->setCheckState(0, Qt::Unchecked);
-      QSqlQuery q1;
-      qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
-          arg(feedId);
-      q1.exec(qStr);
-      if (q1.next()) {
-        if (q1.value(0).toInt() == 1)
-          treeWidgetItem->setCheckState(0, Qt::Checked);
-      } else {
-        qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
-            arg(feedId);
-        q1.exec(qStr);
-      }
-      if (treeWidgetItem->checkState(0) == Qt::Unchecked)
-        feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
-
-      QPixmap iconItem;
-      if (!byteArray.isNull()) {
-        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
-      } else if (!xmlUrl.isEmpty()) {
-        iconItem.load(":/images/feed");
-      } else {
-        iconItem.load(":/images/folder");
-      }
-      treeWidgetItem->setIcon(0, iconItem);
-
-      QList<QTreeWidgetItem *> treeItems =
-            feedsTreeNotify_->findItems(QString::number(parentId),
-                                                       Qt::MatchFixedString | Qt::MatchRecursive,
-                                                       1);
-      treeItems.at(0)->addChild(treeWidgetItem);
-      parentIds.enqueue(feedId.toInt());
-    }
-  }
-  db_.commit();
+  loadNotifierOk_ = false;
 }
 
 /** @brief Создание виджета "Пароли"
@@ -1087,6 +1010,23 @@ void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int)
 {
   contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
   contentStack_->setCurrentIndex(item->data(0, Qt::DisplayRole).toInt());
+
+  if (item->data(1, Qt::DisplayRole).toString() == tr("Labels")) {
+    loadLabels();
+  } else if (item->data(1, Qt::DisplayRole).toString() == tr("Notifications")) {
+    loadNotifier();
+  }
+}
+
+int OptionsDialog::currentIndex()
+{
+  return categoriesTree_->currentItem()->text(0).toInt();
+}
+
+void OptionsDialog::setCurrentItem(int index)
+{
+  categoriesTree_->setCurrentItem(categoriesTree_->topLevelItem(index), 1);
+  slotCategoriesTreeKeyUpDownPressed();
 }
 
 void OptionsDialog::manualProxyToggle(bool checked)
@@ -1186,17 +1126,6 @@ void OptionsDialog::slotFontReset()
   default: fontsTree_->currentItem()->setText(
           2, QString("%1, 8").arg(qApp->font().family()));
   }
-}
-
-int OptionsDialog::currentIndex()
-{
-  return categoriesTree_->currentItem()->text(0).toInt();
-}
-
-void OptionsDialog::setCurrentItem(int index)
-{
-  categoriesTree_->setCurrentItem(categoriesTree_->topLevelItem(index), 1);
-  slotCategoriesItemClicked(categoriesTree_->topLevelItem(index), 1);
 }
 
 void OptionsDialog::setBehaviorIconTray(int behavior)
@@ -1375,6 +1304,38 @@ void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column
     }
   }
   itemNotChecked_ = false;
+}
+
+void OptionsDialog::loadLabels()
+{
+  if (loadLabelsOk_) return;
+  loadLabelsOk_ = true;
+
+  idLabels_.clear();
+
+  QSqlQuery q;
+  q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QByteArray byteArray = q.value(2).toByteArray();
+    QString colorText = q.value(3).toString();
+    QString colorBg = q.value(4).toString();
+    int numLabel = q.value(5).toInt();
+    QPixmap imageLabel;
+    if (!byteArray.isNull())
+      imageLabel.loadFromData(byteArray);
+    QStringList strTreeItem;
+    strTreeItem << QString::number(idLabel) << nameLabel
+                << colorText << colorBg << QString::number(numLabel);
+    QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+    treeWidgetItem->setIcon(1, QIcon(imageLabel));
+    if (!colorText.isEmpty())
+      treeWidgetItem->setTextColor(1, QColor(colorText));
+    if (!colorBg.isEmpty())
+      treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
+    labelsTree_->addTopLevelItem(treeWidgetItem);
+  }
 }
 
 void OptionsDialog::newLabel()
@@ -1622,6 +1583,65 @@ void OptionsDialog::applyLabels()
 void OptionsDialog::addIdLabelList(QString idLabel)
 {
   if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
+}
+
+void OptionsDialog::loadNotifier()
+{
+  if (loadNotifierOk_) return;
+  loadNotifierOk_ = true;
+
+  QSqlQuery q;
+  QQueue<int> parentIds;
+  parentIds.enqueue(0);
+  while (!parentIds.empty()) {
+    int parentId = parentIds.dequeue();
+    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1' ORDER BY text").
+        arg(parentId);
+    q.exec(qStr);
+    while (q.next()) {
+      QString feedText = q.value(0).toString();
+      QString feedId = q.value(1).toString();
+      QByteArray byteArray = q.value(2).toByteArray();
+      QString xmlUrl = q.value(3).toString();
+
+      QStringList treeItem;
+      treeItem << feedText << feedId;
+      QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
+
+      treeWidgetItem->setCheckState(0, Qt::Unchecked);
+      QSqlQuery q1;
+      qStr = QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
+          arg(feedId);
+      q1.exec(qStr);
+      if (q1.next()) {
+        if (q1.value(0).toInt() == 1)
+          treeWidgetItem->setCheckState(0, Qt::Checked);
+      } else {
+        qStr = QString("INSERT INTO feeds_ex(feedId, name, value) VALUES ('%1', 'showNotification', '0')").
+            arg(feedId);
+        q1.exec(qStr);
+      }
+      if (treeWidgetItem->checkState(0) == Qt::Unchecked)
+        feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+
+      QPixmap iconItem;
+      if (!byteArray.isNull()) {
+        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
+      } else if (!xmlUrl.isEmpty()) {
+        iconItem.load(":/images/feed");
+      } else {
+        iconItem.load(":/images/folder");
+      }
+      treeWidgetItem->setIcon(0, iconItem);
+
+      QList<QTreeWidgetItem *> treeItems =
+            feedsTreeNotify_->findItems(QString::number(parentId),
+                                                       Qt::MatchFixedString | Qt::MatchRecursive,
+                                                       1);
+      treeItems.at(0)->addChild(treeWidgetItem);
+      parentIds.enqueue(feedId.toInt());
+    }
+  }
 }
 
 void OptionsDialog::applyNotifier()

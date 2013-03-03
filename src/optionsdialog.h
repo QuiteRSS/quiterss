@@ -200,10 +200,13 @@ private:
 
   // notifier
   void createNotifierWidget();
+  void loadNotifier();
   void applyNotifier();
+  bool loadNotifierOk_;
 
   // labels
   void createLabelsWidget();
+  void loadLabels();
   void applyLabels();
   void addIdLabelList(QString idLabel);
   QPushButton *newLabelButton_;
@@ -211,6 +214,7 @@ private:
   QPushButton *deleteLabelButton_;
   QPushButton *moveUpLabelButton_;
   QPushButton *moveDownLabelButton_;
+  bool loadLabelsOk_;
 
   // passwords
   void createPasswordsWidget();
