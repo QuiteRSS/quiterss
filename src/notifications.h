@@ -20,7 +20,7 @@ public:
     iconNews->setPixmap(icon);
     iconNews->setFixedSize(icon.size());
     titleNews = new QLabel(this);
-
+    titleNews->setStyleSheet("QLabel:hover {color: #1155CC;}");
 
     readButton = new QToolButton(this);
     readButton->setIcon(QIcon(":/images/bulletUnread"));
