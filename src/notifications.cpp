@@ -109,7 +109,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   QSqlQuery q;
   int cnt = 0;
-  foreach (int idFeed, idFeedList_) {
+  for (int i = 0; i < idFeedList_.count(); i++) {
+    int idFeed = idFeedList_[i];
     QString qStr = QString("SELECT text, image, parentId FROM feeds WHERE id=='%1'").
         arg(idFeed);
     q.exec(qStr);
@@ -125,10 +126,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       }
     }
 
+    int cntNews = 0;
     qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1'").
         arg(idFeed);
     q.exec(qStr);
     while (q.next()) {
+      if (cntNews >= cntNewNewsList_[i]) break;
+      else cntNews++;
+
       if (cnt >= countShowNews_) {
         cnt = 1;
         pageLayout_ = new QVBoxLayout();
