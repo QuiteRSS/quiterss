@@ -949,7 +949,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Українська (UK)")
            << "0.12.2"
-           << QString::fromUtf8("") << "";
+           << QString::fromUtf8("Сергій Левицький") << "leon21sl@myopera.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_UK"));
   languageFileList_->addTopLevelItem(languageItem);
