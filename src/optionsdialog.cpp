@@ -458,12 +458,16 @@ void OptionsDialog::createFeedsWidget()
   formatDateLayout->addWidget(formatTime_);
   formatDateLayout->addStretch();
 
+  alternatingRowColorsNews_ = new QCheckBox("Alternating row background colors");
+
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
   generalFeedsLayout->addLayout(updateFeedsLayout);
   generalFeedsLayout->addSpacing(10);
   generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
+  generalFeedsLayout->addSpacing(10);
+  generalFeedsLayout->addWidget(alternatingRowColorsNews_);
   generalFeedsLayout->addLayout(formatDateLayout);
   generalFeedsLayout->addStretch();
 
