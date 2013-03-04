@@ -158,10 +158,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       if (!strColor.isEmpty())
         return QColor(strColor);
     }
-    if ((index.column() == view_->header()->sortIndicatorSection()) &&
-        (!view_->selectionModel()->isSelected(index))) {
-      return qApp->palette().brush(QPalette::AlternateBase);
-    }
   } else if (role == Qt::TextColorRole) {
     if (QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).isValid()) {
       QString strColor;
