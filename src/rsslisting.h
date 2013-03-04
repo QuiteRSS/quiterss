@@ -102,6 +102,7 @@ public:
   bool markReadClosingTab_;
   bool markReadMinimize_;
   bool showDescriptionNews_;
+  bool alternatingRowColorsNews_;
 
   bool autoLoadImages_;
   bool openLinkInBackground_;

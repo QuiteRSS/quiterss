@@ -78,6 +78,8 @@ public:
   QComboBox *formatDate_;
   QComboBox *formatTime_;
 
+  QCheckBox *alternatingRowColorsNews_;
+
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;
   QCheckBox *newsCleanUpOn_;

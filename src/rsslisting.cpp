@@ -1711,6 +1711,8 @@ void RSSListing::readSettings()
   feedsTreeModel_->formatDate_ = formatDate_;
   feedsTreeModel_->formatTime_ = formatTime_;
 
+  alternatingRowColorsNews_ = settings_->value("alternatingColorsNews", false).toBool();
+
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
   dayCleanUpOn_ = settings_->value("dayClearUpOn", true).toBool();
@@ -1919,6 +1921,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("formatData", formatDate_);
   settings_->setValue("formatTime", formatTime_);
+
+  settings_->setValue("alternatingColorsNews", alternatingRowColorsNews_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -3101,6 +3105,8 @@ void RSSListing::showOptionDlg()
     }
   }
 
+  optionsDialog->alternatingRowColorsNews_->setChecked(alternatingRowColorsNews_);
+
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
   optionsDialog->newsCleanUpOn_->setChecked(newsCleanUpOn_);
@@ -3322,6 +3328,8 @@ void RSSListing::showOptionDlg()
   formatTime_ = optionsDialog->formatTime_->itemData(
         optionsDialog->formatTime_->currentIndex()).toString();
   feedsTreeModel_->formatTime_ = formatTime_;
+
+  alternatingRowColorsNews_ = optionsDialog->alternatingRowColorsNews_->isChecked();
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
