@@ -458,7 +458,7 @@ void OptionsDialog::createFeedsWidget()
   formatDateLayout->addWidget(formatTime_);
   formatDateLayout->addStretch();
 
-  alternatingRowColorsNews_ = new QCheckBox("Alternating row background colors");
+  alternatingRowColorsNews_ = new QCheckBox(tr("Alternating row background colors"));
 
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
