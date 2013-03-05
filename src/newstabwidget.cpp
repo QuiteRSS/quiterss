@@ -1287,16 +1287,19 @@ void NewsTabWidget::openInBrowserNews()
 void NewsTabWidget::openInExternalBrowserNews()
 {
   if (type_ != TAB_WEB) {
-    QModelIndex index = newsView_->currentIndex();
+    QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
-    if (!index.isValid()) return;
+    int cnt = indexes.count();
+    if (cnt == 0) return;
 
-    QString linkString = newsModel_->record(
-          index.row()).field("link_href").value().toString();
-    if (linkString.isEmpty())
-      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
-    openUrl(linkString.simplified());
+    for (int i = cnt-1; i >= 0; --i) {
+      QModelIndex index = indexes.at(i);
+      QString linkString = newsModel_->record(
+            index.row()).field("link_href").value().toString();
+      if (linkString.isEmpty())
+        linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+      openUrl(linkString.simplified());
+    }
   } else {
     openUrl(webView_->url());
   }
