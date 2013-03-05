@@ -101,6 +101,9 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
           QString("QSplitter::handle {background: %1; margin-top: 1px; margin-bottom: 1px;}").
           arg(qApp->palette().color(QPalette::Dark).name()));
   }
+
+  connect(this, SIGNAL(signalSetTextTab(QString,NewsTabWidget*)),
+          rsslisting_, SLOT(setTextTitle(QString,NewsTabWidget*)));
 }
 
 void NewsTabWidget::resizeEvent(QResizeEvent *)
@@ -1334,11 +1337,7 @@ void NewsTabWidget::slotTabClose()
 void NewsTabWidget::webTitleChanged(QString title)
 {
   if ((type_ == TAB_WEB) && !title.isEmpty()) {
-    QString tabText = title;
-    newsTitleLabel_->setToolTip(tabText);
-    tabText = newsTextTitle_->fontMetrics().elidedText(
-          tabText, Qt::ElideRight, 114);
-    newsTextTitle_->setText(tabText);
+    setTextTab(title);
   }
 
   if ((!webView_->url().isValid() ||
@@ -1664,4 +1663,16 @@ int NewsTabWidget::findUnreadNews(bool next)
   if (!indexList.isEmpty()) newsRow = indexList.last().row();
 
   return newsRow;
+}
+
+/** @brief Установка текста вкладки
+ *----------------------------------------------------------------------------*/
+void NewsTabWidget::setTextTab(const QString &text, int width)
+{
+  QString textTab = newsTextTitle_->fontMetrics().elidedText(
+        text, Qt::ElideRight, width);
+  newsTextTitle_->setText(textTab);
+  newsTitleLabel_->setToolTip(text);
+
+  emit signalSetTextTab(text, this);
 }

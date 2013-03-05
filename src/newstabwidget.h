@@ -102,6 +102,8 @@ public:
 
   int findUnreadNews(bool next);
 
+  void setTextTab(const QString &text, int width = 114);
+
   int type_;
   int feedId_;
   int feedParId_;
@@ -130,6 +132,7 @@ public:
 
 signals:
   void signalWebViewSetContent(QString content, bool hide = false);
+  void signalSetTextTab(const QString &text, NewsTabWidget *widget);
 
 public slots:
   void slotNewsViewClicked(QModelIndex index);

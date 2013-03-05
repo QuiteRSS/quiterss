@@ -240,7 +240,7 @@ void FilterRulesDialog::setData()
     itemNotChecked_ = false;
 
     qStr = QString("SELECT field, condition, content "
-        "FROM filterConditions WHERE idFilter=='%1'").
+        "FROM filterConditions WHERE idFilter=='%1' ORDER BY content").
         arg(filterId_);
     q.exec(qStr);
     while (q.next()) {

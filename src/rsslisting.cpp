@@ -17,7 +17,6 @@
 #include "optionsdialog.h"
 #include "rsslisting.h"
 #include "webpage.h"
-#include "VersionNo.h"
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
 void RSSListing::receiveMessage(const QString& message)
@@ -53,7 +52,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
     settings_(settings),
     dataDirPath_(dataDirPath)
 {
-  setWindowTitle(QString("QuiteRSS v%1").arg(STRPRODUCTVER));
+  setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   closeApp_ = false;
@@ -2971,14 +2970,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
   //! Устанавливаем текст для открытой вкладки
-  QString tabText = feedsTreeModel_->dataField(index, "text").toString();
-  currentNewsTab->newsTitleLabel_->setToolTip(tabText);
   int padding = 15;
   if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)
     padding = 0;
-  tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-        tabText, Qt::ElideRight, currentNewsTab->newsTextTitle_->width() - padding);
-  currentNewsTab->newsTextTitle_->setText(tabText);
+  currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString(),
+                             currentNewsTab->newsTextTitle_->width() - padding);
 
   feedProperties_->setEnabled(index.isValid());
 
@@ -3217,11 +3213,7 @@ void RSSListing::showOptionDlg()
         NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(indexTab);
         //! Устанавливаем иконку и текст для открытой вкладки
         widget->newsIconTitle_->setPixmap(imageLabel);
-        QString tabText(nameLabel);
-        widget->newsTitleLabel_->setToolTip(tabText);
-        tabText = widget->newsTextTitle_->fontMetrics().elidedText(
-              tabText, Qt::ElideRight, 114);
-        widget->newsTextTitle_->setText(tabText);
+        widget->setTextTab(nameLabel);
       }
     }
 
@@ -4490,12 +4482,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
       iconTab.load(":/images/folder");
     }
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
-
-    QString tabText = feedsTreeModel_->dataField(index, "text").toString();
-    currentNewsTab->newsTitleLabel_->setToolTip(tabText);
-    tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-          tabText, Qt::ElideRight, 114);
-    currentNewsTab->newsTextTitle_->setText(tabText);
+    currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
   }
 }
 
@@ -5077,6 +5064,8 @@ void RSSListing::slotTabCurrentChanged(int index)
     statusUnread_->setVisible(false);
     statusAll_->setVisible(true);
   }
+
+  setTextTitle(widget->newsTitleLabel_->toolTip(), widget);
 }
 
 //! Включение/отключение отображения колонок в дереве лент
@@ -5102,8 +5091,7 @@ QWebPage *RSSListing::createWebTab()
   NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
   int indexTab = addTab(widget);
 
-  widget->newsTextTitle_->setText(tr("Loading..."));
-
+  widget->setTextTab(tr("Loading..."));
   widget->setSettings();
   widget->retranslateStrings();
 
@@ -5158,12 +5146,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
       iconTab.load(":/images/folder");
     }
     widget->newsIconTitle_->setPixmap(iconTab);
-
-    QString tabText = q.value(0).toString();
-    widget->newsTitleLabel_->setToolTip(tabText);
-    tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-          tabText, Qt::ElideRight, 114);
-    widget->newsTextTitle_->setText(tabText);
+    widget->setTextTab(q.value(0).toString());
 
     QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
     if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
@@ -5582,12 +5565,7 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
 
     //! Устанавливаем иконку и текст для открытой вкладки
     currentNewsTab->newsIconTitle_->setPixmap(item->icon(0).pixmap(16,16));
-
-    QString tabText(item->text(0));
-    currentNewsTab->newsTitleLabel_->setToolTip(tabText);
-    tabText = currentNewsTab->newsTextTitle_->fontMetrics().elidedText(
-          tabText, Qt::ElideRight, 114);
-    currentNewsTab->newsTextTitle_->setText(tabText);
+    currentNewsTab->setTextTab(item->text(0));
 
     currentNewsTab->labelId_ = item->text(2).toInt();
 
@@ -6018,4 +5996,14 @@ QString RSSListing::getIdFeedsString(int idFolder)
   } else {
     return QString("feedId=-1");
   }
+}
+
+/** @brief Установка текста заголовка программы
+ *----------------------------------------------------------------------------*/
+void RSSListing::setTextTitle(const QString &text, NewsTabWidget *widget)
+{
+  if (currentNewsTab != widget) return;
+
+  if (text.isEmpty()) setWindowTitle("QuiteRSS");
+  else setWindowTitle(QString("%1 - QuiteRSS").arg(text));
 }

@@ -520,6 +520,7 @@ private slots:
   void slotCloseTab();
   void slotNextTab();
   void slotPrevTab();
+  void setTextTitle(const QString &text, NewsTabWidget *widget);
 
   void hideMainToolbar();
 
