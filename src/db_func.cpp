@@ -667,9 +667,51 @@ QString initDB(const QString dbFileName)
 
         qDebug() << "DB converted to version =" << kDbVersion;
       }
+      // Версия базы последняя
       else {
-        qDebug() << "dbVersion =" << dbVersionString;
-      }
+
+        bool rowToParentCorrected = false;
+        q.exec("SELECT value FROM info WHERE name='rowToParentCorrected_0.12.1'");
+        if (q.next() && q.value(0).toString()=="true")
+          rowToParentCorrected = true;
+
+        if (rowToParentCorrected) {
+          qDebug() << "dbVersion =" << dbVersionString;
+        }
+        else {
+          qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.1 = true";
+
+          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1', 'true')");
+
+          // Начинаем поиск детей с потенциального родителя 0 (с корня)
+          QList<int> parentIdsPotential;
+          parentIdsPotential << 0;
+          while (!parentIdsPotential.empty()) {
+            int parentId = parentIdsPotential.takeFirst();
+
+            // Ищем детей родителя parentId
+            q.prepare("SELECT id FROM feeds WHERE parentId=? ORDER BY id");
+            q.addBindValue(parentId);
+            q.exec();
+
+            // Каждому ребенку прописываем его rowToParent
+            // ... сохраняем его в списке потенциальных родителей
+            int rowToParent = 0;
+            while (q.next()) {
+              int parentIdNew = q.value(0).toInt();
+
+              QSqlQuery q2(db);
+              q2.prepare("UPDATE feeds SET rowToParent=? WHERE id=?");
+              q2.addBindValue(rowToParent);
+              q2.addBindValue(parentIdNew);
+              q2.exec();
+
+              parentIdsPotential << parentIdNew;
+              ++rowToParent;
+            }
+          }
+        }   // if (rowToParentCorrected) {
+      } // Версия базы последняя
     }
     q.finish();
 
