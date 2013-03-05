@@ -171,6 +171,7 @@ private slots:
 
   void slotTabClose();
   void webTitleChanged(QString title);
+  void openLink();
   void openLinkInNewTab();
 
   void slotFindText(const QString& text);

@@ -342,6 +342,7 @@ void NewsTabWidget::createWebWidget()
   webWidget_->setLayout(webLayout);
   webWidget_->setMinimumWidth(400);
 
+  webView_->page()->action(QWebPage::OpenLink)->disconnect();
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->disconnect();
 
   urlExternalBrowserAct_ = new QAction(this);
@@ -377,6 +378,8 @@ void NewsTabWidget::createWebWidget()
 
   connect(webView_, SIGNAL(titleChanged(QString)),
           this, SLOT(webTitleChanged(QString)));
+  connect(webView_->page()->action(QWebPage::OpenLink), SIGNAL(triggered()),
+          this, SLOT(openLink()));
   connect(webView_->page()->action(QWebPage::OpenLinkInNewWindow), SIGNAL(triggered()),
           this, SLOT(openLinkInNewTab()));
 
@@ -419,7 +422,7 @@ void NewsTabWidget::setSettings(bool newTab)
             QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
     }
 
-    if (!rsslisting_->externalBrowserOn_) {
+    if (rsslisting_->externalBrowserOn_ <= 0) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     } else {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
@@ -1167,7 +1170,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     url.setScheme(hostUrl.scheme());
     url.setHost(hostUrl.host());
   }
-  if (!rsslisting_->externalBrowserOn_) {
+  if (rsslisting_->externalBrowserOn_ <= 0) {
     if (!webView_->midButtonClick) {
       if (!webControlPanel_->isVisible()) {
         webView_->history()->clear();
@@ -1362,14 +1365,27 @@ void NewsTabWidget::webTitleChanged(QString title)
 void NewsTabWidget::openNewsNewTab()
 {
   if (type_ == TAB_WEB) return;
+
+  int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
+  rsslisting_->externalBrowserOn_ = 0;
   slotNewsMiddleClicked(newsView_->currentIndex());
+  rsslisting_->externalBrowserOn_ = externalBrowserOn_;
+}
+
+//! Открытие ссылки
+void NewsTabWidget::openLink()
+{
+  slotLinkClicked(linkUrl_);
 }
 
 //! Открытие ссылки в новой вкладке
 void NewsTabWidget::openLinkInNewTab()
 {
+  int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
+  rsslisting_->externalBrowserOn_ = 0;
   webView_->midButtonClick = true;
   slotLinkClicked(linkUrl_);
+  rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
 
 inline static bool launch(const QUrl &url, const QString &client)
@@ -1387,7 +1403,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
       return QDesktopServices::openUrl(url);
 
   rsslisting_->openingLink_ = true;
-  if (rsslisting_->externalBrowserOn_ == 2) {
+  if ((rsslisting_->externalBrowserOn_ == 2) || (rsslisting_->externalBrowserOn_ == -1)) {
 #if defined(Q_WS_WIN)
     quintptr returnValue = (quintptr)ShellExecute(
           rsslisting_->winId(), 0,
@@ -1489,7 +1505,7 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
   const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
   if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
     linkUrl_ = hitTest.linkUrl();
-    if (!rsslisting_->externalBrowserOn_) {
+    if (rsslisting_->externalBrowserOn_ <= 0) {
       webMenu_->addSeparator();
       webMenu_->addAction(urlExternalBrowserAct_);
     }

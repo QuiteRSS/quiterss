@@ -1722,18 +1722,14 @@ void RSSListing::readSettings()
   neverLabelCleanUp_ = settings_->value("neverLabelClearUp", true).toBool();
 
   externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
-  if (!externalBrowserOn_) {
+  if (externalBrowserOn_ <= 0) {
     openInExternalBrowserAct_->setVisible(true);
-    openNewsNewTabAct_->setVisible(true);
-    openNewsBackgroundTabAct_->setVisible(true);
   } else {
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
                     << openInExternalBrowserAct_->shortcut();
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
-    openNewsNewTabAct_->setVisible(false);
-    openNewsBackgroundTabAct_->setVisible(false);
   }
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
@@ -3062,9 +3058,13 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->setProxy(networkProxy_);
 
-  optionsDialog->embeddedBrowserOn_->setChecked(externalBrowserOn_ == 0);
-  optionsDialog->standartBrowserOn_->setChecked(externalBrowserOn_ == 1);
-  optionsDialog->editExternalBrowser_->setText(externalBrowser_);
+  optionsDialog->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
+  optionsDialog->externalBrowserOn_->setChecked(externalBrowserOn_ >= 1);
+  optionsDialog->defaultExternalBrowserOn_->setChecked((externalBrowserOn_ == 0) ||
+                                                       (externalBrowserOn_ == 1));
+  optionsDialog->otherExternalBrowserOn_->setChecked((externalBrowserOn_ == -1) ||
+                                                     (externalBrowserOn_ == 2));
+  optionsDialog->otherExternalBrowserEdit_->setText(externalBrowser_);
   optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
   optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
@@ -3254,27 +3254,25 @@ void RSSListing::showOptionDlg()
   networkProxy_ = optionsDialog->proxy();
   setProxy(networkProxy_);
 
-  if (optionsDialog->embeddedBrowserOn_->isChecked())
-    externalBrowserOn_ = 0;
-  else if (optionsDialog->externalBrowserOn_->isChecked())
-    externalBrowserOn_ = 2;
-  else
-    externalBrowserOn_ = 1;
-
-  if (!externalBrowserOn_) {
+  if (optionsDialog->embeddedBrowserOn_->isChecked()) {
+    if (optionsDialog->defaultExternalBrowserOn_->isChecked())
+      externalBrowserOn_ = 0;
+    else
+      externalBrowserOn_ = -1;
     openInExternalBrowserAct_->setVisible(true);
-    openNewsNewTabAct_->setVisible(true);
-    openNewsBackgroundTabAct_->setVisible(true);
   } else {
+    if (optionsDialog->defaultExternalBrowserOn_->isChecked())
+      externalBrowserOn_ = 1;
+    else
+      externalBrowserOn_ = 2;
     QList <QKeySequence> keySequenceList;
     keySequenceList << openInBrowserAct_->shortcut()
                     << openInExternalBrowserAct_->shortcut();
     openInBrowserAct_->setShortcuts(keySequenceList);
     openInExternalBrowserAct_->setVisible(false);
-    openNewsNewTabAct_->setVisible(false);
-    openNewsBackgroundTabAct_->setVisible(false);
   }
-  externalBrowser_ = optionsDialog->editExternalBrowser_->text();
+
+  externalBrowser_ = optionsDialog->otherExternalBrowserEdit_->text();
   javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();

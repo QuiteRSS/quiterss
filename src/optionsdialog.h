@@ -42,10 +42,11 @@ public:
 
   // browser
   QRadioButton *embeddedBrowserOn_;
-  QRadioButton *standartBrowserOn_;
   QRadioButton *externalBrowserOn_;
-  LineEdit *editExternalBrowser_;
-  QPushButton *selectionExternalBrowser_;
+  QRadioButton *defaultExternalBrowserOn_;
+  QRadioButton *otherExternalBrowserOn_;
+  LineEdit *otherExternalBrowserEdit_;
+  QPushButton *otherExternalBrowserButton_;
   QCheckBox *javaScriptEnable_;
   QCheckBox *pluginsEnable_;
   QCheckBox *openLinkInBackground_;

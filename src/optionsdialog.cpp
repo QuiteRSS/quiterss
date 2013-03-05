@@ -325,11 +325,12 @@ void OptionsDialog::createNetworkConnectionsWidget()
 void OptionsDialog::createBrowserWidget()
 {
   embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
-  standartBrowserOn_ = new QRadioButton(tr("Use standard external browser"));
-  externalBrowserOn_ = new QRadioButton(tr("Use following external browser:"));
+  externalBrowserOn_ = new QRadioButton(tr("Use external browser"));
+  defaultExternalBrowserOn_ = new QRadioButton(tr("Default external browser"));
+  otherExternalBrowserOn_ = new QRadioButton(tr("Following external browser:"));
 
-  editExternalBrowser_ = new LineEdit();
-  selectionExternalBrowser_ = new QPushButton(tr("Browse..."));
+  otherExternalBrowserEdit_ = new LineEdit();
+  otherExternalBrowserButton_ = new QPushButton(tr("Browse..."));
 
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
@@ -337,13 +338,23 @@ void OptionsDialog::createBrowserWidget()
   openLinkInBackgroundEmbedded_ = new QCheckBox(tr("Open links in embedded browser in background"));
   openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background (experimental)"));
 
-  QGridLayout *browserLayout = new QGridLayout();
-  browserLayout->setContentsMargins(15, 0, 5, 10);
-  browserLayout->addWidget(embeddedBrowserOn_, 0, 0);
-  browserLayout->addWidget(standartBrowserOn_, 1, 0);
-  browserLayout->addWidget(externalBrowserOn_, 2, 0);
-  browserLayout->addWidget(editExternalBrowser_, 3, 0);
-  browserLayout->addWidget(selectionExternalBrowser_, 3, 1, Qt::AlignRight);
+  QGridLayout *browserSelectionLayout = new QGridLayout();
+  browserSelectionLayout->setContentsMargins(15, 0, 5, 10);
+  browserSelectionLayout->addWidget(embeddedBrowserOn_, 0, 0);
+  browserSelectionLayout->addWidget(externalBrowserOn_, 1, 0);
+  QButtonGroup *browserSelectionBox = new QButtonGroup();
+  browserSelectionBox->addButton(embeddedBrowserOn_);
+  browserSelectionBox->addButton(externalBrowserOn_);
+
+  QGridLayout *externalBrowserLayout = new QGridLayout();
+  externalBrowserLayout->setContentsMargins(15, 0, 5, 10);
+  externalBrowserLayout->addWidget(defaultExternalBrowserOn_, 0, 0);
+  externalBrowserLayout->addWidget(otherExternalBrowserOn_, 1, 0);
+  externalBrowserLayout->addWidget(otherExternalBrowserEdit_, 2, 0);
+  externalBrowserLayout->addWidget(otherExternalBrowserButton_, 2, 1, Qt::AlignRight);
+  QButtonGroup *externalBrowserBox = new QButtonGroup();
+  externalBrowserBox->addButton(defaultExternalBrowserOn_);
+  externalBrowserBox->addButton(otherExternalBrowserOn_);
 
   QVBoxLayout *contentBrowserLayout = new QVBoxLayout();
   contentBrowserLayout->setContentsMargins(15, 0, 5, 10);
@@ -352,7 +363,9 @@ void OptionsDialog::createBrowserWidget()
 
   QVBoxLayout *browserLayoutV = new QVBoxLayout();
   browserLayoutV->addWidget(new QLabel(tr("Browser selection:")));
-  browserLayoutV->addLayout(browserLayout);
+  browserLayoutV->addLayout(browserSelectionLayout);
+  browserLayoutV->addWidget(new QLabel(tr("External browser:")));
+  browserLayoutV->addLayout(externalBrowserLayout);
   browserLayoutV->addWidget(new QLabel(tr("Content:")));
   browserLayoutV->addLayout(contentBrowserLayout);
   browserLayoutV->addWidget(openLinkInBackgroundEmbedded_);
@@ -363,13 +376,13 @@ void OptionsDialog::createBrowserWidget()
   browserWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   browserWidget_->setLayout(browserLayoutV);
 
-  connect(externalBrowserOn_, SIGNAL(toggled(bool)),
-          editExternalBrowser_, SLOT(setEnabled(bool)));
-  connect(externalBrowserOn_, SIGNAL(toggled(bool)),
-          selectionExternalBrowser_, SLOT(setEnabled(bool)));
-  externalBrowserOn_->setChecked(true);
+  connect(otherExternalBrowserOn_, SIGNAL(toggled(bool)),
+          otherExternalBrowserEdit_, SLOT(setEnabled(bool)));
+  connect(otherExternalBrowserOn_, SIGNAL(toggled(bool)),
+          otherExternalBrowserButton_, SLOT(setEnabled(bool)));
+  otherExternalBrowserOn_->setChecked(true);
 
-  connect(selectionExternalBrowser_, SIGNAL(clicked()),
+  connect(otherExternalBrowserButton_, SIGNAL(clicked()),
           this, SLOT(selectionBrowser()));
 
 #if !(defined(Q_WS_WIN) || defined(Q_WS_X11))
@@ -1250,15 +1263,15 @@ void OptionsDialog::selectionBrowser()
 {
   QString path;
 
-  QFileInfo file(editExternalBrowser_->text());
-  if (file.isFile()) path = editExternalBrowser_->text();
+  QFileInfo file(otherExternalBrowserEdit_->text());
+  if (file.isFile()) path = otherExternalBrowserEdit_->text();
   else path = file.path();
 
   QString fileName = QFileDialog::getOpenFileName(this,
                                                   tr("Open File..."),
                                                   path);
   if (!fileName.isEmpty())
-    editExternalBrowser_->setText(fileName);
+    otherExternalBrowserEdit_->setText(fileName);
 }
 
 void OptionsDialog::selectionSoundNotifer()
