@@ -373,6 +373,35 @@ void initLabelsTable(QSqlDatabase *db)
   }
 }
 
+/** Создание резервной копии файла базы
+ *
+ *  Формат резервного файла:
+ *  <старое-имя-файла>.backup_<версия-базы>_<время-воздания-резервного-файла>
+ * @param dbFileName абсолютный путь и имя файла базы
+ * @param dbVersion версия базы
+ *----------------------------------------------------------------------------*/
+void createDBBackup(QString dbFileName, QString dbVersion)
+{
+  QFileInfo fi(dbFileName);
+
+  // Создаём backup директорию в директории файла базы
+  QDir backupDir(fi.absoluteDir());
+  if (!backupDir.exists("backup"))
+    qDebug() << backupDir.mkpath("backup");
+  backupDir.cd("backup");
+
+  // Создаём архивную копию файла
+  QString dbBackupName(backupDir.absolutePath() + '/' + fi.fileName());
+  dbBackupName.append(QString(".old_%1_%2")
+          .arg(dbVersion)
+          .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
+  qDebug() << "creating backup:"
+           << dbBackupName;
+  qDebug() << "> result:"
+           << QFile::copy(dbFileName, dbBackupName);
+}
+
+
 //-----------------------------------------------------------------------------
 QString initDB(const QString dbFileName)
 {
@@ -667,9 +696,53 @@ QString initDB(const QString dbFileName)
 
         qDebug() << "DB converted to version =" << kDbVersion;
       }
+      // Версия базы последняя
       else {
-        qDebug() << "dbVersion =" << dbVersionString;
-      }
+
+        bool rowToParentCorrected = false;
+        q.exec("SELECT value FROM info WHERE name='rowToParentCorrected_0.12.1'");
+        if (q.next() && q.value(0).toString()=="true")
+          rowToParentCorrected = true;
+
+        if (rowToParentCorrected) {
+          qDebug() << "dbVersion =" << dbVersionString;
+        }
+        else {
+          qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.1 = true";
+
+          createDBBackup(dbFileName, dbVersionString);
+
+          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1', 'true')");
+
+          // Начинаем поиск детей с потенциального родителя 0 (с корня)
+          QList<int> parentIdsPotential;
+          parentIdsPotential << 0;
+          while (!parentIdsPotential.empty()) {
+            int parentId = parentIdsPotential.takeFirst();
+
+            // Ищем детей родителя parentId
+            q.prepare("SELECT id FROM feeds WHERE parentId=? ORDER BY id");
+            q.addBindValue(parentId);
+            q.exec();
+
+            // Каждому ребенку прописываем его rowToParent
+            // ... сохраняем его в списке потенциальных родителей
+            int rowToParent = 0;
+            while (q.next()) {
+              int parentIdNew = q.value(0).toInt();
+
+              QSqlQuery q2(db);
+              q2.prepare("UPDATE feeds SET rowToParent=? WHERE id=?");
+              q2.addBindValue(rowToParent);
+              q2.addBindValue(parentIdNew);
+              q2.exec();
+
+              parentIdsPotential << parentIdNew;
+              ++rowToParent;
+            }
+          }
+        }   // if (rowToParentCorrected) {
+      } // Версия базы последняя
     }
     q.finish();
 
