@@ -373,6 +373,35 @@ void initLabelsTable(QSqlDatabase *db)
   }
 }
 
+/** Создание резервной копии файла базы
+ *
+ *  Формат резервного файла:
+ *  <старое-имя-файла>.backup_<версия-базы>_<время-воздания-резервного-файла>
+ * @param dbFileName абсолютный путь и имя файла базы
+ * @param dbVersion версия базы
+ *----------------------------------------------------------------------------*/
+void createDBBackup(QString dbFileName, QString dbVersion)
+{
+  QFileInfo fi(dbFileName);
+
+  // Создаём backup директорию в директории файла базы
+  QDir backupDir(fi.absoluteDir());
+  if (!backupDir.exists("backup"))
+    qDebug() << backupDir.mkpath("backup");
+  backupDir.cd("backup");
+
+  // Создаём архивную копию файла
+  QString dbBackupName(backupDir.absolutePath() + '/' + fi.fileName());
+  dbBackupName.append(QString(".old_%1_%2")
+          .arg(dbVersion)
+          .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
+  qDebug() << "creating backup:"
+           << dbBackupName;
+  qDebug() << "> result:"
+           << QFile::copy(dbFileName, dbBackupName);
+}
+
+
 //-----------------------------------------------------------------------------
 QString initDB(const QString dbFileName)
 {
@@ -680,6 +709,8 @@ QString initDB(const QString dbFileName)
         }
         else {
           qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.1 = true";
+
+          createDBBackup(dbFileName, dbVersionString);
 
           q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1', 'true')");
 
