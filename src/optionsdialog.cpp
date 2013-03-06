@@ -479,7 +479,6 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addSpacing(10);
   generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
-  generalFeedsLayout->addSpacing(10);
   generalFeedsLayout->addWidget(alternatingRowColorsNews_);
   generalFeedsLayout->addLayout(formatDateLayout);
   generalFeedsLayout->addStretch();
