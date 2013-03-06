@@ -5518,21 +5518,33 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 
   QModelIndex indexParId = indexWhat.sibling(
           indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
-  int feedId = feedsTreeModel_->getIdByIndex(indexWhat);
-  int feedParIdOld = feedsTreeModel_->getParidByIndex(indexWhat);
-  int feedParIdNew = feedsTreeModel_->getIdByIndex(indexWhere);
+  int feedIdWhat = feedsTreeModel_->getIdByIndex(indexWhat);
+  int feedParIdWhat = feedsTreeModel_->getParidByIndex(indexWhat);
+  int feedParIdWhere = feedsTreeModel_->getIdByIndex(indexWhere);
 
-  feedsTreeModel_->setData(indexParId, feedParIdNew);
+  // Исправляем rowToParent перед перемещением к новому родителю
+  int rowToParent = 0;
+  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
+      arg(feedParIdWhere);
+  QSqlQuery q(qStr);
+  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+
+  q.prepare("UPDATE feeds SET rowToParent = ? WHERE id == ?");
+  q.addBindValue(rowToParent);
+  q.addBindValue(feedIdWhat);
+  q.exec();
+
+  feedsTreeModel_->setData(indexParId, feedParIdWhere);
   ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
 
   QList<int> categoriesList;
-  categoriesList << feedParIdOld << feedParIdNew;
+  categoriesList << feedParIdWhat << feedParIdWhere;
   recountFeedCategories(categoriesList);
 
   feedsTreeModel_->refresh();
   expandNodes();
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParIdNew);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedIdWhat, feedParIdWhere);
   feedsTreeView_->setCurrentIndex(feedIndex);
 
   feedsTreeView_->setCursor(Qt::ArrowCursor);
