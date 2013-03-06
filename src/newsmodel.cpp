@@ -78,6 +78,10 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
              arg(index.data(Qt::EditRole).toInt()));
       if (q.next())
         return q.value(0).toString();
+    } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
+      QString title = index.data(Qt::EditRole).toString();
+      if ((view_->header()->sectionSize(index.column()) - 14) < view_->header()->fontMetrics().width(title))
+        return title;
     }
     return QString("");
   } else if (role == Qt::DisplayRole) {
