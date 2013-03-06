@@ -28,12 +28,17 @@ public:
     readButton->setAutoRaise(true);
     readButton->hide();
 
+    QToolButton *openExternalBrowserButton = new QToolButton(this);
+    openExternalBrowserButton->setIcon(QIcon(":/images/openBrowser"));
+    openExternalBrowserButton->setAutoRaise(true);
+
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
     buttonsLayout->setMargin(0);
     buttonsLayout->setSpacing(5);
     buttonsLayout->addWidget(iconNews);
     buttonsLayout->addWidget(titleNews, 1);
     buttonsLayout->addWidget(readButton);
+    buttonsLayout->addWidget(openExternalBrowserButton);
 
     setLayout(buttonsLayout);
     installEventFilter(this);
@@ -42,6 +47,8 @@ public:
 
     connect(readButton, SIGNAL(clicked()),
             this, SLOT(markRead()));
+    connect(openExternalBrowserButton, SIGNAL(clicked()),
+            this, SLOT(openExternalBrowser()));
   }
   int feedId_;
   int feedParId_;
@@ -63,6 +70,20 @@ protected:
   }
 
 private slots:
+  void openExternalBrowser()
+  {
+    QString linkString;
+    QSqlQuery q;
+    q.exec(QString("SELECT link_href, link_alternate FROM news WHERE id=='%1'").arg(newsId_));
+    if (q.next()) {
+      linkString = q.value(0).toString();
+      if (linkString.isEmpty()) {
+        linkString = q.value(1).toString();
+      }
+    }
+    emit signalOpenExternalBrowser(linkString.simplified());
+  }
+
   void markRead()
   {
     read = !read;
@@ -74,6 +95,7 @@ private slots:
   }
 
 signals:
+  void signalOpenExternalBrowser(const QUrl &url);
   void signalMarkRead(int);
   void signalTitleClicked(int, int, int);
 
@@ -122,6 +144,7 @@ signals:
   void signalShow();
   void signalDelete();
   void signalOpenNews(int feedId, int feedParId, int newsId);
+  void signalOpenExternalBrowser(const QUrl &url);
 
 };
 

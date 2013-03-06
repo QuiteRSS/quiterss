@@ -5345,6 +5345,8 @@ void RSSListing::showNotification()
           this, SLOT(deleteNotification()));
   connect(notificationWidget, SIGNAL(signalOpenNews(int,int,int)),
           this, SLOT(slotOpenNew(int,int,int)));
+  connect(notificationWidget, SIGNAL(signalOpenExternalBrowser(QUrl)),
+          this, SLOT(slotOpenNewBrowser(QUrl)));
 
   notificationWidget->show();
 }
@@ -5381,6 +5383,13 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
   QModelIndex index = newsView_->currentIndex();
   slotShowWindows();
   newsView_->setCurrentIndex(index);
+}
+
+/** @brief Открыть новость во внешнем браузере из окна уведомления
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotOpenNewBrowser(const QUrl &url)
+{
+  currentNewsTab->openUrl(url);
 }
 
 void RSSListing::slotFindFeeds(QString)

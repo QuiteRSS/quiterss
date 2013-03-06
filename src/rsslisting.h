@@ -489,6 +489,7 @@ private slots:
   void showNotification();
   void deleteNotification();
   void slotOpenNew(int feedId, int feedParId, int newsId);
+  void slotOpenNewBrowser(const QUrl &url);
 
   void slotFindFeeds(QString);
   void slotSelectFind();

@@ -35,7 +35,6 @@ private:
   void createNewsList();
   void createMenuNews();
   void createWebWidget();
-  bool openUrl(const QUrl &url);
   void setTitleWebPanel();
 
   RSSListing *rsslisting_;
@@ -87,6 +86,7 @@ public:
   void deleteAllNewsList();
   void restoreNews();
 
+  bool openUrl(const QUrl &url);
   void openInBrowserNews();
   void openInExternalBrowserNews();
   void openNewsNewTab();

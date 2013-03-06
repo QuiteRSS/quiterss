@@ -75,7 +75,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   QVBoxLayout *pageLayout_ = new QVBoxLayout();
   pageLayout_->setMargin(5);
-  pageLayout_->setSpacing(1);
+  pageLayout_->setSpacing(0);
   QWidget *pageWidget = new QWidget(this);
   pageWidget->setLayout(pageLayout_);
   stackedWidget_->addWidget(pageWidget);
@@ -138,7 +138,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         cnt = 1;
         pageLayout_ = new QVBoxLayout();
         pageLayout_->setMargin(5);
-        pageLayout_->setSpacing(1);
+        pageLayout_->setSpacing(0);
         QWidget *pageWidget = new QWidget(this);
         pageWidget->setLayout(pageLayout_);
         stackedWidget_->addWidget(pageWidget);
@@ -153,6 +153,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
               this, SLOT(markRead(int)));
       connect(newsItem, SIGNAL(signalTitleClicked(int, int, int)),
               this, SIGNAL(signalOpenNews(int, int, int)));
+      connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
+              this, SIGNAL(signalOpenExternalBrowser(QUrl)));
 
       newsItem->titleNews->setFont(QFont(fontFamily, fontSize));
       QString titleStr = newsItem->titleNews->fontMetrics().elidedText(
