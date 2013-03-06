@@ -1369,9 +1369,16 @@ void NewsTabWidget::openNewsNewTab()
 {
   if (type_ == TAB_WEB) return;
 
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
   int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
   rsslisting_->externalBrowserOn_ = 0;
-  slotNewsMiddleClicked(newsView_->currentIndex());
+  for (int i = cnt-1; i >= 0; --i) {
+    slotNewsMiddleClicked(indexes.at(i));
+  }
   rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
 
