@@ -1010,6 +1010,12 @@ void RSSListing::createActions()
   filterNewsUnreadStar_ = new QAction(this);
   filterNewsUnreadStar_->setObjectName("filterNewsUnreadStar_");
   filterNewsUnreadStar_->setCheckable(true);
+  filterNewsLastDay_ = new QAction(this);
+  filterNewsLastDay_->setObjectName("filterNewsLastDay_");
+  filterNewsLastDay_->setCheckable(true);
+  filterNewsLastWeek_ = new QAction(this);
+  filterNewsLastWeek_->setObjectName("filterNewsLastWeek_");
+  filterNewsLastWeek_->setCheckable(true);
 
   aboutAct_ = new QAction(this);
   aboutAct_->setObjectName("AboutAct_");
@@ -1560,12 +1566,15 @@ void RSSListing::createMenu()
   newsFilterGroup_->addAction(filterNewsStar_);
   newsFilterGroup_->addAction(filterNewsNotStarred_);
   newsFilterGroup_->addAction(filterNewsUnreadStar_);
+  newsFilterGroup_->addAction(filterNewsLastDay_);
+  newsFilterGroup_->addAction(filterNewsLastWeek_);
   connect(newsFilterGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setNewsFilter(QAction*)));
 
   newsFilterMenu_ = new QMenu(this);
   newsFilterMenu_->addActions(newsFilterGroup_->actions());
   newsFilterMenu_->insertSeparator(filterNewsNew_);
+  newsFilterMenu_->insertSeparator(filterNewsLastDay_);
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
@@ -3753,6 +3762,10 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     newsFilterStr.append(QString("starred = 0 AND deleted = 0"));
   } else if (pAct->objectName() == "filterNewsUnreadStar_") {
     newsFilterStr.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
+  } else if (pAct->objectName() == "filterNewsLastDay_") {
+    newsFilterStr.append(QString("(published >= datetime('now', '-1 day')) AND deleted = 0"));
+  } else if (pAct->objectName() == "filterNewsLastWeek_") {
+    newsFilterStr.append(QString("(published >= datetime('now', '-7 day')) AND deleted = 0"));
   }
 
   // ... добавляем фильтр из "поиска"
@@ -4123,6 +4136,8 @@ void RSSListing::retranslateStrings()
   filterNewsStar_->setText(tr("Show Starred"));
   filterNewsNotStarred_->setText(tr("Show Not Starred"));
   filterNewsUnreadStar_->setText(tr("Show Unread or Starred"));
+  filterNewsLastDay_->setText(tr("Show Last Day"));
+  filterNewsLastWeek_->setText(tr("Show Last 7 Days"));
 
   aboutAct_ ->setText(tr("About..."));
   aboutAct_->setToolTip(tr("Show 'About' Dialog"));
@@ -5159,6 +5174,10 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
       feedIdFilter.append(QString("starred = 0 AND deleted = 0"));
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsUnreadStar_") {
       feedIdFilter.append(QString("(read < 2 OR starred = 1) AND deleted = 0"));
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsLastDay_") {
+      feedIdFilter.append(QString("(published >= datetime('now', '-1 day')) AND deleted = 0"));
+    } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsLastWeek_") {
+      feedIdFilter.append(QString("(published >= datetime('now', '-7 day')) AND deleted = 0"));
     }
     widget->newsModel_->setFilter(feedIdFilter);
 
