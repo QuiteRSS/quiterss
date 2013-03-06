@@ -386,9 +386,9 @@ void OptionsDialog::createBrowserWidget()
           this, SLOT(selectionBrowser()));
 
 #if !(defined(Q_WS_WIN) || defined(Q_WS_X11))
-  externalBrowserOn_->setVisible(false);
-  editExternalBrowser_->setVisible(false);
-  selectionExternalBrowser_->setVisible(false);
+  otherExternalBrowserOn_->setVisible(false);
+  otherExternalBrowserEdit_->setVisible(false);
+  otherExternalBrowserButton_->setVisible(false);
 #endif
 }
 
