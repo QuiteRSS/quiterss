@@ -520,12 +520,20 @@ void AddFeedWizard::finish()
   if (foldersTree_->currentItem()->text(1) != "0")
     parentId = foldersTree_->currentItem()->text(1).toInt();
 
+  // Вычисляем номер ряда для папки
+  int rowToParent = 0;
+  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
+      arg(parentId);
+  q.exec(qStr);
+  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+
   int auth = 0;
   if (authentication_->isChecked()) auth = 1;
 
-  q.prepare("UPDATE feeds SET text = ?, parentId = ?, authentication = ? WHERE id == ?");
+  q.prepare("UPDATE feeds SET text = ?, parentId = ?, rowToParent = ?, authentication = ? WHERE id == ?");
   q.addBindValue(nameFeedEdit_->text());
   q.addBindValue(parentId);
+  q.addBindValue(rowToParent);
   q.addBindValue(auth);
   q.addBindValue(parseFeedId);
   q.exec();
