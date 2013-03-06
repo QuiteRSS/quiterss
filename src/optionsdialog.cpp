@@ -863,6 +863,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("Polski (PL)")
+           << "0.12.2"
+           << QString::fromUtf8("") << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_PL"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Русский (RU)")
            << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";

@@ -95,6 +95,7 @@
         <file alias="flag_UK">images/flag_ukraine.png</file>
         <file alias="flag_CN">images/flag_china.png</file>
         <file alias="flag_CZ">images/flag_czech.png</file>
+        <file alias="flag_PL">images/flag_poland.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
