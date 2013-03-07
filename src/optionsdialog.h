@@ -139,6 +139,7 @@ private slots:
   void selectionBrowser();
   void selectionSoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
+  void setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state);
   void newLabel();
   void editLabel();
   void deleteLabel();

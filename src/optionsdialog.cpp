@@ -1302,32 +1302,26 @@ void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column
 
   itemNotChecked_ = true;
   if (item->checkState(0) == Qt::Unchecked) {
-    if (item->childCount()) {
-      QTreeWidgetItem *childItem = feedsTreeNotify_->itemBelow(item);
-      while (childItem) {
-        childItem->setCheckState(0, Qt::Unchecked);
-        childItem = feedsTreeNotify_->itemBelow(childItem);
-        if (childItem) {
-          if (item->parent() == childItem->parent()) break;
-        }
-      }
-    }
+    setCheckStateItem(item, Qt::Unchecked);
+
     QTreeWidgetItem *parentItem = item->parent();
     while (parentItem) {
       parentItem->setCheckState(0, Qt::Unchecked);
       parentItem = parentItem->parent();
     }
-  } else if (item->childCount()) {
-    QTreeWidgetItem *childItem = feedsTreeNotify_->itemBelow(item);
-    while (childItem) {
-      childItem->setCheckState(0, Qt::Checked);
-      childItem = feedsTreeNotify_->itemBelow(childItem);
-      if (childItem) {
-        if (item->parent() == childItem->parent()) break;
-      }
-    }
+  } else {
+    setCheckStateItem(item, Qt::Checked);
   }
   itemNotChecked_ = false;
+}
+
+void OptionsDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state)
+{
+  for(int i = 0; i < item->childCount(); ++i) {
+    QTreeWidgetItem *childItem = item->child(i);
+    childItem->setCheckState(0, state);
+    setCheckStateItem(childItem, state);
+  }
 }
 
 void OptionsDialog::loadLabels()
@@ -1614,6 +1608,8 @@ void OptionsDialog::loadNotifier()
   if (loadNotifierOk_) return;
   loadNotifierOk_ = true;
 
+  itemNotChecked_ = true;
+
   QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
@@ -1666,10 +1662,13 @@ void OptionsDialog::loadNotifier()
       parentIds.enqueue(feedId.toInt());
     }
   }
+  feedsTreeNotify_->expandAll();
+  itemNotChecked_ = false;
 }
 
 void OptionsDialog::applyNotifier()
 {
+  feedsTreeNotify_->expandAll();
   QTreeWidgetItem *treeWidgetItem =
       feedsTreeNotify_->itemBelow(feedsTreeNotify_->topLevelItem(0));
   db_.transaction();
