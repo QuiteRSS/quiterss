@@ -298,6 +298,7 @@ void FilterRulesDialog::acceptDialog()
     }
   }
 
+  feedsTree->expandAll();
   QString strIdFeeds;
   QTreeWidgetItem *treeItem = feedsTree->itemBelow(feedsTree->topLevelItem(0));
   while (treeItem) {
@@ -417,32 +418,26 @@ void FilterRulesDialog::feedItemChanged(QTreeWidgetItem *item, int column)
 
   itemNotChecked_ = true;
   if (item->checkState(0) == Qt::Unchecked) {
-    if (item->childCount()) {
-      QTreeWidgetItem *childItem = feedsTree->itemBelow(item);
-      while (childItem) {
-        childItem->setCheckState(0, Qt::Unchecked);
-        childItem = feedsTree->itemBelow(childItem);
-        if (childItem) {
-          if (item->parent() == childItem->parent()) break;
-        }
-      }
-    }
+    setCheckStateItem(item, Qt::Unchecked);
+
     QTreeWidgetItem *parentItem = item->parent();
     while (parentItem) {
       parentItem->setCheckState(0, Qt::Unchecked);
       parentItem = parentItem->parent();
     }
-  } else if (item->childCount()) {
-    QTreeWidgetItem *childItem = feedsTree->itemBelow(item);
-    while (childItem) {
-      childItem->setCheckState(0, Qt::Checked);
-      childItem = feedsTree->itemBelow(childItem);
-      if (childItem) {
-        if (item->parent() == childItem->parent()) break;
-      }
-    }
+  } else {
+    setCheckStateItem(item, Qt::Checked);
   }
   itemNotChecked_ = false;
+}
+
+void FilterRulesDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state)
+{
+  for(int i = 0; i < item->childCount(); ++i) {
+    QTreeWidgetItem *childItem = item->child(i);
+    childItem->setCheckState(0, state);
+    setCheckStateItem(childItem, state);
+  }
 }
 
 ItemCondition *FilterRulesDialog::addCondition()
