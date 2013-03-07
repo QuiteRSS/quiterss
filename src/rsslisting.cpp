@@ -946,6 +946,11 @@ void RSSListing::createActions()
   titleSortFeedsAct_->setCheckable(true);
   connect(titleSortFeedsAct_, SIGNAL(triggered()), this, SLOT(slotSortFeeds()));
 
+  indentationFeedsTreeAct_ = new QAction(this);
+  indentationFeedsTreeAct_->setCheckable(true);
+  connect(indentationFeedsTreeAct_, SIGNAL(triggered()),
+          this, SLOT(slotIndentationFeedsTree()));
+
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
@@ -1530,6 +1535,7 @@ void RSSListing::createMenu()
   feedMenu_->addMenu(feedsColumnsMenu_);
 
   feedMenu_->addAction(titleSortFeedsAct_);
+  feedMenu_->addAction(indentationFeedsTreeAct_);
 
   feedMenu_->addSeparator();
   feedMenu_->addAction(deleteFeedAct_);
@@ -1809,6 +1815,9 @@ void RSSListing::readSettings()
   titleSortFeedsAct_->setChecked(settings_->value("sortFeeds", true).toBool());
   slotSortFeeds();
 
+  indentationFeedsTreeAct_->setChecked(settings_->value("indentationFeedsTree", true).toBool());
+  slotIndentationFeedsTree();
+
   browserPosition_ = settings_->value("browserPosition", BOTTOM_POSITION).toInt();
   switch (browserPosition_) {
   case TOP_POSITION:   topBrowserPositionAct_->setChecked(true); break;
@@ -1969,6 +1978,7 @@ void RSSListing::writeSettings()
   settings_->setValue("showLastUpdated", showLastUpdated_->isChecked());
 
   settings_->setValue("sortFeeds", titleSortFeedsAct_->isChecked());
+  settings_->setValue("indentationFeedsTree", indentationFeedsTreeAct_->isChecked());
 
   settings_->setValue("browserPosition", browserPosition_);
 
@@ -4237,6 +4247,7 @@ void RSSListing::retranslateStrings()
   showLastUpdated_->setText(tr("Last Updated"));
 
   titleSortFeedsAct_->setText(tr("Sort by Title"));
+  indentationFeedsTreeAct_->setText(tr("Show Indentation"));
 
   findFeedAct_->setToolTip(tr("Search Feed"));
 
@@ -6044,4 +6055,12 @@ void RSSListing::setTextTitle(const QString &text, NewsTabWidget *widget)
 
   if (text.isEmpty()) setWindowTitle("QuiteRSS");
   else setWindowTitle(QString("%1 - QuiteRSS").arg(text));
+}
+
+void RSSListing::slotIndentationFeedsTree()
+{
+  if (indentationFeedsTreeAct_->isChecked())
+    feedsTreeView_->setIndentation(20);
+  else
+    feedsTreeView_->setIndentation(0);
 }

@@ -248,6 +248,7 @@ private:
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedsRead_;
   QAction *titleSortFeedsAct_;
+  QAction *indentationFeedsTreeAct_;
   QAction *exitAct_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
@@ -534,6 +535,8 @@ private slots:
 
   void nextUnreadNews();
   void prevUnreadNews();
+
+  void slotIndentationFeedsTree();
 
 signals:
   void signalPlaceToTray();
