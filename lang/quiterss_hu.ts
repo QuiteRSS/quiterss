@@ -921,7 +921,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatornák-fa elrejtése a lapok megnyitásakor</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="191"/>
@@ -1061,7 +1061,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>External browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Külső böngésző:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
@@ -1091,7 +1091,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="474"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Váltakozó sor háttérszínek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="490"/>
@@ -1305,17 +1305,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="328"/>
         <source>Use external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Külső böngésző használata</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="329"/>
         <source>Default external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett külső böngésző</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Következő külső böngésző:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="365"/>
@@ -2296,12 +2296,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4139"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó nap megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4140"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó 7 nap megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4143"/>
@@ -2321,12 +2321,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4148"/>
         <source>Open News</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek mgnyitása</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4149"/>
         <source>Open Description News</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírleírások megnyitása</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4150"/>
@@ -2521,7 +2521,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4291"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Keresés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5866"/>
