@@ -25,7 +25,6 @@
         <file alias="importFeeds">images/ImportFeeds.png</file>
         <file alias="filterOff">images/filterOff.png</file>
         <file alias="quiterss16_NewNews">images/QuiteRSS16_NewNews.png</file>
-        <file>QuiteRSS.ico</file>
         <file alias="quiterss16">images/16x16/quiterss.png</file>
         <file alias="quiterss32">images/32x32/quiterss.png</file>
         <file alias="quiterss16_NewNews1">images/QuiteRSS16_NewNews1.png</file>
