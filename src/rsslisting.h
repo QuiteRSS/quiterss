@@ -427,6 +427,8 @@ private:
 
   QElapsedTimer timer_;
 
+  qint64 activationStateChangedTime_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();

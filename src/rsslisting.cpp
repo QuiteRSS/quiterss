@@ -371,11 +371,13 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     return false;
   }
   // Обработка открытия ссылки во внешнем браузере в фоне
-  else if ((event->type() == QEvent::WindowDeactivate) && (openingLink_) &&
-           openLinkInBackground_) {
-    openingLink_ = false;
-    timerLinkOpening_.start(openingLinkTimeout_, this);
-    deactivateState = 1;
+  else if (event->type() == QEvent::WindowDeactivate) {
+    if (openingLink_ && openLinkInBackground_) {
+      openingLink_ = false;
+      timerLinkOpening_.start(openingLinkTimeout_, this);
+      deactivateState = 1;
+    }
+    activationStateChangedTime_ = QDateTime::currentMSecsSinceEpoch();
   }
   // Отрисовалась деактивация
   else if ((event->type() == QEvent::Paint) && (deactivateState == 1)) {
@@ -452,6 +454,8 @@ void RSSListing::slotPlaceToTray()
 /*! \brief Обработка событий трея *********************************************/
 void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 {
+  bool activated = false;
+
   switch (reason) {
   case QSystemTrayIcon::Unknown:
     break;
@@ -459,10 +463,18 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
     trayMenu_->activateWindow();
     break;
   case QSystemTrayIcon::DoubleClick:
-    if (!singleClickTray_) slotShowWindows(true);
+    if (!singleClickTray_) {
+      if (QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300)
+        activated = true;
+      slotShowWindows(activated);
+    }
     break;
   case QSystemTrayIcon::Trigger:
-    if (singleClickTray_) slotShowWindows(true);
+    if (singleClickTray_) {
+      if (QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200)
+        activated = true;
+      slotShowWindows(activated);
+    }
     break;
   case QSystemTrayIcon::MiddleClick:
     break;
