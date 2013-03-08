@@ -29,9 +29,8 @@ int main(int argc, char **argv)
 
   app.setApplicationName("QuiteRss");
   app.setOrganizationName("QuiteRss");
-  app.setWindowIcon(QIcon(":/images/QuiteRSS.ico"));
 #if defined(QT_NO_DEBUG_OUTPUT)
-  app.setWindowIcon(QIcon(":/images/QuiteRSS.ico"));
+  app.setWindowIcon(QIcon(":/images/quiterss32"));
 #else
   app.setWindowIcon(QIcon(":/images/images/quiterss_debug.ico"));
 #endif
