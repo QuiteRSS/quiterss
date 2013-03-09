@@ -1236,7 +1236,7 @@ void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
       QString type = newsModel_->record(index.row()).
           field("enclosure_type").value().toString();
       if (type.contains("image")) {
-        str = QString("<IMG SRC=\"%1\"><p>").
+        str = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
             arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
       } else {
         if (type.contains("audio")) type = tr("audio");
