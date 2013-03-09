@@ -124,6 +124,7 @@ public:
   NetworkManager *networkManager_;
 
   bool hideFeedsOpenTab_;
+  bool defaultIconFeeds_;
 
 public slots:
   void addFeed();

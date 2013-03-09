@@ -1852,6 +1852,9 @@ void RSSListing::readSettings()
 
   hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", true).toBool();
 
+  defaultIconFeeds_ = settings_->value("defaultIconFeeds", false).toBool();
+  feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
+
   settings_->endGroup();
 
   resize(800, 600);
@@ -2003,6 +2006,8 @@ void RSSListing::writeSettings()
   settings_->setValue("updateCheck", updateCheck_);
 
   settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
+
+  settings_->setValue("defaultIconFeeds", defaultIconFeeds_);
 
   settings_->endGroup();
 
@@ -2987,12 +2992,14 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   QPixmap iconTab;
   QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
-  if (!byteArray.isNull()) {
-    iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-  } else if (isFeed) {
-    iconTab.load(":/images/feed");
-  } else {
+  if (!isFeed) {
     iconTab.load(":/images/folder");
+  } else {
+    if (byteArray.isNull() || defaultIconFeeds_) {
+      iconTab.load(":/images/feed");
+    } else if (isFeed) {
+      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+    }
   }
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
@@ -3075,6 +3082,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
   optionsDialog->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
+  optionsDialog->defaultIconFeeds_->setChecked(defaultIconFeeds_);
 
   optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
 
@@ -3259,6 +3267,8 @@ void RSSListing::showOptionDlg()
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
   hideFeedsOpenTab_ = optionsDialog->hideFeedsOpenTab_->isChecked();
+  defaultIconFeeds_ = optionsDialog->defaultIconFeeds_->isChecked();
+  feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
 
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
 
@@ -4510,12 +4520,14 @@ void RSSListing::slotShowFeedPropertiesDlg()
   if (feedsTreeView_->currentIndex() == index) {
     QPixmap iconTab;
     byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
-    if (!byteArray.isNull()) {
-      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-    } else if (isFeed) {
-      iconTab.load(":/images/feed");
-    } else {
+    if (!isFeed) {
       iconTab.load(":/images/folder");
+    } else {
+      if (byteArray.isNull() || defaultIconFeeds_) {
+        iconTab.load(":/images/feed");
+      } else if (isFeed) {
+        iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+      }
     }
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
     currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
@@ -4679,6 +4691,8 @@ void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray 
     feedsTreeModel_->setData(indexImage, faviconData.toBase64());
     feedsTreeView_->viewport()->update();
   }
+
+  if (defaultIconFeeds_) return;
 
   for (int i = 0; i < stackedWidget_->count(); i++) {
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
@@ -5174,12 +5188,14 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
     //! Устанавливаем иконку и текст для открытой вкладки
     QPixmap iconTab;
     QByteArray byteArray = q.value(1).toByteArray();
-    if (!byteArray.isNull()) {
-      iconTab.loadFromData(QByteArray::fromBase64(byteArray));
-    } else if (isFeed) {
-      iconTab.load(":/images/feed");
-    } else {
+    if (!isFeed) {
       iconTab.load(":/images/folder");
+    } else {
+      if (byteArray.isNull() || defaultIconFeeds_) {
+        iconTab.load(":/images/feed");
+      } else if (isFeed) {
+        iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+      }
     }
     widget->newsIconTitle_->setPixmap(iconTab);
     widget->setTextTab(q.value(0).toString());

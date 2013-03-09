@@ -187,6 +187,7 @@ void OptionsDialog::createGeneralWidget()
   showSplashScreen_ = new QCheckBox(tr("Show splash screen on startup"));
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
   hideFeedsOpenTab_ = new QCheckBox(tr("Hide feeds tree when opening tabs"));
+  defaultIconFeeds_ = new QCheckBox(tr("Use default picture for feeds"));
 
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
 
@@ -194,6 +195,7 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(showSplashScreen_);
   generalLayout->addWidget(reopenFeedStartup_);
   generalLayout->addWidget(hideFeedsOpenTab_);
+  generalLayout->addWidget(defaultIconFeeds_);
   generalLayout->addStretch();
   generalLayout->addWidget(storeDBMemory_);
 
@@ -1644,13 +1646,16 @@ void OptionsDialog::loadNotifier()
       if (treeWidgetItem->checkState(0) == Qt::Unchecked)
         feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
 
+      RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
       QPixmap iconItem;
-      if (!byteArray.isNull()) {
-        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
-      } else if (!xmlUrl.isEmpty()) {
-        iconItem.load(":/images/feed");
-      } else {
+      if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
+      } else {
+        if (byteArray.isNull() || rssl_->defaultIconFeeds_) {
+          iconItem.load(":/images/feed");
+        } else {
+          iconItem.loadFromData(QByteArray::fromBase64(byteArray));
+        }
       }
       treeWidgetItem->setIcon(0, iconItem);
 

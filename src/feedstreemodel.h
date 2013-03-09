@@ -22,6 +22,7 @@ public:
   QFont font_;
   QString formatDate_;
   QString formatTime_;
+  bool defaultIconFeeds_;
 };
 
 #endif  // FEEDSTREEMODEL_H

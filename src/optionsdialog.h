@@ -23,6 +23,7 @@ public:
   QCheckBox *showSplashScreen_;
   QCheckBox *reopenFeedStartup_;
   QCheckBox *hideFeedsOpenTab_;
+  QCheckBox *defaultIconFeeds_;
   QCheckBox *storeDBMemory_;
 
   // systemTray

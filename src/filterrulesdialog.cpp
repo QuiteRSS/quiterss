@@ -54,12 +54,14 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
         treeWidgetItem->setCheckState(0, Qt::Unchecked);
 
       QPixmap iconItem;
-      if (!byteArray.isNull()) {
-        iconItem.loadFromData(QByteArray::fromBase64(byteArray));
-      } else if (!xmlUrl.isEmpty()) {
-        iconItem.load(":/images/feed");
-      } else {
+      if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
+      } else {
+        if (byteArray.isNull() || rssl_->defaultIconFeeds_) {
+          iconItem.load(":/images/feed");
+        } else {
+          iconItem.loadFromData(QByteArray::fromBase64(byteArray));
+        }
       }
       treeWidgetItem->setIcon(0, iconItem);
 

@@ -79,6 +79,9 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
         if (strDate.isEmpty())
           return QPixmap(":/images/feedError");
 
+        if (defaultIconFeeds_)
+          return QPixmap(":/images/feed");
+
         QByteArray byteArray = index.sibling(index.row(), proxyColumnByOriginal("image")).
             data(Qt::EditRole).toByteArray();
         if (!byteArray.isNull()) {
