@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -372,12 +370,12 @@
     <message>
         <location filename="../src/findtext.cpp" line="64"/>
         <source>Filter News</source>
-        <translation>Filtr novinek</translation>
+        <translation>Filtrování novinek</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="65"/>
         <source>Find in Browser</source>
-        <translation>Najít v prohlížeči</translation>
+        <translation>Vyhledávání v prohlížeči</translation>
     </message>
 </context>
 <context>
@@ -385,7 +383,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
         <source>Mark News as Read</source>
-        <translation>Označit novinky za přetené</translation>
+        <translation>Označit novinky za přečtené</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
@@ -913,7 +911,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt strom kanálů při otevření záložky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="191"/>
@@ -923,17 +921,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="213"/>
         <source>starting QuiteRSS</source>
-        <translation>spuštění QuiteRSS</translation>
+        <translation>Spuštění QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="214"/>
         <source>minimizing QuiteRSS</source>
-        <translation>minimalizování QuiteRSS</translation>
+        <translation>Minimalizování QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="215"/>
         <source>closing QuiteRSS</source>
-        <translation>zavření QuiteRSS</translation>
+        <translation>Zavření QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="222"/>
@@ -943,7 +941,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="223"/>
         <source>Change icon for incoming new news</source>
-        <translation>Změnit ikonku při stažení novinek</translation>
+        <translation>Změnit ikonku při stažení nových novinek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="224"/>
@@ -1021,10 +1019,6 @@
         <translation>Použít interní prohlížeč</translation>
     </message>
     <message>
-        <source>Use following external browser:</source>
-        <translation type="obsolete">Použít následující externí prohlížeč:</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="333"/>
         <location filename="../src/optionsdialog.cpp" line="633"/>
         <source>Browse...</source>
@@ -1043,17 +1037,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="338"/>
         <source>Open links in embedded browser in background</source>
-        <translation>Otevřít odkaz v prohlížeči na pozadí</translation>
+        <translation>Otevírat odkazy v prohlížeči na pozadí</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="339"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>Otevřít odkazy v externím prohlížeči na pozací (experimentální)</translation>
+        <translation>Otevírat odkazy v externím prohlížeči na pozací (experimentální)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
         <source>External browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Externí prohlížeč:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
@@ -1083,7 +1077,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="474"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva pozadí každého druhého řádku</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="490"/>
@@ -1219,7 +1213,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="402"/>
         <source>Automatically update the feeds every</source>
-        <translation>Automaticky aktualizovat kanál každých</translation>
+        <translation>Automaticky aktualizovat kanály každých</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="412"/>
@@ -1272,7 +1266,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="187"/>
         <source>Show splash screen on startup</source>
-        <translation>Zobrazovat startovací obrazovku během spouštění</translation>
+        <translation>Zobrazovat startovací obrazovku při spouštění</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="209"/>
@@ -1297,17 +1291,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="328"/>
         <source>Use external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít externí prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="329"/>
         <source>Default external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí externí prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Následující externí prohlížeč:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="365"/>
@@ -1352,7 +1346,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="630"/>
         <source>Play sound for incoming new news</source>
-        <translation>Přehrát zvuk při přijení novinky:</translation>
+        <translation>Přehrát zvuk při přijení nové novinky:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="915"/>
@@ -1373,10 +1367,6 @@
         <location filename="../src/optionsdialog.cpp" line="68"/>
         <source>Keyboard Shortcuts</source>
         <translation>Klávesové zkratky</translation>
-    </message>
-    <message>
-        <source>Use standard external browser</source>
-        <translation type="obsolete">Použít výchozí externí prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="499"/>
@@ -2034,12 +2024,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4185"/>
         <source>Icon</source>
-        <translation>Ikonka</translation>
+        <translation>Pouze ikonka</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4186"/>
         <source>Text</source>
-        <translation>Text</translation>
+        <translation>Pouze text</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4197"/>
@@ -2201,7 +2191,7 @@
         <location filename="../src/rsslisting.cpp" line="5075"/>
         <location filename="../src/rsslisting.cpp" line="5689"/>
         <source>All: %1</source>
-        <translation>Vše: %1</translation>
+        <translation>Celkem: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4075"/>
@@ -2272,12 +2262,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4139"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit za poslední den</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4140"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit za posledních 7 dní</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4143"/>
@@ -2297,12 +2287,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4148"/>
         <source>Open News</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít novinky</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4149"/>
         <source>Open Description News</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít popis novinky</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4150"/>
@@ -2497,7 +2487,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4291"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Najít</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5866"/>
@@ -2570,7 +2560,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="113"/>
         <source>Current version is:</source>
-        <translation>Aktuální verze:</translation>
+        <translation>Nejnovější verze:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="119"/>
