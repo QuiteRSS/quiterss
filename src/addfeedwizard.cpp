@@ -623,3 +623,7 @@ void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *aut
 
   delete authenticationDialog;
 }
+
+void AddFeedWizard::slotFeedCountsUpdate(FeedCountStruct)
+{
+}

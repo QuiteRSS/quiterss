@@ -70,6 +70,7 @@ private slots:
   void slotProgressBarUpdate();
   void newFolder();
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
+  void slotFeedCountsUpdate(FeedCountStruct counts);
 
 };
 
