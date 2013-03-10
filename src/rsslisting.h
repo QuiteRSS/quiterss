@@ -335,7 +335,6 @@ private:
   QMenu *browserZoomMenu_;
 
   QToolBar *mainToolbar_;
-
   QToolBar *feedsToolBar_;
 
   NewsView *newsView_;
@@ -540,6 +539,8 @@ private slots:
   void prevUnreadNews();
 
   void slotIndentationFeedsTree();
+
+  void showCustomizeToolbarDlg();
 
 signals:
   void signalPlaceToTray();

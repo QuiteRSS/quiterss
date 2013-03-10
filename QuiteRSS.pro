@@ -49,7 +49,8 @@ HEADERS += \
     src/networkmanager.h \
     src/cookiejar.h \
     src/faviconthread.h \
-    src/faviconobject.h
+    src/faviconobject.h \
+    src/customizetoolbardialog.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -90,7 +91,8 @@ SOURCES += \
     src/networkmanager.cpp \
     src/cookiejar.cpp \
     src/faviconthread.cpp \
-    src/faviconobject.cpp
+    src/faviconobject.cpp \
+    src/customizetoolbardialog.cpp
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

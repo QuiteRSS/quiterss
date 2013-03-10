@@ -9,6 +9,7 @@
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
+#include "customizetoolbardialog.h"
 #include "db_func.h"
 #include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
@@ -782,6 +783,7 @@ void RSSListing::createActions()
   addAct_ = new QAction(this);
   addAct_->setObjectName("newAct");
   addAct_->setIcon(QIcon(":/images/add"));
+  this->addAction(addAct_);
   connect(addAct_, SIGNAL(triggered()), this, SLOT(addFeed()));
 
   addFeedAct_ = new QAction(this);
@@ -6091,4 +6093,13 @@ void RSSListing::slotIndentationFeedsTree()
     feedsTreeView_->setIndentation(20);
   else
     feedsTreeView_->setIndentation(0);
+}
+
+void RSSListing::showCustomizeToolbarDlg()
+{
+  CustomizeToolbarDialog *toolbarDlg = new CustomizeToolbarDialog(this, mainToolbar_);
+
+  toolbarDlg->exec();
+
+  delete toolbarDlg;
 }
