@@ -119,9 +119,25 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
 
   xml.readNext();
-  if (xml.documentVersion().isEmpty()) {
-    xml.clear();
-    xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
+  if (xml.documentVersion().isEmpty() || xml.documentEncoding().isEmpty()) {
+    bool codecOk = false;
+    QStringList codecNameList;
+    codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
+                  << "ISO 8859-5" << "IBM 866";
+    foreach (QString codecName, codecNameList) {
+      QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
+      if (codec->canEncode(xmlData)) {
+        xml.clear();
+        QString str = codec->toUnicode(xmlData.trimmed());
+        xml.addData(str);
+        codecOk = true;
+        break;
+      }
+    }
+    if (!codecOk) {
+      xml.clear();
+      xml.addData(QString::fromLocal8Bit(xmlData.trimmed()));
+    }
   } else {
     if (!xml.documentEncoding().isEmpty()) {
       QTextCodec *codec = QTextCodec::codecForName(
