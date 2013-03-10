@@ -225,6 +225,7 @@ private:
   QAction *mainToolbarToggle_;
   QAction *feedsToolbarToggle_;
   QAction *toolBarHide_;
+  QAction *customizeMainToolbar_;
   QAction *toolBarStyleI_;
   QAction *toolBarStyleT_;
   QAction *toolBarStyleTbI_;

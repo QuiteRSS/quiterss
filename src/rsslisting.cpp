@@ -842,6 +842,11 @@ void RSSListing::createActions()
   connect(categoriesPanelToggle_, SIGNAL(toggled(bool)),
           categoriesWidget_, SLOT(setVisible(bool)));
 
+  customizeMainToolbar_ = new QAction(this);
+  customizeMainToolbar_->setObjectName("customizeMainToolbar");
+  connect(customizeMainToolbar_, SIGNAL(triggered()),
+          this, SLOT(showCustomizeToolbarDlg()));
+
   toolBarStyleI_ = new QAction(this);
   toolBarStyleI_->setObjectName("toolBarStyleI_");
   toolBarStyleI_->setCheckable(true);
@@ -907,7 +912,10 @@ void RSSListing::createActions()
 
   autoLoadImagesToggle_ = new QAction(this);
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
+  autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   this->addAction(autoLoadImagesToggle_);
+  connect(autoLoadImagesToggle_, SIGNAL(triggered()),
+          this, SLOT(setAutoLoadImages()));
 
   printAct_ = new QAction(this);
   printAct_->setObjectName("printAct");
@@ -1469,8 +1477,7 @@ void RSSListing::createMenu()
   toolBarIconSizeMenu_->addActions(toolBarIconSizeGroup_->actions());
 
   customizeToolbarMenu_ = new QMenu(this);
-  customizeToolbarMenu_->addMenu(toolBarStyleMenu_);
-  customizeToolbarMenu_->addMenu(toolBarIconSizeMenu_);
+  customizeToolbarMenu_->addAction(customizeMainToolbar_);
 
   styleGroup_ = new QActionGroup(this);
   styleGroup_->addAction(systemStyle_);
@@ -1653,26 +1660,15 @@ void RSSListing::createToolBar()
   mainToolbar_ = new QToolBar(this);
   mainToolbar_->setObjectName("ToolBar_General");
   mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
+  mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   mainToolbar_->setMovable(false);
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
   addToolBar(mainToolbar_);
-
-  mainToolbar_->addAction(addAct_);
-  mainToolbar_->addSeparator();
-  mainToolbar_->addAction(updateFeedAct_);
-  mainToolbar_->addAction(updateAllFeedsAct_);
-  mainToolbar_->addSeparator();
-  mainToolbar_->addAction(markFeedRead_);
-  mainToolbar_->addSeparator();
-  mainToolbar_->addAction(autoLoadImagesToggle_);
-  mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
   connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
           mainToolbar_, SLOT(setVisible(bool)));
   connect(toolBarHide_, SIGNAL(triggered()),
           this, SLOT(hideMainToolbar()));
-  connect(autoLoadImagesToggle_, SIGNAL(triggered()),
-          this, SLOT(setAutoLoadImages()));
   connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuToolBar(const QPoint &)));
 }
@@ -1791,7 +1787,28 @@ void RSSListing::readSettings()
   if (!feedsToolbarToggle_->isChecked())
     feedsPanel_->hide();
 
-  QString str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
+  QString str = settings_->value("mainToolBar",
+                                 "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
+                                 "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
+
+  foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
+    if (actionStr == "Separator") {
+      mainToolbar_->addSeparator();
+    } else {
+      QListIterator<QAction *> iter(actions());
+      while (iter.hasNext()) {
+        QAction *pAction = iter.next();
+        if (!pAction->icon().isNull()) {
+          if (pAction->objectName() == actionStr) {
+            mainToolbar_->addAction(pAction);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  str = settings_->value("toolBarStyle", "toolBarStyleTuI_").toString();
   QList<QAction*> listActions = toolBarStyleGroup_->actions();
   foreach(QAction *action, listActions) {
     if (action->objectName() == str) {
@@ -4215,6 +4232,8 @@ void RSSListing::retranslateStrings()
 
   mainToolbar_->setWindowTitle(tr("Main Toolbar"));
   customizeToolbarMenu_->setTitle(tr("Customize Toolbar"));
+  customizeMainToolbar_->setText(tr("Main Toolbar"));
+
   toolBarStyleMenu_->setTitle(tr("Style"));
   toolBarStyleI_->setText(tr("Icon"));
   toolBarStyleT_->setText(tr("Text"));

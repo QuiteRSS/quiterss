@@ -106,10 +106,14 @@ void CustomizeToolbarDialog::acceptDialog()
 {
   toolbar_->clear();
 
+  QString str;
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
+    if (!str.isEmpty()) str.append(",");
+
     if (shortcutTree_->topLevelItem(i)->text(2) == "Separator") {
       toolbar_->addSeparator();
+      str.append("Separator");
       continue;
     }
 
@@ -119,11 +123,14 @@ void CustomizeToolbarDialog::acceptDialog()
       if (!pAction->icon().isNull()) {
         if (pAction->objectName() == shortcutTree_->topLevelItem(i)->text(2)) {
           toolbar_->addAction(pAction);
+          str.append(pAction->objectName());
           break;
         }
       }
     }
   }
+
+  settings_->setValue("Settings/mainToolBar", str);
 
   accept();
 }
