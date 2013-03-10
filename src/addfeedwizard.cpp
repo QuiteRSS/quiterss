@@ -421,7 +421,10 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
           if (q.next()) duplicateFoundId = q.value(0).toInt();
 
           if (0 <= duplicateFoundId) {
-            textWarning->setText(tr("Duplicate feed!"));
+            if (feedUrlString_ != linkFeedString)
+              textWarning->setText(tr("Duplicate feed!"));
+            else
+              textWarning->setText(tr("Can't find feed URL!"));
             warningWidget_->setVisible(true);
 
             deleteFeed();
