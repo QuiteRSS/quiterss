@@ -5,26 +5,29 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   : Dialog(parent),
     toolbar_(toolbar)
 {
-  setWindowTitle(tr("Customize Toolbar"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setMinimumWidth(300);
   setMinimumHeight(400);
+
+  if (toolbar_->objectName() == "ToolBar_General")
+    setWindowTitle(tr("Customize Main Toolbar"));
+  else if (toolbar_->objectName() == "feedsToolBar")
+    setWindowTitle(tr("Customize Feeds Toolbar"));
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   settings_ = rssl_->settings_;
 
   shortcutTree_ = new QTreeWidget(this);
   shortcutTree_->setObjectName("actionTree");
-  shortcutTree_->setColumnCount(4);
-  shortcutTree_->setColumnHidden(0, true);
-  shortcutTree_->setColumnHidden(2, true);
-  shortcutTree_->setColumnHidden(3, true);
+  shortcutTree_->setIndentation(0);
+  shortcutTree_->setColumnCount(2);
+  shortcutTree_->setColumnHidden(1, true);
   shortcutTree_->setSortingEnabled(false);
   shortcutTree_->setHeaderHidden(true);
-  shortcutTree_->header()->setResizeMode(1, QHeaderView::Stretch);
+  shortcutTree_->header()->setResizeMode(0, QHeaderView::Stretch);
 
   QStringList treeItem;
-  treeItem << "Id" << "Action" << "ObjectName" << "Data";
+  treeItem << "Action" << "ObjectName";
   shortcutTree_->setHeaderLabels(treeItem);
 
   QListIterator<QAction *> iter(toolbar_->actions());
@@ -32,28 +35,74 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
     QAction *pAction = iter.next();
 
     treeItem.clear();
-    treeItem << QString::number(shortcutTree_->topLevelItemCount())
-             << pAction->text().remove("&")
-             << pAction->objectName() << pAction->data().toString();
+    treeItem << pAction->text().remove("&") << pAction->objectName();
     QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
 
     if (pAction->icon().isNull())
-      item->setIcon(1, QIcon(":/images/images/noicon.png"));
+      item->setIcon(0, QIcon(":/images/images/noicon.png"));
     else {
       if (pAction->objectName() == "autoLoadImagesToggle") {
-        item->setIcon(1, QIcon(":/images/imagesOn"));
-        item->setText(1, tr("Load images"));
-      } else item->setIcon(1, pAction->icon());
+        item->setIcon(0, QIcon(":/images/imagesOn"));
+        item->setText(0, tr("Load images"));
+      } else item->setIcon(0, pAction->icon());
     }
 
     if (pAction->objectName().isEmpty()) {
-      item->setText(1, tr("Separator"));
-      item->setText(2, "Separator");
-      item->setBackground(1, qApp->palette().brush(QPalette::Midlight));
+      item->setText(0, tr("Separator"));
+      item->setText(1, "Separator");
+      item->setBackground(0, qApp->palette().brush(QPalette::Midlight));
     }
 
     shortcutTree_->addTopLevelItem(item);
   }
+
+  styleBox_ = new QComboBox(this);
+  treeItem.clear();
+  treeItem << tr("Icon") << tr("Text") << tr("Text Beside Icon") << tr("Text Under Icon");
+  styleBox_->addItems(treeItem);
+  QString styleStr = settings_->value("Settings/toolBarStyle", "toolBarStyleTuI_").toString();
+  if (styleStr == "toolBarStyleI_") {
+    styleBox_->setCurrentIndex(0);
+  } else if (styleStr == "toolBarStyleT_") {
+    styleBox_->setCurrentIndex(1);
+  } else if (styleStr == "toolBarStyleTbI_") {
+    styleBox_->setCurrentIndex(2);
+  } else {
+    styleBox_->setCurrentIndex(3);
+  }
+
+  iconBox_ = new QComboBox(this);
+  treeItem.clear();
+  treeItem << tr("Big") << tr("Normal") << tr("Small");
+  iconBox_->addItems(treeItem);
+  QString iconStr = settings_->value("Settings/toolBarIconSize", "toolBarIconNormal_").toString();
+  if (iconStr == "toolBarIconBig_") {
+    iconBox_->setCurrentIndex(0);
+  } else if (iconStr == "toolBarIconSmall_") {
+    iconBox_->setCurrentIndex(2);
+  } else {
+    iconBox_->setCurrentIndex(1);
+  }
+
+  QHBoxLayout *styleLayout = new QHBoxLayout();
+  styleLayout->setMargin(0);
+  styleLayout->addWidget(new QLabel(tr("Style:")));
+  styleLayout->addWidget(styleBox_);
+  styleLayout->addSpacing(10);
+  styleLayout->addWidget(new QLabel(tr("Icon Size:")));
+  styleLayout->addWidget(iconBox_);
+  styleLayout->addStretch();
+
+  QWidget *styleWidget = new QWidget(this);
+  styleWidget->setLayout(styleLayout);
+
+  if (toolbar_->objectName() != "ToolBar_General") {
+    styleWidget->hide();
+  }
+
+  QVBoxLayout *mainVLayout = new QVBoxLayout();
+  mainVLayout->addWidget(shortcutTree_, 1);
+  mainVLayout->addWidget(styleWidget);
 
   addButtonMenu_ = new QMenu(this);
   addButton_ = new QPushButton(tr("Add"));
@@ -74,7 +123,8 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   moveDownButton_->setEnabled(false);
   connect(moveDownButton_, SIGNAL(clicked()), this, SLOT(moveDownShortcut()));
 
-//  QPushButton *defaultButton;
+  QPushButton *defaultButton = new QPushButton(tr("Default"));
+  connect(defaultButton, SIGNAL(clicked()), this, SLOT(defaultShortcut()));
 
   QVBoxLayout *buttonsVLayout = new QVBoxLayout();
   buttonsVLayout->addWidget(addButton_);
@@ -86,10 +136,12 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
 
   QHBoxLayout *mainlayout = new QHBoxLayout();
   mainlayout->setMargin(0);
-  mainlayout->addWidget(shortcutTree_);
+  mainlayout->addLayout(mainVLayout);
   mainlayout->addLayout(buttonsVLayout);
 
   pageLayout->addLayout(mainlayout);
+
+  buttonsLayout->insertWidget(0, defaultButton);
 
   buttonBox->addButton(QDialogButtonBox::Ok);
   buttonBox->addButton(QDialogButtonBox::Cancel);
@@ -111,7 +163,7 @@ void CustomizeToolbarDialog::acceptDialog()
   for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
     if (!str.isEmpty()) str.append(",");
 
-    if (shortcutTree_->topLevelItem(i)->text(2) == "Separator") {
+    if (shortcutTree_->topLevelItem(i)->text(1) == "Separator") {
       toolbar_->addSeparator();
       str.append("Separator");
       continue;
@@ -121,7 +173,7 @@ void CustomizeToolbarDialog::acceptDialog()
     while (iter.hasNext()) {
       QAction *pAction = iter.next();
       if (!pAction->icon().isNull()) {
-        if (pAction->objectName() == shortcutTree_->topLevelItem(i)->text(2)) {
+        if (pAction->objectName() == shortcutTree_->topLevelItem(i)->text(1)) {
           toolbar_->addAction(pAction);
           str.append(pAction->objectName());
           break;
@@ -130,7 +182,28 @@ void CustomizeToolbarDialog::acceptDialog()
     }
   }
 
-  settings_->setValue("Settings/mainToolBar", str);
+  if (toolbar_->objectName() == "ToolBar_General") {
+    settings_->setValue("Settings/mainToolBar", str);
+
+    switch (styleBox_->currentIndex()) {
+    case 0: str = "toolBarStyleI_"; break;
+    case 1: str = "toolBarStyleT_"; break;
+    case 2: str = "toolBarStyleTbI_"; break;
+    default: str = "toolBarStyleTuI_";
+    }
+    settings_->setValue("Settings/toolBarStyle", str);
+    rssl_->setToolBarStyle(str);
+
+    switch (iconBox_->currentIndex()) {
+    case 0: str = "toolBarIconBig_"; break;
+    case 2: str = "toolBarIconSmall_"; break;
+    default: str = "toolBarIconNormal_";
+    }
+    settings_->setValue("Settings/toolBarIconSize", str);
+    rssl_->setToolBarIconSize(str);
+  } else if (toolbar_->objectName() == "feedsToolBar") {
+    settings_->setValue("Settings/feedsToolBar", str);
+  }
 
   accept();
 }
@@ -171,7 +244,7 @@ void CustomizeToolbarDialog::showMenuAddButton()
     if (!pAction->icon().isNull()) {
       QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(pAction->objectName(),
                                                                     Qt::MatchFixedString,
-                                                                    2);
+                                                                    1);
       if (!treeItems.count()) {
         QAction *action = addButtonMenu_->addAction(pAction->icon(), pAction->text());
         action->setObjectName(pAction->objectName());
@@ -192,14 +265,12 @@ void CustomizeToolbarDialog::showMenuAddButton()
 void CustomizeToolbarDialog::addShortcut(QAction *action)
 {
   QStringList treeItem;
-  treeItem << QString::number(shortcutTree_->topLevelItemCount())
-           << action->text().remove("&")
-           << action->objectName() << action->data().toString();
+  treeItem << action->text().remove("&") << action->objectName();
   QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
-  item->setIcon(1, action->icon());
+  item->setIcon(0, action->icon());
 
   if (action->objectName() == "Separator")
-    item->setBackground(1, qApp->palette().brush(QPalette::Midlight));
+    item->setBackground(0, qApp->palette().brush(QPalette::Midlight));
 
   shortcutTree_->addTopLevelItem(item);
 }
@@ -237,4 +308,54 @@ void CustomizeToolbarDialog::moveDownShortcut()
     moveUpButton_->setEnabled(true);
   if (shortcutTree_->currentIndex().row() == (shortcutTree_->topLevelItemCount()-1))
     moveDownButton_->setEnabled(false);
+}
+
+void CustomizeToolbarDialog::defaultShortcut()
+{
+  shortcutTree_->clear();
+
+  QString actionListStr;
+  if (toolbar_->objectName() == "ToolBar_General") {
+    actionListStr = "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
+        "Separator,markFeedRead,Separator,autoLoadImagesToggle";
+  } else if (toolbar_->objectName() == "feedsToolBar") {
+    actionListStr = "findFeedAct,feedsFilter";
+  }
+
+  foreach (QString actionStr, actionListStr.split(",", QString::SkipEmptyParts)) {
+    QStringList treeItem;
+    if (actionStr == "Separator") {
+      QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+      item->setText(0, tr("Separator"));
+      item->setText(1, "Separator");
+      item->setIcon(0, QIcon(":/images/images/noicon.png"));
+      item->setBackground(0, qApp->palette().brush(QPalette::Midlight));
+      shortcutTree_->addTopLevelItem(item);
+    } else {
+      QListIterator<QAction *> iter(toolbar_->actions());
+      while (iter.hasNext()) {
+        QAction *pAction = iter.next();
+        if (!pAction->icon().isNull()) {
+          if (pAction->objectName() == actionStr) {
+            treeItem << pAction->text().remove("&") << pAction->objectName();
+            QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+
+            if (pAction->icon().isNull())
+              item->setIcon(0, QIcon(":/images/images/noicon.png"));
+            else {
+              if (pAction->objectName() == "autoLoadImagesToggle") {
+                item->setIcon(0, QIcon(":/images/imagesOn"));
+                item->setText(0, tr("Load images"));
+              } else item->setIcon(0, pAction->icon());
+            }
+            shortcutTree_->addTopLevelItem(item);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  styleBox_->setCurrentIndex(3);
+  iconBox_->setCurrentIndex(1);
 }

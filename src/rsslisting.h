@@ -39,6 +39,9 @@ public:
   QList<int> getIdFeedsInList(int idFolder);
   QString getIdFeedsString(int idFolder);
 
+  void setToolBarStyle(const QString &styleStr);
+  void setToolBarIconSize(const QString &iconSizeStr);
+
   QSettings *settings_;
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
@@ -226,14 +229,9 @@ private:
   QAction *mainToolbarToggle_;
   QAction *feedsToolbarToggle_;
   QAction *toolBarHide_;
-  QAction *customizeMainToolbar_;
-  QAction *toolBarStyleI_;
-  QAction *toolBarStyleT_;
-  QAction *toolBarStyleTbI_;
-  QAction *toolBarStyleTuI_;
-  QAction *toolBarIconSmall_;
-  QAction *toolBarIconNormal_;
-  QAction *toolBarIconBig_;
+  QAction *customizeMainToolbarAct_;
+  QAction *customizeMainToolbarAct2_;
+  QAction *customizeFeedsToolbarAct_;
   QAction *systemStyle_;
   QAction *system2Style_;
   QAction *greenStyle_;
@@ -286,8 +284,7 @@ private:
   QAction *zoomOutAct_;
   QAction *zoomTo100Act_;
 
-  QActionGroup *toolBarStyleGroup_;
-  QActionGroup *toolBarIconSizeGroup_;
+  QActionGroup *customizeToolbarGroup_;
   QActionGroup *styleGroup_;
   QActionGroup *browserPositionGroup_;
   QActionGroup *feedsFilterGroup_;
@@ -319,8 +316,6 @@ private:
   QMenu *toolbarsMenu_;
   QMenu *customizeToolbarMenu_;
   QMenu *mainToolbarMenu_;
-  QMenu *toolBarStyleMenu_;
-  QMenu *toolBarIconSizeMenu_;
   QMenu *styleMenu_;
   QMenu *browserPositionMenu_;
   QMenu *feedMenu_;
@@ -447,8 +442,6 @@ private slots:
   void slotNewsFilter();
   void slotTimerUpdateFeeds();
   void slotShowUpdateAppDlg();
-  void setToolBarStyle(QAction*);
-  void setToolBarIconSize(QAction*);
   void showContextMenuToolBar(const QPoint &);
   void slotShowFeedPropertiesDlg();
   void slotFeedMenuShow();
@@ -542,7 +535,8 @@ private slots:
 
   void slotIndentationFeedsTree();
 
-  void showCustomizeToolbarDlg();
+  void customizeMainToolbar();
+  void showCustomizeToolbarDlg(QAction *action);
 
 signals:
   void signalPlaceToTray();

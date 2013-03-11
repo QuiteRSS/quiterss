@@ -18,6 +18,7 @@ private slots:
   void removeShortcut();
   void moveUpShortcut();
   void moveDownShortcut();
+  void defaultShortcut();
 
   void slotCurrentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
 
@@ -25,6 +26,9 @@ private:
   QToolBar *toolbar_;
   QSettings *settings_;
   QTreeWidget *shortcutTree_;
+
+  QComboBox *styleBox_;
+  QComboBox *iconBox_;
 
   QMenu *addButtonMenu_;
 
