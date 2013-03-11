@@ -1000,6 +1000,7 @@ void RSSListing::createActions()
 
   newsFilter_ = new QAction(this);
   newsFilter_->setIcon(QIcon(":/images/filterOff"));
+  this->addAction(newsFilter_);
   filterNewsAll_ = new QAction(this);
   filterNewsAll_->setObjectName("filterNewsAll_");
   filterNewsAll_->setCheckable(true);
@@ -1189,6 +1190,8 @@ void RSSListing::createActions()
     action->setData(idLabel);
     newsLabelGroup_->addAction(action);
   }
+  this->addActions(newsLabelGroup_->actions());
+
   newsLabelAction_ = new QAction(this);
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
@@ -3191,6 +3194,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->saveActionShortcut(listActions_, newsLabelGroup_);
   listActions_.append(newsLabelGroup_->actions());
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
+  this->addActions(newsLabelGroup_->actions());
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
     newsLabelAction_->setText(newsLabelGroup_->actions().at(0)->text());
