@@ -5180,7 +5180,13 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
     widget->newsIconTitle_->setPixmap(iconTab);
     widget->setTextTab(q.value(0).toString());
 
-    QString feedIdFilter(QString("feedId=%1 AND ").arg(feedId));
+    QString feedIdFilter;
+    if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
+      feedIdFilter = QString("(%1) AND ").arg(getIdFeedsString(feedId));
+    } else {
+      feedIdFilter = QString("feedId=%1 AND ").arg(feedId);
+    }
+
     if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
       feedIdFilter.append("deleted = 0");
     } else if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsNew_") {

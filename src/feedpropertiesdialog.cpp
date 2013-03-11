@@ -41,7 +41,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
-  displayOnStartup = new QCheckBox(tr("Display feed in new tab on startup"));
+  displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
   showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
   duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
 
@@ -75,10 +75,6 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
     labelHomepageCapt->hide();
     labelHomepage->hide();
     starredOn_->hide();
-    loadImagesOn->hide();
-    displayOnStartup->hide();
-    showDescriptionNews_->hide();
-    duplicateNewsMode_->hide();
   }
 
   return tab;
