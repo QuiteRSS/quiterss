@@ -854,6 +854,9 @@ void RSSListing::createActions()
   customizeFeedsToolbarAct_ = new QAction(this);
   customizeFeedsToolbarAct_->setObjectName("customizeFeedsToolbarAct");
 
+  customizeNewsToolbarAct_ = new QAction(this);
+  customizeNewsToolbarAct_->setObjectName("customizeNewsToolbarAct");
+
   systemStyle_ = new QAction(this);
   systemStyle_->setObjectName("systemStyle_");
   systemStyle_->setCheckable(true);
@@ -999,6 +1002,7 @@ void RSSListing::createActions()
   filterFeedsStarred_->setCheckable(true);
 
   newsFilter_ = new QAction(this);
+  newsFilter_->setObjectName("newsFilter");
   newsFilter_->setIcon(QIcon(":/images/filterOff"));
   this->addAction(newsFilter_);
   filterNewsAll_ = new QAction(this);
@@ -1068,6 +1072,7 @@ void RSSListing::createActions()
   this->addAction(deleteAllNewsAct_);
 
   restoreNewsAct_ = new QAction(this);
+  restoreNewsAct_->setObjectName("restoreNewsAct");
   restoreNewsAct_->setIcon(QIcon(":/images/images/arrow_turn_left.png"));
 
   restoreLastNewsAct_ = new QAction(this);
@@ -1193,9 +1198,11 @@ void RSSListing::createActions()
   this->addActions(newsLabelGroup_->actions());
 
   newsLabelAction_ = new QAction(this);
+  newsLabelAction_->setObjectName("newsLabelAction");
+  this->addAction(newsLabelAction_);
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
-    newsLabelAction_->setText(newsLabelGroup_->actions().at(0)->text());
+    newsLabelAction_->setToolTip(newsLabelGroup_->actions().at(0)->text());
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
   connect(newsLabelAction_, SIGNAL(triggered()),
@@ -1445,6 +1452,7 @@ void RSSListing::createMenu()
   customizeToolbarGroup_ = new QActionGroup(this);
   customizeToolbarGroup_->addAction(customizeMainToolbarAct_);
   customizeToolbarGroup_->addAction(customizeFeedsToolbarAct_);
+  customizeToolbarGroup_->addAction(customizeNewsToolbarAct_);
   connect(customizeToolbarGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(showCustomizeToolbarDlg(QAction*)));
   customizeToolbarMenu_ = new QMenu(this);
@@ -2032,7 +2040,7 @@ void RSSListing::writeSettings()
   settings_->setValue("networkProxy/user",     networkProxy_.user());
   settings_->setValue("networkProxy/password", networkProxy_.password());
 
-  NewsTabWidget* widget = (NewsTabWidget*)stackedWidget_->widget(0);
+  NewsTabWidget* widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   settings_->setValue("feedSettings/currentId", widget->feedId_);
   settings_->setValue("feedSettings/currentParId", widget->feedParId_);
   settings_->setValue("feedSettings/filterName",
@@ -3197,7 +3205,7 @@ void RSSListing::showOptionDlg()
   this->addActions(newsLabelGroup_->actions());
   if (newsLabelGroup_->actions().count()) {
     newsLabelAction_->setIcon(newsLabelGroup_->actions().at(0)->icon());
-    newsLabelAction_->setText(newsLabelGroup_->actions().at(0)->text());
+    newsLabelAction_->setToolTip(newsLabelGroup_->actions().at(0)->text());
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
 
@@ -4144,13 +4152,13 @@ void RSSListing::retranslateStrings()
   optionsAct_->setText(tr("Options..."));
   optionsAct_->setToolTip(tr("Open Options Dialog"));
 
-  feedsFilter_->setText(tr("Filter"));
+  feedsFilter_->setText(tr("Filter Feeds"));
   filterFeedsAll_->setText(tr("Show All"));
   filterFeedsNew_->setText(tr("Show New"));
   filterFeedsUnread_->setText(tr("Show Unread"));
   filterFeedsStarred_->setText(tr("Show Starred Feeds"));
 
-  newsFilter_->setText( tr("Filter"));
+  newsFilter_->setText(tr("Filter News"));
   filterNewsAll_->setText(tr("Show All"));
   filterNewsNew_->setText(tr("Show New"));
   filterNewsUnread_->setText(tr("Show Unread"));
@@ -4205,6 +4213,7 @@ void RSSListing::retranslateStrings()
   customizeMainToolbarAct_->setText(tr("Main Toolbar..."));
   customizeMainToolbarAct2_->setText(tr("Customize Toolbar..."));
   customizeFeedsToolbarAct_->setText(tr("Feeds Toolbar..."));
+  customizeNewsToolbarAct_->setText(tr("News Toolbar..."));
 
   toolBarHide_->setText(tr("Hide Toolbar"));
 
@@ -4293,6 +4302,7 @@ void RSSListing::retranslateStrings()
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
 
   newsLabelMenuAction_->setText(tr("Label"));
+  newsLabelAction_->setText(tr("Label"));
 
   closeTabAct_->setText(tr("Close tab"));
   nextTabAct_->setText(tr("Switch to next tab"));
@@ -5765,7 +5775,7 @@ void RSSListing::setLabelNews(QAction *action)
   if (currentNewsTab->type_ == TAB_WEB) return;
 
   newsLabelAction_->setIcon(action->icon());
-  newsLabelAction_->setText(action->text());
+  newsLabelAction_->setToolTip(action->text());
   newsLabelAction_->setData(action->data());
 
   currentNewsTab->setLabelNews(action->data().toInt(), action->isChecked());
@@ -6091,8 +6101,11 @@ void RSSListing::customizeMainToolbar()
 void RSSListing::showCustomizeToolbarDlg(QAction *action)
 {
   QToolBar *toolbar = mainToolbar_;
-  if (action->objectName() == "customizeFeedsToolbarAct")
+  if (action->objectName() == "customizeFeedsToolbarAct") {
     toolbar = feedsToolBar_;
+  } else if (action->objectName() == "customizeNewsToolbarAct") {
+    toolbar = currentNewsTab->newsToolBar_;
+  }
 
   CustomizeToolbarDialog *toolbarDlg = new CustomizeToolbarDialog(this, toolbar);
 

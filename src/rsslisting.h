@@ -232,6 +232,7 @@ private:
   QAction *customizeMainToolbarAct_;
   QAction *customizeMainToolbarAct2_;
   QAction *customizeFeedsToolbarAct_;
+  QAction *customizeNewsToolbarAct_;
   QAction *systemStyle_;
   QAction *system2Style_;
   QAction *greenStyle_;

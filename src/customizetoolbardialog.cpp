@@ -13,6 +13,8 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
     setWindowTitle(tr("Customize Main Toolbar"));
   else if (toolbar_->objectName() == "feedsToolBar")
     setWindowTitle(tr("Customize Feeds Toolbar"));
+  else if (toolbar_->objectName() == "newsToolBar")
+    setWindowTitle(tr("Customize News Toolbar"));
 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   settings_ = rssl_->settings_;
@@ -34,6 +36,11 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
 
+    if ((pAction->objectName() == "restoreNewsAct") ||
+        (pAction->objectName() == "separatorRAct")) {
+      continue;
+    }
+
     treeItem.clear();
     treeItem << pAction->text().remove("&") << pAction->objectName();
     QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
@@ -44,6 +51,9 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
       if (pAction->objectName() == "autoLoadImagesToggle") {
         item->setIcon(0, QIcon(":/images/imagesOn"));
         item->setText(0, tr("Load images"));
+      } else if ((pAction->objectName() == "feedsFilter") ||
+                 (pAction->objectName() == "newsFilter")) {
+        item->setIcon(0, QIcon(":/images/filterOn"));
       } else item->setIcon(0, pAction->icon());
     }
 
@@ -155,16 +165,26 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
 }
 
 void CustomizeToolbarDialog::acceptDialog()
-{
-  toolbar_->clear();
+{ 
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+
+  for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
+    QListIterator<QAction *> iter(widget->newsToolBar_->actions());
+    while (iter.hasNext()) {
+      QAction *pAction = iter.next();
+      if (pAction->objectName().isEmpty()) {
+        delete pAction;
+      }
+    }
+    widget->newsToolBar_->clear();
+  }
 
   QString str;
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
     if (!str.isEmpty()) str.append(",");
 
     if (shortcutTree_->topLevelItem(i)->text(1) == "Separator") {
-      toolbar_->addSeparator();
       str.append("Separator");
       continue;
     }
@@ -174,7 +194,6 @@ void CustomizeToolbarDialog::acceptDialog()
       QAction *pAction = iter.next();
       if (!pAction->icon().isNull()) {
         if (pAction->objectName() == shortcutTree_->topLevelItem(i)->text(1)) {
-          toolbar_->addAction(pAction);
           str.append(pAction->objectName());
           break;
         }
@@ -203,6 +222,30 @@ void CustomizeToolbarDialog::acceptDialog()
     rssl_->setToolBarIconSize(str);
   } else if (toolbar_->objectName() == "feedsToolBar") {
     settings_->setValue("Settings/feedsToolBar", str);
+  } else if (toolbar_->objectName() == "newsToolBar") {
+    settings_->setValue("Settings/newsToolBar", str);
+
+    for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
+      foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
+        if (actionStr == "Separator") {
+          widget->newsToolBar_->addSeparator();
+        } else {
+          QListIterator<QAction *> iter(rssl_->actions());
+          while (iter.hasNext()) {
+            QAction *pAction = iter.next();
+            if (!pAction->icon().isNull()) {
+              if (pAction->objectName() == actionStr) {
+                widget->newsToolBar_->addAction(pAction);
+                break;
+              }
+            }
+          }
+        }
+      }
+      widget->newsToolBar_->addAction(widget->separatorRAct_);
+      widget->newsToolBar_->addAction(rssl_->restoreNewsAct_);
+    }
   }
 
   accept();
@@ -241,6 +284,8 @@ void CustomizeToolbarDialog::showMenuAddButton()
   QListIterator<QAction *> iter(rssl_->actions());
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
+    if (pAction->objectName() == "restoreNewsAct") continue;
+
     if (!pAction->icon().isNull()) {
       QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(pAction->objectName(),
                                                                     Qt::MatchFixedString,
@@ -252,6 +297,9 @@ void CustomizeToolbarDialog::showMenuAddButton()
         if (pAction->objectName() == "autoLoadImagesToggle") {
           action->setIcon(QIcon(":/images/imagesOn"));
           action->setText(tr("Load images"));
+        } else if ((pAction->objectName() == "feedsFilter") ||
+                   (pAction->objectName() == "newsFilter")) {
+          action->setIcon(QIcon(":/images/filterOn"));
         } else action->setIcon(pAction->icon());
       }
     }
@@ -320,6 +368,10 @@ void CustomizeToolbarDialog::defaultShortcut()
         "Separator,markFeedRead,Separator,autoLoadImagesToggle";
   } else if (toolbar_->objectName() == "feedsToolBar") {
     actionListStr = "findFeedAct,feedsFilter";
+  } else if (toolbar_->objectName() == "newsToolBar") {
+    actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
+        "newsLabelAction,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
+        "Separator,newsFilter,Separator,deleteNewsAct";
   }
 
   foreach (QString actionStr, actionListStr.split(",", QString::SkipEmptyParts)) {
@@ -346,6 +398,9 @@ void CustomizeToolbarDialog::defaultShortcut()
               if (pAction->objectName() == "autoLoadImagesToggle") {
                 item->setIcon(0, QIcon(":/images/imagesOn"));
                 item->setText(0, tr("Load images"));
+              } else if ((pAction->objectName() == "feedsFilter") ||
+                         (pAction->objectName() == "newsFilter")) {
+                item->setIcon(0, QIcon(":/images/filterOn"));
               } else item->setIcon(0, pAction->icon());
             }
             shortcutTree_->addTopLevelItem(item);

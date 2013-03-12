@@ -127,22 +127,33 @@ void NewsTabWidget::createNewsList()
   newsHeader_->init(rsslisting_);
 
   newsToolBar_ = new QToolBar(this);
+  newsToolBar_->setObjectName("newsToolBar");
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   newsToolBar_->setIconSize(QSize(18, 18));
 
-  newsToolBar_->addAction(rsslisting_->markNewsRead_);
-  newsToolBar_->addAction(rsslisting_->markAllNewsRead_);
-  newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->markStarAct_);
-  newsToolBar_->addAction(rsslisting_->newsLabelAction_);
-  newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->nextUnreadNewsAct_);
-  newsToolBar_->addAction(rsslisting_->prevUnreadNewsAct_);
-  newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->newsFilter_);
-  newsToolBar_->addSeparator();
-  newsToolBar_->addAction(rsslisting_->deleteNewsAct_);
-  newsToolBar_->addSeparator();
+  QString actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
+      "newsLabelAction,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
+      "Separator,newsFilter,Separator,deleteNewsAct";
+  QString str = rsslisting_->settings_->value("Settings/newsToolBar", actionListStr).toString();
+
+  foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
+    if (actionStr == "Separator") {
+      newsToolBar_->addSeparator();
+    } else {
+      QListIterator<QAction *> iter(rsslisting_->actions());
+      while (iter.hasNext()) {
+        QAction *pAction = iter.next();
+        if (!pAction->icon().isNull()) {
+          if (pAction->objectName() == actionStr) {
+            newsToolBar_->addAction(pAction);
+            break;
+          }
+        }
+      }
+    }
+  }
+  separatorRAct_ = newsToolBar_->addSeparator();
+  separatorRAct_->setObjectName("separatorRAct");
   newsToolBar_->addAction(rsslisting_->restoreNewsAct_);
 
   findText_ = new FindTextContent(this);
@@ -451,23 +462,10 @@ void NewsTabWidget::setSettings(bool newTab)
   if (type_ != TAB_WEB) {
     rsslisting_->slotUpdateStatus(feedId_, false);
 
-    newsToolBar_->actions().at(8)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(9)->setVisible(type_ == TAB_FEED);
-    newsToolBar_->actions().at(10)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(11)->setVisible(type_ != TAB_CAT_DEL);
-    newsToolBar_->actions().at(12)->setVisible(type_ == TAB_CAT_DEL);
-    newsToolBar_->actions().at(13)->setVisible(type_ == TAB_CAT_DEL);
-
-    if (type_ == TAB_CAT_DEL) {
-      rsslisting_->deleteNewsAct_->setEnabled(false);
-      rsslisting_->deleteAllNewsAct_->setEnabled(false);
-      setVisibleAction(true);
-    } else {
-      rsslisting_->deleteNewsAct_->setEnabled(true);
-      rsslisting_->deleteAllNewsAct_->setEnabled(true);
-    }
-
     rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);
+    rsslisting_->deleteNewsAct_->setEnabled(type_ != TAB_CAT_DEL);
+    separatorRAct_->setVisible(type_ == TAB_CAT_DEL);
+    rsslisting_->restoreNewsAct_->setVisible(type_ == TAB_CAT_DEL);
   }
 }
 
@@ -1543,12 +1541,6 @@ void NewsTabWidget::openUrlInExternalBrowser()
     linkUrl_.setHost(hostUrl.host());
   }
   openUrl(linkUrl_);
-}
-
-void NewsTabWidget::setVisibleAction(bool show)
-{
-  newsContextMenu_->actions().at(0)->setVisible(show);
-  newsContextMenu_->actions().at(1)->setVisible(show);
 }
 
 void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)

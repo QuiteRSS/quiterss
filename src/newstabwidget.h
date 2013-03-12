@@ -95,8 +95,6 @@ public:
 
   void hideWebContent();
 
-  void setVisibleAction(bool show);
-
   void reduceNewsList();
   void increaseNewsList();
 
@@ -129,6 +127,8 @@ public:
   QLabel *newsTextTitle_;
   QWidget *newsTitleLabel_;
   QToolButton *closeButton_;
+
+  QAction *separatorRAct_;
 
 signals:
   void signalWebViewSetContent(QString content, bool hide = false);
