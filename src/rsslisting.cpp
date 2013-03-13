@@ -535,7 +535,7 @@ void RSSListing::createFeedsWidget()
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 
-  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"),Qt::AscendingOrder);
+  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("rowToParent"),Qt::AscendingOrder);
   feedsTreeView_->setColumnHidden("id", true);
   feedsTreeView_->setColumnHidden("parentId", true);
 
@@ -2118,10 +2118,9 @@ void RSSListing::addFolder()
 
   // Вычисляем номер ряда для папки
   int rowToParent = 0;
-  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
-      arg(parentId);
-  q.exec(qStr);
-  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+  q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+         arg(parentId));
+  if (q.next()) rowToParent = q.value(0).toInt();
 
   // Добавляем папку
   q.prepare("INSERT INTO feeds(text, created, parentId, rowToParent) "
@@ -2132,8 +2131,6 @@ void RSSListing::addFolder()
   q.bindValue(":parentId", parentId);
   q.bindValue(":rowToParent", rowToParent);
   q.exec();
-
-//  folderId = q.lastInsertId().toInt();
 
   delete addFolderDialog;
 
@@ -2176,6 +2173,17 @@ void RSSListing::deleteFeed()
   QSqlQuery q;
   q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedDeleteId));
   q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedDeleteId));
+
+  QList<int> idList;
+  q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+         arg(feedParentId));
+  while (q.next()) {
+    idList << q.value(0).toInt();
+  }
+  for (int i = 0; i < idList.count(); i++) {
+    q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+           arg(i).arg(idList.at(i)));
+  }
   db_.commit();
 
   QList<int> categoriesList;
@@ -2274,13 +2282,18 @@ void RSSListing::slotImportFeeds()
 
           // Если такой папки еще нет, создаем ее
           if (!isFolderDuplicated) {
-            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded) "
-                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0 )");
+            int rowToParent = 0;
+            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId=0"));
+            if (q.next()) rowToParent = q.value(0).toInt();
+
+            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, rowToParent) "
+                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :rowToParent)");
             q.bindValue(":text", textString);
             q.bindValue(":title", textString);
             q.bindValue(":xmlUrl", "");
             q.bindValue(":feedCreateTime",
                         QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+            q.bindValue(":rowToParent", rowToParent);
             q.exec();
             parentIdsStack.push(q.lastInsertId().toInt());
 //            qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
@@ -2300,8 +2313,13 @@ void RSSListing::slotImportFeeds()
           if (isFeedDuplicated) {
             qDebug() << "duplicate feed:" << xmlUrlString << textString;
           } else {
-            q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId) "
-                      "VALUES(?, ?, ?, ?, ?, ?, ?)");
+            int rowToParent = 0;
+            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+                   arg(parentIdsStack.top()));
+            if (q.next()) rowToParent = q.value(0).toInt();
+
+            q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId, rowToParent) "
+                      "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             q.addBindValue(textString);
             q.addBindValue(xml.attributes().value("title").toString());
             q.addBindValue(xml.attributes().value("description").toString());
@@ -2309,6 +2327,7 @@ void RSSListing::slotImportFeeds()
             q.addBindValue(xml.attributes().value("htmlUrl").toString());
             q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
             q.addBindValue(parentIdsStack.top());
+            q.addBindValue(rowToParent);
             q.exec();
 //            qDebug() << q.lastQuery() << q.boundValues();
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
@@ -5495,10 +5514,10 @@ void RSSListing::cleanUp()
 //! Сортировка дерева лент
 void RSSListing::slotSortFeeds()
 {
-  if (titleSortFeedsAct_->isChecked())
-    feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("text"), Qt::AscendingOrder);
-  else
-    feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"), Qt::AscendingOrder);
+//  if (titleSortFeedsAct_->isChecked())
+//    feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("text"), Qt::AscendingOrder);
+//  else
+//    feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"), Qt::AscendingOrder);
 }
 
 //! Масштаб в браузере
@@ -5583,30 +5602,89 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 {
   feedsTreeView_->setCursor(Qt::WaitCursor);
 
-  QModelIndex indexParId = indexWhat.sibling(
-          indexWhat.row(), feedsTreeModel_->proxyColumnByOriginal("parentId"));
   int feedIdWhat = feedsTreeModel_->getIdByIndex(indexWhat);
   int feedParIdWhat = feedsTreeModel_->getParidByIndex(indexWhat);
-  int feedParIdWhere = feedsTreeModel_->getIdByIndex(indexWhere);
+  int feedIdWhere = feedsTreeModel_->getIdByIndex(indexWhere);
+  int feedParIdWhere = feedsTreeModel_->getParidByIndex(indexWhere);
 
-  // Исправляем rowToParent перед перемещением к новому родителю
-  int rowToParent = 0;
-  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
-      arg(feedParIdWhere);
-  QSqlQuery q(qStr);
-  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+  // Исправляем rowToParent
+  QSqlQuery q;
+  if (feedsTreeModel_->isFolder(indexWhere)) {
+    // Перемещение в другую папку
+    int rowToParent = 0;
+    q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+           arg(feedIdWhere));
+    if (q.next()) rowToParent = q.value(0).toInt();
 
-  q.prepare("UPDATE feeds SET rowToParent = ? WHERE id == ?");
-  q.addBindValue(rowToParent);
-  q.addBindValue(feedIdWhat);
-  q.exec();
+    q.exec(QString("UPDATE feeds SET parentId='%1', rowToParent='%2' WHERE id=='%3'").
+           arg(feedIdWhere).arg(rowToParent).arg(feedIdWhat));
 
-  feedsTreeModel_->setData(indexParId, feedParIdWhere);
-  ((QSqlTableModel*)(feedsTreeModel_->sourceModel()))->submitAll();
+    QList<int> categoriesList;
+    categoriesList << feedParIdWhat << feedIdWhere;
+    recountFeedCategories(categoriesList);
 
-  QList<int> categoriesList;
-  categoriesList << feedParIdWhat << feedParIdWhere;
-  recountFeedCategories(categoriesList);
+    feedParIdWhere = feedIdWhere;
+  } if (feedParIdWhat == feedParIdWhere) {
+    // Перемещение между лентами в одной папке
+    QList<int> idList;
+    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+           arg(feedParIdWhat));
+    while (q.next()) {
+        idList << q.value(0).toInt();
+    }
+
+    int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
+    int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
+    if (rowWhat < rowWhere) rowWhere--;
+    idList.insert(rowWhere, idList.takeAt(rowWhat));
+
+    for (int i = 0; i < idList.count(); i++) {
+      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+             arg(i).arg(idList.at(i)));
+    }
+  } else {
+    // Перемещение в другую папку рядом с лентами
+    QList<int> idList;
+    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+           arg(feedParIdWhat));
+    while (q.next()) {
+      idList << q.value(0).toInt();
+    }
+
+    int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
+    idList.removeAt(rowWhat);
+
+    for (int i = 0; i < idList.count(); i++) {
+      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+             arg(i).arg(idList.at(i)));
+    }
+
+    //
+
+    idList.clear();
+    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+           arg(feedParIdWhere));
+    while (q.next()) {
+      idList << q.value(0).toInt();
+    }
+
+    int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
+    if (rowWhere == idList.count()-1) rowWhere++;
+    qCritical() << idList.count() << rowWhere;
+    idList.insert(rowWhere, feedIdWhat);
+
+    for (int i = 0; i < idList.count(); i++) {
+      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+             arg(i).arg(idList.at(i)));
+    }
+
+    q.exec(QString("UPDATE feeds SET parentId='%1' WHERE id=='%2'").
+           arg(feedParIdWhere).arg(feedIdWhat));
+
+    QList<int> categoriesList;
+    categoriesList << feedParIdWhat << feedParIdWhere;
+    recountFeedCategories(categoriesList);
+  }
 
   feedsTreeModel_->refresh();
   expandNodes();

@@ -245,7 +245,7 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   }
   // обработка лент
   else {
-    if (dragIndex.parent() == currentIndex().parent())
+    if (dragIndex == currentIndex())
       event->ignore();  // не перемещаем ленту внутри категории
     else if (dragIndex.parent() == currentIndex())
       event->ignore();  // не перемещаем категорию внутри категории
@@ -315,7 +315,6 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 
   QModelIndex dragIndex = indexAt(dragPos_);
 
-  bool drawParent = false;
   // Обработка категорий
   if (((FeedsTreeModel*)model())->isFolder(dragIndex)) {
     if ((dragIndex == currentIndex().parent()) ||
@@ -323,48 +322,43 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
       return;
   }
   // Обработка лент
-  else {
-    if ((dragIndex.parent() == currentIndex().parent()) ||
-        (dragIndex.parent() == currentIndex()))
-      return;
-    else drawParent = true;
-  }
-  QModelIndex indexText;
-  if (drawParent)
-    indexText = model()->index(dragIndex.parent().row(),
-                               ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
-                               dragIndex.parent().parent());
-  else
-    indexText = model()->index(dragIndex.row(),
-                     ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
-                     dragIndex.parent());
+  else if (dragIndex == currentIndex()) return;
+
+  QModelIndex indexText = model()->index(dragIndex.row(),
+                                         ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                                         dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
   rectText.setWidth(rectText.width()-1);
   QBrush brush = qApp->palette().brush(QPalette::Highlight);
 
   QPainter painter;
-  painter.begin(this->viewport());
 
-//  if (qAbs(rectText.top() - dragPos_.y()) < 3) {
-//    painter.setPen(QPen(brush, 2));
-//    painter.drawLine(rectText.topLeft().x()-2, rectText.top(),
-//                     viewport()->width()-2, rectText.top());
-//    painter.drawLine(rectText.topLeft().x()-2, rectText.top()-2,
-//                     rectText.topLeft().x()-2, rectText.top()+2);
-//    painter.drawLine(viewport()->width()-2, rectText.top()-2,
-//                     viewport()->width()-2, rectText.top()+2);
-//  }
-//  else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
-//    painter.setPen(QPen(brush, 2));
-//    painter.drawLine(rectText.bottomLeft().x()-2, rectText.bottom(),
-//                     viewport()->width()-2, rectText.bottom());
-//    painter.drawLine(rectText.topLeft().x()-2, rectText.bottom()-2,
-//                     rectText.topLeft().x()-2, rectText.bottom()+2);
-//    painter.drawLine(viewport()->width()-2, rectText.bottom()-2,
-//                     viewport()->width()-2, rectText.bottom()+2);
-//  }
-//  else {
+  if (qAbs(rectText.top() - dragPos_.y()) < 3) {
+    painter.begin(this->viewport());
+    painter.setPen(QPen(brush, 2));
+    painter.drawLine(rectText.topLeft().x()-2, rectText.top(),
+                     viewport()->width()-2, rectText.top());
+    painter.drawLine(rectText.topLeft().x()-2, rectText.top()-2,
+                     rectText.topLeft().x()-2, rectText.top()+2);
+    painter.drawLine(viewport()->width()-2, rectText.top()-2,
+                     viewport()->width()-2, rectText.top()+2);
+  }
+  else if (qAbs(rectText.bottom() - dragPos_.y()) < 3) {
+    painter.begin(this->viewport());
+    painter.setPen(QPen(brush, 2));
+    painter.drawLine(rectText.bottomLeft().x()-2, rectText.bottom(),
+                     viewport()->width()-2, rectText.bottom());
+    painter.drawLine(rectText.topLeft().x()-2, rectText.bottom()-2,
+                     rectText.topLeft().x()-2, rectText.bottom()+2);
+    painter.drawLine(viewport()->width()-2, rectText.bottom()-2,
+                     viewport()->width()-2, rectText.bottom()+2);
+  }
+  else {
+    if (!((FeedsTreeModel*)model())->isFolder(dragIndex))
+      return;
+
+    painter.begin(this->viewport());
     painter.setPen(QPen(brush, 1, Qt::DashLine));
     painter.setOpacity(0.5);
     painter.drawRect(rectText);
@@ -373,7 +367,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
     painter.setBrush(brush);
     painter.setOpacity(0.1);
     painter.drawRect(rectText);
-//  }
+  }
 
   painter.end();
 }
@@ -403,31 +397,26 @@ void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
 
 void FeedsTreeView::handleDrop(QDropEvent *e)
 {
-  QModelIndex indexWhat = currentIndex();
-  QModelIndex indexWhere;
-
   QModelIndex dropIndex = indexAt(e->pos());
 
-  bool drawParent = false;
+  QModelIndex indexWhat = currentIndex();
+  QModelIndex indexWhere = dropIndex;
+
   // Обработка категорий
   if (((FeedsTreeModel*)model())->isFolder(dropIndex)) {
     if (dropIndex == currentIndex().parent())
       return;
   }
-  // Обработка лент
-  else
-    if (dropIndex.parent() == currentIndex().parent())
-      return;
-    else drawParent = true;
 
-  if (drawParent)
-    indexWhere = model()->index(dropIndex.parent().row(),
-                               ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
-                               dropIndex.parent().parent());
-  else
-    indexWhere = model()->index(dropIndex.row(),
-                     ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
-                     dropIndex.parent());
+  QRect rectText = visualRect(dropIndex);
+  if (qAbs(rectText.bottom() - e->pos().y()) < 3) {
+    qCritical() << "*01";
+    dropIndex = model()->index(dropIndex.row()+1,
+                                ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                                dropIndex.parent());
+    if (dropIndex.isValid())
+      indexWhere = dropIndex;
+  }
 
   emit signalDropped(indexWhat, indexWhere);
 }
