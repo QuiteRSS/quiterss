@@ -168,16 +168,27 @@ void CustomizeToolbarDialog::acceptDialog()
 { 
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
 
-  for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
-    NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
-    QListIterator<QAction *> iter(widget->newsToolBar_->actions());
+  if (toolbar_->objectName() == "newsToolBar") {
+    for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
+      QListIterator<QAction *> iter(widget->newsToolBar_->actions());
+      while (iter.hasNext()) {
+        QAction *pAction = iter.next();
+        if (pAction->objectName().isEmpty()) {
+          delete pAction;
+        }
+      }
+      widget->newsToolBar_->clear();
+    }
+  } else {
+    QListIterator<QAction *> iter(toolbar_->actions());
     while (iter.hasNext()) {
       QAction *pAction = iter.next();
       if (pAction->objectName().isEmpty()) {
         delete pAction;
       }
     }
-    widget->newsToolBar_->clear();
+    toolbar_->clear();
   }
 
   QString str;
@@ -196,6 +207,25 @@ void CustomizeToolbarDialog::acceptDialog()
         if (pAction->objectName() == shortcutTree_->topLevelItem(i)->text(1)) {
           str.append(pAction->objectName());
           break;
+        }
+      }
+    }
+  }
+
+  if (toolbar_->objectName() != "newsToolBar") {
+    foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
+      if (actionStr == "Separator") {
+        toolbar_->addSeparator();
+      } else {
+        QListIterator<QAction *> iter(rssl_->actions());
+        while (iter.hasNext()) {
+          QAction *pAction = iter.next();
+          if (!pAction->icon().isNull()) {
+            if (pAction->objectName() == actionStr) {
+              toolbar_->addAction(pAction);
+              break;
+            }
+          }
         }
       }
     }

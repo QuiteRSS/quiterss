@@ -4377,7 +4377,8 @@ void RSSListing::retranslateStrings()
 
 void RSSListing::setToolBarStyle(const QString &styleStr)
 {
-  mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(10);
+  if (mainToolbar_->widgetForAction(addAct_))
+    mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(10);
   if (styleStr == "toolBarStyleI_") {
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonIconOnly);
   } else if (styleStr == "toolBarStyleT_") {
@@ -4386,7 +4387,8 @@ void RSSListing::setToolBarStyle(const QString &styleStr)
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
   } else {
     mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(60);
+    if (mainToolbar_->widgetForAction(addAct_))
+      mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(60);
   }
 }
 
