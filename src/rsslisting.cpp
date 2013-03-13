@@ -947,10 +947,6 @@ void RSSListing::createActions()
   this->addAction(markAllFeedsRead_);
   connect(markAllFeedsRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
 
-  titleSortFeedsAct_ = new QAction(this);
-  titleSortFeedsAct_->setCheckable(true);
-  connect(titleSortFeedsAct_, SIGNAL(triggered()), this, SLOT(slotSortFeeds()));
-
   indentationFeedsTreeAct_ = new QAction(this);
   indentationFeedsTreeAct_->setCheckable(true);
   connect(indentationFeedsTreeAct_, SIGNAL(triggered()),
@@ -1534,7 +1530,6 @@ void RSSListing::createMenu()
   feedsColumnsMenu_->addActions(feedsColumnsGroup_->actions());
   feedMenu_->addMenu(feedsColumnsMenu_);
 
-  feedMenu_->addAction(titleSortFeedsAct_);
   feedMenu_->addAction(indentationFeedsTreeAct_);
 
   feedMenu_->addSeparator();
@@ -1825,9 +1820,6 @@ void RSSListing::readSettings()
   feedsColumnVisible(showUndeleteCount_);
   feedsColumnVisible(showLastUpdated_);
 
-  titleSortFeedsAct_->setChecked(settings_->value("sortFeeds", true).toBool());
-  slotSortFeeds();
-
   indentationFeedsTreeAct_->setChecked(settings_->value("indentationFeedsTree", true).toBool());
   slotIndentationFeedsTree();
 
@@ -1988,7 +1980,6 @@ void RSSListing::writeSettings()
   settings_->setValue("showUndeleteCount", showUndeleteCount_->isChecked());
   settings_->setValue("showLastUpdated", showLastUpdated_->isChecked());
 
-  settings_->setValue("sortFeeds", titleSortFeedsAct_->isChecked());
   settings_->setValue("indentationFeedsTree", indentationFeedsTreeAct_->isChecked());
 
   settings_->setValue("browserPosition", browserPosition_);
@@ -2403,10 +2394,7 @@ void RSSListing::slotExportFeeds()
       "text");
   FeedsTreeView exportTreeView(this);
   exportTreeView.setModel(&exportTreeModel);
-  if (titleSortFeedsAct_->isChecked())
-    exportTreeView.sortByColumn(exportTreeView.columnIndex("text"), Qt::AscendingOrder);
-  else
-    exportTreeView.sortByColumn(exportTreeView.columnIndex("id"), Qt::AscendingOrder);
+  exportTreeView.sortByColumn(exportTreeView.columnIndex("rowToParent"), Qt::AscendingOrder);
   exportTreeView.expandAll();
 
   QModelIndex index = exportTreeModel.index(0, 0);
@@ -3173,12 +3161,6 @@ void RSSListing::showOptionDlg()
   optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
   optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
   optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
-
-  if (titleSortFeedsAct_->isChecked())
-    optionsDialog->feedsTreeNotify_->sortByColumn(0, Qt::AscendingOrder);
-  else
-    optionsDialog->feedsTreeNotify_->sortByColumn(1, Qt::AscendingOrder);
-  optionsDialog->feedsTreeNotify_->expandAll();
 
   optionsDialog->setLanguage(langFileName_);
 
@@ -4279,7 +4261,6 @@ void RSSListing::retranslateStrings()
   showUndeleteCount_->setText(tr("Count News All"));
   showLastUpdated_->setText(tr("Last Updated"));
 
-  titleSortFeedsAct_->setText(tr("Sort by Title"));
   indentationFeedsTreeAct_->setText(tr("Show Indentation"));
 
   findFeedAct_->setText(tr("Search Feed"));
@@ -5511,15 +5492,6 @@ void RSSListing::cleanUp()
   db_.commit();
 
   settings_->setValue("CleanUp", 0);
-}
-
-//! Сортировка дерева лент
-void RSSListing::slotSortFeeds()
-{
-//  if (titleSortFeedsAct_->isChecked())
-//    feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("text"), Qt::AscendingOrder);
-//  else
-//    feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("id"), Qt::AscendingOrder);
 }
 
 //! Масштаб в браузере

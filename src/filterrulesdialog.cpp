@@ -35,7 +35,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   parentIds.enqueue(0);
   while (!parentIds.empty()) {
     int parentId = parentIds.dequeue();
-    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1' ORDER BY text").
+    QString qStr = QString("SELECT text, id, image, xmlUrl FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
         arg(parentId);
     q.exec(qStr);
     while (q.next()) {

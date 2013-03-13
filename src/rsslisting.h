@@ -249,7 +249,6 @@ private:
   QAction *optionsAct_;
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedsRead_;
-  QAction *titleSortFeedsAct_;
   QAction *indentationFeedsTreeAct_;
   QAction *exitAct_;
   QAction *feedsFilter_;
@@ -493,8 +492,6 @@ private slots:
   void slotFindFeeds(QString);
   void slotSelectFind();
   void findFeedVisible(bool visible);
-
-  void slotSortFeeds();
 
   void browserZoom(QAction*);
   void slotReportProblem();
