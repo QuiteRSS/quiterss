@@ -319,7 +319,9 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
       return;
   }
   // Обработка лент
-  else if (dragIndex == currentIndex()) return;
+  else if ((dragIndex == currentIndex()) ||
+           (dragIndex.parent() == currentIndex()))
+    return;
 
   QModelIndex indexText = model()->index(dragIndex.row(),
                                          ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
@@ -399,21 +401,22 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
   QModelIndex indexWhat = currentIndex();
   QModelIndex indexWhere = dropIndex;
 
-  // Обработка категорий
-  if (((FeedsTreeModel*)model())->isFolder(dropIndex)) {
-    if (dropIndex == currentIndex().parent())
-      return;
-  }
-
+  int how = 0;
   QRect rectText = visualRect(dropIndex);
-  if (qAbs(rectText.bottom() - e->pos().y()) < 3) {
-    qCritical() << "*01";
-    dropIndex = model()->index(dropIndex.row()+1,
-                                ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
-                                dropIndex.parent());
-    if (dropIndex.isValid())
-      indexWhere = dropIndex;
+  if (qAbs(rectText.top() - e->pos().y()) < 3) {
+    how = 0;
+  } else if (qAbs(rectText.bottom() - e->pos().y()) < 3) {
+    how = 1;
+  } else {
+    if (((FeedsTreeModel*)model())->isFolder(dropIndex)) {
+      how = 2;
+    } else {
+      dropIndex = model()->index(dropIndex.row()+1,
+                                  ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                                  dropIndex.parent());
+      if (!dropIndex.isValid()) how = 1;
+    }
   }
 
-  emit signalDropped(indexWhat, indexWhere);
+  emit signalDropped(indexWhat, indexWhere, how);
 }

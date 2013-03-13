@@ -681,8 +681,8 @@ void RSSListing::createFeedsWidget()
   connect(feedsTreeView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
   connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuFeed(const QPoint &)));
-  connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex&,QModelIndex&)),
-          this, SLOT(slotMoveIndex(QModelIndex&,QModelIndex&)));
+  connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex&,QModelIndex&,int)),
+          this, SLOT(slotMoveIndex(QModelIndex&,QModelIndex&,int)));
 
   connect(findFeeds_, SIGNAL(textChanged(QString)),
           this, SLOT(slotFindFeeds(QString)));
@@ -5600,7 +5600,7 @@ void RSSListing::setStayOnTop()
  * @param indexWhat Индекс, который перемещаем
  * @param indexWhere Индекс, куда перемещаем
  ******************************************************************************/
-void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
+void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, int how)
 {
   feedsTreeView_->setCursor(Qt::WaitCursor);
 
@@ -5611,7 +5611,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
 
   // Исправляем rowToParent
   QSqlQuery q;
-  if (feedsTreeModel_->isFolder(indexWhere)) {
+  if (how == 2) {
     // Перемещение в другую папку
     int rowToParent = 0;
     q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
@@ -5626,18 +5626,19 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
     recountFeedCategories(categoriesList);
 
     feedParIdWhere = feedIdWhere;
-  } if (feedParIdWhat == feedParIdWhere) {
+  } else if (feedParIdWhat == feedParIdWhere) {
     // Перемещение между лентами в одной папке
     QList<int> idList;
     q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
            arg(feedParIdWhat));
     while (q.next()) {
-        idList << q.value(0).toInt();
+      idList << q.value(0).toInt();
     }
 
     int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
     int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
-    if (rowWhat < rowWhere) rowWhere--;
+    if ((rowWhat < rowWhere) && (how != 1)) rowWhere--;
+    else if (how == 1) rowWhere++;
     idList.insert(rowWhere, idList.takeAt(rowWhat));
 
     for (int i = 0; i < idList.count(); i++) {
@@ -5671,8 +5672,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere)
     }
 
     int rowWhere = feedsTreeModel_->dataField(indexWhere, "rowToParent").toInt();
-    if (rowWhere == idList.count()-1) rowWhere++;
-    qCritical() << idList.count() << rowWhere;
+    if (how == 1) rowWhere++;
     idList.insert(rowWhere, feedIdWhat);
 
     for (int i = 0; i < idList.count(); i++) {

@@ -507,7 +507,7 @@ private slots:
   void setFullScreen();
   void setStayOnTop();
 
-  void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere);
+  void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere, int how);
 
   void slotRefreshInfoTray();
 

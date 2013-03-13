@@ -44,7 +44,7 @@ signals:
   void pressKeyDown();
   void pressKeyHome();
   void pressKeyEnd();
-  void signalDropped(QModelIndex &what, QModelIndex &where);
+  void signalDropped(QModelIndex &what, QModelIndex &where, int how);
 
 private:
   QPoint dragPos_;
