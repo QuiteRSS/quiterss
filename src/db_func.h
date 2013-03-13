@@ -13,7 +13,7 @@ extern QString kDbVersion;
  * Если база старой версии, то она преобразовывается к актуальной версии
  * \param[in] dbFileName путь файла базы
  ******************************************************************************/
-QString initDB(const QString dbFileName);
+QString initDB(const QString dbFileName, QSettings *settings);
 
 /** @brief Применение пользовательских фильтров
  * @param db - база данных

@@ -59,7 +59,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   closeApp_ = false;
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
-  QString versionDB = initDB(dbFileName_);
+  QString versionDB = initDB(dbFileName_, settings_);
   settings_->setValue("VersionDB", versionDB);
 
   storeDBMemory_ = settings_->value("Settings/storeDBMemory", true).toBool();

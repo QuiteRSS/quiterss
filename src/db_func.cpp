@@ -403,7 +403,7 @@ void createDBBackup(QString dbFileName, QString dbVersion)
 
 
 //-----------------------------------------------------------------------------
-QString initDB(const QString dbFileName)
+QString initDB(const QString dbFileName, QSettings *settings)
 {
   if (!QFile(dbFileName).exists()) {  // Инициализация базы
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
@@ -700,7 +700,7 @@ QString initDB(const QString dbFileName)
       else {
 
         bool rowToParentCorrected = false;
-        q.exec("SELECT value FROM info WHERE name='rowToParentCorrected_0.12.1'");
+        q.exec("SELECT value FROM info WHERE name='rowToParentCorrected_0.12.1+'");
         if (q.next() && q.value(0).toString()=="true")
           rowToParentCorrected = true;
 
@@ -708,20 +708,25 @@ QString initDB(const QString dbFileName)
           qDebug() << "dbVersion =" << dbVersionString;
         }
         else {
-          qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.1 = true";
+          qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.1+ = true";
 
           createDBBackup(dbFileName, dbVersionString);
 
-          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1', 'true')");
+          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1+', 'true')");
 
           // Начинаем поиск детей с потенциального родителя 0 (с корня)
+          bool sortFeeds = settings->value("Settings/sortFeeds", false).toBool();
+          QString sortStr("id");
+          if (sortFeeds) sortStr = "text";
+
           QList<int> parentIdsPotential;
           parentIdsPotential << 0;
           while (!parentIdsPotential.empty()) {
             int parentId = parentIdsPotential.takeFirst();
 
             // Ищем детей родителя parentId
-            q.prepare("SELECT id FROM feeds WHERE parentId=? ORDER BY id");
+            q.prepare(QString("SELECT id FROM feeds WHERE parentId=? ORDER BY %1").
+                      arg(sortStr));
             q.addBindValue(parentId);
             q.exec();
 
