@@ -206,6 +206,8 @@ QVariant QyurSqlTreeModel::headerData(int section, Qt::Orientation orientation, 
 void QyurSqlTreeModel::refresh() {
 	Q_D(QyurSqlTreeModel);
 	d->sourceModel.select();
+  while (d->sourceModel.canFetchMore())
+    d->sourceModel.fetchMore();
 	reset();
 	d->clear();
 }

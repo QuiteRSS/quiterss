@@ -280,9 +280,6 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   int feedId = ((FeedsTreeModel*)model())->getIdByIndex(indexExpanded);
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%2'").arg(feedId));
-
-  while (((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->canFetchMore())
-    ((QSqlTableModel*)(((FeedsTreeModel*)model())->sourceModel()))->fetchMore();
 }
 
 /** @brief Обработка сворачивания узла
