@@ -204,17 +204,17 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Fő eszköztár testreszabása</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatornák eszköztár testreszabása</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek eszköztár testreszabása</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
@@ -228,7 +228,7 @@
         <location filename="../src/customizetoolbardialog.cpp" line="339"/>
         <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Elválasztó</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
@@ -268,22 +268,22 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stílus:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikon mérete:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Hozzáadás</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Eltávolítás</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
@@ -374,7 +374,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Megjelenítés új lapon indításkor</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
@@ -1412,7 +1412,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett rss-ikon megjelenítése az egyik kedvenc helyett</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
@@ -1829,22 +1829,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fő eszköztár...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztár testreszabása...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatornák eszköztár...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírek eszköztár</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>
@@ -2419,7 +2419,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Hírcsatorna szűrő</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4160"/>
@@ -2643,7 +2643,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Behúzás megjelenítése</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4285"/>

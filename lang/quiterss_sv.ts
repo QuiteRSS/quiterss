@@ -204,101 +204,101 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa verktygsraden</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa flödesfältets verktyg</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa nyhetsfältets verktyg</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
         <location filename="../src/customizetoolbardialog.cpp" line="329"/>
         <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
-        <translation type="unfinished">Läs in bilder</translation>
+        <translation>Läs in bilder</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
         <location filename="../src/customizetoolbardialog.cpp" line="339"/>
         <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Separator</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished">Ikon</translation>
+        <translation>Ikon</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text</source>
-        <translation type="unfinished">Text</translation>
+        <translation>Text</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished">Text bredvid ikon</translation>
+        <translation>Text bredvid ikon</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">Text under ikon</translation>
+        <translation>Text under ikon</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished">Stor</translation>
+        <translation>Stor</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished">Normal</translation>
+        <translation>Normal</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished">Liten</translation>
+        <translation>Liten</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikonstorlek:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished">Flytta upp</translation>
+        <translation>Flytta upp</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished">Flytta ner</translation>
+        <translation>Flytta ner</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished">Standard</translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -374,7 +374,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa i ny flik vid uppstart</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
@@ -1028,7 +1028,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Dölj flödesträdet när flikar öppnas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
@@ -1168,7 +1168,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>External browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Extern webbläsare:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="428"/>
@@ -1198,7 +1198,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Växlande bakgrundsfärg på rader</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
@@ -1412,22 +1412,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa standard rss-ikon istället för favikon</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd extern webbläsare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
         <source>Default external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Extern standardwebbläsare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="332"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Följande extern webbläsare:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
@@ -1829,22 +1829,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktygsfält...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa verktygsfältet...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Flödesfältets verktyg...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyhetsfältets verktyg...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>
@@ -2419,7 +2419,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrera flöden</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4160"/>
@@ -2429,17 +2429,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
-        <translation type="unfinished">Filtrera nyheter</translation>
+        <translation>Filtrera nyheter</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4169"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa senaste dygnet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4170"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa senaste 7 dygnen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4173"/>
@@ -2459,12 +2459,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4178"/>
         <source>Open News</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna nyheter</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4179"/>
         <source>Open Description News</source>
-        <translation type="unfinished"></translation>
+        <translation>Öppna nyhetsbeskrivning</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4180"/>
@@ -2563,7 +2563,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4221"/>
         <source>Application Style</source>
-        <translation>Programstil</translation>
+        <translation>Programtema</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4223"/>
@@ -2643,7 +2643,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa indrag</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4285"/>
@@ -2658,7 +2658,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4318"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5957"/>

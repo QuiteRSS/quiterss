@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -204,101 +202,101 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit hlavní nástrojovou lištu</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit nástrojovou lištu kanálů</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit nástrojovou lištu novinek</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
         <location filename="../src/customizetoolbardialog.cpp" line="329"/>
         <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
-        <translation type="unfinished"></translation>
+        <translation>Načítat obrázky</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
         <location filename="../src/customizetoolbardialog.cpp" line="339"/>
         <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddělovač</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished">Pouze ikonka</translation>
+        <translation>Ikonka</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text</source>
-        <translation type="unfinished">Pouze text</translation>
+        <translation>Text</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished">Text vedle ikonky</translation>
+        <translation>Text vedle ikonky</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">Text pod ikonkou</translation>
+        <translation>Text pod ikonkou</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished">Velká</translation>
+        <translation>Velká</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished">Normální</translation>
+        <translation>Normální</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished">Malá</translation>
+        <translation>Malá</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Styl:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Velikost ikonek:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Odebrat</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahoru</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished"></translation>
+        <translation>Dolů</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished">Výchozí</translation>
+        <translation>Výchozí</translation>
     </message>
 </context>
 <context>
@@ -334,10 +332,6 @@
         <translation>Načíst název kanálu</translation>
     </message>
     <message>
-        <source>Display feed in new tab on startup</source>
-        <translation type="obsolete">Po spuštění zobrazit kanál v nové záložce</translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Zobrazovat popis novinky místo načítání webové stránky</translation>
@@ -370,7 +364,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Po spuštění zobrazit v nové záložce</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
@@ -1480,7 +1474,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit výchozí RSS ikonku místo oblíbené</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="501"/>
@@ -1767,12 +1761,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr kanálů</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
-        <translation type="unfinished">Filtrování novinek</translation>
+        <translation>Filtr novinek</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4166"/>
@@ -1819,22 +1813,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavní nástrojová lišta...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Upravit nástrojovou lištu...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástrojová lištu kanálů...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástrojová lišta novinek...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>
@@ -1892,13 +1886,9 @@
         <translation>Sloupce</translation>
     </message>
     <message>
-        <source>Sort by Title</source>
-        <translation type="obsolete">Řadit dle názvu</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit odsazení</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4269"/>
@@ -2092,10 +2082,6 @@
         <translation>Nastavení...</translation>
     </message>
     <message>
-        <source>Filter</source>
-        <translation type="obsolete">Filtr</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4157"/>
         <location filename="../src/rsslisting.cpp" line="4163"/>
         <source>Show All</source>
@@ -2162,18 +2148,6 @@
         <location filename="../src/rsslisting.cpp" line="4210"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
-    </message>
-    <message>
-        <source>Style</source>
-        <translation type="obsolete">Styl</translation>
-    </message>
-    <message>
-        <source>Icon</source>
-        <translation type="obsolete">Pouze ikonka</translation>
-    </message>
-    <message>
-        <source>Text</source>
-        <translation type="obsolete">Pouze text</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4222"/>
@@ -2508,30 +2482,6 @@
         <location filename="../src/rsslisting.cpp" line="4208"/>
         <source>&amp;Browser</source>
         <translation>&amp;Prohlížeč</translation>
-    </message>
-    <message>
-        <source>Text Beside Icon</source>
-        <translation type="obsolete">Text vedle ikonky</translation>
-    </message>
-    <message>
-        <source>Text Under Icon</source>
-        <translation type="obsolete">Text pod ikonkou</translation>
-    </message>
-    <message>
-        <source>Icon Size</source>
-        <translation type="obsolete">Velikost ikonek</translation>
-    </message>
-    <message>
-        <source>Big</source>
-        <translation type="obsolete">Velká</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Normální</translation>
-    </message>
-    <message>
-        <source>Small</source>
-        <translation type="obsolete">Malá</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4221"/>

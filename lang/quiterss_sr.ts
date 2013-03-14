@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0" language="sr">
 <defaultcodec>UTF-8</defaultcodec>
@@ -124,7 +123,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="427"/>
         <location filename="../src/addfeedwizard.cpp" line="454"/>
-        <source>Can&apos;t find feed URL!</source>
+        <source>Can't find feed URL!</source>
         <translation>Не могу да нађем УРЛ канала!</translation>
     </message>
     <message>
@@ -204,101 +203,101 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагоди главну линију алата</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагоди траку канала</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагоди траку вести</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
         <location filename="../src/customizetoolbardialog.cpp" line="329"/>
         <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
-        <translation type="unfinished">Учитај слике</translation>
+        <translation>Учитај слике</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
         <location filename="../src/customizetoolbardialog.cpp" line="339"/>
         <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Раздвајач</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished">Икона</translation>
+        <translation>Икона</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text</source>
-        <translation type="unfinished">Текст</translation>
+        <translation>Текст</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished">Текст поред иконе</translation>
+        <translation>Текст поред иконе</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">Текст испод иконе</translation>
+        <translation>Текст испод иконе</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished">Велико</translation>
+        <translation>Велико</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished">Нормално</translation>
+        <translation>Нормално</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished">Мало</translation>
+        <translation>Мало</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Стил:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Величина икона:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Додај</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished">Помери горе</translation>
+        <translation>Помери горе</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished"></translation>
+        <translation>Помери доле</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished">Подразумевано</translation>
+        <translation>Подразумевано</translation>
     </message>
 </context>
 <context>
@@ -339,7 +338,7 @@
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
-        <source>Show news&apos; description instead of loading web page</source>
+        <source>Show news' description instead of loading web page</source>
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
@@ -374,7 +373,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>На покретање прикажи у новом језичку</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
@@ -597,7 +596,7 @@
         <location filename="../src/filterrulesdialog.h" line="81"/>
         <location filename="../src/filterrulesdialog.h" line="86"/>
         <location filename="../src/filterrulesdialog.h" line="89"/>
-        <source>doesn&apos;t contains</source>
+        <source>doesn't contains</source>
         <translation>не садржи</translation>
     </message>
     <message>
@@ -613,7 +612,7 @@
         <location filename="../src/filterrulesdialog.h" line="90"/>
         <location filename="../src/filterrulesdialog.h" line="93"/>
         <location filename="../src/filterrulesdialog.h" line="97"/>
-        <source>isn&apos;t</source>
+        <source>isn't</source>
         <translation>није</translation>
     </message>
     <message>
@@ -719,7 +718,7 @@
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
-        <source>Load icon: can&apos;t open a file</source>
+        <source>Load icon: can't open a file</source>
         <translation>Учитавање иконе: не може да се отвори датотека</translation>
     </message>
 </context>
@@ -777,7 +776,7 @@
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="234"/>
-        <source>Are you sure to delete the filter &apos;%1&apos;?</source>
+        <source>Are you sure to delete the filter '%1'?</source>
         <translation>Сигурно обрисати филтер „%1“?</translation>
     </message>
 </context>
@@ -1028,7 +1027,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Сакриј дрво канала на отварање језичка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
@@ -1168,7 +1167,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>External browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Спољашњи претраживач:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="428"/>
@@ -1198,7 +1197,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Наизменична боја реда</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
@@ -1412,22 +1411,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи РСС икону у месту омиљену</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Користи спољашњи претраживач</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
         <source>Default external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Подразумевани спољашни претраживач</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="332"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Овај екстерни претраживач:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
@@ -1441,7 +1440,7 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="506"/>
-        <source>Show news&apos; description instead of loading web page</source>
+        <source>Show news' description instead of loading web page</source>
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
@@ -1751,7 +1750,7 @@
     <name>RSSListing</name>
     <message>
         <location filename="../src/rsslisting.cpp" line="2153"/>
-        <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+        <source>Are you sure to delete the feed '%1'?</source>
         <translation>Сигурно обрисати канал „%1“?</translation>
     </message>
     <message>
@@ -1761,7 +1760,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2223"/>
-        <source>Import: can&apos;t open a file</source>
+        <source>Import: can't open a file</source>
         <translation>Увоз: не могу да отворим датотеку</translation>
     </message>
     <message>
@@ -1829,22 +1828,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Главна трака...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагоди траку...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Трака канала...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Трака Вести...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>
@@ -2095,7 +2094,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2374"/>
-        <source>Export: can&apos;t open a file</source>
+        <source>Export: can't open a file</source>
         <translation>Извоз: не могу да отворим датотеку</translation>
     </message>
     <message>
@@ -2335,7 +2334,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2149"/>
-        <source>Are you sure to delete the folder &apos;%1&apos;?</source>
+        <source>Are you sure to delete the folder '%1'?</source>
         <translation>Сигурно обрисати фасциклу „%1“?</translation>
     </message>
     <message>
@@ -2419,7 +2418,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Филтрирај канале</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4160"/>
@@ -2429,21 +2428,21 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
-        <translation type="unfinished">Филтрирај вести</translation>
+        <translation>Филтрирај вести</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4169"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи последњи дан</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4170"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи последње седмице</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4173"/>
-        <source>Show &apos;About&apos; Dialog</source>
+        <source>Show 'About' Dialog</source>
         <translation>Прикажи дијалог „О...“</translation>
     </message>
     <message>
@@ -2459,12 +2458,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4178"/>
         <source>Open News</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори вести</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4179"/>
         <source>Open Description News</source>
-        <translation type="unfinished"></translation>
+        <translation>Отвори опис евсти</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4180"/>
@@ -2643,7 +2642,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Покажи увлачење</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4285"/>
@@ -2658,7 +2657,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4318"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Нађи</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5957"/>
@@ -2677,7 +2676,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5965"/>
-        <source>Save As: can&apos;t open a file</source>
+        <source>Save As: can't open a file</source>
         <translation>Сачувај као: не могу да отворим датотеку</translation>
     </message>
 </context>
@@ -2700,7 +2699,7 @@
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="33"/>
-        <source>Don&apos;t remind about this version</source>
+        <source>Don't remind about this version</source>
         <translation>Не обавести за ову верзију</translation>
     </message>
     <message>
