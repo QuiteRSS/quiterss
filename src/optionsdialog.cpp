@@ -187,7 +187,7 @@ void OptionsDialog::createGeneralWidget()
   showSplashScreen_ = new QCheckBox(tr("Show splash screen on startup"));
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
   hideFeedsOpenTab_ = new QCheckBox(tr("Hide feeds tree when opening tabs"));
-  defaultIconFeeds_ = new QCheckBox(tr("Use default picture for feeds"));
+  defaultIconFeeds_ = new QCheckBox(tr("Show default rss-icon instead of favourite one"));
 
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
 

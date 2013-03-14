@@ -218,15 +218,15 @@
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="299"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="400"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="329"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
         <translation type="unfinished">Загружать изображения</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="309"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="381"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="339"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -343,22 +343,22 @@
         <translation>Показывать описание новости вместо загрузки веб-страницы</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="95"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="96"/>
         <source>Created:</source>
         <translation>Создана:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="98"/>
         <source>Last update:</source>
         <translation>Последнее обновление:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="100"/>
         <source>News count:</source>
         <translation>Количество новостей:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
         <source>Description:</source>
         <translation>Описание:</translation>
     </message>
@@ -378,17 +378,17 @@
         <translation>Автоматическое удаление дубликатов новостей</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="137"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="138"/>
         <source>Long ago ;-)</source>
         <translation>Давным-давно ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="143"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="144"/>
         <source>new</source>
         <translation>новых</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="145"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="146"/>
         <source>unread</source>
         <translation>непрочитанных</translation>
     </message>
@@ -1027,11 +1027,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="190"/>
-        <source>Use default picture for feeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>Хранить БД в памяти (требуется перезапуск программы)</translation>
@@ -1411,6 +1406,11 @@
         <translation>Максимальный возраст сохраняемых новостей в днях:</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="190"/>
+        <source>Show default rss-icon instead of favourite one</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use external browser</source>
         <translation type="unfinished"></translation>
@@ -1746,134 +1746,134 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2165"/>
+        <location filename="../src/rsslisting.cpp" line="2153"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2216"/>
+        <location filename="../src/rsslisting.cpp" line="2215"/>
         <source>Import canceled</source>
         <translation>Отмена импортирования</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2224"/>
+        <location filename="../src/rsslisting.cpp" line="2223"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Импортирование: не может открыть файл</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4107"/>
+        <location filename="../src/rsslisting.cpp" line="4108"/>
         <source>&amp;Feed...</source>
         <translation>Новостную &amp;ленту...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4110"/>
+        <location filename="../src/rsslisting.cpp" line="4111"/>
         <source>F&amp;older...</source>
         <translation>&amp;Папку...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4115"/>
+        <location filename="../src/rsslisting.cpp" line="4116"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Удалить...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4124"/>
+        <location filename="../src/rsslisting.cpp" line="4125"/>
         <source>E&amp;xit</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4165"/>
+        <location filename="../src/rsslisting.cpp" line="4166"/>
         <source>Show Starred</source>
         <translation>Показать со звёздочкой</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4166"/>
+        <location filename="../src/rsslisting.cpp" line="4167"/>
         <source>Show Not Starred</source>
         <translation>Показать без звёздочки</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4167"/>
+        <location filename="../src/rsslisting.cpp" line="4168"/>
         <source>Show Unread or Starred</source>
         <translation>Показать непрочитанные и со звёздочкой</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4181"/>
+        <location filename="../src/rsslisting.cpp" line="4182"/>
         <source>Open News in External Browser</source>
         <translation>Открыть новость во внешнем браузере</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4197"/>
+        <location filename="../src/rsslisting.cpp" line="4198"/>
         <source>Mark Read</source>
         <translation>Отметить прочитанной</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4199"/>
         <location filename="../src/rsslisting.cpp" line="4200"/>
+        <location filename="../src/rsslisting.cpp" line="4201"/>
         <source>Properties</source>
         <translation>Свойства</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4211"/>
+        <location filename="../src/rsslisting.cpp" line="4212"/>
         <location filename="../src/rsslisting.cpp" line="4286"/>
         <source>Main Toolbar</source>
         <translation>Главная панель</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4212"/>
+        <location filename="../src/rsslisting.cpp" line="4213"/>
         <source>Customize Toolbar</source>
         <translation>Настройка панели инструментов</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4213"/>
+        <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4214"/>
+        <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4215"/>
+        <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4216"/>
+        <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4218"/>
+        <location filename="../src/rsslisting.cpp" line="4219"/>
         <source>Hide Toolbar</source>
         <translation>Скрыть панель инструментов</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4229"/>
+        <location filename="../src/rsslisting.cpp" line="4230"/>
         <source>Browser Position</source>
         <translation>Позиция браузера</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4235"/>
+        <location filename="../src/rsslisting.cpp" line="4236"/>
         <source>Show Window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4237"/>
+        <location filename="../src/rsslisting.cpp" line="4238"/>
         <source>Previous Feed</source>
         <translation>Предыдущая лента</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4238"/>
+        <location filename="../src/rsslisting.cpp" line="4239"/>
         <source>Next Feed</source>
         <translation>Следующая лента</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4239"/>
+        <location filename="../src/rsslisting.cpp" line="4240"/>
         <source>Previous News</source>
         <translation>Предыдущая новость</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4240"/>
+        <location filename="../src/rsslisting.cpp" line="4241"/>
         <source>Next News</source>
         <translation>Следующая новость</translation>
     </message>
@@ -1886,29 +1886,28 @@
         <translation type="obsolete">Переключение фокуса между панелями (дерево лент, список новостей, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4252"/>
+        <location filename="../src/rsslisting.cpp" line="4253"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Показать/скрыть дерево лент</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4254"/>
+        <location filename="../src/rsslisting.cpp" line="4255"/>
         <source>Minimize to Tray</source>
         <translation>Минимизировать в трей</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4256"/>
+        <location filename="../src/rsslisting.cpp" line="4257"/>
         <source>Minimize Application to Tray</source>
         <translation>Свернуть приложение в трей</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4258"/>
+        <location filename="../src/rsslisting.cpp" line="4259"/>
         <source>Columns</source>
         <translation>Колонки</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4263"/>
         <source>Sort by Title</source>
-        <translation>Сортировать по заголовку</translation>
+        <translation type="obsolete">Сортировать по заголовку</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4269"/>
@@ -2037,23 +2036,23 @@
         <translation>Увеличение списка новостей/уменьшение браузера</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4766"/>
+        <location filename="../src/rsslisting.cpp" line="4768"/>
         <source>Check for updates</source>
         <translation>Проверить наличие обновлений</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4767"/>
+        <location filename="../src/rsslisting.cpp" line="4769"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Новая версия QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5527"/>
-        <location filename="../src/rsslisting.cpp" line="5538"/>
+        <location filename="../src/rsslisting.cpp" line="5520"/>
+        <location filename="../src/rsslisting.cpp" line="5531"/>
         <source>Web Page</source>
         <translation>Веб-страница</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2358"/>
+        <location filename="../src/rsslisting.cpp" line="2368"/>
         <source>Export canceled</source>
         <translation>Отмена экспортирования</translation>
     </message>
@@ -2076,32 +2075,32 @@
         <translation>Метка</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1874"/>
+        <location filename="../src/rsslisting.cpp" line="1866"/>
         <location filename="../src/rsslisting.cpp" line="4302"/>
-        <location filename="../src/rsslisting.cpp" line="5741"/>
-        <location filename="../src/rsslisting.cpp" line="5764"/>
+        <location filename="../src/rsslisting.cpp" line="5793"/>
+        <location filename="../src/rsslisting.cpp" line="5816"/>
         <source>Hide Categories</source>
         <translation>Скрыть категории</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1878"/>
+        <location filename="../src/rsslisting.cpp" line="1870"/>
         <location filename="../src/rsslisting.cpp" line="4300"/>
-        <location filename="../src/rsslisting.cpp" line="5747"/>
+        <location filename="../src/rsslisting.cpp" line="5799"/>
         <source>Show Categories</source>
         <translation>Показать категории</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2364"/>
+        <location filename="../src/rsslisting.cpp" line="2374"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Экспортирование: не может открыть файл</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4142"/>
+        <location filename="../src/rsslisting.cpp" line="4143"/>
         <source>Mark Read/Unread</source>
         <translation>Отметить прочитанной/непрочитанной</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4152"/>
+        <location filename="../src/rsslisting.cpp" line="4153"/>
         <source>Options...</source>
         <translation>Настройки...</translation>
     </message>
@@ -2110,70 +2109,70 @@
         <translation type="obsolete">Фильтр</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4156"/>
-        <location filename="../src/rsslisting.cpp" line="4162"/>
+        <location filename="../src/rsslisting.cpp" line="4157"/>
+        <location filename="../src/rsslisting.cpp" line="4163"/>
         <source>Show All</source>
         <translation>Показать все</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4157"/>
-        <location filename="../src/rsslisting.cpp" line="4163"/>
+        <location filename="../src/rsslisting.cpp" line="4158"/>
+        <location filename="../src/rsslisting.cpp" line="4164"/>
         <source>Show New</source>
         <translation>Показать новые</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4158"/>
-        <location filename="../src/rsslisting.cpp" line="4164"/>
+        <location filename="../src/rsslisting.cpp" line="4159"/>
+        <location filename="../src/rsslisting.cpp" line="4165"/>
         <source>Show Unread</source>
         <translation>Показать непрочитанные</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4171"/>
+        <location filename="../src/rsslisting.cpp" line="4172"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4186"/>
+        <location filename="../src/rsslisting.cpp" line="4187"/>
         <source>Star</source>
         <translation>Звёздочка</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4188"/>
+        <location filename="../src/rsslisting.cpp" line="4189"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4202"/>
+        <location filename="../src/rsslisting.cpp" line="4203"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4203"/>
+        <location filename="../src/rsslisting.cpp" line="4204"/>
         <source>&amp;Edit</source>
         <translation>&amp;Правка</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4204"/>
+        <location filename="../src/rsslisting.cpp" line="4205"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4205"/>
+        <location filename="../src/rsslisting.cpp" line="4206"/>
         <source>Fee&amp;ds</source>
         <translation>Новостные &amp;ленты</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4206"/>
+        <location filename="../src/rsslisting.cpp" line="4207"/>
         <source>&amp;News</source>
         <translation>Новос&amp;ти</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4208"/>
+        <location filename="../src/rsslisting.cpp" line="4209"/>
         <source>&amp;Tools</source>
         <translation>&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4209"/>
+        <location filename="../src/rsslisting.cpp" line="4210"/>
         <source>&amp;Help</source>
         <translation>Сп&amp;равка</translation>
     </message>
@@ -2190,27 +2189,27 @@
         <translation type="obsolete">Текст</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4221"/>
+        <location filename="../src/rsslisting.cpp" line="4222"/>
         <source>System</source>
         <translation>Системный</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4230"/>
+        <location filename="../src/rsslisting.cpp" line="4231"/>
         <source>Top</source>
         <translation>Вверху</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4231"/>
+        <location filename="../src/rsslisting.cpp" line="4232"/>
         <source>Bottom</source>
         <translation>Внизу</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4232"/>
+        <location filename="../src/rsslisting.cpp" line="4233"/>
         <source>Right</source>
         <translation>Справа</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4233"/>
+        <location filename="../src/rsslisting.cpp" line="4234"/>
         <source>Left</source>
         <translation>Слева</translation>
     </message>
@@ -2221,101 +2220,101 @@
         <translation>Поиск ленты</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5138"/>
+        <location filename="../src/rsslisting.cpp" line="5140"/>
         <source>Loading...</source>
         <translation>Загрузка...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2164"/>
+        <location filename="../src/rsslisting.cpp" line="2152"/>
         <source>Delete Feed</source>
         <translation>Удаление новостной ленты</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2211"/>
-        <location filename="../src/rsslisting.cpp" line="2353"/>
+        <location filename="../src/rsslisting.cpp" line="2210"/>
+        <location filename="../src/rsslisting.cpp" line="2363"/>
         <source>Select OPML-File</source>
         <translation>Выберите OPML-файл</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2213"/>
+        <location filename="../src/rsslisting.cpp" line="2212"/>
         <source>OPML-Files (*.opml *.xml)</source>
         <translation>OPML-файлы (*.opml *.xml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2355"/>
+        <location filename="../src/rsslisting.cpp" line="2365"/>
         <source>OPML-Files (*.opml)</source>
         <translation>OPML-файлы (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3933"/>
-        <location filename="../src/rsslisting.cpp" line="4127"/>
+        <location filename="../src/rsslisting.cpp" line="3934"/>
+        <location filename="../src/rsslisting.cpp" line="4128"/>
         <source>Load Images</source>
         <translation>Загружать изображения</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3937"/>
-        <location filename="../src/rsslisting.cpp" line="4130"/>
+        <location filename="../src/rsslisting.cpp" line="3938"/>
+        <location filename="../src/rsslisting.cpp" line="4131"/>
         <source>No Load Images</source>
         <translation>Не загружать изображения</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3938"/>
-        <location filename="../src/rsslisting.cpp" line="4131"/>
+        <location filename="../src/rsslisting.cpp" line="3939"/>
+        <location filename="../src/rsslisting.cpp" line="4132"/>
         <source>No Load Images to News View</source>
         <translation>Не загружать изображения</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4099"/>
-        <location filename="../src/rsslisting.cpp" line="4557"/>
+        <location filename="../src/rsslisting.cpp" line="4100"/>
+        <location filename="../src/rsslisting.cpp" line="4559"/>
         <source>New News: %1</source>
         <translation>Новых новостей: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4101"/>
-        <location filename="../src/rsslisting.cpp" line="4559"/>
+        <location filename="../src/rsslisting.cpp" line="4102"/>
+        <location filename="../src/rsslisting.cpp" line="4561"/>
         <source>Unread News: %1</source>
         <translation>Непрочитанных новостей: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4105"/>
-        <location filename="../src/rsslisting.cpp" line="4108"/>
+        <location filename="../src/rsslisting.cpp" line="4106"/>
+        <location filename="../src/rsslisting.cpp" line="4109"/>
         <source>Add New Feed</source>
         <translation>Добавить новую новостную ленту</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4113"/>
-        <location filename="../src/rsslisting.cpp" line="4182"/>
+        <location filename="../src/rsslisting.cpp" line="4114"/>
+        <location filename="../src/rsslisting.cpp" line="4183"/>
         <source>Open in New Tab</source>
         <translation>Открыть в новой вкладке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4116"/>
+        <location filename="../src/rsslisting.cpp" line="4117"/>
         <source>Delete Selected Feed</source>
         <translation>Удалить новостную ленту</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4118"/>
+        <location filename="../src/rsslisting.cpp" line="4119"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Импортировать новостные ленты...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4119"/>
+        <location filename="../src/rsslisting.cpp" line="4120"/>
         <source>Import Feeds from OPML File</source>
         <translation>Импортировать новостные ленты из OPML-файла</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4121"/>
+        <location filename="../src/rsslisting.cpp" line="4122"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Экспортировать новостные ленты...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4122"/>
+        <location filename="../src/rsslisting.cpp" line="4123"/>
         <source>Export Feeds to OPML File</source>
         <translation>Экспортировать новостные ленты из OPML-файла</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3934"/>
-        <location filename="../src/rsslisting.cpp" line="4128"/>
+        <location filename="../src/rsslisting.cpp" line="3935"/>
+        <location filename="../src/rsslisting.cpp" line="4129"/>
         <source>Auto Load Images to News View</source>
         <translation>Автоматическая загрузка изображений</translation>
     </message>
@@ -2326,210 +2325,210 @@
         <translation>Метки</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2160"/>
+        <location filename="../src/rsslisting.cpp" line="2148"/>
         <source>Delete Folder</source>
         <translation>Удалить папку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2161"/>
+        <location filename="../src/rsslisting.cpp" line="2149"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>Вы действительно хотите удалить папку &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2883"/>
-        <location filename="../src/rsslisting.cpp" line="3623"/>
-        <location filename="../src/rsslisting.cpp" line="4091"/>
+        <location filename="../src/rsslisting.cpp" line="2890"/>
+        <location filename="../src/rsslisting.cpp" line="3624"/>
+        <location filename="../src/rsslisting.cpp" line="4092"/>
         <source>Unread: %1</source>
         <translation>Непрочитанных: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2884"/>
-        <location filename="../src/rsslisting.cpp" line="3624"/>
-        <location filename="../src/rsslisting.cpp" line="3634"/>
-        <location filename="../src/rsslisting.cpp" line="4094"/>
-        <location filename="../src/rsslisting.cpp" line="5106"/>
-        <location filename="../src/rsslisting.cpp" line="5728"/>
+        <location filename="../src/rsslisting.cpp" line="2891"/>
+        <location filename="../src/rsslisting.cpp" line="3625"/>
+        <location filename="../src/rsslisting.cpp" line="3635"/>
+        <location filename="../src/rsslisting.cpp" line="4095"/>
+        <location filename="../src/rsslisting.cpp" line="5108"/>
+        <location filename="../src/rsslisting.cpp" line="5780"/>
         <source>All: %1</source>
         <translation>Всего: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4104"/>
+        <location filename="../src/rsslisting.cpp" line="4105"/>
         <source>&amp;Add</source>
         <translation>&amp;Добавить</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4111"/>
+        <location filename="../src/rsslisting.cpp" line="4112"/>
         <source>Add New Folder</source>
         <translation>Добавить новую папку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4134"/>
+        <location filename="../src/rsslisting.cpp" line="4135"/>
         <source>Update Feed</source>
         <translation>Обновить ленту</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4135"/>
+        <location filename="../src/rsslisting.cpp" line="4136"/>
         <source>Update Current Feed</source>
         <translation>Обновить выбранную новостную ленту</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4137"/>
+        <location filename="../src/rsslisting.cpp" line="4138"/>
         <source>Update All</source>
         <translation>Обновить все</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4138"/>
+        <location filename="../src/rsslisting.cpp" line="4139"/>
         <source>Update All Feeds</source>
         <translation>Обновить все новостные ленты</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4140"/>
+        <location filename="../src/rsslisting.cpp" line="4141"/>
         <source>Mark All Feeds Read</source>
         <translation>Отметить все ленты прочитанными</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4143"/>
+        <location filename="../src/rsslisting.cpp" line="4144"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Отметить текущую новость прочитанной/непрочитанной</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4145"/>
         <location filename="../src/rsslisting.cpp" line="4146"/>
+        <location filename="../src/rsslisting.cpp" line="4147"/>
         <source>Mark All News Read</source>
         <translation>Отметить все новости прочитанными</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4149"/>
+        <location filename="../src/rsslisting.cpp" line="4150"/>
         <source>News Filters...</source>
         <translation>Фильтры новостей... </translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4150"/>
+        <location filename="../src/rsslisting.cpp" line="4151"/>
         <source>Filter News...</source>
         <translation>Фильтр новостей...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4153"/>
+        <location filename="../src/rsslisting.cpp" line="4154"/>
         <source>Open Options Dialog</source>
         <translation>Открыть окно настроек</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4155"/>
+        <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4159"/>
+        <location filename="../src/rsslisting.cpp" line="4160"/>
         <source>Show Starred Feeds</source>
         <translation>Показать избранные ленты</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4161"/>
+        <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
         <translation type="unfinished">Фильтр новостей</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4168"/>
+        <location filename="../src/rsslisting.cpp" line="4169"/>
         <source>Show Last Day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4169"/>
+        <location filename="../src/rsslisting.cpp" line="4170"/>
         <source>Show Last 7 Days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4172"/>
+        <location filename="../src/rsslisting.cpp" line="4173"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Показать диалог &apos;О программе&apos;</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4174"/>
+        <location filename="../src/rsslisting.cpp" line="4175"/>
         <source>Check for Updates...</source>
         <translation>Проверить наличие обновлений...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4175"/>
+        <location filename="../src/rsslisting.cpp" line="4176"/>
         <source>Report a Problem...</source>
         <translation>Сообщить о проблеме...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4177"/>
+        <location filename="../src/rsslisting.cpp" line="4178"/>
         <source>Open News</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4178"/>
+        <location filename="../src/rsslisting.cpp" line="4179"/>
         <source>Open Description News</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4179"/>
+        <location filename="../src/rsslisting.cpp" line="4180"/>
         <source>Open in Browser</source>
         <translation>Открыть в браузере</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4180"/>
+        <location filename="../src/rsslisting.cpp" line="4181"/>
         <source>Open in External Browser</source>
         <translation>Открыть во внешнем браузере</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4183"/>
+        <location filename="../src/rsslisting.cpp" line="4184"/>
         <source>Open News in New Tab</source>
         <translation>Открыть новость в новой вкладке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4184"/>
+        <location filename="../src/rsslisting.cpp" line="4185"/>
         <source>Open in Background Tab</source>
         <translation>Открыть в фоновой вкладке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4185"/>
+        <location filename="../src/rsslisting.cpp" line="4186"/>
         <source>Open News in Background Tab</source>
         <translation>Открыть новость в фоновой вкладке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4187"/>
+        <location filename="../src/rsslisting.cpp" line="4188"/>
         <source>Mark News Star</source>
         <translation>Отметить новость звёздочкой</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4189"/>
+        <location filename="../src/rsslisting.cpp" line="4190"/>
         <source>Delete Selected News</source>
         <translation>Удалить выбранные новости</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4190"/>
+        <location filename="../src/rsslisting.cpp" line="4191"/>
         <source>Delete All News</source>
         <translation>Удалить все новости</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4191"/>
+        <location filename="../src/rsslisting.cpp" line="4192"/>
         <source>Delete All News from List</source>
         <translation>Удалить все новости из списка</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4192"/>
+        <location filename="../src/rsslisting.cpp" line="4193"/>
         <source>Restore</source>
         <translation>Восстановить</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4193"/>
+        <location filename="../src/rsslisting.cpp" line="4194"/>
         <source>Restore News</source>
         <translation>Восстановить новость</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4195"/>
+        <location filename="../src/rsslisting.cpp" line="4196"/>
         <source>Restore last deleted news</source>
         <translation>Восстановление последней удалёной новости</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4198"/>
+        <location filename="../src/rsslisting.cpp" line="4199"/>
         <source>Mark Feed Read</source>
         <translation>Отметить ленту прочитанной</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4207"/>
+        <location filename="../src/rsslisting.cpp" line="4208"/>
         <source>&amp;Browser</source>
         <translation>&amp;Браузер</translation>
     </message>
@@ -2558,82 +2557,82 @@
         <translation type="obsolete">Маленький</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4220"/>
+        <location filename="../src/rsslisting.cpp" line="4221"/>
         <source>Application Style</source>
         <translation>Стиль приложения</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4222"/>
+        <location filename="../src/rsslisting.cpp" line="4223"/>
         <source>System2</source>
         <translation>Системный 2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4223"/>
+        <location filename="../src/rsslisting.cpp" line="4224"/>
         <source>Green</source>
         <translation>Зелёный</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4224"/>
+        <location filename="../src/rsslisting.cpp" line="4225"/>
         <source>Orange</source>
         <translation>Оранжевый</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4225"/>
+        <location filename="../src/rsslisting.cpp" line="4226"/>
         <source>Purple</source>
         <translation>Фиолетовый</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4226"/>
+        <location filename="../src/rsslisting.cpp" line="4227"/>
         <source>Pink</source>
         <translation>Розовый</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4227"/>
+        <location filename="../src/rsslisting.cpp" line="4228"/>
         <source>Gray</source>
         <translation>Серый</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4242"/>
+        <location filename="../src/rsslisting.cpp" line="4243"/>
         <source>Next Unread News</source>
         <translation>Следующая непрочитанная новость</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4243"/>
+        <location filename="../src/rsslisting.cpp" line="4244"/>
         <source>Previous Unread News</source>
         <translation>Предыдущая непрочитанная новость</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4245"/>
+        <location filename="../src/rsslisting.cpp" line="4246"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Переключить фокус на следующую панель</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4247"/>
+        <location filename="../src/rsslisting.cpp" line="4248"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Переключить фокус на следующую панель (дерево лент, список новостей, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4248"/>
+        <location filename="../src/rsslisting.cpp" line="4249"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Переключить фокус на предыдущую панель</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4250"/>
+        <location filename="../src/rsslisting.cpp" line="4251"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Переключить фокус на предыдущую панель (дерево лент, список новостей, браузер)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4259"/>
+        <location filename="../src/rsslisting.cpp" line="4260"/>
         <source>Count News Unread</source>
         <translation>Количество непрочитанных новостей</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4260"/>
+        <location filename="../src/rsslisting.cpp" line="4261"/>
         <source>Count News All</source>
         <translation>Количество всех новостей</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4261"/>
+        <location filename="../src/rsslisting.cpp" line="4262"/>
         <source>Last Updated</source>
         <translation>Последнее обновление</translation>
     </message>
@@ -2658,17 +2657,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5905"/>
+        <location filename="../src/rsslisting.cpp" line="5957"/>
         <source>Save As</source>
         <translation>Сохранить как</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5907"/>
+        <location filename="../src/rsslisting.cpp" line="5959"/>
         <source>HTML-Files (*.html)</source>
         <translation>HTML-файлы (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5908"/>
+        <location filename="../src/rsslisting.cpp" line="5960"/>
         <source>Text files (*.txt)</source>
         <translation>Текстовые-файлы (*.txt)</translation>
     </message>
@@ -2677,7 +2676,7 @@
         <translation type="obsolete">HTML-файл (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5913"/>
+        <location filename="../src/rsslisting.cpp" line="5965"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Сохранить как: не может открыть файл</translation>
     </message>
