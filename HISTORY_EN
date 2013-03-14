@@ -2,6 +2,43 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.12.2+</B> (xx Mar 2013)
+<UL>
+<LI>Main: Increase productivity</LI>
+<LI>Main: Manual sort in feed's tree</LI>
+<BR>
+<LI>Added: Option "Hide feed's tree when opening tabs"</LI>
+<LI>Added: Option for news' list "Alternate row's background color" (Options->Feeds->General->...)</LI>
+<LI>Added: Ability to open several news in external browser</LI>
+<LI>Added: Ability to open several news in tabs</LI>
+<LI>Added: News filters: "Show for Last Day" и "Show for Last 7 Days"</LI>
+<LI>Added: Notification window: Button to open news in external browser</LI>
+<LI>Added: Ability to hide feed's indentation in tree ("Feeds->Show Indentation")</LI>
+<LI>Added: Ability to customize toolbar ("View->Customize toolbar->...")</LI>
+<LI>Added: Option "Show default rss-icon instead of favourite one"</LI>
+<LI>Added: Language: Ukrainian</LI>
+<LI>Added: Language: Chinese</LI>
+<LI>Added: Language: Czech</LI>
+<LI>Added: Language: Polish</LI>
+<BR>
+<LI>Changed: GUI. Visual tweaks</LI>
+<LI>Changed: Ability to change shortcuts: "CTRL+P" и "Enter"</LI>
+<LI>Changed: Dialog "Create filter": sort conditions by name</LI>
+<LI>Changed: Separate options "Use embedded or external browser" and "External browser selection"</LI>
+<LI>Changed: Focus unfocused window while clicking tray icon</LI>
+<LI>Changed: Adjust image width from media-content to browser width</LI>
+<LI>Changed: Folder properties. Added options similar to feed options</LI>
+<BR>
+<LI>Fixed: Some feeds displays short description instead of full</LI>
+<LI>Fixed: Recounting folder's counters</LI>
+<LI>Fixed: Shutdown of application while PC shutdown</LI>
+<LI>Fixed: Feed's tree when it contains more than 256 items</LI>
+<LI>Fixed: Cursor disappear in news list when sort changing</LI>
+<LI>Fixed: Import OPML-files</LI>
+<LI>Fixed: Notification window displays old news</LI>
+<LI>Fixed: Text encoding while parsing feed</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.12.2</B> (20 Feb 2013)
 <UL>
 <LI>Added: Displaying news of selected folder</LI>
