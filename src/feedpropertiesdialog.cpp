@@ -75,6 +75,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
     labelHomepageCapt->hide();
     labelHomepage->hide();
     starredOn_->hide();
+    duplicateNewsMode_->hide();
   }
 
   return tab;
