@@ -82,10 +82,18 @@ public:
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;
   QAction *findTextAct_;
+  QAction *shareMenuAct_;
+  QAction *emailShareAct_;
+  QAction *evernoteShareAct_;
+  QAction *facebookShareAct_;
+  QAction *vkShareAct_;
+
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
+  QActionGroup *shareGroup_;
 
   QMenu *newsLabelMenu_;
+  QMenu *shareMenu_;
 
   QString newsFontFamily_;
   int newsFontSize_;
@@ -129,6 +137,8 @@ public:
 
   bool hideFeedsOpenTab_;
   bool defaultIconFeeds_;
+
+  int openNewsTab_;
 
 public slots:
   void addFeed();
@@ -406,7 +416,6 @@ private:
 
   int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
   QBasicTimer timerLinkOpening_;
-  int openNewsTab_;
 
   enum FeedReedType {
     FeedReadTypeSwitchingFeed,
@@ -535,6 +544,8 @@ private slots:
 
   void customizeMainToolbar();
   void showCustomizeToolbarDlg(QAction *action);
+
+  void slotShareNews(QAction *action);
 
 signals:
   void signalPlaceToTray();

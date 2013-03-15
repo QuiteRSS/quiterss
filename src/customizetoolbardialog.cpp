@@ -400,7 +400,7 @@ void CustomizeToolbarDialog::defaultShortcut()
     actionListStr = "findFeedAct,feedsFilter";
   } else if (toolbar_->objectName() == "newsToolBar") {
     actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
-        "newsLabelAction,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
+        "newsLabelAction,shareMenuAct,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
         "Separator,newsFilter,Separator,deleteNewsAct";
   }
 

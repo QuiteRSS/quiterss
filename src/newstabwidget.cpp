@@ -132,7 +132,7 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->setIconSize(QSize(18, 18));
 
   QString actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
-      "newsLabelAction,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
+      "newsLabelAction,shareMenuAct,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
       "Separator,newsFilter,Separator,deleteNewsAct";
   QString str = rsslisting_->settings_->value("Settings/newsToolBar", actionListStr).toString();
 
@@ -238,6 +238,7 @@ void NewsTabWidget::createMenuNews()
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->markStarAct_);
   newsContextMenu_->addAction(rsslisting_->newsLabelMenuAction_);
+  newsContextMenu_->addAction(rsslisting_->shareMenuAct_);
   newsContextMenu_->addSeparator();
   newsContextMenu_->addAction(rsslisting_->updateFeedAct_);
   newsContextMenu_->addSeparator();
@@ -1693,4 +1694,56 @@ void NewsTabWidget::setTextTab(const QString &text, int width)
   newsTitleLabel_->setToolTip(text);
 
   emit signalSetTextTab(text, this);
+}
+
+/** @brief Поделиться новостью
+ *----------------------------------------------------------------------------*/
+void NewsTabWidget::slotShareNews(QAction *action)
+{
+  if (type_ == TAB_WEB) return;
+
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
+  for (int i = cnt-1; i >= 0; --i) {
+    QModelIndex index = indexes.at(i);
+    QString title = newsModel_->record(
+          index.row()).field("title").value().toString();
+    QString linkString = newsModel_->record(
+          index.row()).field("link_href").value().toString();
+    if (linkString.isEmpty())
+      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+
+    QUrl url;
+    if (action->objectName() == "emailShareAct") {
+      url.setUrl("mailto:");
+      url.addQueryItem("subject", title);
+      url.addQueryItem("body", linkString.simplified());
+      openUrl(url);
+    } else {
+      if (action->objectName() == "evernoteShareAct") {
+        url.setUrl("http://www.evernote.com/clip.action");
+        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("title", title);
+      } else if (action->objectName() == "facebookShareAct") {
+        url.setUrl("http://www.facebook.com/sharer.php");
+        url.addQueryItem("u", linkString.simplified());
+        url.addQueryItem("t", title);
+      } else if (action->objectName() == "vkShareAct") {
+        url.setUrl("http://vk.com/share.php");
+        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("title", title);
+        url.addQueryItem("description", "");
+        url.addQueryItem("image", "");
+      }
+
+      if (rsslisting_->externalBrowserOn_ <= 0) {
+        rsslisting_->openNewsTab_ = 1;
+        QWebPage *webPage = rsslisting_->createWebTab();
+        qobject_cast<WebView*>(webPage->view())->load(url);
+      } else openUrl(url);
+    }
+  }
 }

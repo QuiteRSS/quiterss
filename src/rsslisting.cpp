@@ -1243,6 +1243,37 @@ void RSSListing::createActions()
   this->addAction(prevUnreadNewsAct_);
   connect(prevUnreadNewsAct_, SIGNAL(triggered()), this, SLOT(prevUnreadNews()));
 
+  shareGroup_ = new QActionGroup(this);
+  shareGroup_->setExclusive(false);
+
+  emailShareAct_ = new QAction(this);
+  emailShareAct_->setObjectName("emailShareAct");
+  emailShareAct_->setText("Email");
+  emailShareAct_->setIcon(QIcon(":/images/images/email.png"));
+  shareGroup_->addAction(emailShareAct_);
+
+  evernoteShareAct_ = new QAction(this);
+  evernoteShareAct_->setObjectName("evernoteShareAct");
+  evernoteShareAct_->setText("Evernote");
+  evernoteShareAct_->setIcon(QIcon(":/images/images/share_evernote.png"));
+  shareGroup_->addAction(evernoteShareAct_);
+
+  facebookShareAct_ = new QAction(this);
+  facebookShareAct_->setObjectName("facebookShareAct");
+  facebookShareAct_->setText("Facebook");
+  facebookShareAct_->setIcon(QIcon(":/images/images/share_facebook.png"));
+  shareGroup_->addAction(facebookShareAct_);
+
+  vkShareAct_ = new QAction(this);
+  vkShareAct_->setObjectName("vkShareAct");
+  vkShareAct_->setText("VK");
+  vkShareAct_->setIcon(QIcon(":/images/images/share_vk.png"));
+  shareGroup_->addAction(vkShareAct_);
+
+  this->addActions(shareGroup_->actions());
+  connect(shareGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(slotShareNews(QAction*)));
+
 
   connect(markNewsRead_, SIGNAL(triggered()),
           this, SLOT(markNewsRead()));
@@ -1556,6 +1587,15 @@ void RSSListing::createMenu()
   newsMenu_->addAction(newsLabelMenuAction_);
   connect(newsLabelMenu_, SIGNAL(aboutToShow()),
           this, SLOT(getLabelNews()));
+
+  shareMenu_ = new QMenu(this);
+  shareMenu_->addActions(shareGroup_->actions());
+  shareMenuAct_ = new QAction(this);
+  shareMenuAct_->setObjectName("shareMenuAct");
+  shareMenuAct_->setIcon(QIcon(":/images/images/share.png"));
+  shareMenuAct_->setMenu(shareMenu_);
+  newsMenu_->addAction(shareMenuAct_);
+  this->addAction(shareMenuAct_);
 
   newsMenu_->addSeparator();
 
@@ -4317,6 +4357,8 @@ void RSSListing::retranslateStrings()
 
   findTextAct_->setText(tr("Find"));
 
+  shareMenuAct_->setText(tr("Share"));
+
   QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -6164,4 +6206,11 @@ void RSSListing::showCustomizeToolbarDlg(QAction *action)
   toolbarDlg->exec();
 
   delete toolbarDlg;
+}
+
+/** @brief Поделиться новостью
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotShareNews(QAction *action)
+{
+  currentNewsTab->slotShareNews(action);
 }

@@ -102,6 +102,8 @@ public:
 
   void setTextTab(const QString &text, int width = 114);
 
+  void slotShareNews(QAction *action);
+
   int type_;
   int feedId_;
   int feedParId_;

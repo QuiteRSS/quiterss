@@ -95,6 +95,11 @@
         <file alias="flag_CN">images/flag_china.png</file>
         <file alias="flag_CZ">images/flag_czech.png</file>
         <file alias="flag_PL">images/flag_poland.png</file>
+        <file>images/share.png</file>
+        <file>images/email.png</file>
+        <file>images/share_evernote.png</file>
+        <file>images/share_facebook.png</file>
+        <file>images/share_vk.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
