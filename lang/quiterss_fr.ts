@@ -204,101 +204,101 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer la barre d&apos;outils principale</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer la barre d&apos;outils des flux</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer la barre d&apos;outils des articles</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
         <location filename="../src/customizetoolbardialog.cpp" line="329"/>
         <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
-        <translation type="unfinished">Charger les images</translation>
+        <translation>Charger les images</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
         <location filename="../src/customizetoolbardialog.cpp" line="339"/>
         <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Séparation</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished">Icônes seules</translation>
+        <translation>Icônes seules</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text</source>
-        <translation type="unfinished">Texte seul</translation>
+        <translation>Texte seul</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished">Texte contre les icônes</translation>
+        <translation>Texte contre les icônes</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">Texte sous les icônes</translation>
+        <translation>Texte sous les icônes</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished">Grande</translation>
+        <translation>Grande</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished">Moyenne</translation>
+        <translation>Moyenne</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished">Petite</translation>
+        <translation>Petite</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Style :</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille des icônes :</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished">Vers le haut</translation>
+        <translation>Vers le haut</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished">Vers le bas</translation>
+        <translation>Vers le bas</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished">Par défaut</translation>
+        <translation>Par défaut</translation>
     </message>
 </context>
 <context>
@@ -374,7 +374,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer dans un nouvel onglet au démarrage</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
@@ -1024,7 +1024,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Cacher l&apos;arborescence des flux lors de l&apos;ouverture des onglets</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
@@ -1164,7 +1164,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>External browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigateur internet externe :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="428"/>
@@ -1194,7 +1194,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Couleurs d&apos;arrière-plan des lignes alternantes</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
@@ -1408,22 +1408,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer l&apos;icône RSS par défaut au lieu de la favorite</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un navigateur internet externe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
         <source>Default external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigateur internet externe par défaut</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="332"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>Navigateur internet externe suivant :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
@@ -1779,12 +1779,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrer les flux</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
-        <translation type="unfinished">Filtrer les articles</translation>
+        <translation>Filtrer les articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4166"/>
@@ -1831,22 +1831,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils principale...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer la barre d&apos;outils...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils des flux...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;outils des articles...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>
@@ -1910,7 +1910,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer indentation</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4269"/>
@@ -2419,12 +2419,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4169"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer le dernier jour</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4170"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer les 7 derniers jours</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4173"/>
@@ -2444,12 +2444,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4178"/>
         <source>Open News</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir article</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4179"/>
         <source>Open Description News</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir description de l&apos;article</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4180"/>
@@ -2638,7 +2638,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4318"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5957"/>

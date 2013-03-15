@@ -221,7 +221,7 @@
         <location filename="../src/customizetoolbardialog.cpp" line="329"/>
         <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
-        <translation type="unfinished">Képek betöltése</translation>
+        <translation>Képek betöltése</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
@@ -233,37 +233,37 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished">Ikon</translation>
+        <translation>Ikon</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text</source>
-        <translation type="unfinished">Szöveg</translation>
+        <translation>Szöveg</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished">Szöveg az ikon mellett</translation>
+        <translation>Szöveg az ikon mellett</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">Szöveg az ikon alatt</translation>
+        <translation>Szöveg az ikon alatt</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished">Nagy</translation>
+        <translation>Nagy</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished">Normál</translation>
+        <translation>Normál</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished">Kicsi</translation>
+        <translation>Kicsi</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
@@ -288,17 +288,17 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished">Feljebb</translation>
+        <translation>Feljebb</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished">Lejjebb</translation>
+        <translation>Lejjebb</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished">Alapértelmezett</translation>
+        <translation>Alapértelmezett</translation>
     </message>
 </context>
 <context>
@@ -2429,7 +2429,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
-        <translation type="unfinished">Hírek szűrő</translation>
+        <translation>Hírek szűrő</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4169"/>
