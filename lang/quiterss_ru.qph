@@ -1757,4 +1757,40 @@
     <source>HTML-Files (*.html)</source>
     <target>HTML-файлы (*.html)</target>
 </phrase>
+<phrase>
+    <source>Customize Main Toolbar</source>
+    <target>Настройка главной панели</target>
+</phrase>
+<phrase>
+    <source>Customize Feeds Toolbar</source>
+    <target>Настройка панели новостных лент</target>
+</phrase>
+<phrase>
+    <source>Customize News Toolbar</source>
+    <target>Настройка панели списка новостей</target>
+</phrase>
+<phrase>
+    <source>Remove</source>
+    <target>Удалить</target>
+</phrase>
+<phrase>
+    <source>Hide feeds tree when opening tabs</source>
+    <target>Скрывать дерево лент при открытии вкладки</target>
+</phrase>
+<phrase>
+    <source>External browser:</source>
+    <target>Внешний браузер:</target>
+</phrase>
+<phrase>
+    <source>Alternating row background colors</source>
+    <target>Чередование цвета фона строк</target>
+</phrase>
+<phrase>
+    <source>Show default rss-icon instead of favourite one</source>
+    <target>Использователь стандартную иконку для лент вместо уникальной</target>
+</phrase>
+<phrase>
+    <source>Show Last Day</source>
+    <target>Показать за последний день</target>
+</phrase>
 </QPH>
