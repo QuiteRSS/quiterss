@@ -1597,6 +1597,9 @@ void RSSListing::createMenu()
   newsMenu_->addAction(shareMenuAct_);
   this->addAction(shareMenuAct_);
 
+  connect(shareMenuAct_, SIGNAL(triggered()),
+          this, SLOT(showMenuShareNews()));
+
   newsMenu_->addSeparator();
 
   newsFilterGroup_ = new QActionGroup(this);
@@ -6213,4 +6216,26 @@ void RSSListing::showCustomizeToolbarDlg(QAction *action)
 void RSSListing::slotShareNews(QAction *action)
 {
   currentNewsTab->slotShareNews(action);
+}
+
+void RSSListing::showMenuShareNews()
+{
+  if (mainToolbar_->widgetForAction(shareMenuAct_)) {
+    QWidget *widget = mainToolbar_->widgetForAction(shareMenuAct_);
+    if (widget->underMouse()) {
+      shareMenu_->popup(widget->mapToGlobal(QPoint(0, mainToolbar_->height()-1)));
+    }
+  }
+  if (feedsToolBar_->widgetForAction(shareMenuAct_)) {
+    QWidget *widget = feedsToolBar_->widgetForAction(shareMenuAct_);
+    if (widget->underMouse()) {
+      shareMenu_->popup(widget->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
+    }
+  }
+  if (currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_)) {
+    QWidget *widget = currentNewsTab->newsToolBar_->widgetForAction(shareMenuAct_);
+    if (widget->underMouse()) {
+      shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
+    }
+  }
 }

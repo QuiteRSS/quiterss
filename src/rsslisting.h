@@ -546,6 +546,7 @@ private slots:
   void showCustomizeToolbarDlg(QAction *action);
 
   void slotShareNews(QAction *action);
+  void showMenuShareNews();
 
 signals:
   void signalPlaceToTray();
