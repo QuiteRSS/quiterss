@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.12.2+</B> (xx Mar 2013)
+<P><B>Version 0.12.3</B> (16 Mar 2013)
 <UL>
 <LI>Main: Increase productivity</LI>
 <LI>Main: Manual sort in feed's tree</LI>
@@ -16,10 +16,12 @@
 <LI>Added: Ability to hide feed's indentation in tree ("Feeds->Show Indentation")</LI>
 <LI>Added: Ability to customize toolbar ("View->Customize toolbar->...")</LI>
 <LI>Added: Option "Show default rss-icon instead of favourite one"</LI>
+<LI>Added: Share news: Email, Evernote, Facebook, VK</LI>
 <LI>Added: Language: Ukrainian</LI>
 <LI>Added: Language: Chinese</LI>
 <LI>Added: Language: Czech</LI>
 <LI>Added: Language: Polish</LI>
+<LI>Added: Language: Japanese</LI>
 <BR>
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Ability to change shortcuts: "CTRL+P" и "Enter"</LI>
