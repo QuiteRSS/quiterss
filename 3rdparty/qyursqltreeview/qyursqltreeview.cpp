@@ -217,6 +217,8 @@ void QyurSqlTreeModel::sort(int column, Qt::SortOrder order) {
 	d->sourceModel.setSort(d->indexOfParid,(Qt::SortOrder)DROP_MULTIORDER);
 	d->sourceModel.setSort(originalColumnByProxy(column),order);
 	d->sourceModel.select();
+  while (d->sourceModel.canFetchMore())
+    d->sourceModel.fetchMore();
 	reset();
 	d->clear();
 }
@@ -224,6 +226,8 @@ void QyurSqlTreeModel::sort(int column, Qt::SortOrder order) {
 void QyurSqlTreeModel::setFilter(const QString &filter) {
   Q_D(QyurSqlTreeModel);
   d->sourceModel.setFilter(filter);
+  while (d->sourceModel.canFetchMore())
+    d->sourceModel.fetchMore();
   reset();
   d->clear();
 }
