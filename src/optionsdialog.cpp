@@ -809,7 +809,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Español (ES)")
-           << "0.12.2"
+           << "0.12.3"
            << QString::fromUtf8("Cesar Muñoz") << "csarg@live.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_ES"));
@@ -858,7 +858,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("日本語 (JA)")
            << "0.12.3"
-           << "Masato HASHIMOTO" << "";
+           << "Masato Hashimoto" << "cabezon.hashimoto@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_JA"));
   languageFileList_->addTopLevelItem(languageItem);
