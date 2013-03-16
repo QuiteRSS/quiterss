@@ -1787,10 +1787,18 @@
 </phrase>
 <phrase>
     <source>Show default rss-icon instead of favourite one</source>
-    <target>Использователь стандартную иконку для лент вместо уникальной</target>
+    <target>Использовать стандартную иконку для лент вместо уникальной</target>
 </phrase>
 <phrase>
     <source>Show Last Day</source>
     <target>Показать за последний день</target>
+</phrase>
+<phrase>
+    <source>Open News</source>
+    <target>Открыть новость</target>
+</phrase>
+<phrase>
+    <source>Show default rss-icon instead of favourite one</source>
+    <target>Использовать стандартную иконку для лент вместо уникальной (favicon)</target>
 </phrase>
 </QPH>

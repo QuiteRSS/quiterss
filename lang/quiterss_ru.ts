@@ -1408,7 +1408,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>Использователь стандартную иконку для лент вместо уникальной</translation>
+        <translation>Использовать стандартную иконку для лент вместо уникальной (favicon)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
