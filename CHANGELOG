@@ -1,3 +1,37 @@
+Version 0.12.3 (16 Mar 2013) 
+	* Main: Increase productivity 
+	* Main: Manual sort in feed's tree 
+	* Added: Option "Hide feed's tree when opening tabs" 
+	* Added: Option for news' list "Alternate row's background color" (Options->Feeds->General->...) 
+	* Added: Ability to open several news in external browser 
+	* Added: Ability to open several news in tabs 
+	* Added: News filters: "Show for Last Day" и "Show for Last 7 Days" 
+	* Added: Notification window: Button to open news in external browser 
+	* Added: Ability to hide feed's indentation in tree ("Feeds->Show Indentation") 
+	* Added: Ability to customize toolbar ("View->Customize toolbar->...") 
+	* Added: Option "Show default rss-icon instead of favourite one" 
+	* Added: Share news: Email, Evernote, Facebook, VK 
+	* Added: Language: Ukrainian 
+	* Added: Language: Chinese 
+	* Added: Language: Czech 
+	* Added: Language: Polish 
+	* Added: Language: Japanese 
+	* Changed: GUI. Visual tweaks 
+	* Changed: Ability to change shortcuts: "CTRL+P" и "Enter" 
+	* Changed: Dialog "Create filter": sort conditions by name 
+	* Changed: Separate options "Use embedded or external browser" and "External browser selection" 
+	* Changed: Focus unfocused window while clicking tray icon 
+	* Changed: Adjust image width from media-content to browser width 
+	* Changed: Folder properties. Added options similar to feed options 
+	* Fixed: Some feeds displays short description instead of full 
+	* Fixed: Recounting folder's counters 
+	* Fixed: Shutdown of application while PC shutdown 
+	* Fixed: Feed's tree when it contains more than 256 items 
+	* Fixed: Cursor disappear in news list when sort changing 
+	* Fixed: Import OPML-files 
+	* Fixed: Notification window displays old news 
+	* Fixed: Text encoding while parsing feed 
+
 Version 0.12.2 (20 Feb 2013) 
 	* Added: Displaying news of selected folder 
 	* Added: Displaying URL of media-content 
