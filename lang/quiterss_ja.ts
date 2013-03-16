@@ -491,7 +491,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
         <source>Add Star</source>
-        <translation>スターをつける</translation>
+        <translation>スターを付ける</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
@@ -501,7 +501,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Add Label</source>
-        <translation>ラベルをつける</translation>
+        <translation>ラベルを付ける</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -829,7 +829,7 @@
     <message>
         <location filename="../src/notifications.h" line="27"/>
         <source>Mark Read/Unread</source>
-        <translation>既読/未読にマークします</translation>
+        <translation>既読/未読にします</translation>
     </message>
 </context>
 <context>
@@ -848,7 +848,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="480"/>
         <source>Home</source>
-        <translation>Home</translation>
+        <translation>ホーム</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="481"/>
@@ -1084,7 +1084,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>System proxy configuration (if available)</source>
-        <translation>システムプロキシ設定 (利用できれば)</translation>
+        <translation>システムのプロキシ設定 (有効であれば使う)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="270"/>
@@ -1185,12 +1185,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
         <source>Mark news as read:</source>
-        <translation>既読としてマークするニュース:</translation>
+        <translation>既読にするニュース:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="494"/>
         <source>on selecting. With timeout</source>
-        <translation>選択時。 タイムアウト</translation>
+        <translation>選択時 - タイムアウト</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
@@ -1424,8 +1424,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="547"/>
         <source>Delete read news</source>
-        <translation>既読のニュースを削除する
-</translation>
+        <translation>既読のニュースを削除する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="548"/>
@@ -1889,7 +1888,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation>インデントを表示</translation>
+        <translation>インデント表示</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4269"/>
@@ -2075,7 +2074,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4143"/>
         <source>Mark Read/Unread</source>
-        <translation>既読/未読をマーク</translation>
+        <translation>既読/未読にする</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4153"/>
@@ -2223,7 +2222,7 @@
         <location filename="../src/rsslisting.cpp" line="3939"/>
         <location filename="../src/rsslisting.cpp" line="4132"/>
         <source>No Load Images to News View</source>
-        <translation>ニュース表示では画像を読み込まない</translation>
+        <translation>ニュース表示では画像を読み込みません</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4100"/>
@@ -2241,7 +2240,7 @@
         <location filename="../src/rsslisting.cpp" line="4106"/>
         <location filename="../src/rsslisting.cpp" line="4109"/>
         <source>Add New Feed</source>
-        <translation>新規フィードの追加</translation>
+        <translation>新規フィードを追加します</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4114"/>
@@ -2252,7 +2251,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4117"/>
         <source>Delete Selected Feed</source>
-        <translation>選択フィードを削除</translation>
+        <translation>選択したフィードを削除します</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4119"/>
@@ -2321,7 +2320,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4112"/>
         <source>Add New Folder</source>
-        <translation>新規フォルダーの追加</translation>
+        <translation>新規にフォルダーを追加します</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4135"/>
@@ -2346,18 +2345,18 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4141"/>
         <source>Mark All Feeds Read</source>
-        <translation>すべてのフィードを既読に</translation>
+        <translation>すべてのフィードを既読にする</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4144"/>
         <source>Mark Current News Read/Unread</source>
-        <translation>現在のニュースを既読/未読にマークします</translation>
+        <translation>現在のニュースを既読/未読にする</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4146"/>
         <location filename="../src/rsslisting.cpp" line="4147"/>
         <source>Mark All News Read</source>
-        <translation>すべてのニュースを既読に</translation>
+        <translation>すべてのニュースを既読にする</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4150"/>
@@ -2367,7 +2366,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4151"/>
         <source>Filter News...</source>
-        <translation>ニュースのフィルターを編集します...</translation>
+        <translation>ニュースのフィルター...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4154"/>
@@ -2442,7 +2441,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4188"/>
         <source>Mark News Star</source>
-        <translation>ニュースにスターをつけます</translation>
+        <translation>ニュースにスターを付ける</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4190"/>
@@ -2477,7 +2476,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4199"/>
         <source>Mark Feed Read</source>
-        <translation>フィードを既読にマークします</translation>
+        <translation>フィードを既読にします</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4208"/>
