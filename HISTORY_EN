@@ -24,7 +24,7 @@
 <LI>Added: Language: Japanese</LI>
 <BR>
 <LI>Changed: GUI. Visual tweaks</LI>
-<LI>Changed: Ability to change shortcuts: "CTRL+P" и "Enter"</LI>
+<LI>Changed: Ability to change shortcuts: "CTRL+P" and "Enter"</LI>
 <LI>Changed: Dialog "Create filter": sort conditions by name</LI>
 <LI>Changed: Separate options "Use embedded or external browser" and "External browser selection"</LI>
 <LI>Changed: Focus unfocused window while clicking tray icon</LI>

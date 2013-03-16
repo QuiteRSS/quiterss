@@ -17,7 +17,7 @@ Version 0.12.3 (16 Mar 2013)
 	* Added: Language: Polish 
 	* Added: Language: Japanese 
 	* Changed: GUI. Visual tweaks 
-	* Changed: Ability to change shortcuts: "CTRL+P" и "Enter" 
+	* Changed: Ability to change shortcuts: "CTRL+P" and "Enter" 
 	* Changed: Dialog "Create filter": sort conditions by name 
 	* Changed: Separate options "Use embedded or external browser" and "External browser selection" 
 	* Changed: Focus unfocused window while clicking tray icon 
