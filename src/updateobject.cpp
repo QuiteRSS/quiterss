@@ -1,7 +1,7 @@
 #include <QDebug>
 #include "updateobject.h"
 
-#define REPLY_MAX_COUNT 8
+#define REPLY_MAX_COUNT 10
 
 UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
   : QObject(parent),
@@ -13,10 +13,9 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
   connect(timeout, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
   timeout->start(1000);
 
-  QTimer *getUrlTimer = new QTimer();
-  getUrlTimer->setSingleShot(true);
-  connect(getUrlTimer, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
-  connect(this, SIGNAL(startTimer()), getUrlTimer, SLOT(start()));
+  getUrlTimer_ = new QTimer();
+  getUrlTimer_->setSingleShot(true);
+  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
   networkManager_ = new NetworkManager(this);
   connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
@@ -26,6 +25,8 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
           SLOT(slotHead(QUrl,QString,QDateTime)));
   connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime)),
           SLOT(slotGet(QUrl,QString,QDateTime)));
+
+  timer_.start();
 }
 
 /** @brief Постановка сетевого адреса в очередь запросов
@@ -37,7 +38,7 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
   dateQueue_.enqueue(date);
   userInfo_.enqueue(userInfo);
 
-  emit startTimer();
+  getUrlTimer_->start();
 
   qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
 }
@@ -47,11 +48,13 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
 void UpdateObject::getQueuedUrl()
 {
   if (REPLY_MAX_COUNT <= currentFeeds_.size()) {
-    emit startTimer();
+    getUrlTimer_->start();
     return;
   }
 
   if (!feedsQueue_.isEmpty()) {
+    getUrlTimer_->start();
+
     QString feedUrl = feedsQueue_.dequeue();
     QUrl getUrl = QUrl::fromEncoded(feedUrl.toLocal8Bit());
     QString userInfo = userInfo_.dequeue();
@@ -62,7 +65,6 @@ void UpdateObject::getQueuedUrl()
     QDateTime currentDate = dateQueue_.dequeue();
 
     emit signalHead(getUrl, feedUrl, currentDate);
-    emit startTimer();
 
     qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
   }

@@ -27,6 +27,11 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCount)
 {
+  if (feedId == 0) {
+    emit signalUpdateNeeded(feedId, feedChanged, newCount);
+    return;
+  }
+
   int feedIdIndex = feedIdList_.indexOf(feedId);
   // Если лента уже есть в списке
   if ((-1 < feedIdIndex) && feedId) {
@@ -47,7 +52,7 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
   // Своеобразная защита от запуска во время обработки таймаута
   if ((feedIdList_.size() == 1) && nextUpdateFeed_) {
     nextUpdateFeed_ = false;
-    delayTimer_->start(10);
+    delayTimer_->start(0);
 
     if (!updateModelTimer_->isActive()) {
       updateModelTimer_->start(MIN_UPDATE_INTERVAL);

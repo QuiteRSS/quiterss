@@ -36,6 +36,7 @@ private:
   QQueue<QString> urlsQueue_;
   QQueue<QString> feedsQueue_;
 
+  QTimer *getUrlTimer_;
   QList<QUrl> currentUrls_;
   QList<QString> currentFeeds_;
   QList<int> currentCntRequests_;

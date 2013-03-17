@@ -7,6 +7,7 @@
 #include <QQueue>
 #include <QNetworkReply>
 #include <QTimer>
+#include <QElapsedTimer>
 
 class UpdateObject : public QObject
 {
@@ -21,7 +22,6 @@ public slots:
   void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
 
 signals:
-  void startTimer();
   void getUrlDone(const int &result, const QString &feedUrl = "",
                   const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
   void signalHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
@@ -34,6 +34,8 @@ private slots:
 
 private:
   int requestTimeout_;
+  QTimer *getUrlTimer_;
+  QElapsedTimer timer_;
 
   QQueue<QString> feedsQueue_;
   QQueue<QDateTime> dateQueue_;

@@ -34,7 +34,7 @@ private slots:
   void slotDelayTimerTimeout();
 
 public:
-  explicit UpdateDelayer(QObject *parent = 0, int delayValue = 50);
+  explicit UpdateDelayer(QObject *parent = 0, int delayValue = 10);
   void delayUpdate(int feedId, const bool &feedChanged, int newCount);
 
 public slots:

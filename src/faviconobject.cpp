@@ -14,10 +14,9 @@ FaviconObject::FaviconObject(QObject *parent)
   connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
   timeout_->start(1000);
 
-  QTimer *getUrlTimer = new QTimer();
-  getUrlTimer->setSingleShot(true);
-  connect(getUrlTimer, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
-  connect(this, SIGNAL(startTimer()), getUrlTimer, SLOT(start()));
+  getUrlTimer_ = new QTimer();
+  getUrlTimer_->setSingleShot(true);
+  connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
   connect(this, SIGNAL(signalGet(QUrl,QString,int)),
           SLOT(slotGet(QUrl,QString,int)));
@@ -33,7 +32,7 @@ void FaviconObject::requestUrl(const QString &urlString, const QString &feedUrl)
 {
   urlsQueue_.enqueue(urlString);
   feedsQueue_.enqueue(feedUrl);
-  emit startTimer();
+  getUrlTimer_->start();
 }
 
 /** @brief Обработка очереди запросов по таймеру
@@ -41,11 +40,13 @@ void FaviconObject::requestUrl(const QString &urlString, const QString &feedUrl)
 void FaviconObject::getQueuedUrl()
 {
   if (currentFeeds_.size() >= REPLY_MAX_COUNT) {
-    emit startTimer();
+    getUrlTimer_->start();
     return;
   }
 
   if (!urlsQueue_.isEmpty()) {
+    getUrlTimer_->start();
+
     QString urlString = urlsQueue_.dequeue();
     QString feedUrl = feedsQueue_.dequeue();
 
@@ -56,7 +57,6 @@ void FaviconObject::getQueuedUrl()
     QUrl getUrl(QString("%1://%2/favicon.ico").
                 arg(url.scheme()).arg(url.host()));
     emit signalGet(getUrl, feedUrl, 0);
-    emit startTimer();
   }
 }
 

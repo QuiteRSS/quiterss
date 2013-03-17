@@ -29,7 +29,6 @@ public slots:
                 const QDateTime &dtReply);
 
 signals:
-  void startTimer();
   void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
                         const QDateTime &dtReply);
   void feedUpdated(int feedId, const bool &changed, int newCount);
@@ -44,6 +43,7 @@ private:
   QString parseDate(QString dateString, QString urlString);
   int recountFeedCounts(int feedId);
 
+  QTimer *parseTimer_;
   QString dataDirPath_;
   QString currentFeedUrl_;
   QByteArray currentXml_;
