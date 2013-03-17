@@ -91,7 +91,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
-      return QVariant();
+      QSqlQuery q;
+      q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
+             arg(index.data(Qt::EditRole).toInt()));
+      if (q.next())
+        return q.value(0).toString();
     }
     else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;

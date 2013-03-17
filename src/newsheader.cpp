@@ -74,6 +74,7 @@ void NewsHeader::init(QWidget *rsslisting)
   moveSection(visualIndex(model_->fieldIndex("starred")), 0);
   moveSection(visualIndex(model_->fieldIndex("read")), 1);
   moveSection(visualIndex(model_->fieldIndex("feedId")), 2);
+  resizeSection(model_->fieldIndex("feedId"), 22);
   moveSection(visualIndex(model_->fieldIndex("title")), 3);
   moveSection(visualIndex(model_->fieldIndex("author_name")), 4);
   resizeSection(model_->fieldIndex("author_name"), 100);
@@ -90,8 +91,7 @@ void NewsHeader::init(QWidget *rsslisting)
 
   resizeSection(model_->fieldIndex("starred"), 22);
   setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
-  resizeSection(model_->fieldIndex("feedId"), 22);
-  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
+  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Interactive);
   resizeSection(model_->fieldIndex("read"), 22);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
 
@@ -247,8 +247,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
           int lIdx = logicalIndex(i);
           if (!isSectionHidden(lIdx)) {
             if (!((model_->fieldIndex("read") == lIdx) ||
-                  (model_->fieldIndex("starred") == lIdx) ||
-                  (model_->fieldIndex("feedId") == lIdx))) {
+                  (model_->fieldIndex("starred") == lIdx)/* ||
+                  (model_->fieldIndex("feedId") == lIdx)*/)) {
               int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
               if (sectionWidth > 40) {
                 if (i >= idxCol) {
@@ -276,8 +276,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
         int lIdx = logicalIndex(i);
         if (!isSectionHidden(lIdx)) {
           if (!((model_->fieldIndex("read") == lIdx) ||
-                (model_->fieldIndex("starred") == lIdx) ||
-                (model_->fieldIndex("feedId") == lIdx))) {
+                (model_->fieldIndex("starred") == lIdx) /*||
+                (model_->fieldIndex("feedId") == lIdx)*/)) {
             stopColFix = i;
             break;
           }
@@ -287,8 +287,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
       if ((sectionWidth > 40)) {
         if (!((model_->fieldIndex("read") == logicalIndex(idxCol)) ||
-              (model_->fieldIndex("starred") == logicalIndex(idxCol)) ||
-              (model_->fieldIndex("feedId") == logicalIndex(idxCol))) || idxCol < stopColFix) {
+              (model_->fieldIndex("starred") == logicalIndex(idxCol))/* ||
+              (model_->fieldIndex("feedId") == logicalIndex(idxCol))*/) || idxCol < stopColFix) {
           resizeSection(logicalIndex(stopColFix), sectionWidth);
         } else sizeMin = false;
       }
@@ -348,8 +348,8 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
 {
   Q_UNUSED(oldVIdx)
   if ((model_->fieldIndex("read") == lIdx) ||
-      (model_->fieldIndex("starred") == lIdx) ||
-      (model_->fieldIndex("feedId") == lIdx)) {
+      (model_->fieldIndex("starred") == lIdx)/* ||
+      (model_->fieldIndex("feedId") == lIdx)*/) {
     for (int i = count()-1; i >= 0; i--) {
       if (!isSectionHidden(logicalIndex(i))) {
         if (i == newVIdx) {
