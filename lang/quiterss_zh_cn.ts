@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -18,7 +16,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="29"/>
         <source>Revision</source>
-        <translation type="unfinished"></translation>
+        <translation>修订</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="32"/>
@@ -67,17 +65,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="82"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"></translation>
+        <translation>服务器要求身份验证: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="91"/>
         <source>Username:</source>
-        <translation type="unfinished">用户名: </translation>
+        <translation>用户名: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="93"/>
         <source>Password:</source>
-        <translation type="unfinished">密码: </translation>
+        <translation>密码: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="123"/>
@@ -87,17 +85,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="156"/>
         <source>Feeds</source>
-        <translation type="unfinished">Feeds</translation>
+        <translation>Feeds</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="160"/>
         <source>All Feeds</source>
-        <translation type="unfinished">所有 Feeds</translation>
+        <translation>所有 Feeds</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="200"/>
         <source>New Folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>新建文件夹...</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="215"/>
@@ -107,7 +105,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="217"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>位置: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="288"/>
@@ -130,12 +128,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="473"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"></translation>
+        <translation>服务器要求身份验证！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="475"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"></translation>
+        <translation>请求超时！</translation>
     </message>
 </context>
 <context>
@@ -143,27 +141,27 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="7"/>
         <source>Add Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>添加文件夹</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="20"/>
         <source>Feeds</source>
-        <translation type="unfinished">Feeds</translation>
+        <translation>Feeds</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
         <source>All Feeds</source>
-        <translation type="unfinished">所有 Feeds</translation>
+        <translation>所有 Feeds</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="62"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名称: </translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="64"/>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>位置: </translation>
     </message>
 </context>
 <context>
@@ -171,32 +169,32 @@
     <message>
         <location filename="../src/authenticationdialog.cpp" line="9"/>
         <source>Save password</source>
-        <translation type="unfinished"></translation>
+        <translation>保存密码</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="27"/>
         <source>Authorization required</source>
-        <translation type="unfinished"></translation>
+        <translation>需要身份认证</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="35"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>服务器: </translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="37"/>
         <source>Message:</source>
-        <translation type="unfinished"></translation>
+        <translation>消息: </translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="39"/>
         <source>Username:</source>
-        <translation type="unfinished">用户名: </translation>
+        <translation>用户名: </translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="41"/>
         <source>Password:</source>
-        <translation type="unfinished">密码: </translation>
+        <translation>密码: </translation>
     </message>
 </context>
 <context>
@@ -204,101 +202,101 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义主工具栏</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义 Feeds 工具栏</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义消息工具栏</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
         <location filename="../src/customizetoolbardialog.cpp" line="329"/>
         <location filename="../src/customizetoolbardialog.cpp" line="430"/>
         <source>Load images</source>
-        <translation type="unfinished">载入图片</translation>
+        <translation>载入图片</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
         <location filename="../src/customizetoolbardialog.cpp" line="339"/>
         <location filename="../src/customizetoolbardialog.cpp" line="411"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>分隔符</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished">图标</translation>
+        <translation>图标</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text</source>
-        <translation type="unfinished">文本</translation>
+        <translation>文本</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished">文字在图标旁边</translation>
+        <translation>文字在图标旁边</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished">文字在图标下方</translation>
+        <translation>文字在图标下方</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished">大</translation>
+        <translation>大</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished">正常</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished">小</translation>
+        <translation>小</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"></translation>
+        <translation>样式: </translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>图标大小: </translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>移除</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished">上移</translation>
+        <translation>上移</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished">下移</translation>
+        <translation>下移</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>默认</translation>
     </message>
 </context>
 <context>
@@ -334,13 +332,9 @@
         <translation>载入 Feed 标题</translation>
     </message>
     <message>
-        <source>Display feed in new tab on startup</source>
-        <translation type="obsolete">启动时，在新标签页中显示 feed</translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished">显示消息的描述，而不是载入网页</translation>
+        <translation>显示消息的描述，而不是载入网页</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="96"/>
@@ -365,17 +359,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="9"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>属性</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动时，在新标签页中显示</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"></translation>
+        <translation>自动删除重复的消息</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="138"/>
@@ -507,7 +501,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="129"/>
         <source>Add Label</source>
-        <translation type="unfinished"></translation>
+        <translation>添加标签</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="137"/>
@@ -560,7 +554,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="23"/>
         <source>State</source>
-        <translation type="unfinished"></translation>
+        <translation>状态</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="28"/>
@@ -630,89 +624,89 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="7"/>
         <source>New Label</source>
-        <translation type="unfinished"></translation>
+        <translation>新标签</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Important</source>
-        <translation type="unfinished"></translation>
+        <translation>重要</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Work</source>
-        <translation type="unfinished"></translation>
+        <translation>工作</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="13"/>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>个人</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>To Do</source>
-        <translation type="unfinished"></translation>
+        <translation>计划</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Later</source>
-        <translation type="unfinished"></translation>
+        <translation>以后</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="14"/>
         <source>Amusingly</source>
-        <translation type="unfinished"></translation>
+        <translation>有趣的</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="20"/>
         <source>Load icon...</source>
-        <translation type="unfinished"></translation>
+        <translation>载入图标...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="29"/>
         <location filename="../src/labeldialog.cpp" line="39"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <location filename="../src/labeldialog.cpp" line="41"/>
         <source>Select color...</source>
-        <translation type="unfinished"></translation>
+        <translation>选择颜色...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="49"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>名称: </translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="53"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation>图标: </translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="56"/>
         <source>Color text:</source>
-        <translation type="unfinished"></translation>
+        <translation>文本颜色: </translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="59"/>
         <source>Color background:</source>
-        <translation type="unfinished"></translation>
+        <translation>背景颜色: </translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="124"/>
         <source>Select Image</source>
-        <translation type="unfinished"></translation>
+        <translation>选择图片</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation type="unfinished"></translation>
+        <translation>图像文件 (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
         <source>Load icon: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>载入图标: 不能打开文件</translation>
     </message>
 </context>
 <context>
@@ -779,7 +773,7 @@
         <location filename="../src/newsheader.cpp" line="52"/>
         <location filename="../src/newsheader.cpp" line="375"/>
         <source>Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="53"/>
@@ -827,7 +821,7 @@
         <location filename="../src/newsheader.cpp" line="60"/>
         <location filename="../src/newsheader.cpp" line="383"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
 </context>
 <context>
@@ -849,7 +843,7 @@
         <location filename="../src/newstabwidget.cpp" line="478"/>
         <location filename="../src/newstabwidget.cpp" line="1126"/>
         <source>Author: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>作者: %1</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="480"/>
@@ -859,12 +853,12 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="481"/>
         <source>Open Page in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>在外部浏览器中打开页面</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="482"/>
         <source>Open Link in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>在外部浏览器中打开链接</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="484"/>
@@ -914,12 +908,12 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="493"/>
         <source>Copy Image</source>
-        <translation type="unfinished"></translation>
+        <translation>复制图片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="495"/>
         <source>Copy Image Address</source>
-        <translation type="unfinished"></translation>
+        <translation>复制图片地址</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="503"/>
@@ -929,22 +923,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1240"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>音频</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1241"/>
         <source>video</source>
-        <translation type="unfinished"></translation>
+        <translation>视频</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1242"/>
         <source>media</source>
-        <translation type="unfinished"></translation>
+        <translation>多媒体</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1246"/>
         <source>Link to</source>
-        <translation type="unfinished"></translation>
+        <translation>链接到</translation>
     </message>
 </context>
 <context>
@@ -988,7 +982,7 @@
         <location filename="../src/optionsdialog.cpp" line="53"/>
         <location filename="../src/optionsdialog.cpp" line="1040"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="56"/>
@@ -999,7 +993,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="59"/>
         <source>Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="62"/>
@@ -1020,7 +1014,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>打开标签页时，隐藏feeds树</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
@@ -1070,22 +1064,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="237"/>
         <source>Clear status new on minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>清除状态最小化到托盘</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="238"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>清空工作组最小化到托盘</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="241"/>
         <source>Move to the system tray when:</source>
-        <translation type="unfinished"></translation>
+        <translation>移动到系统托盘: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="243"/>
         <source>Tray icon behavior:</source>
-        <translation type="unfinished"></translation>
+        <translation>托盘图标行为: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="268"/>
@@ -1146,7 +1140,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="340"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"></translation>
+        <translation>在嵌入浏览器后台打开链接</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="341"/>
@@ -1156,7 +1150,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>External browser:</source>
-        <translation type="unfinished"></translation>
+        <translation>外部浏览器: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="428"/>
@@ -1176,62 +1170,62 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="469"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"></translation>
+        <translation>显示日期格式: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="472"/>
         <source>time:</source>
-        <translation type="unfinished"></translation>
+        <translation>时间: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"></translation>
+        <translation>交替行的背景颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
         <source>Mark news as read:</source>
-        <translation type="unfinished"></translation>
+        <translation>标记消息为已读: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="494"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>选中时，没有超时</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"></translation>
+        <translation>切换到另一条消息后</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="550"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>不要删除有标签的消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>New...</source>
-        <translation type="unfinished">新建...</translation>
+        <translation>新建...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="589"/>
         <source>Edit...</source>
-        <translation type="unfinished">编辑...</translation>
+        <translation>编辑...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="592"/>
         <source>Delete...</source>
-        <translation type="unfinished">删除...</translation>
+        <translation>删除...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="596"/>
         <source>Move up</source>
-        <translation type="unfinished">上移</translation>
+        <translation>上移</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="599"/>
         <source>Move down</source>
-        <translation type="unfinished">下移</translation>
+        <translation>下移</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
@@ -1241,7 +1235,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="661"/>
         <source>Show maximum of</source>
-        <translation type="unfinished"></translation>
+        <translation>显示最大</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="663"/>
@@ -1266,32 +1260,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Site</source>
-        <translation type="unfinished"></translation>
+        <translation>站点</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>用户</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密码</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="754"/>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="756"/>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>全部删除</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="758"/>
         <source>Show Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>显示密码</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="945"/>
@@ -1400,7 +1394,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use external browser</source>
-        <translation type="unfinished"></translation>
+        <translation>使用外部浏览器</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
@@ -1450,7 +1444,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="570"/>
         <source>Clean Up</source>
-        <translation type="unfinished"></translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="632"/>
@@ -1480,7 +1474,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"></translation>
+        <translation>显示默认的RSS图标，而不是最喜欢的一个</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="501"/>
@@ -1597,7 +1591,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4320"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4321"/>
@@ -1747,12 +1741,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4108"/>
         <source>&amp;Feed...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feeds(&amp;F)...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4111"/>
         <source>F&amp;older...</source>
-        <translation type="unfinished"></translation>
+        <translation>文件夹(&amp;o)...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4116"/>
@@ -1767,32 +1761,32 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4156"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>筛选 Feeds</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4162"/>
         <source>Filter News</source>
-        <translation type="unfinished">筛选消息</translation>
+        <translation>筛选消息</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4166"/>
         <source>Show Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>显示标星的</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4167"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>显示未标星的</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4168"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"></translation>
+        <translation>显示未读的或者标星的</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4182"/>
         <source>Open News in External Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>在外部浏览器中打开消息</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4198"/>
@@ -1803,7 +1797,7 @@
         <location filename="../src/rsslisting.cpp" line="4200"/>
         <location filename="../src/rsslisting.cpp" line="4201"/>
         <source>Properties</source>
-        <translation type="unfinished"></translation>
+        <translation>属性</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4212"/>
@@ -1819,22 +1813,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>主工具栏...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义工具栏...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>Feeds 工具栏...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"></translation>
+        <translation>消息工具栏...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>
@@ -1892,13 +1886,9 @@
         <translation>列</translation>
     </message>
     <message>
-        <source>Sort by Title</source>
-        <translation type="obsolete">按标题排序</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4264"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"></translation>
+        <translation>显示缩进</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4269"/>
@@ -1958,17 +1948,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4282"/>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>另存为...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4283"/>
         <source>Save Page As...</source>
-        <translation type="unfinished"></translation>
+        <translation>页面另存为...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4287"/>
         <source>Feeds Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Feeds 工具栏</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4288"/>
@@ -1990,37 +1980,37 @@
         <location filename="../src/rsslisting.cpp" line="4295"/>
         <location filename="../src/rsslisting.cpp" line="4296"/>
         <source>Stay On Top</source>
-        <translation type="unfinished"></translation>
+        <translation>留在最上面</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4298"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>分类</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4307"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭标签页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4308"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>切换到下一个标签页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4309"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>切换到前一个标签页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4315"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"></translation>
+        <translation>减少新闻列表/增加浏览器</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4316"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"></translation>
+        <translation>增加新闻列表/减少浏览器</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4768"/>
@@ -2047,19 +2037,19 @@
         <location filename="../src/rsslisting.cpp" line="587"/>
         <location filename="../src/rsslisting.cpp" line="4311"/>
         <source>Deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>删除的</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="592"/>
         <location filename="../src/rsslisting.cpp" line="4312"/>
         <source>Starred</source>
-        <translation type="unfinished">标星</translation>
+        <translation>标星的</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4304"/>
         <location filename="../src/rsslisting.cpp" line="4305"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1866"/>
@@ -2067,14 +2057,14 @@
         <location filename="../src/rsslisting.cpp" line="5793"/>
         <location filename="../src/rsslisting.cpp" line="5816"/>
         <source>Hide Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏分类</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="1870"/>
         <location filename="../src/rsslisting.cpp" line="4300"/>
         <location filename="../src/rsslisting.cpp" line="5799"/>
         <source>Show Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>显示分类</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2374"/>
@@ -2090,10 +2080,6 @@
         <location filename="../src/rsslisting.cpp" line="4153"/>
         <source>Options...</source>
         <translation>选项​​...</translation>
-    </message>
-    <message>
-        <source>Filter</source>
-        <translation type="obsolete">筛选器</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4157"/>
@@ -2162,18 +2148,6 @@
         <location filename="../src/rsslisting.cpp" line="4210"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
-    </message>
-    <message>
-        <source>Style</source>
-        <translation type="obsolete">样式</translation>
-    </message>
-    <message>
-        <source>Icon</source>
-        <translation type="obsolete">图标</translation>
-    </message>
-    <message>
-        <source>Text</source>
-        <translation type="obsolete">文本</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4222"/>
@@ -2309,24 +2283,24 @@
         <location filename="../src/rsslisting.cpp" line="597"/>
         <location filename="../src/rsslisting.cpp" line="4313"/>
         <source>Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2148"/>
         <source>Delete Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>删除文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2149"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>你确定要删除文件夹 &apos;%1&apos;？</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2890"/>
         <location filename="../src/rsslisting.cpp" line="3624"/>
         <location filename="../src/rsslisting.cpp" line="4092"/>
         <source>Unread: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>未读: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2891"/>
@@ -2336,17 +2310,17 @@
         <location filename="../src/rsslisting.cpp" line="5108"/>
         <location filename="../src/rsslisting.cpp" line="5780"/>
         <source>All: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>所有: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4105"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>添加(&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4112"/>
         <source>Add New Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>添加新的文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4135"/>
@@ -2437,7 +2411,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4179"/>
         <source>Open Description News</source>
-        <translation type="unfinished"></translation>
+        <translation>打开消息描述</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4180"/>
@@ -2497,7 +2471,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4196"/>
         <source>Restore last deleted news</source>
-        <translation type="unfinished"></translation>
+        <translation>恢复最近删除的消息</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4199"/>
@@ -2507,31 +2481,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4208"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Text Beside Icon</source>
-        <translation type="obsolete">文字在图标旁边</translation>
-    </message>
-    <message>
-        <source>Text Under Icon</source>
-        <translation type="obsolete">文字在图标下方</translation>
-    </message>
-    <message>
-        <source>Icon Size</source>
-        <translation type="obsolete">图标大小</translation>
-    </message>
-    <message>
-        <source>Big</source>
-        <translation type="obsolete">大</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">正常</translation>
-    </message>
-    <message>
-        <source>Small</source>
-        <translation type="obsolete">小</translation>
+        <translation>浏览器(&amp;B)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4221"/>
@@ -2541,7 +2491,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4223"/>
         <source>System2</source>
-        <translation type="unfinished"></translation>
+        <translation>系统2</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4224"/>
@@ -2571,42 +2521,42 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4243"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>后面未读的消息</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4244"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"></translation>
+        <translation>前面未读的消息</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4246"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>焦点切换到下一个面板</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4248"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"></translation>
+        <translation>焦点切换到下一个面板（Feeds树，消息列表，浏览器）</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4249"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>焦点切换到前一个面板</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4251"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"></translation>
+        <translation>焦点切换到前一个面板（Feeds树，消息列表，浏览器）</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4260"/>
         <source>Count News Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>未读消息计数</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4261"/>
         <source>Count News All</source>
-        <translation type="unfinished"></translation>
+        <translation>所有消息计数</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4262"/>
@@ -2616,12 +2566,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4285"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>显示/隐藏</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4290"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>面板分类</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4318"/>
@@ -2631,22 +2581,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5957"/>
         <source>Save As</source>
-        <translation type="unfinished"></translation>
+        <translation>另存为</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5959"/>
         <source>HTML-Files (*.html)</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML-文件 (*.html)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5960"/>
         <source>Text files (*.txt)</source>
-        <translation type="unfinished"></translation>
+        <translation>文本文件 (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5965"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"></translation>
+        <translation>另存: 不能打开文件</translation>
     </message>
 </context>
 <context>
@@ -2669,12 +2619,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="33"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"></translation>
+        <translation>不要再提醒这个版本</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="41"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"></translation>
+        <translation>安装(&amp;I)</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="98"/>
@@ -2694,12 +2644,12 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="111"/>
         <source>Your version is:</source>
-        <translation type="unfinished"></translation>
+        <translation>你的版本是: </translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="113"/>
         <source>Current version is:</source>
-        <translation type="unfinished"></translation>
+        <translation>当前的版本是: </translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="119"/>

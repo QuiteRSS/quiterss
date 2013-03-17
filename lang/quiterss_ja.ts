@@ -1064,7 +1064,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="237"/>
         <source>Clear status new on minimize to tray</source>
-        <translation>トレイに最小化時に状態をクリアする</translation>
+        <translation>トレイに最小化時にステータスをクリアする</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="238"/>
@@ -1316,7 +1316,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="404"/>
         <source>Automatically update the feeds every</source>
-        <translation>フィードを定期的に自動更新する</translation>
+        <translation>フィードを定期的に更新する - 更新間隔</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="414"/>
@@ -1449,7 +1449,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="632"/>
         <source>Play sound for incoming new news</source>
-        <translation>ニュース新着時にサウンドを鳴らす</translation>
+        <translation>ニュースの新着時にサウンドを鳴らす</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="917"/>
@@ -1808,7 +1808,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4213"/>
         <source>Customize Toolbar</source>
-        <translation>カスタマイズツールバー</translation>
+        <translation>ツールバーのカスタマイズ</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
@@ -2639,7 +2639,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="106"/>
         <source>Click here to go to the download page</source>
-        <translation>ここをクリックするとダウンロードページに移動します</translation>
+        <translation>ここをクリックするとダウンロードページを開きます</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="111"/>
@@ -2649,7 +2649,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="113"/>
         <source>Current version is:</source>
-        <translation>現在のバージョン:</translation>
+        <translation>最新のバージョン:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="119"/>
