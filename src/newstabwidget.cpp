@@ -1279,6 +1279,8 @@ void NewsTabWidget::openPageInExternalBrowser()
 //! Открытие новости в браузере
 void NewsTabWidget::openInBrowserNews()
 {
+  if (type_ == TAB_WEB) return;
+
   slotNewsViewDoubleClicked(newsView_->currentIndex());
 }
 
