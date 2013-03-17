@@ -120,6 +120,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   tabBar_->setIconSize(QSize(16, 16));
   tabBar_->setMovable(true);
   tabBar_->setExpanding(false);
+  tabBar_->setFocusPolicy(Qt::NoFocus);
   connect(tabBar_, SIGNAL(tabCloseRequested(int)),
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabBar_, SIGNAL(currentChanged(int)),
@@ -5115,7 +5116,10 @@ void RSSListing::slotTabCurrentChanged(int index)
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
     slotUpdateNews();
-    newsView_->setFocus();
+    if (widget->isVisible())
+      newsView_->setFocus();
+    else
+      feedsTreeView_->setFocus();
 
     statusUnread_->setVisible(widget->feedId_);
     statusAll_->setVisible(widget->feedId_);
@@ -5125,7 +5129,7 @@ void RSSListing::slotTabCurrentChanged(int index)
     currentNewsTab = widget;
     currentNewsTab->setSettings();
     currentNewsTab->retranslateStrings();
-    currentNewsTab->setFocus();
+    currentNewsTab->webView_->setFocus();
   } else {
     QList<QTreeWidgetItem *> treeItems;
     if (widget->type_ == TAB_CAT_LABEL) {
