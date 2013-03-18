@@ -2429,6 +2429,7 @@ void RSSListing::slotExportFeeds()
   xml.writeTextElement("dateModified", QDateTime::currentDateTime().toString());
   xml.writeEndElement(); // </head>
 
+  xml.writeStartElement("body");
   // Создаем модель и представление для экспорта.
   // Раскрываем представление, чтобы пройтись по всем веткам
   FeedsTreeModel exportTreeModel("feeds",
