@@ -387,18 +387,15 @@ void createDBBackup(QString dbFileName, QString dbVersion)
   // Создаём backup директорию в директории файла базы
   QDir backupDir(fi.absoluteDir());
   if (!backupDir.exists("backup"))
-    qDebug() << backupDir.mkpath("backup");
+    backupDir.mkpath("backup");
   backupDir.cd("backup");
 
   // Создаём архивную копию файла
   QString dbBackupName(backupDir.absolutePath() + '/' + fi.fileName());
-  dbBackupName.append(QString(".old_%1_%2")
+  dbBackupName.append(QString("[%1_%2].old")
           .arg(dbVersion)
           .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
-  qDebug() << "creating backup:"
-           << dbBackupName;
-  qDebug() << "> result:"
-           << QFile::copy(dbFileName, dbBackupName);
+  QFile::copy(dbFileName, dbBackupName);
 }
 
 
