@@ -86,6 +86,8 @@ public:
   QAction *emailShareAct_;
   QAction *evernoteShareAct_;
   QAction *facebookShareAct_;
+  QAction *livejournalShareAct_;
+  QAction *twitterShareAct_;
   QAction *vkShareAct_;
 
   QActionGroup *newsFilterGroup_;

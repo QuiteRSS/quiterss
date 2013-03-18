@@ -101,6 +101,8 @@
         <file>images/share_facebook.png</file>
         <file>images/share_vk.png</file>
         <file alias="flag_JA">images/flag_japan.png</file>
+        <file>images/share_livejournal.png</file>
+        <file>images/share_twitter.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

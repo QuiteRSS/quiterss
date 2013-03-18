@@ -1736,6 +1736,14 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("http://www.facebook.com/sharer.php");
         url.addQueryItem("u", linkString.simplified());
         url.addQueryItem("t", title);
+      } else if (action->objectName() == "livejournalShareAct") {
+        url.setUrl("http://www.livejournal.com/update.bml");
+        url.addQueryItem("event", linkString.simplified());
+        url.addQueryItem("subject", title);
+      } else if (action->objectName() == "twitterShareAct") {
+        url.setUrl("https://twitter.com/share");
+        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("text", title);
       } else if (action->objectName() == "vkShareAct") {
         url.setUrl("http://vk.com/share.php");
         url.addQueryItem("url", linkString.simplified());

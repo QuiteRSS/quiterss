@@ -1265,6 +1265,18 @@ void RSSListing::createActions()
   facebookShareAct_->setIcon(QIcon(":/images/images/share_facebook.png"));
   shareGroup_->addAction(facebookShareAct_);
 
+  livejournalShareAct_ = new QAction(this);
+  livejournalShareAct_->setObjectName("livejournalShareAct");
+  livejournalShareAct_->setText("LiveJournal");
+  livejournalShareAct_->setIcon(QIcon(":/images/images/share_livejournal.png"));
+  shareGroup_->addAction(livejournalShareAct_);
+
+  twitterShareAct_ = new QAction(this);
+  twitterShareAct_->setObjectName("twitterShareAct");
+  twitterShareAct_->setText("Twitter");
+  twitterShareAct_->setIcon(QIcon(":/images/images/share_twitter.png"));
+  shareGroup_->addAction(twitterShareAct_);
+
   vkShareAct_ = new QAction(this);
   vkShareAct_->setObjectName("vkShareAct");
   vkShareAct_->setText("VK");
