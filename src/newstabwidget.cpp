@@ -1281,7 +1281,10 @@ void NewsTabWidget::openInBrowserNews()
 {
   if (type_ == TAB_WEB) return;
 
+  int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
+  rsslisting_->externalBrowserOn_ = 0;
   slotNewsViewDoubleClicked(newsView_->currentIndex());
+  rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
 
 //! Открытие новости во внешнем браузере

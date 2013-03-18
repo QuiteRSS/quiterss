@@ -1765,15 +1765,6 @@ void RSSListing::readSettings()
   neverLabelCleanUp_ = settings_->value("neverLabelClearUp", true).toBool();
 
   externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
-  if (externalBrowserOn_ <= 0) {
-    openInExternalBrowserAct_->setVisible(true);
-  } else {
-    QList <QKeySequence> keySequenceList;
-    keySequenceList << openInBrowserAct_->shortcut()
-                    << openInExternalBrowserAct_->shortcut();
-    openInBrowserAct_->setShortcuts(keySequenceList);
-    openInExternalBrowserAct_->setVisible(false);
-  }
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
@@ -3343,17 +3334,11 @@ void RSSListing::showOptionDlg()
       externalBrowserOn_ = 0;
     else
       externalBrowserOn_ = -1;
-    openInExternalBrowserAct_->setVisible(true);
   } else {
     if (optionsDialog->defaultExternalBrowserOn_->isChecked())
       externalBrowserOn_ = 1;
     else
       externalBrowserOn_ = 2;
-    QList <QKeySequence> keySequenceList;
-    keySequenceList << openInBrowserAct_->shortcut()
-                    << openInExternalBrowserAct_->shortcut();
-    openInBrowserAct_->setShortcuts(keySequenceList);
-    openInExternalBrowserAct_->setVisible(false);
   }
 
   externalBrowser_ = optionsDialog->otherExternalBrowserEdit_->text();
