@@ -200,6 +200,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   readSettings();
 
+  importFeedStart_ = false;
   updateFeedsStart_ = false;
   updateFeedsCount_ = 0;
   if (autoUpdatefeedsStartUp_) slotGetAllFeeds();
@@ -2272,6 +2273,7 @@ void RSSListing::slotImportFeeds()
   }
 
   updateFeedsStart_ = true;
+  importFeedStart_ = true;
 
   timer_.start();
 //  qCritical() << "Start update";
@@ -2374,8 +2376,6 @@ void RSSListing::slotImportFeeds()
 
             updateFeedsCount_ = updateFeedsCount_ + 2;
             emit signalRequestUrl(xmlUrlString, QDateTime(), "");
-            emit faviconRequestUrl(
-                  xml.attributes().value("htmlUrl").toString(), xmlUrlString);
           }
           parentIdsStack.push(q.lastInsertId().toInt());
         }
@@ -2403,7 +2403,7 @@ void RSSListing::slotImportFeeds()
 
 //  qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
-//  qCritical() << "Start update: " << timer_.elapsed() << requestUrlCount;
+//  qCritical() << "Start update: " << timer_.elapsed() << updateFeedsCount_;
 //  qCritical() << "------------------------------------------------------------";
 }
 /*! Экспорт ленты в OPML-файл *************************************************/
@@ -2779,6 +2779,20 @@ void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
       QModelIndex indexUpdated  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updated"));
       feedsTreeModel_->setData(indexUpdated, counts.updated);
     }
+
+    if (!counts.htmlUrl.isEmpty()) {
+      QModelIndex indexHtmlUrl  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("htmlUrl"));
+      feedsTreeModel_->setData(indexHtmlUrl, counts.htmlUrl);
+    }
+
+    if (!counts.title.isEmpty()) {
+      QModelIndex indexTitle  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("title"));
+      feedsTreeModel_->setData(indexTitle, counts.title);
+    }
+  }
+
+  if (importFeedStart_ && !counts.xmlUrl.isEmpty()) {
+    emit faviconRequestUrl(counts.htmlUrl, counts.xmlUrl);
   }
 }
 
@@ -2859,6 +2873,7 @@ void RSSListing::slotUpdateFeedDelayed(int feedId, const bool &changed, int newC
     progressBar_->setMaximum(0);
     updateFeedsCount_ = 0;
     updateFeedsStart_ = false;
+    importFeedStart_ = false;
 //    qCritical() << "Stop update: " << timer_.elapsed();
 //    qCritical() << "------------------------------------------------------------";
   }
@@ -3486,6 +3501,7 @@ void RSSListing::showProgressBar(int addToMaximum)
 {
   if (addToMaximum == 0) {
     updateFeedsStart_ = false;
+    importFeedStart_ = false;
     return;
   }
   playSoundNewNews_ = false;

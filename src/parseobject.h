@@ -14,6 +14,9 @@ struct FeedCountStruct{
   int newCount;
   int undeleteCount;
   QString updated;
+  QString htmlUrl;
+  QString xmlUrl;
+  QString title;
 };
 
 Q_DECLARE_METATYPE(FeedCountStruct)
@@ -41,7 +44,7 @@ private slots:
 
 private:
   QString parseDate(QString dateString, QString urlString);
-  int recountFeedCounts(int feedId);
+  int recountFeedCounts(int feedId, QString feedUrl, QString updated);
 
   QTimer *parseTimer_;
   QString dataDirPath_;

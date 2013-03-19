@@ -437,6 +437,8 @@ private:
 
   qint64 activationStateChangedTime_;
 
+  bool importFeedStart_;
+
 private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();

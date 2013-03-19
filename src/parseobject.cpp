@@ -525,9 +525,10 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   }
 
   // Устанавливаем время обновления ленты и время получения данных с сервера
+  QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
+                                          "yyyy-MM-ddTHH:mm:ss");
   q.prepare("UPDATE feeds SET updated=?, lastBuildDate=? WHERE id=?");
-  q.addBindValue(QLocale::c().toString(QDateTime::currentDateTimeUtc(),
-                                       "yyyy-MM-ddTHH:mm:ss"));
+  q.addBindValue(updated);
   q.addBindValue(dtReply.toString(Qt::ISODate));
   q.addBindValue(parseFeedId);
   q.exec();
@@ -535,7 +536,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   int newCount = 0;
   if (feedChanged) {
     setUserFilter(parseFeedId);
-    newCount = recountFeedCounts(parseFeedId);
+    newCount = recountFeedCounts(parseFeedId, feedUrl, updated);
   }
 
   emit feedUpdated(parseFeedId, feedChanged, newCount);
@@ -629,17 +630,19 @@ QString ParseObject::parseDate(QString dateString, QString urlString)
  * @param db - база данных
  * @param feedId - идентификатор ленты
  *----------------------------------------------------------------------------*/
-int ParseObject::recountFeedCounts(int feedId)
+int ParseObject::recountFeedCounts(int feedId, QString feedUrl, QString updated)
 {
   QSqlQuery q;
   QString qStr;
-  QString updated;
+  QString htmlUrl;
+  QString title;
 
   int feedParId = 0;
-  q.exec(QString("SELECT parentId, updated FROM feeds WHERE id=='%1'").arg(feedId));
+  q.exec(QString("SELECT parentId, htmlUrl, title FROM feeds WHERE id=='%1'").arg(feedId));
   if (q.next()) {
     feedParId = q.value(0).toInt();
-    updated = q.value(1).toString();
+    htmlUrl = q.value(1).toString();
+    title = q.value(2).toString();
   }
 
   int undeleteCount = 0;
@@ -695,6 +698,9 @@ int ParseObject::recountFeedCounts(int feedId)
   counts.newCount = newNewsCount;
   counts.undeleteCount = undeleteCount;
   counts.updated = updated;
+  counts.htmlUrl = htmlUrl;
+  counts.xmlUrl = feedUrl;
+  counts.title = title;
 
   emit feedCountsUpdate(counts);
 
