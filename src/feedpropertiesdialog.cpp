@@ -12,6 +12,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent) :
 
   tabWidget = new QTabWidget();
   tabWidget->addTab(CreateGeneralTab(), tr("General"));
+  tabWidget->addTab(CreateAuthenticationTab(), tr("Authentication"));
   tabWidget->addTab(CreateStatusTab(), tr("Status"));
   pageLayout->addWidget(tabWidget);
 
@@ -81,6 +82,35 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
+QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
+{
+  authentication_ = new QGroupBox(this);
+  authentication_->setTitle(tr("Server requires authentication:"));
+  authentication_->setCheckable(true);
+  authentication_->setChecked(false);
+
+  user_ = new LineEdit(this);
+  pass_ = new LineEdit(this);
+  pass_->setEchoMode(QLineEdit::Password);
+
+  QGridLayout *authenticationLayout = new QGridLayout();
+  authenticationLayout->addWidget(new QLabel(tr("Username:")), 2, 0);
+  authenticationLayout->addWidget(user_, 2, 1);
+  authenticationLayout->addWidget(new QLabel(tr("Password:")), 3, 0);
+  authenticationLayout->addWidget(pass_, 3, 1);
+
+  authentication_->setLayout(authenticationLayout);
+
+  QVBoxLayout *layoutMain = new QVBoxLayout();
+  layoutMain->addWidget(authentication_);
+  layoutMain->addStretch(1);
+
+  QWidget *tab = new QWidget();
+  tab->setLayout(layoutMain);
+
+  return tab;
+}
+//------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateStatusTab()
 {
   createdFeed_ = new QLabel();
@@ -131,6 +161,10 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
+  authentication_->setChecked(feedProperties.authentication.on);
+  user_->setText(feedProperties.authentication.user);
+  pass_->setText(feedProperties.authentication.pass);
+
   descriptionText_->setText(feedProperties.status.description);
   if (feedProperties.status.createdTime.isValid())
     createdFeed_->setText(feedProperties.status.createdTime.toString("dd.MM.yy hh:mm"));
@@ -161,6 +195,11 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.display.displayEmbeddedImages = loadImagesOn->isChecked();
   feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
+
+  feedProperties.authentication.on = authentication_->isChecked();
+  feedProperties.authentication.user = user_->text();
+  feedProperties.authentication.pass = pass_->text();
+
   return(feedProperties);
 }
 //------------------------------------------------------------------------------

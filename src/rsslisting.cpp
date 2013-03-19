@@ -4509,6 +4509,19 @@ void RSSListing::slotShowFeedPropertiesDlg()
   properties.general.duplicateNewsMode =
       feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
 
+  properties.authentication.on = false;
+  if (feedsTreeModel_->dataField(index, "authentication").toInt() == 1) {
+    properties.authentication.on = true;
+    QSqlQuery q;
+    q.prepare("SELECT username, password FROM passwords WHERE server=?");
+    q.addBindValue(feedsTreeModel_->dataField(index, "xmlUrl").toString());
+    q.exec();
+    if (q.next()) {
+      properties.authentication.user = q.value(0).toString();
+      properties.authentication.pass = QString::fromUtf8(QByteArray::fromBase64(q.value(1).toByteArray()));
+    }
+  }
+
   QDateTime dtLocalTime = QDateTime::currentDateTime();
   QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
   int nTimeShift = dtLocalTime.secsTo(dtUTC);
@@ -4545,7 +4558,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QSqlQuery q;
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, label = ?, "
-            "duplicateNewsMode = ? WHERE id == ?");
+            "duplicateNewsMode = ?, authentication = ? WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -4556,8 +4569,29 @@ void RSSListing::slotShowFeedPropertiesDlg()
   else
     q.addBindValue("");
   q.addBindValue(properties.general.duplicateNewsMode ? 1 : 0);
+  q.addBindValue(properties.authentication.on);
   q.addBindValue(feedId);
   q.exec();
+
+  if (!(!feedsTreeModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
+    q.prepare("SELECT * FROM passwords WHERE server=?");
+    q.addBindValue(properties.general.url);
+    q.exec();
+    if (q.next()) {
+      q.prepare("UPDATE passwords SET username = ?, password = ? WHERE server=?");
+      q.addBindValue(properties.authentication.user);
+      q.addBindValue(properties.authentication.pass.toUtf8().toBase64());
+      q.addBindValue(properties.general.url);
+      q.exec();
+    } else if (properties.authentication.on) {
+      q.prepare("INSERT INTO passwords (server, username, password) "
+                "VALUES (:server, :username, :password)");
+      q.bindValue(":server", properties.general.url);
+      q.bindValue(":username", properties.authentication.user);
+      q.bindValue(":password", properties.authentication.pass.toUtf8().toBase64());
+      q.exec();
+    }
+  }
 
   index = feedsTreeModel_->getIndexById(feedId, feedParentId);
   QPersistentModelIndex indexText    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("text"));
@@ -4567,6 +4601,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   QModelIndex indexNews    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayNews"));
   QModelIndex indexLabel   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("label"));
   QModelIndex indexDuplicate = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("duplicateNewsMode"));
+  QModelIndex indexAuthentication = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("authentication"));
   feedsTreeModel_->setData(indexText, properties.general.text);
   feedsTreeModel_->setData(indexUrl, properties.general.url);
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
@@ -4574,6 +4609,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   feedsTreeModel_->setData(indexNews, properties.display.displayNews);
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
+  feedsTreeModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
 
   if (feedsTreeView_->currentIndex() == index) {
     QPixmap iconTab;

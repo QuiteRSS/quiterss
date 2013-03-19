@@ -21,6 +21,13 @@ typedef struct {
     bool duplicateNewsMode; //!< Автоматический удалять дубликаты новостей
   } general;
 
+  //! Авторизация
+  struct authentication{
+    bool on;        //!< Включение
+    QString user;   //!< Пользователь
+    QString pass;   //!< Пароль
+  } authentication;
+
   //! Настройки чтения
   struct reading{
     bool markSelectedAsRead; //!< Помечать выбранное как "Прочитано"
@@ -98,6 +105,12 @@ private:
   QCheckBox *duplicateNewsMode_;
 
   QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
+
+  // Вкладка "Авторизация"
+  QGroupBox *authentication_;
+  LineEdit *user_;
+  LineEdit *pass_;
+  QWidget *CreateAuthenticationTab(); //!< Создание вкладки "Авторизация"
 
   // Вкладка "Cостояние"
   QTextEdit *descriptionText_;
