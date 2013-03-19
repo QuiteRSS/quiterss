@@ -2321,16 +2321,18 @@ void RSSListing::slotImportFeeds()
           // Если такой папки еще нет, создаем ее
           if (!isFolderDuplicated) {
             int rowToParent = 0;
-            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId=0"));
+            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+                   arg(parentIdsStack.top()));
             if (q.next()) rowToParent = q.value(0).toInt();
 
-            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, rowToParent) "
-                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :rowToParent)");
+            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, parentId, rowToParent) "
+                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :parentId, :rowToParent)");
             q.bindValue(":text", textString);
             q.bindValue(":title", textString);
             q.bindValue(":xmlUrl", "");
             q.bindValue(":feedCreateTime",
                         QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+            q.bindValue(":parentId", parentIdsStack.top());
             q.bindValue(":rowToParent", rowToParent);
             q.exec();
             parentIdsStack.push(q.lastInsertId().toInt());
