@@ -445,6 +445,7 @@ QString initDB(const QString dbFileName, QSettings *settings)
     q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
     q.bindValue(":version", kDbVersion);
     q.exec();
+    q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1+', 'true')");
     q.finish();
     db.commit();
     db.close();
