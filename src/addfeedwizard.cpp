@@ -309,10 +309,8 @@ void AddFeedWizard::addFeed()
 
     // Вычисляем номер ряда для вставляемой ленты
     int rowToParent = 0;
-    q.exec("SELECT max(rowToParent) FROM feeds WHERE parentId=0");
-    qDebug() << q.lastQuery();
-    qDebug() << q.lastError();
-    if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+    q.exec("SELECT count(id) FROM feeds WHERE parentId=0");
+    if (q.next()) rowToParent = q.value(0).toInt();
 
     int auth = 0;
     QString userInfo;
@@ -350,6 +348,18 @@ void AddFeedWizard::deleteFeed()
     q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
     q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
   }
+
+  // Корректируем строки
+  QList<int> idList;
+  q.exec("SELECT id FROM feeds WHERE parentId=0 ORDER BY rowToParent");
+  while (q.next()) {
+    idList << q.value(0).toInt();
+  }
+  for (int i = 0; i < idList.count(); i++) {
+    q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+           arg(i).arg(idList.at(i)));
+  }
+
   q.finish();
 }
 
@@ -510,25 +520,36 @@ void AddFeedWizard::finish()
 {
   int parseFeedId = 0;
   int parentId = 0;
+
   QSqlQuery q;
-  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.prepare("SELECT id, htmlUrl FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrlString_);
   q.exec();
-  if (q.next()) parseFeedId = q.value(0).toInt();
-
-  q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").
-         arg(parseFeedId));
-  if (q.next()) htmlUrlString_ = q.value(0).toString();
+  if (q.next()) {
+    parseFeedId = q.value(0).toInt();
+    htmlUrlString_ = q.value(1).toString();
+  }
 
   if (foldersTree_->currentItem()->text(1) != "0")
     parentId = foldersTree_->currentItem()->text(1).toInt();
 
-  // Вычисляем номер ряда для папки
+  // Корректируем строки
+  QList<int> idList;
+  q.exec("SELECT id FROM feeds WHERE parentId=0 ORDER BY rowToParent");
+  while (q.next()) {
+    if (parseFeedId != q.value(0).toInt())
+      idList << q.value(0).toInt();
+  }
+  for (int i = 0; i < idList.count(); i++) {
+    q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+           arg(i).arg(idList.at(i)));
+  }
+
+  // Вычисляем номер ряда для вставляемой ленты
   int rowToParent = 0;
-  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
-      arg(parentId);
-  q.exec(qStr);
-  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+  q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1' AND id!='%2'").
+         arg(parentId).arg(parseFeedId));
+  if (q.next()) rowToParent = q.value(0).toInt();
 
   int auth = 0;
   if (authentication_->isChecked()) auth = 1;
@@ -587,10 +608,9 @@ void AddFeedWizard::newFolder()
 
   // Вычисляем номер ряда для папки
   int rowToParent = 0;
-  QString qStr = QString("SELECT max(rowToParent) FROM feeds WHERE parentId='%1'").
-      arg(parentId);
-  q.exec(qStr);
-  if (q.next() && !q.value(0).isNull()) rowToParent = q.value(0).toInt() + 1;
+  q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+         arg(parentId));
+  if (q.next()) rowToParent = q.value(0).toInt();
 
   // Добавляем папку
   q.prepare("INSERT INTO feeds(text, created, parentId, rowToParent) "

@@ -5686,6 +5686,18 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
   QSqlQuery q;
   if (how == 2) {
     // Перемещение в другую папку
+    QList<int> idList;
+    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
+           arg(feedParIdWhat));
+    while (q.next()) {
+      if (feedIdWhat != q.value(0).toInt())
+        idList << q.value(0).toInt();
+    }
+    for (int i = 0; i < idList.count(); i++) {
+      q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
+             arg(i).arg(idList.at(i)));
+    }
+
     int rowToParent = 0;
     q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
            arg(feedIdWhere));
@@ -5724,12 +5736,9 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
     q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
            arg(feedParIdWhat));
     while (q.next()) {
-      idList << q.value(0).toInt();
+      if (feedIdWhat != q.value(0).toInt())
+        idList << q.value(0).toInt();
     }
-
-    int rowWhat = feedsTreeModel_->dataField(indexWhat, "rowToParent").toInt();
-    idList.removeAt(rowWhat);
-
     for (int i = 0; i < idList.count(); i++) {
       q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
              arg(i).arg(idList.at(i)));
