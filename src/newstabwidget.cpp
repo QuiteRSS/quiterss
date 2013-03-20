@@ -1225,7 +1225,8 @@ void NewsTabWidget::slotLoadFinished(bool)
 //! Слот для асинхронного обновления новости
 void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
 {
-  QString str;
+  QString htmlStr;
+  QString baseUrlStr;
 
   if (!hide) {
     QModelIndex index = newsView_->currentIndex();
@@ -1235,23 +1236,29 @@ void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
       QString type = newsModel_->record(index.row()).
           field("enclosure_type").value().toString();
       if (type.contains("image")) {
-        str = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
+        htmlStr = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
             arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
       } else {
         if (type.contains("audio")) type = tr("audio");
         else if (type.contains("video")) type = tr("video");
         else type = tr("media");
 
-        str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
+        htmlStr = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
             arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
             arg(tr("Link to")).arg(type);
       }
     }
-    str.append(content);
+    htmlStr.append(content);
+
+    baseUrlStr = newsModel_->record(
+          index.row()).field("link_href").value().toString();
+    if (baseUrlStr.isEmpty())
+      baseUrlStr = newsModel_->record(index.row()).field("link_alternate").value().toString();
+    baseUrlStr = baseUrlStr.simplified();
   }
 
   webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(str);
+  webView_->setHtml(htmlStr, baseUrlStr);
   webView_->history()->setMaximumItemCount(100);
 }
 
