@@ -240,8 +240,19 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
       event->ignore();  // категория уже является родителем
     else if (dragIndex == currentIndex())
       event->ignore();  // не перемещаем категорию саму на себя
-    else
-      event->accept();
+    else {
+      bool ignore = false;
+      QModelIndex child = dragIndex.parent();
+      while (child.isValid()) {
+        if (child == currentIndex()) {
+          event->ignore();  // не перемещаем категорию внутри себя
+          ignore = true;
+          break;
+        }
+        child = child.parent();
+      }
+      if (!ignore) event->accept();
+    }
   }
   // обработка лент
   else {
@@ -249,8 +260,19 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
       event->ignore();  // не перемещаем ленту внутри категории
     else if (dragIndex.parent() == currentIndex())
       event->ignore();  // не перемещаем категорию внутри категории
-    else
-      event->accept();
+    else {
+      bool ignore = false;
+      QModelIndex child = dragIndex.parent();
+      while (child.isValid()) {
+        if (child == currentIndex()) {
+          event->ignore();  // не перемещаем категорию внутри себя
+          ignore = true;
+          break;
+        }
+        child = child.parent();
+      }
+      if (!ignore) event->accept();
+    }
   }
 
   viewport()->update();
@@ -317,11 +339,24 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
     if ((dragIndex == currentIndex().parent()) ||
         (dragIndex == currentIndex()))
       return;
+
+    QModelIndex child = dragIndex.parent();
+    while (child.isValid()) {
+      if (child == currentIndex()) return;
+      child = child.parent();
+    }
   }
   // Обработка лент
-  else if ((dragIndex == currentIndex()) ||
-           (dragIndex.parent() == currentIndex()))
-    return;
+  else {
+    if ((dragIndex == currentIndex()) ||
+        (dragIndex.parent() == currentIndex()))
+      return;
+    QModelIndex child = dragIndex.parent();
+    while (child.isValid()) {
+      if (child == currentIndex()) return;
+      child = child.parent();
+    }
+  }
 
   QModelIndex indexText = model()->index(dragIndex.row(),
                                          ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
