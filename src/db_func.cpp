@@ -445,7 +445,7 @@ QString initDB(const QString dbFileName, QSettings *settings)
     q.prepare("INSERT INTO info(name, value) VALUES ('version', :version)");
     q.bindValue(":version", kDbVersion);
     q.exec();
-    q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1+', 'true')");
+    q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
     q.finish();
     db.commit();
     db.close();
@@ -698,7 +698,7 @@ QString initDB(const QString dbFileName, QSettings *settings)
       else {
 
         bool rowToParentCorrected = false;
-        q.exec("SELECT value FROM info WHERE name='rowToParentCorrected_0.12.1+'");
+        q.exec("SELECT value FROM info WHERE name='rowToParentCorrected_0.12.3'");
         if (q.next() && q.value(0).toString()=="true")
           rowToParentCorrected = true;
 
@@ -706,11 +706,11 @@ QString initDB(const QString dbFileName, QSettings *settings)
           qDebug() << "dbVersion =" << dbVersionString;
         }
         else {
-          qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.1+ = true";
+          qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.3 = true";
 
           createDBBackup(dbFileName, dbVersionString);
 
-          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.1+', 'true')");
+          q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
 
           // Начинаем поиск детей с потенциального родителя 0 (с корня)
           bool sortFeeds = settings->value("Settings/sortFeeds", false).toBool();
