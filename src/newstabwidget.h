@@ -135,6 +135,7 @@ public:
 signals:
   void signalWebViewSetContent(QString content, bool hide = false);
   void signalSetTextTab(const QString &text, NewsTabWidget *widget);
+  void loadProgress(int);
 
 public slots:
   void slotNewsViewClicked(QModelIndex index);

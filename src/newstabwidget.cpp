@@ -265,6 +265,8 @@ void NewsTabWidget::createWebWidget()
   webViewProgress_->setMinimum(0);
   webViewProgress_->setMaximum(100);
   webViewProgress_->setVisible(true);
+  connect(this, SIGNAL(loadProgress(int)),
+          webViewProgress_, SLOT(setValue(int)), Qt::QueuedConnection);
 
   webViewProgressLabel_ = new QLabel(this);
   QHBoxLayout *progressLayout = new QHBoxLayout();
@@ -1192,7 +1194,7 @@ void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const 
 
 void NewsTabWidget::slotSetValue(int value)
 {
-  webViewProgress_->setValue(value);
+  emit loadProgress(value);
   QString str = QString(" %1 kB / %2 kB").
       arg(webView_->page()->bytesReceived()/1000).
       arg(webView_->page()->totalBytes()/1000);
