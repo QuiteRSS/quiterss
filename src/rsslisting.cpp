@@ -5940,7 +5940,7 @@ void RSSListing::setLabelNews(QAction *action)
   newsLabelAction_->setToolTip(action->text());
   newsLabelAction_->setData(action->data());
 
-  currentNewsTab->setLabelNews(action->data().toInt(), action->isChecked());
+  currentNewsTab->setLabelNews(action->data().toInt());
 }
 
 /**

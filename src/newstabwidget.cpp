@@ -1585,7 +1585,7 @@ void NewsTabWidget::setTitleWebPanel()
 /**
  * @brief Установка метки для выбранных новостей
  ******************************************************************************/
-void NewsTabWidget::setLabelNews(int labelId, bool set)
+void NewsTabWidget::setLabelNews(int labelId)
 {
   if (type_ == TAB_WEB) return;
 
@@ -1598,7 +1598,7 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
   if (cnt == 1) {
     QModelIndex index = indexes.at(0);
     QString strIdLabels = index.data(Qt::EditRole).toString();
-    if (set && !strIdLabels.contains(QString(",%1,").arg(labelId))) {
+    if (!strIdLabels.contains(QString(",%1,").arg(labelId))) {
       if (strIdLabels.isEmpty()) strIdLabels.append(",");
       strIdLabels.append(QString::number(labelId));
       strIdLabels.append(",");
@@ -1617,11 +1617,21 @@ void NewsTabWidget::setLabelNews(int labelId, bool set)
             index, QItemSelectionModel::Deselect|QItemSelectionModel::Rows);
     }
   } else {
+    bool setLabel = false;
+    for (int i = cnt-1; i >= 0; --i) {
+      QModelIndex index = indexes.at(i);
+      QString strIdLabels = index.data(Qt::EditRole).toString();
+      if (!strIdLabels.contains(QString(",%1,").arg(labelId))) {
+        setLabel = true;
+        break;
+      }
+    }
+
     db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
       QModelIndex index = indexes.at(i);
       QString strIdLabels = index.data(Qt::EditRole).toString();
-      if (set) {
+      if (setLabel) {
         if (strIdLabels.contains(QString(",%1,").arg(labelId))) continue;
         if (strIdLabels.isEmpty()) strIdLabels.append(",");
         strIdLabels.append(QString::number(labelId));
