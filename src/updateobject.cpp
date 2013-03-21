@@ -60,7 +60,7 @@ void UpdateObject::getQueuedUrl()
     QString userInfo = userInfo_.dequeue();
     if (!userInfo.isEmpty()) {
       getUrl.setUserInfo(userInfo);
-      getUrl.addQueryItem("auth", "http");
+      getUrl.addQueryItem("auth", getUrl.scheme());
     }
     QDateTime currentDate = dateQueue_.dequeue();
 
