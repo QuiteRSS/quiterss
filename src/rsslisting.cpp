@@ -4005,7 +4005,7 @@ void RSSListing::setAutoLoadImages(bool set)
     currentNewsTab->webView_->settings()->setAttribute(
           QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
-      if ((currentNewsTab->webView_->history()->count() == 0) &&
+      if (currentNewsTab->webView_->title().isEmpty() &&
           (currentNewsTab->type_ == TAB_FEED))
         currentNewsTab->updateWebView(newsView_->currentIndex());
       else currentNewsTab->webView_->reload();
