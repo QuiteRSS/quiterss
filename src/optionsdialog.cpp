@@ -864,6 +864,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "0" << QString::fromUtf8("한국어 (KO)")
+           << "0.12.3"
+           << QString::fromUtf8("Yonghee Lee") << "v4321v@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_KO"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "0" << QString::fromUtf8("Nederlands (NL)")
            << QString(STRPRODUCTVER)
            << "TeLLie" << "elbert.pol@gmail.com";
