@@ -619,7 +619,8 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  slotLinkClicked(linkString.simplified());
+  QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+  slotLinkClicked(url);
 }
 
 void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
@@ -632,7 +633,8 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
   webView_->midButtonClick = true;
-  slotLinkClicked(linkString.simplified());
+  QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+  slotLinkClicked(url);
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
@@ -1143,7 +1145,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (linkString.isEmpty())
       linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-    webView_->load(QUrl(linkString.simplified()));
+    QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+    webView_->load(url);
   } else {
     setWebToolbarVisible(false, false);
     webPanel_->show();
@@ -1226,7 +1229,7 @@ void NewsTabWidget::slotLoadFinished(bool)
 void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
 {
   QString htmlStr;
-  QString baseUrlStr;
+  QUrl baseUrl;
 
   if (!hide) {
     QModelIndex index = newsView_->currentIndex();
@@ -1250,21 +1253,22 @@ void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
     }
     htmlStr.append(content);
 
-    baseUrlStr = newsModel_->record(
+    QString baseUrlStr = newsModel_->record(
           index.row()).field("link_href").value().toString();
     if (baseUrlStr.isEmpty())
       baseUrlStr = newsModel_->record(index.row()).field("link_alternate").value().toString();
-    baseUrlStr = baseUrlStr.simplified();
+    baseUrl = QUrl::fromEncoded(baseUrlStr.simplified().toLocal8Bit());
   }
 
   webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(htmlStr, baseUrlStr);
+  webView_->setHtml(htmlStr, baseUrl);
   webView_->history()->setMaximumItemCount(100);
 }
 
 void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
 {
-  slotLinkClicked(urlStr.simplified());
+  QUrl url = QUrl::fromEncoded(urlStr.simplified().toLocal8Bit());
+  slotLinkClicked(url);
 }
 
 //! Переход на краткое содержание новости
@@ -1309,7 +1313,8 @@ void NewsTabWidget::openInExternalBrowserNews()
             index.row()).field("link_href").value().toString();
       if (linkString.isEmpty())
         linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-      openUrl(linkString.simplified());
+      QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+      openUrl(url);
     }
   } else {
     openUrl(webView_->url());
