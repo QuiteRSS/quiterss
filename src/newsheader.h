@@ -15,6 +15,7 @@ private:
   QMenu *viewMenu_;
   QActionGroup *pActGroup_;
   QPushButton *buttonColumnView;
+  bool show_;
   int idxCol;
   int posX1;
 

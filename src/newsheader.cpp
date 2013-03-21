@@ -13,6 +13,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   setStretchLastSection(false);
 
   pActGroup_ = NULL;
+  show_ = false;
 
   viewMenu_ = new QMenu(this);
 
@@ -134,8 +135,12 @@ void NewsHeader::createMenu()
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   Q_UNUSED(obj)
-  if (event->type() == QEvent::Resize) {
-    if (count() == 0) return false;
+
+  if (event->type() == QEvent::Show) {
+    show_ = true;
+    return false;
+  } else if (event->type() == QEvent::Resize) {
+    if ((count() == 0) || !show_) return false;
 
     if (buttonColumnView->height() != height())
       buttonColumnView->setFixedHeight(height());
