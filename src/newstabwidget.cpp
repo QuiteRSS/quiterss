@@ -430,8 +430,7 @@ void NewsTabWidget::setSettings(bool newTab)
     webView_->settings()->setFontFamily(
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);
 
-    if ((!webView_->url().isValid() ||
-        (webView_->url().toString() == "about:blank")) && (type_ != TAB_WEB)) {
+    if (webView_->title().isEmpty() && (type_ != TAB_WEB)) {
       webView_->settings()->setFontSize(
             QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
     }
@@ -1364,8 +1363,7 @@ void NewsTabWidget::webTitleChanged(QString title)
     setTextTab(title);
   }
 
-  if ((!webView_->url().isValid() ||
-       (webView_->url().toString() == "about:blank")) && (type_ != TAB_WEB)) {
+  if (title.isEmpty() && (type_ != TAB_WEB)) {
     if (pageLoaded_) {
       webView_->settings()->setFontSize(
             QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
