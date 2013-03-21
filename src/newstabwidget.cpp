@@ -1147,7 +1147,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
     QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
-    webView_->load(url);
+    webView_->setUrl(url);
   } else {
     setWebToolbarVisible(false, false);
     webPanel_->show();
@@ -1180,7 +1180,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
         webPanel_->hide();
         setWebToolbarVisible(true, false);
       }
-      webView_->load(url);
+      webView_->setUrl(url);
     } else {
       QWebPage *webPage = rsslisting_->createWebTab();
       qobject_cast<WebView*>(webPage->view())->load(url);
