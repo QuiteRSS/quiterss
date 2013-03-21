@@ -1536,7 +1536,12 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
       webMenu_->addAction(urlExternalBrowserAct_);
     }
   } else if (menu_t->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
-    webMenu_->addSeparator();
+    if (webView_->title().isEmpty()) {
+      webView_->pageAction(QWebPage::Reload)->setVisible(false);
+    } else {
+      webView_->pageAction(QWebPage::Reload)->setVisible(true);
+      webMenu_->addSeparator();
+    }
     webMenu_->addAction(rsslisting_->autoLoadImagesToggle_);
     webMenu_->addSeparator();
     webMenu_->addAction(rsslisting_->printAct_);
