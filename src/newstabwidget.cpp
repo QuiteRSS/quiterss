@@ -621,7 +621,8 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  slotLinkClicked(linkString.simplified());
+  QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+  slotLinkClicked(url);
 }
 
 void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
@@ -634,7 +635,8 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
   webView_->midButtonClick = true;
-  slotLinkClicked(linkString.simplified());
+  QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+  slotLinkClicked(url);
 }
 
 /*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
@@ -1145,7 +1147,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (linkString.isEmpty())
       linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-    webView_->load(QUrl(linkString.simplified()));
+    QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+    webView_->load(url);
   } else {
     setWebToolbarVisible(false, false);
     webPanel_->show();
@@ -1227,7 +1230,8 @@ void NewsTabWidget::slotLoadFinished(bool)
 //! Слот для асинхронного обновления новости
 void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
 {
-  QString str;
+  QString htmlStr;
+  QUrl baseUrl;
 
   if (!hide) {
     QModelIndex index = newsView_->currentIndex();
@@ -1237,29 +1241,36 @@ void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
       QString type = newsModel_->record(index.row()).
           field("enclosure_type").value().toString();
       if (type.contains("image")) {
-        str = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
+        htmlStr = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
             arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
       } else {
         if (type.contains("audio")) type = tr("audio");
         else if (type.contains("video")) type = tr("video");
         else type = tr("media");
 
-        str = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
+        htmlStr = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
             arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
             arg(tr("Link to")).arg(type);
       }
     }
-    str.append(content);
+    htmlStr.append(content);
+
+    QString baseUrlStr = newsModel_->record(
+          index.row()).field("link_href").value().toString();
+    if (baseUrlStr.isEmpty())
+      baseUrlStr = newsModel_->record(index.row()).field("link_alternate").value().toString();
+    baseUrl = QUrl::fromEncoded(baseUrlStr.simplified().toLocal8Bit());
   }
 
   webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(str);
+  webView_->setHtml(htmlStr, baseUrl);
   webView_->history()->setMaximumItemCount(100);
 }
 
 void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
 {
-  slotLinkClicked(urlStr.simplified());
+  QUrl url = QUrl::fromEncoded(urlStr.simplified().toLocal8Bit());
+  slotLinkClicked(url);
 }
 
 //! Переход на краткое содержание новости
@@ -1304,7 +1315,8 @@ void NewsTabWidget::openInExternalBrowserNews()
             index.row()).field("link_href").value().toString();
       if (linkString.isEmpty())
         linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-      openUrl(linkString.simplified());
+      QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
+      openUrl(url);
     }
   } else {
     openUrl(webView_->url());
