@@ -4569,7 +4569,7 @@ void RSSListing::slotShowFeedPropertiesDlg()
   else
     q.addBindValue("");
   q.addBindValue(properties.general.duplicateNewsMode ? 1 : 0);
-  q.addBindValue(properties.authentication.on);
+  q.addBindValue(properties.authentication.on ? 1 : 0);
   q.addBindValue(feedId);
   q.exec();
 
