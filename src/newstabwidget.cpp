@@ -1537,7 +1537,15 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
     return;
   }
 
+  QListIterator<QAction *> iter(webMenu_->actions());
+  while (iter.hasNext()) {
+    QAction *nextAction = iter.next();
+    if (nextAction->text().isEmpty()) {
+      delete nextAction;
+    }
+  }
   webMenu_->clear();
+
   QMenu *menu_t = webView_->page()->createStandardContextMenu();
   webMenu_->addActions(menu_t->actions());
 
