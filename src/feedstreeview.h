@@ -20,7 +20,6 @@ public:
 
 public slots:
   QPersistentModelIndex selectIndex();
-  void setSelectIndex();
   void updateCurrentIndex(const QModelIndex &index);
 
 protected:

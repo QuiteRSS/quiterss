@@ -125,28 +125,31 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur)
  * @details Фиксирует нажатый индекс в selectedIndex_, обрабатывает нажатие
  *    средней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
  *    вызывает стандартный обработчик
- * @param event Стьруктура, содержащая данные события
+ * @param event Структура, содержащая данные события
  * @sa selectedIndex_
  ******************************************************************************/
 void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 {
-  if (!indexAt(event->pos()).isValid()) return;
+  QModelIndex index = indexAt(event->pos());
+  QRect rectText = visualRect(index);
 
-  QRect rectText = visualRect(indexAt(event->pos()));
-  QModelIndex index;
-  if (event->pos().x() >= rectText.x()) {
-    index = indexAt(event->pos());
-    selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
-    selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
+  if (event->buttons() & Qt::RightButton) {
+    if (event->pos().x() >= rectText.x()) {
+      selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+      selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
+    }
+    return;
   }
+
+  if (!index.isValid() || !(event->pos().x() >= rectText.x())) return;
+
+  selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+  selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
+
   if ((event->buttons() & Qt::MiddleButton)) {
-    if (index.isValid())
-      emit signalMiddleClicked();
-  } else if (event->buttons() & Qt::RightButton) {
-
-  } else {
+    emit signalMiddleClicked();
+  } else if (event->buttons() & Qt::LeftButton) {
     dragStartPos_ = event->pos();
-
     QyurSqlTreeView::mousePressEvent(event);
   }
 }
@@ -409,13 +412,6 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 QPersistentModelIndex FeedsTreeView::selectIndex()
 {
   return ((FeedsTreeModel*)model())->getIndexById(selectId_, selectParentId_);
-}
-
-void FeedsTreeView::setSelectIndex()
-{
-  QModelIndex index = currentIndex();
-  selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
-  selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
 }
 
 /** @brief Обновление курсора без пролистывания списка ************************/

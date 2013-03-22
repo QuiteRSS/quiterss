@@ -681,8 +681,6 @@ void RSSListing::createFeedsWidget()
   connect(feedsTreeView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
-  connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuFeed(const QPoint &)));
   connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex&,QModelIndex&,int)),
           this, SLOT(slotMoveIndex(QModelIndex&,QModelIndex&,int)));
 
@@ -3958,32 +3956,65 @@ void RSSListing::slotShowAboutDlg()
 void RSSListing::createMenuFeed()
 {
   feedContextMenu_ = new QMenu(this);
-  feedContextMenu_->addAction(addAct_);
-  feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(openFeedNewTabAct_);
-  feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(updateFeedAct_);
-  feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(markFeedRead_);
-//  feedContextMenu_->addAction(markAllFeedsRead_);
-  feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(deleteFeedAct_);
-  feedContextMenu_->addSeparator();
-  feedContextMenu_->addAction(setFilterNewsAct_);
-  feedContextMenu_->addAction(feedProperties_);
 
-  connect(feedContextMenu_, SIGNAL(aboutToHide()),
-          feedsTreeView_, SLOT(setSelectIndex()), Qt::QueuedConnection);
   connect(feedContextMenu_, SIGNAL(aboutToShow()),
           this, SLOT(slotFeedMenuShow()));
+  connect(feedContextMenu_, SIGNAL(aboutToHide()),
+          this, SLOT(slotFeedMenuHide()), Qt::QueuedConnection);
+  connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuFeed(const QPoint &)));
+}
+
+void RSSListing::slotFeedMenuShow()
+{
+  deleteFeedAct_->setEnabled(
+      0 == feedsTreeModel_->rowCount(feedsTreeView_->selectIndex()));
+
+  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
+}
+
+void RSSListing::slotFeedMenuHide()
+{
+  QModelIndex index = feedsTreeView_->currentIndex();
+  feedsTreeView_->selectId_ = feedsTreeModel_->getIdByIndex(index);
+  feedsTreeView_->selectParentId_ = feedsTreeModel_->getParidByIndex(index);
+
+  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
 void RSSListing::showContextMenuFeed(const QPoint &p)
 {
-  if (feedsTreeView_->indexAt(p).isValid()) {
-    QRect rectText = feedsTreeView_->visualRect(feedsTreeView_->indexAt(p));
-    if (p.x() >= rectText.x())
+  QListIterator<QAction *> iter(feedContextMenu_->actions());
+  while (iter.hasNext()) {
+    QAction *nextAction = iter.next();
+    if (nextAction->objectName().isEmpty()) {
+      delete nextAction;
+    }
+  }
+  feedContextMenu_->clear();
+
+  QModelIndex index = feedsTreeView_->indexAt(p);
+  if (index.isValid()) {
+    QRect rectText = feedsTreeView_->visualRect(index);
+    if (p.x() >= rectText.x()) {
+      feedContextMenu_->addAction(addAct_);
+      feedContextMenu_->addSeparator();
+      feedContextMenu_->addAction(openFeedNewTabAct_);
+      feedContextMenu_->addSeparator();
+      feedContextMenu_->addAction(updateFeedAct_);
+      feedContextMenu_->addSeparator();
+      feedContextMenu_->addAction(markFeedRead_);
+      feedContextMenu_->addSeparator();
+      feedContextMenu_->addAction(deleteFeedAct_);
+      feedContextMenu_->addSeparator();
+      feedContextMenu_->addAction(setFilterNewsAct_);
+      feedContextMenu_->addAction(feedProperties_);
+
       feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
+    }
+  } else {
+    feedContextMenu_->addAction(addAct_);
+    feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
   }
 }
 
@@ -4626,14 +4657,6 @@ void RSSListing::slotShowFeedPropertiesDlg()
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
     currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
   }
-}
-
-void RSSListing::slotFeedMenuShow()
-{
-  deleteFeedAct_->setEnabled(
-      0 == feedsTreeModel_->rowCount(feedsTreeView_->selectIndex()));
-
-  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
 //! Обновление информации в трее: значок и текст подсказки
