@@ -22,9 +22,10 @@ class RSSListing;
 
 #define TAB_FEED       0
 #define TAB_WEB        1
-#define TAB_CAT_DEL    2
+#define TAB_CAT_UNREAD 2
 #define TAB_CAT_STAR   3
-#define TAB_CAT_LABEL  4
+#define TAB_CAT_DEL    4
+#define TAB_CAT_LABEL  5
 
 #define RESIZESTEP 25   // Шаг изменения размера списка новостей/браузера
 

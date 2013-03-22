@@ -586,14 +586,19 @@ void RSSListing::createFeedsWidget()
   newsCategoriesTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL) << "-1";
+  treeItem << tr("Unread") << QString::number(TAB_CAT_UNREAD) << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
+  treeWidgetItem->setIcon(0, QIcon(":/images/folder"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
+  newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
+  treeItem.clear();
+  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL) << "-1";
+  treeWidgetItem = new QTreeWidgetItem(treeItem);
+  treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Labels") << QString::number(TAB_CAT_LABEL) << "0";
@@ -4439,9 +4444,10 @@ void RSSListing::retranslateStrings()
   nextTabAct_->setText(tr("Switch to next tab"));
   prevTabAct_->setText(tr("Switch to previous tab"));
 
-  newsCategoriesTree_->topLevelItem(0)->setText(0, tr("Deleted"));
+  newsCategoriesTree_->topLevelItem(0)->setText(0, tr("Unread"));
   newsCategoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
-  newsCategoriesTree_->topLevelItem(2)->setText(0, tr("Labels"));
+  newsCategoriesTree_->topLevelItem(2)->setText(0, tr("Deleted"));
+  newsCategoriesTree_->topLevelItem(3)->setText(0, tr("Labels"));
 
   reduceNewsListAct_->setText(tr("Decrease news list/increase browser"));
   increaseNewsListAct_->setText(tr("Increase news list/decrease browser"));
@@ -5872,11 +5878,14 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
     currentNewsTab->labelId_ = item->text(2).toInt();
 
     switch (type) {
-    case TAB_CAT_DEL:
-      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 1";
+    case TAB_CAT_UNREAD:
+      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND read = 0";
       break;
     case TAB_CAT_STAR:
       currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND starred = 1";
+      break;
+    case TAB_CAT_DEL:
+      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 1";
       break;
     case TAB_CAT_LABEL:
       if (currentNewsTab->labelId_ != 0) {

@@ -1473,7 +1473,7 @@ void NewsTabWidget::slotFindText(const QString &text)
 
     QString filterStr;
     switch (type_) {
-    case TAB_CAT_DEL: case TAB_CAT_STAR: case TAB_CAT_LABEL:
+      case TAB_CAT_UNREAD: case TAB_CAT_STAR: case TAB_CAT_DEL: case TAB_CAT_LABEL:
       filterStr = categoryFilterStr_;
       break;
     default:
@@ -1506,7 +1506,7 @@ void NewsTabWidget::slotSelectFind()
 
     QString filterStr;
     switch (type_) {
-    case TAB_CAT_DEL: case TAB_CAT_STAR: case TAB_CAT_LABEL:
+    case TAB_CAT_UNREAD: case TAB_CAT_STAR: case TAB_CAT_DEL: case TAB_CAT_LABEL:
       filterStr = categoryFilterStr_;
       break;
     default:
