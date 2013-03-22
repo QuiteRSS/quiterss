@@ -314,7 +314,8 @@ void CustomizeToolbarDialog::showMenuAddButton()
   QListIterator<QAction *> iter(rssl_->actions());
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
-    if (pAction->objectName() == "restoreNewsAct") continue;
+    if ((pAction->objectName() == "restoreNewsAct") ||
+        pAction->objectName().contains("labelAction_")) continue;
 
     if (!pAction->icon().isNull()) {
       QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(pAction->objectName(),
