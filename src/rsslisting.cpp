@@ -4495,6 +4495,32 @@ void RSSListing::retranslateStrings()
   QApplication::translate("QWizard", "&Finish");
   QApplication::translate("QWizard", "&Next >");
 
+  QStringList nameLabels;
+  nameLabels << "Important" << "Work" << "Personal"
+             << "To Do" << "Later" << "Amusingly";
+  QStringList trNameLabels;
+  trNameLabels << tr("Important") << tr("Work") << tr("Personal")
+               << tr("To Do") << tr("Later") << tr("Amusingly");
+
+  QSqlQuery q;
+  for (int i = 0; i < nameLabels.count(); i++) {
+    QString qStr = QString("UPDATE labels SET name='%1' WHERE id <= 6 AND name == '%2'").
+        arg(trNameLabels[i]).arg(nameLabels[i]);
+    q.exec(qStr);
+  }
+  q.exec("SELECT id, name FROM labels WHERE id <= 6");
+  while (q.next()) {
+    int idLabel = q.value(0).toInt();
+    QString nameLabel = q.value(1).toString();
+    QList<QTreeWidgetItem *> treeItems;
+    treeItems = newsCategoriesTree_->findItems(QString::number(idLabel),
+                                               Qt::MatchFixedString|Qt::MatchRecursive,
+                                               2);
+    if (treeItems.count()) {
+      treeItems.at(0)->setText(0, nameLabel);
+    }
+  }
+
   if (newsView_) {
     currentNewsTab->retranslateStrings();
   }
