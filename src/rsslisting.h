@@ -87,6 +87,7 @@ public:
   QAction *evernoteShareAct_;
   QAction *facebookShareAct_;
   QAction *livejournalShareAct_;
+  QAction *pocketShareAct_;
   QAction *twitterShareAct_;
   QAction *vkShareAct_;
 

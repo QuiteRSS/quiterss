@@ -1791,6 +1791,10 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("http://www.livejournal.com/update.bml");
         url.addQueryItem("event", linkString.simplified());
         url.addQueryItem("subject", title);
+      } else if (action->objectName() == "pocketShareAct") {
+        url.setUrl("https://getpocket.com/save");
+        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("title", title);
       } else if (action->objectName() == "twitterShareAct") {
         url.setUrl("https://twitter.com/share");
         url.addQueryItem("url", linkString.simplified());

@@ -1275,6 +1275,12 @@ void RSSListing::createActions()
   livejournalShareAct_->setIcon(QIcon(":/images/images/share_livejournal.png"));
   shareGroup_->addAction(livejournalShareAct_);
 
+  pocketShareAct_ = new QAction(this);
+  pocketShareAct_->setObjectName("pocketShareAct");
+  pocketShareAct_->setText("Pocket");
+  pocketShareAct_->setIcon(QIcon(":/images/images/share_pocket.png"));
+  shareGroup_->addAction(pocketShareAct_);
+
   twitterShareAct_ = new QAction(this);
   twitterShareAct_->setObjectName("twitterShareAct");
   twitterShareAct_->setText("Twitter");
