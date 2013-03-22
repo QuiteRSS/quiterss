@@ -748,6 +748,7 @@ void NewsTabWidget::slotNewsPageDownPressed()
 void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 {
   if (!index.isValid() || (newsModel_->rowCount() == 0)) return;
+  markNewsReadTimer_->stop();
 
   bool changed = false;
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -864,6 +865,7 @@ void NewsTabWidget::markAllNewsRead()
 {
   if (type_ == TAB_WEB) return;
   if (newsModel_->rowCount() == 0) return;
+  markNewsReadTimer_->stop();
 
   QString strId;
   QSqlQuery q;
