@@ -89,17 +89,24 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
           rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
     newsTabWidgetSplitter_->restoreGeometry(
           rsslisting_->settings_->value("NewsTabSplitterGeometry").toByteArray());
+    newsTabWidgetSplitter_->setHandleWidth(1);
 
     if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
         (rsslisting_->browserPosition_ == LEFT_POSITION)) {
       newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
+      newsTabWidgetSplitter_->setStyleSheet(
+            QString("QSplitter::handle {background: qlineargradient("
+                    "x1: 0, y1: 0, x2: 0, y2: 1,"
+                    "stop: 0 %1, stop: 0.07 %2);"
+                    "margin-top: 1px; margin-bottom: 1px;}").
+            arg(newsPanelWidget_->palette().background().color().name()).
+            arg(qApp->palette().color(QPalette::Dark).name()));
     } else {
       newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+      newsTabWidgetSplitter_->setStyleSheet(
+            QString("QSplitter::handle {background: %1; margin-top: 1px; margin-bottom: 1px;}").
+            arg(qApp->palette().color(QPalette::Dark).name()));
     }
-    newsTabWidgetSplitter_->setHandleWidth(1);
-    newsTabWidgetSplitter_->setStyleSheet(
-          QString("QSplitter::handle {background: %1; margin-top: 1px; margin-bottom: 1px;}").
-          arg(qApp->palette().color(QPalette::Dark).name()));
   }
 
   connect(this, SIGNAL(signalSetTextTab(QString,NewsTabWidget*)),
@@ -1331,22 +1338,26 @@ void NewsTabWidget::setBrowserPosition()
   case TOP_POSITION: case LEFT_POSITION:
     newsTabWidgetSplitter_->insertWidget(0, newsTabWidgetSplitter_->widget(idx));
     break;
-  case BOTTOM_POSITION: case RIGHT_POSITION:
-    newsTabWidgetSplitter_->insertWidget(1, newsTabWidgetSplitter_->widget(idx));
-    break;
   default:
     newsTabWidgetSplitter_->insertWidget(1, newsTabWidgetSplitter_->widget(idx));
   }
 
   switch (rsslisting_->browserPosition_) {
-  case TOP_POSITION: case BOTTOM_POSITION:
-    newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
-    break;
   case RIGHT_POSITION: case LEFT_POSITION:
     newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
+    newsTabWidgetSplitter_->setStyleSheet(
+          QString("QSplitter::handle {background: qlineargradient("
+                  "x1: 0, y1: 0, x2: 0, y2: 1,"
+                  "stop: 0 %1, stop: 0.07 %2);"
+                  "margin-top: 1px; margin-bottom: 1px;}").
+          arg(newsPanelWidget_->palette().background().color().name()).
+          arg(qApp->palette().color(QPalette::Dark).name()));
     break;
   default:
     newsTabWidgetSplitter_->setOrientation(Qt::Vertical);
+    newsTabWidgetSplitter_->setStyleSheet(
+          QString("QSplitter::handle {background: %1; margin-top: 1px; margin-bottom: 1px;}").
+          arg(qApp->palette().color(QPalette::Dark).name()));
   }
 }
 
