@@ -744,12 +744,12 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="79"/>
         <source>Move up</source>
-        <translation>Posunout nahoru</translation>
+        <translation>Nahoru</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="82"/>
         <source>Move down</source>
-        <translation>Posunout dolů</translation>
+        <translation>Dolů</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="102"/>
@@ -1145,7 +1145,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="341"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>Otevírat odkazy v externím prohlížeči na pozací (experimentální)</translation>
+        <translation>Otevírat odkazy v externím prohlížeči na pozadí (experimentální)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1180,7 +1180,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Alternating row background colors</source>
-        <translation>Barva pozadí každého druhého řádku</translation>
+        <translation>Označit každý druhý řádek seznamu novinek jinou barvou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
@@ -1190,7 +1190,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="494"/>
         <source>on selecting. With timeout</source>
-        <translation>při vybrání. S prodlevou</translation>
+        <translation>při vybrání a s prodlevou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
@@ -1813,7 +1813,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4214"/>
         <source>Main Toolbar...</source>
-        <translation>Hlavní nástrojová lišta...</translation>
+        <translation>Hlavní nástrojovou lištu...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4215"/>
@@ -1823,12 +1823,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4216"/>
         <source>Feeds Toolbar...</source>
-        <translation>Nástrojová lištu kanálů...</translation>
+        <translation>Nástrojovou lištu kanálů...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4217"/>
         <source>News Toolbar...</source>
-        <translation>Nástrojová lišta novinek...</translation>
+        <translation>Nástrojovou lištu novinek...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4219"/>

@@ -369,7 +369,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Automatically delete duplicate news</source>
-        <translation>重複するニュースは自動削除する</translation>
+        <translation>重複するニュースは削除する</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="138"/>
@@ -486,7 +486,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
         <source>Mark News as Read</source>
-        <translation>ニュースを既読にする</translation>
+        <translation>既読にする</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="128"/>
@@ -1009,7 +1009,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="188"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation>起動時に最後に開いたフィードを再び開く</translation>
+        <translation>起動時に最後に開いたフィードを開く</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
@@ -1305,7 +1305,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1195"/>
         <source>Auto load images to news view</source>
-        <translation>ニュース表示に画像を自動的に読み込む</translation>
+        <translation>ニュース表示に画像を読み込む</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1280"/>
@@ -1379,12 +1379,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="403"/>
         <source>Automatically update the feeds on startup</source>
-        <translation>起動時にフィードを自動更新する</translation>
+        <translation>起動時にフィードを更新する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="540"/>
         <source>Maximum number of news to keep:</source>
-        <translation>最大保持ニュース件数:</translation>
+        <translation>最大ニュース保持件数:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="533"/>
@@ -2381,12 +2381,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4169"/>
         <source>Show Last Day</source>
-        <translation>最新日を表示</translation>
+        <translation>最新日分を表示</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4170"/>
         <source>Show Last 7 Days</source>
-        <translation>最近の 7 日を表示</translation>
+        <translation>最近の 7 日分を表示</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4173"/>
@@ -2446,7 +2446,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4190"/>
         <source>Delete Selected News</source>
-        <translation>選択したニュースを削除します</translation>
+        <translation>選択したニュースを削除</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4191"/>
