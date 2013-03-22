@@ -1091,7 +1091,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   if (QDateTime::currentDateTime().date() == dtLocal.date())
     strDate = dtLocal.toString(rsslisting_->formatTime_);
   else
-    strDate = dtLocal.toString(rsslisting_->formatDate_);
+    strDate = dtLocal.toString(rsslisting_->formatDate_ + " " + rsslisting_->formatTime_);
   webPanelDate_->setText(strDate);
 
   // Формируем панель автора из автора новости
