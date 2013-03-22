@@ -4130,8 +4130,24 @@ void RSSListing::slotFeedsFilter()
       feedsFilterAction_->setChecked(true);
       setFeedsFilter(feedsFilterAction_);
     } else {
-      feedsFilterMenu_->popup(
-            feedsToolBar_->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
+      if (mainToolbar_->widgetForAction(feedsFilter_)) {
+        QWidget *widget = mainToolbar_->widgetForAction(feedsFilter_);
+        if (widget->underMouse()) {
+          feedsFilterMenu_->popup(widget->mapToGlobal(QPoint(0, mainToolbar_->height()-1)));
+        }
+      }
+      if (feedsToolBar_->widgetForAction(feedsFilter_)) {
+        QWidget *widget = feedsToolBar_->widgetForAction(feedsFilter_);
+        if (widget->underMouse()) {
+          feedsFilterMenu_->popup(widget->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
+        }
+      }
+      if (currentNewsTab->newsToolBar_->widgetForAction(feedsFilter_)) {
+        QWidget *widget = currentNewsTab->newsToolBar_->widgetForAction(feedsFilter_);
+        if (widget->underMouse()) {
+          feedsFilterMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
+        }
+      }
     }
   } else {
     filterFeedsAll_->setChecked(true);
@@ -4146,10 +4162,24 @@ void RSSListing::slotNewsFilter()
       newsFilterAction_->setChecked(true);
       setNewsFilter(newsFilterAction_);
     } else {
-      newsFilterMenu_->popup(
-            currentNewsTab->newsToolBar_->mapToGlobal(
-              QPoint(0, currentNewsTab->newsToolBar_->height()-1))
-            );
+      if (mainToolbar_->widgetForAction(newsFilter_)) {
+        QWidget *widget = mainToolbar_->widgetForAction(newsFilter_);
+        if (widget->underMouse()) {
+          newsFilterMenu_->popup(widget->mapToGlobal(QPoint(0, mainToolbar_->height()-1)));
+        }
+      }
+      if (feedsToolBar_->widgetForAction(newsFilter_)) {
+        QWidget *widget = feedsToolBar_->widgetForAction(newsFilter_);
+        if (widget->underMouse()) {
+          newsFilterMenu_->popup(widget->mapToGlobal(QPoint(0, feedsToolBar_->height()-1)));
+        }
+      }
+      if (currentNewsTab->newsToolBar_->widgetForAction(newsFilter_)) {
+        QWidget *widget = currentNewsTab->newsToolBar_->widgetForAction(newsFilter_);
+        if (widget->underMouse()) {
+          newsFilterMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
+        }
+      }
     }
   } else {
     filterNewsAll_->setChecked(true);
