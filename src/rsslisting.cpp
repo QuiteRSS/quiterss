@@ -3292,7 +3292,7 @@ void RSSListing::showOptionDlg()
   }
 
   if (optionsDialog->idLabels_.count()) {
-    QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(2);
+    QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(3);
     while (labelTreeItem->childCount()) {
       labelTreeItem->removeChild(labelTreeItem->child(0));
     }
