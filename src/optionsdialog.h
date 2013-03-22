@@ -115,6 +115,8 @@ public:
 
   // fonts
   QTreeWidget *fontsTree_;
+  QSpinBox *browserMinFontSize_;
+  QSpinBox *browserMinLogFontSize_;
 
   // shortcut
   void loadActionShortcut(QList<QAction *> actions, QStringList *list);

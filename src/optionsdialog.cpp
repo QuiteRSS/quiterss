@@ -980,13 +980,32 @@ void OptionsDialog::createFontsWidget()
   fontsButtonLayout->addWidget(fontReset);
   fontsButtonLayout->addStretch(1);
 
-  QHBoxLayout *fontsLayout = new QHBoxLayout();
+  browserMinFontSize_ = new QSpinBox();
+  browserMinFontSize_->setRange(0, 99);
+  browserMinLogFontSize_ = new QSpinBox();
+  browserMinLogFontSize_->setRange(0, 99);
+
+  QGridLayout *browserFontSizeLayout = new QGridLayout();
+  browserFontSizeLayout->addWidget(
+        new QLabel(tr("Minimum font size of browser")), 0, 0);
+  browserFontSizeLayout->addWidget(browserMinFontSize_, 0, 1);
+  browserFontSizeLayout->addWidget(
+        new QLabel(tr("Minimum logical font size of browser")), 1, 0);
+  browserFontSizeLayout->addWidget(browserMinLogFontSize_, 1, 1);
+  browserFontSizeLayout->setColumnStretch(2, 1);
+
+  QVBoxLayout *fontsLayout = new QVBoxLayout();
   fontsLayout->setMargin(0);
   fontsLayout->addWidget(fontsTree_, 1);
-  fontsLayout->addLayout(fontsButtonLayout);
+  fontsLayout->addLayout(browserFontSizeLayout);
+
+  QHBoxLayout *mainLayout = new QHBoxLayout();
+  mainLayout->setMargin(0);
+  mainLayout->addLayout(fontsLayout, 1);
+  mainLayout->addLayout(fontsButtonLayout);
 
   fontsWidget_ = new QWidget();
-  fontsWidget_->setLayout(fontsLayout);
+  fontsWidget_->setLayout(mainLayout);
 }
 
 /** @brief Создание виджета "Горячие клавиши"

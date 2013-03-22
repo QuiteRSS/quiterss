@@ -1740,6 +1740,8 @@ void RSSListing::readSettings()
   webFontSize_ = settings_->value("/WebFontSize", 12).toInt();
   notificationFontFamily_ = settings_->value("/notificationFontFamily", qApp->font().family()).toString();
   notificationFontSize_ = settings_->value("/notificationFontSize", 8).toInt();
+  browserMinFontSize_ = settings_->value("/browserMinFontSize", 0).toInt();
+  browserMinLogFontSize_ = settings_->value("/browserMinLogFontSize", 0).toInt();
 
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
@@ -1967,6 +1969,8 @@ void RSSListing::writeSettings()
   settings_->setValue("/WebFontSize", webFontSize_);
   settings_->setValue("/notificationFontFamily", notificationFontFamily_);
   settings_->setValue("/notificationFontSize", notificationFontSize_);
+  settings_->setValue("/browserMinFontSize", browserMinFontSize_);
+  settings_->setValue("/browserMinLogFontSize", browserMinLogFontSize_);
 
   settings_->setValue("autoUpdatefeedsStartUp", autoUpdatefeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", autoUpdatefeeds_);
@@ -3240,6 +3244,9 @@ void RSSListing::showOptionDlg()
   strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
   optionsDialog->fontsTree_->topLevelItem(4)->setText(2, strFont);
 
+  optionsDialog->browserMinFontSize_->setValue(browserMinFontSize_);
+  optionsDialog->browserMinLogFontSize_->setValue(browserMinLogFontSize_);
+
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
 
@@ -3455,6 +3462,9 @@ void RSSListing::showOptionDlg()
   webFontSize_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 1).toInt();
   notificationFontFamily_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
   notificationFontSize_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
+
+  browserMinFontSize_ = optionsDialog->browserMinFontSize_->value();
+  browserMinLogFontSize_ = optionsDialog->browserMinLogFontSize_->value();
 
   delete optionsDialog;
 

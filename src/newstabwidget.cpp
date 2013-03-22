@@ -436,11 +436,14 @@ void NewsTabWidget::setSettings(bool newTab)
 
     webView_->settings()->setFontFamily(
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);
-
     if (webView_->title().isEmpty() && (type_ != TAB_WEB)) {
       webView_->settings()->setFontSize(
             QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
     }
+    webView_->settings()->setFontSize(
+          QWebSettings::MinimumFontSize, rsslisting_->browserMinFontSize_);
+    webView_->settings()->setFontSize(
+          QWebSettings::MinimumLogicalFontSize, rsslisting_->browserMinLogFontSize_);
 
     if (rsslisting_->externalBrowserOn_ <= 0) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);

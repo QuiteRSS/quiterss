@@ -105,6 +105,8 @@ public:
   int webFontSize_;
   QString notificationFontFamily_;
   int notificationFontSize_;
+  int browserMinFontSize_;
+  int browserMinLogFontSize_;
   QString formatDate_;
   QString formatTime_;
 
