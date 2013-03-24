@@ -1032,7 +1032,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
             newsModel_->record(index.row()).field("received").value().toString(),
             Qt::ISODate);
     }
-    if (QDateTime::currentDateTime().date() == dtLocal.date())
+    if (QDateTime::currentDateTime().date() <= dtLocal.date())
       dateString = dtLocal.toString(rsslisting_->formatTime_);
     else
       dateString = dtLocal.toString(rsslisting_->formatDate_ + " " + rsslisting_->formatTime_);

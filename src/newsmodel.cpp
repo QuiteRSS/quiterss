@@ -113,7 +113,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
               QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
               Qt::ISODate);
       }
-      if (QDateTime::currentDateTime().date() == dtLocal.date())
+      if (QDateTime::currentDateTime().date() <= dtLocal.date())
         return dtLocal.toString(formatTime_);
       else
         return dtLocal.toString(formatDate_);

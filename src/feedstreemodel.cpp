@@ -49,7 +49,7 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
         dtLocal = dt.addSecs(nTimeShift);
 
         QString strResult;
-        if (QDateTime::currentDateTime().date() == dtLocal.date())
+        if (QDateTime::currentDateTime().date() <= dtLocal.date())
           strResult = dtLocal.toString(formatTime_);
         else
           strResult = dtLocal.toString(formatDate_);
