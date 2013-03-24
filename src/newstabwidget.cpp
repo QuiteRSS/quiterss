@@ -16,7 +16,6 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
 
   currentNewsIdOld = -1;
   autoLoadImages_ = true;
-  pageLoaded_ = false;
 
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
@@ -111,11 +110,6 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
 
   connect(this, SIGNAL(signalSetTextTab(QString,NewsTabWidget*)),
           rsslisting_, SLOT(setTextTitle(QString,NewsTabWidget*)));
-}
-
-void NewsTabWidget::resizeEvent(QResizeEvent *)
-{
-  setTitleWebPanel();
 }
 
 //! Создание новостного списка и всех сопутствующих панелей
@@ -322,38 +316,10 @@ void NewsTabWidget::createWebWidget()
   else
     setWebToolbarVisible(true, false);
 
-  //! Create web panel
-  webPanelAuthor_ = new QLabel(this);
-  webPanelAuthor_->setObjectName("webPanelAuthor_");
-  webPanelAuthor_->hide();
-
-  webPanelTitle_ = new QLabel(this);
-  webPanelTitle_->setObjectName("webPanelTitle_");
-  webPanelTitle_->setTextInteractionFlags(Qt::TextBrowserInteraction);
-
-  webPanelDate_ = new QLabel(this);
-
-  QGridLayout *webPanelLayout = new QGridLayout();
-  webPanelLayout->setMargin(5);
-  webPanelLayout->setSpacing(5);
-  webPanelLayout->setColumnStretch(0, 1);
-  webPanelLayout->addWidget(webPanelTitle_, 0, 0);
-  webPanelLayout->addWidget(webPanelDate_, 0, 1, 1, 1, Qt::AlignRight);
-  webPanelLayout->addWidget(webPanelAuthor_, 1, 0);
-
-  webPanel_ = new QWidget(this);
-  webPanel_->setObjectName("webPanel_");
-  webPanel_->setStyleSheet(
-          QString("#webPanel_ {border-bottom: 1px solid %1;}").
-          arg(qApp->palette().color(QPalette::Dark).name()));
-  webPanel_->setLayout(webPanelLayout);
-  webPanel_->setVisible(false);
-
   //! Create web layout
   QVBoxLayout *webLayout = new QVBoxLayout();
   webLayout->setMargin(0);
   webLayout->setSpacing(0);
-  webLayout->addWidget(webPanel_);
   webLayout->addWidget(webControlPanel_);
   webLayout->addWidget(webView_, 1);
   webLayout->addWidget(webViewProgress_);
@@ -369,27 +335,14 @@ void NewsTabWidget::createWebWidget()
   urlExternalBrowserAct_ = new QAction(this);
   urlExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
 
-  webPanelTitle_->installEventFilter(this);
-
-  webDefaultFontSize_ =
-      webView_->settings()->fontSize(QWebSettings::DefaultFontSize);
-  webDefaultFixedFontSize_ =
-      webView_->settings()->fontSize(QWebSettings::DefaultFixedFontSize);
-
   connect(webHomePageAct_, SIGNAL(triggered()),
           this, SLOT(webHomePage()));
   connect(webExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openPageInExternalBrowser()));
   connect(urlExternalBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openUrlInExternalBrowser()));
-  connect(webPanelAuthor_, SIGNAL(linkActivated(QString)),
-          this, SLOT(slotWebTitleLinkClicked(QString)));
-  connect(webPanelTitle_, SIGNAL(linkActivated(QString)),
-          this, SLOT(slotWebTitleLinkClicked(QString)));
-  connect(webPanelTitle_, SIGNAL(linkHovered(QString)),
-          this, SLOT(slotLinkHovered(QString)));
-  connect(this, SIGNAL(signalWebViewSetContent(QString, bool)),
-                SLOT(slotWebViewSetContent(QString, bool)), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalSetHtmlWebView(QString,QUrl)),
+                SLOT(setHtmlWebView(QString,QUrl)), Qt::QueuedConnection);
   connect(webView_, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(webView_, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished(bool)));
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
@@ -426,20 +379,9 @@ void NewsTabWidget::setSettings(bool newTab)
       newsModel_->formatTime_ = rsslisting_->formatTime_;
     }
 
-    QFont font = QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_);
-    font.setBold(true);
-    webPanelTitle_->setFont(font);
-    webPanelDate_->setFont(
-          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
-    webPanelAuthor_->setFont(
-          QFont(rsslisting_->panelNewsFontFamily_, rsslisting_->panelNewsFontSize_));
-
     webView_->settings()->setFontFamily(
           QWebSettings::StandardFont, rsslisting_->webFontFamily_);
-    if (webView_->title().isEmpty() && (type_ != TAB_WEB)) {
-      webView_->settings()->setFontSize(
-            QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
-    }
+
     webView_->settings()->setFontSize(
           QWebSettings::MinimumFontSize, rsslisting_->browserMinFontSize_);
     webView_->settings()->setFontSize(
@@ -485,10 +427,6 @@ void NewsTabWidget::setSettings(bool newTab)
 void NewsTabWidget::retranslateStrings() {
   webViewProgress_->setFormat(tr("Loading... (%p%)"));
 
-  QString str = webPanelAuthor_->text();
-  str = str.right(str.length() - str.indexOf(':') - 2);
-  webPanelAuthor_->setText(QString(tr("Author: %1")).arg(str));
-
   webHomePageAct_->setText(tr("Home"));
   webExternalBrowserAct_->setText(tr("Open Page in External Browser"));
   urlExternalBrowserAct_->setText(tr("Open Link in External Browser"));
@@ -513,28 +451,6 @@ void NewsTabWidget::retranslateStrings() {
   }
 
   closeButton_->setToolTip(tr("Close Tab"));
-}
-
-bool NewsTabWidget::eventFilter(QObject *obj, QEvent *event)
-{
-  if (obj == webPanelTitle_) {
-    if (event->type() == QEvent::MouseButtonRelease) {
-      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-      if (mouseEvent->button() & Qt::MiddleButton) {
-        webView_->midButtonClick = true;
-        QMouseEvent* pe =
-            new QMouseEvent(QEvent::MouseButtonRelease, mouseEvent->pos(),
-                            Qt::LeftButton, Qt::LeftButton,
-                            Qt::ControlModifier);
-        QApplication::sendEvent(webPanelTitle_, pe);
-      }
-    } else if (event->type() == QEvent::Show) {
-      setTitleWebPanel();
-    }
-    return false;
-  } else {
-    return QWidget::eventFilter(obj, event);
-  }
 }
 
 /*! \brief Обработка нажатия в дереве новостей ********************************/
@@ -1078,69 +994,11 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     return;
   }
 
-  titleString_ = newsModel_->record(index.row()).field("title").value().toString();
-  linkString_ = newsModel_->record(index.row()).field("link_href").value().toString();
-  if (linkString_.isEmpty())
-    linkString_ = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
-  setTitleWebPanel();
-
-  QDateTime dtLocal;
-  QString strDate = newsModel_->record(index.row()).field("published").value().toString();
-
-  if (!strDate.isNull()) {
-    QDateTime dtLocalTime = QDateTime::currentDateTime();
-    QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
-    int nTimeShift = dtLocalTime.secsTo(dtUTC);
-
-    QDateTime dt = QDateTime::fromString(strDate, Qt::ISODate);
-    dtLocal = dt.addSecs(nTimeShift);
-  } else {
-    dtLocal = QDateTime::fromString(
-          newsModel_->record(index.row()).field("received").value().toString(),
-          Qt::ISODate);
-  }
-  if (QDateTime::currentDateTime().date() == dtLocal.date())
-    strDate = dtLocal.toString(rsslisting_->formatTime_);
-  else
-    strDate = dtLocal.toString(rsslisting_->formatDate_ + " " + rsslisting_->formatTime_);
-  webPanelDate_->setText(strDate);
-
-  // Формируем панель автора из автора новости
-  QString authorString;
-  QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
-  QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
-  QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
-  //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
-  authorString = authorName;
-  if (!authorEmail.isEmpty())
-    authorString.append(QString(" <a href='mailto:%1' style=\"text-decoration:none;\">e-mail</a>").
-                        arg(authorEmail));
-  if (!authorUri.isEmpty())
-    authorString.append(QString(" <a href='%1' style=\"text-decoration:none;\">page</a>").
-                        arg(authorUri));
-
-  // Если авора новости нет, формируем панель автора из автора ленты
-  // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
-  //   новость обновляется именно у него
-  if (authorString.isEmpty()) {
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
-    authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
-    authorEmail = feedsTreeModel_->dataField(currentIndex, "author_email").toString();
-    authorUri   = feedsTreeModel_->dataField(currentIndex, "author_uri").toString();
-
-    //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
-    authorString = authorName;
-    if (!authorEmail.isEmpty())
-      authorString.append(QString(" <a href='mailto:%1' style=\"text-decoration:none;\">e-mail</a>").
-                          arg(authorEmail));
-    if (!authorUri.isEmpty())
-      authorString.append(QString(" <a href='%1' style=\"text-decoration:none;\">page</a>").
-                          arg(authorUri));
-  }
-
-  webPanelAuthor_->setText(QString(tr("Author: %1")).arg(authorString));
-  webPanelAuthor_->setVisible(!authorString.isEmpty());
+  QString linkString = newsModel_->record(index.row()).field("link_href").value().toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+  linkString = linkString.simplified();
+  QUrl newsUrl = QUrl::fromEncoded(linkString.toLocal8Bit());
 
   bool showDescriptionNews_ = rsslisting_->showDescriptionNews_;
 
@@ -1150,34 +1008,134 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     showDescriptionNews_ = !displayNews.toInt();
 
   if (!showDescriptionNews_) {
-    webPanel_->hide();
     setWebToolbarVisible(true, false);
 
-    QString linkString = newsModel_->record(
-          index.row()).field("link_href").value().toString();
-    if (linkString.isEmpty())
-      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
-    QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
-    webView_->setUrl(url);
+    webView_->history()->setMaximumItemCount(0);
+    webView_->setUrl(newsUrl);
+    webView_->history()->setMaximumItemCount(100);
   } else {
     setWebToolbarVisible(false, false);
-    webPanel_->show();
+
+    QString titleString = newsModel_->record(index.row()).field("title").value().toString();
+
+    QDateTime dtLocal;
+    QString dateString = newsModel_->record(index.row()).field("published").value().toString();
+    if (!dateString.isNull()) {
+      QDateTime dtLocalTime = QDateTime::currentDateTime();
+      QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
+      int nTimeShift = dtLocalTime.secsTo(dtUTC);
+
+      QDateTime dt = QDateTime::fromString(dateString, Qt::ISODate);
+      dtLocal = dt.addSecs(nTimeShift);
+    } else {
+      dtLocal = QDateTime::fromString(
+            newsModel_->record(index.row()).field("received").value().toString(),
+            Qt::ISODate);
+    }
+    if (QDateTime::currentDateTime().date() == dtLocal.date())
+      dateString = dtLocal.toString(rsslisting_->formatTime_);
+    else
+      dateString = dtLocal.toString(rsslisting_->formatDate_ + " " + rsslisting_->formatTime_);
+
+    // Формируем панель автора из автора новости
+    QString authorString;
+    QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
+    QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
+    QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
+    //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
+    authorString = authorName;
+    if (!authorEmail.isEmpty())
+      authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+    if (!authorUri.isEmpty())
+      authorString.append(QString(" <a href='%1'>page</a>"). arg(authorUri));
+
+    // Если авора новости нет, формируем панель автора из автора ленты
+    // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
+    //   новость обновляется именно у него
+    if (authorString.isEmpty()) {
+      QModelIndex currentIndex = feedsTreeView_->currentIndex();
+      authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
+      authorEmail = feedsTreeModel_->dataField(currentIndex, "author_email").toString();
+      authorUri   = feedsTreeModel_->dataField(currentIndex, "author_uri").toString();
+
+      //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
+      authorString = authorName;
+      if (!authorEmail.isEmpty())
+        authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
+      if (!authorUri.isEmpty())
+        authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
+    }
+
+    if (!authorString.isEmpty())
+      authorString = QString(tr("Author: %1")).arg(authorString);
 
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     QString description = newsModel_->record(index.row()).field("description").value().toString();
-    if (content.isEmpty()) {
-      emit signalWebViewSetContent(description);
-    } else if (description.length() > content.length()) {
-      emit signalWebViewSetContent(description);
-    } else {
-      emit signalWebViewSetContent(content);
+    if (content.isEmpty() || (description.length() > content.length())) {
+      content = description;
     }
+
+    QString enclosureStr;
+    QString enclosureUrl = newsModel_->record(index.row()).field("enclosure_url").value().toString();
+    if (!enclosureUrl.isEmpty()) {
+      QString type = newsModel_->record(index.row()).field("enclosure_type").value().toString();
+      if (type.contains("image")) {
+        enclosureStr = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
+            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
+      } else {
+        if (type.contains("audio")) type = tr("audio");
+        else if (type.contains("video")) type = tr("video");
+        else type = tr("media");
+
+        enclosureStr = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
+            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
+            arg(tr("Link to")).arg(type);
+      }
+    }
+    content = enclosureStr+content;
+
+    QFile file;
+    file.setFileName(":/html/description");
+    file.open(QFile::ReadOnly);
+    QString htmlStr = QString::fromUtf8(file.readAll()).
+        arg(rsslisting_->webFontFamily_).
+        arg(rsslisting_->webFontSize_).
+        arg(rsslisting_->titleNewsFontFamily_).
+        arg(rsslisting_->titleNewsFontSize_).
+        arg(0).
+        arg(qApp->palette().color(QPalette::Dark).name()).
+        arg(QString("<a href='%1' class='unread'>%2</a>").
+            arg(linkString).arg(titleString)).
+        arg(dateString).
+        arg(authorString).
+        arg(content);
+    file.close();
+
+    emit signalSetHtmlWebView(htmlStr, newsUrl);
   }
+}
+
+//! Слот для асинхронного обновления новости
+void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
+{
+  webView_->history()->setMaximumItemCount(0);
+  webView_->setHtml(html, baseUrl);
+  webView_->history()->setMaximumItemCount(100);
+}
+
+void NewsTabWidget::hideWebContent()
+{
+  emit signalSetHtmlWebView();
+  setWebToolbarVisible(false, false);
 }
 
 void NewsTabWidget::slotLinkClicked(QUrl url)
 {
+  if (url.scheme() == QLatin1String("mailto")) {
+    QDesktopServices::openUrl(url);
+    return;
+  }
+
   if (url.host().isEmpty()) {
     QModelIndex currentIndex = feedsTreeView_->currentIndex();
     QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
@@ -1189,7 +1147,6 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     if (!webView_->midButtonClick) {
       if (!webControlPanel_->isVisible()) {
         webView_->history()->clear();
-        webPanel_->hide();
         setWebToolbarVisible(true, false);
       }
       webView_->setUrl(url);
@@ -1236,52 +1193,6 @@ void NewsTabWidget::slotLoadFinished(bool)
   }
 
   webViewProgress_->hide();
-}
-
-//! Слот для асинхронного обновления новости
-void NewsTabWidget::slotWebViewSetContent(QString content, bool hide)
-{
-  QString htmlStr;
-  QUrl baseUrl;
-
-  if (!hide) {
-    QModelIndex index = newsView_->currentIndex();
-    QString enclosureUrl = newsModel_->record(index.row()).
-        field("enclosure_url").value().toString();
-    if (!enclosureUrl.isEmpty()) {
-      QString type = newsModel_->record(index.row()).
-          field("enclosure_type").value().toString();
-      if (type.contains("image")) {
-        htmlStr = QString("<IMG SRC=\"%1\" style=\"max-width: 100%\"><p>").
-            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString());
-      } else {
-        if (type.contains("audio")) type = tr("audio");
-        else if (type.contains("video")) type = tr("video");
-        else type = tr("media");
-
-        htmlStr = QString("<a href=\"%1\" style=\"color: #4b4b4b;\"> %2 %3 </a><p>").
-            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
-            arg(tr("Link to")).arg(type);
-      }
-    }
-    htmlStr.append(content);
-
-    QString baseUrlStr = newsModel_->record(
-          index.row()).field("link_href").value().toString();
-    if (baseUrlStr.isEmpty())
-      baseUrlStr = newsModel_->record(index.row()).field("link_alternate").value().toString();
-    baseUrl = QUrl::fromEncoded(baseUrlStr.simplified().toLocal8Bit());
-  }
-
-  webView_->history()->setMaximumItemCount(0);
-  webView_->setHtml(htmlStr, baseUrl);
-  webView_->history()->setMaximumItemCount(100);
-}
-
-void NewsTabWidget::slotWebTitleLinkClicked(QString urlStr)
-{
-  QUrl url = QUrl::fromEncoded(urlStr.simplified().toLocal8Bit());
-  slotLinkClicked(url);
 }
 
 //! Переход на краткое содержание новости
@@ -1377,22 +1288,6 @@ void NewsTabWidget::webTitleChanged(QString title)
 {
   if ((type_ == TAB_WEB) && !title.isEmpty()) {
     setTextTab(title);
-  }
-
-  if (title.isEmpty() && (type_ != TAB_WEB)) {
-    if (pageLoaded_) {
-      webView_->settings()->setFontSize(
-            QWebSettings::DefaultFontSize, rsslisting_->webFontSize_);
-      pageLoaded_ = false;
-    }
-  } else {
-    if (!pageLoaded_) {
-      webView_->settings()->setFontSize(
-            QWebSettings::DefaultFontSize, webDefaultFontSize_);
-      webView_->settings()->setFontSize(
-            QWebSettings::DefaultFixedFontSize, webDefaultFixedFontSize_);
-      pageLoaded_ = true;
-    }
   }
 }
 
@@ -1526,13 +1421,6 @@ void NewsTabWidget::slotSelectFind()
   slotFindText(findText_->text());
 }
 
-void NewsTabWidget::hideWebContent()
-{
-  emit signalWebViewSetContent("", true);
-  webPanel_->hide();
-  setWebToolbarVisible(false, false);
-}
-
 void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
   if (webView_->rightButtonClick) {
@@ -1560,7 +1448,7 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
       webMenu_->addAction(urlExternalBrowserAct_);
     }
   } else if (menu_t->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
-    if (webView_->title().isEmpty()) {
+    if (webView_->title() == "news_descriptions") {
       webView_->pageAction(QWebPage::Reload)->setVisible(false);
     } else {
       webView_->pageAction(QWebPage::Reload)->setVisible(true);
@@ -1580,6 +1468,11 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 //! Открытие ссылки во внешнем браузере
 void NewsTabWidget::openUrlInExternalBrowser()
 {
+  if (linkUrl_.scheme() == QLatin1String("mailto")) {
+    QDesktopServices::openUrl(linkUrl_);
+    return;
+  }
+
   if (linkUrl_.host().isEmpty()) {
     QModelIndex currentIndex = feedsTreeView_->currentIndex();
     QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
@@ -1595,20 +1488,6 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
   if (!checked) webToolbarShow_ = show;
   webControlPanel_->setVisible(webToolbarShow_ &
                                rsslisting_->browserToolbarToggle_->isChecked());
-}
-
-void NewsTabWidget::setTitleWebPanel()
-{
-  QString titleStr, panelTitleStr;
-  titleStr = webPanelTitle_->fontMetrics().elidedText(
-        titleString_, Qt::ElideRight, webPanelTitle_->width());
-  panelTitleStr = QString("<a href='%1' style=\"text-decoration:none;\">%2</a>").
-      arg(linkString_).arg(titleStr);
-  webPanelTitle_->setText(panelTitleStr);
-  if (titleString_ != titleStr)
-    webPanelTitle_->setToolTip(titleString_);
-  else
-    webPanelTitle_->setToolTip("");
 }
 
 /**

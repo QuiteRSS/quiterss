@@ -958,10 +958,10 @@ void OptionsDialog::createFontsWidget()
   treeItem << "1" << tr("News list font");
   fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "2" << tr("News panel font (Title, Author)");
+  treeItem << "2" << tr("News title font");
   fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "3" << tr("News font");
+  treeItem << "3" << tr("News text font");
   fontsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "4" << tr("Notification font");
@@ -1181,8 +1181,8 @@ void OptionsDialog::slotFontChange()
 void OptionsDialog::slotFontReset()
 {
   switch (fontsTree_->currentItem()->text(0).toInt()) {
-  case 3: fontsTree_->currentItem()->setText(
-          2, QString("%1, 12").arg(qApp->font().family()));
+  case 2: case 3: fontsTree_->currentItem()->setText(
+          2, QString("%1, 10").arg(qApp->font().family()));
     break;
   default: fontsTree_->currentItem()->setText(
           2, QString("%1, 8").arg(qApp->font().family()));

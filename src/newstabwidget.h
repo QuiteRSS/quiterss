@@ -36,7 +36,6 @@ private:
   void createNewsList();
   void createMenuNews();
   void createWebWidget();
-  void setTitleWebPanel();
 
   RSSListing *rsslisting_;
   QSqlDatabase db_;
@@ -48,13 +47,8 @@ private:
 
   QFrame *lineWebWidget;
   QWidget *webWidget_;
-  QLabel *webPanelTitle_;
-  QLabel *webPanelDate_;
-  QLabel *webPanelAuthor_;
   QProgressBar *webViewProgress_;
   QLabel *webViewProgressLabel_;
-  QString titleString_;
-  QString linkString_;
 
   QAction *webHomePageAct_;
   QAction *webExternalBrowserAct_;
@@ -70,8 +64,6 @@ private:
 
   QWidget *newsPanelWidget_;
   bool webToolbarShow_;
-
-  bool pageLoaded_;
 
 public:
   explicit NewsTabWidget(QWidget *parent, int type, int feedId = -1, int feedParId = -1);
@@ -122,7 +114,6 @@ public:
   QSplitter *newsTabWidgetSplitter_;
 
   WebView *webView_;
-  QWidget *webPanel_;
   QWidget *webControlPanel_;
 
   QLabel *newsIconTitle_;
@@ -134,7 +125,7 @@ public:
   QAction *separatorRAct_;
 
 signals:
-  void signalWebViewSetContent(QString content, bool hide = false);
+  void signalSetHtmlWebView(const QString &html = "", const QUrl &baseUrl = QUrl());
   void signalSetTextTab(const QString &text, NewsTabWidget *widget);
   void loadProgress(int);
 
@@ -151,18 +142,13 @@ public slots:
   void slotNewsPageDownPressed();
   void slotSort(int column, int order);
 
-protected:
-  bool eventFilter(QObject *obj, QEvent *event);
-  void resizeEvent(QResizeEvent *);
-
 private slots:
   void showContextMenuNews(const QPoint &p);
   void slotSetItemRead(QModelIndex index, int read);
   void slotSetItemStar(QModelIndex index, int starred);
   void slotReadTimer();
 
-  void slotWebViewSetContent(QString content, bool hide = false);
-  void slotWebTitleLinkClicked(QString urlStr);
+  void setHtmlWebView(const QString &html, const QUrl &baseUrl);
   void webHomePage();
   void openPageInExternalBrowser();
   void slotLinkClicked(QUrl url);

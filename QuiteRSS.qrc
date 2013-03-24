@@ -121,4 +121,7 @@
         <file>HISTORY_EN</file>
         <file>HISTORY_RU</file>
     </qresource>
+    <qresource prefix="/html">
+        <file alias="description">html/news_description.html</file>
+    </qresource>
 </RCC>

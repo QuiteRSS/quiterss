@@ -1745,10 +1745,10 @@ void RSSListing::readSettings()
 
   newsFontFamily_ = settings_->value("/newsFontFamily", qApp->font().family()).toString();
   newsFontSize_ = settings_->value("/newsFontSize", 8).toInt();
-  panelNewsFontFamily_ = settings_->value("/panelNewsFontFamily", qApp->font().family()).toString();
-  panelNewsFontSize_ = settings_->value("/panelNewsFontSize", 8).toInt();
+  titleNewsFontFamily_ = settings_->value("/titleNewsFontFamily", qApp->font().family()).toString();
+  titleNewsFontSize_ = settings_->value("/titleNewsFontSize", 10).toInt();
   webFontFamily_ = settings_->value("/WebFontFamily", qApp->font().family()).toString();
-  webFontSize_ = settings_->value("/WebFontSize", 12).toInt();
+  webFontSize_ = settings_->value("/WebFontSize", 10).toInt();
   notificationFontFamily_ = settings_->value("/notificationFontFamily", qApp->font().family()).toString();
   notificationFontSize_ = settings_->value("/notificationFontSize", 8).toInt();
   browserMinFontSize_ = settings_->value("/browserMinFontSize", 0).toInt();
@@ -1974,8 +1974,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("/newsFontFamily", newsFontFamily_);
   settings_->setValue("/newsFontSize", newsFontSize_);
-  settings_->setValue("/panelNewsFontFamily", panelNewsFontFamily_);
-  settings_->setValue("/panelNewsFontSize", panelNewsFontSize_);
+  settings_->setValue("/titleNewsFontFamily", titleNewsFontFamily_);
+  settings_->setValue("/titleNewsFontSize", titleNewsFontSize_);
   settings_->setValue("/WebFontFamily", webFontFamily_);
   settings_->setValue("/WebFontSize", webFontSize_);
   settings_->setValue("/notificationFontFamily", notificationFontFamily_);
@@ -3248,7 +3248,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->fontsTree_->topLevelItem(0)->setText(2, strFont);
   strFont = QString("%1, %2").arg(newsFontFamily_).arg(newsFontSize_);
   optionsDialog->fontsTree_->topLevelItem(1)->setText(2, strFont);
-  strFont = QString("%1, %2").arg(panelNewsFontFamily_).arg(panelNewsFontSize_);
+  strFont = QString("%1, %2").arg(titleNewsFontFamily_).arg(titleNewsFontSize_);
   optionsDialog->fontsTree_->topLevelItem(2)->setText(2, strFont);
   strFont = QString("%1, %2").arg(webFontFamily_).arg(webFontSize_);
   optionsDialog->fontsTree_->topLevelItem(3)->setText(2, strFont);
@@ -3467,8 +3467,8 @@ void RSSListing::showOptionDlg()
 
   newsFontFamily_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 0, 0);
   newsFontSize_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 1).toInt();
-  panelNewsFontFamily_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 0, 0);
-  panelNewsFontSize_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 1).toInt();
+  titleNewsFontFamily_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 0, 0);
+  titleNewsFontSize_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 1).toInt();
   webFontFamily_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 0, 0);
   webFontSize_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 1).toInt();
   notificationFontFamily_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
@@ -4057,7 +4057,7 @@ void RSSListing::setAutoLoadImages(bool set)
     currentNewsTab->webView_->settings()->setAttribute(
           QWebSettings::AutoLoadImages, autoLoadImages_);
     if (autoLoadImages_) {
-      if (currentNewsTab->webView_->title().isEmpty() &&
+      if ((currentNewsTab->webView_->title() == "news_descriptions") &&
           (currentNewsTab->type_ == TAB_FEED))
         currentNewsTab->updateWebView(newsView_->currentIndex());
       else currentNewsTab->webView_->reload();
