@@ -1111,6 +1111,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         arg(content);
     file.close();
 
+    newsUrl.setPath("");
     emit signalSetHtmlWebView(htmlStr, newsUrl);
   }
 }
