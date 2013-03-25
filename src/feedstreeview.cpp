@@ -141,7 +141,11 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
     return;
   }
 
-  if (!index.isValid() || !(event->pos().x() >= rectText.x())) return;
+  if (!index.isValid()) return;
+  if (!(event->pos().x() >= rectText.x())) {
+    QyurSqlTreeView::mousePressEvent(event);
+    return;
+  }
 
   selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
   selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
