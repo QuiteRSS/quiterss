@@ -2195,6 +2195,7 @@ void RSSListing::addFolder()
 void RSSListing::deleteFeed()
 {
   if (!feedsTreeView_->selectIndex().isValid()) return;
+  if (0 != feedsTreeModel_->rowCount(feedsTreeView_->selectIndex())) return;
 
   QPersistentModelIndex index = feedsTreeView_->selectIndex();
   int feedDeleteId = feedsTreeModel_->getIdByIndex(index);
