@@ -476,13 +476,15 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
     emit xmlReadyParse(data, feedUrlStr, dtReply);
   }
 
-  if (result < 0) {
+  if ((result < 0) || data.isEmpty()) {
     if (result == -1)
       textWarning->setText(tr("URL error!"));
     else if (result == -2)
       textWarning->setText(tr("Server requires authentication!"));
     else if (result == -3)
       textWarning->setText(tr("Request timeout!"));
+    else
+      textWarning->setText(tr("Request failed!"));
     warningWidget_->setVisible(true);
 
     deleteFeed();
