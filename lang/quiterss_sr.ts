@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0" language="sr">
 <defaultcodec>UTF-8</defaultcodec>
@@ -110,31 +111,36 @@
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="288"/>
-        <location filename="../src/addfeedwizard.cpp" line="471"/>
+        <location filename="../src/addfeedwizard.cpp" line="481"/>
         <source>URL error!</source>
         <translation>Грешка УРЛ-а!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="301"/>
-        <location filename="../src/addfeedwizard.cpp" line="425"/>
+        <location filename="../src/addfeedwizard.cpp" line="435"/>
         <source>Duplicate feed!</source>
         <translation>Дупли канал!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="427"/>
-        <location filename="../src/addfeedwizard.cpp" line="454"/>
-        <source>Can't find feed URL!</source>
+        <location filename="../src/addfeedwizard.cpp" line="437"/>
+        <location filename="../src/addfeedwizard.cpp" line="464"/>
+        <source>Can&apos;t find feed URL!</source>
         <translation>Не могу да нађем УРЛ канала!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="473"/>
+        <location filename="../src/addfeedwizard.cpp" line="483"/>
         <source>Server requires authentication!</source>
         <translation>Сервер захтева аутентификацију!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="475"/>
+        <location filename="../src/addfeedwizard.cpp" line="485"/>
         <source>Request timeout!</source>
         <translation>Захтеву је истекло време!</translation>
+    </message>
+    <message>
+        <location filename="../src/addfeedwizard.cpp" line="487"/>
+        <source>Request failed!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -217,15 +223,15 @@
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="329"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="430"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="330"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="431"/>
         <source>Load images</source>
         <translation>Учитај слике</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="339"/>
-        <location filename="../src/customizetoolbardialog.cpp" line="411"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="340"/>
+        <location filename="../src/customizetoolbardialog.cpp" line="412"/>
         <source>Separator</source>
         <translation>Раздвајач</translation>
     </message>
@@ -303,32 +309,32 @@
 <context>
     <name>FeedPropertiesDialog</name>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="42"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="43"/>
         <source>Starred</source>
         <translation>Са звездом</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="43"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
         <source>Load images</source>
         <translation>Учитај слике</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="28"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="29"/>
         <source>Title:</source>
         <translation>Наслов:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="16"/>
         <source>Status</source>
         <translation>Стање</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="30"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="31"/>
         <source>Feed URL:</source>
         <translation>УРЛ канала:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="35"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="36"/>
         <source>Load Feed Title</source>
         <translation>Унос наслова канала</translation>
     </message>
@@ -337,8 +343,8 @@
         <translation type="obsolete">На покретање прикажи канал у новом језичку</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
-        <source>Show news' description instead of loading web page</source>
+        <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
+        <source>Show news&apos; description instead of loading web page</source>
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
@@ -346,22 +352,22 @@
         <translation type="obsolete">Аутоматско обриши дупле вести</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="96"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
         <source>Created:</source>
         <translation>Креирано:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="98"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="128"/>
         <source>Last update:</source>
         <translation>Ажурирано:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="100"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="130"/>
         <source>News count:</source>
         <translation>Број вести:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
         <source>Description:</source>
         <translation>Опис:</translation>
     </message>
@@ -371,32 +377,52 @@
         <translation>Поставке</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="44"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
+        <source>Authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
         <source>Display in new tab on startup</source>
         <translation>На покретање прикажи у новом језичку</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="47"/>
         <source>Automatically delete duplicate news</source>
         <translation>Аутоматско обриши дупле вести</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="138"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
+        <source>Server requires authentication:</source>
+        <translation type="unfinished">Сервер захтева аутентификацију:</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
+        <source>Username:</source>
+        <translation type="unfinished">Корисник:</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
+        <source>Password:</source>
+        <translation type="unfinished">Лозинка:</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
         <source>Long ago ;-)</source>
         <translation>Одавно ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="144"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="178"/>
         <source>new</source>
         <translation>ново</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="146"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="180"/>
         <source>unread</source>
         <translation>нечитано</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="29"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="30"/>
         <source>Homepage:</source>
         <translation>Домаћа страница:</translation>
     </message>
@@ -596,7 +622,7 @@
         <location filename="../src/filterrulesdialog.h" line="81"/>
         <location filename="../src/filterrulesdialog.h" line="86"/>
         <location filename="../src/filterrulesdialog.h" line="89"/>
-        <source>doesn't contains</source>
+        <source>doesn&apos;t contains</source>
         <translation>не садржи</translation>
     </message>
     <message>
@@ -612,7 +638,7 @@
         <location filename="../src/filterrulesdialog.h" line="90"/>
         <location filename="../src/filterrulesdialog.h" line="93"/>
         <location filename="../src/filterrulesdialog.h" line="97"/>
-        <source>isn't</source>
+        <source>isn&apos;t</source>
         <translation>није</translation>
     </message>
     <message>
@@ -718,7 +744,7 @@
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
-        <source>Load icon: can't open a file</source>
+        <source>Load icon: can&apos;t open a file</source>
         <translation>Учитавање иконе: не може да се отвори датотека</translation>
     </message>
 </context>
@@ -776,63 +802,63 @@
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="234"/>
-        <source>Are you sure to delete the filter '%1'?</source>
+        <source>Are you sure to delete the filter &apos;%1&apos;?</source>
         <translation>Сигурно обрисати филтер „%1“?</translation>
     </message>
 </context>
 <context>
     <name>NewsHeader</name>
     <message>
-        <location filename="../src/newsheader.cpp" line="52"/>
-        <location filename="../src/newsheader.cpp" line="375"/>
+        <location filename="../src/newsheader.cpp" line="53"/>
+        <location filename="../src/newsheader.cpp" line="380"/>
         <source>Feed</source>
         <translation>Канал</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="53"/>
-        <location filename="../src/newsheader.cpp" line="376"/>
+        <location filename="../src/newsheader.cpp" line="54"/>
+        <location filename="../src/newsheader.cpp" line="381"/>
         <source>Title</source>
         <translation>Наслов</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="54"/>
-        <location filename="../src/newsheader.cpp" line="377"/>
+        <location filename="../src/newsheader.cpp" line="55"/>
+        <location filename="../src/newsheader.cpp" line="382"/>
         <source>Published</source>
         <translation>Објављено</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="55"/>
-        <location filename="../src/newsheader.cpp" line="378"/>
+        <location filename="../src/newsheader.cpp" line="56"/>
+        <location filename="../src/newsheader.cpp" line="383"/>
         <source>Received</source>
         <translation>Примљено</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="56"/>
-        <location filename="../src/newsheader.cpp" line="379"/>
+        <location filename="../src/newsheader.cpp" line="57"/>
+        <location filename="../src/newsheader.cpp" line="384"/>
         <source>Author</source>
         <translation>Аутор</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="57"/>
-        <location filename="../src/newsheader.cpp" line="380"/>
+        <location filename="../src/newsheader.cpp" line="58"/>
+        <location filename="../src/newsheader.cpp" line="385"/>
         <source>Category</source>
         <translation>Категорија</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="58"/>
-        <location filename="../src/newsheader.cpp" line="381"/>
+        <location filename="../src/newsheader.cpp" line="59"/>
+        <location filename="../src/newsheader.cpp" line="386"/>
         <source>Read</source>
         <translation>Читање</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="59"/>
-        <location filename="../src/newsheader.cpp" line="382"/>
+        <location filename="../src/newsheader.cpp" line="60"/>
+        <location filename="../src/newsheader.cpp" line="387"/>
         <source>Star</source>
         <translation>Звезда</translation>
     </message>
     <message>
-        <location filename="../src/newsheader.cpp" line="60"/>
-        <location filename="../src/newsheader.cpp" line="383"/>
+        <location filename="../src/newsheader.cpp" line="61"/>
+        <location filename="../src/newsheader.cpp" line="388"/>
         <source>Label</source>
         <translation>Етикета</translation>
     </message>
@@ -848,108 +874,107 @@
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="474"/>
+        <location filename="../src/newstabwidget.cpp" line="428"/>
         <source>Loading... (%p%)</source>
         <translation>Учитавање... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="478"/>
-        <location filename="../src/newstabwidget.cpp" line="1126"/>
+        <location filename="../src/newstabwidget.cpp" line="1070"/>
         <source>Author: %1</source>
         <translation>Аутор: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="480"/>
+        <location filename="../src/newstabwidget.cpp" line="430"/>
         <source>Home</source>
         <translation>Домаћа</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="481"/>
+        <location filename="../src/newstabwidget.cpp" line="431"/>
         <source>Open Page in External Browser</source>
         <translation>Отвори страну у спољном прегледачу</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="482"/>
+        <location filename="../src/newstabwidget.cpp" line="432"/>
         <source>Open Link in External Browser</source>
         <translation>Отвори везу у спољном прегледачу</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="484"/>
+        <location filename="../src/newstabwidget.cpp" line="434"/>
         <source>Open Link</source>
         <translation>Отвори везу</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="485"/>
+        <location filename="../src/newstabwidget.cpp" line="435"/>
         <source>Open in New Tab</source>
         <translation>Отвори у новом језичку</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="486"/>
+        <location filename="../src/newstabwidget.cpp" line="436"/>
         <source>Save Link...</source>
         <translation>Сачувај везу...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="487"/>
+        <location filename="../src/newstabwidget.cpp" line="437"/>
         <source>Copy Link</source>
         <translation>Копирај везу</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="488"/>
+        <location filename="../src/newstabwidget.cpp" line="438"/>
         <source>Copy</source>
         <translation>Копирај</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="489"/>
+        <location filename="../src/newstabwidget.cpp" line="439"/>
         <source>Go Back</source>
         <translation>Назад</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="490"/>
+        <location filename="../src/newstabwidget.cpp" line="440"/>
         <source>Go Forward</source>
         <translation>Напред</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="491"/>
+        <location filename="../src/newstabwidget.cpp" line="441"/>
         <source>Stop</source>
         <translation>Стани</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="492"/>
+        <location filename="../src/newstabwidget.cpp" line="442"/>
         <source>Reload</source>
         <translation>Учитај поново</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="493"/>
+        <location filename="../src/newstabwidget.cpp" line="443"/>
         <source>Copy Image</source>
         <translation>Копирај слику</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="495"/>
+        <location filename="../src/newstabwidget.cpp" line="445"/>
         <source>Copy Image Address</source>
         <translation>Копирај адресу слике</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="503"/>
+        <location filename="../src/newstabwidget.cpp" line="453"/>
         <source>Close Tab</source>
         <translation>Затвори језичак</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1240"/>
+        <location filename="../src/newstabwidget.cpp" line="1086"/>
         <source>audio</source>
         <translation>аудио</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1241"/>
+        <location filename="../src/newstabwidget.cpp" line="1087"/>
         <source>video</source>
         <translation>видео</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1242"/>
+        <location filename="../src/newstabwidget.cpp" line="1088"/>
         <source>media</source>
         <translation>медиј</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1246"/>
+        <location filename="../src/newstabwidget.cpp" line="1092"/>
         <source>Link to</source>
         <translation>Веза ка</translation>
     </message>
@@ -993,13 +1018,13 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
-        <location filename="../src/optionsdialog.cpp" line="1040"/>
+        <location filename="../src/optionsdialog.cpp" line="1075"/>
         <source>Labels</source>
         <translation>Етикете</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="56"/>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Notifications</source>
         <translation>Обавештења</translation>
     </message>
@@ -1305,28 +1330,37 @@
         <translation>Прикажи лозинке</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="945"/>
-        <source>News panel font (Title, Author)</source>
-        <translation>Фонт вести (Наслов, Аутор)</translation>
+        <location filename="../src/optionsdialog.cpp" line="961"/>
+        <source>News title font</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="951"/>
+        <location filename="../src/optionsdialog.cpp" line="964"/>
+        <source>News text font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>News panel font (Title, Author)</source>
+        <translation type="obsolete">Фонт вести (Наслов, Аутор)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="967"/>
         <source>Notification font</source>
         <translation>Фонт обавештења</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1194"/>
+        <location filename="../src/optionsdialog.cpp" line="1229"/>
         <source>Load images</source>
         <translation>Учитај слике</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1195"/>
+        <location filename="../src/optionsdialog.cpp" line="1230"/>
         <source>Auto load images to news view</source>
         <translation>Ауто учитај слике у изглед вести</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1280"/>
-        <location filename="../src/optionsdialog.cpp" line="1295"/>
+        <location filename="../src/optionsdialog.cpp" line="1315"/>
+        <location filename="../src/optionsdialog.cpp" line="1330"/>
         <source>Open File...</source>
         <translation>Отвори датотеку...</translation>
     </message>
@@ -1440,7 +1474,7 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="506"/>
-        <source>Show news' description instead of loading web page</source>
+        <source>Show news&apos; description instead of loading web page</source>
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
@@ -1474,7 +1508,7 @@
         <translation>Пушта звук за долазеће нове вести</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="917"/>
+        <location filename="../src/optionsdialog.cpp" line="933"/>
         <source>Choose language:</source>
         <translation>Изаберите језик:</translation>
     </message>
@@ -1537,58 +1571,67 @@
         <translation>Контакт</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <location filename="../src/optionsdialog.cpp" line="951"/>
         <source>Type</source>
         <translation>Врста</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <location filename="../src/optionsdialog.cpp" line="951"/>
         <source>Font</source>
         <translation>фонт</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="939"/>
+        <location filename="../src/optionsdialog.cpp" line="955"/>
         <source>Feeds list font</source>
         <translation>Фонт списка канала</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="942"/>
+        <location filename="../src/optionsdialog.cpp" line="958"/>
         <source>News list font</source>
         <translation>Фонт списка вести</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="948"/>
         <source>News font</source>
-        <translation>Фонт вести</translation>
+        <translation type="obsolete">Фонт вести</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="958"/>
+        <location filename="../src/optionsdialog.cpp" line="974"/>
         <source>Change...</source>
         <translation>Измени...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="960"/>
-        <location filename="../src/optionsdialog.cpp" line="999"/>
+        <location filename="../src/optionsdialog.cpp" line="976"/>
+        <location filename="../src/optionsdialog.cpp" line="1034"/>
         <source>Reset</source>
         <translation>Ресетуј</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="994"/>
+        <location filename="../src/optionsdialog.cpp" line="990"/>
+        <source>Minimum font size of browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="993"/>
+        <source>Minimum logical font size of browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1029"/>
         <source>Action</source>
         <translation>Радња</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="994"/>
+        <location filename="../src/optionsdialog.cpp" line="1029"/>
         <source>Description</source>
         <translation>Опис</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="994"/>
+        <location filename="../src/optionsdialog.cpp" line="1029"/>
         <source>Shortcut</source>
         <translation>Пречица</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1002"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Shortcut:</source>
         <translation>Пречица:</translation>
     </message>
@@ -1596,17 +1639,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4342"/>
+        <location filename="../src/rsslisting.cpp" line="4488"/>
         <source>&amp;Step up</source>
         <translation>Корак горе</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4343"/>
+        <location filename="../src/rsslisting.cpp" line="4489"/>
         <source>Step &amp;down</source>
         <translation>Корак доле</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4344"/>
+        <location filename="../src/rsslisting.cpp" line="4490"/>
         <source>&amp;Select All</source>
         <translation>Изабери све</translation>
     </message>
@@ -1614,22 +1657,22 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4320"/>
+        <location filename="../src/rsslisting.cpp" line="4466"/>
         <source>Close</source>
         <translation>Затвори</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4321"/>
+        <location filename="../src/rsslisting.cpp" line="4467"/>
         <source>Cancel</source>
         <translation>Откажи</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4322"/>
+        <location filename="../src/rsslisting.cpp" line="4468"/>
         <source>&amp;Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4323"/>
+        <location filename="../src/rsslisting.cpp" line="4469"/>
         <source>&amp;No</source>
         <translation>Не</translation>
     </message>
@@ -1637,37 +1680,37 @@
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4325"/>
+        <location filename="../src/rsslisting.cpp" line="4471"/>
         <source>&amp;Undo</source>
         <translation>Опозови</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4326"/>
+        <location filename="../src/rsslisting.cpp" line="4472"/>
         <source>&amp;Redo</source>
         <translation>Понови</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4327"/>
+        <location filename="../src/rsslisting.cpp" line="4473"/>
         <source>Cu&amp;t</source>
         <translation>Исеци</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4328"/>
+        <location filename="../src/rsslisting.cpp" line="4474"/>
         <source>&amp;Copy</source>
         <translation>Копирај</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4329"/>
+        <location filename="../src/rsslisting.cpp" line="4475"/>
         <source>&amp;Paste</source>
         <translation>Налепи</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4330"/>
+        <location filename="../src/rsslisting.cpp" line="4476"/>
         <source>Delete</source>
         <translation>Обриши</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4331"/>
+        <location filename="../src/rsslisting.cpp" line="4477"/>
         <source>Select All</source>
         <translation>Изабери све</translation>
     </message>
@@ -1675,7 +1718,7 @@
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4346"/>
+        <location filename="../src/rsslisting.cpp" line="4492"/>
         <source>Select IM</source>
         <translation>Изаберите ИМ</translation>
     </message>
@@ -1683,42 +1726,42 @@
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4333"/>
+        <location filename="../src/rsslisting.cpp" line="4479"/>
         <source>&amp;Undo</source>
         <translation>Опозови</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4334"/>
+        <location filename="../src/rsslisting.cpp" line="4480"/>
         <source>&amp;Redo</source>
         <translation>Понови</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4335"/>
+        <location filename="../src/rsslisting.cpp" line="4481"/>
         <source>Cu&amp;t</source>
         <translation>Исеци</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4336"/>
+        <location filename="../src/rsslisting.cpp" line="4482"/>
         <source>&amp;Copy</source>
         <translation>Копирај</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4337"/>
+        <location filename="../src/rsslisting.cpp" line="4483"/>
         <source>&amp;Paste</source>
         <translation>Налепи</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4338"/>
+        <location filename="../src/rsslisting.cpp" line="4484"/>
         <source>Delete</source>
         <translation>Избриши</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4339"/>
+        <location filename="../src/rsslisting.cpp" line="4485"/>
         <source>Select All</source>
         <translation>Изабери све</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4340"/>
+        <location filename="../src/rsslisting.cpp" line="4486"/>
         <source>Copy &amp;Link Location</source>
         <translation>Копирај локацију везе</translation>
     </message>
@@ -1726,22 +1769,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4348"/>
+        <location filename="../src/rsslisting.cpp" line="4494"/>
         <source>Cancel</source>
         <translation>Откажи</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4349"/>
+        <location filename="../src/rsslisting.cpp" line="4495"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; Назад</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4350"/>
+        <location filename="../src/rsslisting.cpp" line="4496"/>
         <source>&amp;Finish</source>
         <translation>Заврши</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4351"/>
+        <location filename="../src/rsslisting.cpp" line="4497"/>
         <source>&amp;Next &gt;</source>
         <translation>Даље &gt;</translation>
     </message>
@@ -1749,134 +1792,134 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2153"/>
-        <source>Are you sure to delete the feed '%1'?</source>
+        <location filename="../src/rsslisting.cpp" line="2215"/>
+        <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Сигурно обрисати канал „%1“?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2215"/>
+        <location filename="../src/rsslisting.cpp" line="2277"/>
         <source>Import canceled</source>
         <translation>Увоз поништен</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2223"/>
-        <source>Import: can't open a file</source>
+        <location filename="../src/rsslisting.cpp" line="2285"/>
+        <source>Import: can&apos;t open a file</source>
         <translation>Увоз: не могу да отворим датотеку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4108"/>
+        <location filename="../src/rsslisting.cpp" line="4251"/>
         <source>&amp;Feed...</source>
         <translation>Канал...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4111"/>
+        <location filename="../src/rsslisting.cpp" line="4254"/>
         <source>F&amp;older...</source>
         <translation>Фасцикла...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4116"/>
+        <location filename="../src/rsslisting.cpp" line="4259"/>
         <source>&amp;Delete...</source>
         <translation>Обриши...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4125"/>
+        <location filename="../src/rsslisting.cpp" line="4268"/>
         <source>E&amp;xit</source>
         <translation>Излаз</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4166"/>
+        <location filename="../src/rsslisting.cpp" line="4309"/>
         <source>Show Starred</source>
         <translation>Прикажи са звездицом</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4167"/>
+        <location filename="../src/rsslisting.cpp" line="4310"/>
         <source>Show Not Starred</source>
         <translation>Прикажи без звездице</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4168"/>
+        <location filename="../src/rsslisting.cpp" line="4311"/>
         <source>Show Unread or Starred</source>
         <translation>Прикажи непрочитано или са звеудицом</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4182"/>
+        <location filename="../src/rsslisting.cpp" line="4325"/>
         <source>Open News in External Browser</source>
         <translation>Отвори вести у спољном прегледачу</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4198"/>
+        <location filename="../src/rsslisting.cpp" line="4341"/>
         <source>Mark Read</source>
         <translation>Означи прочитано</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4200"/>
-        <location filename="../src/rsslisting.cpp" line="4201"/>
+        <location filename="../src/rsslisting.cpp" line="4343"/>
+        <location filename="../src/rsslisting.cpp" line="4344"/>
         <source>Properties</source>
         <translation>Поставке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4212"/>
-        <location filename="../src/rsslisting.cpp" line="4286"/>
+        <location filename="../src/rsslisting.cpp" line="4355"/>
+        <location filename="../src/rsslisting.cpp" line="4429"/>
         <source>Main Toolbar</source>
         <translation>Алатна трака</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4213"/>
+        <location filename="../src/rsslisting.cpp" line="4356"/>
         <source>Customize Toolbar</source>
         <translation>Прилагоди траку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4214"/>
+        <location filename="../src/rsslisting.cpp" line="4357"/>
         <source>Main Toolbar...</source>
         <translation>Главна трака...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4215"/>
+        <location filename="../src/rsslisting.cpp" line="4358"/>
         <source>Customize Toolbar...</source>
         <translation>Прилагоди траку...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4216"/>
+        <location filename="../src/rsslisting.cpp" line="4359"/>
         <source>Feeds Toolbar...</source>
         <translation>Трака канала...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4217"/>
+        <location filename="../src/rsslisting.cpp" line="4360"/>
         <source>News Toolbar...</source>
         <translation>Трака Вести...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4219"/>
+        <location filename="../src/rsslisting.cpp" line="4362"/>
         <source>Hide Toolbar</source>
         <translation>Сакриј траку алатки</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4230"/>
+        <location filename="../src/rsslisting.cpp" line="4373"/>
         <source>Browser Position</source>
         <translation>Смештај претраживача</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4236"/>
+        <location filename="../src/rsslisting.cpp" line="4379"/>
         <source>Show Window</source>
         <translation>Прикажи прозор</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4238"/>
+        <location filename="../src/rsslisting.cpp" line="4381"/>
         <source>Previous Feed</source>
         <translation>Претходни канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4239"/>
+        <location filename="../src/rsslisting.cpp" line="4382"/>
         <source>Next Feed</source>
         <translation>Следећи канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4240"/>
+        <location filename="../src/rsslisting.cpp" line="4383"/>
         <source>Previous News</source>
         <translation>Претходна вест</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4241"/>
+        <location filename="../src/rsslisting.cpp" line="4384"/>
         <source>Next News</source>
         <translation>Следећа вест</translation>
     </message>
@@ -1889,22 +1932,22 @@
         <translation type="obsolete">Пребаци фокус између окна (дрво, листа, претраживач)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4253"/>
+        <location filename="../src/rsslisting.cpp" line="4396"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Покажи/сакриј дрво канала</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4255"/>
+        <location filename="../src/rsslisting.cpp" line="4398"/>
         <source>Minimize to Tray</source>
         <translation>Умањи у треју</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4257"/>
+        <location filename="../src/rsslisting.cpp" line="4400"/>
         <source>Minimize Application to Tray</source>
         <translation>Умањи програм у треју</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4259"/>
+        <location filename="../src/rsslisting.cpp" line="4402"/>
         <source>Columns</source>
         <translation>Колоне</translation>
     </message>
@@ -1913,67 +1956,67 @@
         <translation type="obsolete">Среди по Наслову</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4269"/>
+        <location filename="../src/rsslisting.cpp" line="4412"/>
         <source>Zoom</source>
         <translation>Зум</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4270"/>
+        <location filename="../src/rsslisting.cpp" line="4413"/>
         <source>Zoom In</source>
         <translation>Повечај</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4271"/>
+        <location filename="../src/rsslisting.cpp" line="4414"/>
         <source>Zoom in in browser</source>
         <translation>Повечај у прегледнику</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4272"/>
+        <location filename="../src/rsslisting.cpp" line="4415"/>
         <source>Zoom Out</source>
         <translation>Умањи</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4273"/>
+        <location filename="../src/rsslisting.cpp" line="4416"/>
         <source>Zoom out in browser</source>
         <translation>Умањи у прегледнику</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4274"/>
+        <location filename="../src/rsslisting.cpp" line="4417"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4275"/>
+        <location filename="../src/rsslisting.cpp" line="4418"/>
         <source>Reset zoom in browser</source>
         <translation>Ресетуј зум у прегледнику</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4277"/>
+        <location filename="../src/rsslisting.cpp" line="4420"/>
         <source>Print...</source>
         <translation>Штампај...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4278"/>
+        <location filename="../src/rsslisting.cpp" line="4421"/>
         <source>Print Web page</source>
         <translation>Штампај лист</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4279"/>
+        <location filename="../src/rsslisting.cpp" line="4422"/>
         <source>Print Preview...</source>
         <translation>Преглед штампања...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4280"/>
+        <location filename="../src/rsslisting.cpp" line="4423"/>
         <source>Preview Web page</source>
         <translation>Преглед листа</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4282"/>
+        <location filename="../src/rsslisting.cpp" line="4425"/>
         <source>Save As...</source>
         <translation>Сачувај као...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4283"/>
+        <location filename="../src/rsslisting.cpp" line="4426"/>
         <source>Save Page As...</source>
         <translation>Сачувај страницу као...</translation>
     </message>
@@ -1982,128 +2025,128 @@
         <translation type="obsolete">Алатне траке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4287"/>
+        <location filename="../src/rsslisting.cpp" line="4430"/>
         <source>Feeds Toolbar</source>
         <translation>Трака канала</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4288"/>
+        <location filename="../src/rsslisting.cpp" line="4431"/>
         <source>News Toolbar</source>
         <translation>Трака Вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4289"/>
+        <location filename="../src/rsslisting.cpp" line="4432"/>
         <source>Browser Toolbar</source>
         <translation>Трака претраживача</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4292"/>
-        <location filename="../src/rsslisting.cpp" line="4293"/>
+        <location filename="../src/rsslisting.cpp" line="4435"/>
+        <location filename="../src/rsslisting.cpp" line="4436"/>
         <source>Full Screen</source>
         <translation>Цео екран</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4295"/>
-        <location filename="../src/rsslisting.cpp" line="4296"/>
+        <location filename="../src/rsslisting.cpp" line="4438"/>
+        <location filename="../src/rsslisting.cpp" line="4439"/>
         <source>Stay On Top</source>
         <translation>Држи на врху</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4298"/>
+        <location filename="../src/rsslisting.cpp" line="4441"/>
         <source>Categories</source>
         <translation>Категорије</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4307"/>
+        <location filename="../src/rsslisting.cpp" line="4450"/>
         <source>Close tab</source>
         <translation>Зат. језичак</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4308"/>
+        <location filename="../src/rsslisting.cpp" line="4451"/>
         <source>Switch to next tab</source>
         <translation>Пребаци на след. језичак</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4309"/>
+        <location filename="../src/rsslisting.cpp" line="4452"/>
         <source>Switch to previous tab</source>
         <translation>Пребаци на прет. језичак</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4315"/>
+        <location filename="../src/rsslisting.cpp" line="4459"/>
         <source>Decrease news list/increase browser</source>
         <translation>Умањи листу вести/повећај претраживач</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4316"/>
+        <location filename="../src/rsslisting.cpp" line="4460"/>
         <source>Increase news list/decrease browser</source>
         <translation>Повечај листу вести/умањи претраживач</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4768"/>
+        <location filename="../src/rsslisting.cpp" line="4968"/>
         <source>Check for updates</source>
         <translation>Провери ажурирања</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4769"/>
+        <location filename="../src/rsslisting.cpp" line="4969"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Новија верзија програма...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5520"/>
-        <location filename="../src/rsslisting.cpp" line="5531"/>
+        <location filename="../src/rsslisting.cpp" line="5723"/>
+        <location filename="../src/rsslisting.cpp" line="5734"/>
         <source>Web Page</source>
         <translation>Веб лист</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2368"/>
+        <location filename="../src/rsslisting.cpp" line="2431"/>
         <source>Export canceled</source>
         <translation>Извоз поништен</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="587"/>
-        <location filename="../src/rsslisting.cpp" line="4311"/>
+        <location filename="../src/rsslisting.cpp" line="599"/>
+        <location filename="../src/rsslisting.cpp" line="4456"/>
         <source>Deleted</source>
         <translation>Избрисано</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="592"/>
-        <location filename="../src/rsslisting.cpp" line="4312"/>
+        <location filename="../src/rsslisting.cpp" line="594"/>
+        <location filename="../src/rsslisting.cpp" line="4455"/>
         <source>Starred</source>
         <translation>Са звездом</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4304"/>
-        <location filename="../src/rsslisting.cpp" line="4305"/>
+        <location filename="../src/rsslisting.cpp" line="4447"/>
+        <location filename="../src/rsslisting.cpp" line="4448"/>
         <source>Label</source>
         <translation>Етикета</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1866"/>
-        <location filename="../src/rsslisting.cpp" line="4302"/>
-        <location filename="../src/rsslisting.cpp" line="5793"/>
-        <location filename="../src/rsslisting.cpp" line="5816"/>
+        <location filename="../src/rsslisting.cpp" line="1925"/>
+        <location filename="../src/rsslisting.cpp" line="4445"/>
+        <location filename="../src/rsslisting.cpp" line="6008"/>
+        <location filename="../src/rsslisting.cpp" line="6031"/>
         <source>Hide Categories</source>
         <translation>Сакриј категорије</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="1870"/>
-        <location filename="../src/rsslisting.cpp" line="4300"/>
-        <location filename="../src/rsslisting.cpp" line="5799"/>
+        <location filename="../src/rsslisting.cpp" line="1929"/>
+        <location filename="../src/rsslisting.cpp" line="4443"/>
+        <location filename="../src/rsslisting.cpp" line="6014"/>
         <source>Show Categories</source>
         <translation>Прикажи категорије</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2374"/>
-        <source>Export: can't open a file</source>
+        <location filename="../src/rsslisting.cpp" line="2437"/>
+        <source>Export: can&apos;t open a file</source>
         <translation>Извоз: не могу да отворим датотеку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4143"/>
+        <location filename="../src/rsslisting.cpp" line="4286"/>
         <source>Mark Read/Unread</source>
         <translation>Означи Прочитаним/непрочитаним</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4153"/>
+        <location filename="../src/rsslisting.cpp" line="4296"/>
         <source>Options...</source>
         <translation>Опције...</translation>
     </message>
@@ -2112,70 +2155,70 @@
         <translation type="obsolete">Филтер</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4157"/>
-        <location filename="../src/rsslisting.cpp" line="4163"/>
+        <location filename="../src/rsslisting.cpp" line="4300"/>
+        <location filename="../src/rsslisting.cpp" line="4306"/>
         <source>Show All</source>
         <translation>Прикажи све</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4158"/>
-        <location filename="../src/rsslisting.cpp" line="4164"/>
+        <location filename="../src/rsslisting.cpp" line="4301"/>
+        <location filename="../src/rsslisting.cpp" line="4307"/>
         <source>Show New</source>
         <translation>Прикажи нове</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4159"/>
-        <location filename="../src/rsslisting.cpp" line="4165"/>
+        <location filename="../src/rsslisting.cpp" line="4302"/>
+        <location filename="../src/rsslisting.cpp" line="4308"/>
         <source>Show Unread</source>
         <translation>Прикажи непрочитане</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4172"/>
+        <location filename="../src/rsslisting.cpp" line="4315"/>
         <source>About...</source>
         <translation>О...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4187"/>
+        <location filename="../src/rsslisting.cpp" line="4330"/>
         <source>Star</source>
         <translation>Звезда</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4189"/>
+        <location filename="../src/rsslisting.cpp" line="4332"/>
         <source>Delete</source>
         <translation>Обриши</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4203"/>
+        <location filename="../src/rsslisting.cpp" line="4346"/>
         <source>&amp;File</source>
         <translation>Датотека</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4204"/>
+        <location filename="../src/rsslisting.cpp" line="4347"/>
         <source>&amp;Edit</source>
         <translation>Уреди</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4205"/>
+        <location filename="../src/rsslisting.cpp" line="4348"/>
         <source>&amp;View</source>
         <translation>Приказ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4206"/>
+        <location filename="../src/rsslisting.cpp" line="4349"/>
         <source>Fee&amp;ds</source>
         <translation>Канали</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4207"/>
+        <location filename="../src/rsslisting.cpp" line="4350"/>
         <source>&amp;News</source>
         <translation>Вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4209"/>
+        <location filename="../src/rsslisting.cpp" line="4352"/>
         <source>&amp;Tools</source>
         <translation>Алатке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4210"/>
+        <location filename="../src/rsslisting.cpp" line="4353"/>
         <source>&amp;Help</source>
         <translation>Помоћ</translation>
     </message>
@@ -2192,346 +2235,352 @@
         <translation type="obsolete">Текст</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4222"/>
+        <location filename="../src/rsslisting.cpp" line="4365"/>
         <source>System</source>
         <translation>Систем</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4231"/>
+        <location filename="../src/rsslisting.cpp" line="4374"/>
         <source>Top</source>
         <translation>Врх</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4232"/>
+        <location filename="../src/rsslisting.cpp" line="4375"/>
         <source>Bottom</source>
         <translation>Дно</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4233"/>
+        <location filename="../src/rsslisting.cpp" line="4376"/>
         <source>Right</source>
         <translation>Десно</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4234"/>
+        <location filename="../src/rsslisting.cpp" line="4377"/>
         <source>Left</source>
         <translation>Лево</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4266"/>
-        <location filename="../src/rsslisting.cpp" line="4267"/>
+        <location filename="../src/rsslisting.cpp" line="4409"/>
+        <location filename="../src/rsslisting.cpp" line="4410"/>
         <source>Search Feed</source>
         <translation>Тражи канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5140"/>
+        <location filename="../src/rsslisting.cpp" line="5343"/>
         <source>Loading...</source>
         <translation>Учитавање...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2152"/>
+        <location filename="../src/rsslisting.cpp" line="2214"/>
         <source>Delete Feed</source>
         <translation>Обриши канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2210"/>
-        <location filename="../src/rsslisting.cpp" line="2363"/>
+        <location filename="../src/rsslisting.cpp" line="2272"/>
+        <location filename="../src/rsslisting.cpp" line="2426"/>
         <source>Select OPML-File</source>
         <translation>Изаберите OPML датотеку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2212"/>
+        <location filename="../src/rsslisting.cpp" line="2274"/>
         <source>OPML-Files (*.opml *.xml)</source>
         <translation>OPML датотеке (*.opml *.xml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2365"/>
+        <location filename="../src/rsslisting.cpp" line="2428"/>
         <source>OPML-Files (*.opml)</source>
         <translation>OPML датотеке (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3934"/>
-        <location filename="../src/rsslisting.cpp" line="4128"/>
+        <location filename="../src/rsslisting.cpp" line="4047"/>
+        <location filename="../src/rsslisting.cpp" line="4271"/>
         <source>Load Images</source>
         <translation>Учитај слике</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3938"/>
-        <location filename="../src/rsslisting.cpp" line="4131"/>
+        <location filename="../src/rsslisting.cpp" line="4051"/>
+        <location filename="../src/rsslisting.cpp" line="4274"/>
         <source>No Load Images</source>
         <translation>Не учитај слике</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3939"/>
-        <location filename="../src/rsslisting.cpp" line="4132"/>
+        <location filename="../src/rsslisting.cpp" line="4052"/>
+        <location filename="../src/rsslisting.cpp" line="4275"/>
         <source>No Load Images to News View</source>
         <translation>Не учитај слике у изглед вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4100"/>
-        <location filename="../src/rsslisting.cpp" line="4559"/>
+        <location filename="../src/rsslisting.cpp" line="4243"/>
+        <location filename="../src/rsslisting.cpp" line="4759"/>
         <source>New News: %1</source>
         <translation>Нове вести: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4102"/>
-        <location filename="../src/rsslisting.cpp" line="4561"/>
+        <location filename="../src/rsslisting.cpp" line="4245"/>
+        <location filename="../src/rsslisting.cpp" line="4761"/>
         <source>Unread News: %1</source>
         <translation>Нечитане вести: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4106"/>
-        <location filename="../src/rsslisting.cpp" line="4109"/>
+        <location filename="../src/rsslisting.cpp" line="4249"/>
+        <location filename="../src/rsslisting.cpp" line="4252"/>
         <source>Add New Feed</source>
         <translation>Додај нови канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4114"/>
-        <location filename="../src/rsslisting.cpp" line="4183"/>
+        <location filename="../src/rsslisting.cpp" line="4257"/>
+        <location filename="../src/rsslisting.cpp" line="4326"/>
         <source>Open in New Tab</source>
         <translation>Отвори у новом језичку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4117"/>
+        <location filename="../src/rsslisting.cpp" line="4260"/>
         <source>Delete Selected Feed</source>
         <translation>Обриши изабран канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4119"/>
+        <location filename="../src/rsslisting.cpp" line="4262"/>
         <source>&amp;Import Feeds...</source>
         <translation>Увези канале...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4120"/>
+        <location filename="../src/rsslisting.cpp" line="4263"/>
         <source>Import Feeds from OPML File</source>
         <translation>Увези канале из OPML датотеке</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4122"/>
+        <location filename="../src/rsslisting.cpp" line="4265"/>
         <source>&amp;Export Feeds...</source>
         <translation>Извези канале...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4123"/>
+        <location filename="../src/rsslisting.cpp" line="4266"/>
         <source>Export Feeds to OPML File</source>
         <translation>Извези канале у OPML датотеку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3935"/>
-        <location filename="../src/rsslisting.cpp" line="4129"/>
+        <location filename="../src/rsslisting.cpp" line="4048"/>
+        <location filename="../src/rsslisting.cpp" line="4272"/>
         <source>Auto Load Images to News View</source>
         <translation>Ауто учитај слике у изглед вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="597"/>
-        <location filename="../src/rsslisting.cpp" line="4313"/>
+        <location filename="../src/rsslisting.cpp" line="589"/>
+        <location filename="../src/rsslisting.cpp" line="4454"/>
+        <source>Unread</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="604"/>
+        <location filename="../src/rsslisting.cpp" line="4457"/>
         <source>Labels</source>
         <translation>Етикета</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2148"/>
+        <location filename="../src/rsslisting.cpp" line="2210"/>
         <source>Delete Folder</source>
         <translation>Обрисати фасциклу</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2149"/>
-        <source>Are you sure to delete the folder '%1'?</source>
+        <location filename="../src/rsslisting.cpp" line="2211"/>
+        <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>Сигурно обрисати фасциклу „%1“?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2890"/>
-        <location filename="../src/rsslisting.cpp" line="3624"/>
-        <location filename="../src/rsslisting.cpp" line="4092"/>
+        <location filename="../src/rsslisting.cpp" line="2969"/>
+        <location filename="../src/rsslisting.cpp" line="3704"/>
+        <location filename="../src/rsslisting.cpp" line="4235"/>
         <source>Unread: %1</source>
         <translation>Нечитано: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2891"/>
-        <location filename="../src/rsslisting.cpp" line="3625"/>
-        <location filename="../src/rsslisting.cpp" line="3635"/>
-        <location filename="../src/rsslisting.cpp" line="4095"/>
-        <location filename="../src/rsslisting.cpp" line="5108"/>
-        <location filename="../src/rsslisting.cpp" line="5780"/>
+        <location filename="../src/rsslisting.cpp" line="2970"/>
+        <location filename="../src/rsslisting.cpp" line="3705"/>
+        <location filename="../src/rsslisting.cpp" line="3715"/>
+        <location filename="../src/rsslisting.cpp" line="4238"/>
+        <location filename="../src/rsslisting.cpp" line="5311"/>
+        <location filename="../src/rsslisting.cpp" line="5995"/>
         <source>All: %1</source>
         <translation>Све: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4105"/>
+        <location filename="../src/rsslisting.cpp" line="4248"/>
         <source>&amp;Add</source>
         <translation>Додај</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4112"/>
+        <location filename="../src/rsslisting.cpp" line="4255"/>
         <source>Add New Folder</source>
         <translation>Додај нову афсциклу</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4135"/>
+        <location filename="../src/rsslisting.cpp" line="4278"/>
         <source>Update Feed</source>
         <translation>Ажурирај канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4136"/>
+        <location filename="../src/rsslisting.cpp" line="4279"/>
         <source>Update Current Feed</source>
         <translation>Ажурирај тренутни канал</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4138"/>
+        <location filename="../src/rsslisting.cpp" line="4281"/>
         <source>Update All</source>
         <translation>Ажурирај све</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4139"/>
+        <location filename="../src/rsslisting.cpp" line="4282"/>
         <source>Update All Feeds</source>
         <translation>Ажурирај све канале</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4141"/>
+        <location filename="../src/rsslisting.cpp" line="4284"/>
         <source>Mark All Feeds Read</source>
         <translation>Означи све прочитаним</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4144"/>
+        <location filename="../src/rsslisting.cpp" line="4287"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Означи тренутне вести Прочитаним/непрочитаним</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4146"/>
-        <location filename="../src/rsslisting.cpp" line="4147"/>
+        <location filename="../src/rsslisting.cpp" line="4289"/>
+        <location filename="../src/rsslisting.cpp" line="4290"/>
         <source>Mark All News Read</source>
         <translation>Означи све вести прочитане</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4150"/>
+        <location filename="../src/rsslisting.cpp" line="4293"/>
         <source>News Filters...</source>
         <translation>Филтери вести...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4151"/>
+        <location filename="../src/rsslisting.cpp" line="4294"/>
         <source>Filter News...</source>
         <translation>Филтрирај вести...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4154"/>
+        <location filename="../src/rsslisting.cpp" line="4297"/>
         <source>Open Options Dialog</source>
         <translation>Отвори опције</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4156"/>
+        <location filename="../src/rsslisting.cpp" line="4299"/>
         <source>Filter Feeds</source>
         <translation>Филтрирај канале</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4160"/>
+        <location filename="../src/rsslisting.cpp" line="4303"/>
         <source>Show Starred Feeds</source>
         <translation>Прикажи канале са звездицом</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4162"/>
+        <location filename="../src/rsslisting.cpp" line="4305"/>
         <source>Filter News</source>
         <translation>Филтрирај вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4169"/>
+        <location filename="../src/rsslisting.cpp" line="4312"/>
         <source>Show Last Day</source>
         <translation>Прикажи последњи дан</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4170"/>
+        <location filename="../src/rsslisting.cpp" line="4313"/>
         <source>Show Last 7 Days</source>
         <translation>Прикажи последње седмице</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4173"/>
-        <source>Show 'About' Dialog</source>
+        <location filename="../src/rsslisting.cpp" line="4316"/>
+        <source>Show &apos;About&apos; Dialog</source>
         <translation>Прикажи дијалог „О...“</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4175"/>
+        <location filename="../src/rsslisting.cpp" line="4318"/>
         <source>Check for Updates...</source>
         <translation>Провери ажурирања...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4176"/>
+        <location filename="../src/rsslisting.cpp" line="4319"/>
         <source>Report a Problem...</source>
         <translation>Пријави проблем...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4178"/>
+        <location filename="../src/rsslisting.cpp" line="4321"/>
         <source>Open News</source>
         <translation>Отвори вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4179"/>
+        <location filename="../src/rsslisting.cpp" line="4322"/>
         <source>Open Description News</source>
         <translation>Отвори опис евсти</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4180"/>
+        <location filename="../src/rsslisting.cpp" line="4323"/>
         <source>Open in Browser</source>
         <translation>Отвори у прегледнику</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4181"/>
+        <location filename="../src/rsslisting.cpp" line="4324"/>
         <source>Open in External Browser</source>
         <translation>Отвори у спољном прегледнику</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4184"/>
+        <location filename="../src/rsslisting.cpp" line="4327"/>
         <source>Open News in New Tab</source>
         <translation>Отвори вести у новом језичку</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4185"/>
+        <location filename="../src/rsslisting.cpp" line="4328"/>
         <source>Open in Background Tab</source>
         <translation>Отвори у позадински језичак</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4186"/>
+        <location filename="../src/rsslisting.cpp" line="4329"/>
         <source>Open News in Background Tab</source>
         <translation>Отвори вести у позадински језичак</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4188"/>
+        <location filename="../src/rsslisting.cpp" line="4331"/>
         <source>Mark News Star</source>
         <translation>Постави звезду вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4190"/>
+        <location filename="../src/rsslisting.cpp" line="4333"/>
         <source>Delete Selected News</source>
         <translation>Обриши изабране вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4191"/>
+        <location filename="../src/rsslisting.cpp" line="4334"/>
         <source>Delete All News</source>
         <translation>Обриши све вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4192"/>
+        <location filename="../src/rsslisting.cpp" line="4335"/>
         <source>Delete All News from List</source>
         <translation>Обриши све вести са листе</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4193"/>
+        <location filename="../src/rsslisting.cpp" line="4336"/>
         <source>Restore</source>
         <translation>Врати</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4194"/>
+        <location filename="../src/rsslisting.cpp" line="4337"/>
         <source>Restore News</source>
         <translation>Врати вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4196"/>
+        <location filename="../src/rsslisting.cpp" line="4339"/>
         <source>Restore last deleted news</source>
         <translation>Врати последње избрисане вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4199"/>
+        <location filename="../src/rsslisting.cpp" line="4342"/>
         <source>Mark Feed Read</source>
         <translation>Маркирај канал читан</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4208"/>
+        <location filename="../src/rsslisting.cpp" line="4351"/>
         <source>&amp;Browser</source>
         <translation>Претражи</translation>
     </message>
@@ -2560,123 +2609,158 @@
         <translation type="obsolete">Мало</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4221"/>
+        <location filename="../src/rsslisting.cpp" line="4364"/>
         <source>Application Style</source>
         <translation>Стил проргама</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4223"/>
+        <location filename="../src/rsslisting.cpp" line="4366"/>
         <source>System2</source>
         <translation>System2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4224"/>
+        <location filename="../src/rsslisting.cpp" line="4367"/>
         <source>Green</source>
         <translation>Зелена</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4225"/>
+        <location filename="../src/rsslisting.cpp" line="4368"/>
         <source>Orange</source>
         <translation>Наранџасти</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4226"/>
+        <location filename="../src/rsslisting.cpp" line="4369"/>
         <source>Purple</source>
         <translation>Пурпурни</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4227"/>
+        <location filename="../src/rsslisting.cpp" line="4370"/>
         <source>Pink</source>
         <translation>Розе</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4228"/>
+        <location filename="../src/rsslisting.cpp" line="4371"/>
         <source>Gray</source>
         <translation>Сиво</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4243"/>
+        <location filename="../src/rsslisting.cpp" line="4386"/>
         <source>Next Unread News</source>
         <translation>Следећа непрочитана вест</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4244"/>
+        <location filename="../src/rsslisting.cpp" line="4387"/>
         <source>Previous Unread News</source>
         <translation>Претходна непрочитана вест</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4246"/>
+        <location filename="../src/rsslisting.cpp" line="4389"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Пребаци фокус на следеће окно</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4248"/>
+        <location filename="../src/rsslisting.cpp" line="4391"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Пребаци фокус на следеће окно (дрво, листа, претраживач)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4249"/>
+        <location filename="../src/rsslisting.cpp" line="4392"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Пребаци фокус на претходно окно</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4251"/>
+        <location filename="../src/rsslisting.cpp" line="4394"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Пребаци фокус на претходно окно (дрво, листа, претраживач)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4260"/>
+        <location filename="../src/rsslisting.cpp" line="4403"/>
         <source>Count News Unread</source>
         <translation>Број нечитане вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4261"/>
+        <location filename="../src/rsslisting.cpp" line="4404"/>
         <source>Count News All</source>
         <translation>Број свих вести</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4262"/>
+        <location filename="../src/rsslisting.cpp" line="4405"/>
         <source>Last Updated</source>
         <translation>Ажурирано</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4264"/>
+        <location filename="../src/rsslisting.cpp" line="4407"/>
         <source>Show Indentation</source>
         <translation>Покажи увлачење</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4285"/>
+        <location filename="../src/rsslisting.cpp" line="4428"/>
         <source>Show/Hide</source>
         <translation>Покажи/Сакри</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4290"/>
+        <location filename="../src/rsslisting.cpp" line="4433"/>
         <source>Panel Categories</source>
         <translation>Окно категорије</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4318"/>
+        <location filename="../src/rsslisting.cpp" line="4462"/>
         <source>Find</source>
         <translation>Нађи</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5957"/>
+        <location filename="../src/rsslisting.cpp" line="4464"/>
+        <source>Share</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4503"/>
+        <source>Important</source>
+        <translation type="unfinished">Важно</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4503"/>
+        <source>Work</source>
+        <translation type="unfinished">Посао</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4503"/>
+        <source>Personal</source>
+        <translation type="unfinished">Лично</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <source>To Do</source>
+        <translation type="unfinished">Задатак</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <source>Later</source>
+        <translation type="unfinished">Касније</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <source>Amusingly</source>
+        <translation type="unfinished">Занимљиво</translation>
+    </message>
+    <message>
+        <location filename="../src/rsslisting.cpp" line="6172"/>
         <source>Save As</source>
         <translation>Сачувај као</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5959"/>
+        <location filename="../src/rsslisting.cpp" line="6174"/>
         <source>HTML-Files (*.html)</source>
         <translation>HTML-датотеке (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5960"/>
+        <location filename="../src/rsslisting.cpp" line="6175"/>
         <source>Text files (*.txt)</source>
         <translation>Текстуалне датотеке (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5965"/>
-        <source>Save As: can't open a file</source>
+        <location filename="../src/rsslisting.cpp" line="6180"/>
+        <source>Save As: can&apos;t open a file</source>
         <translation>Сачувај као: не могу да отворим датотеку</translation>
     </message>
 </context>
@@ -2699,7 +2783,7 @@
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="33"/>
-        <source>Don't remind about this version</source>
+        <source>Don&apos;t remind about this version</source>
         <translation>Не обавести за ову верзију</translation>
     </message>
     <message>
