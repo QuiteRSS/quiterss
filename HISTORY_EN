@@ -2,6 +2,35 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.12.3+</B> (xx Mar 2013)
+<UL>
+<LI>Added: Feed option "Authorization"<LI>
+<LI>Added: Program option "Minimal font size in browser"</LI>
+<LI>Added: Category "Unread"</LI>
+<LI>Added: Share news: LiveJournal, Pocket, Twitter</LI>
+<LI>Added: Language: Korean</LI>
+<LI>Added: Language: Lithuanian</LI>
+<LI>Added: Language: Portuguese (Brazil)</LI>
+<BR>
+<LI>Changed: GUI. Visual tweaks</LI>
+<LI>Changed: Increase performance of updating news</LI>
+<LI>Changed: Display feed's title in "Feed" column in news list</LI>
+<BR>
+<LI>Fixed: Application crash while dragging feeds/folders</LI>
+<LI>Fixed: Application crash while pressing SPACE in tab which contains news</LI>
+<LI>Fixed: Moving focus to tab just has been opened</LI>
+<LI>Fixed: Import feeds with deep folder's structure</LI>
+<LI>Fixed: Export feeds</LI>
+<LI>Fixed: Application crash while loading flash in embedded browser</LI>
+<LI>Fixed: Authorization</LI>
+<LI>Fixed: Show images with relative path</LI>
+<LI>Fixed: Open news with spacial chars in URL</LI>
+<LI>Fixed: Restore column's width of news list when use vertical layout</LI>
+<LI>Fixed: Using hotkeys for labels</LI>
+<LI>Fixed: Stop automatic read timer after news has marked read</LI>
+<LI>Fixed: Viewing image while flash playing (Windows)</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.12.3</B> (16 Mar 2013)
 <UL>
 <LI>Main: Increase productivity</LI>
