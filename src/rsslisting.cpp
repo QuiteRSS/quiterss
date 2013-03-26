@@ -588,7 +588,7 @@ void RSSListing::createFeedsWidget()
   treeItem.clear();
   treeItem << tr("Unread") << QString::number(TAB_CAT_UNREAD) << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/folder"));
+  treeWidgetItem->setIcon(0, QIcon(":/images/bulletUnread"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
