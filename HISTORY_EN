@@ -7,6 +7,7 @@
 <LI>Added: Feed option "Authorization"</LI>
 <LI>Added: Program option "Minimal font size in browser"</LI>
 <LI>Added: Category "Unread"</LI>
+<LI>Added: Update feed on double click</LI>
 <LI>Added: Share news: LiveJournal, Pocket, Twitter</LI>
 <LI>Added: Language: Korean</LI>
 <LI>Added: Language: Lithuanian</LI>
@@ -29,6 +30,7 @@
 <LI>Fixed: Using shortcuts for labels</LI>
 <LI>Fixed: Stop automatic read timer after news has marked read</LI>
 <LI>Fixed: Viewing image while flash playing (Windows)</LI>
+<LI>Fixed: Deleting folder with shortcut</LI>
 </UL>
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.12.3</B> (16 Mar 2013)
