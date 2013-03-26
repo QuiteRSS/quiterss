@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>La requête a échoué!</translation>
     </message>
 </context>
 <context>
@@ -339,17 +339,9 @@
         <translation>Charger titre du flux</translation>
     </message>
     <message>
-        <source>Display feed in new tab on startup</source>
-        <translation type="obsolete">Montrer flux dans un nouvel onglet au démarrage</translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Montrer la description des articles au lieu de charger la page web</translation>
-    </message>
-    <message>
-        <source>Automatically delete duplicates news</source>
-        <translation type="obsolete">Supprimer automatiquement les articles en double</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
@@ -379,7 +371,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Authentification</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
@@ -394,17 +386,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">Le serveur requiert une authentification :</translation>
+        <translation>Le serveur requiert une authentification :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">Nom d&apos;utilisateur :</translation>
+        <translation>Nom d&apos;utilisateur :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">Mot de passe :</translation>
+        <translation>Mot de passe :</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
@@ -1156,10 +1148,6 @@
         <translation>Utiliser le navigateur intégré</translation>
     </message>
     <message>
-        <source>Use following external browser:</source>
-        <translation type="obsolete">Utiliser le navigateur externe suivant :</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="335"/>
         <location filename="../src/optionsdialog.cpp" line="635"/>
         <source>Browse...</source>
@@ -1328,16 +1316,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>Police du titre des articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News panel font (Title, Author)</source>
-        <translation type="obsolete">Police du panneau d&apos;articles (titre, auteur)</translation>
+        <translation>Police du texte des articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -1524,10 +1508,6 @@
         <translation>Raccourcis clavier</translation>
     </message>
     <message>
-        <source>Use standard external browser</source>
-        <translation type="obsolete">Utiliser le navigateur externe par défaut</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="501"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>Marquer les articles affichés comme lus lors du passage à un autre flux</translation>
@@ -1583,10 +1563,6 @@
         <translation>Police de la liste des articles</translation>
     </message>
     <message>
-        <source>News font</source>
-        <translation type="obsolete">Police du texte des articles</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="974"/>
         <source>Change...</source>
         <translation>Modifier...</translation>
@@ -1600,12 +1576,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille minimale de la police du navigateur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille minimale de la police logique du navigateur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2079,37 +2055,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Partager</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">Important</translation>
+        <translation>Important</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">Travail</translation>
+        <translation>Travail</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">Personnel</translation>
+        <translation>Personnel</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">À faire</translation>
+        <translation>À faire</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">Plus tard</translation>
+        <translation>Plus tard</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">Amusant</translation>
+        <translation>Amusant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4968"/>
@@ -2181,10 +2157,6 @@
         <translation>Configuration...</translation>
     </message>
     <message>
-        <source>Filter</source>
-        <translation type="obsolete">Filtre</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4300"/>
         <location filename="../src/rsslisting.cpp" line="4306"/>
         <source>Show All</source>
@@ -2251,18 +2223,6 @@
         <location filename="../src/rsslisting.cpp" line="4353"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
-    </message>
-    <message>
-        <source>Style</source>
-        <translation type="obsolete">Style</translation>
-    </message>
-    <message>
-        <source>Icon</source>
-        <translation type="obsolete">Icônes seules</translation>
-    </message>
-    <message>
-        <source>Text</source>
-        <translation type="obsolete">Texte seul</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4365"/>
@@ -2398,7 +2358,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Non lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2603,30 +2563,6 @@
         <location filename="../src/rsslisting.cpp" line="4351"/>
         <source>&amp;Browser</source>
         <translation>&amp;Navigateur</translation>
-    </message>
-    <message>
-        <source>Text Beside Icon</source>
-        <translation type="obsolete">Texte contre les icônes</translation>
-    </message>
-    <message>
-        <source>Text Under Icon</source>
-        <translation type="obsolete">Texte sous les icônes</translation>
-    </message>
-    <message>
-        <source>Icon Size</source>
-        <translation type="obsolete">Taille des icônes</translation>
-    </message>
-    <message>
-        <source>Big</source>
-        <translation type="obsolete">Grande</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="obsolete">Moyenne</translation>
-    </message>
-    <message>
-        <source>Small</source>
-        <translation type="obsolete">Petite</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4364"/>

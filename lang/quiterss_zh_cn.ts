@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -140,7 +138,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>请求失败！</translation>
     </message>
 </context>
 <context>
@@ -326,7 +324,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>身份验证</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="16"/>
@@ -351,17 +349,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">服务器要求身份验证: </translation>
+        <translation>服务器要求身份验证: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">用户名: </translation>
+        <translation>用户名: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">密码: </translation>
+        <translation>密码: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
@@ -376,7 +374,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="130"/>
         <source>News count:</source>
-        <translation>新闻统计：</translation>
+        <translation>消息统计：</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
@@ -1045,7 +1043,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation>存储在内存中一个DB(需要程序重新启动)</translation>
+        <translation>存储一个数据库(DB)在内存中(需要程序重新启动)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="215"/>
@@ -1171,7 +1169,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="341"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>在外部浏览器后台打开链接（实验性）</translation>
+        <translation>在外部浏览器后台打开链接(实验性)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1316,16 +1314,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>消息标题字体</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News panel font (Title, Author)</source>
-        <translation type="obsolete">消息面板字体（标题，作者）</translation>
+        <translation>消息文本字体</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -1567,10 +1561,6 @@
         <translation>消息列表字体</translation>
     </message>
     <message>
-        <source>News font</source>
-        <translation type="obsolete">消息字体</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="974"/>
         <source>Change...</source>
         <translation>更改...</translation>
@@ -1584,12 +1574,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览器最小字体大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览器最小合理的字体大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2327,7 +2317,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>未读</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2631,37 +2621,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>分享</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">重要</translation>
+        <translation>重要</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">工作</translation>
+        <translation>工作</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">个人</translation>
+        <translation>个人</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">计划</translation>
+        <translation>计划</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">以后</translation>
+        <translation>以后</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">有趣的</translation>
+        <translation>有趣的</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>
