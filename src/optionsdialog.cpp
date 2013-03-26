@@ -937,7 +937,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "0" << QString::fromUtf8("中文 (zh_CN)")
-           << "0.12.3"
+           << "0.12.4"
            << QString::fromUtf8("wwj402") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_CN"));

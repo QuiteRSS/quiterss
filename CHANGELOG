@@ -1,11 +1,10 @@
-Version 0.12.3+ (xx Mar 2013) 
+Version 0.12.4 (26 Mar 2013)
 	* Added: Feed option "Authorization" 
 	* Added: Program option "Minimal font size in browser" 
 	* Added: Category "Unread" 
 	* Added: Share news: LiveJournal, Pocket, Twitter 
 	* Added: Language: Korean 
-	* Added: Language: Lithuanian 
-	* Added: Language: Portuguese (Brazil) 
+	* Added: Language: Lithuanian
 	* Changed: GUI. Visual tweaks 
 	* Changed: Increase performance of updating news 
 	* Changed: Display feed's title in "Feed" column in news list
