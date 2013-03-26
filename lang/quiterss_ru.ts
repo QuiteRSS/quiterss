@@ -51,7 +51,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="12"/>
         <source>Add Feed</source>
-        <translation>Добавление новостной ленты</translation>
+        <translation>Добавление ленты</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="70"/>
@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="156"/>
         <source>Feeds</source>
-        <translation>Новостные ленты</translation>
+        <translation>Ленты</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="160"/>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="20"/>
         <source>Feeds</source>
-        <translation>Новостные ленты</translation>
+        <translation>Ленты</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
@@ -214,7 +214,7 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>Настройка панели новостных лент</translation>
+        <translation>Настройка панели лент</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="24"/>
         <source>Feeds</source>
-        <translation>Новостные ленты</translation>
+        <translation>Ленты</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="94"/>
@@ -754,7 +754,7 @@
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="25"/>
         <source>Feeds</source>
-        <translation>Новостные ленты</translation>
+        <translation>Ленты</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="25"/>
@@ -1010,7 +1010,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="50"/>
         <source>Feeds</source>
-        <translation>Новостные ленты</translation>
+        <translation>Ленты</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
@@ -1790,7 +1790,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2215"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
-        <translation>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</translation>
+        <translation>Вы действительно хотите удалить ленту &quot;%1&quot;?</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2277"/>
@@ -1805,7 +1805,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4251"/>
         <source>&amp;Feed...</source>
-        <translation>Новостную &amp;ленту...</translation>
+        <translation>&amp;Ленту...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4254"/>
@@ -1877,7 +1877,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4359"/>
         <source>Feeds Toolbar...</source>
-        <translation>Панель новостных лент...</translation>
+        <translation>Панель лент...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4360"/>
@@ -2023,7 +2023,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4430"/>
         <source>Feeds Toolbar</source>
-        <translation>Панель новостных лент</translation>
+        <translation>Панель лент</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4431"/>
@@ -2201,7 +2201,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4349"/>
         <source>Fee&amp;ds</source>
-        <translation>Новостные &amp;ленты</translation>
+        <translation>&amp;Ленты</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4350"/>
@@ -2269,7 +2269,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="2214"/>
         <source>Delete Feed</source>
-        <translation>Удаление новостной ленты</translation>
+        <translation>Удаление ленты</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2272"/>
@@ -2321,7 +2321,7 @@
         <location filename="../src/rsslisting.cpp" line="4249"/>
         <location filename="../src/rsslisting.cpp" line="4252"/>
         <source>Add New Feed</source>
-        <translation>Добавить новую новостную ленту</translation>
+        <translation>Добавить новую ленту</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4257"/>
@@ -2332,27 +2332,27 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4260"/>
         <source>Delete Selected Feed</source>
-        <translation>Удалить новостную ленту</translation>
+        <translation>Удалить ленту</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4262"/>
         <source>&amp;Import Feeds...</source>
-        <translation>&amp;Импортировать новостные ленты...</translation>
+        <translation>&amp;Импортировать ленты...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4263"/>
         <source>Import Feeds from OPML File</source>
-        <translation>Импортировать новостные ленты из OPML-файла</translation>
+        <translation>Импортировать ленты из OPML-файла</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4265"/>
         <source>&amp;Export Feeds...</source>
-        <translation>&amp;Экспортировать новостные ленты...</translation>
+        <translation>&amp;Экспортировать ленты...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4266"/>
         <source>Export Feeds to OPML File</source>
-        <translation>Экспортировать новостные ленты из OPML-файла</translation>
+        <translation>Экспортировать ленты из OPML-файла</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4048"/>
@@ -2417,7 +2417,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4279"/>
         <source>Update Current Feed</source>
-        <translation>Обновить выбранную новостную ленту</translation>
+        <translation>Обновить выбранную ленту</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4281"/>
@@ -2427,7 +2427,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4282"/>
         <source>Update All Feeds</source>
-        <translation>Обновить все новостные ленты</translation>
+        <translation>Обновить все ленты</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4284"/>
@@ -2463,7 +2463,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4299"/>
         <source>Filter Feeds</source>
-        <translation>Фильтр новостных лент</translation>
+        <translation>Фильтр лент</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4303"/>
