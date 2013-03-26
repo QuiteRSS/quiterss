@@ -804,43 +804,43 @@
         <location filename="../src/newsheader.cpp" line="54"/>
         <location filename="../src/newsheader.cpp" line="381"/>
         <source>Title</source>
-        <translation type="unfinished"/>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="55"/>
         <location filename="../src/newsheader.cpp" line="382"/>
         <source>Published</source>
-        <translation type="unfinished"/>
+        <translation>Publicado</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="56"/>
         <location filename="../src/newsheader.cpp" line="383"/>
         <source>Received</source>
-        <translation type="unfinished"/>
+        <translation>Recebido</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="57"/>
         <location filename="../src/newsheader.cpp" line="384"/>
         <source>Author</source>
-        <translation type="unfinished"/>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="58"/>
         <location filename="../src/newsheader.cpp" line="385"/>
         <source>Category</source>
-        <translation type="unfinished"/>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="59"/>
         <location filename="../src/newsheader.cpp" line="386"/>
         <source>Read</source>
-        <translation type="unfinished"/>
+        <translation>Ler</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="60"/>
         <location filename="../src/newsheader.cpp" line="387"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>Estrela</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="61"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="../src/notifications.h" line="27"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como lido/não lido</translation>
     </message>
 </context>
 <context>
@@ -862,7 +862,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="428"/>
         <source>Loading... (%p%)</source>
-        <translation type="unfinished"/>
+        <translation>Carregando... (%p%)</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1070"/>
@@ -872,7 +872,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="430"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Início</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="431"/>
@@ -887,47 +887,47 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="434"/>
         <source>Open Link</source>
-        <translation type="unfinished"/>
+        <translation>Abrir Link</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="435"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Abrir em uma Nova Aba</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="436"/>
         <source>Save Link...</source>
-        <translation type="unfinished"/>
+        <translation>Salvar Link...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="437"/>
         <source>Copy Link</source>
-        <translation type="unfinished"/>
+        <translation>Copiar Link</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="438"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="439"/>
         <source>Go Back</source>
-        <translation type="unfinished"/>
+        <translation>Voltar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="440"/>
         <source>Go Forward</source>
-        <translation type="unfinished"/>
+        <translation>Avançar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="441"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Parar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="442"/>
         <source>Reload</source>
-        <translation type="unfinished"/>
+        <translation>Atualizar</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="443"/>
@@ -942,7 +942,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="453"/>
         <source>Close Tab</source>
-        <translation type="unfinished"/>
+        <translation>Fechar Aba</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1086"/>
@@ -970,14 +970,14 @@
     <message>
         <location filename="../src/notifications.cpp" line="105"/>
         <source>Incoming News: %1</source>
-        <translation type="unfinished"/>
+        <translation>Novas Notícias: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="168"/>
         <location filename="../src/notifications.cpp" line="218"/>
         <location filename="../src/notifications.cpp" line="230"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"/>
+        <translation>Página %1 de %2</translation>
     </message>
 </context>
 <context>
@@ -985,22 +985,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="9"/>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Opções</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="44"/>
         <source>Network Connections</source>
-        <translation type="unfinished"/>
+        <translation>Conexões de Rede</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="47"/>
         <source>Browser</source>
-        <translation type="unfinished"/>
+        <translation>Visualizar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="50"/>
         <source>Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Feeds</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="53"/>
@@ -1012,7 +1012,7 @@
         <location filename="../src/optionsdialog.cpp" line="56"/>
         <location filename="../src/optionsdialog.cpp" line="1077"/>
         <source>Notifications</source>
-        <translation type="unfinished"/>
+        <translation>Notificações</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="59"/>
@@ -1023,17 +1023,17 @@
         <location filename="../src/optionsdialog.cpp" line="62"/>
         <location filename="../src/optionsdialog.cpp" line="790"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Linguagem</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="65"/>
         <source>Fonts</source>
-        <translation type="unfinished"/>
+        <translation>Fontes</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="188"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>Reabrir últimos feeds abertos quando inicializar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
@@ -1043,102 +1043,102 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"/>
+        <translation>Armazenar um Banco de Dados na memória (requer reinicialização do programa)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="215"/>
         <source>starting QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>iniciar QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="216"/>
         <source>minimizing QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>minimizar QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="217"/>
         <source>closing QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>fechar QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="224"/>
         <source>Show static icon</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar ícone na bandeja</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="225"/>
         <source>Change icon for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Mudar ícone na entrada de novas notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="226"/>
         <source>Show count of new news</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar contagem de novas notícias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="227"/>
         <source>Show count of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar contagem de notícias não lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="236"/>
         <source>Single click instead of double click for show window</source>
-        <translation type="unfinished"/>
+        <translation>Único clique em vez de duplo clique para mostrar janela</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="237"/>
         <source>Clear status new on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Limpar status novo ao minimizar para bandeja</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="238"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Esvaziar conjunto de trabalho ao minimizar para bandeja</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="241"/>
         <source>Move to the system tray when:</source>
-        <translation type="unfinished"/>
+        <translation>Mover para a bandeja do sistema quando:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="243"/>
         <source>Tray icon behavior:</source>
-        <translation type="unfinished"/>
+        <translation>Comportamento do ícone de bandeja:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>System proxy configuration (if available)</source>
-        <translation type="unfinished"/>
+        <translation>Configuração proxy do sistema (se disponível)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="270"/>
         <source>Direct connection to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>Conexão direta com a internet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="271"/>
         <source>Manual proxy configuration:</source>
-        <translation type="unfinished"/>
+        <translation>Configuração manual do proxy:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="287"/>
         <source>Proxy server:</source>
-        <translation type="unfinished"/>
+        <translation>Servidor proxy:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="289"/>
         <source>Port:</source>
-        <translation type="unfinished"/>
+        <translation>Porta:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Usuário:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Senha:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="329"/>
