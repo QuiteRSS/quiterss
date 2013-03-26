@@ -588,7 +588,7 @@ void RSSListing::createFeedsWidget()
   treeItem.clear();
   treeItem << tr("Unread") << QString::number(TAB_CAT_UNREAD) << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/folder"));
+  treeWidgetItem->setIcon(0, QIcon(":/images/bulletUnread"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
@@ -682,6 +682,8 @@ void RSSListing::createFeedsWidget()
           this, SLOT(slotFeedClicked(QModelIndex)));
   connect(feedsTreeView_, SIGNAL(signalMiddleClicked()),
           this, SLOT(slotOpenFeedNewTab()));
+  connect(feedsTreeView_, SIGNAL(signalDoubleClicked()),
+          this, SLOT(slotGetFeed()));
   connect(feedsTreeView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));

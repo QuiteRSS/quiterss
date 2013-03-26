@@ -187,10 +187,17 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
 /*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  QyurSqlTreeView::mouseDoubleClickEvent(event);
-//  if (!indexAt(event->pos()).isValid()) return;
+  QModelIndex index = indexAt(event->pos());
+  QRect rectText = visualRect(index);
 
-//  emit signalDoubleClicked(indexAt(event->pos()));
+  if (!index.isValid()) return;
+  if (!(event->pos().x() >= rectText.x()) ||
+      (((FeedsTreeModel*)model())->isFolder(index))) {
+    QyurSqlTreeView::mouseDoubleClickEvent(event);
+    return;
+  }
+
+  emit signalDoubleClicked();
 }
 
 /*virtual*/ void FeedsTreeView::keyPressEvent(QKeyEvent *event)

@@ -90,11 +90,11 @@
 </phrase>
 <phrase>
     <source>Delete selected feed</source>
-    <target>Удалить новостную ленту</target>
+    <target>Удалить ленту</target>
 </phrase>
 <phrase>
     <source>Add new feed</source>
-    <target>Добавить новую новостную ленту</target>
+    <target>Добавить новую ленту</target>
 </phrase>
 <phrase>
     <source>&amp;View</source>
@@ -146,11 +146,11 @@
 </phrase>
 <phrase>
     <source>&amp;Import feeds...</source>
-    <target>&amp;Импортировать новостные ленты...</target>
+    <target>&amp;Импортировать ленты...</target>
 </phrase>
 <phrase>
     <source>Import feeds from OPML file</source>
-    <target>Импортировать новостные ленты из OPML-файла</target>
+    <target>Импортировать ленты из OPML-файла</target>
 </phrase>
 <phrase>
     <source>Proxy enabled</source>
@@ -174,7 +174,7 @@
 </phrase>
 <phrase>
     <source>Feeds</source>
-    <target>Новостные ленты</target>
+    <target>Ленты</target>
 </phrase>
 <phrase>
     <source>Update</source>
@@ -182,7 +182,7 @@
 </phrase>
 <phrase>
     <source>Update current feed</source>
-    <target>Обновить выбранную новостную ленту</target>
+    <target>Обновить выбранную ленту</target>
 </phrase>
 <phrase>
     <source>Update all</source>
@@ -190,7 +190,7 @@
 </phrase>
 <phrase>
     <source>Update all feeds</source>
-    <target>Обновить все новостные ленты</target>
+    <target>Обновить все ленты</target>
 </phrase>
 <phrase>
     <source> All: </source>
@@ -250,7 +250,7 @@
 </phrase>
 <phrase>
     <source>Are you sure to delete the feed &apos;%1&apos;?</source>
-    <target>Вы действительно хотите удалить новостную ленту &quot;%1&quot;?</target>
+    <target>Вы действительно хотите удалить ленту &quot;%1&quot;?</target>
 </phrase>
 <phrase>
     <source>Username:</source>
@@ -266,7 +266,7 @@
 </phrase>
 <phrase>
     <source>Delete feed</source>
-    <target>Удаление новостной ленты</target>
+    <target>Удаление ленты</target>
 </phrase>
 <phrase>
     <source>Options</source>
@@ -274,7 +274,7 @@
 </phrase>
 <phrase>
     <source>Add feed</source>
-    <target>Добавление новостной ленты</target>
+    <target>Добавление ленты</target>
 </phrase>
 <phrase>
     <source>author</source>
@@ -715,11 +715,11 @@
 </phrase>
 <phrase>
     <source>&amp;Export feeds...</source>
-    <target>&amp;Экспортировать новостные ленты...</target>
+    <target>&amp;Экспортировать ленты...</target>
 </phrase>
 <phrase>
     <source>Export feeds to OPML file</source>
-    <target>Экспортировать новостные ленты из OPML-файла</target>
+    <target>Экспортировать ленты из OPML-файла</target>
 </phrase>
 <phrase>
     <source>Loading history...</source>
@@ -1515,7 +1515,7 @@
 </phrase>
 <phrase>
     <source>&amp;Feed...</source>
-    <target>Новостную &amp;ленту...</target>
+    <target>&amp;Ленту...</target>
 </phrase>
 <phrase>
     <source>F&amp;older...</source>
@@ -1647,7 +1647,7 @@
 </phrase>
 <phrase>
     <source>Feeds Toolbar</source>
-    <target>Панель новостных лент</target>
+    <target>Панель лент</target>
 </phrase>
 <phrase>
     <source>Categories</source>
@@ -1763,7 +1763,7 @@
 </phrase>
 <phrase>
     <source>Customize Feeds Toolbar</source>
-    <target>Настройка панели новостных лент</target>
+    <target>Настройка панели лент</target>
 </phrase>
 <phrase>
     <source>Customize News Toolbar</source>
@@ -1832,5 +1832,13 @@
 <phrase>
     <source>Request failed!</source>
     <target>Не удалось выполнить запрос!</target>
+</phrase>
+<phrase>
+    <source>Fee&amp;ds</source>
+    <target>&amp;Ленты</target>
+</phrase>
+<phrase>
+    <source>Filter Feeds</source>
+    <target>Фильтр лент</target>
 </phrase>
 </QPH>
