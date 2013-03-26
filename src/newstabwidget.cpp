@@ -374,13 +374,13 @@ void NewsTabWidget::setSettings(bool newTab)
   if (newTab) {
     if (type_ != TAB_WEB) {
       newsView_->setFont(
-            QFont(rsslisting_->newsFontFamily_, rsslisting_->newsFontSize_));
+            QFont(rsslisting_->newsListFontFamily_, rsslisting_->newsListFontSize_));
       newsModel_->formatDate_ = rsslisting_->formatDate_;
       newsModel_->formatTime_ = rsslisting_->formatTime_;
     }
 
     webView_->settings()->setFontFamily(
-          QWebSettings::StandardFont, rsslisting_->webFontFamily_);
+          QWebSettings::StandardFont, rsslisting_->newsTextFontFamily_);
 
     webView_->settings()->setFontSize(
           QWebSettings::MinimumFontSize, rsslisting_->browserMinFontSize_);
@@ -1098,10 +1098,10 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     file.setFileName(":/html/description");
     file.open(QFile::ReadOnly);
     QString htmlStr = QString::fromUtf8(file.readAll()).
-        arg(rsslisting_->webFontFamily_).
-        arg(rsslisting_->webFontSize_).
-        arg(rsslisting_->titleNewsFontFamily_).
-        arg(rsslisting_->titleNewsFontSize_).
+        arg(rsslisting_->newsTextFontFamily_).
+        arg(rsslisting_->newsTextFontSize_).
+        arg(rsslisting_->newsTitleFontFamily_).
+        arg(rsslisting_->newsTitleFontSize_).
         arg(0).
         arg(qApp->palette().color(QPalette::Dark).name()).
         arg(QString("<a href='%1' class='unread'>%2</a>").

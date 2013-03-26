@@ -1745,12 +1745,12 @@ void RSSListing::readSettings()
   feedsTreeView_->setFont(QFont(fontFamily, fontSize));
   feedsTreeModel_->font_ = feedsTreeView_->font();
 
-  newsFontFamily_ = settings_->value("/newsFontFamily", qApp->font().family()).toString();
-  newsFontSize_ = settings_->value("/newsFontSize", 8).toInt();
-  titleNewsFontFamily_ = settings_->value("/titleNewsFontFamily", qApp->font().family()).toString();
-  titleNewsFontSize_ = settings_->value("/titleNewsFontSize", 10).toInt();
-  webFontFamily_ = settings_->value("/WebFontFamily", qApp->font().family()).toString();
-  webFontSize_ = settings_->value("/WebFontSize", 10).toInt();
+  newsListFontFamily_ = settings_->value("/newsFontFamily", qApp->font().family()).toString();
+  newsListFontSize_ = settings_->value("/newsFontSize", 8).toInt();
+  newsTitleFontFamily_ = settings_->value("/newsTitleFontFamily", qApp->font().family()).toString();
+  newsTitleFontSize_ = settings_->value("/newsTitleFontSize", 10).toInt();
+  newsTextFontFamily_ = settings_->value("/newsTextFontFamily", qApp->font().family()).toString();
+  newsTextFontSize_ = settings_->value("/newsTextFontSize", 10).toInt();
   notificationFontFamily_ = settings_->value("/notificationFontFamily", qApp->font().family()).toString();
   notificationFontSize_ = settings_->value("/notificationFontSize", 8).toInt();
   browserMinFontSize_ = settings_->value("/browserMinFontSize", 0).toInt();
@@ -1974,12 +1974,12 @@ void RSSListing::writeSettings()
   int fontSize = feedsTreeView_->font().pointSize();
   settings_->setValue("/feedsFontSize", fontSize);
 
-  settings_->setValue("/newsFontFamily", newsFontFamily_);
-  settings_->setValue("/newsFontSize", newsFontSize_);
-  settings_->setValue("/titleNewsFontFamily", titleNewsFontFamily_);
-  settings_->setValue("/titleNewsFontSize", titleNewsFontSize_);
-  settings_->setValue("/WebFontFamily", webFontFamily_);
-  settings_->setValue("/WebFontSize", webFontSize_);
+  settings_->setValue("/newsFontFamily", newsListFontFamily_);
+  settings_->setValue("/newsFontSize", newsListFontSize_);
+  settings_->setValue("/newsTitleFontFamily", newsTitleFontFamily_);
+  settings_->setValue("/newsTitleFontSize", newsTitleFontSize_);
+  settings_->setValue("/newsTextFontFamily", newsTextFontFamily_);
+  settings_->setValue("/newsTextFontSize", newsTextFontSize_);
   settings_->setValue("/notificationFontFamily", notificationFontFamily_);
   settings_->setValue("/notificationFontSize", notificationFontSize_);
   settings_->setValue("/browserMinFontSize", browserMinFontSize_);
@@ -3249,11 +3249,11 @@ void RSSListing::showOptionDlg()
       arg(feedsTreeView_->font().family()).
       arg(feedsTreeView_->font().pointSize());
   optionsDialog->fontsTree_->topLevelItem(0)->setText(2, strFont);
-  strFont = QString("%1, %2").arg(newsFontFamily_).arg(newsFontSize_);
+  strFont = QString("%1, %2").arg(newsListFontFamily_).arg(newsListFontSize_);
   optionsDialog->fontsTree_->topLevelItem(1)->setText(2, strFont);
-  strFont = QString("%1, %2").arg(titleNewsFontFamily_).arg(titleNewsFontSize_);
+  strFont = QString("%1, %2").arg(newsTitleFontFamily_).arg(newsTitleFontSize_);
   optionsDialog->fontsTree_->topLevelItem(2)->setText(2, strFont);
-  strFont = QString("%1, %2").arg(webFontFamily_).arg(webFontSize_);
+  strFont = QString("%1, %2").arg(newsTextFontFamily_).arg(newsTextFontSize_);
   optionsDialog->fontsTree_->topLevelItem(3)->setText(2, strFont);
   strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
   optionsDialog->fontsTree_->topLevelItem(4)->setText(2, strFont);
@@ -3468,12 +3468,12 @@ void RSSListing::showOptionDlg()
   feedsTreeView_->setFont(font);
   feedsTreeModel_->font_ = font;
 
-  newsFontFamily_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 0, 0);
-  newsFontSize_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 1).toInt();
-  titleNewsFontFamily_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 0, 0);
-  titleNewsFontSize_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 1).toInt();
-  webFontFamily_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 0, 0);
-  webFontSize_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 1).toInt();
+  newsListFontFamily_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 0, 0);
+  newsListFontSize_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 1).toInt();
+  newsTitleFontFamily_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 0, 0);
+  newsTitleFontSize_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 1).toInt();
+  newsTextFontFamily_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 0, 0);
+  newsTextFontSize_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 1).toInt();
   notificationFontFamily_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
   notificationFontSize_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
 

@@ -98,12 +98,12 @@ public:
   QMenu *newsLabelMenu_;
   QMenu *shareMenu_;
 
-  QString newsFontFamily_;
-  int newsFontSize_;
-  QString titleNewsFontFamily_;
-  int titleNewsFontSize_;
-  QString webFontFamily_;
-  int webFontSize_;
+  QString newsListFontFamily_;
+  int newsListFontSize_;
+  QString newsTitleFontFamily_;
+  int newsTitleFontSize_;
+  QString newsTextFontFamily_;
+  int newsTextFontSize_;
   QString notificationFontFamily_;
   int notificationFontSize_;
   int browserMinFontSize_;
