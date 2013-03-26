@@ -105,6 +105,8 @@
         <file>images/share_twitter.png</file>
         <file alias="flag_KO">images/flag_south_korea.png</file>
         <file>images/share_pocket.png</file>
+        <file alias="flag_BR">images/flag_brazil.png</file>
+        <file alias="flag_LT">images/flag_lithuania.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
