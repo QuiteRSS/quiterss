@@ -682,6 +682,8 @@ void RSSListing::createFeedsWidget()
           this, SLOT(slotFeedClicked(QModelIndex)));
   connect(feedsTreeView_, SIGNAL(signalMiddleClicked()),
           this, SLOT(slotOpenFeedNewTab()));
+  connect(feedsTreeView_, SIGNAL(signalDoubleClicked()),
+          this, SLOT(slotGetFeed()));
   connect(feedsTreeView_, SIGNAL(pressKeyUp()), this, SLOT(slotFeedUpPressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyDown()), this, SLOT(slotFeedDownPressed()));
   connect(feedsTreeView_, SIGNAL(pressKeyHome()), this, SLOT(slotFeedHomePressed()));

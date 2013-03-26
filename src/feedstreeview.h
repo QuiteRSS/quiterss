@@ -37,7 +37,7 @@ protected:
   void paintEvent(QPaintEvent *event);
 
 signals:
-  void signalDoubleClicked(QModelIndex index);
+  void signalDoubleClicked();
   void signalMiddleClicked();
   void pressKeyUp();
   void pressKeyDown();
