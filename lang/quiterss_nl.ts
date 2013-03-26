@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aanvraag mislukt!</translation>
     </message>
 </context>
 <context>
@@ -379,7 +379,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificatie</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
@@ -394,17 +394,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">Server vereist verificatie:</translation>
+        <translation>Server vereist verificatie:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">Gebruikersnaam:</translation>
+        <translation>Gebruikersnaam:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">Wachtwoord:</translation>
+        <translation>Wachtwoord:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
@@ -1332,12 +1332,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuws titel lettertype</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieuws text lettertype</translation>
     </message>
     <message>
         <source>News panel font (Title, Author)</source>
@@ -1608,12 +1608,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale lettertype grootte voor browser</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimale logische lettergrootte voor browser</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2368,7 +2368,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Ongelezen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2711,37 +2711,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Delen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">Belangrijk</translation>
+        <translation>Belangrijk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">Werk</translation>
+        <translation>Werk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">Persoonlijk</translation>
+        <translation>Persoonlijk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">Te Doen</translation>
+        <translation>Te Doen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">Later</translation>
+        <translation>Later</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">Vermakelijk</translation>
+        <translation>Vermakelijk</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>

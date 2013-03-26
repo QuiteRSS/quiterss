@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось выполнить запрос!</translation>
     </message>
 </context>
 <context>
@@ -375,7 +375,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Авторизация</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
@@ -390,17 +390,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">Сервер требует авторизации:</translation>
+        <translation>Сервер требует авторизации:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">Имя пользователя:</translation>
+        <translation>Имя пользователя:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">Пароль:</translation>
+        <translation>Пароль:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
@@ -1328,12 +1328,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт заголовка новости</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт текста новости</translation>
     </message>
     <message>
         <source>News panel font (Title, Author)</source>
@@ -1604,12 +1604,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимальный размер шрифта браузера</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимальный логический размер шрифта браузера</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2364,7 +2364,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрочитанные</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2707,37 +2707,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Поделиться</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">Важно</translation>
+        <translation>Важно</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">Работа</translation>
+        <translation>Работа</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">Личное</translation>
+        <translation>Личное</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">Сделать</translation>
+        <translation>Сделать</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">Позже</translation>
+        <translation>Позже</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">Забавно</translation>
+        <translation>Забавно</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>

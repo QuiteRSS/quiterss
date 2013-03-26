@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -140,7 +138,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>リクエストは失敗しました!</translation>
     </message>
 </context>
 <context>
@@ -326,7 +324,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>認証</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="16"/>
@@ -351,17 +349,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">サーバーに認証が必要:</translation>
+        <translation>サーバーに認証が必要:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">ユーザー名:</translation>
+        <translation>ユーザー名:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">パスワード:</translation>
+        <translation>パスワード:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
@@ -1316,16 +1314,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>ニュースタイトルのフォント</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News panel font (Title, Author)</source>
-        <translation type="obsolete">ニュースパネルのフォント (タイトル、作者)</translation>
+        <translation>ニューステキストのフォント</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -1424,7 +1418,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="533"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>最大ニュース保持期間:</translation>
+        <translation>最大ニュース保持日数:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
@@ -1454,7 +1448,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="506"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>読み込んだウェブページではなくニュースの説明を表示する</translation>
+        <translation>ウェブページを読み込むのではなくニュースの説明を表示する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="547"/>
@@ -1567,10 +1561,6 @@
         <translation>ニュースリストのフォント</translation>
     </message>
     <message>
-        <source>News font</source>
-        <translation type="obsolete">ニュースのフォント</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="974"/>
         <source>Change...</source>
         <translation>変更...</translation>
@@ -1584,12 +1574,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザーの最小フォントサイズ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>ブラウザーの最小論理フォントサイズ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2327,7 +2317,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>未読</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2631,37 +2621,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>共有</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">重要</translation>
+        <translation>重要</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">仕事</translation>
+        <translation>仕事</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">個人</translation>
+        <translation>個人</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">To Do</translation>
+        <translation>To Do</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">後で</translation>
+        <translation>後で</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">おもしろい</translation>
+        <translation>おもしろい</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>

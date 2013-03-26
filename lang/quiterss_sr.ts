@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0" language="sr">
 <defaultcodec>UTF-8</defaultcodec>
@@ -124,7 +123,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="437"/>
         <location filename="../src/addfeedwizard.cpp" line="464"/>
-        <source>Can&apos;t find feed URL!</source>
+        <source>Can't find feed URL!</source>
         <translation>Не могу да нађем УРЛ канала!</translation>
     </message>
     <message>
@@ -140,7 +139,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Захтев није успео!</translation>
     </message>
 </context>
 <context>
@@ -344,7 +343,7 @@
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="46"/>
-        <source>Show news&apos; description instead of loading web page</source>
+        <source>Show news' description instead of loading web page</source>
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
@@ -379,7 +378,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Аутентификација</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
@@ -394,17 +393,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">Сервер захтева аутентификацију:</translation>
+        <translation>Сервер захтева аутентификацију:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">Корисник:</translation>
+        <translation>Корисник:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">Лозинка:</translation>
+        <translation>Лозинка:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
@@ -622,7 +621,7 @@
         <location filename="../src/filterrulesdialog.h" line="81"/>
         <location filename="../src/filterrulesdialog.h" line="86"/>
         <location filename="../src/filterrulesdialog.h" line="89"/>
-        <source>doesn&apos;t contains</source>
+        <source>doesn't contains</source>
         <translation>не садржи</translation>
     </message>
     <message>
@@ -638,7 +637,7 @@
         <location filename="../src/filterrulesdialog.h" line="90"/>
         <location filename="../src/filterrulesdialog.h" line="93"/>
         <location filename="../src/filterrulesdialog.h" line="97"/>
-        <source>isn&apos;t</source>
+        <source>isn't</source>
         <translation>није</translation>
     </message>
     <message>
@@ -744,7 +743,7 @@
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
-        <source>Load icon: can&apos;t open a file</source>
+        <source>Load icon: can't open a file</source>
         <translation>Учитавање иконе: не може да се отвори датотека</translation>
     </message>
 </context>
@@ -802,7 +801,7 @@
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="234"/>
-        <source>Are you sure to delete the filter &apos;%1&apos;?</source>
+        <source>Are you sure to delete the filter '%1'?</source>
         <translation>Сигурно обрисати филтер „%1“?</translation>
     </message>
 </context>
@@ -1332,12 +1331,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>Фонт назива вести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
+        <translation>Фонт текста вести</translation>
     </message>
     <message>
         <source>News panel font (Title, Author)</source>
@@ -1474,7 +1473,7 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="506"/>
-        <source>Show news&apos; description instead of loading web page</source>
+        <source>Show news' description instead of loading web page</source>
         <translation>Прикажи опис вести у место учитавање странице</translation>
     </message>
     <message>
@@ -1608,12 +1607,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимална величина фонта претраживача</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Минимална логична величина фонта претраживача</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -1793,7 +1792,7 @@
     <name>RSSListing</name>
     <message>
         <location filename="../src/rsslisting.cpp" line="2215"/>
-        <source>Are you sure to delete the feed &apos;%1&apos;?</source>
+        <source>Are you sure to delete the feed '%1'?</source>
         <translation>Сигурно обрисати канал „%1“?</translation>
     </message>
     <message>
@@ -1803,7 +1802,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2285"/>
-        <source>Import: can&apos;t open a file</source>
+        <source>Import: can't open a file</source>
         <translation>Увоз: не могу да отворим датотеку</translation>
     </message>
     <message>
@@ -2137,7 +2136,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2437"/>
-        <source>Export: can&apos;t open a file</source>
+        <source>Export: can't open a file</source>
         <translation>Извоз: не могу да отворим датотеку</translation>
     </message>
     <message>
@@ -2368,7 +2367,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Непрочитано</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2383,7 +2382,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2211"/>
-        <source>Are you sure to delete the folder &apos;%1&apos;?</source>
+        <source>Are you sure to delete the folder '%1'?</source>
         <translation>Сигурно обрисати фасциклу „%1“?</translation>
     </message>
     <message>
@@ -2491,7 +2490,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4316"/>
-        <source>Show &apos;About&apos; Dialog</source>
+        <source>Show 'About' Dialog</source>
         <translation>Прикажи дијалог „О...“</translation>
     </message>
     <message>
@@ -2711,37 +2710,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Дељење</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">Важно</translation>
+        <translation>Важно</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">Посао</translation>
+        <translation>Посао</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">Лично</translation>
+        <translation>Лично</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">Задатак</translation>
+        <translation>Задатак</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">Касније</translation>
+        <translation>Касније</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">Занимљиво</translation>
+        <translation>Занимљиво</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>
@@ -2760,7 +2759,7 @@
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6180"/>
-        <source>Save As: can&apos;t open a file</source>
+        <source>Save As: can't open a file</source>
         <translation>Сачувај као: не могу да отворим датотеку</translation>
     </message>
 </context>
@@ -2783,7 +2782,7 @@
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="33"/>
-        <source>Don&apos;t remind about this version</source>
+        <source>Don't remind about this version</source>
         <translation>Не обавести за ову верзију</translation>
     </message>
     <message>

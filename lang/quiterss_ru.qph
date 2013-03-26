@@ -1801,4 +1801,36 @@
     <source>Show default rss-icon instead of favourite one</source>
     <target>Использовать стандартную иконку для лент вместо уникальной (favicon)</target>
 </phrase>
+<phrase>
+    <source>Unread</source>
+    <target>Непрочитанные</target>
+</phrase>
+<phrase>
+    <source>Share</source>
+    <target>Поделиться</target>
+</phrase>
+<phrase>
+    <source>News title font</source>
+    <target>Шрифт заголовка новости</target>
+</phrase>
+<phrase>
+    <source>News text font</source>
+    <target>Шрифт текста новости</target>
+</phrase>
+<phrase>
+    <source>Minimum font size of browser</source>
+    <target>Минимальный размер шрифта браузера</target>
+</phrase>
+<phrase>
+    <source>Minimum logical font size of browser</source>
+    <target>Минимальный логический размер шрифта браузера</target>
+</phrase>
+<phrase>
+    <source>Authentication</source>
+    <target>Авторизация</target>
+</phrase>
+<phrase>
+    <source>Request failed!</source>
+    <target>Не удалось выполнить запрос!</target>
+</phrase>
 </QPH>

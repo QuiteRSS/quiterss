@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs_CZ" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -140,7 +138,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Požadavek selhal!</translation>
     </message>
 </context>
 <context>
@@ -326,7 +324,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Přihlášení</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="16"/>
@@ -351,17 +349,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">Server vyžaduje přihlášení:</translation>
+        <translation>Server vyžaduje přihlášení:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">Uživatelské jméno:</translation>
+        <translation>Uživatelské jméno:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">Heslo:</translation>
+        <translation>Heslo:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
@@ -1316,16 +1314,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>Písmo titulku novinek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News panel font (Title, Author)</source>
-        <translation type="obsolete">Písmo panelu novinek (Název, Autor)</translation>
+        <translation>Písmo textu novinek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -1567,10 +1561,6 @@
         <translation>Písmo seznamu novinek</translation>
     </message>
     <message>
-        <source>News font</source>
-        <translation type="obsolete">Písmo novinky</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="974"/>
         <source>Change...</source>
         <translation>Změnit...</translation>
@@ -1584,12 +1574,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimální velikost písma prohlížeče</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimální logická velikost písma prohlížeče</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2327,7 +2317,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepřečteno</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2631,37 +2621,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Sdílet</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">Důležité</translation>
+        <translation>Důležité</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">Pracovní</translation>
+        <translation>Pracovní</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">Osobní</translation>
+        <translation>Osobní</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">Úkol</translation>
+        <translation>Úkol</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">Později</translation>
+        <translation>Později</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">Zábava</translation>
+        <translation>Zábava</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>

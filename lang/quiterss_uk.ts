@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -140,7 +138,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Запит зірвався!</translation>
     </message>
 </context>
 <context>
@@ -326,7 +324,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Ідентифікація</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="16"/>
@@ -351,17 +349,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished">Сервер потребує авторизації:</translation>
+        <translation>Сервер потребує авторизації:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished">Ім&apos;я користувача:</translation>
+        <translation>Ім&apos;я користувача:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished">Пароль:</translation>
+        <translation>Пароль:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
@@ -1316,16 +1314,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт заголовку новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>News panel font (Title, Author)</source>
-        <translation type="obsolete">Шрифт панелі новин (Заголовок, Автор)</translation>
+        <translation>Шрифт тексту новини</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -1567,10 +1561,6 @@
         <translation>Шрифт списку новин</translation>
     </message>
     <message>
-        <source>News font</source>
-        <translation type="obsolete">Шрифт новини</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="974"/>
         <source>Change...</source>
         <translation>Змінити...</translation>
@@ -1584,12 +1574,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Мінімальний розмір шрифту браузера</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Мінімальний логічний розмір шрифту браузера</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -2327,7 +2317,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"></translation>
+        <translation>Не прочитано</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2631,37 +2621,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"></translation>
+        <translation>Поділитися</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished">Важливе</translation>
+        <translation>Важливо</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished">Робота</translation>
+        <translation>Робота</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished">Особисте</translation>
+        <translation>Особисте</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished">Зробити</translation>
+        <translation>Зробити</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished">Пізніше</translation>
+        <translation>Пізніше</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished">Забавне</translation>
+        <translation>Забавне</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>
