@@ -5914,7 +5914,7 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
 
     switch (type) {
     case TAB_CAT_UNREAD:
-      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND read = 0";
+      currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND read < 2";
       break;
     case TAB_CAT_STAR:
       currentNewsTab->categoryFilterStr_ = "feedId > 0 AND deleted = 0 AND starred = 1";
