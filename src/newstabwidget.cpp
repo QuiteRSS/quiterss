@@ -786,23 +786,19 @@ void NewsTabWidget::markAllNewsRead()
   if (newsModel_->rowCount() == 0) return;
   markNewsReadTimer_->stop();
 
-  QString strId;
-  QSqlQuery q;
-  q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
-  if (q.next()) {
-    if (q.value(0).toString().isEmpty()) {
-      strId = QString("(%1)").arg(rsslisting_->getIdFeedsString(feedId_));
-    } else {
-      strId = QString("feedId='%1'").arg(feedId_);
-    }
-  }
+  QStringList feedIdList;
 
-  QString qStr = QString("UPDATE news SET read=1 WHERE %1 AND read=0").
-      arg(strId);
-  q.exec(qStr);
-  qStr = QString("UPDATE news SET new=0 WHERE %1 AND new=1").
-      arg(strId);
-  q.exec(qStr);
+  db_.transaction();
+  QSqlQuery q;
+  for (int i = newsModel_->rowCount()-1; i >= 0; --i) {
+    int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
+    q.exec(QString("UPDATE news SET read=1 WHERE id=='%1' AND read=0").arg(newsId));
+    q.exec(QString("UPDATE news SET new=0 WHERE id=='%1' AND new=1").arg(newsId));
+
+    QString feedId = newsModel_->index(i, newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+    if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
+  }
+  db_.commit();
 
   int currentRow = newsView_->currentIndex().row();
 
@@ -812,7 +808,10 @@ void NewsTabWidget::markAllNewsRead()
     newsModel_->fetchMore();
 
   newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
-  rsslisting_->slotUpdateStatus(feedId_);
+
+  foreach (QString feedId, feedIdList) {
+    rsslisting_->slotUpdateStatus(feedId.toInt());
+  }
 }
 
 //! Пометка выбранных новостей звездочкой (избранные)
