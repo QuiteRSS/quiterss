@@ -1731,13 +1731,31 @@ void RSSListing::readSettings()
   clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
-  QString strLang("en");
-  QString strLocalLang = QLocale::system().name().left(2);
+  QString strLang;
+  QString strLocalLang = QLocale::system().name();
+  bool findLang = false;
   QDir langDir = qApp->applicationDirPath() + "/lang";
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
-    if (strLocalLang.contains(file.section('.', 0, 0).section('_', 1), Qt::CaseInsensitive))
+    strLang = file.section('.', 0, 0).section('_', 1);
+    if (strLocalLang == strLang) {
       strLang = strLocalLang;
+      findLang = true;
+      break;
+    }
   }
+  if (!findLang) {
+    strLocalLang = strLocalLang.left(2);
+    foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
+      strLang = file.section('.', 0, 0).section('_', 1);
+      if (strLocalLang.contains(strLang, Qt::CaseInsensitive)) {
+        strLang = strLocalLang;
+        findLang = true;
+        break;
+      }
+    }
+  }
+  if (!findLang) strLang = "en";
+
   langFileName_ = settings_->value("langFileName", strLang).toString();
 
   QString fontFamily = settings_->value("/feedsFontFamily", qApp->font().family()).toString();
@@ -3455,7 +3473,7 @@ void RSSListing::showOptionDlg()
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
   onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
 
-  if (!langFileName_.contains(optionsDialog->language(), Qt::CaseInsensitive)) {
+  if (langFileName_ != optionsDialog->language()) {
     langFileName_ = optionsDialog->language();
     appInstallTranslator();
   }
@@ -4221,10 +4239,10 @@ void RSSListing::appInstallTranslator()
   qApp->removeTranslator(translator_);
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
-                                     QString("/lang/quiterss_%1").arg(langFileName_.toLower()));
+                                     QString("/lang/quiterss_%1").arg(langFileName_));
 #else
   translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
-                                     arg(langFileName_.toLower()));
+                                     arg(langFileName_));
 #endif
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
