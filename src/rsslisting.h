@@ -180,7 +180,6 @@ protected:
   bool eventFilter(QObject *obj, QEvent *ev);
   virtual void closeEvent(QCloseEvent*);
   virtual void changeEvent(QEvent*);
-  void timerEvent(QTimerEvent* event);
 
 private:
   UpdateThread *persistentUpdateThread_;
@@ -420,7 +419,7 @@ private:
   bool storeDBMemoryT_;
 
   int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
-  QBasicTimer timerLinkOpening_;
+  QTimer timerLinkOpening_;
 
   enum FeedReedType {
     FeedReadTypeSwitchingFeed,
@@ -443,6 +442,7 @@ private:
   bool importFeedStart_;
 
 private slots:
+  void slotTimerLinkOpening();
   void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);

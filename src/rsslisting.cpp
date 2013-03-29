@@ -194,6 +194,9 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   connect(updateDelayer_, SIGNAL(signalUpdateModel(bool)),
           this, SLOT(feedsModelReload(bool)));
 
+  connect(&timerLinkOpening_, SIGNAL(timeout()),
+          this, SLOT(slotTimerLinkOpening()));
+
   loadSettingsFeeds();
 
   setStyleSheet("QMainWindow::separator { width: 1px; }");
@@ -377,7 +380,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   else if (event->type() == QEvent::WindowDeactivate) {
     if (openingLink_ && openLinkInBackground_) {
       openingLink_ = false;
-      timerLinkOpening_.start(openingLinkTimeout_, this);
+      timerLinkOpening_.start(openingLinkTimeout_);
       deactivateState = 1;
     }
     activationStateChangedTime_ = QDateTime::currentMSecsSinceEpoch();
@@ -402,6 +405,19 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   }
   // pass the event on to the parent class
   return QMainWindow::eventFilter(obj, event);
+}
+
+/** @brief Отбработка передачи ссылки во внешний браузер фоном
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotTimerLinkOpening()
+{
+  timerLinkOpening_.stop();
+  if (!isActiveWindow()) {
+    setWindowState(windowState() & ~Qt::WindowActive);
+    show();
+    raise();
+    activateWindow();
+  }
 }
 
 /*! \brief Обработка события изменения состояния окна *************************/
@@ -499,22 +515,6 @@ void RSSListing::slotShowWindows(bool trayClick)
     activateWindow();
   } else {
     emit signalPlaceToTray();
-  }
-}
-
-void RSSListing::timerEvent(QTimerEvent *event)
-{
-  // Отбработка передачи ссылки во внешний браузер фоном
-  if (event->timerId() == timerLinkOpening_.timerId()) {
-    timerLinkOpening_.stop();
-    if (!isActiveWindow()) {
-      setWindowState(windowState() & ~Qt::WindowActive);
-      show();
-      raise();
-      activateWindow();
-    }
-    setFocus();
-    qDebug() << "----------------------------------------------";
   }
 }
 
