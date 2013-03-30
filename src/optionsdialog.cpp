@@ -881,8 +881,8 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "lt" << QString::fromUtf8("Lietuvių [LT]")
-           << "0.12.3"
-           << QString::fromUtf8("Andrius") << "";
+           << "0.12.4"
+           << QString::fromUtf8("keturidu") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_LT"));
   languageFileList_->addTopLevelItem(languageItem);

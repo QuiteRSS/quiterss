@@ -65,17 +65,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="82"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Serveris reikalauja prisijungimo vardo:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="91"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo vardas:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="93"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="123"/>
@@ -128,17 +128,17 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="483"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Serveris reikalauja prisijungimo vardo!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="485"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Užklausos laikas baigėsi!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="487"/>
         <source>Request failed!</source>
-        <translation type="unfinished"/>
+        <translation>Užklausa nepavyko!</translation>
     </message>
 </context>
 <context>
@@ -179,27 +179,27 @@
     <message>
         <location filename="../src/authenticationdialog.cpp" line="27"/>
         <source>Authorization required</source>
-        <translation type="unfinished"/>
+        <translation>Privaloma autorizuotis</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="35"/>
         <source>Server:</source>
-        <translation type="unfinished"/>
+        <translation>Serveris:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="37"/>
         <source>Message:</source>
-        <translation type="unfinished"/>
+        <translation>Žinutė:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="39"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo vardas:</translation>
     </message>
     <message>
         <location filename="../src/authenticationdialog.cpp" line="41"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis:</translation>
     </message>
 </context>
 <context>
@@ -207,36 +207,36 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="13"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Redaguoti pagrindinę įrankių juostą</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="15"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Redaguoti šaltinių įrankių juostą</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="17"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Redaguoti naujienų įrankių juostą</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="53"/>
         <location filename="../src/customizetoolbardialog.cpp" line="330"/>
         <location filename="../src/customizetoolbardialog.cpp" line="431"/>
         <source>Load images</source>
-        <translation type="unfinished"/>
+        <translation>Krauti paveikslėlius</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="61"/>
         <location filename="../src/customizetoolbardialog.cpp" line="340"/>
         <location filename="../src/customizetoolbardialog.cpp" line="412"/>
         <source>Separator</source>
-        <translation type="unfinished"/>
+        <translation>Skirtukas</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Icon</source>
-        <translation type="unfinished"/>
+        <translation>Ikona</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
@@ -246,62 +246,62 @@
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished"/>
+        <translation>Tekstas šalia ikonos</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="71"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished"/>
+        <translation>Tekstas po ikona</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Big</source>
-        <translation type="unfinished"/>
+        <translation>Didelis</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Normalus</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="86"/>
         <source>Small</source>
-        <translation type="unfinished"/>
+        <translation>Mažas</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="99"/>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Stilius:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="102"/>
         <source>Icon Size:</source>
-        <translation type="unfinished"/>
+        <translation>Ikonos dydis:</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="118"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="125"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Nuimti</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="129"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti aukščiau</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="132"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti žemyn</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="136"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Numatytasis</translation>
     </message>
 </context>
 <context>
@@ -324,7 +324,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="15"/>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autorizacija</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="16"/>
@@ -349,17 +349,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="88"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Serveris reikalauja prisijungimo:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>Username:</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo vardas:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="99"/>
         <source>Password:</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="126"/>
@@ -389,12 +389,12 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="45"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"/>
+        <translation>Kraunantis rodyti naujame aplanke</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="47"/>
         <source>Automatically delete duplicate news</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai trinti pasikartojančias naujienas</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="172"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../src/filterrulesdialog.h" line="23"/>
         <source>State</source>
-        <translation type="unfinished"/>
+        <translation>Būsena</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="28"/>
@@ -726,7 +726,7 @@
     <message>
         <location filename="../src/labeldialog.cpp" line="126"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation type="unfinished"/>
+        <translation>Paveikslėlių bylos (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="133"/>
@@ -947,22 +947,22 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1086"/>
         <source>audio</source>
-        <translation type="unfinished"/>
+        <translation>audio</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1087"/>
         <source>video</source>
-        <translation type="unfinished"/>
+        <translation>video</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1088"/>
         <source>media</source>
-        <translation type="unfinished"/>
+        <translation>medija</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1092"/>
         <source>Link to</source>
-        <translation type="unfinished"/>
+        <translation>Nuorodą į</translation>
     </message>
 </context>
 <context>
@@ -1038,7 +1038,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="189"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"/>
+        <translation>Atidarant aplanką slėpti šaltinių medį</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="192"/>
@@ -1164,7 +1164,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="340"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti nuorodas vidinėje naršyklėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="341"/>
@@ -1174,7 +1174,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>External browser:</source>
-        <translation type="unfinished"/>
+        <translation>Išorinė naršyklė:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="428"/>
@@ -1194,42 +1194,42 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="469"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti datos formatą:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="472"/>
         <source>time:</source>
-        <translation type="unfinished"/>
+        <translation>laikas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="476"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"/>
+        <translation>Alternatyvios eilučių pagrindo spalvos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
         <source>Mark news as read:</source>
-        <translation>Pažymėti naujienas kaip skaityta:</translation>
+        <translation>Pažymėti naujienas skaitytomis:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="494"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"/>
+        <translation>pasirinkimo metu. Su pertrauka</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"/>
+        <translation>pasirinkus kitas naujienas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="550"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Niekada netrinti pažymėtas naujienas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>New...</source>
-        <translation type="unfinished"/>
+        <translation>Naujas...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="589"/>
@@ -1239,17 +1239,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="592"/>
         <source>Delete...</source>
-        <translation>Pašalinti...</translation>
+        <translation>Ištrinti...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="596"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti aukščiau</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="599"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti žemyn</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
@@ -1284,7 +1284,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
         <source>Site</source>
-        <translation type="unfinished"/>
+        <translation>Puslapis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="737"/>
@@ -1304,7 +1304,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="756"/>
         <source>Delete All</source>
-        <translation>Pašalinti visas</translation>
+        <translation>Pašalinti viską</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="758"/>
@@ -1314,12 +1314,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="961"/>
         <source>News title font</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų pavadinimo šriftas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="964"/>
         <source>News text font</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų teksto šriftas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -1423,17 +1423,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="330"/>
         <source>Use external browser</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti išorinę naršyklę</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="331"/>
         <source>Default external browser</source>
-        <translation type="unfinished"/>
+        <translation>Numatyta išorinė naršyklė</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="332"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <translation>Kita išorinė naršyklė:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="367"/>
@@ -1503,7 +1503,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="190"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti numatytą rss-ikoną vietoje mėgstamos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="501"/>
@@ -1574,12 +1574,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"/>
+        <translation>Mažiausias galima šrifto dydis naršyklėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"/>
+        <translation>Mažiausias logiškas šrifto dydis naršyklėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1029"/>
@@ -1795,12 +1795,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4299"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Filtruoti šaltinius</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4305"/>
         <source>Filter News</source>
-        <translation type="unfinished"/>
+        <translation>Filtruoti naujienas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4309"/>
@@ -1847,22 +1847,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4357"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Pagrindinė įrankių juosta...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4358"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Redaguoti įrankių juostą...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4359"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinių įrankių juosta...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4360"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų įrankių juosta...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4362"/>
@@ -1922,7 +1922,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4407"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti tarpą</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4412"/>
@@ -1992,7 +1992,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4430"/>
         <source>Feeds Toolbar</source>
-        <translation>Šaltinių įrankinė</translation>
+        <translation>Šaltinių įrankių juosta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4431"/>
@@ -2024,7 +2024,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4450"/>
         <source>Close tab</source>
-        <translation>Uždaryti kortelę</translation>
+        <translation>Uždaryti aplanką</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4451"/>
@@ -2039,12 +2039,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4459"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"/>
+        <translation>Sumažinti naujienų sąrašą/padidinti naršyklės</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4460"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"/>
+        <translation>Padidinti naujienų sąrašą/sumažinti naršyklės</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4968"/>
@@ -2071,13 +2071,13 @@
         <location filename="../src/rsslisting.cpp" line="599"/>
         <location filename="../src/rsslisting.cpp" line="4456"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="594"/>
         <location filename="../src/rsslisting.cpp" line="4455"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Mėgstamas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4447"/>
@@ -2317,7 +2317,7 @@
         <location filename="../src/rsslisting.cpp" line="589"/>
         <location filename="../src/rsslisting.cpp" line="4454"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Neskaitytų</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="604"/>
@@ -2421,12 +2421,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4312"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti paskutinę dieną</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4313"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti paskutines 7 dienas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4316"/>
@@ -2451,7 +2451,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4322"/>
         <source>Open Description News</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti naujienų aprašymus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4323"/>
@@ -2571,22 +2571,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4389"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"/>
+        <translation>Žiūrėti kitą skydelį</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4391"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Žiūrėti kitą skydelį (Šaltinių medis, Naujienų sąrašas, Naršyklė)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4392"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"/>
+        <translation>Žiūrėti kitą skydelį</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4394"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"/>
+        <translation>Žiūrėti buvusį skydelį (Šaltinių medis, Naujienų sąrašas, Naršyklė)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4403"/>
@@ -2611,7 +2611,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4433"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"/>
+        <translation>Skydelio kategorijos</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4462"/>
@@ -2621,37 +2621,37 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4464"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Dalintis</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Important</source>
-        <translation type="unfinished"/>
+        <translation>Svarbus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Work</source>
-        <translation type="unfinished"/>
+        <translation>Darbas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4503"/>
         <source>Personal</source>
-        <translation type="unfinished"/>
+        <translation>Asmeniniai</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>To Do</source>
-        <translation type="unfinished"/>
+        <translation>Atlikti</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Later</source>
-        <translation type="unfinished"/>
+        <translation>Vėliau</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <source>Amusingly</source>
-        <translation type="unfinished"/>
+        <translation>Įdomiai</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6172"/>
@@ -2661,17 +2661,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="6174"/>
         <source>HTML-Files (*.html)</source>
-        <translation>HTML-failai(*.html)</translation>
+        <translation>HTML-bylos (*.html)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6175"/>
         <source>Text files (*.txt)</source>
-        <translation>Teksto failai(*.txt)</translation>
+        <translation>Teksto bylos (*.txt)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6180"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"/>
+        <translation>Išsaugoti kaip: negaliu atidaryti bylos</translation>
     </message>
 </context>
 <context>
@@ -2694,7 +2694,7 @@
     <message>
         <location filename="../src/updateappdialog.cpp" line="33"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"/>
+        <translation>Nepriminti apie šią versiją</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="41"/>
