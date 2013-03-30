@@ -1052,6 +1052,7 @@ void RSSListing::createActions()
 
   openInExternalBrowserAct_ = new QAction(this);
   openInExternalBrowserAct_->setObjectName("openInExternalBrowserAct");
+  openInExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   this->addAction(openInExternalBrowserAct_);
 
   openNewsNewTabAct_ = new QAction(this);

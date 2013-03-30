@@ -133,8 +133,9 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->setIconSize(QSize(18, 18));
 
   QString actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
-      "newsLabelAction,shareMenuAct,Separator,nextUnreadNewsAct,prevUnreadNewsAct,"
-      "Separator,newsFilter,Separator,deleteNewsAct";
+      "newsLabelAction,shareMenuAct,openInExternalBrowserAct,Separator,"
+      "nextUnreadNewsAct,prevUnreadNewsAct,Separator,"
+      "newsFilter,Separator,deleteNewsAct";
   QString str = rsslisting_->settings_->value("Settings/newsToolBar", actionListStr).toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
