@@ -416,7 +416,8 @@ void CustomizeToolbarDialog::defaultShortcut()
       item->setBackground(0, qApp->palette().brush(QPalette::Midlight));
       shortcutTree_->addTopLevelItem(item);
     } else {
-      QListIterator<QAction *> iter(toolbar_->actions());
+      RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+      QListIterator<QAction *> iter(rssl_->actions());
       while (iter.hasNext()) {
         QAction *pAction = iter.next();
         if (!pAction->icon().isNull()) {
