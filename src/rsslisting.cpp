@@ -483,14 +483,16 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
     break;
   case QSystemTrayIcon::DoubleClick:
     if (!singleClickTray_) {
-      if (QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300)
+      if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300) ||
+          isActiveWindow())
         activated = true;
       slotShowWindows(activated);
     }
     break;
   case QSystemTrayIcon::Trigger:
     if (singleClickTray_) {
-      if (QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200)
+      if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) ||
+          isActiveWindow())
         activated = true;
       slotShowWindows(activated);
     }
