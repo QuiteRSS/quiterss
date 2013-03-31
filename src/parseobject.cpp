@@ -619,7 +619,7 @@ QString ParseObject::parseDate(QString dateString, QString urlString)
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
   }
 
-  qWarning() << __LINE__ << "parseDate: error with" << dateString << urlString;
+  qDebug() << __LINE__ << "parseDate: error with" << dateString << urlString;
   return QString();
 }
 
