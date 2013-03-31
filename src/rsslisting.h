@@ -82,6 +82,7 @@ public:
   QAction *newsLabelAction_;
   QAction *newsLabelMenuAction_;
   QAction *findTextAct_;
+  QAction *openHomeFeedAct_;
   QAction *shareMenuAct_;
   QAction *emailShareAct_;
   QAction *evernoteShareAct_;
@@ -555,6 +556,8 @@ private slots:
 
   void slotShareNews(QAction *action);
   void showMenuShareNews();
+
+  void slotOpenHomeFeed();
 
 signals:
   void signalPlaceToTray();

@@ -1253,6 +1253,12 @@ void RSSListing::createActions()
   this->addAction(prevUnreadNewsAct_);
   connect(prevUnreadNewsAct_, SIGNAL(triggered()), this, SLOT(prevUnreadNews()));
 
+  openHomeFeedAct_ = new QAction(this);
+  openHomeFeedAct_->setObjectName("openHomeFeedsAct");
+  openHomeFeedAct_->setIcon(QIcon(":/images/homePage"));
+  this->addAction(openHomeFeedAct_);
+  connect(openHomeFeedAct_, SIGNAL(triggered()), this, SLOT(slotOpenHomeFeed()));
+
   shareGroup_ = new QActionGroup(this);
   shareGroup_->setExclusive(false);
 
@@ -1345,6 +1351,7 @@ void RSSListing::createShortcut()
   listActions_.append(updateFeedAct_);
   updateAllFeedsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));
   listActions_.append(updateAllFeedsAct_);
+    listActions_.append(openHomeFeedAct_);
   optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
@@ -4484,6 +4491,8 @@ void RSSListing::retranslateStrings()
 
   findTextAct_->setText(tr("Find"));
 
+  openHomeFeedAct_->setText(tr("Open homepage feed"));
+
   shareMenuAct_->setText(tr("Share"));
 
   QApplication::translate("QDialogButtonBox", "Close");
@@ -6375,6 +6384,8 @@ void RSSListing::setTextTitle(const QString &text, NewsTabWidget *widget)
   else setWindowTitle(QString("%1 - QuiteRSS").arg(text));
 }
 
+/** @brief Включение/отключение отступа в дереве лент
+ *----------------------------------------------------------------------------*/
 void RSSListing::slotIndentationFeedsTree()
 {
   if (indentationFeedsTreeAct_->isChecked())
@@ -6383,11 +6394,15 @@ void RSSListing::slotIndentationFeedsTree()
     feedsTreeView_->setIndentation(0);
 }
 
+/** @brief Настройка главной панели инструментов
+ *----------------------------------------------------------------------------*/
 void RSSListing::customizeMainToolbar()
 {
   showCustomizeToolbarDlg(customizeMainToolbarAct2_);
 }
 
+/** @brief Настройка панелей инструментов
+ *----------------------------------------------------------------------------*/
 void RSSListing::showCustomizeToolbarDlg(QAction *action)
 {
   QToolBar *toolbar = mainToolbar_;
@@ -6431,4 +6446,15 @@ void RSSListing::showMenuShareNews()
       shareMenu_->popup(widget->mapToGlobal(QPoint(0, currentNewsTab->newsToolBar_->height()-1)));
     }
   }
+}
+
+/** @brief Открыть домашнюю страницу ленты во внешнем браузере
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotOpenHomeFeed()
+{
+  QModelIndex index = feedsTreeView_->currentIndex();
+  if (!index.isValid()) return;
+
+  QString homePage = feedsTreeModel_->dataField(index, "htmlUrl").toString();
+  QDesktopServices::openUrl(homePage);
 }
