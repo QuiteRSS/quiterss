@@ -474,6 +474,7 @@ void OptionsDialog::createFeedsWidget()
   formatDateLayout->addStretch();
 
   alternatingRowColorsNews_ = new QCheckBox(tr("Alternating row background colors"));
+  changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
@@ -482,6 +483,7 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
   generalFeedsLayout->addWidget(alternatingRowColorsNews_);
+  generalFeedsLayout->addWidget(changeBehaviorActionNUN_);
   generalFeedsLayout->addLayout(formatDateLayout);
   generalFeedsLayout->addStretch();
 

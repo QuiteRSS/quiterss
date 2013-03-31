@@ -1813,6 +1813,7 @@ void RSSListing::readSettings()
   feedsTreeModel_->formatTime_ = formatTime_;
 
   alternatingRowColorsNews_ = settings_->value("alternatingColorsNews", false).toBool();
+  changeBehaviorActionNUN_ = settings_->value("changeBehaviorActionNUN", false).toBool();
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -2040,6 +2041,7 @@ void RSSListing::writeSettings()
   settings_->setValue("formatTime", formatTime_);
 
   settings_->setValue("alternatingColorsNews", alternatingRowColorsNews_);
+  settings_->setValue("changeBehaviorActionNUN", changeBehaviorActionNUN_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -3151,10 +3153,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
     if (!indexList.isEmpty()) newsRow = indexList.first().row();
   } else if (openingFeedAction_ == 1) {
     newsRow = 0;
-  } else if (openingFeedAction_ == 3) {
+  } else if ((openingFeedAction_ == 3) || (openingFeedAction_ == 4)) {
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
     QModelIndexList indexList;
-    if (newsView_->header()->sortIndicatorOrder() == Qt::DescendingOrder)
+    if ((newsView_->header()->sortIndicatorOrder() == Qt::DescendingOrder) &&
+        (openingFeedAction_ != 4))
       indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
     else
       indexList = newsModel_->match(index, Qt::EditRole, 0);
@@ -3258,6 +3261,7 @@ void RSSListing::showOptionDlg()
   }
 
   optionsDialog->alternatingRowColorsNews_->setChecked(alternatingRowColorsNews_);
+  optionsDialog->changeBehaviorActionNUN_->setChecked(changeBehaviorActionNUN_);
 
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
@@ -3470,6 +3474,7 @@ void RSSListing::showOptionDlg()
   feedsTreeModel_->formatTime_ = formatTime_;
 
   alternatingRowColorsNews_ = optionsDialog->alternatingRowColorsNews_->isChecked();
+  changeBehaviorActionNUN_ = optionsDialog->changeBehaviorActionNUN_->isChecked();
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
@@ -6289,7 +6294,10 @@ void RSSListing::nextUnreadNews()
     QModelIndex indexPrevUnread =
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (indexPrevUnread.isValid()) {
-      openingFeedAction_ = 3;
+      if (changeBehaviorActionNUN_)
+        openingFeedAction_ = 4;
+      else
+        openingFeedAction_ = 3;
       feedsTreeView_->setCurrentIndex(indexPrevUnread);
       slotFeedClicked(indexPrevUnread);
       openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();

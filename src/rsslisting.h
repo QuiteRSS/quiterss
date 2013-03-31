@@ -443,6 +443,8 @@ private:
 
   bool importFeedStart_;
 
+  bool changeBehaviorActionNUN_;
+
 private slots:
   void slotTimerLinkOpening();
   void slotProgressBarUpdate();
