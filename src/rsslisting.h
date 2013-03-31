@@ -265,6 +265,7 @@ private:
   QAction *updateAllFeedsAct_;
   QAction *markAllFeedsRead_;
   QAction *indentationFeedsTreeAct_;
+  QAction *sortedByTitleFeedsTreeAct_;
   QAction *exitAct_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
@@ -558,6 +559,7 @@ private slots:
   void showMenuShareNews();
 
   void slotOpenHomeFeed();
+  void sortedByTitleFeedsTree();
 
 signals:
   void signalPlaceToTray();

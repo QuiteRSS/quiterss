@@ -961,6 +961,10 @@ void RSSListing::createActions()
   connect(indentationFeedsTreeAct_, SIGNAL(triggered()),
           this, SLOT(slotIndentationFeedsTree()));
 
+  sortedByTitleFeedsTreeAct_ = new QAction(this);
+  connect(sortedByTitleFeedsTreeAct_, SIGNAL(triggered()),
+          this, SLOT(sortedByTitleFeedsTree()));
+
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
@@ -1351,7 +1355,7 @@ void RSSListing::createShortcut()
   listActions_.append(updateFeedAct_);
   updateAllFeedsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));
   listActions_.append(updateAllFeedsAct_);
-    listActions_.append(openHomeFeedAct_);
+  listActions_.append(openHomeFeedAct_);
   optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
@@ -1596,6 +1600,7 @@ void RSSListing::createMenu()
   feedsColumnsMenu_->addActions(feedsColumnsGroup_->actions());
   feedMenu_->addMenu(feedsColumnsMenu_);
 
+  feedMenu_->addAction(sortedByTitleFeedsTreeAct_);
   feedMenu_->addAction(indentationFeedsTreeAct_);
 
   feedMenu_->addSeparator();
@@ -4491,7 +4496,8 @@ void RSSListing::retranslateStrings()
 
   findTextAct_->setText(tr("Find"));
 
-  openHomeFeedAct_->setText(tr("Open homepage feed"));
+  openHomeFeedAct_->setText(tr("Open Homepage Feed"));
+  sortedByTitleFeedsTreeAct_->setText(tr("Sorted by Title"));
 
   shareMenuAct_->setText(tr("Share"));
 
@@ -6457,4 +6463,42 @@ void RSSListing::slotOpenHomeFeed()
 
   QString homePage = feedsTreeModel_->dataField(index, "htmlUrl").toString();
   QDesktopServices::openUrl(homePage);
+}
+
+/** @brief Отсортировать ленты и папки по имени
+ *----------------------------------------------------------------------------*/
+void RSSListing::sortedByTitleFeedsTree()
+{
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
+  QList<int> parentIdsPotential;
+  parentIdsPotential << 0;
+  while (!parentIdsPotential.empty()) {
+    int parentId = parentIdsPotential.takeFirst();
+
+    // Ищем детей родителя parentId
+    QSqlQuery q;
+    q.prepare(QString("SELECT id FROM feeds WHERE parentId=? ORDER BY text"));
+    q.addBindValue(parentId);
+    q.exec();
+
+    // Каждому ребенку прописываем его rowToParent
+    // ... сохраняем его в списке потенциальных родителей
+    int rowToParent = 0;
+    while (q.next()) {
+      int parentIdNew = q.value(0).toInt();
+
+      QSqlQuery q2;
+      q2.prepare("UPDATE feeds SET rowToParent=? WHERE id=?");
+      q2.addBindValue(rowToParent);
+      q2.addBindValue(parentIdNew);
+      q2.exec();
+
+      parentIdsPotential << parentIdNew;
+      ++rowToParent;
+    }
+  }
+
+  feedsModelReload();
+  QApplication::restoreOverrideCursor();
 }
