@@ -64,7 +64,10 @@ void UpdateObject::getQueuedUrl()
     }
     QDateTime currentDate = dateQueue_.dequeue();
 
-    emit signalHead(getUrl, feedUrl, currentDate);
+    if (currentDate.isValid())
+      emit signalHead(getUrl, feedUrl, currentDate);
+    else
+      emit signalGet(getUrl, feedUrl, currentDate);
 
     qDebug() << "urlsQueue_ >>" << feedUrl << "count=" << feedsQueue_.count();
   }
