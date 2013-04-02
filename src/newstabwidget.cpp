@@ -380,23 +380,11 @@ void NewsTabWidget::setSettings(bool newTab)
       newsModel_->formatTime_ = rsslisting_->formatTime_;
     }
 
-    webView_->settings()->setFontFamily(
-          QWebSettings::StandardFont, rsslisting_->newsTextFontFamily_);
-
-    webView_->settings()->setFontSize(
-          QWebSettings::MinimumFontSize, rsslisting_->browserMinFontSize_);
-    webView_->settings()->setFontSize(
-          QWebSettings::MinimumLogicalFontSize, rsslisting_->browserMinLogFontSize_);
-
     if (rsslisting_->externalBrowserOn_ <= 0) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     } else {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     }
-    webView_->settings()->setAttribute(
-          QWebSettings::JavascriptEnabled, rsslisting_->javaScriptEnable_);
-    webView_->settings()->setAttribute(
-          QWebSettings::PluginsEnabled, rsslisting_->pluginsEnable_);
   }
 
   if (type_ == TAB_FEED) {

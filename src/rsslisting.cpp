@@ -1803,6 +1803,13 @@ void RSSListing::readSettings()
   browserMinFontSize_ = settings_->value("/browserMinFontSize", 0).toInt();
   browserMinLogFontSize_ = settings_->value("/browserMinLogFontSize", 0).toInt();
 
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::StandardFont, newsTextFontFamily_);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumFontSize, browserMinFontSize_);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
+
   autoUpdatefeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   autoUpdatefeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
   autoUpdatefeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
@@ -1843,6 +1850,12 @@ void RSSListing::readSettings()
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
   maxPagesInCache_ = settings_->value("maxPagesInCache", 3).toInt();
+
+  QWebSettings::globalSettings()->setAttribute(
+        QWebSettings::JavascriptEnabled, javaScriptEnable_);
+  QWebSettings::globalSettings()->setAttribute(
+        QWebSettings::PluginsEnabled, pluginsEnable_);
+  QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
   QString soundNotifyPathStr;
@@ -3456,8 +3469,12 @@ void RSSListing::showOptionDlg()
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
   openLinkInBackgroundEmbedded_ = optionsDialog->openLinkInBackgroundEmbedded_->isChecked();
-
   maxPagesInCache_ = optionsDialog->maxPagesInCache_->value();
+
+  QWebSettings::globalSettings()->setAttribute(
+        QWebSettings::JavascriptEnabled, javaScriptEnable_);
+  QWebSettings::globalSettings()->setAttribute(
+        QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
 
   useDiskCache = optionsDialog->diskCacheOn_->isChecked();
@@ -3571,6 +3588,13 @@ void RSSListing::showOptionDlg()
 
   browserMinFontSize_ = optionsDialog->browserMinFontSize_->value();
   browserMinLogFontSize_ = optionsDialog->browserMinLogFontSize_->value();
+
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::StandardFont, newsTextFontFamily_);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumFontSize, browserMinFontSize_);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
 
   delete optionsDialog;
 
