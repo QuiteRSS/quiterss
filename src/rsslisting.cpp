@@ -6480,10 +6480,7 @@ void RSSListing::setTextTitle(const QString &text, NewsTabWidget *widget)
  *----------------------------------------------------------------------------*/
 void RSSListing::slotIndentationFeedsTree()
 {
-  if (indentationFeedsTreeAct_->isChecked())
-    feedsTreeView_->setIndentation(20);
-  else
-    feedsTreeView_->setIndentation(0);
+  feedsTreeView_->setRootIsDecorated(indentationFeedsTreeAct_->isChecked());
 }
 
 /** @brief Настройка главной панели инструментов
