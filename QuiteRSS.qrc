@@ -109,6 +109,7 @@
         <file alias="flag_LT">images/flag_lithuania.png</file>
         <file alias="flag_TW">images/flag_taiwan.png</file>
         <file alias="flag_GR">images/flag_greece.png</file>
+        <file>images/tab_go.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

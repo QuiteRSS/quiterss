@@ -1079,6 +1079,7 @@ void RSSListing::createActions()
 
   openNewsNewTabAct_ = new QAction(this);
   openNewsNewTabAct_->setObjectName("openInNewTabAct");
+  openNewsNewTabAct_->setIcon(QIcon(":/images/images/tab_go.png"));
   this->addAction(openNewsNewTabAct_);
   openNewsBackgroundTabAct_ = new QAction(this);
   openNewsBackgroundTabAct_->setObjectName("openInBackgroundTabAct");
