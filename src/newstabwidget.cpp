@@ -1030,7 +1030,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     setWebToolbarVisible(true, false);
 
     webView_->history()->setMaximumItemCount(0);
-    webView_->setUrl(newsUrl);
+    webView_->load(newsUrl);
     webView_->history()->setMaximumItemCount(100);
   } else {
     setWebToolbarVisible(false, false);
@@ -1171,7 +1171,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
         webView_->history()->clear();
         setWebToolbarVisible(true, false);
       }
-      webView_->setUrl(url);
+      webView_->load(url);
     } else {
       QWebPage *webPage = rsslisting_->createWebTab();
       qobject_cast<WebView*>(webPage->view())->load(url);
