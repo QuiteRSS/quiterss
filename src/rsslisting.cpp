@@ -1183,7 +1183,6 @@ void RSSListing::createActions()
   findFeedAct_->setCheckable(true);
   findFeedAct_->setChecked(false);
   findFeedAct_->setIcon(QIcon(":/images/images/findFeed.png"));
-  feedsToolBar_->addAction(findFeedAct_);
   this->addAction(findFeedAct_);
   connect(findFeedAct_, SIGNAL(triggered(bool)),
           this, SLOT(findFeedVisible(bool)));
@@ -1598,7 +1597,6 @@ void RSSListing::createMenu()
 
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
-  feedsToolBar_->addAction(feedsFilter_);
   feedsFilterAction_ = NULL;
   connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
