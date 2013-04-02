@@ -131,6 +131,7 @@ public:
   QString externalBrowser_;
   bool javaScriptEnable_;
   bool pluginsEnable_;
+  int maxPagesInCache_;
 
   int browserPosition_;
 
@@ -138,6 +139,7 @@ public:
 
   int oldState;
 
+  QNetworkDiskCache *diskCache_;
   CookieJar *cookieJar_;
   NetworkManager *networkManager_;
 

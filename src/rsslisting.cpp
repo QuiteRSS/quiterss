@@ -81,11 +81,25 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   if (settings_->value("Settings/createLastFeed", false).toBool())
     lastFeedPath_ = dataDirPath_;
 
-  cookieJar_ = new CookieJar(dataDirPath_, this);
   networkManager_ = new NetworkManager(parent);
-  networkManager_->setCookieJar(cookieJar_);
   connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+
+  cookieJar_ = new CookieJar(dataDirPath_, this);
+  networkManager_->setCookieJar(cookieJar_);
+
+  diskCache_ = NULL;
+  bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
+  if (useDiskCache) {
+    diskCache_ = new QNetworkDiskCache(this);
+    QString dirDiskCache = settings_->value(
+          "Settings/dirDiskCache", QDir::toNativeSeparators(dataDirPath_+ "/cache")).toString();
+    diskCache_->setCacheDirectory(dirDiskCache);
+    int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
+    diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
+
+    networkManager_->setCache(diskCache_);
+  }
 
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
@@ -1828,6 +1842,7 @@ void RSSListing::readSettings()
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
+  maxPagesInCache_ = settings_->value("maxPagesInCache", 3).toInt();
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
   QString soundNotifyPathStr;
@@ -2056,6 +2071,7 @@ void RSSListing::writeSettings()
   settings_->setValue("externalBrowser", externalBrowser_);
   settings_->setValue("javaScriptEnable", javaScriptEnable_);
   settings_->setValue("pluginsEnable", pluginsEnable_);
+  settings_->setValue("maxPagesInCache", maxPagesInCache_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
   settings_->setValue("soundNotifyPath", soundNotifyPath_);
@@ -3229,6 +3245,15 @@ void RSSListing::showOptionDlg()
   optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
   optionsDialog->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
 
+  optionsDialog->maxPagesInCache_->setValue(maxPagesInCache_);
+  bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
+  optionsDialog->diskCacheOn_->setChecked(useDiskCache);
+  QString dirDiskCache = settings_->value(
+        "Settings/dirDiskCache", QDir::toNativeSeparators(dataDirPath_+ "/cache")).toString();
+  optionsDialog->dirDiskCacheEdit_->setText(dirDiskCache);
+  int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
+  optionsDialog->maxDiskCache_->setValue(maxDiskCache);
+
   optionsDialog->updateFeedsStartUp_->setChecked(autoUpdatefeedsStartUp_);
   optionsDialog->updateFeeds_->setChecked(autoUpdatefeeds_);
   optionsDialog->intervalTime_->setCurrentIndex(autoUpdatefeedsInterval_+1);
@@ -3431,6 +3456,35 @@ void RSSListing::showOptionDlg()
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
   openLinkInBackgroundEmbedded_ = optionsDialog->openLinkInBackgroundEmbedded_->isChecked();
+
+  maxPagesInCache_ = optionsDialog->maxPagesInCache_->value();
+  QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
+
+  useDiskCache = optionsDialog->diskCacheOn_->isChecked();
+  settings_->setValue("Settings/useDiskCache", useDiskCache);
+  maxDiskCache = optionsDialog->maxDiskCache_->value();
+  settings_->setValue("Settings/maxDiskCache", maxDiskCache);
+
+  if (dirDiskCache != optionsDialog->dirDiskCacheEdit_->text()) {
+    if (diskCache_ != NULL)
+      diskCache_->clear();
+  }
+  dirDiskCache = optionsDialog->dirDiskCacheEdit_->text();
+  settings_->setValue("Settings/dirDiskCache", dirDiskCache);
+
+  if (useDiskCache) {
+    if (diskCache_ == NULL) {
+      diskCache_ = new QNetworkDiskCache(this);
+      networkManager_->setCache(diskCache_);
+    }
+    diskCache_->setCacheDirectory(dirDiskCache);
+    diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
+  } else {
+    if (diskCache_ != NULL) {
+      diskCache_->setMaximumCacheSize(0);
+      diskCache_->clear();
+    }
+  }
 
   autoUpdatefeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   autoUpdatefeeds_ = optionsDialog->updateFeeds_->isChecked();

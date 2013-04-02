@@ -53,6 +53,12 @@ public:
   QCheckBox *openLinkInBackground_;
   QCheckBox *openLinkInBackgroundEmbedded_;
 
+  QSpinBox *maxPagesInCache_;
+  QGroupBox *diskCacheOn_;
+  QSpinBox *maxDiskCache_;
+  QLineEdit *dirDiskCacheEdit_;
+  QPushButton *dirDiskCacheButton_;
+
   // feeds
   void setOpeningFeed(int action);
   int getOpeningFeed();
@@ -153,6 +159,7 @@ private slots:
   void slotDeletePass();
   void slotDeleteAllPass();
   void slotShowPass();
+  void selectionDirDiskCache();
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
@@ -169,7 +176,7 @@ private:
   QFrame *generalWidget_;
   QFrame *traySystemWidget_;
   QFrame *networkConnectionsWidget_;
-  QFrame *browserWidget_;
+  QTabWidget *browserWidget_;
   QTabWidget *feedsWidget_;
   QWidget *labelsWidget_;
   QFrame *notifierWidget_;

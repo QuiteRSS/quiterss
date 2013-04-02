@@ -326,6 +326,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createBrowserWidget()
 {
+  //! tab "General"
   embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
   externalBrowserOn_ = new QRadioButton(tr("Use external browser"));
   defaultExternalBrowserOn_ = new QRadioButton(tr("Default external browser"));
@@ -374,9 +375,8 @@ void OptionsDialog::createBrowserWidget()
   browserLayoutV->addWidget(openLinkInBackground_);
   browserLayoutV->addStretch();
 
-  browserWidget_ = new QFrame();
-  browserWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-  browserWidget_->setLayout(browserLayoutV);
+  QWidget *generalBrowserWidget = new QWidget();
+  generalBrowserWidget->setLayout(browserLayoutV);
 
   connect(otherExternalBrowserOn_, SIGNAL(toggled(bool)),
           otherExternalBrowserEdit_, SLOT(setEnabled(bool)));
@@ -392,6 +392,56 @@ void OptionsDialog::createBrowserWidget()
   otherExternalBrowserEdit_->setVisible(false);
   otherExternalBrowserButton_->setVisible(false);
 #endif
+
+  //! tab "History"
+  maxPagesInCache_ = new QSpinBox();
+  maxPagesInCache_->setRange(0, 20);
+
+  QHBoxLayout *historyLayout1 = new QHBoxLayout();
+  historyLayout1->addWidget(new QLabel(tr("Maximum pages in cache")));
+  historyLayout1->addWidget(maxPagesInCache_);
+  historyLayout1->addStretch();
+
+  dirDiskCacheEdit_ = new LineEdit();
+  dirDiskCacheButton_ = new QPushButton(tr("Browse..."));
+
+  connect(dirDiskCacheButton_, SIGNAL(clicked()),
+          this, SLOT(selectionDirDiskCache()));
+
+  QHBoxLayout *historyLayout2 = new QHBoxLayout();
+  historyLayout2->addWidget(new QLabel(tr("Store cache in:")));
+  historyLayout2->addWidget(dirDiskCacheEdit_, 1);
+  historyLayout2->addWidget(dirDiskCacheButton_);
+
+  maxDiskCache_ = new QSpinBox();
+  maxDiskCache_->setRange(10, 99);
+
+  QHBoxLayout *historyLayout3 = new QHBoxLayout();
+  historyLayout3->addWidget(new QLabel(tr("Maximum size of disk cache")));
+  historyLayout3->addWidget(maxDiskCache_);
+  historyLayout3->addWidget(new QLabel(tr("MB")), 1);
+
+  QVBoxLayout *historyLayout4 = new QVBoxLayout();
+  historyLayout4->addLayout(historyLayout2);
+  historyLayout4->addLayout(historyLayout3);
+
+  diskCacheOn_ = new QGroupBox(tr("Use disk cache"));
+  diskCacheOn_->setCheckable(true);
+  diskCacheOn_->setChecked(false);
+  diskCacheOn_->setLayout(historyLayout4);
+
+  QVBoxLayout *historyMainLayout = new QVBoxLayout();
+  historyMainLayout->addLayout(historyLayout1);
+  historyMainLayout->addWidget(diskCacheOn_);
+  historyMainLayout->addStretch();
+
+  QWidget *historyBrowserWidget_ = new QWidget();
+  historyBrowserWidget_->setLayout(historyMainLayout);
+
+
+  browserWidget_ = new QTabWidget();
+  browserWidget_->addTab(generalBrowserWidget, tr("General"));
+  browserWidget_->addTab(historyBrowserWidget_, tr("History"));
 }
 
 /** @brief Создание виджета "Новостные ленты"
@@ -1795,4 +1845,14 @@ void OptionsDialog::applyPass()
     }
   }
   db_.commit();
+}
+
+void OptionsDialog::selectionDirDiskCache()
+{
+  QString dirStr = QFileDialog::getExistingDirectory(this, tr("Open Directory..."),
+                                                       dirDiskCacheEdit_->text(),
+                                                       QFileDialog::ShowDirsOnly
+                                                       | QFileDialog::DontResolveSymlinks);
+  if (!dirStr.isEmpty())
+    dirDiskCacheEdit_->setText(dirStr);
 }
