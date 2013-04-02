@@ -139,6 +139,8 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
           this, SLOT(slotTabCloseRequested(int)));
   connect(tabBar_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
+  connect(tabBar_, SIGNAL(tabMoved(int,int)),
+          SLOT(slotTabMoved(int,int)));
   connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
   tabBar_->installEventFilter(this);
@@ -5434,6 +5436,13 @@ void RSSListing::slotTabCurrentChanged(int index)
   }
 
   setTextTitle(widget->newsTitleLabel_->toolTip(), widget);
+}
+
+/** @brief Перемещение вкладок
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotTabMoved(int fromIndex, int toIndex)
+{
+  stackedWidget_->insertWidget(toIndex, stackedWidget_->widget(fromIndex));
 }
 
 //! Включение/отключение отображения колонок в дереве лент

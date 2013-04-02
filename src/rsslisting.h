@@ -488,6 +488,7 @@ private slots:
   void slotSwitchPrevFocus();
   void slotOpenFeedNewTab();
   void slotTabCurrentChanged(int index);
+  void slotTabMoved(int fromIndex, int toIndex);
   void feedsColumnVisible(QAction *action);
   void setBrowserPosition(QAction *action);
   void slotOpenNewsWebView();
