@@ -56,7 +56,8 @@ void AddFeedWizard::changeEvent(QEvent *event)
     QClipboard *clipboard_ = QApplication::clipboard();
     QString clipboardStr = clipboard_->text().left(8);
     if (clipboardStr.contains("http://", Qt::CaseInsensitive) ||
-        clipboardStr.contains("https://", Qt::CaseInsensitive)) {
+        clipboardStr.contains("https://", Qt::CaseInsensitive) ||
+        clipboardStr.contains("www.", Qt::CaseInsensitive)) {
       urlFeedEdit_->setText(clipboard_->text());
       urlFeedEdit_->selectAll();
       urlFeedEdit_->setFocus();
@@ -73,6 +74,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   finishOn = false;
 
   urlFeedEdit_ = new LineEdit(this);
+  urlFeedEdit_->setText("http://");
 
   titleFeedAsName_ = new QCheckBox(
         tr("Use title of the feed as displayed name"), this);
@@ -284,6 +286,12 @@ void AddFeedWizard::addFeed()
   feedUrlString_ = urlFeedEdit_->text().simplified();
 
   QUrl feedUrl(feedUrlString_);
+  if (feedUrl.scheme().isEmpty()) {
+    feedUrlString_ = "http://" + feedUrlString_;
+    feedUrl.setUrl(feedUrlString_);
+    urlFeedEdit_->setText(feedUrlString_);
+  }
+
   if (feedUrl.host().isEmpty()) {
     textWarning->setText(tr("URL error!"));
     warningWidget_->setVisible(true);
