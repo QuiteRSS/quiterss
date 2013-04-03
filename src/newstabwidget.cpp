@@ -1167,10 +1167,8 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
   }
   if (rsslisting_->externalBrowserOn_ <= 0) {
     if (!webView_->midButtonClick) {
-      if (!webControlPanel_->isVisible()) {
-        webView_->history()->clear();
+      if (!webControlPanel_->isVisible())
         setWebToolbarVisible(true, false);
-      }
       webView_->load(url);
     } else {
       QWebPage *webPage = rsslisting_->createWebTab();
