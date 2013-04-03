@@ -5904,10 +5904,17 @@ void RSSListing::setFullScreen()
 
 void RSSListing::setStayOnTop()
 {
+  int state = windowState();
+
   if (stayOnTopAct_->isChecked())
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
+
+  if ((state & Qt::WindowFullScreen) || (state & Qt::WindowMaximized)) {
+    restoreGeometry(settings_->value("GeometryState").toByteArray());
+  }
+  setWindowState((Qt::WindowState)state);
   show();
 }
 
