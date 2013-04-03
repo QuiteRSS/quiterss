@@ -122,6 +122,8 @@ public:
   bool showDescriptionNews_;
   bool alternatingRowColorsNews_;
   bool simplifiedDateTime_;
+  bool notDeleteStarred_;
+  bool notDeleteLabeled_;
 
   bool autoLoadImages_;
   bool openLinkInBackground_;

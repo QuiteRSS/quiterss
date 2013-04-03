@@ -866,6 +866,14 @@ void NewsTabWidget::deleteNews()
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
+    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+        rsslisting_->notDeleteStarred_)
+      return;
+    QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
+        data(Qt::EditRole).toString();
+    if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+      return;
+
     slotSetItemRead(curIndex, 1);
     newsModel_->setData(curIndex, 1);
     newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")),
@@ -880,6 +888,14 @@ void NewsTabWidget::deleteNews()
     QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+          rsslisting_->notDeleteStarred_)
+        continue;
+      QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
+          data(Qt::EditRole).toString();
+      if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+        continue;
+
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
              arg(QDateTime::currentDateTime().toString(Qt::ISODate)).arg(newsId));
@@ -920,6 +936,13 @@ void NewsTabWidget::deleteAllNewsList()
   db_.transaction();
   QSqlQuery q;
   for (int i = cnt-1; i >= 0; --i) {
+    if (newsModel_->index(i, newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+        rsslisting_->notDeleteStarred_)
+      continue;
+    QString labelStr = newsModel_->index(i, newsModel_->fieldIndex("label")).data(Qt::EditRole).toString();
+    if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+      continue;
+
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
     q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
            arg(QDateTime::currentDateTime().toString(Qt::ISODate)).arg(newsId));

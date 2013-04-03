@@ -560,6 +560,9 @@ void OptionsDialog::createFeedsWidget()
 
   changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
+  notDeleteStarred_ = new QCheckBox(tr("Not delete starred news"));
+  notDeleteLabeled_ = new QCheckBox(tr("Not delete labeled news"));
+
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
   readingFeedsLayout1->addWidget(markCurNewsRead_);
@@ -579,6 +582,9 @@ void OptionsDialog::createFeedsWidget()
   readingFeedsLayout->addWidget(markReadMinimize_);
   readingFeedsLayout->addSpacing(10);
   readingFeedsLayout->addWidget(showDescriptionNews_);
+  readingFeedsLayout->addSpacing(10);
+  readingFeedsLayout->addWidget(notDeleteStarred_);
+  readingFeedsLayout->addWidget(notDeleteLabeled_);
   readingFeedsLayout->addWidget(changeBehaviorActionNUN_);
   readingFeedsLayout->addStretch();
 

@@ -87,8 +87,11 @@ public:
   QComboBox *formatTime_;
 
   QCheckBox *alternatingRowColorsNews_;
-  QCheckBox *changeBehaviorActionNUN_;
   QCheckBox *simplifiedDateTime_;
+
+  QCheckBox *changeBehaviorActionNUN_;
+  QCheckBox *notDeleteStarred_;
+  QCheckBox *notDeleteLabeled_;
 
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;

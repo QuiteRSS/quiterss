@@ -1837,6 +1837,8 @@ void RSSListing::readSettings()
   alternatingRowColorsNews_ = settings_->value("alternatingColorsNews", false).toBool();
   changeBehaviorActionNUN_ = settings_->value("changeBehaviorActionNUN", false).toBool();
   simplifiedDateTime_ = settings_->value("simplifiedDateTime", true).toBool();
+  notDeleteStarred_ = settings_->value("notDeleteStarred", false).toBool();
+  notDeleteLabeled_ = settings_->value("notDeleteLabeled", false).toBool();
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -2073,6 +2075,8 @@ void RSSListing::writeSettings()
   settings_->setValue("alternatingColorsNews", alternatingRowColorsNews_);
   settings_->setValue("changeBehaviorActionNUN", changeBehaviorActionNUN_);
   settings_->setValue("simplifiedDateTime", simplifiedDateTime_);
+  settings_->setValue("notDeleteStarred_", notDeleteStarred_);
+  settings_->setValue("notDeleteLabeled_", notDeleteLabeled_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -3304,6 +3308,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->alternatingRowColorsNews_->setChecked(alternatingRowColorsNews_);
   optionsDialog->changeBehaviorActionNUN_->setChecked(changeBehaviorActionNUN_);
   optionsDialog->simplifiedDateTime_->setChecked(simplifiedDateTime_);
+  optionsDialog->notDeleteStarred_->setChecked(notDeleteStarred_);
+  optionsDialog->notDeleteLabeled_->setChecked(notDeleteLabeled_);
 
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
@@ -3551,6 +3557,8 @@ void RSSListing::showOptionDlg()
   alternatingRowColorsNews_ = optionsDialog->alternatingRowColorsNews_->isChecked();
   changeBehaviorActionNUN_ = optionsDialog->changeBehaviorActionNUN_->isChecked();
   simplifiedDateTime_ = optionsDialog->simplifiedDateTime_->isChecked();
+  notDeleteStarred_ = optionsDialog->notDeleteStarred_->isChecked();
+  notDeleteLabeled_ = optionsDialog->notDeleteLabeled_->isChecked();
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
