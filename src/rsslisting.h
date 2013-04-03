@@ -121,6 +121,7 @@ public:
   bool markReadMinimize_;
   bool showDescriptionNews_;
   bool alternatingRowColorsNews_;
+  bool simplifiedDateTime_;
 
   bool autoLoadImages_;
   bool openLinkInBackground_;

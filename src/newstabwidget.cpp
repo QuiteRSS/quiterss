@@ -378,6 +378,7 @@ void NewsTabWidget::setSettings(bool newTab)
             QFont(rsslisting_->newsListFontFamily_, rsslisting_->newsListFontSize_));
       newsModel_->formatDate_ = rsslisting_->formatDate_;
       newsModel_->formatTime_ = rsslisting_->formatTime_;
+      newsModel_->simplifiedDateTime_ = rsslisting_->simplifiedDateTime_;
     }
 
     if (rsslisting_->externalBrowserOn_ <= 0) {

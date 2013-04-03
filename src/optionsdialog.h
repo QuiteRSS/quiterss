@@ -88,6 +88,7 @@ public:
 
   QCheckBox *alternatingRowColorsNews_;
   QCheckBox *changeBehaviorActionNUN_;
+  QCheckBox *simplifiedDateTime_;
 
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;

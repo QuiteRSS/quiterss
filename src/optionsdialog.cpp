@@ -524,7 +524,7 @@ void OptionsDialog::createFeedsWidget()
   formatDateLayout->addStretch();
 
   alternatingRowColorsNews_ = new QCheckBox(tr("Alternating row background colors"));
-  changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
+  simplifiedDateTime_ = new QCheckBox(tr("Simplified representation of date and time"));
 
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
@@ -533,7 +533,8 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addWidget(new QLabel(tr("Opening feed:")));
   generalFeedsLayout->addLayout(openingFeedsLayout);
   generalFeedsLayout->addWidget(alternatingRowColorsNews_);
-  generalFeedsLayout->addWidget(changeBehaviorActionNUN_);
+  generalFeedsLayout->addSpacing(10);
+  generalFeedsLayout->addWidget(simplifiedDateTime_);
   generalFeedsLayout->addLayout(formatDateLayout);
   generalFeedsLayout->addStretch();
 
@@ -557,6 +558,8 @@ void OptionsDialog::createFeedsWidget()
   showDescriptionNews_ = new QCheckBox(
         tr("Show news' description instead of loading web page"));
 
+  changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
+
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
   readingFeedsLayout1->addWidget(markCurNewsRead_);
@@ -576,6 +579,7 @@ void OptionsDialog::createFeedsWidget()
   readingFeedsLayout->addWidget(markReadMinimize_);
   readingFeedsLayout->addSpacing(10);
   readingFeedsLayout->addWidget(showDescriptionNews_);
+  readingFeedsLayout->addWidget(changeBehaviorActionNUN_);
   readingFeedsLayout->addStretch();
 
   QWidget *readingFeedsWidget = new QWidget();

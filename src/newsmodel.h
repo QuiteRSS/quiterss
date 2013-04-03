@@ -23,6 +23,7 @@ public:
       ) const;
   QString formatDate_;
   QString formatTime_;
+  bool simplifiedDateTime_;
 
 signals:
   void signalSort(int column, int order);

@@ -113,18 +113,26 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
               QSqlTableModel::index(index.row(), fieldIndex("received")).data(Qt::EditRole).toString(),
               Qt::ISODate);
       }
-      if (QDateTime::currentDateTime().date() <= dtLocal.date())
-        return dtLocal.toString(formatTime_);
-      else
-        return dtLocal.toString(formatDate_);
+      if (simplifiedDateTime_) {
+        if (QDateTime::currentDateTime().date() <= dtLocal.date())
+          return dtLocal.toString(formatTime_);
+        else
+          return dtLocal.toString(formatDate_);
+      } else {
+        return dtLocal.toString(formatDate_ + " " + formatTime_);
+      }
     }
     else if (QSqlTableModel::fieldIndex("received") == index.column()) {
       QDateTime dateTime = QDateTime::fromString(
             index.data(Qt::EditRole).toString(),
             Qt::ISODate);
-      if (QDateTime::currentDateTime().date() == dateTime.date()) {
-        return dateTime.toString(formatTime_);
-      } else return dateTime.toString(formatDate_);
+      if (simplifiedDateTime_) {
+        if (QDateTime::currentDateTime().date() == dateTime.date()) {
+          return dateTime.toString(formatTime_);
+        } else return dateTime.toString(formatDate_);
+      } else {
+        return dateTime.toString(formatDate_ + " " + formatTime_);
+      }
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
       QStringList nameLabelList;
       QString strIdLabels = index.data(Qt::EditRole).toString();
