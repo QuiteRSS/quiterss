@@ -1130,7 +1130,7 @@ void RSSListing::createActions()
   feedProperties_->setObjectName("feedProperties");
   feedProperties_->setIcon(QIcon(":/images/preferencesFeed"));
   this->addAction(feedProperties_);
-  connect(feedProperties_, SIGNAL(triggered()), this, SLOT(slotShowFeedPropertiesDlg()));
+  connect(feedProperties_, SIGNAL(triggered()), this, SLOT(showFeedPropertiesDlg()));
 
   feedKeyUpAct_ = new QAction(this);
   feedKeyUpAct_->setObjectName("feedKeyUp");
@@ -4694,7 +4694,7 @@ void RSSListing::showContextMenuToolBar(const QPoint &p)
   mainToolbarMenu_->popup(mainToolbar_->mapToGlobal(p));
 }
 
-void RSSListing::slotShowFeedPropertiesDlg()
+void RSSListing::showFeedPropertiesDlg()
 {
   if (!feedsTreeView_->selectIndex().isValid()) {
     feedProperties_->setEnabled(false);

@@ -470,7 +470,7 @@ private slots:
   void slotTimerUpdateFeeds();
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &);
-  void slotShowFeedPropertiesDlg();
+  void showFeedPropertiesDlg();
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
