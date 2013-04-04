@@ -4129,14 +4129,11 @@ void RSSListing::showContextMenuFeed(const QPoint &pos)
 {
   slotFeedMenuShow();
 
-  QMenu menu;
-  connect(&menu, SIGNAL(aboutToHide()),
-          this, SLOT(slotFeedMenuHide()), Qt::QueuedConnection);
-
   QModelIndex index = feedsTreeView_->indexAt(pos);
   if (index.isValid()) {
     QRect rectText = feedsTreeView_->visualRect(index);
     if (pos.x() >= rectText.x()) {
+      QMenu menu;
       menu.addAction(addAct_);
       menu.addSeparator();
       menu.addAction(openFeedNewTabAct_);
@@ -4153,26 +4150,22 @@ void RSSListing::showContextMenuFeed(const QPoint &pos)
       menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
     }
   } else {
+    QMenu menu;
     menu.addAction(addAct_);
 
     menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
   }
 
-  slotFeedMenuHide();
+  index = feedsTreeView_->currentIndex();
+  feedsTreeView_->selectId_ = feedsTreeModel_->getIdByIndex(index);
+  feedsTreeView_->selectParentId_ = feedsTreeModel_->getParidByIndex(index);
+
+  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
 void RSSListing::slotFeedMenuShow()
 {
   deleteFeedAct_->setEnabled(!feedsTreeModel_->isFolder(feedsTreeView_->selectIndex()));
-  feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
-}
-
-void RSSListing::slotFeedMenuHide()
-{
-  QModelIndex index = feedsTreeView_->currentIndex();
-  feedsTreeView_->selectId_ = feedsTreeModel_->getIdByIndex(index);
-  feedsTreeView_->selectParentId_ = feedsTreeModel_->getParidByIndex(index);
-
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
