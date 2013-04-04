@@ -125,7 +125,6 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createShortcut();
   createMenu();
   createToolBar();
-  createMenuFeed();
 
   createStatusBar();
   createTray();
@@ -695,6 +694,8 @@ void RSSListing::createFeedsWidget()
   connect(feedsTreeView_, SIGNAL(pressKeyEnd()), this, SLOT(slotFeedEndPressed()));
   connect(feedsTreeView_, SIGNAL(signalDropped(QModelIndex&,QModelIndex&,int)),
           this, SLOT(slotMoveIndex(QModelIndex&,QModelIndex&,int)));
+  connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuFeed(const QPoint &)));
 
   connect(findFeeds_, SIGNAL(textChanged(QString)),
           this, SLOT(slotFindFeeds(QString)));
@@ -4124,23 +4125,45 @@ void RSSListing::slotShowAboutDlg()
   delete aboutDialog;
 }
 
-void RSSListing::createMenuFeed()
+void RSSListing::showContextMenuFeed(const QPoint &pos)
 {
-  feedContextMenu_ = new QMenu(this);
+  slotFeedMenuShow();
 
-  connect(feedContextMenu_, SIGNAL(aboutToShow()),
-          this, SLOT(slotFeedMenuShow()));
-  connect(feedContextMenu_, SIGNAL(aboutToHide()),
+  QMenu menu;
+  connect(&menu, SIGNAL(aboutToHide()),
           this, SLOT(slotFeedMenuHide()), Qt::QueuedConnection);
-  connect(feedsTreeView_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuFeed(const QPoint &)));
+
+  QModelIndex index = feedsTreeView_->indexAt(pos);
+  if (index.isValid()) {
+    QRect rectText = feedsTreeView_->visualRect(index);
+    if (pos.x() >= rectText.x()) {
+      menu.addAction(addAct_);
+      menu.addSeparator();
+      menu.addAction(openFeedNewTabAct_);
+      menu.addSeparator();
+      menu.addAction(updateFeedAct_);
+      menu.addSeparator();
+      menu.addAction(markFeedRead_);
+      menu.addSeparator();
+      menu.addAction(deleteFeedAct_);
+      menu.addSeparator();
+      menu.addAction(setFilterNewsAct_);
+      menu.addAction(feedProperties_);
+
+      menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
+    }
+  } else {
+    menu.addAction(addAct_);
+
+    menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
+  }
+
+  slotFeedMenuHide();
 }
 
 void RSSListing::slotFeedMenuShow()
 {
-  deleteFeedAct_->setEnabled(
-      0 == feedsTreeModel_->rowCount(feedsTreeView_->selectIndex()));
-
+  deleteFeedAct_->setEnabled(!feedsTreeModel_->isFolder(feedsTreeView_->selectIndex()));
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
@@ -4151,42 +4174,6 @@ void RSSListing::slotFeedMenuHide()
   feedsTreeView_->selectParentId_ = feedsTreeModel_->getParidByIndex(index);
 
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
-}
-
-void RSSListing::showContextMenuFeed(const QPoint &p)
-{
-  QListIterator<QAction *> iter(feedContextMenu_->actions());
-  while (iter.hasNext()) {
-    QAction *nextAction = iter.next();
-    if (nextAction->objectName().isEmpty()) {
-      delete nextAction;
-    }
-  }
-  feedContextMenu_->clear();
-
-  QModelIndex index = feedsTreeView_->indexAt(p);
-  if (index.isValid()) {
-    QRect rectText = feedsTreeView_->visualRect(index);
-    if (p.x() >= rectText.x()) {
-      feedContextMenu_->addAction(addAct_);
-      feedContextMenu_->addSeparator();
-      feedContextMenu_->addAction(openFeedNewTabAct_);
-      feedContextMenu_->addSeparator();
-      feedContextMenu_->addAction(updateFeedAct_);
-      feedContextMenu_->addSeparator();
-      feedContextMenu_->addAction(markFeedRead_);
-      feedContextMenu_->addSeparator();
-      feedContextMenu_->addAction(deleteFeedAct_);
-      feedContextMenu_->addSeparator();
-      feedContextMenu_->addAction(setFilterNewsAct_);
-      feedContextMenu_->addAction(feedProperties_);
-
-      feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
-    }
-  } else {
-    feedContextMenu_->addAction(addAct_);
-    feedContextMenu_->popup(feedsTreeView_->viewport()->mapToGlobal(p));
-  }
 }
 
 void RSSListing::setAutoLoadImages(bool set)

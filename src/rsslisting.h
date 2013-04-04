@@ -207,7 +207,6 @@ private:
   void readSettings ();
   void writeSettings();
   void createTrayMenu();
-  void createMenuFeed();
   void createStatusBar();
   void createTray();
   void createTabBar();
@@ -348,7 +347,6 @@ private:
   QMenu *helpMenu_;
   QMenu *trayMenu_;
   QMenu *newsContextMenu_;
-  QMenu *feedContextMenu_;
   QMenu *feedsFilterMenu_;
   QMenu *newsFilterMenu_;
   QMenu *feedsColumnsMenu_;
@@ -466,7 +464,7 @@ private slots:
 
   void slotShowAboutDlg();
 
-  void showContextMenuFeed(const QPoint &);
+  void showContextMenuFeed(const QPoint & pos);
   void slotFeedsFilter();
   void slotNewsFilter();
   void slotTimerUpdateFeeds();
