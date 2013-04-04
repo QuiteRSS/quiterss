@@ -16,6 +16,10 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent) :
   tabWidget->addTab(CreateStatusTab(), tr("Status"));
   pageLayout->addWidget(tabWidget);
 
+  if (!isFeed_) {
+    tabWidget->removeTab(1);
+  }
+
   buttonBox->addButton(QDialogButtonBox::Ok);
   buttonBox->addButton(QDialogButtonBox::Cancel);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
