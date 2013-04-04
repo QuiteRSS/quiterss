@@ -116,6 +116,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   feedIdOld_ = -2;
   openingLink_ = false;
   openNewsTab_ = 0;
+  indexClickedTab = -1;
 
   createFeedsWidget();
   createToolBarNull();
@@ -129,21 +130,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
   createStatusBar();
   createTray();
 
-  tabBar_ = new QTabBar();
-  tabBar_->addTab("");
-  tabBar_->setIconSize(QSize(16, 16));
-  tabBar_->setMovable(true);
-  tabBar_->setExpanding(false);
-  tabBar_->setFocusPolicy(Qt::NoFocus);
-  connect(tabBar_, SIGNAL(tabCloseRequested(int)),
-          this, SLOT(slotTabCloseRequested(int)));
-  connect(tabBar_, SIGNAL(currentChanged(int)),
-          this, SLOT(slotTabCurrentChanged(int)));
-  connect(tabBar_, SIGNAL(tabMoved(int,int)),
-          SLOT(slotTabMoved(int,int)));
-  connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
-          SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
-  tabBar_->installEventFilter(this);
+  createTabBar();
 
   QHBoxLayout *tabBarLayout = new QHBoxLayout();
   tabBarLayout->setContentsMargins(5, 0, 0, 0);
@@ -801,6 +788,30 @@ void RSSListing::createTray()
   createTrayMenu();
 }
 
+/** @brief Создание виджета вкладок
+ *----------------------------------------------------------------------------*/
+void RSSListing::createTabBar()
+{
+  tabBar_ = new QTabBar();
+  tabBar_->addTab("");
+  tabBar_->setIconSize(QSize(16, 16));
+  tabBar_->setMovable(true);
+  tabBar_->setExpanding(false);
+  tabBar_->setFocusPolicy(Qt::NoFocus);
+  tabBar_->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(tabBar_, SIGNAL(tabCloseRequested(int)),
+          this, SLOT(slotTabCloseRequested(int)));
+  connect(tabBar_, SIGNAL(currentChanged(int)),
+          this, SLOT(slotTabCurrentChanged(int)));
+  connect(tabBar_, SIGNAL(tabMoved(int,int)),
+          SLOT(slotTabMoved(int,int)));
+  connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
+          SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
+  connect(tabBar_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuTabBar(const QPoint &)));
+  tabBar_->installEventFilter(this);
+}
+
 /*! \brief Создание действий **************************************************
  * \details Которые будут использоваться в главном меню и ToolBar
  ******************************************************************************/
@@ -1241,6 +1252,12 @@ void RSSListing::createActions()
   this->addAction(closeTabAct_);
   connect(closeTabAct_, SIGNAL(triggered()), this, SLOT(slotCloseTab()));
 
+  closeAllTabAct_ = new QAction(this);
+  closeAllTabAct_->setObjectName("closeAllTabAct");
+  this->addAction(closeAllTabAct_);
+  connect(closeAllTabAct_, SIGNAL(triggered()),
+          this, SLOT(slotCloseAllTabButCurrent()));
+
   nextTabAct_ = new QAction(this);
   nextTabAct_->setObjectName("nextTabAct");
   this->addAction(nextTabAct_);
@@ -1445,6 +1462,7 @@ void RSSListing::createShortcut()
 
   closeTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
   listActions_.append(closeTabAct_);
+  listActions_.append(closeAllTabAct_);
   listActions_.append(nextTabAct_);
   listActions_.append(prevTabAct_);
 
@@ -4579,6 +4597,7 @@ void RSSListing::retranslateStrings()
   newsLabelAction_->setText(tr("Label"));
 
   closeTabAct_->setText(tr("Close tab"));
+  closeAllTabAct_->setText(tr("Close other tabs"));
   nextTabAct_->setText(tr("Switch to next tab"));
   prevTabAct_->setText(tr("Switch to previous tab"));
 
@@ -6248,25 +6267,64 @@ void RSSListing::getLabelNews()
   }
 }
 
-/**
- * @brief Закрытие открытой вкладки
- ******************************************************************************/
-void RSSListing::slotCloseTab()
+/** @brief Вызов контекстного меню вкладки
+ *----------------------------------------------------------------------------*/
+void RSSListing::showContextMenuTabBar(const QPoint &pos)
 {
-  slotTabCloseRequested(tabBar_->currentIndex());
+  int index = tabBar_->tabAt(pos);
+  indexClickedTab = index;
+
+  if (index == -1) return;
+
+  QMenu menu;
+  menu.addAction(closeTabAct_);
+  menu.addAction(closeAllTabAct_);
+
+  connect(&menu, SIGNAL(aboutToHide()),
+          this, SLOT(slotTabBarMenuHide()), Qt::QueuedConnection);
+
+  menu.exec(tabBar_->mapToGlobal(pos));
 }
 
-/**
- * @brief Переключение на следующую вкладку
- ******************************************************************************/
+/** @brief Скрытие контекстного меню вкладки
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotTabBarMenuHide()
+{
+  indexClickedTab = -1;
+}
+
+/** @brief Закрытие выбранной вкладки
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotCloseTab()
+{
+  int index = indexClickedTab;
+  if (index == -1) index = tabBar_->currentIndex();
+
+  slotTabCloseRequested(index);
+}
+
+/** @brief Закрытие всех вкладок кроме выбранной
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotCloseAllTabButCurrent()
+{
+  int index = indexClickedTab;
+  if (index == -1) index = tabBar_->currentIndex();
+
+  for (int i = tabBar_->count()-1; i > 0; i--) {
+    if (i == index) continue;
+    slotTabCloseRequested(i);
+  }
+}
+
+/** @brief Переключение на следующую вкладку
+ *----------------------------------------------------------------------------*/
 void RSSListing::slotNextTab()
 {
   tabBar_->setCurrentIndex(tabBar_->currentIndex()+1);
 }
 
-/**
- * @brief Переключение на предыдущую вкладку
- ******************************************************************************/
+/** @brief Переключение на предыдущую вкладку
+ *----------------------------------------------------------------------------*/
 void RSSListing::slotPrevTab()
 {
   tabBar_->setCurrentIndex(tabBar_->currentIndex()-1);

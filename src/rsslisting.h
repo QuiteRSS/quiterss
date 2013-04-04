@@ -210,6 +210,7 @@ private:
   void createMenuFeed();
   void createStatusBar();
   void createTray();
+  void createTabBar();
   void loadSettingsFeeds();
   void appInstallTranslator();
   void retranslateStrings();
@@ -324,6 +325,7 @@ private:
   QAction *stayOnTopAct_;
 
   QAction *closeTabAct_;
+  QAction *closeAllTabAct_;
   QAction *nextTabAct_;
   QAction *prevTabAct_;
 
@@ -450,6 +452,8 @@ private:
 
   bool changeBehaviorActionNUN_;
 
+  int indexClickedTab;
+
 private slots:
   void slotTimerLinkOpening();
   void slotProgressBarUpdate();
@@ -543,7 +547,10 @@ private slots:
   void setDefaultLabelNews();
   void getLabelNews();
 
+  void showContextMenuTabBar(const QPoint &pos);
+  void slotTabBarMenuHide();
   void slotCloseTab();
+  void slotCloseAllTabButCurrent();
   void slotNextTab();
   void slotPrevTab();
   void setTextTitle(const QString &text, NewsTabWidget *widget);
