@@ -545,7 +545,6 @@ private slots:
   void getLabelNews();
 
   void showContextMenuTabBar(const QPoint &pos);
-  void slotTabBarMenuHide();
   void slotCloseTab();
   void slotCloseAllTabButCurrent();
   void slotNextTab();

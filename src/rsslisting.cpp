@@ -6260,16 +6260,8 @@ void RSSListing::showContextMenuTabBar(const QPoint &pos)
   menu.addAction(closeTabAct_);
   menu.addAction(closeAllTabAct_);
 
-  connect(&menu, SIGNAL(aboutToHide()),
-          this, SLOT(slotTabBarMenuHide()), Qt::QueuedConnection);
-
   menu.exec(tabBar_->mapToGlobal(pos));
-}
 
-/** @brief Скрытие контекстного меню вкладки
- *----------------------------------------------------------------------------*/
-void RSSListing::slotTabBarMenuHide()
-{
   indexClickedTab = -1;
 }
 
