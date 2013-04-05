@@ -34,13 +34,11 @@ class NewsTabWidget : public QWidget
   Q_OBJECT
 private:
   void createNewsList();
-  void createMenuNews();
   void createWebWidget();
 
   RSSListing *rsslisting_;
   QSqlDatabase db_;
   QWidget *newsWidget_;
-  QMenu *newsContextMenu_;
 
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
@@ -143,7 +141,7 @@ public slots:
   void slotSort(int column, int order);
 
 private slots:
-  void showContextMenuNews(const QPoint &p);
+  void showContextMenuNews(const QPoint &pos);
   void slotSetItemRead(QModelIndex index, int read);
   void slotSetItemStar(QModelIndex index, int starred);
   void slotReadTimer();

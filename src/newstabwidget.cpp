@@ -53,7 +53,6 @@ NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedPar
 
   if (type_ != TAB_WEB) {
     createNewsList();
-    createMenuNews();
   } else {
     autoLoadImages_ = rsslisting_->autoLoadImages_;
   }
@@ -226,32 +225,32 @@ void NewsTabWidget::createNewsList()
           newsPanelWidget_, SLOT(setVisible(bool)));
 }
 
-void NewsTabWidget::createMenuNews()
+/** @brief Вызов контекстного меню выбранной новости в списке новостей
+ *----------------------------------------------------------------------------*/
+void NewsTabWidget::showContextMenuNews(const QPoint &pos)
 {
-  newsContextMenu_ = new QMenu(this);
-  newsContextMenu_->addAction(rsslisting_->restoreNewsAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(rsslisting_->openInBrowserAct_);
-  newsContextMenu_->addAction(rsslisting_->openInExternalBrowserAct_);
-  newsContextMenu_->addAction(rsslisting_->openNewsNewTabAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(rsslisting_->markNewsRead_);
-  newsContextMenu_->addAction(rsslisting_->markAllNewsRead_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(rsslisting_->markStarAct_);
-  newsContextMenu_->addAction(rsslisting_->newsLabelMenuAction_);
-  newsContextMenu_->addAction(rsslisting_->shareMenuAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(rsslisting_->updateFeedAct_);
-  newsContextMenu_->addSeparator();
-  newsContextMenu_->addAction(rsslisting_->deleteNewsAct_);
-  newsContextMenu_->addAction(rsslisting_->deleteAllNewsAct_);
-}
+  if (!newsView_->currentIndex().isValid()) return;
 
-void NewsTabWidget::showContextMenuNews(const QPoint &p)
-{
-  if (newsView_->currentIndex().isValid())
-    newsContextMenu_->popup(newsView_->viewport()->mapToGlobal(p));
+  QMenu menu;
+  menu.addAction(rsslisting_->restoreNewsAct_);
+  menu.addSeparator();
+  menu.addAction(rsslisting_->openInBrowserAct_);
+  menu.addAction(rsslisting_->openInExternalBrowserAct_);
+  menu.addAction(rsslisting_->openNewsNewTabAct_);
+  menu.addSeparator();
+  menu.addAction(rsslisting_->markNewsRead_);
+  menu.addAction(rsslisting_->markAllNewsRead_);
+  menu.addSeparator();
+  menu.addAction(rsslisting_->markStarAct_);
+  menu.addAction(rsslisting_->newsLabelMenuAction_);
+  menu.addAction(rsslisting_->shareMenuAct_);
+  menu.addSeparator();
+  menu.addAction(rsslisting_->updateFeedAct_);
+  menu.addSeparator();
+  menu.addAction(rsslisting_->deleteNewsAct_);
+  menu.addAction(rsslisting_->deleteAllNewsAct_);
+
+  menu.exec(newsView_->viewport()->mapToGlobal(pos));
 }
 
 //! Создание веб-виджета и панели управления
