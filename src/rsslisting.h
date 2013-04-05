@@ -337,7 +337,6 @@ private:
   QMenu *viewMenu_;
   QMenu *toolbarsMenu_;
   QMenu *customizeToolbarMenu_;
-  QMenu *mainToolbarMenu_;
   QMenu *styleMenu_;
   QMenu *browserPositionMenu_;
   QMenu *feedMenu_;
@@ -469,7 +468,7 @@ private slots:
   void slotNewsFilter();
   void slotTimerUpdateFeeds();
   void slotShowUpdateAppDlg();
-  void showContextMenuToolBar(const QPoint &);
+  void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
   void slotFeedMenuShow();
   void markAllFeedsRead();

@@ -1743,11 +1743,6 @@ void RSSListing::createMenu()
 /*! \brief Создание ToolBar ***************************************************/
 void RSSListing::createToolBar()
 {
-  mainToolbarMenu_ = new QMenu(this);
-  mainToolbarMenu_->addAction(customizeMainToolbarAct2_);
-  mainToolbarMenu_->addSeparator();
-  mainToolbarMenu_->addAction(toolBarHide_);
-
   mainToolbar_ = new QToolBar(this);
   mainToolbar_->setObjectName("ToolBar_General");
   mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
@@ -4125,6 +4120,8 @@ void RSSListing::slotShowAboutDlg()
   delete aboutDialog;
 }
 
+/** @brief Вызов контекстного меню дерева лент
+ *----------------------------------------------------------------------------*/
 void RSSListing::showContextMenuFeed(const QPoint &pos)
 {
   slotFeedMenuShow();
@@ -4689,9 +4686,16 @@ void RSSListing::setToolBarIconSize(const QString &iconSizeStr)
   }
 }
 
-void RSSListing::showContextMenuToolBar(const QPoint &p)
+/** @brief Вызов контекстного меню главной панели инструментов
+ *----------------------------------------------------------------------------*/
+void RSSListing::showContextMenuToolBar(const QPoint &pos)
 {
-  mainToolbarMenu_->popup(mainToolbar_->mapToGlobal(p));
+  QMenu menu;
+  menu.addAction(customizeMainToolbarAct2_);
+  menu.addSeparator();
+  menu.addAction(toolBarHide_);
+
+  menu.exec(mainToolbar_->mapToGlobal(pos));
 }
 
 void RSSListing::showFeedPropertiesDlg()
