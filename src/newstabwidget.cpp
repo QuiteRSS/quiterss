@@ -244,6 +244,7 @@ void NewsTabWidget::showContextMenuNews(const QPoint &pos)
   menu.addAction(rsslisting_->markStarAct_);
   menu.addAction(rsslisting_->newsLabelMenuAction_);
   menu.addAction(rsslisting_->shareMenuAct_);
+  menu.addAction(rsslisting_->copyLinkAct_);
   menu.addSeparator();
   menu.addAction(rsslisting_->updateFeedAct_);
   menu.addSeparator();
@@ -1001,6 +1002,32 @@ void NewsTabWidget::restoreNews()
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rsslisting_->slotUpdateStatus(feedId_);
+}
+
+/** @brief Копировать ссылку новости
+ *----------------------------------------------------------------------------*/
+void NewsTabWidget::slotCopyLinkNews()
+{
+  if (type_ == TAB_WEB) return;
+
+  QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
+
+  int cnt = indexes.count();
+  if (cnt == 0) return;
+
+  QString copyStr;
+  for (int i = cnt-1; i >= 0; --i) {
+    if (!copyStr.isEmpty()) copyStr.append("\n");
+
+    QModelIndex index = indexes.at(i);
+    QString linkString = newsModel_->record(index.row()).field("link_href").value().toString();
+    if (linkString.isEmpty())
+      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+    copyStr.append(linkString.simplified());
+  }
+
+  QClipboard *clipboard = QApplication::clipboard();
+  clipboard->setText(copyStr);
 }
 
 //! Сортировка новостей по "star" или по "read"

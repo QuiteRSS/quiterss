@@ -76,6 +76,7 @@ public:
   void deleteNews();
   void deleteAllNewsList();
   void restoreNews();
+  void slotCopyLinkNews();
 
   bool openUrl(const QUrl &url);
   void openInBrowserNews();

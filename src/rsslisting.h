@@ -91,6 +91,7 @@ public:
   QAction *pocketShareAct_;
   QAction *twitterShareAct_;
   QAction *vkShareAct_;
+  QAction *copyLinkAct_;
 
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
@@ -509,6 +510,7 @@ private slots:
   void openInExternalBrowserNews();
   void slotOpenNewsNewTab();
   void slotOpenNewsBackgroundTab();
+  void slotCopyLinkNews();
   void setCurrentTab(int index, bool updateCurrentTab = false);
   void findText();
 

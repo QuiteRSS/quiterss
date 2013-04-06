@@ -1299,6 +1299,12 @@ void RSSListing::createActions()
   this->addAction(openHomeFeedAct_);
   connect(openHomeFeedAct_, SIGNAL(triggered()), this, SLOT(slotOpenHomeFeed()));
 
+  copyLinkAct_ = new QAction(this);
+  copyLinkAct_->setObjectName("copyLinkAct");
+  copyLinkAct_->setIcon(QIcon(":/images/copy"));
+  this->addAction(copyLinkAct_);
+  connect(copyLinkAct_, SIGNAL(triggered()), this, SLOT(slotCopyLinkNews()));
+
   shareGroup_ = new QActionGroup(this);
   shareGroup_->setExclusive(false);
 
@@ -1479,6 +1485,8 @@ void RSSListing::createShortcut()
 
   findTextAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
   listActions_.append(findTextAct_);
+
+  listActions_.append(copyLinkAct_);
 
   listActions_.append(shareGroup_->actions());
 
@@ -4474,6 +4482,8 @@ void RSSListing::retranslateStrings()
   deleteAllNewsAct_->setToolTip(tr("Delete All News from List"));
   restoreNewsAct_->setText(tr("Restore"));
   restoreNewsAct_->setToolTip(tr("Restore News"));
+  copyLinkAct_->setText(tr("Copy Link"));
+  copyLinkAct_->setToolTip(tr("Copy Link News"));
 
   restoreLastNewsAct_->setText(tr("Restore last deleted news"));
 
@@ -5691,6 +5701,13 @@ void RSSListing::slotOpenNewsBackgroundTab()
 {
   openNewsTab_ = 2;
   currentNewsTab->openNewsNewTab();
+}
+
+/** @brief Копировать ссылку новости
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotCopyLinkNews()
+{
+  currentNewsTab->slotCopyLinkNews();
 }
 
 /**
