@@ -1480,6 +1480,8 @@ void RSSListing::createShortcut()
   findTextAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F));
   listActions_.append(findTextAct_);
 
+  listActions_.append(shareGroup_->actions());
+
   //! Действия меток добавлять последними
   listActions_.append(newsLabelGroup_->actions());
 
