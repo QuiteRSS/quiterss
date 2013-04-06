@@ -12,6 +12,10 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
   dragStartPos_ = QPoint();
   selectIdEn_ = true;
 
+  selectOldId_ = -1;
+  selectOldParentId_ = -1;
+  autocollapseFolder_ = false;
+
   setObjectName("feedsTreeView_");
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -306,7 +310,7 @@ bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
         || (area.right() - pos.x() < autoScrollMargin());
 }
 
-/** @brief ОБработка разворачивания узла
+/** @brief Обработка разворачивания узла
  *----------------------------------------------------------------------------*/
 void FeedsTreeView::slotExpanded(const QModelIndex &index)
 {
@@ -316,6 +320,25 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   int feedId = ((FeedsTreeModel*)model())->getIdByIndex(indexExpanded);
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%2'").arg(feedId));
+
+  QModelIndex indexCollapsed =
+      ((FeedsTreeModel*)model())->getIndexById(selectOldId_, selectOldParentId_);
+  selectOldId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+  selectOldParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
+
+  if (!autocollapseFolder_) return;
+
+  if (indexExpanded.parent() != indexCollapsed)
+    collapse(indexCollapsed);
+
+  int value = index.row();
+  QModelIndex parent = index.parent();
+  if (parent.isValid()) value = value + 1;
+  while (parent.isValid()) {
+    value = value + parent.row();
+    parent = parent.parent();
+  }
+  verticalScrollBar()->setValue(value);
 }
 
 /** @brief Обработка сворачивания узла

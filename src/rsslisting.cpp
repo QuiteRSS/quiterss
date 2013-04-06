@@ -1992,6 +1992,8 @@ void RSSListing::readSettings()
 
   defaultIconFeeds_ = settings_->value("defaultIconFeeds", false).toBool();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
+  feedsTreeView_->autocollapseFolder_ =
+      settings_->value("autocollapseFolder", false).toBool();
 
   settings_->endGroup();
 
@@ -2149,6 +2151,7 @@ void RSSListing::writeSettings()
   settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
 
   settings_->setValue("defaultIconFeeds", defaultIconFeeds_);
+  settings_->setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
 
   settings_->endGroup();
 
@@ -3259,6 +3262,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
   optionsDialog->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
   optionsDialog->defaultIconFeeds_->setChecked(defaultIconFeeds_);
+  optionsDialog->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
 
   optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
 
@@ -3456,6 +3460,7 @@ void RSSListing::showOptionDlg()
   hideFeedsOpenTab_ = optionsDialog->hideFeedsOpenTab_->isChecked();
   defaultIconFeeds_ = optionsDialog->defaultIconFeeds_->isChecked();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
+  feedsTreeView_->autocollapseFolder_ = optionsDialog->autocollapseFolder_->isChecked();
 
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
 

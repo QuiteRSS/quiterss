@@ -13,6 +13,7 @@ public:
   int selectId_;
   int selectParentId_;
   bool selectIdEn_;
+  bool autocollapseFolder_;
 
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int next = 0);
   QModelIndex indexPrevious(const QModelIndex &indexCur);
@@ -51,6 +52,9 @@ private:
 
   void handleDrop(QDropEvent *e);
   bool shouldAutoScroll(const QPoint &pos) const;
+
+  int selectOldId_;
+  int selectOldParentId_;
 
 private slots:
   void slotExpanded(const QModelIndex&index);

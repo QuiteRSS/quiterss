@@ -200,6 +200,7 @@ void OptionsDialog::createGeneralWidget()
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
   hideFeedsOpenTab_ = new QCheckBox(tr("Hide feeds tree when opening tabs"));
   defaultIconFeeds_ = new QCheckBox(tr("Show default rss-icon instead of favourite one"));
+  autocollapseFolder_ = new QCheckBox(tr("Automatically collapse folders"));
 
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
 
@@ -208,6 +209,7 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(reopenFeedStartup_);
   generalLayout->addWidget(hideFeedsOpenTab_);
   generalLayout->addWidget(defaultIconFeeds_);
+  generalLayout->addWidget(autocollapseFolder_);
   generalLayout->addStretch();
   generalLayout->addWidget(storeDBMemory_);
 
