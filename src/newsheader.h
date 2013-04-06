@@ -13,7 +13,7 @@ private:
   QTreeView *view_;
   NewsModel *model_;
   QMenu *viewMenu_;
-  QActionGroup *pActGroup_;
+  QActionGroup *columnVisibleActGroup_;
   QPushButton *buttonColumnView;
   bool show_;
   int idxCol;

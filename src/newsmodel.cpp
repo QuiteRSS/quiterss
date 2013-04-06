@@ -90,10 +90,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
     else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
       return QVariant();
-    } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
+    } else if (QSqlTableModel::fieldIndex("rights") == index.column()) {
       QSqlQuery q;
       q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
-             arg(index.data(Qt::EditRole).toInt()));
+             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).
+                 data(Qt::EditRole).toInt()));
       if (q.next())
         return q.value(0).toString();
     }
@@ -145,6 +146,13 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         }
       }
       return nameLabelList.join(", ");
+    } else if (QSqlTableModel::fieldIndex("link_href") == index.column()) {
+      QString linkStr = index.data(Qt::EditRole).toString();
+      if (linkStr.isEmpty()) {
+        linkStr = QSqlTableModel::index(index.row(), fieldIndex("link_alternate")).
+            data(Qt::EditRole).toString();
+      }
+      return linkStr.simplified();
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();

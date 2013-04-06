@@ -12,10 +12,13 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   setMinimumSectionSize(22);
   setStretchLastSection(false);
 
-  pActGroup_ = NULL;
   show_ = false;
 
   viewMenu_ = new QMenu(this);
+  columnVisibleActGroup_ = new QActionGroup(this);
+  columnVisibleActGroup_->setExclusive(false);
+  connect(columnVisibleActGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(columnVisible(QAction*)));
 
   buttonColumnView = new QPushButton(this);
   buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
@@ -50,15 +53,6 @@ void NewsHeader::init(QWidget *rsslisting)
   showSection(model_->fieldIndex("starred"));
   showSection(model_->fieldIndex("category"));
 
-  model_->setHeaderData(model_->fieldIndex("feedId"), Qt::Horizontal, tr("Feed"));
-  model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
-  model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
-  model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
-  model_->setHeaderData(model_->fieldIndex("author_name"), Qt::Horizontal, tr("Author"));
-  model_->setHeaderData(model_->fieldIndex("category"), Qt::Horizontal, tr("Category"));
-  model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
-  model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
-  model_->setHeaderData(model_->fieldIndex("label"), Qt::Horizontal, tr("Label"));
   for (int i = 0; i < count(); i++) {
     model_->setHeaderData(i, Qt::Horizontal,
                           model_->headerData(i, Qt::Horizontal, Qt::DisplayRole),
@@ -92,7 +86,8 @@ void NewsHeader::init(QWidget *rsslisting)
 
   resizeSection(model_->fieldIndex("starred"), 22);
   setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
-  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Interactive);
+  resizeSection(model_->fieldIndex("feedId"), 22);
+  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("read"), 22);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
 
@@ -104,11 +99,11 @@ void NewsHeader::init(QWidget *rsslisting)
 
 void NewsHeader::createMenu()
 {
-  if (pActGroup_) delete pActGroup_;
-  pActGroup_ = new QActionGroup(viewMenu_);
-  pActGroup_->setExclusive(false);
-  connect(pActGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(columnVisible(QAction*)));
+  QListIterator<QAction *> iter(columnVisibleActGroup_->actions());
+  while (iter.hasNext()) {
+    QAction *action = iter.next();
+    delete action;
+  }
 
   for (int i = 0; i < count(); i++) {
     int lIdx = logicalIndex(i);
@@ -120,16 +115,18 @@ void NewsHeader::createMenu()
         (lIdx == model_->fieldIndex("category")) ||
         (lIdx == model_->fieldIndex("read")) ||
         (lIdx == model_->fieldIndex("starred")) ||
-        (lIdx == model_->fieldIndex("label"))) {
-      QAction *action = pActGroup_->addAction(
-            model_->headerData(lIdx,
-                               Qt::Horizontal, Qt::EditRole).toString());
+        (lIdx == model_->fieldIndex("label")) ||
+        (lIdx == model_->fieldIndex("rights")) ||
+        (lIdx == model_->fieldIndex("link_href"))) {
+      QAction *action = columnVisibleActGroup_->addAction(
+            model_->headerData(lIdx, Qt::Horizontal, Qt::EditRole).toString());
       action->setData(lIdx);
       action->setCheckable(true);
       action->setChecked(!isSectionHidden(lIdx));
-      viewMenu_->addAction(action);
     }
   }
+
+  viewMenu_->addActions(columnVisibleActGroup_->actions());
 }
 
 bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
@@ -377,7 +374,7 @@ void NewsHeader::retranslateStrings()
 {
   if (count() == 0) return;
 
-  model_->setHeaderData(model_->fieldIndex("feedId"), Qt::Horizontal, tr("Feed"));
+  model_->setHeaderData(model_->fieldIndex("feedId"), Qt::Horizontal, tr("Icon Feed"));
   model_->setHeaderData(model_->fieldIndex("title"), Qt::Horizontal, tr("Title"));
   model_->setHeaderData(model_->fieldIndex("published"), Qt::Horizontal, tr("Published"));
   model_->setHeaderData(model_->fieldIndex("received"), Qt::Horizontal, tr("Received"));
@@ -386,32 +383,10 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, tr("Read"));
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, tr("Star"));
   model_->setHeaderData(model_->fieldIndex("label"), Qt::Horizontal, tr("Label"));
+  model_->setHeaderData(model_->fieldIndex("rights"), Qt::Horizontal, tr("Title Feed"));
+  model_->setHeaderData(model_->fieldIndex("link_href"), Qt::Horizontal, tr("Link"));
 
-  if (pActGroup_) delete pActGroup_;
-  pActGroup_ = new QActionGroup(viewMenu_);
-  pActGroup_->setExclusive(false);
-  connect(pActGroup_, SIGNAL(triggered(QAction*)), this, SLOT(columnVisible(QAction*)));
-
-  for (int i = 0; i < count(); i++) {
-    int lIdx = logicalIndex(i);
-    if ((lIdx == model_->fieldIndex("feedId")) ||
-        (lIdx == model_->fieldIndex("title")) ||
-        (lIdx == model_->fieldIndex("published")) ||
-        (lIdx == model_->fieldIndex("received")) ||
-        (lIdx == model_->fieldIndex("author_name")) ||
-        (lIdx == model_->fieldIndex("category")) ||
-        (lIdx == model_->fieldIndex("read")) ||
-        (lIdx == model_->fieldIndex("starred")) ||
-        (lIdx == model_->fieldIndex("label"))) {
-      QAction *action = pActGroup_->addAction(
-            model_->headerData(lIdx,
-                               Qt::Horizontal, Qt::EditRole).toString());
-      action->setData(lIdx);
-      action->setCheckable(true);
-      action->setChecked(!isSectionHidden(lIdx));
-      viewMenu_->addAction(action);
-    }
-  }
+  createMenu();
 
   model_->setHeaderData(model_->fieldIndex("feedId"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("read"), Qt::Horizontal, "", Qt::DisplayRole);
