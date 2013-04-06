@@ -87,8 +87,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   } else if (role == Qt::DisplayRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
       return QVariant();
-    }
-    else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
+    } else if (QSqlTableModel::fieldIndex("starred") == index.column()) {
+      return QVariant();
+    } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("rights") == index.column()) {
       QSqlQuery q;
@@ -97,8 +98,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
                  data(Qt::EditRole).toInt()));
       if (q.next())
         return q.value(0).toString();
-    }
-    else if (QSqlTableModel::fieldIndex("published") == index.column()) {
+    } else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;
       QString strDate = index.data(Qt::EditRole).toString();
 
@@ -122,8 +122,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       } else {
         return dtLocal.toString(formatDate_ + " " + formatTime_);
       }
-    }
-    else if (QSqlTableModel::fieldIndex("received") == index.column()) {
+    } else if (QSqlTableModel::fieldIndex("received") == index.column()) {
       QDateTime dateTime = QDateTime::fromString(
             index.data(Qt::EditRole).toString(),
             Qt::ISODate);

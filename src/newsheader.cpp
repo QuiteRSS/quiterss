@@ -249,8 +249,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
           int lIdx = logicalIndex(i);
           if (!isSectionHidden(lIdx)) {
             if (!((model_->fieldIndex("read") == lIdx) ||
-                  (model_->fieldIndex("starred") == lIdx)/* ||
-                  (model_->fieldIndex("feedId") == lIdx)*/)) {
+                  (model_->fieldIndex("starred") == lIdx) ||
+                  (model_->fieldIndex("feedId") == lIdx))) {
               int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
               if (sectionWidth > 40) {
                 if (i >= idxCol) {
@@ -278,8 +278,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
         int lIdx = logicalIndex(i);
         if (!isSectionHidden(lIdx)) {
           if (!((model_->fieldIndex("read") == lIdx) ||
-                (model_->fieldIndex("starred") == lIdx) /*||
-                (model_->fieldIndex("feedId") == lIdx)*/)) {
+                (model_->fieldIndex("starred") == lIdx) ||
+                (model_->fieldIndex("feedId") == lIdx))) {
             stopColFix = i;
             break;
           }
@@ -289,8 +289,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
       if ((sectionWidth > 40)) {
         if (!((model_->fieldIndex("read") == logicalIndex(idxCol)) ||
-              (model_->fieldIndex("starred") == logicalIndex(idxCol))/* ||
-              (model_->fieldIndex("feedId") == logicalIndex(idxCol))*/) || idxCol < stopColFix) {
+              (model_->fieldIndex("starred") == logicalIndex(idxCol)) ||
+              (model_->fieldIndex("feedId") == logicalIndex(idxCol))) || idxCol < stopColFix) {
           resizeSection(logicalIndex(stopColFix), sectionWidth);
         } else sizeMin = false;
       }
@@ -350,8 +350,8 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
 {
   Q_UNUSED(oldVIdx)
   if ((model_->fieldIndex("read") == lIdx) ||
-      (model_->fieldIndex("starred") == lIdx)/* ||
-      (model_->fieldIndex("feedId") == lIdx)*/) {
+      (model_->fieldIndex("starred") == lIdx) ||
+      (model_->fieldIndex("feedId") == lIdx)) {
     for (int i = count()-1; i >= 0; i--) {
       if (!isSectionHidden(logicalIndex(i))) {
         if (i == newVIdx) {
