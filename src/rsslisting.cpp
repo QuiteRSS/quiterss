@@ -886,7 +886,9 @@ void RSSListing::createActions()
   connect(customizeMainToolbarAct2_, SIGNAL(triggered()),
           this, SLOT(customizeMainToolbar()));
 
-  toolBarHide_ = new QAction(this);
+  toolBarLockAct_ = new QAction(this);
+  toolBarLockAct_->setCheckable(true);
+  toolBarHideAct_ = new QAction(this);
 
   customizeFeedsToolbarAct_ = new QAction(this);
   customizeFeedsToolbarAct_->setObjectName("customizeFeedsToolbarAct");
@@ -1745,18 +1747,17 @@ void RSSListing::createToolBar()
 {
   mainToolbar_ = new QToolBar(this);
   mainToolbar_->setObjectName("ToolBar_General");
-  mainToolbar_->setAllowedAreas(Qt::TopToolBarArea);
   mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-  mainToolbar_->setMovable(false);
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
   addToolBar(mainToolbar_);
 
   connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
           mainToolbar_, SLOT(setVisible(bool)));
-  connect(toolBarHide_, SIGNAL(triggered()),
-          this, SLOT(hideMainToolbar()));
   connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuToolBar(const QPoint &)));
+
+  connect(toolBarLockAct_, SIGNAL(toggled(bool)), this, SLOT(lockMainToolbar(bool)));
+  connect(toolBarHideAct_, SIGNAL(triggered()), this, SLOT(hideMainToolbar()));
 }
 
 /*! \brief Чтение настроек из ini-файла ***************************************/
@@ -1889,6 +1890,9 @@ void RSSListing::readSettings()
   widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
   onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
+
+  toolBarLockAct_->setChecked(settings_->value("mainToolbarLock", true).toBool());
+  lockMainToolbar(toolBarLockAct_->isChecked());
 
   mainToolbarToggle_->setChecked(settings_->value("mainToolbarShow", true).toBool());
   feedsToolbarToggle_->setChecked(settings_->value("feedsToolbarShow", true).toBool());
@@ -2114,6 +2118,8 @@ void RSSListing::writeSettings()
   settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
   settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
+
+  settings_->setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
   settings_->setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
   settings_->setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
@@ -4485,7 +4491,8 @@ void RSSListing::retranslateStrings()
   customizeFeedsToolbarAct_->setText(tr("Feeds Toolbar..."));
   customizeNewsToolbarAct_->setText(tr("News Toolbar..."));
 
-  toolBarHide_->setText(tr("Hide Toolbar"));
+  toolBarLockAct_->setText(tr("Lock Toolbar"));
+  toolBarHideAct_->setText(tr("Hide Toolbar"));
 
   styleMenu_->setTitle(tr("Application Style"));
   systemStyle_->setText(tr("System"));
@@ -4693,9 +4700,21 @@ void RSSListing::showContextMenuToolBar(const QPoint &pos)
   QMenu menu;
   menu.addAction(customizeMainToolbarAct2_);
   menu.addSeparator();
-  menu.addAction(toolBarHide_);
+  menu.addAction(toolBarLockAct_);
+  menu.addAction(toolBarHideAct_);
 
   menu.exec(mainToolbar_->mapToGlobal(pos));
+}
+
+void RSSListing::lockMainToolbar(bool lock)
+{
+  mainToolbar_->setMovable(!lock);
+}
+
+void RSSListing::hideMainToolbar()
+{
+  mainToolbarToggle_->setChecked(false);
+  mainToolbar_->hide();
 }
 
 void RSSListing::showFeedPropertiesDlg()
@@ -6316,12 +6335,6 @@ int RSSListing::addTab(NewsTabWidget *widget)
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
   return indexTab;
-}
-
-void RSSListing::hideMainToolbar()
-{
-  mainToolbarToggle_->setChecked(false);
-  mainToolbar_->hide();
 }
 
 /** @brief Запрос авторизации

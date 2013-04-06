@@ -248,7 +248,8 @@ private:
   QAction *exportFeedsAct_;
   QAction *mainToolbarToggle_;
   QAction *feedsToolbarToggle_;
-  QAction *toolBarHide_;
+  QAction *toolBarLockAct_;
+  QAction *toolBarHideAct_;
   QAction *customizeMainToolbarAct_;
   QAction *customizeMainToolbarAct2_;
   QAction *customizeFeedsToolbarAct_;
@@ -550,6 +551,7 @@ private slots:
   void slotPrevTab();
   void setTextTitle(const QString &text, NewsTabWidget *widget);
 
+  void lockMainToolbar(bool lock);
   void hideMainToolbar();
 
   void reduceNewsList();
