@@ -171,6 +171,18 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
         str.append(QKeySequence(keyEvent->key()).toString());
         editShortcut_->setText(str);
         shortcutTree_->currentItem()->setText(3, str);
+
+        QList<QTreeWidgetItem *> treeItems =
+            shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
+        for (int i = 0; i < treeItems.count(); i++) {
+          if ((treeItems.at(i) != shortcutTree_->currentItem()) && !str.isEmpty()) {
+            warningShortcut_->setText(tr("Warning: key is already assigned to") +
+                                      " \"" + treeItems.at(i)->text(1) + "\"");
+          }
+          if ((treeItems.count() > 1) && !str.isEmpty()) {
+            treeItems.at(i)->setTextColor(3, Qt::red);
+          }
+        }
       }
       return true;
     }
@@ -1141,9 +1153,12 @@ void OptionsDialog::createShortcutWidget()
   editShortcutBox->setEnabled(false);
   editShortcutBox->setLayout(editShortcutLayout);
 
+  warningShortcut_ = new QLabel();
+
   QVBoxLayout *shortcutLayout = new QVBoxLayout();
   shortcutLayout->setMargin(0);
   shortcutLayout->addWidget(shortcutTree_, 1);
+  shortcutLayout->addWidget(warningShortcut_);
   shortcutLayout->addWidget(editShortcutBox);
 
   shortcutWidget_ = new QWidget();
@@ -1315,7 +1330,7 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
     QStringList treeItem;
     treeItem << QString::number(shortcutTree_->topLevelItemCount())
              << pAction->text().remove("&")
-             << pAction->toolTip() << pAction->shortcut()
+             << pAction->toolTip() << pAction->shortcut().toString()
              << pAction->objectName() << pAction->data().toString();
     QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
     if (pAction->icon().isNull())
@@ -1328,6 +1343,15 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
       } else item->setIcon(1, pAction->icon());
     }
     shortcutTree_->addTopLevelItem(item);
+
+    QString str = pAction->shortcut().toString();
+    QList<QTreeWidgetItem *> treeItems =
+        shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
+    for (int i = 0; i < treeItems.count(); i++) {
+      if ((treeItems.count() > 1) && !str.isEmpty()) {
+        treeItems.at(i)->setTextColor(3, Qt::red);
+      }
+    }
   }
 
   listDefaultShortcut_ = list;
@@ -1365,20 +1389,54 @@ void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int)
   editShortcut_->setText(item->text(3));
   editShortcutBox->setEnabled(true);
   editShortcut_->setFocus();
+  warningShortcut_->clear();
 }
 
 void OptionsDialog::slotClearShortcut()
 {
+  QString str = shortcutTree_->currentItem()->text(3);
+  QList<QTreeWidgetItem *> treeItems =
+      shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
+  for (int i = 0; i < treeItems.count(); i++) {
+    if (((treeItems.count() == 2) && !str.isEmpty()) ||
+        (treeItems.at(i) == shortcutTree_->currentItem())) {
+      treeItems.at(i)->setTextColor(3, treeItems.at(i)->textColor(2));
+    }
+  }
+
   editShortcut_->clear();
   shortcutTree_->currentItem()->setText(3, "");
+  warningShortcut_->clear();
 }
 
 void OptionsDialog::slotResetShortcut()
 {
+  QString str = shortcutTree_->currentItem()->text(3);
+  QList<QTreeWidgetItem *> treeItems =
+      shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
+  for (int i = 0; i < treeItems.count(); i++) {
+    if (((treeItems.count() == 2) && !str.isEmpty()) ||
+        (treeItems.at(i) == shortcutTree_->currentItem())) {
+      treeItems.at(i)->setTextColor(3, treeItems.at(i)->textColor(2));
+    }
+  }
+
   int id = shortcutTree_->currentItem()->data(0, Qt::DisplayRole).toInt();
-  QString str = listDefaultShortcut_->at(id);
+  str = listDefaultShortcut_->at(id);
   editShortcut_->setText(str);
   shortcutTree_->currentItem()->setText(3, str);
+  warningShortcut_->clear();
+
+  treeItems = shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
+  for (int i = 0; i < treeItems.count(); i++) {
+    if ((treeItems.at(i) != shortcutTree_->currentItem()) && !str.isEmpty()) {
+      warningShortcut_->setText(tr("Warning: key is already assigned to") +
+                                " \"" + treeItems.at(i)->text(1) + "\"");
+    }
+    if ((treeItems.count() > 1) && !str.isEmpty()) {
+      treeItems.at(i)->setTextColor(3, Qt::red);
+    }
+  }
 }
 
 void OptionsDialog::setOpeningFeed(int action)

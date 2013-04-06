@@ -253,6 +253,7 @@ private:
   QTreeWidget *shortcutTree_;
   LineEdit *editShortcut_;
   QGroupBox *editShortcutBox;
+  QLabel *warningShortcut_;
 
 };
 
