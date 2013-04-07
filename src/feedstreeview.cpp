@@ -321,9 +321,11 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%2'").arg(feedId));
 
+  if (feedId == selectOldId_) return;
+
   QModelIndex indexCollapsed =
       ((FeedsTreeModel*)model())->getIndexById(selectOldId_, selectOldParentId_);
-  selectOldId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
+  selectOldId_ = feedId;
   selectOldParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
 
   if (!autocollapseFolder_) return;
