@@ -2243,7 +2243,12 @@ void RSSListing::addFeed()
   recountFeedCategories(categoriesList);
 
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+  feedsTreeView_->setCurrentIndex(QModelIndex());
   feedsModelReload();
+  QModelIndex index = feedsTreeModel_->getIndexById(addFeedWizard->feedId_,
+                                                    addFeedWizard->feedParentId_);
+  feedsTreeView_->setCurrentIndex(index);
+  slotFeedClicked(feedsTreeView_->currentIndex());
   QApplication::restoreOverrideCursor();
 
   slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_);
