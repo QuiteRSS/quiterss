@@ -207,7 +207,7 @@ void NewsTabWidget::createNewsList()
   connect(newsView_, SIGNAL(signaNewslLabelClicked(QModelIndex)),
           this, SLOT(slotNewslLabelClicked(QModelIndex)));
   connect(markNewsReadTimer_, SIGNAL(timeout()),
-          this, SLOT(slotReadTimer()));
+          this, SLOT(slotMarkReadTimeout()));
   connect(newsView_, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(showContextMenuNews(const QPoint &)));
 
@@ -544,6 +544,9 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
 
+  if (rsslisting_->markNewsReadOn_ && rsslisting_->markCurNewsRead_)
+    slotSetItemRead(index, 1);
+
   QString linkString = newsModel_->record(
         index.row()).field("link_href").value().toString();
   if (linkString.isEmpty())
@@ -656,8 +659,8 @@ void NewsTabWidget::slotNewsPageDownPressed()
 //! Пометка новости прочитанной
 void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 {
-  if (!index.isValid() || (newsModel_->rowCount() == 0)) return;
   markNewsReadTimer_->stop();
+  if (!index.isValid() || (newsModel_->rowCount() == 0)) return;
 
   bool changed = false;
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
@@ -708,9 +711,8 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
          arg(starred).arg(newsId));
 }
 
-void NewsTabWidget::slotReadTimer()
+void NewsTabWidget::slotMarkReadTimeout()
 {
-  markNewsReadTimer_->stop();
   slotSetItemRead(newsView_->currentIndex(), 1);
 }
 

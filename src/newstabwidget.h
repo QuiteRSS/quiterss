@@ -145,7 +145,7 @@ private slots:
   void showContextMenuNews(const QPoint &pos);
   void slotSetItemRead(QModelIndex index, int read);
   void slotSetItemStar(QModelIndex index, int starred);
-  void slotReadTimer();
+  void slotMarkReadTimeout();
 
   void setHtmlWebView(const QString &html, const QUrl &baseUrl);
   void webHomePage();

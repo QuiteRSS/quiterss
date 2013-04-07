@@ -48,7 +48,6 @@ NewsView::NewsView(QWidget * parent)
       }
     }
   } else if ((event->buttons() & Qt::MiddleButton)) {
-    emit signalSetItemRead(index, 1);
     emit signalMiddleClicked(index);
     return;
   } else {
