@@ -155,7 +155,7 @@ public:
 public slots:
   void addFeed();
   void addFolder();
-  void deleteFeed();
+  void deleteItemFeedsTree();
   void slotImportFeeds();
   void slotExportFeeds();
   void slotFeedClicked(QModelIndex index);

@@ -845,7 +845,7 @@ void RSSListing::createActions()
   deleteFeedAct_->setObjectName("deleteFeedAct");
   deleteFeedAct_->setIcon(QIcon(":/images/delete"));
   this->addAction(deleteFeedAct_);
-  connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteFeed()));
+  connect(deleteFeedAct_, SIGNAL(triggered()), this, SLOT(deleteItemFeedsTree()));
 
   importFeedsAct_ = new QAction(this);
   importFeedsAct_->setObjectName("importFeedsAct");
@@ -1389,7 +1389,6 @@ void RSSListing::createShortcut()
   listActions_.append(addFeedAct_);
   addFolderAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_N));
   listActions_.append(addFolderAct_);
-  deleteFeedAct_->setShortcut(QKeySequence());
   listActions_.append(deleteFeedAct_);
   exitAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));  // standart on other OS
   listActions_.append(exitAct_);
@@ -2297,11 +2296,11 @@ void RSSListing::addFolder()
   QApplication::restoreOverrideCursor();
 }
 
-/*! \brief Удаление ленты из списка лент с подтверждением *********************/
-void RSSListing::deleteFeed()
+/** @brief Удаление элемента из дерева лент с подтверждением
+ *----------------------------------------------------------------------------*/
+void RSSListing::deleteItemFeedsTree()
 {
   if (!feedsTreeView_->selectIndex().isValid()) return;
-  if (0 != feedsTreeModel_->rowCount(feedsTreeView_->selectIndex())) return;
 
   QPersistentModelIndex index = feedsTreeView_->selectIndex();
   int feedDeleteId = feedsTreeModel_->getIdByIndex(index);
@@ -2330,9 +2329,27 @@ void RSSListing::deleteFeed()
 
   db_.transaction();
   QSqlQuery q;
-  q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedDeleteId));
-  q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedDeleteId));
+  QString idStr(QString("id='%1'").arg(feedDeleteId));
+  QString feedIdStr(QString("feedId='%1'").arg(feedDeleteId));
+  QQueue<int> parentIds;
+  parentIds.enqueue(feedDeleteId);
+  while (!parentIds.empty()) {
+    int parentId = parentIds.dequeue();
+    q.exec(QString("SELECT id FROM feeds WHERE parentId='%1'").arg(parentId));
+    while (q.next()) {
+      int feedId = q.value(0).toInt();
 
+      idStr.append(QString(" OR id='%1'").arg(feedId));
+      feedIdStr.append(QString(" OR feedId='%1'").arg(feedId));
+
+      parentIds.enqueue(feedId);
+    }
+  }
+
+  q.exec(QString("DELETE FROM feeds WHERE %1").arg(idStr));
+  q.exec(QString("DELETE FROM news WHERE %1").arg(feedIdStr));
+
+  // Correction row
   QList<int> idList;
   q.exec(QString("SELECT id FROM feeds WHERE parentId='%1' ORDER BY rowToParent").
          arg(feedParentId));
@@ -4183,7 +4200,6 @@ void RSSListing::showContextMenuFeed(const QPoint &pos)
 
 void RSSListing::slotFeedMenuShow()
 {
-  deleteFeedAct_->setEnabled(!feedsTreeModel_->isFolder(feedsTreeView_->selectIndex()));
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 
