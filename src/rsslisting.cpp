@@ -995,6 +995,20 @@ void RSSListing::createActions()
   connect(sortedByTitleFeedsTreeAct_, SIGNAL(triggered()),
           this, SLOT(sortedByTitleFeedsTree()));
 
+  collapseAllFoldersAct_ = new QAction(this);
+  collapseAllFoldersAct_->setObjectName("collapseAllFolderAct");
+  collapseAllFoldersAct_->setIcon(QIcon(":/images/bulletMinus"));
+  this->addAction(collapseAllFoldersAct_);
+  connect(collapseAllFoldersAct_, SIGNAL(triggered()),
+          feedsTreeView_, SLOT(collapseAll()));
+
+  expandAllFoldersAct_ = new QAction(this);
+  expandAllFoldersAct_->setObjectName("expandAllFolderAct");
+  expandAllFoldersAct_->setIcon(QIcon(":/images/bulletPlus"));
+  this->addAction(expandAllFoldersAct_);
+  connect(expandAllFoldersAct_, SIGNAL(triggered()),
+          feedsTreeView_, SLOT(expandAll()));
+
   markNewsRead_ = new QAction(this);
   markNewsRead_->setObjectName("markNewsRead");
   markNewsRead_->setIcon(QIcon(":/images/markRead"));
@@ -1425,6 +1439,8 @@ void RSSListing::createShortcut()
   listActions_.append(markNewsRead_);
   listActions_.append(markAllNewsRead_);
   listActions_.append(markStarAct_);
+  listActions_.append(collapseAllFoldersAct_);
+  listActions_.append(expandAllFoldersAct_);
 
   listActions_.append(openDescriptionNewsAct_);
   openDescriptionNewsAct_->setShortcut(QKeySequence(Qt::Key_Return));
@@ -4634,7 +4650,9 @@ void RSSListing::retranslateStrings()
   findTextAct_->setText(tr("Find"));
 
   openHomeFeedAct_->setText(tr("Open Homepage Feed"));
-  sortedByTitleFeedsTreeAct_->setText(tr("Sorted by Title"));
+  sortedByTitleFeedsTreeAct_->setText(tr("Sorted by Name"));
+  collapseAllFoldersAct_->setText(tr("Collapse All Folders"));
+  expandAllFoldersAct_->setText(tr("Expand All Folders"));
 
   shareMenuAct_->setText(tr("Share"));
 

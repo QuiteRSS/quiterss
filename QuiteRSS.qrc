@@ -111,6 +111,8 @@
         <file alias="flag_GR">images/flag_greece.png</file>
         <file>images/tab_go.png</file>
         <file alias="copy">images/page_copy.png</file>
+        <file alias="bulletMinus">images/bullet_toggle_minus.png</file>
+        <file alias="bulletPlus">images/bullet_toggle_plus.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

@@ -273,6 +273,8 @@ private:
   QAction *markAllFeedsRead_;
   QAction *indentationFeedsTreeAct_;
   QAction *sortedByTitleFeedsTreeAct_;
+  QAction *collapseAllFoldersAct_;
+  QAction *expandAllFoldersAct_;
   QAction *exitAct_;
   QAction *feedsFilter_;
   QAction *filterFeedsAll_;
