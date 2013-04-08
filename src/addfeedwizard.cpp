@@ -491,6 +491,8 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
       textWarning->setText(tr("Server requires authentication!"));
     else if (result == -3)
       textWarning->setText(tr("Request timeout!"));
+    else if (result == -4)
+      textWarning->setText(tr("Redirect error!"));
     else
       textWarning->setText(tr("Request failed!"));
     warningWidget_->setVisible(true);

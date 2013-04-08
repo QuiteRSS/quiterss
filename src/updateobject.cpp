@@ -21,10 +21,10 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
   connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
 
-  connect(this, SIGNAL(signalHead(QUrl,QString,QDateTime)),
-          SLOT(slotHead(QUrl,QString,QDateTime)));
-  connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime)),
-          SLOT(slotGet(QUrl,QString,QDateTime)));
+  connect(this, SIGNAL(signalHead(QUrl,QString,QDateTime,int)),
+          SLOT(slotHead(QUrl,QString,QDateTime,int)));
+  connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime,int)),
+          SLOT(slotGet(QUrl,QString,QDateTime,int)));
 
   timer_.start();
 }
@@ -76,7 +76,7 @@ void UpdateObject::getQueuedUrl()
 /** @brief Подготовка и отправка сетевого запроса для получения заголовка
  *----------------------------------------------------------------------------*/
 void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
-                            const QDateTime &date)
+                            const QDateTime &date, const int &count)
 {
   qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
@@ -85,6 +85,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
+  currentCount_.append(count);
   currentHead_.append(true);
   currentTime_.append(requestTimeout_);
 
@@ -96,7 +97,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
 /** @brief Подготовка и отправка сетевого запроса для получения всех данных
  *----------------------------------------------------------------------------*/
 void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
-                           const QDateTime &date)
+                           const QDateTime &date, const int &count)
 {
   qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
@@ -105,6 +106,7 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
   currentDates_.append(date);
+  currentCount_.append(count);
   currentHead_.append(false);
   currentTime_.append(requestTimeout_);
 
@@ -143,6 +145,7 @@ void UpdateObject::finished(QNetworkReply *reply)
     currentUrls_.removeAt(currentReplyIndex);
     QString feedUrl    = currentFeeds_.takeAt(currentReplyIndex);
     QDateTime feedDate = currentDates_.takeAt(currentReplyIndex);
+    int count = currentCount_.takeAt(currentReplyIndex) + 1;
     bool headOk = currentHead_.takeAt(currentReplyIndex);
 
     if (reply->error() != QNetworkReply::NoError) {
@@ -158,17 +161,21 @@ void UpdateObject::finished(QNetworkReply *reply)
     } else {
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
-        QString host(QUrl::fromEncoded(feedUrl.toLocal8Bit()).host());
-        if (reply->operation() == QNetworkAccessManager::HeadOperation) {
-          qDebug() << objectName() << "  head redirect...";
-          if (redirectionTarget.host().isNull())
-            redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
-          emit signalHead(redirectionTarget, feedUrl, feedDate);
+        if (count < 5) {
+          QString host(QUrl::fromEncoded(feedUrl.toLocal8Bit()).host());
+          if (reply->operation() == QNetworkAccessManager::HeadOperation) {
+            qDebug() << objectName() << "  head redirect...";
+            if (redirectionTarget.host().isNull())
+              redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+            emit signalHead(redirectionTarget, feedUrl, feedDate, count);
+          } else {
+            qDebug() << objectName() << "  get redirect...";
+            if (redirectionTarget.host().isNull())
+              redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
+            emit signalGet(redirectionTarget, feedUrl, feedDate, count);
+          }
         } else {
-          qDebug() << objectName() << "  get redirect...";
-          if (redirectionTarget.host().isNull())
-            redirectionTarget.setUrl("http://" + host + redirectionTarget.toString());
-          emit signalGet(redirectionTarget, feedUrl, feedDate);
+          emit getUrlDone(-4);
         }
       } else {
         QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();

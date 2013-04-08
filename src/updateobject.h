@@ -18,14 +18,16 @@ public:
   
 public slots:
   void requestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo = "");
-  void slotHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
-  void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
+  void slotHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
+  void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
 
 signals:
   void getUrlDone(const int &result, const QString &feedUrl = "",
                   const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
-  void signalHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
-  void signalGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date);
+  void signalHead(const QUrl &getUrl, const QString &feedUrl,
+                  const QDateTime &date, const int &count = 0);
+  void signalGet(const QUrl &getUrl, const QString &feedUrl,
+                 const QDateTime &date, const int &count = 0);
 
 private slots:
   void getQueuedUrl();
@@ -44,6 +46,7 @@ private:
   QList<QUrl> currentUrls_;
   QList<QString> currentFeeds_;
   QList<QDateTime> currentDates_;
+  QList<int> currentCount_;
   QList<bool> currentHead_;
   QList<int> currentTime_;
   QList<QUrl> requestUrl_;
