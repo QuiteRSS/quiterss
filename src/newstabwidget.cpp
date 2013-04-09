@@ -349,7 +349,7 @@ void NewsTabWidget::createWebWidget()
   connect(webView_, SIGNAL(linkClicked(QUrl)), this, SLOT(slotLinkClicked(QUrl)));
   connect(webView_->page(), SIGNAL(linkHovered(QString,QString,QString)),
           this, SLOT(slotLinkHovered(QString,QString,QString)));
-  connect(webView_, SIGNAL(loadProgress(int)), this, SLOT(slotSetValue(int)));
+  connect(webView_, SIGNAL(loadProgress(int)), this, SLOT(slotSetValue(int)), Qt::QueuedConnection);
 
   connect(webView_, SIGNAL(titleChanged(QString)),
           this, SLOT(webTitleChanged(QString)));
@@ -511,10 +511,6 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
       rsslisting_->newsCategoriesTree_->currentItem()->setText(3, QString::number(newsId));
     }
-
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
-    QWebSettings::globalSettings()->clearMemoryCaches();
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
