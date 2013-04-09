@@ -518,7 +518,10 @@ void RSSListing::slotShowWindows(bool trayClick)
     }
     activateWindow();
   } else {
-    emit signalPlaceToTray();
+    if (minimizingTray_)
+      emit signalPlaceToTray();
+    else
+      showMinimized();
   }
 }
 
