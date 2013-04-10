@@ -50,7 +50,9 @@ HEADERS += \
     src/cookiejar.h \
     src/faviconthread.h \
     src/faviconobject.h \
-    src/customizetoolbardialog.h
+    src/customizetoolbardialog.h \
+    src/plugins/webpluginfactory.h \
+    src/plugins/clicktoflash.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -92,7 +94,13 @@ SOURCES += \
     src/cookiejar.cpp \
     src/faviconthread.cpp \
     src/faviconobject.cpp \
-    src/customizetoolbardialog.cpp
+    src/customizetoolbardialog.cpp \
+    src/plugins/webpluginfactory.cpp \
+    src/plugins/clicktoflash.cpp
+
+INCLUDEPATH +=  $$PWD/3rdparty/squeezelabelv2 \
+                $$PWD/src/plugins \
+                $$PWD/src \
 
 CONFIG(debug, debug|release) {
   BUILD_DIR = debug

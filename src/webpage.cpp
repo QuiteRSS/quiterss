@@ -4,11 +4,14 @@
 #include <QSslError>
 #include "rsslisting.h"
 #include "webpage.h"
+#include "webpluginfactory.h"
 
 WebPage::WebPage(QWidget *parent, QNetworkAccessManager *networkManager) :
   QWebPage(parent)
 {
   setNetworkAccessManager(networkManager);
+
+  setPluginFactory(new WebPluginFactory(this));
 
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
   action(QWebPage::DownloadLinkToDisk)->setVisible(false);

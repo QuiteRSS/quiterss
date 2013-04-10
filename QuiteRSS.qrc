@@ -113,6 +113,8 @@
         <file alias="copy">images/page_copy.png</file>
         <file alias="bulletMinus">images/bullet_toggle_minus.png</file>
         <file alias="bulletPlus">images/bullet_toggle_plus.png</file>
+        <file>images/flash.png</file>
+        <file>images/flashstart.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
