@@ -270,24 +270,27 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
 
         // поиск дубликата статей в базе
         QString qStr;
+        QString qStr1;
         qDebug() << "guid:     " << rssGuidString;
         qDebug() << "link_href:" << linkString;
         qDebug() << "title:"     << titleString;
         qDebug() << "published:" << rssPubDateString;
 
-        qStr.clear();
         if (!rssPubDateString.isEmpty()) {  // поиск по pubDate
           if (!duplicateNewsMode)
-            qStr.append("AND published=:published");
+            qStr.append(" AND published=:published");
+          qStr1.append(" OR (title LIKE :title AND published=:published)");
         } else {
-          qStr.append("AND title LIKE :title");
+          qStr.append(" AND title LIKE :title");
         }
 
         if (!rssGuidString.isEmpty()) {       // поиск по guid
-          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND guid=:guid %1").arg(qStr));
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND ((guid=:guid%1)%2)").
+                    arg(qStr).arg(qStr1));
           q.bindValue(":guid", rssGuidString);
         } else if (!linkString.isEmpty()) {   // поиск по link_href
-          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND link_href=:link_href %1").arg(qStr));
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND ((link_href=:link_href%1)%2)").
+                    arg(qStr).arg(qStr1));
           q.bindValue(":link_href", linkString);
         } else {
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
@@ -296,9 +299,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         if (!rssPubDateString.isEmpty()) {    // поиск по pubDate
           if (!duplicateNewsMode)
             q.bindValue(":published", rssPubDateString);
-        } else {
-          q.bindValue(":title", titleString);
         }
+        q.bindValue(":title", titleString);
         q.exec();
 
         // проверка правильности запроса
