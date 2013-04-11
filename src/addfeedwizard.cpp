@@ -1,3 +1,5 @@
+#include <QDomDocument>
+
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
@@ -403,9 +405,23 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
                                const QByteArray &data, const QDateTime &dtReply)
 {
   if (!data.isEmpty()) {
-    QString str = QString::fromUtf8(data);
+    bool isFeed = false;
+    QString errorStr;
+    int errorLine;
+    int errorColumn;
+    QDomDocument doc("parseDoc");
+    if (!doc.setContent(data, false, &errorStr, &errorLine, &errorColumn)) {
+      qDebug() << QString("Parse data error: line %1, column %2: %3").
+                  arg(errorLine).arg(errorColumn).arg(errorStr);
+    } else {
+      QDomElement docElem = doc.documentElement();
+      if ((docElem.tagName() == "rss") || docElem.tagName() == "feed")
+        isFeed = true;
+    }
 
-    if (str.contains("<html", Qt::CaseInsensitive)) {
+    if (!isFeed) {
+      QString str = QString::fromUtf8(data);
+
       QRegExp rx("<link[^>]+(atom|rss)\\+xml[^>]+>",
                  Qt::CaseInsensitive, QRegExp::RegExp2);
       int pos = rx.indexIn(str);
