@@ -66,6 +66,7 @@ void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const in
 {
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.12");
+  request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);

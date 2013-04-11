@@ -90,10 +90,10 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   pass_->setEchoMode(QLineEdit::Password);
 
   QGridLayout *authenticationLayout = new QGridLayout();
-  authenticationLayout->addWidget(new QLabel(tr("Username:")), 2, 0);
-  authenticationLayout->addWidget(user_, 2, 1);
-  authenticationLayout->addWidget(new QLabel(tr("Password:")), 3, 0);
-  authenticationLayout->addWidget(pass_, 3, 1);
+  authenticationLayout->addWidget(new QLabel(tr("Username:")), 0, 0);
+  authenticationLayout->addWidget(user_, 0, 1);
+  authenticationLayout->addWidget(new QLabel(tr("Password:")), 1, 0);
+  authenticationLayout->addWidget(pass_, 1, 1);
 
   authentication_->setLayout(authenticationLayout);
 
@@ -111,7 +111,6 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
 
   warningWidget_ = new QWidget(this);
   warningWidget_->setLayout(warningLayout);
-  warningWidget_->setVisible(false);
 
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
@@ -127,7 +126,7 @@ QWizardPage *AddFeedWizard::createUrlFeedPage()
   layout->addWidget(titleFeedAsName_);
   layout->addSpacing(10);
   layout->addWidget(authentication_);
-  layout->addStretch(0);
+  layout->addStretch(1);
   layout->addWidget(warningWidget_);
   layout->addWidget(progressBar_);
   page->setLayout(layout);

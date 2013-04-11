@@ -81,6 +81,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
   qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.10.229 Version/11.62");
+  request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
@@ -102,6 +103,7 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
   qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.12");
+  request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
   currentFeeds_.append(feedUrl);
