@@ -2266,6 +2266,7 @@ void RSSListing::addFeed()
   feedsModelReload();
   QModelIndex index = feedsTreeModel_->getIndexById(addFeedWizard->feedId_,
                                                     addFeedWizard->feedParentId_);
+  feedsTreeView_->selectIdEn_ = true;
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(feedsTreeView_->currentIndex());
   QApplication::restoreOverrideCursor();
