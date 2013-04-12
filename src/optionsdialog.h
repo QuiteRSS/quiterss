@@ -165,6 +165,8 @@ private slots:
   void slotDeleteAllPass();
   void slotShowPass();
   void selectionDirDiskCache();
+  void addWhitelist();
+  void removeWhitelist();
 
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
@@ -214,6 +216,10 @@ private:
 
   // browser
   void createBrowserWidget();
+  void applyWhitelist();
+
+  QCheckBox *c2fEnabled_;
+  QTreeWidget *c2fWhitelist_;
 
   // feeds
   void createFeedsWidget();

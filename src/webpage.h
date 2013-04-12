@@ -8,7 +8,7 @@ class WebPage : public QWebPage
 {
   Q_OBJECT
 public:
-  explicit WebPage(QWidget *parent, QNetworkAccessManager *networkManager);
+  explicit WebPage(QObject *parent, QNetworkAccessManager *networkManager);
 
   bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
 

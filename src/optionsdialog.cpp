@@ -136,6 +136,7 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
 void OptionsDialog::acceptDialog()
 {
   applyProxy();
+  applyWhitelist();
   applyLabels();
   applyNotifier();
   applyPass();
@@ -452,10 +453,65 @@ void OptionsDialog::createBrowserWidget()
   QWidget *historyBrowserWidget_ = new QWidget();
   historyBrowserWidget_->setLayout(historyMainLayout);
 
+  //! tab "Click to Flash"
+  QLabel *c2fInfo = new QLabel(tr("Click To Flash is a plugin which blocks auto loading of "
+                                 "Flash content at page. You can always load it manually "
+                                 "by clicking on the Flash play icon."));
+  c2fInfo->setWordWrap(true);
+
+  c2fEnabled_ = new QCheckBox(tr("Use Click to Flash"));
+  c2fEnabled_->setChecked(false);
+
+  c2fWhitelist_ = new QTreeWidget(this);
+  c2fWhitelist_->setObjectName("c2fWhiteList_");
+  c2fWhitelist_->setRootIsDecorated(false);
+  c2fWhitelist_->setColumnCount(1);
+
+  QStringList treeItem;
+  treeItem << "Whitelist";
+  c2fWhitelist_->setHeaderLabels(treeItem);
+
+  QPushButton *addButton = new QPushButton(tr("Add..."), this);
+  connect(addButton, SIGNAL(clicked()), this, SLOT(addWhitelist()));
+  QPushButton *removeButton = new QPushButton(tr("Remove..."), this);
+  connect(removeButton, SIGNAL(clicked()), this, SLOT(removeWhitelist()));
+
+  QVBoxLayout *click2FlashLayout1 = new QVBoxLayout();
+  click2FlashLayout1->addWidget(addButton);
+  click2FlashLayout1->addWidget(removeButton);
+  click2FlashLayout1->addStretch(1);
+
+  QHBoxLayout *click2FlashLayout2 = new QHBoxLayout();
+  click2FlashLayout2->setMargin(0);
+  click2FlashLayout2->addWidget(c2fWhitelist_, 1);
+  click2FlashLayout2->addLayout(click2FlashLayout1);
+
+  QWidget *c2fWhitelistWidget = new QWidget(this);
+  c2fWhitelistWidget->setLayout(click2FlashLayout2);
+  c2fWhitelistWidget->setEnabled(false);
+
+  connect(c2fEnabled_, SIGNAL(toggled(bool)),
+          c2fWhitelistWidget, SLOT(setEnabled(bool)));
+
+  QVBoxLayout *click2FlashLayout = new QVBoxLayout();
+  click2FlashLayout->addWidget(c2fInfo);
+  click2FlashLayout->addWidget(c2fEnabled_);
+  click2FlashLayout->addWidget(c2fWhitelistWidget, 1);
+
+  QWidget *click2FlashWidget_ = new QWidget(this);
+  click2FlashWidget_->setLayout(click2FlashLayout);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  c2fEnabled_->setChecked(rssl_->c2fEnabled_);
+  foreach(const QString & site, rssl_->c2fWhitelist_) {
+    QTreeWidgetItem* item = new QTreeWidgetItem(c2fWhitelist_);
+    item->setText(0, site);
+  }
 
   browserWidget_ = new QTabWidget();
   browserWidget_->addTab(generalBrowserWidget, tr("General"));
   browserWidget_->addTab(historyBrowserWidget_, tr("History"));
+  browserWidget_->addTab(click2FlashWidget_, tr("Click to Flash"));
 }
 
 /** @brief Создание виджета "Новостные ленты"
@@ -1475,6 +1531,16 @@ void OptionsDialog::selectionBrowser()
     otherExternalBrowserEdit_->setText(fileName);
 }
 
+void OptionsDialog::applyWhitelist()
+{
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  rssl_->c2fEnabled_ = c2fEnabled_->isChecked();
+  rssl_->c2fWhitelist_.clear();
+  for (int i = 0; i < c2fWhitelist_->topLevelItemCount(); i++) {
+    rssl_->c2fWhitelist_.append(c2fWhitelist_->topLevelItem(i)->text(0));
+  }
+}
+
 void OptionsDialog::selectionSoundNotifer()
 {
   QString path;
@@ -1925,4 +1991,23 @@ void OptionsDialog::selectionDirDiskCache()
                                                        | QFileDialog::DontResolveSymlinks);
   if (!dirStr.isEmpty())
     dirDiskCacheEdit_->setText(dirStr);
+}
+
+void OptionsDialog::addWhitelist()
+{
+  QString site = QInputDialog::getText(this, tr("Add site to whitelist"),
+                                       tr("Site without 'http://' (ex. youtube.com)"));
+  if (site.isEmpty())
+    return;
+
+  c2fWhitelist_->insertTopLevelItem(0, new QTreeWidgetItem(QStringList(site)));
+}
+
+void OptionsDialog::removeWhitelist()
+{
+  QTreeWidgetItem* item = c2fWhitelist_->currentItem();
+  if (!item)
+    return;
+
+  delete item;
 }

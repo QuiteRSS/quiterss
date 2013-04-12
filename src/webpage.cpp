@@ -6,12 +6,12 @@
 #include "webpage.h"
 #include "webpluginfactory.h"
 
-WebPage::WebPage(QWidget *parent, QNetworkAccessManager *networkManager) :
+WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager) :
   QWebPage(parent)
 {
   setNetworkAccessManager(networkManager);
 
-  setPluginFactory(new WebPluginFactory(this));
+  setPluginFactory(new WebPluginFactory(this, parent));
 
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
   action(QWebPage::DownloadLinkToDisk)->setVisible(false);

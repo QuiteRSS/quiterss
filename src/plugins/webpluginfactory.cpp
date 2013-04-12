@@ -1,14 +1,19 @@
 #include "webpluginfactory.h"
 #include "clicktoflash.h"
+#include "rsslisting.h"
 #include "webpage.h"
 
 #include <QDebug>
 #include <QNetworkRequest>
 
-WebPluginFactory::WebPluginFactory(WebPage* page)
+WebPluginFactory::WebPluginFactory(WebPage *page, QObject *parent)
   : QWebPluginFactory(page)
   , page_(page)
 {
+  parent_ = parent;
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
 }
 
 QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
@@ -37,6 +42,17 @@ QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
     return 0;
   }
 
+  RSSListing *rss_ = qobject_cast<RSSListing*>(parent_);
+  if (!rss_->c2fEnabled_) {
+    return 0;
+  }
+
+  // Click2Flash whitelist
+  QStringList whitelist = rss_->c2fWhitelist_;
+  if (whitelist.contains(url.host()) || whitelist.contains("www." + url.host()) || whitelist.contains(url.host().remove(QLatin1String("www.")))) {
+    return 0;
+  }
+
   // Click2Flash already accepted
   if (ClickToFlash::isAlreadyAccepted(url, argumentNames, argumentValues)) {
     return 0;
@@ -52,7 +68,7 @@ QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
     return 0;
   }
 
-  ClickToFlash* ctf = new ClickToFlash(url, argumentNames, argumentValues, page_);
+  ClickToFlash* ctf = new ClickToFlash(url, argumentNames, argumentValues, page_, parent_);
   return ctf;
 }
 

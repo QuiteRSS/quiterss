@@ -152,6 +152,9 @@ public:
 
   int openNewsTab_;
 
+  QStringList c2fWhitelist_;
+  bool c2fEnabled_;
+
 public slots:
   void addFeed();
   void addFolder();

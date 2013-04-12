@@ -2025,6 +2025,11 @@ void RSSListing::readSettings()
 
   settings_->endGroup();
 
+  settings_->beginGroup("ClickToFlash");
+  c2fWhitelist_ = settings_->value("whitelist", QStringList()).toStringList();
+  c2fEnabled_ = settings_->value("enabled", true).toBool();
+  settings_->endGroup();
+
   resize(800, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
@@ -2181,6 +2186,11 @@ void RSSListing::writeSettings()
   settings_->setValue("defaultIconFeeds", defaultIconFeeds_);
   settings_->setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
 
+  settings_->endGroup();
+
+  settings_->beginGroup("ClickToFlash");
+  settings_->setValue("whitelist", c2fWhitelist_);
+  settings_->setValue("enabled", c2fEnabled_);
   settings_->endGroup();
 
   settings_->setValue("GeometryState", saveGeometry());
