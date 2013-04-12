@@ -1,1 +1,1 @@
-#define HG_REVISION 2344 
+#define HG_REVISION 2345 

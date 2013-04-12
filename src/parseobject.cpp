@@ -297,8 +297,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         }
         q.bindValue(":id", parseFeedId);
         if (!rssPubDateString.isEmpty()) {    // поиск по pubDate
-          if (!duplicateNewsMode)
-            q.bindValue(":published", rssPubDateString);
+          q.bindValue(":published", rssPubDateString);
         }
         q.bindValue(":title", titleString);
         q.exec();
