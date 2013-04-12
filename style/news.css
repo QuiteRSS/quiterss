@@ -1,0 +1,38 @@
+/* News Style */
+body {overflow: auto; margin: 0; font-family: %1; font-size: %2pt;}
+td {font-family: %1; font-size: %2pt;}
+
+a:link {text-decoration: none; color: #0066CC;}
+a:active {text-decoration: none; color: #0066CC;}
+a:visited {text-decoration: none; color: #0066CC;}
+a:hover {text-decoration: none; color: #0066CC;}
+
+.title {
+  color: #0066CC; font-family: %3; font-size: %4pt; 
+  text-align: left; vertical-align: top;
+}
+.title a:link {text-decoration: none;}
+.title a:active {text-decoration: none;}
+.title a:visited {text-decoration: none;}
+.title a:hover {text-decoration: none;}
+.title a.unread {font-weight: bold; text-decoration: none;}
+
+.date {color: #666666; text-align: right; vertical-align: top; white-space: nowrap;}
+
+.author {color: #666666; text-align: left; vertical-align: top;}
+.author a:link {color: #1155CC; text-decoration: none;}
+.author a:active {color: #1155CC; text-decoration: none;}
+.author a:visited {color: #1155CC; text-decoration: none;}
+.author a:hover {color: #1155CC; text-decoration: none;}
+
+a.enclosure {color: #4b4b4b; text-decoration: none;}
+.enclosureImg {max-width: 100%;}
+
+.titleTable {
+  border-top: %5px solid %6; border-bottom: 0px solid %6;
+  text-align: left; width: 100%; padding: 5px;
+}
+
+.newsTable {
+  border-top: 1px solid %6; text-align: left; width: 100%; padding: 5px;
+}

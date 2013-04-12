@@ -124,6 +124,7 @@
         <file alias="purpleStyle">style/purple.qss</file>
         <file alias="system2Style">style/system2.qss</file>
         <file alias="pinkStyle">style/pink.qss</file>
+        <file>style/news.css</file>
     </qresource>
     <qresource prefix="/file">
         <file>AUTHORS</file>
@@ -132,6 +133,6 @@
         <file>HISTORY_RU</file>
     </qresource>
     <qresource prefix="/html">
-        <file alias="description">html/news_description.html</file>
+        <file alias="description">html/news.html</file>
     </qresource>
 </RCC>
