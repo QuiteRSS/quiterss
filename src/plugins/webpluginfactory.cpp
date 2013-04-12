@@ -58,11 +58,17 @@ QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
     return 0;
   }
 
-  int ctfWidth = 0;
-  int ctfHeight = 0;
+  int ctfWidth = 10;
+  int ctfHeight = 10;
   for (int i = 0; i < argumentNames.count(); i++) {
-    if (argumentNames[i] == "width") ctfWidth = argumentValues[i].toInt();
-    if (argumentNames[i] == "height") ctfHeight = argumentValues[i].toInt();
+    if (argumentNames[i] == "width") {
+      if (!argumentValues[i].contains("%"))
+        ctfWidth = argumentValues[i].toInt();
+    }
+    if (argumentNames[i] == "height") {
+      if (!argumentValues[i].contains("%"))
+        ctfHeight = argumentValues[i].toInt();
+    }
   }
   if ((ctfWidth < 5) && (ctfHeight < 5)) {
     return 0;
