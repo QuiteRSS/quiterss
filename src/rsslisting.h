@@ -28,8 +28,9 @@ class RSSListing : public QMainWindow
 {
   Q_OBJECT
 public:
-  RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent = 0);
+  RSSListing(QSettings *settings, const QString &dataDirPath, QWidget *parent = 0);
   ~RSSListing();
+
   bool showSplashScreen_;
   bool showTrayIcon_;
   bool startingTray_;
@@ -43,6 +44,7 @@ public:
   void setToolBarIconSize(const QString &iconSizeStr);
 
   QSettings *settings_;
+  QString dataDirPath_;
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
@@ -227,7 +229,6 @@ private:
 
   int addTab(NewsTabWidget *widget);
 
-  QString dataDirPath_;
   QString lastFeedPath_;
 
   QString dbFileName_;

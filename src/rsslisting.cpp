@@ -48,7 +48,7 @@ void RSSListing::receiveMessage(const QString& message)
 }
 
 /*!****************************************************************************/
-RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent)
+RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget *parent)
   : QMainWindow(parent),
     settings_(settings),
     dataDirPath_(dataDirPath)
@@ -58,6 +58,7 @@ RSSListing::RSSListing(QSettings *settings, QString dataDirPath, QWidget *parent
 
   closeApp_ = false;
 
+//  dataDirPath_ = dataDirPath;
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   QString versionDB = initDB(dbFileName_, settings_);
   settings_->setValue("VersionDB", versionDB);
@@ -4415,13 +4416,8 @@ void RSSListing::appInstallTranslator()
 {
   bool translatorLoad;
   qApp->removeTranslator(translator_);
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  translatorLoad = translator_->load(QCoreApplication::applicationDirPath() +
-                                     QString("/lang/quiterss_%1").arg(langFileName_));
-#else
-  translatorLoad = translator_->load(QString("/usr/share/quiterss/lang/quiterss_%1").
-                                     arg(langFileName_));
-#endif
+  translatorLoad = translator_->load(QDir::toNativeSeparators(dataDirPath_+ "/lang/") +
+                                     QString("quiterss_%1").arg(langFileName_));
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
 }
