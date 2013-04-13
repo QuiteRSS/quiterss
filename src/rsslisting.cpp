@@ -5128,6 +5128,8 @@ void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray 
       break;
     }
   }
+  if (currentNewsTab->type_ != TAB_WEB)
+    currentNewsTab->newsView_->viewport()->update();
 }
 
 void RSSListing::playSoundNewNews()
