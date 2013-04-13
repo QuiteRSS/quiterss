@@ -45,6 +45,7 @@ public:
 
   QSettings *settings_;
   QString dataDirPath_;
+  QString appDataDirPath_;
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;

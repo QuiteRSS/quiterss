@@ -58,6 +58,12 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
 
   closeApp_ = false;
 
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  appDataDirPath_ = QCoreApplication::applicationDirPath();
+#else
+  appDataDirPath_ = QString("/usr/share/quiterss");
+#endif
+
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   QString versionDB = initDB(dbFileName_, settings_);
   settings_->setValue("VersionDB", versionDB);
@@ -1905,13 +1911,7 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
-  QString soundNotifyPathStr;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    soundNotifyPathStr = QCoreApplication::applicationDirPath() +
-        QString("/sound/notification.wav");
-#else
-    soundNotifyPathStr = "/usr/share/quiterss/sound/notification.wav";
-#endif
+  QString soundNotifyPathStr = appDataDirPath_ + "/sound/notification.wav";
   soundNotifyPath_ = settings_->value("soundNotifyPath", soundNotifyPathStr).toString();
   showNotifyOn_ = settings_->value("showNotifyOn", true).toBool();
   countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
@@ -4419,8 +4419,8 @@ void RSSListing::appInstallTranslator()
 {
   bool translatorLoad;
   qApp->removeTranslator(translator_);
-  translatorLoad = translator_->load(QDir::toNativeSeparators(dataDirPath_+ "/lang/") +
-                                     QString("quiterss_%1").arg(langFileName_));
+  translatorLoad = translator_->load(appDataDirPath_ +
+                                     QString("/lang/quiterss_%1").arg(langFileName_));
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
 }
