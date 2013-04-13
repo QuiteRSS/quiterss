@@ -415,7 +415,8 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
                   arg(errorLine).arg(errorColumn).arg(errorStr);
     } else {
       QDomElement docElem = doc.documentElement();
-      if ((docElem.tagName() == "rss") || docElem.tagName() == "feed")
+      if ((docElem.tagName() == "rss") || (docElem.tagName() == "feed") ||
+          (docElem.tagName() == "rdf:RDF"))
         isFeed = true;
     }
 

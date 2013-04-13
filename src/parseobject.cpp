@@ -162,6 +162,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         qDebug() << "Feed type: Atom";
         linkBaseString = xml.attributes().value("xml:base").toString();
       }
+      if (currentTag == "RDF")
+        qDebug() << "Feed type: RDF";
 
       if (currentTag == "enclosure") {
         enclosureUrl = xml.attributes().value("url").toString();
