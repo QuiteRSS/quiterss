@@ -1813,7 +1813,7 @@ void RSSListing::readSettings()
   QString strLang;
   QString strLocalLang = QLocale::system().name();
   bool findLang = false;
-  QDir langDir = qApp->applicationDirPath() + "/lang";
+  QDir langDir = appDataDirPath_ + "/lang";
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
     strLang = file.section('.', 0, 0).section('_', 1);
     if (strLocalLang == strLang) {
