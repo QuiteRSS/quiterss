@@ -72,26 +72,37 @@ int main(int argc, char **argv)
 
   bool  showSplashScreen_ = settings_->value("Settings/showSplashScreen", true).toBool();
 
+  QString appDataDirPath;
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  appDataDirPath = QCoreApplication::applicationDirPath();
+#else
+  appDataDirPath = QString("/usr/share/quiterss");
+#endif
+
   QString styleActionStr = settings_->value(
         "Settings/styleApplication", "greenStyle_").toString();
-  QString fileString;
+  QString fileString(appDataDirPath);
   if (styleActionStr == "systemStyle_") {
-    fileString = ":/style/systemStyle";
+    fileString.append("/style/system.qss");
   } else if (styleActionStr == "system2Style_") {
-    fileString = ":/style/system2Style";
+    fileString.append("/style/system2.qss");
   } else if (styleActionStr == "orangeStyle_") {
-    fileString = ":/style/orangeStyle";
+    fileString.append("/style/orange.qss");
   } else if (styleActionStr == "purpleStyle_") {
-    fileString = ":/style/purpleStyle";
+    fileString.append("/style/purple.qss");
   } else if (styleActionStr == "pinkStyle_") {
-    fileString = ":/style/pinkStyle";
+    fileString.append("/style/pink.qss");
   } else if (styleActionStr == "grayStyle_") {
-    fileString = ":/style/grayStyle";
+    fileString.append("/style/gray.qss");
   } else {
-    fileString = ":/style/greenStyle";
+    fileString.append("/style/green.qss");
   }
+
   QFile file(fileString);
-  file.open(QFile::ReadOnly);
+  if (!file.open(QFile::ReadOnly)) {
+    file.setFileName(":/style/systemStyle");
+    file.open(QFile::ReadOnly);
+  }
   app.setStyleSheet(QLatin1String(file.readAll()));
   file.close();
 

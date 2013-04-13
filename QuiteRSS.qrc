@@ -118,12 +118,6 @@
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
-        <file alias="grayStyle">style/gray.qss</file>
-        <file alias="greenStyle">style/green.qss</file>
-        <file alias="orangeStyle">style/orange.qss</file>
-        <file alias="purpleStyle">style/purple.qss</file>
-        <file alias="system2Style">style/system2.qss</file>
-        <file alias="pinkStyle">style/pink.qss</file>
         <file alias="newsStyle">style/news.css</file>
     </qresource>
     <qresource prefix="/file">

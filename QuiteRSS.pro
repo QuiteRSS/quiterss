@@ -181,9 +181,12 @@ unix {
   sound.files = sound/*.wav
   sound.path = $$PREFIX/share/quiterss/sound
 
+  style.files = style/*.*
+  style.path = $$PREFIX/share/quiterss/style
+
   INSTALLS += target desktop target1
   INSTALLS += icon_16 icon_32 icon_48 icon_64 icon_128 icon_256 \
-              translations sound
+              translations sound style
 }
 
 RESOURCES += \

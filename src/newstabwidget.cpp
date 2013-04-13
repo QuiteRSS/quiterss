@@ -395,8 +395,7 @@ void NewsTabWidget::setSettings(bool newTab)
 
     QFile cssFile;
     cssFile.setFileName(rsslisting_->appDataDirPath_+ "/style/news.css");
-    if (cssFile.open(QFile::ReadOnly)) {
-    } else {
+    if (!cssFile.open(QFile::ReadOnly)) {
       cssFile.setFileName(":/style/newsStyle");
       cssFile.open(QFile::ReadOnly);
     }

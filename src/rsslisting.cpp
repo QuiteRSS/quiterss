@@ -5371,25 +5371,28 @@ void RSSListing::feedsCleanUp(QString feedId)
 //! Установка стиля оформления приложения
 void RSSListing::setStyleApp(QAction *pAct)
 {
-  QString fileString;
+  QString fileString(appDataDirPath_);
   if (pAct->objectName() == "systemStyle_") {
-    fileString = ":/style/systemStyle";
+    fileString.append("/style/system.qss");
   } else if (pAct->objectName() == "system2Style_") {
-    fileString = ":/style/system2Style";
+    fileString.append("/style/system2.qss");
   } else if (pAct->objectName() == "orangeStyle_") {
-    fileString = ":/style/orangeStyle";
+    fileString.append("/style/orange.qss");
   } else if (pAct->objectName() == "purpleStyle_") {
-    fileString = ":/style/purpleStyle";
+    fileString.append("/style/purple.qss");
   } else if (pAct->objectName() == "pinkStyle_") {
-    fileString = ":/style/pinkStyle";
+    fileString.append("/style/pink.qss");
   } else if (pAct->objectName() == "grayStyle_") {
-    fileString = ":/style/grayStyle";
+    fileString.append("/style/gray.qss");
   } else {
-    fileString = ":/style/greenStyle";
+    fileString.append("/style/green.qss");
   }
 
   QFile file(fileString);
-  file.open(QFile::ReadOnly);
+  if (!file.open(QFile::ReadOnly)) {
+    file.setFileName(":/style/systemStyle");
+    file.open(QFile::ReadOnly);
+  }
   qApp->setStyleSheet(QLatin1String(file.readAll()));
   file.close();
 
