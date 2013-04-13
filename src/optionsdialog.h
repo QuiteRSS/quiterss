@@ -25,6 +25,7 @@ public:
   QCheckBox *hideFeedsOpenTab_;
   QCheckBox *defaultIconFeeds_;
   QCheckBox *autocollapseFolder_;
+  QCheckBox *updateCheckEnabled_;
   QCheckBox *storeDBMemory_;
 
   // systemTray

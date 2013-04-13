@@ -203,6 +203,7 @@ void OptionsDialog::createGeneralWidget()
   defaultIconFeeds_ = new QCheckBox(tr("Show default rss-icon instead of favourite one"));
   autocollapseFolder_ = new QCheckBox(tr("Automatically collapse folders"));
 
+  updateCheckEnabled_ = new QCheckBox(tr("Automatically check for updates"));
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
@@ -212,6 +213,7 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(defaultIconFeeds_);
   generalLayout->addWidget(autocollapseFolder_);
   generalLayout->addStretch();
+  generalLayout->addWidget(updateCheckEnabled_);
   generalLayout->addWidget(storeDBMemory_);
 
   generalWidget_ = new QFrame();

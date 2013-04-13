@@ -58,7 +58,6 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
 
   closeApp_ = false;
 
-//  dataDirPath_ = dataDirPath;
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   QString versionDB = initDB(dbFileName_, settings_);
   settings_->setValue("VersionDB", versionDB);
@@ -2015,7 +2014,8 @@ void RSSListing::readSettings()
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
-  updateCheck_ = settings_->value("updateCheck", true).toBool();
+  updateCheckTech_ = settings_->value("updateCheck", true).toBool();
+  updateCheckEnabled_ = settings_->value("updateCheckEnabled", true).toBool();
 
   hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", true).toBool();
 
@@ -2180,7 +2180,8 @@ void RSSListing::writeSettings()
 
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
 
-  settings_->setValue("updateCheck", updateCheck_);
+  settings_->setValue("updateCheck", updateCheckTech_);
+  settings_->setValue("updateCheckEnabled", updateCheckEnabled_);
 
   settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
 
@@ -3327,6 +3328,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->defaultIconFeeds_->setChecked(defaultIconFeeds_);
   optionsDialog->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
 
+  optionsDialog->updateCheckEnabled_->setChecked(updateCheckEnabled_);
   optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
 
   optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
@@ -3525,6 +3527,7 @@ void RSSListing::showOptionDlg()
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
   feedsTreeView_->autocollapseFolder_ = optionsDialog->autocollapseFolder_->isChecked();
 
+  updateCheckEnabled_ = optionsDialog->updateCheckEnabled_->isChecked();
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
 
   showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
@@ -5175,7 +5178,7 @@ void RSSListing::showFilterRulesDlg()
 
 void RSSListing::slotUpdateAppCheck()
 {
-  if (!updateCheck_) return;
+  if (!updateCheckTech_) return;
 
   updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
@@ -5185,6 +5188,8 @@ void RSSListing::slotUpdateAppCheck()
 void RSSListing::slotNewVersion(QString newVersion)
 {
   delete updateAppDialog_;
+
+  if (!updateCheckEnabled_) return;
 
   if (!newVersion.isEmpty()) {
     traySystem->showMessage(tr("Check for updates"),
