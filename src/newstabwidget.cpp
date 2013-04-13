@@ -188,6 +188,12 @@ void NewsTabWidget::createNewsList()
 
   markNewsReadTimer_ = new QTimer(this);
 
+  QFile htmlFile;
+  htmlFile.setFileName(":/html/description");
+  htmlFile.open(QFile::ReadOnly);
+  htmlString_ = QString::fromUtf8(htmlFile.readAll());
+  htmlFile.close();
+
   connect(newsView_, SIGNAL(pressed(QModelIndex)),
           this, SLOT(slotNewsViewClicked(QModelIndex)));
   connect(newsView_, SIGNAL(pressKeyUp()), this, SLOT(slotNewsUpPressed()));
@@ -386,6 +392,22 @@ void NewsTabWidget::setSettings(bool newTab)
     } else {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     }
+
+    QFile cssFile;
+    cssFile.setFileName(rsslisting_->appDataDirPath_+ "/style/news.css");
+    if (cssFile.open(QFile::ReadOnly)) {
+    } else {
+      cssFile.setFileName(":/style/newsStyle");
+      cssFile.open(QFile::ReadOnly);
+    }
+    cssString_ = QString::fromUtf8(cssFile.readAll()).
+        arg(rsslisting_->newsTextFontFamily_).
+        arg(rsslisting_->newsTextFontSize_).
+        arg(rsslisting_->newsTitleFontFamily_).
+        arg(rsslisting_->newsTitleFontSize_).
+        arg(0).
+        arg(qApp->palette().color(QPalette::Dark).name());
+    cssFile.close();
   }
 
   if (type_ == TAB_FEED) {
@@ -1165,30 +1187,13 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
     content = enclosureStr+content;
 
-    QFile cssFile;
-    cssFile.setFileName(QDir::toNativeSeparators(
-                          rsslisting_->dataDirPath_+ "/style/") + "news.css");
-    cssFile.open(QFile::ReadOnly);
-    QString cssStr = QString::fromUtf8(cssFile.readAll()).
-        arg(rsslisting_->newsTextFontFamily_).
-        arg(rsslisting_->newsTextFontSize_).
-        arg(rsslisting_->newsTitleFontFamily_).
-        arg(rsslisting_->newsTitleFontSize_).
-        arg(0).
-        arg(qApp->palette().color(QPalette::Dark).name());
-    cssFile.close();
-
-    QFile htmlFile;
-    htmlFile.setFileName(":/html/description");
-    htmlFile.open(QFile::ReadOnly);
-    QString htmlStr = QString::fromUtf8(htmlFile.readAll()).
-        arg(cssStr).
+    QString htmlStr = htmlString_.
+        arg(cssString_).
         arg(QString("<a href='%1' class='unread'>%2</a>").
             arg(linkString).arg(titleString)).
         arg(dateString).
         arg(authorString).
         arg(content);
-    htmlFile.close();
 
     QUrl url;
     url.setScheme(newsUrl.scheme());
