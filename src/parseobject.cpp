@@ -346,6 +346,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             qDebug() << "       " << enclosureType;
             qDebug() << "       " << enclosureLength;
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            categoryString.clear();
             enclosureUrl.clear();
             enclosureType.clear();
             enclosureLength.clear();
@@ -453,6 +454,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             qDebug() << "       " << enclosureType;
             qDebug() << "       " << enclosureLength;
 //            qDebug() << q.lastError().number() << ": " << q.lastError().text();
+            categoryString.clear();
             enclosureUrl.clear();
             enclosureType.clear();
             enclosureLength.clear();
@@ -515,8 +517,10 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         atomSummaryString += xml.text().toString();
       else if (currentTag == "content")
         contentString += xml.text().toString();
-      else if (currentTag == "category")
-        categoryString = xml.text().toString();
+      else if (currentTag == "category") {
+        if (!categoryString.isEmpty()) categoryString.append(", ");
+        categoryString.append(xml.text().toString());
+      }
     }
     xml.readNext();
   }
