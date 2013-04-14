@@ -571,6 +571,8 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
     webView_->buttonClick_ = MIDDLE_BUTTON;
+  } else if (QApplication::keyboardModifiers() == Qt::AltModifier) {
+    webView_->buttonClick_ = LEFT_BUTTON_ALT;
   } else {
     webView_->buttonClick_ = MIDDLE_BUTTON_MOD;
   }

@@ -47,6 +47,11 @@ NewsView::NewsView(QWidget * parent)
         return;
       }
     }
+    if (QApplication::keyboardModifiers() == Qt::AltModifier) {
+      emit signalMiddleClicked(index);
+      event->ignore();
+      return;
+    }
   } else if ((event->buttons() & Qt::MiddleButton)) {
     emit signalMiddleClicked(index);
     return;
