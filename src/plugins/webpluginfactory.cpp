@@ -26,7 +26,7 @@ QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
 
   QString mime = mimeType.trimmed();
   if (mime.isEmpty()) {
-    if (url.toString().endsWith(QLatin1String(".swf"))) {
+    if (url.toString().contains(QLatin1String(".swf"))) {
       mime = "application/x-shockwave-flash";
     } else {
       return 0;
