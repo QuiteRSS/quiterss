@@ -569,7 +569,12 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
   if (linkString.isEmpty())
     linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
 
-  webView_->midButtonClick = true;
+  if (QApplication::keyboardModifiers() == Qt::NoModifier) {
+    webView_->buttonClick_ = MIDDLE_BUTTON;
+  } else {
+    webView_->buttonClick_ = MIDDLE_BUTTON_MOD;
+  }
+
   QUrl url = QUrl::fromEncoded(linkString.simplified().toLocal8Bit());
   slotLinkClicked(url);
 }
@@ -1229,17 +1234,33 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     url.setScheme(hostUrl.scheme());
     url.setHost(hostUrl.host());
   }
-  if (rsslisting_->externalBrowserOn_ <= 0) {
-    if (!webView_->midButtonClick) {
+  if ((rsslisting_->externalBrowserOn_ <= 0) &&
+      (webView_->buttonClick_ != LEFT_BUTTON_ALT)) {
+    if (webView_->buttonClick_ == LEFT_BUTTON) {
       if (!webControlPanel_->isVisible())
         setWebToolbarVisible(true, false);
       webView_->load(url);
     } else {
+      if ((webView_->buttonClick_ == MIDDLE_BUTTON) ||
+          (webView_->buttonClick_ == LEFT_BUTTON_CTRL)) {
+        rsslisting_->openNewsTab_ = NEW_TAB_BACKGROUND;
+      } else {
+        rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
+      }
+      if (!rsslisting_->openLinkInBackgroundEmbedded_) {
+        if (rsslisting_->openNewsTab_ == NEW_TAB_BACKGROUND)
+          rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
+        else
+          rsslisting_->openNewsTab_ = NEW_TAB_BACKGROUND;
+      }
+
       QWebPage *webPage = rsslisting_->createWebTab();
       qobject_cast<WebView*>(webPage->view())->load(url);
     }
-  } else openUrl(url);
-  webView_->midButtonClick = false;
+  } else {
+    openUrl(url);
+  }
+  webView_->buttonClick_ = 0;
 }
 
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
@@ -1404,7 +1425,13 @@ void NewsTabWidget::openLinkInNewTab()
 {
   int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
   rsslisting_->externalBrowserOn_ = 0;
-  webView_->midButtonClick = true;
+
+  if (QApplication::keyboardModifiers() == Qt::NoModifier) {
+    webView_->buttonClick_ = MIDDLE_BUTTON;
+  } else {
+    webView_->buttonClick_ = MIDDLE_BUTTON_MOD;
+  }
+
   slotLinkClicked(linkUrl_);
   rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
@@ -1507,8 +1534,8 @@ void NewsTabWidget::slotSelectFind()
 
 void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
-  if (webView_->rightButtonClick) {
-    webView_->rightButtonClick = false;
+  if (webView_->rightButtonClick_) {
+    webView_->rightButtonClick_ = false;
     return;
   }
 
@@ -1771,7 +1798,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
       }
 
       if (rsslisting_->externalBrowserOn_ <= 0) {
-        rsslisting_->openNewsTab_ = 1;
+        rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
         QWebPage *webPage = rsslisting_->createWebTab();
         qobject_cast<WebView*>(webPage->view())->load(url);
       } else openUrl(url);

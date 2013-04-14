@@ -5573,7 +5573,7 @@ void RSSListing::setBrowserPosition(QAction *action)
   currentNewsTab->setBrowserPosition();
 }
 
-//! Создание вкладки только с браузером
+//! Создание вкладки только со страницей в браузере
 QWebPage *RSSListing::createWebTab()
 {
   NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
@@ -5583,24 +5583,11 @@ QWebPage *RSSListing::createWebTab()
   widget->setSettings();
   widget->retranslateStrings();
 
-  // Открытие вкладки во встроенном браузере фоном
-  if (openLinkInBackgroundEmbedded_) {
-    // ..., но при нажатой клавише контрол и не при открытии новости в фоне переключаемся на вкладку
-    if (((QApplication::keyboardModifiers() == Qt::ControlModifier) ||
-        (openNewsTab_ == 1)) && (openNewsTab_ != 2)) {
-      currentNewsTab = widget;
-      emit signalSetCurrentTab(indexTab);
-    }
+  if (openNewsTab_ == NEW_TAB_FOREGROUND) {
+    currentNewsTab = widget;
+    emit signalSetCurrentTab(indexTab);
   }
-  // Открытие вкладки во встроенном браузере с переключением на вкладку
-  else {
-    // ..., только если не нажата клавиша контрол и не открытие новости в фоне
-    if (((QApplication::keyboardModifiers() != Qt::ControlModifier) ||
-        (openNewsTab_ == 1)) && (openNewsTab_ != 2)) {
-      currentNewsTab = widget;
-      emit signalSetCurrentTab(indexTab);
-    }
-  }
+
   openNewsTab_ = 0;
 
   return widget->webView_->page();
@@ -5752,13 +5739,13 @@ void RSSListing::openInExternalBrowserNews()
 
 void RSSListing::slotOpenNewsNewTab()
 {
-  openNewsTab_ = 1;
+  openNewsTab_ = NEW_TAB_FOREGROUND;
   currentNewsTab->openNewsNewTab();
 }
 
 void RSSListing::slotOpenNewsBackgroundTab()
 {
-  openNewsTab_ = 2;
+  openNewsTab_ = NEW_TAB_BACKGROUND;
   currentNewsTab->openNewsNewTab();
 }
 

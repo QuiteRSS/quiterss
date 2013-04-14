@@ -24,6 +24,9 @@
 #include "updatethread.h"
 #include "webview.h"
 
+#define NEW_TAB_FOREGROUND 1
+#define NEW_TAB_BACKGROUND 2
+
 class RSSListing : public QMainWindow
 {
   Q_OBJECT
