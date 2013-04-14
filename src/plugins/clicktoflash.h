@@ -88,6 +88,7 @@ private slots:
   void findElement();
 
   void hideObject();
+  void ensurePluginVisible();
 
 private:
   bool checkElement(QWebElement el);

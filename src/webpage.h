@@ -11,9 +11,15 @@ public:
   explicit WebPage(QObject *parent, QNetworkAccessManager *networkManager);
 
   bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
+  void scheduleAdjustPage();
+
+  bool isLoading_;
+  bool adjustingScheduled_;
 
 protected slots:
   QWebPage *createWindow(WebWindowType type);
+  void slotLoadStarted();
+  void slotLoadFinished();
 
 };
 

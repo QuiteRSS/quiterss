@@ -105,6 +105,8 @@ ClickToFlash::ClickToFlash(const QUrl &pluginUrl,
 
   setContextMenuPolicy(Qt::CustomContextMenu);
   connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
+
+  QTimer::singleShot(0, this, SLOT(ensurePluginVisible()));
 }
 
 bool ClickToFlash::isAlreadyAccepted(const QUrl &url,
@@ -114,6 +116,11 @@ bool ClickToFlash::isAlreadyAccepted(const QUrl &url,
   return (url == acceptedUrl &&
           argumentNames == acceptedArgNames &&
           argumentValues == acceptedArgValues);
+}
+
+void ClickToFlash::ensurePluginVisible()
+{
+  page_->scheduleAdjustPage();
 }
 
 void ClickToFlash::customContextMenuRequested(const QPoint &pos)
