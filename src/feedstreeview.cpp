@@ -50,37 +50,35 @@ FeedsTreeView::FeedsTreeView(QWidget * parent) :
  * @param index Индекс, от которого начинаем искать
  * @param next Условие поиска: 1 - ищёт следующую, 2 - ищет предыдущую,
  * 0 - ищет следующую, если не находит, то ищет предыдущую
- * @return найденный индекс либо QModelIndex()
+ * @return найденный индекс, либо QModelIndex()
  ******************************************************************************/
 QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next)
 {
   if (next != 2) {
-    // ищем следующую непрочитанную, исключая категории
-    QModelIndex index = indexBelow(indexCur);
+    // ищем следующую непрочитанную
+    QModelIndex index = indexNext(indexCur);
     while (index.isValid()) {
-      bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
       int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
-      if (!isFeedFolder && (0 < feedUnreadCount))
-        return index;  // нашли
+      if (0 < feedUnreadCount)
+        return index;  // ok
 
-      index = indexBelow(index);
+      index = indexNext(index);
     }
   }
 
   if (next != 1) {
-    // ищем предыдущую непрочитанную, исключая категории
-    QModelIndex index = indexAbove(indexCur);
+    // ищем предыдущую непрочитанную
+    QModelIndex index = indexPrevious(indexCur);
     while (index.isValid()) {
-      bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
       int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
-      if (!isFeedFolder && (0 < feedUnreadCount))
-        return index;  // нашли
+      if (0 < feedUnreadCount)
+        return index;  // ok
 
-      index = indexAbove(index);
+      index = indexPrevious(index);
     }
   }
 
-  // не нашли
+  // no
   return QModelIndex();
 }
 
