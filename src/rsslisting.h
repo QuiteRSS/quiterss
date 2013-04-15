@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QtWebKit>
 #include <QNetworkProxy>
+#include <QNetworkDiskCache>
 
 #include "cookiejar.h"
 #include "dbmemfilethread.h"
