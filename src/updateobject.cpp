@@ -154,9 +154,9 @@ void UpdateObject::finished(QNetworkReply *reply)
       qDebug() << "  error retrieving RSS feed:" << reply->error();
       if (!headOk) {
         if (reply->error() == QNetworkReply::AuthenticationRequiredError)
-          emit getUrlDone(-2);
+          emit getUrlDone(-2, feedUrl);
         else
-          emit getUrlDone(-1);
+          emit getUrlDone(-1, feedUrl);
       } else {
         emit signalGet(replyUrl, feedUrl, feedDate);
       }
@@ -177,7 +177,7 @@ void UpdateObject::finished(QNetworkReply *reply)
             emit signalGet(redirectionTarget, feedUrl, feedDate, count);
           }
         } else {
-          emit getUrlDone(-4);
+          emit getUrlDone(-4, feedUrl);
         }
       } else {
         QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
@@ -215,15 +215,15 @@ void UpdateObject::slotRequestTimeout()
     int time = currentTime_.at(i) - 1;
     if (time <= 0) {
       QUrl url = currentUrls_.takeAt(i);
+      QString feedUrl = currentFeeds_.takeAt(i);
       currentTime_.removeAt(i);
-      currentFeeds_.removeAt(i);
       currentDates_.removeAt(i);
       currentHead_.removeAt(i);
 
       int replyIndex = requestUrl_.indexOf(url);
       requestUrl_.removeAt(replyIndex);
       networkReply_.takeAt(replyIndex)->deleteLater();
-      emit getUrlDone(-3);
+      emit getUrlDone(-3, feedUrl);
     } else {
       currentTime_.replace(i, time);
     }
