@@ -16,8 +16,10 @@ public:
   bool autocollapseFolder_;
 
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int next = 0);
-  QModelIndex indexPrevious(const QModelIndex &indexCur);
-  QModelIndex indexNext(const QModelIndex &indexCur);
+  QModelIndex firstFeedInFolder(const QModelIndex &indexFolder);
+  QModelIndex lastFeedInFolder(const QModelIndex &indexFolder);
+  QModelIndex indexPrevious(const QModelIndex &indexCur, bool isParent = false);
+  QModelIndex indexNext(const QModelIndex &indexCur, bool isParent = false);
 
 public slots:
   QPersistentModelIndex selectIndex();

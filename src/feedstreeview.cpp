@@ -84,43 +84,95 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next
   return QModelIndex();
 }
 
-/**
- * @brief Поиск следующей ленты
- * @param index Индекс, от которого начинаем искать
- * @return найденный индекс либо QModelIndex()
- ******************************************************************************/
-QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur)
+QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
 {
-  QModelIndex index = indexAbove(indexCur);
-  while (index.isValid()) {
-    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
-    if (!isFeedFolder)
-      return index;  // нашли
+  QModelIndex index = QModelIndex();
 
-    index = indexAbove(index);
+  for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
+    index = indexFolder.child(i, indexFolder.column());
+    if (((FeedsTreeModel*)model())->isFolder(index))
+      index = lastFeedInFolder(index);
+    if (index.isValid())
+      break;
   }
 
-  // не нашли
-  return QModelIndex();
+  return index;
 }
 
 /**
  * @brief Поиск предыдущей ленты
  * @param index Индекс, от которого начинаем искать
+ * @param isParent Поиск начиная от родителя, пропуская его
  * @return найденный индекс либо QModelIndex()
  ******************************************************************************/
-QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur)
+QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isParent)
 {
-  QModelIndex index = indexBelow(indexCur);
-  while (index.isValid()) {
-    bool isFeedFolder = ((FeedsTreeModel*)model())->isFolder(index);
-    if (!isFeedFolder)
-      return index;  // нашли
-
-    index = indexBelow(index);
+  QModelIndex index = QModelIndex();
+  if (((FeedsTreeModel*)model())->isFolder(indexCur) && !isParent) {
+    index = lastFeedInFolder(indexCur);
+    if (index.isValid())
+      return index;
   }
 
-  // не нашли
+  for(int i = indexCur.row()-1; i >= 0; --i) {
+    index = indexCur.sibling(i, indexCur.column());
+    if (((FeedsTreeModel*)model())->isFolder(index))
+      index = lastFeedInFolder(index);
+    if (index.isValid())
+      return index;
+  }
+
+  index = indexCur.parent();
+  if (index.isValid())
+    return indexPrevious(index, true);
+
+  return QModelIndex();
+}
+
+QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
+{
+  QModelIndex index = QModelIndex();
+
+  for(int i = 0; i < model()->rowCount(indexFolder); i++) {
+    index = indexFolder.child(i, indexFolder.column());
+    if (((FeedsTreeModel*)model())->isFolder(index))
+      index = firstFeedInFolder(index);
+    if (index.isValid())
+      break;
+  }
+
+  return index;
+}
+
+/**
+ * @brief Поиск следующей ленты
+ * @param indexCur Индекс, от которого начинаем искать
+ * @param isParent Поиск начиная от родителя, пропуская его
+ * @return найденный индекс либо QModelIndex()
+ ******************************************************************************/
+QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
+{
+  QModelIndex index = QModelIndex();
+  if (((FeedsTreeModel*)model())->isFolder(indexCur) && !isParent) {
+    index = firstFeedInFolder(indexCur);
+    if (index.isValid())
+      return index;
+  }
+
+  int rowCount = model()->rowCount(indexCur.parent());
+
+  for(int i = indexCur.row()+1; i < rowCount; i++) {
+    index = indexCur.sibling(i, indexCur.column());
+    if (((FeedsTreeModel*)model())->isFolder(index))
+      index = firstFeedInFolder(index);
+    if (index.isValid())
+      return index;
+  }
+
+  index = indexCur.parent();
+  if (index.isValid())
+    return indexNext(index, true);
+
   return QModelIndex();
 }
 
