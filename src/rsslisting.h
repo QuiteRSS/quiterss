@@ -338,7 +338,8 @@ private:
   QAction *stayOnTopAct_;
 
   QAction *closeTabAct_;
-  QAction *closeAllTabAct_;
+  QAction *closeOtherTabsAct_;
+  QAction *closeAllTabsAct_;
   QAction *nextTabAct_;
   QAction *prevTabAct_;
 
@@ -560,7 +561,8 @@ private slots:
 
   void showContextMenuTabBar(const QPoint &pos);
   void slotCloseTab();
-  void slotCloseAllTabButCurrent();
+  void slotCloseOtherTabs();
+  void slotCloseAllTab();
   void slotNextTab();
   void slotPrevTab();
   void setTextTitle(const QString &text, NewsTabWidget *widget);

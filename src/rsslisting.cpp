@@ -1278,11 +1278,17 @@ void RSSListing::createActions()
   this->addAction(closeTabAct_);
   connect(closeTabAct_, SIGNAL(triggered()), this, SLOT(slotCloseTab()));
 
-  closeAllTabAct_ = new QAction(this);
-  closeAllTabAct_->setObjectName("closeAllTabAct");
-  this->addAction(closeAllTabAct_);
-  connect(closeAllTabAct_, SIGNAL(triggered()),
-          this, SLOT(slotCloseAllTabButCurrent()));
+  closeOtherTabsAct_ = new QAction(this);
+  closeOtherTabsAct_->setObjectName("closeOtherTabsAct");
+  this->addAction(closeOtherTabsAct_);
+  connect(closeOtherTabsAct_, SIGNAL(triggered()),
+          this, SLOT(slotCloseOtherTabs()));
+
+  closeAllTabsAct_ = new QAction(this);
+  closeAllTabsAct_->setObjectName("closeAllTabsAct");
+  this->addAction(closeAllTabsAct_);
+  connect(closeAllTabsAct_, SIGNAL(triggered()),
+          this, SLOT(slotCloseAllTab()));
 
   nextTabAct_ = new QAction(this);
   nextTabAct_->setObjectName("nextTabAct");
@@ -1495,7 +1501,8 @@ void RSSListing::createShortcut()
 
   closeTabAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_W));
   listActions_.append(closeTabAct_);
-  listActions_.append(closeAllTabAct_);
+  listActions_.append(closeOtherTabsAct_);
+  listActions_.append(closeAllTabsAct_);
   listActions_.append(nextTabAct_);
   listActions_.append(prevTabAct_);
 
@@ -4647,8 +4654,9 @@ void RSSListing::retranslateStrings()
   newsLabelMenuAction_->setText(tr("Label"));
   newsLabelAction_->setText(tr("Label"));
 
-  closeTabAct_->setText(tr("Close tab"));
-  closeAllTabAct_->setText(tr("Close other tabs"));
+  closeTabAct_->setText(tr("Close Tab"));
+  closeOtherTabsAct_->setText(tr("Close Other Tabs"));
+  closeAllTabsAct_->setText(tr("Close All Tabs"));
   nextTabAct_->setText(tr("Switch to next tab"));
   prevTabAct_->setText(tr("Switch to previous tab"));
 
@@ -6351,7 +6359,8 @@ void RSSListing::showContextMenuTabBar(const QPoint &pos)
 
   QMenu menu;
   menu.addAction(closeTabAct_);
-  menu.addAction(closeAllTabAct_);
+  menu.addAction(closeOtherTabsAct_);
+  menu.addAction(closeAllTabsAct_);
 
   menu.exec(tabBar_->mapToGlobal(pos));
 
@@ -6370,13 +6379,22 @@ void RSSListing::slotCloseTab()
 
 /** @brief Закрытие всех вкладок кроме выбранной
  *----------------------------------------------------------------------------*/
-void RSSListing::slotCloseAllTabButCurrent()
+void RSSListing::slotCloseOtherTabs()
 {
   int index = indexClickedTab;
   if (index == -1) index = tabBar_->currentIndex();
 
   for (int i = tabBar_->count()-1; i > 0; i--) {
     if (i == index) continue;
+    slotTabCloseRequested(i);
+  }
+}
+
+/** @brief Закрытие всех вкладок
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotCloseAllTab()
+{
+  for (int i = tabBar_->count()-1; i > 0; i--) {
     slotTabCloseRequested(i);
   }
 }
