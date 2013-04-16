@@ -161,6 +161,7 @@ public:
 
   QStringList c2fWhitelist_;
   bool c2fEnabled_;
+  QString userStyleBrowser_;
 
 public slots:
   void addFeed();

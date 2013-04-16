@@ -1909,6 +1909,7 @@ void RSSListing::readSettings()
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
   javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
+  userStyleBrowser_ = settings_->value("userStyleBrowser", "").toString();
   maxPagesInCache_ = settings_->value("maxPagesInCache", 3).toInt();
 
   QWebSettings::globalSettings()->setAttribute(
@@ -1916,6 +1917,7 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
+  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleBrowser_);
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
   QString soundNotifyPathStr = appDataDirPath_ + "/sound/notification.wav";
@@ -2152,6 +2154,7 @@ void RSSListing::writeSettings()
   settings_->setValue("externalBrowser", externalBrowser_);
   settings_->setValue("javaScriptEnable", javaScriptEnable_);
   settings_->setValue("pluginsEnable", pluginsEnable_);
+  settings_->setValue("userStyleBrowser", userStyleBrowser_);
   settings_->setValue("maxPagesInCache", maxPagesInCache_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
@@ -3360,6 +3363,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
   optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
   optionsDialog->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
+  optionsDialog->userStyleBrowserEdit_->setText(userStyleBrowser_);
 
   optionsDialog->maxPagesInCache_->setValue(maxPagesInCache_);
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
@@ -3577,6 +3581,7 @@ void RSSListing::showOptionDlg()
   pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
   openLinkInBackgroundEmbedded_ = optionsDialog->openLinkInBackgroundEmbedded_->isChecked();
+  userStyleBrowser_ = optionsDialog->userStyleBrowserEdit_->text();
   maxPagesInCache_ = optionsDialog->maxPagesInCache_->value();
 
   QWebSettings::globalSettings()->setAttribute(
@@ -3584,6 +3589,7 @@ void RSSListing::showOptionDlg()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
+  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleBrowser_);
 
   useDiskCache = optionsDialog->diskCacheOn_->isChecked();
   settings_->setValue("Settings/useDiskCache", useDiskCache);

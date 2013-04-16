@@ -358,6 +358,11 @@ void OptionsDialog::createBrowserWidget()
   openLinkInBackgroundEmbedded_ = new QCheckBox(tr("Open links in embedded browser in background"));
   openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background (experimental)"));
 
+  userStyleBrowserEdit_ = new LineEdit();
+  QPushButton *userStyleBrowserButton = new QPushButton(tr("Browse..."));
+  connect(userStyleBrowserButton, SIGNAL(clicked()),
+          this, SLOT(selectionUserStyleBrowser()));
+
   QGridLayout *browserSelectionLayout = new QGridLayout();
   browserSelectionLayout->setContentsMargins(15, 0, 5, 10);
   browserSelectionLayout->addWidget(embeddedBrowserOn_, 0, 0);
@@ -381,6 +386,11 @@ void OptionsDialog::createBrowserWidget()
   contentBrowserLayout->addWidget(javaScriptEnable_);
   contentBrowserLayout->addWidget(pluginsEnable_);
 
+  QGridLayout *userStyleBrowserLayout = new QGridLayout();
+  userStyleBrowserLayout->setContentsMargins(15, 0, 5, 10);
+  userStyleBrowserLayout->addWidget(userStyleBrowserEdit_, 0, 0);
+  userStyleBrowserLayout->addWidget(userStyleBrowserButton, 0, 1, Qt::AlignRight);
+
   QVBoxLayout *browserLayoutV = new QVBoxLayout();
   browserLayoutV->addWidget(new QLabel(tr("Browser selection:")));
   browserLayoutV->addLayout(browserSelectionLayout);
@@ -388,6 +398,8 @@ void OptionsDialog::createBrowserWidget()
   browserLayoutV->addLayout(externalBrowserLayout);
   browserLayoutV->addWidget(new QLabel(tr("Content:")));
   browserLayoutV->addLayout(contentBrowserLayout);
+  browserLayoutV->addWidget(new QLabel(tr("User style sheet:")));
+  browserLayoutV->addLayout(userStyleBrowserLayout);
   browserLayoutV->addWidget(openLinkInBackgroundEmbedded_);
   browserLayoutV->addWidget(openLinkInBackground_);
   browserLayoutV->addStretch();
@@ -1983,6 +1995,22 @@ void OptionsDialog::applyPass()
     }
   }
   db_.commit();
+}
+
+void OptionsDialog::selectionUserStyleBrowser()
+{
+  QString path;
+
+  QFileInfo file(userStyleBrowserEdit_->text());
+  if (file.isFile()) path = userStyleBrowserEdit_->text();
+  else path = file.path();
+
+  QString fileName = QFileDialog::getOpenFileName(this,
+                                                  tr("Select Style Sheet File"),
+                                                  path, "*.css");
+
+  if (!fileName.isEmpty())
+    userStyleBrowserEdit_->setText(fileName);
 }
 
 void OptionsDialog::selectionDirDiskCache()

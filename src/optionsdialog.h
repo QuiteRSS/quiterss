@@ -54,6 +54,7 @@ public:
   QCheckBox *pluginsEnable_;
   QCheckBox *openLinkInBackground_;
   QCheckBox *openLinkInBackgroundEmbedded_;
+  LineEdit *userStyleBrowserEdit_;
 
   QSpinBox *maxPagesInCache_;
   QGroupBox *diskCacheOn_;
@@ -165,6 +166,7 @@ private slots:
   void slotDeletePass();
   void slotDeleteAllPass();
   void slotShowPass();
+  void selectionUserStyleBrowser();
   void selectionDirDiskCache();
   void addWhitelist();
   void removeWhitelist();
