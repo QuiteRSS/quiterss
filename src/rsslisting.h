@@ -232,6 +232,7 @@ private:
   void creatFeedTab(int feedId, int feedParId);
   void cleanUp();
   QString getUserInfo(QUrl url, int auth);
+  QUrl userStyleSheet(const QString &filePath) const;
 
   int addTab(NewsTabWidget *widget);
 

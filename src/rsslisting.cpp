@@ -1917,7 +1917,7 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleBrowser_);
+  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
   soundNewNews_ = settings_->value("soundNewNews", true).toBool();
   QString soundNotifyPathStr = appDataDirPath_ + "/sound/notification.wav";
@@ -3589,7 +3589,7 @@ void RSSListing::showOptionDlg()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleBrowser_);
+  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
   useDiskCache = optionsDialog->diskCacheOn_->isChecked();
   settings_->setValue("Settings/useDiskCache", useDiskCache);
@@ -6752,4 +6752,26 @@ void RSSListing::sortedByTitleFeedsTree()
 
   feedsModelReload();
   QApplication::restoreOverrideCursor();
+}
+
+/** @brief Пользовательский стиль браузера
+ * @param filePath Путь к файлу со стилем
+ * @return Ссылка на стиль
+ *----------------------------------------------------------------------------*/
+QUrl RSSListing::userStyleSheet(const QString &filePath) const
+{
+  QString userStyle = "html{background-color:white;}";
+
+  QFile file(filePath);
+  if (!filePath.isEmpty() && file.open(QFile::ReadOnly)) {
+      QString fileData = QString::fromUtf8(file.readAll());
+      fileData.remove(QLatin1Char('\n'));
+      userStyle.append(fileData);
+      file.close();
+  }
+
+  const QString &encodedStyle = userStyle.toLatin1().toBase64();
+  const QString &dataString = QString("data:text/css;charset=utf-8;base64,%1").arg(encodedStyle);
+
+  return QUrl(dataString);
 }
