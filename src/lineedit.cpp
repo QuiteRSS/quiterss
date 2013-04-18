@@ -11,8 +11,9 @@
 #include <QToolButton>
 #include <QStyle>
 
-LineEdit::LineEdit(QWidget *parent)
+LineEdit::LineEdit(QWidget *parent, const QString &text)
   : QLineEdit(parent)
+  , textLabel_(0)
 {
   clearButton = new QToolButton(this);
   clearButton->setFocusPolicy(Qt::NoFocus);
@@ -22,6 +23,13 @@ LineEdit::LineEdit(QWidget *parent)
   clearButton->setCursor(Qt::ArrowCursor);
   clearButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
   clearButton->hide();
+
+  if (!text.isEmpty()) {
+    textLabel_ = new QLabel(this);
+    textLabel_->setStyleSheet("QLabel { color: gray; }");
+    textLabel_->setText(text);
+  }
+
   connect(clearButton, SIGNAL(clicked()), this, SLOT(slotClear()));
   connect(this, SIGNAL(textChanged(const QString&)),
           SLOT(updateClearButton(const QString&)));
@@ -35,10 +43,34 @@ LineEdit::LineEdit(QWidget *parent)
 
 void LineEdit::resizeEvent(QResizeEvent *)
 {
-  QSize sz = clearButton->sizeHint();
+  QSize sz;
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
+
+  if (textLabel_) {
+    sz = textLabel_->sizeHint();
+    textLabel_->move(frameWidth+3,
+                     (rect().bottom() + 1 - sz.height())/2);
+  }
+
+  sz = clearButton->sizeHint();
   clearButton->move(rect().right() - frameWidth - sz.width(),
                     (rect().bottom() + 1 - sz.height())/2);
+}
+
+void LineEdit::focusInEvent(QFocusEvent *event)
+{
+  if (textLabel_)
+    textLabel_->setVisible(false);
+
+  QLineEdit::focusInEvent(event);
+}
+
+void LineEdit::focusOutEvent(QFocusEvent *event)
+{
+  if (text().isEmpty() && textLabel_)
+    textLabel_->setVisible(true);
+
+  QLineEdit::focusOutEvent(event);
 }
 
 void LineEdit::updateClearButton(const QString& text)

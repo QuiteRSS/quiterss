@@ -11,6 +11,7 @@
 #define LINEEDIT_H
 
 #include <QLineEdit>
+#include <QLabel>
 
 class QToolButton;
 
@@ -19,10 +20,13 @@ class LineEdit : public QLineEdit
   Q_OBJECT
 
 public:
-  LineEdit(QWidget *parent = 0);
+  LineEdit(QWidget *parent = 0, const QString &text = "");
+  QLabel *textLabel_;
 
 protected:
   void resizeEvent(QResizeEvent *);
+  void focusInEvent(QFocusEvent *event);
+  void focusOutEvent(QFocusEvent *event);
 
 private slots:
   void updateClearButton(const QString &text);
