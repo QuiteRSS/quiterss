@@ -967,7 +967,7 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
-  treeItem << "cs_CZ" << QString::fromUtf8("Čeština [cs_CZ]")
+  treeItem << "cs" << QString::fromUtf8("Čeština [CS]")
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Matej Szendi") << "matej.szendi@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
