@@ -171,17 +171,35 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
           str.append(QKeySequence(keyEvent->modifiers()).toString());
         str.append(QKeySequence(keyEvent->key()).toString());
         editShortcut_->setText(str);
-        shortcutTree_->currentItem()->setText(3, str);
 
-        QList<QTreeWidgetItem *> treeItems =
-            shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
-        for (int i = 0; i < treeItems.count(); i++) {
-          if ((treeItems.at(i) != shortcutTree_->currentItem()) && !str.isEmpty()) {
-            warningShortcut_->setText(tr("Warning: key is already assigned to") +
-                                      " \"" + treeItems.at(i)->text(1) + "\"");
+        QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
+        int row = index.row();
+        QString shortcutStr = shortcutModel_->item(row, 2)->text();
+        QList<QStandardItem *> treeItems;
+        treeItems = shortcutModel_->findItems(shortcutStr, Qt::MatchFixedString, 2);
+          if (!shortcutStr.isEmpty()) {
+            for (int i = 0; i < treeItems.count(); i++) {
+              if ((treeItems.count() == 2) || (treeItems.at(i)->row() == row)) {
+                treeItems.at(i)->setData(shortcutModel_->item(0, 1)->data(Qt::TextColorRole),
+                                         Qt::TextColorRole);
+              }
+            }
           }
-          if ((treeItems.count() > 1) && !str.isEmpty()) {
-            treeItems.at(i)->setTextColor(3, Qt::red);
+
+        shortcutModel_->item(row, 2)->setText(str);
+
+        if (!str.isEmpty()) {
+          treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
+          for (int i = 0; i < treeItems.count(); i++) {
+            if (treeItems.at(i)->row() != row) {
+              warningShortcut_->setText(tr("Warning: key is already assigned to") +
+                                        " '" +
+                                        shortcutModel_->item(treeItems.at(i)->row(), 0)->text()
+                                        + "'");
+            }
+            if (treeItems.count() > 1) {
+              treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
+            }
           }
         }
       }
@@ -1195,23 +1213,34 @@ void OptionsDialog::createFontsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createShortcutWidget()
 {
-  shortcutTree_ = new QTreeWidget();
+  filterShortcut_ = new LineEdit();
+
+  shortcutTree_ = new QTreeView(this);
   shortcutTree_->setObjectName("shortcutTree");
   shortcutTree_->setSortingEnabled(false);
-  shortcutTree_->setColumnCount(6);
-  shortcutTree_->hideColumn(0);
-  shortcutTree_->hideColumn(4);
-  shortcutTree_->hideColumn(5);
   shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
-  shortcutTree_->header()->setStretchLastSection(false);
-  shortcutTree_->header()->setResizeMode(1, QHeaderView::ResizeToContents);
-  shortcutTree_->header()->setResizeMode(2, QHeaderView::Stretch);
-  shortcutTree_->header()->setResizeMode(3, QHeaderView::ResizeToContents);
+  shortcutTree_->setEditTriggers(false);
+  shortcutTree_->setRootIsDecorated(false);
+
+  shortcutModel_ = new QStandardItemModel();
+  shortcutModel_->setColumnCount(5);
+  shortcutProxyModel_ = new QSortFilterProxyModel();
+  shortcutProxyModel_->setSourceModel(shortcutModel_);
+  shortcutProxyModel_->setFilterKeyColumn(-1);
+  shortcutProxyModel_->setFilterCaseSensitivity(Qt::CaseInsensitive);
+  shortcutTree_->setModel(shortcutProxyModel_);
+
+  shortcutTree_->hideColumn(3);
+  shortcutTree_->hideColumn(4);
+  shortcutTree_->header()->setStretchLastSection(true);
+  shortcutTree_->setColumnWidth(0, 215);
+  shortcutTree_->setColumnWidth(1, 165);
+  shortcutTree_->setColumnWidth(2, 120);
 
   QStringList treeItem;
-  treeItem << "Id" << tr("Action") << tr("Description") << tr("Shortcut")
+  treeItem << tr("Action") << tr("Description") << tr("Shortcut")
            << "ObjectName" << "Data";
-  shortcutTree_->setHeaderLabels(treeItem);
+  shortcutModel_->setHorizontalHeaderLabels(treeItem);
 
   editShortcut_ = new LineEdit();
   QPushButton *resetShortcutButton = new QPushButton(tr("Reset"));
@@ -1229,6 +1258,7 @@ void OptionsDialog::createShortcutWidget()
 
   QVBoxLayout *shortcutLayout = new QVBoxLayout();
   shortcutLayout->setMargin(0);
+  shortcutLayout->addWidget(filterShortcut_);
   shortcutLayout->addWidget(shortcutTree_, 1);
   shortcutLayout->addWidget(warningShortcut_);
   shortcutLayout->addWidget(editShortcutBox);
@@ -1236,14 +1266,16 @@ void OptionsDialog::createShortcutWidget()
   shortcutWidget_ = new QWidget();
   shortcutWidget_->setLayout(shortcutLayout);
 
-  connect(shortcutTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
-          this, SLOT(shortcutTreeClicked(QTreeWidgetItem*,int)));
+  connect(shortcutTree_, SIGNAL(clicked(QModelIndex)),
+          this, SLOT(shortcutTreeClicked(QModelIndex)));
   connect(this, SIGNAL(signalShortcutTreeUpDownPressed()),
           SLOT(slotShortcutTreeUpDownPressed()), Qt::QueuedConnection);
   connect(editShortcut_, SIGNAL(signalClear()),
           this, SLOT(slotClearShortcut()));
   connect(resetShortcutButton, SIGNAL(clicked()),
           this, SLOT(slotResetShortcut()));
+  connect(filterShortcut_, SIGNAL(textChanged(QString)),
+          this, SLOT(filterShortcutChanged(QString)));
 
   editShortcut_->installEventFilter(this);
 }
@@ -1394,34 +1426,41 @@ int OptionsDialog::behaviorIconTray()
 
 void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *list)
 {
-  shortcutTree_->clear();
   QListIterator<QAction *> iter(actions);
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
 
     QStringList treeItem;
-    treeItem << QString::number(shortcutTree_->topLevelItemCount())
-             << pAction->text().remove("&")
+    treeItem << pAction->text().remove("&")
              << pAction->toolTip() << pAction->shortcut().toString()
              << pAction->objectName() << pAction->data().toString();
-    QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
-    if (pAction->icon().isNull())
-      item->setIcon(1, QIcon(":/images/images/noicon.png"));
-    else {
-      if (pAction->objectName() == "autoLoadImagesToggle") {
-        item->setIcon(1, QIcon(":/images/imagesOn"));
-        item->setText(1, tr("Load images"));
-        item->setText(2, tr("Auto load images to news view"));
-      } else item->setIcon(1, pAction->icon());
+
+    QList<QStandardItem *> treeItems;
+    for(int i = 0; i < treeItem.count(); i++) {
+      QStandardItem *item = new QStandardItem(treeItem.at(i));
+      if (i == 0) {
+        if (pAction->icon().isNull())
+          item->setIcon(QIcon(":/images/images/noicon.png"));
+        else {
+          if (pAction->objectName() == "autoLoadImagesToggle") {
+            item->setIcon(QIcon(":/images/imagesOn"));
+            item->setText(tr("Load images"));
+          } else item->setIcon(pAction->icon());
+        }
+      } else if (i == 1) {
+        if (pAction->objectName() == "autoLoadImagesToggle") {
+          item->setText(tr("Auto load images to news view"));
+        }
+      }
+      treeItems.append(item);
     }
-    shortcutTree_->addTopLevelItem(item);
+    shortcutModel_->appendRow(treeItems);
 
     QString str = pAction->shortcut().toString();
-    QList<QTreeWidgetItem *> treeItems =
-        shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
-    for (int i = 0; i < treeItems.count(); i++) {
-      if ((treeItems.count() > 1) && !str.isEmpty()) {
-        treeItems.at(i)->setTextColor(3, Qt::red);
+    treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
+    if ((treeItems.count() > 1) && !str.isEmpty()) {
+      for (int i = 0; i < treeItems.count(); i++) {
+        treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
       }
     }
   }
@@ -1431,34 +1470,34 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
 
 void OptionsDialog::saveActionShortcut(QList<QAction *> actions, QActionGroup *labelGroup)
 {
-  for (int i = 0; i < shortcutTree_->topLevelItemCount(); i++) {
-    QString objectName = shortcutTree_->topLevelItem(i)->text(4);
+  for (int i = 0; i < shortcutModel_->rowCount(); i++) {
+    QString objectName = shortcutModel_->item(i, 3)->text();
     if (objectName.contains("labelAction_")) {
       QAction *action = new QAction(parent());
-      action->setIcon(shortcutTree_->topLevelItem(i)->icon(1));
-      action->setText(shortcutTree_->topLevelItem(i)->text(1));
-      action->setShortcut(QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
-      action->setObjectName(shortcutTree_->topLevelItem(i)->text(4));
+      action->setIcon(shortcutModel_->item(i, 0)->icon());
+      action->setText(shortcutModel_->item(i, 0)->text());
+      action->setShortcut(QKeySequence(shortcutModel_->item(i, 2)->text()));
+      action->setObjectName(shortcutModel_->item(i, 3)->text());
       action->setCheckable(true);
-      action->setData(shortcutTree_->topLevelItem(i)->text(5));
+      action->setData(shortcutModel_->item(i, 4)->text());
       labelGroup->addAction(action);
       actions.append(action);
     } else {
-      int id = shortcutTree_->topLevelItem(i)->text(0).toInt();
-      actions.at(id)->setShortcut(
-            QKeySequence(shortcutTree_->topLevelItem(i)->text(3)));
+      actions.at(i)->setShortcut(
+            QKeySequence(shortcutModel_->item(i, 2)->text()));
     }
   }
 }
 
 void OptionsDialog::slotShortcutTreeUpDownPressed()
 {
-  shortcutTreeClicked(shortcutTree_->currentItem(), 1);
+  shortcutTreeClicked(shortcutTree_->currentIndex());
 }
 
-void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int)
+void OptionsDialog::shortcutTreeClicked(const QModelIndex &index)
 {
-  editShortcut_->setText(item->text(3));
+  QModelIndex indexCur = shortcutProxyModel_->mapToSource(index);
+  editShortcut_->setText(shortcutModel_->item(indexCur.row(), 2)->text());
   editShortcutBox->setEnabled(true);
   editShortcut_->setFocus();
   warningShortcut_->clear();
@@ -1466,49 +1505,75 @@ void OptionsDialog::shortcutTreeClicked(QTreeWidgetItem* item, int)
 
 void OptionsDialog::slotClearShortcut()
 {
-  QString str = shortcutTree_->currentItem()->text(3);
-  QList<QTreeWidgetItem *> treeItems =
-      shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
-  for (int i = 0; i < treeItems.count(); i++) {
-    if (((treeItems.count() == 2) && !str.isEmpty()) ||
-        (treeItems.at(i) == shortcutTree_->currentItem())) {
-      treeItems.at(i)->setTextColor(3, treeItems.at(i)->textColor(2));
+  QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
+  int row = index.row();
+  QString str = shortcutModel_->item(row, 2)->text();
+  QList<QStandardItem *> treeItems;
+  treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
+  if ((treeItems.count() > 1) && !str.isEmpty()) {
+    for (int i = 0; i < treeItems.count(); i++) {
+      if ((treeItems.count() == 2) || (treeItems.at(i)->row() == row)) {
+        treeItems.at(i)->setData(shortcutModel_->item(0, 1)->data(Qt::TextColorRole),
+                                 Qt::TextColorRole);
+      }
     }
   }
 
   editShortcut_->clear();
-  shortcutTree_->currentItem()->setText(3, "");
+  shortcutModel_->item(row, 2)->setText("");
   warningShortcut_->clear();
 }
 
 void OptionsDialog::slotResetShortcut()
 {
-  QString str = shortcutTree_->currentItem()->text(3);
-  QList<QTreeWidgetItem *> treeItems =
-      shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
-  for (int i = 0; i < treeItems.count(); i++) {
-    if (((treeItems.count() == 2) && !str.isEmpty()) ||
-        (treeItems.at(i) == shortcutTree_->currentItem())) {
-      treeItems.at(i)->setTextColor(3, treeItems.at(i)->textColor(2));
+  QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
+  int row = index.row();
+  QString str = shortcutModel_->item(row, 2)->text();
+  QList<QStandardItem *> treeItems;
+  treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
+  if (!str.isEmpty()) {
+    for (int i = 0; i < treeItems.count(); i++) {
+      if ((treeItems.count() == 2) || (treeItems.at(i)->row() == row)) {
+        treeItems.at(i)->setData(shortcutModel_->item(0, 1)->data(Qt::TextColorRole),
+                                 Qt::TextColorRole);
+      }
     }
   }
 
-  int id = shortcutTree_->currentItem()->data(0, Qt::DisplayRole).toInt();
-  str = listDefaultShortcut_->at(id);
+  str = listDefaultShortcut_->at(row);
   editShortcut_->setText(str);
-  shortcutTree_->currentItem()->setText(3, str);
+  shortcutModel_->item(row, 2)->setText(str);
   warningShortcut_->clear();
 
-  treeItems = shortcutTree_->findItems(str, Qt::MatchFixedString, 3);
-  for (int i = 0; i < treeItems.count(); i++) {
-    if ((treeItems.at(i) != shortcutTree_->currentItem()) && !str.isEmpty()) {
-      warningShortcut_->setText(tr("Warning: key is already assigned to") +
-                                " \"" + treeItems.at(i)->text(1) + "\"");
-    }
-    if ((treeItems.count() > 1) && !str.isEmpty()) {
-      treeItems.at(i)->setTextColor(3, Qt::red);
+  if (!str.isEmpty()) {
+    treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
+    for (int i = 0; i < treeItems.count(); i++) {
+      if (treeItems.at(i)->row() != row) {
+        warningShortcut_->setText(tr("Warning: key is already assigned to") +
+                                  " '" +
+                                  shortcutModel_->item(treeItems.at(i)->row(), 0)->text() +
+                                  "'");
+      }
+      if (treeItems.count() > 1) {
+        treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
+      }
     }
   }
+}
+
+void OptionsDialog::filterShortcutChanged(const QString & text)
+{
+  shortcutProxyModel_->setFilterFixedString(text);
+
+  if (shortcutTree_->currentIndex().isValid()) {
+    QModelIndex indexCur = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
+    editShortcut_->setText(shortcutModel_->item(indexCur.row(), 2)->text());
+    editShortcutBox->setEnabled(true);
+  } else {
+    editShortcut_->setText("");
+    editShortcutBox->setEnabled(false);
+  }
+  warningShortcut_->clear();
 }
 
 void OptionsDialog::setOpeningFeed(int action)
@@ -1651,11 +1716,11 @@ void OptionsDialog::newLabel()
   }
   idLabel = idLabel + 1;
 
-  QStringList strTreeItem;
-  strTreeItem << QString::number(idLabel) << nameLabel
+  QStringList itemStr;
+  itemStr << QString::number(idLabel) << nameLabel
               << colorText << colorBg
               << QString::number(idLabel);
-  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(strTreeItem);
+  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(itemStr);
   treeWidgetItem->setIcon(1, labelDialog->icon_);
   if (!colorText.isEmpty())
     treeWidgetItem->setTextColor(1, QColor(colorText));
@@ -1664,13 +1729,16 @@ void OptionsDialog::newLabel()
   labelsTree_->addTopLevelItem(treeWidgetItem);
   addIdLabelList(treeWidgetItem->text(0));
 
-  strTreeItem.clear();
-  strTreeItem << QString::number(shortcutTree_->topLevelItemCount())
-           << nameLabel << nameLabel << ""
-           << QString("labelAction_%1").arg(idLabel) << QString::number(idLabel);
-  treeWidgetItem = new QTreeWidgetItem(strTreeItem);
-  treeWidgetItem->setIcon(1, labelDialog->icon_);
-  shortcutTree_->addTopLevelItem(treeWidgetItem);
+  itemStr.clear();
+  itemStr << nameLabel << nameLabel << ""
+          << QString("labelAction_%1").arg(idLabel) << QString::number(idLabel);
+  for(int i = 0; i < itemStr.count(); i++) {
+    QStandardItem *item = new QStandardItem(itemStr.at(i));
+    if (i == 0) {
+      item->setIcon(labelDialog->icon_);
+    }
+    shortcutModel_->appendRow(item);
+  }
 
   delete labelDialog;
 }
@@ -1711,11 +1779,11 @@ void OptionsDialog::editLabel()
     treeWidgetItem->setBackgroundColor(1, QColor(colorBg));
   addIdLabelList(idLabelStr);
 
-  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
-        idLabelStr, Qt::MatchFixedString, 5);
-  treeWidgetItem = treeItems.first();
-  treeWidgetItem->setIcon(1, labelDialog->icon_);
-  treeWidgetItem->setText(1 , nameLabel);
+  QList<QStandardItem *> treeItems;
+  treeItems = shortcutModel_->findItems(idLabelStr, Qt::MatchFixedString, 4);
+  QStandardItem *item = treeItems.first();
+  shortcutModel_->item(item->row(), 0)->setIcon(labelDialog->icon_);
+  shortcutModel_->item(item->row(), 0)->setText(nameLabel);
 
   delete labelDialog;
 }
@@ -1725,13 +1793,13 @@ void OptionsDialog::deleteLabel()
   int labelRow = labelsTree_->currentIndex().row();
   addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
 
-  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
-        labelsTree_->topLevelItem(labelRow)->text(0), Qt::MatchFixedString, 5);
-  int indexItem = shortcutTree_->indexOfTopLevelItem(treeItems.first());
-  QTreeWidgetItem *treeItem = shortcutTree_->takeTopLevelItem(indexItem);
-  delete treeItem;
+  QString idLabelStr = labelsTree_->topLevelItem(labelRow)->text(0);
+  QList<QStandardItem *> treeItems;
+  treeItems = shortcutModel_->findItems(idLabelStr, Qt::MatchFixedString, 4);
+  QStandardItem *item = treeItems.first();
+  shortcutModel_->removeRow(item->row());
 
-  treeItem = labelsTree_->takeTopLevelItem(labelRow);
+  QTreeWidgetItem *treeItem = labelsTree_->takeTopLevelItem(labelRow);
   delete treeItem;
 }
 
@@ -1742,18 +1810,19 @@ void OptionsDialog::moveUpLabel()
   addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
   addIdLabelList(labelsTree_->topLevelItem(labelRow-1)->text(0));
 
-  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
-        labelsTree_->topLevelItem(labelRow)->text(0), Qt::MatchFixedString, 5);
-  int indexItem = shortcutTree_->indexOfTopLevelItem(treeItems.first());
-  QTreeWidgetItem *treeItem = shortcutTree_->takeTopLevelItem(indexItem-1);
-  shortcutTree_->insertTopLevelItem(indexItem, treeItem);
+  QString idLabelStr = labelsTree_->topLevelItem(labelRow)->text(0);
+  QList<QStandardItem *> treeItems;
+  treeItems = shortcutModel_->findItems(idLabelStr, Qt::MatchFixedString, 4);
+  int row = treeItems.first()->row();
+  treeItems = shortcutModel_->takeRow(row-1);
+  shortcutModel_->insertRow(row, treeItems);
 
   int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
   int num2 = labelsTree_->topLevelItem(labelRow-1)->text(4).toInt();
   labelsTree_->topLevelItem(labelRow-1)->setText(4, QString::number(num1));
   labelsTree_->topLevelItem(labelRow)->setText(4, QString::number(num2));
 
-  treeItem = labelsTree_->takeTopLevelItem(labelRow-1);
+  QTreeWidgetItem *treeItem = labelsTree_->takeTopLevelItem(labelRow-1);
   labelsTree_->insertTopLevelItem(labelRow, treeItem);
 
   if (labelsTree_->currentIndex().row() == 0)
@@ -1769,18 +1838,19 @@ void OptionsDialog::moveDownLabel()
   addIdLabelList(labelsTree_->topLevelItem(labelRow)->text(0));
   addIdLabelList(labelsTree_->topLevelItem(labelRow+1)->text(0));
 
-  QList<QTreeWidgetItem *> treeItems = shortcutTree_->findItems(
-        labelsTree_->topLevelItem(labelRow)->text(0), Qt::MatchFixedString, 5);
-  int indexItem = shortcutTree_->indexOfTopLevelItem(treeItems.first());
-  QTreeWidgetItem *treeItem = shortcutTree_->takeTopLevelItem(indexItem+1);
-  shortcutTree_->insertTopLevelItem(indexItem, treeItem);
+  QString idLabelStr = labelsTree_->topLevelItem(labelRow)->text(0);
+  QList<QStandardItem *> treeItems;
+  treeItems = shortcutModel_->findItems(idLabelStr, Qt::MatchFixedString, 4);
+  int row = treeItems.first()->row();
+  treeItems = shortcutModel_->takeRow(row+1);
+  shortcutModel_->insertRow(row, treeItems);
 
   int num1 = labelsTree_->topLevelItem(labelRow)->text(4).toInt();
   int num2 = labelsTree_->topLevelItem(labelRow+1)->text(4).toInt();
   labelsTree_->topLevelItem(labelRow+1)->setText(4, QString::number(num1));
   labelsTree_->topLevelItem(labelRow)->setText(4, QString::number(num2));
 
-  treeItem = labelsTree_->takeTopLevelItem(labelRow+1);
+  QTreeWidgetItem *treeItem = labelsTree_->takeTopLevelItem(labelRow+1);
   labelsTree_->insertTopLevelItem(labelRow, treeItem);
 
   if (labelsTree_->currentIndex().row() == (labelsTree_->topLevelItemCount()-1))

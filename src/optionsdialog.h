@@ -1,6 +1,7 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
+#include <QtGui>
 #include <QtSql>
 #include <QNetworkProxy>
 #include "dialog.h"
@@ -149,10 +150,11 @@ private slots:
   void closeDialog();
   void slotFontChange();
   void slotFontReset();
-  void shortcutTreeClicked(QTreeWidgetItem* item, int);
+  void shortcutTreeClicked(const QModelIndex &index);
   void slotShortcutTreeUpDownPressed();
   void slotClearShortcut();
   void slotResetShortcut();
+  void filterShortcutChanged(const QString &text);
   void selectionBrowser();
   void selectionSoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
@@ -260,7 +262,10 @@ private:
   // shortcut
   void createShortcutWidget();
   QStringList *listDefaultShortcut_;
-  QTreeWidget *shortcutTree_;
+  LineEdit *filterShortcut_;
+  QTreeView *shortcutTree_;
+  QStandardItemModel *shortcutModel_;
+  QSortFilterProxyModel *shortcutProxyModel_;
   LineEdit *editShortcut_;
   QGroupBox *editShortcutBox;
   QLabel *warningShortcut_;
