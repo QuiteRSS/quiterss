@@ -187,19 +187,22 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
           }
 
         shortcutModel_->item(row, 2)->setText(str);
+        shortcutModel_->item(row, 2)->setData(str);
 
         if (!str.isEmpty()) {
           treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
-          for (int i = 0; i < treeItems.count(); i++) {
-            if (treeItems.at(i)->row() != row) {
-              warningShortcut_->setText(tr("Warning: key is already assigned to") +
-                                        " '" +
-                                        shortcutModel_->item(treeItems.at(i)->row(), 0)->text()
-                                        + "'");
-            }
-            if (treeItems.count() > 1) {
+          if (treeItems.count() > 1) {
+            for (int i = 0; i < treeItems.count(); i++) {
+              if (treeItems.at(i)->row() != row) {
+                warningShortcut_->setText(tr("Warning: key is already assigned to") +
+                                          " '" +
+                                          shortcutModel_->item(treeItems.at(i)->row(), 0)->text()
+                                          + "'");
+              }
               treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
             }
+          } else {
+            warningShortcut_->clear();
           }
         }
       }
@@ -1213,7 +1216,7 @@ void OptionsDialog::createFontsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createShortcutWidget()
 {
-  filterShortcut_ = new LineEdit();
+  filterShortcut_ = new LineEdit(this, tr("Filter"));
 
   shortcutTree_ = new QTreeView(this);
   shortcutTree_->setObjectName("shortcutTree");
@@ -1227,6 +1230,7 @@ void OptionsDialog::createShortcutWidget()
   shortcutProxyModel_ = new QSortFilterProxyModel();
   shortcutProxyModel_->setSourceModel(shortcutModel_);
   shortcutProxyModel_->setFilterKeyColumn(-1);
+  shortcutProxyModel_->setFilterRole(Qt::UserRole + 1);
   shortcutProxyModel_->setFilterCaseSensitivity(Qt::CaseInsensitive);
   shortcutTree_->setModel(shortcutProxyModel_);
 
@@ -1452,6 +1456,9 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
           item->setText(tr("Auto load images to news view"));
         }
       }
+      if (i >= 0 && i <= 2) {
+        item->setData(treeItem.at(i));
+      }
       treeItems.append(item);
     }
     shortcutModel_->appendRow(treeItems);
@@ -1521,6 +1528,7 @@ void OptionsDialog::slotClearShortcut()
 
   editShortcut_->clear();
   shortcutModel_->item(row, 2)->setText("");
+  shortcutModel_->item(row, 2)->setData("");
   warningShortcut_->clear();
 }
 
@@ -1528,6 +1536,10 @@ void OptionsDialog::slotResetShortcut()
 {
   QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
   int row = index.row();
+  QString objectName = shortcutModel_->item(row, 3)->text();
+  if (objectName.contains("labelAction_"))
+    return;
+
   QString str = shortcutModel_->item(row, 2)->text();
   QList<QStandardItem *> treeItems;
   treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
@@ -1543,6 +1555,7 @@ void OptionsDialog::slotResetShortcut()
   str = listDefaultShortcut_->at(row);
   editShortcut_->setText(str);
   shortcutModel_->item(row, 2)->setText(str);
+  shortcutModel_->item(row, 2)->setData(str);
   warningShortcut_->clear();
 
   if (!str.isEmpty()) {
@@ -1732,13 +1745,18 @@ void OptionsDialog::newLabel()
   itemStr.clear();
   itemStr << nameLabel << nameLabel << ""
           << QString("labelAction_%1").arg(idLabel) << QString::number(idLabel);
+  QList<QStandardItem *> treeItems;
   for(int i = 0; i < itemStr.count(); i++) {
     QStandardItem *item = new QStandardItem(itemStr.at(i));
     if (i == 0) {
       item->setIcon(labelDialog->icon_);
     }
-    shortcutModel_->appendRow(item);
+    if (i >= 0 && i <= 2) {
+      item->setData(itemStr.at(i));
+    }
+    treeItems.append(item);
   }
+  shortcutModel_->appendRow(treeItems);
 
   delete labelDialog;
 }
@@ -1784,6 +1802,7 @@ void OptionsDialog::editLabel()
   QStandardItem *item = treeItems.first();
   shortcutModel_->item(item->row(), 0)->setIcon(labelDialog->icon_);
   shortcutModel_->item(item->row(), 0)->setText(nameLabel);
+  shortcutModel_->item(item->row(), 0)->setData(nameLabel);
 
   delete labelDialog;
 }
