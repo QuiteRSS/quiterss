@@ -1472,7 +1472,8 @@ bool NewsTabWidget::openUrl(const QUrl &url)
 
 void NewsTabWidget::slotFindText(const QString &text)
 {
-  if (findText_->findGroup_->checkedAction()->objectName() == "findInBrowserAct") {
+  QString objectName = findText_->findGroup_->checkedAction()->objectName();
+  if (objectName == "findInBrowserAct") {
     webView_->findText("", QWebPage::HighlightAllOccurrences);
     webView_->findText(text, QWebPage::HighlightAllOccurrences);
   } else {
@@ -1487,9 +1488,29 @@ void NewsTabWidget::slotFindText(const QString &text)
     default:
       filterStr = rsslisting_->newsFilterStr;
     }
-    filterStr.append(
-          QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' OR category LIKE '%%1%')").
-          arg(text));
+
+    if (!text.isEmpty()) {
+      if (objectName == "findTitleAct") {
+        filterStr.append(
+              QString(" AND title LIKE '%%1%'").arg(text));
+      } else if (objectName == "findAuthorAct") {
+        filterStr.append(
+              QString(" AND author_name LIKE '%%1%'").arg(text));
+      } else if (objectName == "findCategoryAct") {
+        filterStr.append(
+              QString(" AND category LIKE '%%1%'").arg(text));
+      } else if (objectName == "findContentAct") {
+        filterStr.append(
+              QString(" AND (content LIKE '%%1%' OR description LIKE '%%1%')").
+              arg(text));
+      } else {
+        filterStr.append(
+              QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' "
+                      "OR category LIKE '%%1%' OR content LIKE '%%1%' "
+                      "OR description LIKE '%%1%')").
+              arg(text));
+      }
+    }
     newsModel_->setFilter(filterStr);
 
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));

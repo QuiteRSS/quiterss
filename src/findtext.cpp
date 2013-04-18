@@ -8,10 +8,42 @@ FindTextContent::FindTextContent(QWidget *parent)
   findInNewsAct_->setIcon(QIcon(":/images/findInNews"));
   findInNewsAct_->setCheckable(true);
   findInNewsAct_->setChecked(true);
+
+  findTitleAct_ = new QAction(this);
+  findTitleAct_->setObjectName("findTitleAct");
+  findTitleAct_->setIcon(QIcon(":/images/findInNews"));
+  findTitleAct_->setCheckable(true);
+  findAuthorAct_ = new QAction(this);
+  findAuthorAct_->setObjectName("findAuthorAct");
+  findAuthorAct_->setIcon(QIcon(":/images/findInNews"));
+  findAuthorAct_->setCheckable(true);
+  findCategoryAct_ = new QAction(this);
+  findCategoryAct_->setObjectName("findCategoryAct");
+  findCategoryAct_->setIcon(QIcon(":/images/findInNews"));
+  findCategoryAct_->setCheckable(true);
+  findContentAct_ = new QAction(this);
+  findContentAct_->setObjectName("findContentAct");
+  findContentAct_->setIcon(QIcon(":/images/findInNews"));
+  findContentAct_->setCheckable(true);
+
   findInBrowserAct_ = new QAction(this);
   findInBrowserAct_->setObjectName("findInBrowserAct");
   findInBrowserAct_->setIcon(QIcon(":/images/findText"));
   findInBrowserAct_->setCheckable(true);
+
+  findGroup_ = new QActionGroup(this);
+  findGroup_->setExclusive(true);
+  findGroup_->addAction(findInNewsAct_);
+  findGroup_->addAction(findTitleAct_);
+  findGroup_->addAction(findAuthorAct_);
+  findGroup_->addAction(findCategoryAct_);
+  findGroup_->addAction(findContentAct_);
+  findGroup_->addAction(findInBrowserAct_);
+
+  findMenu_ = new QMenu(this);
+  findMenu_->addActions(findGroup_->actions());
+  findMenu_->insertSeparator(findTitleAct_);
+  findMenu_->insertSeparator(findInBrowserAct_);
 
   findButton = new QToolButton(this);
   findButton->setFocusPolicy(Qt::NoFocus);
@@ -20,15 +52,6 @@ FindTextContent::FindTextContent(QWidget *parent)
   findButton->setIconSize(findPixmap.size());
   findButton->setCursor(Qt::ArrowCursor);
   findButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
-
-  findGroup_ = new QActionGroup(this);
-  findGroup_->setExclusive(true);
-  findMenu_ = new QMenu(this);
-
-  findMenu_->addAction(findInNewsAct_);
-  findMenu_->addAction(findInBrowserAct_);
-  findGroup_->addAction(findInNewsAct_);
-  findGroup_->addAction(findInBrowserAct_);
 
   connect(findButton, SIGNAL(clicked()), this, SLOT(slotMenuFind()));
   connect(findGroup_, SIGNAL(triggered(QAction*)),
@@ -46,7 +69,7 @@ FindTextContent::FindTextContent(QWidget *parent)
   connect(this, SIGNAL(textChanged(const QString&)),
           SLOT(updateClearButton(const QString&)));
 
-  findLabel_ = new QLabel(tr("Filter news"), this);
+  findLabel_ = new QLabel(tr("Find in News"), this);
   findLabel_->setStyleSheet("QLabel { color: gray; }");
 
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
@@ -61,7 +84,11 @@ FindTextContent::FindTextContent(QWidget *parent)
 
 void FindTextContent::retranslateStrings()
 {
-  findInNewsAct_->setText(tr("Filter News"));
+  findInNewsAct_->setText(tr("Find in News"));
+  findTitleAct_->setText(tr("Find Title"));
+  findAuthorAct_->setText(tr("Find Authors"));
+  findCategoryAct_->setText(tr("Find Category"));
+  findContentAct_->setText(tr("Find in Content"));
   findInBrowserAct_->setText(tr("Find in Browser"));
   findLabel_->setText(findGroup_->checkedAction()->text());
   if (findLabel_->isVisible()) {

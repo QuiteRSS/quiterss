@@ -27,6 +27,10 @@ private slots:
 private:
   QMenu *findMenu_;
   QAction *findInNewsAct_;
+  QAction *findTitleAct_;
+  QAction *findAuthorAct_;
+  QAction *findCategoryAct_;
+  QAction *findContentAct_;
   QAction *findInBrowserAct_;
 
   QLabel *findLabel_;
