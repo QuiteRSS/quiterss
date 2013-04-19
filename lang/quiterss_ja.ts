@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -140,7 +138,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="511"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"></translation>
+        <translation>リダイレクトエラーです!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="513"/>
@@ -214,17 +212,17 @@
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="129"/>
         <source>Object blocked by ClickToFlash</source>
-        <translation type="unfinished"></translation>
+        <translation>ClickToFlash でブロックされたオブジェクト</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="131"/>
         <source>Hide object</source>
-        <translation type="unfinished"></translation>
+        <translation>オブジェクトを隠す</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; をホワイトリストへ追加</translation>
     </message>
 </context>
 <context>
@@ -516,38 +514,30 @@
 <context>
     <name>FindTextContent</name>
     <message>
-        <source>Filter news</source>
-        <translation type="obsolete">ニュースをフィルター</translation>
-    </message>
-    <message>
-        <source>Filter News</source>
-        <translation type="obsolete">ニュースをフィルター</translation>
-    </message>
-    <message>
         <location filename="../src/findtext.cpp" line="72"/>
         <location filename="../src/findtext.cpp" line="87"/>
         <source>Find in News</source>
-        <translation type="unfinished"></translation>
+        <translation>ニュース内を検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="88"/>
         <source>Find Title</source>
-        <translation type="unfinished"></translation>
+        <translation>タイトルを検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="89"/>
         <source>Find Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>作者を検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="90"/>
         <source>Find Category</source>
-        <translation type="unfinished"></translation>
+        <translation>カテゴリを検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="91"/>
         <source>Find in Content</source>
-        <translation type="unfinished"></translation>
+        <translation>中身を検索</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="92"/>
@@ -844,13 +834,9 @@
 <context>
     <name>NewsHeader</name>
     <message>
-        <source>Feed</source>
-        <translation type="obsolete">フィード</translation>
-    </message>
-    <message>
         <location filename="../src/newsheader.cpp" line="377"/>
         <source>Icon Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>フィードアイコン</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="378"/>
@@ -895,12 +881,12 @@
     <message>
         <location filename="../src/newsheader.cpp" line="386"/>
         <source>Title Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>フィードタイトル</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="387"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>リンク</translation>
     </message>
 </context>
 <context>
@@ -1088,7 +1074,7 @@
         <location filename="../src/optionsdialog.cpp" line="197"/>
         <location filename="../src/optionsdialog.cpp" line="1565"/>
         <source>Warning: key is already assigned to</source>
-        <translation type="unfinished"></translation>
+        <translation>警告: キーはすでに次の機能に割り当てられています </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="222"/>
@@ -1103,12 +1089,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="225"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"></translation>
+        <translation>自動的にフォルダーをたたむ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="227"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>自動的に最新状態をチェックする</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="228"/>
@@ -1251,62 +1237,62 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="422"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>ユーザースタイルシート:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="451"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"></translation>
+        <translation>キャッシュする最大ページ数</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="462"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"></translation>
+        <translation>キャッシュの保存先:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="470"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>ディスクキャッシュの最大サイズ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="472"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="478"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>ディスクキャッシュを使用する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="492"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Click To Flash はページ内の Flash コンテンツの自動読み込みをブロックするプラグインです。Flash 再生アイコンをクリックすると再生します。</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="497"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Click to Flash を使用する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>追加...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="511"/>
         <source>Remove...</source>
-        <translation type="unfinished"></translation>
+        <translation>削除...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="548"/>
         <source>History</source>
-        <translation type="unfinished">履歴</translation>
+        <translation>履歴</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="549"/>
         <source>Click to Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Click to Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="583"/>
@@ -1341,7 +1327,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="632"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"></translation>
+        <translation>日付を時刻を簡易表示にする</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="650"/>
@@ -1361,17 +1347,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="666"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;次の未読ニュース&apos; の振る舞いを変更する</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="668"/>
         <source>Not delete starred news</source>
-        <translation type="unfinished"></translation>
+        <translation>スター付きニュースは削除しない</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="669"/>
         <source>Not delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>ラベル付きニュースは削除しない</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="717"/>
@@ -1481,7 +1467,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1219"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>フィルター</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1451"/>
@@ -1502,22 +1488,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="2098"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"></translation>
+        <translation>スタイルシートファイルの選択</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2107"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>ディレクトリを開く...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2117"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>サイトをホワイトリストへ追加</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2118"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>サイト名に &apos;http://&apos; は付けないでください (例: youtube.com)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="559"/>
@@ -2200,10 +2186,6 @@
         <translation>カテゴリ</translation>
     </message>
     <message>
-        <source>Close tab</source>
-        <translation type="obsolete">タブを閉じる</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4666"/>
         <source>Switch to next tab</source>
         <translation>次のタブに切り替え</translation>
@@ -2688,12 +2670,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4548"/>
         <source>Copy Link</source>
-        <translation type="unfinished">リンクをコピー</translation>
+        <translation>リンクをコピー</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4549"/>
         <source>Copy Link News</source>
-        <translation type="unfinished"></translation>
+        <translation>ニュースのリンクをコピーします</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4551"/>
@@ -2713,7 +2695,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4574"/>
         <source>Lock Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>ツールバーをロック</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4577"/>
@@ -2808,17 +2790,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4663"/>
         <source>Close Tab</source>
-        <translation type="unfinished">タブを閉じる</translation>
+        <translation>タブを閉じる</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4664"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>他のタブを閉じる</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4665"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>全タブを閉じる</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4677"/>
@@ -2828,22 +2810,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4679"/>
         <source>Open Homepage Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>フィードのホームページを開く</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4680"/>
         <source>Sorted by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名前で並び替え</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4681"/>
         <source>Collapse All Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>全フォルダーをたたむ</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4682"/>
         <source>Expand All Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>全フォルダーを展開する</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4684"/>

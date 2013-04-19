@@ -1841,4 +1841,164 @@
     <source>Filter Feeds</source>
     <target>Фильтр лент</target>
 </phrase>
+<phrase>
+    <source>Redirect error!</source>
+    <target>Ошибка переадресации!</target>
+</phrase>
+<phrase>
+    <source>Hide object</source>
+    <target>Скрыть объект</target>
+</phrase>
+<phrase>
+    <source>Add &apos;%1&apos; to whitelist</source>
+    <target>Добавить &apos;%1&apos; в белый список</target>
+</phrase>
+<phrase>
+    <source>Object blocked by ClickToFlash</source>
+    <target>Объект заблокирован ClickToFlash</target>
+</phrase>
+<phrase>
+    <source>Find in News</source>
+    <target>Найти в новостях</target>
+</phrase>
+<phrase>
+    <source>Find Title</source>
+    <target>Найти заголовок</target>
+</phrase>
+<phrase>
+    <source>Find Authors</source>
+    <target>Найти автора</target>
+</phrase>
+<phrase>
+    <source>Find Category</source>
+    <target>Найти категорию</target>
+</phrase>
+<phrase>
+    <source>Find in Content</source>
+    <target>Найти в содержании</target>
+</phrase>
+<phrase>
+    <source>Icon Feed</source>
+    <target>Иконка ленты</target>
+</phrase>
+<phrase>
+    <source>Title Feed</source>
+    <target>Заголовок ленты</target>
+</phrase>
+<phrase>
+    <source>Link</source>
+    <target>Ссылка</target>
+</phrase>
+<phrase>
+    <source>Warning: key is already assigned to</source>
+    <target>Предупреждение: клавиша уже назначена на</target>
+</phrase>
+<phrase>
+    <source>Automatically collapse folders</source>
+    <target>Автоматически сворачивать папки</target>
+</phrase>
+<phrase>
+    <source>Automatically check for updates</source>
+    <target>Автоматически проверять наличие обновлений</target>
+</phrase>
+<phrase>
+    <source>User style sheet:</source>
+    <target>Пользовательская таблица стилей:</target>
+</phrase>
+<phrase>
+    <source>Maximum pages in cache</source>
+    <target>Максимум страниц в кэше</target>
+</phrase>
+<phrase>
+    <source>Store cache in:</source>
+    <target>Хранить кэш в:</target>
+</phrase>
+<phrase>
+    <source>Maximum size of disk cache</source>
+    <target>Максимальный размер дискового кэша</target>
+</phrase>
+<phrase>
+    <source>MB</source>
+    <target>МБ</target>
+</phrase>
+<phrase>
+    <source>Use disk cache</source>
+    <target>Использовать дисковый кэш</target>
+</phrase>
+<phrase>
+    <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
+    <target>Click To Flash - плагин, блокирующий автоматическую загрузку Flash содержимого. Вы всегда можете просмотреть заблокированное содержимое, кликнув по значку &apos;Play&apos;.</target>
+</phrase>
+<phrase>
+    <source>Use Click to Flash</source>
+    <target>Использовать Click to Flash</target>
+</phrase>
+<phrase>
+    <source>Click to Flash</source>
+    <target>Click to Flash</target>
+</phrase>
+<phrase>
+    <source>Simplified representation of date and time</source>
+    <target>Упрощенное представление даты и времени</target>
+</phrase>
+<phrase>
+    <source>Change behavior of action &apos;Next Unread News&apos;</source>
+    <target>Изменить поведение действия &apos;Следующая непрочитанная новость&apos;</target>
+</phrase>
+<phrase>
+    <source>Not delete starred news</source>
+    <target>Не удалять новости отмеченные звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Not delete labeled news</source>
+    <target>Не удалять новости с метками</target>
+</phrase>
+<phrase>
+    <source>Select Style Sheet File</source>
+    <target>Выберите файл таблицы стилей</target>
+</phrase>
+<phrase>
+    <source>Open Directory...</source>
+    <target>Открыть каталог...</target>
+</phrase>
+<phrase>
+    <source>Add site to whitelist</source>
+    <target>Добавить сайт в белый список</target>
+</phrase>
+<phrase>
+    <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
+    <target>Сайт без &apos;http://&apos; (например, youtube.com)</target>
+</phrase>
+<phrase>
+    <source>Lock Toolbar</source>
+    <target>Закрепить панель инструментов</target>
+</phrase>
+<phrase>
+    <source>Copy Link News</source>
+    <target>Копировать адрес ссылки новости</target>
+</phrase>
+<phrase>
+    <source>Close Other Tabs</source>
+    <target>Закрыть другие вкладки</target>
+</phrase>
+<phrase>
+    <source>Close All Tabs</source>
+    <target>Закрыть все вкладки</target>
+</phrase>
+<phrase>
+    <source>Open Homepage Feed</source>
+    <target>Открыть домашнюю страницу ленты</target>
+</phrase>
+<phrase>
+    <source>Sorted by Name</source>
+    <target>Отсортировать по имени</target>
+</phrase>
+<phrase>
+    <source>Collapse All Folders</source>
+    <target>Свернуть все папки</target>
+</phrase>
+<phrase>
+    <source>Expand All Folders</source>
+    <target>Развернуть все папки</target>
+</phrase>
 </QPH>
