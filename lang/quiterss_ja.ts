@@ -846,7 +846,7 @@
     <message>
         <location filename="../src/newsheader.cpp" line="379"/>
         <source>Published</source>
-        <translation>公開</translation>
+        <translation>配信</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="380"/>
