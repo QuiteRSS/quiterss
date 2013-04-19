@@ -2026,7 +2026,7 @@ void RSSListing::readSettings()
   updateCheckTech_ = settings_->value("updateCheck", true).toBool();
   updateCheckEnabled_ = settings_->value("updateCheckEnabled", true).toBool();
 
-  hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", true).toBool();
+  hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", false).toBool();
 
   defaultIconFeeds_ = settings_->value("defaultIconFeeds", false).toBool();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
