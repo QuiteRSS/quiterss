@@ -249,6 +249,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     QSqlTableModel::sort(column, order);
 
   if (newsId > 0) {
+    while (canFetchMore())
+      fetchMore();
     QModelIndex startIndex = index(0, fieldIndex("id"));
     QModelIndexList indexList = match(startIndex, Qt::EditRole, newsId);
     if (indexList.count()) {
