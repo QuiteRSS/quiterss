@@ -2,6 +2,46 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Verion 0.12.4+</B> (xx Apr 2013)
+<UL>
+<LI>Added: Disk cache and pages cache for embedded browser</LI>
+<LI>Added: Ability to sort news by Title ("Feeds->Sort by Name")</LI>
+<LI>Added: Option: "Simplified representation of date and time" (Feeds/General)</LI>
+<LI>Added: Options: "Never delete starred news", "Never delete labeled news" (Feeds/Clean Up)</LI>
+<LI>Added: Option: "Automatically collapse folders" (General)</LI>
+<LI>Added: Tab context menu items: "Close tab" and "Close Other tabs")</LI>
+<LI>Added: Ability to move main toolbar (toolbar context menu->Lock toolbar)</LI>
+<LI>Added: "Link" and "Title Feed" columns in news list</LI>
+<LI>Added: Click to Flash</LI>
+<LI>Added: CSS for news (folder "style")</LI>
+<LI>Added: User style for browser</LI>
+<LI>Added: Alt+left click - opens news/link in external browser</LI>
+<LI>Added: Simplified news find field</LI>
+<LI>Added: More buttons available for toolbar</LI>
+<LI>Added: More shortcuts</LI>
+<LI>Added: Language: Greek</LI>
+<LI>Added: Language: Chinese (Taiwan)</LI>
+<BR>
+<LI>Changed: GUI. Visual tweaks</LI>
+<LI>Changed: Increase performance updating feeds</LI>
+<LI>Changed: Ability assign shortcuts for "Share"</LI>
+<LI>Changed: Delete folders containing feeds</LI>
+<LI>Changed: Ability to edit application styles(folder "style")</LI>
+<BR>
+<LI>Fixed: Mark all news read in categories</LI>
+<LI>Fixed: Focus while opening link in external browser</LI>
+<LI>Fixed: Minimize to tray on tray-click (Linux)</LI>
+<LI>Fixed: Recounting feeds count after group operations</LI>
+<LI>Fixed: Moving tab content while moving tabs</LI>
+<LI>Fixed: Deleting default buttons from toolbar</LI>
+<LI>Fixed: Application startup in  Archlinux (KDE)</LI>
+<LI>Fixed: Show on top in full screen mode</LI>
+<LI>Fixed: Loop while adding/deleting feed</LI>
+<LI>Fixed: Updating some feeds</LI>
+<LI>Fixed: News duplicates</LI>
+<LI>Fixed: Find next/previous feed</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Version 0.12.4</B> (26 Mar 2013)
 <UL>
 <LI>Added: Feed option "Authorization"</LI>
