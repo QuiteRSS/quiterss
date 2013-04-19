@@ -5,11 +5,11 @@
 <P><B>Verion 0.12.4+</B> (xx Apr 2013)
 <UL>
 <LI>Added: Disk cache and pages cache for embedded browser</LI>
-<LI>Added: Ability to sort news by Title ("Feeds->Sort by Name")</LI>
-<LI>Added: Option: "Simplified representation of date and time" (Feeds/General)</LI>
-<LI>Added: Options: "Never delete starred news", "Never delete labeled news" (Feeds/Clean Up)</LI>
-<LI>Added: Option: "Automatically collapse folders" (General)</LI>
-<LI>Added: Tab context menu items: "Close tab" and "Close Other tabs")</LI>
+<LI>Added: Ability sorted feeds by name ("Feeds->Sort by Name")</LI>
+<LI>Added: Option: "Simplified representation of date and time"</LI>
+<LI>Added: Options: "Not delete starred news", "Not delete labeled news"</LI>
+<LI>Added: Option: "Automatically collapse folders"</LI>
+<LI>Added: Tab context menu items: "Close tab" and "Close Other tabs"</LI>
 <LI>Added: Ability to move main toolbar (toolbar context menu->Lock toolbar)</LI>
 <LI>Added: "Link" and "Title Feed" columns in news list</LI>
 <LI>Added: Click to Flash</LI>
@@ -36,7 +36,7 @@
 <LI>Fixed: Deleting default buttons from toolbar</LI>
 <LI>Fixed: Application startup in  Archlinux (KDE)</LI>
 <LI>Fixed: Show on top in full screen mode</LI>
-<LI>Fixed: Loop while adding/deleting feed</LI>
+<LI>Fixed: Loop while adding/updating feed</LI>
 <LI>Fixed: Updating some feeds</LI>
 <LI>Fixed: News duplicates</LI>
 <LI>Fixed: Find next/previous feed</LI>
