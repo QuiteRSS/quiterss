@@ -351,6 +351,8 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   } else if (obj == tabBar_) {
     if (event->type() == QEvent::MouseButtonPress) {
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+      if (tabBar_->tabAt(mouseEvent->pos()) < 0)
+        return false;
       if (mouseEvent->button() & Qt::MiddleButton) {
         slotTabCloseRequested(tabBar_->tabAt(mouseEvent->pos()));
       } else if (mouseEvent->button() & Qt::LeftButton) {
