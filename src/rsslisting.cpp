@@ -2211,7 +2211,7 @@ void RSSListing::writeSettings()
   settings_->setValue("ToolBarsState", saveState());
 
   settings_->setValue("MainSplitterState", mainSplitter_->saveState());
-  settings_->setValue("FeedsWidgetVisible", feedsWidgetVisibleAct_->isChecked());
+  settings_->setValue("FeedsWidgetVisible", showFeedsTabPermanent_);
 
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
