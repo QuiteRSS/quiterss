@@ -445,10 +445,11 @@ private:
   QTimer timerLinkOpening_;
 
   enum FeedReedType {
-    FeedReadTypeSwitchingFeed,
+    FeedReadSwitchingFeed,
     FeedReadClosingTab,
     FeedReadPlaceToTray,
-    FeedReadTypeCount
+    FeedReadTypeCount,
+    FeedReadSwitchingTab
   };
 
   QWidget *categoriesPanel_;
@@ -473,7 +474,7 @@ private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
-  void setFeedRead(int feedId, FeedReedType feedReadtype);
+  void setFeedRead(int type, int feedId, FeedReedType feedReadType);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
   void feedsModelReload(bool checkFilter = false);

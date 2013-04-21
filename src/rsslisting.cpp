@@ -465,7 +465,7 @@ void RSSListing::slotPlaceToTray()
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (markReadMinimize_)
-    setFeedRead(currentNewsTab->feedId_, FeedReadPlaceToTray);
+    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray);
   if (clearStatusNew_)
     markAllFeedsOld();
   idFeedList_.clear();
@@ -3196,9 +3196,10 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
       newsModel_ = currentNewsTab->newsModel_;
       newsView_ = currentNewsTab->newsView_;
+    } else {
+      //! При переходе на другую ленту метим старую просмотренной
+      setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed);
     }
-    //! При переходе на другую ленту метим старую просмотренной
-    setFeedRead(feedIdOld_, FeedReadTypeSwitchingFeed);
 
     slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
     feedsTreeView_->repaint();
@@ -4164,44 +4165,60 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 }
 
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
-void RSSListing::setFeedRead(int feedId, FeedReedType feedReadtype)
+void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType)
 {
-  if (feedId <= -1) return;
+  if ((type == TAB_WEB) || type == TAB_CAT_DEL) return;
 
-  db_.transaction();
-  QSqlQuery q;
-  if (((feedReadtype == FeedReadTypeSwitchingFeed) && markReadSwitchingFeed_) ||
-      ((feedReadtype == FeedReadClosingTab)        && markReadClosingTab_) ||
-      ((feedReadtype == FeedReadPlaceToTray)       && markReadMinimize_)) {
+  if ((type == TAB_FEED) && (feedReadType != FeedReadSwitchingTab)) {
+    if (feedId <= -1) return;
+
+    db_.transaction();
+    QSqlQuery q;
+    if (((feedReadType == FeedReadSwitchingFeed) && markReadSwitchingFeed_) ||
+        ((feedReadType == FeedReadClosingTab)        && markReadClosingTab_) ||
+        ((feedReadType == FeedReadPlaceToTray)       && markReadMinimize_)) {
+      QString str = getIdFeedsString(feedId);
+      if (str == "feedId=-1") {
+        q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
+      } else {
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+      }
+    } else {
+      QString str = getIdFeedsString(feedId);
+      if (str == "feedId=-1") {
+        q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
+      } else {
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+      }
+    }
     QString str = getIdFeedsString(feedId);
     if (str == "feedId=-1") {
-      q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
+      q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
     } else {
-      q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+      q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(str));
+    }
+
+    if (markNewsReadOn_ && markPrevNewsRead_)
+      q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
+
+    db_.commit();
+
+    recountFeedCounts(feedId, false);
+    if (feedReadType != FeedReadPlaceToTray) {
+      emit signalRefreshInfoTray();
     }
   } else {
-    QString str = getIdFeedsString(feedId);
-    if (str == "feedId=-1") {
-      q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
-    } else {
-      q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+    int cnt = newsModel_->rowCount();
+    if (cnt == 0) return;
+
+    db_.transaction();
+    QSqlQuery q;
+    for (int i = cnt-1; i >= 0; --i) {
+      int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
+      q.exec(QString("UPDATE news SET read=2 WHERE id=='%1' AND read=1").arg(newsId));
+      q.exec(QString("UPDATE news SET new=0 WHERE id=='%1' AND new=1").arg(newsId));
     }
-  }
-  QString str = getIdFeedsString(feedId);
-  if (str == "feedId=-1") {
-    q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
-  } else {
-    q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(str));
-  }
-
-  if (markNewsReadOn_ && markPrevNewsRead_)
-    q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
-
-  db_.commit();
-
-  recountFeedCounts(feedId, false);
-  if (feedReadtype != FeedReadPlaceToTray) {
-    emit signalRefreshInfoTray();
+    db_.commit();
   }
 }
 
@@ -5460,9 +5477,9 @@ void RSSListing::slotTabCloseRequested(int index)
   if (index != 0) {
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
 
-    if (widget->type_ == TAB_FEED) {
-      setFeedRead(widget->feedId_, FeedReadClosingTab);
+    setFeedRead(widget->type_, widget->feedId_, FeedReadClosingTab);
 
+    if (widget->type_ == TAB_FEED) {
       settings_->setValue("NewsHeaderGeometry",
                           widget->newsHeader_->saveGeometry());
       settings_->setValue("NewsHeaderState",
@@ -5486,6 +5503,7 @@ void RSSListing::slotTabCloseRequested(int index)
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (!stackedWidget_->count()) return;
+  setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
