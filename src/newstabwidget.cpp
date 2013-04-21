@@ -5,17 +5,15 @@
 #include <qt_windows.h>
 #endif
 
-NewsTabWidget::NewsTabWidget( QWidget *parent, int type, int feedId, int feedParId)
+NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParId)
   : QWidget(parent), type_(type),
-    feedId_(feedId), feedParId_(feedParId)
+    feedId_(feedId), feedParId_(feedParId),
+    currentNewsIdOld(-1), autoLoadImages_(true)
 {
   rsslisting_ = qobject_cast<RSSListing*>(parent);
   db_ = QSqlDatabase::database();
   feedsTreeView_ = rsslisting_->feedsTreeView_;
   feedsTreeModel_ = rsslisting_->feedsTreeModel_;
-
-  currentNewsIdOld = -1;
-  autoLoadImages_ = true;
 
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
