@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="511"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd przekierowania!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="513"/>
@@ -214,17 +214,17 @@
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="129"/>
         <source>Object blocked by ClickToFlash</source>
-        <translation type="unfinished"></translation>
+        <translation>Obiekt zablokowany przez ClickToFlash</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="131"/>
         <source>Hide object</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj obiekt</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj &apos;%1&apos; do białej listy</translation>
     </message>
 </context>
 <context>
@@ -516,38 +516,30 @@
 <context>
     <name>FindTextContent</name>
     <message>
-        <source>Filter news</source>
-        <translation type="obsolete">Filtr wiadomości</translation>
-    </message>
-    <message>
-        <source>Filter News</source>
-        <translation type="obsolete">Filtr wiadomości</translation>
-    </message>
-    <message>
         <location filename="../src/findtext.cpp" line="72"/>
         <location filename="../src/findtext.cpp" line="87"/>
         <source>Find in News</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź w Wiadomościach</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="88"/>
         <source>Find Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź Tytuł</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="89"/>
         <source>Find Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź Autora</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="90"/>
         <source>Find Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź Kategorię</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="91"/>
         <source>Find in Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź w Treści</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="92"/>
@@ -844,13 +836,9 @@
 <context>
     <name>NewsHeader</name>
     <message>
-        <source>Feed</source>
-        <translation type="obsolete">Kanał</translation>
-    </message>
-    <message>
         <location filename="../src/newsheader.cpp" line="377"/>
         <source>Icon Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikona Kanału</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="378"/>
@@ -895,12 +883,12 @@
     <message>
         <location filename="../src/newsheader.cpp" line="386"/>
         <source>Title Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tytuł Kanału</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="387"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Link</translation>
     </message>
 </context>
 <context>
@@ -1088,7 +1076,7 @@
         <location filename="../src/optionsdialog.cpp" line="204"/>
         <location filename="../src/optionsdialog.cpp" line="1582"/>
         <source>Warning: key is already assigned to</source>
-        <translation type="unfinished"></translation>
+        <translation>Uwaga: klucz jest już przypisany do</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="229"/>
@@ -1103,12 +1091,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="232"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne zwijanie folderów</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="234"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatycznie sprawdzaj uaktualnienia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="235"/>
@@ -1256,62 +1244,62 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="439"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkusz stylów użytkownika:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna ilość stron w pamięci</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="479"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przechowuj w pamięci podręcznej w:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="487"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalny rozmiar pamięci podręcznej na dysku</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="489"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj pamięci podręcznej dysku</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknij na Flash to plugin który blokuje automatyczne ładowanie Flash-a na stronie. Zawsze można załadować go ręcznie, klikając na ikonę włącz Flash.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj Kliknij na Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="526"/>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="528"/>
         <source>Remove...</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>History</source>
-        <translation type="unfinished">Historia</translation>
+        <translation>Historia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="566"/>
         <source>Click to Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Kliknij na Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="600"/>
@@ -1346,7 +1334,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"></translation>
+        <translation>Uproszczona prezentacja daty i czasu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="667"/>
@@ -1366,17 +1354,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="683"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień zachowanie w działaniu &quot;Następna nieprzeczytana wiadomość&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="685"/>
         <source>Not delete starred news</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie usuwaj wiadomości oznaczonych gwiazdką</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="686"/>
         <source>Not delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie usuwaj oetykietowanych wiadomości</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="734"/>
@@ -1486,7 +1474,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1236"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtr</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1468"/>
@@ -1507,22 +1495,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="2115"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik arkusza stylów</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2124"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz Katalog...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2134"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj stronę do białej listy</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2135"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona bez &apos;http://&apos; (ex. youtube.pl)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="576"/>
@@ -2205,10 +2193,6 @@
         <translation>Kategorie</translation>
     </message>
     <message>
-        <source>Close tab</source>
-        <translation type="obsolete">Zamknij zakładkę</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4685"/>
         <source>Switch to next tab</source>
         <translation>Przełącz do następnej zakładki</translation>
@@ -2693,12 +2677,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4567"/>
         <source>Copy Link</source>
-        <translation type="unfinished">Kopiuj Link</translation>
+        <translation>Kopiuj Link</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4568"/>
         <source>Copy Link News</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj Link Wiadomości</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4570"/>
@@ -2718,7 +2702,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4593"/>
         <source>Lock Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Zablokuj Pasek Narzędzi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4596"/>
@@ -2813,17 +2797,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4682"/>
         <source>Close Tab</source>
-        <translation type="unfinished">Zamknij Zakładkę</translation>
+        <translation>Zamknij Zakładkę</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4683"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij Pozostałe Zakładki</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4684"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij Wszystkie Zakładki</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4696"/>
@@ -2833,22 +2817,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4698"/>
         <source>Open Homepage Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz stronę startową kanału</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4699"/>
         <source>Sorted by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj po Nazwie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4700"/>
         <source>Collapse All Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwiń Wszystkie Foldery</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4701"/>
         <source>Expand All Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozwiń Wszystkie Foldery</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4703"/>

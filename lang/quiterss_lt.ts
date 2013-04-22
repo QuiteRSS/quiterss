@@ -516,14 +516,6 @@
 <context>
     <name>FindTextContent</name>
     <message>
-        <source>Filter news</source>
-        <translation type="obsolete">Filtruoti naujienas</translation>
-    </message>
-    <message>
-        <source>Filter News</source>
-        <translation type="obsolete">Filtruoti naujienas</translation>
-    </message>
-    <message>
         <location filename="../src/findtext.cpp" line="72"/>
         <location filename="../src/findtext.cpp" line="87"/>
         <source>Find in News</source>
@@ -843,10 +835,6 @@
 </context>
 <context>
     <name>NewsHeader</name>
-    <message>
-        <source>Feed</source>
-        <translation type="obsolete">Šaltinis</translation>
-    </message>
     <message>
         <location filename="../src/newsheader.cpp" line="377"/>
         <source>Icon Feed</source>
@@ -2203,10 +2191,6 @@
         <location filename="../src/rsslisting.cpp" line="4673"/>
         <source>Categories</source>
         <translation>Kategorijos</translation>
-    </message>
-    <message>
-        <source>Close tab</source>
-        <translation type="obsolete">Uždaryti aplanką</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4685"/>

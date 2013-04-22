@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="511"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"></translation>
+        <translation>重定向错误！</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="513"/>
@@ -214,17 +214,17 @@
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="129"/>
         <source>Object blocked by ClickToFlash</source>
-        <translation type="unfinished"></translation>
+        <translation>对象被ClickToFlash阻止</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="131"/>
         <source>Hide object</source>
-        <translation type="unfinished"></translation>
+        <translation>隐藏对象</translation>
     </message>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>添加 &apos;%1&apos; 到白名单</translation>
     </message>
 </context>
 <context>
@@ -516,38 +516,30 @@
 <context>
     <name>FindTextContent</name>
     <message>
-        <source>Filter news</source>
-        <translation type="obsolete">筛选消息</translation>
-    </message>
-    <message>
-        <source>Filter News</source>
-        <translation type="obsolete">筛选消息</translation>
-    </message>
-    <message>
         <location filename="../src/findtext.cpp" line="72"/>
         <location filename="../src/findtext.cpp" line="87"/>
         <source>Find in News</source>
-        <translation type="unfinished"></translation>
+        <translation>在消息中查找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="88"/>
         <source>Find Title</source>
-        <translation type="unfinished"></translation>
+        <translation>查找标题</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="89"/>
         <source>Find Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>查找作者</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="90"/>
         <source>Find Category</source>
-        <translation type="unfinished"></translation>
+        <translation>查找分类</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="91"/>
         <source>Find in Content</source>
-        <translation type="unfinished"></translation>
+        <translation>在内容中查找</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="92"/>
@@ -844,13 +836,9 @@
 <context>
     <name>NewsHeader</name>
     <message>
-        <source>Feed</source>
-        <translation type="obsolete">Feed</translation>
-    </message>
-    <message>
         <location filename="../src/newsheader.cpp" line="377"/>
         <source>Icon Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed 图标</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="378"/>
@@ -895,12 +883,12 @@
     <message>
         <location filename="../src/newsheader.cpp" line="386"/>
         <source>Title Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Feed 标题</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="387"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>链接</translation>
     </message>
 </context>
 <context>
@@ -1088,7 +1076,7 @@
         <location filename="../src/optionsdialog.cpp" line="204"/>
         <location filename="../src/optionsdialog.cpp" line="1582"/>
         <source>Warning: key is already assigned to</source>
-        <translation type="unfinished"></translation>
+        <translation>警告: 关键字已经分配给</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="229"/>
@@ -1103,12 +1091,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="232"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"></translation>
+        <translation>自动折叠文件夹</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="234"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>自动检查更新</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="235"/>
@@ -1256,62 +1244,62 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="439"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"></translation>
+        <translation>用户样式表: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"></translation>
+        <translation>最大缓存页面数</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="479"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"></translation>
+        <translation>存储缓存在: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="487"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>最大的磁盘缓存大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="489"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>使用磁盘缓存</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Flash点击是一个插件，可以阻止自动加载页面的Flash内容。您可以随时手动点击Flash播放图标加载它。</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>使用Flash点击插件</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="526"/>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>添加...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="528"/>
         <source>Remove...</source>
-        <translation type="unfinished"></translation>
+        <translation>移除...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>History</source>
-        <translation type="unfinished">历史</translation>
+        <translation>历史</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="566"/>
         <source>Click to Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Flash点击插件</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="600"/>
@@ -1346,7 +1334,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"></translation>
+        <translation>简化日期和时间的表示</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="667"/>
@@ -1366,17 +1354,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="683"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>改变 &apos;下一个未读消息&apos; 行为</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="685"/>
         <source>Not delete starred news</source>
-        <translation type="unfinished"></translation>
+        <translation>不删除标星的消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="686"/>
         <source>Not delete labeled news</source>
-        <translation type="unfinished"></translation>
+        <translation>不删除有标签的消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="734"/>
@@ -1486,7 +1474,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1236"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>筛选器</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1468"/>
@@ -1507,22 +1495,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="2115"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"></translation>
+        <translation>选择样式表文件</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2124"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"></translation>
+        <translation>打开目录...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2134"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"></translation>
+        <translation>添加站点到白名单</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2135"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation type="unfinished"></translation>
+        <translation>站点地址无 &apos;http://&apos; (例如. youtube.com)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="576"/>
@@ -2205,10 +2193,6 @@
         <translation>分类</translation>
     </message>
     <message>
-        <source>Close tab</source>
-        <translation type="obsolete">关闭标签页</translation>
-    </message>
-    <message>
         <location filename="../src/rsslisting.cpp" line="4685"/>
         <source>Switch to next tab</source>
         <translation>切换到下一个标签页</translation>
@@ -2693,12 +2677,12 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4567"/>
         <source>Copy Link</source>
-        <translation type="unfinished">复制链接</translation>
+        <translation>复制链接</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4568"/>
         <source>Copy Link News</source>
-        <translation type="unfinished"></translation>
+        <translation>复制链接新闻</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4570"/>
@@ -2718,7 +2702,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4593"/>
         <source>Lock Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>锁定工具栏</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4596"/>
@@ -2813,17 +2797,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4682"/>
         <source>Close Tab</source>
-        <translation type="unfinished">关闭标签页</translation>
+        <translation>关闭标签页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4683"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭其他标签页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4684"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭所有标签页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4696"/>
@@ -2833,22 +2817,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="4698"/>
         <source>Open Homepage Feed</source>
-        <translation type="unfinished"></translation>
+        <translation>打开Feed首页</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4699"/>
         <source>Sorted by Name</source>
-        <translation type="unfinished"></translation>
+        <translation>按名称排序</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4700"/>
         <source>Collapse All Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>折叠所有文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4701"/>
         <source>Expand All Folders</source>
-        <translation type="unfinished"></translation>
+        <translation>展开所有文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4703"/>
