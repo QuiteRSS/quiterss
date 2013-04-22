@@ -115,6 +115,8 @@
         <file alias="bulletPlus">images/bullet_toggle_plus.png</file>
         <file>images/flash.png</file>
         <file>images/flashstart.png</file>
+        <file>images/folder_star.png</file>
+        <file>images/folder_unread.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

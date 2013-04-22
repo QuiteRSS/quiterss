@@ -603,12 +603,12 @@ void RSSListing::createFeedsWidget()
   treeItem.clear();
   treeItem << tr("Unread") << QString::number(TAB_CAT_UNREAD) << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/bulletUnread"));
+  treeWidgetItem->setIcon(0, QIcon(":/images/images/folder_unread.png"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/starOn"));
+  treeWidgetItem->setIcon(0, QIcon(":/images/images/folder_star.png"));
   newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
   treeItem.clear();
   treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL) << "-1";
