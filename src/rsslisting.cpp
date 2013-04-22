@@ -5508,8 +5508,10 @@ void RSSListing::slotTabCurrentChanged(int index)
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
     newsCategoriesTree_->setCurrentIndex(QModelIndex());
-  if (widget->type_ != TAB_FEED)
+  if (widget->type_ != TAB_FEED) {
     feedsTreeView_->setCurrentIndex(QModelIndex());
+    feedProperties_->setEnabled(false);
+  }
 
   if (index == TAB_WIDGET_PERMANENT) {
     feedsWidgetVisibleAct_->setChecked(showFeedsTabPermanent_);
@@ -5532,6 +5534,7 @@ void RSSListing::slotTabCurrentChanged(int index)
 
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedParId_);
     feedsTreeView_->setCurrentIndex(feedIndex);
+    feedProperties_->setEnabled(feedIndex.isValid());
 
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
