@@ -199,6 +199,8 @@ private:
 
   // general
   void createGeneralWidget();
+  QCheckBox *autoRunEnabled_;
+  QSettings *autoRunSettings_;
 
   // systemTray
   void createTraySystemWidget();

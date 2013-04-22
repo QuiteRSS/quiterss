@@ -135,6 +135,13 @@ OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
 
 void OptionsDialog::acceptDialog()
 {
+#if defined(Q_OS_WIN)
+  if (autoRunEnabled_->isChecked())
+    autoRunSettings_->setValue("QuiteRSS", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
+  else
+    autoRunSettings_->remove("QuiteRSS");
+#endif
+
   applyProxy();
   applyWhitelist();
   applyLabels();
@@ -234,6 +241,16 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(defaultIconFeeds_);
   generalLayout->addWidget(autocollapseFolder_);
   generalLayout->addStretch();
+
+#if defined(Q_OS_WIN)
+  autoRunEnabled_ = new QCheckBox(tr("Run QuiteRSS at Windows startup"));
+  autoRunSettings_ = new QSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                             QSettings::NativeFormat);
+  autoRunEnabled_->setChecked(autoRunSettings_->value("QuiteRSS", false).toBool());
+
+  generalLayout->addWidget(autoRunEnabled_);
+#endif
+
   generalLayout->addWidget(updateCheckEnabled_);
   generalLayout->addWidget(storeDBMemory_);
 
