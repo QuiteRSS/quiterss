@@ -93,8 +93,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParI
       newsTabWidgetSplitter_->setStyleSheet(
             QString("QSplitter::handle {background: qlineargradient("
                     "x1: 0, y1: 0, x2: 0, y2: 1,"
-                    "stop: 0 %1, stop: 0.07 %2);"
-                    "margin-top: 1px; margin-bottom: 1px;}").
+                    "stop: 0 %1, stop: 0.07 %2);}").
             arg(newsPanelWidget_->palette().background().color().name()).
             arg(qApp->palette().color(QPalette::Dark).name()));
     } else {
@@ -1369,8 +1368,7 @@ void NewsTabWidget::setBrowserPosition()
     newsTabWidgetSplitter_->setStyleSheet(
           QString("QSplitter::handle {background: qlineargradient("
                   "x1: 0, y1: 0, x2: 0, y2: 1,"
-                  "stop: 0 %1, stop: 0.07 %2);"
-                  "margin-top: 1px; margin-bottom: 1px;}").
+                  "stop: 0 %1, stop: 0.07 %2);}").
           arg(newsPanelWidget_->palette().background().color().name()).
           arg(qApp->palette().color(QPalette::Dark).name()));
     break;
