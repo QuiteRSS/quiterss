@@ -1001,7 +1001,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "el_GR" << QString::fromUtf8("Ελληνικά (Greece) [el_GR]")
-           << "0.12.4"
+           << "0.12.5"
            << "Dimitris Siakavelis" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_GR"));
