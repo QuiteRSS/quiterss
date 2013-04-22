@@ -1,3 +1,42 @@
+Version 0.12.5 (22 Apr 2013)
+  * Added: Disk cache and pages cache for embedded browser
+  * Added: Ability sorted feeds by name ("Feeds->Sort by Name")
+  * Added: Option: "Simplified representation of date and time"
+  * Added: Options: "Not delete starred news", "Not delete labeled news"
+  * Added: Option: "Automatically collapse folders"
+  * Added: Option: "Run QuiteRSS at Windows startup" (Windows)
+  * Added: Tab context menu items: "Close tab" and "Close Other tabs"
+  * Added: Ability to move main toolbar (toolbar context menu->Lock toolbar)
+  * Added: "Link" and "Title Feed" columns in news list
+  * Added: Click to Flash
+  * Added: CSS for news (folder "style")
+  * Added: User style for browser
+  * Added: Alt+left click - opens news/link in external browser
+  * Added: Simplified news find field
+  * Added: More buttons available for toolbar
+  * Added: More shortcuts
+  * Added: Language: Greek
+  * Added: Language: Chinese (Taiwan)
+  * Added: Language: Portuguese (Brazil)
+  * Changed: GUI. Visual tweaks
+  * Changed: Increase performance updating feeds
+  * Changed: Ability assign shortcuts for "Share"
+  * Changed: Delete folders containing feeds
+  * Changed: Ability to edit application styles(folder "style")
+  * Fixed: Mark all news read in categories
+  * Fixed: Focus while opening link in external browser
+  * Fixed: Minimize to tray on tray-click (Linux)
+  * Fixed: Recounting feeds count after group operations
+  * Fixed: Moving tab content while moving tabs
+  * Fixed: Deleting default buttons from toolbar
+  * Fixed: Application startup in Archlinux (KDE)
+  * Fixed: Show on top in full screen mode
+  * Fixed: Loop while adding/updating feed
+  * Fixed: Updating some feeds
+  * Fixed: News duplicates
+  * Fixed: Find next/previous feed
+
+
 Version 0.12.4 (26 Mar 2013)
 	* Added: Feed option "Authorization" 
 	* Added: Program option "Minimal font size in browser" 

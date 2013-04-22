@@ -13,7 +13,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   setWindowTitle(tr("About"));
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setObjectName("AboutDialog");
-  setMinimumWidth(440);
+  setMinimumWidth(480);
 
   QTabWidget *tabWidget = new QTabWidget();
 

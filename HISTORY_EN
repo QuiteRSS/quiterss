@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Verion 0.12.4+</B> (xx Apr 2013)
+<P><B>Verion 0.12.5</B> (22 Apr 2013)
 <UL>
 <LI>Added: Disk cache and pages cache for embedded browser</LI>
 <LI>Added: Ability sorted feeds by name ("Feeds->Sort by Name")</LI>
@@ -22,6 +22,7 @@
 <LI>Added: More shortcuts</LI>
 <LI>Added: Language: Greek</LI>
 <LI>Added: Language: Chinese (Taiwan)</LI>
+<LI>Added: Language: Portuguese (Brazil)</LI>
 <BR>
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Increase performance updating feeds</LI>
