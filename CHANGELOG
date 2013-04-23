@@ -2,7 +2,7 @@ Version 0.12.5 (22 Apr 2013)
   * Added: Disk cache and pages cache for embedded browser
   * Added: Ability sorted feeds by name ("Feeds->Sort by Name")
   * Added: Option: "Simplified representation of date and time"
-  * Added: Options: "Not delete starred news", "Not delete labeled news"
+  * Added: Options: "Don't delete starred news", "Don't delete labeled news"
   * Added: Option: "Automatically collapse folders"
   * Added: Option: "Run QuiteRSS at Windows startup" (Windows)
   * Added: Tab context menu items: "Close tab" and "Close Other tabs"
