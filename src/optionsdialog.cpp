@@ -1120,6 +1120,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "tr" << QString::fromUtf8("Türkçe [TR]")
+           << QString(STRPRODUCTVER)
+           << QString::fromUtf8("Hasan Akgöz") << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_TR"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "uk" << QString::fromUtf8("Українська [UK]")
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Сергій Левицький") << "leon21sl@myopera.com";
