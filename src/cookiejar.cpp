@@ -10,7 +10,7 @@ CookieJar::CookieJar(QString dataDirPath, QObject *parent)
   loadCookies();
 }
 
-/** @brief Считывание из файла Cookies
+/** @brief Load cookies from file
  *----------------------------------------------------------------------------*/
 void CookieJar::loadCookies()
 {
@@ -46,7 +46,7 @@ void CookieJar::loadCookies()
   setAllCookies(loadedCookies);
 }
 
-/** @brief Сохранение в файл Cookies
+/** @brief Save cookies to file
  *----------------------------------------------------------------------------*/
 void CookieJar::saveCookies()
 {
@@ -70,21 +70,21 @@ void CookieJar::saveCookies()
   file.close();
 }
 
-/** @brief Очистка всех Cookies
+/** @brief Clear all cookies
  *----------------------------------------------------------------------------*/
 void CookieJar::clearCookies()
 {
   setAllCookies(QList<QNetworkCookie>());
 }
 
-/** @brief Получения всех Cookies
+/** @brief Retrive all cookies
  *----------------------------------------------------------------------------*/
 QList<QNetworkCookie> CookieJar::getAllCookies()
 {
   return QNetworkCookieJar::allCookies();
 }
 
-/** @brief Установка Cookies
+/** @brief Setup cookies from list
  *----------------------------------------------------------------------------*/
 void CookieJar::setAllCookies(const QList<QNetworkCookie> &cookieList)
 {

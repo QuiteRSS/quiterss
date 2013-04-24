@@ -316,7 +316,7 @@ void AddFeedWizard::addFeed()
     page(0)->setEnabled(false);
     showProgressBar();
 
-    // Вычисляем номер ряда для вставляемой ленты
+    // Calculate row's number to insert new feed
     int rowToParent = 0;
     q.exec("SELECT count(id) FROM feeds WHERE parentId=0");
     if (q.next()) rowToParent = q.value(0).toInt();
@@ -328,7 +328,7 @@ void AddFeedWizard::addFeed()
       userInfo = QString("%1:%2").arg(user_->text()).arg(pass_->text());
     }
 
-    // Добавляем ленту
+    // Insert feed
     q.prepare("INSERT INTO feeds(xmlUrl, created, rowToParent, authentication) "
               "VALUES (:feedUrl, :feedCreateTime, :rowToParent, :authentication)");
     q.bindValue(":feedUrl", feedUrlString_);
@@ -358,7 +358,7 @@ void AddFeedWizard::deleteFeed()
     q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
   }
 
-  // Корректируем строки
+  // Correct rowToParent field
   QList<int> idList;
   q.exec("SELECT id FROM feeds WHERE parentId=0 ORDER BY rowToParent");
   while (q.next()) {
@@ -561,7 +561,7 @@ void AddFeedWizard::finish()
   if (foldersTree_->currentItem()->text(1) != "0")
     parentId = foldersTree_->currentItem()->text(1).toInt();
 
-  // Корректируем строки
+  // Correct rowToParent field
   QList<int> idList;
   q.exec("SELECT id FROM feeds WHERE parentId=0 ORDER BY rowToParent");
   while (q.next()) {
@@ -573,7 +573,7 @@ void AddFeedWizard::finish()
            arg(i).arg(idList.at(i)));
   }
 
-  // Вычисляем номер ряда для вставляемой ленты
+  // Calculate row number to insert feed
   int rowToParent = 0;
   q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1' AND id!='%2'").
          arg(parentId).arg(parseFeedId));
@@ -613,7 +613,7 @@ void AddFeedWizard::finish()
   accept();
 }
 
-/*! \brief Добавление новой папки *********************************************/
+/*! \brief Adding new folder **************************************************/
 void AddFeedWizard::newFolder()
 {
   AddFolderDialog *addFolderDialog = new AddFolderDialog(this);
@@ -634,13 +634,13 @@ void AddFeedWizard::newFolder()
 
   QSqlQuery q;
 
-  // Вычисляем номер ряда для папки
+  // Calculate row number to insert folder
   int rowToParent = 0;
   q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
          arg(parentId));
   if (q.next()) rowToParent = q.value(0).toInt();
 
-  // Добавляем папку
+  // Add folder
   q.prepare("INSERT INTO feeds(text, created, parentId, rowToParent) "
             "VALUES (:text, :feedCreateTime, :parentId, :rowToParent)");
   q.bindValue(":text", folderText);
