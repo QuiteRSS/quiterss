@@ -117,6 +117,7 @@
         <file>images/flashstart.png</file>
         <file>images/folder_star.png</file>
         <file>images/folder_unread.png</file>
+        <file alias="flag_TR">images/flag_turkey.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

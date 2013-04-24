@@ -7,7 +7,7 @@
 <LI>Added: Disk cache and pages cache for embedded browser</LI>
 <LI>Added: Ability sorted feeds by name ("Feeds->Sort by Name")</LI>
 <LI>Added: Option: "Simplified representation of date and time"</LI>
-<LI>Added: Options: "Not delete starred news", "Not delete labeled news"</LI>
+<LI>Added: Options: "Don't delete starred news", "Don't delete labeled news"</LI>
 <LI>Added: Option: "Automatically collapse folders"</LI>
 <LI>Added: Option: "Run QuiteRSS at Windows startup" (Windows)</LI>
 <LI>Added: Tab context menu items: "Close tab" and "Close Other tabs"</LI>
@@ -16,7 +16,7 @@
 <LI>Added: Click to Flash</LI>
 <LI>Added: CSS for news (folder "style")</LI>
 <LI>Added: User style for browser</LI>
-<LI>Added: Alt+left click - opens news/link in external browser</LI>
+<LI>Added: Alt+left click - opens news/link in external browser (Windows)</LI>
 <LI>Added: Simplified news find field</LI>
 <LI>Added: More buttons available for toolbar</LI>
 <LI>Added: More shortcuts</LI>

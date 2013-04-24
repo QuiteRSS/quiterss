@@ -682,8 +682,8 @@ void OptionsDialog::createFeedsWidget()
 
   changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
-  notDeleteStarred_ = new QCheckBox(tr("Not delete starred news"));
-  notDeleteLabeled_ = new QCheckBox(tr("Not delete labeled news"));
+  notDeleteStarred_ = new QCheckBox(tr("Don't delete starred news"));
+  notDeleteLabeled_ = new QCheckBox(tr("Don't delete labeled news"));
 
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
@@ -1117,6 +1117,14 @@ void OptionsDialog::createLanguageWidget()
            << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_SV"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
+  treeItem << "tr" << QString::fromUtf8("Türkçe [TR]")
+           << QString(STRPRODUCTVER)
+           << QString::fromUtf8("Hasan Akgöz") << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_TR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
