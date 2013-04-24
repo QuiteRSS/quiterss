@@ -11,7 +11,7 @@ Version 0.12.5 (22 Apr 2013)
   * Added: Click to Flash
   * Added: CSS for news (folder "style")
   * Added: User style for browser
-  * Added: Alt+left click - opens news/link in external browser
+  * Added: Alt+left click - opens news/link in external browser (Windows)
   * Added: Simplified news find field
   * Added: More buttons available for toolbar
   * Added: More shortcuts
