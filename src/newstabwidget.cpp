@@ -1584,8 +1584,8 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
   }
   webMenu_->clear();
 
-  QMenu *menu_t = webView_->page()->createStandardContextMenu();
-  webMenu_->addActions(menu_t->actions());
+  QMenu *pageMenu = webView_->page()->createStandardContextMenu();
+  webMenu_->addActions(pageMenu->actions());
 
   const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
   if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
@@ -1594,7 +1594,7 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
       webMenu_->addSeparator();
       webMenu_->addAction(urlExternalBrowserAct_);
     }
-  } else if (menu_t->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
+  } else if (pageMenu->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
     if (webView_->title() == "news_descriptions") {
       webView_->pageAction(QWebPage::Reload)->setVisible(false);
     } else {
@@ -1607,6 +1607,16 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
     webMenu_->addAction(rsslisting_->printPreviewAct_);
     webMenu_->addSeparator();
     webMenu_->addAction(rsslisting_->savePageAsAct_);
+  } else if (hitTest.isContentEditable()) {
+    for (int i = 0; i < webMenu_->actions().count(); i++) {
+      if ((i <= 1) && (webMenu_->actions().at(i)->text() == "Direction")) {
+        webMenu_->actions().at(i)->setVisible(false);
+        break;
+      }
+    }
+    webMenu_->insertSeparator(webMenu_->actions().at(0));
+    webMenu_->insertAction(webMenu_->actions().at(0), webView_->pageAction(QWebPage::Redo));
+    webMenu_->insertAction(webMenu_->actions().at(0), webView_->pageAction(QWebPage::Undo));
   }
 
   webMenu_->popup(webView_->mapToGlobal(p));
