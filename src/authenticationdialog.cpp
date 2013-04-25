@@ -16,6 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "authenticationdialog.h"
+
 #include <QSqlQuery>
 
 AuthenticationDialog::AuthenticationDialog(QWidget *parent, QNetworkReply *reply,

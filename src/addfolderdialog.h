@@ -19,6 +19,7 @@
 #define ADDFOLDERDIALOG_H
 
 #include <QtSql>
+
 #include "dialog.h"
 #include "lineedit.h"
 

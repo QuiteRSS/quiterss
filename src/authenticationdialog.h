@@ -20,6 +20,7 @@
 
 #include <QAuthenticator>
 #include <QNetworkReply>
+
 #include "dialog.h"
 #include "lineedit.h"
 

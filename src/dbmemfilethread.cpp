@@ -16,19 +16,20 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "dbmemfilethread.h"
+
+#include <QDebug>
 #if QT_VERSION >= 0x040800
 #include <sqlite_qt48x/sqlite3.h>
 #else
 #include <sqlite_qt47x/sqlite3.h>
 #endif
-#include <QDebug>
 
-DBMemFileThread::DBMemFileThread(QString filename, QObject *pParent)
-  :QThread(pParent)
+DBMemFileThread::DBMemFileThread(const QString &filename, QObject *parent)
+  : QThread(parent)
+  , filename_(filename)
 {
   qDebug() << "DBMemFileThread::constructor";
   memdb_ = QSqlDatabase::database();
-  filename_ = filename;
 }
 
 DBMemFileThread::~DBMemFileThread()

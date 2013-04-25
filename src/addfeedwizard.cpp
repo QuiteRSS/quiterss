@@ -15,15 +15,15 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QDomDocument>
-
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
 
+#include <QDomDocument>
+
 extern QString kCreateNewsTableQuery;
 
-AddFeedWizard::AddFeedWizard(QWidget *parent, QString dataDirPath, int curFolderId)
+AddFeedWizard::AddFeedWizard(QWidget *parent, const QString &dataDirPath, int curFolderId)
   : QWizard(parent),
     curFolderId_(curFolderId)
 {

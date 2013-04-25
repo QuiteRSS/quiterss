@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "aboutdialog.h"
 #include "VersionNo.h"
+
 #if QT_VERSION >= 0x040800
 #include <sqlite_qt48x/sqlite3.h>
 #else

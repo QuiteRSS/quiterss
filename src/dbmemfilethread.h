@@ -25,7 +25,7 @@ class DBMemFileThread : public QThread
 {
   Q_OBJECT
 public:
-  explicit DBMemFileThread(QString filename, QObject *pParent);
+  explicit DBMemFileThread(const QString &filename, QObject *parent);
   ~DBMemFileThread();
   void sqliteDBMemFile(bool save, QThread::Priority priority = QThread::NormalPriority);
 

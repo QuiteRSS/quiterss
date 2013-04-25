@@ -19,7 +19,6 @@
  * Функции для работы с файлом базы
  * \date created 17.04.2012
  ******************************************************************************/
-
 #include <QtCore>
 #include <QtSql>
 
@@ -397,7 +396,7 @@ void initLabelsTable(QSqlDatabase *db)
  * @param dbFileName абсолютный путь и имя файла базы
  * @param dbVersion версия базы
  *----------------------------------------------------------------------------*/
-void createDBBackup(QString dbFileName, QString dbVersion)
+void createDBBackup(const QString &dbFileName, const QString &dbVersion)
 {
   QFileInfo fi(dbFileName);
 
@@ -417,7 +416,7 @@ void createDBBackup(QString dbFileName, QString dbVersion)
 
 
 //-----------------------------------------------------------------------------
-QString initDB(const QString dbFileName, QSettings *settings)
+QString initDB(const QString &dbFileName, QSettings *settings)
 {
   if (!QFile(dbFileName).exists()) {  // Инициализация базы
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");

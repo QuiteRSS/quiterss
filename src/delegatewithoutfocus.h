@@ -22,9 +22,12 @@
 
 class DelegateWithoutFocus: public QStyledItemDelegate
 {
-  void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+  void paint(QPainter *painter, const QStyleOptionViewItem &option,
+             const QModelIndex &index) const;
+
 public:
-  DelegateWithoutFocus(QObject *a_parent);
+  DelegateWithoutFocus(QObject *parent);
+
 };
 
 #endif // DELEGATEWITHOUTFOCUS_H
