@@ -20,22 +20,17 @@
 
 NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QList<int> cntNewNewsList,
-                                       int countShowNews,
-                                       int timeShowNews,
-                                       int widthTitleNews,
-                                       QString fontFamily,
-                                       int fontSize,
-                                       QWidget *parent) :
-  QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint),
-  idFeedList_(idFeedList),
-  cntNewNewsList_(cntNewNewsList),
-  countShowNews_(countShowNews),
-  timeShowNews_(timeShowNews),
-  widthTitleNews_(widthTitleNews)
+                                       QWidget *parent)
+  : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+  , idFeedList_(idFeedList)
+  , cntNewNewsList_(cntNewNewsList)
 {
   setAttribute(Qt::WA_TranslucentBackground);
   setFocusPolicy(Qt::NoFocus);
   setAttribute(Qt::WA_AlwaysShowToolTips);
+
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parent);
+  timeShowNews_ = rssl_->timeShowNewsNotify_;
 
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
@@ -121,7 +116,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   }
   textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews));
 
-  if (cntAllNews > countShowNews_) rightButton_->setEnabled(true);
+  if (cntAllNews > rssl_->countShowNewsNotify_) rightButton_->setEnabled(true);
   else rightButton_->setEnabled(false);
 
   QSqlQuery q;
@@ -151,7 +146,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       if (cntNews >= cntNewNewsList_[i]) break;
       else cntNews++;
 
-      if (cnt >= countShowNews_) {
+      if (cnt >= rssl_->countShowNewsNotify_) {
         cnt = 1;
         pageLayout_ = new QVBoxLayout();
         pageLayout_->setMargin(5);
@@ -162,10 +157,10 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       } else cnt++;
 
       NewsItem *newsItem = new NewsItem(idFeed, parIdFeed, q.value(0).toInt(),
-                                        widthTitleNews_, this);
+                                        rssl_->widthTitleNewsNotify_, this);
       if (!iconFeed.isNull())
-        newsItem->iconNews->setPixmap(iconFeed);
-      newsItem->iconNews->setToolTip(titleFeed);
+        newsItem->iconNews_->setPixmap(iconFeed);
+      newsItem->iconNews_->setToolTip(titleFeed);
       connect(newsItem, SIGNAL(signalMarkRead(int)),
               this, SLOT(markRead(int)));
       connect(newsItem, SIGNAL(signalTitleClicked(int, int, int)),
@@ -173,11 +168,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
       connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
               this, SIGNAL(signalOpenExternalBrowser(QUrl)));
 
-      newsItem->titleNews->setFont(QFont(fontFamily, fontSize));
-      QString titleStr = newsItem->titleNews->fontMetrics().elidedText(
-            q.value(1).toString(), Qt::ElideRight, newsItem->titleNews->sizeHint().width());
-      newsItem->titleNews->setText(titleStr);
-      newsItem->titleNews->setToolTip(q.value(1).toString());
+      newsItem->titleNews_->setFont(QFont(rssl_->notificationFontFamily_,
+                                          rssl_->notificationFontSize_));
+      QString titleStr = newsItem->titleNews_->fontMetrics().elidedText(
+            q.value(1).toString(), Qt::ElideRight, newsItem->titleNews_->sizeHint().width());
+      newsItem->titleNews_->setText(titleStr);
+      newsItem->titleNews_->setToolTip(q.value(1).toString());
       pageLayout_->addWidget(newsItem);
     }
   }

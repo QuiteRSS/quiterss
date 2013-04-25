@@ -18,8 +18,8 @@
 #include "newsmodel.h"
 
 NewsModel::NewsModel(QObject *parent, QTreeView *view)
-  : QSqlTableModel(parent),
-    view_(view)
+  : QSqlTableModel(parent)
+  , view_(view)
 {
   setEditStrategy(QSqlTableModel::OnManualSubmit);
 }

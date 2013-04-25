@@ -29,16 +29,30 @@ class GoogleReader : public QObject
 {
   Q_OBJECT
 public:
-  explicit GoogleReader(QString email, QString passwd, QObject *parent = 0);
+  explicit GoogleReader(const QString &email, const QString &passwd, QObject *parent = 0);
 
-  void editFeed(QString urlFeed, QString action, QString name = "");
+  void editFeed(const QString &urlFeed, const QString &action, const QString &name = "");
   void requestFeedsList();
   void requestUnreadCount();
-  void requestFeed(QString urlFeed, int ot = 0);
-  void editItem(QString urlFeed, QString itemId, QString action);
+  void requestFeed(const QString &urlFeed, int ot = 0);
+  void editItem(const QString &urlFeed, const QString &itemId, const QString &action);
 
   QString email_;
   QString passwd_;
+
+signals:
+  void signalReplySidAuth(bool ok);
+  void signalReplyToken(bool ok);
+  void signalReplyHttpPost(bool ok);
+
+private slots:
+  void replySidAuth(QNetworkReply *reply);
+  void requestToken();
+  void replyToken(QNetworkReply *reply);
+  void replyHttpPost(QNetworkReply *reply);
+  void replyFeedsList(QNetworkReply *reply);
+  void replyUnreadCount(QNetworkReply *reply);
+  void replyFeed(QNetworkReply *reply);
 
 private:
   void requestSidAuth();
@@ -59,20 +73,6 @@ private:
   QString token_;
   QUrl requestUrl_;
   QUrl postArgs_;
-
-signals:
-  void signalReplySidAuth(bool ok);
-  void signalReplyToken(bool ok);
-  void signalReplyHttpPost(bool ok);
-
-private slots:
-  void replySidAuth(QNetworkReply *reply);
-  void requestToken();
-  void replyToken(QNetworkReply *reply);
-  void replyHttpPost(QNetworkReply *reply);
-  void replyFeedsList(QNetworkReply *reply);
-  void replyUnreadCount(QNetworkReply *reply);
-  void replyFeed(QNetworkReply *reply);
 
 };
 

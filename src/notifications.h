@@ -25,25 +25,27 @@ class NewsItem : public QWidget
 {
   Q_OBJECT
 public:
-  NewsItem(int idFeed, int parIdFeed, int idNews, int width, QWidget * parent = 0) :
-    QWidget(parent), feedId_(idFeed), feedParId_(parIdFeed), newsId_(idNews)
+  NewsItem(int idFeed, int parIdFeed, int idNews, int width, QWidget * parent = 0)
+    : QWidget(parent)
+    , feedId_(idFeed)
+    , feedParId_(parIdFeed)
+    , newsId_(idNews)
+    , read_(false)
   {
-    read = false;
-
     setCursor(Qt::PointingHandCursor);
 
-    iconNews = new QLabel(this);
+    iconNews_ = new QLabel(this);
     QPixmap icon(":/images/feed");
-    iconNews->setPixmap(icon);
-    iconNews->setFixedSize(icon.size());
-    titleNews = new QLabel(this);
-    titleNews->setStyleSheet("QLabel:hover {color: #1155CC;}");
+    iconNews_->setPixmap(icon);
+    iconNews_->setFixedSize(icon.size());
+    titleNews_ = new QLabel(this);
+    titleNews_->setStyleSheet("QLabel:hover {color: #1155CC;}");
 
-    readButton = new QToolButton(this);
-    readButton->setIcon(QIcon(":/images/bulletUnread"));
-    readButton->setToolTip(tr("Mark Read/Unread"));
-    readButton->setAutoRaise(true);
-    readButton->hide();
+    readButton_ = new QToolButton(this);
+    readButton_->setIcon(QIcon(":/images/bulletUnread"));
+    readButton_->setToolTip(tr("Mark Read/Unread"));
+    readButton_->setAutoRaise(true);
+    readButton_->hide();
 
     QToolButton *openExternalBrowserButton = new QToolButton(this);
     openExternalBrowserButton->setIcon(QIcon(":/images/openBrowser"));
@@ -52,28 +54,28 @@ public:
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
     buttonsLayout->setMargin(0);
     buttonsLayout->setSpacing(5);
-    buttonsLayout->addWidget(iconNews);
-    buttonsLayout->addWidget(titleNews, 1);
-    buttonsLayout->addWidget(readButton);
+    buttonsLayout->addWidget(iconNews_);
+    buttonsLayout->addWidget(titleNews_, 1);
+    buttonsLayout->addWidget(readButton_);
     buttonsLayout->addWidget(openExternalBrowserButton);
 
     setLayout(buttonsLayout);
     installEventFilter(this);
 
-    titleNews->setFixedWidth(width);
+    titleNews_->setFixedWidth(width);
 
-    connect(readButton, SIGNAL(clicked()),
+    connect(readButton_, SIGNAL(clicked()),
             this, SLOT(markRead()));
     connect(openExternalBrowserButton, SIGNAL(clicked()),
             this, SLOT(openExternalBrowser()));
   }
-  int feedId_;
-  int feedParId_;
-  int newsId_;
-  QLabel *iconNews;
-  QLabel *titleNews;
-  QToolButton *readButton;
-  bool read;
+  QLabel *iconNews_;
+  QLabel *titleNews_;
+
+signals:
+  void signalOpenExternalBrowser(const QUrl &url);
+  void signalMarkRead(int);
+  void signalTitleClicked(int, int, int);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event)
@@ -103,18 +105,20 @@ private slots:
 
   void markRead()
   {
-    read = !read;
-    if (read)
-      readButton->setIcon(QIcon(":/images/bulletRead"));
+    read_ = !read_;
+    if (read_)
+      readButton_->setIcon(QIcon(":/images/bulletRead"));
     else
-      readButton->setIcon(QIcon(":/images/bulletUnread"));
+      readButton_->setIcon(QIcon(":/images/bulletUnread"));
     emit signalMarkRead(newsId_);
   }
 
-signals:
-  void signalOpenExternalBrowser(const QUrl &url);
-  void signalMarkRead(int);
-  void signalTitleClicked(int, int, int);
+private:
+  int feedId_;
+  int feedParId_;
+  int newsId_;
+  bool read_;
+  QToolButton *readButton_;
 
 };
 
@@ -124,17 +128,29 @@ class NotificationWidget : public QWidget
 public:
   NotificationWidget(QList<int> idFeedList,
                      QList<int> cntNewNewsList,
-                     int countShowNews, int timeShowNews, int widthTitleNews,
-                     QString fontFamily, int fontSize,
-                     QWidget * parent = 0);
+                     QWidget * parent);
+
+signals:
+  void signalShow();
+  void signalDelete();
+  void signalOpenNews(int feedId, int feedParId, int newsId);
+  void signalOpenExternalBrowser(const QUrl &url);
 
 protected:
   virtual void showEvent(QShowEvent*);
   bool eventFilter(QObject *obj, QEvent *event);
-  /*virtual*/ void enterEvent(QEvent*);
-  /*virtual*/ void leaveEvent(QEvent*);
+  virtual void enterEvent(QEvent*);
+  virtual void leaveEvent(QEvent*);
+
+private slots:
+  void nextPage();
+  void previousPage();
+  void markRead(int id);
 
 private:
+  QList<int> idFeedList_;
+  QList<int> cntNewNewsList_;
+
   QLabel *iconTitle_;
   QLabel *textTitle_;
   QToolButton *closeButton_;
@@ -144,24 +160,7 @@ private:
   QToolButton *rightButton_;
 
   QTimer *showTimer_;
-
-  QList<int> idFeedList_;
-  QList<int> cntNewNewsList_;
-  int countShowNews_;
   int timeShowNews_;
-  int widthTitleNews_;
-
-private slots:
-  void nextPage();
-  void previousPage();
-  void markRead(int id);
-
-
-signals:
-  void signalShow();
-  void signalDelete();
-  void signalOpenNews(int feedId, int feedParId, int newsId);
-  void signalOpenExternalBrowser(const QUrl &url);
 
 };
 

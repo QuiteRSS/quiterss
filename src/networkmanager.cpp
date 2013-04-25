@@ -16,10 +16,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "networkmanager.h"
+
 #include <QNetworkReply>
 #include <QSslError>
 #include <QDebug>
-
 
 NetworkManager::NetworkManager(QObject* parent)
   : QNetworkAccessManager(parent)

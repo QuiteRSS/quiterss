@@ -62,27 +62,27 @@ FindTextContent::FindTextContent(QWidget *parent)
   findMenu_->insertSeparator(findTitleAct_);
   findMenu_->insertSeparator(findInBrowserAct_);
 
-  findButton = new QToolButton(this);
-  findButton->setFocusPolicy(Qt::NoFocus);
+  findButton_ = new QToolButton(this);
+  findButton_->setFocusPolicy(Qt::NoFocus);
   QPixmap findPixmap(":/images/selectFindInNews");
-  findButton->setIcon(QIcon(findPixmap));
-  findButton->setIconSize(findPixmap.size());
-  findButton->setCursor(Qt::ArrowCursor);
-  findButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  findButton_->setIcon(QIcon(findPixmap));
+  findButton_->setIconSize(findPixmap.size());
+  findButton_->setCursor(Qt::ArrowCursor);
+  findButton_->setStyleSheet("QToolButton { border: none; padding: 0px; }");
 
-  connect(findButton, SIGNAL(clicked()), this, SLOT(slotMenuFind()));
+  connect(findButton_, SIGNAL(clicked()), this, SLOT(slotMenuFind()));
   connect(findGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(slotSelectFind(QAction*)));
 
-  clearButton = new QToolButton(this);
-  clearButton->setFocusPolicy(Qt::NoFocus);
+  clearButton_ = new QToolButton(this);
+  clearButton_->setFocusPolicy(Qt::NoFocus);
   QPixmap pixmap(":/images/editClear");
-  clearButton->setIcon(QIcon(pixmap));
-  clearButton->setIconSize(pixmap.size());
-  clearButton->setCursor(Qt::ArrowCursor);
-  clearButton->setStyleSheet("QToolButton { border: none; padding: 0px; }");
-  clearButton->hide();
-  connect(clearButton, SIGNAL(clicked()), this, SLOT(slotClear()));
+  clearButton_->setIcon(QIcon(pixmap));
+  clearButton_->setIconSize(pixmap.size());
+  clearButton_->setCursor(Qt::ArrowCursor);
+  clearButton_->setStyleSheet("QToolButton { border: none; padding: 0px; }");
+  clearButton_->hide();
+  connect(clearButton_, SIGNAL(clicked()), this, SLOT(slotClear()));
   connect(this, SIGNAL(textChanged(const QString&)),
           SLOT(updateClearButton(const QString&)));
 
@@ -91,12 +91,12 @@ FindTextContent::FindTextContent(QWidget *parent)
 
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
   setStyleSheet(QString("QLineEdit { padding-right: %1px; padding-left: %2px; }").
-                arg(clearButton->sizeHint().width() + frameWidth + 1).
-                arg(findButton->sizeHint().width() + frameWidth + 1));
+                arg(clearButton_->sizeHint().width() + frameWidth + 1).
+                arg(findButton_->sizeHint().width() + frameWidth + 1));
   QSize msz = minimumSizeHint();
   setMinimumSize(
-        qMax(msz.width(), clearButton->sizeHint().height() + findButton->sizeHint().height() + frameWidth * 2 + 2),
-        qMax(msz.height(), clearButton->sizeHint().height() + frameWidth * 2 + 2));
+        qMax(msz.width(), clearButton_->sizeHint().height() + findButton_->sizeHint().height() + frameWidth * 2 + 2),
+        qMax(msz.height(), clearButton_->sizeHint().height() + frameWidth * 2 + 2));
 }
 
 void FindTextContent::retranslateStrings()
@@ -117,14 +117,14 @@ void FindTextContent::retranslateStrings()
 void FindTextContent::resizeEvent(QResizeEvent *)
 {
   int frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-  QSize sz = findButton->sizeHint();
-  findButton->move(frameWidth+3,
+  QSize sz = findButton_->sizeHint();
+  findButton_->move(frameWidth+3,
                    (rect().bottom() + 1 - sz.height())/2);
   sz = findLabel_->sizeHint();
-  findLabel_->move(frameWidth+findButton->sizeHint().width()+5,
+  findLabel_->move(frameWidth+findButton_->sizeHint().width()+5,
                    (rect().bottom() + 1 - sz.height())/2);
-  sz = clearButton->sizeHint();
-    clearButton->move(rect().right() - frameWidth - sz.width(),
+  sz = clearButton_->sizeHint();
+    clearButton_->move(rect().right() - frameWidth - sz.width(),
                       (rect().bottom() + 1 - sz.height())/2);
 }
 
@@ -143,7 +143,7 @@ void FindTextContent::focusOutEvent(QFocusEvent *event)
 
 void FindTextContent::updateClearButton(const QString& text)
 {
-  clearButton->setVisible(!text.isEmpty());
+  clearButton_->setVisible(!text.isEmpty());
 }
 
 void FindTextContent::slotClear()
@@ -160,9 +160,9 @@ void FindTextContent::slotMenuFind()
 void FindTextContent::slotSelectFind(QAction *act)
 {
   if (act->objectName() == "findInBrowserAct") {
-    findButton->setIcon(QIcon(":/images/selectFindInBrowser"));
+    findButton_->setIcon(QIcon(":/images/selectFindInBrowser"));
   } else {
-    findButton->setIcon(QIcon(":/images/selectFindInNews"));
+    findButton_->setIcon(QIcon(":/images/selectFindInNews"));
   }
   findLabel_->setText(act->text());
   emit signalSelectFind();

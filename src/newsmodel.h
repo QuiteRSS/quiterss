@@ -24,9 +24,6 @@
 class NewsModel : public QSqlTableModel
 {
   Q_OBJECT
-private:
-  QTreeView *view_;
-
 public:
   NewsModel(QObject *parent, QTreeView *view);
   virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
@@ -44,6 +41,9 @@ public:
 
 signals:
   void signalSort(int column, int order);
+
+private:
+  QTreeView *view_;
 
 };
 
