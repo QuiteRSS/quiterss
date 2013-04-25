@@ -762,7 +762,7 @@ void RSSListing::createNewsTab(int index)
   currentNewsTab->setBrowserPosition();
 
   newsModel_ = currentNewsTab->newsModel_;
-  newsView_ = currentNewsTab->newsView_;  
+  newsView_ = currentNewsTab->newsView_;
 }
 
 void RSSListing::createStatusBar()
@@ -2157,8 +2157,8 @@ void RSSListing::writeSettings()
   settings_->setValue("alternatingColorsNews", alternatingRowColorsNews_);
   settings_->setValue("changeBehaviorActionNUN", changeBehaviorActionNUN_);
   settings_->setValue("simplifiedDateTime", simplifiedDateTime_);
-  settings_->setValue("notDeleteStarred_", notDeleteStarred_);
-  settings_->setValue("notDeleteLabeled_", notDeleteLabeled_);
+  settings_->setValue("notDeleteStarred", notDeleteStarred_);
+  settings_->setValue("notDeleteLabeled", notDeleteLabeled_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
