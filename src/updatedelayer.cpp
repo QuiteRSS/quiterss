@@ -15,18 +15,18 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QApplication>
-#include <QDebug>
-
 #include "updatedelayer.h"
+
+#include <QApplication>
 
 #define UPDATE_INTERVAL 3000
 #define MIN_UPDATE_INTERVAL 500
 
 UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
-    : QObject(parent), delayValue_(delayValue)
+  : QObject(parent)
+  , delayValue_(delayValue)
+  , nextUpdateFeed_(true)
 {
-  nextUpdateFeed_ = true;
   delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));

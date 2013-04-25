@@ -19,13 +19,14 @@
 #define PARSETHREAD_H
 
 #include <QThread>
+
 #include "parseobject.h"
 
 class ParseThread : public QThread
 {
   Q_OBJECT
 public:
-  explicit ParseThread(QObject *parent, QString dataDirPath);
+  explicit ParseThread(QObject *parent, const QString &dataDirPath);
   ~ParseThread();
 
 protected:

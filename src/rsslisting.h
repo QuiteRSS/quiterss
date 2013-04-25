@@ -18,6 +18,7 @@
 #ifndef RSSLISTING_H
 #define RSSLISTING_H
 
+#include <QtCore>
 #include <QtGui>
 #include <QtSql>
 #include <QtWebKit>
@@ -44,6 +45,14 @@
 
 #define NEW_TAB_FOREGROUND 1
 #define NEW_TAB_BACKGROUND 2
+
+enum FeedReedType {
+  FeedReadSwitchingFeed,
+  FeedReadClosingTab,
+  FeedReadPlaceToTray,
+  FeedReadTypeCount,
+  FeedReadSwitchingTab
+};
 
 class RSSListing : public QMainWindow
 {
@@ -215,10 +224,146 @@ public slots:
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
 
+signals:
+  void signalPlaceToTray();
+  void signalCloseApp();
+  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
+  void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
+                     const QDateTime &dtReply);
+  void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
+  void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
+  void signalSetCurrentTab(int index, bool updateTab = false);
+  void signalShowNotification();
+  void signalRefreshInfoTray();
+  void signalNextUpdate();
+
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
   virtual void closeEvent(QCloseEvent*);
   virtual void changeEvent(QEvent*);
+
+private slots:
+  void slotTimerLinkOpening();
+  void slotProgressBarUpdate();
+  void slotVisibledFeedsWidget();
+  void updateIconToolBarNull(bool feedsWidgetVisible);
+  void setFeedRead(int type, int feedId, FeedReedType feedReadType);
+  void markFeedRead();
+  void setFeedsFilter(QAction*, bool clicked = true);
+  void feedsModelReload(bool checkFilter = false);
+
+  void slotShowAboutDlg();
+
+  void showContextMenuFeed(const QPoint & pos);
+  void slotFeedsFilter();
+  void slotNewsFilter();
+  void slotTimerUpdateFeeds();
+  void slotShowUpdateAppDlg();
+  void showContextMenuToolBar(const QPoint &pos);
+  void showFeedPropertiesDlg();
+  void slotFeedMenuShow();
+  void markAllFeedsRead();
+  void markAllFeedsOld();
+  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray);
+  void slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData);
+  void slotCommitDataRequest(QSessionManager&);
+  void showNewsFiltersDlg(bool newFilter = false);
+  void showFilterRulesDlg();
+  void slotUpdateAppCheck();
+  void slotNewVersion(const QString &newVersion);
+  void slotFeedUpPressed();
+  void slotFeedDownPressed();
+  void slotFeedHomePressed();
+  void slotFeedEndPressed();
+  void slotFeedPrevious();
+  void slotFeedNext();
+  void setStyleApp(QAction*);
+  void slotSwitchFocus();
+  void slotSwitchPrevFocus();
+  void slotOpenFeedNewTab();
+  void slotTabCurrentChanged(int index);
+  void slotTabMoved(int fromIndex, int toIndex);
+  void feedsColumnVisible(QAction *action);
+  void setBrowserPosition(QAction *action);
+  void slotOpenNewsWebView();
+
+  void slotNewsUpPressed();
+  void slotNewsDownPressed();
+  void markNewsRead();
+  void markAllNewsRead();
+  void markNewsStar();
+  void deleteNews();
+  void deleteAllNewsList();
+  void restoreNews();
+  void openInBrowserNews();
+  void openInExternalBrowserNews();
+  void slotOpenNewsNewTab();
+  void slotOpenNewsBackgroundTab();
+  void slotCopyLinkNews();
+  void setCurrentTab(int index, bool updateCurrentTab = false);
+  void findText();
+
+  void showNotification();
+  void deleteNotification();
+  void slotOpenNew(int feedId, int feedParId, int newsId);
+  void slotOpenNewBrowser(const QUrl &url);
+
+  void slotFindFeeds(QString);
+  void slotSelectFind();
+  void findFeedVisible(bool visible);
+
+  void browserZoom(QAction*);
+  void slotReportProblem();
+
+  void slotPrint();
+  void slotPrintPreview();
+
+  void slotSavePageAs();
+
+  void setFullScreen();
+  void setStayOnTop();
+
+  void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere, int how);
+
+  void slotRefreshInfoTray();
+
+  void slotCategoriesClicked(QTreeWidgetItem *item, int);
+  void showNewsCategoriesTree();
+  void feedsSplitterMoved(int pos, int);
+
+  void setLabelNews(QAction *action);
+  void setDefaultLabelNews();
+  void getLabelNews();
+
+  void showContextMenuTabBar(const QPoint &pos);
+  void slotCloseTab();
+  void slotCloseOtherTabs();
+  void slotCloseAllTab();
+  void slotNextTab();
+  void slotPrevTab();
+  void setTextTitle(const QString &text, NewsTabWidget *widget);
+
+  void lockMainToolbar(bool lock);
+  void hideMainToolbar();
+
+  void reduceNewsList();
+  void increaseNewsList();
+
+  void restoreLastNews();
+
+  void nextUnreadNews();
+  void prevUnreadNews();
+
+  void slotIndentationFeedsTree();
+
+  void customizeMainToolbar();
+  void showCustomizeToolbarDlg(QAction *action);
+
+  void slotShareNews(QAction *action);
+  void showMenuShareNews();
+
+  void slotOpenHomeFeed();
+  void sortedByTitleFeedsTree();
 
 private:
   UpdateThread *persistentUpdateThread_;
@@ -462,14 +607,6 @@ private:
   int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
   QTimer timerLinkOpening_;
 
-  enum FeedReedType {
-    FeedReadSwitchingFeed,
-    FeedReadClosingTab,
-    FeedReadPlaceToTray,
-    FeedReadTypeCount,
-    FeedReadSwitchingTab
-  };
-
   QWidget *categoriesPanel_;
   QLabel *categoriesLabel_;
   QToolButton *showCategoriesButton_;
@@ -486,142 +623,6 @@ private:
   bool changeBehaviorActionNUN_;
 
   int indexClickedTab;
-
-private slots:
-  void slotTimerLinkOpening();
-  void slotProgressBarUpdate();
-  void slotVisibledFeedsWidget();
-  void updateIconToolBarNull(bool feedsWidgetVisible);
-  void setFeedRead(int type, int feedId, FeedReedType feedReadType);
-  void markFeedRead();
-  void setFeedsFilter(QAction*, bool clicked = true);
-  void feedsModelReload(bool checkFilter = false);
-
-  void slotShowAboutDlg();
-
-  void showContextMenuFeed(const QPoint & pos);
-  void slotFeedsFilter();
-  void slotNewsFilter();
-  void slotTimerUpdateFeeds();
-  void slotShowUpdateAppDlg();
-  void showContextMenuToolBar(const QPoint &pos);
-  void showFeedPropertiesDlg();
-  void slotFeedMenuShow();
-  void markAllFeedsRead();
-  void markAllFeedsOld();
-  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray);
-  void slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData);
-  void slotCommitDataRequest(QSessionManager&);
-  void showNewsFiltersDlg(bool newFilter = false);
-  void showFilterRulesDlg();
-  void slotUpdateAppCheck();
-  void slotNewVersion(QString newVersion);
-  void slotFeedUpPressed();
-  void slotFeedDownPressed();
-  void slotFeedHomePressed();
-  void slotFeedEndPressed();
-  void slotFeedPrevious();
-  void slotFeedNext();
-  void setStyleApp(QAction*);
-  void slotSwitchFocus();
-  void slotSwitchPrevFocus();
-  void slotOpenFeedNewTab();
-  void slotTabCurrentChanged(int index);
-  void slotTabMoved(int fromIndex, int toIndex);
-  void feedsColumnVisible(QAction *action);
-  void setBrowserPosition(QAction *action);
-  void slotOpenNewsWebView();
-
-  void slotNewsUpPressed();
-  void slotNewsDownPressed();
-  void markNewsRead();
-  void markAllNewsRead();
-  void markNewsStar();
-  void deleteNews();
-  void deleteAllNewsList();
-  void restoreNews();
-  void openInBrowserNews();
-  void openInExternalBrowserNews();
-  void slotOpenNewsNewTab();
-  void slotOpenNewsBackgroundTab();
-  void slotCopyLinkNews();
-  void setCurrentTab(int index, bool updateCurrentTab = false);
-  void findText();
-
-  void showNotification();
-  void deleteNotification();
-  void slotOpenNew(int feedId, int feedParId, int newsId);
-  void slotOpenNewBrowser(const QUrl &url);
-
-  void slotFindFeeds(QString);
-  void slotSelectFind();
-  void findFeedVisible(bool visible);
-
-  void browserZoom(QAction*);
-  void slotReportProblem();
-
-  void slotPrint();
-  void slotPrintPreview();
-
-  void slotSavePageAs();
-
-  void setFullScreen();
-  void setStayOnTop();
-
-  void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere, int how);
-
-  void slotRefreshInfoTray();
-
-  void slotCategoriesClicked(QTreeWidgetItem *item, int);
-  void showNewsCategoriesTree();
-  void feedsSplitterMoved(int pos, int);
-
-  void setLabelNews(QAction *action);
-  void setDefaultLabelNews();
-  void getLabelNews();
-
-  void showContextMenuTabBar(const QPoint &pos);
-  void slotCloseTab();
-  void slotCloseOtherTabs();
-  void slotCloseAllTab();
-  void slotNextTab();
-  void slotPrevTab();
-  void setTextTitle(const QString &text, NewsTabWidget *widget);
-
-  void lockMainToolbar(bool lock);
-  void hideMainToolbar();
-
-  void reduceNewsList();
-  void increaseNewsList();
-
-  void restoreLastNews();
-
-  void nextUnreadNews();
-  void prevUnreadNews();
-
-  void slotIndentationFeedsTree();
-
-  void customizeMainToolbar();
-  void showCustomizeToolbarDlg(QAction *action);
-
-  void slotShareNews(QAction *action);
-  void showMenuShareNews();
-
-  void slotOpenHomeFeed();
-  void sortedByTitleFeedsTree();
-
-signals:
-  void signalPlaceToTray();
-  void signalCloseApp();
-  void signalRequestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo);
-  void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,
-                     const QDateTime &dtReply);
-  void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
-  void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
-  void signalSetCurrentTab(int index, bool updateTab = false);
-  void signalShowNotification();
-  void signalRefreshInfoTray();
-  void signalNextUpdate();
 
 };
 

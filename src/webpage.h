@@ -18,8 +18,8 @@
 #ifndef WEBPAGE_H
 #define WEBPAGE_H
 
-#include <QWebPage>
 #include <QNetworkAccessManager>
+#include <QWebPage>
 
 class WebPage : public QWebPage
 {
@@ -27,7 +27,9 @@ class WebPage : public QWebPage
 public:
   explicit WebPage(QObject *parent, QNetworkAccessManager *networkManager);
 
-  bool acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type);
+  bool acceptNavigationRequest(QWebFrame *frame,
+                               const QNetworkRequest &request,
+                               NavigationType type);
   void scheduleAdjustPage();
 
   bool isLoading_;

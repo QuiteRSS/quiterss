@@ -15,17 +15,17 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "parseobject.h"
+#include "db_func.h"
+#include "VersionNo.h"
+
 #include <QDebug>
 #include <QDesktopServices>
 #include <QTextDocumentFragment>
 
-#include "parseobject.h"
-#include "VersionNo.h"
-#include "db_func.h"
-
-ParseObject::ParseObject(QString dataDirPath, QObject *parent)
-  : QObject(parent),
-    dataDirPath_(dataDirPath)
+ParseObject::ParseObject(const QString &dataDirPath, QObject *parent)
+  : QObject(parent)
+  , dataDirPath_(dataDirPath)
 {
   setObjectName("parseObject_");
 
@@ -569,7 +569,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
 
 /** @brief Разбор даты и времени
  *----------------------------------------------------------------------------*/
-QString ParseObject::parseDate(QString dateString, QString urlString)
+QString ParseObject::parseDate(const QString &dateString, const QString &urlString)
 {
   QDateTime dt;
   QString temp;
@@ -654,7 +654,7 @@ QString ParseObject::parseDate(QString dateString, QString urlString)
  * @param db - база данных
  * @param feedId - идентификатор ленты
  *----------------------------------------------------------------------------*/
-int ParseObject::recountFeedCounts(int feedId, QString feedUrl, QString updated)
+int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QString &updated)
 {
   QSqlQuery q;
   QString qStr;
@@ -731,7 +731,7 @@ int ParseObject::recountFeedCounts(int feedId, QString feedUrl, QString updated)
   // Пересчитываем счетчики для всех родителей
   int l_feedParId = feedParId;
   while (l_feedParId) {
-    updated = "";
+    QString updatedParent;
     int newCount = 0;
 
     qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), "
@@ -742,11 +742,11 @@ int ParseObject::recountFeedCounts(int feedId, QString feedUrl, QString updated)
       unreadCount   = q.value(0).toInt();
       newCount      = q.value(1).toInt();
       undeleteCount = q.value(2).toInt();
-      updated       = q.value(3).toString();
+      updatedParent     = q.value(3).toString();
     }
     qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', "
                    "updated='%4' WHERE id=='%5'").
-        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
+        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updatedParent).
         arg(l_feedParId);
     q.exec(qStr);
 
@@ -760,7 +760,7 @@ int ParseObject::recountFeedCounts(int feedId, QString feedUrl, QString updated)
     counts.unreadCount = unreadCount;
     counts.newCount = newCount;
     counts.undeleteCount = undeleteCount;
-    counts.updated = updated;
+    counts.updated = updatedParent;
 
     emit feedCountsUpdate(counts);
   }

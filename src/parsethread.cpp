@@ -15,12 +15,13 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QDebug>
 #include "parsethread.h"
 
-ParseThread::ParseThread(QObject *parent, QString dataDirPath)
-  : QThread(parent),
-    dataDirPath_(dataDirPath)
+#include <QDebug>
+
+ParseThread::ParseThread(QObject *parent, const QString &dataDirPath)
+  : QThread(parent)
+  , dataDirPath_(dataDirPath)
 {
   qDebug() << "ParseThread::constructor";
 

@@ -42,7 +42,7 @@ protected:
   virtual void wheelEvent(QWheelEvent*);
 
 private:
-  int posX1;
+  int posX_;
 
 };
 

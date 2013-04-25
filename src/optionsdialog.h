@@ -21,6 +21,7 @@
 #include <QtGui>
 #include <QtSql>
 #include <QNetworkProxy>
+
 #include "dialog.h"
 #include "lineedit.h"
 
@@ -143,7 +144,7 @@ public:
 
   // language
   QString language();
-  void setLanguage(QString langFileName);
+  void setLanguage(const QString &langFileName);
 
   // fonts
   QTreeWidget *fontsTree_;
@@ -153,6 +154,10 @@ public:
   // shortcut
   void loadActionShortcut(QList<QAction *> actions, QStringList *list);
   void saveActionShortcut(QList<QAction *> actions, QActionGroup *labelGroup);
+
+signals:
+  void signalCategoriesTreeKeyUpDownPressed();
+  void signalShortcutTreeUpDownPressed();
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
@@ -189,10 +194,6 @@ private slots:
   void selectionDirDiskCache();
   void addWhitelist();
   void removeWhitelist();
-
-signals:
-  void signalCategoriesTreeKeyUpDownPressed();
-  void signalShortcutTreeUpDownPressed();
 
 private:
   QSqlDatabase db_;
@@ -258,7 +259,7 @@ private:
   void createLabelsWidget();
   void loadLabels();
   void applyLabels();
-  void addIdLabelList(QString idLabel);
+  void addIdLabelList(const QString &idLabel);
   QPushButton *newLabelButton_;
   QPushButton *editLabelButton_;
   QPushButton *deleteLabelButton_;

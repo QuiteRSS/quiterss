@@ -15,12 +15,13 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QDebug>
 #include "updatethread.h"
 
+#include <QDebug>
+
 UpdateThread::UpdateThread(QObject *parent, int requestTimeout)
-  : QThread(parent),
-    requestTimeout_(requestTimeout)
+  : QThread(parent)
+  , requestTimeout_(requestTimeout)
 {
   qDebug() << "UpdateThread::constructor";
 
@@ -33,7 +34,7 @@ UpdateThread::~UpdateThread()
   qDebug() << "UpdateThread::~destructor";
 }
 
-void UpdateThread::run()
+/*virtual*/ void UpdateThread::run()
 {
   updateObject_ = new UpdateObject(requestTimeout_);
 

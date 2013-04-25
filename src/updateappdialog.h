@@ -21,11 +21,27 @@
 #include <QNetworkReply>
 #include <QWebPage>
 #include <QWebFrame>
+
 #include "dialog.h"
 
 class UpdateAppDialog : public Dialog
 {
   Q_OBJECT
+public:
+  explicit UpdateAppDialog(const QString &lang, QSettings *settings,
+                           QWidget *parent, bool show = true);
+  ~UpdateAppDialog();
+
+signals:
+  void signalNewVersion(const QString &newVersion);
+
+private slots:
+  void closeDialog();
+  void finishUpdatesChecking();
+  void slotFinishHistoryReply();
+  void updaterRun();
+  void renderStatistics();
+
 private:
   QString lang_;
   QSettings *settings_;
@@ -41,21 +57,6 @@ private:
 
   QPushButton *installButton_;
   QCheckBox *remindAboutVersion_;
-
-public:
-  explicit UpdateAppDialog(const QString &lang, QSettings *settings,
-                           QWidget *parent, bool show = true);
-  ~UpdateAppDialog();
-
-private slots:
-  void closeDialog();
-  void finishUpdatesChecking();
-  void slotFinishHistoryReply();
-  void updaterRun();
-  void renderStatistics();
-
-signals:
-  void signalNewVersion(QString newVersion);
 
 };
 

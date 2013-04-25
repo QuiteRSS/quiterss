@@ -17,8 +17,8 @@
 * ============================================================ */
 #include "splashscreen.h"
 
-SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags f)
-  : QSplashScreen(pixmap, f)
+SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags flag)
+  : QSplashScreen(pixmap, flag)
 {
   setFixedSize(pixmap.width(), pixmap.height());
   setContentsMargins(5, 0, 5, 0);
@@ -26,15 +26,15 @@ SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags f)
   showMessage("Prepare loading...", Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
   setAttribute(Qt::WA_DeleteOnClose);
 
-  splashProgress.setObjectName("splashProgress");
-  splashProgress.setTextVisible(false);
-  splashProgress.setFixedHeight(10);
-  splashProgress.setMaximum(0);
-  splashProgress.hide();
+  splashProgress_.setObjectName("splashProgress");
+  splashProgress_.setTextVisible(false);
+  splashProgress_.setFixedHeight(10);
+  splashProgress_.setMaximum(0);
+  splashProgress_.hide();
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->addStretch(1);
-  layout->addWidget(&splashProgress);
+  layout->addWidget(&splashProgress_);
   setLayout(layout);
 
   splashTimer_ = new QTimer(this);
@@ -47,14 +47,14 @@ void SplashScreen::loadModules()
   QElapsedTimer time;
   time.start();
   splashTimer_->stop();
-  splashProgress.show();
-  splashProgress.setMaximum(100);
+  splashProgress_.show();
+  splashProgress_.setMaximum(100);
   for (int i = 0; i < 100; ) {
     if (time.elapsed() >= 1) {
       time.start();
       ++i;
       qApp->processEvents();
-      splashProgress.setValue(i);
+      splashProgress_.setValue(i);
       showMessage("Loading: " + QString::number(i) + "%",
                            Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
     }
@@ -63,5 +63,5 @@ void SplashScreen::loadModules()
 
 void SplashScreen::slotSplashTimeOut()
 {
-  splashProgress.setValue(0);
+  splashProgress_.setValue(0);
 }

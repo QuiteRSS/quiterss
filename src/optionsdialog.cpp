@@ -20,7 +20,8 @@
 #include "VersionNo.h"
 #include "rsslisting.h"
 
-OptionsDialog::OptionsDialog(QWidget *parent) : Dialog(parent)
+OptionsDialog::OptionsDialog(QWidget *parent)
+  : Dialog(parent)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
@@ -1409,7 +1410,7 @@ QString OptionsDialog::language()
   return langFileName;
 }
 
-void OptionsDialog::setLanguage(QString langFileName)
+void OptionsDialog::setLanguage(const QString &langFileName)
 {
   // установка курсора на выбранный файл
   QList<QTreeWidgetItem*> list =
@@ -2003,7 +2004,7 @@ void OptionsDialog::applyLabels()
  * @brief Добавление ид редактированной метки
  * @param idLabel ид метки
  ******************************************************************************/
-void OptionsDialog::addIdLabelList(QString idLabel)
+void OptionsDialog::addIdLabelList(const QString &idLabel)
 {
   if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
 }

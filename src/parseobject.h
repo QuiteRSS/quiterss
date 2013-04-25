@@ -42,7 +42,7 @@ class ParseObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit ParseObject(QString dataDirPath, QObject *parent = 0);
+  explicit ParseObject(const QString &dataDirPath, QObject *parent = 0);
 
 public slots:
   void parseXml(const QByteArray &data, const QString &feedUrl,
@@ -60,8 +60,8 @@ private slots:
                  const QDateTime &dtReply);
 
 private:
-  QString parseDate(QString dateString, QString urlString);
-  int recountFeedCounts(int feedId, QString feedUrl, QString updated);
+  QString parseDate(const QString &dateString, const QString &urlString);
+  int recountFeedCounts(int feedId, const QString &feedUrl, const QString &updated);
 
   QTimer *parseTimer_;
   QString dataDirPath_;

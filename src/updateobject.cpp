@@ -15,14 +15,15 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QDebug>
 #include "updateobject.h"
+
+#include <QDebug>
 
 #define REPLY_MAX_COUNT 10
 
 UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
-  : QObject(parent),
-    requestTimeout_(requestTimeout)
+  : QObject(parent)
+  , requestTimeout_(requestTimeout)
 {
   setObjectName("updateObject_");
 

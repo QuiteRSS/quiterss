@@ -15,13 +15,13 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QAction>
-#include <QNetworkRequest>
-#include <QDesktopServices>
-#include <QSslError>
-#include "rsslisting.h"
 #include "webpage.h"
+#include "rsslisting.h"
 #include "webpluginfactory.h"
+
+#include <QAction>
+#include <QDesktopServices>
+#include <QNetworkRequest>
 
 WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
   : QWebPage(parent)
@@ -40,7 +40,9 @@ WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
   connect(this, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished()));
 }
 
-bool WebPage::acceptNavigationRequest(QWebFrame *frame, const QNetworkRequest &request, NavigationType type)
+bool WebPage::acceptNavigationRequest(QWebFrame *frame,
+                                      const QNetworkRequest &request,
+                                      NavigationType type)
 {
   return QWebPage::acceptNavigationRequest(frame,request,type);
 }

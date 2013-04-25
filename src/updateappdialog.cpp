@@ -16,19 +16,19 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "updateappdialog.h"
-#include "VersionNo.h"
-#include <QNetworkCookie>
 #include "rsslisting.h"
+#include "VersionNo.h"
 
+#include <QNetworkCookie>
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
 #endif
 
 UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
                                  QWidget *parent, bool show)
-  : Dialog(parent),
-    settings_(settings),
-    showDialog_(show)
+  : Dialog(parent)
+  , settings_(settings)
+  , showDialog_(show)
 {
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   networkManager_ = rssl_->networkManager_;

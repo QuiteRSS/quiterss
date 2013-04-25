@@ -18,7 +18,6 @@
 #ifndef UPDATEOBJECT_H
 #define UPDATEOBJECT_H
 
-#include "networkmanager.h"
 #include <QDateTime>
 #include <QObject>
 #include <QQueue>
@@ -26,13 +25,15 @@
 #include <QTimer>
 #include <QElapsedTimer>
 
+#include "networkmanager.h"
+
 class UpdateObject : public QObject
 {
   Q_OBJECT
 public:
   explicit UpdateObject(int requestTimeout, QObject *parent = 0);
   NetworkManager *networkManager_;
-  
+
 public slots:
   void requestUrl(const QString &urlString, const QDateTime &date, const QString &userInfo = "");
   void slotHead(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
@@ -68,7 +69,7 @@ private:
   QList<int> currentTime_;
   QList<QUrl> requestUrl_;
   QList<QNetworkReply*> networkReply_;
-  
+
 };
 
 #endif // UPDATEOBJECT_H

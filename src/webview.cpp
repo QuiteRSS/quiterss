@@ -15,10 +15,11 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "webview.h"
+#include "webpage.h"
+
 #include <QApplication>
 #include <QInputEvent>
-#include "webpage.h"
-#include "webview.h"
 
 WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
   : QWebView(parent)
@@ -35,7 +36,7 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
 {
   buttonClick_ = 0;
   if (event->buttons() & Qt::RightButton)
-    posX1 = event->pos().x();
+    posX_ = event->pos().x();
 
   QWebView::mousePressEvent(event);
 }
@@ -45,10 +46,10 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
   if (event->button() & Qt::RightButton) {
     rightButtonClick_ = false;
     int posX2 = event->pos().x();
-    if (posX1 > posX2+5) {
+    if (posX_ > posX2+5) {
       rightButtonClick_ = true;
       back();
-    } else if (posX1+5 < posX2) {
+    } else if (posX_+5 < posX2) {
       rightButtonClick_ = true;
       forward();
     }

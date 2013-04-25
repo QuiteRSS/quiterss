@@ -15,13 +15,7 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include <QtCore>
-
-#if defined(Q_OS_WIN)
-#include <windows.h>
-#include <psapi.h>
-#endif
-
+#include "rsslisting.h"
 #include "aboutdialog.h"
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
@@ -33,8 +27,12 @@
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
 #include "optionsdialog.h"
-#include "rsslisting.h"
 #include "webpage.h"
+
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#include <psapi.h>
+#endif
 
 /*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
 void RSSListing::receiveMessage(const QString& message)
@@ -5237,7 +5235,7 @@ void RSSListing::slotUpdateAppCheck()
           this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);
 }
 
-void RSSListing::slotNewVersion(QString newVersion)
+void RSSListing::slotNewVersion(const QString &newVersion)
 {
   delete updateAppDialog_;
 
