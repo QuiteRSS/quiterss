@@ -22,6 +22,7 @@
 #include <QSqlTableModel>
 #include <QSqlQuery>
 
+// ----------------------------------------------------------------------------
 FeedsTreeView::FeedsTreeView(QWidget * parent)
   : QyurSqlTreeView(parent)
   , selectIdEn_(true)
@@ -58,19 +59,19 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   connect(this, SIGNAL(collapsed(const QModelIndex&)), SLOT(slotCollapsed(const QModelIndex&)));
 }
 
-/**
- * @brief Поиск следующей непрочитанной ленты
- * details Производится поиск следующай непрочитанная лента. Если следующей
- *    ленты нет, то ищется предыдущая непрочитанная лента
- * @param index Индекс, от которого начинаем искать
- * @param next Условие поиска: 1 - ищёт следующую, 2 - ищет предыдущую,
- * 0 - ищет следующую, если не находит, то ищет предыдущую
- * @return найденный индекс, либо QModelIndex()
- ******************************************************************************/
-QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next)
+/** @brief Find index of next unread (by meaning) feed
+ * @details Find unread feed with condition.
+ * @param indexCur Index to start search from
+ * @param nextCondition Find condition:Условие поиска:
+ *  1 - find previous,
+ *  2 - find next,
+ *  0 - find next. If fails, find previous (default)
+ * @return finded index or QModelIndex()
+ *---------------------------------------------------------------------------*/
+QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int nextCondition)
 {
-  if (next != 2) {
-    // ищем следующую непрочитанную
+  if (nextCondition != 2) {
+    // find next
     QModelIndex index = indexNext(indexCur);
     while (index.isValid()) {
       int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
@@ -81,8 +82,8 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next
     }
   }
 
-  if (next != 1) {
-    // ищем предыдущую непрочитанную
+  if (nextCondition != 1) {
+    // find previous
     QModelIndex index = indexPrevious(indexCur);
     while (index.isValid()) {
       int feedUnreadCount = ((FeedsTreeModel*)model())->dataField(index, "unread").toInt();
@@ -93,10 +94,11 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next
     }
   }
 
-  // no
+  // find next. If fails, find previous (default)
   return QModelIndex();
 }
 
+// ----------------------------------------------------------------------------
 QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
 {
   QModelIndex index = QModelIndex();
@@ -112,12 +114,11 @@ QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
   return index;
 }
 
-/**
- * @brief Поиск предыдущей ленты
- * @param index Индекс, от которого начинаем искать
- * @param isParent Поиск начиная от родителя, пропуская его
- * @return найденный индекс либо QModelIndex()
- ******************************************************************************/
+/** @brief Find index of previous feed
+ * @param indexCur Index to start search from
+ * @param isParent Start search from parent excluding him
+ * @return finded index or QModelIndex()
+ *---------------------------------------------------------------------------*/
 QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
@@ -142,6 +143,7 @@ QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isPar
   return QModelIndex();
 }
 
+// ----------------------------------------------------------------------------
 QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
 {
   QModelIndex index = QModelIndex();
@@ -157,11 +159,10 @@ QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
   return index;
 }
 
-/**
- * @brief Поиск следующей ленты
- * @param indexCur Индекс, от которого начинаем искать
- * @param isParent Поиск начиная от родителя, пропуская его
- * @return найденный индекс либо QModelIndex()
+/** @brief Find index of next feed
+ * @param indexCur Index to start search from
+ * @param isParent Start search from parent excluding him
+ * @return finded index or QModelIndex()
  ******************************************************************************/
 QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
 {
@@ -189,14 +190,14 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
   return QModelIndex();
 }
 
-/**
- * @brief Собственная обработка нажатия мыши
- * @details Фиксирует нажатый индекс в selectedIndex_, обрабатывает нажатие
- *    средней клавиши, игнорирует нажатия правой клавиши, для левой клавиши
- *    вызывает стандартный обработчик
- * @param event Структура, содержащая данные события
+/** @brief Own process mouse press event
+ * @details Remember pressed index to selectedIndex_,
+ *    process middle mouse button clicks,
+ *    ignore right mouse button clicks,
+ *    call standart handler for left mouse button clicks
+ * @param event Event data structure
  * @sa selectedIndex_
- ******************************************************************************/
+ *---------------------------------------------------------------------------*/
 void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
@@ -227,12 +228,14 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
   }
 }
 
+// ----------------------------------------------------------------------------
 void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 {
   dragStartPos_ = QPoint();
   QyurSqlTreeView::mouseReleaseEvent(event);
 }
 
+// ----------------------------------------------------------------------------
 /*virtual*/ void FeedsTreeView::mouseMoveEvent(QMouseEvent *event)
 {
   if (dragStartPos_.isNull()) return;
@@ -254,6 +257,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   drag->exec();
 }
 
+// ----------------------------------------------------------------------------
 /*virtual*/ void FeedsTreeView::mouseDoubleClickEvent(QMouseEvent *event)
 {
   QModelIndex index = indexAt(event->pos());
@@ -269,6 +273,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   emit signalDoubleClicked();
 }
 
+// ----------------------------------------------------------------------------
 /*virtual*/ void FeedsTreeView::keyPressEvent(QKeyEvent *event)
 {
   if (!event->modifiers()) {
@@ -279,6 +284,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   }
 }
 
+// ----------------------------------------------------------------------------
 /*virtual*/ void FeedsTreeView::currentChanged(const QModelIndex &current,
                                            const QModelIndex &previous)
 {
@@ -292,6 +298,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   QyurSqlTreeView::currentChanged(current, previous);
 }
 
+// ----------------------------------------------------------------------------
 void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
 {
   event->accept();
@@ -299,6 +306,7 @@ void FeedsTreeView::dragEnterEvent(QDragEnterEvent *event)
   viewport()->update();
 }
 
+// ----------------------------------------------------------------------------
 void FeedsTreeView::dragLeaveEvent(QDragLeaveEvent *event)
 {
   event->accept();
@@ -306,6 +314,7 @@ void FeedsTreeView::dragLeaveEvent(QDragLeaveEvent *event)
   viewport()->update();
 }
 
+// ----------------------------------------------------------------------------
 void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
   if (dragPos_.isNull()) {
@@ -317,18 +326,18 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   dragPos_ = event->pos();
   QModelIndex dragIndex = indexAt(dragPos_);
 
-  // обработка категорий
+  // Process categories
   if (((FeedsTreeModel*)model())->isFolder(dragIndex)) {
     if (dragIndex == currentIndex().parent())
-      event->ignore();  // категория уже является родителем
+      event->ignore();  // drag-to-category is parent already dragged one
     else if (dragIndex == currentIndex())
-      event->ignore();  // не перемещаем категорию саму на себя
+      event->ignore();  // don't move category to itself
     else {
       bool ignore = false;
       QModelIndex child = dragIndex.parent();
       while (child.isValid()) {
         if (child == currentIndex()) {
-          event->ignore();  // не перемещаем категорию внутри себя
+          event->ignore();  // don't move category inside itself
           ignore = true;
           break;
         }
@@ -337,18 +346,18 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
       if (!ignore) event->accept();
     }
   }
-  // обработка лент
+  // Process feeds
   else {
     if (dragIndex == currentIndex())
-      event->ignore();  // не перемещаем ленту внутри категории
+      event->ignore();  // don't move feed to itseelf
     else if (dragIndex.parent() == currentIndex())
-      event->ignore();  // не перемещаем категорию внутри категории
+      event->ignore();  // don't move feed to same parent
     else {
       bool ignore = false;
       QModelIndex child = dragIndex.parent();
       while (child.isValid()) {
         if (child == currentIndex()) {
-          event->ignore();  // не перемещаем категорию внутри себя
+          event->ignore();  // don't move feed inside itself
           ignore = true;
           break;
         }
@@ -364,6 +373,7 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
     startAutoScroll();
 }
 
+// ----------------------------------------------------------------------------
 bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
 {
     if (!hasAutoScroll())
@@ -375,7 +385,7 @@ bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
         || (area.right() - pos.x() < autoScrollMargin());
 }
 
-/** @brief Обработка разворачивания узла
+/** @brief Process item expanding
  *----------------------------------------------------------------------------*/
 void FeedsTreeView::slotExpanded(const QModelIndex &index)
 {
@@ -408,7 +418,7 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   verticalScrollBar()->setValue(value);
 }
 
-/** @brief Обработка сворачивания узла
+/** @brief Process item collapsing
  *----------------------------------------------------------------------------*/
 void FeedsTreeView::slotCollapsed(const QModelIndex &index)
 {
@@ -420,6 +430,7 @@ void FeedsTreeView::slotCollapsed(const QModelIndex &index)
   q.exec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%2'").arg(feedId));
 }
 
+// ----------------------------------------------------------------------------
 void FeedsTreeView::dropEvent(QDropEvent *event)
 {
   dragPos_ = QPoint();
@@ -430,6 +441,7 @@ void FeedsTreeView::dropEvent(QDropEvent *event)
   handleDrop(event);
 }
 
+// ----------------------------------------------------------------------------
 void FeedsTreeView::paintEvent(QPaintEvent *event)
 {
   QyurSqlTreeView::paintEvent(event);
@@ -438,7 +450,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 
   QModelIndex dragIndex = indexAt(dragPos_);
 
-  // Обработка категорий
+  // Process folders
   if (((FeedsTreeModel*)model())->isFolder(dragIndex)) {
     if ((dragIndex == currentIndex().parent()) ||
         (dragIndex == currentIndex()))
@@ -450,7 +462,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
       child = child.parent();
     }
   }
-  // Обработка лент
+  // Process feeds
   else {
     if ((dragIndex == currentIndex()) ||
         (dragIndex.parent() == currentIndex()))
@@ -510,12 +522,14 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   painter.end();
 }
 
+// ----------------------------------------------------------------------------
 QPersistentModelIndex FeedsTreeView::selectIndex()
 {
   return ((FeedsTreeModel*)model())->getIndexById(selectId_, selectParentId_);
 }
 
-/** @brief Обновление курсора без пролистывания списка ************************/
+/** @brief Update cursor without list scrolling
+ *---------------------------------------------------------------------------*/
 void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
 {
   setUpdatesEnabled(false);
@@ -525,7 +539,7 @@ void FeedsTreeView::updateCurrentIndex(const QModelIndex &index)
   setUpdatesEnabled(true);
 }
 
-
+// ----------------------------------------------------------------------------
 void FeedsTreeView::handleDrop(QDropEvent *e)
 {
   QModelIndex dropIndex = indexAt(e->pos());

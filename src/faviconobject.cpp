@@ -44,7 +44,7 @@ FaviconObject::FaviconObject(QObject *parent)
           this, SLOT(finished(QNetworkReply*)));
 }
 
-/** @brief Постановка сетевого адреса в очередь запросов
+/** @brief Put requested URL in request queue
  *----------------------------------------------------------------------------*/
 void FaviconObject::requestUrl(const QString &urlString, const QString &feedUrl)
 {
@@ -53,7 +53,7 @@ void FaviconObject::requestUrl(const QString &urlString, const QString &feedUrl)
   getUrlTimer_->start();
 }
 
-/** @brief Обработка очереди запросов по таймеру
+/** @brief Process request queue by timer
  *----------------------------------------------------------------------------*/
 void FaviconObject::getQueuedUrl()
 {
@@ -78,7 +78,7 @@ void FaviconObject::getQueuedUrl()
   }
 }
 
-/** @brief Подготовка и отправка сетевого запроса для получения всех данных
+/** @brief Prepare and send network request to receive all data
  *----------------------------------------------------------------------------*/
 void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt)
 {
@@ -96,7 +96,7 @@ void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const in
   networkReply_.append(reply);
 }
 
-/** @brief Завершение обработки сетевого запроса
+/** @brief Finish network request processing
  *----------------------------------------------------------------------------*/
 void FaviconObject::finished(QNetworkReply *reply)
 {
@@ -150,7 +150,7 @@ void FaviconObject::finished(QNetworkReply *reply)
               emit signalGet(redirectionTarget, feedUrl, 2);
             }
           } else {
-            // Отправка полученных данных для обработки в основной поток
+            // Emit receiced data in main thread
             emit signalIconRecived(feedUrl, data);
           }
         }
@@ -177,7 +177,7 @@ void FaviconObject::finished(QNetworkReply *reply)
   }
 }
 
-/** @brief Тайм-аут для удаления запросов, если нет ответа от сервера
+/** @brief Timeout to delete requests without answer from server
  *----------------------------------------------------------------------------*/
 void FaviconObject::slotRequestTimeout()
 {
@@ -198,7 +198,7 @@ void FaviconObject::slotRequestTimeout()
   }
 }
 
-/** @brief Сохранение иконки в БД и отправка сигнала для обновления её в модели
+/** @brief Save icon in DB and emit signal to update it
  *----------------------------------------------------------------------------*/
 void FaviconObject::slotIconSave(const QString &feedUrl, const QByteArray &faviconData)
 {

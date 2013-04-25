@@ -31,7 +31,7 @@ public:
   bool selectIdEn_;
   bool autocollapseFolder_;
 
-  QModelIndex indexNextUnread(const QModelIndex &indexCur, int next = 0);
+  QModelIndex indexNextUnread(const QModelIndex &indexCur, int nextCondition = 0);
   QModelIndex firstFeedInFolder(const QModelIndex &indexFolder);
   QModelIndex lastFeedInFolder(const QModelIndex &indexFolder);
   QModelIndex indexPrevious(const QModelIndex &indexCur, bool isParent = false);
