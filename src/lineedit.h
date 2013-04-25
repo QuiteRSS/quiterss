@@ -23,7 +23,6 @@
 ** warranty, liability or support of any kind.
 **
 ****************************************************************************/
-
 #ifndef LINEEDIT_H
 #define LINEEDIT_H
 
@@ -35,10 +34,12 @@ class QToolButton;
 class LineEdit : public QLineEdit
 {
   Q_OBJECT
-
 public:
   LineEdit(QWidget *parent = 0, const QString &text = "");
   QLabel *textLabel_;
+
+signals:
+  void signalClear();
 
 protected:
   void resizeEvent(QResizeEvent *);
@@ -52,8 +53,6 @@ private slots:
 private:
   QToolButton *clearButton;
 
-signals:
-  void signalClear();
 };
 
 #endif // LIENEDIT_H

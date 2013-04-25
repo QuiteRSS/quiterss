@@ -180,6 +180,10 @@ public:
   bool c2fEnabled_;
   QString userStyleBrowser_;
 
+  int countShowNewsNotify_;
+  int widthTitleNewsNotify_;
+  int timeShowNewsNotify_;
+
 public slots:
   void addFeed();
   void addFolder();
@@ -424,9 +428,6 @@ private:
   QString soundNotifyPath_;
   bool playSoundNewNews_;
   bool showNotifyOn_;
-  int countShowNewsNotify_;
-  int widthTitleNewsNotify_;
-  int timeShowNewsNotify_;
   bool onlySelectedFeeds_;
 
   UpdateAppDialog *updateAppDialog_;

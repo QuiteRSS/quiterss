@@ -15,12 +15,12 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "rsslisting.h"
 #include "filterrulesdialog.h"
+#include "rsslisting.h"
 
 FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
-  : Dialog(parent),
-    filterId_(filterId)
+  : Dialog(parent)
+  , filterId_(filterId)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter Rules"));
@@ -29,23 +29,23 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   settings_ = rssl_->settings_;
 
-  feedsTree = new QTreeWidget(this);
-  feedsTree->setObjectName("feedsTreeFR");
-  feedsTree->setColumnCount(2);
-  feedsTree->setColumnHidden(1, true);
-  feedsTree->header()->setMovable(false);
+  feedsTree_ = new QTreeWidget(this);
+  feedsTree_->setObjectName("feedsTreeFR");
+  feedsTree_->setColumnCount(2);
+  feedsTree_->setColumnHidden(1, true);
+  feedsTree_->header()->setMovable(false);
 
   itemNotChecked_ = false;
 
   QStringList treeItem;
   treeItem << tr("Feeds") << "Id";
-  feedsTree->setHeaderLabels(treeItem);
+  feedsTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
   treeItem << tr("All Feeds") << "0";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setCheckState(0, Qt::Checked);
-  feedsTree->addTopLevelItem(treeWidgetItem);
+  feedsTree_->addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q;
   QQueue<int> parentIds;
@@ -83,33 +83,33 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
       treeWidgetItem->setIcon(0, iconItem);
 
       QList<QTreeWidgetItem *> treeItems =
-          feedsTree->findItems(QString::number(parentId),
+          feedsTree_->findItems(QString::number(parentId),
                                Qt::MatchFixedString | Qt::MatchRecursive,
                                1);
       treeItems.at(0)->addChild(treeWidgetItem);
       parentIds.enqueue(feedIdT.toInt());
     }
   }
-  feedsTree->expandAll();
+  feedsTree_->expandAll();
 
   if (feedId != -1) {
     int rowCount = 0;
-    QTreeWidgetItem *childItem = feedsTree->topLevelItem(0);
+    QTreeWidgetItem *childItem = feedsTree_->topLevelItem(0);
     while (childItem) {
       if (childItem->text(1).toInt() == feedId) break;
       rowCount++;
-      childItem = feedsTree->itemBelow(childItem);
+      childItem = feedsTree_->itemBelow(childItem);
     }
-    feedsTree->verticalScrollBar()->setValue(rowCount);
-    feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+    feedsTree_->verticalScrollBar()->setValue(rowCount);
+    feedsTree_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
   }
-  connect(feedsTree, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
+  connect(feedsTree_, SIGNAL(itemChanged(QTreeWidgetItem*,int)),
           this, SLOT(feedItemChanged(QTreeWidgetItem*,int)));
 
-  filterName = new LineEdit(this);
+  filterName_ = new LineEdit(this);
   QHBoxLayout *filterNamelayout = new QHBoxLayout();
   filterNamelayout->addWidget(new QLabel(tr("Filter name:")));
-  filterNamelayout->addWidget(filterName);
+  filterNamelayout->addWidget(filterName_);
 
   matchComboBox_ = new QComboBox(this);
 
@@ -125,49 +125,49 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   matchLayout->addWidget(matchComboBox_);
   matchLayout->addStretch();
 
-  conditionScrollArea = new QScrollArea(this);
-  conditionScrollArea->setFocusPolicy(Qt::NoFocus);
-  conditionScrollArea->setWidgetResizable(true);
+  conditionScrollArea_ = new QScrollArea(this);
+  conditionScrollArea_->setFocusPolicy(Qt::NoFocus);
+  conditionScrollArea_->setWidgetResizable(true);
 
-  conditionLayout = new QVBoxLayout();
-  conditionLayout->setMargin(1);
-  conditionLayout->setSpacing(1);
+  conditionLayout_ = new QVBoxLayout();
+  conditionLayout_->setMargin(1);
+  conditionLayout_->setSpacing(1);
   if (filterId_ == -1)
     addCondition();
 
-  conditionWidget = new QWidget(this);
-  conditionWidget->setObjectName("infoWidgetFR");
-  conditionWidget->setLayout(conditionLayout);
-  conditionScrollArea->setWidget(conditionWidget);
+  conditionWidget_ = new QWidget(this);
+  conditionWidget_->setObjectName("infoWidgetFR");
+  conditionWidget_->setLayout(conditionLayout_);
+  conditionScrollArea_->setWidget(conditionWidget_);
 
   QVBoxLayout *splitterLayoutV1 = new QVBoxLayout();
   splitterLayoutV1->setMargin(0);
   splitterLayoutV1->addLayout(matchLayout);
-  splitterLayoutV1->addWidget(conditionScrollArea, 1);
+  splitterLayoutV1->addWidget(conditionScrollArea_, 1);
 
   QWidget *splitterWidget1 = new QWidget(this);
   splitterWidget1->setMinimumWidth(400);
   splitterWidget1->setLayout(splitterLayoutV1);
 
-  actionsScrollArea = new QScrollArea(this);
-  actionsScrollArea->setWidgetResizable(true);
-  actionsScrollArea->setFocusPolicy(Qt::NoFocus);
+  actionsScrollArea_ = new QScrollArea(this);
+  actionsScrollArea_->setWidgetResizable(true);
+  actionsScrollArea_->setFocusPolicy(Qt::NoFocus);
 
-  actionsLayout = new QVBoxLayout();
-  actionsLayout->setMargin(1);
-  actionsLayout->setSpacing(1);
+  actionsLayout_ = new QVBoxLayout();
+  actionsLayout_->setMargin(1);
+  actionsLayout_->setSpacing(1);
   if (filterId_ == -1)
     addAction();
 
-  actionsWidget = new QWidget(this);
-  actionsWidget->setObjectName("actionsWidgetFR");
-  actionsWidget->setLayout(actionsLayout);
-  actionsScrollArea->setWidget(actionsWidget);
+  actionsWidget_ = new QWidget(this);
+  actionsWidget_->setObjectName("actionsWidgetFR");
+  actionsWidget_->setLayout(actionsLayout_);
+  actionsScrollArea_->setWidget(actionsWidget_);
 
   QVBoxLayout *splitterLayoutV2 = new QVBoxLayout();
   splitterLayoutV2->setMargin(0);
   splitterLayoutV2->addWidget(new QLabel(tr("Perform these actions:")));
-  splitterLayoutV2->addWidget(actionsScrollArea, 1);
+  splitterLayoutV2->addWidget(actionsScrollArea_, 1);
 
   QWidget *splitterWidget2 = new QWidget(this);
   splitterWidget2->setLayout(splitterLayoutV2);
@@ -188,19 +188,19 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   QSplitter *mainSpliter = new QSplitter(this);
   mainSpliter->setChildrenCollapsible(false);
   mainSpliter->addWidget(rulesWidget);
-  mainSpliter->addWidget(feedsTree);
+  mainSpliter->addWidget(feedsTree_);
 
   QLabel *iconWarning = new QLabel(this);
   iconWarning->setPixmap(QPixmap(":/images/warning"));
-  textWarning = new QLabel(this);
-  QFont font = textWarning->font();
+  textWarning_ = new QLabel(this);
+  QFont font = textWarning_->font();
   font.setBold(true);
-  textWarning->setFont(font);
+  textWarning_->setFont(font);
 
   QHBoxLayout *warningLayout = new QHBoxLayout();
   warningLayout->setMargin(0);
   warningLayout->addWidget(iconWarning);
-  warningLayout->addWidget(textWarning, 1);
+  warningLayout->addWidget(textWarning_, 1);
 
   warningWidget_ = new QWidget(this);
   warningWidget_->setLayout(warningLayout);
@@ -215,12 +215,12 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
 
   setData();
 
-  filterName->setFocus();
-  filterName->selectAll();
+  filterName_->setFocus();
+  filterName_->selectAll();
 
   restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
 
-  connect(filterName, SIGNAL(textChanged(QString)),
+  connect(filterName_, SIGNAL(textChanged(QString)),
           this, SLOT(filterNameChanged(QString)));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 }
@@ -234,7 +234,7 @@ void FilterRulesDialog::setData()
       arg(filterId_);
   q.exec(qStr);
   if (q.next()) {
-    filterName->setText(q.value(0).toString());
+    filterName_->setText(q.value(0).toString());
 
     matchComboBox_->setCurrentIndex(q.value(1).toInt());
 
@@ -242,19 +242,19 @@ void FilterRulesDialog::setData()
     QStringList strIdFeeds = q.value(2).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
       QList<QTreeWidgetItem *> treeItems =
-          feedsTree->findItems(strIdFeed,
+          feedsTree_->findItems(strIdFeed,
                                Qt::MatchFixedString | Qt::MatchRecursive,
                                1);
       if (treeItems.count())
         treeItems.at(0)->setCheckState(0, Qt::Checked);
     }
-    QTreeWidgetItem *treeItem = feedsTree->itemBelow(feedsTree->topLevelItem(0));
+    QTreeWidgetItem *treeItem = feedsTree_->itemBelow(feedsTree_->topLevelItem(0));
     while (treeItem) {
       if (treeItem->checkState(0) == Qt::Unchecked) {
-        feedsTree->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
+        feedsTree_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
         break;
       }
-      treeItem = feedsTree->itemBelow(treeItem);
+      treeItem = feedsTree_->itemBelow(treeItem);
     }
     itemNotChecked_ = false;
 
@@ -264,12 +264,12 @@ void FilterRulesDialog::setData()
     q.exec(qStr);
     while (q.next()) {
       ItemCondition *itemCondition = addCondition();
-      itemCondition->comboBox1->setCurrentIndex(q.value(0).toInt());
-      itemCondition->comboBox2->setCurrentIndex(q.value(1).toInt());
+      itemCondition->comboBox1_->setCurrentIndex(q.value(0).toInt());
+      itemCondition->comboBox2_->setCurrentIndex(q.value(1).toInt());
       if (q.value(0).toInt() == 4)
-        itemCondition->comboBox3->setCurrentIndex(q.value(2).toInt());
+        itemCondition->comboBox3_->setCurrentIndex(q.value(2).toInt());
       else
-        itemCondition->lineEdit->setText(q.value(2).toString());
+        itemCondition->lineEdit_->setText(q.value(2).toString());
     }
 
     qStr = QString("SELECT action, params "
@@ -279,10 +279,10 @@ void FilterRulesDialog::setData()
     while (q.next()) {
       ItemAction *itemAction = addAction();
       int action = q.value(0).toInt();
-      itemAction->comboBox1->setCurrentIndex(action);
+      itemAction->comboBox1_->setCurrentIndex(action);
       if (action == 3) {
-        int index = itemAction->comboBox2->findData(q.value(1).toInt());
-        itemAction->comboBox2->setCurrentIndex(index);
+        int index = itemAction->comboBox2_->findData(q.value(1).toInt());
+        itemAction->comboBox2_->setCurrentIndex(index);
       }
 
     }
@@ -296,36 +296,36 @@ void FilterRulesDialog::closeDialog()
 
 void FilterRulesDialog::acceptDialog()
 {
-  if (filterName->text().isEmpty()) {
-    filterName->setFocus();
-    textWarning->setText(tr("Please enter name for the filter."));
+  if (filterName_->text().isEmpty()) {
+    filterName_->setFocus();
+    textWarning_->setText(tr("Please enter name for the filter."));
     warningWidget_->setVisible(true);
     return;
   }
 
   if (matchComboBox_->currentIndex() != 0) {
-    for (int i = 0; i < conditionLayout->count()-2; i++) {
+    for (int i = 0; i < conditionLayout_->count()-2; i++) {
       ItemCondition *itemCondition =
-          qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
-      if ((itemCondition->comboBox1->currentIndex() != 4) &&
-          itemCondition->lineEdit->text().isEmpty()) {
-        itemCondition->lineEdit->setFocus();
-        textWarning->setText(tr("Please enter search condition for the news filter."));
+          qobject_cast<ItemCondition*>(conditionLayout_->itemAt(i)->widget());
+      if ((itemCondition->comboBox1_->currentIndex() != 4) &&
+          itemCondition->lineEdit_->text().isEmpty()) {
+        itemCondition->lineEdit_->setFocus();
+        textWarning_->setText(tr("Please enter search condition for the news filter."));
         warningWidget_->setVisible(true);
         return;
       }
     }
   }
 
-  feedsTree->expandAll();
+  feedsTree_->expandAll();
   QString strIdFeeds;
-  QTreeWidgetItem *treeItem = feedsTree->itemBelow(feedsTree->topLevelItem(0));
+  QTreeWidgetItem *treeItem = feedsTree_->itemBelow(feedsTree_->topLevelItem(0));
   while (treeItem) {
     if (treeItem->checkState(0) == Qt::Checked) {
       strIdFeeds.append(",");
       strIdFeeds.append(treeItem->text(1));
     }
-    treeItem = feedsTree->itemBelow(treeItem);
+    treeItem = feedsTree_->itemBelow(treeItem);
   }
   strIdFeeds.append(",");
 
@@ -334,7 +334,7 @@ void FilterRulesDialog::acceptDialog()
     QString qStr = QString("INSERT INTO filters (name, type, feeds) "
                            "VALUES (?, ?, ?)");
     q.prepare(qStr);
-    q.addBindValue(filterName->text());
+    q.addBindValue(filterName_->text());
     q.addBindValue(matchComboBox_->currentIndex());
     q.addBindValue(strIdFeeds);
     q.exec();
@@ -344,38 +344,38 @@ void FilterRulesDialog::acceptDialog()
         arg(filterId_);
     q.exec(qStr);
 
-    for (int i = 0; i < conditionLayout->count()-2; i++) {
+    for (int i = 0; i < conditionLayout_->count()-2; i++) {
       ItemCondition *itemCondition =
-          qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
+          qobject_cast<ItemCondition*>(conditionLayout_->itemAt(i)->widget());
       qStr = QString("INSERT INTO filterConditions "
                      "(idFilter, field, condition, content) "
                      "VALUES (?, ?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(filterId_);
-      q.addBindValue(itemCondition->comboBox1->currentIndex());
-      q.addBindValue(itemCondition->comboBox2->currentIndex());
-      if (itemCondition->comboBox1->currentIndex() == 4)
-        q.addBindValue(itemCondition->comboBox3->currentIndex());
+      q.addBindValue(itemCondition->comboBox1_->currentIndex());
+      q.addBindValue(itemCondition->comboBox2_->currentIndex());
+      if (itemCondition->comboBox1_->currentIndex() == 4)
+        q.addBindValue(itemCondition->comboBox3_->currentIndex());
       else
-        q.addBindValue(itemCondition->lineEdit->text());
+        q.addBindValue(itemCondition->lineEdit_->text());
       q.exec();
     }
 
-    for (int i = 0; i < actionsLayout->count()-2; i++) {
+    for (int i = 0; i < actionsLayout_->count()-2; i++) {
       ItemAction *itemAction =
-          qobject_cast<ItemAction*>(actionsLayout->itemAt(i)->widget());
+          qobject_cast<ItemAction*>(actionsLayout_->itemAt(i)->widget());
       qStr = QString("INSERT INTO filterActions "
                      "(idFilter, action, params) "
                      "VALUES (?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(filterId_);
-      q.addBindValue(itemAction->comboBox1->currentIndex());
-      q.addBindValue(itemAction->comboBox2->itemData(itemAction->comboBox2->currentIndex()));
+      q.addBindValue(itemAction->comboBox1_->currentIndex());
+      q.addBindValue(itemAction->comboBox2_->itemData(itemAction->comboBox2_->currentIndex()));
       q.exec();
     }
   } else {
     q.prepare("UPDATE filters SET name=?, type=?, feeds=? WHERE id=?");
-    q.addBindValue(filterName->text());
+    q.addBindValue(filterName_->text());
     q.addBindValue(matchComboBox_->currentIndex());
     q.addBindValue(strIdFeeds);
     q.addBindValue(filterId_);
@@ -384,33 +384,33 @@ void FilterRulesDialog::acceptDialog()
     q.exec(QString("DELETE FROM filterConditions WHERE idFilter='%1'").arg(filterId_));
     q.exec(QString("DELETE FROM filterActions WHERE idFilter='%1'").arg(filterId_));
 
-    for (int i = 0; i < conditionLayout->count()-2; i++) {
+    for (int i = 0; i < conditionLayout_->count()-2; i++) {
       ItemCondition *itemCondition =
-          qobject_cast<ItemCondition*>(conditionLayout->itemAt(i)->widget());
+          qobject_cast<ItemCondition*>(conditionLayout_->itemAt(i)->widget());
       QString qStr = QString("INSERT INTO filterConditions "
                      "(idFilter, field, condition, content) "
                      "VALUES (?, ?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(filterId_);
-      q.addBindValue(itemCondition->comboBox1->currentIndex());
-      q.addBindValue(itemCondition->comboBox2->currentIndex());
-      if (itemCondition->comboBox1->currentIndex() == 4)
-        q.addBindValue(itemCondition->comboBox3->currentIndex());
+      q.addBindValue(itemCondition->comboBox1_->currentIndex());
+      q.addBindValue(itemCondition->comboBox2_->currentIndex());
+      if (itemCondition->comboBox1_->currentIndex() == 4)
+        q.addBindValue(itemCondition->comboBox3_->currentIndex());
       else
-        q.addBindValue(itemCondition->lineEdit->text());
+        q.addBindValue(itemCondition->lineEdit_->text());
       q.exec();
     }
 
-    for (int i = 0; i < actionsLayout->count()-2; i++) {
+    for (int i = 0; i < actionsLayout_->count()-2; i++) {
       ItemAction *itemAction =
-          qobject_cast<ItemAction*>(actionsLayout->itemAt(i)->widget());
+          qobject_cast<ItemAction*>(actionsLayout_->itemAt(i)->widget());
       QString qStr = QString("INSERT INTO filterActions "
                      "(idFilter, action, params) "
                      "VALUES (?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(filterId_);
-      q.addBindValue(itemAction->comboBox1->currentIndex());
-      q.addBindValue(itemAction->comboBox2->itemData(itemAction->comboBox2->currentIndex()));
+      q.addBindValue(itemAction->comboBox1_->currentIndex());
+      q.addBindValue(itemAction->comboBox2_->itemData(itemAction->comboBox2_->currentIndex()));
       q.exec();
     }
   }
@@ -425,9 +425,9 @@ void FilterRulesDialog::filterNameChanged(const QString &)
 void FilterRulesDialog::selectMatch(int index)
 {
   if (index == 0) {
-    conditionWidget->setEnabled(false);
+    conditionWidget_->setEnabled(false);
   } else {
-    conditionWidget->setEnabled(true);
+    conditionWidget_->setEnabled(true);
   }
 }
 
@@ -461,24 +461,24 @@ void FilterRulesDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState 
 
 ItemCondition *FilterRulesDialog::addCondition()
 {
-  conditionLayout->removeItem(conditionLayout->itemAt(conditionLayout->count()-1));
-  conditionLayout->removeItem(conditionLayout->itemAt(conditionLayout->count()-1));
+  conditionLayout_->removeItem(conditionLayout_->itemAt(conditionLayout_->count()-1));
+  conditionLayout_->removeItem(conditionLayout_->itemAt(conditionLayout_->count()-1));
   ItemCondition *itemCondition = new ItemCondition(this);
-  conditionLayout->addWidget(itemCondition);
-  conditionLayout->addStretch();
-  conditionLayout->addSpacing(25);
-  connect(itemCondition->addButton, SIGNAL(clicked()), this, SLOT(addCondition()));
+  conditionLayout_->addWidget(itemCondition);
+  conditionLayout_->addStretch();
+  conditionLayout_->addSpacing(25);
+  connect(itemCondition->addButton_, SIGNAL(clicked()), this, SLOT(addCondition()));
   connect(itemCondition, SIGNAL(signalDeleteCondition(ItemCondition*)),
           this, SLOT(deleteCondition(ItemCondition*)));
 
-  QScrollBar *scrollBar = conditionScrollArea->verticalScrollBar();
+  QScrollBar *scrollBar = conditionScrollArea_->verticalScrollBar();
   scrollBar->setValue(scrollBar->maximum() -
                       scrollBar->minimum() +
                       scrollBar->pageStep());
-  itemCondition->lineEdit->setFocus();
-  connect(itemCondition->lineEdit, SIGNAL(textChanged(QString)),
+  itemCondition->lineEdit_->setFocus();
+  connect(itemCondition->lineEdit_, SIGNAL(textChanged(QString)),
           this, SLOT(filterNameChanged(QString)));
-  connect(itemCondition->comboBox1, SIGNAL(currentIndexChanged(QString)),
+  connect(itemCondition->comboBox1_, SIGNAL(currentIndexChanged(QString)),
           this, SLOT(filterNameChanged(QString)));
   return itemCondition;
 }
@@ -486,15 +486,15 @@ ItemCondition *FilterRulesDialog::addCondition()
 void FilterRulesDialog::deleteCondition(ItemCondition *item)
 {
   delete item;
-  if (conditionLayout->count() == 2) {
+  if (conditionLayout_->count() == 2) {
     addCondition();
   }
 }
 
 ItemAction *FilterRulesDialog::addAction()
 {
-  actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
-  actionsLayout->removeItem(actionsLayout->itemAt(actionsLayout->count()-1));
+  actionsLayout_->removeItem(actionsLayout_->itemAt(actionsLayout_->count()-1));
+  actionsLayout_->removeItem(actionsLayout_->itemAt(actionsLayout_->count()-1));
   ItemAction *itemAction = new ItemAction(this);
 
   QSqlQuery q;
@@ -507,13 +507,13 @@ ItemAction *FilterRulesDialog::addAction()
     if (!byteArray.isNull())
       imageLabel.loadFromData(byteArray);
 
-    itemAction->comboBox2->addItem(QIcon(imageLabel), nameLabel, idLabel);
+    itemAction->comboBox2_->addItem(QIcon(imageLabel), nameLabel, idLabel);
   }
 
-  actionsLayout->addWidget(itemAction);
-  actionsLayout->addStretch();
-  actionsLayout->addSpacing(25);
-  connect(itemAction->addButton, SIGNAL(clicked()), this, SLOT(addAction()));
+  actionsLayout_->addWidget(itemAction);
+  actionsLayout_->addStretch();
+  actionsLayout_->addSpacing(25);
+  connect(itemAction->addButton_, SIGNAL(clicked()), this, SLOT(addAction()));
   connect(itemAction, SIGNAL(signalDeleteAction(ItemAction*)),
           this, SLOT(deleteAction(ItemAction*)));
   return itemAction;
@@ -522,7 +522,7 @@ ItemAction *FilterRulesDialog::addAction()
 void FilterRulesDialog::deleteAction(ItemAction *item)
 {
   delete item;
-  if (actionsLayout->count() == 2) {
+  if (actionsLayout_->count() == 2) {
     addAction();
   }
 }

@@ -23,8 +23,8 @@
 ** warranty, liability or support of any kind.
 **
 ****************************************************************************/
-
 #include "lineedit.h"
+
 #include <QToolButton>
 #include <QStyle>
 

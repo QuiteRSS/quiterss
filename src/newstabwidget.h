@@ -49,40 +49,6 @@ class RSSListing;
 class NewsTabWidget : public QWidget
 {
   Q_OBJECT
-private:
-  void createNewsList();
-  void createWebWidget();
-
-  RSSListing *rsslisting_;
-  QSqlDatabase db_;
-  QWidget *newsWidget_;
-
-  FeedsTreeModel *feedsTreeModel_;
-  FeedsTreeView *feedsTreeView_;
-
-  QFrame *lineWebWidget;
-  QWidget *webWidget_;
-  QProgressBar *webViewProgress_;
-  QLabel *webViewProgressLabel_;
-
-  QAction *webHomePageAct_;
-  QAction *webExternalBrowserAct_;
-  QAction *urlExternalBrowserAct_;
-
-  QTimer *markNewsReadTimer_;
-
-  int webDefaultFontSize_;
-  int webDefaultFixedFontSize_;
-
-  QMenu *webMenu_;
-  QUrl linkUrl_;
-
-  QWidget *newsPanelWidget_;
-  bool webToolbarShow_;
-
-  QString htmlString_;
-  QString cssString_;
-
 public:
   explicit NewsTabWidget(QWidget *parent, int type, int feedId = -1, int feedParId = -1);
 
@@ -143,11 +109,6 @@ public:
 
   QAction *separatorRAct_;
 
-signals:
-  void signalSetHtmlWebView(const QString &html = "", const QUrl &baseUrl = QUrl());
-  void signalSetTextTab(const QString &text, NewsTabWidget *widget);
-  void loadProgress(int);
-
 public slots:
   void slotNewsViewClicked(QModelIndex index);
   void slotNewsViewSelected(QModelIndex index, bool clicked = false);
@@ -160,6 +121,11 @@ public slots:
   void slotNewsPageUpPressed();
   void slotNewsPageDownPressed();
   void slotSort(int column, int order);
+
+signals:
+  void signalSetHtmlWebView(const QString &html = "", const QUrl &baseUrl = QUrl());
+  void signalSetTextTab(const QString &text, NewsTabWidget *widget);
+  void loadProgress(int);
 
 private slots:
   void showContextMenuNews(const QPoint &pos);
@@ -189,6 +155,40 @@ private slots:
   void setWebToolbarVisible(bool show = true, bool checked = true);
 
   void slotNewslLabelClicked(QModelIndex index);
+
+private:
+  void createNewsList();
+  void createWebWidget();
+
+  RSSListing *rsslisting_;
+  QSqlDatabase db_;
+  QWidget *newsWidget_;
+
+  FeedsTreeModel *feedsTreeModel_;
+  FeedsTreeView *feedsTreeView_;
+
+  QFrame *lineWebWidget;
+  QWidget *webWidget_;
+  QProgressBar *webViewProgress_;
+  QLabel *webViewProgressLabel_;
+
+  QAction *webHomePageAct_;
+  QAction *webExternalBrowserAct_;
+  QAction *urlExternalBrowserAct_;
+
+  QTimer *markNewsReadTimer_;
+
+  int webDefaultFontSize_;
+  int webDefaultFixedFontSize_;
+
+  QMenu *webMenu_;
+  QUrl linkUrl_;
+
+  QWidget *newsPanelWidget_;
+  bool webToolbarShow_;
+
+  QString htmlString_;
+  QString cssString_;
 
 };
 

@@ -5198,9 +5198,9 @@ void RSSListing::showNewsFiltersDlg(bool newFilter)
 {
   NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this, settings_);
   if (newFilter) {
-    newsFiltersDialog->filtersTree->setCurrentItem(
-          newsFiltersDialog->filtersTree->topLevelItem(
-            newsFiltersDialog->filtersTree->topLevelItemCount()-1));
+    newsFiltersDialog->filtersTree_->setCurrentItem(
+          newsFiltersDialog->filtersTree_->topLevelItem(
+            newsFiltersDialog->filtersTree_->topLevelItemCount()-1));
   }
 
   newsFiltersDialog->exec();
@@ -5863,10 +5863,7 @@ void RSSListing::showNotification()
   }
 
   if (notificationWidget) delete notificationWidget;
-  notificationWidget = new NotificationWidget(
-        idFeedList_, cntNewNewsList_,
-        countShowNewsNotify_, timeShowNewsNotify_, widthTitleNewsNotify_,
-        notificationFontFamily_, notificationFontSize_);
+  notificationWidget = new NotificationWidget(idFeedList_, cntNewNewsList_, this);
 
   idFeedList_.clear();
   cntNewNewsList_.clear();

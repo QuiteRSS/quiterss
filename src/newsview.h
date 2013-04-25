@@ -19,23 +19,14 @@
 #define NEWSVIEW_H
 
 #include <QtGui>
+
 #include "newsmodel.h"
 
 class NewsView : public QTreeView
 {
   Q_OBJECT
-
 public:
   NewsView(QWidget * parent = 0);
-
-private:
-  QModelIndex indexClicked_;
-
-protected:
-  virtual void mousePressEvent(QMouseEvent*);
-  virtual void mouseMoveEvent(QMouseEvent*);
-  virtual void mouseDoubleClickEvent(QMouseEvent*);
-  virtual void keyPressEvent(QKeyEvent*);
 
 signals:
   void signalSetItemRead(QModelIndex index, int read);
@@ -49,6 +40,16 @@ signals:
   void pressKeyEnd();
   void pressKeyPageUp();
   void pressKeyPageDown();
+
+protected:
+  virtual void mousePressEvent(QMouseEvent*);
+  virtual void mouseMoveEvent(QMouseEvent*);
+  virtual void mouseDoubleClickEvent(QMouseEvent*);
+  virtual void keyPressEvent(QKeyEvent*);
+
+private:
+  QModelIndex indexClicked_;
+
 };
 
 #endif // NEWSVIEW_H

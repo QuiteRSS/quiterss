@@ -23,9 +23,12 @@
 #endif
 
 NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParId)
-  : QWidget(parent), type_(type),
-    feedId_(feedId), feedParId_(feedParId),
-    currentNewsIdOld(-1), autoLoadImages_(true)
+  : QWidget(parent)
+  , type_(type)
+  , feedId_(feedId)
+  , feedParId_(feedParId)
+  , currentNewsIdOld(-1)
+  , autoLoadImages_(true)
 {
   rsslisting_ = qobject_cast<RSSListing*>(parent);
   db_ = QSqlDatabase::database();

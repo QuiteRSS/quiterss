@@ -16,12 +16,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "googlereader.h"
+
 #include <QSslConfiguration>
 
-GoogleReader::GoogleReader(QString email, QString passwd, QObject *parent) :
-  QObject(parent),
-  email_(email),
-  passwd_(passwd)
+GoogleReader::GoogleReader(const QString &email, const QString &passwd, QObject *parent)
+  : QObject(parent)
+  , email_(email)
+  , passwd_(passwd)
 {
   qCritical() << "GoogleReader init";
 
@@ -142,7 +143,7 @@ void GoogleReader::sendHttpGet(QUrl url, QNetworkAccessManager *manager)
 }
 
 //! Добавление, удаление и переименование ленты
-void GoogleReader::editFeed(QString urlFeed, QString action, QString name)
+void GoogleReader::editFeed(const QString &urlFeed, const QString &action, const QString &name)
 {
   QUrl params;
   params.addQueryItem("client", "QuiteRSS");
@@ -193,7 +194,7 @@ void GoogleReader::replyUnreadCount(QNetworkReply *reply)
 }
 
 //! Запрос новостей ленты
-void GoogleReader::requestFeed(QString urlFeed, int ot)
+void GoogleReader::requestFeed(const QString &urlFeed, int ot)
 {
   QUrl params;
   params.setUrl("http://www.google.com/reader/api/0/stream/contents/" +
@@ -224,7 +225,7 @@ void GoogleReader::replyFeed(QNetworkReply *reply)
 }
 
 //! Пометка новости прочитанной или звездой
-void GoogleReader::editItem(QString urlFeed, QString itemId, QString action)
+void GoogleReader::editItem(const QString &urlFeed, const QString &itemId, const QString &action)
 {
   QUrl params;
   params.addQueryItem("client", "QuiteRSS");

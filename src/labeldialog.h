@@ -24,10 +24,15 @@
 class LabelDialog : public Dialog
 {
   Q_OBJECT
-private:
-  QToolButton *iconButton_;
-  QToolButton *colorTextButton_;
-  QToolButton *colorBgButton_;
+public:
+  explicit LabelDialog(QWidget *parent);
+
+  void loadData();
+
+  LineEdit *nameEdit_;
+  QIcon icon_;
+  QString colorTextStr_;
+  QString colorBgStr_;
 
 private slots:
   void nameEditChanged(const QString&);
@@ -38,15 +43,11 @@ private slots:
   void defaultColorBg();
   void selectColorBg();
 
-public:
-  explicit LabelDialog(QWidget *parent);
+private:
+  QToolButton *iconButton_;
+  QToolButton *colorTextButton_;
+  QToolButton *colorBgButton_;
 
-  void loadData();
-
-  LineEdit *nameEdit_;
-  QIcon icon_;
-  QString colorTextStr_;
-  QString colorBgStr_;
 };
 
 #endif // NEWSLABELDIALOG_H

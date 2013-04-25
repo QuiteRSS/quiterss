@@ -23,12 +23,15 @@
 class FindTextContent : public QLineEdit
 {
   Q_OBJECT
-
 public:
   FindTextContent(QWidget *parent = 0);
   void retranslateStrings();
 
   QActionGroup *findGroup_;
+
+signals:
+  void signalClear();
+  void signalSelectFind();
 
 protected:
   void resizeEvent(QResizeEvent *);
@@ -51,12 +54,9 @@ private:
   QAction *findInBrowserAct_;
 
   QLabel *findLabel_;
-  QToolButton *findButton;
-  QToolButton *clearButton;
+  QToolButton *findButton_;
+  QToolButton *clearButton_;
 
-signals:
-  void signalClear();
-  void signalSelectFind();
 };
 
 #endif // FINDTEXT_H

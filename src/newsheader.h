@@ -19,22 +19,12 @@
 #define NEWSHEADER_H
 
 #include <QtGui>
+
 #include "newsmodel.h"
 
 class NewsHeader : public QHeaderView
 {
   Q_OBJECT
-private:
-  void createMenu();
-
-  QTreeView *view_;
-  NewsModel *model_;
-  QMenu *viewMenu_;
-  QActionGroup *columnVisibleActGroup_;
-  QPushButton *buttonColumnView;
-  bool show_;
-  int idxCol;
-  int posX1;
 
 public:
   NewsHeader(NewsModel *model, QWidget *parent);
@@ -52,6 +42,18 @@ private slots:
   void slotButtonColumnView();
   void columnVisible(QAction*);
   void slotSectionMoved(int, int, int);
+
+private:
+  void createMenu();
+
+  QTreeView *view_;
+  NewsModel *model_;
+  QMenu *viewMenu_;
+  QActionGroup *columnVisibleActGroup_;
+  QPushButton *buttonColumnView_;
+  bool show_;
+  int idxCol_;
+  int posX_;
 
 };
 

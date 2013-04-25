@@ -19,8 +19,9 @@
 #include "rsslisting.h"
 
 NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
-  : QHeaderView(Qt::Horizontal, parent),
-    model_(model)
+  : QHeaderView(Qt::Horizontal, parent)
+  , model_(model)
+  , show_(false)
 {
   setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -29,26 +30,24 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   setMinimumSectionSize(22);
   setStretchLastSection(false);
 
-  show_ = false;
-
   viewMenu_ = new QMenu(this);
   columnVisibleActGroup_ = new QActionGroup(this);
   columnVisibleActGroup_->setExclusive(false);
   connect(columnVisibleActGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(columnVisible(QAction*)));
 
-  buttonColumnView = new QPushButton(this);
-  buttonColumnView->setIcon(QIcon(":/images/images/column.png"));
-  buttonColumnView->setObjectName("buttonColumnView");
-  buttonColumnView->setFlat(true);
-  buttonColumnView->setCursor(Qt::ArrowCursor);
-  buttonColumnView->setFocusPolicy(Qt::NoFocus);
-  buttonColumnView->setMaximumWidth(30);
-  connect(buttonColumnView, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
+  buttonColumnView_ = new QPushButton(this);
+  buttonColumnView_->setIcon(QIcon(":/images/images/column.png"));
+  buttonColumnView_->setObjectName("buttonColumnView");
+  buttonColumnView_->setFlat(true);
+  buttonColumnView_->setCursor(Qt::ArrowCursor);
+  buttonColumnView_->setFocusPolicy(Qt::NoFocus);
+  buttonColumnView_->setMaximumWidth(30);
+  connect(buttonColumnView_, SIGNAL(clicked()), this, SLOT(slotButtonColumnView()));
 
   QHBoxLayout *buttonLayout = new QHBoxLayout();
   buttonLayout->setMargin(0);
-  buttonLayout->addWidget(buttonColumnView, 0, Qt::AlignRight|Qt::AlignVCenter);
+  buttonLayout->addWidget(buttonColumnView_, 0, Qt::AlignRight|Qt::AlignVCenter);
   setLayout(buttonLayout);
 
   connect(this, SIGNAL(sectionMoved(int,int,int)), SLOT(slotSectionMoved(int, int, int)));
@@ -156,8 +155,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
   } else if (event->type() == QEvent::Resize) {
     if ((count() == 0) || !show_) return false;
 
-    if (buttonColumnView->height() != height())
-      buttonColumnView->setFixedHeight(height());
+    if (buttonColumnView_->height() != height())
+      buttonColumnView_->setFixedHeight(height());
 
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
     bool minSize = false;
@@ -225,7 +224,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
              (event->type() == QEvent::HoverEnter) ||
              (event->type() == QEvent::HoverLeave)) {
     QHoverEvent *hoverEvent = static_cast<QHoverEvent*>(event);
-    if (hoverEvent->pos().x() >= width() - buttonColumnView->width()) {
+    if (hoverEvent->pos().x() >= width() - buttonColumnView_->width()) {
       if ((event->type() == QEvent::HoverMove) && !(QApplication::mouseButtons() & Qt::LeftButton)) {
         QHoverEvent* pe =
             new QHoverEvent(QEvent::HoverLeave, hoverEvent->oldPos(), hoverEvent->pos());
@@ -244,8 +243,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
   QPoint nPos = event->pos();
   nPos.setX(nPos.x() + 5);
-  idxCol = visualIndex(logicalIndexAt(nPos));
-  posX1 = event->pos().x();
+  idxCol_ = visualIndex(logicalIndexAt(nPos));
+  posX_ = event->pos().x();
   nPos = event->pos();
   nPos.setX(nPos.x() - 5);
   QHeaderView::mousePressEvent(event);
@@ -259,7 +258,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
     int newWidth = 0;
 
     for (int i = 0; i < count(); i++) newWidth += sectionSize(i);
-    if (posX1 > event->pos().x()) sizeMin =  true;
+    if (posX_ > event->pos().x()) sizeMin =  true;
     if (!sizeMin) {
       if (event->pos().x() < oldWidth) {
         for (int i = count()-1; i >= 0; i--) {
@@ -270,7 +269,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
                   (model_->fieldIndex("feedId") == lIdx))) {
               int sectionWidth = sectionSize(lIdx) + oldWidth - newWidth;
               if (sectionWidth > 40) {
-                if (i >= idxCol) {
+                if (i >= idxCol_) {
                   resizeSection(lIdx, sectionWidth);
                   sizeMin = true;
                   break;
@@ -281,7 +280,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
         }
       }
       int tWidth = 0;
-      for (int i = idxCol; i < count(); i++) {
+      for (int i = idxCol_; i < count(); i++) {
         if (!isSectionHidden(logicalIndex(i))) {
           tWidth += 40;
         }
@@ -305,20 +304,20 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 
       int sectionWidth = sectionSize(logicalIndex(stopColFix)) + oldWidth - newWidth;
       if ((sectionWidth > 40)) {
-        if (!((model_->fieldIndex("read") == logicalIndex(idxCol)) ||
-              (model_->fieldIndex("starred") == logicalIndex(idxCol)) ||
-              (model_->fieldIndex("feedId") == logicalIndex(idxCol))) || idxCol < stopColFix) {
+        if (!((model_->fieldIndex("read") == logicalIndex(idxCol_)) ||
+              (model_->fieldIndex("starred") == logicalIndex(idxCol_)) ||
+              (model_->fieldIndex("feedId") == logicalIndex(idxCol_))) || idxCol_ < stopColFix) {
           resizeSection(logicalIndex(stopColFix), sectionWidth);
         } else sizeMin = false;
       }
     }
     if (!sizeMin) {
-      if (posX1 > event->pos().x()) posX1 = event->pos().x();
+      if (posX_ > event->pos().x()) posX_ = event->pos().x();
       event->ignore();
       return;
     }
   }
-  if (posX1 > event->pos().x()) posX1 = event->pos().x();
+  if (posX_ > event->pos().x()) posX_ = event->pos().x();
 
   QHeaderView::mouseMoveEvent(event);
 }
