@@ -17,7 +17,8 @@
 * ============================================================ */
 #include "dialog.h"
 
-Dialog::Dialog(QWidget *parent, Qt::WindowFlags f) : QDialog(parent, f)
+Dialog::Dialog(QWidget *parent, Qt::WindowFlags flag)
+  : QDialog(parent, flag)
 {
   pageLayout = new QVBoxLayout();
   pageLayout->setContentsMargins(10, 10, 10, 5);

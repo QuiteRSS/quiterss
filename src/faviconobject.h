@@ -18,12 +18,13 @@
 #ifndef FAVICONOBJECT_H
 #define FAVICONOBJECT_H
 
-#include "networkmanager.h"
 #include <QDateTime>
 #include <QObject>
 #include <QQueue>
 #include <QNetworkReply>
 #include <QTimer>
+
+#include "networkmanager.h"
 
 class FaviconObject : public QObject
 {

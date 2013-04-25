@@ -15,9 +15,10 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "faviconobject.h"
+
 #include <QDebug>
 #include <QtSql>
-#include "faviconobject.h"
 
 #define REPLY_MAX_COUNT 4
 #define REQUEST_TIMEOUT 30

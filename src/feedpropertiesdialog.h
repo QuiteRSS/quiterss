@@ -108,6 +108,15 @@ public:
   FEED_PROPERTIES getFeedProperties(); //!< Получить свойства ленты из диалога
   void setFeedProperties(FEED_PROPERTIES properties); //!< Передать свойства ленты в диалог
 
+signals:
+  void signalLoadTitle(const QString &urlString, const QString &feedUrl);
+
+protected:
+  virtual void showEvent(QShowEvent *event);
+
+private slots:
+  void slotLoadTitle();
+
 private:
   QTabWidget *tabWidget;
 
@@ -140,15 +149,6 @@ private:
   FEED_PROPERTIES feedProperties;
 
   bool isFeed_;
-
-protected:
-  virtual void showEvent(QShowEvent *event);
-
-private slots:
-  void slotLoadTitle();
-
-signals:
-  void signalLoadTitle(const QString &urlString, const QString &feedUrl);
 
 };
 

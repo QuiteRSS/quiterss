@@ -15,24 +15,22 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "feedstreeview.h"
+#include "feedstreemodel.h"
+#include "delegatewithoutfocus.h"
+
 #include <QSqlTableModel>
 #include <QSqlQuery>
 
-#include "feedstreemodel.h"
-#include "feedstreeview.h"
-#include "delegatewithoutfocus.h"
-
-FeedsTreeView::FeedsTreeView(QWidget * parent) :
-  QyurSqlTreeView(parent)
+FeedsTreeView::FeedsTreeView(QWidget * parent)
+  : QyurSqlTreeView(parent)
+  , selectIdEn_(true)
+  , autocollapseFolder_(false)
+  , dragPos_(QPoint())
+  , dragStartPos_(QPoint())
+  , selectOldId_(-1)
+  , selectOldParentId_(-1)
 {
-  dragPos_ =      QPoint();
-  dragStartPos_ = QPoint();
-  selectIdEn_ = true;
-
-  selectOldId_ = -1;
-  selectOldParentId_ = -1;
-  autocollapseFolder_ = false;
-
   setObjectName("feedsTreeView_");
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   setEditTriggers(QAbstractItemView::NoEditTriggers);

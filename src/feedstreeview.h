@@ -19,14 +19,13 @@
 #define FEEDSTREEVIEW_H
 
 #include <QtGui>
-
 #include <qyursqltreeview.h>
 
 class FeedsTreeView : public QyurSqlTreeView
 {
   Q_OBJECT
 public:
-  FeedsTreeView(QWidget * parent = 0);
+  explicit FeedsTreeView(QWidget * parent = 0);
   int selectId_;
   int selectParentId_;
   bool selectIdEn_;
@@ -42,6 +41,15 @@ public slots:
   QPersistentModelIndex selectIndex();
   void updateCurrentIndex(const QModelIndex &index);
 
+signals:
+  void signalDoubleClicked();
+  void signalMiddleClicked();
+  void pressKeyUp();
+  void pressKeyDown();
+  void pressKeyHome();
+  void pressKeyEnd();
+  void signalDropped(QModelIndex &what, QModelIndex &where, int how);
+
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*event);
@@ -56,28 +64,19 @@ protected:
   void dropEvent(QDropEvent *event);
   void paintEvent(QPaintEvent *event);
 
-signals:
-  void signalDoubleClicked();
-  void signalMiddleClicked();
-  void pressKeyUp();
-  void pressKeyDown();
-  void pressKeyHome();
-  void pressKeyEnd();
-  void signalDropped(QModelIndex &what, QModelIndex &where, int how);
+private slots:
+  void slotExpanded(const QModelIndex&index);
+  void slotCollapsed(const QModelIndex&index);
 
 private:
   QPoint dragPos_;
   QPoint dragStartPos_;
+  int selectOldId_;
+  int selectOldParentId_;
 
   void handleDrop(QDropEvent *e);
   bool shouldAutoScroll(const QPoint &pos) const;
 
-  int selectOldId_;
-  int selectOldParentId_;
-
-private slots:
-  void slotExpanded(const QModelIndex&index);
-  void slotCollapsed(const QModelIndex&index);
 };
 
 #endif // FEEDSTREEVIEW_H

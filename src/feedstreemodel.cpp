@@ -15,17 +15,20 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "feedstreemodel.h"
+
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
 
-#include "feedstreemodel.h"
-
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
-    const QStringList& captions, const QStringList& fieldNames,
-    int rootParentId, const QString& decoratedField, QObject* parent) :
-    QyurSqlTreeModel(
-        tableName, captions, fieldNames, rootParentId, decoratedField, parent)
+                               const QStringList& captions,
+                               const QStringList& fieldNames,
+                               int rootParentId,
+                               const QString& decoratedField,
+                               QObject* parent)
+  : QyurSqlTreeModel(tableName, captions, fieldNames,
+                     rootParentId, decoratedField, parent)
 {
 }
 

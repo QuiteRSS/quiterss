@@ -15,11 +15,11 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#include "faviconthread.h"
+
 #include <QDebug>
 #include <QPixmap>
 #include <QBuffer>
-
-#include "faviconthread.h"
 
 FaviconThread::FaviconThread(QObject *parent)
   : QThread(parent)
