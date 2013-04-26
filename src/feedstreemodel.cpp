@@ -21,6 +21,7 @@
 #include <QDateTime>
 #include <QDebug>
 
+// ----------------------------------------------------------------------------
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
                                const QStringList& captions,
                                const QStringList& fieldNames,
@@ -32,6 +33,7 @@ FeedsTreeModel::FeedsTreeModel(const QString& tableName,
 {
 }
 
+// ----------------------------------------------------------------------------
 QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
 {
   if (role == Qt::FontRole) {
@@ -123,16 +125,19 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
   return QyurSqlTreeModel::data(index, role);
 }
 
+// ----------------------------------------------------------------------------
 QVariant FeedsTreeModel::dataField(const QModelIndex &index, const QString &fieldName) const
 {
   return index.sibling(index.row(),proxyColumnByOriginal(fieldName)).data(Qt::EditRole);
 }
 
+// ----------------------------------------------------------------------------
 /*virtual*/ bool	FeedsTreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   return QyurSqlTreeModel::setData(index, value, role);
 }
 
+// ----------------------------------------------------------------------------
 Qt::ItemFlags FeedsTreeModel::flags(const QModelIndex &index) const
 {
   Qt::ItemFlags defaultFlags = QyurSqlTreeModel::flags(index);
@@ -143,20 +148,20 @@ Qt::ItemFlags FeedsTreeModel::flags(const QModelIndex &index) const
     return Qt::ItemIsDropEnabled | defaultFlags;
 }
 
+// ----------------------------------------------------------------------------
 Qt::DropActions FeedsTreeModel::supportedDropActions() const
 {
   return Qt::MoveAction;
 }
 
-/**
- * @brief Проверка, что узел является категорией, а не лентой
+/** @brief Check if item is folder
  *
- *  Если поле xmlUrl пустое, то узел считается категорией
- * @param index Проверяемый узел
- * @return Признал ленты
- * @retval true Узел - категория
- * @retval false Узел - лента
- *----------------------------------------------------------------------------*/
+ *  If xmlUrl field is empty, than item is considered folder
+ * @param index Item to check
+ * @return Is folder sign
+ * @retval true Index item is category
+ * @retval false Index item is feed
+ *---------------------------------------------------------------------------*/
 bool FeedsTreeModel::isFolder(const QModelIndex &index) const
 {
   return index.sibling(index.row(), proxyColumnByOriginal("xmlUrl"))
