@@ -98,8 +98,7 @@ SOURCES += \
     src/plugins/webpluginfactory.cpp \
     src/plugins/clicktoflash.cpp
 
-INCLUDEPATH +=  $$PWD/3rdparty/squeezelabelv2 \
-                $$PWD/src/plugins \
+INCLUDEPATH +=  $$PWD/src/plugins \
                 $$PWD/src \
 
 CONFIG(debug, debug|release) {
@@ -143,7 +142,10 @@ RC_FILE = quiterss_os2.rc
 DISTFILES += \
     HISTORY_RU \
     HISTORY_EN \
-    COPYING
+    README \
+    COPYING \
+    AUTHORS \
+    CHANGELOG
 
 unix {
   TARGET = quiterss
