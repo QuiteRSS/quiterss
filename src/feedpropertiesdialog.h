@@ -21,10 +21,10 @@
 #include "dialog.h"
 #include "lineedit.h"
 
-//! Настройки ленты
+//! Feed properties structure
 typedef struct {
 
-  //! Основные настройки
+  //! General properties
   struct general{
     QString text; //!< Имя
     QString title; //!< Имя
@@ -38,14 +38,14 @@ typedef struct {
     bool duplicateNewsMode; //!< Автоматический удалять дубликаты новостей
   } general;
 
-  //! Авторизация
+  //! Autthentication properties
   struct authentication{
     bool on;        //!< Включение
     QString user;   //!< Пользователь
     QString pass;   //!< Пароль
   } authentication;
 
-  //! Настройки чтения
+  //! Reading properties
   struct reading{
     bool markSelectedAsRead; //!< Помечать выбранное как "Прочитано"
     quint32 markSelectedTime; //!< Время до отметки "Прочитано"
@@ -55,7 +55,7 @@ typedef struct {
     bool markDisplayedAsReadOnMin; //!< Помечать отображаемые новости как прочитанные при минимизации
   } reading ;
 
-  //! Настройки отображения
+  //! Display properties
   struct display {
     quint16 layoutType; //!< Раскладка для отображения
     quint16 filterType; //!< Фильтр
@@ -66,14 +66,14 @@ typedef struct {
     bool openLink; //!< Открывать ссылку новости
   } display;
 
-  //! Настройки колонок
+  //! Columns properties
   struct column {
     QStringList columns; //!< Список колонок
     QString sortBy; //!< Колонка для сортировки
     QString sortType; //!< Тип сортировки
   } column;
 
-  //! Настройки очистки
+  //! Cleaup properties
   struct cleanup {
     bool enableMaxNews; //!< Разрешить максимальное количество новостей
     quint32 maxNewsToKeep; //!< Максимальное количество новостей для хранения
@@ -84,7 +84,7 @@ typedef struct {
     bool neverDeleteLabeled; //!< Никогда не удалять отмеченное
   } cleanup;
 
-  //! Статус ленты
+  //! Status properties
   struct status {
     QString feedStatus; //!< Статус ленты
     QString description; //!< Описание
@@ -98,15 +98,15 @@ typedef struct {
 
 } FEED_PROPERTIES;
 
-//! Виджет настроек ленты
+//! Feed properties dialog
 class FeedPropertiesDialog : public Dialog
 {
   Q_OBJECT
 public:
   explicit FeedPropertiesDialog(bool isFeed, QWidget *parent = 0);
 
-  FEED_PROPERTIES getFeedProperties(); //!< Получить свойства ленты из диалога
-  void setFeedProperties(FEED_PROPERTIES properties); //!< Передать свойства ленты в диалог
+  FEED_PROPERTIES getFeedProperties(); //!< Get feed properties from dialog
+  void setFeedProperties(FEED_PROPERTIES properties); //!< Set feed properties into dialog
 
 signals:
   void signalLoadTitle(const QString &urlString, const QString &feedUrl);
@@ -120,31 +120,30 @@ private slots:
 private:
   QTabWidget *tabWidget;
 
-  // Вкладка "Общие"
-  LineEdit *editURL; //!< строка ссылки на ленту
-  LineEdit *editTitle; //!< Заголовок ленты
-  QLabel *labelHomepage; //!< Ссылка на домашнюю страницу
+  // Tab "General"
+  LineEdit *editURL; //!< Feed URL
+  LineEdit *editTitle; //!< Feed title
+  QLabel *labelHomepage; //!< Link to feed's homepage
   QCheckBox *displayOnStartup;
   QCheckBox *showDescriptionNews_;
   QCheckBox *starredOn_;
   QCheckBox *loadImagesOn;
   QCheckBox *duplicateNewsMode_;
 
-  QWidget *CreateGeneralTab(); //!< Создание вкладки "Общие"
+  QWidget *CreateGeneralTab();
 
-  // Вкладка "Авторизация"
+  // Tab "Authentication"
   QGroupBox *authentication_;
   LineEdit *user_;
   LineEdit *pass_;
-  QWidget *CreateAuthenticationTab(); //!< Создание вкладки "Авторизация"
+  QWidget *CreateAuthenticationTab();
 
-  // Вкладка "Cостояние"
+  // Tab "Status"
   QTextEdit *descriptionText_;
   QLabel *createdFeed_;
   QLabel *lastUpdateFeed_;
   QLabel *newsCount_;
-
-  QWidget *CreateStatusTab(); //!< Создание вкладки "Статус"
+  QWidget *CreateStatusTab();
 
   FEED_PROPERTIES feedProperties;
 
