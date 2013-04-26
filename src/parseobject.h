@@ -51,7 +51,7 @@ public slots:
 signals:
   void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
                         const QDateTime &dtReply);
-  void feedUpdated(int feedId, const bool &changed, int newCount);
+  void feedUpdated(const QString &feedUrl, const bool &changed, int newCount);
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:

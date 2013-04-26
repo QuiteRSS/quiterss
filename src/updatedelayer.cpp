@@ -42,16 +42,16 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
  * @param feedId Id-ленты
  * @param feedChanged Флаг того, что ленты действительно изменялась
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCount)
+void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged, int newCount)
 {
-  if (feedId == 0) {
-    emit signalUpdateNeeded(feedId, feedChanged, newCount);
+  if (!feedChanged) {
+    emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
     return;
   }
 
-  int feedIdIndex = feedIdList_.indexOf(feedId);
+  int feedIdIndex = feedUrlList_.indexOf(feedUrl);
   // Если лента уже есть в списке
-  if ((-1 < feedIdIndex) && feedId) {
+  if (-1 < feedIdIndex) {
     // Если лента изменялясь, то устанавливаем этот флаг принудительно
     if (feedChanged) {
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
@@ -60,14 +60,14 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
   }
   // иначе добавляем ленту
   else {
-    feedIdList_.append(feedId);
+    feedUrlList_.append(feedUrl);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
   }
 
   // Запуск таймера, если добавили первую ленту в список
   // Своеобразная защита от запуска во время обработки таймаута
-  if ((feedIdList_.size() == 1) && nextUpdateFeed_) {
+  if ((feedUrlList_.size() == 1) && nextUpdateFeed_) {
     nextUpdateFeed_ = false;
     delayTimer_->start(0);
 
@@ -88,10 +88,10 @@ void UpdateDelayer::delayUpdate(int feedId, const bool &feedChanged, int newCoun
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotDelayTimerTimeout()
 {
-  int feedId = feedIdList_.takeFirst();
+  QString feedUrl = feedUrlList_.takeFirst();
   bool feedChanged = feedChangedList_.takeFirst();
   int newCount = newCountList_.takeFirst();
-  emit signalUpdateNeeded(feedId, feedChanged, newCount);
+  emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
 }
 
 /** @brief Запуск таймера при наличии в очереди лент
@@ -99,7 +99,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
 void UpdateDelayer::slotNextUpdateFeed()
 {
   qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
-  if (feedIdList_.size()) {
+  if (feedUrlList_.size()) {
     delayTimer_->start(delayValue_);
 
     if (!updateModelTimer_->isActive())

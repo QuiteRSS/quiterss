@@ -39,8 +39,8 @@ ParseThread::~ParseThread()
   parseObject_ = new ParseObject(dataDirPath_);
   connect(parent(), SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
           parseObject_, SLOT(parseXml(QByteArray,QString,QDateTime)));
-  connect(parseObject_, SIGNAL(feedUpdated(int, bool, int)),
-          parent(), SLOT(slotUpdateFeed(int, bool, int)));
+  connect(parseObject_, SIGNAL(feedUpdated(QString, bool, int)),
+          parent(), SLOT(slotUpdateFeed(QString, bool, int)));
 
   qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
   connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),

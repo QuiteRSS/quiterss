@@ -538,16 +538,17 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(int feedId, const bool &, int newCount)
+void AddFeedWizard::slotUpdateFeed(const QString &feedUrl, const bool &, int newCount)
 {
-  qDebug() << "ParseDone" << feedId;
+  qDebug() << "ParseDone" << feedUrl;
   selectedPage = true;
   newCount_ = newCount;
 
   if (titleFeedAsName_->isChecked()) {
     QSqlQuery q;
-    q.exec(QString("SELECT title FROM feeds WHERE id=='%1'").
-           arg(feedId));
+    q.prepare("SELECT title FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+    q.bindValue(":xmlUrl", feedUrl);
+    q.exec();
     if (q.next()) nameFeedEdit_->setText(q.value(0).toString());
     nameFeedEdit_->selectAll();
     nameFeedEdit_->setFocus();

@@ -213,8 +213,8 @@ public slots:
   void myEmptyWorkingSet();
   void getUrlDone(const int &result, const QString &feedUrlStr,
                   const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(int feedId, const bool &changed, int newCount);
-  void slotUpdateFeedDelayed(int feedId, const bool &changed, int newCount);
+  void slotUpdateFeed(const QString &feedUrl, const bool &changed, int newCount);
+  void slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed, int newCount);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
@@ -257,7 +257,8 @@ private slots:
   void showContextMenuFeed(const QPoint & pos);
   void slotFeedsFilter();
   void slotNewsFilter();
-  void slotTimerUpdateFeeds();
+  void slotUpdateFeedsTimer();
+  bool addFeedInQueue(const QString &feedUrl);
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
@@ -546,11 +547,13 @@ private:
   QPushButton *pushButtonNull_;
 
   QTimer *updateFeedsTimer_;
-  bool autoUpdatefeedsStartUp_;
-  bool autoUpdatefeeds_;
-  int  autoUpdatefeedsTime_;
-  int  autoUpdatefeedsInterval_;
-  bool updateFeedsStart_;
+  int updateTimeSec_;
+  int updateTimeCount_;
+  bool autoUpdateFeedsStartUp_;
+  bool autoUpdateFeeds_;
+  int  autoUpdateFeedsTime_;
+  int  autoUpdateFeedsInterval_;
+  QList<QString> feedUrlList_;
 
   QTranslator *translator_;
   QString langFileName_;

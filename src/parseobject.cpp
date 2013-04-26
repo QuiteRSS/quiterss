@@ -121,7 +121,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   // идентификатор не найден (например, во время запроса удалили ленту)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(feedUrl);
-    emit feedUpdated(parseFeedId, false, 0);
+    emit feedUpdated(feedUrl, false, 0);
     return;
   }
 
@@ -563,7 +563,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     newCount = recountFeedCounts(parseFeedId, feedUrl, updated);
   }
 
-  emit feedUpdated(parseFeedId, feedChanged, newCount);
+  emit feedUpdated(feedUrl, feedChanged, newCount);
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
