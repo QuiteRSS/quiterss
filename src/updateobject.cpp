@@ -169,12 +169,17 @@ void UpdateObject::finished(QNetworkReply *reply)
     bool headOk = currentHead_.takeAt(currentReplyIndex);
 
     if (reply->error() != QNetworkReply::NoError) {
-      qDebug() << "  error retrieving RSS feed:" << reply->error();
+      qDebug() << "  error retrieving RSS feed:" << reply->error() << reply->errorString();
       if (!headOk) {
         if (reply->error() == QNetworkReply::AuthenticationRequiredError)
           emit getUrlDone(-2, feedUrl);
-        else
-          emit getUrlDone(-1, feedUrl);
+        else {
+          if (count < 2) {
+            emit signalGet(replyUrl, feedUrl, feedDate, count);
+          } else {
+            emit getUrlDone(-1, feedUrl);
+          }
+        }
       } else {
         emit signalGet(replyUrl, feedUrl, feedDate);
       }
