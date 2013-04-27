@@ -173,6 +173,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
       tagsStack.push(currentTag);
       currentTag = xml.name().toString();
 
+      if ((currentTag == "title") || (currentTag == "description"))
+        currentTag = xml.qualifiedName().toString();
+
       if (currentTag == "rss")
         qDebug() << "Feed type: RSS";
       if (currentTag == "feed") {
@@ -493,7 +496,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             (tagsStack.top() == "item") ||
             (tagsStack.top() == "feed") ||     // Atom
             (tagsStack.top() == "entry"))
-          titleString += xml.text().toString();
+          titleString = xml.text().toString();
         //        if (tagsStack.top() == "image")
         //          imageTitleString += xml.text().toString();
       }
@@ -513,7 +516,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
       else if (currentTag == "description") {
         if ((tagsStack.top() == "channel") ||
             (tagsStack.top() == "item"))
-          rssDescriptionString += xml.text().toString();
+          rssDescriptionString = xml.text().toString();
       }
       else if (currentTag == "comments")
         commentsString += xml.text().toString();
