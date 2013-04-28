@@ -16,6 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "updatethread.h"
+#include "rsslisting.h"
 
 #include <QDebug>
 
@@ -37,6 +38,13 @@ UpdateThread::~UpdateThread()
 /*virtual*/ void UpdateThread::run()
 {
   updateObject_ = new UpdateObject(requestTimeout_);
+
+  QObject *parent_ = parent();
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
+  RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
+  updateObject_->networkManager_->setCookieJar(rssl->cookieJar_);
 
   connect(parent(), SIGNAL(signalRequestUrl(QString,QDateTime,QString)),
           updateObject_, SLOT(requestUrl(QString,QDateTime,QString)));
