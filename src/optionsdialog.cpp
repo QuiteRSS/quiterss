@@ -591,26 +591,26 @@ void OptionsDialog::createFeedsWidget()
 //! tab "General"
   updateFeedsStartUp_ = new QCheckBox(
         tr("Automatically update the feeds on startup"));
-  updateFeeds_ = new QCheckBox(tr("Automatically update the feeds every"));
-  updateFeedsTime_ = new QSpinBox();
-  updateFeedsTime_->setEnabled(false);
-  updateFeedsTime_->setRange(1, 9999);
-  connect(updateFeeds_, SIGNAL(toggled(bool)),
-          updateFeedsTime_, SLOT(setEnabled(bool)));
+  updateFeedsEnable_ = new QCheckBox(tr("Automatically update the feeds every"));
+  updateFeedsInterval_ = new QSpinBox();
+  updateFeedsInterval_->setEnabled(false);
+  updateFeedsInterval_->setRange(1, 9999);
+  connect(updateFeedsEnable_, SIGNAL(toggled(bool)),
+          updateFeedsInterval_, SLOT(setEnabled(bool)));
 
-  intervalTime_ = new QComboBox(this);
-  intervalTime_->setEnabled(false);
+  updateIntervalType_ = new QComboBox(this);
+  updateIntervalType_->setEnabled(false);
   QStringList intervalList;
   intervalList << tr("seconds") << tr("minutes")  << tr("hours");
-  intervalTime_->addItems(intervalList);
-  connect(updateFeeds_, SIGNAL(toggled(bool)),
-          intervalTime_, SLOT(setEnabled(bool)));
+  updateIntervalType_->addItems(intervalList);
+  connect(updateFeedsEnable_, SIGNAL(toggled(bool)),
+          updateIntervalType_, SLOT(setEnabled(bool)));
 
   QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
   updateFeedsLayout->setMargin(0);
-  updateFeedsLayout->addWidget(updateFeeds_);
-  updateFeedsLayout->addWidget(updateFeedsTime_);
-  updateFeedsLayout->addWidget(intervalTime_);
+  updateFeedsLayout->addWidget(updateFeedsEnable_);
+  updateFeedsLayout->addWidget(updateFeedsInterval_);
+  updateFeedsLayout->addWidget(updateIntervalType_);
   updateFeedsLayout->addStretch();
 
   positionLastNews_ = new QRadioButton(tr("Position on last opened news"));

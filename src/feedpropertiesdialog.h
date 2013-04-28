@@ -23,15 +23,15 @@
 
 //! Feed properties structure
 typedef struct {
-
   //! General properties
   struct general{
     QString text; //!< Имя
     QString title; //!< Имя
     QString url; //!< URL
     QString homepage; //!< Домашняя страница
-    quint32 updateInterval; //!< Интервал обновления
-    quint32 intervalParameter; //!< Единицы измерения интервала
+    bool updateEnable; //!< Включение автообновления
+    int updateInterval; //!< Интервал обновления
+    int intervalType; //!< Тип итервала обновления
     bool updateOnStartup; //!< Обновлять при запуске приложения
     int displayOnStartup; //!< Отображать при запуске приложения
     bool starred; //!< Избранная лента
@@ -124,6 +124,9 @@ private:
   LineEdit *editURL; //!< Feed URL
   LineEdit *editTitle; //!< Feed title
   QLabel *labelHomepage; //!< Link to feed's homepage
+  QCheckBox *updateEnable_;
+  QSpinBox *updateInterval_;
+  QComboBox *updateIntervalType_;
   QCheckBox *displayOnStartup;
   QCheckBox *showDescriptionNews_;
   QCheckBox *starredOn_;

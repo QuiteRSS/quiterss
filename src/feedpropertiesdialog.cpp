@@ -61,6 +61,28 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralTitle->addWidget(btnLoadTitle);
   editURL = new LineEdit();
 
+  updateEnable_ = new QCheckBox(tr("Automatically update the feeds every"));
+  updateInterval_ = new QSpinBox();
+  updateInterval_->setEnabled(false);
+  updateInterval_->setRange(1, 9999);
+  connect(updateEnable_, SIGNAL(toggled(bool)),
+          updateInterval_, SLOT(setEnabled(bool)));
+
+  updateIntervalType_ = new QComboBox(this);
+  updateIntervalType_->setEnabled(false);
+  QStringList intervalTypeList;
+  intervalTypeList << tr("seconds") << tr("minutes")  << tr("hours");
+  updateIntervalType_->addItems(intervalTypeList);
+  connect(updateEnable_, SIGNAL(toggled(bool)),
+          updateIntervalType_, SLOT(setEnabled(bool)));
+
+  QHBoxLayout *updateFeedsLayout = new QHBoxLayout();
+  updateFeedsLayout->setMargin(0);
+  updateFeedsLayout->addWidget(updateEnable_);
+  updateFeedsLayout->addWidget(updateInterval_);
+  updateFeedsLayout->addWidget(updateIntervalType_);
+  updateFeedsLayout->addStretch();
+
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
   displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
@@ -81,6 +103,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addLayout(layoutGeneralGrid);
   layoutGeneralMain->addLayout(layoutGeneralHomepage);
   layoutGeneralMain->addSpacing(15);
+  layoutGeneralMain->addLayout(updateFeedsLayout);
   layoutGeneralMain->addWidget(starredOn_);
   layoutGeneralMain->addWidget(loadImagesOn);
   layoutGeneralMain->addWidget(displayOnStartup);
@@ -176,6 +199,11 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   editURL->selectAll();
   editURL->setFocus();
   labelHomepage->setText(QString("<a href='%1'>%1</a>").arg(feedProperties.general.homepage));
+
+  updateEnable_->setChecked(feedProperties.general.updateEnable);
+  updateInterval_->setValue(feedProperties.general.updateInterval);
+  updateIntervalType_->setCurrentIndex(feedProperties.general.intervalType + 1);
+
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
   loadImagesOn->setChecked(feedProperties.display.displayEmbeddedImages);
@@ -211,6 +239,11 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 {
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
+
+  feedProperties.general.updateEnable = updateEnable_->isChecked();
+  feedProperties.general.updateInterval = updateInterval_->value();
+  feedProperties.general.intervalType = updateIntervalType_->currentIndex() - 1;
+
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
   feedProperties.display.displayEmbeddedImages = loadImagesOn->isChecked();

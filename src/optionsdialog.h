@@ -85,9 +85,9 @@ public:
   void setOpeningFeed(int action);
   int getOpeningFeed();
   QCheckBox *updateFeedsStartUp_;
-  QCheckBox *updateFeeds_;
-  QSpinBox *updateFeedsTime_;
-  QComboBox *intervalTime_;
+  QCheckBox *updateFeedsEnable_;
+  QSpinBox *updateFeedsInterval_;
+  QComboBox *updateIntervalType_;
 
   QRadioButton *positionLastNews_;
   QRadioButton *positionFirstNews_;

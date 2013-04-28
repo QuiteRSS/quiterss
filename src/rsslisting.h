@@ -400,6 +400,7 @@ private:
   void cleanUp();
   QString getUserInfo(QUrl url, int auth);
   QUrl userStyleSheet(const QString &filePath) const;
+  void initUpdateFeeds();
 
   int addTab(NewsTabWidget *widget);
 
@@ -547,13 +548,15 @@ private:
   QPushButton *pushButtonNull_;
 
   QTimer *updateFeedsTimer_;
-  int updateTimeSec_;
+  int updateIntervalSec_;
   int updateTimeCount_;
-  bool autoUpdateFeedsStartUp_;
-  bool autoUpdateFeeds_;
-  int  autoUpdateFeedsTime_;
-  int  autoUpdateFeedsInterval_;
+  bool updateFeedsStartUp_;
+  bool updateFeedsEnable_;
+  int  updateFeedsInterval_;
+  int  updateFeedsIntervalType_;
   QList<QString> feedUrlList_;
+  QMap<int,int> updateFeedsIntervalSec_;
+  QMap<int,int> updateFeedsTimeCount_;
 
   QTranslator *translator_;
   QString langFileName_;

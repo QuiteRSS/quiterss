@@ -64,14 +64,24 @@ void RSSListing::receiveMessage(const QString& message)
 
 /*!****************************************************************************/
 RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget *parent)
-  : QMainWindow(parent),
-    settings_(settings),
-    dataDirPath_(dataDirPath)
+  : QMainWindow(parent)
+  , settings_(settings)
+  , dataDirPath_(dataDirPath)
+  , currentNewsTab(NULL)
+  , openingLink_(false)
+  , diskCache_(NULL)
+  , openNewsTab_(0)
+  , closeApp_(false)
+  , newsView_(NULL)
+  , updateTimeCount_(0)
+  , updateFeedsCount_(0)
+  , notificationWidget(NULL)
+  , feedIdOld_(-2)
+  , importFeedStart_(false)
+  , indexClickedTab(-1)
 {
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
-
-  closeApp_ = false;
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   appDataDirPath_ = QCoreApplication::applicationDirPath();
@@ -109,7 +119,6 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
   cookieJar_ = new CookieJar(dataDirPath_, this);
   networkManager_->setCookieJar(cookieJar_);
 
-  diskCache_ = NULL;
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
   if (useDiskCache) {
     diskCache_ = new QNetworkDiskCache(this);
@@ -130,14 +139,6 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
   faviconThread_ = new FaviconThread(this);
 
   cleanUp();
-
-  currentNewsTab = NULL;
-  newsView_ = NULL;
-  notificationWidget = NULL;
-  feedIdOld_ = -2;
-  openingLink_ = false;
-  openNewsTab_ = 0;
-  indexClickedTab = -1;
 
   createFeedsWidget();
   createToolBarNull();
@@ -226,22 +227,7 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
 
   readSettings();
 
-  importFeedStart_ = false;
-  updateFeedsCount_ = 0;
-  updateTimeCount_ = 0;
-  if (autoUpdateFeedsStartUp_) slotGetAllFeeds();
-
-  int updateTime = autoUpdateFeedsTime_;
-  if (autoUpdateFeedsInterval_ == 0)
-    updateTime = updateTime*60;
-  else if (autoUpdateFeedsInterval_ == 1)
-    updateTime = updateTime*60*60;
-  updateTimeSec_ = updateTime;
-
-  updateFeedsTimer_ = new QTimer(this);
-  connect(updateFeedsTimer_, SIGNAL(timeout()),
-          this, SLOT(slotUpdateFeedsTimer()));
-  updateFeedsTimer_->start(1000);
+  initUpdateFeeds();
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
@@ -1885,10 +1871,10 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setFontSize(
         QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
 
-  autoUpdateFeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
-  autoUpdateFeeds_ = settings_->value("autoUpdatefeeds", false).toBool();
-  autoUpdateFeedsTime_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
-  autoUpdateFeedsInterval_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
+  updateFeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
+  updateFeedsEnable_ = settings_->value("autoUpdatefeeds", false).toBool();
+  updateFeedsInterval_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
+  updateFeedsIntervalType_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
 
   openingFeedAction_ = settings_->value("openingFeedAction", 0).toInt();
   openNewsWebViewOn_ = settings_->value("openNewsWebViewOn", true).toBool();
@@ -2132,10 +2118,10 @@ void RSSListing::writeSettings()
   settings_->setValue("/browserMinFontSize", browserMinFontSize_);
   settings_->setValue("/browserMinLogFontSize", browserMinLogFontSize_);
 
-  settings_->setValue("autoUpdatefeedsStartUp", autoUpdateFeedsStartUp_);
-  settings_->setValue("autoUpdatefeeds", autoUpdateFeeds_);
-  settings_->setValue("autoUpdatefeedsTime", autoUpdateFeedsTime_);
-  settings_->setValue("autoUpdatefeedsInterval", autoUpdateFeedsInterval_);
+  settings_->setValue("autoUpdatefeedsStartUp", updateFeedsStartUp_);
+  settings_->setValue("autoUpdatefeeds", updateFeedsEnable_);
+  settings_->setValue("autoUpdatefeedsTime", updateFeedsInterval_);
+  settings_->setValue("autoUpdatefeedsInterval", updateFeedsIntervalType_);
 
   settings_->setValue("openingFeedAction", openingFeedAction_);
   settings_->setValue("openNewsWebViewOn", openNewsWebViewOn_);
@@ -3399,10 +3385,10 @@ void RSSListing::showOptionDlg()
   int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
   optionsDialog->maxDiskCache_->setValue(maxDiskCache);
 
-  optionsDialog->updateFeedsStartUp_->setChecked(autoUpdateFeedsStartUp_);
-  optionsDialog->updateFeeds_->setChecked(autoUpdateFeeds_);
-  optionsDialog->intervalTime_->setCurrentIndex(autoUpdateFeedsInterval_+1);
-  optionsDialog->updateFeedsTime_->setValue(autoUpdateFeedsTime_);
+  optionsDialog->updateFeedsStartUp_->setChecked(updateFeedsStartUp_);
+  optionsDialog->updateFeedsEnable_->setChecked(updateFeedsEnable_);
+  optionsDialog->updateIntervalType_->setCurrentIndex(updateFeedsIntervalType_+1);
+  optionsDialog->updateFeedsInterval_->setValue(updateFeedsInterval_);
 
   optionsDialog->setOpeningFeed(openingFeedAction_);
   optionsDialog->openNewsWebViewOn_->setChecked(openNewsWebViewOn_);
@@ -3642,17 +3628,17 @@ void RSSListing::showOptionDlg()
     }
   }
 
-  autoUpdateFeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
-  autoUpdateFeeds_ = optionsDialog->updateFeeds_->isChecked();
-  autoUpdateFeedsTime_ = optionsDialog->updateFeedsTime_->value();
-  autoUpdateFeedsInterval_ = optionsDialog->intervalTime_->currentIndex()-1;
+  updateFeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
+  updateFeedsEnable_ = optionsDialog->updateFeedsEnable_->isChecked();
+  updateFeedsInterval_ = optionsDialog->updateFeedsInterval_->value();
+  updateFeedsIntervalType_ = optionsDialog->updateIntervalType_->currentIndex()-1;
 
-  int updateTime = autoUpdateFeedsTime_;
-  if (autoUpdateFeedsInterval_ == 0)
-    updateTime = updateTime*60;
-  else if (autoUpdateFeedsInterval_ == 1)
-    updateTime = updateTime*60*60;
-  updateTimeSec_ = updateTime;
+  int updateInterval = updateFeedsInterval_;
+  if (updateFeedsIntervalType_ == 0)
+    updateInterval = updateInterval*60;
+  else if (updateFeedsIntervalType_ == 1)
+    updateInterval = updateInterval*60*60;
+  updateIntervalSec_ = updateInterval;
 
   openingFeedAction_ = optionsDialog->getOpeningFeed();
   openNewsWebViewOn_ = optionsDialog->openNewsWebViewOn_->isChecked();
@@ -4444,16 +4430,86 @@ void RSSListing::slotNewsFilter()
   }
 }
 
+void RSSListing::initUpdateFeeds()
+{
+  QSqlQuery q;
+  q.exec("SELECT id, updateInterval, updateIntervalType FROM feeds WHERE xmlUrl != '' AND updateIntervalEnable == 1");
+  while (q.next()) {
+    int updateInterval = q.value(1).toInt();
+    int updateIntervalType = q.value(2).toInt();
+    if (updateIntervalType == 0)
+      updateInterval = updateInterval*60;
+    else if (updateIntervalType == 1)
+      updateInterval = updateInterval*60*60;
+
+    updateFeedsIntervalSec_.insert(q.value(0).toInt(), updateInterval);
+    updateFeedsTimeCount_.insert(q.value(0).toInt(), 0);
+  }
+
+  int updateInterval = updateFeedsInterval_;
+  if (updateFeedsIntervalType_ == 0)
+    updateInterval = updateInterval*60;
+  else if (updateFeedsIntervalType_ == 1)
+    updateInterval = updateInterval*60*60;
+  updateIntervalSec_ = updateInterval;
+
+  updateFeedsTimer_ = new QTimer(this);
+  connect(updateFeedsTimer_, SIGNAL(timeout()),
+          this, SLOT(slotUpdateFeedsTimer()));
+  updateFeedsTimer_->start(1000);
+
+  if (updateFeedsStartUp_) slotGetAllFeeds();
+}
+
 void RSSListing::slotUpdateFeedsTimer()
 {
-  if (autoUpdateFeeds_) {
+  if (updateFeedsEnable_) {
     updateTimeCount_++;
-    if (updateTimeCount_ >= updateTimeSec_) {
+    if (updateTimeCount_ >= updateIntervalSec_) {
       updateTimeCount_ = 0;
-      slotGetAllFeeds();
+
+      QSqlQuery q;
+      q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!='' AND updateIntervalEnable IS NULL");
+      while (q.next()) {
+        if (addFeedInQueue(q.value(0).toString())) {
+          updateFeedsCount_ = updateFeedsCount_ + 2;
+          QString userInfo = getUserInfo(q.value(0).toString(),
+                                         q.value(2).toInt());
+          emit signalRequestUrl(q.value(0).toString(),
+                                q.value(1).toDateTime(),
+                                userInfo);
+        }
+      }
+      showProgressBar(updateFeedsCount_);
     }
   } else {
     updateTimeCount_ = 0;
+  }
+
+  QMapIterator<int, int> iterator(updateFeedsTimeCount_);
+  while (iterator.hasNext()) {
+    iterator.next();
+    int feedId = iterator.key();
+    updateFeedsTimeCount_[feedId]++;
+    if (updateFeedsTimeCount_[feedId] >= updateFeedsIntervalSec_[feedId]) {
+      updateFeedsTimeCount_[feedId] = 0;
+
+      QSqlQuery q;
+      q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
+             .arg(feedId));
+      if (q.next()) {
+        if (addFeedInQueue(q.value(0).toString())) {
+          qCritical() << feedId << q.value(0).toString();
+          updateFeedsCount_ = updateFeedsCount_ + 2;
+          QString userInfo = getUserInfo(q.value(0).toString(),
+                                         q.value(2).toInt());
+          emit signalRequestUrl(q.value(0).toString(),
+                                q.value(1).toDateTime(),
+                                userInfo);
+        }
+      }
+      showProgressBar(updateFeedsCount_);
+    }
   }
 }
 
@@ -4888,6 +4944,19 @@ void RSSListing::showFeedPropertiesDlg()
     properties.display.displayNews =
         feedsTreeModel_->dataField(index, "displayNews").toInt();
 
+  if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull()) {
+    properties.general.updateEnable = updateFeedsEnable_;
+    properties.general.updateInterval = updateFeedsInterval_;
+    properties.general.intervalType = updateFeedsIntervalType_;
+  } else {
+    properties.general.updateEnable =
+        feedsTreeModel_->dataField(index, "updateIntervalEnable").toBool();
+    properties.general.updateInterval =
+        feedsTreeModel_->dataField(index, "updateInterval").toInt();
+    properties.general.intervalType =
+        feedsTreeModel_->dataField(index, "updateIntervalType").toInt();
+  }
+
   if (feedsTreeModel_->dataField(index, "label").toString().contains("starred"))
     properties.general.starred = true;
   else
@@ -4997,6 +5066,82 @@ void RSSListing::showFeedPropertiesDlg()
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
   feedsTreeModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
+
+  if (!properties.general.updateEnable ||
+      (properties.general.updateEnable != updateFeedsEnable_) ||
+      (properties.general.updateInterval != updateFeedsInterval_) ||
+      (properties.general.intervalType != updateFeedsIntervalType_)) {
+    q.prepare("UPDATE feeds SET updateIntervalEnable = ?, updateInterval = ?, "
+              "updateIntervalType = ? WHERE id == ?");
+    q.addBindValue(properties.general.updateEnable ? 1 : 0);
+    q.addBindValue(properties.general.updateInterval);
+    q.addBindValue(properties.general.intervalType);
+    q.addBindValue(feedId);
+    q.exec();
+
+    QPersistentModelIndex indexUpdateEnable   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalEnable"));
+    QPersistentModelIndex indexUpdateInterval = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateInterval"));
+    QPersistentModelIndex indexIntervalType   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalType"));
+    feedsTreeModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
+    feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
+    feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
+
+    int updateInterval = properties.general.updateInterval;
+    int updateIntervalType = properties.general.intervalType;
+    if (updateIntervalType == 0)
+      updateInterval = updateInterval*60;
+    else if (updateIntervalType == 1)
+      updateInterval = updateInterval*60*60;
+
+    if (!isFeed) {
+      QQueue<int> parentIds;
+      parentIds.enqueue(feedId);
+      while (!parentIds.empty()) {
+        int parentId = parentIds.dequeue();
+        q.exec(QString("SELECT id, parentId, xmlUrl FROM feeds WHERE parentId='%1'").
+               arg(parentId));
+        while (q.next()) {
+          int id = q.value(0).toInt();
+          int parentId = q.value(1).toInt();
+          if (!q.value(2).toString().isEmpty()) {
+            QSqlQuery q1;
+            q1.prepare("UPDATE feeds SET updateIntervalEnable = ?, updateInterval = ?, "
+                      "updateIntervalType = ? WHERE id == ?");
+            q1.addBindValue(properties.general.updateEnable ? 1 : 0);
+            q1.addBindValue(properties.general.updateInterval);
+            q1.addBindValue(properties.general.intervalType);
+            q1.addBindValue(id);
+            q1.exec();
+
+            index = feedsTreeModel_->getIndexById(id, parentId);
+            indexUpdateEnable   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalEnable"));
+            indexUpdateInterval = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateInterval"));
+            indexIntervalType   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalType"));
+            feedsTreeModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
+            feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
+            feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
+
+            if (properties.general.updateEnable) {
+              updateFeedsIntervalSec_.insert(id, updateInterval);
+              updateFeedsTimeCount_.insert(id, 0);
+            } else {
+              updateFeedsIntervalSec_.remove(id);
+              updateFeedsTimeCount_.remove(id);
+            }
+          }
+          parentIds.enqueue(id);
+        }
+      }
+    } else {
+      if (properties.general.updateEnable) {
+        updateFeedsIntervalSec_.insert(feedId, updateInterval);
+        updateFeedsTimeCount_.insert(feedId, 0);
+      } else {
+        updateFeedsIntervalSec_.remove(feedId);
+        updateFeedsTimeCount_.remove(feedId);
+      }
+    }
+  }
 
   if (feedsTreeView_->currentIndex() == index) {
     QPixmap iconTab;
