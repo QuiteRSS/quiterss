@@ -1927,6 +1927,7 @@ void RSSListing::readSettings()
   QString soundNotifyPathStr = appDataDirPath_ + "/sound/notification.wav";
   soundNotifyPath_ = settings_->value("soundNotifyPath", soundNotifyPathStr).toString();
   showNotifyOn_ = settings_->value("showNotifyOn", true).toBool();
+  positionNotify_ = settings_->value("positionNotify", 3).toInt();
   countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
   widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
@@ -2164,6 +2165,7 @@ void RSSListing::writeSettings()
   settings_->setValue("soundNewNews", soundNewNews_);
   settings_->setValue("soundNotifyPath", soundNotifyPath_);
   settings_->setValue("showNotifyOn", showNotifyOn_);
+  settings_->setValue("positionNotify", positionNotify_);
   settings_->setValue("countShowNewsNotify", countShowNewsNotify_);
   settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
@@ -3434,6 +3436,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
   optionsDialog->editSoundNotifer_->setText(soundNotifyPath_);
   optionsDialog->showNotifyOn_->setChecked(showNotifyOn_);
+  optionsDialog->positionNotify_->setCurrentIndex(positionNotify_);
   optionsDialog->countShowNewsNotify_->setValue(countShowNewsNotify_);
   optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
   optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
@@ -3678,6 +3681,7 @@ void RSSListing::showOptionDlg()
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
   soundNotifyPath_ = optionsDialog->editSoundNotifer_->text();
   showNotifyOn_ = optionsDialog->showNotifyOn_->isChecked();
+  positionNotify_ = optionsDialog->positionNotify_->currentIndex();
   countShowNewsNotify_ = optionsDialog->countShowNewsNotify_->value();
   widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();

@@ -161,6 +161,7 @@ private:
 
   QTimer *showTimer_;
   int timeShowNews_;
+  int position_;
 
 };
 

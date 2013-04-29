@@ -22,6 +22,7 @@
 
 OptionsDialog::OptionsDialog(QWidget *parent)
   : Dialog(parent)
+  , notificationWidget_(NULL)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
@@ -852,12 +853,27 @@ void OptionsDialog::createNotifierWidget()
   showNotifyOn_->setCheckable(true);
   showNotifyOn_->setChecked(false);
 
+  positionNotify_ = new QComboBox();
+  QStringList positionList;
+  positionList << tr("Top Left") << tr("Top Right")
+               << tr("Bottom Left") << tr("Bottom Right");
+  positionNotify_->addItems(positionList);
+
   countShowNewsNotify_ = new QSpinBox();
   countShowNewsNotify_->setRange(1, 30);
   widthTitleNewsNotify_ = new QSpinBox();
   widthTitleNewsNotify_->setRange(50, 500);
   timeShowNewsNotify_ = new QSpinBox();
   timeShowNewsNotify_->setRange(1, 99);
+
+  QPushButton *showNotifer = new QPushButton(tr("Review"));
+  connect(showNotifer, SIGNAL(clicked()), this, SLOT(showNotification()));
+
+  QHBoxLayout *notifierLayout4 = new QHBoxLayout();
+  notifierLayout4->addWidget(new QLabel(tr("Position")));
+  notifierLayout4->addWidget(positionNotify_);
+  notifierLayout4->addStretch(1);
+  notifierLayout4->addWidget(showNotifer);
 
   QHBoxLayout *notifierLayout1 = new QHBoxLayout();
   notifierLayout1->addWidget(new QLabel(tr("Show maximum of")));
@@ -898,6 +914,7 @@ void OptionsDialog::createNotifierWidget()
           this, SLOT(feedsTreeNotifyItemChanged(QTreeWidgetItem*,int)));
 
   QVBoxLayout *notificationLayout = new QVBoxLayout();
+  notificationLayout->addLayout(notifierLayout4);
   notificationLayout->addLayout(notifierLayout1);
   notificationLayout->addLayout(notifierLayout2);
   notificationLayout->addLayout(notifierLayout3);
@@ -2093,6 +2110,27 @@ void OptionsDialog::applyNotifier()
     treeWidgetItem = feedsTreeNotify_->itemBelow(treeWidgetItem);
   }
   db_.commit();
+}
+
+//! Показать тестовое окно уведовления о входящих новостях
+void OptionsDialog::showNotification()
+{
+  if (notificationWidget_) delete notificationWidget_;
+  QList<int> idFeedList;
+  QList<int> cntNewNewsList;
+  notificationWidget_ = new NotificationWidget(idFeedList, cntNewNewsList, this);
+
+  connect(notificationWidget_, SIGNAL(signalDelete()),
+          this, SLOT(deleteNotification()));
+
+  notificationWidget_->show();
+}
+
+//! Удалить уведовление о входящих новостях
+void OptionsDialog::deleteNotification()
+{
+  notificationWidget_->deleteLater();
+  notificationWidget_ = NULL;
 }
 
 void OptionsDialog::slotDeletePass()

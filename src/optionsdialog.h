@@ -24,6 +24,7 @@
 
 #include "dialog.h"
 #include "lineedit.h"
+#include "notifications.h"
 
 #define STATIC_ICON_TRAY        0
 #define CHANGE_ICON_TRAY        1
@@ -134,6 +135,7 @@ public:
   QPushButton *selectionSoundNotifer_;
 
   QGroupBox *showNotifyOn_;
+  QComboBox *positionNotify_;
   QSpinBox *countShowNewsNotify_;
   QSpinBox *timeShowNewsNotify_;
   QSpinBox *widthTitleNewsNotify_;
@@ -181,6 +183,8 @@ private slots:
   void selectionSoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
   void setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state);
+  void showNotification();
+  void deleteNotification();
   void newLabel();
   void editLabel();
   void deleteLabel();
@@ -254,6 +258,7 @@ private:
   void loadNotifier();
   void applyNotifier();
   bool loadNotifierOk_;
+  NotificationWidget *notificationWidget_;
 
   // labels
   void createLabelsWidget();
