@@ -5103,24 +5103,25 @@ void RSSListing::showFeedPropertiesDlg()
         while (q.next()) {
           int id = q.value(0).toInt();
           int parentId = q.value(1).toInt();
+
+          QSqlQuery q1;
+          q1.prepare("UPDATE feeds SET updateIntervalEnable = ?, updateInterval = ?, "
+                     "updateIntervalType = ? WHERE id == ?");
+          q1.addBindValue(properties.general.updateEnable ? 1 : 0);
+          q1.addBindValue(properties.general.updateInterval);
+          q1.addBindValue(properties.general.intervalType);
+          q1.addBindValue(id);
+          q1.exec();
+
+          index = feedsTreeModel_->getIndexById(id, parentId);
+          indexUpdateEnable   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalEnable"));
+          indexUpdateInterval = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateInterval"));
+          indexIntervalType   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalType"));
+          feedsTreeModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
+          feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
+          feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
+
           if (!q.value(2).toString().isEmpty()) {
-            QSqlQuery q1;
-            q1.prepare("UPDATE feeds SET updateIntervalEnable = ?, updateInterval = ?, "
-                      "updateIntervalType = ? WHERE id == ?");
-            q1.addBindValue(properties.general.updateEnable ? 1 : 0);
-            q1.addBindValue(properties.general.updateInterval);
-            q1.addBindValue(properties.general.intervalType);
-            q1.addBindValue(id);
-            q1.exec();
-
-            index = feedsTreeModel_->getIndexById(id, parentId);
-            indexUpdateEnable   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalEnable"));
-            indexUpdateInterval = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateInterval"));
-            indexIntervalType   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalType"));
-            feedsTreeModel_->setData(indexUpdateEnable, properties.general.updateEnable ? 1 : 0);
-            feedsTreeModel_->setData(indexUpdateInterval, properties.general.updateInterval);
-            feedsTreeModel_->setData(indexIntervalType, properties.general.intervalType);
-
             if (properties.general.updateEnable) {
               updateFeedsIntervalSec_.insert(id, updateInterval);
               updateFeedsTimeCount_.insert(id, 0);
