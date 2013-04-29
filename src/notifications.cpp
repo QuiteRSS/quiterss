@@ -35,9 +35,6 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   iconTitle_ = new QLabel(this);
   iconTitle_->setPixmap(QPixmap(":/images/quiterss16"));
   textTitle_ = new QLabel(this);
-  QFont fontTitle = textTitle_->font();
-  fontTitle.setBold(true);
-  textTitle_->setFont(fontTitle);
 
   closeButton_ = new QToolButton(this);
   closeButton_->setStyleSheet(
@@ -170,6 +167,10 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
       newsItem->titleNews_->setFont(QFont(rssl_->notificationFontFamily_,
                                           rssl_->notificationFontSize_));
+
+      QFont font = newsItem->titleNews_->font();
+      font.setBold(true);
+      newsItem->titleNews_->setFont(font);
       QString titleStr = newsItem->titleNews_->fontMetrics().elidedText(
             q.value(1).toString(), Qt::ElideRight, newsItem->titleNews_->sizeHint().width());
       newsItem->titleNews_->setText(titleStr);
