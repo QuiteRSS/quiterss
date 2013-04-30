@@ -144,7 +144,7 @@ int main(int argc, char **argv)
   if (showSplashScreen_)
     splashScreen->loadModules();
 
-  rsslisting.restoreFeedsOnStartUp();
+  rsslisting.expandNodes();
 
   if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
@@ -156,6 +156,8 @@ int main(int argc, char **argv)
 
   if (showSplashScreen_)
     splashScreen->finish(&rsslisting);
+
+  rsslisting.restoreFeedsOnStartUp();
 
   if (message.contains("feed://", Qt::CaseInsensitive))
     rsslisting.receiveMessage(message);

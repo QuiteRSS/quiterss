@@ -4332,9 +4332,6 @@ void RSSListing::loadSettingsFeeds()
 void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
-
-  expandNodes();
-
   //* Восстановление текущей ленты
   QModelIndex feedIndex;
   if (reopenFeedStartup_) {
@@ -4353,6 +4350,8 @@ void RSSListing::restoreFeedsOnStartUp()
   while(q.next()) {
     creatFeedTab(q.value(0).toInt(), q.value(1).toInt());
   }
+
+  if (updateFeedsStartUp_) slotGetAllFeeds();
 }
 
 /** @brief Разворачивание узлов, имеющих флаг развернутости в базе
@@ -4461,8 +4460,6 @@ void RSSListing::initUpdateFeeds()
   connect(updateFeedsTimer_, SIGNAL(timeout()),
           this, SLOT(slotUpdateFeedsTimer()));
   updateFeedsTimer_->start(1000);
-
-  if (updateFeedsStartUp_) slotGetAllFeeds();
 }
 
 void RSSListing::slotUpdateFeedsTimer()
@@ -4503,7 +4500,6 @@ void RSSListing::slotUpdateFeedsTimer()
              .arg(feedId));
       if (q.next()) {
         if (addFeedInQueue(q.value(0).toString())) {
-          qCritical() << feedId << q.value(0).toString();
           updateFeedsCount_ = updateFeedsCount_ + 2;
           QString userInfo = getUserInfo(q.value(0).toString(),
                                          q.value(2).toInt());
