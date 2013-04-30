@@ -701,8 +701,8 @@ void OptionsDialog::createFeedsWidget()
 
   changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
-  notDeleteStarred_ = new QCheckBox(tr("Don't delete starred news"));
-  notDeleteLabeled_ = new QCheckBox(tr("Don't delete labeled news"));
+  notDeleteStarred_ = new QCheckBox(tr("labeled news"));
+  notDeleteLabeled_ = new QCheckBox(tr("starred news"));
 
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
@@ -716,6 +716,11 @@ void OptionsDialog::createFeedsWidget()
   readingFeedsLayout2->addWidget(markPrevNewsRead_);
   markNewsReadOn_->setLayout(readingFeedsLayout2);
 
+  QGridLayout *readingFeedsLayout3 = new QGridLayout();
+  readingFeedsLayout3->setContentsMargins(15, 0, 0, 10);
+  readingFeedsLayout3->addWidget(notDeleteStarred_, 0, 0, 1, 1);
+  readingFeedsLayout3->addWidget(notDeleteLabeled_, 1, 0, 1, 1);
+
   QVBoxLayout *readingFeedsLayout = new QVBoxLayout();
   readingFeedsLayout->addWidget(markNewsReadOn_);
   readingFeedsLayout->addWidget(markReadSwitchingFeed_);
@@ -724,8 +729,8 @@ void OptionsDialog::createFeedsWidget()
   readingFeedsLayout->addSpacing(10);
   readingFeedsLayout->addWidget(showDescriptionNews_);
   readingFeedsLayout->addSpacing(10);
-  readingFeedsLayout->addWidget(notDeleteStarred_);
-  readingFeedsLayout->addWidget(notDeleteLabeled_);
+  readingFeedsLayout->addWidget(new QLabel(tr("Prevent accidental deletion of:")));
+  readingFeedsLayout->addLayout(readingFeedsLayout3);
   readingFeedsLayout->addWidget(changeBehaviorActionNUN_);
   readingFeedsLayout->addStretch();
 
