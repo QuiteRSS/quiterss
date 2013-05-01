@@ -6667,7 +6667,10 @@ void RSSListing::slotSavePageAs()
   if (fileInfo.suffix() == "txt") {
     file.write(currentNewsTab->webView_->page()->mainFrame()->toPlainText().toUtf8());
   } else {
-    file.write(currentNewsTab->webView_->page()->mainFrame()->toHtml().toUtf8());
+    QString html = currentNewsTab->webView_->page()->mainFrame()->toHtml();
+    QTextCodec *codec = QTextCodec::codecForHtml(html.toUtf8(),
+                                                 QTextCodec::codecForName("UTF-8"));
+    file.write(codec->fromUnicode(html));
   }
   file.close();
 }
