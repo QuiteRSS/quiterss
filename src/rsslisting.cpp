@@ -6653,7 +6653,7 @@ void RSSListing::slotSavePageAs()
   fileName = fileName.replace(QRegExp("[:\"]"), "_");
   fileName = QDir::toNativeSeparators(QDir::homePath() + "/" + fileName);
   fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
-                                          fileName.toLatin1(),
+                                          fileName,
                                           tr("HTML-Files (*.html)")+ ";;" +
                                           tr("Text files (*.txt)"));
   if (fileName.isNull()) return;
