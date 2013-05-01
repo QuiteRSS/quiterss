@@ -157,7 +157,7 @@ DISTFILES += \
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  PKGCONFIG += sqlite3
+  LIBS += -lsqlite3
 
   isEmpty(PREFIX) {
     PREFIX =   /usr
