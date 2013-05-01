@@ -6643,10 +6643,19 @@ void RSSListing::increaseNewsList()
  *----------------------------------------------------------------------------*/
 void RSSListing::slotSavePageAs()
 {
-  QString fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
-                                                  QDir::homePath(),
-                                                  tr("HTML-Files (*.html)")+ ";;" +
-                                                  tr("Text files (*.txt)"));
+  QString fileName = currentNewsTab->webView_->title();
+  if (fileName == "news_descriptions") {
+    int row = currentNewsTab->newsView_->currentIndex().row();
+    fileName = currentNewsTab->newsModel_->record(row).field("title").value().toString();
+  }
+
+  fileName = fileName.trimmed();
+  fileName = fileName.replace(QRegExp("[:\"]"), "_");
+  fileName = QDir::toNativeSeparators(QDir::homePath() + "/" + fileName);
+  fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
+                                          fileName.toLatin1(),
+                                          tr("HTML-Files (*.html)")+ ";;" +
+                                          tr("Text files (*.txt)"));
   if (fileName.isNull()) return;
 
   QFile file(fileName);
