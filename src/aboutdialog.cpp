@@ -18,10 +18,14 @@
 #include "aboutdialog.h"
 #include "VersionNo.h"
 
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
 #if QT_VERSION >= 0x040800
 #include <sqlite_qt48x/sqlite3.h>
 #else
 #include <sqlite_qt47x/sqlite3.h>
+#endif
+#else
+#include <sqlite3.h>
 #endif
 #include <qyursqltreeview.h>
 
