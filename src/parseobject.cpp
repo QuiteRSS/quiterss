@@ -315,7 +315,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
                     arg(qStr).arg(qStr1));
           q.bindValue(":link_href", linkString);
         } else {
-          q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
+          qStr.remove(" AND ");
+          q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND (%1%2)").arg(qStr).arg(qStr1));
         }
         q.bindValue(":id", parseFeedId);
         if (!rssPubDateString.isEmpty()) {    // поиск по pubDate
