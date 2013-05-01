@@ -115,6 +115,7 @@ OBJECTS_DIR = $${BUILD_DIR}/obj/
 MOC_DIR = $${BUILD_DIR}/moc/
 RCC_DIR = $${BUILD_DIR}/rcc/
 
+include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
@@ -122,7 +123,6 @@ os2|win32 {
   TARGET = QuiteRSS
 
   include(3rdparty/sqlite.pri)
-  include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 }
 
 win32 {
@@ -157,7 +157,6 @@ DISTFILES += \
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  CONFIG += qtsingleapplication
   PKGCONFIG += sqlite3
 
   isEmpty(PREFIX) {
