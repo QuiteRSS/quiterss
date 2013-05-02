@@ -132,6 +132,7 @@ public:
 
   QMenu *newsLabelMenu_;
   QMenu *shareMenu_;
+  QMenu *newsSortByMenu_;
 
   QString newsListFontFamily_;
   int newsListFontSize_;
@@ -367,6 +368,10 @@ private slots:
   void slotOpenHomeFeed();
   void sortedByTitleFeedsTree();
 
+  void showNewsMenu();
+  void showNewsSortByMenu();
+  void setNewsSortByColumn();
+
 private:
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
@@ -495,6 +500,8 @@ private:
   QActionGroup *browserPositionGroup_;
   QActionGroup *feedsFilterGroup_;
   QActionGroup *browserZoomGroup_;
+  QActionGroup *newsSortByColumnGroup_;
+  QActionGroup *newsSortOrderGroup_;
 
   QAction *feedsFilterAction_; //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра
   QAction *newsFilterAction_;  //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра

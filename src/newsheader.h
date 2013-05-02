@@ -32,6 +32,8 @@ public:
   void init(QWidget *rsslisting);
   void retranslateStrings();
 
+  QMenu *viewMenu_;
+
 protected:
   bool eventFilter(QObject *, QEvent *);
   virtual void mousePressEvent(QMouseEvent*);
@@ -48,7 +50,6 @@ private:
 
   QTreeView *view_;
   NewsModel *model_;
-  QMenu *viewMenu_;
   QActionGroup *columnVisibleActGroup_;
   QPushButton *buttonColumnView_;
   bool show_;

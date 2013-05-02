@@ -1097,6 +1097,24 @@ void RSSListing::createActions()
   filterNewsLastWeek_->setObjectName("filterNewsLastWeek_");
   filterNewsLastWeek_->setCheckable(true);
 
+  newsSortByColumnGroup_ = new QActionGroup(this);
+  newsSortByColumnGroup_->setExclusive(true);
+  connect(newsSortByColumnGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setNewsSortByColumn()));
+
+  newsSortOrderGroup_ = new QActionGroup(this);
+  newsSortOrderGroup_->setExclusive(true);
+  QStringList listAct;
+  listAct << "sortOrderAsc" << "sortOrderDesc";
+  foreach (QString actionStr, listAct) {
+    QAction *newsSortOrderAct = new QAction(this);
+    newsSortOrderAct->setObjectName(actionStr);
+    newsSortOrderAct->setCheckable(true);
+    newsSortOrderGroup_->addAction(newsSortOrderAct);
+  }
+  connect(newsSortOrderGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setNewsSortByColumn()));
+
   aboutAct_ = new QAction(this);
   aboutAct_->setObjectName("AboutAct_");
   connect(aboutAct_, SIGNAL(triggered()), this, SLOT(slotShowAboutDlg()));
@@ -1746,9 +1764,19 @@ void RSSListing::createMenu()
   newsFilterAction_ = NULL;
   connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
+  newsSortByMenu_ = new QMenu(this);
+  newsSortByMenu_->addSeparator();
+  newsSortByMenu_->addActions(newsSortOrderGroup_->actions());
+
+  newsMenu_->addMenu(newsSortByMenu_);
+  connect(newsSortByMenu_, SIGNAL(aboutToShow()),
+          this, SLOT(showNewsSortByMenu()));
+
   newsMenu_->addSeparator();
   newsMenu_->addAction(deleteNewsAct_);
   newsMenu_->addAction(deleteAllNewsAct_);
+  connect(newsMenu_, SIGNAL(aboutToShow()),
+          this, SLOT(showNewsMenu()));
 
   browserMenu_ = new QMenu(this);
   menuBar()->addMenu(browserMenu_);
@@ -4777,6 +4805,10 @@ void RSSListing::retranslateStrings()
 
   shareMenuAct_->setText(tr("Share"));
 
+  newsSortByMenu_->setTitle(tr("Sort By"));
+  newsSortOrderGroup_->actions().at(0)->setText(tr("Ascending"));
+  newsSortOrderGroup_->actions().at(1)->setText(tr("Descending"));
+
   QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -6986,5 +7018,55 @@ bool RSSListing::addFeedInQueue(const QString &feedUrl)
   } else {
     feedUrlList_.append(feedUrl);
     return true;
+  }
+}
+
+void RSSListing::showNewsMenu()
+{
+  newsSortByMenu_->setEnabled(currentNewsTab->type_ != TAB_WEB);
+}
+
+void RSSListing::showNewsSortByMenu()
+{
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
+  QListIterator<QAction *> iter(newsSortByColumnGroup_->actions());
+  while (iter.hasNext()) {
+    QAction *nextAction = iter.next();
+    delete nextAction;
+  }
+
+  int section = currentNewsTab->newsHeader_->sortIndicatorSection();
+  iter = currentNewsTab->newsHeader_->viewMenu_->actions();
+  while (iter.hasNext()) {
+    QAction *nextAction = iter.next();
+    QAction *newsSortByColumnAct = new QAction(this);
+    newsSortByColumnAct->setCheckable(true);
+    newsSortByColumnAct->setText(nextAction->text());
+    newsSortByColumnAct->setData(nextAction->data());
+    if (nextAction->data().toInt() == section) {
+      newsSortByColumnAct->setChecked(true);
+    }
+    newsSortByColumnGroup_->addAction(newsSortByColumnAct);
+  }
+  newsSortByMenu_->insertActions(newsSortByMenu_->actions().at(0),
+                                 newsSortByColumnGroup_->actions());
+
+  if (currentNewsTab->newsHeader_->sortIndicatorOrder() == Qt::AscendingOrder) {
+    newsSortOrderGroup_->actions().at(0)->setChecked(true);
+  } else {
+    newsSortOrderGroup_->actions().at(1)->setChecked(true);
+  }
+}
+
+void RSSListing::setNewsSortByColumn()
+{
+  if (currentNewsTab->type_ == TAB_WEB) return;
+
+  int lIdx = newsSortByColumnGroup_->checkedAction()->data().toInt();
+  if (newsSortOrderGroup_->actions().at(0)->isChecked()) {
+    currentNewsTab->newsHeader_->setSortIndicator(lIdx, Qt::AscendingOrder);
+  } else {
+    currentNewsTab->newsHeader_->setSortIndicator(lIdx, Qt::DescendingOrder);
   }
 }
