@@ -6736,6 +6736,11 @@ void RSSListing::nextUnreadNews()
   if (newsRow == -1) {
     QModelIndex indexPrevUnread =
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
+    if (!indexPrevUnread.isValid()) {
+      QModelIndex index =
+          feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
+      indexPrevUnread = feedsTreeView_->indexNextUnread(index, 1);
+    }
     if (indexPrevUnread.isValid()) {
       if (changeBehaviorActionNUN_)
         openingFeedAction_ = 4;
