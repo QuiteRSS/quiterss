@@ -6879,7 +6879,8 @@ QList<int> RSSListing::getIdFeedsInList(int idFolder)
       int feedId = q.value(0).toInt();
       if (!q.value(1).toString().isEmpty())
         idList << feedId;
-      parentIds.enqueue(feedId);
+      if (q.value(1).toString().isEmpty())
+        parentIds.enqueue(feedId);
     }
   }
   return idList;
@@ -6997,7 +6998,7 @@ void RSSListing::sortedByTitleFeedsTree()
 
     // Ищем детей родителя parentId
     QSqlQuery q;
-    q.prepare(QString("SELECT id FROM feeds WHERE parentId=? ORDER BY text"));
+    q.prepare(QString("SELECT id, xmlUrl FROM feeds WHERE parentId=? ORDER BY text"));
     q.addBindValue(parentId);
     q.exec();
 
@@ -7006,6 +7007,7 @@ void RSSListing::sortedByTitleFeedsTree()
     int rowToParent = 0;
     while (q.next()) {
       int parentIdNew = q.value(0).toInt();
+      QString xmlUrl = q.value(1).toString();
 
       QSqlQuery q2;
       q2.prepare("UPDATE feeds SET rowToParent=? WHERE id=?");
@@ -7013,7 +7015,8 @@ void RSSListing::sortedByTitleFeedsTree()
       q2.addBindValue(parentIdNew);
       q2.exec();
 
-      parentIdsPotential << parentIdNew;
+      if (xmlUrl.isEmpty())
+        parentIdsPotential << parentIdNew;
       ++rowToParent;
     }
   }

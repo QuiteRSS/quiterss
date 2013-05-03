@@ -87,7 +87,8 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
                                Qt::MatchFixedString | Qt::MatchRecursive,
                                1);
       treeItems.at(0)->addChild(treeWidgetItem);
-      parentIds.enqueue(feedIdT.toInt());
+      if (xmlUrl.isEmpty())
+        parentIds.enqueue(feedIdT.toInt());
     }
   }
   feedsTree_->expandAll();

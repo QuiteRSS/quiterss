@@ -2038,6 +2038,7 @@ void OptionsDialog::loadNotifier()
 
   itemNotChecked_ = true;
 
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
@@ -2072,7 +2073,6 @@ void OptionsDialog::loadNotifier()
       if (treeWidgetItem->checkState(0) == Qt::Unchecked)
         feedsTreeNotify_->topLevelItem(0)->setCheckState(0, Qt::Unchecked);
 
-      RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
       QPixmap iconItem;
       if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
@@ -2090,7 +2090,8 @@ void OptionsDialog::loadNotifier()
                                                        Qt::MatchFixedString | Qt::MatchRecursive,
                                                        1);
       treeItems.at(0)->addChild(treeWidgetItem);
-      parentIds.enqueue(feedId.toInt());
+      if (xmlUrl.isEmpty())
+        parentIds.enqueue(feedId.toInt());
     }
   }
   feedsTreeNotify_->expandAll();
