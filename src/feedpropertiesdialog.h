@@ -68,9 +68,11 @@ typedef struct {
 
   //! Columns properties
   struct column {
-    QStringList columns; //!< Список колонок
-    QString sortBy; //!< Колонка для сортировки
-    QString sortType; //!< Тип сортировки
+    QList<int> columns; //!< Список индексов отображаемых колонок
+    int sortBy; //!< Колонка для сортировки
+    int sortType; //!< Тип сортировки
+    QList<int> indexList; //!< Список индексов всех колонок
+    QStringList nameList; //!< Список названий колонок
   } column;
 
   //! Cleaup properties
@@ -103,7 +105,7 @@ class FeedPropertiesDialog : public Dialog
 {
   Q_OBJECT
 public:
-  explicit FeedPropertiesDialog(bool isFeed, QWidget *parent = 0);
+  explicit FeedPropertiesDialog(bool isFeed, QWidget *parent);
 
   FEED_PROPERTIES getFeedProperties(); //!< Get feed properties from dialog
   void setFeedProperties(FEED_PROPERTIES properties); //!< Set feed properties into dialog
@@ -116,6 +118,12 @@ protected:
 
 private slots:
   void slotLoadTitle();
+  void slotCurrentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
+  void showMenuAddButton();
+  void addColumn(QAction *action);
+  void removeColumn();
+  void moveUpColumn();
+  void moveDownColumn();
 
 private:
   QTabWidget *tabWidget;
@@ -134,6 +142,19 @@ private:
   QCheckBox *duplicateNewsMode_;
 
   QWidget *CreateGeneralTab();
+
+  // Tab "Columns"
+  QTreeWidget *columnsTree_;
+  QComboBox *sortByColumnBox_;
+  QComboBox *sortOrderBox_;
+
+  QMenu *addButtonMenu_;
+
+  QPushButton *addButton_;
+  QPushButton *removeButton_;
+  QPushButton *moveUpButton_;
+  QPushButton *moveDownButton_;
+  QWidget *CreateColumnsTab();
 
   // Tab "Authentication"
   QGroupBox *authentication_;

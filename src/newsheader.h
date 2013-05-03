@@ -30,6 +30,7 @@ public:
   NewsHeader(NewsModel *model, QWidget *parent);
 
   void init(QWidget *rsslisting);
+  void createMenu();
   void retranslateStrings();
 
   QMenu *viewMenu_;
@@ -46,8 +47,6 @@ private slots:
   void slotSectionMoved(int, int, int);
 
 private:
-  void createMenu();
-
   QTreeView *view_;
   NewsModel *model_;
   QActionGroup *columnVisibleActGroup_;

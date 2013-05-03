@@ -29,12 +29,13 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent) :
 
   tabWidget = new QTabWidget();
   tabWidget->addTab(CreateGeneralTab(), tr("General"));
+  tabWidget->addTab(CreateColumnsTab(), tr("Columns"));
   tabWidget->addTab(CreateAuthenticationTab(), tr("Authentication"));
   tabWidget->addTab(CreateStatusTab(), tr("Status"));
   pageLayout->addWidget(tabWidget);
 
   if (!isFeed_) {
-    tabWidget->removeTab(1);
+    tabWidget->removeTab(2);
   }
 
   buttonBox->addButton(QDialogButtonBox::Ok);
@@ -126,6 +127,83 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   return tab;
 }
 //------------------------------------------------------------------------------
+QWidget *FeedPropertiesDialog::CreateColumnsTab()
+{
+  columnsTree_ = new QTreeWidget(this);
+  columnsTree_->setObjectName("columnsTree");
+  columnsTree_->setIndentation(0);
+  columnsTree_->setColumnCount(2);
+  columnsTree_->setColumnHidden(1, true);
+  columnsTree_->setSortingEnabled(false);
+  columnsTree_->setHeaderHidden(true);
+  columnsTree_->header()->setResizeMode(0, QHeaderView::Stretch);
+
+  QStringList treeItem;
+  treeItem << "Name" << "Index";
+  columnsTree_->setHeaderLabels(treeItem);
+
+  sortByColumnBox_ = new QComboBox(this);
+
+  sortOrderBox_ = new QComboBox(this);
+  treeItem.clear();
+  treeItem << tr("Ascending") << tr("Descending");
+  sortOrderBox_->addItems(treeItem);
+
+  QHBoxLayout *styleLayout = new QHBoxLayout();
+  styleLayout->setMargin(0);
+  styleLayout->addWidget(new QLabel(tr("Sort by:")));
+  styleLayout->addWidget(sortByColumnBox_);
+  styleLayout->addSpacing(10);
+  styleLayout->addWidget(sortOrderBox_);
+  styleLayout->addStretch();
+
+  QWidget *styleWidget = new QWidget(this);
+  styleWidget->setLayout(styleLayout);
+
+  QVBoxLayout *mainVLayout = new QVBoxLayout();
+  mainVLayout->addWidget(columnsTree_, 1);
+  mainVLayout->addWidget(styleWidget);
+
+  addButtonMenu_ = new QMenu(this);
+  addButton_ = new QPushButton(tr("Add"));
+  addButton_->setMenu(addButtonMenu_);
+  connect(addButtonMenu_, SIGNAL(aboutToShow()),
+          this, SLOT(showMenuAddButton()));
+  connect(addButtonMenu_, SIGNAL(triggered(QAction*)),
+          this, SLOT(addColumn(QAction*)));
+
+  removeButton_ = new QPushButton(tr("Remove"));
+  removeButton_->setEnabled(false);
+  connect(removeButton_, SIGNAL(clicked()), this, SLOT(removeColumn()));
+
+  moveUpButton_ = new QPushButton(tr("Move up"));
+  moveUpButton_->setEnabled(false);
+  connect(moveUpButton_, SIGNAL(clicked()), this, SLOT(moveUpColumn()));
+  moveDownButton_ = new QPushButton(tr("Move down"));
+  moveDownButton_->setEnabled(false);
+  connect(moveDownButton_, SIGNAL(clicked()), this, SLOT(moveDownColumn()));
+
+  QVBoxLayout *buttonsVLayout = new QVBoxLayout();
+  buttonsVLayout->addWidget(addButton_);
+  buttonsVLayout->addWidget(removeButton_);
+  buttonsVLayout->addSpacing(10);
+  buttonsVLayout->addWidget(moveUpButton_);
+  buttonsVLayout->addWidget(moveDownButton_);
+  buttonsVLayout->addStretch();
+
+  QHBoxLayout *mainlayout = new QHBoxLayout();
+  mainlayout->addLayout(mainVLayout);
+  mainlayout->addLayout(buttonsVLayout);
+
+  connect(columnsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
+          this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+
+  QWidget *tab = new QWidget();
+  tab->setLayout(mainlayout);
+
+  return tab;
+}
+//------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
 {
   authentication_ = new QGroupBox(this);
@@ -167,6 +245,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   descriptionText_->setReadOnly(true);
 
   QGridLayout *layoutGrid = new QGridLayout();
+  layoutGrid->setColumnStretch(1,1);
   layoutGrid->addWidget(new QLabel(tr("Created:")), 0, 0);
   layoutGrid->addWidget(createdFeed_, 0, 1);
   layoutGrid->addWidget(new QLabel(tr("Last update:")), 1, 0);
@@ -210,6 +289,21 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
+  for (int i = 0; i < feedProperties.column.indexList.count(); ++i) {
+    if (feedProperties.column.columns.contains(feedProperties.column.indexList.at(i))) {
+      QStringList treeItem;
+      treeItem << feedProperties.column.nameList.at(i)
+               << QString::number(feedProperties.column.indexList.at(i));
+      QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+      columnsTree_->addTopLevelItem(item);
+    }
+    sortByColumnBox_->addItem(feedProperties.column.nameList.at(i),
+                              feedProperties.column.indexList.at(i));
+    if (feedProperties.column.sortBy == feedProperties.column.indexList.at(i))
+      sortByColumnBox_->setCurrentIndex(sortByColumnBox_->count()-1);
+  }
+  sortOrderBox_->setCurrentIndex(feedProperties.column.sortType);
+
   authentication_->setChecked(feedProperties.authentication.on);
   user_->setText(feedProperties.authentication.user);
   pass_->setText(feedProperties.authentication.pass);
@@ -250,6 +344,15 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
 
+  feedProperties.column.columns.clear();
+  for (int i = 0; i < columnsTree_->topLevelItemCount(); ++i) {
+    int index = columnsTree_->topLevelItem(i)->text(1).toInt();
+    feedProperties.column.columns.append(index);
+  }
+  feedProperties.column.sortBy =
+      sortByColumnBox_->itemData(sortByColumnBox_->currentIndex()).toInt();
+  feedProperties.column.sortType = sortOrderBox_->currentIndex();
+
   feedProperties.authentication.on = authentication_->isChecked();
   feedProperties.authentication.user = user_->text();
   feedProperties.authentication.pass = pass_->text();
@@ -261,4 +364,86 @@ void FeedPropertiesDialog::setFeedProperties(FEED_PROPERTIES properties)
 {
   feedProperties = properties;
 }
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
+                                                  QTreeWidgetItem *)
+{
+  if (columnsTree_->indexOfTopLevelItem(current) == 0)
+    moveUpButton_->setEnabled(false);
+  else moveUpButton_->setEnabled(true);
 
+  if (columnsTree_->indexOfTopLevelItem(current) == (columnsTree_->topLevelItemCount()-1))
+    moveDownButton_->setEnabled(false);
+  else moveDownButton_->setEnabled(true);
+
+  if (columnsTree_->indexOfTopLevelItem(current) < 0) {
+    removeButton_->setEnabled(false);
+    moveUpButton_->setEnabled(false);
+    moveDownButton_->setEnabled(false);
+  } else {
+    removeButton_->setEnabled(true);
+  }
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::showMenuAddButton()
+{
+  QListIterator<QAction *> iter(addButtonMenu_->actions());
+  while (iter.hasNext()) {
+    QAction *nextAction = iter.next();
+    delete nextAction;
+  }
+
+  for (int i = 0; i < feedProperties.column.indexList.count(); ++i) {
+    int index = feedProperties.column.indexList.at(i);
+    QList<QTreeWidgetItem *> treeItems = columnsTree_->findItems(QString::number(index),
+                                                                 Qt::MatchFixedString,
+                                                                 1);
+    if (!treeItems.count()) {
+      QAction *action = addButtonMenu_->addAction(feedProperties.column.nameList.at(i));
+      action->setData(index);
+    }
+  }
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::addColumn(QAction *action)
+{
+  QStringList treeItem;
+  treeItem << action->text() << action->data().toString();
+  QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+  columnsTree_->addTopLevelItem(item);
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::removeColumn()
+{
+  int row = columnsTree_->currentIndex().row();
+  columnsTree_->takeTopLevelItem(row);
+
+  if (columnsTree_->currentIndex().row() == 0)
+    moveUpButton_->setEnabled(false);
+  if (columnsTree_->currentIndex().row() == (columnsTree_->topLevelItemCount()-1))
+    moveDownButton_->setEnabled(false);
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::moveUpColumn()
+{
+  int row = columnsTree_->currentIndex().row();
+  QTreeWidgetItem *treeWidgetItem = columnsTree_->takeTopLevelItem(row-1);
+  columnsTree_->insertTopLevelItem(row, treeWidgetItem);
+
+  if (columnsTree_->currentIndex().row() == 0)
+    moveUpButton_->setEnabled(false);
+  if (columnsTree_->currentIndex().row() != (columnsTree_->topLevelItemCount()-1))
+    moveDownButton_->setEnabled(true);
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::moveDownColumn()
+{
+  int row = columnsTree_->currentIndex().row();
+  QTreeWidgetItem *treeWidgetItem = columnsTree_->takeTopLevelItem(row+1);
+  columnsTree_->insertTopLevelItem(row, treeWidgetItem);
+
+  if (columnsTree_->currentIndex().row() != 0)
+    moveUpButton_->setEnabled(true);
+  if (columnsTree_->currentIndex().row() == (columnsTree_->topLevelItemCount()-1))
+    moveDownButton_->setEnabled(false);
+}

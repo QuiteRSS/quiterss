@@ -4997,6 +4997,24 @@ void RSSListing::showFeedPropertiesDlg()
   properties.general.duplicateNewsMode =
       feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
 
+
+  NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+  QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
+  while (iter.hasNext()) {
+    QAction *nextAction = iter.next();
+    properties.column.indexList.append(nextAction->data().toInt());
+    properties.column.nameList.append(nextAction->text());
+    if (nextAction->isChecked())
+      properties.column.columns.append(nextAction->data().toInt());
+  }
+  int section = widget->newsHeader_->sortIndicatorSection();
+  properties.column.sortBy = section;
+  if (widget->newsHeader_->sortIndicatorOrder() == Qt::AscendingOrder) {
+    properties.column.sortType = 0;
+  } else {
+    properties.column.sortType = 1;
+  }
+
   properties.authentication.on = false;
   if (feedsTreeModel_->dataField(index, "authentication").toInt() == 1) {
     properties.authentication.on = true;
@@ -5060,6 +5078,22 @@ void RSSListing::showFeedPropertiesDlg()
   q.addBindValue(properties.authentication.on ? 1 : 0);
   q.addBindValue(feedId);
   q.exec();
+
+  for (int i = 0; i < properties.column.indexList.count(); ++i) {
+    int index = properties.column.indexList.at(i);
+    if (properties.column.columns.contains(index)) {
+      widget->newsHeader_->setSectionHidden(index, false);
+    } else {
+      widget->newsHeader_->setSectionHidden(index, true);
+    }
+  }
+  for (int i = 0; i < properties.column.columns.count(); ++i) {
+    int index = properties.column.columns.at(i);
+    widget->newsHeader_->moveSection(widget->newsHeader_->visualIndex(index), i);
+  }
+  widget->newsHeader_->setSortIndicator(properties.column.sortBy,
+                                        Qt::SortOrder(properties.column.sortType));
+  widget->newsHeader_->createMenu();
 
   if (!(!feedsTreeModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
     q.prepare("SELECT * FROM passwords WHERE server=?");

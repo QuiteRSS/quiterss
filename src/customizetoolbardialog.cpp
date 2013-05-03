@@ -182,7 +182,7 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
 }
 
 void CustomizeToolbarDialog::acceptDialog()
-{ 
+{
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
 
   if (toolbar_->objectName() == "newsToolBar") {
