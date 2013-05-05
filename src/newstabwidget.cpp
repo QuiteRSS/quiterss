@@ -431,8 +431,6 @@ void NewsTabWidget::setSettings(bool newTab)
     q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
            arg(feedId_));
     if (q.next()) autoLoadImages_ = q.value(0).toInt();
-
-    newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
   }
 
   webView_->settings()->setAttribute(
@@ -442,6 +440,8 @@ void NewsTabWidget::setSettings(bool newTab)
   rsslisting_->setAutoLoadImages(false);
 
   if (type_ != TAB_WEB) {
+    newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
+
     QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_, feedParId_);
     newsHeader_->setColumns(rsslisting_, indexFeed);
 
