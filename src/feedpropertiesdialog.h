@@ -118,7 +118,7 @@ protected:
 
 private slots:
   void slotLoadTitle();
-  void slotCurrentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
+  void slotCurrentColumnChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
   void showMenuAddButton();
   void addColumn(QAction *action);
   void removeColumn();

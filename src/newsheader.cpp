@@ -55,12 +55,13 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   this->installEventFilter(this);
 }
 
-void NewsHeader::init(QWidget *rsslisting)
+void NewsHeader::init()
 {
   if (count() == 0) return;
 
   for (int i = 0; i < count(); ++i)
     hideSection(i);
+
   showSection(model_->fieldIndex("feedId"));
   showSection(model_->fieldIndex("title"));
   showSection(model_->fieldIndex("published"));
@@ -92,25 +93,12 @@ void NewsHeader::init(QWidget *rsslisting)
   moveSection(visualIndex(model_->fieldIndex("category")), 5);
   resizeSection(model_->fieldIndex("title"), 200);
 
-  RSSListing *rsslisting_ = qobject_cast<RSSListing*>(rsslisting);
-
-  restoreState(rsslisting_->settings_->value("NewsHeaderState").toByteArray());
-  restoreGeometry(rsslisting_->settings_->value("NewsHeaderGeometry").toByteArray());
-
-  hideSection(model_->fieldIndex("deleteDate"));
-  hideSection(model_->fieldIndex("feedParentId"));
-
   resizeSection(model_->fieldIndex("starred"), 22);
   setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("feedId"), 22);
   setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("read"), 22);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
-
-  createMenu();
-
-  if (!sortIndicatorSection())
-    setSortIndicator(model_->fieldIndex("published"), Qt::DescendingOrder);
 }
 
 void NewsHeader::createMenu()
@@ -139,6 +127,8 @@ void NewsHeader::createMenu()
       action->setData(lIdx);
       action->setCheckable(true);
       action->setChecked(!isSectionHidden(lIdx));
+    } else {
+      hideSection(lIdx);
     }
   }
 
@@ -357,9 +347,7 @@ void NewsHeader::columnVisible(QAction *action)
     else
       resizeSection(idx, 40);
   }
-  QSize newSize = size();
-  newSize.setWidth(newSize.width()+1);
-  resize(newSize);
+  resize(size().width()+1, size().height());
 }
 
 void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
@@ -379,9 +367,7 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
         }
       }
     }
-    QSize newSize = size();
-    newSize.setWidth(newSize.width()+1);
-    resize(newSize);
+    resize(size().width()+1, size().height());
   }
   createMenu();
 }
@@ -411,4 +397,88 @@ void NewsHeader::retranslateStrings()
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal, "", Qt::DisplayRole);
   model_->setHeaderData(model_->fieldIndex("starred"), Qt::Horizontal,
                         QPixmap(":/images/starSection"), Qt::DecorationRole);
+}
+
+void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
+{
+  if (count() == 0) return;
+
+  rssl->settings_->beginGroup("NewsHeader");
+
+  QByteArray state = rssl->settings_->value("state").toByteArray();
+  QString indexColumnsStr = rssl->settings_->value("columns").toString();
+  if (indexColumnsStr.isEmpty()) {
+    rssl->settings_->setValue("state", saveState());
+    rssl->settings_->setValue("columns", columnsList());
+    rssl->settings_->setValue("sortBy", model_->fieldIndex("published"));
+    rssl->settings_->setValue("sortOrder", Qt::DescendingOrder);
+  } else if (state != saveState()) {
+    restoreState(state);
+  }
+
+  indexColumnsStr = rssl->feedsTreeModel_->dataField(indexFeed, "columns").toString();
+  if (!indexColumnsStr.isEmpty()) {
+    QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
+    for (int i = 0; i < count(); ++i) {
+      bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
+      setSectionHidden(logicalIndex(i),!show);
+    }
+    for (int i = 0; i < indexColumnsList.count(); ++i) {
+      QString indexStr = indexColumnsList.at(i);
+      moveSection(visualIndex(indexStr.toInt()), i);
+    }
+    int sortBy = rssl->feedsTreeModel_->dataField(indexFeed, "sort").toInt();
+    int sortType = rssl->feedsTreeModel_->dataField(indexFeed, "sortType").toInt();
+    setSortIndicator(sortBy, Qt::SortOrder(sortType));
+  } else {
+    indexColumnsStr = rssl->settings_->value("columns").toString();
+    QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
+    for (int i = 0; i < count(); ++i) {
+      bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
+      setSectionHidden(logicalIndex(i),!show);
+    }
+    for (int i = 0; i < indexColumnsList.count(); ++i) {
+      QString indexStr = indexColumnsList.at(i);
+      moveSection(visualIndex(indexStr.toInt()), i);
+    }
+    int sortBy = rssl->settings_->value("sortBy", model_->fieldIndex("published")).toInt();
+    int sortType = rssl->settings_->value("sortOrder", Qt::DescendingOrder).toInt();
+    setSortIndicator(sortBy, Qt::SortOrder(sortType));
+  }
+  rssl->settings_->endGroup();
+
+  createMenu();
+
+  if (!isVisible())
+    show_ = true;
+  resize(size().width()+1, size().height());
+}
+
+QString NewsHeader::columnsList()
+{
+  QString indexColumnsStr;
+  for (int i = 0; i < count(); ++i) {
+    if (!isSectionHidden(logicalIndex(i))) {
+      indexColumnsStr.append(",");
+      indexColumnsStr.append(QString::number(logicalIndex(i)));
+    }
+  }
+  indexColumnsStr.append(",");
+  return indexColumnsStr;
+}
+
+void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget)
+{
+  int feedId = newsTabWidget->feedId_;
+  int feedParId = newsTabWidget->feedParId_;
+  QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId, feedParId);
+
+  rssl->settings_->beginGroup("NewsHeader");
+  rssl->settings_->setValue("state", saveState());
+  if (rssl->feedsTreeModel_->dataField(indexOld, "columns").isNull()) {
+    rssl->settings_->setValue("columns", columnsList());
+    rssl->settings_->setValue("sortBy", sortIndicatorSection());
+    rssl->settings_->setValue("sortOrder", sortIndicatorOrder());
+  }
+  rssl->settings_->endGroup();
 }

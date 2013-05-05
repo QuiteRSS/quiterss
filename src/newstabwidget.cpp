@@ -141,7 +141,7 @@ void NewsTabWidget::createNewsList()
   newsView_->setModel(newsModel_);
   newsView_->setHeader(newsHeader_);
 
-  newsHeader_->init(rsslisting_);
+  newsHeader_->init();
 
   newsToolBar_ = new QToolBar(this);
   newsToolBar_->setObjectName("newsToolBar");
@@ -442,6 +442,9 @@ void NewsTabWidget::setSettings(bool newTab)
   rsslisting_->setAutoLoadImages(false);
 
   if (type_ != TAB_WEB) {
+    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+    newsHeader_->setColumns(rsslisting_, indexFeed);
+
     rsslisting_->slotUpdateStatus(feedId_, false);
 
     rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);

@@ -2254,16 +2254,18 @@ void RSSListing::writeSettings()
   }
   settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
 
-  if (stackedWidget_->count() && (currentNewsTab->type_ == TAB_FEED)) {
-    settings_->setValue("NewsHeaderGeometry",
-                        currentNewsTab->newsHeader_->saveGeometry());
-    settings_->setValue("NewsHeaderState",
-                        currentNewsTab->newsHeader_->saveState());
+  if (stackedWidget_->count()) {
+    NewsTabWidget *widget;
+    if (currentNewsTab->type_ != TAB_WEB)
+      widget = currentNewsTab;
+    else
+      widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
 
+    widget->newsHeader_->saveStateColumns(this, widget);
     settings_->setValue("NewsTabSplitterGeometry",
-                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
+                        widget->newsTabWidgetSplitter_->saveGeometry());
     settings_->setValue("NewsTabSplitterState",
-                        currentNewsTab->newsTabWidgetSplitter_->saveState());
+                        widget->newsTabWidgetSplitter_->saveState());
   }
 
   settings_->setValue("networkProxy/type",     networkProxy_.type());
@@ -3213,6 +3215,10 @@ void RSSListing::slotFeedClicked(QModelIndex index)
 {
   int feedIdCur = feedsTreeModel_->getIdByIndex(index);
   int feedParIdCur = feedsTreeModel_->getParidByIndex(index);
+
+  if (stackedWidget_->count() && currentNewsTab->type_ != TAB_WEB) {
+    currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+  }
 
   // Поиск уже открытого таба с этой лентой
   int indexTab = -1;
@@ -4957,6 +4963,7 @@ void RSSListing::showFeedPropertiesDlg()
   feedPropertiesDialog->setWindowTitle(str);
 
   FEED_PROPERTIES properties;
+  FEED_PROPERTIES properties_tmp;
 
   properties.general.text =
       feedsTreeModel_->dataField(index, "text").toString();
@@ -4997,22 +5004,38 @@ void RSSListing::showFeedPropertiesDlg()
   properties.general.duplicateNewsMode =
       feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
 
-
-  NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
-  QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
-  while (iter.hasNext()) {
-    QAction *nextAction = iter.next();
-    properties.column.indexList.append(nextAction->data().toInt());
-    properties.column.nameList.append(nextAction->text());
-    if (nextAction->isChecked())
-      properties.column.columns.append(nextAction->data().toInt());
-  }
-  int section = widget->newsHeader_->sortIndicatorSection();
-  properties.column.sortBy = section;
-  if (widget->newsHeader_->sortIndicatorOrder() == Qt::AscendingOrder) {
-    properties.column.sortType = 0;
+  if (feedsTreeModel_->dataField(index, "columns").isNull()) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+    QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
+    while (iter.hasNext()) {
+      QAction *nextAction = iter.next();
+      properties.column.indexList.append(nextAction->data().toInt());
+      properties.column.nameList.append(nextAction->text());
+      if (nextAction->isChecked())
+        properties.column.columns.append(nextAction->data().toInt());
+    }
+    int section = widget->newsHeader_->sortIndicatorSection();
+    properties.column.sortBy = section;
+    if (widget->newsHeader_->sortIndicatorOrder() == Qt::AscendingOrder) {
+      properties.column.sortType = 0;
+    } else {
+      properties.column.sortType = 1;
+    }
   } else {
-    properties.column.sortType = 1;
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+    QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
+    while (iter.hasNext()) {
+      QAction *nextAction = iter.next();
+      properties.column.indexList.append(nextAction->data().toInt());
+      properties.column.nameList.append(nextAction->text());
+    }
+    QString indexColumnsStr = feedsTreeModel_->dataField(index, "columns").toString();
+    QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
+    foreach (QString indexStr, indexColumnsList) {
+      properties.column.columns.append(indexStr.toInt());
+    }
+    properties.column.sortBy = feedsTreeModel_->dataField(index, "sort").toInt();
+    properties.column.sortType = feedsTreeModel_->dataField(index, "sortType").toInt();
   }
 
   properties.authentication.on = false;
@@ -5049,6 +5072,7 @@ void RSSListing::showFeedPropertiesDlg()
   properties.status.description   = feedsTreeModel_->dataField(index, "description").toString();
 
   feedPropertiesDialog->setFeedProperties(properties);
+  properties_tmp = properties;
 
   connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QString,QString)),
           this, SIGNAL(faviconRequestUrl(QString,QString)));
@@ -5061,6 +5085,8 @@ void RSSListing::showFeedPropertiesDlg()
 
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
+
+  index = feedsTreeModel_->getIndexById(feedId, feedParentId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, label = ?, "
@@ -5079,21 +5105,31 @@ void RSSListing::showFeedPropertiesDlg()
   q.addBindValue(feedId);
   q.exec();
 
-  for (int i = 0; i < properties.column.indexList.count(); ++i) {
-    int index = properties.column.indexList.at(i);
-    if (properties.column.columns.contains(index)) {
-      widget->newsHeader_->setSectionHidden(index, false);
-    } else {
-      widget->newsHeader_->setSectionHidden(index, true);
+  if ((properties_tmp.column.columns != properties.column.columns) ||
+      (properties_tmp.column.sortBy != properties.column.sortBy) ||
+      (properties_tmp.column.sortType != properties.column.sortType)) {
+    QString indexColumnsStr;
+    for (int i = 0; i < properties.column.columns.count(); ++i) {
+      int index = properties.column.columns.at(i);
+      indexColumnsStr.append(",");
+      indexColumnsStr.append(QString::number(index));
     }
+    indexColumnsStr.append(",");
+
+    q.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
+    q.addBindValue(indexColumnsStr);
+    q.addBindValue(properties.column.sortBy);
+    q.addBindValue(properties.column.sortType);
+    q.addBindValue(feedId);
+    q.exec();
+
+    QModelIndex indexColumns = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("columns"));
+    QModelIndex indexSort = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("sort"));
+    QModelIndex indexSortType = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("sortType"));
+    feedsTreeModel_->setData(indexColumns, indexColumnsStr);
+    feedsTreeModel_->setData(indexSort, properties.column.sortBy);
+    feedsTreeModel_->setData(indexSortType, properties.column.sortType);
   }
-  for (int i = 0; i < properties.column.columns.count(); ++i) {
-    int index = properties.column.columns.at(i);
-    widget->newsHeader_->moveSection(widget->newsHeader_->visualIndex(index), i);
-  }
-  widget->newsHeader_->setSortIndicator(properties.column.sortBy,
-                                        Qt::SortOrder(properties.column.sortType));
-  widget->newsHeader_->createMenu();
 
   if (!(!feedsTreeModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
     q.prepare("SELECT * FROM passwords WHERE server=?");
@@ -5115,7 +5151,6 @@ void RSSListing::showFeedPropertiesDlg()
     }
   }
 
-  index = feedsTreeModel_->getIndexById(feedId, feedParentId);
   QPersistentModelIndex indexText    = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("text"));
   QPersistentModelIndex indexUrl     = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("xmlUrl"));
   QPersistentModelIndex indexStartup = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("displayOnStartup"));
@@ -5224,6 +5259,7 @@ void RSSListing::showFeedPropertiesDlg()
     }
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
     currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
+    currentNewsTab->newsHeader_->setColumns(this, index);
   }
 }
 
@@ -5697,6 +5733,10 @@ void RSSListing::slotSwitchPrevFocus()
 //! Открытие ленты в новой вкладке
 void RSSListing::slotOpenFeedNewTab()
 {
+  if (stackedWidget_->count() && currentNewsTab->type_ != TAB_WEB) {
+    currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+  }
+
   feedsTreeView_->selectIdEn_ = false;
   feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex());
   slotFeedSelected(feedsTreeView_->selectIndex(), true);
@@ -5709,18 +5749,6 @@ void RSSListing::slotTabCloseRequested(int index)
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
 
     setFeedRead(widget->type_, widget->feedId_, FeedReadClosingTab);
-
-    if (widget->type_ == TAB_FEED) {
-      settings_->setValue("NewsHeaderGeometry",
-                          widget->newsHeader_->saveGeometry());
-      settings_->setValue("NewsHeaderState",
-                          widget->newsHeader_->saveState());
-
-      settings_->setValue("NewsTabSplitterGeometry",
-                          widget->newsTabWidgetSplitter_->saveGeometry());
-      settings_->setValue("NewsTabSplitterState",
-                          widget->newsTabWidgetSplitter_->saveState());
-    }
 
     stackedWidget_->removeWidget(widget);
     tabBar_->removeTab(index);
@@ -5757,6 +5785,14 @@ void RSSListing::slotTabCurrentChanged(int index)
   stackedWidget_->setCurrentIndex(index);
 
   if (!updateCurrentTab_) return;
+
+  if (currentNewsTab->type_ != TAB_WEB) {
+    currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+    settings_->setValue("NewsTabSplitterGeometry",
+                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
+    settings_->setValue("NewsTabSplitterState",
+                        currentNewsTab->newsTabWidgetSplitter_->saveState());
+  }
 
   if (widget->type_ == TAB_FEED) {
     if (widget->feedId_ == 0)

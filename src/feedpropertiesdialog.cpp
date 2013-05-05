@@ -196,7 +196,7 @@ QWidget *FeedPropertiesDialog::CreateColumnsTab()
   mainlayout->addLayout(buttonsVLayout);
 
   connect(columnsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
-          this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
+          this, SLOT(slotCurrentColumnChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
 
   QWidget *tab = new QWidget();
   tab->setLayout(mainlayout);
@@ -289,14 +289,16 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
+  for (int i = 0; i < feedProperties.column.columns.count(); ++i) {
+    int index = feedProperties.column.indexList.indexOf(feedProperties.column.columns.at(i));
+    QString name = feedProperties.column.nameList.at(index);
+    QStringList treeItem;
+    treeItem << name
+             << QString::number(feedProperties.column.columns.at(i));
+    QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+    columnsTree_->addTopLevelItem(item);
+  }
   for (int i = 0; i < feedProperties.column.indexList.count(); ++i) {
-    if (feedProperties.column.columns.contains(feedProperties.column.indexList.at(i))) {
-      QStringList treeItem;
-      treeItem << feedProperties.column.nameList.at(i)
-               << QString::number(feedProperties.column.indexList.at(i));
-      QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
-      columnsTree_->addTopLevelItem(item);
-    }
     sortByColumnBox_->addItem(feedProperties.column.nameList.at(i),
                               feedProperties.column.indexList.at(i));
     if (feedProperties.column.sortBy == feedProperties.column.indexList.at(i))
@@ -365,7 +367,7 @@ void FeedPropertiesDialog::setFeedProperties(FEED_PROPERTIES properties)
   feedProperties = properties;
 }
 //------------------------------------------------------------------------------
-void FeedPropertiesDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
+void FeedPropertiesDialog::slotCurrentColumnChanged(QTreeWidgetItem *current,
                                                   QTreeWidgetItem *)
 {
   if (columnsTree_->indexOfTopLevelItem(current) == 0)
