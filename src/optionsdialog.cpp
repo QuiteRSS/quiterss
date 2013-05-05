@@ -1287,7 +1287,7 @@ void OptionsDialog::createShortcutWidget()
   shortcutTree_->setObjectName("shortcutTree");
   shortcutTree_->setSortingEnabled(false);
   shortcutTree_->setSelectionBehavior(QAbstractItemView::SelectRows);
-  shortcutTree_->setEditTriggers(false);
+  shortcutTree_->setEditTriggers(QAbstractItemView::NoEditTriggers);
   shortcutTree_->setRootIsDecorated(false);
 
   shortcutModel_ = new QStandardItemModel();
