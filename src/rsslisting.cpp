@@ -5158,11 +5158,17 @@ void RSSListing::showFeedPropertiesDlg()
           feedsTreeModel_->setData(indexSort, properties.column.sortBy);
           feedsTreeModel_->setData(indexSortType, properties.column.sortType);
 
+          if (currentNewsTab->feedId_ == id)
+            currentNewsTab->newsHeader_->setColumns(this, index1);
+
           if (xmlUrl.isEmpty())
             parentIds.enqueue(id);
         }
       }
     }
+
+    if (currentNewsTab->feedId_ == feedId)
+      currentNewsTab->newsHeader_->setColumns(this, index);
   }
 
   if (!(!feedsTreeModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
@@ -5296,7 +5302,6 @@ void RSSListing::showFeedPropertiesDlg()
     }
     currentNewsTab->newsIconTitle_->setPixmap(iconTab);
     currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
-    currentNewsTab->newsHeader_->setColumns(this, index);
   }
 }
 
