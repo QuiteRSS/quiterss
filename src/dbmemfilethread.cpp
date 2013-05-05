@@ -116,9 +116,11 @@ DBMemFileThread::~DBMemFileThread()
         do {
           rc = sqlite3_backup_step(pBackup, 10000);
 
+#ifndef QT_NO_DEBUG_OUTPUT
           int remaining = sqlite3_backup_remaining(pBackup);
           int pagecount = sqlite3_backup_pagecount(pBackup);
           qDebug() << rc << "backup " << pagecount << "remain" << remaining;
+#endif
 
           if( rc==SQLITE_OK || rc==SQLITE_BUSY || rc==SQLITE_LOCKED ){
             sqlite3_sleep(100);
