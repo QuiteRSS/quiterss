@@ -3104,7 +3104,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
     return;
   }
 
-  int feedId;
+  int feedId = -1;
   QSqlQuery q;
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrl);
