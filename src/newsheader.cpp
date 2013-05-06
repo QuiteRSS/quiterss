@@ -22,6 +22,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   : QHeaderView(Qt::Horizontal, parent)
   , model_(model)
   , show_(false)
+  , move_(false)
 {
   setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -99,6 +100,8 @@ void NewsHeader::init()
   setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("read"), 22);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
+
+  move_ = true;
 }
 
 void NewsHeader::createMenu()
@@ -127,8 +130,6 @@ void NewsHeader::createMenu()
       action->setData(lIdx);
       action->setCheckable(true);
       action->setChecked(!isSectionHidden(lIdx));
-    } else {
-      hideSection(lIdx);
     }
   }
 
@@ -353,6 +354,9 @@ void NewsHeader::columnVisible(QAction *action)
 void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
 {
   Q_UNUSED(oldVIdx)
+
+  if (!move_) return;
+
   if ((model_->fieldIndex("read") == lIdx) ||
       (model_->fieldIndex("starred") == lIdx) ||
       (model_->fieldIndex("feedId") == lIdx)) {
@@ -403,6 +407,7 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
 {
   if (count() == 0) return;
 
+  move_ = false;
   rssl->settings_->beginGroup("NewsHeader");
 
   QByteArray state = rssl->settings_->value("state").toByteArray();
@@ -452,6 +457,7 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   if (!isVisible())
     show_ = true;
   resize(size().width()+1, size().height());
+  move_ = true;
 }
 
 QString NewsHeader::columnsList()
