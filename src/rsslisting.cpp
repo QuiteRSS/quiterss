@@ -345,12 +345,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   static int deactivateState = 0;
 
   static bool tabFixed = false;
-  if (obj == feedsTreeView_->viewport()) {
-    if (event->type() == QEvent::ToolTip) {
-      return true;
-    }
-    return false;
-  } else if (obj == tabBar_) {
+  if (obj == tabBar_) {
     if (event->type() == QEvent::MouseButtonPress) {
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
       if (tabBar_->tabAt(mouseEvent->pos()) < 0)
@@ -537,14 +532,15 @@ void RSSListing::slotShowWindows(bool trayClick)
 
 void RSSListing::createFeedsWidget()
 {
+  feedsTreeView_ = new FeedsTreeView(this);
+  feedsTreeView_->setFrameStyle(QFrame::NoFrame);
+
   feedsTreeModel_ = new FeedsTreeModel("feeds",
                                        QStringList() << "" << "" << "" << "" << "" << "",
                                        QStringList() << "id" << "text" << "unread" << "undeleteCount" << "parentId" << "updated",
                                        0,
-                                       "text");
-
-  feedsTreeView_ = new FeedsTreeView(this);
-  feedsTreeView_->setFrameStyle(QFrame::NoFrame);
+                                       "text",
+                                       feedsTreeView_);
   feedsTreeView_->setModel(feedsTreeModel_);
   for (int i = 0; i < feedsTreeModel_->columnCount(); ++i)
     feedsTreeView_->hideColumn(i);
@@ -724,7 +720,6 @@ void RSSListing::createFeedsWidget()
   connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
           this, SLOT(feedsSplitterMoved(int,int)));
 
-  feedsTreeView_->viewport()->installEventFilter(this);
   categoriesLabel_->installEventFilter(this);
 }
 

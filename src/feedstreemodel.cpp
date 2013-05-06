@@ -27,9 +27,10 @@ FeedsTreeModel::FeedsTreeModel(const QString& tableName,
                                const QStringList& fieldNames,
                                int rootParentId,
                                const QString& decoratedField,
-                               QObject* parent)
+                               QyurSqlTreeView *parent)
   : QyurSqlTreeModel(tableName, captions, fieldNames,
                      rootParentId, decoratedField, parent)
+  , view_(parent)
 {
 }
 
@@ -39,8 +40,7 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
   if (role == Qt::FontRole) {
     QFont font = font_;
     if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
-      if ((0 < index.sibling(index.row(), proxyColumnByOriginal("unread")).data(Qt::EditRole).toInt()) &&
-          (QyurSqlTreeModel::proxyColumnByOriginal("unread") != index.column()))
+      if (0 < index.sibling(index.row(), proxyColumnByOriginal("unread")).data(Qt::EditRole).toInt())
         font.setBold(true);
     }
     return font;
@@ -120,6 +120,20 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
       int flag = Qt::AlignRight|Qt::AlignVCenter;
       return flag;
     }
+  } else if (role == Qt::ToolTipRole) {
+    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+      QString title = index.data(Qt::EditRole).toString();
+      QRect rectText = view_->visualRect(index);
+      int width = rectText.width() - 16 - 12;
+      QFont font = font_;
+      if (0 < index.sibling(index.row(), proxyColumnByOriginal("unread")).data(Qt::EditRole).toInt())
+        font.setBold(true);
+      QFontMetrics fontMetrics(font);
+
+      if (width < fontMetrics.width(title))
+        return title;
+    }
+    return QString("");
   }
 
   return QyurSqlTreeModel::data(index, role);

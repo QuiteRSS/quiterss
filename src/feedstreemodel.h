@@ -29,7 +29,7 @@ public:
       const QStringList &fieldNames,
       int rootParentId = 0,
       const QString &decoratedField = QString(),
-      QObject* parent = 0);
+      QyurSqlTreeView *parent = 0);
   virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   QVariant dataField(const QModelIndex &index, const QString &fieldName) const;
   virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
@@ -40,6 +40,10 @@ public:
   QString formatDate_;
   QString formatTime_;
   bool defaultIconFeeds_;
+
+private:
+  QyurSqlTreeView *view_;
+
 };
 
 #endif  // FEEDSTREEMODEL_H
