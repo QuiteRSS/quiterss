@@ -457,6 +457,7 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   if (!isVisible())
     show_ = true;
   resize(size().width()+1, size().height());
+  moveSection(visualIndex(model_->fieldIndex("id")), 0);
   move_ = true;
 }
 
