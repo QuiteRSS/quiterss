@@ -22,6 +22,7 @@
 
 UpdateThread::UpdateThread(QObject *parent, int requestTimeout)
   : QThread(parent)
+  , updateObject_(NULL)
   , requestTimeout_(requestTimeout)
 {
   qDebug() << "UpdateThread::constructor";

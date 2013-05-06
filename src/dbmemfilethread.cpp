@@ -31,6 +31,7 @@
 DBMemFileThread::DBMemFileThread(const QString &filename, QObject *parent)
   : QThread(parent)
   , filename_(filename)
+  , save_(false)
 {
   qDebug() << "DBMemFileThread::constructor";
   memdb_ = QSqlDatabase::database();
@@ -63,7 +64,7 @@ DBMemFileThread::~DBMemFileThread()
 //  qDebug() << "sqliteDBMemFile(): save =" << save_;
   if (save_) qDebug() << "sqliteDBMemFile(): from memory to file";
   else qDebug() << "sqliteDBMemFile(): from file to memory" ;
-  int rc;                   /* Function return code */
+  int rc = -1;                   /* Function return code */
   QVariant v = memdb_.driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
     // v.data() returns a pointer to the handle

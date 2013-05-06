@@ -19,6 +19,7 @@
 
 NewsModel::NewsModel(QObject *parent, QTreeView *view)
   : QSqlTableModel(parent)
+  , simplifiedDateTime_(true)
   , view_(view)
 {
   setEditStrategy(QSqlTableModel::OnManualSubmit);

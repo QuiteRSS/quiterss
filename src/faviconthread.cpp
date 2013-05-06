@@ -23,6 +23,7 @@
 
 FaviconThread::FaviconThread(QObject *parent)
   : QThread(parent)
+  , faviconObject_(NULL)
 {
   qDebug() << "FaviconLoader::constructor";
 

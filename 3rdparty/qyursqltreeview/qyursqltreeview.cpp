@@ -117,7 +117,9 @@ public:
   int getRowByParid(int) const;
   UserData* getUserDataById(int) const;
   QyurSqlTreeModelPrivate() {
-
+    indexOfId = -1;
+    indexOfParid = -1;
+    rootParentId = -1;
   }
   ~QyurSqlTreeModelPrivate() {
     clear();
