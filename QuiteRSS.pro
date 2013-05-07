@@ -8,14 +8,20 @@ exists(.hg) {
   }
   message(VCS revision: $$VERSION_REV)
 
-  VERSION_REV_STR = $${LITERAL_HASH}define HG_REVISION $$VERSION_REV
-  system(echo $$VERSION_REV_STR > $$REVFILE)
+  os2|win32 {
+    system(echo $${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  } else {
+    system(echo \\$${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  }
 } else:!exists($$REVFILE) {
   VERSION_REV = 0
   message(VCS revision: $$VERSION_REV)
 
-  VERSION_REV_STR = $${LITERAL_HASH}define HG_REVISION $$VERSION_REV
-  system(echo $$VERSION_REV_STR > $$REVFILE)
+  os2|win32 {
+    system(echo $${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  } else {
+    system(echo \\$${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+  }
 }
 
 QT += core gui network xml webkit sql
