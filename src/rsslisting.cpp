@@ -802,6 +802,7 @@ void RSSListing::createTray()
 void RSSListing::createTabBar()
 {
   tabBar_ = new QTabBar();
+  tabBar_->setObjectName("tabBar_");
   tabBar_->addTab("");
   tabBar_->setIconSize(QSize(16, 16));
   tabBar_->setMovable(true);
