@@ -8,3 +8,4 @@ release
 Makefile*
 object_script.QuiteRSS.*
 doxygen
+src/VersionRev.h
