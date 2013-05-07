@@ -128,7 +128,7 @@ class NotificationWidget : public QWidget
 public:
   NotificationWidget(QList<int> idFeedList,
                      QList<int> cntNewNewsList,
-                     QWidget * parent);
+                     QWidget *parentWidget, QWidget *parent = 0);
 
 signals:
   void signalShow();

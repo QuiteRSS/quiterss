@@ -21,8 +21,8 @@
 
 NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QList<int> cntNewNewsList,
-                                       QWidget *parent)
-  : QWidget(0,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+                                       QWidget *parentWidget, QWidget *parent)
+  : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
   , idFeedList_(idFeedList)
   , cntNewNewsList_(cntNewNewsList)
 {
@@ -36,7 +36,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   int fontSize;
 
   if (idFeedList_.count()) {
-    RSSListing *rssl_ = qobject_cast<RSSListing*>(parent);
+    RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget);
     position_ = rssl_->positionNotify_;
     timeShowNews_ = rssl_->timeShowNewsNotify_;
     countShowNews = rssl_->countShowNewsNotify_;
@@ -44,7 +44,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     fontFamily = rssl_->notificationFontFamily_;
     fontSize = rssl_->notificationFontSize_;
   } else {
-    OptionsDialog *options = qobject_cast<OptionsDialog*>(parent);
+    OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
     position_ = options->positionNotify_->currentIndex();
     timeShowNews_ = options->timeShowNewsNotify_->value();
     countShowNews = options->countShowNewsNotify_->value();
