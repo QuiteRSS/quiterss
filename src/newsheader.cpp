@@ -346,7 +346,7 @@ void NewsHeader::columnVisible(QAction *action)
         (model_->fieldIndex("feedId") == idx))
       resizeSection(idx, 22);
     else
-      resizeSection(idx, 40);
+      resizeSection(idx, 60);
   }
   resize(size().width()+1, size().height());
 }
