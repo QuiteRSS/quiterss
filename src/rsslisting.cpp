@@ -4999,8 +4999,21 @@ void RSSListing::showFeedPropertiesDlg()
   properties.general.duplicateNewsMode =
       feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
 
+  settings_->beginGroup("NewsHeader");
+  QString indexColumnsStr = settings_->value("columns").toString();
+  QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
+  foreach (QString indexStr, indexColumnsList) {
+    properties.columnDefault.columns.append(indexStr.toInt());
+  }
+  NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+  int sortBy = settings_->value("sortBy", widget->newsModel_->fieldIndex("published")).toInt();
+  properties.columnDefault.sortBy = sortBy;
+  int sortType = settings_->value("sortOrder", Qt::DescendingOrder).toInt();
+  properties.columnDefault.sortType = sortType;
+  settings_->endGroup();
+
   if (feedsTreeModel_->dataField(index, "columns").isNull()) {
-    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+    widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
     QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
     while (iter.hasNext()) {
       QAction *nextAction = iter.next();
@@ -5017,15 +5030,15 @@ void RSSListing::showFeedPropertiesDlg()
       properties.column.sortType = 1;
     }
   } else {
-    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+    widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
     QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
     while (iter.hasNext()) {
       QAction *nextAction = iter.next();
       properties.column.indexList.append(nextAction->data().toInt());
       properties.column.nameList.append(nextAction->text());
     }
-    QString indexColumnsStr = feedsTreeModel_->dataField(index, "columns").toString();
-    QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
+    indexColumnsStr = feedsTreeModel_->dataField(index, "columns").toString();
+    indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
     foreach (QString indexStr, indexColumnsList) {
       properties.column.columns.append(indexStr.toInt());
     }
@@ -5104,12 +5117,19 @@ void RSSListing::showFeedPropertiesDlg()
       (properties_tmp.column.sortBy != properties.column.sortBy) ||
       (properties_tmp.column.sortType != properties.column.sortType)) {
     QString indexColumnsStr;
-    for (int i = 0; i < properties.column.columns.count(); ++i) {
-      int index = properties.column.columns.at(i);
+    if ((properties.column.columns != properties.columnDefault.columns) ||
+        (properties.column.sortBy != properties.columnDefault.sortBy) ||
+        (properties.column.sortType != properties.columnDefault.sortType)) {
+      for (int i = 0; i < properties.column.columns.count(); ++i) {
+        int index = properties.column.columns.at(i);
+        indexColumnsStr.append(",");
+        indexColumnsStr.append(QString::number(index));
+      }
       indexColumnsStr.append(",");
-      indexColumnsStr.append(QString::number(index));
+    } else {
+      properties.column.sortBy = 0;
+      properties.column.sortType = 0;
     }
-    indexColumnsStr.append(",");
 
     q.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
     q.addBindValue(indexColumnsStr);

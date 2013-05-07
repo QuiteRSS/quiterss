@@ -75,6 +75,13 @@ typedef struct {
     QStringList nameList; //!< Список названий колонок
   } column;
 
+  //! Columns default properties
+  struct columnDefault {
+    QList<int> columns; //!< Список индексов отображаемых колонок
+    int sortBy; //!< Колонка для сортировки
+    int sortType; //!< Тип сортировки
+  } columnDefault;
+
   //! Cleaup properties
   struct cleanup {
     bool enableMaxNews; //!< Разрешить максимальное количество новостей
@@ -124,6 +131,7 @@ private slots:
   void removeColumn();
   void moveUpColumn();
   void moveDownColumn();
+  void defaultColumns();
 
 private:
   QTabWidget *tabWidget;

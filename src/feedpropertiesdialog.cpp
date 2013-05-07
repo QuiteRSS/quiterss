@@ -183,12 +183,17 @@ QWidget *FeedPropertiesDialog::CreateColumnsTab()
   moveDownButton_->setEnabled(false);
   connect(moveDownButton_, SIGNAL(clicked()), this, SLOT(moveDownColumn()));
 
+  QPushButton *defaultButton = new QPushButton(tr("Default"));
+  connect(defaultButton, SIGNAL(clicked()), this, SLOT(defaultColumns()));
+
   QVBoxLayout *buttonsVLayout = new QVBoxLayout();
   buttonsVLayout->addWidget(addButton_);
   buttonsVLayout->addWidget(removeButton_);
   buttonsVLayout->addSpacing(10);
   buttonsVLayout->addWidget(moveUpButton_);
   buttonsVLayout->addWidget(moveDownButton_);
+  buttonsVLayout->addSpacing(10);
+  buttonsVLayout->addWidget(defaultButton);
   buttonsVLayout->addStretch();
 
   QHBoxLayout *mainlayout = new QHBoxLayout();
@@ -302,7 +307,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
     sortByColumnBox_->addItem(feedProperties.column.nameList.at(i),
                               feedProperties.column.indexList.at(i));
     if (feedProperties.column.sortBy == feedProperties.column.indexList.at(i))
-      sortByColumnBox_->setCurrentIndex(sortByColumnBox_->count()-1);
+      sortByColumnBox_->setCurrentIndex(i);
   }
   sortOrderBox_->setCurrentIndex(feedProperties.column.sortType);
 
@@ -333,6 +338,8 @@ void FeedPropertiesDialog::slotLoadTitle()
 //------------------------------------------------------------------------------
 FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 {
+  feedProperties = feedProperties;
+
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
 
@@ -448,4 +455,23 @@ void FeedPropertiesDialog::moveDownColumn()
     moveUpButton_->setEnabled(true);
   if (columnsTree_->currentIndex().row() == (columnsTree_->topLevelItemCount()-1))
     moveDownButton_->setEnabled(false);
+}
+//------------------------------------------------------------------------------
+void FeedPropertiesDialog::defaultColumns()
+{
+  columnsTree_->clear();
+  for (int i = 0; i < feedProperties.columnDefault.columns.count(); ++i) {
+    int index = feedProperties.column.indexList.indexOf(feedProperties.columnDefault.columns.at(i));
+    QString name = feedProperties.column.nameList.at(index);
+    QStringList treeItem;
+    treeItem << name
+             << QString::number(feedProperties.columnDefault.columns.at(i));
+    QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+    columnsTree_->addTopLevelItem(item);
+  }
+  for (int i = 0; i < feedProperties.column.indexList.count(); ++i) {
+    if (feedProperties.columnDefault.sortBy == feedProperties.column.indexList.at(i))
+      sortByColumnBox_->setCurrentIndex(i);
+  }
+  sortOrderBox_->setCurrentIndex(feedProperties.columnDefault.sortType);
 }
