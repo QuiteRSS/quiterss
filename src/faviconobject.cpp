@@ -68,9 +68,9 @@ void FaviconObject::getQueuedUrl()
     QString urlString = urlsQueue_.dequeue();
     QString feedUrl = feedsQueue_.dequeue();
 
-    QUrl url = QUrl::fromEncoded(urlString.toLocal8Bit());
+    QUrl url = QUrl::fromEncoded(urlString.toUtf8());
     if (!url.isValid()) {
-      url = QUrl::fromEncoded(feedUrl.toLocal8Bit());
+      url = QUrl::fromEncoded(feedUrl.toUtf8());
     }
     QUrl getUrl(QString("%1://%2/favicon.ico").
                 arg(url.scheme()).arg(url.host()));

@@ -74,7 +74,7 @@ void UpdateObject::getQueuedUrl()
     getUrlTimer_->start();
 
     QString feedUrl = feedsQueue_.dequeue();
-    QUrl getUrl = QUrl::fromEncoded(feedUrl.toLocal8Bit());
+    QUrl getUrl = QUrl::fromEncoded(feedUrl.toUtf8());
     QString userInfo = userInfo_.dequeue();
     if (!userInfo.isEmpty()) {
       getUrl.setUserInfo(userInfo);
@@ -96,7 +96,7 @@ void UpdateObject::getQueuedUrl()
 void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
                             const QDateTime &date, const int &count)
 {
-  qDebug() << objectName() << "::head:" << getUrl << "feed:" << feedUrl;
+  qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.10.229 Version/11.62");
   request.setRawHeader("Accept-Language", "en-us,en");
@@ -118,7 +118,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
 void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
                            const QDateTime &date, const int &count)
 {
-  qDebug() << objectName() << "::get:" << getUrl << "feed:" << feedUrl;
+  qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
   request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.12");
   request.setRawHeader("Accept-Language", "en-us,en");
@@ -187,7 +187,7 @@ void UpdateObject::finished(QNetworkReply *reply)
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
         if (count < 5) {
-          QString host(QUrl::fromEncoded(feedUrl.toLocal8Bit()).host());
+          QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
           if (reply->operation() == QNetworkAccessManager::HeadOperation) {
             qDebug() << objectName() << "  head redirect...";
             if (redirectionTarget.host().isNull())
