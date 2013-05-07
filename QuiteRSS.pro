@@ -1,3 +1,21 @@
+# VCS revision info
+QMAKE_DISTCLEAN += src/VersionRev.h
+exists(.hg) {
+  VERSION_REV = $$system(hg parents --template '{rev}')
+  !count(VERSION_REV, 1) {
+    VERSION_REV = 0
+  }
+  message(VCS revision: $$VERSION_REV)
+
+  VERSION_REV_STR = $${LITERAL_HASH}define HG_REVISION $$VERSION_REV
+  system(echo $$VERSION_REV_STR > src/VersionRev.h)
+} else:!exists(src/VersionRev.h) {
+  VERSION_REV = 0
+  message(VCS revision: $$VERSION_REV)
+
+  VERSION_REV_STR = $${LITERAL_HASH}define HG_REVISION $$VERSION_REV
+  system(echo $$VERSION_REV_STR > src/VersionRev.h)
+}
 
 QT += core gui network xml webkit sql
 
