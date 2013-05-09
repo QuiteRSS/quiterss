@@ -35,7 +35,7 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   columnVisibleActGroup_ = new QActionGroup(this);
   columnVisibleActGroup_->setExclusive(false);
   connect(columnVisibleActGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(columnVisible(QAction*)));
+          this, SLOT(slotColumnVisible(QAction*)));
 
   buttonColumnView_ = new QPushButton(this);
   buttonColumnView_->setIcon(QIcon(":/images/images/column.png"));
@@ -150,65 +150,8 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       buttonColumnView_->setFixedHeight(height());
 
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
-    bool minSize = false;
-    int newWidth = resizeEvent->size().width();
-    int size = 0;
-    QVector<int> widthCol(count(), 0);
-    static int idxColSize = count()-1;
-    int tWidth = 0;
-    for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
-    if (tWidth > newWidth) {
-      minSize = true;
-      size = tWidth - newWidth;
-      int titleSectionSize = sectionSize(model_->fieldIndex("title"));
-      if ((titleSectionSize - size) >= 40) {
-        widthCol[visualIndex(model_->fieldIndex("title"))] = size;
-        size = 0;
-      } else {
-        widthCol[visualIndex(model_->fieldIndex("title"))] = titleSectionSize - 40;
-        size = size + 40 - titleSectionSize;
-      }
-    } else {
-      size = newWidth - tWidth;
-      widthCol[visualIndex(model_->fieldIndex("title"))] = size;
-      size = 0;
-    }
-    int countCol = 0;
-    bool sizeOne = false;
-    while (size) {
-      int lIdx = logicalIndex(idxColSize);
-      if (!isSectionHidden(lIdx)) {
-        if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx) ||
-              (model_->fieldIndex("feedId") == lIdx) || (model_->fieldIndex("title") == lIdx))) {
-          if (((sectionSize(lIdx) >= 40) && !minSize) ||
-              ((sectionSize(lIdx) - widthCol[idxColSize] > 40) && minSize)) {
-            widthCol[idxColSize]++;
-            size--;
-            sizeOne = true;
-          }
-        }
-      }
-      if (idxColSize == 0) idxColSize = count()-1;
-      else idxColSize--;
+    adjustmentSizesColumns(resizeEvent->size().width());
 
-      if (++countCol == count()) {
-        if (!sizeOne) break;
-        sizeOne = false;
-        countCol = 0;
-      }
-    }
-
-    for (int i = count()-1; i >= 0; i--) {
-      int lIdx = logicalIndex(i);
-      if ((!isSectionHidden(lIdx) && (sectionSize(lIdx) >= 40)) ||
-          (model_->fieldIndex("title") == lIdx)) {
-        if (!minSize) {
-          resizeSection(lIdx, sectionSize(lIdx) + widthCol[i]);
-        } else {
-          resizeSection(lIdx, sectionSize(lIdx) - widthCol[i]);
-        }
-      }
-    }
     event->ignore();
     return true;
   } else if ((event->type() == QEvent::HoverMove) ||
@@ -317,6 +260,68 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
 }
 
+void NewsHeader::adjustmentSizesColumns(int newWidth)
+{
+  bool minSize = false;
+  int size = 0;
+  QVector<int> widthCol(count(), 0);
+  static int idxColSize = count()-1;
+  int tWidth = 0;
+  for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
+  if (tWidth > newWidth) {
+    minSize = true;
+    size = tWidth - newWidth;
+    int titleSectionSize = sectionSize(model_->fieldIndex("title"));
+    if ((titleSectionSize - size) >= 40) {
+      widthCol[visualIndex(model_->fieldIndex("title"))] = size;
+      size = 0;
+    } else {
+      widthCol[visualIndex(model_->fieldIndex("title"))] = titleSectionSize - 40;
+      size = size + 40 - titleSectionSize;
+    }
+  } else {
+    size = newWidth - tWidth;
+    widthCol[visualIndex(model_->fieldIndex("title"))] = size;
+    size = 0;
+  }
+  int countCol = 0;
+  bool sizeOne = false;
+  while (size) {
+    int lIdx = logicalIndex(idxColSize);
+    if (!isSectionHidden(lIdx)) {
+      if (!((model_->fieldIndex("read") == lIdx) || (model_->fieldIndex("starred") == lIdx) ||
+            (model_->fieldIndex("feedId") == lIdx) || (model_->fieldIndex("title") == lIdx))) {
+        if (((sectionSize(lIdx) >= 40) && !minSize) ||
+            ((sectionSize(lIdx) - widthCol[idxColSize] > 40) && minSize)) {
+          widthCol[idxColSize]++;
+          size--;
+          sizeOne = true;
+        }
+      }
+    }
+    if (idxColSize == 0) idxColSize = count()-1;
+    else idxColSize--;
+
+    if (++countCol == count()) {
+      if (!sizeOne) break;
+      sizeOne = false;
+      countCol = 0;
+    }
+  }
+
+  for (int i = count()-1; i >= 0; i--) {
+    int lIdx = logicalIndex(i);
+    if ((!isSectionHidden(lIdx) && (sectionSize(lIdx) >= 40)) ||
+        (model_->fieldIndex("title") == lIdx)) {
+      if (!minSize) {
+        resizeSection(lIdx, sectionSize(lIdx) + widthCol[i]);
+      } else {
+        resizeSection(lIdx, sectionSize(lIdx) - widthCol[i]);
+      }
+    }
+  }
+}
+
 void NewsHeader::slotButtonColumnView()
 {
   viewMenu_->setFocus();
@@ -327,7 +332,7 @@ void NewsHeader::slotButtonColumnView()
   viewMenu_->popup(pPoint);
 }
 
-void NewsHeader::columnVisible(QAction *action)
+void NewsHeader::slotColumnVisible(QAction *action)
 {
   int columnShowCount = 0;
   for (int i = 0; i < count(); i++) {
@@ -348,7 +353,7 @@ void NewsHeader::columnVisible(QAction *action)
     else
       resizeSection(idx, 60);
   }
-  resize(size().width()+1, size().height());
+  adjustmentSizesColumns(size().width()+1);
 }
 
 void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
@@ -371,7 +376,7 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
         }
       }
     }
-    resize(size().width()+1, size().height());
+    adjustmentSizesColumns(size().width()+1);
   }
   createMenu();
 }
@@ -456,8 +461,9 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
 
   if (!isVisible())
     show_ = true;
-  resize(size().width()+1, size().height());
   moveSection(visualIndex(model_->fieldIndex("id")), 0);
+  if (state != saveState())
+    adjustmentSizesColumns(size().width()+1);
   move_ = true;
 }
 

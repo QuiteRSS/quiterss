@@ -47,11 +47,12 @@ protected:
 
 private slots:
   void slotButtonColumnView();
-  void columnVisible(QAction*);
+  void slotColumnVisible(QAction*);
   void slotSectionMoved(int, int, int);
 
 private:
   void createMenu();
+  void adjustmentSizesColumns(int newWidth);
   QString columnsList();
 
   NewsModel *model_;
