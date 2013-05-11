@@ -150,7 +150,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
       buttonColumnView_->setFixedHeight(height());
 
     QResizeEvent *resizeEvent = static_cast<QResizeEvent*>(event);
-    adjustmentSizesColumns(resizeEvent->size().width());
+    adjustAllColumnsWidths(resizeEvent->size().width());
 
     event->ignore();
     return true;
@@ -260,7 +260,7 @@ bool NewsHeader::eventFilter(QObject *obj, QEvent *event)
 {
 }
 
-void NewsHeader::adjustmentSizesColumns(int newWidth)
+void NewsHeader::adjustAllColumnsWidths(int newWidth)
 {
   bool minSize = false;
   int size = 0;
@@ -353,7 +353,7 @@ void NewsHeader::slotColumnVisible(QAction *action)
     else
       resizeSection(idx, 60);
   }
-  adjustmentSizesColumns(size().width()+1);
+  adjustAllColumnsWidths(size().width()+1);
 }
 
 void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
@@ -376,7 +376,7 @@ void NewsHeader::slotSectionMoved(int lIdx, int oldVIdx, int newVIdx)
         }
       }
     }
-    adjustmentSizesColumns(size().width()+1);
+    adjustAllColumnsWidths(size().width()+1);
   }
   createMenu();
 }
@@ -463,7 +463,7 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
     show_ = true;
   moveSection(visualIndex(model_->fieldIndex("id")), 0);
   if (state != saveState())
-    adjustmentSizesColumns(size().width()+1);
+    adjustAllColumnsWidths(size().width()+1);
   move_ = true;
 }
 
