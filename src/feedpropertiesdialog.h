@@ -71,15 +71,15 @@ typedef struct {
     QStringList columns; //!< List of column to display
     QString sortBy; //!< Name of column to sort by
     QString sortType; //!< Type of sort (ascending|descending)
-    QList<int> indexList; //!< Список индексов всех колонок
-    QStringList nameList; //!< Список названий колонок
+    QList<int> indexList; //!< Indexes list of all columns
+    QStringList nameList; //!< Names list of all columns
   } column;
 
   //! Columns default properties
   struct columnDefault {
-    QList<int> columns; //!< Список индексов отображаемых колонок
-    int sortBy; //!< Колонка для сортировки
-    int sortType; //!< Тип сортировки
+    QList<int> columns; //!< List of column to display
+    int sortBy; //!< Name of column to sort by
+    int sortType; //!< Type of sort (ascending|descending)
   } columnDefault;
 
   //! Cleaup properties
