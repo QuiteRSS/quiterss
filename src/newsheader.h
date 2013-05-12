@@ -52,7 +52,12 @@ private slots:
 
 private:
   void createMenu();
-  void adjustmentSizesColumns(int newWidth);
+
+  /**
+   * @brief Adjust width for all columns
+   * @param newWidth Widget's width for adjustment
+   */
+  void adjustAllColumnsWidths(int newWidth);
   QString columnsList();
 
   NewsModel *model_;

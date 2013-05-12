@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
 * QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader
 * Copyright (C) 2011-2013 QuiteRSS Team <quiterssteam@gmail.com>
 *
@@ -25,84 +25,84 @@
 typedef struct {
   //! General properties
   struct general{
-    QString text; //!< Имя
-    QString title; //!< Имя
-    QString url; //!< URL
-    QString homepage; //!< Домашняя страница
-    bool updateEnable; //!< Включение автообновления
-    int updateInterval; //!< Интервал обновления
-    int intervalType; //!< Тип итервала обновления
-    bool updateOnStartup; //!< Обновлять при запуске приложения
-    int displayOnStartup; //!< Отображать при запуске приложения
-    bool starred; //!< Избранная лента
-    bool duplicateNewsMode; //!< Автоматический удалять дубликаты новостей
+    QString text; //!< Text field from feed-xml
+    QString title; //!< Title field from feed-xml
+    QString url; //!< URL field from feed-xml
+    QString homepage; //!< Homepage field from feed-xml
+    bool updateEnable; //!< Flag enabling autoupdate
+    int updateInterval; //!< Update interval
+    int intervalType; //!< Update interval type (sec, min, day)
+    bool updateOnStartup; //!< Flag to update feed on startup
+    int displayOnStartup; //!< Flag to display feed on startup in sepatare tab
+    bool starred; //!< Starred feed (favourite)
+    bool duplicateNewsMode; //!< Automatically delete news duplicates
   } general;
 
   //! Autthentication properties
   struct authentication{
-    bool on;        //!< Включение
-    QString user;   //!< Пользователь
-    QString pass;   //!< Пароль
+    bool on;        //!< Enabling flag
+    QString user;   //!< Username
+    QString pass;   //!< User password
   } authentication;
 
   //! Reading properties
   struct reading{
-    bool markSelectedAsRead; //!< Помечать выбранное как "Прочитано"
-    quint32 markSelectedTime; //!< Время до отметки "Прочитано"
-    bool markReadWhileReading; //!< Mark news as read while reading in newspaper layout
-    bool markDisplayedAsReadWhenSwitch; //!< Помечать отображаемые новости как прочитанные при переключении ленты
-    bool markDisplayedAsReadWhenClose; //!< Помечать отображаемые новости как прочитанные при закрытии таба
-    bool markDisplayedAsReadOnMin; //!< Помечать отображаемые новости как прочитанные при минимизации
+    bool markSelectedAsRead; //!< Mark focused news as Read
+    quint32 markSelectedTime; //!< Mark focused news as Read after elapsed time (sec)
+    bool markReadWhileReading; //!< Mark news as Read while reading in newspaper layout
+    bool markDisplayedAsReadWhenSwitch; //!< Mark displayed news as Read on switching feed
+    bool markDisplayedAsReadWhenClose; //!< Mark displayed news as Read on closing tab
+    bool markDisplayedAsReadOnMin; //!< Mark displayed news as Read on minimize
   } reading ;
 
   //! Display properties
   struct display {
-    quint16 layoutType; //!< Раскладка для отображения
-    quint16 filterType; //!< Фильтр
-    quint16 groupType; //!< Способ группировки
-    int displayNews; //!< Показывать содержимое новости
-    int displayEmbeddedImages; //!< Показывать встроенные изображения
-    bool loadMoviesAndOtherContent; //!< Загружать видео и другое содержимое
-    bool openLink; //!< Открывать ссылку новости
+    quint16 layoutType; //!< display layout
+    quint16 filterType; //!< Filter mode
+    quint16 groupType; //!< Group mode
+    int displayNews; //!< Display news mode
+    int displayEmbeddedImages; //!< Display embedded images
+    bool loadMoviesAndOtherContent; //!< Flag to load media content
+    bool openLink; //!< Flag to open news link
   } display;
 
   //! Columns properties
   struct column {
-    QList<int> columns; //!< Список индексов отображаемых колонок
-    int sortBy; //!< Колонка для сортировки
-    int sortType; //!< Тип сортировки
-    QList<int> indexList; //!< Список индексов всех колонок
-    QStringList nameList; //!< Список названий колонок
+    QStringList columns; //!< List of column to display
+    QString sortBy; //!< Name of column to sort by
+    QString sortType; //!< Type of sort (ascending|descending)
+    QList<int> indexList; //!< Indexes list of all columns
+    QStringList nameList; //!< Names list of all columns
   } column;
 
   //! Columns default properties
   struct columnDefault {
-    QList<int> columns; //!< Список индексов отображаемых колонок
-    int sortBy; //!< Колонка для сортировки
-    int sortType; //!< Тип сортировки
+    QList<int> columns; //!< List of column to display
+    int sortBy; //!< Name of column to sort by
+    int sortType; //!< Type of sort (ascending|descending)
   } columnDefault;
 
   //! Cleaup properties
   struct cleanup {
-    bool enableMaxNews; //!< Разрешить максимальное количество новостей
-    quint32 maxNewsToKeep; //!< Максимальное количество новостей для хранения
-    bool enableAgeNews; //!< Разрешить время хранения новостей
-    quint32 ageOfNewsToKeep; //!< Время хранения новостей (дней)
-    bool deleteReadNews; //!< Удалять прочитанное
-    bool neverDeleteUnread; //!< Никогда не удалять прочитанное
-    bool neverDeleteLabeled; //!< Никогда не удалять отмеченное
+    bool enableMaxNews; //!< Enable flag for \a maxNewsToKeep
+    quint32 maxNewsToKeep; //!< Maximum number of news to keep in DB
+    bool enableAgeNews; //!< Enable flag for \a ageOfNewsToKeep
+    quint32 ageOfNewsToKeep; //!< Time to keep news (days)
+    bool deleteReadNews; //!< Flag to delete already read news
+    bool neverDeleteUnread; //!< Flag to never delete unread news
+    bool neverDeleteLabeled; //!< Flag to never delete labeled news
   } cleanup;
 
   //! Status properties
   struct status {
-    QString feedStatus; //!< Статус ленты
-    QString description; //!< Описание
-    QDateTime createdTime; //!< Время создания
-    QDateTime lastDisplayed; //!< Последний просмотр
-    QDateTime lastUpdate; //!< Последние обновление
-    int undeleteCount; //!< Количество всех новостей
-    int newCount; //!< Количество новых новостей
-    int unreadCount; //!< Количество непрочитанных новостей
+    QString feedStatus; //!< Feed status
+    QString description; //!< Feed description
+    QDateTime createdTime; //!< Time when feed created
+    QDateTime lastDisplayed; //!< Last time that feed displayed
+    QDateTime lastUpdate; //!< Time of feed last update
+    int undeleteCount; //!< Number of all news
+    int newCount; //!< Number of new news
+    int unreadCount; //!< Number of unread news
   } status;
 
 } FEED_PROPERTIES;
