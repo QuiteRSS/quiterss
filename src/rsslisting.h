@@ -144,6 +144,14 @@ public:
   int notificationFontSize_;
   int browserMinFontSize_;
   int browserMinLogFontSize_;
+  QString newsListTextColor_;
+  QString newsListBackgroundColor_;
+  QString linkColor_;
+  QString titleColor_;
+  QString dateColor_;
+  QString authorColor_;
+  QString newsTitleBackgroundColor_;
+  QString newsBackgroundColor_;
   QString formatDate_;
   QString formatTime_;
 

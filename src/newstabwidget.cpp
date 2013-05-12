@@ -402,6 +402,9 @@ void NewsTabWidget::setSettings(bool newTab)
       newsModel_->formatDate_ = rsslisting_->formatDate_;
       newsModel_->formatTime_ = rsslisting_->formatTime_;
       newsModel_->simplifiedDateTime_ = rsslisting_->simplifiedDateTime_;
+
+      newsModel_->textColor_ = rsslisting_->newsListTextColor_;
+      newsView_->setStyleSheet(QString("#newsView_ {background: %1;}").arg(rsslisting_->newsListBackgroundColor_));
     }
 
     if (rsslisting_->externalBrowserOn_ <= 0) {
@@ -422,7 +425,13 @@ void NewsTabWidget::setSettings(bool newTab)
         arg(rsslisting_->newsTitleFontFamily_).
         arg(rsslisting_->newsTitleFontSize_).
         arg(0).
-        arg(qApp->palette().color(QPalette::Dark).name());
+        arg(qApp->palette().color(QPalette::Dark).name()). // color separator
+        arg(rsslisting_->newsBackgroundColor_). // news background
+        arg(rsslisting_->newsTitleBackgroundColor_). // title background
+        arg(rsslisting_->linkColor_). // link color
+        arg(rsslisting_->titleColor_). // title color
+        arg(rsslisting_->dateColor_). // date color
+        arg(rsslisting_->authorColor_); // author color
     cssFile.close();
   }
 

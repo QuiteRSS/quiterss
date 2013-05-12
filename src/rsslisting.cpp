@@ -2069,6 +2069,21 @@ void RSSListing::readSettings()
   c2fEnabled_ = settings_->value("enabled", true).toBool();
   settings_->endGroup();
 
+  settings_->beginGroup("Color");
+  QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
+  feedsTreeModel_->textColor_ = settings_->value("feedsListTextColor", windowTextColor).toString();
+  feedsTreeModel_->backgroundColor_ = settings_->value("feedsListBackgroundColor", "").toString();
+  feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
+  newsListTextColor_ = settings_->value("newsListTextColor", windowTextColor).toString();
+  newsListBackgroundColor_ = settings_->value("newsListBackgroundColor", "").toString();
+  linkColor_ = settings_->value("linkColor", "#0066CC").toString();
+  titleColor_ = settings_->value("titleColor", "#0066CC").toString();
+  dateColor_ = settings_->value("dateColor", "#666666").toString();
+  authorColor_ = settings_->value("authorColor", "#666666").toString();
+  newsTitleBackgroundColor_ = settings_->value("newsTitleBackgroundColor", "#FFFFFF").toString();
+  newsBackgroundColor_ = settings_->value("newsBackgroundColor", "#FFFFFF").toString();
+  settings_->endGroup();
+
   resize(800, 600);
   restoreGeometry(settings_->value("GeometryState").toByteArray());
   restoreState(settings_->value("ToolBarsState").toByteArray());
@@ -2228,6 +2243,19 @@ void RSSListing::writeSettings()
   settings_->setValue("defaultIconFeeds", defaultIconFeeds_);
   settings_->setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
 
+  settings_->endGroup();
+
+  settings_->beginGroup("Color");
+  settings_->setValue("feedsListTextColor", feedsTreeModel_->textColor_);
+  settings_->setValue("feedsListBackgroundColor", feedsTreeModel_->backgroundColor_);
+  settings_->setValue("newsListTextColor", newsListTextColor_);
+  settings_->setValue("newsListBackgroundColor", newsListBackgroundColor_);
+  settings_->setValue("linkColor", linkColor_);
+  settings_->setValue("titleColor", titleColor_);
+  settings_->setValue("dateColor", dateColor_);
+  settings_->setValue("authorColor", authorColor_);
+  settings_->setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
+  settings_->setValue("newsBackgroundColor", newsBackgroundColor_);
   settings_->endGroup();
 
   settings_->beginGroup("ClickToFlash");
@@ -3490,6 +3518,44 @@ void RSSListing::showOptionDlg()
   optionsDialog->browserMinFontSize_->setValue(browserMinFontSize_);
   optionsDialog->browserMinLogFontSize_->setValue(browserMinLogFontSize_);
 
+  QPixmap pixmapColor(14, 14);
+  pixmapColor.fill(feedsTreeModel_->textColor_);
+  optionsDialog->colorsTree_->topLevelItem(0)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(0)->setText(1, feedsTreeModel_->textColor_);
+  if (feedsTreeModel_->backgroundColor_.isEmpty())
+    pixmapColor.fill(QColor(0, 0, 0, 0));
+  else
+    pixmapColor.fill(feedsTreeModel_->backgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(1)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(1)->setText(1, feedsTreeModel_->backgroundColor_);
+  pixmapColor.fill(newsListTextColor_);
+  optionsDialog->colorsTree_->topLevelItem(2)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(2)->setText(1, newsListTextColor_);
+  if (newsListBackgroundColor_.isEmpty())
+    pixmapColor.fill(QColor(0, 0, 0, 0));
+  else
+    pixmapColor.fill(newsListBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(3)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(3)->setText(1, newsListBackgroundColor_);
+  pixmapColor.fill(linkColor_);
+  optionsDialog->colorsTree_->topLevelItem(4)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(4)->setText(1, linkColor_);
+  pixmapColor.fill(titleColor_);
+  optionsDialog->colorsTree_->topLevelItem(5)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(5)->setText(1, titleColor_);
+  pixmapColor.fill(dateColor_);
+  optionsDialog->colorsTree_->topLevelItem(6)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(6)->setText(1, dateColor_);
+  pixmapColor.fill(authorColor_);
+  optionsDialog->colorsTree_->topLevelItem(7)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(7)->setText(1, authorColor_);
+  pixmapColor.fill(newsTitleBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(8)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(8)->setText(1, newsTitleBackgroundColor_);
+  pixmapColor.fill(newsBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(9)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(9)->setText(1, newsBackgroundColor_);
+
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
 
@@ -3748,6 +3814,18 @@ void RSSListing::showOptionDlg()
         QWebSettings::MinimumFontSize, browserMinFontSize_);
   QWebSettings::globalSettings()->setFontSize(
         QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
+
+  feedsTreeModel_->textColor_ = optionsDialog->colorsTree_->topLevelItem(0)->text(1);
+  feedsTreeModel_->backgroundColor_ = optionsDialog->colorsTree_->topLevelItem(1)->text(1);
+  feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
+  newsListTextColor_ = optionsDialog->colorsTree_->topLevelItem(2)->text(1);
+  newsListBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(3)->text(1);
+  linkColor_ = optionsDialog->colorsTree_->topLevelItem(4)->text(1);
+  titleColor_ = optionsDialog->colorsTree_->topLevelItem(5)->text(1);
+  dateColor_ = optionsDialog->colorsTree_->topLevelItem(6)->text(1);
+  authorColor_ = optionsDialog->colorsTree_->topLevelItem(7)->text(1);
+  newsTitleBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(8)->text(1);
+  newsBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(9)->text(1);
 
   delete optionsDialog;
 

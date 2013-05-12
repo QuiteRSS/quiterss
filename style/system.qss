@@ -55,7 +55,8 @@ QHeaderView::up-arrow {
 
 #categoriesTree::item, #fontTree::item, 
 #languageFileList_::item, #filtersTree::item,
-#shortcutTree::item, #labelsTree_::item {
+#shortcutTree::item, #labelsTree_::item,
+#colorsTree_::item {
 	min-height: 20px;
 }
 

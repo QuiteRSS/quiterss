@@ -81,7 +81,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
   treeItem << "8" << tr("Language");
   categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << "9" << tr("Fonts");
+  treeItem << "9" << tr("Fonts & Colors");
   categoriesTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << "10" << tr("Keyboard Shortcuts");
@@ -105,7 +105,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
   createLanguageWidget();
 
-  createFontsWidget();
+  createFontsColorsWidget();
 
   createShortcutWidget();
 
@@ -120,7 +120,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
   contentStack_->addWidget(notifierWidget_);
   contentStack_->addWidget(passwordsWidget_);
   contentStack_->addWidget(languageWidget_);
-  contentStack_->addWidget(fontsWidget_);
+  contentStack_->addWidget(fontsColorsWidget_);
   contentStack_->addWidget(shortcutWidget_);
 
   QSplitter *splitter = new QSplitter();
@@ -1206,9 +1206,9 @@ void OptionsDialog::createLanguageWidget()
   languageWidget_->setLayout(languageLayout);
 }
 
-/** @brief Создание виджета "Шрифты"
+/** @brief Создание виджета "Шрифты и цвета"
  *----------------------------------------------------------------------------*/
-void OptionsDialog::createFontsWidget()
+void OptionsDialog::createFontsColorsWidget()
 {
   fontsTree_ = new QTreeWidget();
   fontsTree_->setObjectName("fontTree");
@@ -1268,13 +1268,77 @@ void OptionsDialog::createFontsWidget()
   fontsLayout->addWidget(fontsTree_, 1);
   fontsLayout->addLayout(browserFontSizeLayout);
 
-  QHBoxLayout *mainLayout = new QHBoxLayout();
-  mainLayout->setMargin(0);
-  mainLayout->addLayout(fontsLayout, 1);
-  mainLayout->addLayout(fontsButtonLayout);
+  QHBoxLayout *mainFontsLayout = new QHBoxLayout();
+  mainFontsLayout->addLayout(fontsLayout, 1);
+  mainFontsLayout->addLayout(fontsButtonLayout);
 
-  fontsWidget_ = new QWidget();
-  fontsWidget_->setLayout(mainLayout);
+  QWidget *fontsWidget = new QWidget();
+  fontsWidget->setLayout(mainFontsLayout);
+
+
+  colorsTree_ = new QTreeWidget(this);
+  colorsTree_->setObjectName("colorsTree_");
+  colorsTree_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+  colorsTree_->setRootIsDecorated(false);
+  colorsTree_->setColumnCount(2);
+  colorsTree_->setColumnHidden(1, true);
+  colorsTree_->setHeaderHidden(true);
+
+  treeItem.clear();
+  treeItem << tr("Feeds list color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Feeds list background");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("News list color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("News list background");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Link color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Title color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Date color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Author color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("News title background");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("News background");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+
+  colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
+
+  connect(colorsTree_, SIGNAL(doubleClicked(QModelIndex)),
+          this, SLOT(slotColorChange()));
+
+  QPushButton *colorChange = new QPushButton(tr("Change..."));
+  connect(colorChange, SIGNAL(clicked()), this, SLOT(slotColorChange()));
+  QPushButton *colorReset = new QPushButton(tr("Reset"));
+  connect(colorReset, SIGNAL(clicked()), this, SLOT(slotColorReset()));
+  QVBoxLayout *colorsButtonLayout = new QVBoxLayout();
+  colorsButtonLayout->addWidget(colorChange);
+  colorsButtonLayout->addWidget(colorReset);
+  colorsButtonLayout->addStretch(1);
+
+  QHBoxLayout *colorsLayout = new QHBoxLayout();
+  colorsLayout->addWidget(colorsTree_);
+  colorsLayout->addLayout(colorsButtonLayout);
+
+  QWidget *colorsWidget_ = new QWidget(this);
+  colorsWidget_->setLayout(colorsLayout);
+
+  fontsColorsWidget_ = new QTabWidget();
+  fontsColorsWidget_->addTab(fontsWidget, tr("Fonts"));
+  fontsColorsWidget_->addTab(colorsWidget_, tr("Colors"));
 }
 
 /** @brief Создание виджета "Горячие клавиши"
@@ -1472,6 +1536,49 @@ void OptionsDialog::slotFontReset()
   default: fontsTree_->currentItem()->setText(
           2, QString("%1, 8").arg(qApp->font().family()));
   }
+}
+
+void OptionsDialog::slotColorChange()
+{
+  QString colorStr = colorsTree_->currentItem()->text(1);
+  QColorDialog *colorDialog = new QColorDialog(QColor(colorStr), this);
+  if (colorDialog->exec() == QDialog::Rejected) {
+    delete colorDialog;
+    return;
+  }
+  QColor color = colorDialog->selectedColor();
+  delete colorDialog;
+
+  QPixmap pixmapColor(14, 14);
+  pixmapColor.fill(color.name());
+  colorsTree_->currentItem()->setIcon(0, pixmapColor);
+  colorsTree_->currentItem()->setText(1, color.name());
+}
+
+void OptionsDialog::slotColorReset()
+{
+  QString colorName;
+  int row = colorsTree_->currentIndex().row();
+  switch (row) {
+  case 0: case 2:
+    colorName = qApp->palette().brush(QPalette::WindowText).color().name();
+    break;
+  case 1: case 3: colorName = "";
+    break;
+  case 4: case 5: colorName = "#0066CC";
+    break;
+  case 6: case 7: colorName = "#666666";
+    break;
+  case 8: case 9: colorName = "#FFFFFF";
+    break;
+  }
+  QPixmap pixmapColor(14, 14);
+  if (colorName.isEmpty())
+    pixmapColor.fill(QColor(0, 0, 0, 0));
+  else
+    pixmapColor.fill(colorName);
+  colorsTree_->currentItem()->setIcon(0, pixmapColor);
+  colorsTree_->currentItem()->setText(1, colorName);
 }
 
 void OptionsDialog::setBehaviorIconTray(int behavior)

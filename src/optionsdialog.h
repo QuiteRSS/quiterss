@@ -150,6 +150,7 @@ public:
 
   // fonts
   QTreeWidget *fontsTree_;
+  QTreeWidget *colorsTree_;
   QSpinBox *browserMinFontSize_;
   QSpinBox *browserMinLogFontSize_;
 
@@ -174,6 +175,8 @@ private slots:
   void closeDialog();
   void slotFontChange();
   void slotFontReset();
+  void slotColorChange();
+  void slotColorReset();
   void shortcutTreeClicked(const QModelIndex &index);
   void slotShortcutTreeUpDownPressed();
   void slotClearShortcut();
@@ -216,7 +219,7 @@ private:
   QFrame *notifierWidget_;
   QWidget *passwordsWidget_;
   QWidget *languageWidget_;
-  QWidget *fontsWidget_;
+  QTabWidget *fontsColorsWidget_;
   QWidget *shortcutWidget_;
 
   // general
@@ -282,7 +285,7 @@ private:
   QTreeWidget *languageFileList_;
 
   // fonts
-  void createFontsWidget();
+  void createFontsColorsWidget();
 
   // shortcut
   void createShortcutWidget();

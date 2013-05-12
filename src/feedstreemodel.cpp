@@ -82,7 +82,7 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
     }
   } else if (role == Qt::TextColorRole) {
     QBrush brush;
-    brush = qApp->palette().brush(QPalette::WindowText);
+    brush = QColor(textColor_);
     if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
       brush = qApp->palette().brush(QPalette::Link);
     } else if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {

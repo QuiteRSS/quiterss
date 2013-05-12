@@ -40,6 +40,8 @@ public:
   QString formatDate_;
   QString formatTime_;
   bool defaultIconFeeds_;
+  QString textColor_;
+  QString backgroundColor_;
 
 private:
   QyurSqlTreeView *view_;

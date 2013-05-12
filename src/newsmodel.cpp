@@ -222,7 +222,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       if (!strColor.isEmpty())
         return QColor(strColor);
     }
-    return qApp->palette().brush(QPalette::WindowText);
+    return QColor(textColor_);
   }
   return QSqlTableModel::data(index, role);
 }
