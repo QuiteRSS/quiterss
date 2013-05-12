@@ -169,7 +169,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         linkStr = QSqlTableModel::index(index.row(), fieldIndex("link_alternate")).
             data(Qt::EditRole).toString();
       }
-      return linkStr.simplified();
+      linkStr = linkStr.simplified();
+      linkStr = linkStr.remove("http://");
+      return linkStr;
     }
   } else if (role == Qt::FontRole) {
     QFont font = view_->font();
