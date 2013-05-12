@@ -68,9 +68,9 @@ typedef struct {
 
   //! Columns properties
   struct column {
-    QStringList columns; //!< List of column to display
-    QString sortBy; //!< Name of column to sort by
-    QString sortType; //!< Type of sort (ascending|descending)
+    QList<int> columns; //!< Indexes list of columns to display
+    int sortBy; //!< Index of column to sort by
+    int sortType; //!< Type of sort (ascending|descending - 0|1)
     QList<int> indexList; //!< Indexes list of all columns
     QStringList nameList; //!< Names list of all columns
   } column;
