@@ -3256,6 +3256,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
 
   if (indexTab == -1) {
     if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
+      setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
+
       updateCurrentTab_ = false;
       tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       updateCurrentTab_ = true;
@@ -4323,12 +4325,24 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType)
     int cnt = newsModel_->rowCount();
     if (cnt == 0) return;
 
+    QList <int> idNewsList;
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+      if (widget->type_ != TAB_WEB) {
+        int row = widget->newsView_->currentIndex().row();
+        int newsId = widget->newsModel_->index(row, widget->newsModel_->fieldIndex("id")).data().toInt();
+        idNewsList.append(newsId);
+      }
+    }
+
     db_.transaction();
     QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
-      q.exec(QString("UPDATE news SET read=2 WHERE id=='%1' AND read=1").arg(newsId));
-      q.exec(QString("UPDATE news SET new=0 WHERE id=='%1' AND new=1").arg(newsId));
+      if (!idNewsList.contains(newsId)) {
+        q.exec(QString("UPDATE news SET read=2 WHERE id=='%1' AND read==1").arg(newsId));
+        q.exec(QString("UPDATE news SET new=0 WHERE id=='%1' AND new==1").arg(newsId));
+      }
     }
     db_.commit();
   }
@@ -5873,6 +5887,7 @@ void RSSListing::slotSwitchPrevFocus()
 void RSSListing::slotOpenFeedNewTab()
 {
   if (stackedWidget_->count() && currentNewsTab->type_ != TAB_WEB) {
+    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
   }
 
@@ -5889,8 +5904,8 @@ void RSSListing::slotTabCloseRequested(int index)
 
     setFeedRead(widget->type_, widget->feedId_, FeedReadClosingTab);
 
-    stackedWidget_->removeWidget(widget);
     tabBar_->removeTab(index);
+    stackedWidget_->removeWidget(widget);
     QWidget *newsTitleLabel = widget->newsTitleLabel_;
     delete widget;
     delete newsTitleLabel;
@@ -5901,7 +5916,6 @@ void RSSListing::slotTabCloseRequested(int index)
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (!stackedWidget_->count()) return;
-  setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
@@ -5925,7 +5939,9 @@ void RSSListing::slotTabCurrentChanged(int index)
 
   if (!updateCurrentTab_) return;
 
-  if (currentNewsTab->type_ != TAB_WEB) {
+  if ((currentNewsTab->type_ != TAB_WEB) && (tabBar_->count() == stackedWidget_->count())) {
+    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
+
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
     settings_->setValue("NewsTabSplitterGeometry",
                         currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
