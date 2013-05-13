@@ -405,6 +405,26 @@ void NewsTabWidget::setSettings(bool newTab)
 
       newsModel_->textColor_ = rsslisting_->newsListTextColor_;
       newsView_->setStyleSheet(QString("#newsView_ {background: %1;}").arg(rsslisting_->newsListBackgroundColor_));
+      QFile cssFile;
+      cssFile.setFileName(rsslisting_->appDataDirPath_+ "/style/news.css");
+      if (!cssFile.open(QFile::ReadOnly)) {
+        cssFile.setFileName(":/style/newsStyle");
+        cssFile.open(QFile::ReadOnly);
+      }
+      cssString_ = QString::fromUtf8(cssFile.readAll()).
+          arg(rsslisting_->newsTextFontFamily_).
+          arg(rsslisting_->newsTextFontSize_).
+          arg(rsslisting_->newsTitleFontFamily_).
+          arg(rsslisting_->newsTitleFontSize_).
+          arg(0).
+          arg(qApp->palette().color(QPalette::Dark).name()). // color separator
+          arg(rsslisting_->newsBackgroundColor_). // news background
+          arg(rsslisting_->newsTitleBackgroundColor_). // title background
+          arg(rsslisting_->linkColor_). // link color
+          arg(rsslisting_->titleColor_). // title color
+          arg(rsslisting_->dateColor_). // date color
+          arg(rsslisting_->authorColor_); // author color
+      cssFile.close();
     }
 
     if (rsslisting_->externalBrowserOn_ <= 0) {
@@ -412,27 +432,6 @@ void NewsTabWidget::setSettings(bool newTab)
     } else {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     }
-
-    QFile cssFile;
-    cssFile.setFileName(rsslisting_->appDataDirPath_+ "/style/news.css");
-    if (!cssFile.open(QFile::ReadOnly)) {
-      cssFile.setFileName(":/style/newsStyle");
-      cssFile.open(QFile::ReadOnly);
-    }
-    cssString_ = QString::fromUtf8(cssFile.readAll()).
-        arg(rsslisting_->newsTextFontFamily_).
-        arg(rsslisting_->newsTextFontSize_).
-        arg(rsslisting_->newsTitleFontFamily_).
-        arg(rsslisting_->newsTitleFontSize_).
-        arg(0).
-        arg(qApp->palette().color(QPalette::Dark).name()). // color separator
-        arg(rsslisting_->newsBackgroundColor_). // news background
-        arg(rsslisting_->newsTitleBackgroundColor_). // title background
-        arg(rsslisting_->linkColor_). // link color
-        arg(rsslisting_->titleColor_). // title color
-        arg(rsslisting_->dateColor_). // date color
-        arg(rsslisting_->authorColor_); // author color
-    cssFile.close();
   }
 
   if (type_ == TAB_FEED) {
