@@ -128,7 +128,8 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParI
           rsslisting_, SLOT(setTextTitle(QString,NewsTabWidget*)));
 }
 
-//! Создание новостного списка и всех сопутствующих панелей
+/** @brief Create news list with all related panels
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::createNewsList()
 {
   newsView_ = new NewsView(this);
@@ -248,7 +249,7 @@ void NewsTabWidget::createNewsList()
           newsPanelWidget_, SLOT(setVisible(bool)));
 }
 
-/** @brief Вызов контекстного меню выбранной новости в списке новостей
+/** @brief Call context menu of selected news in news list
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::showContextMenuNews(const QPoint &pos)
 {
@@ -277,7 +278,8 @@ void NewsTabWidget::showContextMenuNews(const QPoint &pos)
   menu.exec(newsView_->viewport()->mapToGlobal(pos));
 }
 
-//! Создание веб-виджета и панели управления
+/** @brief Create web-widget and control panel
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::createWebWidget()
 {
   webView_ = new WebView(this, rsslisting_->networkManager_);
@@ -392,7 +394,8 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(setWebToolbarVisible()));
 }
 
-/*! \brief Чтение настроек из ini-файла ***************************************/
+/** @brief Read settings from ini-file
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::setSettings(bool newTab)
 {
   if (newTab) {
@@ -462,7 +465,8 @@ void NewsTabWidget::setSettings(bool newTab)
   }
 }
 
-//! Перезагрузка перевода
+/** @brief Reload translation
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::retranslateStrings() {
   webViewProgress_->setFormat(tr("Loading... (%p%)"));
 
@@ -492,7 +496,8 @@ void NewsTabWidget::retranslateStrings() {
   closeButton_->setToolTip(tr("Close Tab"));
 }
 
-/*! \brief Обработка нажатия в дереве новостей ********************************/
+/** @brief Process mouse click in news list
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
 {
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
@@ -500,6 +505,7 @@ void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
   }
 }
 
+// ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 {
   QElapsedTimer timer;
@@ -539,7 +545,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     }
 
     if (type_ == TAB_FEED) {
-      // Запись текущей новости в ленту
+      // Write current news to feed
       QSqlQuery q;
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).arg(feedId_);
@@ -571,7 +577,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
-//! Двойной клик в списке новостей
+// ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
@@ -585,6 +591,7 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
   slotLinkClicked(url);
 }
 
+// ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
@@ -609,7 +616,8 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
   slotLinkClicked(url);
 }
 
-/*! \brief Обработка клавиш Up/Down в дереве новостей *************************/
+/** @brief Process pressing UP-key
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsUpPressed()
 {
   if (type_ == TAB_WEB) return;
@@ -635,6 +643,8 @@ void NewsTabWidget::slotNewsUpPressed()
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
+/** @brief Process pressing DOWN-key
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsDownPressed()
 {
   if (type_ == TAB_WEB) return;
@@ -660,7 +670,8 @@ void NewsTabWidget::slotNewsDownPressed()
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
-/*! \brief Обработка клавиш Home/End в дереве новостей *************************/
+/** @brief Process pressing HOME-key
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsHomePressed()
 {
   int row = 0;
@@ -668,6 +679,8 @@ void NewsTabWidget::slotNewsHomePressed()
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
+/** @brief Process pressing END-key
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsEndPressed()
 {
   int row = newsModel_->rowCount() - 1;
@@ -675,7 +688,8 @@ void NewsTabWidget::slotNewsEndPressed()
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
-/*! \brief Обработка клавиш PageUp/PageDown в дереве новостей *************************/
+/** @brief Process pressing PageUp-key
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsPageUpPressed()
 {
   if (!newsView_->currentIndex().isValid()) {
@@ -692,6 +706,8 @@ void NewsTabWidget::slotNewsPageUpPressed()
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
+/** @brief Process pressing PageDown-key
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsPageDownPressed()
 {
   if (!newsView_->currentIndex().isValid()) {
@@ -708,7 +724,8 @@ void NewsTabWidget::slotNewsPageDownPressed()
   slotNewsViewClicked(newsModel_->index(row, newsModel_->fieldIndex("title")));
 }
 
-//! Пометка новости прочитанной
+/** @brief Mark news Read
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 {
   markNewsReadTimer_->stop();
@@ -751,7 +768,8 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
   }
 }
 
-//! Пометка новости звездочкой (избранная)
+/** @brief Mark news Star
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
 {
   if (!index.isValid()) return;
@@ -770,7 +788,8 @@ void NewsTabWidget::slotMarkReadTimeout()
   slotSetItemRead(newsView_->currentIndex(), 1);
 }
 
-//! Отметить выделенные новости прочитанными
+/** @brief Mark selected news Read
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::markNewsRead()
 {
   if (type_ == TAB_WEB) return;
@@ -834,7 +853,8 @@ void NewsTabWidget::markNewsRead()
   }
 }
 
-//! Отметить все новости в ленте прочитанными
+/** @brief Mark all news of the feed Read
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::markAllNewsRead()
 {
   if (type_ == TAB_WEB) return;
@@ -872,7 +892,8 @@ void NewsTabWidget::markAllNewsRead()
   rsslisting_->recountCategoryCounts();
 }
 
-//! Пометка выбранных новостей звездочкой (избранные)
+/** @brief Mark selected news Starred
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::markNewsStar()
 {
   if (type_ == TAB_WEB) return;
@@ -916,7 +937,8 @@ void NewsTabWidget::markNewsStar()
   }
 }
 
-//! Удаление новости
+/** @brief Delete selected news
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::deleteNews()
 {
   if (type_ == TAB_WEB) return;
@@ -989,7 +1011,8 @@ void NewsTabWidget::deleteNews()
   rsslisting_->recountCategoryCounts();
 }
 
-//! Удаление всех новостей из списка
+/** @brief Delete all news of the feed
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::deleteAllNewsList()
 {
   if (type_ == TAB_WEB) return;
@@ -1072,7 +1095,7 @@ void NewsTabWidget::restoreNews()
   rsslisting_->recountCategoryCounts();
 }
 
-/** @brief Копировать ссылку новости
+/** @brief Copy news link
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotCopyLinkNews()
 {

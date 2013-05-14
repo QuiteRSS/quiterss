@@ -44,7 +44,7 @@ GoogleReader::GoogleReader(const QString &email, const QString &passwd, QObject 
   requestSidAuth();
 }
 
-//! Запрос авторизации
+//! Authorization request
 void GoogleReader::requestSidAuth()
 {
   QNetworkRequest request(QUrl("https://www.google.com/accounts/ClientLogin"));
@@ -81,7 +81,7 @@ void GoogleReader::replySidAuth(QNetworkReply *reply)
   emit signalReplySidAuth(ok);
 }
 
-//! Запрос идентификатора сессии (жизнь сессии - 30 мин, запрос каждые 20 мин)
+//! Session identificator request (session timeout - 30 min, session request - every 20 min)
 void GoogleReader::requestToken()
 {
   sessionTimer_->stop();
@@ -107,7 +107,7 @@ void GoogleReader::replyToken(QNetworkReply *reply)
   emit signalReplyToken(ok);
 }
 
-//! Отправка HTTP POST запроса
+//! HTTP POST request
 void GoogleReader::sendHttpPost(QUrl url, QUrl params)
 {
   QNetworkRequest request(url);
@@ -117,7 +117,7 @@ void GoogleReader::sendHttpPost(QUrl url, QUrl params)
   managerHttpPost_.post(request, params.encodedQuery());
 }
 
-//! Получение ответа на HTTP POST запрос
+//! Process HTTP POST reply
 void GoogleReader::replyHttpPost(QNetworkReply *reply)
 {
   bool ok = false;
@@ -132,7 +132,7 @@ void GoogleReader::replyHttpPost(QNetworkReply *reply)
   emit signalReplyHttpPost(ok);
 }
 
-//! Отправка HTTP GET запроса
+//! HTTP GET request
 void GoogleReader::sendHttpGet(QUrl url, QNetworkAccessManager *manager)
 {
   QNetworkRequest request(url);
@@ -142,7 +142,7 @@ void GoogleReader::sendHttpGet(QUrl url, QNetworkAccessManager *manager)
   manager->get(request);
 }
 
-//! Добавление, удаление и переименование ленты
+//! Adding, deleting, renaming feed
 void GoogleReader::editFeed(const QString &urlFeed, const QString &action, const QString &name)
 {
   QUrl params;
@@ -157,14 +157,14 @@ void GoogleReader::editFeed(const QString &urlFeed, const QString &action, const
                params);
 }
 
-//! Запрос списка лент
+//! Feed list request
 void GoogleReader::requestFeedsList()
 {
   sendHttpGet(QUrl("https://www.google.com/reader/api/0/subscription/list?output=xml"),
               &managerFeedsList_);
 }
 
-//! Ответ на запрос списка лент
+//! Process feed list reply
 void GoogleReader::replyFeedsList(QNetworkReply *reply)
 {
   QString dataStr;
@@ -175,14 +175,14 @@ void GoogleReader::replyFeedsList(QNetworkReply *reply)
   }
 }
 
-//! Запрос количества непрочитанных новостей
+//! News unread number request
 void GoogleReader::requestUnreadCount()
 {
   sendHttpGet(QUrl("https://www.google.com/reader/api/0/unread-count?output=xml"),
               &managerUnreadCount_);
 }
 
-//! Ответ на запрос количества непрочитанных новостей
+//! Process news unread number reply
 void GoogleReader::replyUnreadCount(QNetworkReply *reply)
 {
   QString dataStr;
@@ -193,7 +193,7 @@ void GoogleReader::replyUnreadCount(QNetworkReply *reply)
   }
 }
 
-//! Запрос новостей ленты
+//! Feed News request
 void GoogleReader::requestFeed(const QString &urlFeed, int ot)
 {
   QUrl params;
@@ -212,7 +212,7 @@ void GoogleReader::requestFeed(const QString &urlFeed, int ot)
   sendHttpGet(params, &managerFeed_);
 }
 
-//! Ответ на запрос новостей ленты
+//! Process feed news reply
 void GoogleReader::replyFeed(QNetworkReply *reply)
 {
   QString dataStr;
@@ -224,7 +224,7 @@ void GoogleReader::replyFeed(QNetworkReply *reply)
   }
 }
 
-//! Пометка новости прочитанной или звездой
+//! Mark news read or starred
 void GoogleReader::editItem(const QString &urlFeed, const QString &itemId, const QString &action)
 {
   QUrl params;
