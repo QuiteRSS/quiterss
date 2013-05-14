@@ -44,7 +44,7 @@ class RSSListing;
 #define TAB_CAT_DEL    4
 #define TAB_CAT_LABEL  5
 
-#define RESIZESTEP 25   // Шаг изменения размера списка новостей/браузера
+#define RESIZESTEP 25   // News list/browser size step
 
 class NewsTabWidget : public QWidget
 {
