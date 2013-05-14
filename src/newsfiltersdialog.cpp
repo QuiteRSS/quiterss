@@ -384,6 +384,7 @@ void NewsFiltersDialog::applyFilter()
   if (feedId != -1)
     rssl_->slotUpdateNews();
   rssl_->slotUpdateStatus(feedId);
+  rssl_->recountCategoryCounts();
 }
 
 void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)

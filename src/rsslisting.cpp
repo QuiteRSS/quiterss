@@ -79,6 +79,7 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
   , feedIdOld_(-2)
   , importFeedStart_(false)
   , indexClickedTab(-1)
+  , recountCategoryCountsOn_(false)
 {
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -209,6 +210,8 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalRefreshInfoTray()),
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalRecountCategoryCounts()),
+          SLOT(slotRecountCategoryCounts()), Qt::QueuedConnection);
 
   updateDelayer_ = new UpdateDelayer(this);
   connect(updateDelayer_, SIGNAL(signalUpdateNeeded(QString, bool, int)),
@@ -584,18 +587,21 @@ void RSSListing::createFeedsWidget()
   newsCategoriesTree_->setStyleSheet(
         QString("#newsCategoriesTree_ {border-top: 1px solid %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
-  newsCategoriesTree_->setColumnCount(4);
+  newsCategoriesTree_->setColumnCount(5);
   newsCategoriesTree_->setColumnHidden(1, true);
   newsCategoriesTree_->setColumnHidden(2, true);
   newsCategoriesTree_->setColumnHidden(3, true);
   newsCategoriesTree_->header()->hide();
+  newsCategoriesTree_->header()->setResizeMode(0, QHeaderView::Stretch);
+  newsCategoriesTree_->header()->setResizeMode(4, QHeaderView::ResizeToContents);
+  newsCategoriesTree_->header()->setStretchLastSection(false);
 
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
   newsCategoriesTree_->setItemDelegate(itemDelegate);
 
   QStringList treeItem;
   treeItem.clear();
-  treeItem << "Categories" << "Type" << "Id" << "CurrentNews";
+  treeItem << "Categories" << "Type" << "Id" << "CurrentNews" << "";
   newsCategoriesTree_->setHeaderLabels(treeItem);
 
   treeItem.clear();
@@ -3084,6 +3090,116 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
   }
 }
 
+void RSSListing::recountCategoryCounts()
+{
+  if (recountCategoryCountsOn_) return;
+
+  recountCategoryCountsOn_ = true;
+  emit signalRecountCategoryCounts();
+}
+
+/** @brief Пересчёт счётчиков категорий
+ *----------------------------------------------------------------------------*/
+void RSSListing::slotRecountCategoryCounts()
+{
+  if (!newsCategoriesTree_->isVisible()) {
+    recountCategoryCountsOn_ = false;
+    return;
+  }
+
+  int allStarredCount = 0;
+  int unreadStarredCount = 0;
+  int deletedCount = 0;
+  QMap<int,int> allCountList;
+  QMap<int,int> unreadCountList;
+  int allLabelCount = 0;
+  int unreadLabelCount = 0;
+
+  QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(3);
+  for (int i = 0; i < labelTreeItem->childCount(); i++) {
+    int id = labelTreeItem->child(i)->text(2).toInt();
+    allCountList.insert(id, 0);
+    unreadCountList.insert(id, 0);
+  }
+
+  QSqlQuery q;
+  q.exec("SELECT deleted, starred, read, label FROM news WHERE deleted < 2");
+  while (q.next()) {
+    if (q.value(0).toInt() == 0) {
+      if (q.value(1).toInt() == 1) {
+        allStarredCount++;
+        if (q.value(2).toInt() == 0)
+          unreadStarredCount++;
+      }
+      QString idString = q.value(3).toString();
+      if (!idString.isEmpty() && idString != ",") {
+        QStringList idList = idString.split(",", QString::SkipEmptyParts);
+        foreach (QString idStr, idList) {
+          int id = idStr.toInt();
+          if (allCountList.contains(id)) {
+            allCountList[id]++;
+            if (q.value(2).toInt() == 0)
+              unreadCountList[id]++;
+          }
+        }
+      }
+    } else if (q.value(0).toInt() == 1) {
+      deletedCount++;
+    }
+  }
+  for (int i = 0; i < labelTreeItem->childCount(); i++) {
+    int id = labelTreeItem->child(i)->text(2).toInt();
+    QString countStr;
+    if (!unreadCountList[id] && !allCountList[id])
+      countStr = "";
+    else
+      countStr = QString("(%1/%2)").arg(unreadCountList[id]).arg(allCountList[id]);
+    labelTreeItem->child(i)->setText(4, countStr);
+
+    unreadLabelCount = unreadLabelCount + unreadCountList[id];
+    allLabelCount = allLabelCount + allCountList[id];
+  }
+
+  QString countStr;
+  if (!unreadStarredCount && !allStarredCount)
+    countStr = "";
+  else
+    countStr = QString("(%1/%2)").arg(unreadStarredCount).arg(allStarredCount);
+  newsCategoriesTree_->topLevelItem(1)->setText(4, countStr);
+  if (!deletedCount)
+    countStr = "";
+  else
+    countStr = QString("(%1)").arg(deletedCount);
+  newsCategoriesTree_->topLevelItem(2)->setText(4, countStr);
+  if (!unreadLabelCount && !allLabelCount)
+    countStr = "";
+  else
+    countStr = QString("(%1/%2)").arg(unreadLabelCount).arg(allLabelCount);
+  newsCategoriesTree_->topLevelItem(3)->setText(4, countStr);
+
+  if ((currentNewsTab->type_ != TAB_WEB) && (currentNewsTab->type_ != TAB_FEED)) {
+    int unreadCount = 0;
+    int allCount = currentNewsTab->newsModel_->rowCount();
+
+    QString countStr = newsCategoriesTree_->currentItem()->text(4);
+    if (!countStr.isEmpty()) {
+      countStr.remove(QRegExp("[()]"));
+      switch (currentNewsTab->type_) {
+      case TAB_CAT_UNREAD:
+        unreadCount = countStr.toInt();
+        break;
+      case TAB_CAT_STAR: case TAB_CAT_LABEL:
+        unreadCount = countStr.section("/", 0, 0).toInt();
+        break;
+      }
+    }
+    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
+    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+  }
+
+  recountCategoryCountsOn_ = false;
+}
+
 /** @brief Обработка сигнала на обновление отображения ленты
  *
  *  Производится после обновления ленты и после добавления ленты
@@ -3144,6 +3260,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
   if (newCount > 0) {
     playSoundNewNews();
   }
+  recountCategoryCounts();
 
   // Управление уведомлениями
   if (isActiveWindow()) {
@@ -4025,11 +4142,13 @@ void RSSListing::markFeedRead()
       newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
       slotUpdateStatus(id);
+      recountCategoryCounts();
     }
   }
   // Обновляем ленту, на которой нет фокуса
   else {
     slotUpdateStatus(id);
+    recountCategoryCounts();
   }
 }
 
@@ -4053,17 +4172,8 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
       unreadCount = q.value(0).toInt();
       allCount    = q.value(1).toInt();
     }
-    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
-    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
-  }
-  if ((currentNewsTab->type_ != TAB_WEB) && (currentNewsTab->type_ != TAB_FEED)) {
-    QSqlQuery q;
-    int allCount = 0;
-    QString qStr = QString("SELECT count(id) FROM news WHERE %1").
-        arg(currentNewsTab->categoryFilterStr_);
-    q.exec(qStr);
-    if (q.next()) allCount = q.value(0).toInt();
 
+    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
   }
 }
@@ -4318,6 +4428,7 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType)
     db_.commit();
 
     recountFeedCounts(feedId, false);
+    recountCategoryCounts();
     if (feedReadType != FeedReadPlaceToTray) {
       emit signalRefreshInfoTray();
     }
@@ -4468,6 +4579,9 @@ void RSSListing::restoreFeedsOnStartUp()
   updateCurrentTab_ = false;
   slotFeedClicked(feedIndex);
   updateCurrentTab_ = true;
+
+  slotUpdateStatus(-1, false);
+  recountCategoryCounts();
 
   //* Открытие лент во вкладках
   QSqlQuery q;
@@ -5431,6 +5545,11 @@ void RSSListing::slotRefreshInfoTray()
     unreadCount = q.value(1).toInt();
   }
 
+  if (!unreadCount)
+    newsCategoriesTree_->topLevelItem(0)->setText(4, "");
+  else
+    newsCategoriesTree_->topLevelItem(0)->setText(4, QString("(%1)").arg(unreadCount));
+
   // Установка текста всплывающей подсказки
   QString info =
       "QuiteRSS\n" +
@@ -5497,6 +5616,7 @@ void RSSListing::markAllFeedsRead()
     qApp->processEvents();
     recountFeedCounts(q.value(0).toInt());
   }
+  recountCategoryCounts();
 
   if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
     QModelIndex index =
@@ -5528,6 +5648,7 @@ void RSSListing::markAllFeedsOld()
     qApp->processEvents();
     recountFeedCounts(q.value(0).toInt());
   }
+  recountCategoryCounts();
 
   if (currentNewsTab != NULL) {
     int currentRow = newsView_->currentIndex().row();
@@ -5992,16 +6113,24 @@ void RSSListing::slotTabCurrentChanged(int index)
     slotUpdateNews();
     newsView_->setFocus();
 
-    QSqlQuery q;
-    int allCount = 0;
-    QString qStr = QString("SELECT count(id) FROM news WHERE %1").
-        arg(currentNewsTab->categoryFilterStr_);
-    q.exec(qStr);
-    if (q.next()) allCount = q.value(0).toInt();
-
+    int unreadCount = 0;
+    int allCount = currentNewsTab->newsModel_->rowCount();
+    QString countStr = newsCategoriesTree_->currentItem()->text(4);
+    if (!countStr.isEmpty()) {
+      countStr.remove(QRegExp("[()]"));
+      switch (currentNewsTab->type_) {
+      case TAB_CAT_UNREAD:
+        unreadCount = countStr.toInt();
+        break;
+      case TAB_CAT_STAR: case TAB_CAT_LABEL:
+        unreadCount = countStr.section("/", 0, 0).toInt();
+        break;
+      }
+    }
+    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
 
-    statusUnread_->setVisible(false);
+    statusUnread_->setVisible(widget->type_ != TAB_CAT_DEL);
     statusAll_->setVisible(true);
   }
 
@@ -6680,17 +6809,24 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
     emit signalSetCurrentTab(indexTab, true);
   }
 
-  QSqlQuery q;
-  int allCount = 0;
-  QString qStr = QString("SELECT count(id) FROM news WHERE %1").
-      arg(currentNewsTab->categoryFilterStr_);
-
-  q.exec(qStr);
-  if (q.next()) allCount = q.value(0).toInt();
-
+  int unreadCount = 0;
+  int allCount = currentNewsTab->newsModel_->rowCount();
+  QString countStr = newsCategoriesTree_->currentItem()->text(4);
+  if (!countStr.isEmpty()) {
+    countStr.remove(QRegExp("[()]"));
+    switch (currentNewsTab->type_) {
+    case TAB_CAT_UNREAD:
+      unreadCount = countStr.toInt();
+      break;
+    case TAB_CAT_STAR: case TAB_CAT_LABEL:
+      unreadCount = countStr.section("/", 0, 0).toInt();
+      break;
+    }
+  }
+  statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
   statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
 
-  statusUnread_->setVisible(false);
+  statusUnread_->setVisible(currentNewsTab->type_ != TAB_CAT_DEL);
   statusAll_->setVisible(true);
 }
 
@@ -6704,6 +6840,7 @@ void RSSListing::showNewsCategoriesTree()
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
     newsCategoriesTree_->show();
     feedsSplitter_->restoreState(feedsWidgetSplitterState_);
+    recountCategoryCounts();
   } else {
     feedsWidgetSplitterState_ = feedsSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
@@ -6726,6 +6863,7 @@ void RSSListing::feedsSplitterMoved(int pos, int)
       showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
       showCategoriesButton_->setToolTip(tr("Hide Categories"));
       newsCategoriesTree_->show();
+      recountCategoryCounts();
     }
   }
 }
@@ -6979,6 +7117,7 @@ void RSSListing::restoreLastNews()
       newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
     }
     slotUpdateStatus(feedId);
+    recountCategoryCounts();
   }
 }
 

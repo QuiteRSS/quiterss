@@ -69,6 +69,7 @@ public:
   void expandNodes();
   QList<int> getIdFeedsInList(int idFolder);
   QString getIdFeedsString(int idFolder);
+  void recountCategoryCounts();
 
   void setToolBarStyle(const QString &styleStr);
   void setToolBarIconSize(const QString &iconSizeStr);
@@ -246,6 +247,7 @@ signals:
   void signalShowNotification();
   void signalRefreshInfoTray();
   void signalNextUpdate();
+  void signalRecountCategoryCounts();
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -261,6 +263,7 @@ private slots:
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
   void feedsModelReload(bool checkFilter = false);
+  void slotRecountCategoryCounts();
 
   void slotShowAboutDlg();
 
@@ -645,6 +648,8 @@ private:
   bool changeBehaviorActionNUN_;
 
   int indexClickedTab;
+
+  bool recountCategoryCountsOn_;
 
 };
 

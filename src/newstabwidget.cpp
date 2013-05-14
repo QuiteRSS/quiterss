@@ -747,6 +747,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
     int feedId = newsModel_->index(index.row(), newsModel_->fieldIndex("feedId")).
         data(Qt::EditRole).toInt();
     rsslisting_->slotUpdateStatus(feedId);
+    rsslisting_->recountCategoryCounts();
   }
 }
 
@@ -761,6 +762,7 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
   QSqlQuery q;
   q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
          arg(starred).arg(newsId));
+  rsslisting_->recountCategoryCounts();
 }
 
 void NewsTabWidget::slotMarkReadTimeout()
@@ -828,6 +830,7 @@ void NewsTabWidget::markNewsRead()
     foreach (QString feedId, feedIdList) {
       rsslisting_->slotUpdateStatus(feedId.toInt());
     }
+    rsslisting_->recountCategoryCounts();
   }
 }
 
@@ -866,6 +869,7 @@ void NewsTabWidget::markAllNewsRead()
   foreach (QString feedId, feedIdList) {
     rsslisting_->slotUpdateStatus(feedId.toInt());
   }
+  rsslisting_->recountCategoryCounts();
 }
 
 //! Пометка выбранных новостей звездочкой (избранные)
@@ -899,9 +903,16 @@ void NewsTabWidget::markNewsStar()
 
     db_.transaction();
     for (int i = cnt-1; i >= 0; --i) {
-      slotSetItemStar(indexes.at(i), markStar);
+      newsModel_->setData(indexes.at(i), markStar);
+
+      int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      QSqlQuery q;
+      q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
+             arg(markStar).arg(newsId));
     }
     db_.commit();
+
+    rsslisting_->recountCategoryCounts();
   }
 }
 
@@ -975,6 +986,7 @@ void NewsTabWidget::deleteNews()
   foreach (QString feedId, feedIdList) {
     rsslisting_->slotUpdateStatus(feedId.toInt());
   }
+  rsslisting_->recountCategoryCounts();
 }
 
 //! Удаление всех новостей из списка
@@ -1013,6 +1025,7 @@ void NewsTabWidget::deleteAllNewsList()
   foreach (QString feedId, feedIdList) {
     rsslisting_->slotUpdateStatus(feedId.toInt());
   }
+  rsslisting_->recountCategoryCounts();
 }
 
 //! Восстановление новостей
@@ -1056,6 +1069,7 @@ void NewsTabWidget::restoreNews()
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rsslisting_->slotUpdateStatus(feedId_);
+  rsslisting_->recountCategoryCounts();
 }
 
 /** @brief Копировать ссылку новости
@@ -1733,6 +1747,8 @@ void NewsTabWidget::setLabelNews(int labelId)
     db_.commit();
   }
   newsView_->viewport()->update();
+
+  rsslisting_->recountCategoryCounts();
 }
 
 void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
