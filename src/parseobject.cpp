@@ -38,7 +38,7 @@ ParseObject::ParseObject(const QString &dataDirPath, QObject *parent)
           SLOT(slotParse(QByteArray,QString,QDateTime)));
 }
 
-/** @brief Постановка xml-данных в очередь запросов
+/** @brief Queueing xml-data
  *----------------------------------------------------------------------------*/
 void ParseObject::parseXml(const QByteArray &data, const QString &feedUrl,
                            const QDateTime &dtReply)
@@ -50,7 +50,7 @@ void ParseObject::parseXml(const QByteArray &data, const QString &feedUrl,
   parseTimer_->start();
 }
 
-/** @brief Обработка очереди запросов
+/** @brief Process xml-data queue
  *----------------------------------------------------------------------------*/
 void ParseObject::getQueuedXml()
 {
@@ -70,7 +70,7 @@ void ParseObject::getQueuedXml()
   }
 }
 
-/** @brief Разбор xml-данных
+/** @brief Parse xml-data
  *----------------------------------------------------------------------------*/
 void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
                             const QDateTime &dtReply)
@@ -107,7 +107,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
 
   qDebug() << "=================== parseXml:start ============================";
 
-  // поиск идентификатора ленты и режима дубликатов новостей в таблице лент
+  // extract feed id and duplicate news mode from feed table
   int parseFeedId = 0;
   bool duplicateNewsMode = false;
   QSqlQuery q;
@@ -119,7 +119,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     duplicateNewsMode = q.value(1).toBool();
   }
 
-  // идентификатор не найден (например, во время запроса удалили ленту)
+  // id not found (ex. feed deleted while updating)
   if (0 == parseFeedId) {
     qDebug() << QString("Feed '%1' not found").arg(feedUrl);
     emit feedUpdated(feedUrl, false, 0);
@@ -129,12 +129,12 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   qDebug() << QString("Feed '%1' found with id = %2").arg(feedUrl).
                  arg(parseFeedId);
 
-  // собственно сам разбор
+  // actually parsing
   bool feedChanged = false;
   int itemCount = 0;
   QXmlStreamReader xml(xmlData.trimmed());
   xml.setNamespaceProcessing(false);
-  bool isHeader = true;  //!< флаг заголовка ленты - элементы до первой новости
+  bool isHeader = true;  //!< feed header flag - elements before first news
 
   QRegExp rx("encoding=\"([^\"]+)",
              Qt::CaseInsensitive, QRegExp::RegExp2);
@@ -299,7 +299,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         titleString = QTextDocumentFragment::fromHtml(titleString.simplified()).
             toPlainText();
 
-        // поиск дубликата статей в базе
+        // search news duplicates in base
         QString qStr;
         QString qStr1;
         qDebug() << "guid:     " << rssGuidString;
@@ -307,7 +307,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         qDebug() << "title:"     << titleString;
         qDebug() << "published:" << rssPubDateString;
 
-        if (!rssPubDateString.isEmpty()) {  // поиск по pubDate
+        if (!rssPubDateString.isEmpty()) {  // search by pubDate
           if (!duplicateNewsMode)
             qStr.append(" AND published=:published");
           qStr1.append(" OR (title LIKE :title AND published=:published)");
@@ -315,11 +315,11 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
           qStr.append(" AND title LIKE :title");
         }
 
-        if (!rssGuidString.isEmpty()) {       // поиск по guid
+        if (!rssGuidString.isEmpty()) {       // search by guid
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND ((guid=:guid%1)%2)").
                     arg(qStr).arg(qStr1));
           q.bindValue(":guid", rssGuidString);
-        } else if (!linkString.isEmpty()) {   // поиск по link_href
+        } else if (!linkString.isEmpty()) {   // search by link_href
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND ((link_href=:link_href%1)%2)").
                     arg(qStr).arg(qStr1));
           q.bindValue(":link_href", linkString);
@@ -328,17 +328,17 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND (%1%2)").arg(qStr).arg(qStr1));
         }
         q.bindValue(":id", parseFeedId);
-        if (!rssPubDateString.isEmpty()) {    // поиск по pubDate
+        if (!rssPubDateString.isEmpty()) {    // search by pubDate
           q.bindValue(":published", rssPubDateString);
         }
         q.bindValue(":title", titleString);
         q.exec();
 
-        // проверка правильности запроса
+        // Check request correctness
         if (q.lastError().isValid())
           qDebug() << "ERROR: " << q.lastError().text();
         else {
-          // если дубликата нет, добавляем статью в базу
+          // if duplicates not found, add news into base
           if (!q.next()) {
             qStr = QString("INSERT INTO news("
                            "feedId, description, content, guid, title, author_name, published, received, link_href, category, "
@@ -392,26 +392,26 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         titleString = QTextDocumentFragment::fromHtml(titleString.simplified()).
             toPlainText();
 
-        // поиск дубликата статей в базе
+        // search news duplicates in base
         QString qStr;
         qDebug() << "atomId:" << atomIdString;
         qDebug() << "title:" << titleString;
         qDebug() << "published:" << atomUpdatedString;
 
         qStr.clear();
-        if (!atomUpdatedString.isEmpty()) {  // поиск по pubDate
+        if (!atomUpdatedString.isEmpty()) {  // search by pubDate
           if (!duplicateNewsMode)
             qStr.append("AND published=:published");
         } else {
           qStr.append("AND title LIKE :title");
         }
 
-        if (!atomIdString.isEmpty()) {       // поиск по guid
+        if (!atomIdString.isEmpty()) {       // search by guid
           if (duplicateNewsMode) {
             q.prepare("SELECT * FROM news WHERE feedId=:id AND guid=:guid");
           } else {
             q.prepare(QString("SELECT * FROM news WHERE feedId=:id AND guid=:guid %1").arg(qStr));
-            if (!atomUpdatedString.isEmpty()) {    // поиск по pubDate
+            if (!atomUpdatedString.isEmpty()) {    // search by pubDate
               q.bindValue(":published", atomUpdatedString);
             } else {
               q.bindValue(":title", titleString);
@@ -420,7 +420,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
           q.bindValue(":guid", atomIdString);
         } else {
           q.prepare(QString("SELECT * FROM news WHERE feedId=:id %1").arg(qStr));
-          if (!atomUpdatedString.isEmpty()) {    // поиск по pubDate
+          if (!atomUpdatedString.isEmpty()) {    // search by pubDate
             if (!duplicateNewsMode)
               q.bindValue(":published", atomUpdatedString);
           } else {
@@ -430,11 +430,11 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         q.bindValue(":id", parseFeedId);
         q.exec();
 
-        // проверка правильности запроса
+        // Check request correctness
         if (q.lastError().isValid())
           qDebug() << "ERROR: q.exec(" << qStr << ") -> " << q.lastError().text();
         else {
-          // если дубликата нет, добавляем статью в базу
+          // if duplicates not found, add news into base
           if (!q.next()) {
             qStr = QString("INSERT INTO news("
                            "feedId, description, content, guid, title, author_name, "
@@ -561,7 +561,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     qDebug() << str;
   }
 
-  // Устанавливаем время обновления ленты и время получения данных с сервера
+  // Set feed update time and recieve data from server time
   QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                           "yyyy-MM-ddTHH:mm:ss");
   q.prepare("UPDATE feeds SET updated=?, lastBuildDate=? WHERE id=?");
@@ -580,7 +580,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
-/** @brief Разбор даты и времени
+/** @brief Date/time string parsing
  *----------------------------------------------------------------------------*/
 QString ParseObject::parseDate(const QString &dateString, const QString &urlString)
 {
@@ -644,14 +644,14 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
 
     // @HACK(arhohryakov:2012.01.01):
-    // Формат "dd MMM yy HH:mm:ss" не распознаётся автоматически. Приводим
-    // его к формату "dd MMM yyyy HH:mm:ss"
+    // "dd MMM yy HH:mm:ss" format doesn/t parse automatically
+    // Reformat it to "dd MMM yyyy HH:mm:ss"
     QString temp2;
-    temp2 = ds;  // чтобы сохранить нетронутую ds для вывода, если будет ошибка
+    temp2 = ds;  // save ds for output in case of error
     if (70 < ds.mid(7, 2).toInt()) temp2.insert(7, "19");
     else temp2.insert(7, "20");
     temp = temp2.left(20);
-    timeZone = ds.mid(temp.length()+1-2, 3);  // "-2", т.к. вставили 2 символа
+    timeZone = ds.mid(temp.length()+1-2, 3);  // "-2", cause 2 symbols inserted
     dt = locale.toDateTime(temp, "dd MMM yyyy HH:mm:ss");
     if (dt.isValid()) return locale.toString(dt.addSecs(timeZone.toInt() * -3600), "yyyy-MM-ddTHH:mm:ss");
   }
@@ -660,12 +660,13 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
   return QString();
 }
 
-/** @brief Обновление счётчиков ленты и всех родительских категорий
+/** @brief Update feed counts and all its parent categories
  *
- *  Обновляются поля: количество непрочитанных новостей,
- *  количество новых новостей, дата последнего обновления у категорий
- * @param db - база данных
- * @param feedId - идентификатор ленты
+ *  Update fields: unread news number,
+ *  new news number, categories last update date/time
+ * @param feedId - Feed Id
+ * @param feedUrl - Feed URL
+ * @param updated - Time feed updated
  *----------------------------------------------------------------------------*/
 int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QString &updated)
 {
@@ -686,19 +687,19 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QSt
   int unreadCount = 0;
   int newNewsCount = 0;
 
-  // Подсчет всех новостей (не помеченных удаленными)
+  // Count all news (not marked Deleted)
   qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
       arg(feedId);
   q.exec(qStr);
   if (q.next()) undeleteCount = q.value(0).toInt();
 
-  // Подсчет непрочитанных новостей
+  // Count unread news
   qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
       arg(feedId);
   q.exec(qStr);
   if (q.next()) unreadCount = q.value(0).toInt();
 
-  // Подсчет новых новостей
+  // Count new news
   qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
       arg(feedId);
   q.exec(qStr);
@@ -721,8 +722,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QSt
     return 0;
   }
 
-  // Установка количества непрочитанных новостей в ленту
-  // Установка количества новых новостей в ленту
+  // Set number unread, new and all(undelete) news for feed
   qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
                  "WHERE id=='%4'").
       arg(unreadCount).arg(newNewsCount).arg(undeleteCount).arg(feedId);
@@ -741,7 +741,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QSt
 
   emit feedCountsUpdate(counts);
 
-  // Пересчитываем счетчики для всех родителей
+  // Recount counters for all feed parents
   int l_feedParId = feedParId;
   while (l_feedParId) {
     QString updatedParent;
