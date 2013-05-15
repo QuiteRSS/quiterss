@@ -1476,7 +1476,7 @@ void NewsTabWidget::webTitleChanged(QString title)
 
 /** @brief Open news in new tab
  *----------------------------------------------------------------------------*/
-oid NewsTabWidget::openNewsNewTab()
+void NewsTabWidget::openNewsNewTab()
 {
   if (type_ == TAB_WEB) return;
 
