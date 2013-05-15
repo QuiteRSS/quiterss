@@ -259,7 +259,7 @@ private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
-  void setFeedRead(int type, int feedId, FeedReedType feedReadType);
+  void setFeedRead(int type, int feedId, FeedReedType feedReadType, NewsTabWidget *widgetTab = 0);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
   void feedsModelReload(bool checkFilter = false);
