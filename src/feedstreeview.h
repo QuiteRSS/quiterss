@@ -36,6 +36,10 @@ public:
   QModelIndex lastFeedInFolder(const QModelIndex &indexFolder);
   QModelIndex indexPrevious(const QModelIndex &indexCur, bool isParent = false);
   QModelIndex indexNext(const QModelIndex &indexCur, bool isParent = false);
+  QModelIndex lastFolderInFolder(const QModelIndex &indexFolder);
+  QModelIndex indexPreviousFolder(const QModelIndex &indexCur);
+  QModelIndex firstFolderInFolder(const QModelIndex &indexFolder);
+  QModelIndex indexNextFolder(const QModelIndex &indexCur, bool isParent = false);
 
 public slots:
   QPersistentModelIndex selectIndex();

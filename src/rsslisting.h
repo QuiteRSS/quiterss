@@ -126,6 +126,9 @@ public:
   QAction *twitterShareAct_;
   QAction *vkShareAct_;
   QAction *copyLinkAct_;
+  QAction *nextFolderAct_;
+  QAction *prevFolderAct_;
+  QAction *expandFolderAct_;
 
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
@@ -382,6 +385,10 @@ private slots:
   void showNewsMenu();
   void showNewsSortByMenu();
   void setNewsSortByColumn();
+
+  void slotNextFolder();
+  void slotPrevFolder();
+  void slotExpandFolder();
 
 private:
   UpdateThread *persistentUpdateThread_;
