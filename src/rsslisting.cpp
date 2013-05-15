@@ -4710,7 +4710,8 @@ void RSSListing::slotUpdateFeedsTimer()
       updateTimeCount_ = 0;
 
       QSqlQuery q;
-      q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!='' AND updateIntervalEnable IS NULL");
+      q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds "
+             "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
       while (q.next()) {
         if (addFeedInQueue(q.value(0).toString())) {
           updateFeedsCount_ = updateFeedsCount_ + 2;
@@ -5189,7 +5190,8 @@ void RSSListing::showFeedPropertiesDlg()
     properties.display.displayNews =
         feedsTreeModel_->dataField(index, "displayNews").toInt();
 
-  if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull()) {
+  if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull() ||
+      (feedsTreeModel_->dataField(index, "updateIntervalEnable").toInt() == -1)) {
     properties.general.updateEnable = updateFeedsEnable_;
     properties.general.updateInterval = updateFeedsInterval_;
     properties.general.intervalType = updateFeedsIntervalType_;
@@ -5512,6 +5514,16 @@ void RSSListing::showFeedPropertiesDlg()
         updateFeedsTimeCount_.remove(feedId);
       }
     }
+  } else {
+    q.prepare("UPDATE feeds SET updateIntervalEnable = -1 WHERE id == ?");
+    q.addBindValue(feedId);
+    q.exec();
+
+    QPersistentModelIndex indexUpdateEnable = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalEnable"));
+    feedsTreeModel_->setData(indexUpdateEnable, "-1");
+
+    updateFeedsIntervalSec_.remove(feedId);
+    updateFeedsTimeCount_.remove(feedId);
   }
 
   if (feedsTreeView_->currentIndex() == index) {
