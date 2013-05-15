@@ -465,7 +465,7 @@ void RSSListing::slotPlaceToTray()
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (markReadMinimize_)
-    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray);
+    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray, currentNewsTab);
   if (clearStatusNew_)
     markAllFeedsOld();
   idFeedList_.clear();
@@ -3177,14 +3177,15 @@ void RSSListing::slotRecountCategoryCounts()
     countStr = QString("(%1/%2)").arg(unreadLabelCount).arg(allLabelCount);
   newsCategoriesTree_->topLevelItem(3)->setText(4, countStr);
 
-  if ((currentNewsTab->type_ != TAB_WEB) && (currentNewsTab->type_ != TAB_FEED)) {
+  NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
+  if ((widget->type_ > TAB_WEB) && newsCategoriesTree_->currentIndex().isValid()) {
     int unreadCount = 0;
-    int allCount = currentNewsTab->newsModel_->rowCount();
+    int allCount = widget->newsModel_->rowCount();
 
     QString countStr = newsCategoriesTree_->currentItem()->text(4);
     if (!countStr.isEmpty()) {
       countStr.remove(QRegExp("[()]"));
-      switch (currentNewsTab->type_) {
+      switch (widget->type_) {
       case TAB_CAT_UNREAD:
         unreadCount = countStr.toInt();
         break;
@@ -3373,7 +3374,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
 
   if (indexTab == -1) {
     if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
-      setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
+      setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
       updateCurrentTab_ = false;
       tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
@@ -4389,7 +4390,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 }
 
 //! Маркировка ленты прочитанной при клике на не отмеченной ленте
-void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType)
+void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType, NewsTabWidget *widgetTab)
 {
   if ((type == TAB_WEB) || type == TAB_CAT_DEL) return;
 
@@ -4433,7 +4434,7 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType)
       emit signalRefreshInfoTray();
     }
   } else {
-    int cnt = newsModel_->rowCount();
+    int cnt = widgetTab->newsModel_->rowCount();
     if (cnt == 0) return;
 
     QList <int> idNewsList;
@@ -4449,7 +4450,7 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType)
     db_.transaction();
     QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
-      int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
+      int newsId = widgetTab->newsModel_->index(i, widgetTab->newsModel_->fieldIndex("id")).data().toInt();
       if (!idNewsList.contains(newsId)) {
         q.exec(QString("UPDATE news SET read=2 WHERE id=='%1' AND read==1").arg(newsId));
         q.exec(QString("UPDATE news SET new=0 WHERE id=='%1' AND new==1").arg(newsId));
@@ -4709,7 +4710,8 @@ void RSSListing::slotUpdateFeedsTimer()
       updateTimeCount_ = 0;
 
       QSqlQuery q;
-      q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!='' AND updateIntervalEnable IS NULL");
+      q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds "
+             "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
       while (q.next()) {
         if (addFeedInQueue(q.value(0).toString())) {
           updateFeedsCount_ = updateFeedsCount_ + 2;
@@ -5188,7 +5190,8 @@ void RSSListing::showFeedPropertiesDlg()
     properties.display.displayNews =
         feedsTreeModel_->dataField(index, "displayNews").toInt();
 
-  if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull()) {
+  if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull() ||
+      (feedsTreeModel_->dataField(index, "updateIntervalEnable").toInt() == -1)) {
     properties.general.updateEnable = updateFeedsEnable_;
     properties.general.updateInterval = updateFeedsInterval_;
     properties.general.intervalType = updateFeedsIntervalType_;
@@ -5511,6 +5514,16 @@ void RSSListing::showFeedPropertiesDlg()
         updateFeedsTimeCount_.remove(feedId);
       }
     }
+  } else {
+    q.prepare("UPDATE feeds SET updateIntervalEnable = -1 WHERE id == ?");
+    q.addBindValue(feedId);
+    q.exec();
+
+    QPersistentModelIndex indexUpdateEnable = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("updateIntervalEnable"));
+    feedsTreeModel_->setData(indexUpdateEnable, "-1");
+
+    updateFeedsIntervalSec_.remove(feedId);
+    updateFeedsTimeCount_.remove(feedId);
   }
 
   if (feedsTreeView_->currentIndex() == index) {
@@ -6008,7 +6021,7 @@ void RSSListing::slotSwitchPrevFocus()
 void RSSListing::slotOpenFeedNewTab()
 {
   if (stackedWidget_->count() && currentNewsTab->type_ != TAB_WEB) {
-    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
+    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
   }
 
@@ -6023,7 +6036,7 @@ void RSSListing::slotTabCloseRequested(int index)
   if (index != 0) {
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
 
-    setFeedRead(widget->type_, widget->feedId_, FeedReadClosingTab);
+    setFeedRead(widget->type_, widget->feedId_, FeedReadClosingTab, widget);
 
     tabBar_->removeTab(index);
     stackedWidget_->removeWidget(widget);
@@ -6061,7 +6074,7 @@ void RSSListing::slotTabCurrentChanged(int index)
   if (!updateCurrentTab_) return;
 
   if ((currentNewsTab->type_ != TAB_WEB) && (tabBar_->count() == stackedWidget_->count())) {
-    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab);
+    setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
     settings_->setValue("NewsTabSplitterGeometry",
