@@ -1051,7 +1051,8 @@ void NewsTabWidget::deleteAllNewsList()
   rsslisting_->recountCategoryCounts();
 }
 
-//! Восстановление новостей
+/** @brief Restore deleted news
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::restoreNews()
 {
   if (type_ == TAB_WEB) return;
@@ -1121,7 +1122,8 @@ void NewsTabWidget::slotCopyLinkNews()
   clipboard->setText(copyStr);
 }
 
-//! Сортировка новостей по "star" или по "read"
+/** @brief Sort news by Star or Read column
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotSort(int column, int order)
 {
   QString strId;
@@ -1146,7 +1148,8 @@ void NewsTabWidget::slotSort(int column, int order)
   newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }
 
-//! Загрузка/обновление содержимого браузера
+/** @brief Load/Update browser contents
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::updateWebView(QModelIndex index)
 {
   if (!index.isValid()) {
@@ -1197,7 +1200,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     else
       dateString = dtLocal.toString(rsslisting_->formatDate_ + " " + rsslisting_->formatTime_);
 
-    // Формируем панель автора из автора новости
+    // Create author panel from news author
     QString authorString;
     QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
     QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
@@ -1209,9 +1212,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (!authorUri.isEmpty())
       authorString.append(QString(" <a href='%1'>page</a>"). arg(authorUri));
 
-    // Если авора новости нет, формируем панель автора из автора ленты
-    // @NOTE(arhohryakov:2012.01.03) Автор берётся из текущего фида, т.к. при
-    //   новость обновляется именно у него
+    // If news author is absent, create author panel from feed author
+    // @note(arhohryakov:2012.01.03) Author is got from current feed, because
+    //   news is belong to it
     if (authorString.isEmpty()) {
       QModelIndex currentIndex = feedsTreeView_->currentIndex();
       authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
@@ -1273,7 +1276,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   }
 }
 
-//! Слот для асинхронного обновления новости
+/** @brief Asynchorous update web view
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::setHtmlWebView(const QString &html, const QUrl &baseUrl)
 {
   webView_->history()->setMaximumItemCount(0);
@@ -1329,12 +1333,12 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
   }
   webView_->buttonClick_ = 0;
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
 {
   rsslisting_->statusBar()->showMessage(link.simplified(), 3000);
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::slotSetValue(int value)
 {
   emit loadProgress(value);
@@ -1343,7 +1347,7 @@ void NewsTabWidget::slotSetValue(int value)
       arg(webView_->page()->totalBytes()/1000);
   webViewProgressLabel_->setText(str);
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::slotLoadStarted()
 {
   if (type_ == TAB_WEB) {
@@ -1354,7 +1358,7 @@ void NewsTabWidget::slotLoadStarted()
   webViewProgress_->setValue(0);
   webViewProgress_->show();
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::slotLoadFinished(bool)
 {
   if (type_ == TAB_WEB) {
@@ -1367,7 +1371,8 @@ void NewsTabWidget::slotLoadFinished(bool)
   webViewProgress_->hide();
 }
 
-//! Переход на краткое содержание новости
+/** @brief Go to short news content
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::webHomePage()
 {
   if (type_ != TAB_WEB) {
@@ -1377,13 +1382,15 @@ void NewsTabWidget::webHomePage()
   }
 }
 
-//! Открытие отображаемой страницы во внешнем браузере
+/** @brief Open current web page in external browser
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::openPageInExternalBrowser()
 {
   openUrl(webView_->url());
 }
 
-//! Открытие новости в браузере
+/** @brief Open news in browser
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::openInBrowserNews()
 {
   if (type_ == TAB_WEB) return;
@@ -1394,7 +1401,8 @@ void NewsTabWidget::openInBrowserNews()
   rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
 
-//! Открытие новости во внешнем браузере
+/** @brief Open news in external browser
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::openInExternalBrowserNews()
 {
   if (type_ != TAB_WEB) {
@@ -1418,6 +1426,8 @@ void NewsTabWidget::openInExternalBrowserNews()
 }
 
 //! Установка позиции браузера
+/** @brief Set browser position
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::setBrowserPosition()
 {
   int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
@@ -1448,13 +1458,15 @@ void NewsTabWidget::setBrowserPosition()
   }
 }
 
-//! Закрытие вкладки по кнопке х
+/** @brief Close tab while press X-button
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotTabClose()
 {
   rsslisting_->slotTabCloseRequested(rsslisting_->stackedWidget_->indexOf(this));
 }
 
-//! Вывод на вкладке названия открытой странички браузера
+/** @brief Display browser open page title on tab
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::webTitleChanged(QString title)
 {
   if ((type_ == TAB_WEB) && !title.isEmpty()) {
@@ -1462,8 +1474,9 @@ void NewsTabWidget::webTitleChanged(QString title)
   }
 }
 
-//! Открытие новости в новой вкладке
-void NewsTabWidget::openNewsNewTab()
+/** @brief Open news in new tab
+ *----------------------------------------------------------------------------*/
+oid NewsTabWidget::openNewsNewTab()
 {
   if (type_ == TAB_WEB) return;
 
@@ -1480,13 +1493,15 @@ void NewsTabWidget::openNewsNewTab()
   rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
 
-//! Открытие ссылки
+/** @brief Open link
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::openLink()
 {
   slotLinkClicked(linkUrl_);
 }
 
-//! Открытие ссылки в новой вкладке
+/** @brief Open link in new tab
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::openLinkInNewTab()
 {
   int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
@@ -1507,7 +1522,8 @@ inline static bool launch(const QUrl &url, const QString &client)
   return (QProcess::startDetached(client + QLatin1Char(' ') + url.toString().toUtf8()));
 }
 
-//! Открытие ссылки во внешем браузере
+/** @brief Open link in browser
+ *----------------------------------------------------------------------------*/
 bool NewsTabWidget::openUrl(const QUrl &url)
 {
   if (!url.isValid())
@@ -1533,7 +1549,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
   }
   return QDesktopServices::openUrl(url);
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::slotFindText(const QString &text)
 {
   QString objectName = findText_->findGroup_->checkedAction()->objectName();
@@ -1588,7 +1604,7 @@ void NewsTabWidget::slotFindText(const QString &text)
     }
   }
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::slotSelectFind()
 {
   if (findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct")
@@ -1618,7 +1634,7 @@ void NewsTabWidget::slotSelectFind()
   }
   slotFindText(findText_->text());
 }
-
+//----------------------------------------------------------------------------
 void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
   if (webView_->rightButtonClick_) {
@@ -1673,7 +1689,8 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
   webMenu_->popup(webView_->mapToGlobal(p));
 }
 
-//! Открытие ссылки во внешнем браузере
+/** @brief Open link in external browser
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::openUrlInExternalBrowser()
 {
   if (linkUrl_.scheme() == QLatin1String("mailto")) {
@@ -1698,9 +1715,8 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
                                rsslisting_->browserToolbarToggle_->isChecked());
 }
 
-/**
- * @brief Установка метки для выбранных новостей
- ******************************************************************************/
+/** @brief Set label for selected news
+ *----------------------------------------------------------------------------*/
 void NewsTabWidget::setLabelNews(int labelId)
 {
   if (type_ == TAB_WEB) return;
@@ -1803,8 +1819,8 @@ void NewsTabWidget::increaseNewsList()
   newsTabWidgetSplitter_->setSizes(sizes);
 }
 
-/** @brief Поиск непрочитанной новости
- * @param next Условие поиска: true - ищет следующую, иначе предыдущую
+/** @brief Search unread news
+ * @param next search condition: true - search next, else - previous
  *----------------------------------------------------------------------------*/
 int NewsTabWidget::findUnreadNews(bool next)
 {
@@ -1829,7 +1845,7 @@ int NewsTabWidget::findUnreadNews(bool next)
   return newsRow;
 }
 
-/** @brief Установка текста вкладки
+/** @brief Set tab title
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setTextTab(const QString &text, int width)
 {
@@ -1841,7 +1857,7 @@ void NewsTabWidget::setTextTab(const QString &text, int width)
   emit signalSetTextTab(text, this);
 }
 
-/** @brief Поделиться новостью
+/** @brief Share news
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotShareNews(QAction *action)
 {

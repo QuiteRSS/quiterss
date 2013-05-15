@@ -240,7 +240,7 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
   }
 }
 
-/** @brief Создание виджета "Общие"
+/** @brief Create windget "General"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createGeneralWidget()
 {
@@ -278,7 +278,7 @@ void OptionsDialog::createGeneralWidget()
   generalWidget_->setLayout(generalLayout);
 }
 
-/** @brief Создание виджета "Системный трей"
+/** @brief Create widget "System tray"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createTraySystemWidget()
 {
@@ -334,7 +334,7 @@ void OptionsDialog::createTraySystemWidget()
   traySystemWidget_->setLayout(boxTrayLayout);
 }
 
-/** @brief Создание виджета "Сетевые подключения"
+/** @brief Create widget "Network connections"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createNetworkConnectionsWidget()
 {
@@ -383,7 +383,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
   manualLayout->addStretch();
 
   manualWidget_ = new QWidget();
-  manualWidget_->setEnabled(false);  // т.к. при создании соответствующая радио-кнока не выбрана
+  manualWidget_->setEnabled(false);  // cause proper radio-button isn't set on creation
   manualWidget_->setLayout(manualLayout);
 
   networkConnectionsLayout->addWidget(manualWidget_);
@@ -396,7 +396,7 @@ void OptionsDialog::createNetworkConnectionsWidget()
           this, SLOT(manualProxyToggle(bool)));
 }
 
-/** @brief Создание виджета "Браузер"
+/** @brief Create widget "Browser"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createBrowserWidget()
 {
@@ -585,7 +585,7 @@ void OptionsDialog::createBrowserWidget()
   browserWidget_->addTab(click2FlashWidget_, tr("Click to Flash"));
 }
 
-/** @brief Создание виджета "Новостные ленты"
+/** @brief Create windet "Feeds"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createFeedsWidget()
 {
@@ -778,7 +778,7 @@ void OptionsDialog::createFeedsWidget()
   feedsWidget_->addTab(cleanUpFeedsWidget, tr("Clean Up"));
 }
 
-/** @brief Создание виджета "Метки"
+/** @brief Create widget "Labels"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createLabelsWidget()
 {
@@ -833,7 +833,7 @@ void OptionsDialog::createLabelsWidget()
   loadLabelsOk_ = false;
 }
 
-/** @brief Создание виджета "Уведомления"
+/** @brief Create widget "Notifier"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createNotifierWidget()
 {
@@ -943,7 +943,7 @@ void OptionsDialog::createNotifierWidget()
   loadNotifierOk_ = false;
 }
 
-/** @brief Создание виджета "Пароли"
+/** @brief Create widget "Passwords"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createPasswordsWidget()
 {
@@ -997,7 +997,7 @@ void OptionsDialog::createPasswordsWidget()
   passwordsWidget_->setLayout(passLayout);
 }
 
-/** @brief Создание виджета "Язык"
+/** @brief Create widget "Language"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createLanguageWidget()
 {
@@ -1206,7 +1206,7 @@ void OptionsDialog::createLanguageWidget()
   languageWidget_->setLayout(languageLayout);
 }
 
-/** @brief Создание виджета "Шрифты и цвета"
+/** @brief Create widget "Fonts and Colors"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createFontsColorsWidget()
 {
@@ -1341,7 +1341,7 @@ void OptionsDialog::createFontsColorsWidget()
   fontsColorsWidget_->addTab(colorsWidget_, tr("Colors"));
 }
 
-/** @brief Создание виджета "Горячие клавиши"
+/** @brief Create widget "Shortcuts"
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createShortcutWidget()
 {
@@ -1412,12 +1412,12 @@ void OptionsDialog::createShortcutWidget()
 
   editShortcut_->installEventFilter(this);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotCategoriesTreeKeyUpDownPressed()
 {
   slotCategoriesItemClicked(categoriesTree_->currentItem(), 1);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int)
 {
   contentLabel_->setText(item->data(1, Qt::DisplayRole).toString());
@@ -1429,34 +1429,34 @@ void OptionsDialog::slotCategoriesItemClicked(QTreeWidgetItem* item, int)
     loadNotifier();
   }
 }
-
+//----------------------------------------------------------------------------
 int OptionsDialog::currentIndex()
 {
   return categoriesTree_->currentItem()->text(0).toInt();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::setCurrentItem(int index)
 {
   categoriesTree_->setCurrentItem(categoriesTree_->topLevelItem(index), 1);
   slotCategoriesTreeKeyUpDownPressed();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::manualProxyToggle(bool checked)
 {
   manualWidget_->setEnabled(checked);
 }
-
+//----------------------------------------------------------------------------
 QNetworkProxy OptionsDialog::proxy()
 {
   return networkProxy_;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::setProxy(const QNetworkProxy proxy)
 {
   networkProxy_ = proxy;
   updateProxy();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::updateProxy()
 {
   switch (networkProxy_.type()) {
@@ -1475,7 +1475,7 @@ void OptionsDialog::updateProxy()
   editUser_->setText(networkProxy_.user());
   editPassword_->setText(networkProxy_.password());
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::applyProxy()
 {
   if (systemProxyButton_->isChecked())
@@ -1489,28 +1489,28 @@ void OptionsDialog::applyProxy()
   networkProxy_.setUser(    editUser_->text());
   networkProxy_.setPassword(editPassword_->text());
 }
-
+//----------------------------------------------------------------------------
 QString OptionsDialog::language()
 {
   QString langFileName = languageFileList_->currentItem()->data(0, Qt::DisplayRole).toString();
   return langFileName;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::setLanguage(const QString &langFileName)
 {
-  // установка курсора на выбранный файл
+  // Set focus on selected language-file
   QList<QTreeWidgetItem*> list =
       languageFileList_->findItems(langFileName, Qt::MatchFixedString, 0);
   if (list.count()) {
     languageFileList_->setCurrentItem(list.at(0));
   } else {
-    // если не удалось найти, выбираем английский
+    // can't find file, choose english
     QList<QTreeWidgetItem*> list =
         languageFileList_->findItems("en", Qt::MatchFixedString, 0);
     languageFileList_->setCurrentItem(list.at(0));
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotFontChange()
 {
   bool bOk;
@@ -1526,7 +1526,7 @@ void OptionsDialog::slotFontChange()
     fontsTree_->currentItem()->setText(2, strFont);
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotFontReset()
 {
   switch (fontsTree_->currentItem()->text(0).toInt()) {
@@ -1537,7 +1537,7 @@ void OptionsDialog::slotFontReset()
           2, QString("%1, 8").arg(qApp->font().family()));
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotColorChange()
 {
   QString colorStr = colorsTree_->currentItem()->text(1);
@@ -1554,7 +1554,7 @@ void OptionsDialog::slotColorChange()
   colorsTree_->currentItem()->setIcon(0, pixmapColor);
   colorsTree_->currentItem()->setText(1, color.name());
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotColorReset()
 {
   QString colorName;
@@ -1580,7 +1580,7 @@ void OptionsDialog::slotColorReset()
   colorsTree_->currentItem()->setIcon(0, pixmapColor);
   colorsTree_->currentItem()->setText(1, colorName);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::setBehaviorIconTray(int behavior)
 {
   switch (behavior) {
@@ -1590,7 +1590,7 @@ void OptionsDialog::setBehaviorIconTray(int behavior)
   default: staticIconTray_->setChecked(true);
   }
 }
-
+//----------------------------------------------------------------------------
 int OptionsDialog::behaviorIconTray()
 {
   if (staticIconTray_->isChecked())       return STATIC_ICON_TRAY;
@@ -1599,7 +1599,7 @@ int OptionsDialog::behaviorIconTray()
   else if (unreadCountTray_->isChecked()) return UNREAD_COUNT_ICON_TRAY;
   else return STATIC_ICON_TRAY;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *list)
 {
   QListIterator<QAction *> iter(actions);
@@ -1646,7 +1646,7 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
 
   listDefaultShortcut_ = list;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::saveActionShortcut(QList<QAction *> actions, QActionGroup *labelGroup)
 {
   for (int i = 0; i < shortcutModel_->rowCount(); i++) {
@@ -1667,12 +1667,12 @@ void OptionsDialog::saveActionShortcut(QList<QAction *> actions, QActionGroup *l
     }
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotShortcutTreeUpDownPressed()
 {
   shortcutTreeClicked(shortcutTree_->currentIndex());
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::shortcutTreeClicked(const QModelIndex &index)
 {
   QModelIndex indexCur = shortcutProxyModel_->mapToSource(index);
@@ -1681,7 +1681,7 @@ void OptionsDialog::shortcutTreeClicked(const QModelIndex &index)
   editShortcut_->setFocus();
   warningShortcut_->clear();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotClearShortcut()
 {
   QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
@@ -1703,7 +1703,7 @@ void OptionsDialog::slotClearShortcut()
   shortcutModel_->item(row, 2)->setData("");
   warningShortcut_->clear();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotResetShortcut()
 {
   QModelIndex index = shortcutProxyModel_->mapToSource(shortcutTree_->currentIndex());
@@ -1745,7 +1745,7 @@ void OptionsDialog::slotResetShortcut()
     }
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::filterShortcutChanged(const QString & text)
 {
   shortcutProxyModel_->setFilterFixedString(text);
@@ -1760,7 +1760,7 @@ void OptionsDialog::filterShortcutChanged(const QString & text)
   }
   warningShortcut_->clear();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::setOpeningFeed(int action)
 {
   switch (action) {
@@ -1770,7 +1770,7 @@ void OptionsDialog::setOpeningFeed(int action)
   default: positionLastNews_->setChecked(true);
   }
 }
-
+//----------------------------------------------------------------------------
 int OptionsDialog::getOpeningFeed()
 {
   if (positionLastNews_->isChecked())     return 0;
@@ -1779,7 +1779,7 @@ int OptionsDialog::getOpeningFeed()
   else if (positionUnreadNews_->isChecked()) return 3;
   else return 0;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::selectionBrowser()
 {
   QString path;
@@ -1794,7 +1794,7 @@ void OptionsDialog::selectionBrowser()
   if (!fileName.isEmpty())
     otherExternalBrowserEdit_->setText(fileName);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::applyWhitelist()
 {
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
@@ -1804,7 +1804,7 @@ void OptionsDialog::applyWhitelist()
     rssl_->c2fWhitelist_.append(c2fWhitelist_->topLevelItem(i)->text(0));
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::selectionSoundNotifer()
 {
   QString path;
@@ -1819,7 +1819,7 @@ void OptionsDialog::selectionSoundNotifer()
   if (!fileName.isEmpty())
     editSoundNotifer_->setText(fileName);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column)
 {
   if ((column != 0) || itemNotChecked_) return;
@@ -1838,7 +1838,7 @@ void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column
   }
   itemNotChecked_ = false;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state)
 {
   for(int i = 0; i < item->childCount(); ++i) {
@@ -1847,7 +1847,7 @@ void OptionsDialog::setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState stat
     setCheckStateItem(childItem, state);
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::loadLabels()
 {
   if (loadLabelsOk_) return;
@@ -1879,7 +1879,7 @@ void OptionsDialog::loadLabels()
     labelsTree_->addTopLevelItem(treeWidgetItem);
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::newLabel()
 {
   LabelDialog *labelDialog = new LabelDialog(this);
@@ -1932,7 +1932,7 @@ void OptionsDialog::newLabel()
 
   delete labelDialog;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::editLabel()
 {
   QTreeWidgetItem *treeWidgetItem = labelsTree_->currentItem();
@@ -1978,7 +1978,7 @@ void OptionsDialog::editLabel()
 
   delete labelDialog;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::deleteLabel()
 {
   int labelRow = labelsTree_->currentIndex().row();
@@ -1993,7 +1993,7 @@ void OptionsDialog::deleteLabel()
   QTreeWidgetItem *treeItem = labelsTree_->takeTopLevelItem(labelRow);
   delete treeItem;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::moveUpLabel()
 {
   int labelRow = labelsTree_->currentIndex().row();
@@ -2021,7 +2021,7 @@ void OptionsDialog::moveUpLabel()
   if (labelsTree_->currentIndex().row() != (labelsTree_->topLevelItemCount()-1))
     moveDownLabelButton_->setEnabled(true);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::moveDownLabel()
 {
   int labelRow = labelsTree_->currentIndex().row();
@@ -2049,7 +2049,7 @@ void OptionsDialog::moveDownLabel()
   if (labelsTree_->currentIndex().row() != 0)
     moveUpLabelButton_->setEnabled(true);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
                                            QTreeWidgetItem *)
 {
@@ -2071,7 +2071,7 @@ void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
     deleteLabelButton_->setEnabled(true);
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::applyLabels()
 {
   db_.transaction();
@@ -2129,15 +2129,14 @@ void OptionsDialog::applyLabels()
   db_.commit();
 }
 
-/**
- * @brief Добавление ид редактированной метки
- * @param idLabel ид метки
- ******************************************************************************/
+/** @brief Add id for editing label
+ * @param idLabel id for label
+ *----------------------------------------------------------------------------*/
 void OptionsDialog::addIdLabelList(const QString &idLabel)
 {
   if (!idLabels_.contains(idLabel)) idLabels_.append(idLabel);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::loadNotifier()
 {
   if (loadNotifierOk_) return;
@@ -2204,7 +2203,7 @@ void OptionsDialog::loadNotifier()
   feedsTreeNotify_->expandAll();
   itemNotChecked_ = false;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::applyNotifier()
 {
   feedsTreeNotify_->expandAll();
@@ -2225,7 +2224,8 @@ void OptionsDialog::applyNotifier()
   db_.commit();
 }
 
-//! Показать тестовое окно уведовления о входящих новостях
+/** @brief Show notifier test window
+ *----------------------------------------------------------------------------*/
 void OptionsDialog::showNotification()
 {
   if (notificationWidget_) delete notificationWidget_;
@@ -2239,26 +2239,27 @@ void OptionsDialog::showNotification()
   notificationWidget_->show();
 }
 
-//! Удалить уведовление о входящих новостях
+/** @brief Destroy notifier test window
+ *----------------------------------------------------------------------------*/
 void OptionsDialog::deleteNotification()
 {
   notificationWidget_->deleteLater();
   notificationWidget_ = NULL;
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotDeletePass()
 {
   if (passTree_->topLevelItemCount())
     passTree_->currentItem()->setHidden(true);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotDeleteAllPass()
 {
   for (int i = 0; i < passTree_->topLevelItemCount(); i++) {
     passTree_->topLevelItem(i)->setHidden(true);
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::slotShowPass()
 {
   if (passTree_->isColumnHidden(3)) {
@@ -2266,7 +2267,7 @@ void OptionsDialog::slotShowPass()
     passTree_->setColumnWidth(1, passTree_->columnWidth(1) - passTree_->columnWidth(3));
   }
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::applyPass()
 {
   db_.transaction();
@@ -2279,7 +2280,7 @@ void OptionsDialog::applyPass()
   }
   db_.commit();
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::selectionUserStyleBrowser()
 {
   QString path;
@@ -2295,7 +2296,7 @@ void OptionsDialog::selectionUserStyleBrowser()
   if (!fileName.isEmpty())
     userStyleBrowserEdit_->setText(fileName);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::selectionDirDiskCache()
 {
   QString dirStr = QFileDialog::getExistingDirectory(this, tr("Open Directory..."),
@@ -2305,7 +2306,7 @@ void OptionsDialog::selectionDirDiskCache()
   if (!dirStr.isEmpty())
     dirDiskCacheEdit_->setText(dirStr);
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::addWhitelist()
 {
   QString site = QInputDialog::getText(this, tr("Add site to whitelist"),
@@ -2315,7 +2316,7 @@ void OptionsDialog::addWhitelist()
 
   c2fWhitelist_->insertTopLevelItem(0, new QTreeWidgetItem(QStringList(site)));
 }
-
+//----------------------------------------------------------------------------
 void OptionsDialog::removeWhitelist()
 {
   QTreeWidgetItem* item = c2fWhitelist_->currentItem();
