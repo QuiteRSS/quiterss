@@ -190,6 +190,92 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
   return QModelIndex();
 }
 
+// ----------------------------------------------------------------------------
+QModelIndex FeedsTreeView::lastFolderInFolder(const QModelIndex &indexFolder)
+{
+  if (indexFolder.isValid()) {
+    for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
+      QModelIndex index = indexFolder.child(i, indexFolder.column());
+      if (((FeedsTreeModel*)model())->isFolder(index)) {
+        return index;
+      }
+    }
+  } else {
+    for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
+      QModelIndex index = model()->index(i, columnIndex("text"));
+      if (((FeedsTreeModel*)model())->isFolder(index))
+        return index;
+    }
+  }
+
+  return QModelIndex();
+}
+
+// -----------------------------------------------------------------------------
+QModelIndex FeedsTreeView::indexPreviousFolder(const QModelIndex &indexCur)
+{
+  QModelIndex index = QModelIndex();
+
+  for(int i = indexCur.row()-1; i >= 0; --i) {
+    index = indexCur.sibling(i, indexCur.column());
+    if (((FeedsTreeModel*)model())->isFolder(index))
+      return index;
+  }
+
+  index = indexCur.parent();
+  if (index.isValid())
+    return index;
+
+  return QModelIndex();
+}
+
+// -----------------------------------------------------------------------------
+QModelIndex FeedsTreeView::firstFolderInFolder(const QModelIndex &indexFolder)
+{
+  if (indexFolder.isValid()) {
+    for(int i = 0; i < model()->rowCount(indexFolder); i++) {
+      QModelIndex index = indexFolder.child(i, indexFolder.column());
+      if (((FeedsTreeModel*)model())->isFolder(index)) {
+        return index;
+      }
+    }
+  } else {
+    for(int i = 0; i < model()->rowCount(indexFolder); i++) {
+      QModelIndex index = model()->index(i, columnIndex("text"));
+      if (((FeedsTreeModel*)model())->isFolder(index))
+        return index;
+    }
+  }
+
+  return QModelIndex();
+}
+
+// -----------------------------------------------------------------------------
+QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isParent)
+{
+  QModelIndex index = QModelIndex();
+  if ((((FeedsTreeModel*)model())->isFolder(indexCur) && !isParent)) {
+    index = firstFolderInFolder(indexCur);
+    if (index.isValid()) {
+      return index;
+    }
+  }
+
+  int rowCount = model()->rowCount(indexCur.parent());
+  for(int i = indexCur.row()+1; i < rowCount; i++) {
+    index = indexCur.sibling(i, indexCur.column());
+    if (((FeedsTreeModel*)model())->isFolder(index))
+      return index;
+  }
+
+  index = indexCur.parent();
+  if (index.isValid()) {
+    return indexNextFolder(index, true);
+  }
+
+  return QModelIndex();
+}
+
 /** @brief Own process mouse press event
  * @details Remember pressed index to selectedIndex_,
  *    process middle mouse button clicks,

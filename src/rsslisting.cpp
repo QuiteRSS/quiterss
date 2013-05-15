@@ -1358,6 +1358,19 @@ void RSSListing::createActions()
   this->addAction(copyLinkAct_);
   connect(copyLinkAct_, SIGNAL(triggered()), this, SLOT(slotCopyLinkNews()));
 
+  nextFolderAct_ = new QAction(this);
+  nextFolderAct_->setObjectName("nextFolderAct");
+  this->addAction(nextFolderAct_);
+  connect(nextFolderAct_, SIGNAL(triggered()), this, SLOT(slotNextFolder()));
+  prevFolderAct_ = new QAction(this);
+  prevFolderAct_->setObjectName("prevFolderAct");
+  this->addAction(prevFolderAct_);
+  connect(prevFolderAct_, SIGNAL(triggered()), this, SLOT(slotPrevFolder()));
+  expandFolderAct_ = new QAction(this);
+  expandFolderAct_->setObjectName("expandFolderAct");
+  this->addAction(expandFolderAct_);
+  connect(expandFolderAct_, SIGNAL(triggered()), this, SLOT(slotExpandFolder()));
+
   shareGroup_ = new QActionGroup(this);
   shareGroup_->setExclusive(false);
 
@@ -1470,6 +1483,9 @@ void RSSListing::createShortcut()
   listActions_.append(nextUnreadNewsAct_);
   listActions_.append(prevUnreadNewsAct_);
 
+  listActions_.append(nextFolderAct_);
+  listActions_.append(prevFolderAct_);
+
   listActions_.append(importFeedsAct_);
   listActions_.append(exportFeedsAct_);
   listActions_.append(autoLoadImagesToggle_);
@@ -1480,6 +1496,7 @@ void RSSListing::createShortcut()
   listActions_.append(markStarAct_);
   listActions_.append(collapseAllFoldersAct_);
   listActions_.append(expandAllFoldersAct_);
+  listActions_.append(expandFolderAct_);
 
   listActions_.append(openDescriptionNewsAct_);
   openDescriptionNewsAct_->setShortcut(QKeySequence(Qt::Key_Return));
@@ -5015,6 +5032,9 @@ void RSSListing::retranslateStrings()
   sortedByTitleFeedsTreeAct_->setText(tr("Sorted by Name"));
   collapseAllFoldersAct_->setText(tr("Collapse All Folders"));
   expandAllFoldersAct_->setText(tr("Expand All Folders"));
+  nextFolderAct_->setText(tr("Next Folder"));
+  prevFolderAct_->setText(tr("Previous Folder"));
+  expandFolderAct_->setText(tr("Expand Folder"));
 
   shareMenuAct_->setText(tr("Share"));
 
@@ -7449,4 +7469,49 @@ void RSSListing::setNewsSortByColumn()
   } else {
     currentNewsTab->newsHeader_->setSortIndicator(lIdx, Qt::DescendingOrder);
   }
+}
+
+void RSSListing::slotPrevFolder()
+{
+  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexAfter;
+
+  // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по папкам
+  if (!indexBefore.isValid())
+    indexAfter = feedsTreeView_->lastFolderInFolder(QModelIndex());
+  else
+    indexAfter = feedsTreeView_->indexPreviousFolder(indexBefore);
+
+  // Если индекса "ниже" не существует
+  if (!indexAfter.isValid()) return;
+
+  feedsTreeView_->setCurrentIndex(indexAfter);
+  slotFeedClicked(indexAfter);
+}
+
+void RSSListing::slotNextFolder()
+{
+  QModelIndex indexBefore = feedsTreeView_->currentIndex();
+  QModelIndex indexAfter;
+
+  // Если нет текущего индекса устанавливаем его в начало, т.к. мы хотим "опускаться" по папкам
+  if (!indexBefore.isValid())
+    indexAfter = feedsTreeView_->firstFolderInFolder(QModelIndex());
+  else
+    indexAfter = feedsTreeView_->indexNextFolder(indexBefore);
+
+  // Если индекса "ниже" не существует
+  if (!indexAfter.isValid()) return;
+
+  feedsTreeView_->setCurrentIndex(indexAfter);
+  slotFeedClicked(indexAfter);
+}
+
+void RSSListing::slotExpandFolder()
+{
+  QModelIndex index = feedsTreeView_->currentIndex();
+  if (!feedsTreeModel_->isFolder(index)) {
+    index = feedsTreeModel_->parent(index);
+  }
+  feedsTreeView_->setExpanded(index, !feedsTreeView_->isExpanded(index));
 }
