@@ -174,7 +174,7 @@ public:
 
   bool autoLoadImages_;
   bool openLinkInBackground_;
-  bool openingLink_;  //!< флаг открытия ссылки
+  bool openingLink_;  //!< Flag - link is being opened
   bool openLinkInBackgroundEmbedded_;
 
   int externalBrowserOn_;
@@ -521,8 +521,8 @@ private:
   QActionGroup *newsSortByColumnGroup_;
   QActionGroup *newsSortOrderGroup_;
 
-  QAction *feedsFilterAction_; //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра
-  QAction *newsFilterAction_;  //!< Хранение имени фильтра, необходимое для включения последнего используемого фильтра
+  QAction *feedsFilterAction_; //!< Filter name storage, needed to enable last used filter
+  QAction *newsFilterAction_;  //!< Filter name storege, needed to enable last used filter
 
   QAction *showUnreadCount_;
   QAction *showUndeleteCount_;
@@ -636,7 +636,7 @@ private:
   bool storeDBMemory_;
   bool storeDBMemoryT_;
 
-  int  openingLinkTimeout_;  //!< в течении этого времени мы будем переключаться обратно в наше приложение
+  int  openingLinkTimeout_;  //!< During this time we'll trying swithing back to apllication
   QTimer timerLinkOpening_;
 
   QWidget *categoriesPanel_;
