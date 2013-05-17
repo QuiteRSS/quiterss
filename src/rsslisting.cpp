@@ -34,7 +34,8 @@
 #include <psapi.h>
 #endif
 
-/*! \brief Обработка сообщений полученных из запущщеной копии программы *******/
+/*! \brief Process messages from other application copy
+ *---------------------------------------------------------------------------*/
 void RSSListing::receiveMessage(const QString& message)
 {
   qDebug() << QString("Received message: '%1'").arg(message);
@@ -62,7 +63,7 @@ void RSSListing::receiveMessage(const QString& message)
   }
 }
 
-/*!****************************************************************************/
+// ---------------------------------------------------------------------------
 RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget *parent)
   : QMainWindow(parent)
   , settings_(settings)
@@ -240,19 +241,20 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
   installEventFilter(this);
 }
 
-/*!****************************************************************************/
+// ---------------------------------------------------------------------------
 RSSListing::~RSSListing()
 {
   qDebug("App_Closing");
 }
 
+// ---------------------------------------------------------------------------
 void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 {
   slotClose();
   manager.release();
 }
 
-/*! \brief Обработка событий закрытия окна ************************************/
+// ---------------------------------------------------------------------------
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
   event->ignore();
@@ -265,7 +267,8 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
   }
 }
 
-/*! \brief Обработка события выхода из приложения *****************************/
+/*! \brief Process close application event
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotClose()
 {
   closeApp_ = true;
@@ -285,7 +288,7 @@ void RSSListing::slotClose()
   q.exec("UPDATE news SET new=0 WHERE new==1");
   q.exec("UPDATE news SET read=2 WHERE read==1");
 
-  // Запускаем Cleanup всех лент, исключая категории
+  // Run Cleanup for all feeds, except categories
   q.exec("SELECT id FROM feeds WHERE xmlUrl!=''");
   while (q.next()) {
     feedsCleanUp(q.value(0).toString());
@@ -304,8 +307,7 @@ void RSSListing::slotClose()
   else qStr.append("WHERE deleted!=0");
   q.exec(qStr);
 
-  // Запускаем пересчёт всех категорий, т.к. при чистке лент могли измениться
-  // их счетчики
+  // Run categories recount, because cleanup may change counts
   QList<int> categoriesList;
   q.exec("SELECT id FROM feeds WHERE (xmlUrl='' OR xmlUrl IS NULL)");
   while (q.next()) {
@@ -336,13 +338,13 @@ void RSSListing::slotClose()
   emit signalCloseApp();
 }
 
-/*! \brief Завершение приложения **********************************************/
+// ---------------------------------------------------------------------------
 void RSSListing::slotCloseApp()
 {
   qApp->quit();
 }
 
-/*!****************************************************************************/
+// ---------------------------------------------------------------------------
 bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
   static int deactivateState = 0;
@@ -386,7 +388,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     }
     return false;
   }
-  // Обработка открытия ссылки во внешнем браузере в фоне
+  // Process  open link in browser in background
   else if (event->type() == QEvent::WindowDeactivate) {
     if (openingLink_ && openLinkInBackground_) {
       openingLink_ = false;
@@ -395,11 +397,11 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
     }
     activationStateChangedTime_ = QDateTime::currentMSecsSinceEpoch();
   }
-  // Отрисовалась деактивация
+  // deactivation has painted
   else if ((event->type() == QEvent::Paint) && (deactivateState == 1)) {
     deactivateState = 2;
   }
-  // Деактивация произведена. Переактивируемся
+  // deactivation in done. Reactivating
   else if ((deactivateState == 2) && timerLinkOpening_.isActive()) {
     deactivateState = 3;
     if (!isActiveWindow()) {
@@ -409,7 +411,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       activateWindow();
     }
   }
-  // Отрисовалась активация
+  // activating had painted
   else if ((deactivateState == 3) && (event->type() == QEvent::Paint)) {
     deactivateState = 0;
   }
@@ -417,8 +419,8 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   return QMainWindow::eventFilter(obj, event);
 }
 
-/** @brief Отбработка передачи ссылки во внешний браузер фоном
- *----------------------------------------------------------------------------*/
+/** @brief Process send link to external browser in background
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotTimerLinkOpening()
 {
   timerLinkOpening_.stop();
