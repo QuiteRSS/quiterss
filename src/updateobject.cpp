@@ -47,7 +47,7 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
   timer_.start();
 }
 
-/** @brief Постановка сетевого адреса в очередь запросов
+/** @brief Put URL in request queue
  *----------------------------------------------------------------------------*/
 void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
                               const QString	&userInfo)
@@ -61,7 +61,7 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
   qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
 }
 
-/** @brief Обработка очереди запросов по таймеру
+/** @brief Process request queue on timer timeouts
  *----------------------------------------------------------------------------*/
 void UpdateObject::getQueuedUrl()
 {
@@ -91,7 +91,7 @@ void UpdateObject::getQueuedUrl()
   }
 }
 
-/** @brief Подготовка и отправка сетевого запроса для получения заголовка
+/** @brief Prepare and send network request to get head
  *----------------------------------------------------------------------------*/
 void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
                             const QDateTime &date, const int &count)
@@ -113,7 +113,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
   networkReply_.append(reply);
 }
 
-/** @brief Подготовка и отправка сетевого запроса для получения всех данных
+/** @brief Prepare and send network request to get all data
  *----------------------------------------------------------------------------*/
 void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
                            const QDateTime &date, const int &count)
@@ -135,16 +135,7 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
   networkReply_.append(reply);
 }
 
-/** @brief Завершение обработки сетевого запроса
-
-    The default behavior is to keep the text edit read only.
-
-    If an error has occurred, the user interface is made available
-    to the user for further input, allowing a new fetch to be
-    started.
-
-    If the HTTP get request has finished, we make the
-    user interface available to the user for further input.
+/** @brief Process network reply
  *----------------------------------------------------------------------------*/
 void UpdateObject::finished(QNetworkReply *reply)
 {
@@ -230,7 +221,7 @@ void UpdateObject::finished(QNetworkReply *reply)
   }
 }
 
-/** @brief Тайм-аут для удаления запросов, если нет ответа от сервера
+/** @brief Timeout to delete network requests wich has no answer
  *----------------------------------------------------------------------------*/
 void UpdateObject::slotRequestTimeout()
 {

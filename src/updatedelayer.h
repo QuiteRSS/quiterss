@@ -18,11 +18,10 @@
 #ifndef UPDATEDELAYER_H
 #define UPDATEDELAYER_H
 
-/** @brief Задержка обновления ленты
+/** @brief Delay feed updating
  *
- *  Задержка производится при импорте лент и обновлении всех лент одновременно.
- *  В этом случае обновление ленты вызывается слишком часто, что тормозит
- *  пользовательский интерфейс
+ *  Delay is used while import feeds or while updating all feeds simultaneuosly.
+ *  In this case feed refreshes to much often than GUI stucks.
  * @file updatedelayer.h
  *---------------------------------------------------------------------------*/
 

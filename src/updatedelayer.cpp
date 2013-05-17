@@ -36,11 +36,12 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
   connect(updateModelTimer_, SIGNAL(timeout()), this, SIGNAL(signalUpdateModel()));
 }
 
-/** @brief Обработка постановки Id-ленты в очередь на обновление
+/** @brief Process queueing feed
  *
- *  Лента добавляется в очередь и запускается таймер, если он ещё не запущен
- * @param feedId Id-ленты
- * @param feedChanged Флаг того, что ленты действительно изменялась
+ *  Feed is added to queue. Start timer if is not started yet.
+ * @param feedUrl Feed URL
+ * @param feedChanged Flag that indicate changed feed
+ * @param newCount (need description)
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged, int newCount)
 {
@@ -50,23 +51,23 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
   }
 
   int feedIdIndex = feedUrlList_.indexOf(feedUrl);
-  // Если лента уже есть в списке
+  // If feed is in list already, ...
   if (-1 < feedIdIndex) {
-    // Если лента изменялясь, то устанавливаем этот флаг принудительно
+    // If feed has changed, force enabling flag
     if (feedChanged) {
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
       newCountList_[feedIdIndex] = newCount;
     }
   }
-  // иначе добавляем ленту
+  // ..., else queueing feed
   else {
     feedUrlList_.append(feedUrl);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
   }
 
-  // Запуск таймера, если добавили первую ленту в список
-  // Своеобразная защита от запуска во время обработки таймаута
+  // Start timer, if first feed added into queueing
+  // Protect from starting while timeout is being processed
   if ((feedUrlList_.size() == 1) && nextUpdateFeed_) {
     nextUpdateFeed_ = false;
     delayTimer_->start(0);
@@ -82,9 +83,9 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
 
 }
 
-/** @brief Обработка срабатывания таймера
+/** @brief Process delay timer timeout
  *
- *  Производится обновление следующей в очереди ленты
+ *  Call update for next feed from queue
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotDelayTimerTimeout()
 {
@@ -94,11 +95,11 @@ void UpdateDelayer::slotDelayTimerTimeout()
   emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
 }
 
-/** @brief Запуск таймера при наличии в очереди лент
+/** @brief Start timer if feed presents in queue
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotNextUpdateFeed()
 {
-  qApp->processEvents();  // при перемещении окна оно не перерисовывается о_О
+  qApp->processEvents();  // refresh window while being dragged
   if (feedUrlList_.size()) {
     delayTimer_->start(delayValue_);
 
