@@ -27,17 +27,27 @@ WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
   : QWebPage(parent)
   , isLoading_(false)
 {
+  QObject *parent_ = parent;
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
+  rssl_ = qobject_cast<RSSListing*>(parent_);
+
   setNetworkAccessManager(networkManager);
 
   setPluginFactory(new WebPluginFactory(this, parent));
+  setForwardUnsupportedContent(true);
 
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
-  action(QWebPage::DownloadLinkToDisk)->setVisible(false);
   action(QWebPage::OpenImageInNewWindow)->setVisible(false);
-  action(QWebPage::DownloadImageToDisk)->setVisible(false);
 
   connect(this, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(this, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished()));
+
+  connect(this, SIGNAL(unsupportedContent(QNetworkReply*)),
+          this, SLOT(handleUnsupportedContent(QNetworkReply*)));
+  connect(this, SIGNAL(downloadRequested(QNetworkRequest)),
+          this, SLOT(downloadRequested(QNetworkRequest)));
 }
 
 bool WebPage::acceptNavigationRequest(QWebFrame *frame,
@@ -51,13 +61,8 @@ QWebPage *WebPage::createWindow(WebWindowType type)
 {
   Q_UNUSED(type)
 
-  QObject *parent_ = parent();
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
-  if (rssl->currentNewsTab->webView_->buttonClick_)
-    return rssl->createWebTab();
+  if (rssl_->currentNewsTab->webView_->buttonClick_)
+    return rssl_->createWebTab();
   else return this;
 }
 
@@ -98,4 +103,50 @@ void WebPage::slotLoadFinished()
     webView->resize(newSize);
     webView->resize(originalSize);
   }
+}
+
+void WebPage::downloadRequested(const QNetworkRequest &request)
+{
+  rssl_->downloadManager_->download(request);
+}
+
+void WebPage::handleUnsupportedContent(QNetworkReply* reply)
+{
+  if (!reply)
+    return;
+
+  const QUrl &url = reply->url();
+
+  switch (reply->error()) {
+  case QNetworkReply::NoError:
+    if (reply->header(QNetworkRequest::ContentTypeHeader).isValid()) {
+      QString requestUrl = reply->request().url().toString(QUrl::RemoveFragment | QUrl::RemoveQuery);
+      if (requestUrl.endsWith(QLatin1String(".swf"))) {
+        const QWebElement &docElement = mainFrame()->documentElement();
+        const QWebElement &object = docElement.findFirst(QString("object[src=\"%1\"]").arg(requestUrl));
+        const QWebElement &embed = docElement.findFirst(QString("embed[src=\"%1\"]").arg(requestUrl));
+
+        if (!object.isNull() || !embed.isNull()) {
+          qDebug() << "WebPage::UnsupportedContent" << url << "Attempt to download flash object on site!";
+          reply->deleteLater();
+          return;
+        }
+      }
+      rssl_->downloadManager_->handleUnsupportedContent(reply);
+      return;
+    }
+
+  case QNetworkReply::ProtocolUnknownError: {
+    qDebug() << "WebPage::UnsupportedContent" << url << "ProtocolUnknowError";
+    QDesktopServices::openUrl(url);
+
+    reply->deleteLater();
+    return;
+  }
+  default:
+    break;
+  }
+
+  qDebug() << "WebPage::UnsupportedContent error" << url << reply->errorString();
+  reply->deleteLater();
 }

@@ -132,6 +132,8 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
     networkManager_->setCache(diskCache_);
   }
 
+  downloadManager_ = new DownloadManager(this);
+
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
 

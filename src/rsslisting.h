@@ -27,6 +27,7 @@
 
 #include "cookiejar.h"
 #include "dbmemfilethread.h"
+#include "downloadmanager.h"
 #include "faviconthread.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
@@ -83,6 +84,7 @@ public:
   QTreeWidget *newsCategoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
   QStackedWidget *stackedWidget_;
+  DownloadManager *downloadManager_;
 
   bool showFeedsTabPermanent_;
 

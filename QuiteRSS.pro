@@ -71,7 +71,9 @@ HEADERS += \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
     src/plugins/webpluginfactory.h \
-    src/plugins/clicktoflash.h
+    src/plugins/clicktoflash.h \
+    src/downloads/downloadmanager.h \
+    src/downloads/downloaditem.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -115,9 +117,12 @@ SOURCES += \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
     src/plugins/webpluginfactory.cpp \
-    src/plugins/clicktoflash.cpp
+    src/plugins/clicktoflash.cpp \
+    src/downloads/downloadmanager.cpp \
+    src/downloads/downloaditem.cpp
 
-INCLUDEPATH +=  $$PWD/src/plugins \
+INCLUDEPATH +=  $$PWD/src/downloads \
+                $$PWD/src/plugins \
                 $$PWD/src \
 
 CONFIG(debug, debug|release) {

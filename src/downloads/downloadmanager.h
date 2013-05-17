@@ -15,40 +15,45 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef WEBPAGE_H
-#define WEBPAGE_H
+#ifndef DOWNLOADMANAGER_H
+#define DOWNLOADMANAGER_H
 
+#include <QtGui>
 #include <QNetworkAccessManager>
-#include <QWebPage>
 
+#include "networkmanager.h"
+
+class DownloadItem;
 class RSSListing;
 
-class WebPage : public QWebPage
+class DownloadManager : public QWidget
 {
   Q_OBJECT
+
 public:
-  explicit WebPage(QObject *parent, QNetworkAccessManager *networkManager);
+  explicit DownloadManager(QWidget *parentWidget, QWidget *parent = 0);
+  ~DownloadManager();
 
-  bool acceptNavigationRequest(QWebFrame *frame,
-                               const QNetworkRequest &request,
-                               NavigationType type);
-  void scheduleAdjustPage();
+  void download(const QNetworkRequest &request);
+  void handleUnsupportedContent(QNetworkReply *reply);
+  void startExternalApp(const QString &executable, const QUrl &url);
 
-  bool isLoading_;
-  bool adjustingScheduled_;
+  NetworkManager *networkManager_;
 
-protected slots:
-  QWebPage *createWindow(WebWindowType type);
-  void slotLoadStarted();
-  void slotLoadFinished();
-  void handleUnsupportedContent(QNetworkReply* reply);
+signals:
+  void signalItemCreated(QListWidgetItem* item, DownloadItem* downItem);
 
 private slots:
-  void downloadRequested(const QNetworkRequest &request);
+  QString getFileName(QNetworkReply* reply);
+  void itemCreated(QListWidgetItem* item, DownloadItem* downItem);
+  void clearList();
+  void deleteItem(DownloadItem* item);
 
 private:
   RSSListing *rssl_;
+  QListWidget *listWidget_;
+  QPushButton *clearButton_;
 
 };
 
-#endif // WEBPAGE_H
+#endif // DOWNLOADMANAGER_H

@@ -477,6 +477,7 @@ void NewsTabWidget::retranslateStrings() {
   webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
   webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
   webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
+  webView_->page()->action(QWebPage::DownloadImageToDisk)->setText(tr("Save Image..."));
   webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
   webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
   webView_->page()->action(QWebPage::Back)->setText(tr("Go Back"));
