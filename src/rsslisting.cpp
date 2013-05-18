@@ -3049,6 +3049,11 @@ void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
       feedsTreeModel_->setData(indexUpdated, counts.updated);
     }
 
+    if (!counts.lastBuildDate.isEmpty()) {
+      QModelIndex indexLastBuildDate  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("lastBuildDate"));
+      feedsTreeModel_->setData(indexLastBuildDate, counts.lastBuildDate);
+    }
+
     if (!counts.htmlUrl.isEmpty()) {
       QModelIndex indexHtmlUrl  = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("htmlUrl"));
       feedsTreeModel_->setData(indexHtmlUrl, counts.htmlUrl);
@@ -5310,6 +5315,11 @@ void RSSListing::showFeedPropertiesDlg()
         feedsTreeModel_->dataField(index, "updated").toString(),
         Qt::ISODate);
   properties.status.lastUpdate = dt.addSecs(nTimeShift);
+
+  dt = QDateTime::fromString(
+        feedsTreeModel_->dataField(index, "lastBuildDate").toString(),
+        Qt::ISODate);
+  properties.status.lastBuildDate = dt.addSecs(nTimeShift);
 
   properties.status.undeleteCount = feedsTreeModel_->dataField(index, "undeleteCount").toInt();
   properties.status.newCount      = feedsTreeModel_->dataField(index, "newCount").toInt();

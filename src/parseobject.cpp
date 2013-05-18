@@ -564,16 +564,17 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   // Set feed update time and recieve data from server time
   QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                           "yyyy-MM-ddTHH:mm:ss");
+  QString lastBuildDate = dtReply.toString(Qt::ISODate);
   q.prepare("UPDATE feeds SET updated=?, lastBuildDate=? WHERE id=?");
   q.addBindValue(updated);
-  q.addBindValue(dtReply.toString(Qt::ISODate));
+  q.addBindValue(lastBuildDate);
   q.addBindValue(parseFeedId);
   q.exec();
 
   int newCount = 0;
   if (feedChanged) {
     setUserFilter(parseFeedId);
-    newCount = recountFeedCounts(parseFeedId, feedUrl, updated);
+    newCount = recountFeedCounts(parseFeedId, feedUrl, updated, lastBuildDate);
   }
 
   emit feedUpdated(feedUrl, feedChanged, newCount);
@@ -668,7 +669,8 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
  * @param feedUrl - Feed URL
  * @param updated - Time feed updated
  *----------------------------------------------------------------------------*/
-int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QString &updated)
+int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
+                                   const QString &updated, const QString &lastBuildDate)
 {
   QSqlQuery q;
   QString qStr;
@@ -735,6 +737,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl, const QSt
   counts.newCount = newNewsCount;
   counts.undeleteCount = undeleteCount;
   counts.updated = updated;
+  counts.lastBuildDate = lastBuildDate;
   counts.htmlUrl = htmlUrl;
   counts.xmlUrl = feedUrl;
   counts.title = title;

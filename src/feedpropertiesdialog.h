@@ -100,6 +100,7 @@ typedef struct {
     QDateTime createdTime; //!< Time when feed created
     QDateTime lastDisplayed; //!< Last time that feed displayed
     QDateTime lastUpdate; //!< Time of feed last update
+    QDateTime lastBuildDate;
     int undeleteCount; //!< Number of all news
     int newCount; //!< Number of new news
     int unreadCount; //!< Number of unread news

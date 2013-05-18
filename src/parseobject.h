@@ -31,6 +31,7 @@ struct FeedCountStruct{
   int newCount;
   int undeleteCount;
   QString updated;
+  QString lastBuildDate;
   QString htmlUrl;
   QString xmlUrl;
   QString title;
@@ -61,7 +62,8 @@ private slots:
 
 private:
   QString parseDate(const QString &dateString, const QString &urlString);
-  int recountFeedCounts(int feedId, const QString &feedUrl, const QString &updated);
+  int recountFeedCounts(int feedId, const QString &feedUrl,
+                        const QString &updated, const QString &lastBuildDate);
 
   QTimer *parseTimer_;
   QString dataDirPath_;
