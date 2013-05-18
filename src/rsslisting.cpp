@@ -326,7 +326,15 @@ void RSSListing::slotClose()
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(true);
-    while(dbMemFileThread_->isRunning());
+    while(dbMemFileThread_->isRunning()) {
+      int ms = 100;
+#if defined(Q_OS_WIN)
+      Sleep(DWORD(ms));
+#else
+      struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+      nanosleep(&ts, NULL);
+#endif
+    }
   }
 
   while (persistentUpdateThread_->isRunning());
