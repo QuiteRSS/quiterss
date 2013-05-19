@@ -426,7 +426,9 @@ void NewsTabWidget::setSettings(bool newTab)
           arg(rsslisting_->linkColor_). // link color
           arg(rsslisting_->titleColor_). // title color
           arg(rsslisting_->dateColor_). // date color
-          arg(rsslisting_->authorColor_); // author color
+          arg(rsslisting_->authorColor_). // author color
+          arg(isLeftToRight() ? "left" : "right"). // text-align
+          arg(isLeftToRight() ? "ltr" : "rtl"); // direction
       cssFile.close();
     }
 

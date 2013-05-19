@@ -1,5 +1,5 @@
 /* News Style */
-/*%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12*/
+/*%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14*/
 body {
   overflow: auto;
   margin: 0;
@@ -26,8 +26,9 @@ a {
 .title {
   color: %10;
   font-family: %3;
-  font-size: %4pt; 
-  text-align: left; 
+  font-size: %4pt;
+  text-align: %13;
+  direction: %14;
   vertical-align: top;
 }
 .title a.unread {
@@ -44,7 +45,8 @@ a {
 
 .author {
   color: %12;
-  text-align: left;
+  text-align: %13;
+  direction: %14;
   vertical-align: top;
 }
 
@@ -66,7 +68,8 @@ a.enclosure {
 
 .newsTable {
   border-top: 1px solid %6;
-  text-align: left;
+  text-align: %13;
+  direction: %14;
   width: 100%;
   padding: 5px;
 }
