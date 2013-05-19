@@ -286,3 +286,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 {
   return QSqlTableModel::match(start, role, value, hits, flags);
 }
+
+// ----------------------------------------------------------------------------
+QVariant NewsModel::dataField(int row, const QString &fieldName) const
+{
+  return index(row, fieldIndex(fieldName)).data(Qt::EditRole);
+}

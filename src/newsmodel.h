@@ -35,6 +35,8 @@ public:
       Qt::MatchFlags flags =
       Qt::MatchFlags(Qt::MatchExactly|Qt::MatchWrap)
       ) const;
+  QVariant dataField(int row, const QString &fieldName) const;
+
   QString formatDate_;
   QString formatTime_;
   bool simplifiedDateTime_;
