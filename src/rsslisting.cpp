@@ -7185,6 +7185,8 @@ void RSSListing::nextUnreadNews()
   int newsRow = currentNewsTab->findUnreadNews(true);
 
   if (newsRow == -1) {
+    if (currentNewsTab->type_ != TAB_FEED) return;
+
     QModelIndex indexPrevUnread =
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (!indexPrevUnread.isValid()) {
@@ -7224,6 +7226,8 @@ void RSSListing::prevUnreadNews()
 
   int newsRowCur = newsView_->currentIndex().row();
   if ((newsRow >= newsRowCur) || (newsRow == -1)) {
+    if (currentNewsTab->type_ != TAB_FEED) return;
+
     QModelIndex indexNextUnread =
         feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 2);
     if (indexNextUnread.isValid()) {
