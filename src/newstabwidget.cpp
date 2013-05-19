@@ -1486,12 +1486,31 @@ void NewsTabWidget::openNewsNewTab()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
-  int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
-  rsslisting_->externalBrowserOn_ = 0;
   for (int i = cnt-1; i >= 0; --i) {
-    slotNewsMiddleClicked(indexes.at(i));
+    QModelIndex index = indexes.at(i);
+    int row = index.row();
+    if (rsslisting_->markNewsReadOn_ && rsslisting_->markCurNewsRead_)
+      slotSetItemRead(index, 1);
+
+    QString linkString = newsModel_->record(row).field("link_href").value().toString();
+    if (linkString.isEmpty())
+      linkString = newsModel_->record(row).field("link_alternate").value().toString();
+
+    QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
+    if (url.host().isEmpty()) {
+      int feedId = newsModel_->dataField(row, "feedId").toInt();
+      QUrl hostUrl;
+      QSqlQuery q;
+      q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").arg(feedId));
+      if (q.next())
+        hostUrl.setUrl(q.value(0).toString());
+      url.setScheme(hostUrl.scheme());
+      url.setHost(hostUrl.host());
+    }
+
+    QWebPage *webPage = rsslisting_->createWebTab();
+    qobject_cast<WebView*>(webPage->view())->load(url);
   }
-  rsslisting_->externalBrowserOn_ = externalBrowserOn_;
 }
 
 /** @brief Open link
