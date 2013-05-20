@@ -392,6 +392,8 @@ private slots:
   void slotPrevFolder();
   void slotExpandFolder();
 
+  void showDownloadManager();
+
 private:
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
@@ -472,6 +474,7 @@ private:
   QAction *bottomBrowserPositionAct_;
   QAction *rightBrowserPositionAct_;
   QAction *leftBrowserPositionAct_;
+  QAction *showDownloadManagerAct_;
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;
   QAction *optionsAct_;
