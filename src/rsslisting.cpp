@@ -2835,14 +2835,13 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
       return;
     }
 
-    // Установка количества непрочитанных новостей в ленту
-    // Установка количества новых новостей в ленту
+    // Save unread and new news number for feed
     qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
                    "WHERE id=='%4'").
         arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
     q.exec(qStr);
 
-    // Обновление отображения ленты, если оно существует
+    // Update view of the feed, if it exist
     if (index.isValid()) {
       indexUnread   = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
       indexNew      = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
@@ -2868,19 +2867,19 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
           }
         }
 
-        // Подсчет всех новостей (не помеченных удаленными)
+        // Calculate all news (not mark deleted)
         qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
             arg(id);
         q.exec(qStr);
         if (q.next()) undeleteCount = q.value(0).toInt();
 
-        // Подсчет непрочитанных новостей
+        // Calculate unread news
         qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
             arg(id);
         q.exec(qStr);
         if (q.next()) unreadCount = q.value(0).toInt();
 
-        // Подсчет новых новостей
+        // Calculate new news
         qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
             arg(id);
         q.exec(qStr);
@@ -2904,14 +2903,13 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
         }
         changed = true;
 
-        // Установка количества непрочитанных новостей в ленту
-        // Установка количества новых новостей в ленту
+        // Save unread and new news number for parent
         qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
                        "WHERE id=='%4'").
             arg(unreadCount).arg(newCount).arg(undeleteCount).arg(id);
         q.exec(qStr);
 
-        // Обновление отображения ленты, если оно существует
+        // Update view of the parent, if it exist
         QModelIndex index1 = feedsTreeModel_->getIndexById(id, parId);
         if (index1.isValid()) {
           indexUnread   = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
@@ -2954,7 +2952,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
             parId = q.value(0).toInt();
           QModelIndex index1 = feedsTreeModel_->getIndexById(l_feedParId, parId);
 
-          // Обновление отображения ленты, если оно существует
+          // Update view, if it exist
           if (index1.isValid()) {
             indexUnread   = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
             indexNew      = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
@@ -2974,7 +2972,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
     }
   }
 
-  // Пересчитываем счетчики для всех родителей
+  // Recalculate counters for all parents
   indexParent = index.parent();
   int l_feedParId = feedParId;
   while (l_feedParId) {
@@ -2996,7 +2994,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
         arg(l_feedParId);
     q.exec(qStr);
 
-    // Обновление отображения ленты, если оно существует
+    // Update view, if it exist
     if (indexParent.isValid()) {
       indexUnread   = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("unread"));
       indexNew      = indexParent.sibling(indexParent.row(), feedsTreeModel_->proxyColumnByOriginal("newCount"));
@@ -3021,7 +3019,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(counts.feedId, counts.parentId);
@@ -3059,11 +3057,10 @@ void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
   }
 }
 
-/**
- * @brief Пересчёт счетчиков для указанных категорий
- * @details Пересчет производится прямо в базе. Необходим "reselect" модели
- * @param categoriesList - список идентификаторов категорий для обработки
- ******************************************************************************/
+/** @brief Recalculate counters for specified categories
+ * @details Processing DB data. Model "reselect()" needed.
+ * @param categoriesList - categories identifiers list for processing
+ *---------------------------------------------------------------------------*/
 void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
 {
   QSqlQuery q;
@@ -3073,13 +3070,13 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
     if (categoryIdStart < 1) continue;
 
     int categoryId = categoryIdStart;
-    // Пересчет всех родителей
+    // Process all parents
     while (0 < categoryId) {
       int unreadCount = -1;
       int undeleteCount = -1;
       int newCount = -1;
 
-      // Подсчет суммы для всех лент c одним родителем
+      // Calculate sum of all feeds with same parent
       qStr = QString("SELECT sum(unread), sum(undeleteCount), sum(newCount) "
                      "FROM feeds WHERE parentId=='%1'").arg(categoryId);
       q.exec(qStr);
@@ -3095,7 +3092,7 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
         q.exec(qStr);
       }
 
-      // Переходим к предыдущему родителю
+      // go to next parent's parent
       qStr = QString("SELECT parentId FROM feeds WHERE id=='%1'").
           arg(categoryId);
       categoryId = 0;
@@ -3104,7 +3101,7 @@ void RSSListing::recountFeedCategories(const QList<int> &categoriesList)
     }
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::recountCategoryCounts()
 {
   if (recountCategoryCountsOn_) return;
@@ -3113,7 +3110,7 @@ void RSSListing::recountCategoryCounts()
   emit signalRecountCategoryCounts();
 }
 
-/** @brief Пересчёт счётчиков категорий
+/** @brief Process recalculating categories counters
  *----------------------------------------------------------------------------*/
 void RSSListing::slotRecountCategoryCounts()
 {
@@ -3216,23 +3213,24 @@ void RSSListing::slotRecountCategoryCounts()
   recountCategoryCountsOn_ = false;
 }
 
-/** @brief Обработка сигнала на обновление отображения ленты
+/** @brief Process updating feed view signal
  *
- *  Производится после обновления ленты и после добавления ленты
- *  В действительности производится задержка обновления
- * @param url URL-адрес обновляемой ленты
- * @param changed Признак того, что лента действительно была обновлена
+ * Calls after updating or adding feed
+ * Actually calls updateing delay
+ * @param url URL of updating feed
+ * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateFeed(const QString &feedUrl, const bool &changed, int newCount)
 {
   updateDelayer_->delayUpdate(feedUrl, changed, newCount);
 }
 
-/** @brief Обновление отображения ленты
+/** @brief Update feed view
  *
  *  Слот вызывается по сигналу от UpdateDelayer'а после некоторой задержки
- * @param feedId Id обновляемой ленты
- * @param changed Признак того, что лента действительно была обновлена
+ * Slot is called by UpdateDelayer after some delay
+ * @param feedId Feed identifier to update 
+ * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed, int newCount)
 {
@@ -3247,8 +3245,8 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
     progressBar_->setMaximum(0);
     updateFeedsCount_ = 0;
     importFeedStart_ = false;
-    //    qCritical() << "Stop update: " << timer_.elapsed();
-    //    qCritical() << "------------------------------------------------------------";
+    // qCritical() << "Stop update: " << timer_.elapsed();
+    // qCritical() << "------------------------------------------------------------";
   }
 
   int feedUrlIndex = feedUrlList_.indexOf(feedUrl);
@@ -3267,7 +3265,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
   q.exec();
   if (q.next()) feedId = q.value(0).toInt();
 
-  // Действия после получения новых новостей: трей, звук
+  // Action after new news has arrived: tray, sound
   if (!isActiveWindow() && (newCount > 0) &&
       (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
@@ -3278,7 +3276,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
   }
   recountCategoryCounts();
 
-  // Управление уведомлениями
+  // Manage notifications
   if (isActiveWindow()) {
     idFeedList_.clear();
     cntNewNewsList_.clear();
@@ -3325,7 +3323,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
       }
     }
 
-    // если обновлена просматриваемая лента, кликаем по ней, чтобы обновить просмотр
+    // Click on feed if it is displayed to update view
     if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
       slotUpdateNews();
       int unreadCount = 0;
@@ -3343,7 +3341,8 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
   emit signalNextUpdate();
 }
 
-//! Обновление списка новостей
+/** @brief Process updating news list
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateNews()
 {
   int newsId = newsModel_->index(
@@ -3367,7 +3366,8 @@ void RSSListing::slotUpdateNews()
   }
 }
 
-/** @brief Обработка нажатия в дереве лент ************************************/
+/** @brief Process click in feed tree
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedClicked(QModelIndex index)
 {
   int feedIdCur = feedsTreeModel_->getIdByIndex(index);
@@ -3377,7 +3377,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
   }
 
-  // Поиск уже открытого таба с этой лентой
+  // Search open tab containing this feed
   int indexTab = -1;
   for (int i = 0; i < stackedWidget_->count(); i++) {
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
@@ -3400,7 +3400,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       newsModel_ = currentNewsTab->newsModel_;
       newsView_ = currentNewsTab->newsView_;
     } else {
-      //! При переходе на другую ленту метим старую просмотренной
+      // Mark previous feed Read while switching to another feed
       setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed);
     }
 
@@ -3412,7 +3412,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
   feedIdOld_ = feedIdCur;
 }
 
-/** @brief Обработка самого выбора ленты **************************************/
+/** @brief Process feed choosing
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 {
   QElapsedTimer timer;
@@ -3423,7 +3424,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   int feedId = feedsTreeModel_->getIdByIndex(index);
   int feedParId = feedsTreeModel_->getParidByIndex(index);
 
-  // Открытие или создание вкладки с лентой
+  // Open or create feed tab
   if (!stackedWidget_->count() || createTab) {
     NewsTabWidget *widget = new NewsTabWidget(this, TAB_FEED, feedId, feedParId);
     int indexTab = addTab(widget);
@@ -3445,7 +3446,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   statusUnread_->setVisible(index.isValid());
   statusAll_->setVisible(index.isValid());
 
-  //! Устанавливаем иконку для открытой вкладки
+  // Set icon for tab has opened
   bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
 
   QPixmap iconTab;
@@ -3461,7 +3462,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   }
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
-  //! Устанавливаем текст для открытой вкладки
+  // Set title for tab has opened
   int padding = 15;
   if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)
     padding = 0;
@@ -3472,7 +3473,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // Переустанавливаем фильтр, чтобы текущая лента не исчезала при изменении фильтра лент
+  // Set filter to make current feed visible when filter for feeds changes
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
@@ -3481,7 +3482,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // Поиск новости ленты, отображамой ранее
+  // Search feed news that displayed before
   int newsRow = -1;
   if (openingFeedAction_ == 0) {
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
@@ -3506,7 +3507,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // Выбор новости ленты, отображамой ранее
+  // Focus feed news that displayed before
   newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
   if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
 
@@ -3531,7 +3532,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   }
 }
 
-/** @brief Вызов окна настроек ************************************************/
+// ----------------------------------------------------------------------------
 void RSSListing::showOptionDlg()
 {
   static int index = 0;
@@ -3694,7 +3695,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
 
-  //! Показ диалога настроек
+  // Display setting dialog
 
   optionsDialog->setCurrentItem(index);
   int result = optionsDialog->exec();
@@ -3705,7 +3706,7 @@ void RSSListing::showOptionDlg()
     return;
   }
 
-  //! Применение настроек
+  // Apply accepted settings
 
   foreach (QAction *action, listActions_) {
     QString objectName = action->objectName();
@@ -3762,7 +3763,7 @@ void RSSListing::showOptionDlg()
       if (idLabel == tabLabelId) {
         closeTab = false;
         NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(indexTab);
-        //! Устанавливаем иконку и текст для открытой вкладки
+        // Set icon and title for tab has opened
         widget->newsIconTitle_->setPixmap(imageLabel);
         widget->setTextTab(nameLabel);
       }
