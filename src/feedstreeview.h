@@ -77,6 +77,7 @@ private:
   QPoint dragStartPos_;
   int selectOldId_;
   int selectOldParentId_;
+  QModelIndex indexClicked_;
 
   void handleDrop(QDropEvent *e);
   bool shouldAutoScroll(const QPoint &pos) const;

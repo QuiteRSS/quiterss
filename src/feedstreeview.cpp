@@ -303,6 +303,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
     return;
   }
 
+  indexClicked_ = index;
   selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
   selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
 
@@ -356,7 +357,10 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
     return;
   }
 
-  emit signalDoubleClicked();
+  if (indexClicked_ == indexAt(event->pos()))
+    emit signalDoubleClicked();
+  else
+    mousePressEvent(event);
 }
 
 // ----------------------------------------------------------------------------
