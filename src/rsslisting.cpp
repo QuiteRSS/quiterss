@@ -1021,6 +1021,12 @@ void RSSListing::createActions()
   markAllNewsRead_->setIcon(QIcon(":/images/markReadAll"));
   this->addAction(markAllNewsRead_);
 
+  showDownloadManagerAct_ = new QAction(this);
+  showDownloadManagerAct_->setObjectName("showDownloadManagerAct");
+  showDownloadManagerAct_->setIcon(QIcon(":/images/download"));
+  this->addAction(showDownloadManagerAct_);
+  connect(showDownloadManagerAct_, SIGNAL(triggered()), this, SLOT(showDownloadManager()));
+
   setNewsFiltersAct_ = new QAction(this);
   setNewsFiltersAct_->setObjectName("setNewsFiltersAct");
   setNewsFiltersAct_->setIcon(QIcon(":/images/filterOff"));
@@ -1443,6 +1449,7 @@ void RSSListing::createShortcut()
   updateAllFeedsAct_->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_F5));
   listActions_.append(updateAllFeedsAct_);
   listActions_.append(openHomeFeedAct_);
+  listActions_.append(showDownloadManagerAct_);
   optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
@@ -1801,6 +1808,7 @@ void RSSListing::createMenu()
   browserMenu_->addAction(savePageAsAct_);
 
   toolsMenu_ = new QMenu(this);
+  toolsMenu_->addAction(showDownloadManagerAct_);
   toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
@@ -4836,6 +4844,7 @@ void RSSListing::retranslateStrings()
   markAllNewsRead_->setText(tr("Mark All News Read"));
   markAllNewsRead_->setToolTip(tr("Mark All News Read"));
 
+  showDownloadManagerAct_->setText(tr("Downloads"));
 
   setNewsFiltersAct_->setText(tr("News Filters..."));
   setFilterNewsAct_->setText(tr("Filter News..."));
@@ -7443,4 +7452,9 @@ void RSSListing::slotExpandFolder()
     index = feedsTreeModel_->parent(index);
   }
   feedsTreeView_->setExpanded(index, !feedsTreeView_->isExpanded(index));
+}
+
+void RSSListing::showDownloadManager()
+{
+  downloadManager_->show();
 }
