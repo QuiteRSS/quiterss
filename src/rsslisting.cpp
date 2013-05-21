@@ -6057,8 +6057,8 @@ void RSSListing::slotCloseTab(int index)
 
     setFeedRead(widget->type_, widget->feedId_, FeedReadClosingTab, widget);
 
-    tabBar_->removeTab(index);
     stackedWidget_->removeWidget(widget);
+    tabBar_->removeTab(index);
     QWidget *newsTitleLabel = widget->newsTitleLabel_;
     delete widget;
     delete newsTitleLabel;
@@ -6069,6 +6069,7 @@ void RSSListing::slotCloseTab(int index)
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (!stackedWidget_->count()) return;
+  if (tabBar_->closing_ == 2) return;
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
@@ -6092,7 +6093,7 @@ void RSSListing::slotTabCurrentChanged(int index)
 
   if (!updateCurrentTab_) return;
 
-  if ((currentNewsTab->type_ != TAB_WEB) && (tabBar_->count() == stackedWidget_->count())) {
+  if ((!tabBar_->closing_) && (currentNewsTab->type_ != TAB_WEB)) {
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
@@ -6107,7 +6108,7 @@ void RSSListing::slotTabCurrentChanged(int index)
       widget->hide();
     createNewsTab(index);
 
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(currentNewsTab->feedId_, currentNewsTab->feedParId_);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(widget->feedId_, widget->feedParId_);
     feedsTreeView_->setCurrentIndex(feedIndex);
     feedProperties_->setEnabled(feedIndex.isValid());
 
@@ -6146,11 +6147,11 @@ void RSSListing::slotTabCurrentChanged(int index)
     newsView_->setFocus();
 
     int unreadCount = 0;
-    int allCount = currentNewsTab->newsModel_->rowCount();
+    int allCount = widget->newsModel_->rowCount();
     QString countStr = newsCategoriesTree_->currentItem()->text(4);
     if (!countStr.isEmpty()) {
       countStr.remove(QRegExp("[()]"));
-      switch (currentNewsTab->type_) {
+      switch (widget->type_) {
       case TAB_CAT_UNREAD:
         unreadCount = countStr.toInt();
         break;

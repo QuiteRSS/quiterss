@@ -28,6 +28,8 @@ class TabBar : public QTabBar
 public:
   explicit TabBar(RSSListing* rssl);
 
+  int closing_;
+
 public slots:
   void slotCloseTab();
   void slotCloseOtherTabs();
