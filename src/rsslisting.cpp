@@ -79,7 +79,6 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
   , notificationWidget(NULL)
   , feedIdOld_(-2)
   , importFeedStart_(false)
-  , indexClickedTab(-1)
   , recountCategoryCountsOn_(false)
 {
   setWindowTitle("QuiteRSS");
@@ -359,29 +358,7 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
   static int deactivateState = 0;
 
-  static bool tabFixed = false;
-  if (obj == tabBar_) {
-    if (event->type() == QEvent::MouseButtonPress) {
-      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-      if (tabBar_->tabAt(mouseEvent->pos()) < 0)
-        return false;
-      if (mouseEvent->button() & Qt::MiddleButton) {
-        slotTabCloseRequested(tabBar_->tabAt(mouseEvent->pos()));
-      } else if (mouseEvent->button() & Qt::LeftButton) {
-        if (tabBar_->tabAt(QPoint(mouseEvent->pos().x(), 0)) == 0)
-          tabFixed = true;
-        else
-          tabFixed = false;
-      }
-    } else if (event->type() == QEvent::MouseMove) {
-      QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-      if (mouseEvent->buttons() & Qt::LeftButton) {
-        if ((tabBar_->tabAt(QPoint(mouseEvent->pos().x()-78, 0)) <= 0) || tabFixed)
-          return true;
-      }
-    }
-    return false;
-  } else if (obj == statusBar()) {
+  if (obj == statusBar()) {
     if (event->type() == QEvent::MouseButtonRelease) {
       if (windowState() & Qt::WindowMaximized) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
@@ -819,25 +796,23 @@ void RSSListing::createTray()
  *----------------------------------------------------------------------------*/
 void RSSListing::createTabBar()
 {
-  tabBar_ = new QTabBar();
-  tabBar_->setObjectName("tabBar_");
-  tabBar_->addTab("");
-  tabBar_->setIconSize(QSize(16, 16));
-  tabBar_->setMovable(true);
-  tabBar_->setExpanding(false);
-  tabBar_->setFocusPolicy(Qt::NoFocus);
-  tabBar_->setContextMenuPolicy(Qt::CustomContextMenu);
-  connect(tabBar_, SIGNAL(tabCloseRequested(int)),
-          this, SLOT(slotTabCloseRequested(int)));
+  tabBar_ = new TabBar(this);
+  connect(tabBar_, SIGNAL(closeTab(int)),
+          this, SLOT(slotCloseTab(int)));
   connect(tabBar_, SIGNAL(currentChanged(int)),
           this, SLOT(slotTabCurrentChanged(int)));
   connect(tabBar_, SIGNAL(tabMoved(int,int)),
           SLOT(slotTabMoved(int,int)));
   connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
-  connect(tabBar_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuTabBar(const QPoint &)));
-  tabBar_->installEventFilter(this);
+
+  connect(closeTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotCloseTab()));
+  connect(closeOtherTabsAct_, SIGNAL(triggered()),
+          tabBar_, SLOT(slotCloseOtherTabs()));
+  connect(closeAllTabsAct_, SIGNAL(triggered()),
+          tabBar_, SLOT(slotCloseAllTab()));
+  connect(nextTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotNextTab()));
+  connect(prevTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotPrevTab()));
 }
 
 /*! \brief Создание действий **************************************************
@@ -1312,29 +1287,22 @@ void RSSListing::createActions()
   closeTabAct_ = new QAction(this);
   closeTabAct_->setObjectName("closeTabAct");
   this->addAction(closeTabAct_);
-  connect(closeTabAct_, SIGNAL(triggered()), this, SLOT(slotCloseTab()));
 
   closeOtherTabsAct_ = new QAction(this);
   closeOtherTabsAct_->setObjectName("closeOtherTabsAct");
   this->addAction(closeOtherTabsAct_);
-  connect(closeOtherTabsAct_, SIGNAL(triggered()),
-          this, SLOT(slotCloseOtherTabs()));
 
   closeAllTabsAct_ = new QAction(this);
   closeAllTabsAct_->setObjectName("closeAllTabsAct");
   this->addAction(closeAllTabsAct_);
-  connect(closeAllTabsAct_, SIGNAL(triggered()),
-          this, SLOT(slotCloseAllTab()));
 
   nextTabAct_ = new QAction(this);
   nextTabAct_->setObjectName("nextTabAct");
   this->addAction(nextTabAct_);
-  connect(nextTabAct_, SIGNAL(triggered()), this, SLOT(slotNextTab()));
 
   prevTabAct_ = new QAction(this);
   prevTabAct_->setObjectName("prevTabAct");
   this->addAction(prevTabAct_);
-  connect(prevTabAct_, SIGNAL(triggered()), this, SLOT(slotPrevTab()));
 
   reduceNewsListAct_ = new QAction(this);
   reduceNewsListAct_->setObjectName("reduceNewsListAct");
@@ -3788,7 +3756,7 @@ void RSSListing::showOptionDlg()
     }
 
     if (closeTab && (indexTab > 0) && (tabLabelId > 0)) {
-      slotTabCloseRequested(indexTab);
+      slotCloseTab(indexTab);
     }
     if ((tabBar_->currentIndex() == indexTab) && (indexTab > 0) && (tabLabelId == 0)) {
       slotUpdateNews();
@@ -6073,7 +6041,7 @@ void RSSListing::slotOpenFeedNewTab()
 }
 
 //! Закрытие вкладки
-void RSSListing::slotTabCloseRequested(int index)
+void RSSListing::slotCloseTab(int index)
 {
   if (index != 0) {
     NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
@@ -6987,71 +6955,6 @@ void RSSListing::getLabelNews()
       newsLabelGroup_->actions().at(i)->setChecked(check);
     }
   }
-}
-
-/** @brief Вызов контекстного меню вкладки
- *----------------------------------------------------------------------------*/
-void RSSListing::showContextMenuTabBar(const QPoint &pos)
-{
-  int index = tabBar_->tabAt(pos);
-  indexClickedTab = index;
-
-  if (index == -1) return;
-
-  QMenu menu;
-  menu.addAction(closeTabAct_);
-  menu.addAction(closeOtherTabsAct_);
-  menu.addAction(closeAllTabsAct_);
-
-  menu.exec(tabBar_->mapToGlobal(pos));
-
-  indexClickedTab = -1;
-}
-
-/** @brief Закрытие выбранной вкладки
- *----------------------------------------------------------------------------*/
-void RSSListing::slotCloseTab()
-{
-  int index = indexClickedTab;
-  if (index == -1) index = tabBar_->currentIndex();
-
-  slotTabCloseRequested(index);
-}
-
-/** @brief Закрытие всех вкладок кроме выбранной
- *----------------------------------------------------------------------------*/
-void RSSListing::slotCloseOtherTabs()
-{
-  int index = indexClickedTab;
-  if (index == -1) index = tabBar_->currentIndex();
-
-  for (int i = tabBar_->count()-1; i > 0; i--) {
-    if (i == index) continue;
-    slotTabCloseRequested(i);
-  }
-}
-
-/** @brief Закрытие всех вкладок
- *----------------------------------------------------------------------------*/
-void RSSListing::slotCloseAllTab()
-{
-  for (int i = tabBar_->count()-1; i > 0; i--) {
-    slotTabCloseRequested(i);
-  }
-}
-
-/** @brief Переключение на следующую вкладку
- *----------------------------------------------------------------------------*/
-void RSSListing::slotNextTab()
-{
-  tabBar_->setCurrentIndex(tabBar_->currentIndex()+1);
-}
-
-/** @brief Переключение на предыдущую вкладку
- *----------------------------------------------------------------------------*/
-void RSSListing::slotPrevTab()
-{
-  tabBar_->setCurrentIndex(tabBar_->currentIndex()-1);
 }
 
 /** @brief Добавление новой вкладки

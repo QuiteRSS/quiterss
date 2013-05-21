@@ -21,7 +21,7 @@
 #include "rsslisting.h"
 
 DownloadManager::DownloadManager(QWidget *parentWidget, QWidget *parent)
-  : QWidget(parent)
+  : QWidget()
 {
   setWindowFlags(windowFlags() ^ Qt::WindowMaximizeButtonHint);
   setWindowTitle(tr("Download Manager"));

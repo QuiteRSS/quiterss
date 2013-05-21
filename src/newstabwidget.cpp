@@ -1465,7 +1465,7 @@ void NewsTabWidget::setBrowserPosition()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotTabClose()
 {
-  rsslisting_->slotTabCloseRequested(rsslisting_->stackedWidget_->indexOf(this));
+  rsslisting_->slotCloseTab(rsslisting_->stackedWidget_->indexOf(this));
 }
 
 /** @brief Display browser open page title on tab

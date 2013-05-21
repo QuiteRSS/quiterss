@@ -73,7 +73,8 @@ HEADERS += \
     src/plugins/webpluginfactory.h \
     src/plugins/clicktoflash.h \
     src/downloads/downloadmanager.h \
-    src/downloads/downloaditem.h
+    src/downloads/downloaditem.h \
+    src/tabbar.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -119,7 +120,8 @@ SOURCES += \
     src/plugins/webpluginfactory.cpp \
     src/plugins/clicktoflash.cpp \
     src/downloads/downloadmanager.cpp \
-    src/downloads/downloaditem.cpp
+    src/downloads/downloaditem.cpp \
+    src/tabbar.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

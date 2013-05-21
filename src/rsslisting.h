@@ -39,6 +39,7 @@
 #include "newsview.h"
 #include "notifications.h"
 #include "parsethread.h"
+#include "tabbar.h"
 #include "updateappdialog.h"
 #include "updatedelayer.h"
 #include "updatethread.h"
@@ -131,6 +132,9 @@ public:
   QAction *nextFolderAct_;
   QAction *prevFolderAct_;
   QAction *expandFolderAct_;
+  QAction *closeTabAct_;
+  QAction *closeOtherTabsAct_;
+  QAction *closeAllTabsAct_;
 
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
@@ -235,7 +239,7 @@ public slots:
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
-  void slotTabCloseRequested(int index);
+  void slotCloseTab(int index);
   QWebPage *createWebTab();
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
@@ -354,12 +358,6 @@ private slots:
   void setDefaultLabelNews();
   void getLabelNews();
 
-  void showContextMenuTabBar(const QPoint &pos);
-  void slotCloseTab();
-  void slotCloseOtherTabs();
-  void slotCloseAllTab();
-  void slotNextTab();
-  void slotPrevTab();
   void setTextTitle(const QString &text, NewsTabWidget *widget);
 
   void lockMainToolbar(bool lock);
@@ -434,7 +432,7 @@ private:
 
   QString dbFileName_;
   NewsModel *newsModel_;
-  QTabBar *tabBar_;
+  TabBar *tabBar_;
   QSplitter *mainSplitter_;
   QWidget *feedsPanel_;
   QFrame *feedsWidget_;
@@ -535,9 +533,6 @@ private:
   QAction *fullScreenAct_;
   QAction *stayOnTopAct_;
 
-  QAction *closeTabAct_;
-  QAction *closeOtherTabsAct_;
-  QAction *closeAllTabsAct_;
   QAction *nextTabAct_;
   QAction *prevTabAct_;
 
@@ -655,8 +650,6 @@ private:
   bool importFeedStart_;
 
   bool changeBehaviorActionNUN_;
-
-  int indexClickedTab;
 
   bool recountCategoryCountsOn_;
 
