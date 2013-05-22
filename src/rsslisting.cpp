@@ -6082,7 +6082,7 @@ void RSSListing::slotCloseTab(int index)
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (!stackedWidget_->count()) return;
-  if (tabBar_->closing_ == 2) return;
+  if (tabBar_->closingTabState_ == TabBar::CloseTabOtherIndex) return;
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
   if ((widget->type_ == TAB_FEED) || (widget->type_ == TAB_WEB))
@@ -6106,7 +6106,7 @@ void RSSListing::slotTabCurrentChanged(int index)
 
   if (!updateCurrentTab_) return;
 
-  if ((!tabBar_->closing_) && (currentNewsTab->type_ != TAB_WEB)) {
+  if ((tabBar_->closingTabState_ == TabBar::CloseTabIdle) && (currentNewsTab->type_ != TAB_WEB)) {
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);

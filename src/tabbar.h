@@ -28,7 +28,13 @@ class TabBar : public QTabBar
 public:
   explicit TabBar(RSSListing* rssl);
 
-  int closing_;
+  enum CloseTabsState {
+    CloseTabIdle = 0,
+    CloseTabCurrentIndex,
+    CloseTabOtherIndex
+  };
+
+  CloseTabsState closingTabState_;
 
 public slots:
   void slotCloseTab();

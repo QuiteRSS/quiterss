@@ -23,7 +23,7 @@ TabBar::TabBar(RSSListing* rssl)
   , rssl_(rssl)
   , indexClickedTab_(-1)
   , tabFixed_(false)
-  , closing_(0)
+  , closingTabState_(CloseTabIdle)
 {
   setObjectName("tabBar_");
   setFocusPolicy(Qt::NoFocus);
@@ -104,26 +104,26 @@ void TabBar::slotCloseOtherTabs()
     }
   }
 
-  closing_ = 2;
+  closingTabState_ = CloseTabOtherIndex;
   for (int i = count()-1; i > 0; i--) {
     if (i == index) continue;
-    if (i == curIndex) closing_ = 1;
-    else closing_ = 2;
+    if (i == curIndex) closingTabState_ = CloseTabCurrentIndex;
+    else closingTabState_ = CloseTabOtherIndex;
 
     emit closeTab(i);
   }
-  closing_ = 0;
+  closingTabState_ = CloseTabIdle;
 }
 
 void TabBar::slotCloseAllTab()
 {
-  closing_ = 2;
+  closingTabState_ = CloseTabOtherIndex;
   for (int i = count()-1; i > 0; i--) {
-    if (i == 1) closing_ = 1;
+    if (i == 1) closingTabState_ = CloseTabCurrentIndex;
 
     emit closeTab(i);
   }
-  closing_ = 0;
+  closingTabState_ = CloseTabIdle;
 }
 
 void TabBar::slotNextTab()
