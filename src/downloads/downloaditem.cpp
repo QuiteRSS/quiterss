@@ -132,11 +132,11 @@ void DownloadItem::startDownloading()
   }
 
   reply_->setParent(this);
-  connect(reply_, SIGNAL(finished()), this, SLOT(finished()));
   connect(reply_, SIGNAL(readyRead()), this, SLOT(readyRead()));
   connect(reply_, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
   connect(reply_, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error()));
   connect(reply_, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
+  connect(reply_, SIGNAL(finished()), this, SLOT(finished()));
 
   downloading_ = true;
   updateInfoTimer_.start(1000);
@@ -149,6 +149,31 @@ void DownloadItem::startDownloading()
   }
 }
 
+void DownloadItem::readyRead()
+{
+  if (!outputFile_.isOpen() && !outputFile_.open(QIODevice::WriteOnly)) {
+    stop(false);
+    downloadInfo_->setText(tr("Error: Cannot write to file!"));
+    return;
+  }
+  outputFile_.write(reply_->readAll());
+}
+
+void DownloadItem::downloadProgress(qint64 received, qint64 total)
+{
+  qint64 currentValue = 0;
+  qint64 totalValue = 0;
+  if (total > 0) {
+    currentValue = received * 100 / total;
+    totalValue = 100;
+  }
+  progressBar_->setValue(currentValue);
+  progressBar_->setMaximum(totalValue);
+  curSpeed_ = received * 1000.0 / downloadTimer_.elapsed();
+  received_ = received;
+  total_ = total;
+}
+
 void DownloadItem::metaDataChanged()
 {
   QUrl locationHeader = reply_->header(QNetworkRequest::LocationHeader).toUrl();
@@ -158,6 +183,15 @@ void DownloadItem::metaDataChanged()
 
     reply_ = manager_->networkManager_->get(QNetworkRequest(locationHeader));
     startDownloading();
+  }
+}
+
+void DownloadItem::error()
+{
+  qCritical() << "*01" << reply_->error();
+  if (reply_ && reply_->error() != QNetworkReply::NoError) {
+    stop(false);
+    downloadInfo_->setText(tr("Error: ") + reply_->errorString());
   }
 }
 
@@ -180,21 +214,6 @@ void DownloadItem::finished()
   }
 
   emit downloadFinished(true);
-}
-
-void DownloadItem::downloadProgress(qint64 received, qint64 total)
-{
-  qint64 currentValue = 0;
-  qint64 totalValue = 0;
-  if (total > 0) {
-    currentValue = received * 100 / total;
-    totalValue = 100;
-  }
-  progressBar_->setValue(currentValue);
-  progressBar_->setMaximum(totalValue);
-  curSpeed_ = received * 1000.0 / downloadTimer_.elapsed();
-  received_ = received;
-  total_ = total;
 }
 
 QString DownloadItem::remaingTimeToString(QTime time)
@@ -353,24 +372,6 @@ void DownloadItem::openFolder()
   QFileInfo info(fileName_);
   QDesktopServices::openUrl(QUrl::fromLocalFile(info.path()));
 #endif
-}
-
-void DownloadItem::readyRead()
-{
-  if (!outputFile_.isOpen() && !outputFile_.open(QIODevice::WriteOnly)) {
-    stop(false);
-    downloadInfo_->setText(tr("Error: Cannot write to file!"));
-    return;
-  }
-  outputFile_.write(reply_->readAll());
-}
-
-void DownloadItem::error()
-{
-  if (reply_ && reply_->error() != QNetworkReply::NoError) {
-    stop(false);
-    downloadInfo_->setText(tr("Error: ") + reply_->errorString());
-  }
 }
 
 void DownloadItem::updateDownload()
