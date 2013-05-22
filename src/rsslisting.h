@@ -390,7 +390,7 @@ private slots:
   void slotPrevFolder();
   void slotExpandFolder();
 
-  void showDownloadManager();
+  void showDownloadManager(bool activate = true);
 
 private:
   UpdateThread *persistentUpdateThread_;

@@ -20,10 +20,10 @@
 
 TabBar::TabBar(RSSListing* rssl)
   : QTabBar()
+  , closing_(0)
   , rssl_(rssl)
   , indexClickedTab_(-1)
   , tabFixed_(false)
-  , closing_(0)
 {
   setObjectName("tabBar_");
   setFocusPolicy(Qt::NoFocus);

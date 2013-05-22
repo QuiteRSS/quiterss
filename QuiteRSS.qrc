@@ -119,6 +119,7 @@
         <file>images/folder_unread.png</file>
         <file alias="flag_TR">images/flag_turkey.png</file>
         <file alias="download">images/download.png</file>
+        <file alias="list_clear">images/list_clear.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

@@ -38,11 +38,12 @@ class RSSListing;
 #define LEFT_POSITION   3
 
 #define TAB_FEED       0
-#define TAB_WEB        1
-#define TAB_CAT_UNREAD 2
-#define TAB_CAT_STAR   3
-#define TAB_CAT_DEL    4
-#define TAB_CAT_LABEL  5
+#define TAB_CAT_UNREAD 1
+#define TAB_CAT_STAR   2
+#define TAB_CAT_DEL    3
+#define TAB_CAT_LABEL  4
+#define TAB_WEB        5
+#define TAB_DOWNLOADS  6
 
 #define RESIZESTEP 25   // News list/browser size step
 
@@ -51,6 +52,7 @@ class NewsTabWidget : public QWidget
   Q_OBJECT
 public:
   explicit NewsTabWidget(QWidget *parent, int type, int feedId = -1, int feedParId = -1);
+  ~NewsTabWidget();
 
   void retranslateStrings();
   void setSettings(bool newTab = true);

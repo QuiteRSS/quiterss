@@ -81,9 +81,8 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
 
   progressBar_ = new QProgressBar();
   progressBar_->setObjectName("progressBar_");
-  progressBar_->setFormat("%p%");
-  progressBar_->setAlignment(Qt::AlignCenter);
-  progressBar_->setFixedHeight(15);
+  progressBar_->setTextVisible(false);
+  progressBar_->setFixedHeight(10);
   progressBar_->setMinimum(0);
   progressBar_->setMaximum(0);
   progressBar_->setValue(0);

@@ -69,38 +69,41 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParI
   newsTitleLabel_->setLayout(newsTitleLayout);
   newsTitleLabel_->setVisible(false);
 
-  if (type_ != TAB_WEB) {
-    createNewsList();
-  } else {
-    autoLoadImages_ = rsslisting_->autoLoadImages_;
-  }
-  createWebWidget();
-
-  if (type_ != TAB_WEB) {
-    newsTabWidgetSplitter_ = new QSplitter(this);
-    newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
-
-    if ((rsslisting_->browserPosition_ == TOP_POSITION) ||
-        (rsslisting_->browserPosition_ == LEFT_POSITION)) {
-      newsTabWidgetSplitter_->addWidget(webWidget_);
-      newsTabWidgetSplitter_->addWidget(newsWidget_);
+  if (type_ != TAB_DOWNLOADS) {
+    if (type_ != TAB_WEB) {
+      createNewsList();
     } else {
-      newsTabWidgetSplitter_->addWidget(newsWidget_);
-      newsTabWidgetSplitter_->addWidget(webWidget_);
+      autoLoadImages_ = rsslisting_->autoLoadImages_;
+    }
+    createWebWidget();
+
+    if (type_ != TAB_WEB) {
+      newsTabWidgetSplitter_ = new QSplitter(this);
+      newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
+
+      if ((rsslisting_->browserPosition_ == TOP_POSITION) ||
+          (rsslisting_->browserPosition_ == LEFT_POSITION)) {
+        newsTabWidgetSplitter_->addWidget(webWidget_);
+        newsTabWidgetSplitter_->addWidget(newsWidget_);
+      } else {
+        newsTabWidgetSplitter_->addWidget(newsWidget_);
+        newsTabWidgetSplitter_->addWidget(webWidget_);
+      }
     }
   }
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
   layout->setSpacing(0);
-  if (type_ != TAB_WEB)
+  if (type_ == TAB_DOWNLOADS)
+    layout->addWidget(rsslisting_->downloadManager_);
+  else if (type_ != TAB_WEB)
     layout->addWidget(newsTabWidgetSplitter_);
   else
     layout->addWidget(webWidget_);
   setLayout(layout);
 
-
-  if (type_ != TAB_WEB) {
+  if (type_ < TAB_WEB) {
     newsTabWidgetSplitter_->restoreState(
           rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
     newsTabWidgetSplitter_->restoreGeometry(
@@ -126,6 +129,14 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParI
 
   connect(this, SIGNAL(signalSetTextTab(QString,NewsTabWidget*)),
           rsslisting_, SLOT(setTextTitle(QString,NewsTabWidget*)));
+}
+
+NewsTabWidget::~NewsTabWidget()
+{
+  if (type_ == TAB_DOWNLOADS) {
+    rsslisting_->downloadManager_->hide();
+    rsslisting_->downloadManager_->setParent(rsslisting_);
+  }
 }
 
 /** @brief Create news list with all related panels
@@ -398,8 +409,10 @@ void NewsTabWidget::createWebWidget()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setSettings(bool newTab)
 {
+  if (type_ == TAB_DOWNLOADS) return;
+
   if (newTab) {
-    if (type_ != TAB_WEB) {
+    if (type_ < TAB_WEB) {
       newsView_->setFont(
             QFont(rsslisting_->newsListFontFamily_, rsslisting_->newsListFontSize_));
       newsModel_->formatDate_ = rsslisting_->formatDate_;
@@ -452,7 +465,7 @@ void NewsTabWidget::setSettings(bool newTab)
   rsslisting_->autoLoadImages_ = !autoLoadImages_;
   rsslisting_->setAutoLoadImages(false);
 
-  if (type_ != TAB_WEB) {
+  if (type_ < TAB_WEB) {
     newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
 
     QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_, feedParId_);
@@ -470,30 +483,32 @@ void NewsTabWidget::setSettings(bool newTab)
 /** @brief Reload translation
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::retranslateStrings() {
-  webViewProgress_->setFormat(tr("Loading... (%p%)"));
+  if (type_ != TAB_DOWNLOADS) {
+    webViewProgress_->setFormat(tr("Loading... (%p%)"));
 
-  webHomePageAct_->setText(tr("Home"));
-  webExternalBrowserAct_->setText(tr("Open Page in External Browser"));
-  urlExternalBrowserAct_->setText(tr("Open Link in External Browser"));
+    webHomePageAct_->setText(tr("Home"));
+    webExternalBrowserAct_->setText(tr("Open Page in External Browser"));
+    urlExternalBrowserAct_->setText(tr("Open Link in External Browser"));
 
-  webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
-  webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
-  webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
-  webView_->page()->action(QWebPage::DownloadImageToDisk)->setText(tr("Save Image..."));
-  webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
-  webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
-  webView_->page()->action(QWebPage::Back)->setText(tr("Go Back"));
-  webView_->page()->action(QWebPage::Forward)->setText(tr("Go Forward"));
-  webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
-  webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
-  webView_->page()->action(QWebPage::CopyImageToClipboard)->setText(tr("Copy Image"));
+    webView_->page()->action(QWebPage::OpenLink)->setText(tr("Open Link"));
+    webView_->page()->action(QWebPage::OpenLinkInNewWindow)->setText(tr("Open in New Tab"));
+    webView_->page()->action(QWebPage::DownloadLinkToDisk)->setText(tr("Save Link..."));
+    webView_->page()->action(QWebPage::DownloadImageToDisk)->setText(tr("Save Image..."));
+    webView_->page()->action(QWebPage::CopyLinkToClipboard)->setText(tr("Copy Link"));
+    webView_->page()->action(QWebPage::Copy)->setText(tr("Copy"));
+    webView_->page()->action(QWebPage::Back)->setText(tr("Go Back"));
+    webView_->page()->action(QWebPage::Forward)->setText(tr("Go Forward"));
+    webView_->page()->action(QWebPage::Stop)->setText(tr("Stop"));
+    webView_->page()->action(QWebPage::Reload)->setText(tr("Reload"));
+    webView_->page()->action(QWebPage::CopyImageToClipboard)->setText(tr("Copy Image"));
 #if QT_VERSION >= 0x040800
-  webView_->page()->action(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy Image Address"));
+    webView_->page()->action(QWebPage::CopyImageUrlToClipboard)->setText(tr("Copy Image Address"));
 #endif
 
-  if (type_ != TAB_WEB) {
-    findText_->retranslateStrings();
-    newsHeader_->retranslateStrings();
+    if (type_ != TAB_WEB) {
+      findText_->retranslateStrings();
+      newsHeader_->retranslateStrings();
+    }
   }
 
   closeButton_->setToolTip(tr("Close Tab"));
@@ -623,7 +638,7 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsUpPressed()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
@@ -650,7 +665,7 @@ void NewsTabWidget::slotNewsUpPressed()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotNewsDownPressed()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   if (!newsView_->currentIndex().isValid()) {
     if (newsModel_->rowCount() > 0) {
@@ -795,7 +810,7 @@ void NewsTabWidget::slotMarkReadTimeout()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::markNewsRead()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
   markNewsReadTimer_->stop();
 
   QModelIndex curIndex;
@@ -860,7 +875,7 @@ void NewsTabWidget::markNewsRead()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::markAllNewsRead()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
   markNewsReadTimer_->stop();
 
   int cnt = newsModel_->rowCount();
@@ -899,7 +914,7 @@ void NewsTabWidget::markAllNewsRead()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::markNewsStar()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
@@ -944,7 +959,7 @@ void NewsTabWidget::markNewsStar()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::deleteNews()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(newsModel_->fieldIndex("deleted"));
@@ -1018,7 +1033,7 @@ void NewsTabWidget::deleteNews()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::deleteAllNewsList()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   int cnt = newsModel_->rowCount();
   if (cnt == 0) return;
@@ -1058,7 +1073,7 @@ void NewsTabWidget::deleteAllNewsList()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::restoreNews()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QModelIndex curIndex;
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(newsModel_->fieldIndex("deleted"));
@@ -1103,7 +1118,7 @@ void NewsTabWidget::restoreNews()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotCopyLinkNews()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
@@ -1396,7 +1411,7 @@ void NewsTabWidget::openPageInExternalBrowser()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::openInBrowserNews()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
   rsslisting_->externalBrowserOn_ = 0;
@@ -1408,6 +1423,8 @@ void NewsTabWidget::openInBrowserNews()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::openInExternalBrowserNews()
 {
+  if (type_ == TAB_DOWNLOADS) return;
+
   if (type_ != TAB_WEB) {
     QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
@@ -1428,11 +1445,12 @@ void NewsTabWidget::openInExternalBrowserNews()
   }
 }
 
-//! Установка позиции браузера
 /** @brief Set browser position
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setBrowserPosition()
 {
+  if (type_ == TAB_DOWNLOADS) return;
+
   int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
 
   switch (rsslisting_->browserPosition_) {
@@ -1481,7 +1499,7 @@ void NewsTabWidget::webTitleChanged(QString title)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::openNewsNewTab()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 
@@ -1741,7 +1759,7 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setLabelNews(int labelId)
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(
         newsModel_->fieldIndex("label"));
@@ -1825,7 +1843,7 @@ void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
 
 void NewsTabWidget::reduceNewsList()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QList <int> sizes = newsTabWidgetSplitter_->sizes();
   sizes.insert(0, sizes.takeAt(0) - RESIZESTEP);
@@ -1834,7 +1852,7 @@ void NewsTabWidget::reduceNewsList()
 
 void NewsTabWidget::increaseNewsList()
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QList <int> sizes = newsTabWidgetSplitter_->sizes();
   sizes.insert(0, sizes.takeAt(0) + RESIZESTEP);
@@ -1883,7 +1901,7 @@ void NewsTabWidget::setTextTab(const QString &text, int width)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotShareNews(QAction *action)
 {
-  if (type_ == TAB_WEB) return;
+  if (type_ >= TAB_WEB) return;
 
   QList<QModelIndex> indexes = newsView_->selectionModel()->selectedRows(0);
 

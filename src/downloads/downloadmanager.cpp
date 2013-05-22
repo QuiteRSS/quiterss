@@ -20,15 +20,10 @@
 #include "downloaditem.h"
 #include "rsslisting.h"
 
-DownloadManager::DownloadManager(QWidget *parentWidget, QWidget *parent)
-  : QWidget()
+DownloadManager::DownloadManager(QWidget *parent)
+  : QWidget(parent)
 {
-  setWindowFlags(windowFlags() ^ Qt::WindowMaximizeButtonHint);
-  setWindowTitle(tr("Download Manager"));
-  setMinimumWidth(400);
-  setMinimumHeight(300);
-
-  rssl_ = qobject_cast<RSSListing*>(parentWidget);
+  rssl_ = qobject_cast<RSSListing*>(parent);
 
   networkManager_ = new NetworkManager(this);
   networkManager_->setCookieJar(rssl_->cookieJar_);
@@ -36,23 +31,38 @@ DownloadManager::DownloadManager(QWidget *parentWidget, QWidget *parent)
   listWidget_ = new QListWidget();
   listWidget_->setFrameStyle(QFrame::NoFrame);
 
-  clearButton_ = new QPushButton(tr("Clear"));
+  listClaerAct_ = new QAction(QIcon(":/images/list_clear"), tr("Clear"), this);
+
+  QToolBar *toolBar = new QToolBar(this);
+  toolBar->setObjectName("newsToolBar");
+  toolBar->setStyleSheet("QToolBar { border: none; padding: 0px; }");
+  toolBar->setIconSize(QSize(18, 18));
+  toolBar->addAction(listClaerAct_);
 
   QHBoxLayout *buttonLayout = new QHBoxLayout();
-  buttonLayout->setMargin(5);
-  buttonLayout->addWidget(clearButton_);
-  buttonLayout->addStretch();
+  buttonLayout->setMargin(2);
+  buttonLayout->addWidget(toolBar);
+
+  QWidget *buttonPanelWidget = new QWidget(this);
+  buttonPanelWidget->setObjectName("buttonPanelWidget");
+  buttonPanelWidget->setStyleSheet(
+        QString("#buttonPanelWidget {border-bottom: 1px solid %1;}").
+        arg(qApp->palette().color(QPalette::Dark).name()));
+
+  buttonPanelWidget->setLayout(buttonLayout);
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(0);
   mainLayout->setSpacing(0);
+  mainLayout->addWidget(buttonPanelWidget);
   mainLayout->addWidget(listWidget_);
-  mainLayout->addLayout(buttonLayout);
   setLayout(mainLayout);
 
-  connect(clearButton_, SIGNAL(clicked()), this, SLOT(clearList()));
+  connect(listClaerAct_, SIGNAL(triggered()), this, SLOT(clearList()));
   connect(this, SIGNAL(signalItemCreated(QListWidgetItem*,DownloadItem*)),
           this, SLOT(itemCreated(QListWidgetItem*,DownloadItem*)));
+
+  hide();
 }
 
 DownloadManager::~DownloadManager()
@@ -157,9 +167,7 @@ void DownloadManager::itemCreated(QListWidgetItem* item, DownloadItem* downItem)
   item->setSizeHint(downItem->sizeHint());
   downItem->show();
 
-  show();
-  raise();
-  activateWindow();
+  emit signalShowDownloads(false);
 }
 
 void DownloadManager::deleteItem(DownloadItem* item)

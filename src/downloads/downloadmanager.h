@@ -31,7 +31,7 @@ class DownloadManager : public QWidget
   Q_OBJECT
 
 public:
-  explicit DownloadManager(QWidget *parentWidget, QWidget *parent = 0);
+  explicit DownloadManager(QWidget *parent);
   ~DownloadManager();
 
   void download(const QNetworkRequest &request);
@@ -39,9 +39,11 @@ public:
   void startExternalApp(const QString &executable, const QUrl &url);
 
   NetworkManager *networkManager_;
+  QAction *listClaerAct_;
 
 signals:
   void signalItemCreated(QListWidgetItem* item, DownloadItem* downItem);
+  void signalShowDownloads(bool activate);
 
 private slots:
   QString getFileName(QNetworkReply* reply);
@@ -52,7 +54,6 @@ private slots:
 private:
   RSSListing *rssl_;
   QListWidget *listWidget_;
-  QPushButton *clearButton_;
 
 };
 
