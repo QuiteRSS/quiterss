@@ -3975,7 +3975,7 @@ void RSSListing::showOptionDlg()
   saveActionShortcuts();
 }
 
-/** @brief Создание меню трея *************************************************/
+// ----------------------------------------------------------------------------
 void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
@@ -3995,7 +3995,8 @@ void RSSListing::createTrayMenu()
   traySystem->setContextMenu(trayMenu_);
 }
 
-/** @brief Освобождение памяти ************************************************/
+/** @brief Free memory working set in Windows 
+ *---------------------------------------------------------------------------*/
 void RSSListing::myEmptyWorkingSet()
 {
 #if defined(Q_WS_WIN)
@@ -4004,21 +4005,23 @@ void RSSListing::myEmptyWorkingSet()
 #endif
 }
 
-/** @brief Показ статус бара после запрос обновления ленты ********************/
-void RSSListing::showProgressBar(int addToMaximum)
+/** @brief Show update progress bar after feed update has started
+ *---------------------------------------------------------------------------*/
+void RSSListing::showProgressBar(int maximum)
 {
-  if (addToMaximum == 0) {
+  if (maximum == 0) {
     importFeedStart_ = false;
     return;
   }
   playSoundNewNews_ = false;
 
-  progressBar_->setMaximum(addToMaximum);
+  progressBar_->setMaximum(maximum);
   progressBar_->show();
   QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
-/** @brief Обновление ленты (действие) ****************************************/
+/** @brief Process update feed action
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotGetFeed()
 {
   QPersistentModelIndex index = feedsTreeView_->selectIndex();
@@ -4054,7 +4057,8 @@ void RSSListing::slotGetFeed()
   showProgressBar(updateFeedsCount_);
 }
 
-/** @brief Обновление ленты (действие) ****************************************/
+/** @brief Process update all feeds action
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotGetAllFeeds()
 {
   QSqlQuery q;
@@ -4076,7 +4080,7 @@ void RSSListing::slotGetAllFeeds()
   //  qCritical() << "Start update";
   //  qCritical() << "------------------------------------------------------------";
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotProgressBarUpdate()
 {
   progressBar_->update();
@@ -4084,7 +4088,7 @@ void RSSListing::slotProgressBarUpdate()
   if (progressBar_->isVisible())
     QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()
 {
   if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
@@ -4094,7 +4098,7 @@ void RSSListing::slotVisibledFeedsWidget()
   feedsWidget_->setVisible(feedsWidgetVisibleAct_->isChecked());
   updateIconToolBarNull(feedsWidgetVisibleAct_->isChecked());
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::updateIconToolBarNull(bool feedsWidgetVisible)
 {
   if (feedsWidgetVisible)
@@ -4102,8 +4106,7 @@ void RSSListing::updateIconToolBarNull(bool feedsWidgetVisible)
   else
     pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
 }
-
-
+// ----------------------------------------------------------------------------
 void RSSListing::markFeedRead()
 {
   bool openFeed = false;
@@ -4141,7 +4144,7 @@ void RSSListing::markFeedRead()
     q.exec(qStr);
   }
   db_.commit();
-  // Обновляем ленту, на которой стоит фокус
+  // Update feed view with focus
   if (openFeed) {
     if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) &&
         !isFolder) {
@@ -4162,14 +4165,15 @@ void RSSListing::markFeedRead()
       recountCategoryCounts();
     }
   }
-  // Обновляем ленту, на которой нет фокуса
+  // Update feeds view without focus
   else {
     slotUpdateStatus(id);
     recountCategoryCounts();
   }
 }
 
-/** @brief Обновление статуса либо выбранной ленты, либо ленты текущей вкладки*/
+/** @brief Update status of current feed or feed of current tab
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateStatus(int feedId, bool changed)
 {
   if (changed) {
@@ -4202,6 +4206,12 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
  *    true  - метод вызван непосредственно после действий пользователя
  *    false - метод вызван внутрипрограммно
  ******************************************************************************/
+/** @brief Set filter for viewing feeds and categories
+ * @param pAct Filter mode
+ * @param clicked Flag to call function after user click or from programm code
+ *    true  - user click
+ *    false - programm call
+ *----------------------------------------------------------------------------*/
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   QModelIndex index = feedsTreeView_->currentIndex();
@@ -4210,13 +4220,13 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
   int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
 
-  QList<int> parentIdList;  //*< Список всех родителей ленты
+  QList<int> parentIdList;  //*< feed parent list
   while (index.parent().isValid()) {
     parentIdList << feedsTreeModel_->getParidByIndex(index);
     index = index.parent();
   }
 
-  // Создаем фильтр лент из "фильтра"
+  // Create feed filter from "filter"
   QString strFilter;
   if (pAct->objectName() == "filterFeedsAll_") {
     strFilter = "";
@@ -4242,13 +4252,12 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     strFilter = QString("label LIKE '%starred%'");
   }
 
-  // ... добавляем фильтр из "поиска"
+  // ... add filter from "search"
   if (findFeedsWidget_->isVisible()) {
     if (pAct->objectName() != "filterFeedsAll_")
       strFilter.append(" AND ");
 
-    // обязательно добавляем отображение категорий, чтобы найденные внутри
-    // ленты смогли отображаться
+    // add categories into filter to display nested feed
     strFilter.append("(");
     strFilter.append(QString("((xmlUrl = '') OR (xmlUrl IS NULL)) OR "));
     if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
@@ -4272,7 +4281,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "Applying new filter";
   strFilterOld = strFilter;
 
-  // Установка фильтра
+  // Set filter
   feedsTreeModel_->setFilter(strFilter);
   expandNodes();
 
@@ -4281,7 +4290,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
-  // Восстановление курсора на ранее отображаемую ленту
+  // Restore cursor on previous displayed feed
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
   feedsTreeView_->setCurrentIndex(feedIndex);
 
@@ -4295,13 +4304,13 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // Сохраняем фильтр для дальнейшего использования при включении последнего
-  // использованного фильтра
+  // Store filter to enable it as "last used filter"
   if (pAct->objectName() != "filterFeedsAll_")
     feedsFilterAction_ = pAct;
 }
 
-/** @brief Установка фильтра для таблицы новостей *****************************/
+/** @brief Set filter for news list
+ *---------------------------------------------------------------------------*/
 void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 {
   if (currentNewsTab == NULL) return;
@@ -4321,9 +4330,9 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-  // Помеченные новости как "Прочитанные" убираем с глаз долой
-  // read=1 - отображаются не зависимо от фильтра
-  // read=2 - не будут отображаться
+  // Hide news has marrked "Read"
+  // read=1 - show regardless of filter
+  // read=2 - don't display at all
   if (clicked) {
     QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").
         arg(feedId);
@@ -4331,14 +4340,14 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     q.exec(qStr);
   }
 
-  // Создаем фильтр по котегории или по ленте
+  // Create filter for category or for feed
   if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
     newsFilterStr = QString("(%1) AND ").arg(getIdFeedsString(feedId));
   } else {
     newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
   }
 
-  // ... добавляем фильтр из "фильтра"
+  // ... add filter from "filter"
   if (pAct->objectName() == "filterNewsAll_") {
     newsFilterStr.append("deleted = 0");
   } else if (pAct->objectName() == "filterNewsNew_") {
@@ -4357,7 +4366,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     newsFilterStr.append(QString("(published >= datetime('now', '-7 day')) AND deleted = 0"));
   }
 
-  // ... добавляем фильтр из "поиска"
+  // ... add filter from "search"
   QString filterStr = newsFilterStr;
   if (currentNewsTab->findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct") {
     filterStr.append(
@@ -4379,12 +4388,11 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
                              currentNewsTab->newsHeader_->sortIndicatorOrder());
   }
 
-  // Переустановка иконки нужна при вызове слота непосредственным кликом пользователя
+  // Set icon right before user click
   if (pAct->objectName() == "filterNewsAll_") newsFilter_->setIcon(QIcon(":/images/filterOff"));
   else newsFilter_->setIcon(QIcon(":/images/filterOn"));
 
-  // Если слот был вызван непосредственным нажатием пользователя,
-  // возвращаем курсор на текущий индекс
+  // Set focus on previous displayed feed, if user click has been
   if (clicked) {
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
@@ -4399,8 +4407,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  // Запоминаем выбранный фильтр, для использования именно его при следующем включении фильтра,
-  // если включается последний используемый фильтр
+  // Store filter to enable it as "last used filter"
   if (pAct->objectName() != "filterNewsAll_")
     newsFilterAction_ = pAct;
 }
