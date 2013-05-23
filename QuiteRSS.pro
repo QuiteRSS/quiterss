@@ -128,16 +128,16 @@ INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src \
 
 CONFIG(debug, debug|release) {
-  BUILD_DIR = debug
+  BUILD_DIR = $$OUT_PWD/debug
 } else {
-  BUILD_DIR = release
+  BUILD_DIR = $$OUT_PWD/release
   DEFINES += QT_NO_DEBUG_OUTPUT
 }
 
-DESTDIR = $${BUILD_DIR}/target/
-OBJECTS_DIR = $${BUILD_DIR}/obj/
-MOC_DIR = $${BUILD_DIR}/moc/
-RCC_DIR = $${BUILD_DIR}/rcc/
+DESTDIR = $${BUILD_DIR}/target
+OBJECTS_DIR = $${BUILD_DIR}/obj
+MOC_DIR = $${BUILD_DIR}/moc
+RCC_DIR = $${BUILD_DIR}/rcc
 
 include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
