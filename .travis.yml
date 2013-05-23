@@ -1,0 +1,11 @@
+language: cpp
+compiler:
+ - gcc
+ - clang
+env:
+ - CONFIG=release
+ - CONFIG=debug
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq gdb libsqlite3-dev libqt4-dev qt4-dev-tools libqtcore4 libqtgui4 libqt4-sql-sqlite libqtwebkit-dev
+script: mkdir _build && cd _build && qmake QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG+=$CONFIG PREFIX=/usr ../QuiteRSS.pro && make -j2 && sudo make install
