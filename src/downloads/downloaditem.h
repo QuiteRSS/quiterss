@@ -51,9 +51,10 @@ public:
                         DownloadManager *manager);
   ~DownloadItem();
 
+  void startDownloading();
+  bool isDownloading() { return downloading_; }
   static QString remaingTimeToString(QTime time);
   static QString currentSpeedToString(double speed);
-  bool isDownloading() { return downloading_; }
 
 signals:
   void deleteItem(DownloadItem*);
@@ -79,7 +80,6 @@ private slots:
   void copyDownloadLink();
 
 private:
-  void startDownloading();
   QString fileSizeToString(qint64 size);
 
   QListWidgetItem* item_;

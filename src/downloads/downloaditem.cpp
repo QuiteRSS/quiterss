@@ -64,6 +64,7 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   if (QFile::exists(fileName)) {
     QFile::remove(fileName);
   }
+  qApp->processEvents();
 
   outputFile_.setFileName(fileName);
 
@@ -83,13 +84,15 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   progressBar_->setObjectName("progressBar_");
   progressBar_->setTextVisible(false);
   progressBar_->setFixedHeight(10);
+  progressBar_->setFixedWidth(300);
   progressBar_->setMinimum(0);
   progressBar_->setMaximum(0);
   progressBar_->setValue(0);
 
   QHBoxLayout *progressLayout = new QHBoxLayout();
-  progressLayout->setContentsMargins(0, 5, 0, 0);
+  progressLayout->setMargin(0);
   progressLayout->addWidget(progressBar_);
+  progressLayout->addStretch();
 
   progressFrame_ = new QFrame();
   progressFrame_->setLayout(progressLayout);
@@ -99,11 +102,10 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
 
   QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(5);
-  mainLayout->setSpacing(0);
+  mainLayout->setSpacing(5);
   mainLayout->addWidget(fileNameLabel_);
-  mainLayout->addWidget(progressFrame_);
-  mainLayout->addSpacing(5);
   mainLayout->addWidget(downloadInfo_);
+  mainLayout->addWidget(progressFrame_);
   setLayout(mainLayout);
 
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -111,8 +113,6 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
           this, SLOT(customContextMenuRequested(QPoint)));
   connect(&updateInfoTimer_, SIGNAL(timeout()),
           this, SLOT(updateInfo()));
-
-  startDownloading();
 }
 
 DownloadItem::~DownloadItem()
@@ -188,7 +188,6 @@ void DownloadItem::metaDataChanged()
 
 void DownloadItem::error()
 {
-  qCritical() << "*01" << reply_->error();
   if (reply_ && reply_->error() != QNetworkReply::NoError) {
     stop(false);
     downloadInfo_->setText(tr("Error: ") + reply_->errorString());

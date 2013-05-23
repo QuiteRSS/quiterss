@@ -89,6 +89,7 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply* reply)
     return;
   }
 
+  reply->setProperty("downloadReply", QVariant(true));
   QListWidgetItem *item = new QListWidgetItem(listWidget_);
   DownloadItem *downItem = new DownloadItem(item, reply, fileName, false, this);
   emit signalItemCreated(item, downItem);
@@ -168,6 +169,7 @@ void DownloadManager::itemCreated(QListWidgetItem* item, DownloadItem* downItem)
   downItem->show();
 
   emit signalShowDownloads(false);
+  downItem->startDownloading();
 }
 
 void DownloadManager::deleteItem(DownloadItem* item)
