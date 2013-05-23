@@ -4415,7 +4415,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     newsFilterAction_ = pAct;
 }
 
-//! Маркировка ленты прочитанной при клике на не отмеченной ленте
+/** @brief Mark feed Read while clicking on unfocused one
+ *---------------------------------------------------------------------------*/
 void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType, NewsTabWidget *widgetTab)
 {
   if ((type >= TAB_WEB) || (type == TAB_CAT_DEL))
@@ -4486,7 +4487,7 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType, Ne
     db_.commit();
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotShowAboutDlg()
 {
   AboutDialog *aboutDialog = new AboutDialog(langFileName_, this);
@@ -4494,7 +4495,7 @@ void RSSListing::slotShowAboutDlg()
   delete aboutDialog;
 }
 
-/** @brief Вызов контекстного меню дерева лент
+/** @brief Call context menu of the feeds tree
  *----------------------------------------------------------------------------*/
 void RSSListing::showContextMenuFeed(const QPoint &pos)
 {
@@ -4533,12 +4534,12 @@ void RSSListing::showContextMenuFeed(const QPoint &pos)
 
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotFeedMenuShow()
 {
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::setAutoLoadImages(bool set)
 {
   if (currentNewsTab->type_ == TAB_DOWNLOADS) return;
@@ -4566,7 +4567,7 @@ void RSSListing::setAutoLoadImages(bool set)
     }
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::loadSettingsFeeds()
 {
   markCurNewsRead_ = false;
@@ -4592,9 +4593,8 @@ void RSSListing::loadSettingsFeeds()
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 }
 
-/**
- * @brief Восстановление состояние лент во время запуска приложения
- *----------------------------------------------------------------------------*/
+/** @brief Restore feeds state on application startup
+ *---------------------------------------------------------------------------*/
 void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
@@ -4613,7 +4613,7 @@ void RSSListing::restoreFeedsOnStartUp()
   slotUpdateStatus(-1, false);
   recountCategoryCounts();
 
-  //* Открытие лент во вкладках
+  //* Open feeds in tabs
   QSqlQuery q;
   q.exec(QString("SELECT id, parentId FROM feeds WHERE displayOnStartup=1"));
   while(q.next()) {
@@ -4623,11 +4623,10 @@ void RSSListing::restoreFeedsOnStartUp()
   if (updateFeedsStartUp_) slotGetAllFeeds();
 }
 
-/** @brief Разворачивание узлов, имеющих флаг развернутости в базе
- *----------------------------------------------------------------------------*/
+/** @brief Expanding items with corresponding flag in DB
+ *---------------------------------------------------------------------------*/
 void RSSListing::expandNodes()
 {
-  //* Восстановление развернутости узлов
   QSqlQuery q;
   q.exec("SELECT id, parentId FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
   while (q.next()) {
@@ -4637,7 +4636,7 @@ void RSSListing::expandNodes()
     feedsTreeView_->setExpanded(index, true);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotFeedsFilter()
 {
   if (feedsFilterGroup_->checkedAction()->objectName() == "filterFeedsAll_") {
@@ -4669,7 +4668,7 @@ void RSSListing::slotFeedsFilter()
     setFeedsFilter(filterFeedsAll_);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotNewsFilter()
 {
   if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
@@ -4701,7 +4700,7 @@ void RSSListing::slotNewsFilter()
     setNewsFilter(filterNewsAll_);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::initUpdateFeeds()
 {
   QSqlQuery q;
@@ -4730,7 +4729,7 @@ void RSSListing::initUpdateFeeds()
           this, SLOT(slotUpdateFeedsTimer()));
   updateFeedsTimer_->start(1000);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotUpdateFeedsTimer()
 {
   if (updateFeedsEnable_) {
@@ -4782,7 +4781,7 @@ void RSSListing::slotUpdateFeedsTimer()
     }
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotShowUpdateAppDlg()
 {
   UpdateAppDialog *updateAppDialog = new UpdateAppDialog(langFileName_,
@@ -4791,7 +4790,7 @@ void RSSListing::slotShowUpdateAppDlg()
   updateAppDialog->exec();
   delete updateAppDialog;
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::appInstallTranslator()
 {
   bool translatorLoad;
@@ -4801,7 +4800,7 @@ void RSSListing::appInstallTranslator()
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::retranslateStrings()
 {
   QString str = statusUnread_->text();
@@ -5121,7 +5120,7 @@ void RSSListing::retranslateStrings()
   }
   findFeeds_->retranslateStrings();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::setToolBarStyle(const QString &styleStr)
 {
   if (mainToolbar_->widgetForAction(addAct_))
@@ -5138,7 +5137,7 @@ void RSSListing::setToolBarStyle(const QString &styleStr)
       mainToolbar_->widgetForAction(addAct_)->setMinimumWidth(60);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::setToolBarIconSize(const QString &iconSizeStr)
 {
   if (iconSizeStr == "toolBarIconBig_") {
@@ -5150,7 +5149,7 @@ void RSSListing::setToolBarIconSize(const QString &iconSizeStr)
   }
 }
 
-/** @brief Вызов контекстного меню главной панели инструментов
+/** @brief Call toolbar context menu
  *----------------------------------------------------------------------------*/
 void RSSListing::showContextMenuToolBar(const QPoint &pos)
 {
@@ -5162,18 +5161,18 @@ void RSSListing::showContextMenuToolBar(const QPoint &pos)
 
   menu.exec(mainToolbar_->mapToGlobal(pos));
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::lockMainToolbar(bool lock)
 {
   mainToolbar_->setMovable(!lock);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::hideMainToolbar()
 {
   mainToolbarToggle_->setChecked(false);
   mainToolbar_->hide();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showFeedPropertiesDlg()
 {
   if (!feedsTreeView_->selectIndex().isValid()) {
@@ -5583,12 +5582,13 @@ void RSSListing::showFeedPropertiesDlg()
   }
 }
 
-//! Обновление информации в трее: значок и текст подсказки
+/** @brief Update tray information: icon and tooltip text
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotRefreshInfoTray()
 {
   if (!showTrayIcon_) return;
 
-  // Подсчёт количества новых и прочитанных новостей
+  // Calculate new and unread news number
   int newCount = 0;
   int unreadCount = 0;
   QSqlQuery q;
@@ -5603,7 +5603,7 @@ void RSSListing::slotRefreshInfoTray()
   else
     newsCategoriesTree_->topLevelItem(0)->setText(4, QString("(%1)").arg(unreadCount));
 
-  // Установка текста всплывающей подсказки
+  // Setting tooltip text
   QString info =
       "QuiteRSS\n" +
       QString(tr("New News: %1")).arg(newCount) +
@@ -5611,12 +5611,12 @@ void RSSListing::slotRefreshInfoTray()
       QString(tr("Unread News: %1")).arg(unreadCount);
   traySystem->setToolTip(info);
 
-  // Отображаем количество либо новых, либо непрочитанных новостей
+  // Display new number or unread number of news
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     int trayCount = (behaviorIconTray_ == UNREAD_COUNT_ICON_TRAY) ? unreadCount : newCount;
-    // выводим иконку с цифрой
+    // Display icon with number
     if (trayCount != 0) {
-      // Подготавливаем цифру
+      // Prepare number
       QString trayCountStr;
       QFont font("Consolas");
       if (trayCount > 99) {
@@ -5634,7 +5634,7 @@ void RSSListing::slotRefreshInfoTray()
         trayCountStr = QString::number(trayCount);
       }
 
-      // Рисуем иконку, текст на ней, и устанавливаем разрисованную иконку в трей
+      // Draw icon, text above it, and set this icon to tray icon
       QPixmap icon = QPixmap(":/images/countNew");
       QPainter trayPainter;
       trayPainter.begin(&icon);
@@ -5645,7 +5645,7 @@ void RSSListing::slotRefreshInfoTray()
       trayPainter.end();
       traySystem->setIcon(icon);
     }
-    // Выводим иконку без цифры
+    // Draw icon without number
     else {
 #if defined(QT_NO_DEBUG_OUTPUT)
       traySystem->setIcon(QIcon(":/images/quiterss16"));
