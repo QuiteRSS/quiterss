@@ -2,7 +2,7 @@
 REVFILE = src/VersionRev.h
 QMAKE_DISTCLEAN += $$REVFILE
 # tortoisehg-2.8 running in win32 hangs with 3 \ in sources, but works fine in linux
-THG_WIN32_FIXME = '\\'
+THG_WIN32_FIXME = '\\\"'
 exists(.hg) {
   VERSION_REV = $$system(hg parents --template '{rev}')
   count(VERSION_REV, 1) {
@@ -20,7 +20,7 @@ exists(.hg) {
   os2|win32 {
     system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME\"$$VERSION_REV$$THG_WIN32_FIXME\" > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME$$VERSION_REV$$THG_WIN32_FIXME > $$REVFILE)
   }
 } else:exists(.git) {
   VERSION_REV = $$system(git rev-list --count HEAD)
@@ -32,18 +32,18 @@ exists(.hg) {
   message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
-    system(echo $${LITERAL_HASH}define VCS_REVISION \"$$VERSION_REV\" > $$REVFILE)
+    system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME\"$$VERSION_REV$$THG_WIN32_FIXME\" > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME$$VERSION_REV$$THG_WIN32_FIXME > $$REVFILE)
   }
 } else:!exists($$REVFILE) {
   VERSION_REV = 0
   message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
-    system(echo $${LITERAL_HASH}define VCS_REVISION \"$$VERSION_REV\" > $$REVFILE)
+    system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME\"$$VERSION_REV$$THG_WIN32_FIXME\" > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME$$VERSION_REV$$THG_WIN32_FIXME > $$REVFILE)
   }
 }
 
