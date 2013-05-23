@@ -8,7 +8,7 @@ exists(.hg) {
   count(VERSION_REV, 1) {
     os2|win32 {
       # FIXME
-      VERSION_REV = hg-$$VERSION_REV
+      VERSION_REV = $$VERSION_REV
     } else {
       VERSION_REV = hg-$$VERSION_REV-$$system(hg parents --template '{node\\|short}')
     }
@@ -18,7 +18,7 @@ exists(.hg) {
   message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
-    system(echo $${LITERAL_HASH}define VCS_REVISION \"$$VERSION_REV\" > $$REVFILE)
+    system(echo $${LITERAL_HASH}define VCS_REVISION $$VERSION_REV > $$REVFILE)
   } else {
     system(echo \\$${LITERAL_HASH}define VCS_REVISION $$THG_WIN32_FIXME\"$$VERSION_REV$$THG_WIN32_FIXME\" > $$REVFILE)
   }
