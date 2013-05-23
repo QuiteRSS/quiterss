@@ -21,23 +21,24 @@ QHeaderView::up-arrow {
 }
 
 #webViewProgress_ {
-	border: 1px solid #A5A5A5;
+	border: 1px solid #D5D5D5;
 	border-left: none;
 	border-right: none;
+	border-bottom: none;
 	text-align: center;
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
 								stop:0 #f4f4f4,
-								stop:0.4 #ECECEC
-								stop:0.5 #DEDEDE,
-								stop:1 #f4f4f4);
+								stop:0.4 #ECECEC,
+								stop:0.6 #e0e0e0,
+								stop:1 #ECECEC);
 }
 
 #webViewProgress_::chunk {
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #e0e0e0,
-								stop:0.4 #d9d9d9
-								stop:0.5 #cbcbcb,
-								stop:1 #e0e0e0);
+								stop:0 #f0f0f0,
+								stop:0.4 #d9d9d9,
+								stop:0.6 #d0d0d0,
+								stop:1 #d9d9d9);
 	width: 10px;
 }
 
