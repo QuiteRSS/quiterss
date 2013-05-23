@@ -3,24 +3,40 @@ REVFILE = src/VersionRev.h
 QMAKE_DISTCLEAN += $$REVFILE
 exists(.hg) {
   VERSION_REV = $$system(hg parents --template '{rev}')
-  !count(VERSION_REV, 1) {
+  count(VERSION_REV, 1) {
+    VERSION_REV = hg-$$VERSION_REV-$$system(hg parents --template '{node\\|short}')
+  } else {
     VERSION_REV = 0
   }
   message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
-    system(echo $${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+    system(echo $${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
+  }
+} else:exists(.git) {
+  VERSION_REV = $$system(git rev-list --count HEAD)
+  count(VERSION_REV, 1) {
+  VERSION_REV = git-$$VERSION_REV-$$system(git rev-parse --short HEAD)
+  } else {
+    VERSION_REV = 0
+  }
+  message(VCS revision: $$VERSION_REV)
+
+  os2|win32 {
+    system(echo $${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
+  } else {
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
   }
 } else:!exists($$REVFILE) {
   VERSION_REV = 0
   message(VCS revision: $$VERSION_REV)
 
   os2|win32 {
-    system(echo $${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+    system(echo $${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
   } else {
-    system(echo \\$${LITERAL_HASH}define HG_REVISION $$VERSION_REV > $$REVFILE)
+    system(echo \\$${LITERAL_HASH}define VCS_REVISION \\\"$$VERSION_REV\\\" > $$REVFILE)
   }
 }
 
