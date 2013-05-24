@@ -2093,6 +2093,8 @@ void RSSListing::readSettings()
   feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
   newsListTextColor_ = settings_->value("newsListTextColor", windowTextColor).toString();
   newsListBackgroundColor_ = settings_->value("newsListBackgroundColor", "").toString();
+  focusedNewsTextColor_ = settings_->value("focusedNewsTextColor", windowTextColor).toString();
+  focusedNewsBGColor_ = settings_->value("focusedNewsBGColor", "").toString();
   linkColor_ = settings_->value("linkColor", "#0066CC").toString();
   titleColor_ = settings_->value("titleColor", "#0066CC").toString();
   dateColor_ = settings_->value("dateColor", "#666666").toString();
@@ -2270,6 +2272,8 @@ void RSSListing::writeSettings()
   settings_->setValue("feedsListBackgroundColor", feedsTreeModel_->backgroundColor_);
   settings_->setValue("newsListTextColor", newsListTextColor_);
   settings_->setValue("newsListBackgroundColor", newsListBackgroundColor_);
+  settings_->setValue("focusedNewsTextColor", focusedNewsTextColor_);
+  settings_->setValue("focusedNewsBGColor", focusedNewsBGColor_);
   settings_->setValue("linkColor", linkColor_);
   settings_->setValue("titleColor", titleColor_);
   settings_->setValue("dateColor", dateColor_);
@@ -3683,24 +3687,33 @@ void RSSListing::showOptionDlg()
     pixmapColor.fill(newsListBackgroundColor_);
   optionsDialog->colorsTree_->topLevelItem(3)->setIcon(0, pixmapColor);
   optionsDialog->colorsTree_->topLevelItem(3)->setText(1, newsListBackgroundColor_);
-  pixmapColor.fill(linkColor_);
+  pixmapColor.fill(focusedNewsTextColor_);
   optionsDialog->colorsTree_->topLevelItem(4)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(4)->setText(1, linkColor_);
-  pixmapColor.fill(titleColor_);
+  optionsDialog->colorsTree_->topLevelItem(4)->setText(1, focusedNewsTextColor_);
+  if (focusedNewsBGColor_.isEmpty())
+    pixmapColor.fill(QColor(0, 0, 0, 0));
+  else
+    pixmapColor.fill(focusedNewsBGColor_);
   optionsDialog->colorsTree_->topLevelItem(5)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(5)->setText(1, titleColor_);
-  pixmapColor.fill(dateColor_);
+  optionsDialog->colorsTree_->topLevelItem(5)->setText(1, focusedNewsBGColor_);
+  pixmapColor.fill(linkColor_);
   optionsDialog->colorsTree_->topLevelItem(6)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(6)->setText(1, dateColor_);
-  pixmapColor.fill(authorColor_);
+  optionsDialog->colorsTree_->topLevelItem(6)->setText(1, linkColor_);
+  pixmapColor.fill(titleColor_);
   optionsDialog->colorsTree_->topLevelItem(7)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(7)->setText(1, authorColor_);
-  pixmapColor.fill(newsTitleBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(7)->setText(1, titleColor_);
+  pixmapColor.fill(dateColor_);
   optionsDialog->colorsTree_->topLevelItem(8)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(8)->setText(1, newsTitleBackgroundColor_);
-  pixmapColor.fill(newsBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(8)->setText(1, dateColor_);
+  pixmapColor.fill(authorColor_);
   optionsDialog->colorsTree_->topLevelItem(9)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(9)->setText(1, newsBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(9)->setText(1, authorColor_);
+  pixmapColor.fill(newsTitleBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(10)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(10)->setText(1, newsTitleBackgroundColor_);
+  pixmapColor.fill(newsBackgroundColor_);
+  optionsDialog->colorsTree_->topLevelItem(11)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(11)->setText(1, newsBackgroundColor_);
 
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
@@ -3968,12 +3981,14 @@ void RSSListing::showOptionDlg()
   feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
   newsListTextColor_ = optionsDialog->colorsTree_->topLevelItem(2)->text(1);
   newsListBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(3)->text(1);
-  linkColor_ = optionsDialog->colorsTree_->topLevelItem(4)->text(1);
-  titleColor_ = optionsDialog->colorsTree_->topLevelItem(5)->text(1);
-  dateColor_ = optionsDialog->colorsTree_->topLevelItem(6)->text(1);
-  authorColor_ = optionsDialog->colorsTree_->topLevelItem(7)->text(1);
-  newsTitleBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(8)->text(1);
-  newsBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(9)->text(1);
+  focusedNewsTextColor_ = optionsDialog->colorsTree_->topLevelItem(4)->text(1);
+  focusedNewsBGColor_ = optionsDialog->colorsTree_->topLevelItem(5)->text(1);
+  linkColor_ = optionsDialog->colorsTree_->topLevelItem(6)->text(1);
+  titleColor_ = optionsDialog->colorsTree_->topLevelItem(7)->text(1);
+  dateColor_ = optionsDialog->colorsTree_->topLevelItem(8)->text(1);
+  authorColor_ = optionsDialog->colorsTree_->topLevelItem(9)->text(1);
+  newsTitleBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(10)->text(1);
+  newsBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(11)->text(1);
 
   delete optionsDialog;
 

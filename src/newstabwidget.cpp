@@ -421,6 +421,9 @@ void NewsTabWidget::setSettings(bool newTab)
 
       newsModel_->textColor_ = rsslisting_->newsListTextColor_;
       newsView_->setStyleSheet(QString("#newsView_ {background: %1;}").arg(rsslisting_->newsListBackgroundColor_));
+      newsModel_->focusedNewsTextColor_ = rsslisting_->focusedNewsTextColor_;
+      newsModel_->focusedNewsBGColor_ = rsslisting_->focusedNewsBGColor_;
+
       QFile cssFile;
       cssFile.setFileName(rsslisting_->appDataDirPath_+ "/style/news.css");
       if (!cssFile.open(QFile::ReadOnly)) {

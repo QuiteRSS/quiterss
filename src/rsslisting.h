@@ -156,6 +156,8 @@ public:
   int browserMinLogFontSize_;
   QString newsListTextColor_;
   QString newsListBackgroundColor_;
+  QString focusedNewsTextColor_;
+  QString focusedNewsBGColor_;
   QString linkColor_;
   QString titleColor_;
   QString dateColor_;
