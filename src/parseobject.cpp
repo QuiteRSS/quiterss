@@ -139,6 +139,10 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   QRegExp rx("encoding=\"([^\"]+)",
              Qt::CaseInsensitive, QRegExp::RegExp2);
   int pos = rx.indexIn(xmlData.trimmed());
+  if (pos == -1) {
+    rx.setPattern("encoding='([^']+)");
+    pos = rx.indexIn(xmlData.trimmed());
+  }
   if (pos > -1) {
     QString codecName = rx.cap(1);
     qDebug() << "Codec name:" << codecName;
