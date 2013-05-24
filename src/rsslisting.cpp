@@ -1954,6 +1954,8 @@ void RSSListing::readSettings()
   pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
   userStyleBrowser_ = settings_->value("userStyleBrowser", "").toString();
   maxPagesInCache_ = settings_->value("maxPagesInCache", 3).toInt();
+  downloadLocation_ = settings_->value("downloadLocation", "").toString();
+  askDownloadLocation_ = settings_->value("askDownloadLocation", true).toBool();
 
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -2216,6 +2218,8 @@ void RSSListing::writeSettings()
   settings_->setValue("pluginsEnable", pluginsEnable_);
   settings_->setValue("userStyleBrowser", userStyleBrowser_);
   settings_->setValue("maxPagesInCache", maxPagesInCache_);
+  settings_->setValue("downloadLocation", downloadLocation_);
+  settings_->setValue("askDownloadLocation", askDownloadLocation_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
   settings_->setValue("soundNotifyPath", soundNotifyPath_);
@@ -3584,6 +3588,9 @@ void RSSListing::showOptionDlg()
   int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
   optionsDialog->maxDiskCache_->setValue(maxDiskCache);
 
+  optionsDialog->downloadLocationEdit_->setText(downloadLocation_);
+  optionsDialog->askDownloadLocation_->setChecked(askDownloadLocation_);
+
   optionsDialog->updateFeedsStartUp_->setChecked(updateFeedsStartUp_);
   optionsDialog->updateFeedsEnable_->setChecked(updateFeedsEnable_);
   optionsDialog->updateIntervalType_->setCurrentIndex(updateFeedsIntervalType_+1);
@@ -3865,6 +3872,8 @@ void RSSListing::showOptionDlg()
       diskCache_->clear();
     }
   }
+  downloadLocation_ = optionsDialog->downloadLocationEdit_->text();
+  askDownloadLocation_ = optionsDialog->askDownloadLocation_->isChecked();
 
   updateFeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
   updateFeedsEnable_ = optionsDialog->updateFeedsEnable_->isChecked();
@@ -3998,7 +4007,7 @@ void RSSListing::createTrayMenu()
   traySystem->setContextMenu(trayMenu_);
 }
 
-/** @brief Free memory working set in Windows 
+/** @brief Free memory working set in Windows
  *---------------------------------------------------------------------------*/
 void RSSListing::myEmptyWorkingSet()
 {

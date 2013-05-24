@@ -579,10 +579,33 @@ void OptionsDialog::createBrowserWidget()
     item->setText(0, site);
   }
 
+  //! tab "Downloads"
+  downloadLocationEdit_ = new LineEdit();
+  QPushButton *downloadLocationButton = new QPushButton(tr("Browse..."));
+  connect(downloadLocationButton, SIGNAL(clicked()),
+          this, SLOT(selectionDownloadLocation()));
+
+  askDownloadLocation_ = new QCheckBox(tr("Ask where to save each file before downloading"));
+
+  QGridLayout *downLocationLayout = new QGridLayout();
+  downLocationLayout->setContentsMargins(15, 0, 5, 10);
+  downLocationLayout->addWidget(downloadLocationEdit_, 0, 0);
+  downLocationLayout->addWidget(downloadLocationButton, 0, 1, Qt::AlignRight);
+  downLocationLayout->addWidget(askDownloadLocation_, 1, 0);
+
+  QVBoxLayout *downloadsLayout = new QVBoxLayout();
+  downloadsLayout->addWidget(new QLabel(tr("Download location:")));
+  downloadsLayout->addLayout(downLocationLayout);
+  downloadsLayout->addStretch();
+
+  QWidget *downloadsWidget = new QWidget(this);
+  downloadsWidget->setLayout(downloadsLayout);
+
   browserWidget_ = new QTabWidget();
   browserWidget_->addTab(generalBrowserWidget, tr("General"));
   browserWidget_->addTab(historyBrowserWidget_, tr("History"));
   browserWidget_->addTab(click2FlashWidget_, tr("Click to Flash"));
+  browserWidget_->addTab(downloadsWidget, tr("Downloads"));
 }
 
 /** @brief Create windet "Feeds"
@@ -2324,4 +2347,14 @@ void OptionsDialog::removeWhitelist()
     return;
 
   delete item;
+}
+//----------------------------------------------------------------------------
+void OptionsDialog::selectionDownloadLocation()
+{
+  QString dirStr = QFileDialog::getExistingDirectory(this, tr("Open Directory..."),
+                                                     downloadLocationEdit_->text(),
+                                                     QFileDialog::ShowDirsOnly
+                                                     | QFileDialog::DontResolveSymlinks);
+  if (!dirStr.isEmpty())
+    downloadLocationEdit_->setText(dirStr);
 }

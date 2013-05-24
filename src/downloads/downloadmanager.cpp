@@ -21,7 +21,7 @@
 #include "rsslisting.h"
 
 DownloadManager::DownloadManager(QWidget *parent)
-  : QWidget(parent)
+  : QWidget()
 {
   rssl_ = qobject_cast<RSSListing*>(parent);
 
@@ -72,17 +72,21 @@ DownloadManager::~DownloadManager()
 
 void DownloadManager::download(const QNetworkRequest &request)
 {
-  handleUnsupportedContent(networkManager_->get(request));
+  handleUnsupportedContent(networkManager_->get(request), true);
 }
 
-void DownloadManager::handleUnsupportedContent(QNetworkReply* reply)
+void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDownloadLocation)
 {
   QString fileName(getFileName(reply));
-  QFileInfo fileInfo(fileName);
-  QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
-      arg(fileInfo.suffix().toUpper()).
-      arg(fileInfo.suffix().toLower());
-  fileName = QFileDialog::getSaveFileName(0, tr("Save As..."), fileName, filter);
+  if (askDownloadLocation || rssl_->downloadLocation_.isEmpty()) {
+    QFileInfo fileInfo(fileName);
+    QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
+        arg(fileInfo.suffix().toUpper()).
+        arg(fileInfo.suffix().toLower());
+    fileName = QFileDialog::getSaveFileName(0, tr("Save As..."), fileName, filter);
+  } else {
+    fileName = rssl_->downloadLocation_ + QDir::separator() + fileName;
+  }
   if (fileName.isNull()) {
     reply->abort();
     reply->deleteLater();

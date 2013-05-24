@@ -35,7 +35,7 @@ public:
   ~DownloadManager();
 
   void download(const QNetworkRequest &request);
-  void handleUnsupportedContent(QNetworkReply *reply);
+  void handleUnsupportedContent(QNetworkReply *reply, bool askDownloadLocation);
   void startExternalApp(const QString &executable, const QUrl &url);
 
   NetworkManager *networkManager_;

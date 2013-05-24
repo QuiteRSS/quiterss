@@ -82,6 +82,9 @@ public:
   QLineEdit *dirDiskCacheEdit_;
   QPushButton *dirDiskCacheButton_;
 
+  LineEdit *downloadLocationEdit_;
+  QCheckBox *askDownloadLocation_;
+
   // feeds
   void setOpeningFeed(int action);
   int getOpeningFeed();
@@ -201,6 +204,7 @@ private slots:
   void selectionDirDiskCache();
   void addWhitelist();
   void removeWhitelist();
+  void selectionDownloadLocation();
 
 private:
   QSqlDatabase db_;
