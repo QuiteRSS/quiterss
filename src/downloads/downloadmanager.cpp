@@ -103,7 +103,7 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
 {
   QString path;
   if (reply->hasRawHeader("Content-Disposition")) {
-    QString value = QString::fromLatin1(reply->rawHeader("Content-Disposition"));
+    QString value = QString::fromUtf8(reply->rawHeader("Content-Disposition"));
 
     // We try to use UTF-8 encoded filename first if present
     if (value.contains(QRegExp("filename\\s*\\*\\s*=\\s*UTF-8", Qt::CaseInsensitive))) {
