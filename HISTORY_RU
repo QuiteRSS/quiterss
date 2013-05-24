@@ -289,7 +289,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Версия 0.10.0</B> (18 Июл 2012)
 <UL>
-<LI>Примечание: Повторное отображение новостей (0.8.x,0.9.x -> 0.10.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
+<LI>Примечание: Повторное отображение новостей (0.8.x,0.9.x -> 0.10.x) (<a href="https://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
 
 <LI>Добавлено: Вкладки. Открытие новости в новой вкладке</LI>
 <LI>Добавлено: Вкладки. Открытие ссылок содержащихся в новости в новой вкладке</LI>
@@ -316,7 +316,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Версия 0.9.1</B> (31 Май 2012)
 <UL>
-<LI>Note: Повторное отображение новостей, которые уже были помечаны прочитанными (0.8.x -> 0.9.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
+<LI>Note: Повторное отображение новостей, которые уже были помечаны прочитанными (0.8.x -> 0.9.x) (<a href="https://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
 
 <LI>Added: Вкладки. Открытие ленты в новой вкладке</LI>
 <LI>Added: Изменение положения браузера("Вид->Позиция браузера")</LI>
@@ -333,7 +333,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Версия 0.9.0</B> (22 Май 2012)
 <UL>
-<LI>Main: Реконструкция базы данных (<a href="http://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</LI>
+<LI>Main: Реконструкция базы данных (<a href="https://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</LI>
 
 <LI>Added: Опция: дествия при открытии ленты</LI>
 <LI>Added: Дополнительные горячие клавиши</LI>
@@ -435,7 +435,7 @@
 
 <P><B>Version 0.8.2</B> (10 Feb 2012)
 <UL>
-<LI>Added: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
+<LI>Added: Feed icon in feed list and tab(<a href="https://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
 <LI>Added: Export feeds to OPML-file</LI>
 <LI>Fixed: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
 <LI>Fixed: Some feed parsing issues</LI>

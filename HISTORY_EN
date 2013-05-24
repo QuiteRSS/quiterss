@@ -288,7 +288,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.10.0</B> (18 Jul 2012)
 <UL>
-<LI>Note: Reappear news, which already have been marked read (0.8.x, 0.9.x -> 0.10.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
+<LI>Note: Reappear news, which already have been marked read (0.8.x, 0.9.x -> 0.10.x) (<a href="https://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
 
 <LI>Added: Tabs. Open news in new tab</LI>
 <LI>Added: Tabs. Open link from news in new tab</LI>
@@ -315,7 +315,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.9.1</B> (31 May 2012)
 <UL>
-<LI>Note: Reappear news, which already have been marked read (0.8.x -> 0.9.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
+<LI>Note: Reappear news, which already have been marked read (0.8.x -> 0.9.x) (<a href="https://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
 
 <LI>Added: Tabs. Ability to open feeds in new tab</LI>
 <LI>Added: Ability to choose browser position ("View->Browser position")</LI>
@@ -332,7 +332,7 @@
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.9.0</B> (22 May 2012)
 <UL>
-<LI>Main: Database reconstruction (<a href="http://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</LI>
+<LI>Main: Database reconstruction (<a href="https://code.google.com/p/quite-rss/wiki/DatabaseReconstruction">More...</a>)</LI>
 
 <LI>Added: Option: action on opening feed</LI>
 <LI>Added: More shortcuts</LI>
@@ -434,7 +434,7 @@
 
 <P><B>Version 0.8.2</B> (10 Feb 2012)
 <UL>
-<LI>Added: Feed icon in feed list and tab(<a href="http://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
+<LI>Added: Feed icon in feed list and tab(<a href="https://code.google.com/p/quite-rss/wiki/LoadFeedIcon">More...</a>)</LI>
 <LI>Added: Export feeds to OPML-file</LI>
 <LI>Fixed: SQLite for Qt 4.8.0 and Qt 4.7.x</LI>
 <LI>Fixed: Some feed parsing issues</LI>

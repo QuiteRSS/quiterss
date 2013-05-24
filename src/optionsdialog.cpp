@@ -1215,7 +1215,7 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   QString linkWikiStr =
-      QString("<a href='http://code.google.com/p/quite-rss/wiki/Translations'>Wiki for translators</a>");
+      QString("<a href='https://code.google.com/p/quite-rss/wiki/Translations'>Wiki for translators</a>");
   QLabel *linkWiki = new QLabel(linkWikiStr);
   linkWiki->setOpenExternalLinks(true);
 

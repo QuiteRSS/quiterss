@@ -6643,7 +6643,7 @@ void RSSListing::browserZoom(QAction *action)
  *---------------------------------------------------------------------------*/
 void RSSListing::slotReportProblem()
 {
-  QDesktopServices::openUrl(QUrl("http://code.google.com/p/quite-rss/issues/list"));
+  QDesktopServices::openUrl(QUrl("https://code.google.com/p/quite-rss/issues/list"));
 }
 
 /** Печать страницы из браузера

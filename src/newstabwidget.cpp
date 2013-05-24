@@ -1928,11 +1928,11 @@ void NewsTabWidget::slotShareNews(QAction *action)
       openUrl(url);
     } else {
       if (action->objectName() == "evernoteShareAct") {
-        url.setUrl("http://www.evernote.com/clip.action");
+        url.setUrl("https://www.evernote.com/clip.action");
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
       } else if (action->objectName() == "facebookShareAct") {
-        url.setUrl("http://www.facebook.com/sharer.php");
+        url.setUrl("https://www.facebook.com/sharer.php");
         url.addQueryItem("u", linkString.simplified());
         url.addQueryItem("t", title);
       } else if (action->objectName() == "livejournalShareAct") {
@@ -1948,7 +1948,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("text", title);
       } else if (action->objectName() == "vkShareAct") {
-        url.setUrl("http://vk.com/share.php");
+        url.setUrl("https://vk.com/share.php");
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
         url.addQueryItem("description", "");
