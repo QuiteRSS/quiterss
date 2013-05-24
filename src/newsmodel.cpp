@@ -180,6 +180,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       font.setBold(true);
     return font;
   } else if (role == Qt::BackgroundRole) {
+    if (index.row() == view_->currentIndex().row()) {
+      if (!focusedNewsBGColor_.isEmpty())
+        return QColor(focusedNewsBGColor_);
+    }
+
     if (QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).isValid()) {
       QString strColor;
       int num = -1;
@@ -203,6 +208,10 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
         return QColor(strColor);
     }
   } else if (role == Qt::TextColorRole) {
+    if (index.row() == view_->currentIndex().row()) {
+      return QColor(focusedNewsTextColor_);
+    }
+
     if (QSqlTableModel::index(index.row(), fieldIndex("label")).data(Qt::EditRole).isValid()) {
       QString strColor;
       int num = -1;

@@ -1320,6 +1320,12 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem << tr("News list background");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
+  treeItem << tr("Focused news color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Focused news background color");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
   treeItem << tr("Link color");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
@@ -1583,16 +1589,16 @@ void OptionsDialog::slotColorReset()
   QString colorName;
   int row = colorsTree_->currentIndex().row();
   switch (row) {
-  case 0: case 2:
+  case 0: case 2: case 4:
     colorName = qApp->palette().brush(QPalette::WindowText).color().name();
     break;
-  case 1: case 3: colorName = "";
+  case 1: case 3: case 5: colorName = "";
     break;
-  case 4: case 5: colorName = "#0066CC";
+  case 6: case 7: colorName = "#0066CC";
     break;
-  case 6: case 7: colorName = "#666666";
+  case 8: case 9: colorName = "#666666";
     break;
-  case 8: case 9: colorName = "#FFFFFF";
+  case 10: case 11: colorName = "#FFFFFF";
     break;
   }
   QPixmap pixmapColor(14, 14);

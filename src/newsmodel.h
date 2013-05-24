@@ -41,6 +41,8 @@ public:
   QString formatTime_;
   bool simplifiedDateTime_;
   QString textColor_;
+  QString focusedNewsTextColor_;
+  QString focusedNewsBGColor_;
 
 signals:
   void signalSort(int column, int order);
