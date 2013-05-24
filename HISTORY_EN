@@ -26,7 +26,7 @@
 <LI>Changed: Support RTL in news description</LI>
 
 <LI>Fixed: Options "Don't delete starred news", "Don't delete labeled news" didn't store</LI>
-<LI>Fixed: News title and description displays twice<LI>
+<LI>Fixed: News title and description displays twice</LI>
 <LI>Fixed: Some feeds didn't parse</LI>
 <LI>Fixed: Wrong codepage while parsing feed</LI>
 <LI>Fixed: Alternating row setting in news list</LI>
