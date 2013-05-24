@@ -138,17 +138,17 @@ QHeaderView::up-arrow {
 	border-bottom: none;
 	text-align: center;
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #f4f4f4,
-								stop:0.4 #ECECEC,
-								stop:0.6 #e0e0e0,
-								stop:1 #ECECEC);
+								stop:0 #f9f9f9,
+								stop:0.4 #f1f1f1,
+								stop:0.6 #e9e9e9,
+								stop:1 #f1f1f1);
 }
 
 #webViewProgress_::chunk {
 	background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-								stop:0 #f0f0f0,
+								stop:0 #f1f1f1,
 								stop:0.4 #d9d9d9,
-								stop:0.6 #d0d0d0,
+								stop:0.6 #d1d1d1,
 								stop:1 #d9d9d9);
 	width: 10px;
 }
