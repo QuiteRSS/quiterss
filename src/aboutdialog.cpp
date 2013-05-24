@@ -57,13 +57,14 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       arg(QT_VERSION_STR).arg(SQLITE_VERSION).
       arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value())
       + "</P>"
-      + QString("<a href=\"%1/\">%1</a>").arg("www.code.google.com/p/quite-rss")
-      + QString("<br><a href=\"%1/\">%1</a>").arg("www.quiterss.ucoz.ru") +
+      + QString("<a href=\"%1\">%1</a>").arg("www.code.google.com/p/quite-rss")
+      + QString("<br><a href=\"%1\">%1</a>").arg("www.quiterss.ucoz.ru") +
       "<P>Copyright &copy; 2011-2013 QuiteRSS Team "
-      + QString("<a href=\"%1/\">E-mail</a>").arg("quiterssteam@gmail.com") + "</P>"
+      + QString("<a href=\"%1\">E-mail</a>").arg("quiterssteam@gmail.com") + "</P>"
       "</CENTER></body></html>";
   QLabel *infoLabel = new QLabel(appInfo);
   infoLabel->setOpenExternalLinks(true);
+  infoLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
   QHBoxLayout *mainLayout = new QHBoxLayout();
   mainLayout->addWidget(infoLabel);
