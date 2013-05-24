@@ -5699,7 +5699,8 @@ void RSSListing::markAllFeedsRead()
   emit signalRefreshInfoTray();
 }
 
-//! Помечаем все ленты не новыми
+/** Помечаем все ленты не новыми
+ *---------------------------------------------------------------------------*/
 void RSSListing::markAllFeedsOld()
 {
   QSqlQuery q;
@@ -5722,7 +5723,7 @@ void RSSListing::markAllFeedsOld()
 }
 
 /** @brief Подготовка иконки ленты для сохранения в БД
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray)
 {
   QPixmap icon;
@@ -5739,7 +5740,7 @@ void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray 
 }
 
 /** @brief Обновление иконки ленты в модели
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
@@ -5767,7 +5768,7 @@ void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray 
   if (currentNewsTab->type_ < TAB_WEB)
     currentNewsTab->newsView_->viewport()->update();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::playSoundNewNews()
 {
   if (!playSoundNewNews_ && soundNewNews_) {
@@ -5779,7 +5780,7 @@ void RSSListing::playSoundNewNews()
     playSoundNewNews_ = true;
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showNewsFiltersDlg(bool newFilter)
 {
   NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this, settings_);
@@ -5793,7 +5794,7 @@ void RSSListing::showNewsFiltersDlg(bool newFilter)
 
   delete newsFiltersDialog;
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showFilterRulesDlg()
 {
   if (!feedsTreeView_->selectIndex().isValid()) return;
@@ -5813,7 +5814,7 @@ void RSSListing::showFilterRulesDlg()
 
   showNewsFiltersDlg(true);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotUpdateAppCheck()
 {
   if (!updateCheckTech_) return;
@@ -5822,7 +5823,7 @@ void RSSListing::slotUpdateAppCheck()
   connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
           this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotNewVersion(const QString &newVersion)
 {
   delete updateAppDialog_;
@@ -5837,7 +5838,8 @@ void RSSListing::slotNewVersion(const QString &newVersion)
   }
 }
 
-/** @brief Обработка клавиш Key_Up в дереве лент ******************************/
+/** @brief Обработка клавиш Key_Up в дереве лент
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedUpPressed()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
@@ -5856,7 +5858,8 @@ void RSSListing::slotFeedUpPressed()
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка клавиш Key_Down в дереве лент ****************************/
+/** @brief Обработка клавиш Key_Down в дереве лент 
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedDownPressed()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
@@ -5875,7 +5878,8 @@ void RSSListing::slotFeedDownPressed()
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка горячей клавиши перемещения на предыдущую ленту **********/
+/** @brief Обработка горячей клавиши перемещения на предыдущую ленту 
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedPrevious()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
@@ -5894,7 +5898,8 @@ void RSSListing::slotFeedPrevious()
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка горячей клавиши перемещения на следующую ленту ***********/
+/** @brief Обработка горячей клавиши перемещения на следующую ленту 
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedNext()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
@@ -5913,7 +5918,8 @@ void RSSListing::slotFeedNext()
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка клавиш Home/End в дереве лент *****************************/
+/** @brief Обработка клавиш Home/End в дереве лент 
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedHomePressed()
 {
   QModelIndex index = feedsTreeModel_->index(
@@ -5921,7 +5927,7 @@ void RSSListing::slotFeedHomePressed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotFeedEndPressed()
 {
   QModelIndex index = feedsTreeModel_->index(
@@ -5930,7 +5936,8 @@ void RSSListing::slotFeedEndPressed()
   slotFeedClicked(index);
 }
 
-//! Удаление новостей в ленте по критериям
+/** Удаление новостей в ленте по критериям
+ *---------------------------------------------------------------------------*/
 void RSSListing::feedsCleanUp(QString feedId)
 {
   int cntT = 0;
@@ -6006,7 +6013,8 @@ void RSSListing::feedsCleanUp(QString feedId)
   q.exec(qStr);
 }
 
-//! Установка стиля оформления приложения
+/** Установка стиля оформления приложения
+ *---------------------------------------------------------------------------*/
 void RSSListing::setStyleApp(QAction *pAct)
 {
   QString fileString(appDataDirPath_);
@@ -6042,7 +6050,8 @@ void RSSListing::setStyleApp(QAction *pAct)
         arg(qApp->palette().color(QPalette::Dark).name()));
 }
 
-//! Переключение фокуса между деревом лент, списком новостей и браузером
+/** Переключение фокуса между деревом лент, списком новостей и браузером
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotSwitchFocus()
 {
   if (feedsTreeView_->hasFocus()) {
@@ -6054,7 +6063,8 @@ void RSSListing::slotSwitchFocus()
   }
 }
 
-//! Переключение фокуса между деревом лент, списком новостей и браузером
+/** Переключение фокуса между деревом лент, списком новостей и браузером
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotSwitchPrevFocus()
 {
   if (feedsTreeView_->hasFocus()) {
@@ -6066,7 +6076,8 @@ void RSSListing::slotSwitchPrevFocus()
   }
 }
 
-//! Открытие ленты в новой вкладке
+/** Открытие ленты в новой вкладке
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenFeedNewTab()
 {
   if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
@@ -6079,7 +6090,8 @@ void RSSListing::slotOpenFeedNewTab()
   slotFeedSelected(feedsTreeView_->selectIndex(), true);
 }
 
-//! Закрытие вкладки
+/** Закрытие вкладки
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotCloseTab(int index)
 {
   if (index != 0) {
@@ -6094,7 +6106,8 @@ void RSSListing::slotCloseTab(int index)
   }
 }
 
-//! Переключение между вкладками
+/** Переключение между вкладками
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotTabCurrentChanged(int index)
 {
   if (!stackedWidget_->count()) return;
@@ -6213,7 +6226,8 @@ void RSSListing::slotTabMoved(int fromIndex, int toIndex)
   stackedWidget_->insertWidget(toIndex, stackedWidget_->widget(fromIndex));
 }
 
-//! Включение/отключение отображения колонок в дереве лент
+/** Включение/отключение отображения колонок в дереве лент
+ *---------------------------------------------------------------------------*/
 void RSSListing::feedsColumnVisible(QAction *action)
 {
   int idx = action->data().toInt();
@@ -6223,14 +6237,16 @@ void RSSListing::feedsColumnVisible(QAction *action)
     feedsTreeView_->hideColumn(idx);
 }
 
-//! Установка позиции браузера
+/** Установка позиции браузера
+ *---------------------------------------------------------------------------*/
 void RSSListing::setBrowserPosition(QAction *action)
 {
   browserPosition_ = action->data().toInt();
   currentNewsTab->setBrowserPosition();
 }
 
-//! Создание вкладки только со страницей в браузере
+/** Создание вкладки только со страницей в браузере
+ *---------------------------------------------------------------------------*/
 QWebPage *RSSListing::createWebTab()
 {
   NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
@@ -6249,7 +6265,7 @@ QWebPage *RSSListing::createWebTab()
 
   return widget->webView_->page();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::creatFeedTab(int feedId, int feedParId)
 {
   QSqlQuery q;
@@ -6337,69 +6353,70 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
   }
 }
 
-//! Открытие новости клавишей Enter
+/** Открытие новости клавишей Enter
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenNewsWebView()
 {
   if (!newsView_->hasFocus()) return;
   currentNewsTab->slotNewsViewClicked(newsView_->currentIndex());
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotNewsUpPressed()
 {
   currentNewsTab->slotNewsUpPressed();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotNewsDownPressed()
 {
   currentNewsTab->slotNewsDownPressed();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::markNewsRead()
 {
   currentNewsTab->markNewsRead();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::markAllNewsRead()
 {
   currentNewsTab->markAllNewsRead();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::markNewsStar()
 {
   currentNewsTab->markNewsStar();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::deleteNews()
 {
   currentNewsTab->deleteNews();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::deleteAllNewsList()
 {
   currentNewsTab->deleteAllNewsList();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::restoreNews()
 {
   currentNewsTab->restoreNews();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::openInBrowserNews()
 {
   currentNewsTab->openInBrowserNews();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::openInExternalBrowserNews()
 {
   currentNewsTab->openInExternalBrowserNews();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotOpenNewsNewTab()
 {
   openNewsTab_ = NEW_TAB_FOREGROUND;
   currentNewsTab->openNewsNewTab();
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotOpenNewsBackgroundTab()
 {
   openNewsTab_ = NEW_TAB_BACKGROUND;
@@ -6413,11 +6430,10 @@ void RSSListing::slotCopyLinkNews()
   currentNewsTab->slotCopyLinkNews();
 }
 
-/**
- * @brief Полное обновление модели лент
+/** @brief Полное обновление модели лент
  * @details Производит перечитывание модели, сброс прокси модели и
  *    восстановление курсора на прежнее место
- ******************************************************************************/
+ *---------------------------------------------------------------------------*/
 void RSSListing::feedsModelReload(bool checkFilter)
 {
   if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
@@ -6441,7 +6457,7 @@ void RSSListing::feedsModelReload(bool checkFilter)
   feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::setCurrentTab(int index, bool updateCurrentTab)
 {
   updateCurrentTab_ = updateCurrentTab;
@@ -6449,14 +6465,16 @@ void RSSListing::setCurrentTab(int index, bool updateCurrentTab)
   updateCurrentTab_ = true;
 }
 
-//! Установить фокус в строку поиска (CTRL+F)
+/** Установить фокус в строку поиска (CTRL+F)
+ *---------------------------------------------------------------------------*/
 void RSSListing::findText()
 {
   if (currentNewsTab->type_ < TAB_WEB)
     currentNewsTab->findText_->setFocus();
 }
 
-//! Показать уведовление о входящих новостях
+/** Показать уведовление о входящих новостях
+ *---------------------------------------------------------------------------*/
 void RSSListing::showNotification()
 {
   if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) {
@@ -6482,14 +6500,16 @@ void RSSListing::showNotification()
   notificationWidget->show();
 }
 
-//! Удалить уведовление о входящих новостях
+/** Удалить уведовление о входящих новостях
+ *---------------------------------------------------------------------------*/
 void RSSListing::deleteNotification()
 {
   notificationWidget->deleteLater();
   notificationWidget = NULL;
 }
 
-//! Показать новость при клике в окне уведомления входящих новостей
+/** Показать новость при клике в окне уведомления входящих новостей
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
 {
   deleteNotification();
@@ -6517,24 +6537,24 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
 }
 
 /** @brief Открыть новость во внешнем браузере из окна уведомления
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenNewBrowser(const QUrl &url)
 {
   currentNewsTab->openUrl(url);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotFindFeeds(QString)
 {
   if (!findFeedsWidget_->isVisible()) return;
 
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotSelectFind()
 {
   slotFindFeeds(findFeeds_->text());
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::findFeedVisible(bool visible)
 {
   findFeedsWidget_->setVisible(visible);
@@ -6547,7 +6567,8 @@ void RSSListing::findFeedVisible(bool visible)
   }
 }
 
-//! Полное удаление новостей
+/** Полное удаление новостей
+ *---------------------------------------------------------------------------*/
 void RSSListing::cleanUp()
 {
   QSqlQuery q;
@@ -6584,7 +6605,8 @@ void RSSListing::cleanUp()
   settings_->setValue("CleanUp", 0);
 }
 
-//! Масштаб в браузере
+/** Масштаб в браузере
+ *---------------------------------------------------------------------------*/
 void RSSListing::browserZoom(QAction *action)
 {
   if (currentNewsTab->type_ == TAB_DOWNLOADS) return;
@@ -6599,13 +6621,15 @@ void RSSListing::browserZoom(QAction *action)
   }
 }
 
-//! Сообщить о проблеме...
+/** Сообщить о проблеме...
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotReportProblem()
 {
   QDesktopServices::openUrl(QUrl("http://code.google.com/p/quite-rss/issues/list"));
 }
 
-//! Печать страницы из браузера
+/** Печать страницы из браузера
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotPrint()
 {
   if (currentNewsTab->type_ == TAB_DOWNLOADS) return;
@@ -6618,7 +6642,8 @@ void RSSListing::slotPrint()
   delete printDlg;
 }
 
-//! Предварительный просмотр при печати страницы из браузера
+/** Предварительный просмотр при печати страницы из браузера
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotPrintPreview()
 {
   if (currentNewsTab->type_ == TAB_DOWNLOADS) return;
@@ -6632,7 +6657,7 @@ void RSSListing::slotPrintPreview()
   prevDlg->exec();
   delete prevDlg;
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::setFullScreen()
 {
   if (!isFullScreen()) {
@@ -6670,11 +6695,10 @@ void RSSListing::setStayOnTop()
   show();
 }
 
-/**
- * @brief Перемещение индекса после Drag & Drop
+/** @brief Перемещение индекса после Drag & Drop
  * @param indexWhat Индекс, который перемещаем
  * @param indexWhere Индекс, куда перемещаем
- ******************************************************************************/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, int how)
 {
   feedsTreeView_->setCursor(Qt::WaitCursor);
@@ -6781,10 +6805,9 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
   feedsTreeView_->setCursor(Qt::ArrowCursor);
 }
 
-/**
- * @brief Обработка нажатия в дереве категорий
+/** @brief Обработка нажатия в дереве категорий
  * @param item пункт по которому кликаем
- ******************************************************************************/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
 {
   int type = item->text(1).toInt();
@@ -6905,9 +6928,8 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   statusAll_->setVisible(true);
 }
 
-/**
- * @brief Показ/скрытие дерева категорий
- ******************************************************************************/
+/** @brief Показ/скрытие дерева категорий
+ *---------------------------------------------------------------------------*/
 void RSSListing::showNewsCategoriesTree()
 {
   if (newsCategoriesTree_->isHidden()) {
@@ -6927,9 +6949,8 @@ void RSSListing::showNewsCategoriesTree()
   }
 }
 
-/**
- * @brief Перемещение сплитера между деревом лент и деревом категорий
- ******************************************************************************/
+/** @brief Перемещение сплитера между деревом лент и деревом категорий
+ *---------------------------------------------------------------------------*/
 void RSSListing::feedsSplitterMoved(int pos, int)
 {
   if (newsCategoriesTree_->isHidden()) {
@@ -6943,9 +6964,8 @@ void RSSListing::feedsSplitterMoved(int pos, int)
   }
 }
 
-/**
- * @brief Установка метки для новости
- ******************************************************************************/
+/** @brief Установка метки для новости
+ *---------------------------------------------------------------------------*/
 void RSSListing::setLabelNews(QAction *action)
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
@@ -6957,9 +6977,8 @@ void RSSListing::setLabelNews(QAction *action)
   currentNewsTab->setLabelNews(action->data().toInt());
 }
 
-/**
- * @brief Установка последней выбранной метки для новости
- ******************************************************************************/
+/** @brief Установка последней выбранной метки для новости
+ *---------------------------------------------------------------------------*/
 void RSSListing::setDefaultLabelNews()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
@@ -6967,9 +6986,8 @@ void RSSListing::setDefaultLabelNews()
   currentNewsTab->setLabelNews(newsLabelAction_->data().toInt());
 }
 
-/**
- * @brief Получение меток назначенных выбранной новости
- ******************************************************************************/
+/** @brief Получение меток назначенных выбранной новости
+ *---------------------------------------------------------------------------*/
 void RSSListing::getLabelNews()
 {
   for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
@@ -7010,7 +7028,7 @@ void RSSListing::getLabelNews()
 }
 
 /** @brief Добавление новой вкладки
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 int RSSListing::addTab(NewsTabWidget *widget)
 {
   if (stackedWidget_->count()) tabBar_->addTab("");
@@ -7022,7 +7040,7 @@ int RSSListing::addTab(NewsTabWidget *widget)
 }
 
 /** @brief Запрос авторизации
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
 {
   AuthenticationDialog *authenticationDialog =
@@ -7045,7 +7063,7 @@ void RSSListing::increaseNewsList()
 }
 
 /** @brief Сохранение открытой страницы браузера в файл
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotSavePageAs()
 {
   if (currentNewsTab->type_ == TAB_DOWNLOADS) return;
@@ -7085,7 +7103,7 @@ void RSSListing::slotSavePageAs()
 /** @brief Получение из БД пароля и логина для авторизации
  * @param url - ссылка на сайт, которому нужна авторизация
  * @param auth - флаг включения авторизации
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 QString RSSListing::getUserInfo(QUrl url, int auth)
 {
   QString userInfo;
@@ -7103,7 +7121,7 @@ QString RSSListing::getUserInfo(QUrl url, int auth)
 }
 
 /** @brief Восстановление последней удалённой новости
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::restoreLastNews()
 {
   QSqlQuery q;
@@ -7134,7 +7152,7 @@ void RSSListing::restoreLastNews()
 }
 
 /** @brief Переход на следующую непрочитанную новость
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::nextUnreadNews()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
@@ -7174,7 +7192,7 @@ void RSSListing::nextUnreadNews()
 }
 
 /** @brief Переход на предыдущую непрочитанную новость
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::prevUnreadNews()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
@@ -7207,7 +7225,7 @@ void RSSListing::prevUnreadNews()
 }
 
 /** @brief Получение списка ИД лент находящихся в указанной папке
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 QList<int> RSSListing::getIdFeedsInList(int idFolder)
 {
   QList<int> idList;
@@ -7233,7 +7251,7 @@ QList<int> RSSListing::getIdFeedsInList(int idFolder)
 }
 
 /** @brief Получение строки из ИД лент находящихся в указанной папке
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 QString RSSListing::getIdFeedsString(int idFolder)
 {
   QList<int> idList = getIdFeedsInList(idFolder);
@@ -7250,7 +7268,7 @@ QString RSSListing::getIdFeedsString(int idFolder)
 }
 
 /** @brief Установка текста заголовка программы
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::setTextTitle(const QString &text, NewsTabWidget *widget)
 {
   if (currentNewsTab != widget) return;
@@ -7260,21 +7278,21 @@ void RSSListing::setTextTitle(const QString &text, NewsTabWidget *widget)
 }
 
 /** @brief Включение/отключение отступа в дереве лент
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotIndentationFeedsTree()
 {
   feedsTreeView_->setRootIsDecorated(indentationFeedsTreeAct_->isChecked());
 }
 
 /** @brief Настройка главной панели инструментов
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::customizeMainToolbar()
 {
   showCustomizeToolbarDlg(customizeMainToolbarAct2_);
 }
 
 /** @brief Настройка панелей инструментов
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::showCustomizeToolbarDlg(QAction *action)
 {
   QToolBar *toolbar = mainToolbar_;
@@ -7293,12 +7311,12 @@ void RSSListing::showCustomizeToolbarDlg(QAction *action)
 }
 
 /** @brief Поделиться новостью
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotShareNews(QAction *action)
 {
   currentNewsTab->slotShareNews(action);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showMenuShareNews()
 {
   if (mainToolbar_->widgetForAction(shareMenuAct_)) {
@@ -7322,7 +7340,7 @@ void RSSListing::showMenuShareNews()
 }
 
 /** @brief Открыть домашнюю страницу ленты во внешнем браузере
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenHomeFeed()
 {
   QModelIndex index = feedsTreeView_->currentIndex();
@@ -7333,7 +7351,7 @@ void RSSListing::slotOpenHomeFeed()
 }
 
 /** @brief Отсортировать ленты и папки по имени
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 void RSSListing::sortedByTitleFeedsTree()
 {
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
@@ -7375,7 +7393,7 @@ void RSSListing::sortedByTitleFeedsTree()
 /** @brief Пользовательский стиль браузера
  * @param filePath Путь к файлу со стилем
  * @return Ссылка на стиль
- *----------------------------------------------------------------------------*/
+ *---------------------------------------------------------------------------*/
 QUrl RSSListing::userStyleSheet(const QString &filePath) const
 {
   QString userStyle = "html{background-color:white;}";
@@ -7393,7 +7411,7 @@ QUrl RSSListing::userStyleSheet(const QString &filePath) const
 
   return QUrl(dataString);
 }
-
+// ----------------------------------------------------------------------------
 bool RSSListing::addFeedInQueue(const QString &feedUrl)
 {
   int feedUrlIndex = feedUrlList_.indexOf(feedUrl);
@@ -7404,12 +7422,12 @@ bool RSSListing::addFeedInQueue(const QString &feedUrl)
     return true;
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showNewsMenu()
 {
   newsSortByMenu_->setEnabled(currentNewsTab->type_ < TAB_WEB);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showNewsSortByMenu()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
@@ -7442,7 +7460,7 @@ void RSSListing::showNewsSortByMenu()
     newsSortOrderGroup_->actions().at(1)->setChecked(true);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::setNewsSortByColumn()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
@@ -7454,7 +7472,7 @@ void RSSListing::setNewsSortByColumn()
     currentNewsTab->newsHeader_->setSortIndicator(lIdx, Qt::DescendingOrder);
   }
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotPrevFolder()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
@@ -7472,7 +7490,7 @@ void RSSListing::slotPrevFolder()
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotNextFolder()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
@@ -7490,7 +7508,7 @@ void RSSListing::slotNextFolder()
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::slotExpandFolder()
 {
   QModelIndex index = feedsTreeView_->currentIndex();
@@ -7499,7 +7517,7 @@ void RSSListing::slotExpandFolder()
   }
   feedsTreeView_->setExpanded(index, !feedsTreeView_->isExpanded(index));
 }
-
+// ----------------------------------------------------------------------------
 void RSSListing::showDownloadManager(bool activate)
 {
   int indexTab = -1;
