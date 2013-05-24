@@ -2,6 +2,39 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<P><B>Version 0.12.5+</B> (хх May 2013)
+<UL>
+<LI>Main: Increase application performance</LI>
+<LI>Added: Individual feed update interval (feed properties)</LI>
+<LI>Added: Individual columns in news list for feed (feed properties)</LI>
+<LI>Added: Download manager (Program options/Browser/Downloads)</LI>
+<LI>Added: "Undo"/"Redo" in browser text input field context menu</LI>
+<LI>Added: Notification window preview</LI>
+<LI>Added: Sort news list form main menu</LI>
+<LI>Added: Tooltip appears for feed long title</LI>
+<LI>Added: Settings for font and background colors</LI>
+<LI>Added: Display news counters in Categories</LI>
+<LI>Added: More keyboard shortcuts</LI>
+
+<LI>Changed: GUI. Visual tweaks</LI>
+<LI>Changed: Update feed three times on error</LI>
+<LI>Changed: Save browser page</LI>
+<LI>Changed: Search next unread news has became cyclic</LI>
+<LI>Changed: Remove "http://" prefix from column "Link"</LI>
+<LI>Changed: Mark news Read while switching between tabs</LI>
+<LI>Changed: Opening news in new/background tab</LI>
+<LI>Changed: Support RTL in news description</LI>
+
+<LI>Fixed: Options "Don't delete starred news", "Don't delete labeled news" didn't store</LI>
+<LI>Fixed: News title and description displays twice<LI>
+<LI>Fixed: Some feeds didn't parse</LI>
+<LI>Fixed: Wrong codepage while parsing feed</LI>
+<LI>Fixed: Alternating row setting in news list</LI>
+<LI>Fixed: CPU high load while application shutdown</LI>
+<LI>Fixed: Application crashes while switching to next unread news in categories,
+  where are no more unread news</LI>
+</UL>
+<!---------------------------------------------------------------------------->
 <P><B>Verion 0.12.5</B> (22 Apr 2013)
 <UL>
 <LI>Added: Disk cache and pages cache for embedded browser</LI>
@@ -23,13 +56,13 @@
 <LI>Added: Language: Greek</LI>
 <LI>Added: Language: Chinese (Taiwan)</LI>
 <LI>Added: Language: Portuguese (Brazil)</LI>
-<BR>
+
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Increase performance updating feeds</LI>
 <LI>Changed: Ability assign shortcuts for "Share"</LI>
 <LI>Changed: Delete folders containing feeds</LI>
 <LI>Changed: Ability to edit application styles(folder "style")</LI>
-<BR>
+
 <LI>Fixed: Mark all news read in categories</LI>
 <LI>Fixed: Focus while opening link in external browser</LI>
 <LI>Fixed: Minimize to tray on tray-click (Linux)</LI>
@@ -53,11 +86,11 @@
 <LI>Added: Share news: LiveJournal, Pocket, Twitter</LI>
 <LI>Added: Language: Korean</LI>
 <LI>Added: Language: Lithuanian</LI>
-<BR>
+
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Increase performance of updating news</LI>
 <LI>Changed: Display feed's title in "Feed" column in news list</LI>
-<BR>
+
 <LI>Fixed: Application crash while dragging feeds/folders</LI>
 <LI>Fixed: Application crash while pressing SPACE in tab which contains news</LI>
 <LI>Fixed: Moving focus to tab just has been opened</LI>
@@ -78,7 +111,7 @@
 <UL>
 <LI>Main: Increase productivity</LI>
 <LI>Main: Manual sort in feed's tree</LI>
-<BR>
+
 <LI>Added: Option "Hide feed's tree when opening tabs"</LI>
 <LI>Added: Option for news' list "Alternate row's background color" (Options->Feeds->General->...)</LI>
 <LI>Added: Ability to open several news in external browser</LI>
@@ -94,7 +127,7 @@
 <LI>Added: Language: Czech</LI>
 <LI>Added: Language: Polish</LI>
 <LI>Added: Language: Japanese</LI>
-<BR>
+
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Ability to change shortcuts: "CTRL+P" and "Enter"</LI>
 <LI>Changed: Dialog "Create filter": sort conditions by name</LI>
@@ -102,7 +135,7 @@
 <LI>Changed: Focus unfocused window while clicking tray icon</LI>
 <LI>Changed: Adjust image width from media-content to browser width</LI>
 <LI>Changed: Folder properties. Added options similar to feed options</LI>
-<BR>
+
 <LI>Fixed: Some feeds displays short description instead of full</LI>
 <LI>Fixed: Recounting folder's counters</LI>
 <LI>Fixed: Shutdown of application while PC shutdown</LI>
@@ -120,13 +153,13 @@
 <LI>Added: Ability to save browser page as plain text</LI>
 <LI>Added: Feed's option "Automatically delete news' duplicates"</LI>
 <LI>Added: Ability to hide Categories ("View->Show/Hide->Panel Categories")</LI>
-<BR>
+
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: News list/browser size's change step set to 25 pixels instead of 5</LI>
 <LI>Changed: Password for proxy-server displays with asterisks</LI>
 <LI>Changed: Date and time format are separated</LI>
 <LI>Changed: Switch to next unread news</LI>
-<BR>
+
 <LI>Fixed: Application crash while updating feeds!</LI>
 <LI>Fixed: Some feeds aren't processed</LI>
 <LI>Fixed: Application crash while using shortcuts</LI>
@@ -144,11 +177,11 @@
 <LI>Added: Shortcut to undelete news: "CTRL+Z" (Undo delete)</LI>
 <LI>Added: More shortcuts</LI>
 <LI>Added: Ability to switch on next/previous unread news</LI>
-<BR>
+
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Finding unread news depends on sort</LI>
 <LI>Changed: In "Deleted" category news is sorted by delete time stamp</LI>
-<BR>
+
 <LI>Fixed: Error updating feeds (lasts from 0.10.3+)</LI>
 <LI>Fixed: Automatic cleanup on shutdown</LI>
 <LI>Fixed: Saving cursor position in news list</LI>
@@ -158,14 +191,14 @@
 <P><B>Version 0.12.0</B> (14 Jan 2013)
 <UL>
 <LI>Main: Increased productivity of program</LI>
-<BR>
+
 <LI>Added: News Categories</LI>
 <LI>Added: Labels</LI>
 <LI>Added: Option "Open links in embedded browser in background"</LI>
 <LI>Added: Shortcuts for closing tabs and switch between tabs</LI>
-<BR>
+
 <LI>Changed: GUI. Redesigned interface</LI>
-<BR>
+
 <LI>Fixed: Application crash when working with tabs</LI>
 <LI>Fixed: Window size is not restored when opening program from system tray</LI>
 <LI>Fixed: Some feeds are not added</LI>
@@ -175,19 +208,19 @@
 <P><B>Version 0.11.0</B> (10 Dec 2012)
 <UL>
 <LI>Main: Feed categories (folders)</LI>
-<BR>
+
 <LI>Added: View mode "Stay On Top"</LI>
 <LI>Added: Feed property "Show news' description instead of loading web page"</LI>
 <LI>Added: News filter "Show Not Starred"</LI>
 <LI>Added: Option "Mark news as read: after switching to another news"</LI>
 <LI>Added: Language: Spanish</LI>
-<BR>
+
 <LI>Changed: GUI. Some Visual tweaks</LI>
-<BR>
+
 <LI>Fixed: Feed opened in own tab duplicates in default tab</LI>
 <LI>Fixed: Updating link containing special chars</LI>
 <LI>Fixed: Shortcuts in full screen mode</LI>
-<LI>Fixed: Disbling experimental option "Open link in external browser in background"</LI>
+<LI>Fixed: Disabling experimental option "Open link in external browser in background"</LI>
 </UL>
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.10.3</B> (17 Oct 2012)
@@ -200,12 +233,12 @@
 <LI>Added: Ability to report a problem (menu "Help->Report a Problem...")</LI>
 <LI>Added: Automatic update application (Windows)</LI>
 <LI>Added: Language: Italian</LI>
-<BR>
+
 <LI>Added: Experimental option "Open link in external browser in background"</LI>
-<BR>
+
 <LI>Changed: News list is scrolled when active item is in the middle</LI>
 <LI>Changed: GUI. Some Visual tweaks</LI>
-<BR>
+
 <LI>Fixed: CTRL+Enter available for shortcuts</LI>
 <LI>Fixed: Using sqlite3 library </LI>
 </UL>
@@ -219,9 +252,9 @@
 <LI>Added: Sorting feeds by title ("Feeds->Sort by Title")</LI>
 <LI>Added: Language: Dutch</LI>
 <LI>Added: Language: Farsi</LI>
-<BR>
+
 <LI>Changed: GUI. Some visual tweaks</LI>
-<BR>
+
 <LI>Fixed: Invisible text on OS with dark theme</LI>
 <LI>Fixed: Open links from embedded browser in new tab: wrong links</LI>
 <LI>Fixed: Assigning default shortcuts</LI>
@@ -238,15 +271,15 @@
 <LI>Added: Option: "Display format for date and time"("Options->Feeds->General")</LI>
 <LI>Added: Option: "Opening feed: position on unread news"</LI>
 <LI>Added: Option: "Mark displayed news as read when switching feeds",
-<BR>"Mark displayed news as read when closing tab",
-<BR>"Mark displayed news as read on minimize"</LI>
+"Mark displayed news as read when closing tab",
+"Mark displayed news as read on minimize"</LI>
 <LI>Added: Options. Selecting notification sound</LI>
 <LI>Added: Options. Show in the notification only selected feeds</LI>
 <LI>Added: Filter news: "Show Unread or Star"</LI>
 <LI>Added: Sorting user filters</LI>
-<BR>
+
 <LI>Changed: GUI. Some visual tweaks</LI>
-<BR>
+
 <LI>Fixed: Some news were not displayed (All news will be re-uploaded!)</LI>
 <LI>Fixed: Do not work feeds that use SSL</LI>
 <LI>Fixed: Opening of the news from the notification window</LI>
@@ -256,7 +289,7 @@
 <P><B>Version 0.10.0</B> (18 Jul 2012)
 <UL>
 <LI>Note: Reappear news, which already have been marked read (0.8.x, 0.9.x -> 0.10.x) (<a href="http://code.google.com/p/quite-rss/wiki/ReappearNews">More...</a>)</LI>
-<BR>
+
 <LI>Added: Tabs. Open news in new tab</LI>
 <LI>Added: Tabs. Open link from news in new tab</LI>
 <LI>Added: User filters (case sensitive)</LI>
@@ -269,10 +302,10 @@
 <LI>Added: Notification on new news</LI>
 <LI>Added: Swedish translation</LI>
 <LI>Added: Serbian translation</LI>
-<BR>
+
 <LI>Changed: GUI. Some visual tweaks</LI>
 <LI>Changed: Opening tabs in more smooth</LI>
-<BR>
+
 <LI>Fixed: Some feeds did not work</LI>
 <LI>Fixed: Can't detect date and time of some feeds</LI>
 <LI>Fixed: Can't load icon of some feeds</LI>
@@ -356,7 +389,7 @@
 <LI>Changed: GUI. Some visual tweaks</LI>
 
 <LI>Fixed: Improve program startup</LI>
-<LI>Fixed: Resize splashscreen</LI>
+<LI>Fixed: Resize splash-screen</LI>
 <LI>Fixed: Open author-URI in embedded browser</LI>
 <LI>Fixed: Parsing news-URL's and author-URI's</LI>
 <LI>Fixed: Remove debug messages</LI>
@@ -365,12 +398,12 @@
 <P><B>Version 0.8.4</B> (21 Mar 2012)
 <UL>
 <LI>Added: Splash screen</LI>
-<LI>Added: Chech for updates at startup</LI>
+<LI>Added: Check for updates at startup</LI>
 <LI>Added: Ability to set update feeds interval in hours</LI>
 
 <LI>Changed: GUI. Tune icons</LI>
 <LI>Changed: GUI. Correct browser panel</LI>
-<LI>Changed: Improve switch bitween feeds and news</LI>
+<LI>Changed: Improve switch between feeds and news</LI>
 <LI>Changed: Improve several news simultaneously</LI>
 
 <LI>Fixed: On some Windows systems browser don't display images</LI>
@@ -414,7 +447,7 @@
 <LI>Fixed: Cyrillic letters in application path</LI>
 <LI>Fixed: SQLite for Qt 4.8.0</LI>
 <LI>Fixed: NetworkManager move to his own thread</LI>
-<LI>Fixed: News list don't scrool while click on column "read/unread" if cursor is out of view</LI>
+<LI>Fixed: News list don't scroll while click on column "read/unread" if cursor is out of view</LI>
 <LI>Fixed: Request url queues while update feeds</LI>
 <LI>Fixed: Parsing "alternate" url of the news of Atom-feeds</LI>
 <LI>Fixed: TrayMenu is not appear sometimes</LI>
@@ -422,7 +455,7 @@
 
 <P><B>Version 0.8.0</B> (31 Jan 2012)
 <UL>
-<LI>Added: Sumiltaneous update up to 8 feeds</LI>
+<LI>Added: Simultaneous update up to 8 feeds</LI>
 </UL>
 
 <P><B>Version 0.7.6</B> (28 Jan 2012)
