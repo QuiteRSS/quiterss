@@ -132,7 +132,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
           return;
         }
       }
-      rssl_->downloadManager_->handleUnsupportedContent(reply);
+      rssl_->downloadManager_->handleUnsupportedContent(reply, rssl_->askDownloadLocation_);
       return;
     }
 

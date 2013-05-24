@@ -188,6 +188,8 @@ public:
   bool javaScriptEnable_;
   bool pluginsEnable_;
   int maxPagesInCache_;
+  QString downloadLocation_;
+  bool askDownloadLocation_;
 
   int browserPosition_;
 
