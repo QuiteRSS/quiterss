@@ -5665,7 +5665,8 @@ void RSSListing::slotRefreshInfoTray()
   }
 }
 
-//! Помечаем все ленты прочитанными
+/** @brief Mark all feeds read
+ *---------------------------------------------------------------------------*/
 void RSSListing::markAllFeedsRead()
 {
   QSqlQuery q;
@@ -5699,7 +5700,7 @@ void RSSListing::markAllFeedsRead()
   emit signalRefreshInfoTray();
 }
 
-/** Помечаем все ленты не новыми
+/** @brief Mark all feeds Not New
  *---------------------------------------------------------------------------*/
 void RSSListing::markAllFeedsOld()
 {
@@ -5722,7 +5723,7 @@ void RSSListing::markAllFeedsOld()
   emit signalRefreshInfoTray();
 }
 
-/** @brief Подготовка иконки ленты для сохранения в БД
+/** @brief Prepare feed icon for storing in DB
  *---------------------------------------------------------------------------*/
 void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray)
 {
@@ -5739,7 +5740,7 @@ void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray 
   }
 }
 
-/** @brief Обновление иконки ленты в модели
+/** @brief Update feed icon in model and view
  *---------------------------------------------------------------------------*/
 void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData)
 {
@@ -5838,87 +5839,87 @@ void RSSListing::slotNewVersion(const QString &newVersion)
   }
 }
 
-/** @brief Обработка клавиш Key_Up в дереве лент
+/** @brief Process Key_Up in feeds tree
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedUpPressed()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
   QModelIndex indexAfter;
 
-  // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по лентам
+  // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
     indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
   else
     indexAfter = feedsTreeView_->indexAbove(indexBefore);
 
-  // Если индекса "выше" не существует
+  // There is no "upper" index
   if (!indexAfter.isValid()) return;
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка клавиш Key_Down в дереве лент 
+/** @brief Process Key_Down in feeds tree
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedDownPressed()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
   QModelIndex indexAfter;
 
-  // Если нет текущего индекса устанавливаем его в начало, т.к. мы хотим "опускаться" по лентам
+  // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
     indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
   else
     indexAfter = feedsTreeView_->indexBelow(indexBefore);
 
-  // Если индекса "ниже" не существует
+  // There is no "downer" index
   if (!indexAfter.isValid()) return;
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка горячей клавиши перемещения на предыдущую ленту 
+/** @brief Process previous feed shortcut
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedPrevious()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
   QModelIndex indexAfter;
 
-  // Если нет текущего индекса устанавливаем его в конец, т.к. мы хотим "подниматься" по лентам
+  // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
     indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
   else
     indexAfter = feedsTreeView_->indexPrevious(indexBefore);
 
-  // Если индекса "выше" не существует
+  // There is no "upper" index
   if (!indexAfter.isValid()) return;
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка горячей клавиши перемещения на следующую ленту 
+/** @brief Process next feed shortcut
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedNext()
 {
   QModelIndex indexBefore = feedsTreeView_->currentIndex();
   QModelIndex indexAfter;
 
-  // Если нет текущего индекса устанавливаем его в начало, т.к. мы хотим "опускаться" по лентам
+  // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
     indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
   else
     indexAfter = feedsTreeView_->indexNext(indexBefore);
 
-  // Если индекса "ниже" не существует
+  // There is no "downer" index
   if (!indexAfter.isValid()) return;
 
   feedsTreeView_->setCurrentIndex(indexAfter);
   slotFeedClicked(indexAfter);
 }
 
-/** @brief Обработка клавиш Home/End в дереве лент 
+/** @brief Process Key_Home in feeds tree
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedHomePressed()
 {
@@ -5927,7 +5928,9 @@ void RSSListing::slotFeedHomePressed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
-// ----------------------------------------------------------------------------
+
+/** @brief Process Key_End in feeds tree
+ *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedEndPressed()
 {
   QModelIndex index = feedsTreeModel_->index(
@@ -5936,7 +5939,7 @@ void RSSListing::slotFeedEndPressed()
   slotFeedClicked(index);
 }
 
-/** Удаление новостей в ленте по критериям
+/** @brief Delete news from the feed by criteria
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsCleanUp(QString feedId)
 {
@@ -5962,9 +5965,9 @@ void RSSListing::feedsCleanUp(QString feedId)
     if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
       qStr = QString("UPDATE news SET deleted=1, read=2 WHERE id=='%1'").
           arg(newsId);
-      //        qCritical() << "*01"  << feedId << q.value(5).toString()
-      //                 << q.value(1).toString() << cntNews
-      //                 << (cntNews - maxNewsCleanUp_);
+      // qCritical() << "*01"  << feedId << q.value(5).toString()
+      //     << q.value(1).toString() << cntNews
+      //     << (cntNews - maxNewsCleanUp_);
       QSqlQuery qt;
       qt.exec(qStr);
       cntT++;
@@ -5978,9 +5981,9 @@ void RSSListing::feedsCleanUp(QString feedId)
         (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
       qStr = QString("UPDATE news SET deleted=1, read=2 WHERE id=='%1'").
           arg(newsId);
-      //        qCritical() << "*02"  << feedId << q.value(5).toString()
-      //                 << q.value(1).toString() << cntNews
-      //                 << (cntNews - maxNewsCleanUp_);
+      // qCritical() << "*02"  << feedId << q.value(5).toString()
+      //     << q.value(1).toString() << cntNews
+      //     << (cntNews - maxNewsCleanUp_);
       QSqlQuery qt;
       qt.exec(qStr);
       cntT++;
@@ -6013,7 +6016,7 @@ void RSSListing::feedsCleanUp(QString feedId)
   q.exec(qStr);
 }
 
-/** Установка стиля оформления приложения
+/** @brief Set application style
  *---------------------------------------------------------------------------*/
 void RSSListing::setStyleApp(QAction *pAct)
 {
