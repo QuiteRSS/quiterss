@@ -171,6 +171,9 @@ void DownloadItem::downloadProgress(qint64 received, qint64 total)
   curSpeed_ = received * 1000.0 / downloadTimer_.elapsed();
   received_ = received;
   total_ = total;
+
+  if (reply_->isFinished())
+    finished();
 }
 
 void DownloadItem::metaDataChanged()
