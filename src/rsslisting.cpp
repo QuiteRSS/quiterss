@@ -135,6 +135,8 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
   downloadManager_ = new DownloadManager(this);
   connect(downloadManager_, SIGNAL(signalShowDownloads(bool)),
           this, SLOT(showDownloadManager(bool)));
+  connect(downloadManager_, SIGNAL(signalUpdateInfo(QString)),
+          this, SLOT(updateInfoDownloads(QString)));
 
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
@@ -7566,5 +7568,17 @@ void RSSListing::showDownloadManager(bool activate)
     emit signalSetCurrentTab(indexTab);
   } else {
     widget->setTextTab(tr("Downloads"));
+  }
+}
+// ----------------------------------------------------------------------------
+void RSSListing::updateInfoDownloads(const QString &text)
+{
+  NewsTabWidget *widget;
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    widget = (NewsTabWidget*)stackedWidget_->widget(i);
+    if (widget->type_ == TAB_DOWNLOADS) {
+      widget->setTextTab(QString("%1 %2").arg(tr("Downloads")).arg(text));
+      break;
+    }
   }
 }

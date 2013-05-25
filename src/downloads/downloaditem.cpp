@@ -111,8 +111,7 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   setContextMenuPolicy(Qt::CustomContextMenu);
   connect(this, SIGNAL(customContextMenuRequested(QPoint)),
           this, SLOT(customContextMenuRequested(QPoint)));
-  connect(&updateInfoTimer_, SIGNAL(timeout()),
-          this, SLOT(updateInfo()));
+  connect(&updateInfoTimer_, SIGNAL(timeout()), this, SLOT(updateInfo()));
 }
 
 DownloadItem::~DownloadItem()
@@ -270,6 +269,7 @@ void DownloadItem::updateInfo()
   QTime time;
   time = time.addSecs(estimatedTime);
   QString remTime = remaingTimeToString(time);
+  remTime_ = time;
 
   QString curSize = fileSizeToString(received_);
   QString fileSize = fileSizeToString(total_);

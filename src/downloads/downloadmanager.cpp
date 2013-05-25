@@ -61,6 +61,9 @@ DownloadManager::DownloadManager(QWidget *parent)
   connect(listClaerAct_, SIGNAL(triggered()), this, SLOT(clearList()));
   connect(this, SIGNAL(signalItemCreated(QListWidgetItem*,DownloadItem*)),
           this, SLOT(itemCreated(QListWidgetItem*,DownloadItem*)));
+  connect(&updateInfoTimer_, SIGNAL(timeout()), this, SLOT(updateInfo()));
+
+  updateInfoTimer_.start(2000);
 
   hide();
 }
@@ -174,6 +177,7 @@ void DownloadManager::itemCreated(QListWidgetItem* item, DownloadItem* downItem)
 
   emit signalShowDownloads(false);
   downItem->startDownloading();
+  updateInfo();
 }
 
 void DownloadManager::deleteItem(DownloadItem* item)
@@ -197,4 +201,28 @@ void DownloadManager::clearList()
     items.append(downItem);
   }
   qDeleteAll(items);
+}
+
+void DownloadManager::updateInfo()
+{
+  QVector<QTime> remTimes;
+  for (int i = 0; i < listWidget_->count(); i++) {
+    DownloadItem* downItem = qobject_cast<DownloadItem*>(listWidget_->itemWidget(listWidget_->item(i)));
+    if (!downItem || !downItem->isDownloading()) {
+      continue;
+    }
+    remTimes.append(downItem->remainingTime());
+  }
+  QTime remaining;
+  foreach (const QTime &time, remTimes) {
+    if (time > remaining) {
+      remaining = time;
+    }
+  }
+
+  QString info;
+  if (remTimes.count())
+    info = QString("%1 (%2)").arg(remaining.toString("mm:ss")).arg(remTimes.count());
+
+  emit signalUpdateInfo(info);
 }

@@ -395,6 +395,7 @@ private slots:
   void slotExpandFolder();
 
   void showDownloadManager(bool activate = true);
+  void updateInfoDownloads(const QString &text);
 
 private:
   UpdateThread *persistentUpdateThread_;

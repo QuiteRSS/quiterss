@@ -53,6 +53,7 @@ public:
 
   void startDownloading();
   bool isDownloading() { return downloading_; }
+  QTime remainingTime() { return remTime_; }
   static QString remaingTimeToString(QTime time);
   static QString currentSpeedToString(double speed);
 
@@ -86,6 +87,7 @@ private:
   QNetworkReply* reply_;
   QString fileName_;
   QTime downloadTimer_;
+  QTime remTime_;
   QTimer updateInfoTimer_;
   QFile outputFile_;
   QUrl downloadUrl_;

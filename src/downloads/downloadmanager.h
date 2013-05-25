@@ -44,16 +44,19 @@ public:
 signals:
   void signalItemCreated(QListWidgetItem* item, DownloadItem* downItem);
   void signalShowDownloads(bool activate);
+  void signalUpdateInfo(const QString &text);
 
 private slots:
   QString getFileName(QNetworkReply* reply);
   void itemCreated(QListWidgetItem* item, DownloadItem* downItem);
   void clearList();
   void deleteItem(DownloadItem* item);
+  void updateInfo();
 
 private:
   RSSListing *rssl_;
   QListWidget *listWidget_;
+  QTimer updateInfoTimer_;
 
 };
 
