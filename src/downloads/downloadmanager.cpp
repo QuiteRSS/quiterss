@@ -147,6 +147,7 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
   if (name.contains(QLatin1Char('"'))) {
     name.remove(QLatin1String("\";"));
   }
+  name.remove(":");
 
   return name;
 }
