@@ -109,7 +109,6 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
   if (reply->hasRawHeader("Content-Disposition")) {
     QString value = QString::fromUtf8(reply->rawHeader("Content-Disposition"));
 
-    // We try to use UTF-8 encoded filename first if present
     if (value.contains(QRegExp("filename\\s*\\*\\s*=\\s*UTF-8", Qt::CaseInsensitive))) {
       QRegExp reg("filename\\s*\\*\\s*=\\s*UTF-8''([^;]*)", Qt::CaseInsensitive);
       reg.indexIn(value);
@@ -118,10 +117,12 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
     else if (value.contains(QRegExp("filename\\s*=", Qt::CaseInsensitive))) {
       QRegExp reg("filename\\s*=([^;]*)", Qt::CaseInsensitive);
       reg.indexIn(value);
-      path = reg.cap(1).trimmed();
+      path = QUrl::fromPercentEncoding(reg.cap(1).toUtf8()).trimmed();
 
       if (path.startsWith(QLatin1Char('"')) && path.endsWith(QLatin1Char('"'))) {
         path = path.mid(1, path.length() - 2);
+      } else if (path.startsWith(QLatin1Char('"'))) {
+        path = path.right(path.length() - 1);
       }
     }
   }
@@ -144,10 +145,7 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
 
   QString name = baseName + endName;
 
-  if (name.contains(QLatin1Char('"'))) {
-    name.remove(QLatin1String("\";"));
-  }
-  name.remove(":");
+  name.replace(QRegExp("[;:<>\"]"), "_");
 
   return name;
 }
