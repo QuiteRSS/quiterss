@@ -62,7 +62,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralTitle->addWidget(btnLoadTitle);
   editURL = new LineEdit();
 
-  updateEnable_ = new QCheckBox(tr("Automatically update the feeds every"));
+  updateEnable_ = new QCheckBox(tr("Automatically update every"));
   updateInterval_ = new QSpinBox();
   updateInterval_->setEnabled(false);
   updateInterval_->setRange(1, 9999);
