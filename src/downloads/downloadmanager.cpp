@@ -81,15 +81,13 @@ void DownloadManager::download(const QNetworkRequest &request)
 void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDownloadLocation)
 {
   QString fileName(getFileName(reply));
-  if (askDownloadLocation || rssl_->downloadLocation_.isEmpty()) {
-    QFileInfo fileInfo(fileName);
+  fileName = rssl_->downloadLocation_ + QDir::separator() + fileName;
+  QFileInfo fileInfo(fileName);
+  if (askDownloadLocation || rssl_->downloadLocation_.isEmpty() || fileInfo.exists()) {
     QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
         arg(fileInfo.suffix().toUpper()).
         arg(fileInfo.suffix().toLower());
-    fileName = rssl_->downloadLocation_ + QDir::separator() + fileName;
     fileName = QFileDialog::getSaveFileName(0, tr("Save As..."), fileName, filter);
-  } else {
-    fileName = rssl_->downloadLocation_ + QDir::separator() + fileName;
   }
   if (fileName.isNull()) {
     reply->abort();
