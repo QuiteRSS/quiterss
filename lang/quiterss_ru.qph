@@ -122,7 +122,7 @@
 </phrase>
 <phrase>
     <source>&amp;Tools</source>
-    <target>&amp;Настройки</target>
+    <target>&amp;Инструменты</target>
 </phrase>
 <phrase>
     <source>Fee&amp;ds</source>
@@ -2000,5 +2000,245 @@
 <phrase>
     <source>Expand All Folders</source>
     <target>Развернуть все папки</target>
+</phrase>
+<phrase>
+    <source>Save Image...</source>
+    <target>Сохранить изображение...</target>
+</phrase>
+<phrase>
+    <source>Cannot start external program</source>
+    <target>Не удаётся запустить внешнюю программу</target>
+</phrase>
+<phrase>
+    <source>Remaining time unavailable</source>
+    <target>Оставшееся время неизвестно</target>
+</phrase>
+<phrase>
+    <source>Error: </source>
+    <target>Ошибка: </target>
+</phrase>
+<phrase>
+    <source>Done - %1</source>
+    <target>Готово - %1</target>
+</phrase>
+<phrase>
+    <source>few seconds</source>
+    <target>несколько секунд</target>
+</phrase>
+<phrase>
+    <source>Unknown size</source>
+    <target>Неизвестный размер</target>
+</phrase>
+<phrase>
+    <source>Unknown speed</source>
+    <target>Неизвестная скорость</target>
+</phrase>
+<phrase>
+    <source>%2 - unknown size (%3)</source>
+    <target>%2 - неизвестный размер (%3)</target>
+</phrase>
+<phrase>
+    <source>Remaining %1 - %2 of %3 (%4)</source>
+    <target>Осталось  %1 - %2 из %3 (%4)</target>
+</phrase>
+<phrase>
+    <source>Cancelled - %1</source>
+    <target>Отменено - %1</target>
+</phrase>
+<phrase>
+    <source>Delete file</source>
+    <target>Удалить файл</target>
+</phrase>
+<phrase>
+    <source>Do you want to also delete dowloaded file?</source>
+    <target>Вы хотите удалить скачаный файл?</target>
+</phrase>
+<phrase>
+    <source>Open File</source>
+    <target>Открыть файл</target>
+</phrase>
+<phrase>
+    <source>Open Folder</source>
+    <target>Открыть папку</target>
+</phrase>
+<phrase>
+    <source>Copy Download Link</source>
+    <target>Скопировать адрес загрузки</target>
+</phrase>
+<phrase>
+    <source>Cancel downloading</source>
+    <target>Отменить загрузку</target>
+</phrase>
+<phrase>
+    <source>Cancelled</source>
+    <target>Отменено</target>
+</phrase>
+<phrase>
+    <source>Error</source>
+    <target>Ошибка</target>
+</phrase>
+<phrase>
+    <source>Not found</source>
+    <target>Не найдено</target>
+</phrase>
+<phrase>
+    <source>Sorry, the file 
+ %1 
+ was not found!</source>
+    <target>Извините, файл
+ %1 
+не найден!</target>
+</phrase>
+<phrase>
+    <source>File %1 (*.%2)</source>
+    <target>Файл %1 (*.%2)</target>
+</phrase>
+<phrase>
+    <source>All Files (*.*)</source>
+    <target>Все файлы (*.*)</target>
+</phrase>
+<phrase>
+    <source>Executable: </source>
+    <target>Активные: </target>
+</phrase>
+<phrase>
+    <source>Arguments: </source>
+    <target>Аргументы: </target>
+</phrase>
+<phrase>
+    <source>Ascending</source>
+    <target>Возрастанию</target>
+</phrase>
+<phrase>
+    <source>Descending</source>
+    <target>Убыванию</target>
+</phrase>
+<phrase>
+    <source>Sort by:</source>
+    <target>Сортировать по:</target>
+</phrase>
+<phrase>
+    <source>Fonts &amp; Colors</source>
+    <target>Шрифты и цвета</target>
+</phrase>
+<phrase>
+    <source>Run QuiteRSS at Windows startup</source>
+    <target>Запускать QuiteRSS вместе с Windows</target>
+</phrase>
+<phrase>
+    <source>Ask where to save each file before downloading</source>
+    <target>Запрашивать место для сохранения каждого файла перед загрузкой</target>
+</phrase>
+<phrase>
+    <source>Download location:</source>
+    <target>Расположение загружаемых файлов:</target>
+</phrase>
+<phrase>
+    <source>Downloads</source>
+    <target>Загрузки</target>
+</phrase>
+<phrase>
+    <source>Top Left</source>
+    <target>Вверху слева</target>
+</phrase>
+<phrase>
+    <source>Top Right</source>
+    <target>Вверху справа</target>
+</phrase>
+<phrase>
+    <source>Bottom Left</source>
+    <target>Внизу слева</target>
+</phrase>
+<phrase>
+    <source>Bottom Right</source>
+    <target>Внизу справа</target>
+</phrase>
+<phrase>
+    <source>Review</source>
+    <target>Просмотр</target>
+</phrase>
+<phrase>
+    <source>Position</source>
+    <target>Позиция</target>
+</phrase>
+<phrase>
+    <source>Feeds list color</source>
+    <target>Цвет списка лент</target>
+</phrase>
+<phrase>
+    <source>Feeds list background</source>
+    <target>Фон списка лент</target>
+</phrase>
+<phrase>
+    <source>News list color</source>
+    <target>Цвет списка новостей</target>
+</phrase>
+<phrase>
+    <source>News list background</source>
+    <target>Фон списка новостей</target>
+</phrase>
+<phrase>
+    <source>Focused news color</source>
+    <target>Цвет текста новости под курсором</target>
+</phrase>
+<phrase>
+    <source>Focused news background color</source>
+    <target>Цвет фона новости под курсором</target>
+</phrase>
+<phrase>
+    <source>Link color</source>
+    <target>Цвет ссылки</target>
+</phrase>
+<phrase>
+    <source>Title color</source>
+    <target>Цвет заголовка</target>
+</phrase>
+<phrase>
+    <source>Date color</source>
+    <target>Цвет даты</target>
+</phrase>
+<phrase>
+    <source>Author color</source>
+    <target>Цвет имени автора</target>
+</phrase>
+<phrase>
+    <source>News title background</source>
+    <target>Фон заголовка новости</target>
+</phrase>
+<phrase>
+    <source>News background</source>
+    <target>Фон новости</target>
+</phrase>
+<phrase>
+    <source>Colors</source>
+    <target>Цвета</target>
+</phrase>
+<phrase>
+    <source>Prevent accidental deletion of:</source>
+    <target>Предотвращать случайное удаление:</target>
+</phrase>
+<phrase>
+    <source>labeled news</source>
+    <target>новостей с метками</target>
+</phrase>
+<phrase>
+    <source>starred news</source>
+    <target>новостей отмеченых звёздочкой</target>
+</phrase>
+<phrase>
+    <source>Expand Folder</source>
+    <target>Развернуть папку</target>
+</phrase>
+<phrase>
+    <source>Next Folder</source>
+    <target>Следующая папка</target>
+</phrase>
+<phrase>
+    <source>Previous Folder</source>
+    <target>Предыдущая папка</target>
+</phrase>
+<phrase>
+    <source>Automatically update every</source>
+    <target>Автоматическое обновление каждые</target>
 </phrase>
 </QPH>
