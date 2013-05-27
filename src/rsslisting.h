@@ -60,7 +60,8 @@ class RSSListing : public QMainWindow
 {
   Q_OBJECT
 public:
-  RSSListing(QSettings *settings, const QString &dataDirPath, QWidget *parent = 0);
+  RSSListing(QSettings *settings, const QString &appDataDirPath,
+             const QString &dataDirPath, QWidget *parent = 0);
   ~RSSListing();
 
   bool showSplashScreen_;
@@ -77,8 +78,8 @@ public:
   void setToolBarIconSize(const QString &iconSizeStr);
 
   QSettings *settings_;
-  QString dataDirPath_;
   QString appDataDirPath_;
+  QString dataDirPath_;
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;

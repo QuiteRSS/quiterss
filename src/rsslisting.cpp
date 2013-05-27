@@ -64,9 +64,13 @@ void RSSListing::receiveMessage(const QString& message)
 }
 
 // ---------------------------------------------------------------------------
-RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget *parent)
+RSSListing::RSSListing(QSettings *settings,
+                       const QString &appDataDirPath,
+                       const QString &dataDirPath,
+                       QWidget *parent)
   : QMainWindow(parent)
   , settings_(settings)
+  , appDataDirPath_(appDataDirPath)
   , dataDirPath_(dataDirPath)
   , currentNewsTab(NULL)
   , openingLink_(false)
@@ -83,12 +87,6 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
 {
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
-
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  appDataDirPath_ = QCoreApplication::applicationDirPath();
-#else
-  appDataDirPath_ = DATA_DIR_PATH;
-#endif
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   QString versionDB = initDB(dbFileName_, settings_);
