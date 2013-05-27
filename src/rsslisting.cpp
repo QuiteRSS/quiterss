@@ -6573,7 +6573,7 @@ void RSSListing::findFeedVisible(bool visible)
     findFeeds_->setFocus();
   } else {
     findFeeds_->clear();
-    // ВЫзываем фильтр явно, т.к. слот не вызовется, потому что widget не виден
+    // Call filter explicitly, because invisible widget don't calls it
     setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
   }
 }
