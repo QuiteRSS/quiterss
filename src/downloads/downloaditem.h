@@ -38,9 +38,12 @@
 #include <QtGui>
 #include <QTimer>
 #include <QNetworkReply>
+#include <QAuthenticator>
+#include <QFtp>
 
 class QListWidgetItem;
 class DownloadManager;
+class FtpDownloader;
 
 class DownloadItem : public QWidget
 {
@@ -52,6 +55,7 @@ public:
   ~DownloadItem();
 
   void startDownloading();
+  void startDownloadingFromFtp(const QUrl &url);
   bool isDownloading() { return downloading_; }
   QTime remainingTime() { return remTime_; }
   static QString remaingTimeToString(QTime time);
@@ -83,8 +87,9 @@ private slots:
 private:
   QString fileSizeToString(qint64 size);
 
-  QListWidgetItem* item_;
-  QNetworkReply* reply_;
+  QListWidgetItem *item_;
+  QNetworkReply *reply_;
+  FtpDownloader *ftpDownloader_;
   QString fileName_;
   QTime downloadTimer_;
   QTime remTime_;
@@ -104,6 +109,44 @@ private:
   QProgressBar *progressBar_;
   QFrame *progressFrame_;
   QLabel *downloadInfo_;
+};
+
+class FtpDownloader : public QFtp
+{
+  Q_OBJECT
+
+public:
+  FtpDownloader(QObject* parent = 0);
+
+  void download(const QUrl &url, QIODevice* dev);
+  inline bool isFinished() {return isFinished_;}
+  inline QUrl url() const {return url_;}
+  inline QIODevice* device() const {return dev_;}
+  void setError(QFtp::Error err, const QString &errStr);
+  void abort();
+  QFtp::Error error();
+  QString errorString() const;
+
+private slots:
+  void processCommand(int id, bool err);
+  void onDone(bool err);
+
+private:
+  int ftpLoginId_;
+  bool anonymousLoginChecked_;
+  bool isFinished_;
+  QUrl url_;
+  QIODevice* dev_;
+  QFtp::Error lastError_;
+  QString lastErrorString_;
+
+  static QAuthenticator *ftpAuthenticator(const QUrl &url);
+  static QHash<QString, QAuthenticator*> ftpAuthenticatorsCache_;
+
+signals:
+  void ftpAuthenticationRequierd(const QUrl &, QAuthenticator*);
+  void finished();
+  void errorOccured(QFtp::Error);
 };
 
 #endif // DOWNLOADITEM_H
