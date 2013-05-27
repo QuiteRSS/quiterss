@@ -6070,7 +6070,7 @@ void RSSListing::setStyleApp(QAction *pAct)
         arg(qApp->palette().color(QPalette::Dark).name()));
 }
 
-/** Переключение фокуса между деревом лент, списком новостей и браузером
+/** Switch focus forward between feed tree, news list and browser
  *---------------------------------------------------------------------------*/
 void RSSListing::slotSwitchFocus()
 {
@@ -6083,7 +6083,7 @@ void RSSListing::slotSwitchFocus()
   }
 }
 
-/** Переключение фокуса между деревом лент, списком новостей и браузером
+/** @brief Switch focus backward between feed tree, news list and browser
  *---------------------------------------------------------------------------*/
 void RSSListing::slotSwitchPrevFocus()
 {
@@ -6096,7 +6096,7 @@ void RSSListing::slotSwitchPrevFocus()
   }
 }
 
-/** Открытие ленты в новой вкладке
+/** @brief Open feed in a new tab
  *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenFeedNewTab()
 {
@@ -6110,7 +6110,7 @@ void RSSListing::slotOpenFeedNewTab()
   slotFeedSelected(feedsTreeView_->selectIndex(), true);
 }
 
-/** Закрытие вкладки
+/** @brief Close tab with \a index
  *---------------------------------------------------------------------------*/
 void RSSListing::slotCloseTab(int index)
 {
@@ -6126,7 +6126,7 @@ void RSSListing::slotCloseTab(int index)
   }
 }
 
-/** Переключение между вкладками
+/** @brief Switch to tab with index \a index
  *---------------------------------------------------------------------------*/
 void RSSListing::slotTabCurrentChanged(int index)
 {
@@ -6239,14 +6239,14 @@ void RSSListing::slotTabCurrentChanged(int index)
   setTextTitle(widget->newsTitleLabel_->toolTip(), widget);
 }
 
-/** @brief Перемещение вкладок
+/** @brief Process tab moving
  *----------------------------------------------------------------------------*/
 void RSSListing::slotTabMoved(int fromIndex, int toIndex)
 {
   stackedWidget_->insertWidget(toIndex, stackedWidget_->widget(fromIndex));
 }
 
-/** Включение/отключение отображения колонок в дереве лент
+/** @brief Manage displaying columns in feed tree
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsColumnVisible(QAction *action)
 {
@@ -6257,7 +6257,7 @@ void RSSListing::feedsColumnVisible(QAction *action)
     feedsTreeView_->hideColumn(idx);
 }
 
-/** Установка позиции браузера
+/** @brief Set browser position
  *---------------------------------------------------------------------------*/
 void RSSListing::setBrowserPosition(QAction *action)
 {
@@ -6265,7 +6265,7 @@ void RSSListing::setBrowserPosition(QAction *action)
   currentNewsTab->setBrowserPosition();
 }
 
-/** Создание вкладки только со страницей в браузере
+/** @brief Create tab with browser only (without news list)
  *---------------------------------------------------------------------------*/
 QWebPage *RSSListing::createWebTab()
 {
@@ -6303,7 +6303,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
     if (q.value(3).toString().isEmpty())
       isFeed = false;
 
-    //! Устанавливаем иконку и текст для открытой вкладки
+    // Set icon and title for tab
     QPixmap iconTab;
     QByteArray byteArray = q.value(1).toByteArray();
     if (!isFeed) {
@@ -6349,7 +6349,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
         widget->newsModel_->fetchMore();
     }
 
-    // выбор новости ленты, отображамой ранее
+    // focus feed has displayed before
     int newsRow = -1;
     int newsId = widget->newsModel_->index(newsRow, widget->newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
     if (openingFeedAction_ == 0) {
@@ -6373,7 +6373,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
   }
 }
 
-/** Открытие новости клавишей Enter
+/** @brief Open news using Enter key
  *---------------------------------------------------------------------------*/
 void RSSListing::slotOpenNewsWebView()
 {
