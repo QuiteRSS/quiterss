@@ -29,7 +29,7 @@ class AuthenticationDialog : public Dialog
   Q_OBJECT
 
 public:
-  explicit AuthenticationDialog(QWidget *parent, QNetworkReply *reply,
+  explicit AuthenticationDialog(QWidget *parent, const QUrl &url,
                                 QAuthenticator *auth);
   QCheckBox* save_;
 
