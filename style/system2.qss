@@ -12,18 +12,16 @@
 	background: white;
 }
 
-QTabWidget::pane { /* Рамка виджета со вкладками */
+QTabWidget::pane {
 	background: white;
 	border: 1px solid gray;
 }
 
 QTabWidget::tab-bar {
-	left: 2px; /* сдвигаем вправо на 2px */
+	left: 2px;
 	bottom: -1px;
 }
 
-/* Применяем стиль ко вкладке используя субэлемент управления tab. Обратите внимание на то, что
- оно читается как QTabBar, а _не_ QTabWidget */
 QTabBar::tab {
 	background-color: transparent;
 	border: 1px solid gray;
