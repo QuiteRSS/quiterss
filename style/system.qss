@@ -54,7 +54,7 @@ QHeaderView::up-arrow {
 	padding: 1px;
 }
 
-#categoriesTree::item, #fontTree::item, 
+#categoriesTree::item, #fontTree::item,
 #languageFileList_::item, #filtersTree::item,
 #shortcutTree::item, #labelsTree_::item,
 #colorsTree_::item {
