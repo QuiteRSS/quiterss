@@ -207,7 +207,7 @@ unix {
   LIBS += -lsqlite3
 
   isEmpty(PREFIX) {
-    PREFIX =   /usr
+    PREFIX =   /usr/local
   }
   DATA_DIR = $$PREFIX/share/quiterss
   DEFINES += DATA_DIR_PATH='\'"$$DATA_DIR"\''
