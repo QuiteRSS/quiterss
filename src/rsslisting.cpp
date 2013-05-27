@@ -784,7 +784,7 @@ void RSSListing::createStatusBar()
   statusBar()->addPermanentWidget(fullScreenButton);
   statusBar()->setVisible(true);
 }
-
+// ---------------------------------------------------------------------------
 void RSSListing::createTray()
 {
 #if defined(QT_NO_DEBUG_OUTPUT)
@@ -1556,7 +1556,7 @@ void RSSListing::createShortcut()
 
   listActions_.append(shareGroup_->actions());
 
-  //! Действия меток добавлять последними
+  // Actions for labels do add at the end
   listActions_.append(newsLabelGroup_->actions());
 
   loadActionShortcuts();
@@ -3240,7 +3240,6 @@ void RSSListing::slotUpdateFeed(const QString &feedUrl, const bool &changed, int
 
 /** @brief Update feed view
  *
- *  Слот вызывается по сигналу от UpdateDelayer'а после некоторой задержки
  * Slot is called by UpdateDelayer after some delay
  * @param feedId Feed identifier to update
  * @param changed Flag indicating that feed is updated indeed
@@ -4228,13 +4227,6 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
   }
 }
 
-/**
- * @brief Установка фильтра для отображения лент и их категорий
- * @param pAct тип выбранного фильтра
- * @param clicked Установка фильтра пользователем или вызов функции из программы:
- *    true  - метод вызван непосредственно после действий пользователя
- *    false - метод вызван внутрипрограммно
- ******************************************************************************/
 /** @brief Set filter for viewing feeds and categories
  * @param pAct Filter mode
  * @param clicked Flag to call function after user click or from programm code
@@ -4624,7 +4616,7 @@ void RSSListing::loadSettingsFeeds()
 void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
-  //* Восстановление текущей ленты
+  //* Restore current feed
   QModelIndex feedIndex;
   if (reopenFeedStartup_) {
     int feedId = settings_->value("feedSettings/currentId", 0).toInt();
@@ -4639,7 +4631,7 @@ void RSSListing::restoreFeedsOnStartUp()
   slotUpdateStatus(-1, false);
   recountCategoryCounts();
 
-  //* Open feeds in tabs
+  // Open feeds in tabs
   QSqlQuery q;
   q.exec(QString("SELECT id, parentId FROM feeds WHERE displayOnStartup=1"));
   while(q.next()) {
@@ -6443,7 +6435,7 @@ void RSSListing::slotOpenNewsBackgroundTab()
   currentNewsTab->openNewsNewTab();
 }
 
-/** @brief Копировать ссылку новости
+/** @brief Copy news URL-link
  *----------------------------------------------------------------------------*/
 void RSSListing::slotCopyLinkNews()
 {

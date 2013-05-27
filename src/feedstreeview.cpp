@@ -62,7 +62,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
 /** @brief Find index of next unread (by meaning) feed
  * @details Find unread feed with condition.
  * @param indexCur Index to start search from
- * @param nextCondition Find condition:Условие поиска:
+ * @param nextCondition Find condition:
  *  1 - find previous,
  *  2 - find next,
  *  0 - find next. If fails, find previous (default)
