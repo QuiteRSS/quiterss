@@ -17,6 +17,7 @@
 * ============================================================ */
 
 #include "downloadmanager.h"
+#include "authenticationdialog.h"
 #include "downloaditem.h"
 #include "rsslisting.h"
 
@@ -223,4 +224,15 @@ void DownloadManager::updateInfo()
     info = QString("%1 (%2)").arg(remaining.toString("mm:ss")).arg(remTimes.count());
 
   emit signalUpdateInfo(info);
+}
+
+void DownloadManager::ftpAuthentication(const QUrl &url, QAuthenticator *auth)
+{
+  AuthenticationDialog *authenticationDialog =
+      new AuthenticationDialog(this, url, auth);
+
+  if (!authenticationDialog->save_->isChecked())
+    authenticationDialog->exec();
+
+  delete authenticationDialog;
 }

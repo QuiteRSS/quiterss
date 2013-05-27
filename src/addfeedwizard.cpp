@@ -685,7 +685,7 @@ void AddFeedWizard::newFolder()
 void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
 {
   AuthenticationDialog *authenticationDialog =
-      new AuthenticationDialog(this, reply, auth);
+      new AuthenticationDialog(this, reply->url(), auth);
 
   if (!authenticationDialog->save_->isChecked())
     authenticationDialog->exec();

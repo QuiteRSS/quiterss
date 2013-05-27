@@ -19,7 +19,7 @@
 
 #include <QSqlQuery>
 
-AuthenticationDialog::AuthenticationDialog(QWidget *parent, QNetworkReply *reply,
+AuthenticationDialog::AuthenticationDialog(QWidget *parent, const QUrl &url,
                                            QAuthenticator *auth)
   : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint),
     auth_(auth)
@@ -27,9 +27,9 @@ AuthenticationDialog::AuthenticationDialog(QWidget *parent, QNetworkReply *reply
   save_ = new QCheckBox(tr("Save password"), this);
   save_->setChecked(false);
 
-  server_ = reply->url().host();
+  server_ = url.host();
   if (server_.isEmpty()) {
-      server_ = reply->url().toString();
+      server_ = url.toString();
   }
 
   QSqlQuery q;
@@ -51,7 +51,7 @@ AuthenticationDialog::AuthenticationDialog(QWidget *parent, QNetworkReply *reply
 
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(new QLabel(tr("Server:")), 0, 0);
-    layout->addWidget(new QLabel(reply->url().host()), 0, 1);
+    layout->addWidget(new QLabel(url.host()), 0, 1);
     layout->addWidget(new QLabel(tr("Message:")), 1, 0);
     layout->addWidget(new QLabel(auth->realm()), 1, 1);
     layout->addWidget(new QLabel(tr("Username:")), 2, 0);

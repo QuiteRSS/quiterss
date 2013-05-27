@@ -41,6 +41,9 @@ public:
   NetworkManager *networkManager_;
   QAction *listClaerAct_;
 
+public slots:
+  void ftpAuthentication(const QUrl &url, QAuthenticator *auth);
+
 signals:
   void signalItemCreated(QListWidgetItem* item, DownloadItem* downItem);
   void signalShowDownloads(bool activate);

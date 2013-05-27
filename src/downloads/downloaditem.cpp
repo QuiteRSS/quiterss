@@ -50,6 +50,7 @@ DownloadItem::DownloadItem(QListWidgetItem *item,
   : QWidget()
   , item_(item)
   , reply_(reply)
+  , ftpDownloader_(0)
   , fileName_(fileName)
   , downloadUrl_(reply->url())
   , manager_(manager)
@@ -123,7 +124,16 @@ void DownloadItem::startDownloading()
 {
   QUrl locationHeader = reply_->header(QNetworkRequest::LocationHeader).toUrl();
 
-  if (locationHeader.isValid()) {
+  bool hasFtpUrlInHeader = locationHeader.isValid() && (locationHeader.scheme() == "ftp");
+  if (reply_->url().scheme() == "ftp" || hasFtpUrlInHeader) {
+    QUrl url = hasFtpUrlInHeader ? locationHeader : reply_->url();
+    reply_->abort();
+    reply_->deleteLater();
+    reply_ = 0;
+
+    startDownloadingFromFtp(url);
+    return;
+  } else if (locationHeader.isValid()) {
     reply_->abort();
     reply_->deleteLater();
 
@@ -144,6 +154,33 @@ void DownloadItem::startDownloading()
 
   if (reply_->error() != QNetworkReply::NoError) {
     stop(false);
+    error();
+  }
+}
+
+void DownloadItem::startDownloadingFromFtp(const QUrl &url)
+{
+  if (!outputFile_.isOpen() && !outputFile_.open(QIODevice::WriteOnly)) {
+    stop(false);
+    downloadInfo_->setText(tr("Error: Cannot write to file!"));
+    return;
+  }
+
+  ftpDownloader_ = new FtpDownloader(this);
+  connect(ftpDownloader_, SIGNAL(finished()), this, SLOT(finished()));
+  connect(ftpDownloader_, SIGNAL(dataTransferProgress(qint64, qint64)),
+          this, SLOT(downloadProgress(qint64, qint64)));
+  connect(ftpDownloader_, SIGNAL(errorOccured(QFtp::Error)), this, SLOT(error()));
+  connect(ftpDownloader_, SIGNAL(ftpAuthenticationRequierd(const QUrl &, QAuthenticator*)),
+          manager_, SLOT(ftpAuthentication(const QUrl &, QAuthenticator*)));
+
+  ftpDownloader_->download(url, &outputFile_);
+  downloading_ = true;
+  updateInfoTimer_.start(1000);
+
+  QTimer::singleShot(200, this, SLOT(updateDownload()));
+
+  if (ftpDownloader_->error() != QFtp::NoError) {
     error();
   }
 }
@@ -383,4 +420,138 @@ void DownloadItem::updateDownload()
     downloadProgress(0, 0);
     finished();
   }
+}
+
+QHash<QString, QAuthenticator*> FtpDownloader::ftpAuthenticatorsCache_ = QHash<QString, QAuthenticator*>();
+
+FtpDownloader::FtpDownloader(QObject* parent)
+  : QFtp(parent)
+  , ftpLoginId_(-1)
+  , anonymousLoginChecked_(false)
+  , isFinished_(false)
+  , url_(QUrl())
+  , dev_(0)
+  , lastError_(QFtp::NoError)
+{
+  connect(this, SIGNAL(commandFinished(int, bool)), this, SLOT(processCommand(int, bool)));
+  connect(this, SIGNAL(done(bool)), this, SLOT(onDone(bool)));
+}
+
+void FtpDownloader::download(const QUrl &url, QIODevice* dev)
+{
+  url_ = url;
+  dev_ = dev;
+  QString server = url_.host();
+  if (server.isEmpty()) {
+    server = url_.toString();
+  }
+  int port = 21;
+  if (url_.port() != -1) {
+    port = url_.port();
+  }
+
+  connectToHost(server, port);
+}
+
+void FtpDownloader::setError(QFtp::Error err, const QString &errStr)
+{
+  lastError_ = err;
+  lastErrorString_ = errStr;
+}
+
+void FtpDownloader::abort()
+{
+  setError(QFtp::UnknownError, tr("Canceled!"));
+  QFtp::abort();
+}
+
+QFtp::Error FtpDownloader::error()
+{
+  if (lastError_ != QFtp::NoError && QFtp::error() == QFtp::NoError) {
+    return lastError_;
+  } else {
+    return QFtp::error();
+  }
+}
+
+QString FtpDownloader::errorString() const
+{
+  if (!lastErrorString_.isEmpty()
+      && lastError_ != QFtp::NoError
+      && QFtp::error() == QFtp::NoError) {
+    return lastErrorString_;
+  } else {
+    return QFtp::errorString();
+  }
+}
+
+void FtpDownloader::processCommand(int id, bool err)
+{
+  if (!url_.isValid() || url_.isEmpty() || !dev_) {
+    abort();
+    return;
+  }
+
+  if (err) {
+    if (ftpLoginId_ == id) {
+      if (!anonymousLoginChecked_) {
+        anonymousLoginChecked_ = true;
+        ftpAuthenticator(url_)->setUser(QString());
+        ftpAuthenticator(url_)->setPassword(QString());
+        ftpLoginId_ = login();
+        return;
+      }
+      emit ftpAuthenticationRequierd(url_, ftpAuthenticator(url_));
+      ftpLoginId_ = login(ftpAuthenticator(url_)->user(), ftpAuthenticator(url_)->password());
+      return;
+    }
+    abort();
+    return;
+  }
+
+  switch (currentCommand()) {
+  case QFtp::ConnectToHost:
+    if (!anonymousLoginChecked_) {
+      anonymousLoginChecked_ = ftpAuthenticator(url_)->user().isEmpty()
+          && ftpAuthenticator(url_)->password().isEmpty();
+    }
+    ftpLoginId_ = login(ftpAuthenticator(url_)->user(), ftpAuthenticator(url_)->password());
+    break;
+
+  case QFtp::Login:
+    get(url_.path(), dev_);
+    break;
+  default:
+    ;
+  }
+}
+
+void FtpDownloader::onDone(bool err)
+{
+  disconnect(this, SIGNAL(done(bool)), this, SLOT(onDone(bool)));
+  close();
+  ftpLoginId_ = -1;
+  if (err || lastError_ != QFtp::NoError) {
+    emit errorOccured(error());
+  }
+  else {
+    isFinished_ = true;
+    emit finished();
+  }
+}
+
+QAuthenticator *FtpDownloader::ftpAuthenticator(const QUrl &url)
+{
+  QString key = url.host();
+  if (key.isEmpty()) {
+    key = url.toString();
+  }
+  if (!ftpAuthenticatorsCache_.contains(key) || !ftpAuthenticatorsCache_.value(key, 0)) {
+    QAuthenticator* auth = new QAuthenticator();
+    auth->setUser(url.userName());
+    auth->setPassword(url.password());
+    ftpAuthenticatorsCache_.insert(key, auth);
+  }
+
+  return ftpAuthenticatorsCache_.value(key);
 }
