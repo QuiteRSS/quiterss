@@ -92,7 +92,7 @@ int main(int argc, char **argv)
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   appDataDirPath = QCoreApplication::applicationDirPath();
 #else
-  appDataDirPath = QString("/usr/share/quiterss");
+  appDataDirPath = DATA_DIR_PATH;
 #endif
 
   QString styleActionStr = settings_->value(

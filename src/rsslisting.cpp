@@ -87,7 +87,7 @@ RSSListing::RSSListing(QSettings *settings, const QString &dataDirPath, QWidget 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   appDataDirPath_ = QCoreApplication::applicationDirPath();
 #else
-  appDataDirPath_ = QString("/usr/share/quiterss");
+  appDataDirPath_ = DATA_DIR_PATH;
 #endif
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
@@ -6443,7 +6443,7 @@ void RSSListing::slotCopyLinkNews()
 }
 
 /** @brief Reload full model
- * @details Performs: reload model, reset proxy model, restore focus 
+ * @details Performs: reload model, reset proxy model, restore focus
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsModelReload(bool checkFilter)
 {

@@ -209,14 +209,16 @@ unix {
   isEmpty(PREFIX) {
     PREFIX =   /usr
   }
+  DATA_DIR = $$PREFIX/share/quiterss
+  DEFINES += DATA_DIR_PATH='\'"$$DATA_DIR"\''
 
-  target.path =  $$PREFIX/bin
+  target.path =  $$quote($$PREFIX/bin)
 
   desktop.files = quiterss.desktop
-  desktop.path =  $$PREFIX/share/applications
+  desktop.path =  $$quote($$PREFIX/share/applications)
 
   target1.files = images/48x48/quiterss.png
-  target1.path =  $$PREFIX/share/pixmaps
+  target1.path =  $$quote($$PREFIX/share/pixmaps)
 
   icon_16.files =  images/16x16/quiterss.png
   icon_32.files =  images/32x32/quiterss.png
@@ -224,22 +226,22 @@ unix {
   icon_64.files =  images/64x64/quiterss.png
   icon_128.files = images/128x128/quiterss.png
   icon_256.files = images/256x256/quiterss.png
-  icon_16.path =  $$PREFIX/share/icons/hicolor/16x16/apps
-  icon_32.path =  $$PREFIX/share/icons/hicolor/32x32/apps
-  icon_48.path =  $$PREFIX/share/icons/hicolor/48x48/apps
-  icon_64.path =  $$PREFIX/share/icons/hicolor/64x64/apps
-  icon_128.path = $$PREFIX/share/icons/hicolor/128x128/apps
-  icon_256.path = $$PREFIX/share/icons/hicolor/256x256/apps
+  icon_16.path =  $$quote($$PREFIX/share/icons/hicolor/16x16/apps)
+  icon_32.path =  $$quote($$PREFIX/share/icons/hicolor/32x32/apps)
+  icon_48.path =  $$quote($$PREFIX/share/icons/hicolor/48x48/apps)
+  icon_64.path =  $$quote($$PREFIX/share/icons/hicolor/64x64/apps)
+  icon_128.path = $$quote($$PREFIX/share/icons/hicolor/128x128/apps)
+  icon_256.path = $$quote($$PREFIX/share/icons/hicolor/256x256/apps)
 
-  translations.files = $$DESTDIR/lang/*.qm
-  translations.path =  $$PREFIX/share/quiterss/lang
+  translations.files = $$quote($$DESTDIR/lang/)*.qm
+  translations.path =  $$quote($$DATA_DIR/lang)
   translations.CONFIG += no_check_exist
 
   sound.files = sound/*.wav
-  sound.path = $$PREFIX/share/quiterss/sound
+  sound.path = $$quote($$DATA_DIR/sound)
 
   style.files = style/*.*
-  style.path = $$PREFIX/share/quiterss/style
+  style.path = $$quote($$DATA_DIR/style)
 
   INSTALLS += target desktop target1
   INSTALLS += icon_16 icon_32 icon_48 icon_64 icon_128 icon_256 \
