@@ -15,100 +15,100 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-/*! \file db_func.cpp *********************************************************
- * Функции для работы с файлом базы
- * \date created 17.04.2012
- ******************************************************************************/
+/** @file db_func.cpp
+ * DB file handling functions
+ * @date created 17.04.2012
+ *---------------------------------------------------------------------------*/
 #include <QtCore>
 #include <QtSql>
 
-QString kDbName    = "feeds.db";
-QString kDbVersion = "0.12.1";
+QString kDbName    = "feeds.db";  ///< DB filename
+QString kDbVersion = "0.12.1";    ///< Current DB version
 
 const QString kCreateFeedsTableQuery_v0_1_0(
     "CREATE TABLE feeds("
     "id integer primary key, "
-    "text varchar, "             // Текст ленты (сейчас заменяет имя)
-    "title varchar, "            // Имя ленты
-    "description varchar, "      // Описание ленты
-    "xmlUrl varchar, "           // интернет-адрес самой ленты
-    "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
-    "language varchar, "         // язык, на котором написана лента
-    "copyrights varchar, "       // права
-    "author_name varchar, "      // автор лента: имя
-    "author_email varchar, "     //              е-мейл
-    "author_uri varchar, "       //              личная страница
-    "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
-    "pubdate varchar, "          // Дата публикации содержимого ленты
-    "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
-    "category varchar, "         // категории содержимого, освещаемые в ленте
-    "contributor varchar, "      // участник (через табы)
-    "generator varchar, "        // программа, используемая для генерации содержимого
-    "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
-    "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
+    "text varchar, "             // Feed text (replaces title at the moment)
+    "title varchar, "            // Feed title
+    "description varchar, "      // Feed description
+    "xmlUrl varchar, "           // URL-link of the feed
+    "htmlUrl varchar, "          // URL-link site, that contains the feed
+    "language varchar, "         // Feed language
+    "copyrights varchar, "       // Feed copyrights
+    "author_name varchar, "      // Feed author: name
+    "author_email varchar, "     //              e-mail
+    "author_uri varchar, "       //              personal web page
+    "webMaster varchar, "        // e-mail of feed's technical support
+    "pubdate varchar, "          // Feed publication timestamp
+    "lastBuildDate varchar, "    // Timestamp of last modification of the feed
+    "category varchar, "         // Categories of content of the feed
+    "contributor varchar, "      // Feed contributors (tab separated)
+    "generator varchar, "        // Application has used to generate the feed
+    "docs varchar, "             // URL-link to document describing RSS-standart
+    "cloud_domain varchar, "     // Web-service providing rssCloud interface
     "cloud_port varchar, "       //   .
     "cloud_path varchar, "       //   .
     "cloud_procedure varchar, "  //   .
     "cloud_protocal varchar, "   //   .
-    "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
-    "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
-    "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
-    "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
-    "unread integer, "           // количество непрочитанных новостей
-    "newCount integer, "         // количество новых новостей
-    "currentNews integer, "      // отображаемая новость
-    "label varchar"              // выставляется пользователем
+    "ttl integer, "              // Time in minutes the feed can be cached
+    "skipHours varchar, "        // Tip for aggregators, not to update the feed (specify hours of the day that can be skipped)
+    "skipDays varchar, "         // Tip for aggregators, not to update the feed (specify day of the week that can be skipped)
+    "image blob, "               // gif, jpeg, png picture, that can be associated with the feed
+    "unread integer, "           // number of unread news
+    "newCount integer, "         // number of new news
+    "currentNews integer, "      // current displayed news
+    "label varchar"              // user purpose label(s)
     ")");
 
 const QString kCreateFeedsTableQuery_v0_9_0(
     "CREATE TABLE feeds("
     "id integer primary key, "
-    "text varchar, "             // Текст ленты (сейчас заменяет имя)
-    "title varchar, "            // Имя ленты
-    "description varchar, "      // Описание ленты
-    "xmlUrl varchar, "           // интернет-адрес самой ленты
-    "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
-    "language varchar, "         // язык, на котором написана лента
-    "copyrights varchar, "       // права
-    "author_name varchar, "      // автор лента: имя
-    "author_email varchar, "     //              е-мейл
-    "author_uri varchar, "       //              личная страница
-    "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
-    "pubdate varchar, "          // Дата публикации содержимого ленты
-    "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
-    "category varchar, "         // категории содержимого, освещаемые в ленте
-    "contributor varchar, "      // участник (через табы)
-    "generator varchar, "        // программа, используемая для генерации содержимого
-    "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
-    "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
+    "text varchar, "             // Feed text (replaces title at the moment)
+    "title varchar, "            // Feed title
+    "description varchar, "      // Feed description
+    "xmlUrl varchar, "           // URL-link of the feed
+    "htmlUrl varchar, "          // URL-link site, that contains the feed
+    "language varchar, "         // Feed language
+    "copyrights varchar, "       // Feed copyrights
+    "author_name varchar, "      // Feed author: name
+    "author_email varchar, "     //              e-mail
+    "author_uri varchar, "       //              personal web page
+    "webMaster varchar, "        // e-mail of feed's technical support
+    "pubdate varchar, "          // Feed publication timestamp
+    "lastBuildDate varchar, "    // Timestamp of last modification of the feed
+    "category varchar, "         // Categories of content of the feed
+    "contributor varchar, "      // Feed contributors (tab separated)
+    "generator varchar, "        // Application has used to generate the feed
+    "docs varchar, "             // URL-link to document describing RSS-standart
+    "cloud_domain varchar, "     // Web-service providing rssCloud interface
     "cloud_port varchar, "       //   .
     "cloud_path varchar, "       //   .
     "cloud_procedure varchar, "  //   .
     "cloud_protocal varchar, "   //   .
-    "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
-    "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
-    "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
-    "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
-    "unread integer, "           // количество непрочитанных новостей
-    "newCount integer, "         // количество новых новостей
-    "currentNews integer, "      // отображаемая новость
-    "label varchar, "            // метка. выставляется пользователем
+    "ttl integer, "              // Time in minutes the feed can be cached
+    "skipHours varchar, "        // Tip for aggregators, not to update the feed (specify hours of the day that can be skipped)
+    "skipDays varchar, "         // Tip for aggregators, not to update the feed (specify day of the week that can be skipped)
+    "image blob, "               // gif, jpeg, png picture, that can be associated with the feed
+    "unread integer, "           // number of unread news
+    "newCount integer, "         // number of new news
+    "currentNews integer, "      // current displayed news
+    "label varchar, "            // user purpose label(s)
     // -- added in v0.9.0 --
-    "undeleteCount integer, "         // количество всех новостей (не помеченныъ удалёнными)
-    "tags varchar, "             // теги. выставляются пользователем
+    "undeleteCount integer, "    // number of all news (not marked deleted)
+    "tags varchar, "             // user purpose tags
     // --- Categories ---
-    "hasChildren int, "  // наличие потомков
-    "parentId int, "     // id родителя
-    "rowToParent int, "  // номер строки относительно родителя
+    "hasChildren int, "  // Children presence
+    "parentId int, "     // parent id of the feed
+    "rowToParent int, "  // sequence number relative to parent
     // --- RSSowl::General ---
-    "updateIntervalEnable int, "    // включение автообновления
-    "updateInterval int, "          // интервал обновления
-    "updateIntervalType varchar, "  // тип интервала (минуты, часы, ...)
-    "updateOnStartup int, "         // обновлять при запуске
-    "displayOnStartup int, "        // показывать ленту в отдельном табе при запуске
+    "updateIntervalEnable int, "    // auto update enable flag
+    "updateInterval int, "          // auto update interval
+    "updateIntervalType varchar, "  // auto update interval type(minutes, hours,...)
+    "updateOnStartup int, "         // update the feed on aplication startup
+    "displayOnStartup int, "        // show the feed in separate tab in application startup
     // --- RSSowl::Reading ---
-    "markReadAfterSecondsEnable int, "    // задействовать таймер "прочитанности"
-    "markReadAfterSeconds int, "          // количество секунд, через которое новость считается прочитанной
+    "markReadAfterSecondsEnable int, "    // Enable "Read" timer
+    "markReadAfterSeconds int, "          // Number of seconds that must elapse to mark news "Read"
     "markReadInNewspaper int, "           // помечать прочитанной, если читается через "газету"
     "markDisplayedOnSwitchingFeed int, "  // помечать прочитанной, после переключения на другую ленту
     "markDisplayedOnClosingTab int, "     // помечать прочитанной, после закрытия таба
@@ -144,52 +144,52 @@ const QString kCreateFeedsTableQuery_v0_9_0(
 const QString kCreateFeedsTableQuery(
     "CREATE TABLE feeds("
     "id integer primary key, "
-    "text varchar, "             // Текст ленты (сейчас заменяет имя)
-    "title varchar, "            // Имя ленты
-    "description varchar, "      // Описание ленты
-    "xmlUrl varchar, "           // интернет-адрес самой ленты
-    "htmlUrl varchar, "          // интернет-адрес сайта, с которого забираем ленту
-    "language varchar, "         // язык, на котором написана лента
-    "copyrights varchar, "       // права
-    "author_name varchar, "      // автор лента: имя
-    "author_email varchar, "     //              е-мейл
-    "author_uri varchar, "       //              личная страница
-    "webMaster varchar, "        // е-мейл адрес ответственного за технические неполядки ленты
-    "pubdate varchar, "          // Дата публикации содержимого ленты
-    "lastBuildDate varchar, "    // Последняя дата изменения содержимого ленты
-    "category varchar, "         // категории содержимого, освещаемые в ленте
-    "contributor varchar, "      // участник (через табы)
-    "generator varchar, "        // программа, используемая для генерации содержимого
-    "docs varchar, "             // ссылка на документ, описывающий стандарт RSS
-    "cloud_domain varchar, "     // Веб-сервис, предоставляющий rssCloud интерфейс
+    "text varchar, "             // Feed text (replaces title at the moment)
+    "title varchar, "            // Feed title
+    "description varchar, "      // Feed description
+    "xmlUrl varchar, "           // URL-link of the feed
+    "htmlUrl varchar, "          // URL-link site, that contains the feed
+    "language varchar, "         // Feed language
+    "copyrights varchar, "       // Feed copyrights
+    "author_name varchar, "      // Feed author: name
+    "author_email varchar, "     //              e-mail
+    "author_uri varchar, "       //              personal web page
+    "webMaster varchar, "        // e-mail of feed's technical support
+    "pubdate varchar, "          // Feed publication timestamp
+    "lastBuildDate varchar, "    // Timestamp of last modification of the feed
+    "category varchar, "         // Categories of content of the feed
+    "contributor varchar, "      // Feed contributors (tab separated)
+    "generator varchar, "        // Application has used to generate the feed
+    "docs varchar, "             // URL-link to document describing RSS-standart
+    "cloud_domain varchar, "     // Web-service providing rssCloud interface
     "cloud_port varchar, "       //   .
     "cloud_path varchar, "       //   .
     "cloud_procedure varchar, "  //   .
     "cloud_protocal varchar, "   //   .
-    "ttl integer, "              // Время в минутах, в течение которого канал может быть кеширован
-    "skipHours varchar, "        // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются часы)
-    "skipDays varchar, "         // Подсказка аггрегаторам, когда не нужно обновлять ленту (указываются дни недели)
-    "image blob, "               // gif, jpeg, png рисунок, который может быть ассоциирован с каналом
-    "unread integer, "           // количество непрочитанных новостей
-    "newCount integer, "         // количество новых новостей
-    "currentNews integer, "      // отображаемая новость
-    "label varchar, "            // метка. выставляется пользователем
+    "ttl integer, "              // Time in minutes the feed can be cached
+    "skipHours varchar, "        // Tip for aggregators, not to update the feed (specify hours of the day that can be skipped)
+    "skipDays varchar, "         // Tip for aggregators, not to update the feed (specify day of the week that can be skipped)
+    "image blob, "               // gif, jpeg, png picture, that can be associated with the feed
+    "unread integer, "           // number of unread news
+    "newCount integer, "         // number of new news
+    "currentNews integer, "      // current displayed news
+    "label varchar, "            // user purpose label(s)
     // -- added in v0.9.0 --
-    "undeleteCount integer, "    // количество всех новостей (не помеченныъ удалёнными)
-    "tags varchar, "             // теги. выставляются пользователем
+    "undeleteCount integer, "    // number of all news (not marked deleted)
+    "tags varchar, "             // user purpose tags
     // --- Categories ---
-    "hasChildren integer default 0, "  // наличие потомков. По умолчанию - нет
-    "parentId integer default 0, "     // id родителя. По умолчанию - корень дерева
-    "rowToParent integer, "            // номер строки относительно родителя
+    "hasChildren integer default 0, "  // Children presence. По умолчанию - нет
+    "parentId integer default 0, "     // parent id of the feed. По умолчанию - корень дерева
+    "rowToParent integer, "            // sequence number relative to parent
     // --- RSSowl::General ---
-    "updateIntervalEnable int, "    // включение автообновления
-    "updateInterval int, "          // интервал обновления
-    "updateIntervalType varchar, "  // тип интервала (минуты, часы, ...)
-    "updateOnStartup int, "         // обновлять при запуске
-    "displayOnStartup int, "        // показывать ленту в отдельном табе при запуске
+    "updateIntervalEnable int, "    // auto update enable flag
+    "updateInterval int, "          // auto update interval
+    "updateIntervalType varchar, "  // auto update interval type(minutes, hours,...)
+    "updateOnStartup int, "         // update the feed on aplication startup
+    "displayOnStartup int, "        // show the feed in separate tab in application startup
     // --- RSSowl::Reading ---
-    "markReadAfterSecondsEnable int, "    // задействовать таймер "прочитанности"
-    "markReadAfterSeconds int, "          // количество секунд, через которое новость считается прочитанной
+    "markReadAfterSecondsEnable int, "    // Enable "Read" timer
+    "markReadAfterSeconds int, "          // Number of seconds that must elapse to mark news "Read"
     "markReadInNewspaper int, "           // помечать прочитанной, если читается через "газету"
     "markDisplayedOnSwitchingFeed int, "  // помечать прочитанной, после переключения на другую ленту
     "markDisplayedOnClosingTab int, "     // помечать прочитанной, после закрытия таба
@@ -229,8 +229,8 @@ const QString kCreateFeedsTableQuery(
 
     // -- changed in v0.10.0 -- исправлено в тексте выше
     // "displayEmbeddedImages integer default 1, "  // отображать изображения встроенные в новость
-    // "hasChildren integer default 0, "  // наличие потомков. По умолчанию - нет
-    // "parentId integer default 0, "     // id родителя. По умолчанию - корень дерева
+    // "hasChildren integer default 0, "  // Children presence. По умолчанию - нет
+    // "parentId integer default 0, "     // parent id of the feed. По умолчанию - корень дерева
     ")");
 
 const QString kCreateNewsTableQuery_v0_1_0(
@@ -249,7 +249,7 @@ const QString kCreateNewsTableQuery_v0_1_0(
     "author_uri varchar, "                 // страничка автора (atom)
     "author_email varchar, "               // почта автора (atom)
     "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-    "label varchar, "                      // метка (выставляется пользователем)
+    "label varchar, "                      // метка (user purpose label(s))
     "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
     "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
     "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
@@ -287,7 +287,7 @@ const QString kCreateNewsTableQuery(
     "author_uri varchar, "                 // страничка автора (atom)
     "author_email varchar, "               // почта автора (atom)
     "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-    "label varchar, "                      // метка (выставляется пользователем)
+    "label varchar, "                      // метка (user purpose label(s))
     "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
     "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
     "starred integer default 0, "          // Флаг "отличная". Устанавливается пользователем
@@ -354,7 +354,7 @@ const QString kCreateLabelsTable(
     "color_text varchar, "      // цвет текста новости в списке
     "color_bg varchar, "        // цвет фона новости в списке
     "num integer, "             // номер по порядку, для сортировки
-    "currentNews integer "      // отображаемая новость
+    "currentNews integer "      // current displayed news
     ")");
 
 const QString kCreatePasswordsTable(
