@@ -15,23 +15,26 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-/*! \file db_func.h ***********************************************************/
+
+/** @file db_func.h 
+ *---------------------------------------------------------------------------*/
 #ifndef DB_FUNC_H
 #define DB_FUNC_H
 
 extern QString kDbName;
 extern QString kDbVersion;
 
-/*! Инициализация файла базы. Если базы нет то база создаётся по шаблону.
- * Если база старой версии, то она преобразовывается к актуальной версии
- * \param[in] dbFileName путь файла базы
- ******************************************************************************/
+/** @brief Initialize DB-file
+ *
+ * Create DB from template if absent
+ * Automatically update DB to current version
+ * @param[in] dbFileName Filepath of DB-file
+ *---------------------------------------------------------------------------*/
 QString initDB(const QString &dbFileName, QSettings *settings);
 
-/** @brief Применение пользовательских фильтров
- * @param db - база данных
- * @param feedId - Id ленты
- * @param filterId - Id конкретного фильтра
+/** @brief Apply user filters
+ * @param feedId - Feed Id
+ * @param filterId - Id of particular filter
  *---------------------------------------------------------------------------*/
 void setUserFilter(int feedId, int filterId = -1);
 
