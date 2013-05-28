@@ -68,7 +68,7 @@ Version 0.12.3 (16 Mar 2013)
 	* Added: Option for news' list "Alternate row's background color" (Options->Feeds->General->...)
 	* Added: Ability to open several news in external browser
 	* Added: Ability to open several news in tabs
-	* Added: News filters: "Show for Last Day" и "Show for Last 7 Days"
+	* Added: News filters: "Show for Last Day" and "Show for Last 7 Days"
 	* Added: Notification window: Button to open news in external browser
 	* Added: Ability to hide feed's indentation in tree ("Feeds->Show Indentation")
 	* Added: Ability to customize toolbar ("View->Customize toolbar->...")
@@ -152,7 +152,7 @@ Version 0.11.0 (10 Dec 2012)
 	* Fixed: Feed opened in own tab duplicates in default tab
 	* Fixed: Updating link containing special chars
 	* Fixed: Shortcuts in full screen mode
-	* Fixed: Disbling experimental option "Open link in external browser in background"
+	* Fixed: Disabling experimental option "Open link in external browser in background"
 
 Version 0.10.3 (17 Oct 2012)
 	* Added: Full screen mode
@@ -288,11 +288,11 @@ Version 0.8.5 (26 Mar 2012)
 
 Version 0.8.4 (21 Mar 2012)
 	* Added: Splash screen
-	* Added: Chech for updates at startup
+	* Added: Check for updates at startup
 	* Added: Ability to set update feeds interval in hours
 	* Changed: GUI. Tune icons
 	* Changed: GUI. Correct browser panel
-	* Changed: Improve switch bitween feeds and news
+	* Changed: Improve switch between feeds and news
 	* Changed: Improve several news simultaneously
 	* Fixed: On some Windows systems browser don't display images
 	* Fixed: Improve cursor when select news, if news more than 256
@@ -325,13 +325,13 @@ Version 0.8.1 (6 Feb 2012)
 	* Fixed: Cyrillic letters in application path
 	* Fixed: SQLite for Qt 4.8.0
 	* Fixed: NetworkManager move to his own thread
-	* Fixed: News list don't scrool while click on column "read/unread" if cursor is out of view
+	* Fixed: News list don't scroll while click on column "read/unread" if cursor is out of view
 	* Fixed: Request url queues while update feeds
 	* Fixed: Parsing "alternate" url of the news of Atom-feeds
 	* Fixed: TrayMenu is not appear sometimes
 
 Version 0.8.0 (31 Jan 2012)
-	* Added: Sumiltaneous update up to 8 feeds
+	* Added: Simultaneous update up to 8 feeds
 
 Version 0.7.6 (28 Jan 2012)
 	* ...Old release. No need to document it ;)

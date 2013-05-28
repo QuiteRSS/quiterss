@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.12.5+</B> (хх May 2013)
+<P><B>Version 0.12.5+</B> (xx May 2013)
 <UL>
 <LI>Main: Increase application performance</LI>
 <LI>Added: Individual feed update interval (feed properties)</LI>
@@ -35,7 +35,7 @@
   where are no more unread news</LI>
 </UL>
 <!---------------------------------------------------------------------------->
-<P><B>Verion 0.12.5</B> (22 Apr 2013)
+<P><B>Version 0.12.5</B> (22 Apr 2013)
 <UL>
 <LI>Added: Disk cache and pages cache for embedded browser</LI>
 <LI>Added: Ability sorted feeds by name ("Feeds->Sort by Name")</LI>
@@ -116,7 +116,7 @@
 <LI>Added: Option for news' list "Alternate row's background color" (Options->Feeds->General->...)</LI>
 <LI>Added: Ability to open several news in external browser</LI>
 <LI>Added: Ability to open several news in tabs</LI>
-<LI>Added: News filters: "Show for Last Day" и "Show for Last 7 Days"</LI>
+<LI>Added: News filters: "Show for Last Day" and "Show for Last 7 Days"</LI>
 <LI>Added: Notification window: Button to open news in external browser</LI>
 <LI>Added: Ability to hide feed's indentation in tree ("Feeds->Show Indentation")</LI>
 <LI>Added: Ability to customize toolbar ("View->Customize toolbar->...")</LI>
