@@ -79,11 +79,11 @@ int main(int argc, char **argv)
     d.mkpath(dataDirPath);
   }
 #else
-  settings_ = new QSettings(QSettings::IniFormat, QSettings::UserScope,
+  settings = new QSettings(QSettings::IniFormat, QSettings::UserScope,
                             QCoreApplication::organizationName(), QCoreApplication::applicationName());
-  dataDirPath_ = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-  QDir d(dataDirPath_);
-  d.mkpath(dataDirPath_);
+  dataDirPath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+  QDir d(dataDirPath);
+  d.mkpath(dataDirPath);
 #endif
 
   bool  showSplashScreen_ = settings->value("Settings/showSplashScreen", true).toBool();
