@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -531,10 +529,6 @@
         <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
         <source>Load Feed Title</source>
         <translation>Загрузить заголовок ленты</translation>
-    </message>
-    <message>
-        <source>Automatically update the feeds every</source>
-        <translation type="obsolete">Автоматическое обновление лент каждые</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
@@ -1611,14 +1605,6 @@
         <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Изменить поведение действия &apos;Следующая непрочитанная новость&apos;</translation>
-    </message>
-    <message>
-        <source>Not delete starred news</source>
-        <translation type="obsolete">Не удалять новости отмеченные звёздочкой</translation>
-    </message>
-    <message>
-        <source>Not delete labeled news</source>
-        <translation type="obsolete">Не удалять новости с метками</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>

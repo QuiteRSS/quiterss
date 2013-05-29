@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="sr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -533,10 +531,6 @@
         <translation>Унос наслова канала</translation>
     </message>
     <message>
-        <source>Automatically update the feeds every</source>
-        <translation type="obsolete">Ауто ажурирај канале свака</translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>seconds</source>
         <translation>секунди</translation>
@@ -639,7 +633,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -1611,14 +1605,6 @@
         <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Промени рад &apos;Даља нечитана вест&apos;</translation>
-    </message>
-    <message>
-        <source>Not delete starred news</source>
-        <translation type="obsolete">Не бриши вести са звездицом</translation>
-    </message>
-    <message>
-        <source>Not delete labeled news</source>
-        <translation type="obsolete">Не бриши вести са етикетом</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
