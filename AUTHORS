@@ -10,13 +10,15 @@ Shilyaev Egor <egor.shilyaev@gmail.com>
 
 ======== Assistants ========
 
+Nikoli <nikoli@lavabit.com>
+  * Different corrections and additions
+
 Kalinin Andrey <mikhalych.kalinin@gmail.com>
   * Different corrections and additions
 
 Elbert Pol
   * Testing
   * OS/2 package maintainer
-  * Dutch translations
 
 TI_Eugene
   * Testing
@@ -24,13 +26,6 @@ TI_Eugene
 
 Glad Deschrijver <glad.deschrijver@gmail.com>
   * Testing
-  * French translations
-
-ZityiSoft <zityisoft@gmail.com>
-  * Hungarian translations
-
-Åke Engelbrektson <eson57@gmail.com>
-  * Swedish translations
 
 Korolev Andrey aka Zavulon <zavulon@mail15.com>
   * Testing
@@ -41,59 +36,70 @@ Elohin Igor' <maintlab@gmail.com>
 Vascom
   * Fedora package maintainer
 
-Ozzii <ozzii.translate@gmail.com>
-  * Serbian translations
-
 Sergey Borisov aka NaturKeks
   * Testing
-
-H.Mohamadi
-  * Farsi translations
-
-ZeroWis <lightflash@hotmail.it>
-  * Italian translations
-
-Cesar Muñoz <csarg@live.com>
-  * Spanish translations
-
-Lyudmila Kremova <alis-dcm@yandex.ru>
-  * German translations
 
 Andrey Palkin
   * Ubuntu package maintainer
 
-Matej Szendi <matej.szendi@gmail.com>
-  * Czech translations
+======== Translators ========
 
-Сергій Левицький <leon21sl@myopera.com>
-  * Ukrainian translations
+Dutch [NL]
+  * Elbert Pol
 
-Piotr Pecka <piotr.pecka@outlook.com>
-  * Polish translations
+French [FR]
+  * Glad Deschrijver <glad.deschrijver@gmail.com>
 
-Masato Hashimoto <cabezon.hashimoto@gmail.com>
-  * Japanese translations
+Hungarian [HU]
+  * ZityiSoft <zityisoft@gmail.com>
 
-Yonghee Lee <v4321v@gmail.com>
-  * Korean translations
+Swedish [SV]
+  * Åke Engelbrektson <eson57@gmail.com>
 
-wwj402
-  * Chinese (China) translations
+Serbian [SR]
+  * Ozzii <ozzii.translate@gmail.com>
 
-Hulen <shift0106@hotmail.com>
-  * Chinese (Taiwan) translations
+Farsi [FA]
+  * H.Mohamadi
 
-Dimitris Siakavelis
-  * Greek (Greece) translations
+Italian [IT]
+  * ZeroWis <lightflash@hotmail.it>
 
-keturidu
-  * Lithuanian translations
+Spanish [ES]
+  * Cesar Muñoz <csarg@live.com>
 
-Marcos M. Ribeiro
-  * Portuguese (Brazil) translations
+German [DE]
+  * Lyudmila Kremova <alis-dcm@yandex.ru>
 
-Hasan Akgöz
-  * Turkish translations
+Czech [CS]
+  * Matej Szendi <matej.szendi@gmail.com>
 
-Nikoli <nikoli@lavabit.com>
-  * Different corrections and additions
+Ukrainian [UK]
+  * Сергій Левицький <leon21sl@myopera.com>
+
+Polish [PL]
+  * Piotr Pecka <piotr.pecka@outlook.com>
+
+Japanese [JA]
+  * Masato Hashimoto <cabezon.hashimoto@gmail.com>
+
+Korean [KO]
+  * Yonghee Lee <v4321v@gmail.com>
+
+Chinese (China) [zh_CN]
+  * wwj402
+
+Chinese (Taiwan) [zh_TW]
+  * Hulen <shift0106@hotmail.com>
+
+Greek (Greece) [el_GR]
+  * Dimitris Siakavelis
+
+Lithuanian [LT]
+  * keturidu
+
+Portuguese (Brazil) [pt_BR]
+  * Marcos M. Ribeiro
+
+Turkish [TR]
+  * Hasan Akgöz
