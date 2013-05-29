@@ -109,10 +109,10 @@ const QString kCreateFeedsTableQuery_v0_9_0(
     // --- RSSowl::Reading ---
     "markReadAfterSecondsEnable int, "    // Enable "Read" timer
     "markReadAfterSeconds int, "          // Number of seconds that must elapse to mark news "Read"
-    "markReadInNewspaper int, "           // помечать прочитанной, если читается через "газету"
-    "markDisplayedOnSwitchingFeed int, "  // помечать прочитанной, после переключения на другую ленту
-    "markDisplayedOnClosingTab int, "     // помечать прочитанной, после закрытия таба
-    "markDisplayedOnMinimize int, "       // помечать прочитанной, после минимизации окна
+    "markReadInNewspaper int, "           // mark Read when Newspaper layout
+    "markDisplayedOnSwitchingFeed int, "  // mark Read on switching to another feed
+    "markDisplayedOnClosingTab int, "     // mark Read on tab closing
+    "markDisplayedOnMinimize int, "       // mark Read on minimizing to tray
     // --- RSSowl::Display ---
     "layout text, "      // стиль отображения новостей
     "filter text, "      // фильтр отображаемых новостей
@@ -190,10 +190,10 @@ const QString kCreateFeedsTableQuery(
     // --- RSSowl::Reading ---
     "markReadAfterSecondsEnable int, "    // Enable "Read" timer
     "markReadAfterSeconds int, "          // Number of seconds that must elapse to mark news "Read"
-    "markReadInNewspaper int, "           // помечать прочитанной, если читается через "газету"
-    "markDisplayedOnSwitchingFeed int, "  // помечать прочитанной, после переключения на другую ленту
-    "markDisplayedOnClosingTab int, "     // помечать прочитанной, после закрытия таба
-    "markDisplayedOnMinimize int, "       // помечать прочитанной, после минимизации окна
+    "markReadInNewspaper int, "           // mark Read when Newspaper layout
+    "markDisplayedOnSwitchingFeed int, "  // mark Read on switching to another feed
+    "markDisplayedOnClosingTab int, "     // mark Read on tab closing
+    "markDisplayedOnMinimize int, "       // mark Read on minimizing to tray
     // --- RSSowl::Display ---
     "layout text, "      // стиль отображения новостей
     "filter text, "      // фильтр отображаемых новостей
