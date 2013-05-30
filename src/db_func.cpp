@@ -114,31 +114,31 @@ const QString kCreateFeedsTableQuery_v0_9_0(
     "markDisplayedOnClosingTab int, "     // mark Read on tab closing
     "markDisplayedOnMinimize int, "       // mark Read on minimizing to tray
     // --- RSSowl::Display ---
-    "layout text, "      // стиль отображения новостей
-    "filter text, "      // фильтр отображаемых новостей
-    "groupBy int, "      // номер столца, по которому производится группировка
-    "displayNews int, "  // 0 - отображаем Content новости; 1 - вытягиваем содержимое, расположенное по link
-    "displayEmbeddedImages int, "   // отображать изображения встроенные в новость
-    "loadTypes text, "              // типы загружаемого контента ("images" or "images sounds")
-    "openLinkOnEmptyContent int, "  // загружать link, если content пустой
+    "layout text, "      // news display layout
+    "filter text, "      // news display filter
+    "groupBy int, "      // column number to sort by
+    "displayNews int, "  // 0 - display content from news; 1 - download content from link
+    "displayEmbeddedImages int, "   // display images embedded in news
+    "loadTypes text, "              // type of content to load ("images" or "images sounds")
+    "openLinkOnEmptyContent int, "  // load link, if content is empty
     // --- RSSowl::Columns ---
-    "columns text, "  // перечень и порядок колонок, отображаемых в таблице новостей
-    "sort text, "     // имя колонки для сортировки
-    "sortType int, "  // по возрастанию, по убыванию
+    "columns text, "  // columns list and order of the news displayed in list
+    "sort text, "     // column name to sort by
+    "sortType int, "  // sort type (ascend, descend)
     // --- RSSowl::Clean Up ---
-    "maximumToKeep int, "           // максимальное число хранимых новостей
-    "maximumToKeepEnable int, "     // задействоваь ограничитель
-    "maximumAgeOfNews int, "        // максимальное время хранения новости
-    "maximumAgoOfNewEnable int, "   // задействоваь ограничитель
-    "deleteReadNews int, "          // удалять прочитанные новости
-    "neverDeleteUnreadNews int, "   // не удалять непрочитанные новости
-    "neverDeleteStarredNews int, "  // не удалять избранные новости
-    "neverDeleteLabeledNews int, "  // не удалять новости имеющие метку
+    "maximumToKeep int, "           // maximum number of news to keep
+    "maximumToKeepEnable int, "     // enable limitation
+    "maximumAgeOfNews int, "        // maximum store time of the news
+    "maximumAgoOfNewEnable int, "   // enable limitation
+    "deleteReadNews int, "          // delete read news
+    "neverDeleteUnreadNews int, "   // don't delete unread news
+    "neverDeleteStarredNews int, "  // don't delete starred news
+    "neverDeleteLabeledNews int, "  // don't delete labeled news
     // --- RSSowl::Status ---
-    "status text, "                 // результат последнего обновления
-    "created text, "                // время создания ленты
-    "updated text, "                // время последнего обновления ленты (update)
-    "lastDisplayed text "           // время последнего просмотра ленты
+    "status text, "                 // last update result
+    "created text, "                // feed creation timestamp
+    "updated text, "                // last update timestamp
+    "lastDisplayed text "           // last display timestamp
     ")");
 
 const QString kCreateFeedsTableQuery(
@@ -178,8 +178,8 @@ const QString kCreateFeedsTableQuery(
     "undeleteCount integer, "    // number of all news (not marked deleted)
     "tags varchar, "             // user purpose tags
     // --- Categories ---
-    "hasChildren integer default 0, "  // Children presence. По умолчанию - нет
-    "parentId integer default 0, "     // parent id of the feed. По умолчанию - корень дерева
+    "hasChildren integer default 0, "  // Children presence. Default - none
+    "parentId integer default 0, "     // parent id of the feed. Default - tree root
     "rowToParent integer, "            // sequence number relative to parent
     // --- RSSowl::General ---
     "updateIntervalEnable int, "    // auto update enable flag
@@ -195,176 +195,177 @@ const QString kCreateFeedsTableQuery(
     "markDisplayedOnClosingTab int, "     // mark Read on tab closing
     "markDisplayedOnMinimize int, "       // mark Read on minimizing to tray
     // --- RSSowl::Display ---
-    "layout text, "      // стиль отображения новостей
-    "filter text, "      // фильтр отображаемых новостей
-    "groupBy int, "      // номер столца, по которому производится группировка
-    "displayNews int, "  // 0 - отображаем Content новости; 1 - вытягиваем содержимое, расположенное по link
-    "displayEmbeddedImages integer default 1, "  // отображать изображения встроенные в новость
-    "loadTypes text, "                           // типы загружаемого контента ("images" or "images sounds" - только изображения или изображения и звуки)
-    "openLinkOnEmptyContent int, "               // загружать link, если content пустой
+    "layout text, "      // news display layout
+    "filter text, "      // news display filter
+    "groupBy int, "      // column number to sort by
+    "displayNews int, "  // 0 - display content from news; 1 - download content from link
+    "displayEmbeddedImages integer default 1, "  // display images embedded in news
+    "loadTypes text, "                           // type of content to load ("images" or "images sounds" - images only or images and sound)
+    "openLinkOnEmptyContent int, "               // load link, if content is empty
     // --- RSSowl::Columns ---
-    "columns text, "  // перечень и порядок колонок, отображаемых в таблице новостей
-    "sort text, "     // имя колонки для сортировки
-    "sortType int, "  // по возрастанию, по убыванию
+    "columns text, "  // columns list and order of the news displayed in list
+    "sort text, "     // column name to sort by
+    "sortType int, "  // sort type (ascend, descend)
     // --- RSSowl::Clean Up ---
-    "maximumToKeep int, "           // максимальное число хранимых новостей
-    "maximumToKeepEnable int, "     // задействоваь ограничитель
-    "maximumAgeOfNews int, "        // максимальное время хранения новости
-    "maximumAgoOfNewEnable int, "   // задействоваь ограничитель
-    "deleteReadNews int, "          // удалять прочитанные новости
-    "neverDeleteUnreadNews int, "   // не удалять непрочитанные новости
-    "neverDeleteStarredNews int, "  // не удалять избранные новости
-    "neverDeleteLabeledNews int, "  // не удалять новости имеющие метку
+    "maximumToKeep int, "           // maximum number of news to keep
+    "maximumToKeepEnable int, "     // enable limitation
+    "maximumAgeOfNews int, "        // maximum store time of the news
+    "maximumAgoOfNewEnable int, "   // enable limitation
+    "deleteReadNews int, "          // delete read news
+    "neverDeleteUnreadNews int, "   // don't delete unread news
+    "neverDeleteStarredNews int, "  // don't delete starred news
+    "neverDeleteLabeledNews int, "  // don't delete labeled news
     // --- RSSowl::Status ---
-    "status text, "                 // результат последнего обновления
-    "created text, "                // время создания ленты
-    "updated text, "                // время последнего обновления ленты (update)
-    "lastDisplayed text, "           // время последнего просмотра ленты
+    "status text, "                 // last update result
+    "created text, "                // feed creation timestamp
+    "updated text, "                // last update timestamp
+    "lastDisplayed text, "           // last display timestamp
     // -- added in v0.10.0 --`
-    "f_Expanded integer default 1, "  // флаг раскрытости категории дерева
-    "flags text, "                    // другие флаги перечисляемые текстом (могут быть, например "focused", "hidden")
-    "authentication integer default 0, "    // включение авторизации, устанавливается при добавлении ленты
-    "duplicateNewsMode integer default 0, " // режим работы с дубликатами новостей
-    "typeFeed integer default 0 "           // на будущее
+    "f_Expanded integer default 1, "  // expand folder flag
+    "flags text, "                    // more flags (example "focused", "hidden")
+    "authentication integer default 0, "    // enable authentification, sets on feed creation
+    "duplicateNewsMode integer default 0, " // news duplicates process mode
+    "typeFeed integer default 0 "           // reserved for future purposes
 
-    // -- changed in v0.10.0 -- исправлено в тексте выше
-    // "displayEmbeddedImages integer default 1, "  // отображать изображения встроенные в новость
-    // "hasChildren integer default 0, "  // Children presence. По умолчанию - нет
-    // "parentId integer default 0, "     // parent id of the feed. По умолчанию - корень дерева
+    // -- changed in v0.10.0 -- corrected above
+    // "displayEmbeddedImages integer default 1, "  // display images embedded in news
+    // "hasChildren integer default 0, "  // Children presence. Default - none
+    // "parentId integer default 0, "     // parent id of the feed. Default - tree root
     ")");
 
 const QString kCreateNewsTableQuery_v0_1_0(
     "CREATE TABLE feed_%1("
     "id integer primary key, "
-    "feed integer, "                       // идентификатор ленты из таблицы feeds
-    "guid varchar, "                       // уникальный номер
-    "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
-    "description varchar, "                // краткое содержание
-    "content varchar, "                    // полное содержание (atom)
-    "title varchar, "                      // заголовок
-    "published varchar, "                  // дата публикащии
-    "modified varchar, "                   // дата модификации
-    "received varchar, "                   // дата приёма новости (выставляется при приёме)
-    "author_name varchar, "                // имя автора
-    "author_uri varchar, "                 // страничка автора (atom)
-    "author_email varchar, "               // почта автора (atom)
-    "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-    "label varchar, "                      // метка (user purpose label(s))
-    "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
-    "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
-    "sticky integer default 0, "           // Флаг "отличная". Устанавливается пользователем
-    "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется,
-                                           //   чтобы при обновлении новостей она не появлялась вновь.
-                                           //   Физическое удаление новость будет производится при общей чистке базы
-    "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
-    "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
-    "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
-    "enclosure_type, "                     //   длина, тип,
-    "enclosure_url, "                      //   адрес.
-    "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
-    "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
-    "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
-                                           //   который нереально передать в новости (atom)
-    "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
-    "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
-    "contributor varchar, "                // участник (через табы)
-    "rights varchar "                      // права
+    "feed integer, "                       // feed id from feed table
+    "guid varchar, "                       // news unique number
+    "guidislink varchar default 'true', "  // flag shows that news unique number is URL-link to news
+    "description varchar, "                // brief description
+    "content varchar, "                    // full content (atom)
+    "title varchar, "                      // title
+    "published varchar, "                  // publish timestamp
+    "modified varchar, "                   // modification timestamp
+    "received varchar, "                   // recieve news timestamp (set on recieve)
+    "author_name varchar, "                // author name
+    "author_uri varchar, "                 // author web page (atom)
+    "author_email varchar, "               // author e-mail (atom)
+    "category varchar, "                   // category. May be several item tabs separated
+    "label varchar, "                      // label (user purpose label(s))
+    "new integer default 1, "              // Flag "new". Set on receive, reset on application close
+    "read integer default 0, "             // Flag "read". Set after news has been focused
+    "sticky integer default 0, "           // Flag "sticky". Set by user
+    "deleted integer default 0, "          // Flag "deleted". News is marked deleted by remains in DB,
+                                           //   for purpose not to display after next update.
+                                           //   News are deleted by cleanup process only
+    "attachment varchar, "                 // Links to attachments (tabs separated)
+    "comments varchar, "                   // News comments page URL-link 
+    "enclosure_length, "                   // Media-object, associated to news:
+    "enclosure_type, "                     //   length, type,
+    "enclosure_url, "                      //   URL-address
+    "source varchar, "                     // source, incese of republication (atom: <link via>)
+    "link_href varchar, "                  // URL-link to news (atom: <link self>)
+    "link_enclosure varchar, "             // URL-link to huge amoun of data,
+                                           //   that can't be received in the news
+    "link_related varchar, "               // URL-link for related data of the news (atom)
+    "link_alternate varchar, "             // URL-link to alternative news representation
+    "contributor varchar, "                // contributors (tabs separated)
+    "rights varchar "                      // copyrights
     ")");
 
 const QString kCreateNewsTableQuery(
     "CREATE TABLE news("
     "id integer primary key, "
-    "feedId integer, "                     // идентификатор ленты из таблицы feeds
-    "guid varchar, "                       // уникальный номер
-    "guidislink varchar default 'true', "  // флаг того, что уникальный номер является ссылкой на новость
-    "description varchar, "                // краткое содержание
-    "content varchar, "                    // полное содержание (atom)
-    "title varchar, "                      // заголовок
-    "published varchar, "                  // дата публикащии
-    "modified varchar, "                   // дата модификации
-    "received varchar, "                   // дата приёма новости (выставляется при приёме)
-    "author_name varchar, "                // имя автора
-    "author_uri varchar, "                 // страничка автора (atom)
-    "author_email varchar, "               // почта автора (atom)
-    "category varchar, "                   // категория, может содержать несколько категорий (например через знак табуляции)
-    "label varchar, "                      // метка (user purpose label(s))
-    "new integer default 1, "              // Флаг "новая". Устанавливается при приёме, снимается при закрытии программы
-    "read integer default 0, "             // Флаг "прочитанная". Устанавливается после выбора новости
-    "starred integer default 0, "          // Флаг "отличная". Устанавливается пользователем
-    "deleted integer default 0, "          // Флаг "удалённая". Новость помечается удалённой, но физически из базы не удаляется,
-                                           //   чтобы при обновлении новостей она не появлялась вновь.
-                                           //   Физическое удаление новость будет производится при общей чистке базы
-    "attachment varchar, "                 // ссылка на прикрепленные файлы (ссылки могут быть разделены табами)
-    "comments varchar, "                   // интернел-ссылка на страницу, содержащую комментарии(ответы) к новости
-    "enclosure_length, "                   // медиа-объект, ассоциированный с новостью:
-    "enclosure_type, "                     //   длина, тип,
-    "enclosure_url, "                      //   адрес.
-    "source varchar, "                     // источник, если это перепубликация  (atom: <link via>)
-    "link_href varchar, "                  // интернет-ссылка на новость (atom: <link self>)
-    "link_enclosure varchar, "             // интернет-ссылка на потенциально большой объём информации,
-                                           //   который нереально передать в новости (atom)
-    "link_related varchar, "               // интернет-ссылка на сопутствующие данный для новости  (atom)
-    "link_alternate varchar, "             // интернет-ссылка на альтернативное представление новости
-    "contributor varchar, "                // участник (через табы)
-    "rights varchar, "                     // права
-    "deleteDate varchar, "                 // дата удаления новости
-    "feedParentId integer default 0 "      // идентификатор родителя ленты из таблицы feeds
+    "feedId integer, "                     // feed id from feed table
+    "guid varchar, "                       // news unique number
+    "guidislink varchar default 'true', "  // flag shows that news unique number is URL-link to news
+    "description varchar, "                // brief description
+    "content varchar, "                    // full content (atom)
+    "title varchar, "                      // title
+    "published varchar, "                  // publish timestamp
+    "modified varchar, "                   // modification timestamp
+    "received varchar, "                   // recieve news timestamp (set on recieve)
+    "author_name varchar, "                // author name
+    "author_uri varchar, "                 // author web page (atom)
+    "author_email varchar, "               // author e-mail (atom)
+    "category varchar, "                   // category. May be several item tabs separated
+    "label varchar, "                      // label (user purpose label(s))
+    "new integer default 1, "              // Flag "new". Set on receive, reset on application close
+    "read integer default 0, "             // Flag "read". Set after news has been focused
+    "starred integer default 0, "          // Flag "sticky". Set by user
+    "deleted integer default 0, "          // Flag "deleted". News is marked deleted by remains in DB,
+                                           //   for purpose not to display after next update.
+                                           //   News are deleted by cleanup process only
+    "attachment varchar, "                 // Links to attachments (tabs separated)
+    "comments varchar, "                   // News comments page URL-link 
+    "enclosure_length, "                   // Media-object, associated to news:
+    "enclosure_type, "                     //   length, type,
+    "enclosure_url, "                      //   URL-address
+    "source varchar, "                     // source, incese of republication (atom: <link via>)
+    "link_href varchar, "                  // URL-link to news (atom: <link self>)
+    "link_enclosure varchar, "             // URL-link to huge amoun of data,
+                                           //   that can't be received in the news
+    "link_related varchar, "               // URL-link for related data of the news (atom)
+    "link_alternate varchar, "             // URL-link to alternative news representation
+    "contributor varchar, "                // contributors (tabs separated)
+    "rights varchar, "                     // copyrights
+    "deleteDate varchar, "                 // news delete timestamp
+    "feedParentId integer default 0 "      // parent feed id from feed table
     ")");
 
 const QString kCreateFiltersTable_v0_9_0(
     "CREATE TABLE filters("
     "id integer primary key, "
-    "name varchar, "            // имя фильтра
-    "type int, "                // тип фильтра (И, ИЛИ, для всех лент)
-    "feeds varchar "            // перечень лент, которые пользуются фильтром
+    "name varchar, "            // filter name
+    "type int, "                // filter type (and, or, for all)
+    "feeds varchar "            // feed list, that are using the filter
     ")");
 
 const QString kCreateFiltersTable(
     "CREATE TABLE filters("
     "id integer primary key, "
-    "name varchar, "              // имя фильтра
-    "type integer, "              // тип фильтра (И, ИЛИ, для всех лент)
-    "feeds varchar, "             // перечень лент, которые пользуются фильтром
-    "enable integer default 1, "  // 1 - фильтр используется, 0 - не используется
-    "num integer "                // номер по порядку. Может использоваться для сортировки фильтров)
+    "name varchar, "              // filter name
+    "type integer, "              // filter type (and, or, for all)
+    "feeds varchar, "             // feed list, that are using the filter
+    "enable integer default 1, "  // 1 - filter used; 0 - filter not used
+    "num integer "                // Sequence number. Used to sort filters
     ")");
 
 const QString kCreateFilterConditionsTable(
     "CREATE TABLE filterConditions("
     "id integer primary key, "
-    "idFilter int, "            // идентификатор фильтра
-    "field varchar, "           // поле, по которому производится фильтрация
-    "condition varchar, "       // условие, применяемое к полю
-    "content varchar "          // содержимое поля, используемое условием
+    "idFilter int, "            // filter Id
+    "field varchar, "           // field to filter by
+    "condition varchar, "       // condition has applied to filed
+    "content varchar "          // field content that is used by filter
     ")");
 
 const QString kCreateFilterActionsTable(
     "CREATE TABLE filterActions("
     "id integer primary key, "
-    "idFilter int, "            // идентификатор фильтра
-    "action varchar, "          // действие, выполняемое с новостью, удовлетворяющей фильтру
-    "params varchar "           // параметры действия
+    "idFilter int, "            // filter Id
+    "action varchar, "          // action that has appled for filter
+    "params varchar "           // action parameters
     ")");
 
 const QString kCreateLabelsTable(
     "CREATE TABLE labels("
     "id integer primary key, "
-    "name varchar, "            // имя метки
-    "image blob, "              // картинка метки
-    "color_text varchar, "      // цвет текста новости в списке
-    "color_bg varchar, "        // цвет фона новости в списке
-    "num integer, "             // номер по порядку, для сортировки
+    "name varchar, "            // label name
+    "image blob, "              // label image
+    "color_text varchar, "      // news text color displayed in news list
+    "color_bg varchar, "        // news background color displayed in news list
+    "num integer, "             // sequence number to sort with
     "currentNews integer "      // current displayed news
     ")");
 
 const QString kCreatePasswordsTable(
     "CREATE TABLE passwords("
     "id integer primary key, "
-    "server varchar, "          // сервер
-    "username varchar, "        // пользователь
-    "password varchar "         // пароль
+    "server varchar, "          // server
+    "username varchar, "        // username
+    "password varchar "         // password
     ")");
 
+// ----------------------------------------------------------------------------
 void initLabelsTable(QSqlDatabase *db)
 {
   QSqlQuery q(*db);
@@ -389,24 +390,24 @@ void initLabelsTable(QSqlDatabase *db)
   }
 }
 
-/** Создание резервной копии файла базы
+/** Create backup copy of DB-file
  *
- *  Формат резервного файла:
- *  <старое-имя-файла>.backup_<версия-базы>_<время-воздания-резервного-файла>
- * @param dbFileName абсолютный путь и имя файла базы
- * @param dbVersion версия базы
+ *  Backup filename format:
+ *  <oldname>.backup_<DB-version>_<backup-creation-time>
+ * @param dbFileName absolute path of DB-file
+ * @param dbVersion DB-version
  *----------------------------------------------------------------------------*/
 void createDBBackup(const QString &dbFileName, const QString &dbVersion)
 {
   QFileInfo fi(dbFileName);
 
-  // Создаём backup директорию в директории файла базы
+  // Create backup folder inside DB-file folder
   QDir backupDir(fi.absoluteDir());
   if (!backupDir.exists("backup"))
     backupDir.mkpath("backup");
   backupDir.cd("backup");
 
-  // Создаём архивную копию файла
+  // Create backup
   QString dbBackupName(backupDir.absolutePath() + '/' + fi.fileName());
   dbBackupName.append(QString("[%1_%2].old")
           .arg(dbVersion)
@@ -418,42 +419,42 @@ void createDBBackup(const QString &dbFileName, const QString &dbVersion)
 //-----------------------------------------------------------------------------
 QString initDB(const QString &dbFileName, QSettings *settings)
 {
-  if (!QFile(dbFileName).exists()) {  // Инициализация базы
+  if (!QFile(dbFileName).exists()) {  // DB-init
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
     db.setDatabaseName(dbFileName);
     db.open();
     db.transaction();
     db.exec(kCreateFeedsTableQuery);
     db.exec(kCreateNewsTableQuery);
-    // Создаём индекс по полю feedId
+    // Create index for feedId field
     db.exec("CREATE INDEX feedId ON news(feedId)");
 
-    // Создаём дополнительную таблицу лент на всякий случай
+    // Create extra feeds table just in case
     db.exec("CREATE TABLE feeds_ex(id integer primary key, "
-        "feedId integer, "  // идентификатор ленты
-        "name varchar, "    // имя параметра
-        "value varchar "    // значение параметра
+        "feedId integer, "  // feed Id
+        "name varchar, "    // parameter name
+        "value varchar "    // parameter value
         ")");
-    // Создаём дополнительную таблицу новостей на всякий случай
+    // Create extra news table just in case
     db.exec("CREATE TABLE news_ex(id integer primary key, "
-        "feedId integer, "  // идентификатор ленты
-        "newsId integer, "  // идентификатор новости
-        "name varchar, "    // имя параметра
-        "value varchar "    // значение параметра
+        "feedId integer, "  // feed Id
+        "newsId integer, "  // news Id
+        "name varchar, "    // parameter name
+        "value varchar "    // parameter value
         ")");
-    // Создаём таблицы фильтров
+    // Create filters table
     db.exec(kCreateFiltersTable);
     db.exec(kCreateFilterConditionsTable);
     db.exec(kCreateFilterActionsTable);
-    // Создаём дополнительную таблицу фильтров на всякий случай
+    // Create extra filters just in case
     db.exec("CREATE TABLE filters_ex(id integer primary key, "
-        "idFilter integer, "  // идентификатор фильтра
-        "name text, "         // имя параметра
-        "value text"          // значение параметра
+        "idFilter integer, "  // filter Id
+        "name text, "         // parameter name
+        "value text"          // parameter value
         ")");
-    // Создаём таблицу меток
+    // Create labels table
     initLabelsTable(&db);
-    // Создаём таблицу паролей
+    // Create password table
     db.exec(kCreatePasswordsTable);
     //
     db.exec("CREATE TABLE info(id integer primary key, name varchar, value varchar)");
@@ -476,13 +477,13 @@ QString initDB(const QString &dbFileName, QSettings *settings)
     if (q.next())
       dbVersionString = q.value(0).toString();
     if (!dbVersionString.isEmpty()) {
-      // Версия базы 1.0 (На самом деле 0.1.0)
+      // DB-version 1.0 (0.1.0 indeed)
       if (dbVersionString == "1.0") {
-        //-- Преобразуем таблицу feeds
-        // Создаём временную таблицу версии 0.10.0
+        //-- Convert feeds table
+        // Create temporary table for version 0.10.0
         q.exec(QString(kCreateFeedsTableQuery)
             .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
-        // переписываем только используемые ранее поля
+        // Copy only fields than was used before
         q.exec("INSERT "
             "INTO feeds_temp("
                "id, text, title, description, xmlUrl, htmlUrl, "
@@ -493,16 +494,16 @@ QString initDB(const QString &dbFileName, QSettings *settings)
             "author_name, author_email, author_uri, pubdate, lastBuildDate, "
             "image, unread, newCount, currentNews "
             "FROM feeds");
-        // Хороним старую таблицу
+        // Bury old table
         q.exec("DROP TABLE feeds");
 
-        // Копируем временную таблицу на место старой
+        // Copy temp table insted of old one
         q.exec(kCreateFeedsTableQuery);
         q.exec("INSERT INTO feeds SELECT * FROM feeds_temp");
         q.exec("DROP TABLE feeds_temp");
 
-        // Модифицируем поле rowToParent таблицы feeds, чтобы все элементы
-        // лежали в корне дерева
+        // Modify rowToParent field of the feeds table,
+        //   to set all feeds in tree root
         q.exec("SELECT id FROM feeds");
         int rowToParent = 0;
         while (q.next()) {
@@ -515,14 +516,14 @@ QString initDB(const QString &dbFileName, QSettings *settings)
           rowToParent++;
         }
 
-        //-- Преобразуем таблицы feed_# в общую таблицу news
-        // Создаём общую таблицу новостей
+        //-- Convert feed_# tables to general news table
+        // Create general news table
         q.exec(kCreateNewsTableQuery);
 
-        // Переписываем все новости в общую таблицу с добавлением идентификатора ленты
-        //! \NOTE: Удалить в одном цикле не получается, т.к. при удалении
-        //! таблицы получается больше одного активного запроса, чего делать нельзя
-        //! Поэтому идентификаторы запоминаются в список
+        // Copy all news to one genaral table. Add feedId to each news
+        //! \NOTE: We can't delete table at the same time, because in this case
+        //! there are more than one active query. It is not permitted.
+        //! So, ids are stored in list
         q.exec("SELECT id FROM feeds");
         QList<int> idList;
         while (q.next()) {
@@ -565,52 +566,52 @@ QString initDB(const QString &dbFileName, QSettings *settings)
           }
         }
 
-        // Удаляем старые таблицы новостей
+        // Delete old news tables
         foreach (int id, idList)
           q.exec(QString("DROP TABLE feed_%1").arg(id));
 
-        // Создаём индекс по полю feedId (для более скоростного поиска)
+        // Create index on feedId field (for quick DB-search)
         q.exec("CREATE INDEX feedId ON news(feedId)");
 
-        // Создаём дополнительную таблицу лент на всякий случай
+        // Create extra feeds table just in case
         q.exec("CREATE TABLE feeds_ex(id integer primary key, "
-            "feedId integer, "  // идентификатор ленты
-            "name varchar, "    // имя параметра
-            "value varchar "    // значение параметра
+            "feedId integer, "  // feed Id
+            "name varchar, "    // parameter mane
+            "value varchar "    // parameter value
             ")");
-        // Создаём дополнительную таблицу новостей на всякий случай
+        // Create extra news tables just in case
         q.exec("CREATE TABLE news_ex(id integer primary key, "
-            "feedId integer, "  // идентификатор ленты
-            "newsId integer, "  // идентификатор новости
-            "name varchar, "    // имя параметра
-            "value varchar "    // значение параметра
+            "feedId integer, "  // feed Id
+            "newsId integer, "  // news Id
+            "name varchar, "    // parameter mane
+            "value varchar "    // parameter value
             ")");
 
-        // Создаём таблицы фильтров
+        // Create filters tables
         q.exec(kCreateFiltersTable);
         q.exec(kCreateFilterConditionsTable);
         q.exec(kCreateFilterActionsTable);
-        // Создаём дополнительную таблицу фильтров на всякий случай
+        // Create extra filter tables just in case
         q.exec("CREATE TABLE filters_ex(id integer primary key, "
-            "idFilter integer, "  // идентификатор фильтра
-            "name text, "         // имя параметра
-            "value text"          // значение параметра
+            "idFilter integer, "  // filter Id
+            "name text, "         // parameter mane
+            "value text"          // parameter value
             ")");
 
-        // Обновляем таблицу с информацией
+        // Update information table
         q.prepare("UPDATE info SET value=:version WHERE name='version'");
         q.bindValue(":version", kDbVersion);
         q.exec();
 
         qDebug() << "DB converted to version =" << kDbVersion;
       }
-      // Версия базы 0.9.0
+      // DB-version 0.9.0
       else if (dbVersionString == "0.9.0") {
-        //-- Преобразуем таблицу feeds
-        // Создаём временную таблицу версии 0.10.0
+        //-- Convert table feeds
+        // Create temporary table for version 0.10.0
         q.exec(QString(kCreateFeedsTableQuery)
             .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
-        // переписываем только используемые ранее поля
+        // Copy only fields than was used before
         q.exec("INSERT "
             "INTO feeds_temp("
                "id, text, title, description, xmlUrl, htmlUrl, "
@@ -623,16 +624,16 @@ QString initDB(const QString &dbFileName, QSettings *settings)
             "image, unread, newCount, currentNews, undeleteCount, updated, "
             "displayOnStartup, displayEmbeddedImages "
             "FROM feeds");
-        // Хороним старую таблицу
+        // Bury old table
         q.exec("DROP TABLE feeds");
 
-        // Копируем временную таблицу на место старой
+        // Copy temp table insted of old one
         q.exec(kCreateFeedsTableQuery);
         q.exec("INSERT INTO feeds SELECT * FROM feeds_temp");
         q.exec("DROP TABLE feeds_temp");
 
-        // Модифицируем поле rowToParent таблицы feeds, чтобы все элементы
-        // лежали в корне дерева
+        // Modify rowToParent field of the feeds table,
+        //   to set all feeds in tree root
         q.exec("SELECT id FROM feeds");
         int rowToParent = 0;
         while (q.next()) {
@@ -645,42 +646,42 @@ QString initDB(const QString &dbFileName, QSettings *settings)
           rowToParent++;
         }
 
-        //-- Таблицу news не трогаем
-        //-- Перестраиваем индекс
+        //-- Ignore news table
+        //-- Rebuild the index
         q.exec("DROP INDEX feedId");
         q.exec("CREATE INDEX feedId ON news(feedId)");
-        // Дополнительные таблицы лент и новостей уже созданы
-        // Заменяем старую пустую таблицу фильтров на новую с новыми полями
+        // Extra tables had created already
+        // Replace old empty filter table by new filter table contained new fields
         q.exec("DROP TABLE filters");
         q.exec(kCreateFiltersTable);
-        // Таблицы условий и действий фильтров не трогаем
+        // Don't tuoch conditions and actions tables
 
-        // Создаём дополнительную таблицу фильтров на всякий случай
+        // Create extra filter tables just in case
         q.exec("CREATE TABLE filters_ex(id integer primary key, "
-            "idFilter integer, "  // идентификатор фильтра
-            "name text, "         // имя параметра
-            "value text"          // значение параметра
+            "idFilter integer, "  // filter Id
+            "name text, "         // parameter mane
+            "value text"          // parameter value
             ")");
 
-        // Обновляем таблицу с информацией
+        // Update information table
         q.prepare("UPDATE info SET value=:version WHERE name='version'");
         q.bindValue(":version", kDbVersion);
         q.exec();
 
         qDebug() << "DB converted to version =" << kDbVersion;
       }
-      // Версия базы 0.10.0
+      // DB-version 0.10.0
       else if (dbVersionString == "0.10.0") {
-        // Добавление полей для таблицы лент
+        // Add fileds for feed table
         q.exec("ALTER TABLE feeds ADD COLUMN authentication integer default 0");
         q.exec("ALTER TABLE feeds ADD COLUMN duplicateNewsMode integer default 0");
         q.exec("ALTER TABLE feeds ADD COLUMN typeFeed integer default 0");
 
-        // Добавление полей для таблицы новостей
+        // Add fileds for news table
         q.exec("ALTER TABLE news ADD COLUMN deleteDate varchar");
         q.exec("ALTER TABLE news ADD COLUMN feedParentId integer default 0");
 
-        // Создаём таблицу меток
+        // Create labels table
         bool createTable = false;
         q.exec("SELECT count(name) FROM sqlite_master WHERE name='labels'");
         if (q.next()) {
@@ -694,7 +695,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
             q.exec("ALTER TABLE labels ADD COLUMN currentNews integer");
           }
         }
-        // Создаём таблицу паролей
+        // Create password table
         createTable = false;
         q.exec("SELECT count(name) FROM sqlite_master WHERE name='passwords'");
         if (q.next()) {
@@ -703,14 +704,14 @@ QString initDB(const QString &dbFileName, QSettings *settings)
         if (!createTable)
           q.exec(kCreatePasswordsTable);
 
-        // Обновляем таблицу с информацией
+        // Update information table
         q.prepare("UPDATE info SET value=:version WHERE name='version'");
         q.bindValue(":version", kDbVersion);
         q.exec();
 
         qDebug() << "DB converted to version =" << kDbVersion;
       }
-      // Версия базы последняя
+      // DB-version last
       else {
 
         bool rowToParentCorrected = false;
@@ -728,7 +729,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
 
           q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
 
-          // Начинаем поиск детей с потенциального родителя 0 (с корня)
+          // Start search from prospective parent number 0 (from root)
           bool sortFeeds = settings->value("Settings/sortFeeds", false).toBool();
           QString sortStr("id");
           if (sortFeeds) sortStr = "text";
@@ -738,14 +739,14 @@ QString initDB(const QString &dbFileName, QSettings *settings)
           while (!parentIdsPotential.empty()) {
             int parentId = parentIdsPotential.takeFirst();
 
-            // Ищем детей родителя parentId
+            // Search for Children of parent parentId
             q.prepare(QString("SELECT id FROM feeds WHERE parentId=? ORDER BY %1").
                       arg(sortStr));
             q.addBindValue(parentId);
             q.exec();
 
-            // Каждому ребенку прописываем его rowToParent
-            // ... сохраняем его в списке потенциальных родителей
+            // Write down rowToParent for every child
+            // ... and store the child in prospective parent list
             int rowToParent = 0;
             while (q.next()) {
               int parentIdNew = q.value(0).toInt();
@@ -761,7 +762,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
             }
           }
         }   // if (rowToParentCorrected) {
-      } // Версия базы последняя
+      } // DB-version last
     }
     q.finish();
 
