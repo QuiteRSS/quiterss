@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.12.5+</B> (xx May 2013)
+<P><B>Version 0.13.0</B> (30 May 2013)
 <UL>
 <LI>Main: Increase application performance</LI>
 <LI>Added: Individual feed update interval (feed properties)</LI>
@@ -24,6 +24,7 @@
 <LI>Changed: Mark news Read while switching between tabs</LI>
 <LI>Changed: Opening news in new/background tab</LI>
 <LI>Changed: Support RTL in news description</LI>
+<LI>Changed: Comments in sources are translated to English</LI>
 
 <LI>Fixed: Options "Don't delete starred news", "Don't delete labeled news" didn't store</LI>
 <LI>Fixed: News title and description displays twice</LI>
