@@ -332,125 +332,127 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="101"/>
         <source>Remaining time unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Verbleibende Zeit nicht verfügbar</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="155"/>
         <source>Error: Cannot write to file!</source>
-        <translation type="unfinished"/>
+        <translation>Fehler: Kann in die Datei nicht schreiben!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="195"/>
         <source>Error: </source>
-        <translation type="unfinished"/>
+        <translation>Fehler:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="204"/>
         <source>Done - %1</source>
-        <translation type="unfinished"/>
+        <translation>Fertig - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="223"/>
         <source>few seconds</source>
-        <translation type="unfinished"/>
+        <translation>einige sekunden</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="225"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="227"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>Minuten</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="229"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>Stunden</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="236"/>
         <location filename="../src/downloads/downloaditem.cpp" line="280"/>
         <source>Unknown size</source>
-        <translation type="unfinished"/>
+        <translation>Unbekannte Grösse</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="253"/>
         <source>Unknown speed</source>
-        <translation type="unfinished"/>
+        <translation>Unbekannte Geschwindigkeit</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="281"/>
         <source>%2 - unknown size (%3)</source>
-        <translation type="unfinished"/>
+        <translation>%2 - unbekannte Grösse (%3)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="283"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation type="unfinished"/>
+        <translation>Verbleibend %1 - %2 von %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="302"/>
         <source>Cancelled - %1</source>
-        <translation type="unfinished"/>
+        <translation>Abgebrochen - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Delete file</source>
-        <translation type="unfinished"/>
+        <translation>Datei löschen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Wollen Sie ebenfalls die heruntergeladene Datei löschen?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="328"/>
         <source>Open File</source>
-        <translation type="unfinished"/>
+        <translation>Datei öffnen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="330"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Ordner öffnen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="332"/>
         <source>Copy Download Link</source>
-        <translation type="unfinished"/>
+        <translation>Download Link kopieren</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="334"/>
         <source>Cancel downloading</source>
-        <translation type="unfinished"/>
+        <translation>Das herunterladen abbrechen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="335"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Cancelled</source>
-        <translation type="unfinished"/>
+        <translation>Abgebrochen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Not found</source>
-        <translation type="unfinished"/>
+        <translation>Nicht gefunden</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation type="unfinished"/>
+        <translation>Entschuldigung, die Datei 
+ %1 
+ wurde nicht gefunden!</translation>
     </message>
 </context>
 <context>
@@ -458,32 +460,32 @@
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="34"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Leeren</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>File %1 (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>Datei %1 (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>All Files (*.*)</source>
-        <translation type="unfinished"/>
+        <translation>Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="90"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Speichern als ...</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="160"/>
         <source>Executable: </source>
-        <translation type="unfinished"/>
+        <translation>Executable: </translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Arguments: </source>
-        <translation type="unfinished"/>
+        <translation>Argumente:</translation>
     </message>
 </context>
 <context>
@@ -506,7 +508,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Spalten</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
@@ -531,17 +533,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>Minuten</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>Stunden</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
@@ -551,42 +553,42 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="149"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Aufsteigend</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="149"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Absteigend</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="154"/>
         <source>Sort by:</source>
-        <translation type="unfinished"/>
+        <translation>Sortieren nach:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="168"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="175"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Nach oben</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="182"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Nach unten</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="186"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="215"/>
@@ -631,7 +633,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"/>
+        <translation>Automatisch aktualisieren jeden</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -1166,7 +1168,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="499"/>
         <source>Save Image...</source>
-        <translation type="unfinished"/>
+        <translation>Bild speichern...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="500"/>
@@ -1308,7 +1310,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="84"/>
         <source>Fonts &amp; Colors</source>
-        <translation type="unfinished"/>
+        <translation>Schriftarten &amp; Farben</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="248"/>
@@ -1527,12 +1529,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Ask where to save each file before downloading</source>
-        <translation type="unfinished"/>
+        <translation>Fragen Sie, wo jede Datei vor dem Download gespeichert werden soll</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="597"/>
         <source>Download location:</source>
-        <translation type="unfinished"/>
+        <translation>Download Ort:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="606"/>
@@ -1547,7 +1549,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="608"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Downloads</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="642"/>
@@ -1642,32 +1644,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Left</source>
-        <translation type="unfinished"/>
+        <translation>Oben links</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Right</source>
-        <translation type="unfinished"/>
+        <translation>Oben rechts</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>Unten links</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>Unten rechts</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Überprüfung</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>Position</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="907"/>
@@ -1742,67 +1744,67 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Feeds list color</source>
-        <translation type="unfinished"/>
+        <translation>Feeds Liste Farbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Feeds list background</source>
-        <translation type="unfinished"/>
+        <translation>Feeds Liste Hintergrund</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
-        <translation type="unfinished"/>
+        <translation>Farbe Liste der Artikel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
-        <translation type="unfinished"/>
+        <translation>News Liste Hintergrund</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>Fokussiert Neuigkeiten Farbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>Fokussiert Nachrichten Hintergrundfarbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1329"/>
         <source>Link color</source>
-        <translation type="unfinished"/>
+        <translation>Linkfarbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1332"/>
         <source>Title color</source>
-        <translation type="unfinished"/>
+        <translation>Titelfarbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Date color</source>
-        <translation type="unfinished"/>
+        <translation>Datumsfarbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
-        <translation type="unfinished"/>
+        <translation>Autor Farbe</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
-        <translation type="unfinished"/>
+        <translation>Newstitel Hintergrund</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
-        <translation type="unfinished"/>
+        <translation>News Hintergrund</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1370"/>
         <source>Colors</source>
-        <translation type="unfinished"/>
+        <translation>Farben</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1377"/>
@@ -2028,17 +2030,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichten mit Label </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>starred news</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichten mit Stern </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Prevent accidental deletion of:</source>
-        <translation type="unfinished"/>
+        <translation>Verhindern Sie ein unbeabsichtigtes Löschen von:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="921"/>
@@ -2216,12 +2218,12 @@
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
-        <translation type="unfinished"/>
+        <translation>Kann externes Programm nicht starten</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
-        <translation type="unfinished"/>
+        <translation>Kann externes Programm nicht starten! %1</translation>
     </message>
 </context>
 <context>
@@ -2937,7 +2939,7 @@
         <location filename="../src/rsslisting.cpp" line="7570"/>
         <location filename="../src/rsslisting.cpp" line="7580"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Downloads</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4893"/>
@@ -3212,17 +3214,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5073"/>
         <source>Next Folder</source>
-        <translation type="unfinished"/>
+        <translation>Nächster Ordner</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Previous Folder</source>
-        <translation type="unfinished"/>
+        <translation>Voriger Ordner</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Expand Folder</source>
-        <translation type="unfinished"/>
+        <translation>Ordner ausklappen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5077"/>
@@ -3232,22 +3234,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Sort By</source>
-        <translation type="unfinished"/>
+        <translation>Sortieren nach</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5080"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Aufsteigend</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5081"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Absteigend</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5083"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Leeren</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5122"/>

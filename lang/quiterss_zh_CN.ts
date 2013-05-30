@@ -633,7 +633,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"/>
+        <translation>自动更新每</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -1534,7 +1534,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="597"/>
         <source>Download location:</source>
-        <translation type="unfinished"/>
+        <translation>下载位置: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="606"/>
@@ -1549,7 +1549,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="608"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="642"/>
@@ -1644,32 +1644,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Left</source>
-        <translation type="unfinished"/>
+        <translation>左上</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Right</source>
-        <translation type="unfinished"/>
+        <translation>右上</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>左下</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>右下</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>预览</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>位置</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="907"/>
@@ -1744,67 +1744,67 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Feeds list color</source>
-        <translation type="unfinished"/>
+        <translation>Feeds 列表颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Feeds list background</source>
-        <translation type="unfinished"/>
+        <translation>Feeds 列表背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
-        <translation type="unfinished"/>
+        <translation>消息列表颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
-        <translation type="unfinished"/>
+        <translation>消息列表背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>重点消息的颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>重点消息的背景颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1329"/>
         <source>Link color</source>
-        <translation type="unfinished"/>
+        <translation>链接颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1332"/>
         <source>Title color</source>
-        <translation type="unfinished"/>
+        <translation>标题颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Date color</source>
-        <translation type="unfinished"/>
+        <translation>日期颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
-        <translation type="unfinished"/>
+        <translation>作者颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
-        <translation type="unfinished"/>
+        <translation>消息标题背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
-        <translation type="unfinished"/>
+        <translation>消息背景</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1370"/>
         <source>Colors</source>
-        <translation type="unfinished"/>
+        <translation>颜色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1377"/>
@@ -2030,17 +2030,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>labeled news</source>
-        <translation type="unfinished"/>
+        <translation>消息标签</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>starred news</source>
-        <translation type="unfinished"/>
+        <translation>消息标星</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Prevent accidental deletion of:</source>
-        <translation type="unfinished"/>
+        <translation>防止意外删除: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="921"/>
@@ -2218,12 +2218,12 @@
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
-        <translation type="unfinished"/>
+        <translation>无法启动外部程序</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
-        <translation type="unfinished"/>
+        <translation>无法启动外部程序！ %1</translation>
     </message>
 </context>
 <context>
@@ -2939,7 +2939,7 @@
         <location filename="../src/rsslisting.cpp" line="7570"/>
         <location filename="../src/rsslisting.cpp" line="7580"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>下载</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4893"/>
@@ -3214,17 +3214,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5073"/>
         <source>Next Folder</source>
-        <translation type="unfinished"/>
+        <translation>下一个文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Previous Folder</source>
-        <translation type="unfinished"/>
+        <translation>上一个文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Expand Folder</source>
-        <translation type="unfinished"/>
+        <translation>展开文件夹</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5077"/>
@@ -3234,22 +3234,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Sort By</source>
-        <translation type="unfinished"/>
+        <translation>排序方式: </translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5080"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>升序</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5081"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>降序</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5083"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5122"/>
