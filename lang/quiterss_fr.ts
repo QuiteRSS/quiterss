@@ -332,12 +332,12 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="101"/>
         <source>Remaining time unavailable</source>
-        <translation>Temps restant disponible</translation>
+        <translation>Temps restant non disponible</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="155"/>
         <source>Error: Cannot write to file!</source>
-        <translation>Erreur : Impossible d&apos;écrire dans le fichier !</translation>
+        <translation>Erreur : impossible d&apos;écrire dans le fichier !</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="195"/>
@@ -373,12 +373,12 @@
         <location filename="../src/downloads/downloaditem.cpp" line="236"/>
         <location filename="../src/downloads/downloaditem.cpp" line="280"/>
         <source>Unknown size</source>
-        <translation>taille inconnue</translation>
+        <translation>Taille inconnue</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="253"/>
         <source>Unknown speed</source>
-        <translation>vitesse inconnue</translation>
+        <translation>Vitesse inconnue</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="281"/>
@@ -403,7 +403,7 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation>Voulez-vous supprimer aussi fichier téléchargé ?</translation>
+        <translation>Voulez-vous supprimer aussi le fichier téléchargé ?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="328"/>
@@ -418,7 +418,7 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="332"/>
         <source>Copy Download Link</source>
-        <translation>Copie le lien de téléchargement</translation>
+        <translation>Copier le lien de téléchargement</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="334"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Cancelled</source>
-        <translation>Annuler</translation>
+        <translation>Annulé</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="337"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="149"/>
         <source>Descending</source>
-        <translation>Descendant</translation>
+        <translation>Décroissant</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="154"/>
@@ -588,7 +588,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="186"/>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="215"/>
@@ -633,7 +633,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation>Mettre à jour automatiquement tous les</translation>
+        <translation>Mettre à jour automatiquement toutes les</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -1310,7 +1310,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="84"/>
         <source>Fonts &amp; Colors</source>
-        <translation>Fonts &amp; Couleurs</translation>
+        <translation>Polices &amp; couleurs</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="248"/>
@@ -1509,12 +1509,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="528"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Cliquez pour Flasher est un plugin qui bloque le chargement automatique de contenu Flash de la page. Vous pouvez toujours le charger manuellement en cliquant sur l&apos;icône jouer Flash.</translation>
+        <translation>« Cliquez pour Flasher » est un plugin qui bloque le chargement automatique des contenus Flash de la page. Vous pouvez toujours les charger manuellement en cliquant sur l&apos;icône « Jouer Flash ».</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="533"/>
         <source>Use Click to Flash</source>
-        <translation>Utiliser cliquez pour flasher</translation>
+        <translation>Utiliser « Cliquez pour Flasher »</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="545"/>
@@ -1544,7 +1544,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="607"/>
         <source>Click to Flash</source>
-        <translation>Cliquez pour flasher</translation>
+        <translation>Cliquez pour Flasher</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="608"/>
@@ -1754,22 +1754,22 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
-        <translation>Couleur de la liste des flux</translation>
+        <translation>Couleur de la liste des articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
-        <translation>Fond de la liste des flux</translation>
+        <translation>Fond de la liste des articles</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
-        <translation>Couleur de nouvelles concentrée</translation>
+        <translation>Couleur des articles concentrés</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
-        <translation>Couleur de fond nouvelles concentrée</translation>
+        <translation>Couleur de fond des articles concentrés</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1329"/>
@@ -1789,17 +1789,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
-        <translation>Couleur author</translation>
+        <translation>Couleur auteur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
-        <translation>Fond titre nouvelles</translation>
+        <translation>Fond titre de l&apos;article</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
-        <translation>Fond nouvelles</translation>
+        <translation>Fond article</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1370"/>
@@ -2030,12 +2030,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>labeled news</source>
-        <translation>nouvelles étiquetées</translation>
+        <translation>articles étiquetés</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>starred news</source>
-        <translation>nouvelles étoilées</translation>
+        <translation>articles étoilés</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="755"/>
@@ -2603,13 +2603,13 @@
         <location filename="../src/rsslisting.cpp" line="615"/>
         <location filename="../src/rsslisting.cpp" line="5061"/>
         <source>Deleted</source>
-        <translation>Supprimé</translation>
+        <translation>Supprimés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="610"/>
         <location filename="../src/rsslisting.cpp" line="5060"/>
         <source>Starred</source>
-        <translation>Étoilé</translation>
+        <translation>Étoilés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5050"/>
@@ -3209,7 +3209,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5072"/>
         <source>Expand All Folders</source>
-        <translation>Développer tous les dossiers</translation>
+        <translation>Déplier tous les dossiers</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5073"/>
@@ -3224,7 +3224,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Expand Folder</source>
-        <translation>Développer le dossier</translation>
+        <translation>Déplier le dossier</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5077"/>
@@ -3234,7 +3234,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Sort By</source>
-        <translation>Trié par</translation>
+        <translation>Trier par</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5080"/>
@@ -3244,7 +3244,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5081"/>
         <source>Descending</source>
-        <translation>Descendant</translation>
+        <translation>Décroissant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5083"/>

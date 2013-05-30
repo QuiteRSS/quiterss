@@ -332,125 +332,127 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="101"/>
         <source>Remaining time unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Ο xρόνος που απομένει δεν είναι διαθέσιμος</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="155"/>
         <source>Error: Cannot write to file!</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα: Δεν είναι δυνατή η εγγραφή στο αρχείο!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="195"/>
         <source>Error: </source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="204"/>
         <source>Done - %1</source>
-        <translation type="unfinished"/>
+        <translation>Τελος - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="223"/>
         <source>few seconds</source>
-        <translation type="unfinished"/>
+        <translation>λίγα δευτερόλεπτα</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="225"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>δευτερόλεπτα</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="227"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>λεπτά</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="229"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>ώρες</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="236"/>
         <location filename="../src/downloads/downloaditem.cpp" line="280"/>
         <source>Unknown size</source>
-        <translation type="unfinished"/>
+        <translation>άγνωστο μέγεθος</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="253"/>
         <source>Unknown speed</source>
-        <translation type="unfinished"/>
+        <translation>άγνωστη ταχύτητα</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="281"/>
         <source>%2 - unknown size (%3)</source>
-        <translation type="unfinished"/>
+        <translation>%2 - αγνώστο μεγέθος (%3)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="283"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation type="unfinished"/>
+        <translation>Υπόλοιπο %1 - %2 απο %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="302"/>
         <source>Cancelled - %1</source>
-        <translation type="unfinished"/>
+        <translation>Ακυρώθηκε - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Delete file</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή αρχείου</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Θέλετε να διαγράφθει το κατεβασμενο αρχείο;</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="328"/>
         <source>Open File</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="330"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα φακέλου</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="332"/>
         <source>Copy Download Link</source>
-        <translation type="unfinished"/>
+        <translation>Αντιγραφή τοποθεσίας</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="334"/>
         <source>Cancel downloading</source>
-        <translation type="unfinished"/>
+        <translation>Ακύρωση λυψης</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="335"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Cancelled</source>
-        <translation type="unfinished"/>
+        <translation>Ακύρωση </translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Σφαλμα</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Not found</source>
-        <translation type="unfinished"/>
+        <translation>Δεν βρέθηκε</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation type="unfinished"/>
+        <translation>Συγνωμη, το αρχειο
+ %1 
+δεν βρεθηκε!</translation>
     </message>
 </context>
 <context>
@@ -458,32 +460,32 @@
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="34"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθαριση</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>File %1 (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>Αρχειο %1 (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>All Files (*.*)</source>
-        <translation type="unfinished"/>
+        <translation>Ολα τα αρχεια (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="90"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση Ως...</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="160"/>
         <source>Executable: </source>
-        <translation type="unfinished"/>
+        <translation>Εκτελέσιμο:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Arguments: </source>
-        <translation type="unfinished"/>
+        <translation>Επιχειρήματα:</translation>
     </message>
 </context>
 <context>
@@ -506,7 +508,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Στήλες</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
@@ -531,17 +533,17 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>δευτερόλεπτα</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>λεπτά</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="75"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>ώρες</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="90"/>
@@ -551,42 +553,42 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="149"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Αύξουσα</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="149"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Φθίνουσα</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="154"/>
         <source>Sort by:</source>
-        <translation type="unfinished"/>
+        <translation>Ταξινόμηση κατά:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="168"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="175"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση επάνω</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="182"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση κάτω</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="186"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Προεπιλογή</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="215"/>
@@ -631,7 +633,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"/>
+        <translation>Αυτόματη ανανέωση κάθε</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -1166,7 +1168,7 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="499"/>
         <source>Save Image...</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση εικόνας...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="500"/>
@@ -1308,7 +1310,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="84"/>
         <source>Fonts &amp; Colors</source>
-        <translation type="unfinished"/>
+        <translation>Γραμματοσειρές &amp; Χρώματα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="248"/>
@@ -1527,12 +1529,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Ask where to save each file before downloading</source>
-        <translation type="unfinished"/>
+        <translation>Ζητήστε τη θέση αποθήκευσης κάθε αρχείου πριν από τη λήψη</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="597"/>
         <source>Download location:</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσια ληψης:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="606"/>
@@ -1547,7 +1549,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="608"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Λήψεις</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="642"/>
@@ -1642,32 +1644,32 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Left</source>
-        <translation type="unfinished"/>
+        <translation>Top Αριστερά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Right</source>
-        <translation type="unfinished"/>
+        <translation>Top Δεξιά</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>Αριστερά bottom</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>Δεξια Bottom </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Ανασκόπηση</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>Θέση </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="907"/>
@@ -1742,67 +1744,67 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Feeds list color</source>
-        <translation type="unfinished"/>
+        <translation>Feeds χρώμα λίστας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Feeds list background</source>
-        <translation type="unfinished"/>
+        <translation>Feeds φόντος λίστας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
-        <translation type="unfinished"/>
+        <translation>Χρωμα λίστας νέων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
-        <translation type="unfinished"/>
+        <translation>Φοντος λίστας νέων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>Εστιασμένο χρώμα ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>Εστιασμένο χρώμα του φόντου ειδήσεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1329"/>
         <source>Link color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα σύνδεσμου</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1332"/>
         <source>Title color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα τίτλου</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Date color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα ημερομηνίας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα συγγραφέα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
-        <translation type="unfinished"/>
+        <translation>Φοντος τιτλων ειδησεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
-        <translation type="unfinished"/>
+        <translation>Φοντος ειδησεων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1370"/>
         <source>Colors</source>
-        <translation type="unfinished"/>
+        <translation>Χρώματα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1377"/>
@@ -2028,17 +2030,17 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Νέα με ετικέτα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>starred news</source>
-        <translation type="unfinished"/>
+        <translation>Μαρκαρισμένα νέα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Prevent accidental deletion of:</source>
-        <translation type="unfinished"/>
+        <translation>Αποτροπή τυχαίας διαγραφής του:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="921"/>
@@ -2216,12 +2218,12 @@
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
-        <translation type="unfinished"/>
+        <translation>Δεν είναι δυνατή η έναρξη εξωτερικόυ πρόγραμματος</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
-        <translation type="unfinished"/>
+        <translation>Δεν είναι δυνατή η έναρξη εξωτερικόυ πρόγραμματος! %1</translation>
     </message>
 </context>
 <context>
@@ -2937,7 +2939,7 @@
         <location filename="../src/rsslisting.cpp" line="7570"/>
         <location filename="../src/rsslisting.cpp" line="7580"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Λήψεις</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4893"/>
@@ -3212,17 +3214,17 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5073"/>
         <source>Next Folder</source>
-        <translation type="unfinished"/>
+        <translation>Επόμενος φάκελος</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Previous Folder</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενος φάκελος</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Expand Folder</source>
-        <translation type="unfinished"/>
+        <translation>Ανάπτυξη φακέλου</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5077"/>
@@ -3232,22 +3234,22 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Sort By</source>
-        <translation type="unfinished"/>
+        <translation>Ταξινόμηση κατά</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5080"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Αύξουσα</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5081"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Φθίνουσα</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5083"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθαριση</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5122"/>
