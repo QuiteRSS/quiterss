@@ -22,6 +22,7 @@
 ParseThread::ParseThread(QObject *parent, const QString &dataDirPath)
   : QThread(parent)
   , dataDirPath_(dataDirPath)
+  , parseObject_(0)
 {
   qDebug() << "ParseThread::constructor";
 
