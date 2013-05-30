@@ -36,7 +36,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="118"/>
         <source>History</source>
-        <translation>Versionsinfo</translation>
+        <translation>Versionshistorie</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="119"/>
@@ -332,7 +332,7 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="101"/>
         <source>Remaining time unavailable</source>
-        <translation>Verbleibende Zeit nicht verfügbar</translation>
+        <translation>Restzeit nicht verfügbar</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="155"/>
@@ -373,7 +373,7 @@
         <location filename="../src/downloads/downloaditem.cpp" line="236"/>
         <location filename="../src/downloads/downloaditem.cpp" line="280"/>
         <source>Unknown size</source>
-        <translation>Unbekannte Grösse</translation>
+        <translation>Unbekannte Größe</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="253"/>
@@ -383,7 +383,7 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="281"/>
         <source>%2 - unknown size (%3)</source>
-        <translation>%2 - unbekannte Grösse (%3)</translation>
+        <translation>%2 - unbekannte Größe (%3)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="283"/>
@@ -403,7 +403,7 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation>Wollen Sie ebenfalls die heruntergeladene Datei löschen?</translation>
+        <translation>Die heruntergeladene Datei auch löschen?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="328"/>
@@ -418,12 +418,12 @@
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="332"/>
         <source>Copy Download Link</source>
-        <translation>Download Link kopieren</translation>
+        <translation>Download-Link kopieren</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="334"/>
         <source>Cancel downloading</source>
-        <translation>Das herunterladen abbrechen</translation>
+        <translation>Herunterladen abbrechen</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="335"/>
@@ -450,9 +450,7 @@
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation>Entschuldigung, die Datei 
- %1 
- wurde nicht gefunden!</translation>
+        <translation>Die Datei %1  wurde leider nicht gefunden!</translation>
     </message>
 </context>
 <context>
@@ -480,12 +478,12 @@
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="160"/>
         <source>Executable: </source>
-        <translation>Executable: </translation>
+        <translation>Ausführbare Datei: </translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Arguments: </source>
-        <translation>Argumente:</translation>
+        <translation>Parameter:</translation>
     </message>
 </context>
 <context>
@@ -633,7 +631,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation>Automatisch aktualisieren jeden</translation>
+        <translation>Automatisch aktualisieren alle</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -1218,17 +1216,17 @@
     <message>
         <location filename="../src/newstabwidget.cpp" line="1274"/>
         <source>audio</source>
-        <translation>audio</translation>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1275"/>
         <source>video</source>
-        <translation>video</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1276"/>
         <source>media</source>
-        <translation>media</translation>
+        <translation>Medien</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1280"/>
@@ -1529,12 +1527,12 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Ask where to save each file before downloading</source>
-        <translation>Fragen Sie, wo jede Datei vor dem Download gespeichert werden soll</translation>
+        <translation>Vor dem Download von Dateien nach dem Speicherort fragen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="597"/>
         <source>Download location:</source>
-        <translation>Download Ort:</translation>
+        <translation>Downloadpfad:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="606"/>
@@ -1594,7 +1592,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="711"/>
         <source>on selecting. With timeout</source>
-        <translation>beim Auswählen. Timeout</translation>
+        <translation>beim Auswählen. Mit Timeout</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="712"/>
@@ -1744,62 +1742,62 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Feeds list color</source>
-        <translation>Feeds Liste Farbe</translation>
+        <translation>Farbe Feed-Liste</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Feeds list background</source>
-        <translation>Feeds Liste Hintergrund</translation>
+        <translation>Hintergrund Feed-Liste</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
-        <translation>Farbe Liste der Artikel</translation>
+        <translation>Farbe Nachrichtenliste</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
-        <translation>News Liste Hintergrund</translation>
+        <translation>Hintergrund Nachrichtenliste</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
-        <translation>Fokussiert Neuigkeiten Farbe</translation>
+        <translation>Farbe der markierten Nachricht</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
-        <translation>Fokussiert Nachrichten Hintergrundfarbe</translation>
+        <translation>Hintergrundfarbe der markierten Nachricht</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1329"/>
         <source>Link color</source>
-        <translation>Linkfarbe</translation>
+        <translation>Farbe des Links</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1332"/>
         <source>Title color</source>
-        <translation>Titelfarbe</translation>
+        <translation>Farbe des Titels</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Date color</source>
-        <translation>Datumsfarbe</translation>
+        <translation>Farbe des Datums</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
-        <translation>Autor Farbe</translation>
+        <translation>Farbe des Autoren</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
-        <translation>Newstitel Hintergrund</translation>
+        <translation>Hintergrund Nachrichtentitel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
-        <translation>News Hintergrund</translation>
+        <translation>Hintergrund Nachricht</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1370"/>
@@ -2040,7 +2038,7 @@
     <message>
         <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Prevent accidental deletion of:</source>
-        <translation>Verhindern Sie ein unbeabsichtigtes Löschen von:</translation>
+        <translation>Verhindern Sie unbeabsichtigtes Löschen von:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="921"/>
@@ -3219,7 +3217,7 @@
     <message>
         <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Previous Folder</source>
-        <translation>Voriger Ordner</translation>
+        <translation>Vorheriger Ordner</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5075"/>
