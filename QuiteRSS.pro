@@ -260,4 +260,5 @@ OTHER_FILES += \
     README \
     COPYING \
     AUTHORS \
-    CHANGELOG
+    CHANGELOG \
+    INSTALL
