@@ -41,14 +41,18 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
 
   QyurSqlTreeView treeView;
 
+  QString revisionStr;
+  if (VCS_REVISION != 0) {
+      revisionStr = "<BR>" + tr("Revision") + " " + QString("%1").arg(VCS_REVISION);
+  }
   QString appInfo =
       "<html><style>a { color: blue; text-decoration: none; }</style><body>"
       "<CENTER>"
       "<IMG SRC=\":/images/images/logo.png\">"
       "<BR><IMG SRC=\":/images/images/logo_text.png\">"
       "<P>"
-      + tr("Version") + " " + "<B>" + QString(STRPRODUCTVER) + "</B>" + QString(" (%1)").arg(STRDATE) + "<BR>"
-      + tr("Revision") + " " + QString("%1").arg(VCS_REVISION)
+      + tr("Version") + " " + "<B>" + QString(STRPRODUCTVER) + "</B>" + QString(" (%1)").arg(STRDATE)
+      + revisionStr
       + "</P>"
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news reader")
