@@ -1282,10 +1282,12 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
     content = enclosureStr+content;
 
+    if (!linkString.isEmpty())
+        titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString).arg(titleString);
+
     QString htmlStr = htmlString_.
         arg(cssString_).
-        arg(QString("<a href='%1' class='unread'>%2</a>").
-            arg(linkString).arg(titleString)).
+        arg(titleString).
         arg(dateString).
         arg(authorString).
         arg(content);
