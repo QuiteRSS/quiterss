@@ -845,6 +845,13 @@ void NewsTabWidget::markNewsRead()
     QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
+      newsModel_->setData(
+                  newsModel_->index(curIndex.row(), newsModel_->fieldIndex("new")),
+                  0);
+      newsModel_->setData(
+                  newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")),
+                  markRead);
+
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
              arg(markRead).arg(newsId));
@@ -853,24 +860,11 @@ void NewsTabWidget::markNewsRead()
     }
     db_.commit();
 
-    newsModel_->select();
-
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-
-    int newsIdCur =
-        feedsTreeModel_->dataField(feedsTreeView_->currentIndex(), "currentNews").toInt();
-    QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
-    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
-    if (indexList.count()) {
-      int newsRow = indexList.first().row();
-      newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-    }
-
     foreach (QString feedId, feedIdList) {
       rsslisting_->slotUpdateStatus(feedId.toInt());
     }
     rsslisting_->recountCategoryCounts();
+    newsView_->viewport()->update();
   }
 }
 
