@@ -89,6 +89,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   QString linkBaseString;
   QString linkString;
   QString linkAlternateString;
+  QString languageString;
   QString authorString;
   QString authorUriString;
   QString authorEmailString;
@@ -210,7 +211,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
 
           QString qStr("UPDATE feeds "
                        "SET title=?, description=?, htmlUrl=?, "
-                       "author_name=?, pubdate=? "
+                       "author_name=?, pubdate=?, language=? "
                        "WHERE id==?");
           q.prepare(qStr);
           q.addBindValue(titleString.simplified());
@@ -218,6 +219,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
           q.addBindValue(linkString);
           q.addBindValue(authorString.simplified());
           q.addBindValue(rssPubDateString);
+          q.addBindValue(languageString);
           q.addBindValue(parseFeedId);
           q.exec();
 //          qDebug() << "q.exec(" << q.lastQuery() << ")";
@@ -242,7 +244,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
           QString qStr ("UPDATE feeds "
                         "SET title=?, description=?, htmlUrl=?, "
                         "author_name=?, author_email=?, "
-                        "author_uri=?, pubdate=? "
+                        "author_uri=?, pubdate=?, language=? "
                         "WHERE id==?");
           q.prepare(qStr);
           q.addBindValue(titleString.simplified());
@@ -256,6 +258,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
           q.addBindValue(authorEmailString);
           q.addBindValue(authorUriString);
           q.addBindValue(atomUpdatedString);
+          q.addBindValue(languageString);
           q.addBindValue(parseFeedId);
           q.exec();
 //          qDebug() << "q.exec(" << q.lastQuery() << ")";
@@ -517,6 +520,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
       else if ((currentTag == "link") &&
                ((tagsStack.top() == "channel") || (tagsStack.top() == "item")))
         linkString = xml.text().toString();
+      else if (currentTag == "language")
+        languageString = xml.text().toString();
       else if (currentTag == "author")  //rss
         authorString += xml.text().toString();
       else if (currentTag == "creator")  //rss::dc:creator

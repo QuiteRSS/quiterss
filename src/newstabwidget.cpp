@@ -442,9 +442,7 @@ void NewsTabWidget::setSettings(bool newTab)
           arg(rsslisting_->linkColor_). // link color
           arg(rsslisting_->titleColor_). // title color
           arg(rsslisting_->dateColor_). // date color
-          arg(rsslisting_->authorColor_). // author color
-          arg(isLeftToRight() ? "left" : "right"). // text-align
-          arg(isLeftToRight() ? "ltr" : "rtl"); // direction
+          arg(rsslisting_->authorColor_); // author color
       cssFile.close();
     }
 
@@ -1279,8 +1277,22 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (!linkString.isEmpty())
         titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString).arg(titleString);
 
+    QString feedId = newsModel_->index(index.row(),newsModel_->fieldIndex("feedId")).
+        data(Qt::EditRole).toString();
+
+    QString languageString;
+    QSqlQuery q;
+    q.exec(QString("SELECT language FROM feeds WHERE id=='%1'").arg(feedId));
+    if (q.next()) languageString = q.value(0).toString().toLower();
+    bool ltr = true;
+    if (languageString == "ar") ltr = false;
+
+    QString cssStr = cssString_.
+        arg(ltr ? "left" : "right"). // text-align
+        arg(ltr ? "ltr" : "rtl"); // direction
+
     QString htmlStr = htmlString_.
-        arg(cssString_).
+        arg(cssStr).
         arg(titleString).
         arg(dateString).
         arg(authorString).
