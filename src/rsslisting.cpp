@@ -6819,6 +6819,10 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
  *---------------------------------------------------------------------------*/
 void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
 {
+  if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
+    currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+  }
+
   int type = item->text(1).toInt();
 
   int indexTab = -1;
