@@ -8,7 +8,7 @@ TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts \
                 lang/quiterss_uk.ts lang/quiterss_cs.ts lang/quiterss_pl.ts \
                 lang/quiterss_ja.ts lang/quiterss_ko.ts lang/quiterss_pt_BR.ts \
                 lang/quiterss_lt.ts lang/quiterss_zh_TW.ts lang/quiterss_el_GR.ts\
-                lang/quiterss_tr.ts
+                lang/quiterss_tr.ts lang/quiterss_ar.ts
 
 isEmpty(QMAKE_LRELEASE) {
   Q_WS_WIN:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe

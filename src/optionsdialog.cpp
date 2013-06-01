@@ -1047,6 +1047,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "ar" << QString::fromUtf8("العربية [AR]")
+           << "0.13.0"
+           << "ahmad almomani" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_AR"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "cs" << QString::fromUtf8("Čeština [CS]")
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Matej Szendi") << "matej.szendi@gmail.com";
