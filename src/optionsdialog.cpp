@@ -1049,7 +1049,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "ar" << QString::fromUtf8("العربية [AR]")
            << "0.13.0"
-           << "ahmad almomani" << "";
+           << "ahmadzxc" << "ahmad.almomani5@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_AR"));
   languageFileList_->addTopLevelItem(languageItem);
