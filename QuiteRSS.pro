@@ -150,6 +150,7 @@ INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \
                 $$PWD/src \
 
+CONFIG += debug_and_release
 CONFIG(debug, debug|release) {
   BUILD_DIR = $$OUT_PWD/debug
 } else {
@@ -162,7 +163,11 @@ OBJECTS_DIR = $${BUILD_DIR}/obj
 MOC_DIR = $${BUILD_DIR}/moc
 RCC_DIR = $${BUILD_DIR}/rcc
 
-include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
+isEmpty(SYSTEMQTSA) {
+  include(3rdparty/qtsingleapplication/qtsingleapplication.pri)
+} else {
+  CONFIG += qtsingleapplication
+}
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
@@ -204,7 +209,7 @@ DISTFILES += \
 unix {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  LIBS += -lsqlite3
+  PKGCONFIG += sqlite3
 
   isEmpty(PREFIX) {
     PREFIX =   /usr/local
