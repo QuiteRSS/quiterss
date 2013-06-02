@@ -118,6 +118,7 @@ public:
   QCheckBox *changeBehaviorActionNUN_;
   QCheckBox *notDeleteStarred_;
   QCheckBox *notDeleteLabeled_;
+  QCheckBox *markIdenticalNewsRead_;
 
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;

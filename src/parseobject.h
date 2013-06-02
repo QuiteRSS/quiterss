@@ -39,11 +39,13 @@ struct FeedCountStruct{
 
 Q_DECLARE_METATYPE(FeedCountStruct)
 
+class RSSListing;
+
 class ParseObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit ParseObject(const QString &dataDirPath, QObject *parent = 0);
+  explicit ParseObject(QObject *parent);
 
 public slots:
   void parseXml(const QByteArray &data, const QString &feedUrl,
@@ -65,8 +67,8 @@ private:
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
 
+  RSSListing* rssl_;
   QTimer *parseTimer_;
-  QString dataDirPath_;
   QString currentFeedUrl_;
   QByteArray currentXml_;
   QDateTime currentDtReady_;

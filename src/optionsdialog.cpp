@@ -727,6 +727,8 @@ void OptionsDialog::createFeedsWidget()
   notDeleteStarred_ = new QCheckBox(tr("labeled news"));
   notDeleteLabeled_ = new QCheckBox(tr("starred news"));
 
+  markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
+
   QHBoxLayout *readingFeedsLayout1 = new QHBoxLayout();
   readingFeedsLayout1->setMargin(0);
   readingFeedsLayout1->addWidget(markCurNewsRead_);
@@ -755,6 +757,7 @@ void OptionsDialog::createFeedsWidget()
   readingFeedsLayout->addWidget(new QLabel(tr("Prevent accidental deletion of:")));
   readingFeedsLayout->addLayout(readingFeedsLayout3);
   readingFeedsLayout->addWidget(changeBehaviorActionNUN_);
+  readingFeedsLayout->addWidget(markIdenticalNewsRead_);
   readingFeedsLayout->addStretch();
 
   QWidget *readingFeedsWidget = new QWidget();

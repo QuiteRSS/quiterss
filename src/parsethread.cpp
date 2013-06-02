@@ -19,9 +19,8 @@
 
 #include <QDebug>
 
-ParseThread::ParseThread(QObject *parent, const QString &dataDirPath)
+ParseThread::ParseThread(QObject *parent)
   : QThread(parent)
-  , dataDirPath_(dataDirPath)
   , parseObject_(0)
 {
   qDebug() << "ParseThread::constructor";
@@ -37,7 +36,7 @@ ParseThread::~ParseThread()
 
 /*virtual*/ void ParseThread::run()
 {
-  parseObject_ = new ParseObject(dataDirPath_);
+  parseObject_ = new ParseObject(parent());
   connect(parent(), SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
           parseObject_, SLOT(parseXml(QByteArray,QString,QDateTime)));
   connect(parseObject_, SIGNAL(feedUpdated(QString, bool, int)),

@@ -23,7 +23,7 @@
 
 extern QString kCreateNewsTableQuery;
 
-AddFeedWizard::AddFeedWizard(QWidget *parent, const QString &dataDirPath, int curFolderId)
+AddFeedWizard::AddFeedWizard(QWidget *parent, int curFolderId)
   : QWizard(parent),
     curFolderId_(curFolderId)
 {
@@ -37,7 +37,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, const QString &dataDirPath, int cu
   addPage(createNameFeedPage());
 
   persistentUpdateThread_ = new UpdateThread(this);
-  persistentParseThread_ = new ParseThread(this, dataDirPath);
+  persistentParseThread_ = new ParseThread(this);
 
   connect(button(QWizard::BackButton), SIGNAL(clicked()),
           this, SLOT(backButtonClicked()));

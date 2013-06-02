@@ -139,7 +139,7 @@ RSSListing::RSSListing(QSettings *settings,
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
   persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
 
-  persistentParseThread_ = new ParseThread(this, lastFeedPath_);
+  persistentParseThread_ = new ParseThread(this);
 
   faviconThread_ = new FaviconThread(this);
 
@@ -1938,6 +1938,7 @@ void RSSListing::readSettings()
   simplifiedDateTime_ = settings_->value("simplifiedDateTime", true).toBool();
   notDeleteStarred_ = settings_->value("notDeleteStarred", false).toBool();
   notDeleteLabeled_ = settings_->value("notDeleteLabeled", false).toBool();
+  markIdenticalNewsRead_ = settings_->value("markIdenticalNewsRead", true).toBool();
 
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -2204,6 +2205,7 @@ void RSSListing::writeSettings()
   settings_->setValue("simplifiedDateTime", simplifiedDateTime_);
   settings_->setValue("notDeleteStarred", notDeleteStarred_);
   settings_->setValue("notDeleteLabeled", notDeleteLabeled_);
+  settings_->setValue("markIdenticalNewsRead", markIdenticalNewsRead_);
 
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
@@ -2352,7 +2354,7 @@ void RSSListing::addFeed()
     curFolderId = feedsTreeModel_->getParidByIndex(curIndex);
   }
 
-  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, lastFeedPath_, curFolderId);
+  AddFeedWizard *addFeedWizard = new AddFeedWizard(this, curFolderId);
   addFeedWizard->restoreGeometry(settings_->value("addFeedWizard/geometry").toByteArray());
 
   int result = addFeedWizard->exec();
@@ -3630,6 +3632,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->simplifiedDateTime_->setChecked(simplifiedDateTime_);
   optionsDialog->notDeleteStarred_->setChecked(notDeleteStarred_);
   optionsDialog->notDeleteLabeled_->setChecked(notDeleteLabeled_);
+  optionsDialog->markIdenticalNewsRead_->setChecked(markIdenticalNewsRead_);
 
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
@@ -3924,6 +3927,7 @@ void RSSListing::showOptionDlg()
   simplifiedDateTime_ = optionsDialog->simplifiedDateTime_->isChecked();
   notDeleteStarred_ = optionsDialog->notDeleteStarred_->isChecked();
   notDeleteLabeled_ = optionsDialog->notDeleteLabeled_->isChecked();
+  markIdenticalNewsRead_ = optionsDialog->markIdenticalNewsRead_->isChecked();
 
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();

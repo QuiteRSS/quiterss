@@ -80,6 +80,7 @@ public:
   QSettings *settings_;
   QString appDataDirPath_;
   QString dataDirPath_;
+  QString lastFeedPath_;
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
@@ -180,6 +181,7 @@ public:
   bool simplifiedDateTime_;
   bool notDeleteStarred_;
   bool notDeleteLabeled_;
+  bool markIdenticalNewsRead_;
 
   bool autoLoadImages_;
   bool openLinkInBackground_;
@@ -435,8 +437,6 @@ private:
   void initUpdateFeeds();
 
   int addTab(NewsTabWidget *widget);
-
-  QString lastFeedPath_;
 
   QString dbFileName_;
   NewsModel *newsModel_;

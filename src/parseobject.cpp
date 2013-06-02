@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "parseobject.h"
 #include "db_func.h"
+#include "rsslisting.h"
 #include "VersionNo.h"
 
 #include <QDebug>
@@ -24,11 +25,15 @@
 #include <QTextDocumentFragment>
 #include <QRegExp>
 
-ParseObject::ParseObject(const QString &dataDirPath, QObject *parent)
-  : QObject(parent)
-  , dataDirPath_(dataDirPath)
+ParseObject::ParseObject(QObject *parent) : QObject(0)
 {
   setObjectName("parseObject_");
+
+  QObject *parent_ = parent;
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
+  rssl_ = qobject_cast<RSSListing*>(parent_);
 
   parseTimer_ = new QTimer();
   parseTimer_->setSingleShot(true);
@@ -75,8 +80,8 @@ void ParseObject::getQueuedXml()
 void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
                             const QDateTime &dtReply)
 {
-  if (!dataDirPath_.isEmpty()) {
-    QFile file(dataDirPath_ + QDir::separator() + "lastfeed.dat");
+  if (!rssl_->lastFeedPath_.isEmpty()) {
+    QFile file(rssl_->lastFeedPath_ + QDir::separator() + "lastfeed.dat");
     file.open(QIODevice::WriteOnly);
     file.write(xmlData);
     file.close();
@@ -347,10 +352,19 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         else {
           // if duplicates not found, add news into base
           if (!q.next()) {
+            bool read = false;
+            if (rssl_->markIdenticalNewsRead_) {
+              q.prepare("SELECT * FROM news WHERE feedId!=:id AND title LIKE :title");
+              q.bindValue(":id", parseFeedId);
+              q.bindValue(":title", titleString);
+              q.exec();
+              if (q.next()) read = true;
+            }
+
             qStr = QString("INSERT INTO news("
                            "feedId, description, content, guid, title, author_name, published, received, link_href, category, "
-                           "enclosure_url, enclosure_type, enclosure_length) "
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                           "enclosure_url, enclosure_type, enclosure_length, new, read) "
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             q.prepare(qStr);
             q.addBindValue(parseFeedId);
             q.addBindValue(rssDescriptionString);
@@ -367,6 +381,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             q.addBindValue(enclosureUrl);
             q.addBindValue(enclosureType);
             q.addBindValue(enclosureLength);
+            q.addBindValue(read ? 0 : 1);
+            q.addBindValue(read ? 2 : 0);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << parseFeedId;
@@ -443,12 +459,21 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
         else {
           // if duplicates not found, add news into base
           if (!q.next()) {
+            bool read = false;
+            if (rssl_->markIdenticalNewsRead_) {
+              q.prepare("SELECT * FROM news WHERE feedId!=:id AND title LIKE :title");
+              q.bindValue(":id", parseFeedId);
+              q.bindValue(":title", titleString);
+              q.exec();
+              if (q.next()) read = true;
+            }
+
             qStr = QString("INSERT INTO news("
                            "feedId, description, content, guid, title, author_name, "
                            "author_uri, author_email, published, received, "
                            "link_href, link_alternate, category, "
-                           "enclosure_url, enclosure_type, enclosure_length) "
-                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                           "enclosure_url, enclosure_type, enclosure_length, new, read) "
+                           "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             q.prepare(qStr);
             q.addBindValue(parseFeedId);
             q.addBindValue(atomSummaryString);
@@ -472,6 +497,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             q.addBindValue(enclosureUrl);
             q.addBindValue(enclosureType);
             q.addBindValue(enclosureLength);
+            q.addBindValue(read ? 0 : 1);
+            q.addBindValue(read ? 2 : 0);
             q.exec();
             qDebug() << "q.exec(" << q.lastQuery() << ")";
             qDebug() << "       " << parseFeedId;

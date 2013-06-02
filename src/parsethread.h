@@ -26,14 +26,13 @@ class ParseThread : public QThread
 {
   Q_OBJECT
 public:
-  explicit ParseThread(QObject *parent, const QString &dataDirPath);
+  explicit ParseThread(QObject *parent);
   ~ParseThread();
 
 protected:
   virtual void run();
 
 private:
-  QString dataDirPath_;
   ParseObject *parseObject_;
 
 };

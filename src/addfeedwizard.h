@@ -29,7 +29,7 @@ class AddFeedWizard : public QWizard
 {
   Q_OBJECT
 public:
-  explicit AddFeedWizard(QWidget *parent, const QString &dataDirPath, int curFolderId = 0);
+  explicit AddFeedWizard(QWidget *parent, int curFolderId);
   ~AddFeedWizard();
 
   LineEdit *nameFeedEdit_;
