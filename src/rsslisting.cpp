@@ -305,8 +305,8 @@ void RSSListing::slotClose()
   QString qStr = QString("UPDATE news SET description='', content='', received='', "
                          "author_name='', author_uri='', author_email='', "
                          "category='', new='', read='', starred='', label='', "
-                         "deleteDate='', feedParentId='', deleted=2 ");
-  if (cleanUpDB) qStr.append("WHERE deleted==1");
+                         "deleteDate='', feedParentId='', deleted=3 ");
+  if (cleanUpDB) qStr.append("WHERE deleted==2");
   else qStr.append("WHERE deleted!=0");
   q.exec(qStr);
 
@@ -579,6 +579,7 @@ void RSSListing::createFeedsWidget()
   newsCategoriesTree_ = new QTreeWidget(this);
   newsCategoriesTree_->setObjectName("newsCategoriesTree_");
   newsCategoriesTree_->setFrameStyle(QFrame::NoFrame);
+  newsCategoriesTree_->setContextMenuPolicy(Qt::CustomContextMenu);
   newsCategoriesTree_->setStyleSheet(
         QString("#newsCategoriesTree_ {border-top: 1px solid %1;}").
         arg(qApp->palette().color(QPalette::Dark).name()));
@@ -716,6 +717,8 @@ void RSSListing::createFeedsWidget()
 
   connect(newsCategoriesTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
+  connect(newsCategoriesTree_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuCategory(const QPoint &)));
   connect(showCategoriesButton_, SIGNAL(clicked()),
           this, SLOT(showNewsCategoriesTree()));
   connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
@@ -5964,7 +5967,7 @@ void RSSListing::feedsCleanUp(QString feedId)
   q.exec(qStr);
   if (q.next()) cntNews = q.value(0).toInt();
 
-  qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted==0")
+  qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted < 2")
       .arg(feedId);
   if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
   if (neverStarCleanUp_) qStr.append(" AND starred==0");
@@ -5974,11 +5977,8 @@ void RSSListing::feedsCleanUp(QString feedId)
     int newsId = q.value(0).toInt();
 
     if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
-      qStr = QString("UPDATE news SET deleted=1, read=2 WHERE id=='%1'").
+      qStr = QString("UPDATE news SET deleted=2, read=2 WHERE id=='%1'").
           arg(newsId);
-      // qCritical() << "*01"  << feedId << q.value(5).toString()
-      //     << q.value(1).toString() << cntNews
-      //     << (cntNews - maxNewsCleanUp_);
       QSqlQuery qt;
       qt.exec(qStr);
       cntT++;
@@ -5990,11 +5990,8 @@ void RSSListing::feedsCleanUp(QString feedId)
           Qt::ISODate);
     if (dayCleanUpOn_ &&
         (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
-      qStr = QString("UPDATE news SET deleted=1, read=2 WHERE id=='%1'").
+      qStr = QString("UPDATE news SET deleted=2, read=2 WHERE id=='%1'").
           arg(newsId);
-      // qCritical() << "*02"  << feedId << q.value(5).toString()
-      //     << q.value(1).toString() << cntNews
-      //     << (cntNews - maxNewsCleanUp_);
       QSqlQuery qt;
       qt.exec(qStr);
       cntT++;
@@ -6002,7 +5999,7 @@ void RSSListing::feedsCleanUp(QString feedId)
     }
 
     if (readCleanUp_) {
-      qStr = QString("UPDATE news SET deleted=1 WHERE read!=0 AND id=='%1'").
+      qStr = QString("UPDATE news SET deleted=2 WHERE read!=0 AND id=='%1'").
           arg(newsId);
       QSqlQuery qt;
       qt.exec(qStr);
@@ -6603,7 +6600,7 @@ void RSSListing::cleanUp()
 
   if (settings_->value("CleanUp", 0).toInt() != 1) return;
 
-  q.exec("SELECT received, id FROM news WHERE deleted==2");
+  q.exec("SELECT received, id FROM news WHERE deleted>=2");
   while (q.next()) {
     QDateTime dateTime = QDateTime::fromString(q.value(0).toString(), Qt::ISODate);
     if (dateTime.daysTo(QDateTime::currentDateTime()) > settings_->value("DayCleanUp", 0).toInt()) {
@@ -6945,7 +6942,25 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   statusAll_->setVisible(true);
 }
 
-/** @brief Show/Hide feeds tree
+/** @brief Call context menu of the categories tree
+ *----------------------------------------------------------------------------*/
+void RSSListing::showContextMenuCategory(const QPoint &pos)
+{
+  QModelIndex index = newsCategoriesTree_->indexAt(pos);
+  if (index.isValid()) {
+    QRect rectText = newsCategoriesTree_->visualRect(index);
+    if (pos.x() >= rectText.x()) {
+      if (newsCategoriesTree_->itemAt(pos) == newsCategoriesTree_->topLevelItem(2)) {
+        QMenu menu;
+        menu.addAction( tr("Clear 'Deleted'"), this, SLOT(deleteAllNewsList()));
+        menu.exec(newsCategoriesTree_->viewport()->mapToGlobal(pos));
+      }
+    }
+
+  }
+}
+
+/** @brief Show/Hide categories tree
  *---------------------------------------------------------------------------*/
 void RSSListing::showNewsCategoriesTree()
 {
@@ -6966,7 +6981,7 @@ void RSSListing::showNewsCategoriesTree()
   }
 }
 
-/** @brief Move splitter between feeds tree and news list
+/** @brief Move splitter between feeds tree and categories tree
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsSplitterMoved(int pos, int)
 {

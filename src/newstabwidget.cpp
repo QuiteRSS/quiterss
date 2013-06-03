@@ -475,7 +475,6 @@ void NewsTabWidget::setSettings(bool newTab)
     rsslisting_->slotUpdateStatus(feedId_, false);
 
     rsslisting_->newsFilter_->setEnabled(type_ == TAB_FEED);
-    rsslisting_->deleteNewsAct_->setEnabled(type_ != TAB_CAT_DEL);
     separatorRAct_->setVisible(type_ == TAB_CAT_DEL);
     rsslisting_->restoreNewsAct_->setVisible(type_ == TAB_CAT_DEL);
   }
@@ -975,7 +974,8 @@ void NewsTabWidget::deleteNews()
       return;
 
     slotSetItemRead(curIndex, 1);
-    newsModel_->setData(curIndex, 1);
+
+    newsModel_->setData(curIndex, (type_ != TAB_CAT_DEL) ? 1 : 2);
     newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")),
                         QDateTime::currentDateTime().toString(Qt::ISODate));
 
@@ -997,8 +997,10 @@ void NewsTabWidget::deleteNews()
         continue;
 
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
-      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
-             arg(QDateTime::currentDateTime().toString(Qt::ISODate)).arg(newsId));
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=%1, deleteDate='%2' WHERE id=='%3'").
+             arg((type_ != TAB_CAT_DEL) ? 1 : 2).
+             arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+             arg(newsId));
 
       QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
       if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
@@ -1046,8 +1048,10 @@ void NewsTabWidget::deleteAllNewsList()
       continue;
 
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
-    q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
-           arg(QDateTime::currentDateTime().toString(Qt::ISODate)).arg(newsId));
+    q.exec(QString("UPDATE news SET new=0, read=2, deleted=%1, deleteDate='%2' WHERE id=='%3'").
+           arg((type_ != TAB_CAT_DEL) ? 1 : 2).
+           arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+           arg(newsId));
 
     QString feedId = newsModel_->index(i, newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
     if (!feedIdList.contains(feedId)) feedIdList.append(feedId);

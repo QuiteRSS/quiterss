@@ -358,6 +358,7 @@ private slots:
   void slotRefreshInfoTray();
 
   void slotCategoriesClicked(QTreeWidgetItem *item, int);
+  void showContextMenuCategory(const QPoint &pos);
   void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
 
