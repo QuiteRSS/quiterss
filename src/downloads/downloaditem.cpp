@@ -368,7 +368,7 @@ void DownloadItem::customContextMenuRequested(const QPoint &pos)
   menu.addSeparator();
   menu.addAction(tr("Copy Download Link"), this, SLOT(copyDownloadLink()));
   menu.addSeparator();
-  menu.addAction(tr("Cancel downloading"), this, SLOT(stop()))->setEnabled(downloading_);
+  menu.addAction(tr("Cancel Downloading"), this, SLOT(stop()))->setEnabled(downloading_);
   menu.addAction(tr("Remove"), this, SLOT(clear()))->setEnabled(!downloading_);
 
   if (downloading_ || downloadInfo_->text().startsWith(tr("Cancelled")) || downloadInfo_->text().startsWith(tr("Error"))) {
