@@ -144,7 +144,7 @@ QString DownloadManager::getFileName(QNetworkReply* reply)
 
   QString name = baseName + endName;
 
-  name.replace(QRegExp("[;:<>\"]"), "_");
+  name.replace(QRegExp("[;:<>?\"]"), "_");
 
   return name;
 }
