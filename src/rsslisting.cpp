@@ -5282,7 +5282,7 @@ void RSSListing::showFeedPropertiesDlg()
   properties.columnDefault.sortType = sortType;
   settings_->endGroup();
 
-  if (feedsTreeModel_->dataField(index, "columns").isNull()) {
+  if (feedsTreeModel_->dataField(index, "columns").toString().isEmpty()) {
     widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
     QListIterator<QAction *> iter(widget->newsHeader_->viewMenu_->actions());
     while (iter.hasNext()) {
@@ -5388,78 +5388,76 @@ void RSSListing::showFeedPropertiesDlg()
   q.addBindValue(feedId);
   q.exec();
 
-  if ((properties_tmp.column.columns != properties.column.columns) ||
-      (properties_tmp.column.sortBy != properties.column.sortBy) ||
-      (properties_tmp.column.sortType != properties.column.sortType)) {
-    QString indexColumnsStr;
-    if ((properties.column.columns != properties.columnDefault.columns) ||
-        (properties.column.sortBy != properties.columnDefault.sortBy) ||
-        (properties.column.sortType != properties.columnDefault.sortType)) {
-      for (int i = 0; i < properties.column.columns.count(); ++i) {
-        int index = properties.column.columns.at(i);
-        indexColumnsStr.append(",");
-        indexColumnsStr.append(QString::number(index));
-      }
+
+  indexColumnsStr = "";
+  if ((properties.column.columns != properties.columnDefault.columns) ||
+      (properties.column.sortBy != properties.columnDefault.sortBy) ||
+      (properties.column.sortType != properties.columnDefault.sortType)) {
+    for (int i = 0; i < properties.column.columns.count(); ++i) {
+      int index = properties.column.columns.at(i);
       indexColumnsStr.append(",");
-    } else {
-      properties.column.sortBy = 0;
-      properties.column.sortType = 0;
+      indexColumnsStr.append(QString::number(index));
     }
+    indexColumnsStr.append(",");
+  } else {
+    properties.column.sortBy = 0;
+    properties.column.sortType = 0;
+  }
 
-    q.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
-    q.addBindValue(indexColumnsStr);
-    q.addBindValue(properties.column.sortBy);
-    q.addBindValue(properties.column.sortType);
-    q.addBindValue(feedId);
-    q.exec();
+  q.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
+  q.addBindValue(indexColumnsStr);
+  q.addBindValue(properties.column.sortBy);
+  q.addBindValue(properties.column.sortType);
+  q.addBindValue(feedId);
+  q.exec();
 
-    QModelIndex indexColumns = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("columns"));
-    QModelIndex indexSort = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("sort"));
-    QModelIndex indexSortType = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("sortType"));
-    feedsTreeModel_->setData(indexColumns, indexColumnsStr);
-    feedsTreeModel_->setData(indexSort, properties.column.sortBy);
-    feedsTreeModel_->setData(indexSortType, properties.column.sortType);
+  QModelIndex indexColumns = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("columns"));
+  QModelIndex indexSort = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("sort"));
+  QModelIndex indexSortType = index.sibling(index.row(), feedsTreeModel_->proxyColumnByOriginal("sortType"));
+  feedsTreeModel_->setData(indexColumns, indexColumnsStr);
+  feedsTreeModel_->setData(indexSort, properties.column.sortBy);
+  feedsTreeModel_->setData(indexSortType, properties.column.sortType);
 
-    if (!isFeed) {
-      QQueue<int> parentIds;
-      parentIds.enqueue(feedId);
-      while (!parentIds.empty()) {
-        int parentId = parentIds.dequeue();
-        q.exec(QString("SELECT id, parentId, xmlUrl FROM feeds WHERE parentId='%1'").
-               arg(parentId));
-        while (q.next()) {
-          int id = q.value(0).toInt();
-          int parentId = q.value(1).toInt();
-          QString xmlUrl = q.value(2).toString();
+  if (!isFeed) {
+    QQueue<int> parentIds;
+    parentIds.enqueue(feedId);
+    while (!parentIds.empty()) {
+      int parentId = parentIds.dequeue();
+      q.exec(QString("SELECT id, parentId, xmlUrl FROM feeds WHERE parentId='%1'").
+             arg(parentId));
+      while (q.next()) {
+        int id = q.value(0).toInt();
+        int parentId = q.value(1).toInt();
+        QString xmlUrl = q.value(2).toString();
 
-          QSqlQuery q1;
-          q1.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
-          q1.addBindValue(indexColumnsStr);
-          q1.addBindValue(properties.column.sortBy);
-          q1.addBindValue(properties.column.sortType);
-          q1.addBindValue(id);
-          q1.exec();
+        QSqlQuery q1;
+        q1.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
+        q1.addBindValue(indexColumnsStr);
+        q1.addBindValue(properties.column.sortBy);
+        q1.addBindValue(properties.column.sortType);
+        q1.addBindValue(id);
+        q1.exec();
 
-          QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id, parentId);
-          indexColumns = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("columns"));
-          indexSort = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("sort"));
-          indexSortType = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("sortType"));
-          feedsTreeModel_->setData(indexColumns, indexColumnsStr);
-          feedsTreeModel_->setData(indexSort, properties.column.sortBy);
-          feedsTreeModel_->setData(indexSortType, properties.column.sortType);
+        QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id, parentId);
+        indexColumns = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("columns"));
+        indexSort = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("sort"));
+        indexSortType = index1.sibling(index1.row(), feedsTreeModel_->proxyColumnByOriginal("sortType"));
+        feedsTreeModel_->setData(indexColumns, indexColumnsStr);
+        feedsTreeModel_->setData(indexSort, properties.column.sortBy);
+        feedsTreeModel_->setData(indexSortType, properties.column.sortType);
 
-          if (currentNewsTab->feedId_ == id)
-            currentNewsTab->newsHeader_->setColumns(this, index1);
+        if (currentNewsTab->feedId_ == id)
+          currentNewsTab->newsHeader_->setColumns(this, index1);
 
-          if (xmlUrl.isEmpty())
-            parentIds.enqueue(id);
-        }
+        if (xmlUrl.isEmpty())
+          parentIds.enqueue(id);
       }
     }
-
-    if (currentNewsTab->feedId_ == feedId)
-      currentNewsTab->newsHeader_->setColumns(this, index);
   }
+
+  if (currentNewsTab->feedId_ == feedId)
+    currentNewsTab->newsHeader_->setColumns(this, index);
+
 
   if (!(!feedsTreeModel_->dataField(index, "authentication").toInt() && !properties.authentication.on)) {
     q.prepare("SELECT * FROM passwords WHERE server=?");

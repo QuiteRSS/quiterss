@@ -462,7 +462,7 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   if (!isVisible())
     show_ = true;
   moveSection(visualIndex(model_->fieldIndex("id")), 0);
-  if (state != saveState())
+  if ((state != saveState()) && isVisible())
     adjustAllColumnsWidths(size().width()+1);
   move_ = true;
 }
@@ -482,13 +482,15 @@ QString NewsHeader::columnsList()
 
 void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget)
 {
+  if (newsTabWidget->type_ == TAB_CAT_DEL) return;
+
   int feedId = newsTabWidget->feedId_;
   int feedParId = newsTabWidget->feedParId_;
   QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId, feedParId);
 
   rssl->settings_->beginGroup("NewsHeader");
   rssl->settings_->setValue("state", saveState());
-  if (rssl->feedsTreeModel_->dataField(indexOld, "columns").isNull()) {
+  if (rssl->feedsTreeModel_->dataField(indexOld, "columns").toString().isEmpty()) {
     rssl->settings_->setValue("columns", columnsList());
     rssl->settings_->setValue("sortBy", sortIndicatorSection());
     rssl->settings_->setValue("sortOrder", sortIndicatorOrder());
