@@ -1080,11 +1080,17 @@ void NewsTabWidget::restoreNews()
   int cnt = indexes.count();
   if (cnt == 0) return;
 
+  QStringList feedIdList;
+
   if (cnt == 1) {
     curIndex = indexes.at(0);
     newsModel_->setData(curIndex, 0);
     newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")), "");
     newsModel_->submitAll();
+
+    QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).
+        data(Qt::EditRole).toString();
+    if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
   } else {
     db_.transaction();
     QSqlQuery q;
@@ -1093,6 +1099,10 @@ void NewsTabWidget::restoreNews()
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
       q.exec(QString("UPDATE news SET deleted=0, deleteDate='' WHERE id=='%1'").
              arg(newsId));
+
+      QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).
+          data(Qt::EditRole).toString();
+      if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
     }
     db_.commit();
 
@@ -1110,6 +1120,11 @@ void NewsTabWidget::restoreNews()
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rsslisting_->slotUpdateStatus(feedId_);
+  rsslisting_->recountCategoryCounts();
+
+  foreach (QString feedId, feedIdList) {
+    rsslisting_->slotUpdateStatus(feedId.toInt());
+  }
   rsslisting_->recountCategoryCounts();
 }
 
