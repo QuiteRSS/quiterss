@@ -18,14 +18,14 @@
 /*This file is prepared for Doxygen automatic documentation generation.*/
 #include "feedpropertiesdialog.h"
 
-FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent) :
-  Dialog(parent, Qt::MSWindowsFixedSizeDialogHint),
-  isFeed_(isFeed)
+FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
+  : Dialog(parent)
+  , isFeed_(isFeed)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Properties"));
-  setMinimumWidth(400);
-  setMinimumHeight(300);
+  setMinimumWidth(450);
+  setMinimumHeight(350);
 
   tabWidget = new QTabWidget();
   tabWidget->addTab(CreateGeneralTab(), tr("General"));
