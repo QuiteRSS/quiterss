@@ -1854,6 +1854,7 @@ void RSSListing::readSettings()
 
   showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
   reopenFeedStartup_ = settings_->value("reopenFeedStartup", true).toBool();
+  openNewTabNextToActive_ = settings_->value("openNewTabNextToActive_", false).toBool();
 
   showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
@@ -2150,6 +2151,7 @@ void RSSListing::writeSettings()
 
   settings_->setValue("showSplashScreen", showSplashScreen_);
   settings_->setValue("reopenFeedStartup", reopenFeedStartup_);
+  settings_->setValue("openNewTabNextToActive", openNewTabNextToActive_);
 
   settings_->setValue("storeDBMemory", storeDBMemoryT_);
 
@@ -3556,6 +3558,7 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
+  optionsDialog->openNewTabNextToActive_->setChecked(openNewTabNextToActive_);
   optionsDialog->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
   optionsDialog->defaultIconFeeds_->setChecked(defaultIconFeeds_);
   optionsDialog->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
@@ -3807,6 +3810,7 @@ void RSSListing::showOptionDlg()
 
   showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
+  openNewTabNextToActive_ = optionsDialog->openNewTabNextToActive_->isChecked();
   hideFeedsOpenTab_ = optionsDialog->hideFeedsOpenTab_->isChecked();
   defaultIconFeeds_ = optionsDialog->defaultIconFeeds_->isChecked();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
@@ -7061,8 +7065,15 @@ void RSSListing::getLabelNews()
  *---------------------------------------------------------------------------*/
 int RSSListing::addTab(NewsTabWidget *widget)
 {
-  if (stackedWidget_->count()) tabBar_->addTab("");
-  int indexTab = stackedWidget_->addWidget(widget);
+  int indexTab;
+  if (openNewTabNextToActive_) {
+    if (stackedWidget_->count()) tabBar_->insertTab(tabBar_->currentIndex()+1, "");
+    indexTab = stackedWidget_->insertWidget(stackedWidget_->currentIndex()+1, widget);
+  }
+  else {
+    if (stackedWidget_->count()) tabBar_->addTab("");
+    indexTab = stackedWidget_->addWidget(widget);
+  }
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);

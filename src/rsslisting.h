@@ -630,6 +630,7 @@ private:
   QList<int> cntNewNewsList_;
 
   bool reopenFeedStartup_;
+  bool openNewTabNextToActive_;
 
   bool updateCurrentTab_;
 
