@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="el_GR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="el_GR" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -10,38 +8,38 @@
         <translation>Σχετικά</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="54"/>
-        <location filename="../src/aboutdialog.cpp" line="120"/>
+        <location filename="../src/aboutdialog.cpp" line="50"/>
+        <location filename="../src/aboutdialog.cpp" line="116"/>
         <source>Version</source>
         <translation>Έκδοση</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="46"/>
+        <location filename="../src/aboutdialog.cpp" line="51"/>
         <source>Revision</source>
         <translation>Ανανέωση</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="58"/>
+        <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
         <translation>Το QuiteRSS είναι ένας open-source και cross-platform RSS/Atom αναγνώστης νέων</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="59"/>
+        <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Includes:</source>
         <translation>Συμπεριλαμβάνει:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="121"/>
+        <location filename="../src/aboutdialog.cpp" line="117"/>
         <source>Authors</source>
         <translation>Συγγραφείς</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="122"/>
+        <location filename="../src/aboutdialog.cpp" line="118"/>
         <source>History</source>
         <translation>Ιστορικό</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="123"/>
+        <location filename="../src/aboutdialog.cpp" line="119"/>
         <source>License</source>
         <translation>Άδεια</translation>
     </message>
@@ -332,128 +330,123 @@
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="102"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="101"/>
         <source>Remaining time unavailable</source>
         <translation>Ο xρόνος που απομένει δεν είναι διαθέσιμος</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="165"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="192"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="155"/>
         <source>Error: Cannot write to file!</source>
         <translation>Σφάλμα: Δεν είναι δυνατή η εγγραφή στο αρχείο!</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="232"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="195"/>
         <source>Error: </source>
         <translation>Σφάλμα:</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="241"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="204"/>
         <source>Done - %1</source>
         <translation>Τελος - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="260"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="223"/>
         <source>few seconds</source>
         <translation>λίγα δευτερόλεπτα</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="262"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="225"/>
         <source>seconds</source>
         <translation>δευτερόλεπτα</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="227"/>
         <source>minutes</source>
         <translation>λεπτά</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="229"/>
         <source>hours</source>
         <translation>ώρες</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="273"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="317"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="236"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="280"/>
         <source>Unknown size</source>
         <translation>άγνωστο μέγεθος</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="290"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="253"/>
         <source>Unknown speed</source>
         <translation>άγνωστη ταχύτητα</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="318"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="281"/>
         <source>%2 - unknown size (%3)</source>
         <translation>%2 - αγνώστο μεγέθος (%3)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="320"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="283"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
         <translation>Υπόλοιπο %1 - %2 απο %3 (%4)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="339"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="302"/>
         <source>Cancelled - %1</source>
         <translation>Ακυρώθηκε - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="349"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Delete file</source>
         <translation>Διαγραφή αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="349"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Do you want to also delete dowloaded file?</source>
         <translation>Θέλετε να διαγράφθει το κατεβασμενο αρχείο;</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="365"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="328"/>
         <source>Open File</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="367"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="330"/>
         <source>Open Folder</source>
         <translation>Άνοιγμα φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="369"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="332"/>
         <source>Copy Download Link</source>
         <translation>Αντιγραφή τοποθεσίας</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="371"/>
-        <source>Cancel Downloading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../src/downloads/downloaditem.cpp" line="334"/>
         <source>Cancel downloading</source>
-        <translation type="obsolete">Ακύρωση λυψης</translation>
+        <translation>Ακύρωση λυψης</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="335"/>
         <source>Remove</source>
         <translation>Αφαίρεση</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Cancelled</source>
         <translation>Ακύρωση </translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Error</source>
         <translation>Σφαλμα</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="399"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Not found</source>
         <translation>Δεν βρέθηκε</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="399"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
@@ -465,32 +458,32 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="34"/>
         <source>Clear</source>
         <translation>Εκκαθαριση</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>File %1 (*.%2)</source>
         <translation>Αρχειο %1 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>All Files (*.*)</source>
         <translation>Ολα τα αρχεια (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="90"/>
         <source>Save As...</source>
         <translation>Αποθήκευση Ως...</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="160"/>
         <source>Executable: </source>
         <translation>Εκτελέσιμο:</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="162"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Arguments: </source>
         <translation>Επιχειρήματα:</translation>
     </message>
@@ -776,14 +769,6 @@
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in Browser</source>
         <translation>Εύρεση στον Browser</translation>
-    </message>
-</context>
-<context>
-    <name>FtpDownloader</name>
-    <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="464"/>
-        <source>Canceled!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1141,112 +1126,112 @@
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="487"/>
+        <location filename="../src/newstabwidget.cpp" line="490"/>
         <source>Loading... (%p%)</source>
         <translation>Φόρτωση... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1265"/>
+        <location filename="../src/newstabwidget.cpp" line="1254"/>
         <source>Author: %1</source>
         <translation>Συγγραφέας: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="489"/>
+        <location filename="../src/newstabwidget.cpp" line="492"/>
         <source>Home</source>
         <translation>Αρχική</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="490"/>
+        <location filename="../src/newstabwidget.cpp" line="493"/>
         <source>Open Page in External Browser</source>
         <translation>Άνοιγμα σελίδας σε εξωτερικό browser</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="491"/>
+        <location filename="../src/newstabwidget.cpp" line="494"/>
         <source>Open Link in External Browser</source>
         <translation>Άνοιγμα Συνδέσμου σε Εξωτερικό Browser</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="493"/>
+        <location filename="../src/newstabwidget.cpp" line="496"/>
         <source>Open Link</source>
         <translation>Άνοιγμα Συνδέσμου</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="494"/>
+        <location filename="../src/newstabwidget.cpp" line="497"/>
         <source>Open in New Tab</source>
         <translation>Άνοιγμα σε Νέα Καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="495"/>
+        <location filename="../src/newstabwidget.cpp" line="498"/>
         <source>Save Link...</source>
         <translation>Αποθήκευση Συνδέσμου...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="496"/>
+        <location filename="../src/newstabwidget.cpp" line="499"/>
         <source>Save Image...</source>
         <translation>Αποθήκευση εικόνας...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="497"/>
+        <location filename="../src/newstabwidget.cpp" line="500"/>
         <source>Copy Link</source>
         <translation>Αντιγραφή Συνδέσμου</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="498"/>
+        <location filename="../src/newstabwidget.cpp" line="501"/>
         <source>Copy</source>
         <translation>Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="499"/>
+        <location filename="../src/newstabwidget.cpp" line="502"/>
         <source>Go Back</source>
         <translation>Πίσω</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="500"/>
+        <location filename="../src/newstabwidget.cpp" line="503"/>
         <source>Go Forward</source>
         <translation>Εμπρός</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="501"/>
+        <location filename="../src/newstabwidget.cpp" line="504"/>
         <source>Stop</source>
         <translation>Διακοπή</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="502"/>
+        <location filename="../src/newstabwidget.cpp" line="505"/>
         <source>Reload</source>
         <translation>Ανανέωση</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="503"/>
+        <location filename="../src/newstabwidget.cpp" line="506"/>
         <source>Copy Image</source>
         <translation>Αντιγραφή Εικόνας</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="505"/>
+        <location filename="../src/newstabwidget.cpp" line="508"/>
         <source>Copy Image Address</source>
         <translation>Αντιγραφή Διεύθυνσης Εικόνας</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="514"/>
+        <location filename="../src/newstabwidget.cpp" line="517"/>
         <source>Close Tab</source>
         <translation>Κλείσιμο Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1285"/>
+        <location filename="../src/newstabwidget.cpp" line="1274"/>
         <source>audio</source>
         <translation>ήχος</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1286"/>
+        <location filename="../src/newstabwidget.cpp" line="1275"/>
         <source>video</source>
         <translation>βίντεο</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1287"/>
+        <location filename="../src/newstabwidget.cpp" line="1276"/>
         <source>media</source>
         <translation>πολυμέσα</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1291"/>
+        <location filename="../src/newstabwidget.cpp" line="1280"/>
         <source>Link to</source>
         <translation>Σύνδεση με</translation>
     </message>
@@ -1260,8 +1245,8 @@
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="242"/>
-        <location filename="../src/notifications.cpp" line="306"/>
-        <location filename="../src/notifications.cpp" line="318"/>
+        <location filename="../src/notifications.cpp" line="308"/>
+        <location filename="../src/notifications.cpp" line="320"/>
         <source>Page %1 of %2</source>
         <translation>Σελίδα %1 από %2</translation>
     </message>
@@ -1290,13 +1275,13 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="72"/>
-        <location filename="../src/optionsdialog.cpp" line="1468"/>
+        <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Labels</source>
         <translation>Ετικέτες</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="75"/>
-        <location filename="../src/optionsdialog.cpp" line="1470"/>
+        <location filename="../src/optionsdialog.cpp" line="1457"/>
         <source>Notifications</source>
         <translation>Ειδοποιήσεις</translation>
     </message>
@@ -1307,18 +1292,18 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="81"/>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1382"/>
+        <location filename="../src/optionsdialog.cpp" line="1369"/>
         <source>Fonts</source>
         <translation>Γραμματοσειρές</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="223"/>
-        <location filename="../src/optionsdialog.cpp" line="1779"/>
+        <location filename="../src/optionsdialog.cpp" line="1766"/>
         <source>Warning: key is already assigned to</source>
         <translation>Προσοχή: το κλειδί υπάρχει ήδη</translation>
     </message>
@@ -1334,596 +1319,586 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="249"/>
-        <source>Open new tab next to active</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="250"/>
         <source>Hide feeds tree when opening tabs</source>
         <translation>Απόκρυψη δέντρου feeds κατα το άνοιγμα καρτελών</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="252"/>
+        <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Automatically collapse folders</source>
         <translation>Αυτόματη σύμπτυξη φακέλων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="254"/>
+        <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Automatically check for updates</source>
         <translation>Αυτόματος έλεγχος για ενημερώσεις</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="255"/>
+        <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>Αποθήκευση βάσης δεδομένων (απαιτεί επανεκκίνιση του προγράμματος)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <location filename="../src/optionsdialog.cpp" line="265"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>Εκτελέση του QuiteRSS κατα την εκκίνηση του Windows </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="291"/>
+        <location filename="../src/optionsdialog.cpp" line="289"/>
         <source>starting QuiteRSS</source>
         <translation>εκκίνηση QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <location filename="../src/optionsdialog.cpp" line="290"/>
         <source>minimizing QuiteRSS</source>
         <translation>ελαχιστοποίηση QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="293"/>
+        <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>closing QuiteRSS</source>
         <translation>κλείσιμο QuiteRSS</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="300"/>
+        <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show static icon</source>
         <translation>Εμφάνιση στατικού εικονιδίου</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="301"/>
+        <location filename="../src/optionsdialog.cpp" line="299"/>
         <source>Change icon for incoming new news</source>
         <translation>Αλλαγή εικονιδίου για τα εισερχόμενα νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="302"/>
+        <location filename="../src/optionsdialog.cpp" line="300"/>
         <source>Show count of new news</source>
         <translation>Εμφάνιση πλήθους νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="303"/>
+        <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Show count of unread news</source>
         <translation>Εμφάνιση πλήθους μη αναγνωσμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="312"/>
+        <location filename="../src/optionsdialog.cpp" line="310"/>
         <source>Single click instead of double click for show window</source>
         <translation>Κλίκ αντί για διπλό κλίκ για εμφάνιση νέου παραθύρου</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="313"/>
+        <location filename="../src/optionsdialog.cpp" line="311"/>
         <source>Clear status new on minimize to tray</source>
         <translation>Εκκαθάριση κατάστασης νέων κατα την ελαχιστοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="314"/>
+        <location filename="../src/optionsdialog.cpp" line="312"/>
         <source>Empty working set on minimize to tray</source>
         <translation>Άδειασμα του σετ κατα την ελαχιστοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="317"/>
+        <location filename="../src/optionsdialog.cpp" line="315"/>
         <source>Move to the system tray when:</source>
         <translation>Μετακίνηση στο tray όταν:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="319"/>
+        <location filename="../src/optionsdialog.cpp" line="317"/>
         <source>Tray icon behavior:</source>
         <translation>Συμπεριφορά εικονιδίου tray:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="344"/>
+        <location filename="../src/optionsdialog.cpp" line="342"/>
         <source>System proxy configuration (if available)</source>
         <translation>Ρύθμιση proxy συστήματος (εάν υπάρχει)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="346"/>
+        <location filename="../src/optionsdialog.cpp" line="344"/>
         <source>Direct connection to the Internet</source>
         <translation>Άμεση σύνδεση στο ίντερνετ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="347"/>
+        <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>Manual proxy configuration:</source>
         <translation>Χειροκίνητη ρύθμιση proxy:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="363"/>
+        <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>Proxy server:</source>
         <translation>Proxy:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="365"/>
+        <location filename="../src/optionsdialog.cpp" line="363"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="373"/>
+        <location filename="../src/optionsdialog.cpp" line="371"/>
         <source>Username:</source>
         <translation>Username:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="375"/>
+        <location filename="../src/optionsdialog.cpp" line="373"/>
         <source>Password:</source>
         <translation>Password:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="406"/>
+        <location filename="../src/optionsdialog.cpp" line="404"/>
         <source>Use embedded browser</source>
         <translation>Χρήση του ενσωματωμένου browser</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="412"/>
-        <location filename="../src/optionsdialog.cpp" line="421"/>
-        <location filename="../src/optionsdialog.cpp" line="494"/>
-        <location filename="../src/optionsdialog.cpp" line="586"/>
-        <location filename="../src/optionsdialog.cpp" line="871"/>
+        <location filename="../src/optionsdialog.cpp" line="410"/>
+        <location filename="../src/optionsdialog.cpp" line="419"/>
+        <location filename="../src/optionsdialog.cpp" line="492"/>
+        <location filename="../src/optionsdialog.cpp" line="584"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Browse...</source>
         <translation>Αναζήτηση...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="414"/>
+        <location filename="../src/optionsdialog.cpp" line="412"/>
         <source>Enable JavaScript</source>
         <translation>Ενεργοποίηση της JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="415"/>
+        <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Enable plug-ins</source>
         <translation>Ενεργοποίηση προσθέτων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="417"/>
+        <location filename="../src/optionsdialog.cpp" line="415"/>
         <source>Open links in embedded browser in background</source>
         <translation>Άνοιγμα συνδέσμων στον ενσωματωμένο browser στο παρασκήνιο</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="418"/>
+        <location filename="../src/optionsdialog.cpp" line="416"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>Άνοιγμα συνδέσμων σε εξωτερικό browser στο παρασκήνιο (πειραματικό)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="456"/>
+        <location filename="../src/optionsdialog.cpp" line="454"/>
         <source>External browser:</source>
         <translation>Εξωτερικός browser:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="460"/>
+        <location filename="../src/optionsdialog.cpp" line="458"/>
         <source>User style sheet:</source>
         <translation>Css χρήστη:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <location filename="../src/optionsdialog.cpp" line="487"/>
         <source>Maximum pages in cache</source>
         <translation>Μέγιστος αριθμός αποθηκευμένων σελίδων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="500"/>
+        <location filename="../src/optionsdialog.cpp" line="498"/>
         <source>Store cache in:</source>
         <translation>Αποθήκευση σε:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="508"/>
+        <location filename="../src/optionsdialog.cpp" line="506"/>
         <source>Maximum size of disk cache</source>
         <translation>Μέγιστο μέγεθος στο δίσκο</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="510"/>
+        <location filename="../src/optionsdialog.cpp" line="508"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="516"/>
+        <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Use disk cache</source>
         <translation>Χρήση αποθήκευσης δίσκου</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="530"/>
+        <location filename="../src/optionsdialog.cpp" line="528"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>Το Click To Flash είναι ένα πρόσθετο το οποίο μπλοκάρει το αυτόματο φόρτωμα του Flash. Μπορείτε να φορτώσετε τα αντικείμενα flash κάνοντας κλίκ στο εικονίδιο.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="535"/>
+        <location filename="../src/optionsdialog.cpp" line="533"/>
         <source>Use Click to Flash</source>
         <translation>Χρήση του Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="547"/>
+        <location filename="../src/optionsdialog.cpp" line="545"/>
         <source>Add...</source>
         <translation>Προσθήκη...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="549"/>
+        <location filename="../src/optionsdialog.cpp" line="547"/>
         <source>Remove...</source>
         <translation>Αφαίρεση...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="590"/>
+        <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Ask where to save each file before downloading</source>
         <translation>Ζητήστε τη θέση αποθήκευσης κάθε αρχείου πριν από τη λήψη</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="599"/>
+        <location filename="../src/optionsdialog.cpp" line="597"/>
         <source>Download location:</source>
         <translation>Τοποθεσια ληψης:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="608"/>
+        <location filename="../src/optionsdialog.cpp" line="606"/>
         <source>History</source>
         <translation>Ιστορικό</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="607"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="610"/>
+        <location filename="../src/optionsdialog.cpp" line="608"/>
         <source>Downloads</source>
         <translation>Λήψεις</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="644"/>
+        <location filename="../src/optionsdialog.cpp" line="642"/>
         <source>Position on unread news</source>
         <translation>Θέση στα μη αναγνωσμένα νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="661"/>
+        <location filename="../src/optionsdialog.cpp" line="659"/>
         <source>Dec</source>
         <translation>Δεκ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="662"/>
+        <location filename="../src/optionsdialog.cpp" line="660"/>
         <source>December</source>
         <translation>Δεκέμβριος</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="685"/>
+        <location filename="../src/optionsdialog.cpp" line="683"/>
         <source>Display format for date:</source>
         <translation>Εμφάνιση ημερομηνίας:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="688"/>
+        <location filename="../src/optionsdialog.cpp" line="686"/>
         <source>time:</source>
         <translation>ώρα:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="692"/>
+        <location filename="../src/optionsdialog.cpp" line="690"/>
         <source>Alternating row background colors</source>
         <translation>Χρωματισμός φόντου σειρών</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="693"/>
+        <location filename="../src/optionsdialog.cpp" line="691"/>
         <source>Simplified representation of date and time</source>
         <translation>Απλοποιημένη εμφάνιση ημ/νίας και ώρας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="711"/>
+        <location filename="../src/optionsdialog.cpp" line="709"/>
         <source>Mark news as read:</source>
         <translation>Μαρκάρισμα νέων ως αναγνωσμένα:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="713"/>
+        <location filename="../src/optionsdialog.cpp" line="711"/>
         <source>on selecting. With timeout</source>
         <translation>κατα την επιλογή. Με χρόνο</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="714"/>
+        <location filename="../src/optionsdialog.cpp" line="712"/>
         <source>after switching to another news</source>
         <translation>μετά από αλλαγή σε άλλα νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Αλλαγή συμπεριφοράς &apos;Επόμενο μη διαβασμένο νέο&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="732"/>
-        <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="786"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Never delete labeled news</source>
         <translation>Ποτέ διαγραφή των νέων με ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="823"/>
+        <location filename="../src/optionsdialog.cpp" line="818"/>
         <source>New...</source>
         <translation>Νέο...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="825"/>
+        <location filename="../src/optionsdialog.cpp" line="820"/>
         <source>Edit...</source>
         <translation>Επεξεργασία...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="828"/>
+        <location filename="../src/optionsdialog.cpp" line="823"/>
         <source>Delete...</source>
         <translation>Διαγραφή...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="827"/>
         <source>Move up</source>
         <translation>Μετακίνηση επάνω</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>Move down</source>
         <translation>Μετακίνηση κάτω...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="885"/>
+        <location filename="../src/optionsdialog.cpp" line="880"/>
         <source>Display notification for incoming news</source>
         <translation>Εμφάνιση ειδοποίησης για τα εισερχόμενα νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="891"/>
+        <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Left</source>
         <translation>Top Αριστερά</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="891"/>
+        <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Right</source>
         <translation>Top Δεξιά</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Left</source>
         <translation>Αριστερά bottom</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Right</source>
         <translation>Δεξια Bottom </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="902"/>
+        <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Review</source>
         <translation>Ανασκόπηση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="906"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Position</source>
         <translation>Θέση </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="912"/>
+        <location filename="../src/optionsdialog.cpp" line="907"/>
         <source>Show maximum of</source>
         <translation>Μέγιστη εμφάνιση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="914"/>
+        <location filename="../src/optionsdialog.cpp" line="909"/>
         <source>news on page notification</source>
         <translation>νέων στη σελίδα ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="917"/>
+        <location filename="../src/optionsdialog.cpp" line="912"/>
         <source>Width news list</source>
         <translation>Πλάτος λίστας νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="919"/>
+        <location filename="../src/optionsdialog.cpp" line="914"/>
         <source>pixels</source>
         <translation>pixel</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="922"/>
+        <location filename="../src/optionsdialog.cpp" line="917"/>
         <source>Close notification after</source>
         <translation>Κλείσιμο ειδοποιήσεων μετά από</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Site</source>
         <translation>Ιστοσελίδα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>User</source>
         <translation>Χρήστης</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Password</source>
         <translation>Κωδικός</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1006"/>
+        <location filename="../src/optionsdialog.cpp" line="1001"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1008"/>
+        <location filename="../src/optionsdialog.cpp" line="1003"/>
         <source>Delete All</source>
         <translation>Διαγραφή όλων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1010"/>
+        <location filename="../src/optionsdialog.cpp" line="1005"/>
         <source>Show Passwords</source>
         <translation>Εμφάνιση Κωδικών</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1266"/>
+        <location filename="../src/optionsdialog.cpp" line="1253"/>
         <source>News title font</source>
         <translation>Γραμματοσειρά τίτλου νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1269"/>
+        <location filename="../src/optionsdialog.cpp" line="1256"/>
         <source>News text font</source>
         <translation>Γραμματοσειρά κειμένου νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1272"/>
+        <location filename="../src/optionsdialog.cpp" line="1259"/>
         <source>Notification font</source>
         <translation>Γραμματοσειρά ειδοποιήσεων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1324"/>
+        <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Feeds list color</source>
         <translation>Feeds χρώμα λίστας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1327"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Feeds list background</source>
         <translation>Feeds φόντος λίστας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1330"/>
+        <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
         <translation>Χρωμα λίστας νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1333"/>
+        <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
         <translation>Φοντος λίστας νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1336"/>
+        <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
         <translation>Εστιασμένο χρώμα ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1339"/>
+        <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
         <translation>Εστιασμένο χρώμα του φόντου ειδήσεων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1342"/>
+        <location filename="../src/optionsdialog.cpp" line="1329"/>
         <source>Link color</source>
         <translation>Χρώμα σύνδεσμου</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1345"/>
+        <location filename="../src/optionsdialog.cpp" line="1332"/>
         <source>Title color</source>
         <translation>Χρώμα τίτλου</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1348"/>
+        <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Date color</source>
         <translation>Χρώμα ημερομηνίας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1351"/>
+        <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
         <translation>Χρώμα συγγραφέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1354"/>
+        <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
         <translation>Φοντος τιτλων ειδησεων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1357"/>
+        <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
         <translation>Φοντος ειδησεων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1383"/>
+        <location filename="../src/optionsdialog.cpp" line="1370"/>
         <source>Colors</source>
         <translation>Χρώματα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1390"/>
+        <location filename="../src/optionsdialog.cpp" line="1377"/>
         <source>Filter</source>
         <translation>Φίλτρο</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1665"/>
+        <location filename="../src/optionsdialog.cpp" line="1652"/>
         <source>Load images</source>
         <translation>Φόρτωση εικόνων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1670"/>
+        <location filename="../src/optionsdialog.cpp" line="1657"/>
         <source>Auto load images to news view</source>
         <translation>Αυτόματη φόρτωση εικόνων στην εμφάνιση νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1834"/>
-        <location filename="../src/optionsdialog.cpp" line="1859"/>
+        <location filename="../src/optionsdialog.cpp" line="1821"/>
+        <location filename="../src/optionsdialog.cpp" line="1846"/>
         <source>Open File...</source>
         <translation>Άνοιγμα αρχείου...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2335"/>
+        <location filename="../src/optionsdialog.cpp" line="2322"/>
         <source>Select Style Sheet File</source>
         <translation>Επιλογή αρχείου css</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2344"/>
-        <location filename="../src/optionsdialog.cpp" line="2373"/>
+        <location filename="../src/optionsdialog.cpp" line="2331"/>
+        <location filename="../src/optionsdialog.cpp" line="2360"/>
         <source>Open Directory...</source>
         <translation>Άνοιγμα...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2354"/>
+        <location filename="../src/optionsdialog.cpp" line="2341"/>
         <source>Add site to whitelist</source>
         <translation>Προσθήκη ιστοσελίδας στην whitelist</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2355"/>
+        <location filename="../src/optionsdialog.cpp" line="2342"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Ιστοσελίδα χωρίς http:// (πχ. youtube.com)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="620"/>
+        <location filename="../src/optionsdialog.cpp" line="618"/>
         <source>Automatically update the feeds every</source>
         <translation>Αυτόματη ανανέωση των feeds κάθε</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="630"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
         <source>minutes</source>
         <translation>λεπτά</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="630"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
         <source>hours</source>
         <translation>ώρες</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="642"/>
+        <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Position on last opened news</source>
         <translation>Θέση στα τελευταία νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="643"/>
+        <location filename="../src/optionsdialog.cpp" line="641"/>
         <source>Position at top of list news</source>
         <translation>Θέση στην κορυφή των νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="645"/>
+        <location filename="../src/optionsdialog.cpp" line="643"/>
         <source>Open news</source>
         <translation>Άνοιγμα νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="646"/>
+        <location filename="../src/optionsdialog.cpp" line="644"/>
         <source>Nothing to do</source>
         <translation>Ολοκληρώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="699"/>
+        <location filename="../src/optionsdialog.cpp" line="697"/>
         <source>Opening feed:</source>
         <translation>Άνοιγμα feed:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="630"/>
-        <location filename="../src/optionsdialog.cpp" line="738"/>
-        <location filename="../src/optionsdialog.cpp" line="924"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
+        <location filename="../src/optionsdialog.cpp" line="734"/>
+        <location filename="../src/optionsdialog.cpp" line="919"/>
         <source>seconds</source>
         <translation>δευτερόλεπτα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="57"/>
-        <location filename="../src/optionsdialog.cpp" line="607"/>
-        <location filename="../src/optionsdialog.cpp" line="804"/>
+        <location filename="../src/optionsdialog.cpp" line="605"/>
+        <location filename="../src/optionsdialog.cpp" line="799"/>
         <source>General</source>
         <translation>Γενικά</translation>
     </message>
@@ -1933,92 +1908,92 @@
         <translation>Εμφάνιση splash screen κατα την εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="287"/>
+        <location filename="../src/optionsdialog.cpp" line="285"/>
         <source>Show system tray icon</source>
         <translation>Εμφάνιση εικονιδίου στο tray</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="619"/>
+        <location filename="../src/optionsdialog.cpp" line="617"/>
         <source>Automatically update the feeds on startup</source>
         <translation>Αυτόματη ανανέωση των feeds κατα την εκκίνηση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="771"/>
         <source>Maximum number of news to keep:</source>
         <translation>Μέγιστο πλήθος των νέων που θα αποθηκεύονται:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
+        <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Μέγιστη ηλικία των νέων που θα αποθηκεύονται:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="407"/>
+        <location filename="../src/optionsdialog.cpp" line="405"/>
         <source>Use external browser</source>
         <translation>Χρήση εξωτερικού browser</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="408"/>
+        <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Default external browser</source>
         <translation>Προεπιλεγμένος εξωτερικός browser</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="409"/>
+        <location filename="../src/optionsdialog.cpp" line="407"/>
         <source>Following external browser:</source>
         <translation>Ακολουθούμενος εξωτερικός browser:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="454"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Browser selection:</source>
         <translation>Επιλογή Browser:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="458"/>
+        <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Content:</source>
         <translation>Περιεχόμενο:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="725"/>
+        <location filename="../src/optionsdialog.cpp" line="723"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Εμφάνιση περιγραφής νέων αντί για φόρτωση της σελίδας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="783"/>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Delete read news</source>
         <translation>Διαγραφή αναγνωσμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="784"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Never delete unread news</source>
         <translation>Να μην γίνεται ποτέ διαγραφή των μη αναγνωσμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="785"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Never delete starred news</source>
         <translation>Να μην γίνεται ποτέ διαγραφή των μαρκαρισμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="805"/>
+        <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Reading</source>
         <translation>Ανάγνωση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="806"/>
+        <location filename="../src/optionsdialog.cpp" line="801"/>
         <source>Clean Up</source>
         <translation>Καθαρισμός</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="868"/>
+        <location filename="../src/optionsdialog.cpp" line="863"/>
         <source>Play sound for incoming new news</source>
         <translation>Αναπαραγωγή ήχου για τα εισερχόμενα νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1237"/>
+        <location filename="../src/optionsdialog.cpp" line="1224"/>
         <source>Choose language:</source>
         <translation>Επιλογή γλώσσας:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Version</source>
         <translation>Έκδοση</translation>
     </message>
@@ -2033,120 +2008,120 @@
         <translation>Συντομεύσεις πληκτρολογίου</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="251"/>
+        <location filename="../src/optionsdialog.cpp" line="250"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>Εμφάνιση του προεπιλεγμένου εικονιδίο rss αντί για το αγαπημένο</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="720"/>
+        <location filename="../src/optionsdialog.cpp" line="718"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>Μαρκάρισμα νέων ως αναγνωσμένων κατα την αλλαγή feed</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="721"/>
+        <location filename="../src/optionsdialog.cpp" line="719"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>Μαρκάρισμα νέων ως αναγνωσμένα κατα το κλείσιμο καρτέλας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="722"/>
+        <location filename="../src/optionsdialog.cpp" line="720"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Μαρκάρισμα νέων ως αναγνωσμένα κατα την ελαχιστοποίηση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="729"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>labeled news</source>
         <translation>Νέα με ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="730"/>
+        <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>starred news</source>
         <translation>Μαρκαρισμένα νέα</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="759"/>
+        <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Prevent accidental deletion of:</source>
         <translation>Αποτροπή τυχαίας διαγραφής του:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="926"/>
+        <location filename="../src/optionsdialog.cpp" line="921"/>
         <source>Only show selected feeds:</source>
         <translation>Εμφάνιση μόνο επιλεγμένων feed:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="942"/>
+        <location filename="../src/optionsdialog.cpp" line="937"/>
         <source>All Feeds</source>
         <translation>Όλα τα feed</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1043"/>
+        <location filename="../src/optionsdialog.cpp" line="1038"/>
         <source>Author</source>
         <translation>Συγγραφέας</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1043"/>
+        <location filename="../src/optionsdialog.cpp" line="1038"/>
         <source>Contact</source>
         <translation>Επαφή</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1243"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1243"/>
         <source>Font</source>
         <translation>Γραμματοσειρά</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1260"/>
+        <location filename="../src/optionsdialog.cpp" line="1247"/>
         <source>Feeds list font</source>
         <translation>Γραμματοσειρά λίστας feed</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1263"/>
+        <location filename="../src/optionsdialog.cpp" line="1250"/>
         <source>News list font</source>
         <translation>Γραμματοσειρά λίστας νέων</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1279"/>
-        <location filename="../src/optionsdialog.cpp" line="1365"/>
+        <location filename="../src/optionsdialog.cpp" line="1266"/>
+        <location filename="../src/optionsdialog.cpp" line="1352"/>
         <source>Change...</source>
         <translation>Αλλαγή...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1281"/>
-        <location filename="../src/optionsdialog.cpp" line="1367"/>
-        <location filename="../src/optionsdialog.cpp" line="1421"/>
+        <location filename="../src/optionsdialog.cpp" line="1268"/>
+        <location filename="../src/optionsdialog.cpp" line="1354"/>
+        <location filename="../src/optionsdialog.cpp" line="1408"/>
         <source>Reset</source>
         <translation>Μηδενισμός</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1295"/>
+        <location filename="../src/optionsdialog.cpp" line="1282"/>
         <source>Minimum font size of browser</source>
         <translation>Ελάχιστο μέγεθος γραμματοσειράς browser</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1298"/>
+        <location filename="../src/optionsdialog.cpp" line="1285"/>
         <source>Minimum logical font size of browser</source>
         <translation>Ελάχιστο μέγεθος λογικής γραμματοσειράς browser</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1416"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Action</source>
         <translation>Ενέργεια</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1416"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Description</source>
         <translation>Περιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1416"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Shortcut</source>
         <translation>Συντόμευση</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1424"/>
+        <location filename="../src/optionsdialog.cpp" line="1411"/>
         <source>Shortcut:</source>
         <translation>Συντόμευση:</translation>
     </message>
@@ -2154,17 +2129,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5108"/>
+        <location filename="../src/rsslisting.cpp" line="5107"/>
         <source>&amp;Step up</source>
         <translation>&amp;Επάνω</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5109"/>
+        <location filename="../src/rsslisting.cpp" line="5108"/>
         <source>Step &amp;down</source>
         <translation>&amp;Κάτω</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5110"/>
+        <location filename="../src/rsslisting.cpp" line="5109"/>
         <source>&amp;Select All</source>
         <translation>&amp;Όλα</translation>
     </message>
@@ -2172,22 +2147,22 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5086"/>
+        <location filename="../src/rsslisting.cpp" line="5085"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5087"/>
+        <location filename="../src/rsslisting.cpp" line="5086"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5088"/>
+        <location filename="../src/rsslisting.cpp" line="5087"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ναι</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5089"/>
+        <location filename="../src/rsslisting.cpp" line="5088"/>
         <source>&amp;No</source>
         <translation>&amp;Όχι</translation>
     </message>
@@ -2195,37 +2170,37 @@
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5091"/>
+        <location filename="../src/rsslisting.cpp" line="5090"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5092"/>
+        <location filename="../src/rsslisting.cpp" line="5091"/>
         <source>&amp;Redo</source>
         <translation>&amp;Επανάληψη</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5093"/>
+        <location filename="../src/rsslisting.cpp" line="5092"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5094"/>
+        <location filename="../src/rsslisting.cpp" line="5093"/>
         <source>&amp;Copy</source>
         <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5095"/>
+        <location filename="../src/rsslisting.cpp" line="5094"/>
         <source>&amp;Paste</source>
         <translation>&amp;Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5096"/>
+        <location filename="../src/rsslisting.cpp" line="5095"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5097"/>
+        <location filename="../src/rsslisting.cpp" line="5096"/>
         <source>Select All</source>
         <translation>Επιλογή Όλων</translation>
     </message>
@@ -2233,7 +2208,7 @@
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5112"/>
+        <location filename="../src/rsslisting.cpp" line="5111"/>
         <source>Select IM</source>
         <translation>Επιλογή IM</translation>
     </message>
@@ -2241,12 +2216,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
         <translation>Δεν είναι δυνατή η έναρξη εξωτερικόυ πρόγραμματος</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="165"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
         <translation>Δεν είναι δυνατή η έναρξη εξωτερικόυ πρόγραμματος! %1</translation>
     </message>
@@ -2254,42 +2229,42 @@
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5099"/>
+        <location filename="../src/rsslisting.cpp" line="5098"/>
         <source>&amp;Undo</source>
         <translation>&amp;Αναίρεση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5100"/>
+        <location filename="../src/rsslisting.cpp" line="5099"/>
         <source>&amp;Redo</source>
         <translation>&amp;Επανάληψη</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5101"/>
+        <location filename="../src/rsslisting.cpp" line="5100"/>
         <source>Cu&amp;t</source>
         <translation>&amp;Αποκοπή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5102"/>
+        <location filename="../src/rsslisting.cpp" line="5101"/>
         <source>&amp;Copy</source>
         <translation>&amp;Αντιγραφή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5103"/>
+        <location filename="../src/rsslisting.cpp" line="5102"/>
         <source>&amp;Paste</source>
         <translation>&amp;Επικόλληση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5104"/>
+        <location filename="../src/rsslisting.cpp" line="5103"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5105"/>
+        <location filename="../src/rsslisting.cpp" line="5104"/>
         <source>Select All</source>
         <translation>Επιλογή Όλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5106"/>
+        <location filename="../src/rsslisting.cpp" line="5105"/>
         <source>Copy &amp;Link Location</source>
         <translation>&amp;Αντιγραφή Συνδέσμου</translation>
     </message>
@@ -2297,22 +2272,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5114"/>
+        <location filename="../src/rsslisting.cpp" line="5113"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5115"/>
+        <location filename="../src/rsslisting.cpp" line="5114"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Πίσω</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5116"/>
+        <location filename="../src/rsslisting.cpp" line="5115"/>
         <source>&amp;Finish</source>
         <translation>&amp;Ολοκλήρωση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5117"/>
+        <location filename="../src/rsslisting.cpp" line="5116"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Επόμενο &gt;</translation>
     </message>
@@ -2320,1014 +2295,1009 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2461"/>
+        <location filename="../src/rsslisting.cpp" line="2456"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε το feed &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2539"/>
+        <location filename="../src/rsslisting.cpp" line="2534"/>
         <source>Import canceled</source>
         <translation>Η εισαγωγή ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2547"/>
+        <location filename="../src/rsslisting.cpp" line="2542"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Εισαγωγή: σφάλμα κατα το άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4851"/>
+        <location filename="../src/rsslisting.cpp" line="4850"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Feed...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4854"/>
+        <location filename="../src/rsslisting.cpp" line="4853"/>
         <source>F&amp;older...</source>
         <translation>Φά&amp;κελος...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4859"/>
+        <location filename="../src/rsslisting.cpp" line="4858"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Διαγραφή...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4868"/>
+        <location filename="../src/rsslisting.cpp" line="4867"/>
         <source>E&amp;xit</source>
         <translation>&amp;Έξοδος</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4900"/>
+        <location filename="../src/rsslisting.cpp" line="4899"/>
         <source>Filter Feeds</source>
         <translation>Φίλτρο Feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4906"/>
+        <location filename="../src/rsslisting.cpp" line="4905"/>
         <source>Filter News</source>
         <translation>Φίλτρο Νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4910"/>
+        <location filename="../src/rsslisting.cpp" line="4909"/>
         <source>Show Starred</source>
         <translation>Εμφάνιση μαρκαρισμένων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4911"/>
+        <location filename="../src/rsslisting.cpp" line="4910"/>
         <source>Show Not Starred</source>
         <translation>Εμφάνιση μη μαρκαρισμένων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4912"/>
+        <location filename="../src/rsslisting.cpp" line="4911"/>
         <source>Show Unread or Starred</source>
         <translation>Εμφάνιση μη αναγνωσμένων η μαρκαρισμένων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4926"/>
+        <location filename="../src/rsslisting.cpp" line="4925"/>
         <source>Open News in External Browser</source>
         <translation>Άνοιγμα νέων σε εξωτερικό browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4944"/>
+        <location filename="../src/rsslisting.cpp" line="4943"/>
         <source>Mark Read</source>
         <translation>Μαρκάρισμα ως αναγνωσμένο</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="4945"/>
         <location filename="../src/rsslisting.cpp" line="4946"/>
-        <location filename="../src/rsslisting.cpp" line="4947"/>
         <source>Properties</source>
         <translation>Ιδιότητες</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4958"/>
-        <location filename="../src/rsslisting.cpp" line="5033"/>
+        <location filename="../src/rsslisting.cpp" line="4957"/>
+        <location filename="../src/rsslisting.cpp" line="5032"/>
         <source>Main Toolbar</source>
         <translation>Κύρια Γραμμή Εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4959"/>
+        <location filename="../src/rsslisting.cpp" line="4958"/>
         <source>Customize Toolbar</source>
         <translation>Παραμετροποίηση Γραμμής Εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4960"/>
+        <location filename="../src/rsslisting.cpp" line="4959"/>
         <source>Main Toolbar...</source>
         <translation>Κυρίως Γραμμή Εργαλείων...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4961"/>
+        <location filename="../src/rsslisting.cpp" line="4960"/>
         <source>Customize Toolbar...</source>
         <translation>Παραμετροποίηση Γραμμής Εργαλείων...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4962"/>
+        <location filename="../src/rsslisting.cpp" line="4961"/>
         <source>Feeds Toolbar...</source>
         <translation>Γραμμή Εργαλείων Feed...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4963"/>
+        <location filename="../src/rsslisting.cpp" line="4962"/>
         <source>News Toolbar...</source>
         <translation>Γραμμή Εργαλείων Νέων...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4966"/>
+        <location filename="../src/rsslisting.cpp" line="4965"/>
         <source>Hide Toolbar</source>
         <translation>Απόκρυψη Γραμμής Εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4977"/>
+        <location filename="../src/rsslisting.cpp" line="4976"/>
         <source>Browser Position</source>
         <translation>Θέση Browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4983"/>
+        <location filename="../src/rsslisting.cpp" line="4982"/>
         <source>Show Window</source>
         <translation>Εμφάνιση παραθύρου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4985"/>
+        <location filename="../src/rsslisting.cpp" line="4984"/>
         <source>Previous Feed</source>
         <translation>Προηγούμενο feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4986"/>
+        <location filename="../src/rsslisting.cpp" line="4985"/>
         <source>Next Feed</source>
         <translation>Επόμενο feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4987"/>
+        <location filename="../src/rsslisting.cpp" line="4986"/>
         <source>Previous News</source>
         <translation>Προηγούμενα Νέα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4988"/>
+        <location filename="../src/rsslisting.cpp" line="4987"/>
         <source>Next News</source>
         <translation>Επόμενα Νέα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5000"/>
+        <location filename="../src/rsslisting.cpp" line="4999"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Εμφάνιση/Απόκρυψη Δέντρου Feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5002"/>
+        <location filename="../src/rsslisting.cpp" line="5001"/>
         <source>Minimize to Tray</source>
         <translation>Ελαχιστοποίηση στο tray</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5004"/>
+        <location filename="../src/rsslisting.cpp" line="5003"/>
         <source>Minimize Application to Tray</source>
         <translation>Ελαχιστοποίηση της εφαρμογής στο tray</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5006"/>
+        <location filename="../src/rsslisting.cpp" line="5005"/>
         <source>Columns</source>
         <translation>Στήλες</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5011"/>
+        <location filename="../src/rsslisting.cpp" line="5010"/>
         <source>Show Indentation</source>
         <translation>Εμφάνιση Εσοχών</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5016"/>
+        <location filename="../src/rsslisting.cpp" line="5015"/>
         <source>Zoom</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5017"/>
+        <location filename="../src/rsslisting.cpp" line="5016"/>
         <source>Zoom In</source>
         <translation>Μεγέθυνση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5018"/>
+        <location filename="../src/rsslisting.cpp" line="5017"/>
         <source>Zoom in in browser</source>
         <translation>Μεγέθυνση στον browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5019"/>
+        <location filename="../src/rsslisting.cpp" line="5018"/>
         <source>Zoom Out</source>
         <translation>Σμίκρυνση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5020"/>
+        <location filename="../src/rsslisting.cpp" line="5019"/>
         <source>Zoom out in browser</source>
         <translation>Σμίκρυνση στον browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5021"/>
+        <location filename="../src/rsslisting.cpp" line="5020"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5022"/>
+        <location filename="../src/rsslisting.cpp" line="5021"/>
         <source>Reset zoom in browser</source>
         <translation>Μηδενισμός μεγέθυνσης στον browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5024"/>
+        <location filename="../src/rsslisting.cpp" line="5023"/>
         <source>Print...</source>
         <translation>Εκτύπωση...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5025"/>
+        <location filename="../src/rsslisting.cpp" line="5024"/>
         <source>Print Web page</source>
         <translation>Εκτύπωση ιστοσελίδας</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5026"/>
+        <location filename="../src/rsslisting.cpp" line="5025"/>
         <source>Print Preview...</source>
         <translation>Προεπισκόπηση Εκτύπωσης...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5027"/>
+        <location filename="../src/rsslisting.cpp" line="5026"/>
         <source>Preview Web page</source>
         <translation>Προεπισκόπηση Σελίδας</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5029"/>
+        <location filename="../src/rsslisting.cpp" line="5028"/>
         <source>Save As...</source>
         <translation>Αποθήκευση Ως...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5030"/>
+        <location filename="../src/rsslisting.cpp" line="5029"/>
         <source>Save Page As...</source>
         <translation>Αποθήκευση Σελίδας Ως...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5034"/>
+        <location filename="../src/rsslisting.cpp" line="5033"/>
         <source>Feeds Toolbar</source>
         <translation>Γραμμή Εργαλείων Feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5035"/>
+        <location filename="../src/rsslisting.cpp" line="5034"/>
         <source>News Toolbar</source>
         <translation>Γραμμή Εργαλείων Νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5036"/>
+        <location filename="../src/rsslisting.cpp" line="5035"/>
         <source>Browser Toolbar</source>
         <translation>Γραμμή Εργαλείων Browser</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5038"/>
         <location filename="../src/rsslisting.cpp" line="5039"/>
-        <location filename="../src/rsslisting.cpp" line="5040"/>
         <source>Full Screen</source>
         <translation>Πλήρης Οθόνη</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5041"/>
         <location filename="../src/rsslisting.cpp" line="5042"/>
-        <location filename="../src/rsslisting.cpp" line="5043"/>
         <source>Stay On Top</source>
         <translation>Παραμονή στο προσκήνιο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5045"/>
+        <location filename="../src/rsslisting.cpp" line="5044"/>
         <source>Categories</source>
         <translation>Κατηγορίες</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5057"/>
+        <location filename="../src/rsslisting.cpp" line="5056"/>
         <source>Switch to next tab</source>
         <translation>Μετάβαση στην επόμενη καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5058"/>
+        <location filename="../src/rsslisting.cpp" line="5057"/>
         <source>Switch to previous tab</source>
         <translation>Μετάβαση στην προηγούμενη καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5065"/>
+        <location filename="../src/rsslisting.cpp" line="5064"/>
         <source>Decrease news list/increase browser</source>
         <translation>Μείωση λίστας νέων/αύξηση browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5066"/>
+        <location filename="../src/rsslisting.cpp" line="5065"/>
         <source>Increase news list/decrease browser</source>
         <translation>Αύξηση λίστας νέων/μείωση browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5851"/>
+        <location filename="../src/rsslisting.cpp" line="5852"/>
         <source>Check for updates</source>
         <translation>Έλεγχος για ενημερώσεις</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5852"/>
+        <location filename="../src/rsslisting.cpp" line="5853"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Μία νέα έκδοση του QuiteRSS...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6650"/>
-        <location filename="../src/rsslisting.cpp" line="6664"/>
+        <location filename="../src/rsslisting.cpp" line="6658"/>
+        <location filename="../src/rsslisting.cpp" line="6672"/>
         <source>Web Page</source>
         <translation>Ιστοσελίδα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2691"/>
+        <location filename="../src/rsslisting.cpp" line="2686"/>
         <source>Export canceled</source>
         <translation>Η εξαγωγή ακυρώθηκε</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="614"/>
-        <location filename="../src/rsslisting.cpp" line="5062"/>
+        <location filename="../src/rsslisting.cpp" line="615"/>
+        <location filename="../src/rsslisting.cpp" line="5061"/>
         <source>Deleted</source>
         <translation>Διαγραμμένο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="609"/>
-        <location filename="../src/rsslisting.cpp" line="5061"/>
+        <location filename="../src/rsslisting.cpp" line="610"/>
+        <location filename="../src/rsslisting.cpp" line="5060"/>
         <source>Starred</source>
         <translation>Μαρκαρισμένο</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5050"/>
         <location filename="../src/rsslisting.cpp" line="5051"/>
-        <location filename="../src/rsslisting.cpp" line="5052"/>
         <source>Label</source>
         <translation>Ετικέτα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2124"/>
-        <location filename="../src/rsslisting.cpp" line="5049"/>
-        <location filename="../src/rsslisting.cpp" line="6971"/>
-        <location filename="../src/rsslisting.cpp" line="6994"/>
+        <location filename="../src/rsslisting.cpp" line="2121"/>
+        <location filename="../src/rsslisting.cpp" line="5048"/>
+        <location filename="../src/rsslisting.cpp" line="6957"/>
+        <location filename="../src/rsslisting.cpp" line="6980"/>
         <source>Hide Categories</source>
         <translation>Απόκρυψη Κατηγοριών</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2128"/>
-        <location filename="../src/rsslisting.cpp" line="5047"/>
-        <location filename="../src/rsslisting.cpp" line="6978"/>
+        <location filename="../src/rsslisting.cpp" line="2125"/>
+        <location filename="../src/rsslisting.cpp" line="5046"/>
+        <location filename="../src/rsslisting.cpp" line="6964"/>
         <source>Show Categories</source>
         <translation>Εμφάνιση Κατηγοριών</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2697"/>
+        <location filename="../src/rsslisting.cpp" line="2692"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Εξαγωγή: σφάλμα κατα το άνοιγμα αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4886"/>
+        <location filename="../src/rsslisting.cpp" line="4885"/>
         <source>Mark Read/Unread</source>
         <translation>Μαρκάρισμα σαν αναγνωσμένο/μη αναγνωσμένο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4897"/>
+        <location filename="../src/rsslisting.cpp" line="4896"/>
         <source>Options...</source>
         <translation>Επιλογές...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4901"/>
-        <location filename="../src/rsslisting.cpp" line="4907"/>
+        <location filename="../src/rsslisting.cpp" line="4900"/>
+        <location filename="../src/rsslisting.cpp" line="4906"/>
         <source>Show All</source>
         <translation>Εμφάνιση όλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4902"/>
-        <location filename="../src/rsslisting.cpp" line="4908"/>
+        <location filename="../src/rsslisting.cpp" line="4901"/>
+        <location filename="../src/rsslisting.cpp" line="4907"/>
         <source>Show New</source>
         <translation>Εμφάνιση νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4903"/>
-        <location filename="../src/rsslisting.cpp" line="4909"/>
+        <location filename="../src/rsslisting.cpp" line="4902"/>
+        <location filename="../src/rsslisting.cpp" line="4908"/>
         <source>Show Unread</source>
         <translation>Εμφάνιση μη αναγνωσμένων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4916"/>
+        <location filename="../src/rsslisting.cpp" line="4915"/>
         <source>About...</source>
         <translation>Σχετικά...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4931"/>
+        <location filename="../src/rsslisting.cpp" line="4930"/>
         <source>Star</source>
         <translation>Μαρκάρισμα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4933"/>
+        <location filename="../src/rsslisting.cpp" line="4932"/>
         <source>Delete</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4949"/>
+        <location filename="../src/rsslisting.cpp" line="4948"/>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4950"/>
+        <location filename="../src/rsslisting.cpp" line="4949"/>
         <source>&amp;Edit</source>
         <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4951"/>
+        <location filename="../src/rsslisting.cpp" line="4950"/>
         <source>&amp;View</source>
         <translation>Ε&amp;μφάνιση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4952"/>
+        <location filename="../src/rsslisting.cpp" line="4951"/>
         <source>Fee&amp;ds</source>
         <translation>Fee&amp;ds</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4953"/>
+        <location filename="../src/rsslisting.cpp" line="4952"/>
         <source>&amp;News</source>
         <translation>&amp;Νέα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4955"/>
+        <location filename="../src/rsslisting.cpp" line="4954"/>
         <source>&amp;Tools</source>
         <translation>Ε&amp;ργαλεία</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4956"/>
+        <location filename="../src/rsslisting.cpp" line="4955"/>
         <source>&amp;Help</source>
         <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4969"/>
+        <location filename="../src/rsslisting.cpp" line="4968"/>
         <source>System</source>
         <translation>Σύστημα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4978"/>
+        <location filename="../src/rsslisting.cpp" line="4977"/>
         <source>Top</source>
         <translation>Κορυφή</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4979"/>
+        <location filename="../src/rsslisting.cpp" line="4978"/>
         <source>Bottom</source>
         <translation>Κάτω μέρος</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4980"/>
+        <location filename="../src/rsslisting.cpp" line="4979"/>
         <source>Right</source>
         <translation>Δεξιά</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4981"/>
+        <location filename="../src/rsslisting.cpp" line="4980"/>
         <source>Left</source>
         <translation>Αριστερά</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5012"/>
         <location filename="../src/rsslisting.cpp" line="5013"/>
-        <location filename="../src/rsslisting.cpp" line="5014"/>
         <source>Search Feed</source>
         <translation>Αναζήτηση feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6268"/>
+        <location filename="../src/rsslisting.cpp" line="6275"/>
         <source>Loading...</source>
         <translation>Φόρτωση...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2460"/>
+        <location filename="../src/rsslisting.cpp" line="2455"/>
         <source>Delete Feed</source>
         <translation>Διαγραφή Feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2534"/>
-        <location filename="../src/rsslisting.cpp" line="2686"/>
+        <location filename="../src/rsslisting.cpp" line="2529"/>
+        <location filename="../src/rsslisting.cpp" line="2681"/>
         <source>Select OPML-File</source>
         <translation>Επιλογή OPML αρχείου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2536"/>
+        <location filename="../src/rsslisting.cpp" line="2531"/>
         <source>OPML-Files (*.opml *.xml)</source>
         <translation>Αρχεία OPML (*.opml *.xml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2688"/>
+        <location filename="../src/rsslisting.cpp" line="2683"/>
         <source>OPML-Files (*.opml)</source>
         <translation>Αρχεία OPML (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4576"/>
-        <location filename="../src/rsslisting.cpp" line="4871"/>
+        <location filename="../src/rsslisting.cpp" line="4575"/>
+        <location filename="../src/rsslisting.cpp" line="4870"/>
         <source>Load Images</source>
         <translation>Φόρτωση εικόνων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4580"/>
-        <location filename="../src/rsslisting.cpp" line="4874"/>
+        <location filename="../src/rsslisting.cpp" line="4579"/>
+        <location filename="../src/rsslisting.cpp" line="4873"/>
         <source>No Load Images</source>
         <translation>Χωρίς φόρτωση εικόνων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4581"/>
-        <location filename="../src/rsslisting.cpp" line="4875"/>
+        <location filename="../src/rsslisting.cpp" line="4580"/>
+        <location filename="../src/rsslisting.cpp" line="4874"/>
         <source>No Load Images to News View</source>
         <translation>Χωρίς φόρτωση εικόνων στη λίστα νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4843"/>
-        <location filename="../src/rsslisting.cpp" line="5634"/>
+        <location filename="../src/rsslisting.cpp" line="4842"/>
+        <location filename="../src/rsslisting.cpp" line="5635"/>
         <source>New News: %1</source>
         <translation>Νέα: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4845"/>
-        <location filename="../src/rsslisting.cpp" line="5636"/>
+        <location filename="../src/rsslisting.cpp" line="4844"/>
+        <location filename="../src/rsslisting.cpp" line="5637"/>
         <source>Unread News: %1</source>
         <translation>Μη αναγνωσμένα νέα: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4849"/>
-        <location filename="../src/rsslisting.cpp" line="4852"/>
+        <location filename="../src/rsslisting.cpp" line="4848"/>
+        <location filename="../src/rsslisting.cpp" line="4851"/>
         <source>Add New Feed</source>
         <translation>Προσθήκη νέου feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4857"/>
-        <location filename="../src/rsslisting.cpp" line="4927"/>
+        <location filename="../src/rsslisting.cpp" line="4856"/>
+        <location filename="../src/rsslisting.cpp" line="4926"/>
         <source>Open in New Tab</source>
         <translation>Άνοιγμα σε νέα καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4860"/>
+        <location filename="../src/rsslisting.cpp" line="4859"/>
         <source>Delete Selected Feed</source>
         <translation>Διαγραφή επιλεγμένου feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4862"/>
+        <location filename="../src/rsslisting.cpp" line="4861"/>
         <source>&amp;Import Feeds...</source>
         <translation>&amp;Εισαγωγή feeds...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4863"/>
+        <location filename="../src/rsslisting.cpp" line="4862"/>
         <source>Import Feeds from OPML File</source>
         <translation>Εισαγωγή feed από αρχείο OPML</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4865"/>
+        <location filename="../src/rsslisting.cpp" line="4864"/>
         <source>&amp;Export Feeds...</source>
         <translation>&amp;Εξαγωγή feed...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4866"/>
+        <location filename="../src/rsslisting.cpp" line="4865"/>
         <source>Export Feeds to OPML File</source>
         <translation>Εξαγωγή σε αρχείο OPML</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4577"/>
-        <location filename="../src/rsslisting.cpp" line="4872"/>
+        <location filename="../src/rsslisting.cpp" line="4576"/>
+        <location filename="../src/rsslisting.cpp" line="4871"/>
         <source>Auto Load Images to News View</source>
         <translation>Αυτόματη φόρτωση εικόνων στην εμφάνιση νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="604"/>
-        <location filename="../src/rsslisting.cpp" line="5060"/>
+        <location filename="../src/rsslisting.cpp" line="605"/>
+        <location filename="../src/rsslisting.cpp" line="5059"/>
         <source>Unread</source>
         <translation>Μη αναγνωσμένο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="619"/>
-        <location filename="../src/rsslisting.cpp" line="5063"/>
+        <location filename="../src/rsslisting.cpp" line="620"/>
+        <location filename="../src/rsslisting.cpp" line="5062"/>
         <source>Labels</source>
         <translation>Ετικέτες</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2456"/>
+        <location filename="../src/rsslisting.cpp" line="2451"/>
         <source>Delete Folder</source>
         <translation>Διαγραφή Φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2457"/>
+        <location filename="../src/rsslisting.cpp" line="2452"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε το φάκελο &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3227"/>
-        <location filename="../src/rsslisting.cpp" line="3353"/>
-        <location filename="../src/rsslisting.cpp" line="4234"/>
-        <location filename="../src/rsslisting.cpp" line="4835"/>
-        <location filename="../src/rsslisting.cpp" line="6225"/>
-        <location filename="../src/rsslisting.cpp" line="6940"/>
+        <location filename="../src/rsslisting.cpp" line="3222"/>
+        <location filename="../src/rsslisting.cpp" line="3349"/>
+        <location filename="../src/rsslisting.cpp" line="4226"/>
+        <location filename="../src/rsslisting.cpp" line="4834"/>
+        <location filename="../src/rsslisting.cpp" line="6232"/>
+        <location filename="../src/rsslisting.cpp" line="6944"/>
         <source>Unread: %1</source>
         <translation>Μη αναγνωσμένα: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3228"/>
-        <location filename="../src/rsslisting.cpp" line="3354"/>
-        <location filename="../src/rsslisting.cpp" line="4235"/>
-        <location filename="../src/rsslisting.cpp" line="4838"/>
-        <location filename="../src/rsslisting.cpp" line="6226"/>
-        <location filename="../src/rsslisting.cpp" line="6941"/>
+        <location filename="../src/rsslisting.cpp" line="3223"/>
+        <location filename="../src/rsslisting.cpp" line="3350"/>
+        <location filename="../src/rsslisting.cpp" line="4227"/>
+        <location filename="../src/rsslisting.cpp" line="4837"/>
+        <location filename="../src/rsslisting.cpp" line="6233"/>
+        <location filename="../src/rsslisting.cpp" line="6945"/>
         <source>All: %1</source>
         <translation>Όλα: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4848"/>
+        <location filename="../src/rsslisting.cpp" line="4847"/>
         <source>&amp;Add</source>
         <translation>&amp;Προσθήκη</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4855"/>
+        <location filename="../src/rsslisting.cpp" line="4854"/>
         <source>Add New Folder</source>
         <translation>Προσθήκη Νέου Φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4878"/>
+        <location filename="../src/rsslisting.cpp" line="4877"/>
         <source>Update Feed</source>
         <translation>Ανανέωση Feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4879"/>
+        <location filename="../src/rsslisting.cpp" line="4878"/>
         <source>Update Current Feed</source>
         <translation>Ανανέωση του επιλεγμένου feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4881"/>
+        <location filename="../src/rsslisting.cpp" line="4880"/>
         <source>Update All</source>
         <translation>Ανανέωση Όλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4882"/>
+        <location filename="../src/rsslisting.cpp" line="4881"/>
         <source>Update All Feeds</source>
         <translation>Ανανέωση Όλων των Feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4884"/>
+        <location filename="../src/rsslisting.cpp" line="4883"/>
         <source>Mark All Feeds Read</source>
         <translation>Μαρκάρισμα όλων των feed ως αναγνωσμένα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4887"/>
+        <location filename="../src/rsslisting.cpp" line="4886"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Μαρκάρισμα επιλεγμένου νέου ως αναγνωσμένο/μη αναγνωσμένο</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="4888"/>
         <location filename="../src/rsslisting.cpp" line="4889"/>
-        <location filename="../src/rsslisting.cpp" line="4890"/>
         <source>Mark All News Read</source>
         <translation>Μαρκάρισμα όλων των νέων ως αναγνωσμένα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4892"/>
-        <location filename="../src/rsslisting.cpp" line="7582"/>
-        <location filename="../src/rsslisting.cpp" line="7588"/>
-        <location filename="../src/rsslisting.cpp" line="7598"/>
+        <location filename="../src/rsslisting.cpp" line="4891"/>
+        <location filename="../src/rsslisting.cpp" line="7564"/>
+        <location filename="../src/rsslisting.cpp" line="7570"/>
+        <location filename="../src/rsslisting.cpp" line="7580"/>
         <source>Downloads</source>
         <translation>Λήψεις</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4894"/>
+        <location filename="../src/rsslisting.cpp" line="4893"/>
         <source>News Filters...</source>
         <translation>Φίλτρα Νέων...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4895"/>
+        <location filename="../src/rsslisting.cpp" line="4894"/>
         <source>Filter News...</source>
         <translation>Φιλτράρισμα νέων...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4898"/>
+        <location filename="../src/rsslisting.cpp" line="4897"/>
         <source>Open Options Dialog</source>
         <translation>Άνοιγμα Επιλογών</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4904"/>
+        <location filename="../src/rsslisting.cpp" line="4903"/>
         <source>Show Starred Feeds</source>
         <translation>Εμφάνιση μαρκαρισμένων feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4913"/>
+        <location filename="../src/rsslisting.cpp" line="4912"/>
         <source>Show Last Day</source>
         <translation>Εμφάνιση Τελευταίας Ημέρας</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4914"/>
+        <location filename="../src/rsslisting.cpp" line="4913"/>
         <source>Show Last 7 Days</source>
         <translation>Εμφάνιση Τελευταίων 7 Ημερών</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4917"/>
+        <location filename="../src/rsslisting.cpp" line="4916"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Εμφάνιση &apos;Σχετικα&apos;</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4919"/>
+        <location filename="../src/rsslisting.cpp" line="4918"/>
         <source>Check for Updates...</source>
         <translation>Έλεγχος για ενημερώσεις...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4920"/>
+        <location filename="../src/rsslisting.cpp" line="4919"/>
         <source>Report a Problem...</source>
         <translation>Αναφορά προβλήματος...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4922"/>
+        <location filename="../src/rsslisting.cpp" line="4921"/>
         <source>Open News</source>
         <translation>Ανοιχτά Νέα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4923"/>
+        <location filename="../src/rsslisting.cpp" line="4922"/>
         <source>Open Description News</source>
         <translation>Άνοιγμα Νέων Περιγραφής</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4924"/>
+        <location filename="../src/rsslisting.cpp" line="4923"/>
         <source>Open in Browser</source>
         <translation>Άνοιγμα σε Browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4925"/>
+        <location filename="../src/rsslisting.cpp" line="4924"/>
         <source>Open in External Browser</source>
         <translation>Άνοιγμα σε εξωτερικό Browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4928"/>
+        <location filename="../src/rsslisting.cpp" line="4927"/>
         <source>Open News in New Tab</source>
         <translation>Άνοιγμα νέων σε καινούρια καρτέλα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4929"/>
+        <location filename="../src/rsslisting.cpp" line="4928"/>
         <source>Open in Background Tab</source>
         <translation>Άνοιγμα σε καρτέλα παρασκηνίου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4930"/>
+        <location filename="../src/rsslisting.cpp" line="4929"/>
         <source>Open News in Background Tab</source>
         <translation>Άνοιγμα νέων σε καρτέλα στο παρασκήνιο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4932"/>
+        <location filename="../src/rsslisting.cpp" line="4931"/>
         <source>Mark News Star</source>
         <translation>Μαρκάρισμα νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4934"/>
+        <location filename="../src/rsslisting.cpp" line="4933"/>
         <source>Delete Selected News</source>
         <translation>Διαγραφή επιλεγμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4935"/>
+        <location filename="../src/rsslisting.cpp" line="4934"/>
         <source>Delete All News</source>
         <translation>Διαγραφή όλων των νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4936"/>
+        <location filename="../src/rsslisting.cpp" line="4935"/>
         <source>Delete All News from List</source>
         <translation>Διαγραφή όλων των νέων από τη λίστα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4937"/>
+        <location filename="../src/rsslisting.cpp" line="4936"/>
         <source>Restore</source>
         <translation>Επαναφορά</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4938"/>
+        <location filename="../src/rsslisting.cpp" line="4937"/>
         <source>Restore News</source>
         <translation>Επαναφορά Νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4939"/>
+        <location filename="../src/rsslisting.cpp" line="4938"/>
         <source>Copy Link</source>
         <translation>Αντιγραφή Συνδέσμου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4940"/>
+        <location filename="../src/rsslisting.cpp" line="4939"/>
         <source>Copy Link News</source>
         <translation>Αντιγραφή Συνδέσμου Νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4942"/>
+        <location filename="../src/rsslisting.cpp" line="4941"/>
         <source>Restore last deleted news</source>
         <translation>Ανάκτηση τελευταίων διαγραμμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4945"/>
+        <location filename="../src/rsslisting.cpp" line="4944"/>
         <source>Mark Feed Read</source>
         <translation>Μαρκάρισμα feed ως αναγνωσμένο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4954"/>
+        <location filename="../src/rsslisting.cpp" line="4953"/>
         <source>&amp;Browser</source>
         <translation>&amp;Browser</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4965"/>
+        <location filename="../src/rsslisting.cpp" line="4964"/>
         <source>Lock Toolbar</source>
         <translation>Κλείδωμα Μπάρας Εργαλείων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4968"/>
+        <location filename="../src/rsslisting.cpp" line="4967"/>
         <source>Application Style</source>
         <translation>Στύλ Εφαρμογής</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4970"/>
+        <location filename="../src/rsslisting.cpp" line="4969"/>
         <source>System2</source>
         <translation>Σύστημα2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4971"/>
+        <location filename="../src/rsslisting.cpp" line="4970"/>
         <source>Green</source>
         <translation>Πράσινο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4972"/>
+        <location filename="../src/rsslisting.cpp" line="4971"/>
         <source>Orange</source>
         <translation>Πορτοκαλί</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4973"/>
+        <location filename="../src/rsslisting.cpp" line="4972"/>
         <source>Purple</source>
         <translation>Μώβ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4974"/>
+        <location filename="../src/rsslisting.cpp" line="4973"/>
         <source>Pink</source>
         <translation>Ρόζ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4975"/>
+        <location filename="../src/rsslisting.cpp" line="4974"/>
         <source>Gray</source>
         <translation>Γκρί</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4990"/>
+        <location filename="../src/rsslisting.cpp" line="4989"/>
         <source>Next Unread News</source>
         <translation>Επόμενο μη αναγνωσμένο νέο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4991"/>
+        <location filename="../src/rsslisting.cpp" line="4990"/>
         <source>Previous Unread News</source>
         <translation>Προηγούμενο μη αναγνωσμένο νέο</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4993"/>
+        <location filename="../src/rsslisting.cpp" line="4992"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Μετάβαση στο επόμενο panel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4995"/>
+        <location filename="../src/rsslisting.cpp" line="4994"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Μετάβαση στο επόμενο panel (Δέντρο feed, λίστα νέων, browser)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4996"/>
+        <location filename="../src/rsslisting.cpp" line="4995"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Μετάβαση στο προηγούμενο panel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4998"/>
+        <location filename="../src/rsslisting.cpp" line="4997"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Μετάβαση στο προηγούμενο panel (Δέντρο feed, browser, λίστα νέων)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5007"/>
+        <location filename="../src/rsslisting.cpp" line="5006"/>
         <source>Count News Unread</source>
         <translation>Πλήθος μη αναγνωσμένων νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5008"/>
+        <location filename="../src/rsslisting.cpp" line="5007"/>
         <source>Count News All</source>
         <translation>Πλήθος νέων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5009"/>
+        <location filename="../src/rsslisting.cpp" line="5008"/>
         <source>Last Updated</source>
         <translation>Τελευταία Ενημέρωση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5032"/>
+        <location filename="../src/rsslisting.cpp" line="5031"/>
         <source>Show/Hide</source>
         <translation>Εμφάνιση/Απόκρυψη</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5037"/>
+        <location filename="../src/rsslisting.cpp" line="5036"/>
         <source>Panel Categories</source>
         <translation>Κατηγορίες Panel</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5054"/>
+        <location filename="../src/rsslisting.cpp" line="5053"/>
         <source>Close Tab</source>
         <translation>Κλείσιμο Καρτέλας</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5055"/>
+        <location filename="../src/rsslisting.cpp" line="5054"/>
         <source>Close Other Tabs</source>
         <translation>Κλείσιμο των άλλων καρτέλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5056"/>
+        <location filename="../src/rsslisting.cpp" line="5055"/>
         <source>Close All Tabs</source>
         <translation>Κλείσιμο όλων των καρτέλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5068"/>
+        <location filename="../src/rsslisting.cpp" line="5067"/>
         <source>Find</source>
         <translation>Αναζήτηση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5070"/>
+        <location filename="../src/rsslisting.cpp" line="5069"/>
         <source>Open Homepage Feed</source>
         <translation>Άνοιγμα αρχικού feed</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5071"/>
+        <location filename="../src/rsslisting.cpp" line="5070"/>
         <source>Sorted by Name</source>
         <translation>Ταξινομημένα ανα όνομα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5072"/>
+        <location filename="../src/rsslisting.cpp" line="5071"/>
         <source>Collapse All Folders</source>
         <translation>Σύμπτηξη Όλων των φακέλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5073"/>
+        <location filename="../src/rsslisting.cpp" line="5072"/>
         <source>Expand All Folders</source>
         <translation>Ανάπτυξη όλων των φακέλων</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5074"/>
+        <location filename="../src/rsslisting.cpp" line="5073"/>
         <source>Next Folder</source>
         <translation>Επόμενος φάκελος</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5075"/>
+        <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Previous Folder</source>
         <translation>Προηγούμενος φάκελος</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5076"/>
+        <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Expand Folder</source>
         <translation>Ανάπτυξη φακέλου</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5078"/>
+        <location filename="../src/rsslisting.cpp" line="5077"/>
         <source>Share</source>
         <translation>Διαμοιρασμός</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5080"/>
+        <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Sort By</source>
         <translation>Ταξινόμηση κατά</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5081"/>
+        <location filename="../src/rsslisting.cpp" line="5080"/>
         <source>Ascending</source>
         <translation>Αύξουσα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5082"/>
+        <location filename="../src/rsslisting.cpp" line="5081"/>
         <source>Descending</source>
         <translation>Φθίνουσα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5084"/>
+        <location filename="../src/rsslisting.cpp" line="5083"/>
         <source>Clear</source>
         <translation>Εκκαθαριση</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Important</source>
         <translation>Σημαντικό</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Work</source>
         <translation>Δουλειά</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Personal</source>
         <translation>Προσωπικό</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>To Do</source>
         <translation>Να γίνει</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>Later</source>
         <translation>Αργότερα</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>Amusingly</source>
         <translation>Ψυχαγωγία</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6957"/>
-        <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="7121"/>
+        <location filename="../src/rsslisting.cpp" line="7100"/>
         <source>Save As</source>
         <translation>Αποθήκευση Ως</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7123"/>
+        <location filename="../src/rsslisting.cpp" line="7102"/>
         <source>HTML-Files (*.html)</source>
         <translation>Αρχεία HTML (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7124"/>
+        <location filename="../src/rsslisting.cpp" line="7103"/>
         <source>Text files (*.txt)</source>
         <translation>Αρχεία Κειμένου (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7129"/>
+        <location filename="../src/rsslisting.cpp" line="7108"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Αποθήκευση Ως: σφάλμα κατα το άνοιγμα αρχείου</translation>
     </message>

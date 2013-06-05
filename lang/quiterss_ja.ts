@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ja">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -10,38 +8,38 @@
         <translation>QuiteRSS について</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="54"/>
-        <location filename="../src/aboutdialog.cpp" line="120"/>
+        <location filename="../src/aboutdialog.cpp" line="50"/>
+        <location filename="../src/aboutdialog.cpp" line="116"/>
         <source>Version</source>
         <translation>バージョン</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="46"/>
+        <location filename="../src/aboutdialog.cpp" line="51"/>
         <source>Revision</source>
         <translation>リビジョン</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="58"/>
+        <location filename="../src/aboutdialog.cpp" line="54"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
         <translation>QuiteRSS はオープンソースでクロスプラットホームな RSS/Atom ニュースリーダーです</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="59"/>
+        <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Includes:</source>
         <translation>Includes:</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="121"/>
+        <location filename="../src/aboutdialog.cpp" line="117"/>
         <source>Authors</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="122"/>
+        <location filename="../src/aboutdialog.cpp" line="118"/>
         <source>History</source>
         <translation>履歴</translation>
     </message>
     <message>
-        <location filename="../src/aboutdialog.cpp" line="123"/>
+        <location filename="../src/aboutdialog.cpp" line="119"/>
         <source>License</source>
         <translation>ライセンス</translation>
     </message>
@@ -332,128 +330,123 @@
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="102"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="101"/>
         <source>Remaining time unavailable</source>
         <translation>残り時間不明</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="165"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="192"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="155"/>
         <source>Error: Cannot write to file!</source>
         <translation>エラー: ファイルに書き込めません!</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="232"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="195"/>
         <source>Error: </source>
         <translation>エラー: </translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="241"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="204"/>
         <source>Done - %1</source>
         <translation>完了 - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="260"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="223"/>
         <source>few seconds</source>
         <translation>数秒</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="262"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="225"/>
         <source>seconds</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="264"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="227"/>
         <source>minutes</source>
         <translation>分</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="266"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="229"/>
         <source>hours</source>
         <translation>時間</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="273"/>
-        <location filename="../src/downloads/downloaditem.cpp" line="317"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="236"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="280"/>
         <source>Unknown size</source>
         <translation>未知のサイズ</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="290"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="253"/>
         <source>Unknown speed</source>
         <translation>未知の速度</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="318"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="281"/>
         <source>%2 - unknown size (%3)</source>
         <translation>%2 - 未知のサイズ (%3)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="320"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="283"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
         <translation>残り %1 - %2 / %3 (%4)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="339"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="302"/>
         <source>Cancelled - %1</source>
         <translation>キャンセル - %1</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="349"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Delete file</source>
         <translation>ファイルを削除</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="349"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="312"/>
         <source>Do you want to also delete dowloaded file?</source>
         <translation>ダウンロードしたファイルを削除しますか?</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="365"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="328"/>
         <source>Open File</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="367"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="330"/>
         <source>Open Folder</source>
         <translation>フォルダーを開く</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="369"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="332"/>
         <source>Copy Download Link</source>
         <translation>ダウンロードリンクをコピー</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="371"/>
-        <source>Cancel Downloading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../src/downloads/downloaditem.cpp" line="334"/>
         <source>Cancel downloading</source>
-        <translation type="obsolete">ダウンロードをキャンセル</translation>
+        <translation>ダウンロードをキャンセル</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="372"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="335"/>
         <source>Remove</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Cancelled</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="374"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="337"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="399"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Not found</source>
         <translation>みつかりません</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="399"/>
+        <location filename="../src/downloads/downloaditem.cpp" line="362"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
@@ -465,32 +458,32 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="34"/>
         <source>Clear</source>
         <translation>クリア</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>File %1 (*.%2)</source>
         <translation>ファイル %1 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="87"/>
         <source>All Files (*.*)</source>
         <translation>全ファイル (*.*)</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="90"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="160"/>
         <source>Executable: </source>
         <translation>実行ファイル: </translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="162"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Arguments: </source>
         <translation>引数: </translation>
     </message>
@@ -640,7 +633,7 @@
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="89"/>
@@ -776,14 +769,6 @@
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in Browser</source>
         <translation>ブラウザー内を検索</translation>
-    </message>
-</context>
-<context>
-    <name>FtpDownloader</name>
-    <message>
-        <location filename="../src/downloads/downloaditem.cpp" line="464"/>
-        <source>Canceled!</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1141,112 +1126,112 @@
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="487"/>
+        <location filename="../src/newstabwidget.cpp" line="490"/>
         <source>Loading... (%p%)</source>
         <translation>読み込んでいます... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1265"/>
+        <location filename="../src/newstabwidget.cpp" line="1254"/>
         <source>Author: %1</source>
         <translation>作者: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="489"/>
+        <location filename="../src/newstabwidget.cpp" line="492"/>
         <source>Home</source>
         <translation>ホーム</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="490"/>
+        <location filename="../src/newstabwidget.cpp" line="493"/>
         <source>Open Page in External Browser</source>
         <translation>ページを外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="491"/>
+        <location filename="../src/newstabwidget.cpp" line="494"/>
         <source>Open Link in External Browser</source>
         <translation>リンクを外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="493"/>
+        <location filename="../src/newstabwidget.cpp" line="496"/>
         <source>Open Link</source>
         <translation>リンクを開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="494"/>
+        <location filename="../src/newstabwidget.cpp" line="497"/>
         <source>Open in New Tab</source>
         <translation>新規タブで開く</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="495"/>
+        <location filename="../src/newstabwidget.cpp" line="498"/>
         <source>Save Link...</source>
         <translation>リンクを保存...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="496"/>
+        <location filename="../src/newstabwidget.cpp" line="499"/>
         <source>Save Image...</source>
         <translation>画像を保存...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="497"/>
+        <location filename="../src/newstabwidget.cpp" line="500"/>
         <source>Copy Link</source>
         <translation>リンクをコピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="498"/>
+        <location filename="../src/newstabwidget.cpp" line="501"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="499"/>
+        <location filename="../src/newstabwidget.cpp" line="502"/>
         <source>Go Back</source>
         <translation>戻る</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="500"/>
+        <location filename="../src/newstabwidget.cpp" line="503"/>
         <source>Go Forward</source>
         <translation>進む</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="501"/>
+        <location filename="../src/newstabwidget.cpp" line="504"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="502"/>
+        <location filename="../src/newstabwidget.cpp" line="505"/>
         <source>Reload</source>
         <translation>再読み込み</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="503"/>
+        <location filename="../src/newstabwidget.cpp" line="506"/>
         <source>Copy Image</source>
         <translation>画像をコピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="505"/>
+        <location filename="../src/newstabwidget.cpp" line="508"/>
         <source>Copy Image Address</source>
         <translation>画像のアドレスをコピー</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="514"/>
+        <location filename="../src/newstabwidget.cpp" line="517"/>
         <source>Close Tab</source>
         <translation>タブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1285"/>
+        <location filename="../src/newstabwidget.cpp" line="1274"/>
         <source>audio</source>
         <translation>オーディオ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1286"/>
+        <location filename="../src/newstabwidget.cpp" line="1275"/>
         <source>video</source>
         <translation>ビデオ</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1287"/>
+        <location filename="../src/newstabwidget.cpp" line="1276"/>
         <source>media</source>
         <translation>メディア</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1291"/>
+        <location filename="../src/newstabwidget.cpp" line="1280"/>
         <source>Link to</source>
         <translation>リンク先</translation>
     </message>
@@ -1260,8 +1245,8 @@
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="242"/>
-        <location filename="../src/notifications.cpp" line="306"/>
-        <location filename="../src/notifications.cpp" line="318"/>
+        <location filename="../src/notifications.cpp" line="308"/>
+        <location filename="../src/notifications.cpp" line="320"/>
         <source>Page %1 of %2</source>
         <translation>ページ %1 / %2</translation>
     </message>
@@ -1290,13 +1275,13 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="72"/>
-        <location filename="../src/optionsdialog.cpp" line="1468"/>
+        <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Labels</source>
         <translation>ラベル</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="75"/>
-        <location filename="../src/optionsdialog.cpp" line="1470"/>
+        <location filename="../src/optionsdialog.cpp" line="1457"/>
         <source>Notifications</source>
         <translation>通知</translation>
     </message>
@@ -1307,18 +1292,18 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="81"/>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Language</source>
         <translation>言語</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1382"/>
+        <location filename="../src/optionsdialog.cpp" line="1369"/>
         <source>Fonts</source>
         <translation>フォント</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="223"/>
-        <location filename="../src/optionsdialog.cpp" line="1779"/>
+        <location filename="../src/optionsdialog.cpp" line="1766"/>
         <source>Warning: key is already assigned to</source>
         <translation>警告: キーはすでに次の機能に割り当てられています </translation>
     </message>
@@ -1334,596 +1319,586 @@
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="249"/>
-        <source>Open new tab next to active</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="250"/>
         <source>Hide feeds tree when opening tabs</source>
         <translation>タブを開いた時にフィードツリーを表示しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="252"/>
+        <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Automatically collapse folders</source>
         <translation>自動的にフォルダーをたたむ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="254"/>
+        <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Automatically check for updates</source>
         <translation>自動的に最新状態をチェックする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="255"/>
+        <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>DB をメモリに格納する (プログラムの再起動が必要)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <location filename="../src/optionsdialog.cpp" line="265"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>Windows 起動時に QuiteRSS を起動する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="291"/>
+        <location filename="../src/optionsdialog.cpp" line="289"/>
         <source>starting QuiteRSS</source>
         <translation>QuiteRSS を起動した時</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="292"/>
+        <location filename="../src/optionsdialog.cpp" line="290"/>
         <source>minimizing QuiteRSS</source>
         <translation>QuiteRSS を最小化した時</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="293"/>
+        <location filename="../src/optionsdialog.cpp" line="291"/>
         <source>closing QuiteRSS</source>
         <translation>QuiteRSS を閉じた時</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="300"/>
+        <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>Show static icon</source>
         <translation>統計アイコンを表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="301"/>
+        <location filename="../src/optionsdialog.cpp" line="299"/>
         <source>Change icon for incoming new news</source>
         <translation>ニュースの新着時にアイコンを変更する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="302"/>
+        <location filename="../src/optionsdialog.cpp" line="300"/>
         <source>Show count of new news</source>
         <translation>新着ニュースの件数を表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="303"/>
+        <location filename="../src/optionsdialog.cpp" line="301"/>
         <source>Show count of unread news</source>
         <translation>未読ニュースの件数を表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="312"/>
+        <location filename="../src/optionsdialog.cpp" line="310"/>
         <source>Single click instead of double click for show window</source>
         <translation>ダブルクリックではなくシングルクリックでウィンドウを表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="313"/>
+        <location filename="../src/optionsdialog.cpp" line="311"/>
         <source>Clear status new on minimize to tray</source>
         <translation>トレイに最小化時にステータスをクリアする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="314"/>
+        <location filename="../src/optionsdialog.cpp" line="312"/>
         <source>Empty working set on minimize to tray</source>
         <translation>トレイに最小化時にワーキングセットを空にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="317"/>
+        <location filename="../src/optionsdialog.cpp" line="315"/>
         <source>Move to the system tray when:</source>
         <translation>システムトレイに移動するタイミング:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="319"/>
+        <location filename="../src/optionsdialog.cpp" line="317"/>
         <source>Tray icon behavior:</source>
         <translation>トレイアイコンの振る舞い:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="344"/>
+        <location filename="../src/optionsdialog.cpp" line="342"/>
         <source>System proxy configuration (if available)</source>
         <translation>システムのプロキシ設定 (有効であれば使う)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="346"/>
+        <location filename="../src/optionsdialog.cpp" line="344"/>
         <source>Direct connection to the Internet</source>
         <translation>インターネットに直接接続</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="347"/>
+        <location filename="../src/optionsdialog.cpp" line="345"/>
         <source>Manual proxy configuration:</source>
         <translation>手動でプロキシ設定:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="363"/>
+        <location filename="../src/optionsdialog.cpp" line="361"/>
         <source>Proxy server:</source>
         <translation>プロキシサーバー:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="365"/>
+        <location filename="../src/optionsdialog.cpp" line="363"/>
         <source>Port:</source>
         <translation>ポート:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="373"/>
+        <location filename="../src/optionsdialog.cpp" line="371"/>
         <source>Username:</source>
         <translation>ユーザー名:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="375"/>
+        <location filename="../src/optionsdialog.cpp" line="373"/>
         <source>Password:</source>
         <translation>パスワード:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="406"/>
+        <location filename="../src/optionsdialog.cpp" line="404"/>
         <source>Use embedded browser</source>
         <translation>内蔵ブラウザーを使う</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="412"/>
-        <location filename="../src/optionsdialog.cpp" line="421"/>
-        <location filename="../src/optionsdialog.cpp" line="494"/>
-        <location filename="../src/optionsdialog.cpp" line="586"/>
-        <location filename="../src/optionsdialog.cpp" line="871"/>
+        <location filename="../src/optionsdialog.cpp" line="410"/>
+        <location filename="../src/optionsdialog.cpp" line="419"/>
+        <location filename="../src/optionsdialog.cpp" line="492"/>
+        <location filename="../src/optionsdialog.cpp" line="584"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Browse...</source>
         <translation>参照...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="414"/>
+        <location filename="../src/optionsdialog.cpp" line="412"/>
         <source>Enable JavaScript</source>
         <translation>JavaScript を有効にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="415"/>
+        <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Enable plug-ins</source>
         <translation>プラグインを有効にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="417"/>
+        <location filename="../src/optionsdialog.cpp" line="415"/>
         <source>Open links in embedded browser in background</source>
         <translation>リンクを内蔵ブラウザーで後ろで開く</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="418"/>
+        <location filename="../src/optionsdialog.cpp" line="416"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>リンクを外部ブラウザーで後ろで開く (試験運用)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="456"/>
+        <location filename="../src/optionsdialog.cpp" line="454"/>
         <source>External browser:</source>
         <translation>外部ブラウザー:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="460"/>
+        <location filename="../src/optionsdialog.cpp" line="458"/>
         <source>User style sheet:</source>
         <translation>ユーザースタイルシート:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="489"/>
+        <location filename="../src/optionsdialog.cpp" line="487"/>
         <source>Maximum pages in cache</source>
         <translation>キャッシュする最大ページ数</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="500"/>
+        <location filename="../src/optionsdialog.cpp" line="498"/>
         <source>Store cache in:</source>
         <translation>キャッシュの保存先:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="508"/>
+        <location filename="../src/optionsdialog.cpp" line="506"/>
         <source>Maximum size of disk cache</source>
         <translation>ディスクキャッシュの最大サイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="510"/>
+        <location filename="../src/optionsdialog.cpp" line="508"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="516"/>
+        <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Use disk cache</source>
         <translation>ディスクキャッシュを使用する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="530"/>
+        <location filename="../src/optionsdialog.cpp" line="528"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>Click To Flash はページ内の Flash コンテンツの自動読み込みをブロックするプラグインです。Flash 再生アイコンをクリックすると再生します。</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="535"/>
+        <location filename="../src/optionsdialog.cpp" line="533"/>
         <source>Use Click to Flash</source>
         <translation>Click to Flash を使用する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="547"/>
+        <location filename="../src/optionsdialog.cpp" line="545"/>
         <source>Add...</source>
         <translation>追加...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="549"/>
+        <location filename="../src/optionsdialog.cpp" line="547"/>
         <source>Remove...</source>
         <translation>削除...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="590"/>
+        <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Ask where to save each file before downloading</source>
         <translation>ファイルをダウンロードするたびに問い合わせる</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="599"/>
+        <location filename="../src/optionsdialog.cpp" line="597"/>
         <source>Download location:</source>
         <translation>ダウンロード場所:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="608"/>
+        <location filename="../src/optionsdialog.cpp" line="606"/>
         <source>History</source>
         <translation>履歴</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="607"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="610"/>
+        <location filename="../src/optionsdialog.cpp" line="608"/>
         <source>Downloads</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="644"/>
+        <location filename="../src/optionsdialog.cpp" line="642"/>
         <source>Position on unread news</source>
         <translation>未読のニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="661"/>
+        <location filename="../src/optionsdialog.cpp" line="659"/>
         <source>Dec</source>
         <translation>Dec</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="662"/>
+        <location filename="../src/optionsdialog.cpp" line="660"/>
         <source>December</source>
         <translation>December</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="685"/>
+        <location filename="../src/optionsdialog.cpp" line="683"/>
         <source>Display format for date:</source>
         <translation>日付の表示形式:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="688"/>
+        <location filename="../src/optionsdialog.cpp" line="686"/>
         <source>time:</source>
         <translation>時刻:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="692"/>
+        <location filename="../src/optionsdialog.cpp" line="690"/>
         <source>Alternating row background colors</source>
         <translation>行の背景色を交互に変える</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="693"/>
+        <location filename="../src/optionsdialog.cpp" line="691"/>
         <source>Simplified representation of date and time</source>
         <translation>日付を時刻を簡易表示にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="711"/>
+        <location filename="../src/optionsdialog.cpp" line="709"/>
         <source>Mark news as read:</source>
         <translation>既読にするニュース:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="713"/>
+        <location filename="../src/optionsdialog.cpp" line="711"/>
         <source>on selecting. With timeout</source>
         <translation>選択時 - タイムアウト</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="714"/>
+        <location filename="../src/optionsdialog.cpp" line="712"/>
         <source>after switching to another news</source>
         <translation>他のニュースへの移動時</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>&apos;次の未読ニュース&apos; の振る舞いを変更する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="732"/>
-        <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="786"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Never delete labeled news</source>
         <translation>ラベル付きニュースを削除しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="823"/>
+        <location filename="../src/optionsdialog.cpp" line="818"/>
         <source>New...</source>
         <translation>新規...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="825"/>
+        <location filename="../src/optionsdialog.cpp" line="820"/>
         <source>Edit...</source>
         <translation>編集...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="828"/>
+        <location filename="../src/optionsdialog.cpp" line="823"/>
         <source>Delete...</source>
         <translation>削除...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="827"/>
         <source>Move up</source>
         <translation>上へ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="830"/>
         <source>Move down</source>
         <translation>下へ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="885"/>
+        <location filename="../src/optionsdialog.cpp" line="880"/>
         <source>Display notification for incoming news</source>
         <translation>ニュースの新着時に通知する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="891"/>
+        <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Left</source>
         <translation>左上</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="891"/>
+        <location filename="../src/optionsdialog.cpp" line="886"/>
         <source>Top Right</source>
         <translation>右上</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Left</source>
         <translation>左下</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="887"/>
         <source>Bottom Right</source>
         <translation>右下</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="902"/>
+        <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Review</source>
         <translation>プレビュー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="906"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Position</source>
         <translation>位置</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="912"/>
+        <location filename="../src/optionsdialog.cpp" line="907"/>
         <source>Show maximum of</source>
         <translation>通知ページごとの最大表示数</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="914"/>
+        <location filename="../src/optionsdialog.cpp" line="909"/>
         <source>news on page notification</source>
         <translation>件</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="917"/>
+        <location filename="../src/optionsdialog.cpp" line="912"/>
         <source>Width news list</source>
         <translation>ニュースリストの幅</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="919"/>
+        <location filename="../src/optionsdialog.cpp" line="914"/>
         <source>pixels</source>
         <translation>ピクセル</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="922"/>
+        <location filename="../src/optionsdialog.cpp" line="917"/>
         <source>Close notification after</source>
         <translation>通知を閉じるまでの時間</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Site</source>
         <translation>サイト</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>User</source>
         <translation>ユーザー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="989"/>
+        <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Password</source>
         <translation>パスワード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1006"/>
+        <location filename="../src/optionsdialog.cpp" line="1001"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1008"/>
+        <location filename="../src/optionsdialog.cpp" line="1003"/>
         <source>Delete All</source>
         <translation>すべて削除</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1010"/>
+        <location filename="../src/optionsdialog.cpp" line="1005"/>
         <source>Show Passwords</source>
         <translation>パスワードを表示</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1266"/>
+        <location filename="../src/optionsdialog.cpp" line="1253"/>
         <source>News title font</source>
         <translation>ニュースタイトルのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1269"/>
+        <location filename="../src/optionsdialog.cpp" line="1256"/>
         <source>News text font</source>
         <translation>ニューステキストのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1272"/>
+        <location filename="../src/optionsdialog.cpp" line="1259"/>
         <source>Notification font</source>
         <translation>通知のフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1324"/>
+        <location filename="../src/optionsdialog.cpp" line="1311"/>
         <source>Feeds list color</source>
         <translation>フィードリストの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1327"/>
+        <location filename="../src/optionsdialog.cpp" line="1314"/>
         <source>Feeds list background</source>
         <translation>フィードリストの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1330"/>
+        <location filename="../src/optionsdialog.cpp" line="1317"/>
         <source>News list color</source>
         <translation>ニュースリストの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1333"/>
+        <location filename="../src/optionsdialog.cpp" line="1320"/>
         <source>News list background</source>
         <translation>ニュースリストの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1336"/>
+        <location filename="../src/optionsdialog.cpp" line="1323"/>
         <source>Focused news color</source>
         <translation>フォーカスのあるニュースの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1339"/>
+        <location filename="../src/optionsdialog.cpp" line="1326"/>
         <source>Focused news background color</source>
         <translation>フォーカスのあるニュースの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1342"/>
+        <location filename="../src/optionsdialog.cpp" line="1329"/>
         <source>Link color</source>
         <translation>リンクの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1345"/>
+        <location filename="../src/optionsdialog.cpp" line="1332"/>
         <source>Title color</source>
         <translation>タイトルの色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1348"/>
+        <location filename="../src/optionsdialog.cpp" line="1335"/>
         <source>Date color</source>
         <translation>日付の色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1351"/>
+        <location filename="../src/optionsdialog.cpp" line="1338"/>
         <source>Author color</source>
         <translation>作者の色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1354"/>
+        <location filename="../src/optionsdialog.cpp" line="1341"/>
         <source>News title background</source>
         <translation>ニュースタイトルの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1357"/>
+        <location filename="../src/optionsdialog.cpp" line="1344"/>
         <source>News background</source>
         <translation>ニュースの背景色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1383"/>
+        <location filename="../src/optionsdialog.cpp" line="1370"/>
         <source>Colors</source>
         <translation>配色</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1390"/>
+        <location filename="../src/optionsdialog.cpp" line="1377"/>
         <source>Filter</source>
         <translation>フィルター</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1665"/>
+        <location filename="../src/optionsdialog.cpp" line="1652"/>
         <source>Load images</source>
         <translation>画像の読み込み</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1670"/>
+        <location filename="../src/optionsdialog.cpp" line="1657"/>
         <source>Auto load images to news view</source>
         <translation>ニュース表示に画像を読み込む</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1834"/>
-        <location filename="../src/optionsdialog.cpp" line="1859"/>
+        <location filename="../src/optionsdialog.cpp" line="1821"/>
+        <location filename="../src/optionsdialog.cpp" line="1846"/>
         <source>Open File...</source>
         <translation>ファイルを開く...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2335"/>
+        <location filename="../src/optionsdialog.cpp" line="2322"/>
         <source>Select Style Sheet File</source>
         <translation>スタイルシートファイルの選択</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2344"/>
-        <location filename="../src/optionsdialog.cpp" line="2373"/>
+        <location filename="../src/optionsdialog.cpp" line="2331"/>
+        <location filename="../src/optionsdialog.cpp" line="2360"/>
         <source>Open Directory...</source>
         <translation>ディレクトリを開く...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2354"/>
+        <location filename="../src/optionsdialog.cpp" line="2341"/>
         <source>Add site to whitelist</source>
         <translation>サイトをホワイトリストへ追加</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2355"/>
+        <location filename="../src/optionsdialog.cpp" line="2342"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>サイト名に &apos;http://&apos; は付けないでください (例: youtube.com)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="620"/>
+        <location filename="../src/optionsdialog.cpp" line="618"/>
         <source>Automatically update the feeds every</source>
         <translation>フィードを定期的に更新する - 更新間隔</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="630"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
         <source>minutes</source>
         <translation>分</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="630"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
         <source>hours</source>
         <translation>時間</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="642"/>
+        <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Position on last opened news</source>
         <translation>最後に開いたニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="643"/>
+        <location filename="../src/optionsdialog.cpp" line="641"/>
         <source>Position at top of list news</source>
         <translation>リストの先頭のニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="645"/>
+        <location filename="../src/optionsdialog.cpp" line="643"/>
         <source>Open news</source>
         <translation>ニュースを開く</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="646"/>
+        <location filename="../src/optionsdialog.cpp" line="644"/>
         <source>Nothing to do</source>
         <translation>何もしない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="699"/>
+        <location filename="../src/optionsdialog.cpp" line="697"/>
         <source>Opening feed:</source>
         <translation>フィードを開く時:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="630"/>
-        <location filename="../src/optionsdialog.cpp" line="738"/>
-        <location filename="../src/optionsdialog.cpp" line="924"/>
+        <location filename="../src/optionsdialog.cpp" line="628"/>
+        <location filename="../src/optionsdialog.cpp" line="734"/>
+        <location filename="../src/optionsdialog.cpp" line="919"/>
         <source>seconds</source>
         <translation>秒</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="57"/>
-        <location filename="../src/optionsdialog.cpp" line="607"/>
-        <location filename="../src/optionsdialog.cpp" line="804"/>
+        <location filename="../src/optionsdialog.cpp" line="605"/>
+        <location filename="../src/optionsdialog.cpp" line="799"/>
         <source>General</source>
         <translation>一般</translation>
     </message>
@@ -1933,92 +1908,92 @@
         <translation>起動時にスプラッシュスクリーンを表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="287"/>
+        <location filename="../src/optionsdialog.cpp" line="285"/>
         <source>Show system tray icon</source>
         <translation>システムトレイアイコンを表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="619"/>
+        <location filename="../src/optionsdialog.cpp" line="617"/>
         <source>Automatically update the feeds on startup</source>
         <translation>起動時にフィードを更新する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="771"/>
         <source>Maximum number of news to keep:</source>
         <translation>最大ニュース保持件数:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="769"/>
+        <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>最大ニュース保持日数:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="407"/>
+        <location filename="../src/optionsdialog.cpp" line="405"/>
         <source>Use external browser</source>
         <translation>外部ブラウザーを使う</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="408"/>
+        <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Default external browser</source>
         <translation>デフォルトの外部ブラウザー</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="409"/>
+        <location filename="../src/optionsdialog.cpp" line="407"/>
         <source>Following external browser:</source>
         <translation>外部ブラウザーを指定する:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="454"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Browser selection:</source>
         <translation>使用ブラウザー:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="458"/>
+        <location filename="../src/optionsdialog.cpp" line="456"/>
         <source>Content:</source>
         <translation>コンテンツ:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="725"/>
+        <location filename="../src/optionsdialog.cpp" line="723"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>ウェブページを読み込むのではなくニュースの説明を表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="783"/>
+        <location filename="../src/optionsdialog.cpp" line="778"/>
         <source>Delete read news</source>
         <translation>既読のニュースを削除する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="784"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Never delete unread news</source>
         <translation>未読のニュースは削除しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="785"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Never delete starred news</source>
         <translation>スター付きニュースは削除しない</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="805"/>
+        <location filename="../src/optionsdialog.cpp" line="800"/>
         <source>Reading</source>
         <translation>読み込み</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="806"/>
+        <location filename="../src/optionsdialog.cpp" line="801"/>
         <source>Clean Up</source>
         <translation>クリーンアップ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="868"/>
+        <location filename="../src/optionsdialog.cpp" line="863"/>
         <source>Play sound for incoming new news</source>
         <translation>ニュースの新着時にサウンドを鳴らす</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1237"/>
+        <location filename="../src/optionsdialog.cpp" line="1224"/>
         <source>Choose language:</source>
         <translation>言語の選択:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1037"/>
         <source>Version</source>
         <translation>バージョン</translation>
     </message>
@@ -2033,120 +2008,120 @@
         <translation>キーボードショートカット</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="251"/>
+        <location filename="../src/optionsdialog.cpp" line="250"/>
         <source>Show default rss-icon instead of favourite one</source>
         <translation>デフォルトの RSS アイコンではなくお気に入りのものを表示する</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="720"/>
+        <location filename="../src/optionsdialog.cpp" line="718"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>表示したニュースから他のフィードへ移動した時に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="721"/>
+        <location filename="../src/optionsdialog.cpp" line="719"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>表示したニュースをタブを閉じた時に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="722"/>
+        <location filename="../src/optionsdialog.cpp" line="720"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>表示したニュースを最小化した時に既読にする</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="729"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>labeled news</source>
         <translation>ラベル付きニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="730"/>
+        <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>starred news</source>
         <translation>スター付きニュース</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="759"/>
+        <location filename="../src/optionsdialog.cpp" line="755"/>
         <source>Prevent accidental deletion of:</source>
         <translation>誤削除の防止:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="926"/>
+        <location filename="../src/optionsdialog.cpp" line="921"/>
         <source>Only show selected feeds:</source>
         <translation>選択したフィードのみ表示する:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="942"/>
+        <location filename="../src/optionsdialog.cpp" line="937"/>
         <source>All Feeds</source>
         <translation>全フィード</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1043"/>
+        <location filename="../src/optionsdialog.cpp" line="1038"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1043"/>
+        <location filename="../src/optionsdialog.cpp" line="1038"/>
         <source>Contact</source>
         <translation>連絡先</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1243"/>
         <source>Type</source>
         <translation>タイプ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1256"/>
+        <location filename="../src/optionsdialog.cpp" line="1243"/>
         <source>Font</source>
         <translation>フォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1260"/>
+        <location filename="../src/optionsdialog.cpp" line="1247"/>
         <source>Feeds list font</source>
         <translation>フィードリストのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1263"/>
+        <location filename="../src/optionsdialog.cpp" line="1250"/>
         <source>News list font</source>
         <translation>ニュースリストのフォント</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1279"/>
-        <location filename="../src/optionsdialog.cpp" line="1365"/>
+        <location filename="../src/optionsdialog.cpp" line="1266"/>
+        <location filename="../src/optionsdialog.cpp" line="1352"/>
         <source>Change...</source>
         <translation>変更...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1281"/>
-        <location filename="../src/optionsdialog.cpp" line="1367"/>
-        <location filename="../src/optionsdialog.cpp" line="1421"/>
+        <location filename="../src/optionsdialog.cpp" line="1268"/>
+        <location filename="../src/optionsdialog.cpp" line="1354"/>
+        <location filename="../src/optionsdialog.cpp" line="1408"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1295"/>
+        <location filename="../src/optionsdialog.cpp" line="1282"/>
         <source>Minimum font size of browser</source>
         <translation>ブラウザーの最小フォントサイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1298"/>
+        <location filename="../src/optionsdialog.cpp" line="1285"/>
         <source>Minimum logical font size of browser</source>
         <translation>ブラウザーの最小論理フォントサイズ</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1416"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Action</source>
         <translation>アクション</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1416"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Description</source>
         <translation>説明</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1416"/>
+        <location filename="../src/optionsdialog.cpp" line="1403"/>
         <source>Shortcut</source>
         <translation>ショートカット</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1424"/>
+        <location filename="../src/optionsdialog.cpp" line="1411"/>
         <source>Shortcut:</source>
         <translation>ショートカット:</translation>
     </message>
@@ -2154,17 +2129,17 @@
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5108"/>
+        <location filename="../src/rsslisting.cpp" line="5107"/>
         <source>&amp;Step up</source>
         <translation>ステップアップ(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5109"/>
+        <location filename="../src/rsslisting.cpp" line="5108"/>
         <source>Step &amp;down</source>
         <translation>ステップダウン(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5110"/>
+        <location filename="../src/rsslisting.cpp" line="5109"/>
         <source>&amp;Select All</source>
         <translation>すべて選択(&amp;S)</translation>
     </message>
@@ -2172,22 +2147,22 @@
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5086"/>
+        <location filename="../src/rsslisting.cpp" line="5085"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5087"/>
+        <location filename="../src/rsslisting.cpp" line="5086"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5088"/>
+        <location filename="../src/rsslisting.cpp" line="5087"/>
         <source>&amp;Yes</source>
         <translation>はい(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5089"/>
+        <location filename="../src/rsslisting.cpp" line="5088"/>
         <source>&amp;No</source>
         <translation>いいえ(&amp;N)</translation>
     </message>
@@ -2195,37 +2170,37 @@
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5091"/>
+        <location filename="../src/rsslisting.cpp" line="5090"/>
         <source>&amp;Undo</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5092"/>
+        <location filename="../src/rsslisting.cpp" line="5091"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5093"/>
+        <location filename="../src/rsslisting.cpp" line="5092"/>
         <source>Cu&amp;t</source>
         <translation>切り取り(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5094"/>
+        <location filename="../src/rsslisting.cpp" line="5093"/>
         <source>&amp;Copy</source>
         <translation>コピー(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5095"/>
+        <location filename="../src/rsslisting.cpp" line="5094"/>
         <source>&amp;Paste</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5096"/>
+        <location filename="../src/rsslisting.cpp" line="5095"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5097"/>
+        <location filename="../src/rsslisting.cpp" line="5096"/>
         <source>Select All</source>
         <translation>すべて選択</translation>
     </message>
@@ -2233,7 +2208,7 @@
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5112"/>
+        <location filename="../src/rsslisting.cpp" line="5111"/>
         <source>Select IM</source>
         <translation>IM の選択</translation>
     </message>
@@ -2241,12 +2216,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="163"/>
         <source>Cannot start external program</source>
         <translation>外部プログラムを起動できません</translation>
     </message>
     <message>
-        <location filename="../src/downloads/downloadmanager.cpp" line="165"/>
+        <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
         <translation>外部プログラムを起動できません! %1</translation>
     </message>
@@ -2254,42 +2229,42 @@
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5099"/>
+        <location filename="../src/rsslisting.cpp" line="5098"/>
         <source>&amp;Undo</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5100"/>
+        <location filename="../src/rsslisting.cpp" line="5099"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5101"/>
+        <location filename="../src/rsslisting.cpp" line="5100"/>
         <source>Cu&amp;t</source>
         <translation>切り取り(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5102"/>
+        <location filename="../src/rsslisting.cpp" line="5101"/>
         <source>&amp;Copy</source>
         <translation>コピー(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5103"/>
+        <location filename="../src/rsslisting.cpp" line="5102"/>
         <source>&amp;Paste</source>
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5104"/>
+        <location filename="../src/rsslisting.cpp" line="5103"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5105"/>
+        <location filename="../src/rsslisting.cpp" line="5104"/>
         <source>Select All</source>
         <translation>すべて選択</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5106"/>
+        <location filename="../src/rsslisting.cpp" line="5105"/>
         <source>Copy &amp;Link Location</source>
         <translation>リンクの場所をコピー(&amp;L)</translation>
     </message>
@@ -2297,22 +2272,22 @@
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5114"/>
+        <location filename="../src/rsslisting.cpp" line="5113"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5115"/>
+        <location filename="../src/rsslisting.cpp" line="5114"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; 前(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5116"/>
+        <location filename="../src/rsslisting.cpp" line="5115"/>
         <source>&amp;Finish</source>
         <translation>完了(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5117"/>
+        <location filename="../src/rsslisting.cpp" line="5116"/>
         <source>&amp;Next &gt;</source>
         <translation>次(&amp;N) &gt;</translation>
     </message>
@@ -2320,1014 +2295,1009 @@
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2461"/>
+        <location filename="../src/rsslisting.cpp" line="2456"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>フィード &apos;%1&apos; を削除してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2539"/>
+        <location filename="../src/rsslisting.cpp" line="2534"/>
         <source>Import canceled</source>
         <translation>インポートをキャンセルしました</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2547"/>
+        <location filename="../src/rsslisting.cpp" line="2542"/>
         <source>Import: can&apos;t open a file</source>
         <translation>インポート: ファイルを開けません</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4851"/>
+        <location filename="../src/rsslisting.cpp" line="4850"/>
         <source>&amp;Feed...</source>
         <translation>フィード(&amp;F)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4854"/>
+        <location filename="../src/rsslisting.cpp" line="4853"/>
         <source>F&amp;older...</source>
         <translation>フォルダー(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4859"/>
+        <location filename="../src/rsslisting.cpp" line="4858"/>
         <source>&amp;Delete...</source>
         <translation>削除(&amp;D)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4868"/>
+        <location filename="../src/rsslisting.cpp" line="4867"/>
         <source>E&amp;xit</source>
         <translation>終了(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4900"/>
+        <location filename="../src/rsslisting.cpp" line="4899"/>
         <source>Filter Feeds</source>
         <translation>フィードをフィルター</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4906"/>
+        <location filename="../src/rsslisting.cpp" line="4905"/>
         <source>Filter News</source>
         <translation>ニュースをフィルター</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4910"/>
+        <location filename="../src/rsslisting.cpp" line="4909"/>
         <source>Show Starred</source>
         <translation>スター付きを表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4911"/>
+        <location filename="../src/rsslisting.cpp" line="4910"/>
         <source>Show Not Starred</source>
         <translation>スターなしを表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4912"/>
+        <location filename="../src/rsslisting.cpp" line="4911"/>
         <source>Show Unread or Starred</source>
         <translation>未読またはスター付きを表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4926"/>
+        <location filename="../src/rsslisting.cpp" line="4925"/>
         <source>Open News in External Browser</source>
         <translation>ニュースを外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4944"/>
+        <location filename="../src/rsslisting.cpp" line="4943"/>
         <source>Mark Read</source>
         <translation>既読にする</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="4945"/>
         <location filename="../src/rsslisting.cpp" line="4946"/>
-        <location filename="../src/rsslisting.cpp" line="4947"/>
         <source>Properties</source>
         <translation>プロパティ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4958"/>
-        <location filename="../src/rsslisting.cpp" line="5033"/>
+        <location filename="../src/rsslisting.cpp" line="4957"/>
+        <location filename="../src/rsslisting.cpp" line="5032"/>
         <source>Main Toolbar</source>
         <translation>メインツールバー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4959"/>
+        <location filename="../src/rsslisting.cpp" line="4958"/>
         <source>Customize Toolbar</source>
         <translation>ツールバーのカスタマイズ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4960"/>
+        <location filename="../src/rsslisting.cpp" line="4959"/>
         <source>Main Toolbar...</source>
         <translation>メインツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4961"/>
+        <location filename="../src/rsslisting.cpp" line="4960"/>
         <source>Customize Toolbar...</source>
         <translation>カスタムツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4962"/>
+        <location filename="../src/rsslisting.cpp" line="4961"/>
         <source>Feeds Toolbar...</source>
         <translation>フィードツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4963"/>
+        <location filename="../src/rsslisting.cpp" line="4962"/>
         <source>News Toolbar...</source>
         <translation>ニュースツールバー...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4966"/>
+        <location filename="../src/rsslisting.cpp" line="4965"/>
         <source>Hide Toolbar</source>
         <translation>ツールバーを隠す</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4977"/>
+        <location filename="../src/rsslisting.cpp" line="4976"/>
         <source>Browser Position</source>
         <translation>ブラウザーの位置</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4983"/>
+        <location filename="../src/rsslisting.cpp" line="4982"/>
         <source>Show Window</source>
         <translation>ウィンドウを表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4985"/>
+        <location filename="../src/rsslisting.cpp" line="4984"/>
         <source>Previous Feed</source>
         <translation>前のフィード</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4986"/>
+        <location filename="../src/rsslisting.cpp" line="4985"/>
         <source>Next Feed</source>
         <translation>次のフィード</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4987"/>
+        <location filename="../src/rsslisting.cpp" line="4986"/>
         <source>Previous News</source>
         <translation>前のニュース</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4988"/>
+        <location filename="../src/rsslisting.cpp" line="4987"/>
         <source>Next News</source>
         <translation>次のニュース</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5000"/>
+        <location filename="../src/rsslisting.cpp" line="4999"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>フィードツリーの表示/非表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5002"/>
+        <location filename="../src/rsslisting.cpp" line="5001"/>
         <source>Minimize to Tray</source>
         <translation>トレイに最小化</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5004"/>
+        <location filename="../src/rsslisting.cpp" line="5003"/>
         <source>Minimize Application to Tray</source>
         <translation>アプリケーションをトレイに最小化します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5006"/>
+        <location filename="../src/rsslisting.cpp" line="5005"/>
         <source>Columns</source>
         <translation>カラム</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5011"/>
+        <location filename="../src/rsslisting.cpp" line="5010"/>
         <source>Show Indentation</source>
         <translation>インデント表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5016"/>
+        <location filename="../src/rsslisting.cpp" line="5015"/>
         <source>Zoom</source>
         <translation>ズーム</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5017"/>
+        <location filename="../src/rsslisting.cpp" line="5016"/>
         <source>Zoom In</source>
         <translation>ズームイン</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5018"/>
+        <location filename="../src/rsslisting.cpp" line="5017"/>
         <source>Zoom in in browser</source>
         <translation>ブラウザー内をズームインします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5019"/>
+        <location filename="../src/rsslisting.cpp" line="5018"/>
         <source>Zoom Out</source>
         <translation>ズームアウト</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5020"/>
+        <location filename="../src/rsslisting.cpp" line="5019"/>
         <source>Zoom out in browser</source>
         <translation>ブラウザー内をズームアウトします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5021"/>
+        <location filename="../src/rsslisting.cpp" line="5020"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5022"/>
+        <location filename="../src/rsslisting.cpp" line="5021"/>
         <source>Reset zoom in browser</source>
         <translation>ブラウザー内のズームをリセットします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5024"/>
+        <location filename="../src/rsslisting.cpp" line="5023"/>
         <source>Print...</source>
         <translation>印刷...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5025"/>
+        <location filename="../src/rsslisting.cpp" line="5024"/>
         <source>Print Web page</source>
         <translation>ウェブページを印刷します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5026"/>
+        <location filename="../src/rsslisting.cpp" line="5025"/>
         <source>Print Preview...</source>
         <translation>印刷プレビュー...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5027"/>
+        <location filename="../src/rsslisting.cpp" line="5026"/>
         <source>Preview Web page</source>
         <translation>ウェブページのプレビューを表示します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5029"/>
+        <location filename="../src/rsslisting.cpp" line="5028"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5030"/>
+        <location filename="../src/rsslisting.cpp" line="5029"/>
         <source>Save Page As...</source>
         <translation>名前を付けてページを保存...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5034"/>
+        <location filename="../src/rsslisting.cpp" line="5033"/>
         <source>Feeds Toolbar</source>
         <translation>フィードツールバー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5035"/>
+        <location filename="../src/rsslisting.cpp" line="5034"/>
         <source>News Toolbar</source>
         <translation>ニュースツールバー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5036"/>
+        <location filename="../src/rsslisting.cpp" line="5035"/>
         <source>Browser Toolbar</source>
         <translation>ブラウザーツールバー</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5038"/>
         <location filename="../src/rsslisting.cpp" line="5039"/>
-        <location filename="../src/rsslisting.cpp" line="5040"/>
         <source>Full Screen</source>
         <translation>フルスクリーン</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5041"/>
         <location filename="../src/rsslisting.cpp" line="5042"/>
-        <location filename="../src/rsslisting.cpp" line="5043"/>
         <source>Stay On Top</source>
         <translation>常に最前面に表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5045"/>
+        <location filename="../src/rsslisting.cpp" line="5044"/>
         <source>Categories</source>
         <translation>カテゴリ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5057"/>
+        <location filename="../src/rsslisting.cpp" line="5056"/>
         <source>Switch to next tab</source>
         <translation>次のタブに切り替え</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5058"/>
+        <location filename="../src/rsslisting.cpp" line="5057"/>
         <source>Switch to previous tab</source>
         <translation>前のタブに切り替え</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5065"/>
+        <location filename="../src/rsslisting.cpp" line="5064"/>
         <source>Decrease news list/increase browser</source>
         <translation>ニュースリストを狭く/ブラウザーを広く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5066"/>
+        <location filename="../src/rsslisting.cpp" line="5065"/>
         <source>Increase news list/decrease browser</source>
         <translation>ニュースリストを広く/ブラウザーを狭く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5851"/>
+        <location filename="../src/rsslisting.cpp" line="5852"/>
         <source>Check for updates</source>
         <translation>最新状態をチェック</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5852"/>
+        <location filename="../src/rsslisting.cpp" line="5853"/>
         <source>A new version of QuiteRSS...</source>
         <translation>QuiteRSS の新バージョン...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6650"/>
-        <location filename="../src/rsslisting.cpp" line="6664"/>
+        <location filename="../src/rsslisting.cpp" line="6658"/>
+        <location filename="../src/rsslisting.cpp" line="6672"/>
         <source>Web Page</source>
         <translation>ウェブページ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2691"/>
+        <location filename="../src/rsslisting.cpp" line="2686"/>
         <source>Export canceled</source>
         <translation>エクスポートをキャンセルしました</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="614"/>
-        <location filename="../src/rsslisting.cpp" line="5062"/>
+        <location filename="../src/rsslisting.cpp" line="615"/>
+        <location filename="../src/rsslisting.cpp" line="5061"/>
         <source>Deleted</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="609"/>
-        <location filename="../src/rsslisting.cpp" line="5061"/>
+        <location filename="../src/rsslisting.cpp" line="610"/>
+        <location filename="../src/rsslisting.cpp" line="5060"/>
         <source>Starred</source>
         <translation>スター付き</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5050"/>
         <location filename="../src/rsslisting.cpp" line="5051"/>
-        <location filename="../src/rsslisting.cpp" line="5052"/>
         <source>Label</source>
         <translation>ラベル</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2124"/>
-        <location filename="../src/rsslisting.cpp" line="5049"/>
-        <location filename="../src/rsslisting.cpp" line="6971"/>
-        <location filename="../src/rsslisting.cpp" line="6994"/>
+        <location filename="../src/rsslisting.cpp" line="2121"/>
+        <location filename="../src/rsslisting.cpp" line="5048"/>
+        <location filename="../src/rsslisting.cpp" line="6957"/>
+        <location filename="../src/rsslisting.cpp" line="6980"/>
         <source>Hide Categories</source>
         <translation>カテゴリを隠す</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2128"/>
-        <location filename="../src/rsslisting.cpp" line="5047"/>
-        <location filename="../src/rsslisting.cpp" line="6978"/>
+        <location filename="../src/rsslisting.cpp" line="2125"/>
+        <location filename="../src/rsslisting.cpp" line="5046"/>
+        <location filename="../src/rsslisting.cpp" line="6964"/>
         <source>Show Categories</source>
         <translation>カテゴリを表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2697"/>
+        <location filename="../src/rsslisting.cpp" line="2692"/>
         <source>Export: can&apos;t open a file</source>
         <translation>エクスポート: ファイルを開けません</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4886"/>
+        <location filename="../src/rsslisting.cpp" line="4885"/>
         <source>Mark Read/Unread</source>
         <translation>既読/未読にする</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4897"/>
+        <location filename="../src/rsslisting.cpp" line="4896"/>
         <source>Options...</source>
         <translation>オプション...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4901"/>
-        <location filename="../src/rsslisting.cpp" line="4907"/>
+        <location filename="../src/rsslisting.cpp" line="4900"/>
+        <location filename="../src/rsslisting.cpp" line="4906"/>
         <source>Show All</source>
         <translation>すべて表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4902"/>
-        <location filename="../src/rsslisting.cpp" line="4908"/>
+        <location filename="../src/rsslisting.cpp" line="4901"/>
+        <location filename="../src/rsslisting.cpp" line="4907"/>
         <source>Show New</source>
         <translation>新着を表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4903"/>
-        <location filename="../src/rsslisting.cpp" line="4909"/>
+        <location filename="../src/rsslisting.cpp" line="4902"/>
+        <location filename="../src/rsslisting.cpp" line="4908"/>
         <source>Show Unread</source>
         <translation>未読を表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4916"/>
+        <location filename="../src/rsslisting.cpp" line="4915"/>
         <source>About...</source>
         <translation>QuiteRSS について...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4931"/>
+        <location filename="../src/rsslisting.cpp" line="4930"/>
         <source>Star</source>
         <translation>スター</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4933"/>
+        <location filename="../src/rsslisting.cpp" line="4932"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4949"/>
+        <location filename="../src/rsslisting.cpp" line="4948"/>
         <source>&amp;File</source>
         <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4950"/>
+        <location filename="../src/rsslisting.cpp" line="4949"/>
         <source>&amp;Edit</source>
         <translation>編集(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4951"/>
+        <location filename="../src/rsslisting.cpp" line="4950"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4952"/>
+        <location filename="../src/rsslisting.cpp" line="4951"/>
         <source>Fee&amp;ds</source>
         <translation>フィード(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4953"/>
+        <location filename="../src/rsslisting.cpp" line="4952"/>
         <source>&amp;News</source>
         <translation>ニュース(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4955"/>
+        <location filename="../src/rsslisting.cpp" line="4954"/>
         <source>&amp;Tools</source>
         <translation>ツール(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4956"/>
+        <location filename="../src/rsslisting.cpp" line="4955"/>
         <source>&amp;Help</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4969"/>
+        <location filename="../src/rsslisting.cpp" line="4968"/>
         <source>System</source>
         <translation>システム</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4978"/>
+        <location filename="../src/rsslisting.cpp" line="4977"/>
         <source>Top</source>
         <translation>上</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4979"/>
+        <location filename="../src/rsslisting.cpp" line="4978"/>
         <source>Bottom</source>
         <translation>下</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4980"/>
+        <location filename="../src/rsslisting.cpp" line="4979"/>
         <source>Right</source>
         <translation>右</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4981"/>
+        <location filename="../src/rsslisting.cpp" line="4980"/>
         <source>Left</source>
         <translation>左</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="5012"/>
         <location filename="../src/rsslisting.cpp" line="5013"/>
-        <location filename="../src/rsslisting.cpp" line="5014"/>
         <source>Search Feed</source>
         <translation>フィードの検索</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6268"/>
+        <location filename="../src/rsslisting.cpp" line="6275"/>
         <source>Loading...</source>
         <translation>読み込んでいます...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2460"/>
+        <location filename="../src/rsslisting.cpp" line="2455"/>
         <source>Delete Feed</source>
         <translation>フィードの削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2534"/>
-        <location filename="../src/rsslisting.cpp" line="2686"/>
+        <location filename="../src/rsslisting.cpp" line="2529"/>
+        <location filename="../src/rsslisting.cpp" line="2681"/>
         <source>Select OPML-File</source>
         <translation>OPML ファイルの選択</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2536"/>
+        <location filename="../src/rsslisting.cpp" line="2531"/>
         <source>OPML-Files (*.opml *.xml)</source>
         <translation>OPML ファイル (*.opml *.xml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2688"/>
+        <location filename="../src/rsslisting.cpp" line="2683"/>
         <source>OPML-Files (*.opml)</source>
         <translation>OPML ファイル (*.opml)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4576"/>
-        <location filename="../src/rsslisting.cpp" line="4871"/>
+        <location filename="../src/rsslisting.cpp" line="4575"/>
+        <location filename="../src/rsslisting.cpp" line="4870"/>
         <source>Load Images</source>
         <translation>画像を読み込む</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4580"/>
-        <location filename="../src/rsslisting.cpp" line="4874"/>
+        <location filename="../src/rsslisting.cpp" line="4579"/>
+        <location filename="../src/rsslisting.cpp" line="4873"/>
         <source>No Load Images</source>
         <translation>画像を読み込まない</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4581"/>
-        <location filename="../src/rsslisting.cpp" line="4875"/>
+        <location filename="../src/rsslisting.cpp" line="4580"/>
+        <location filename="../src/rsslisting.cpp" line="4874"/>
         <source>No Load Images to News View</source>
         <translation>ニュース表示では画像を読み込みません</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4843"/>
-        <location filename="../src/rsslisting.cpp" line="5634"/>
+        <location filename="../src/rsslisting.cpp" line="4842"/>
+        <location filename="../src/rsslisting.cpp" line="5635"/>
         <source>New News: %1</source>
         <translation>新着ニュース: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4845"/>
-        <location filename="../src/rsslisting.cpp" line="5636"/>
+        <location filename="../src/rsslisting.cpp" line="4844"/>
+        <location filename="../src/rsslisting.cpp" line="5637"/>
         <source>Unread News: %1</source>
         <translation>未読ニュース: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4849"/>
-        <location filename="../src/rsslisting.cpp" line="4852"/>
+        <location filename="../src/rsslisting.cpp" line="4848"/>
+        <location filename="../src/rsslisting.cpp" line="4851"/>
         <source>Add New Feed</source>
         <translation>新規フィードを追加します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4857"/>
-        <location filename="../src/rsslisting.cpp" line="4927"/>
+        <location filename="../src/rsslisting.cpp" line="4856"/>
+        <location filename="../src/rsslisting.cpp" line="4926"/>
         <source>Open in New Tab</source>
         <translation>新規タブで開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4860"/>
+        <location filename="../src/rsslisting.cpp" line="4859"/>
         <source>Delete Selected Feed</source>
         <translation>選択したフィードを削除します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4862"/>
+        <location filename="../src/rsslisting.cpp" line="4861"/>
         <source>&amp;Import Feeds...</source>
         <translation>フィードのインポート(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4863"/>
+        <location filename="../src/rsslisting.cpp" line="4862"/>
         <source>Import Feeds from OPML File</source>
         <translation>OPML ファイルからフィードをインポートします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4865"/>
+        <location filename="../src/rsslisting.cpp" line="4864"/>
         <source>&amp;Export Feeds...</source>
         <translation>フィードのエクスポート(&amp;E)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4866"/>
+        <location filename="../src/rsslisting.cpp" line="4865"/>
         <source>Export Feeds to OPML File</source>
         <translation>フィードを OPML にエクスポートします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4577"/>
-        <location filename="../src/rsslisting.cpp" line="4872"/>
+        <location filename="../src/rsslisting.cpp" line="4576"/>
+        <location filename="../src/rsslisting.cpp" line="4871"/>
         <source>Auto Load Images to News View</source>
         <translation>ニュース表示で画像を自動的に読み込みます</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="604"/>
-        <location filename="../src/rsslisting.cpp" line="5060"/>
+        <location filename="../src/rsslisting.cpp" line="605"/>
+        <location filename="../src/rsslisting.cpp" line="5059"/>
         <source>Unread</source>
         <translation>未読</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="619"/>
-        <location filename="../src/rsslisting.cpp" line="5063"/>
+        <location filename="../src/rsslisting.cpp" line="620"/>
+        <location filename="../src/rsslisting.cpp" line="5062"/>
         <source>Labels</source>
         <translation>ラベル</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2456"/>
+        <location filename="../src/rsslisting.cpp" line="2451"/>
         <source>Delete Folder</source>
         <translation>フォルダーの削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2457"/>
+        <location filename="../src/rsslisting.cpp" line="2452"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>フォルダー &apos;%1&apos; を削除してもよろしいですか?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3227"/>
-        <location filename="../src/rsslisting.cpp" line="3353"/>
-        <location filename="../src/rsslisting.cpp" line="4234"/>
-        <location filename="../src/rsslisting.cpp" line="4835"/>
-        <location filename="../src/rsslisting.cpp" line="6225"/>
-        <location filename="../src/rsslisting.cpp" line="6940"/>
+        <location filename="../src/rsslisting.cpp" line="3222"/>
+        <location filename="../src/rsslisting.cpp" line="3349"/>
+        <location filename="../src/rsslisting.cpp" line="4226"/>
+        <location filename="../src/rsslisting.cpp" line="4834"/>
+        <location filename="../src/rsslisting.cpp" line="6232"/>
+        <location filename="../src/rsslisting.cpp" line="6944"/>
         <source>Unread: %1</source>
         <translation>未読: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="3228"/>
-        <location filename="../src/rsslisting.cpp" line="3354"/>
-        <location filename="../src/rsslisting.cpp" line="4235"/>
-        <location filename="../src/rsslisting.cpp" line="4838"/>
-        <location filename="../src/rsslisting.cpp" line="6226"/>
-        <location filename="../src/rsslisting.cpp" line="6941"/>
+        <location filename="../src/rsslisting.cpp" line="3223"/>
+        <location filename="../src/rsslisting.cpp" line="3350"/>
+        <location filename="../src/rsslisting.cpp" line="4227"/>
+        <location filename="../src/rsslisting.cpp" line="4837"/>
+        <location filename="../src/rsslisting.cpp" line="6233"/>
+        <location filename="../src/rsslisting.cpp" line="6945"/>
         <source>All: %1</source>
         <translation>すべて: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4848"/>
+        <location filename="../src/rsslisting.cpp" line="4847"/>
         <source>&amp;Add</source>
         <translation>追加(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4855"/>
+        <location filename="../src/rsslisting.cpp" line="4854"/>
         <source>Add New Folder</source>
         <translation>新規にフォルダーを追加します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4878"/>
+        <location filename="../src/rsslisting.cpp" line="4877"/>
         <source>Update Feed</source>
         <translation>フィードの更新</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4879"/>
+        <location filename="../src/rsslisting.cpp" line="4878"/>
         <source>Update Current Feed</source>
         <translation>現在のフィードを更新します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4881"/>
+        <location filename="../src/rsslisting.cpp" line="4880"/>
         <source>Update All</source>
         <translation>すべて更新</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4882"/>
+        <location filename="../src/rsslisting.cpp" line="4881"/>
         <source>Update All Feeds</source>
         <translation>すべてのフィードを更新します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4884"/>
+        <location filename="../src/rsslisting.cpp" line="4883"/>
         <source>Mark All Feeds Read</source>
         <translation>すべてのフィードを既読にする</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4887"/>
+        <location filename="../src/rsslisting.cpp" line="4886"/>
         <source>Mark Current News Read/Unread</source>
         <translation>現在のニュースを既読/未読にする</translation>
     </message>
     <message>
+        <location filename="../src/rsslisting.cpp" line="4888"/>
         <location filename="../src/rsslisting.cpp" line="4889"/>
-        <location filename="../src/rsslisting.cpp" line="4890"/>
         <source>Mark All News Read</source>
         <translation>すべてのニュースを既読にする</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4892"/>
-        <location filename="../src/rsslisting.cpp" line="7582"/>
-        <location filename="../src/rsslisting.cpp" line="7588"/>
-        <location filename="../src/rsslisting.cpp" line="7598"/>
+        <location filename="../src/rsslisting.cpp" line="4891"/>
+        <location filename="../src/rsslisting.cpp" line="7564"/>
+        <location filename="../src/rsslisting.cpp" line="7570"/>
+        <location filename="../src/rsslisting.cpp" line="7580"/>
         <source>Downloads</source>
         <translation>ダウンロード</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4894"/>
+        <location filename="../src/rsslisting.cpp" line="4893"/>
         <source>News Filters...</source>
         <translation>ニュースフィルター...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4895"/>
+        <location filename="../src/rsslisting.cpp" line="4894"/>
         <source>Filter News...</source>
         <translation>ニュースのフィルター...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4898"/>
+        <location filename="../src/rsslisting.cpp" line="4897"/>
         <source>Open Options Dialog</source>
         <translation>オプションダイアログを表示します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4904"/>
+        <location filename="../src/rsslisting.cpp" line="4903"/>
         <source>Show Starred Feeds</source>
         <translation>スター付きフィードを表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4913"/>
+        <location filename="../src/rsslisting.cpp" line="4912"/>
         <source>Show Last Day</source>
         <translation>最新日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4914"/>
+        <location filename="../src/rsslisting.cpp" line="4913"/>
         <source>Show Last 7 Days</source>
         <translation>最近の 7 日分を表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4917"/>
+        <location filename="../src/rsslisting.cpp" line="4916"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>このアプリケーションの情報を表示します </translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4919"/>
+        <location filename="../src/rsslisting.cpp" line="4918"/>
         <source>Check for Updates...</source>
         <translation>最新状態をチェック...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4920"/>
+        <location filename="../src/rsslisting.cpp" line="4919"/>
         <source>Report a Problem...</source>
         <translation>問題を報告...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4922"/>
+        <location filename="../src/rsslisting.cpp" line="4921"/>
         <source>Open News</source>
         <translation>ニュースを開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4923"/>
+        <location filename="../src/rsslisting.cpp" line="4922"/>
         <source>Open Description News</source>
         <translation>ニュースの説明を開きます</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4924"/>
+        <location filename="../src/rsslisting.cpp" line="4923"/>
         <source>Open in Browser</source>
         <translation>ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4925"/>
+        <location filename="../src/rsslisting.cpp" line="4924"/>
         <source>Open in External Browser</source>
         <translation>外部ブラウザーで開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4928"/>
+        <location filename="../src/rsslisting.cpp" line="4927"/>
         <source>Open News in New Tab</source>
         <translation>ニュースを新規タブで開きます</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4929"/>
+        <location filename="../src/rsslisting.cpp" line="4928"/>
         <source>Open in Background Tab</source>
         <translation>後ろにタブで開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4930"/>
+        <location filename="../src/rsslisting.cpp" line="4929"/>
         <source>Open News in Background Tab</source>
         <translation>ニュースを後ろにタブで開きます</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4932"/>
+        <location filename="../src/rsslisting.cpp" line="4931"/>
         <source>Mark News Star</source>
         <translation>ニュースにスターを付ける</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4934"/>
+        <location filename="../src/rsslisting.cpp" line="4933"/>
         <source>Delete Selected News</source>
         <translation>選択したニュースを削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4935"/>
+        <location filename="../src/rsslisting.cpp" line="4934"/>
         <source>Delete All News</source>
         <translation>全ニュースを削除</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4936"/>
+        <location filename="../src/rsslisting.cpp" line="4935"/>
         <source>Delete All News from List</source>
         <translation>リストから全ニュースを削除します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4937"/>
+        <location filename="../src/rsslisting.cpp" line="4936"/>
         <source>Restore</source>
         <translation>復元</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4938"/>
+        <location filename="../src/rsslisting.cpp" line="4937"/>
         <source>Restore News</source>
         <translation>ニュースを復元します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4939"/>
+        <location filename="../src/rsslisting.cpp" line="4938"/>
         <source>Copy Link</source>
         <translation>リンクをコピー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4940"/>
+        <location filename="../src/rsslisting.cpp" line="4939"/>
         <source>Copy Link News</source>
         <translation>ニュースのリンクをコピーします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4942"/>
+        <location filename="../src/rsslisting.cpp" line="4941"/>
         <source>Restore last deleted news</source>
         <translation>最後に削除したニュースを復元</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4945"/>
+        <location filename="../src/rsslisting.cpp" line="4944"/>
         <source>Mark Feed Read</source>
         <translation>フィードを既読にします</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4954"/>
+        <location filename="../src/rsslisting.cpp" line="4953"/>
         <source>&amp;Browser</source>
         <translation>ブラウザー(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4965"/>
+        <location filename="../src/rsslisting.cpp" line="4964"/>
         <source>Lock Toolbar</source>
         <translation>ツールバーをロック</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4968"/>
+        <location filename="../src/rsslisting.cpp" line="4967"/>
         <source>Application Style</source>
         <translation>アプリケーションスタイル</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4970"/>
+        <location filename="../src/rsslisting.cpp" line="4969"/>
         <source>System2</source>
         <translation>システム2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4971"/>
+        <location filename="../src/rsslisting.cpp" line="4970"/>
         <source>Green</source>
         <translation>グリーン</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4972"/>
+        <location filename="../src/rsslisting.cpp" line="4971"/>
         <source>Orange</source>
         <translation>オレンジ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4973"/>
+        <location filename="../src/rsslisting.cpp" line="4972"/>
         <source>Purple</source>
         <translation>パープル</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4974"/>
+        <location filename="../src/rsslisting.cpp" line="4973"/>
         <source>Pink</source>
         <translation>ピンク</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4975"/>
+        <location filename="../src/rsslisting.cpp" line="4974"/>
         <source>Gray</source>
         <translation>グレー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4990"/>
+        <location filename="../src/rsslisting.cpp" line="4989"/>
         <source>Next Unread News</source>
         <translation>次の未読ニュース</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4991"/>
+        <location filename="../src/rsslisting.cpp" line="4990"/>
         <source>Previous Unread News</source>
         <translation>前の未読ニュース</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4993"/>
+        <location filename="../src/rsslisting.cpp" line="4992"/>
         <source>Switch Focus to Next Panel</source>
         <translation>次のパネルへフォーカスを移す</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4995"/>
+        <location filename="../src/rsslisting.cpp" line="4994"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>次のパネル (フィードツリー、ニュースリスト、ブラウザー) にフォーカスを移動します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4996"/>
+        <location filename="../src/rsslisting.cpp" line="4995"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>前のパネルへフォーカスを移す</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4998"/>
+        <location filename="../src/rsslisting.cpp" line="4997"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>前のパネル (フィードツリー、ニュースリスト、ブラウザー) にフォーカスを移動します</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5007"/>
+        <location filename="../src/rsslisting.cpp" line="5006"/>
         <source>Count News Unread</source>
         <translation>未読ニュースの件数</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5008"/>
+        <location filename="../src/rsslisting.cpp" line="5007"/>
         <source>Count News All</source>
         <translation>全ニュースの件数</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5009"/>
+        <location filename="../src/rsslisting.cpp" line="5008"/>
         <source>Last Updated</source>
         <translation>最終更新</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5032"/>
+        <location filename="../src/rsslisting.cpp" line="5031"/>
         <source>Show/Hide</source>
         <translation>表示/非表示</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5037"/>
+        <location filename="../src/rsslisting.cpp" line="5036"/>
         <source>Panel Categories</source>
         <translation>パネルカテゴリ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5054"/>
+        <location filename="../src/rsslisting.cpp" line="5053"/>
         <source>Close Tab</source>
         <translation>タブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5055"/>
+        <location filename="../src/rsslisting.cpp" line="5054"/>
         <source>Close Other Tabs</source>
         <translation>他のタブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5056"/>
+        <location filename="../src/rsslisting.cpp" line="5055"/>
         <source>Close All Tabs</source>
         <translation>全タブを閉じる</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5068"/>
+        <location filename="../src/rsslisting.cpp" line="5067"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5070"/>
+        <location filename="../src/rsslisting.cpp" line="5069"/>
         <source>Open Homepage Feed</source>
         <translation>フィードのホームページを開く</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5071"/>
+        <location filename="../src/rsslisting.cpp" line="5070"/>
         <source>Sorted by Name</source>
         <translation>名前で並び替え</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5072"/>
+        <location filename="../src/rsslisting.cpp" line="5071"/>
         <source>Collapse All Folders</source>
         <translation>全フォルダーをたたむ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5073"/>
+        <location filename="../src/rsslisting.cpp" line="5072"/>
         <source>Expand All Folders</source>
         <translation>全フォルダーを展開する</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5074"/>
+        <location filename="../src/rsslisting.cpp" line="5073"/>
         <source>Next Folder</source>
         <translation>次のフォルダー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5075"/>
+        <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Previous Folder</source>
         <translation>前のフォルダー</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5076"/>
+        <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Expand Folder</source>
         <translation>フォルダーを展開</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5078"/>
+        <location filename="../src/rsslisting.cpp" line="5077"/>
         <source>Share</source>
         <translation>共有</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5080"/>
+        <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Sort By</source>
         <translation>並び替え</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5081"/>
+        <location filename="../src/rsslisting.cpp" line="5080"/>
         <source>Ascending</source>
         <translation>昇順</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5082"/>
+        <location filename="../src/rsslisting.cpp" line="5081"/>
         <source>Descending</source>
         <translation>降順</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5084"/>
+        <location filename="../src/rsslisting.cpp" line="5083"/>
         <source>Clear</source>
         <translation>クリア</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Important</source>
         <translation>重要</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Work</source>
         <translation>仕事</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5123"/>
+        <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Personal</source>
         <translation>個人</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>To Do</source>
         <translation>To Do</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>Later</source>
         <translation>後で</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5124"/>
+        <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>Amusingly</source>
         <translation>おもしろい</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6957"/>
-        <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="7121"/>
+        <location filename="../src/rsslisting.cpp" line="7100"/>
         <source>Save As</source>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7123"/>
+        <location filename="../src/rsslisting.cpp" line="7102"/>
         <source>HTML-Files (*.html)</source>
         <translation>HTML ファイル (*.html)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7124"/>
+        <location filename="../src/rsslisting.cpp" line="7103"/>
         <source>Text files (*.txt)</source>
         <translation>テキストファイル (*.txt)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="7129"/>
+        <location filename="../src/rsslisting.cpp" line="7108"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>名前を付けて保存: ファイルを開けません</translation>
     </message>
