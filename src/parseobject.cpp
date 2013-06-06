@@ -295,6 +295,12 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
             linkAlternateString = xml.attributes().value("href").toString();
         }
       }
+      if ((currentTag == "title") && (xml.attributes().value("type") == "xhtml"))
+          titleString = xml.readElementText(QXmlStreamReader::IncludeChildElements);
+      if ((currentTag == "summary") && (xml.attributes().value("type") == "xhtml"))
+        atomSummaryString = xml.readElementText(QXmlStreamReader::IncludeChildElements);
+      if ((currentTag == "content") && (xml.attributes().value("type") == "xhtml"))
+        contentString = xml.readElementText(QXmlStreamReader::IncludeChildElements);
       if (isHeader) {
         if (xml.namespaceUri().isEmpty()) qDebug() << itemCount << ":" << currentTag;
         else qDebug() << itemCount << ":" << xml.qualifiedName();
