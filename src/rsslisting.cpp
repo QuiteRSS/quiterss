@@ -6826,6 +6826,7 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       currentNewsTab->feedId_ = -1;
       currentNewsTab->feedParId_ = -1;
       currentNewsTab->setSettings(false);
+      currentNewsTab->setVisible(true);
     }
 
     // Set icon and title of current tab
