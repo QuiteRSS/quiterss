@@ -2649,6 +2649,7 @@ void RSSListing::slotExportFeeds()
   xml.writeEndElement(); // </head>
 
   xml.writeStartElement("body");
+
   // Create model and view for export
   // Expand the view to step on every item
   FeedsTreeModel exportTreeModel("feeds",
@@ -2668,16 +2669,16 @@ void RSSListing::slotExportFeeds()
     int feedId = exportTreeModel.getIdByIndex(index);
     int feedParId = exportTreeModel.getParidByIndex(index);
 
-    // Parent differs from previouse one - close category
-    if (feedParId != parentIdsStack.top()) {
-      xml.writeEndElement();  // "outline" - Category finishes
+    // Parent differs from previouse one - close folder
+    while (feedParId != parentIdsStack.top()) {
+      xml.writeEndElement();  // "outline" - folder finishes
       parentIdsStack.pop();
     }
 
-    // Category has found. Open it
+    // Folder has found. Open it
     if (exportTreeModel.isFolder(index)) {
       parentIdsStack.push(feedId);
-      xml.writeStartElement("outline");  // Category starts
+      xml.writeStartElement("outline");  // Folder starts
       xml.writeAttribute("text", exportTreeModel.dataField(index, "text").toString());
     }
     // Feed has found. Save it
