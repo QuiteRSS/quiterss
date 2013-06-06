@@ -579,10 +579,10 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       QSqlQuery q;
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).
-          arg(rsslisting_->newsCategoriesTree_->currentItem()->text(2).toInt());
+          arg(rsslisting_->categoriesTree_->currentItem()->text(2).toInt());
       q.exec(qStr);
 
-      rsslisting_->newsCategoriesTree_->currentItem()->setText(3, QString::number(newsId));
+      rsslisting_->categoriesTree_->currentItem()->setText(3, QString::number(newsId));
     }
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();

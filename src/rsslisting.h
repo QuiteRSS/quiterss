@@ -25,6 +25,7 @@
 #include <QNetworkProxy>
 #include <QNetworkDiskCache>
 
+#include "categoriestreewidget.h"
 #include "cookiejar.h"
 #include "dbmemfilethread.h"
 #include "downloadmanager.h"
@@ -84,7 +85,7 @@ public:
   QSqlDatabase db_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
-  QTreeWidget *newsCategoriesTree_;
+  CategoriesTreeWidget *categoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
   QStackedWidget *stackedWidget_;
   DownloadManager *downloadManager_;
@@ -311,6 +312,7 @@ private slots:
   void slotSwitchFocus();
   void slotSwitchPrevFocus();
   void slotOpenFeedNewTab();
+  void slotOpenCategoryNewTab();
   void slotTabCurrentChanged(int index);
   void slotTabMoved(int fromIndex, int toIndex);
   void feedsColumnVisible(QAction *action);
@@ -357,8 +359,7 @@ private slots:
 
   void slotRefreshInfoTray();
 
-  void slotCategoriesClicked(QTreeWidgetItem *item, int);
-  void showContextMenuCategory(const QPoint &pos);
+  void slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab = false);
   void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
 

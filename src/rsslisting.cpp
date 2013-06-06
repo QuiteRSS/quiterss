@@ -576,69 +576,7 @@ void RSSListing::createFeedsWidget()
   findFeedsWidget_->hide();
   findFeedsWidget_->setLayout(findFeedsLayout);
 
-  newsCategoriesTree_ = new QTreeWidget(this);
-  newsCategoriesTree_->setObjectName("newsCategoriesTree_");
-  newsCategoriesTree_->setFrameStyle(QFrame::NoFrame);
-  newsCategoriesTree_->setContextMenuPolicy(Qt::CustomContextMenu);
-  newsCategoriesTree_->setStyleSheet(
-        QString("#newsCategoriesTree_ {border-top: 1px solid %1;}").
-        arg(qApp->palette().color(QPalette::Dark).name()));
-  newsCategoriesTree_->setColumnCount(5);
-  newsCategoriesTree_->setColumnHidden(1, true);
-  newsCategoriesTree_->setColumnHidden(2, true);
-  newsCategoriesTree_->setColumnHidden(3, true);
-  newsCategoriesTree_->header()->hide();
-  newsCategoriesTree_->header()->setResizeMode(0, QHeaderView::Stretch);
-  newsCategoriesTree_->header()->setResizeMode(4, QHeaderView::ResizeToContents);
-  newsCategoriesTree_->header()->setStretchLastSection(false);
-
-  DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
-  newsCategoriesTree_->setItemDelegate(itemDelegate);
-
-  QStringList treeItem;
-  treeItem.clear();
-  treeItem << "Categories" << "Type" << "Id" << "CurrentNews" << "";
-  newsCategoriesTree_->setHeaderLabels(treeItem);
-
-  treeItem.clear();
-  treeItem << tr("Unread") << QString::number(TAB_CAT_UNREAD) << "-1";
-  QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/images/folder_unread.png"));
-  newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
-  treeItem.clear();
-  treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
-  treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/images/folder_star.png"));
-  newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
-  treeItem.clear();
-  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL) << "-1";
-  treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
-  newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
-  treeItem.clear();
-  treeItem << tr("Labels") << QString::number(TAB_CAT_LABEL) << "0";
-  treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setIcon(0, QIcon(":/images/label_3"));
-  newsCategoriesTree_->addTopLevelItem(treeWidgetItem);
-
-  QSqlQuery q;
-  q.exec("SELECT id, name, image, currentNews FROM labels ORDER BY num");
-  while (q.next()) {
-    int idLabel = q.value(0).toInt();
-    QString nameLabel = q.value(1).toString();
-    QByteArray byteArray = q.value(2).toByteArray();
-    QString currentNews = q.value(3).toString();
-    QPixmap imageLabel;
-    if (!byteArray.isNull())
-      imageLabel.loadFromData(byteArray);
-    treeItem.clear();
-    treeItem << nameLabel << QString::number(TAB_CAT_LABEL)
-             << QString::number(idLabel) << currentNews;
-    QTreeWidgetItem *childItem = new QTreeWidgetItem(treeItem);
-    childItem->setIcon(0, QIcon(imageLabel));
-    treeWidgetItem->addChild(childItem);
-  }
-  newsCategoriesTree_->expandAll();
+  categoriesTree_ = new CategoriesTreeWidget(this);
 
   categoriesLabel_ = new QLabel(this);
   categoriesLabel_->setObjectName("categoriesLabel_");
@@ -662,7 +600,7 @@ void RSSListing::createFeedsWidget()
   categoriesLayout->setMargin(0);
   categoriesLayout->setSpacing(0);
   categoriesLayout->addWidget(categoriesPanel_);
-  categoriesLayout->addWidget(newsCategoriesTree_, 1);
+  categoriesLayout->addWidget(categoriesTree_, 1);
 
   categoriesWidget_ = new QWidget(this);
   categoriesWidget_->setLayout(categoriesLayout);
@@ -715,10 +653,12 @@ void RSSListing::createFeedsWidget()
   connect(findFeeds_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
 
-  connect(newsCategoriesTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+  connect(categoriesTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
-  connect(newsCategoriesTree_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuCategory(const QPoint &)));
+  connect(categoriesTree_, SIGNAL(signalMiddleClicked()),
+          this, SLOT(slotOpenCategoryNewTab()));
+  connect(categoriesTree_, SIGNAL(signalDeleteAllNewsList()),
+          this, SLOT(deleteAllNewsList()));
   connect(showCategoriesButton_, SIGNAL(clicked()),
           this, SLOT(showNewsCategoriesTree()));
   connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
@@ -2118,7 +2058,7 @@ void RSSListing::readSettings()
 
   feedsWidgetSplitterState_ = settings_->value("FeedsWidgetSplitterState").toByteArray();
   bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
-  newsCategoriesTree_->setVisible(showCategories);
+  categoriesTree_->setVisible(showCategories);
   if (showCategories) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
@@ -3131,7 +3071,7 @@ void RSSListing::recountCategoryCounts()
  *----------------------------------------------------------------------------*/
 void RSSListing::slotRecountCategoryCounts()
 {
-  if (!newsCategoriesTree_->isVisible()) {
+  if (!categoriesTree_->isVisible()) {
     recountCategoryCountsOn_ = false;
     return;
   }
@@ -3144,7 +3084,7 @@ void RSSListing::slotRecountCategoryCounts()
   int allLabelCount = 0;
   int unreadLabelCount = 0;
 
-  QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(3);
+  QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(3);
   for (int i = 0; i < labelTreeItem->childCount(); i++) {
     int id = labelTreeItem->child(i)->text(2).toInt();
     allCountList.insert(id, 0);
@@ -3194,25 +3134,25 @@ void RSSListing::slotRecountCategoryCounts()
     countStr = "";
   else
     countStr = QString("(%1/%2)").arg(unreadStarredCount).arg(allStarredCount);
-  newsCategoriesTree_->topLevelItem(1)->setText(4, countStr);
+  categoriesTree_->topLevelItem(1)->setText(4, countStr);
   if (!deletedCount)
     countStr = "";
   else
     countStr = QString("(%1)").arg(deletedCount);
-  newsCategoriesTree_->topLevelItem(2)->setText(4, countStr);
+  categoriesTree_->topLevelItem(2)->setText(4, countStr);
   if (!unreadLabelCount && !allLabelCount)
     countStr = "";
   else
     countStr = QString("(%1/%2)").arg(unreadLabelCount).arg(allLabelCount);
-  newsCategoriesTree_->topLevelItem(3)->setText(4, countStr);
+  categoriesTree_->topLevelItem(3)->setText(4, countStr);
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
   if ((widget->type_ > TAB_FEED) && (widget->type_ < TAB_WEB) &&
-      newsCategoriesTree_->currentIndex().isValid()) {
+      categoriesTree_->currentIndex().isValid()) {
     int unreadCount = 0;
     int allCount = widget->newsModel_->rowCount();
 
-    QString countStr = newsCategoriesTree_->currentItem()->text(4);
+    QString countStr = categoriesTree_->currentItem()->text(4);
     if (!countStr.isEmpty()) {
       countStr.remove(QRegExp("[()]"));
       switch (widget->type_) {
@@ -3367,7 +3307,11 @@ void RSSListing::slotUpdateNews()
 
   newsModel_->select();
 
-  if (!newsModel_->rowCount()) return;
+  if (!newsModel_->rowCount()) {
+    currentNewsTab->currentNewsIdOld = newsId;
+    currentNewsTab->hideWebContent();
+    return;
+  }
 
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
@@ -3419,6 +3363,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
     } else {
       // Mark previous feed Read while switching to another feed
       setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed);
+
+      categoriesTree_->setCurrentIndex(QModelIndex());
     }
 
     slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
@@ -3454,6 +3400,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
     emit signalSetCurrentTab(indexTab);
   } else {
+    currentNewsTab->type_ = TAB_FEED;
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
     currentNewsTab->setSettings(false);
@@ -3757,7 +3704,7 @@ void RSSListing::showOptionDlg()
   }
 
   if (optionsDialog->idLabels_.count()) {
-    QTreeWidgetItem *labelTreeItem = newsCategoriesTree_->topLevelItem(3);
+    QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(3);
     while (labelTreeItem->childCount()) {
       labelTreeItem->removeChild(labelTreeItem->child(0));
     }
@@ -5043,7 +4990,7 @@ void RSSListing::retranslateStrings()
   stayOnTopAct_->setToolTip(tr("Stay On Top"));
 
   categoriesLabel_->setText(tr("Categories"));
-  if (newsCategoriesTree_->isHidden())
+  if (categoriesTree_->isHidden())
     showCategoriesButton_->setToolTip(tr("Show Categories"));
   else
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
@@ -5057,10 +5004,10 @@ void RSSListing::retranslateStrings()
   nextTabAct_->setText(tr("Switch to next tab"));
   prevTabAct_->setText(tr("Switch to previous tab"));
 
-  newsCategoriesTree_->topLevelItem(0)->setText(0, tr("Unread"));
-  newsCategoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
-  newsCategoriesTree_->topLevelItem(2)->setText(0, tr("Deleted"));
-  newsCategoriesTree_->topLevelItem(3)->setText(0, tr("Labels"));
+  categoriesTree_->topLevelItem(0)->setText(0, tr("Unread"));
+  categoriesTree_->topLevelItem(1)->setText(0, tr("Starred"));
+  categoriesTree_->topLevelItem(2)->setText(0, tr("Deleted"));
+  categoriesTree_->topLevelItem(3)->setText(0, tr("Labels"));
 
   reduceNewsListAct_->setText(tr("Decrease news list/increase browser"));
   increaseNewsListAct_->setText(tr("Increase news list/decrease browser"));
@@ -5134,7 +5081,7 @@ void RSSListing::retranslateStrings()
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
     QList<QTreeWidgetItem *> treeItems;
-    treeItems = newsCategoriesTree_->findItems(QString::number(idLabel),
+    treeItems = categoriesTree_->findItems(QString::number(idLabel),
                                                Qt::MatchFixedString|Qt::MatchRecursive,
                                                2);
     if (treeItems.count()) {
@@ -5624,9 +5571,9 @@ void RSSListing::slotRefreshInfoTray()
   }
 
   if (!unreadCount)
-    newsCategoriesTree_->topLevelItem(0)->setText(4, "");
+    categoriesTree_->topLevelItem(0)->setText(4, "");
   else
-    newsCategoriesTree_->topLevelItem(0)->setText(4, QString("(%1)").arg(unreadCount));
+    categoriesTree_->topLevelItem(0)->setText(4, QString("(%1)").arg(unreadCount));
 
   // Setting tooltip text
   QString info =
@@ -6103,6 +6050,11 @@ void RSSListing::slotOpenFeedNewTab()
   slotFeedSelected(feedsTreeView_->selectIndex(), true);
 }
 
+void RSSListing::slotOpenCategoryNewTab()
+{
+  slotCategoriesClicked(categoriesTree_->currentItem(), 0, true);
+}
+
 /** @brief Close tab with \a index
  *---------------------------------------------------------------------------*/
 void RSSListing::slotCloseTab(int index)
@@ -6129,7 +6081,7 @@ void RSSListing::slotTabCurrentChanged(int index)
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(index);
 
   if ((widget->type_ == TAB_FEED) || (widget->type_ >= TAB_WEB))
-    newsCategoriesTree_->setCurrentIndex(QModelIndex());
+    categoriesTree_->setCurrentIndex(QModelIndex());
   if (widget->type_ != TAB_FEED) {
     feedsTreeView_->setCurrentIndex(QModelIndex());
     feedProperties_->setEnabled(false);
@@ -6194,15 +6146,15 @@ void RSSListing::slotTabCurrentChanged(int index)
   } else {
     QList<QTreeWidgetItem *> treeItems;
     if (widget->type_ == TAB_CAT_LABEL) {
-      treeItems = newsCategoriesTree_->findItems(QString::number(widget->labelId_),
+      treeItems = categoriesTree_->findItems(QString::number(widget->labelId_),
                                                  Qt::MatchFixedString|Qt::MatchRecursive,
                                                  2);
     } else {
-      treeItems = newsCategoriesTree_->findItems(QString::number(widget->type_),
+      treeItems = categoriesTree_->findItems(QString::number(widget->type_),
                                                  Qt::MatchFixedString,
                                                  1);
     }
-    newsCategoriesTree_->setCurrentItem(treeItems.at(0));
+    categoriesTree_->setCurrentItem(treeItems.at(0));
 
     createNewsTab(index);
     slotUpdateNews();
@@ -6210,7 +6162,7 @@ void RSSListing::slotTabCurrentChanged(int index)
 
     int unreadCount = 0;
     int allCount = widget->newsModel_->rowCount();
-    QString countStr = newsCategoriesTree_->currentItem()->text(4);
+    QString countStr = categoriesTree_->currentItem()->text(4);
     if (!countStr.isEmpty()) {
       countStr.remove(QRegExp("[()]"));
       switch (widget->type_) {
@@ -6820,7 +6772,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
 /** @brief Process clicks in feeds tree
  * @param item Item that was clicked
  *---------------------------------------------------------------------------*/
-void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
+void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab)
 {
   if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
@@ -6829,19 +6781,51 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   int type = item->text(1).toInt();
 
   int indexTab = -1;
-  for (int i = 0; i < stackedWidget_->count(); i++) {
-    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-    if (widget->type_ == type) {
-      indexTab = i;
-      break;
+  if (!createTab) {
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+      if (widget->type_ == type) {
+        if (widget->type_ == TAB_CAT_LABEL) {
+          if (widget->labelId_ == item->text(2).toInt()) {
+            indexTab = i;
+            break;
+          }
+        }
+        else {
+          indexTab = i;
+          break;
+        }
+      }
     }
   }
-  if ((indexTab == -1) || (type == TAB_CAT_LABEL)) {
-    if (indexTab == -1) {
+
+  if (indexTab == -1) {
+    if (createTab) {
       NewsTabWidget *widget = new NewsTabWidget(this, type);
       indexTab = addTab(widget);
+      createNewsTab(indexTab);
     }
-    createNewsTab(indexTab);
+    else {
+      feedsTreeView_->setCurrentIndex(QModelIndex());
+      feedProperties_->setEnabled(false);
+
+      if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
+        QModelIndex curIndex = categoriesTree_->currentIndex();
+        updateCurrentTab_ = false;
+        tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
+        updateCurrentTab_ = true;
+        categoriesTree_->setCurrentIndex(curIndex);
+
+        currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+        newsModel_ = currentNewsTab->newsModel_;
+        newsView_ = currentNewsTab->newsView_;
+      }
+
+      currentNewsTab->type_ = type;
+      currentNewsTab->feedId_ = -1;
+      currentNewsTab->feedParId_ = -1;
+      currentNewsTab->setSettings(false);
+    }
 
     // Set icon and title of current tab
     currentNewsTab->newsIconTitle_->setPixmap(item->icon(0).pixmap(16,16));
@@ -6918,14 +6902,15 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
       currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
     }
 
-    emit signalSetCurrentTab(indexTab);
+    if (createTab)
+      emit signalSetCurrentTab(indexTab);
   } else {
     emit signalSetCurrentTab(indexTab, true);
   }
 
   int unreadCount = 0;
   int allCount = currentNewsTab->newsModel_->rowCount();
-  QString countStr = newsCategoriesTree_->currentItem()->text(4);
+  QString countStr = categoriesTree_->currentItem()->text(4);
   if (!countStr.isEmpty()) {
     countStr.remove(QRegExp("[()]"));
     switch (currentNewsTab->type_) {
@@ -6944,39 +6929,21 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int)
   statusAll_->setVisible(true);
 }
 
-/** @brief Call context menu of the categories tree
- *----------------------------------------------------------------------------*/
-void RSSListing::showContextMenuCategory(const QPoint &pos)
-{
-  QModelIndex index = newsCategoriesTree_->indexAt(pos);
-  if (index.isValid()) {
-    QRect rectText = newsCategoriesTree_->visualRect(index);
-    if (pos.x() >= rectText.x()) {
-      if (newsCategoriesTree_->itemAt(pos) == newsCategoriesTree_->topLevelItem(2)) {
-        QMenu menu;
-        menu.addAction( tr("Clear 'Deleted'"), this, SLOT(deleteAllNewsList()));
-        menu.exec(newsCategoriesTree_->viewport()->mapToGlobal(pos));
-      }
-    }
-
-  }
-}
-
 /** @brief Show/Hide categories tree
  *---------------------------------------------------------------------------*/
 void RSSListing::showNewsCategoriesTree()
 {
-  if (newsCategoriesTree_->isHidden()) {
+  if (categoriesTree_->isHidden()) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
-    newsCategoriesTree_->show();
+    categoriesTree_->show();
     feedsSplitter_->restoreState(feedsWidgetSplitterState_);
     recountCategoryCounts();
   } else {
     feedsWidgetSplitterState_ = feedsSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
     showCategoriesButton_->setToolTip(tr("Show Categories"));
-    newsCategoriesTree_->hide();
+    categoriesTree_->hide();
     QList <int> sizes;
     sizes << height() << 20;
     feedsSplitter_->setSizes(sizes);
@@ -6987,12 +6954,12 @@ void RSSListing::showNewsCategoriesTree()
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsSplitterMoved(int pos, int)
 {
-  if (newsCategoriesTree_->isHidden()) {
+  if (categoriesTree_->isHidden()) {
     int height = pos + categoriesPanel_->height() + 2;
     if (height < feedsSplitter_->height()) {
       showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
       showCategoriesButton_->setToolTip(tr("Hide Categories"));
-      newsCategoriesTree_->show();
+      categoriesTree_->show();
       recountCategoryCounts();
     }
   }
