@@ -1854,7 +1854,7 @@ void RSSListing::readSettings()
 
   showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
   reopenFeedStartup_ = settings_->value("reopenFeedStartup", true).toBool();
-  openNewTabNextToActive_ = settings_->value("openNewTabNextToActive_", false).toBool();
+  openNewTabNextToActive_ = settings_->value("openNewTabNextToActive", false).toBool();
 
   showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
