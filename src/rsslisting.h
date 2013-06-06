@@ -360,6 +360,7 @@ private slots:
   void slotRefreshInfoTray();
 
   void slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab = false);
+  void clearDeleted();
   void showNewsCategoriesTree();
   void feedsSplitterMoved(int pos, int);
 

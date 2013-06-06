@@ -657,8 +657,8 @@ void RSSListing::createFeedsWidget()
           this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
   connect(categoriesTree_, SIGNAL(signalMiddleClicked()),
           this, SLOT(slotOpenCategoryNewTab()));
-  connect(categoriesTree_, SIGNAL(signalDeleteAllNewsList()),
-          this, SLOT(deleteAllNewsList()));
+  connect(categoriesTree_, SIGNAL(signalClearDeleted()),
+          this, SLOT(clearDeleted()));
   connect(showCategoriesButton_, SIGNAL(clicked()),
           this, SLOT(showNewsCategoriesTree()));
   connect(feedsSplitter_, SIGNAL(splitterMoved(int,int)),
@@ -6928,6 +6928,19 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
 
   statusUnread_->setVisible(currentNewsTab->type_ != TAB_CAT_DEL);
   statusAll_->setVisible(true);
+}
+
+void RSSListing::clearDeleted()
+{
+  QSqlQuery q;
+  q.exec("UPDATE news SET new=0, read=2, deleted=2 WHERE deleted==1");
+
+  if (currentNewsTab->type_ == TAB_CAT_DEL) {
+    currentNewsTab->newsModel_->select();
+    currentNewsTab->slotNewsViewSelected(QModelIndex());
+  }
+
+  recountCategoryCounts();
 }
 
 /** @brief Show/Hide categories tree

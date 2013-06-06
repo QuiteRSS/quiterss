@@ -28,7 +28,7 @@ public:
 
 signals:
   void signalMiddleClicked();
-  void signalDeleteAllNewsList();
+  void signalClearDeleted();
 //  void pressKeyUp();
 //  void pressKeyDown();
 

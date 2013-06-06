@@ -128,7 +128,7 @@ void CategoriesTreeWidget::showContextMenuCategory(const QPoint &pos)
       menu.addAction(tr("Open in New Tab"), this, SLOT(openCategoryNewTab()));
       if (itemClicked_ == topLevelItem(2)) {
         menu.addSeparator();
-        menu.addAction(tr("Clear 'Deleted'"), this, SIGNAL(signalDeleteAllNewsList()));
+        menu.addAction(tr("Clear 'Deleted'"), this, SIGNAL(signalClearDeleted()));
       }
       menu.exec(viewport()->mapToGlobal(pos));
     }
