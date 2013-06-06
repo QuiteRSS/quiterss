@@ -86,7 +86,6 @@ CategoriesTreeWidget::CategoriesTreeWidget(QWidget * parent)
     childItem->setIcon(0, QIcon(imageLabel));
     treeWidgetItem->addChild(childItem);
   }
-  expandAll();
 
   connect(this, SIGNAL(customContextMenuRequested(QPoint)),
           SLOT(showContextMenuCategory(const QPoint &)));

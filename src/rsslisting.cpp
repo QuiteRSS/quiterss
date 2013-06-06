@@ -2070,6 +2070,9 @@ void RSSListing::readSettings()
     sizes << QApplication::desktop()->height() << 20;
     feedsSplitter_->setSizes(sizes);
   }
+  bool expandCategories = settings_->value("categoriesTreeExpanded", true).toBool();
+  if (expandCategories)
+      categoriesTree_->expandAll();
 
   if (isFullScreen())
     menuBar()->hide();
@@ -2248,6 +2251,7 @@ void RSSListing::writeSettings()
     settings_->setValue("FeedsWidgetSplitterState", feedsSplitter_->saveState());
   }
   settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
+  settings_->setValue("categoriesTreeExpanded", categoriesTree_->topLevelItem(3)->isExpanded());
 
   if (stackedWidget_->count()) {
     NewsTabWidget *widget;
