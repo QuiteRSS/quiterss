@@ -644,6 +644,9 @@ private:
   bool storeDBMemory_;
   bool storeDBMemoryT_;
 
+  bool cleanupOnShutdown_;
+  bool optimizeDB_;
+
   int  openingLinkTimeout_;  //!< During this time we'll trying swithing back to apllication
   QTimer timerLinkOpening_;
 

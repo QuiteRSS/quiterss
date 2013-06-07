@@ -253,6 +253,12 @@ void OptionsDialog::createGeneralWidget()
 
   updateCheckEnabled_ = new QCheckBox(tr("Automatically check for updates"));
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
+  cleanupOnShutdownBox_ = new QGroupBox(tr("Enable cleanup on shutdown"));
+  cleanupOnShutdownBox_->setCheckable(true);
+  cleanupOnShutdownBox_->setChecked(false);
+  QVBoxLayout *cleanupOnShutdownLayout = new QVBoxLayout(cleanupOnShutdownBox_);
+  optimizeDB_ = new QCheckBox(tr("Enable DB optimization (slower shutdown)"), cleanupOnShutdownBox_);
+  cleanupOnShutdownLayout->addWidget(optimizeDB_);
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addWidget(showSplashScreen_);
@@ -274,6 +280,7 @@ void OptionsDialog::createGeneralWidget()
 
   generalLayout->addWidget(updateCheckEnabled_);
   generalLayout->addWidget(storeDBMemory_);
+  generalLayout->addWidget(cleanupOnShutdownBox_);
 
   generalWidget_ = new QFrame();
   generalWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);

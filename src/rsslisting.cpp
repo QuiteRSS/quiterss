@@ -291,39 +291,43 @@ void RSSListing::slotClose()
   q.exec("UPDATE news SET new=0 WHERE new==1");
   q.exec("UPDATE news SET read=2 WHERE read==1");
 
-  // Run Cleanup for all feeds, except categories
-  q.exec("SELECT id FROM feeds WHERE xmlUrl!=''");
-  while (q.next()) {
-    feedsCleanUp(q.value(0).toString());
-  }
+  if (cleanupOnShutdown_) {
+    // Run Cleanup for all feeds, except categories
+    q.exec("SELECT id FROM feeds WHERE xmlUrl!=''");
+    while (q.next()) {
+      feedsCleanUp(q.value(0).toString());
+    }
 
-  bool cleanUpDB = false;
-  q.exec("SELECT value FROM info WHERE name='cleanUpAllDB_0.10.0'");
-  if (q.next()) cleanUpDB = q.value(0).toBool();
-  else q.exec("INSERT INTO info(name, value) VALUES ('cleanUpAllDB_0.10.0', 'true')");
+    bool cleanUpDB = false;
+    q.exec("SELECT value FROM info WHERE name='cleanUpAllDB_0.10.0'");
+    if (q.next()) cleanUpDB = q.value(0).toBool();
+    else q.exec("INSERT INTO info(name, value) VALUES ('cleanUpAllDB_0.10.0', 'true')");
 
-  QString qStr = QString("UPDATE news SET description='', content='', received='', "
+    QString qStr = QString("UPDATE news SET description='', content='', received='', "
                          "author_name='', author_uri='', author_email='', "
                          "category='', new='', read='', starred='', label='', "
                          "deleteDate='', feedParentId='', deleted=3 ");
-  if (cleanUpDB) qStr.append("WHERE deleted==2");
-  else qStr.append("WHERE deleted!=0");
-  q.exec(qStr);
+    if (cleanUpDB) qStr.append("WHERE deleted==2");
+    else qStr.append("WHERE deleted!=0");
+    q.exec(qStr);
 
-  // Run categories recount, because cleanup may change counts
-  QList<int> categoriesList;
-  q.exec("SELECT id FROM feeds WHERE (xmlUrl='' OR xmlUrl IS NULL)");
-  while (q.next()) {
-    categoriesList << q.value(0).toInt();
+    // Run categories recount, because cleanup may change counts
+    QList<int> categoriesList;
+    q.exec("SELECT id FROM feeds WHERE (xmlUrl='' OR xmlUrl IS NULL)");
+    while (q.next()) {
+      categoriesList << q.value(0).toInt();
+    }
+    recountFeedCategories(categoriesList);
+
+    q.exec("UPDATE feeds SET newCount=0 WHERE newCount!=0");
   }
-  recountFeedCategories(categoriesList);
-
-  q.exec("UPDATE feeds SET newCount=0 WHERE newCount!=0");
 
   q.finish();
   db_.commit();
 
-  db_.exec("VACUUM");
+  if (cleanupOnShutdown_ && optimizeDB_) {
+    db_.exec("VACUUM");
+  }
 
   if (storeDBMemory_) {
     dbMemFileThread_->sqliteDBMemFile(true);
@@ -1855,6 +1859,8 @@ void RSSListing::readSettings()
   showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
   reopenFeedStartup_ = settings_->value("reopenFeedStartup", true).toBool();
   openNewTabNextToActive_ = settings_->value("openNewTabNextToActive", false).toBool();
+  cleanupOnShutdown_ = settings_->value("cleanupOnShutdown", true).toBool();
+  optimizeDB_ = settings_->value("optimizeDB", true).toBool();
 
   showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
@@ -2152,6 +2158,8 @@ void RSSListing::writeSettings()
   settings_->setValue("showSplashScreen", showSplashScreen_);
   settings_->setValue("reopenFeedStartup", reopenFeedStartup_);
   settings_->setValue("openNewTabNextToActive", openNewTabNextToActive_);
+  settings_->setValue("cleanupOnShutdown", cleanupOnShutdown_);
+  settings_->setValue("optimizeDB", optimizeDB_);
 
   settings_->setValue("storeDBMemory", storeDBMemoryT_);
 
@@ -3565,6 +3573,8 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->updateCheckEnabled_->setChecked(updateCheckEnabled_);
   optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
+  optionsDialog->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
+  optionsDialog->optimizeDB_->setChecked(optimizeDB_);
 
   optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog->startingTray_->setChecked(startingTray_);
@@ -3818,6 +3828,8 @@ void RSSListing::showOptionDlg()
 
   updateCheckEnabled_ = optionsDialog->updateCheckEnabled_->isChecked();
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
+  cleanupOnShutdown_ = optionsDialog->cleanupOnShutdownBox_->isChecked();
+  optimizeDB_ = optionsDialog->optimizeDB_->isChecked();
 
   showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog->startingTray_->isChecked();

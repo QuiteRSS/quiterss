@@ -48,6 +48,8 @@ public:
   QCheckBox *autocollapseFolder_;
   QCheckBox *updateCheckEnabled_;
   QCheckBox *storeDBMemory_;
+  QGroupBox *cleanupOnShutdownBox_;
+  QCheckBox *optimizeDB_;
 
   // systemTray
   void setBehaviorIconTray(int behavior);
