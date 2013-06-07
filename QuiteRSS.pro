@@ -97,7 +97,8 @@ HEADERS += \
     src/plugins/clicktoflash.h \
     src/downloads/downloadmanager.h \
     src/downloads/downloaditem.h \
-    src/tabbar.h
+    src/tabbar.h \
+    src/categoriestreewidget.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -144,7 +145,8 @@ SOURCES += \
     src/plugins/clicktoflash.cpp \
     src/downloads/downloadmanager.cpp \
     src/downloads/downloaditem.cpp \
-    src/tabbar.cpp
+    src/tabbar.cpp \
+    src/categoriestreewidget.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \
