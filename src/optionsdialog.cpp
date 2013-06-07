@@ -286,7 +286,6 @@ void OptionsDialog::createTraySystemWidget()
 {
   showTrayIconBox_ = new QGroupBox(tr("Show system tray icon"));
   showTrayIconBox_->setCheckable(true);
-  showTrayIconBox_->setChecked(false);
 
   startingTray_ = new QCheckBox(tr("starting QuiteRSS"));
   minimizingTray_ = new QCheckBox(tr("minimizing QuiteRSS"));
@@ -313,7 +312,7 @@ void OptionsDialog::createTraySystemWidget()
   clearStatusNew_ = new QCheckBox(tr("Clear status new on minimize to tray"));
   emptyWorking_ = new QCheckBox(tr("Empty working set on minimize to tray"));
 
-  QVBoxLayout *trayLayout = new QVBoxLayout();
+  QVBoxLayout *trayLayout = new QVBoxLayout(showTrayIconBox_);
   trayLayout->addWidget(new QLabel(tr("Move to the system tray when:")));
   trayLayout->addLayout(moveTrayLayout);
   trayLayout->addWidget(new QLabel(tr("Tray icon behavior:")));
@@ -325,10 +324,7 @@ void OptionsDialog::createTraySystemWidget()
 #endif
   trayLayout->addStretch(1);
 
-  showTrayIconBox_->setLayout(trayLayout);
-
   QVBoxLayout *boxTrayLayout = new QVBoxLayout();
-  boxTrayLayout->setMargin(5);
   boxTrayLayout->addWidget(showTrayIconBox_);
 
   traySystemWidget_ = new QFrame();
@@ -804,10 +800,11 @@ void OptionsDialog::createFeedsWidget()
   cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(optimizeDB_, 6, 0, 1, 1);
 
-  QVBoxLayout *cleanUpFeedsLayout1 = new QVBoxLayout();
-  cleanUpFeedsLayout1->addWidget(cleanupOnShutdownBox_);
+  QVBoxLayout *boxCleanUpFeedsLayout = new QVBoxLayout();
+  boxCleanUpFeedsLayout->addWidget(cleanupOnShutdownBox_);
+
   QWidget *cleanUpFeedsWidget = new QWidget();
-  cleanUpFeedsWidget->setLayout(cleanUpFeedsLayout1);
+  cleanUpFeedsWidget->setLayout(boxCleanUpFeedsLayout);
 
   feedsWidget_ = new QTabWidget();
   feedsWidget_->addTab(generalFeedsWidget, tr("General"));
