@@ -962,43 +962,64 @@ void NewsTabWidget::deleteNews()
 
   QStringList feedIdList;
 
-  if (cnt == 1) {
-    curIndex = indexes.at(0);
-    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
-        rsslisting_->notDeleteStarred_)
-      return;
-    QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
-        data(Qt::EditRole).toString();
-    if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
-      return;
+  if (type_ != TAB_CAT_DEL) {
+    if (cnt == 1) {
+      curIndex = indexes.at(0);
+      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+          rsslisting_->notDeleteStarred_)
+        return;
+      QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
+          data(Qt::EditRole).toString();
+      if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+        return;
 
-    slotSetItemRead(curIndex, 1);
+      slotSetItemRead(curIndex, 1);
 
-    newsModel_->setData(curIndex, (type_ != TAB_CAT_DEL) ? 1 : 2);
-    newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")),
-                        QDateTime::currentDateTime().toString(Qt::ISODate));
+      newsModel_->setData(curIndex, 1);
+      newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")),
+                          QDateTime::currentDateTime().toString(Qt::ISODate));
 
-    QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
-    if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
+      QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+      if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
 
-    newsModel_->submitAll();
-  } else {
+      newsModel_->submitAll();
+    } else {
+      db_.transaction();
+      QSqlQuery q;
+      for (int i = cnt-1; i >= 0; --i) {
+        curIndex = indexes.at(i);
+        if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+            rsslisting_->notDeleteStarred_)
+          continue;
+        QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
+            data(Qt::EditRole).toString();
+        if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+          continue;
+
+        int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+        q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+               arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+               arg(newsId));
+
+        QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+        if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
+      }
+      db_.commit();
+
+      newsModel_->select();
+    }
+  }
+  else {
     db_.transaction();
     QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
-          rsslisting_->notDeleteStarred_)
-        continue;
-      QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
-          data(Qt::EditRole).toString();
-      if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
-        continue;
 
       int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
-      q.exec(QString("UPDATE news SET new=0, read=2, deleted=%1, deleteDate='%2' WHERE id=='%3'").
-             arg((type_ != TAB_CAT_DEL) ? 1 : 2).
-             arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+      q.exec(QString("UPDATE news SET description='', content='', received='', "
+                     "author_name='', author_uri='', author_email='', "
+                     "category='', new='', read='', starred='', label='', "
+                     "deleteDate='', feedParentId='', deleted=3 WHERE id=='%1'").
              arg(newsId));
 
       QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
@@ -1008,6 +1029,7 @@ void NewsTabWidget::deleteNews()
 
     newsModel_->select();
   }
+
   while (newsModel_->canFetchMore())
     newsModel_->fetchMore();
 
@@ -1039,18 +1061,27 @@ void NewsTabWidget::deleteAllNewsList()
   db_.transaction();
   QSqlQuery q;
   for (int i = cnt-1; i >= 0; --i) {
-    if (newsModel_->index(i, newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
-        rsslisting_->notDeleteStarred_)
-      continue;
-    QString labelStr = newsModel_->index(i, newsModel_->fieldIndex("label")).data(Qt::EditRole).toString();
-    if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
-      continue;
-
     int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
-    q.exec(QString("UPDATE news SET new=0, read=2, deleted=%1, deleteDate='%2' WHERE id=='%3'").
-           arg((type_ != TAB_CAT_DEL) ? 1 : 2).
-           arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
-           arg(newsId));
+
+    if (type_ != TAB_CAT_DEL) {
+      if (newsModel_->index(i, newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+          rsslisting_->notDeleteStarred_)
+        continue;
+      QString labelStr = newsModel_->index(i, newsModel_->fieldIndex("label")).data(Qt::EditRole).toString();
+      if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+        continue;
+
+      q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+             arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+             arg(newsId));
+    }
+    else {
+      q.exec(QString("UPDATE news SET description='', content='', received='', "
+                     "author_name='', author_uri='', author_email='', "
+                     "category='', new='', read='', starred='', label='', "
+                     "deleteDate='', feedParentId='', deleted=3 WHERE id=='%1'").
+             arg(newsId));
+    }
 
     QString feedId = newsModel_->index(i, newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
     if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
