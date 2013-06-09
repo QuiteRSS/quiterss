@@ -20,6 +20,7 @@
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
+#include "cleanupwizard.h"
 #include "customizetoolbardialog.h"
 #include "db_func.h"
 #include "delegatewithoutfocus.h"
@@ -142,8 +143,6 @@ RSSListing::RSSListing(QSettings *settings,
   persistentParseThread_ = new ParseThread(this);
 
   faviconThread_ = new FaviconThread(this);
-
-  cleanUp();
 
   createFeedsWidget();
   createToolBarNull();
@@ -295,7 +294,7 @@ void RSSListing::slotClose()
     // Run Cleanup for all feeds, except categories
     q.exec("SELECT id FROM feeds WHERE xmlUrl!=''");
     while (q.next()) {
-      feedsCleanUp(q.value(0).toString());
+      feedCleanUp(q.value(0).toString());
     }
 
     bool cleanUpDB = false;
@@ -979,6 +978,11 @@ void RSSListing::createActions()
   this->addAction(showDownloadManagerAct_);
   connect(showDownloadManagerAct_, SIGNAL(triggered()), this, SLOT(showDownloadManager()));
 
+  showCleanUpWizardAct_ = new QAction(this);
+  showCleanUpWizardAct_->setObjectName("showCleanUpWizardAct");
+  this->addAction(showCleanUpWizardAct_);
+  connect(showCleanUpWizardAct_, SIGNAL(triggered()), this, SLOT(cleanUp()));
+
   setNewsFiltersAct_ = new QAction(this);
   setNewsFiltersAct_->setObjectName("setNewsFiltersAct");
   setNewsFiltersAct_->setIcon(QIcon(":/images/filterOff"));
@@ -1402,6 +1406,7 @@ void RSSListing::createShortcut()
   listActions_.append(updateAllFeedsAct_);
   listActions_.append(openHomeFeedAct_);
   listActions_.append(showDownloadManagerAct_);
+  listActions_.append(showCleanUpWizardAct_);
   optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
@@ -1760,6 +1765,8 @@ void RSSListing::createMenu()
 
   toolsMenu_ = new QMenu(this);
   toolsMenu_->addAction(showDownloadManagerAct_);
+  toolsMenu_->addSeparator();
+  toolsMenu_->addAction(showCleanUpWizardAct_);
   toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
@@ -4855,6 +4862,8 @@ void RSSListing::retranslateStrings()
 
   showDownloadManagerAct_->setText(tr("Downloads"));
 
+  showCleanUpWizardAct_->setText(tr("Clean Up..."));
+
   setNewsFiltersAct_->setText(tr("News Filters..."));
   setFilterNewsAct_->setText(tr("Filter News..."));
 
@@ -5919,77 +5928,6 @@ void RSSListing::slotFeedEndPressed()
   slotFeedClicked(index);
 }
 
-/** @brief Delete news from the feed by criteria
- *---------------------------------------------------------------------------*/
-void RSSListing::feedsCleanUp(QString feedId)
-{
-  int cntT = 0;
-  int cntNews = 0;
-
-  QSqlQuery q;
-  QString qStr;
-  qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").
-      arg(feedId);
-  q.exec(qStr);
-  if (q.next()) cntNews = q.value(0).toInt();
-
-  qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted < 2")
-      .arg(feedId);
-  if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
-  if (neverStarCleanUp_) qStr.append(" AND starred==0");
-  if (neverLabelCleanUp_) qStr.append(" AND (label=='' OR label==',' OR label IS NULL)");
-  q.exec(qStr);
-  while (q.next()) {
-    int newsId = q.value(0).toInt();
-
-    if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
-      qStr = QString("UPDATE news SET deleted=2, read=2 WHERE id=='%1'").
-          arg(newsId);
-      QSqlQuery qt;
-      qt.exec(qStr);
-      cntT++;
-      continue;
-    }
-
-    QDateTime dateTime = QDateTime::fromString(
-          q.value(1).toString(),
-          Qt::ISODate);
-    if (dayCleanUpOn_ &&
-        (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
-      qStr = QString("UPDATE news SET deleted=2, read=2 WHERE id=='%1'").
-          arg(newsId);
-      QSqlQuery qt;
-      qt.exec(qStr);
-      cntT++;
-      continue;
-    }
-
-    if (readCleanUp_) {
-      qStr = QString("UPDATE news SET deleted=2 WHERE read!=0 AND id=='%1'").
-          arg(newsId);
-      QSqlQuery qt;
-      qt.exec(qStr);
-      cntT++;
-    }
-  }
-
-  int undeleteCount = 0;
-  qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
-      arg(feedId);
-  q.exec(qStr);
-  if (q.next()) undeleteCount = q.value(0).toInt();
-
-  int unreadCount = 0;
-  qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
-      arg(feedId);
-  q.exec(qStr);
-  if (q.next()) unreadCount = q.value(0).toInt();
-
-  qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
-      arg(unreadCount).arg(undeleteCount).arg(feedId);
-  q.exec(qStr);
-}
-
 /** @brief Set application style
  *---------------------------------------------------------------------------*/
 void RSSListing::setStyleApp(QAction *pAct)
@@ -6552,38 +6490,84 @@ void RSSListing::findFeedVisible(bool visible)
  *---------------------------------------------------------------------------*/
 void RSSListing::cleanUp()
 {
+  CleanUpWizard *cleanUpWizard = new CleanUpWizard(this);
+  cleanUpWizard->restoreGeometry(settings_->value("CleanUpWizard/geometry").toByteArray());
+
+  cleanUpWizard->exec();
+  settings_->setValue("CleanUpWizard/geometry", cleanUpWizard->saveGeometry());
+
+  delete cleanUpWizard;
+}
+
+/** @brief Delete news from the feed by criteria
+ *---------------------------------------------------------------------------*/
+void RSSListing::feedCleanUp(const QString &feedId)
+{
+  int cntT = 0;
+  int cntNews = 0;
+
   QSqlQuery q;
+  QString qStr;
+  qStr = QString("SELECT undeleteCount FROM feeds WHERE id=='%1'").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) cntNews = q.value(0).toInt();
 
-  db_.transaction();
-  bool lastBuildDateClear = false;
-  q.exec("SELECT value FROM info WHERE name='lastBuildDateClear_0.10.1'");
-  if (q.next()) {
-    lastBuildDateClear = q.value(0).toBool();
-    q.exec("UPDATE info SET value='true' WHERE name='lastBuildDateClear_0.10.1'");
-  }
-  else q.exec("INSERT INTO info(name, value) VALUES ('lastBuildDateClear_0.10.1', 'true')");
-
-  if (!lastBuildDateClear) {
-    QString qStr = QString("UPDATE feeds SET lastBuildDate = '%1'").
-        arg(QDateTime().toString(Qt::ISODate));
-    q.exec(qStr);
-  }
-
-  if (settings_->value("CleanUp", 0).toInt() != 1) return;
-
-  q.exec("SELECT received, id FROM news WHERE deleted>=2");
+  qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted < 2")
+      .arg(feedId);
+  if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
+  if (neverStarCleanUp_) qStr.append(" AND starred==0");
+  if (neverLabelCleanUp_) qStr.append(" AND (label=='' OR label==',' OR label IS NULL)");
+  q.exec(qStr);
   while (q.next()) {
-    QDateTime dateTime = QDateTime::fromString(q.value(0).toString(), Qt::ISODate);
-    if (dateTime.daysTo(QDateTime::currentDateTime()) > settings_->value("DayCleanUp", 0).toInt()) {
-      QString qStr = QString("DELETE FROM news WHERE id='%2'").
-          arg(q.value(1).toInt());
+    int newsId = q.value(0).toInt();
+
+    if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
+      qStr = QString("UPDATE news SET deleted=2, read=2 WHERE id=='%1'").
+          arg(newsId);
       QSqlQuery qt;
       qt.exec(qStr);
+      cntT++;
+      continue;
+    }
+
+    QDateTime dateTime = QDateTime::fromString(
+          q.value(1).toString(),
+          Qt::ISODate);
+    if (dayCleanUpOn_ &&
+        (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
+      qStr = QString("UPDATE news SET deleted=2, read=2 WHERE id=='%1'").
+          arg(newsId);
+      QSqlQuery qt;
+      qt.exec(qStr);
+      cntT++;
+      continue;
+    }
+
+    if (readCleanUp_) {
+      qStr = QString("UPDATE news SET deleted=2 WHERE read!=0 AND id=='%1'").
+          arg(newsId);
+      QSqlQuery qt;
+      qt.exec(qStr);
+      cntT++;
     }
   }
-  db_.commit();
 
-  settings_->setValue("CleanUp", 0);
+  int undeleteCount = 0;
+  qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) undeleteCount = q.value(0).toInt();
+
+  int unreadCount = 0;
+  qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
+      arg(feedId);
+  q.exec(qStr);
+  if (q.next()) unreadCount = q.value(0).toInt();
+
+  qStr = QString("UPDATE feeds SET unread='%1', undeleteCount='%2' WHERE id=='%3'").
+      arg(unreadCount).arg(undeleteCount).arg(feedId);
+  q.exec(qStr);
 }
 
 /** @brief Zooming in browser

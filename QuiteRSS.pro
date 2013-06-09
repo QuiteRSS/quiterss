@@ -98,7 +98,8 @@ HEADERS += \
     src/downloads/downloadmanager.h \
     src/downloads/downloaditem.h \
     src/tabbar.h \
-    src/categoriestreewidget.h
+    src/categoriestreewidget.h \
+    src/cleanupwizard.h
 
 SOURCES += \
     src/updatethread.cpp \
@@ -146,7 +147,8 @@ SOURCES += \
     src/downloads/downloadmanager.cpp \
     src/downloads/downloaditem.cpp \
     src/tabbar.cpp \
-    src/categoriestreewidget.cpp
+    src/categoriestreewidget.cpp \
+    src/cleanupwizard.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

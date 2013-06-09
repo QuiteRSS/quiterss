@@ -251,6 +251,7 @@ public slots:
   QWebPage *createWebTab();
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
+  void feedsModelReload(bool checkFilter = false);
 
 signals:
   void signalPlaceToTray();
@@ -279,7 +280,6 @@ private slots:
   void setFeedRead(int type, int feedId, FeedReedType feedReadType, NewsTabWidget *widgetTab = 0);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
-  void feedsModelReload(bool checkFilter = false);
   void slotRecountCategoryCounts();
 
   void slotShowAboutDlg();
@@ -403,6 +403,9 @@ private slots:
   void showDownloadManager(bool activate = true);
   void updateInfoDownloads(const QString &text);
 
+  void cleanUp();
+  void feedCleanUp(const QString &feedId);
+
 private:
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
@@ -430,11 +433,9 @@ private:
   void appInstallTranslator();
   void retranslateStrings();
   void playSoundNewNews();
-  void feedsCleanUp(QString feedId);
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
-  void cleanUp();
   QString getUserInfo(QUrl url, int auth);
   QUrl userStyleSheet(const QString &filePath) const;
   void initUpdateFeeds();
@@ -481,6 +482,7 @@ private:
   QAction *bottomBrowserPositionAct_;
   QAction *rightBrowserPositionAct_;
   QAction *leftBrowserPositionAct_;
+  QAction *showCleanUpWizardAct_;
   QAction *showDownloadManagerAct_;
   QAction *setNewsFiltersAct_;
   QAction *setFilterNewsAct_;
