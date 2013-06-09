@@ -104,10 +104,6 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, int type, int feedId, int feedParI
   setLayout(layout);
 
   if (type_ < TAB_WEB) {
-    newsTabWidgetSplitter_->restoreState(
-          rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
-    newsTabWidgetSplitter_->restoreGeometry(
-          rsslisting_->settings_->value("NewsTabSplitterGeometry").toByteArray());
     newsTabWidgetSplitter_->setHandleWidth(1);
 
     if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
@@ -413,6 +409,9 @@ void NewsTabWidget::setSettings(bool newTab)
 
   if (newTab) {
     if (type_ < TAB_WEB) {
+      newsTabWidgetSplitter_->restoreState(
+            rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
+
       newsView_->setFont(
             QFont(rsslisting_->newsListFontFamily_, rsslisting_->newsListFontSize_));
       newsModel_->formatDate_ = rsslisting_->formatDate_;

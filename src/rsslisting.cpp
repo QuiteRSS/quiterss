@@ -2276,8 +2276,6 @@ void RSSListing::writeSettings()
       widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
 
     widget->newsHeader_->saveStateColumns(this, widget);
-    settings_->setValue("NewsTabSplitterGeometry",
-                        widget->newsTabWidgetSplitter_->saveGeometry());
     settings_->setValue("NewsTabSplitterState",
                         widget->newsTabWidgetSplitter_->saveState());
   }
@@ -5998,6 +5996,8 @@ void RSSListing::slotOpenFeedNewTab()
   if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+    settings_->setValue("NewsTabSplitterState",
+                        currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
   feedsTreeView_->selectIdEn_ = false;
@@ -6060,8 +6060,6 @@ void RSSListing::slotTabCurrentChanged(int index)
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
-    settings_->setValue("NewsTabSplitterGeometry",
-                        currentNewsTab->newsTabWidgetSplitter_->saveGeometry());
     settings_->setValue("NewsTabSplitterState",
                         currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
@@ -6777,6 +6775,8 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
 {
   if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+    settings_->setValue("NewsTabSplitterState",
+                        currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
   int type = item->text(1).toInt();
