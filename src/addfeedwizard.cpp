@@ -76,7 +76,8 @@ void AddFeedWizard::changeEvent(QEvent *event)
     QString clipboardStr = clipboard_->text().left(8);
     if (clipboardStr.contains("http://", Qt::CaseInsensitive) ||
         clipboardStr.contains("https://", Qt::CaseInsensitive) ||
-        clipboardStr.contains("www.", Qt::CaseInsensitive)) {
+        clipboardStr.contains("www.", Qt::CaseInsensitive) ||
+        clipboardStr.contains("feed://", Qt::CaseInsensitive)) {
       urlFeedEdit_->setText(clipboard_->text());
       urlFeedEdit_->selectAll();
       urlFeedEdit_->setFocus();
@@ -307,6 +308,10 @@ void AddFeedWizard::addFeed()
   if (feedUrl.scheme().isEmpty()) {
     feedUrlString_ = "http://" + feedUrlString_;
     feedUrl.setUrl(feedUrlString_);
+    urlFeedEdit_->setText(feedUrlString_);
+  } else if (feedUrl.scheme().toLower() == "feed") {
+    feedUrl.setScheme("http");
+    feedUrlString_ = feedUrl.toString();
     urlFeedEdit_->setText(feedUrlString_);
   }
 
