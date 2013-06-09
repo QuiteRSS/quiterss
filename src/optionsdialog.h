@@ -48,8 +48,6 @@ public:
   QCheckBox *autocollapseFolder_;
   QCheckBox *updateCheckEnabled_;
   QCheckBox *storeDBMemory_;
-  QGroupBox *cleanupOnShutdownBox_;
-  QCheckBox *optimizeDB_;
 
   // systemTray
   void setBehaviorIconTray(int behavior);
@@ -123,6 +121,7 @@ public:
   QCheckBox *notDeleteLabeled_;
   QCheckBox *markIdenticalNewsRead_;
 
+  QGroupBox *cleanupOnShutdownBox_;
   QCheckBox *dayCleanUpOn_;
   QSpinBox *maxDayCleanUp_;
   QCheckBox *newsCleanUpOn_;
@@ -131,6 +130,7 @@ public:
   QCheckBox *neverUnreadCleanUp_;
   QCheckBox *neverStarCleanUp_;
   QCheckBox *neverLabelCleanUp_;
+  QCheckBox *optimizeDB_;
 
   // labels
   QStringList idLabels_;

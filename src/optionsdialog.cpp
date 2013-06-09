@@ -762,6 +762,8 @@ void OptionsDialog::createFeedsWidget()
   readingFeedsWidget->setLayout(readingFeedsLayout);
 
 //! tab "Clean Up"
+  QWidget *cleanUpFeedsWidget = new QWidget();
+
   cleanupOnShutdownBox_ = new QGroupBox(tr("Enable cleanup on shutdown"));
   cleanupOnShutdownBox_->setCheckable(true);
 
@@ -786,10 +788,8 @@ void OptionsDialog::createFeedsWidget()
 
   optimizeDB_ = new QCheckBox(tr("Enable DB optimization (slower shutdown)"));
 
-  QGridLayout *cleanUpFeedsLayout = new QGridLayout(cleanupOnShutdownBox_);
-  cleanUpFeedsLayout->setMargin(5);
+  QGridLayout *cleanUpFeedsLayout = new QGridLayout();
   cleanUpFeedsLayout->setColumnStretch(1, 1);
-  cleanUpFeedsLayout->setRowStretch(7, 1);
   cleanUpFeedsLayout->addWidget(dayCleanUpOn_, 0, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(maxDayCleanUp_, 0, 1, 1, 1, Qt::AlignLeft);
   cleanUpFeedsLayout->addWidget(newsCleanUpOn_, 1, 0, 1, 1);
@@ -798,13 +798,18 @@ void OptionsDialog::createFeedsWidget()
   cleanUpFeedsLayout->addWidget(neverUnreadCleanUp_, 3, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(neverStarCleanUp_, 4, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
-  cleanUpFeedsLayout->addWidget(optimizeDB_, 6, 0, 1, 1);
 
-  QVBoxLayout *boxCleanUpFeedsLayout = new QVBoxLayout();
+  QVBoxLayout *cleanUpFeedsLayout2 = new QVBoxLayout();
+  cleanUpFeedsLayout2->addWidget(optimizeDB_);
+
+  QVBoxLayout *cleanUpFeedsLayout3 = new QVBoxLayout(cleanupOnShutdownBox_);
+  cleanUpFeedsLayout3->addLayout(cleanUpFeedsLayout);
+  cleanUpFeedsLayout3->addSpacing(10);
+  cleanUpFeedsLayout3->addLayout(cleanUpFeedsLayout2);
+  cleanUpFeedsLayout3->addStretch();
+
+  QVBoxLayout *boxCleanUpFeedsLayout = new QVBoxLayout(cleanUpFeedsWidget);
   boxCleanUpFeedsLayout->addWidget(cleanupOnShutdownBox_);
-
-  QWidget *cleanUpFeedsWidget = new QWidget();
-  cleanUpFeedsWidget->setLayout(boxCleanUpFeedsLayout);
 
   feedsWidget_ = new QTabWidget();
   feedsWidget_->addTab(generalFeedsWidget, tr("General"));
