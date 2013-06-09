@@ -404,7 +404,7 @@ private slots:
   void updateInfoDownloads(const QString &text);
 
   void cleanUp();
-  void feedCleanUp(const QString &feedId);
+  void cleanUpShutdown();
 
 private:
   UpdateThread *persistentUpdateThread_;
