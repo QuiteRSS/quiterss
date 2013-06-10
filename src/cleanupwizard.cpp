@@ -206,6 +206,13 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
 
 CleanUpWizard::~CleanUpWizard()
 {
+  while (cleanUpThread_->isRunning());
+}
+
+/*virtual*/ void CleanUpWizard::closeEvent(QCloseEvent* event)
+{
+  if (cleanUpThread_->isRunning())
+    event->ignore();
 }
 
 QWizardPage *CleanUpWizard::createChooseFeedsPage()
@@ -409,6 +416,7 @@ void CleanUpWizard::finishButtonClicked()
   button(QWizard::FinishButton)->setEnabled(false);
   page(1)->setEnabled(false);
   progressBar_->show();
+  qApp->processEvents();
 
   feedsTree_->expandAll();
 
@@ -423,24 +431,24 @@ void CleanUpWizard::finishButtonClicked()
     treeItem = feedsTree_->itemBelow(treeItem);
   }
 
-  CleanUpThread *cleanUpThread = new CleanUpThread(this);
-  cleanUpThread->maxDayCleanUp_ = maxDayCleanUp_->value();
-  cleanUpThread->maxNewsCleanUp_ = maxNewsCleanUp_->value();
-  cleanUpThread->dayCleanUpOn_ = dayCleanUpOn_->isChecked();
-  cleanUpThread->newsCleanUpOn_ = newsCleanUpOn_->isChecked();
-  cleanUpThread->readCleanUp_ = readCleanUp_->isChecked();
-  cleanUpThread->neverUnreadCleanUp_ = neverUnreadCleanUp_->isChecked();
-  cleanUpThread->neverStarCleanUp_ = neverStarCleanUp_->isChecked();
-  cleanUpThread->neverLabelCleanUp_ = neverLabelCleanUp_->isChecked();
-  cleanUpThread->cleanUpDeleted_ = cleanUpDeleted_->isChecked();
-  cleanUpThread->fullCleanUp_ = fullCleanUp_->isChecked();
-  cleanUpThread->feedsIdList_ = feedsIdList;
-  cleanUpThread->foldersIdList_ = foldersIdList;
+  cleanUpThread_ = new CleanUpThread(this);
+  cleanUpThread_->maxDayCleanUp_ = maxDayCleanUp_->value();
+  cleanUpThread_->maxNewsCleanUp_ = maxNewsCleanUp_->value();
+  cleanUpThread_->dayCleanUpOn_ = dayCleanUpOn_->isChecked();
+  cleanUpThread_->newsCleanUpOn_ = newsCleanUpOn_->isChecked();
+  cleanUpThread_->readCleanUp_ = readCleanUp_->isChecked();
+  cleanUpThread_->neverUnreadCleanUp_ = neverUnreadCleanUp_->isChecked();
+  cleanUpThread_->neverStarCleanUp_ = neverStarCleanUp_->isChecked();
+  cleanUpThread_->neverLabelCleanUp_ = neverLabelCleanUp_->isChecked();
+  cleanUpThread_->cleanUpDeleted_ = cleanUpDeleted_->isChecked();
+  cleanUpThread_->fullCleanUp_ = fullCleanUp_->isChecked();
+  cleanUpThread_->feedsIdList_ = feedsIdList;
+  cleanUpThread_->foldersIdList_ = foldersIdList;
 
-  connect(cleanUpThread, SIGNAL(signalFinishCleanUp()),
+  connect(cleanUpThread_, SIGNAL(signalFinishCleanUp()),
           this, SLOT(finishCleanUp()));
 
-  cleanUpThread->start();
+  cleanUpThread_->start();
 }
 
 void CleanUpWizard::finishCleanUp()

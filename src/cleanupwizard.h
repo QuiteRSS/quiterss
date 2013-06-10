@@ -66,6 +66,7 @@ signals:
   void signalFinish();
 
 protected:
+  virtual void closeEvent(QCloseEvent*);
   virtual bool validateCurrentPage();
 
 private slots:
@@ -92,6 +93,7 @@ private:
   QCheckBox *cleanUpDeleted_;
   QCheckBox *fullCleanUp_;
   QProgressBar *progressBar_;
+  CleanUpThread *cleanUpThread_;
 
 };
 
