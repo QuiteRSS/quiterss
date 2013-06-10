@@ -1764,8 +1764,6 @@ void RSSListing::readSettings()
   showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
   reopenFeedStartup_ = settings_->value("reopenFeedStartup", true).toBool();
   openNewTabNextToActive_ = settings_->value("openNewTabNextToActive", false).toBool();
-  cleanupOnShutdown_ = settings_->value("cleanupOnShutdown", true).toBool();
-  optimizeDB_ = settings_->value("optimizeDB", true).toBool();
 
   showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
   startingTray_ = settings_->value("startingTray", false).toBool();
@@ -1855,6 +1853,7 @@ void RSSListing::readSettings()
   notDeleteLabeled_ = settings_->value("notDeleteLabeled", false).toBool();
   markIdenticalNewsRead_ = settings_->value("markIdenticalNewsRead", true).toBool();
 
+  cleanupOnShutdown_ = settings_->value("cleanupOnShutdown", true).toBool();
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
   dayCleanUpOn_ = settings_->value("dayClearUpOn", true).toBool();
@@ -1863,6 +1862,8 @@ void RSSListing::readSettings()
   neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
   neverLabelCleanUp_ = settings_->value("neverLabelClearUp", true).toBool();
+  cleanUpDeleted_ = settings_->value("cleanUpDeleted", false).toBool();
+  optimizeDB_ = settings_->value("optimizeDB", true).toBool();
 
   externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
@@ -2066,8 +2067,6 @@ void RSSListing::writeSettings()
   settings_->setValue("showSplashScreen", showSplashScreen_);
   settings_->setValue("reopenFeedStartup", reopenFeedStartup_);
   settings_->setValue("openNewTabNextToActive", openNewTabNextToActive_);
-  settings_->setValue("cleanupOnShutdown", cleanupOnShutdown_);
-  settings_->setValue("optimizeDB", optimizeDB_);
 
   settings_->setValue("storeDBMemory", storeDBMemoryT_);
 
@@ -2128,6 +2127,7 @@ void RSSListing::writeSettings()
   settings_->setValue("notDeleteLabeled", notDeleteLabeled_);
   settings_->setValue("markIdenticalNewsRead", markIdenticalNewsRead_);
 
+  settings_->setValue("cleanupOnShutdown", cleanupOnShutdown_);
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
   settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
   settings_->setValue("dayClearUpOn", dayCleanUpOn_);
@@ -2136,6 +2136,8 @@ void RSSListing::writeSettings()
   settings_->setValue("neverUnreadClearUp", neverUnreadCleanUp_);
   settings_->setValue("neverStarClearUp", neverStarCleanUp_);
   settings_->setValue("neverLabelClearUp", neverLabelCleanUp_);
+  settings_->setValue("cleanUpDeleted", cleanUpDeleted_);
+  settings_->setValue("optimizeDB", optimizeDB_);
 
   settings_->setValue("externalBrowserOn", externalBrowserOn_);
   settings_->setValue("externalBrowser", externalBrowser_);
@@ -3488,8 +3490,6 @@ void RSSListing::showOptionDlg()
 
   optionsDialog->updateCheckEnabled_->setChecked(updateCheckEnabled_);
   optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
-  optionsDialog->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
-  optionsDialog->optimizeDB_->setChecked(optimizeDB_);
 
   optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog->startingTray_->setChecked(startingTray_);
@@ -3565,6 +3565,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->notDeleteLabeled_->setChecked(notDeleteLabeled_);
   optionsDialog->markIdenticalNewsRead_->setChecked(markIdenticalNewsRead_);
 
+  optionsDialog->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
   optionsDialog->newsCleanUpOn_->setChecked(newsCleanUpOn_);
@@ -3573,6 +3574,8 @@ void RSSListing::showOptionDlg()
   optionsDialog->neverUnreadCleanUp_->setChecked(neverUnreadCleanUp_);
   optionsDialog->neverStarCleanUp_->setChecked(neverStarCleanUp_);
   optionsDialog->neverLabelCleanUp_->setChecked(neverLabelCleanUp_);
+  optionsDialog->cleanUpDeleted_->setChecked(cleanUpDeleted_);
+  optionsDialog->optimizeDB_->setChecked(optimizeDB_);
 
   optionsDialog->soundNewNews_->setChecked(soundNewNews_);
   optionsDialog->editSoundNotifer_->setText(soundNotifyPath_);
@@ -3743,8 +3746,6 @@ void RSSListing::showOptionDlg()
 
   updateCheckEnabled_ = optionsDialog->updateCheckEnabled_->isChecked();
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
-  cleanupOnShutdown_ = optionsDialog->cleanupOnShutdownBox_->isChecked();
-  optimizeDB_ = optionsDialog->optimizeDB_->isChecked();
 
   showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog->startingTray_->isChecked();
@@ -3863,6 +3864,7 @@ void RSSListing::showOptionDlg()
   notDeleteLabeled_ = optionsDialog->notDeleteLabeled_->isChecked();
   markIdenticalNewsRead_ = optionsDialog->markIdenticalNewsRead_->isChecked();
 
+  cleanupOnShutdown_ = optionsDialog->cleanupOnShutdownBox_->isChecked();
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
   maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
   newsCleanUpOn_ = optionsDialog->newsCleanUpOn_->isChecked();
@@ -3871,6 +3873,8 @@ void RSSListing::showOptionDlg()
   neverUnreadCleanUp_ = optionsDialog->neverUnreadCleanUp_->isChecked();
   neverStarCleanUp_ = optionsDialog->neverStarCleanUp_->isChecked();
   neverLabelCleanUp_ = optionsDialog->neverLabelCleanUp_->isChecked();
+  cleanUpDeleted_ = optionsDialog->cleanUpDeleted_->isChecked();
+  optimizeDB_ = optionsDialog->optimizeDB_->isChecked();
 
   soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
   soundNotifyPath_ = optionsDialog->editSoundNotifer_->text();
@@ -6580,6 +6584,13 @@ void RSSListing::cleanUpShutdown()
         q.exec(qStr);
         if (q.next()) folderId = q.value(0).toInt();
       }
+    }
+
+    if (cleanUpDeleted_) {
+      q.exec("UPDATE news SET description='', content='', received='', "
+             "author_name='', author_uri='', author_email='', "
+             "category='', new='', read='', starred='', label='', "
+             "deleteDate='', feedParentId='', deleted=3 WHERE deleted==1");
     }
   }
 

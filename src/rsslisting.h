@@ -620,6 +620,7 @@ private:
 
   UpdateAppDialog *updateAppDialog_;
 
+  bool cleanupOnShutdown_;
   int maxDayCleanUp_;
   int maxNewsCleanUp_;
   bool dayCleanUpOn_;
@@ -628,6 +629,8 @@ private:
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
   bool neverLabelCleanUp_;
+  bool cleanUpDeleted_;
+  bool optimizeDB_;
 
   int updateFeedsCount_;
   QList<int> idFeedList_;
@@ -647,9 +650,6 @@ private:
 
   bool storeDBMemory_;
   bool storeDBMemoryT_;
-
-  bool cleanupOnShutdown_;
-  bool optimizeDB_;
 
   int  openingLinkTimeout_;  //!< During this time we'll trying swithing back to apllication
   QTimer timerLinkOpening_;

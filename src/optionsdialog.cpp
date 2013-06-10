@@ -786,6 +786,7 @@ void OptionsDialog::createFeedsWidget()
   neverStarCleanUp_ = new QCheckBox(tr("Never delete starred news"));
   neverLabelCleanUp_ = new QCheckBox(tr("Never delete labeled news"));
 
+  cleanUpDeleted_ = new QCheckBox(tr("Clean up 'Deleted'"));
   optimizeDB_ = new QCheckBox(tr("Enable DB optimization (slower shutdown)"));
 
   QGridLayout *cleanUpFeedsLayout = new QGridLayout();
@@ -800,6 +801,7 @@ void OptionsDialog::createFeedsWidget()
   cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
 
   QVBoxLayout *cleanUpFeedsLayout2 = new QVBoxLayout();
+  cleanUpFeedsLayout2->addWidget(cleanUpDeleted_);
   cleanUpFeedsLayout2->addWidget(optimizeDB_);
 
   QVBoxLayout *cleanUpFeedsLayout3 = new QVBoxLayout(cleanupOnShutdownBox_);

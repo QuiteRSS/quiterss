@@ -130,6 +130,7 @@ public:
   QCheckBox *neverUnreadCleanUp_;
   QCheckBox *neverStarCleanUp_;
   QCheckBox *neverLabelCleanUp_;
+  QCheckBox *cleanUpDeleted_;
   QCheckBox *optimizeDB_;
 
   // labels
