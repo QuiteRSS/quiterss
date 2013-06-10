@@ -302,18 +302,13 @@ void AddFeedWizard::finishButtonClicked()
 
 void AddFeedWizard::addFeed()
 {
-  feedUrlString_ = urlFeedEdit_->text().simplified();
-
-  QUrl feedUrl(feedUrlString_);
-  if (feedUrl.scheme().isEmpty()) {
-    feedUrlString_ = "http://" + feedUrlString_;
-    feedUrl.setUrl(feedUrlString_);
-    urlFeedEdit_->setText(feedUrlString_);
-  } else if (feedUrl.scheme().toLower() == "feed") {
+  // Устанавливаем схему "http://" для адреса или оставляем "https://"
+  QUrl feedUrl(urlFeedEdit_->text().simplified());
+  if (feedUrl.scheme().toLower() != "https") {
     feedUrl.setScheme("http");
-    feedUrlString_ = feedUrl.toString();
-    urlFeedEdit_->setText(feedUrlString_);
   }
+  feedUrlString_ = feedUrl.toString();
+  urlFeedEdit_->setText(feedUrlString_);
 
   if (feedUrl.host().isEmpty()) {
     textWarning->setText(tr("URL error!"));
