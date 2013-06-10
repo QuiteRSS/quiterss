@@ -319,7 +319,12 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
 
   cleanUpDeleted_ = new QCheckBox(tr("Clean up 'Deleted'"));
-  fullCleanUp_ = new QCheckBox(tr("Full clean up DB (Attention! Probably repeated receiving of news)"));
+  fullCleanUp_ = new QCheckBox(tr("Purge DB"));
+  QVBoxLayout *fullCleanUpDescriptionLayout = new QVBoxLayout;
+  fullCleanUpDescriptionLayout->setContentsMargins(24, 0, 0, 0);
+  fullCleanUpDescriptionLayout->addWidget(new QLabel(tr(
+        "Totally remove records that had marked 'deleted' from DB.\n"
+        "Ancient news could reappear")));
 
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
@@ -345,6 +350,7 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   layout->addSpacing(10);
   layout->addWidget(cleanUpDeleted_);
   layout->addWidget(fullCleanUp_);
+  layout->addLayout(fullCleanUpDescriptionLayout);
   layout->addStretch(1);
   layout->addWidget(progressBar_);
 
