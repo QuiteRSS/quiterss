@@ -786,7 +786,12 @@ void OptionsDialog::createFeedsWidget()
   neverStarCleanUp_ = new QCheckBox(tr("Never delete starred news"));
   neverLabelCleanUp_ = new QCheckBox(tr("Never delete labeled news"));
 
-  cleanUpDeleted_ = new QCheckBox(tr("Clean up 'Deleted'"));
+  cleanUpDeleted_ = new QCheckBox(tr("Purge DB"));
+  QVBoxLayout *cleanUpDeletedDescriptionLayout = new QVBoxLayout;
+  cleanUpDeletedDescriptionLayout->setContentsMargins(24, 0, 0, 0);
+  cleanUpDeletedDescriptionLayout->addWidget(new QLabel(tr(
+        "Totally remove records that had marked 'deleted' from DB.\n"
+        "Ancient news could reappear")));
   optimizeDB_ = new QCheckBox(tr("Enable DB optimization (slower shutdown)"));
 
   QGridLayout *cleanUpFeedsLayout = new QGridLayout();
@@ -801,7 +806,10 @@ void OptionsDialog::createFeedsWidget()
   cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
 
   QVBoxLayout *cleanUpFeedsLayout2 = new QVBoxLayout();
+  cleanUpFeedsLayout2->setSpacing(0);
   cleanUpFeedsLayout2->addWidget(cleanUpDeleted_);
+  cleanUpFeedsLayout2->addLayout(cleanUpDeletedDescriptionLayout);
+  cleanUpFeedsLayout2->addSpacing(9);
   cleanUpFeedsLayout2->addWidget(optimizeDB_);
 
   QVBoxLayout *cleanUpFeedsLayout3 = new QVBoxLayout(cleanupOnShutdownBox_);
