@@ -189,8 +189,8 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
   setWindowTitle(tr("Clean Up"));
   setWizardStyle(QWizard::ModernStyle);
   setOptions(QWizard::NoBackButtonOnStartPage);
-  setMinimumWidth(400);
-  setMinimumHeight(340);
+  setMinimumWidth(440);
+  setMinimumHeight(380);
 
   addPage(createChooseFeedsPage());
   addPage(createCleanUpOptionsPage());
@@ -321,7 +321,7 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   cleanUpDeleted_ = new QCheckBox(tr("Clean up 'Deleted'"));
   fullCleanUp_ = new QCheckBox(tr("Purge DB"));
   QVBoxLayout *fullCleanUpDescriptionLayout = new QVBoxLayout;
-  fullCleanUpDescriptionLayout->setContentsMargins(24, 0, 0, 0);
+  fullCleanUpDescriptionLayout->setContentsMargins(15, 0, 0, 0);
   fullCleanUpDescriptionLayout->addWidget(new QLabel(tr(
         "Totally remove records that had marked 'deleted' from DB.\n"
         "Ancient news could reappear")));
@@ -349,6 +349,7 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   layout->addLayout(cleanUpFeedsLayout);
   layout->addSpacing(10);
   layout->addWidget(cleanUpDeleted_);
+  layout->addSpacing(10);
   layout->addWidget(fullCleanUp_);
   layout->addLayout(fullCleanUpDescriptionLayout);
   layout->addStretch(1);
