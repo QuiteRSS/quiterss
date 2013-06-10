@@ -42,7 +42,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   QyurSqlTreeView treeView;
 
   QString revisionStr;
-  if (QString("%1").arg(VCS_REVISION).toInt() != 0) {
+  if (QString("%1").arg(VCS_REVISION) != "0") {
       revisionStr = "<BR>" + tr("Revision") + " " + QString("%1").arg(VCS_REVISION);
   }
   QString appInfo =
