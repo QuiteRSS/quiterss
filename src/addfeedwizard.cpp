@@ -302,7 +302,7 @@ void AddFeedWizard::finishButtonClicked()
 
 void AddFeedWizard::addFeed()
 {
-  // Устанавливаем схему "http://" для адреса или оставляем "https://"
+  // Set URL-schema for URL-address "http://" or leave it "https://"
   QUrl feedUrl(urlFeedEdit_->text().simplified());
   if (feedUrl.scheme().toLower() != "https") {
     feedUrl.setScheme("http");
