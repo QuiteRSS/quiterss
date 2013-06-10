@@ -6497,7 +6497,7 @@ void RSSListing::cleanUpShutdown()
       QString qStr1 = QString("UPDATE news SET description='', content='', received='', "
                            "author_name='', author_uri='', author_email='', "
                            "category='', new='', read='', starred='', label='', "
-                           "deleteDate='', feedParentId='', deleted=3");
+                           "deleteDate='', feedParentId='', deleted=2");
 
       qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted == 0").
           arg(feedId);
@@ -6590,7 +6590,7 @@ void RSSListing::cleanUpShutdown()
       q.exec("UPDATE news SET description='', content='', received='', "
              "author_name='', author_uri='', author_email='', "
              "category='', new='', read='', starred='', label='', "
-             "deleteDate='', feedParentId='', deleted=3 WHERE deleted==1");
+             "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
     }
   }
 
@@ -6971,7 +6971,7 @@ void RSSListing::clearDeleted()
   q.exec("UPDATE news SET description='', content='', received='', "
          "author_name='', author_uri='', author_email='', "
          "category='', new='', read='', starred='', label='', "
-         "deleteDate='', feedParentId='', deleted=3 WHERE deleted==1");
+         "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
 
   if (currentNewsTab->type_ == TAB_CAT_DEL) {
     currentNewsTab->newsModel_->select();

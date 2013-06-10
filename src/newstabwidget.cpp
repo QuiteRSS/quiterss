@@ -1019,7 +1019,7 @@ void NewsTabWidget::deleteNews()
       q.exec(QString("UPDATE news SET description='', content='', received='', "
                      "author_name='', author_uri='', author_email='', "
                      "category='', new='', read='', starred='', label='', "
-                     "deleteDate='', feedParentId='', deleted=3 WHERE id=='%1'").
+                     "deleteDate='', feedParentId='', deleted=2 WHERE id=='%1'").
              arg(newsId));
 
       QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
@@ -1079,7 +1079,7 @@ void NewsTabWidget::deleteAllNewsList()
       q.exec(QString("UPDATE news SET description='', content='', received='', "
                      "author_name='', author_uri='', author_email='', "
                      "category='', new='', read='', starred='', label='', "
-                     "deleteDate='', feedParentId='', deleted=3 WHERE id=='%1'").
+                     "deleteDate='', feedParentId='', deleted=2 WHERE id=='%1'").
              arg(newsId));
     }
 
