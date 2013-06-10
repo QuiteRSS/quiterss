@@ -195,6 +195,8 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
   addPage(createChooseFeedsPage());
   addPage(createCleanUpOptionsPage());
 
+  cleanUpThread_ = new CleanUpThread(this);
+
   connect(this, SIGNAL(signalFinish()),
           SLOT(finishCleanUp()), Qt::QueuedConnection);
 
@@ -211,7 +213,7 @@ CleanUpWizard::~CleanUpWizard()
 
 /*virtual*/ void CleanUpWizard::closeEvent(QCloseEvent* event)
 {
-  if (cleanUpThread_->isRunning())
+  if (progressBar_->isVisible())
     event->ignore();
 }
 
@@ -431,7 +433,6 @@ void CleanUpWizard::finishButtonClicked()
     treeItem = feedsTree_->itemBelow(treeItem);
   }
 
-  cleanUpThread_ = new CleanUpThread(this);
   cleanUpThread_->maxDayCleanUp_ = maxDayCleanUp_->value();
   cleanUpThread_->maxNewsCleanUp_ = maxNewsCleanUp_->value();
   cleanUpThread_->dayCleanUpOn_ = dayCleanUpOn_->isChecked();
