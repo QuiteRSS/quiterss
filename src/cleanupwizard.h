@@ -38,6 +38,7 @@ public:
   bool neverUnreadCleanUp_;
   bool neverStarCleanUp_;
   bool neverLabelCleanUp_;
+  bool cleanUpDeleted_;
   bool fullCleanUp_;
   QList<int> feedsIdList_;
   QList<int> foldersIdList_;
@@ -88,6 +89,7 @@ private:
   QCheckBox *neverUnreadCleanUp_;
   QCheckBox *neverStarCleanUp_;
   QCheckBox *neverLabelCleanUp_;
+  QCheckBox *cleanUpDeleted_;
   QCheckBox *fullCleanUp_;
   QProgressBar *progressBar_;
 

@@ -33,6 +33,7 @@ CleanUpThread::CleanUpThread(QObject *parent)
   , neverUnreadCleanUp_(false)
   , neverStarCleanUp_(false)
   , neverLabelCleanUp_(false)
+  , cleanUpDeleted_(false)
   , fullCleanUp_(false)
 {
 }
@@ -61,9 +62,9 @@ CleanUpThread::CleanUpThread(QObject *parent)
     QString qStr1 = QString("UPDATE news SET description='', content='', received='', "
                          "author_name='', author_uri='', author_email='', "
                          "category='', new='', read='', starred='', label='', "
-                         "deleteDate='', feedParentId='', deleted=3");
+                         "deleteDate='', feedParentId='', deleted=2");
 
-    qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted < 2").arg(feedId);
+    qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted = 0").arg(feedId);
     if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
     if (neverStarCleanUp_) qStr.append(" AND starred==0");
     if (neverLabelCleanUp_) qStr.append(" AND (label=='' OR label==',' OR label IS NULL)");
@@ -73,7 +74,7 @@ CleanUpThread::CleanUpThread(QObject *parent)
 
       if (newsCleanUpOn_ && (cntT < (cntNews - maxNewsCleanUp_))) {
         if (fullCleanUp_)
-          qStr = QString("DELETE FROM news WHERE id='%2'").arg(newsId);
+          qStr = QString("DELETE FROM news WHERE id='%1'").arg(newsId);
         else
           qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
         QSqlQuery qt;
@@ -86,7 +87,7 @@ CleanUpThread::CleanUpThread(QObject *parent)
       if (dayCleanUpOn_ &&
           (dateTime.daysTo(QDateTime::currentDateTime()) > maxDayCleanUp_)) {
         if (fullCleanUp_)
-          qStr = QString("DELETE FROM news WHERE id='%2'").arg(newsId);
+          qStr = QString("DELETE FROM news WHERE id='%1'").arg(newsId);
         else
           qStr = QString("%1 WHERE id=='%2'").arg(qStr1).arg(newsId);
         QSqlQuery qt;
@@ -97,7 +98,7 @@ CleanUpThread::CleanUpThread(QObject *parent)
 
       if (readCleanUp_) {
         if (fullCleanUp_)
-          qStr = QString("DELETE FROM news WHERE id='%2'").arg(newsId);
+          qStr = QString("DELETE FROM news WHERE id='%1'").arg(newsId);
         else
           qStr = QString("%1 WHERE read!=0 AND id=='%2'").arg(qStr1).arg(newsId);
         QSqlQuery qt;
@@ -164,7 +165,15 @@ CleanUpThread::CleanUpThread(QObject *parent)
     }
   }
 
+  if (cleanUpDeleted_) {
+    q.exec("UPDATE news SET description='', content='', received='', "
+           "author_name='', author_uri='', author_email='', "
+           "category='', new='', read='', starred='', label='', "
+           "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
+  }
+
   db.commit();
+
   q.exec("VACUUM");
   q.finish();
 
@@ -181,7 +190,7 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
   setWizardStyle(QWizard::ModernStyle);
   setOptions(QWizard::NoBackButtonOnStartPage);
   setMinimumWidth(400);
-  setMinimumHeight(320);
+  setMinimumHeight(340);
 
   addPage(createChooseFeedsPage());
   addPage(createCleanUpOptionsPage());
@@ -309,6 +318,7 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   cleanUpFeedsLayout->addWidget(neverStarCleanUp_, 4, 0, 1, 1);
   cleanUpFeedsLayout->addWidget(neverLabelCleanUp_, 5, 0, 1, 1);
 
+  cleanUpDeleted_ = new QCheckBox(tr("Clean up 'Deleted'"));
   fullCleanUp_ = new QCheckBox(tr("Full clean up DB (Attention! Probably repeated receiving of news)"));
 
   progressBar_ = new QProgressBar(this);
@@ -319,9 +329,21 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   progressBar_->setMaximum(0);
   progressBar_->setVisible(false);
 
+  maxDayCleanUp_->setValue(0);
+  maxNewsCleanUp_->setValue(0);
+  dayCleanUpOn_->setChecked(true);
+  newsCleanUpOn_->setChecked(true);
+  readCleanUp_->setChecked(false);
+  neverUnreadCleanUp_->setChecked(true);
+  neverStarCleanUp_->setChecked(true);
+  neverLabelCleanUp_->setChecked(true);
+  cleanUpDeleted_->setChecked(true);
+  fullCleanUp_->setChecked(true);
+
   QVBoxLayout *layout = new QVBoxLayout(page);
   layout->addLayout(cleanUpFeedsLayout);
   layout->addSpacing(10);
+  layout->addWidget(cleanUpDeleted_);
   layout->addWidget(fullCleanUp_);
   layout->addStretch(1);
   layout->addWidget(progressBar_);
@@ -403,6 +425,7 @@ void CleanUpWizard::finishButtonClicked()
   cleanUpThread->neverUnreadCleanUp_ = neverUnreadCleanUp_->isChecked();
   cleanUpThread->neverStarCleanUp_ = neverStarCleanUp_->isChecked();
   cleanUpThread->neverLabelCleanUp_ = neverLabelCleanUp_->isChecked();
+  cleanUpThread->cleanUpDeleted_ = cleanUpDeleted_->isChecked();
   cleanUpThread->fullCleanUp_ = fullCleanUp_->isChecked();
   cleanUpThread->feedsIdList_ = feedsIdList;
   cleanUpThread->foldersIdList_ = foldersIdList;
