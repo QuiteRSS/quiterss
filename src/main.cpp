@@ -15,7 +15,11 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <qtsingleapplication.h>
 
 #include "db_func.h"
@@ -74,14 +78,22 @@ int main(int argc, char **argv)
   } else {
     settings = new QSettings(QSettings::IniFormat, QSettings::UserScope,
                               QCoreApplication::organizationName(), QCoreApplication::applicationName());
+#ifdef HAVE_QT5
+    dataDirPath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
     dataDirPath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
     QDir d(dataDirPath);
     d.mkpath(dataDirPath);
   }
 #else
   settings = new QSettings(QSettings::IniFormat, QSettings::UserScope,
                             QCoreApplication::organizationName(), QCoreApplication::applicationName());
+#ifdef HAVE_QT5
+  dataDirPath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
   dataDirPath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
   QDir d(dataDirPath);
   d.mkpath(dataDirPath);
 #endif

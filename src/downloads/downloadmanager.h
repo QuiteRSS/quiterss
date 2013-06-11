@@ -18,7 +18,11 @@
 #ifndef DOWNLOADMANAGER_H
 #define DOWNLOADMANAGER_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <QNetworkAccessManager>
 
 #include "networkmanager.h"

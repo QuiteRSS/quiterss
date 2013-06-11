@@ -26,7 +26,11 @@ NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
 {
   setObjectName("newsHeader");
   setContextMenuPolicy(Qt::CustomContextMenu);
+#ifdef HAVE_QT5
+  setSectionsMovable(true);
+#else
   setMovable(true);
+#endif
   setDefaultAlignment(Qt::AlignLeft|Qt::AlignVCenter);
   setMinimumSectionSize(22);
   setStretchLastSection(false);
@@ -95,11 +99,17 @@ void NewsHeader::init()
   resizeSection(model_->fieldIndex("title"), 200);
 
   resizeSection(model_->fieldIndex("starred"), 22);
-  setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("feedId"), 22);
-  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   resizeSection(model_->fieldIndex("read"), 22);
+#ifdef HAVE_QT5
+  setSectionResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
+  setSectionResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
+  setSectionResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
+#else
+  setResizeMode(model_->fieldIndex("starred"), QHeaderView::Fixed);
+  setResizeMode(model_->fieldIndex("feedId"), QHeaderView::Fixed);
   setResizeMode(model_->fieldIndex("read"), QHeaderView::Fixed);
+#endif
 
   move_ = true;
 }

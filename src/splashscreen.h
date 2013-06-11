@@ -18,7 +18,11 @@
 #ifndef SPLASHSCREEN_H
 #define SPLASHSCREEN_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 
 class SplashScreen : public QSplashScreen
 {

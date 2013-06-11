@@ -51,7 +51,11 @@ OptionsDialog::OptionsDialog(QWidget *parent)
   categoriesTree_->setColumnHidden(0, true);
   categoriesTree_->header()->setStretchLastSection(false);
   categoriesTree_->header()->resizeSection(2, 5);
+#ifdef HAVE_QT5
+  categoriesTree_->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+#else
   categoriesTree_->header()->setResizeMode(1, QHeaderView::Stretch);
+#endif
   categoriesTree_->setMinimumWidth(150);
   QStringList treeItem;
   treeItem << "0" << tr("General");
@@ -225,7 +229,7 @@ bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)
                                           shortcutModel_->item(treeItems.at(i)->row(), 0)->text()
                                           + "'");
               }
-              treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
+              treeItems.at(i)->setData(QColor(Qt::red), Qt::TextColorRole);
             }
           } else {
             warningShortcut_->clear();
@@ -319,7 +323,7 @@ void OptionsDialog::createTraySystemWidget()
   trayLayout->addLayout(behaviorLayout);
   trayLayout->addWidget(singleClickTray_);
   trayLayout->addWidget(clearStatusNew_);
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
   trayLayout->addWidget(emptyWorking_);
 #endif
   trayLayout->addStretch(1);
@@ -471,7 +475,7 @@ void OptionsDialog::createBrowserWidget()
   connect(otherExternalBrowserButton_, SIGNAL(clicked()),
           this, SLOT(selectionBrowser()));
 
-#if !(defined(Q_WS_WIN) || defined(Q_WS_X11))
+#if defined(Q_OS_OS2)
   otherExternalBrowserOn_->setVisible(false);
   otherExternalBrowserEdit_->setVisible(false);
   otherExternalBrowserButton_->setVisible(false);
@@ -1694,7 +1698,7 @@ void OptionsDialog::loadActionShortcut(QList<QAction *> actions, QStringList *li
     treeItems = shortcutModel_->findItems(str, Qt::MatchFixedString, 2);
     if ((treeItems.count() > 1) && !str.isEmpty()) {
       for (int i = 0; i < treeItems.count(); i++) {
-        treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
+        treeItems.at(i)->setData(QColor(Qt::red), Qt::TextColorRole);
       }
     }
   }
@@ -1795,7 +1799,7 @@ void OptionsDialog::slotResetShortcut()
                                   "'");
       }
       if (treeItems.count() > 1) {
-        treeItems.at(i)->setData(Qt::red, Qt::TextColorRole);
+        treeItems.at(i)->setData(QColor(Qt::red), Qt::TextColorRole);
       }
     }
   }

@@ -43,7 +43,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   setUniformRowHeights(true);
 
   header()->setStretchLastSection(false);
-  header()->setVisible(false);
+//  header()->setVisible(false);
 
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);
   setItemDelegate(itemDelegate);

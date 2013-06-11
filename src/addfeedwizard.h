@@ -18,7 +18,11 @@
 #ifndef ADDFEEDDIALOG_H
 #define ADDFEEDDIALOG_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <QtSql>
 
 #include "lineedit.h"

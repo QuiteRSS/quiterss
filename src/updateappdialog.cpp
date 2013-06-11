@@ -189,7 +189,7 @@ void UpdateAppDialog::slotFinishHistoryReply()
 void UpdateAppDialog::updaterRun()
 {
   close();
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
   QString updaterFile = QCoreApplication::applicationDirPath() + "/Updater.exe";
   ShellExecute(0, 0, (wchar_t *)updaterFile.utf16(), 0, 0, SW_SHOWNORMAL);
 #endif

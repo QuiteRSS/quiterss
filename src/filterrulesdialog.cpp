@@ -33,7 +33,11 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   feedsTree_->setObjectName("feedsTreeFR");
   feedsTree_->setColumnCount(2);
   feedsTree_->setColumnHidden(1, true);
+#ifdef HAVE_QT5
+  feedsTree_->header()->setSectionsMovable(false);
+#else
   feedsTree_->header()->setMovable(false);
+#endif
 
   itemNotChecked_ = false;
 

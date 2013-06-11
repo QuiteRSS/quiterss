@@ -43,7 +43,11 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   shortcutTree_->setColumnHidden(1, true);
   shortcutTree_->setSortingEnabled(false);
   shortcutTree_->setHeaderHidden(true);
+#ifdef HAVE_QT5
+  shortcutTree_->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+#else
   shortcutTree_->header()->setResizeMode(0, QHeaderView::Stretch);
+#endif
 
   QStringList treeItem;
   treeItem << "Action" << "ObjectName";

@@ -36,8 +36,13 @@ CategoriesTreeWidget::CategoriesTreeWidget(QWidget * parent)
   setColumnHidden(2, true);
   setColumnHidden(3, true);
   header()->hide();
+#ifdef HAVE_QT5
+  header()->setSectionResizeMode(0, QHeaderView::Stretch);
+  header()->setSectionResizeMode(4, QHeaderView::ResizeToContents);
+#else
   header()->setResizeMode(0, QHeaderView::Stretch);
   header()->setResizeMode(4, QHeaderView::ResizeToContents);
+#endif
   header()->setStretchLastSection(false);
 
   DelegateWithoutFocus *itemDelegate = new DelegateWithoutFocus(this);

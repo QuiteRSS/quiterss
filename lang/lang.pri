@@ -11,7 +11,7 @@ TRANSLATIONS += lang/quiterss_en.ts lang/quiterss_de.ts lang/quiterss_ru.ts \
                 lang/quiterss_tr.ts lang/quiterss_ar.ts
 
 isEmpty(QMAKE_LRELEASE) {
-  Q_WS_WIN:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
+  Q_OS_WIN:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
   else:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
 }
 

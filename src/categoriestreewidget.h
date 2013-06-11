@@ -19,6 +19,11 @@
 #define CATEGORIESTREEWIDGET_H
 
 #include <QtGui>
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
+#include <QtGui>
+#endif
 
 class CategoriesTreeWidget : public QTreeWidget
 {

@@ -47,7 +47,14 @@ exists(.hg) {
   }
 }
 
-QT += core gui network xml webkit sql
+isEqual(QT_MAJOR_VERSION, 5) {
+  QT += widgets webkitwidgets network xml printsupport sql
+  DEFINES += HAVE_QT5
+} else {
+  QT += core gui network xml webkit sql
+}
+
+unix:!mac:DEFINES += HAVE_X11
 
 TEMPLATE = app
 
@@ -78,7 +85,6 @@ HEADERS += \
     src/findtext.h \
     src/notifications.h \
     src/findfeed.h \
-    src/googlereader.h \
     src/feedstreeview.h \
     src/feedstreemodel.h \
     src/VersionRev.h \
@@ -128,7 +134,6 @@ SOURCES += \
     src/findtext.cpp \
     src/notifications.cpp \
     src/findfeed.cpp \
-    src/googlereader.cpp \
     src/feedstreeview.cpp \
     src/feedstreemodel.cpp \
     src/splashscreen.cpp \
@@ -153,6 +158,10 @@ SOURCES += \
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \
                 $$PWD/src \
+
+isEqual(QT_MAJOR_VERSION, 5) {
+  include(3rdparty/qftp/qftp.pri)
+}
 
 CONFIG += debug_and_release
 CONFIG(debug, debug|release) {

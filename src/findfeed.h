@@ -18,7 +18,11 @@
 #ifndef FINDFEED_H
 #define FINDFEED_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 
 class FindFeed : public QLineEdit
 {

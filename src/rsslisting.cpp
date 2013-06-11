@@ -504,11 +504,17 @@ void RSSListing::createFeedsWidget()
   for (int i = 0; i < feedsTreeModel_->columnCount(); ++i)
     feedsTreeView_->hideColumn(i);
   feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal("text"));
+#ifdef HAVE_QT5
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+#else
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("text"), QHeaderView::Stretch);
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
-
+#endif
   feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("rowToParent"),Qt::AscendingOrder);
   feedsTreeView_->setColumnHidden("id", true);
   feedsTreeView_->setColumnHidden("parentId", true);
@@ -1480,7 +1486,7 @@ void RSSListing::loadActionShortcuts()
     if (pAction->objectName().isEmpty())
       continue;
 
-    listDefaultShortcut_.append(pAction->shortcut());
+    listDefaultShortcut_.append(pAction->shortcut().toString());
 
     const QString& sKey = '/' + pAction->objectName();
     const QString& sValue = settings_->value('/' + sKey, pAction->shortcut().toString()).toString();
@@ -1501,7 +1507,7 @@ void RSSListing::saveActionShortcuts()
       continue;
 
     const QString& sKey = '/' + pAction->objectName();
-    const QString& sValue = QString(pAction->shortcut());
+    const QString& sValue = QString(pAction->shortcut().toString());
     settings_->setValue(sKey, sValue);
   }
 
@@ -2949,9 +2955,15 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
 
   if (updateViewport) {
     feedsTreeView_->viewport()->update();
+#ifdef HAVE_QT5
+    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+#else
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+#endif
   }
 }
 // ----------------------------------------------------------------------------
@@ -3967,7 +3979,7 @@ void RSSListing::createTrayMenu()
  *---------------------------------------------------------------------------*/
 void RSSListing::myEmptyWorkingSet()
 {
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
   if (isHidden())
     EmptyWorkingSet(GetCurrentProcess());
 #endif
@@ -6317,9 +6329,15 @@ void RSSListing::feedsModelReload(bool checkFilter)
 {
   if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
     feedsTreeView_->viewport()->update();
+#ifdef HAVE_QT5
+    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+#else
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
     feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+#endif
     return;
   }
 
@@ -6661,7 +6679,7 @@ void RSSListing::setFullScreen()
     // hide menu & toolbars
     mainToolbar_->hide();
     menuBar()->hide();
-#ifdef Q_WS_X11
+#ifdef HAVE_X11
     show();
     raise();
     setWindowState(windowState() | Qt::WindowFullScreen);

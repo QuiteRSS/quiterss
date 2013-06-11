@@ -18,7 +18,11 @@
 #ifndef FEEDSTREEVIEW_H
 #define FEEDSTREEVIEW_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <qyursqltreeview.h>
 
 class FeedsTreeView : public QyurSqlTreeView

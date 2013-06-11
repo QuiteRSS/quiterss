@@ -18,7 +18,11 @@
 #ifndef GOOGLEREADER_H
 #define GOOGLEREADER_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <QNetworkReply>
 
 #define ADDFEED    "subscribe"

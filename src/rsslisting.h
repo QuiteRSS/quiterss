@@ -18,12 +18,19 @@
 #ifndef RSSLISTING_H
 #define RSSLISTING_H
 
-#include <QtCore>
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <QtSql>
 #include <QtWebKit>
 #include <QNetworkProxy>
 #include <QNetworkDiskCache>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
+#include <QPrinter>
+#include <QSound>
 
 #include "categoriestreewidget.h"
 #include "cookiejar.h"
