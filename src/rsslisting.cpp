@@ -2302,9 +2302,8 @@ void RSSListing::addFeed()
                                                     addFeedWizard->feedParentId_);
   feedsTreeView_->selectIdEn_ = true;
   feedsTreeView_->setCurrentIndex(index);
-  slotFeedClicked(feedsTreeView_->currentIndex());
+  slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
-
   slotUpdateFeedDelayed(addFeedWizard->feedUrlString_, true, addFeedWizard->newCount_);
 
   delete addFeedWizard;
@@ -3348,7 +3347,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       newsView_ = currentNewsTab->newsView_;
     } else {
       // Mark previous feed Read while switching to another feed
-      setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed);
+      setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed, 0, feedIdCur);
 
       categoriesTree_->setCurrentIndex(QModelIndex());
     }
@@ -4382,7 +4381,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
 /** @brief Mark feed Read while clicking on unfocused one
  *---------------------------------------------------------------------------*/
-void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType, NewsTabWidget *widgetTab)
+void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
+                             NewsTabWidget *widgetTab, int idException)
 {
   if ((type >= TAB_WEB) || (type == TAB_CAT_DEL))
     return;
@@ -4391,29 +4391,27 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType, Ne
     if (feedId <= -1) return;
 
     db_.transaction();
+    QString idFeedsStr = getIdFeedsString(feedId, idException);
     QSqlQuery q;
     if (((feedReadType == FeedReadSwitchingFeed) && markReadSwitchingFeed_) ||
-        ((feedReadType == FeedReadClosingTab)        && markReadClosingTab_) ||
-        ((feedReadType == FeedReadPlaceToTray)       && markReadMinimize_)) {
-      QString str = getIdFeedsString(feedId);
-      if (str == "feedId=-1") {
+        ((feedReadType == FeedReadClosingTab) && markReadClosingTab_) ||
+        ((feedReadType == FeedReadPlaceToTray) && markReadMinimize_)) {
+      if (idFeedsStr == "feedId=-1") {
         q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
       } else {
-        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(idFeedsStr));
       }
     } else {
-      QString str = getIdFeedsString(feedId);
-      if (str == "feedId=-1") {
+      if (idFeedsStr == "feedId=-1") {
         q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
       } else {
-        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(str));
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(idFeedsStr));
       }
     }
-    QString str = getIdFeedsString(feedId);
-    if (str == "feedId=-1") {
+    if (idFeedsStr == "feedId=-1") {
       q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
     } else {
-      q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(str));
+      q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(idFeedsStr));
     }
 
     if (markNewsReadOn_ && markPrevNewsRead_)
@@ -7324,12 +7322,13 @@ QList<int> RSSListing::getIdFeedsInList(int idFolder)
 
 /** @brief Get feeds ids list string of folder \a idFolder
  *---------------------------------------------------------------------------*/
-QString RSSListing::getIdFeedsString(int idFolder)
+QString RSSListing::getIdFeedsString(int idFolder, int idException)
 {
   QList<int> idList = getIdFeedsInList(idFolder);
   if (idList.count()) {
     QString str;
     foreach (int id, idList) {
+      if (id == idException) continue;
       if (!str.isEmpty()) str.append(" OR ");
       str.append(QString("feedId=%1").arg(id));
     }
