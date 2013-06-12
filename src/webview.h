@@ -34,7 +34,9 @@ public:
   explicit WebView(QWidget *parent, QNetworkAccessManager *networkManager);
 
   int buttonClick_;
-  bool rightButtonClick_;
+
+signals:
+  void showContextMenu(const QPoint &);
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);

@@ -44,14 +44,13 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
 /*virtual*/ void WebView::mouseReleaseEvent(QMouseEvent *event)
 {
   if (event->button() & Qt::RightButton) {
-    rightButtonClick_ = false;
     int posX2 = event->pos().x();
     if (posX_ > posX2+5) {
-      rightButtonClick_ = true;
       back();
     } else if (posX_+5 < posX2) {
-      rightButtonClick_ = true;
       forward();
+    } else {
+      emit showContextMenu(event->pos());
     }
   } else if (event->button() & Qt::MiddleButton) {
     if (event->modifiers() == Qt::NoModifier) {

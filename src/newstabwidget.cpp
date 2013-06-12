@@ -390,8 +390,8 @@ void NewsTabWidget::createWebWidget()
   connect(webView_->page()->action(QWebPage::OpenLinkInNewWindow), SIGNAL(triggered()),
           this, SLOT(openLinkInNewTab()));
 
-  connect(webView_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextWebPage(const QPoint &)));
+  connect(webView_, SIGNAL(showContextMenu(QPoint)),
+          this, SLOT(showContextWebPage(QPoint)));
 
   connect(webView_->page()->networkAccessManager(),
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
@@ -1735,11 +1735,6 @@ void NewsTabWidget::slotSelectFind()
 //----------------------------------------------------------------------------
 void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
-  if (webView_->rightButtonClick_) {
-    webView_->rightButtonClick_ = false;
-    return;
-  }
-
   QListIterator<QAction *> iter(webMenu_->actions());
   while (iter.hasNext()) {
     QAction *nextAction = iter.next();
