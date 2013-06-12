@@ -115,7 +115,7 @@ public:
   QSqlTableModelEx sourceModel;
   int indexOfId, indexOfParid, rootParentId;
   int originalColumnByProxy(int proxyColumn) const {
-    return proxyColumn2Original.value(proxyColumn,proxyColumn);
+    return proxyColumn2Original.value(proxyColumn);
   }
   int getRowById(int) const;
   int getRowByParid(int) const;
@@ -178,7 +178,6 @@ QyurSqlTreeModel::QyurSqlTreeModel(const QString& tableName,
                                    const QStringList& captions,
                                    const QStringList& fieldNames,
                                    int rootParentId,
-                                   const QString& decoratedField,
                                    QObject* parent)
   : QAbstractProxyModel(parent)
   , d_ptr(new QyurSqlTreeModelPrivate)
@@ -194,16 +193,11 @@ QyurSqlTreeModel::QyurSqlTreeModel(const QString& tableName,
   Q_ASSERT(d->indexOfParid >= 0);
   for (int i = 0; i < qMin(fieldNames.size(),captions.size()); i++)
     d->sourceModel.setHeaderData(d->sourceModel.record().indexOf(fieldNames[i]),Qt::Horizontal,captions[i]);
-  for (int i=0; i<fieldNames.count();i++) {
-    int k = d->proxyColumn2Original.value(i, i);
-    d->proxyColumn2Original[i] = d->sourceModel.record().indexOf(fieldNames[i]);
-    d->proxyColumn2Original[d->sourceModel.record().indexOf(fieldNames[i])] = k;
-    if (fieldNames[i] == decoratedField) {
-      k = d->proxyColumn2Original.value(0, 0);
-      d->proxyColumn2Original[0] = d->proxyColumn2Original[i];
-      d->proxyColumn2Original[i] = k;
-    }
+  for (int i = 0; i < d->sourceModel.record().count(); i++) {
+    d->proxyColumn2Original[i] = i;
   }
+  d->proxyColumn2Original[0] = d->sourceModel.record().indexOf(fieldNames[0]);
+  d->proxyColumn2Original[d->sourceModel.record().indexOf(fieldNames[0])] = 0;
 }
 
 int QyurSqlTreeModel::originalColumnByProxy(int proxyColumn) const {

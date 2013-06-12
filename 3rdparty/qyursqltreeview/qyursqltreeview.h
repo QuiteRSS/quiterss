@@ -55,7 +55,7 @@ public:
   rootParentId-	parentId value for top level nodes.
   decoratedField-	makes this field expandedable, i.e. move it to first column.
   */
-  QyurSqlTreeModel(const QString& tableName, const QStringList& captions, const QStringList& fieldNames, int rootParentId= 0, const QString& decoratedField= QString(), QObject* parent=0);
+  QyurSqlTreeModel(const QString& tableName, const QStringList& captions, const QStringList& fieldNames, int rootParentId= 0, QObject* parent=0);
   ~QyurSqlTreeModel();
   QModelIndex mapFromSource(const QModelIndex& sourceIndex) const;
   QModelIndex mapToSource(const QModelIndex& proxyIndex) const;

@@ -571,9 +571,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
       QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_, feedParId_);
-      feedsTreeModel_->setData(
-            feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
-            newsId);
+      feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TAB_CAT_LABEL) {
       QSqlQuery q;
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
