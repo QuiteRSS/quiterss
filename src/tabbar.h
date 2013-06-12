@@ -18,7 +18,11 @@
 #ifndef TABBAR_H
 #define TABBAR_H
 
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 
 class RSSListing;
 

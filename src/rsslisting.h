@@ -18,12 +18,19 @@
 #ifndef RSSLISTING_H
 #define RSSLISTING_H
 
-#include <QtCore>
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
 #include <QtSql>
 #include <QtWebKit>
 #include <QNetworkProxy>
 #include <QNetworkDiskCache>
+#include <QPrintDialog>
+#include <QPrintPreviewDialog>
+#include <QPrinter>
+#include <QSound>
 
 #include "categoriestreewidget.h"
 #include "cookiejar.h"
@@ -72,7 +79,7 @@ public:
   void restoreFeedsOnStartUp();
   void expandNodes();
   QList<int> getIdFeedsInList(int idFolder);
-  QString getIdFeedsString(int idFolder);
+  QString getIdFeedsString(int idFolder, int idException = -1);
   void recountCategoryCounts();
 
   void setToolBarStyle(const QString &styleStr);
@@ -277,7 +284,8 @@ private slots:
   void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
-  void setFeedRead(int type, int feedId, FeedReedType feedReadType, NewsTabWidget *widgetTab = 0);
+  void setFeedRead(int type, int feedId, FeedReedType feedReadType,
+                   NewsTabWidget *widgetTab = 0, int idException = -1);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
   void slotRecountCategoryCounts();

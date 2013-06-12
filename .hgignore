@@ -10,3 +10,4 @@ Makefile*
 object_script.QuiteRSS.*
 doxygen
 src/VersionRev.h
+QuiteRSS.pro.user.*

@@ -1,6 +1,6 @@
 #include "VersionRev.h"
 
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
 #define PORTABLE       1
 #endif
 

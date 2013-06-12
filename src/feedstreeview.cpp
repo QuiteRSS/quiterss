@@ -39,7 +39,6 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   setSelectionBehavior(QAbstractItemView::SelectRows);
 //  setSelectionMode(QAbstractItemView::ExtendedSelection);
   setSelectionMode(QAbstractItemView::SingleSelection);
-
   setUniformRowHeights(true);
 
   header()->setStretchLastSection(false);
@@ -129,7 +128,7 @@ QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isPar
   }
 
   for(int i = indexCur.row()-1; i >= 0; --i) {
-    index = indexCur.sibling(i, indexCur.column());
+    index = model()->index(i, indexCur.column(), indexCur.parent());
     if (((FeedsTreeModel*)model())->isFolder(index))
       index = lastFeedInFolder(index);
     if (index.isValid())
@@ -176,7 +175,7 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
   int rowCount = model()->rowCount(indexCur.parent());
 
   for(int i = indexCur.row()+1; i < rowCount; i++) {
-    index = indexCur.sibling(i, indexCur.column());
+    index = model()->index(i, indexCur.column(), indexCur.parent());
     if (((FeedsTreeModel*)model())->isFolder(index))
       index = firstFeedInFolder(index);
     if (index.isValid())
@@ -217,7 +216,7 @@ QModelIndex FeedsTreeView::indexPreviousFolder(const QModelIndex &indexCur)
   QModelIndex index = QModelIndex();
 
   for(int i = indexCur.row()-1; i >= 0; --i) {
-    index = indexCur.sibling(i, indexCur.column());
+    index = model()->index(i, indexCur.column(), indexCur.parent());
     if (((FeedsTreeModel*)model())->isFolder(index))
       return index;
   }
@@ -263,7 +262,7 @@ QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isP
 
   int rowCount = model()->rowCount(indexCur.parent());
   for(int i = indexCur.row()+1; i < rowCount; i++) {
-    index = indexCur.sibling(i, indexCur.column());
+    index = model()->index(i, indexCur.column(), indexCur.parent());
     if (((FeedsTreeModel*)model())->isFolder(index))
       return index;
   }
@@ -479,7 +478,7 @@ bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
  *----------------------------------------------------------------------------*/
 void FeedsTreeView::slotExpanded(const QModelIndex &index)
 {
-  QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
+  QModelIndex indexExpanded = model()->index(index.row(), columnIndex("f_Expanded"), index.parent());
   model()->setData(indexExpanded, 1);
 
   int feedId = ((FeedsTreeModel*)model())->getIdByIndex(indexExpanded);
@@ -512,7 +511,7 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
  *----------------------------------------------------------------------------*/
 void FeedsTreeView::slotCollapsed(const QModelIndex &index)
 {
-  QModelIndex indexExpanded = index.sibling(index.row(), columnIndex("f_Expanded"));
+  QModelIndex indexExpanded = model()->index(index.row(), columnIndex("f_Expanded"), index.parent());
   model()->setData(indexExpanded, 0);
 
   int feedId = ((FeedsTreeModel*)model())->getIdByIndex(indexExpanded);

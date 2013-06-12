@@ -28,7 +28,6 @@ public:
       const QStringList &captions,
       const QStringList &fieldNames,
       int rootParentId = 0,
-      const QString &decoratedField = QString(),
       QyurSqlTreeView *parent = 0);
   virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   QVariant dataField(const QModelIndex &index, const QString &fieldName) const;
@@ -36,6 +35,7 @@ public:
   Qt::ItemFlags flags(const QModelIndex &index) const;
   Qt::DropActions supportedDropActions() const;
   bool isFolder(const QModelIndex &index) const;
+  QModelIndex indexSibling(const QModelIndex &index, const QString &fieldName) const;
   QFont font_;
   QString formatDate_;
   QString formatTime_;

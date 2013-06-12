@@ -136,7 +136,11 @@ QWidget *FeedPropertiesDialog::CreateColumnsTab()
   columnsTree_->setColumnHidden(1, true);
   columnsTree_->setSortingEnabled(false);
   columnsTree_->setHeaderHidden(true);
+#ifdef HAVE_QT5
+  columnsTree_->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+#else
   columnsTree_->header()->setResizeMode(0, QHeaderView::Stretch);
+#endif
 
   QStringList treeItem;
   treeItem << "Name" << "Index";

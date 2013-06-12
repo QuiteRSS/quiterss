@@ -571,9 +571,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
       QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_, feedParId_);
-      feedsTreeModel_->setData(
-            feedIndex.sibling(feedIndex.row(), feedsTreeModel_->proxyColumnByOriginal("currentNews")),
-            newsId);
+      feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TAB_CAT_LABEL) {
       QSqlQuery q;
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
@@ -1634,15 +1632,15 @@ bool NewsTabWidget::openUrl(const QUrl &url)
 
   rsslisting_->openingLink_ = true;
   if ((rsslisting_->externalBrowserOn_ == 2) || (rsslisting_->externalBrowserOn_ == -1)) {
-#if defined(Q_WS_WIN)
+#if defined(Q_OS_WIN)
     quintptr returnValue = (quintptr)ShellExecute(
-          rsslisting_->winId(), 0,
+          0, 0,
           (wchar_t *)QString::fromUtf8(rsslisting_->externalBrowser_.toUtf8()).utf16(),
           (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
           0, SW_SHOWNORMAL);
     if (returnValue > 32)
       return true;
-#elif defined(Q_WS_X11)
+#elif defined(HAVE_X11)
     if (launch(url, rsslisting_->externalBrowser_.toUtf8()))
       return true;
 #endif
@@ -1980,36 +1978,87 @@ void NewsTabWidget::slotShareNews(QAction *action)
     QUrl url;
     if (action->objectName() == "emailShareAct") {
       url.setUrl("mailto:");
+#ifdef HAVE_QT5
+      QUrlQuery urlQuery;
+      urlQuery.addQueryItem("subject", title);
+      urlQuery.addQueryItem("body", linkString.simplified());
+      url.setQuery(urlQuery);
+#else
       url.addQueryItem("subject", title);
       url.addQueryItem("body", linkString.simplified());
+#endif
       openUrl(url);
     } else {
       if (action->objectName() == "evernoteShareAct") {
         url.setUrl("https://www.evernote.com/clip.action");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("title", title);
+        url.setQuery(urlQuery);
+#else
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
+#endif
       } else if (action->objectName() == "facebookShareAct") {
         url.setUrl("https://www.facebook.com/sharer.php");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("u", linkString.simplified());
+        urlQuery.addQueryItem("t", title);
+        url.setQuery(urlQuery);
+#else
         url.addQueryItem("u", linkString.simplified());
         url.addQueryItem("t", title);
+#endif
       } else if (action->objectName() == "livejournalShareAct") {
         url.setUrl("http://www.livejournal.com/update.bml");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("event", linkString.simplified());
+        urlQuery.addQueryItem("subject", title);
+        url.setQuery(urlQuery);
+#else
         url.addQueryItem("event", linkString.simplified());
         url.addQueryItem("subject", title);
+#endif
       } else if (action->objectName() == "pocketShareAct") {
         url.setUrl("https://getpocket.com/save");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("title", title);
+        url.setQuery(urlQuery);
+#else
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
+#endif
       } else if (action->objectName() == "twitterShareAct") {
         url.setUrl("https://twitter.com/share");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("text", title);
+        url.setQuery(urlQuery);
+#else
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("text", title);
+#endif
       } else if (action->objectName() == "vkShareAct") {
         url.setUrl("https://vk.com/share.php");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("title", title);
+        urlQuery.addQueryItem("description", "");
+        urlQuery.addQueryItem("image", "");
+        url.setQuery(urlQuery);
+#else
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
         url.addQueryItem("description", "");
         url.addQueryItem("image", "");
+#endif
       }
 
       if (rsslisting_->externalBrowserOn_ <= 0) {

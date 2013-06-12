@@ -18,8 +18,12 @@
 #ifndef NEWSMODEL_H
 #define NEWSMODEL_H
 
-#include <QtSql>
+#ifdef HAVE_QT5
+#include <QtWidgets>
+#else
 #include <QtGui>
+#endif
+#include <QtSql>
 
 class NewsModel : public QSqlTableModel
 {
