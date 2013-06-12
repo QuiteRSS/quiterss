@@ -16,9 +16,11 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "faviconobject.h"
+#include "VersionNo.h"
 
 #include <QDebug>
 #include <QtSql>
+#include <QWebPage>
 
 #define REPLY_MAX_COUNT 4
 #define REQUEST_TIMEOUT 30
@@ -83,7 +85,9 @@ void FaviconObject::getQueuedUrl()
 void FaviconObject::slotGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt)
 {
   QNetworkRequest request(getUrl);
-  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.12");
+  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
+      arg(qWebKitVersion()).arg(STRPRODUCTVER);
+  request.setRawHeader("User-Agent", userAgent.toUtf8());
   request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);

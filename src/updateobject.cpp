@@ -16,8 +16,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "updateobject.h"
+#include "VersionNo.h"
 
 #include <QDebug>
+#include <QWebPage>
 
 #define REPLY_MAX_COUNT 10
 
@@ -98,7 +100,9 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
 {
   qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
-  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.10.229 Version/11.62");
+  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
+      arg(qWebKitVersion()).arg(STRPRODUCTVER);
+  request.setRawHeader("User-Agent", userAgent.toUtf8());
   request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
@@ -120,7 +124,9 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
 {
   qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
-  request.setRawHeader("User-Agent", "Opera/9.80 (Windows NT 6.1) Presto/2.12.388 Version/12.12");
+  QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
+      arg(qWebKitVersion()).arg(STRPRODUCTVER);
+  request.setRawHeader("User-Agent", userAgent.toUtf8());
   request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
