@@ -4448,6 +4448,9 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
       }
     }
     db_.commit();
+
+    if (feedId > -1)
+      recountFeedCounts(feedId, false);
   }
 }
 // ----------------------------------------------------------------------------
