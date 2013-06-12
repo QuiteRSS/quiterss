@@ -81,6 +81,7 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
       setZoomFactor(zoomFactor()+0.1);
     else if (zoomFactor() > 0.1)
       setZoomFactor(zoomFactor()-0.1);
+    event->accept();
     return;
   }
   QWebView::wheelEvent(event);
