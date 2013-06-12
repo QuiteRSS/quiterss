@@ -88,7 +88,7 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDow
     QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
         arg(fileInfo.suffix().toUpper()).
         arg(fileInfo.suffix().toLower());
-    fileName = QFileDialog::getSaveFileName(0, tr("Save As..."), fileName, filter);
+    fileName = QFileDialog::getSaveFileName(rssl_, tr("Save As..."), fileName, filter);
   }
   if (fileName.isNull()) {
     reply->abort();
