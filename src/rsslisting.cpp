@@ -122,8 +122,14 @@ RSSListing::RSSListing(QSettings *settings,
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
   if (useDiskCache) {
     diskCache_ = new QNetworkDiskCache(this);
-    QString dirDiskCache = settings_->value(
-          "Settings/dirDiskCache", QDir::toNativeSeparators(dataDirPath_+ "/cache")).toString();
+    QString dirDiskCache;
+#if defined(Q_OS_UNIX)
+    dirDiskCache = QString("%1/.cache/%2").arg(QDir::homePath(), QCoreApplication::organizationName());
+#else
+    dirDiskCache = dataDirPath_ + "/cache";
+#endif
+    dirDiskCache = settings_->value(
+          "Settings/dirDiskCache", QDir::toNativeSeparators(dirDiskCache)).toString();
     diskCache_->setCacheDirectory(dirDiskCache);
     int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
     diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
