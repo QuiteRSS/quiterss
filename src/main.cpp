@@ -47,8 +47,8 @@ int main(int argc, char **argv)
       return 0;
   }
 
-  app.setApplicationName("QuiteRSS");
-  app.setOrganizationName("QuiteRSS");
+  app.setApplicationName("QuiteRss");
+  app.setOrganizationName("QuiteRss");
   app.setApplicationVersion(STRPRODUCTVER);
 #if defined(QT_NO_DEBUG_OUTPUT)
   app.setWindowIcon(QIcon(":/images/quiterss32"));
