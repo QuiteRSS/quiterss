@@ -19,7 +19,11 @@
 #include "VersionNo.h"
 
 #include <QDebug>
+#ifdef HAVE_QT5
 #include <QWebPage>
+#else
+#include <qwebkitversion.h>
+#endif
 
 #define REPLY_MAX_COUNT 10
 
