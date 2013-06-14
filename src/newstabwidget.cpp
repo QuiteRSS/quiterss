@@ -291,8 +291,6 @@ void NewsTabWidget::createWebWidget()
 {
   webView_ = new WebView(this, rsslisting_->networkManager_);
 
-  webMenu_ = new QMenu(webView_);
-
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
   webViewProgress_->setFixedHeight(15);
@@ -391,7 +389,7 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(openLinkInNewTab()));
 
   connect(webView_, SIGNAL(showContextMenu(QPoint)),
-          this, SLOT(showContextWebPage(QPoint)));
+          this, SLOT(showContextWebPage(QPoint)), Qt::QueuedConnection);
 
   connect(webView_->page()->networkAccessManager(),
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
@@ -1735,51 +1733,43 @@ void NewsTabWidget::slotSelectFind()
 //----------------------------------------------------------------------------
 void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
-  QListIterator<QAction *> iter(webMenu_->actions());
-  while (iter.hasNext()) {
-    QAction *nextAction = iter.next();
-    if (nextAction->text().isEmpty()) {
-      delete nextAction;
-    }
-  }
-  webMenu_->clear();
-
+  QMenu menu;
   QMenu *pageMenu = webView_->page()->createStandardContextMenu();
-  webMenu_->addActions(pageMenu->actions());
+  menu.addActions(pageMenu->actions());
 
   const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
   if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
     linkUrl_ = hitTest.linkUrl();
     if (rsslisting_->externalBrowserOn_ <= 0) {
-      webMenu_->addSeparator();
-      webMenu_->addAction(urlExternalBrowserAct_);
+      menu.addSeparator();
+      menu.addAction(urlExternalBrowserAct_);
     }
   } else if (pageMenu->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
     if (webView_->title() == "news_descriptions") {
       webView_->pageAction(QWebPage::Reload)->setVisible(false);
     } else {
       webView_->pageAction(QWebPage::Reload)->setVisible(true);
-      webMenu_->addSeparator();
+      menu.addSeparator();
     }
-    webMenu_->addAction(rsslisting_->autoLoadImagesToggle_);
-    webMenu_->addSeparator();
-    webMenu_->addAction(rsslisting_->printAct_);
-    webMenu_->addAction(rsslisting_->printPreviewAct_);
-    webMenu_->addSeparator();
-    webMenu_->addAction(rsslisting_->savePageAsAct_);
+    menu.addAction(rsslisting_->autoLoadImagesToggle_);
+    menu.addSeparator();
+    menu.addAction(rsslisting_->printAct_);
+    menu.addAction(rsslisting_->printPreviewAct_);
+    menu.addSeparator();
+    menu.addAction(rsslisting_->savePageAsAct_);
   } else if (hitTest.isContentEditable()) {
-    for (int i = 0; i < webMenu_->actions().count(); i++) {
-      if ((i <= 1) && (webMenu_->actions().at(i)->text() == "Direction")) {
-        webMenu_->actions().at(i)->setVisible(false);
+    for (int i = 0; i < menu.actions().count(); i++) {
+      if ((i <= 1) && (menu.actions().at(i)->text() == "Direction")) {
+        menu.actions().at(i)->setVisible(false);
         break;
       }
     }
-    webMenu_->insertSeparator(webMenu_->actions().at(0));
-    webMenu_->insertAction(webMenu_->actions().at(0), webView_->pageAction(QWebPage::Redo));
-    webMenu_->insertAction(webMenu_->actions().at(0), webView_->pageAction(QWebPage::Undo));
+    menu.insertSeparator(menu.actions().at(0));
+    menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Redo));
+    menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Undo));
   }
 
-  webMenu_->popup(webView_->mapToGlobal(p));
+  menu.exec(webView_->mapToGlobal(p));
 }
 
 /** @brief Open link in external browser

@@ -194,7 +194,6 @@ private:
   int webDefaultFontSize_;
   int webDefaultFixedFontSize_;
 
-  QMenu *webMenu_;
   QUrl linkUrl_;
 
   QWidget *newsPanelWidget_;
