@@ -72,6 +72,8 @@ public:
              const QString &dataDirPath, QWidget *parent = 0);
   ~RSSListing();
 
+  static bool removePath(const QString &path);
+
   bool showSplashScreen_;
   bool showTrayIcon_;
   bool startingTray_;

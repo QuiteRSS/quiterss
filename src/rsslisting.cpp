@@ -122,15 +122,25 @@ RSSListing::RSSListing(QSettings *settings,
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
   if (useDiskCache) {
     diskCache_ = new QNetworkDiskCache(this);
-    QString dirDiskCache;
+    QString diskCacheDirPath;
 #if defined(Q_OS_UNIX)
-    dirDiskCache = QString("%1/.cache/%2").arg(QDir::homePath(), QCoreApplication::organizationName());
+#ifdef HAVE_QT5
+    diskCacheDirPath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 #else
-    dirDiskCache = dataDirPath_ + "/cache";
+    diskCacheDirPath = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 #endif
-    dirDiskCache = settings_->value(
-          "Settings/dirDiskCache", QDir::toNativeSeparators(dirDiskCache)).toString();
-    diskCache_->setCacheDirectory(dirDiskCache);
+#else
+    diskCacheDirPath = dataDirPath_ + "/cache";
+#endif
+    diskCacheDirPath = settings_->value(
+          "Settings/dirDiskCache", QDir::toNativeSeparators(diskCacheDirPath)).toString();
+    bool cleanDiskCache = settings_->value("Settings/cleanDiskCache", true).toBool();
+    if (cleanDiskCache) {
+      removePath(diskCacheDirPath);
+      settings_->setValue("Settings/cleanDiskCache", false);
+    }
+
+    diskCache_->setCacheDirectory(diskCacheDirPath);
     int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
     diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
 
@@ -7638,4 +7648,21 @@ void RSSListing::updateInfoDownloads(const QString &text)
       break;
     }
   }
+}
+
+bool RSSListing::removePath(const QString &path)
+{
+    bool result = true;
+    QFileInfo info(path);
+    if (info.isDir()) {
+        QDir dir(path);
+        foreach (const QString &entry, dir.entryList(QDir::AllDirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
+            result &= removePath(dir.absoluteFilePath(entry));
+        }
+        if (!info.dir().rmdir(info.fileName()))
+            return false;
+    } else {
+        result = QFile::remove(path);
+    }
+    return result;
 }
