@@ -48,7 +48,7 @@ exists(.hg) {
 }
 
 isEqual(QT_MAJOR_VERSION, 5) {
-  QT += widgets webkitwidgets network xml printsupport sql
+  QT += widgets webkitwidgets network xml printsupport sql multimedia
   DEFINES += HAVE_QT5
 } else {
   QT += core gui network xml webkit sql
