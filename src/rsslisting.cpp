@@ -337,6 +337,25 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
 {
   static int deactivateState = 0;
 
+  if (obj == this) {
+    if (event->type() == QEvent::KeyPress) {
+      QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
+      if ((keyEvent->key() == Qt::Key_Up) ||
+          (keyEvent->key() == Qt::Key_Down) ||
+          (keyEvent->key() == Qt::Key_Left) ||
+          (keyEvent->key() == Qt::Key_Right)) {
+        QListIterator<QAction *> iter(listActions_);
+        while (iter.hasNext()) {
+          QAction *pAction = iter.next();
+          if (pAction->shortcut() == QKeySequence(keyEvent->key())) {
+            pAction->activate(QAction::Trigger);
+            break;
+          }
+        }
+      }
+    }
+  }
+
   if (obj == statusBar()) {
     if (event->type() == QEvent::MouseButtonRelease) {
       if (windowState() & Qt::WindowMaximized) {
