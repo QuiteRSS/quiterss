@@ -5190,6 +5190,9 @@ void RSSListing::showFeedPropertiesDlg()
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
 
+  FEED_PROPERTIES properties;
+  FEED_PROPERTIES properties_tmp;
+
   QByteArray byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
   if (!byteArray.isNull()) {
     QPixmap icon;
@@ -5200,14 +5203,13 @@ void RSSListing::showFeedPropertiesDlg()
   } else {
     feedPropertiesDialog->setWindowIcon(QPixmap(":/images/folder"));
   }
+  properties.general.image = QByteArray::fromBase64(byteArray);
+
   QString str(feedPropertiesDialog->windowTitle() +
               " '" +
               feedsTreeModel_->dataField(index, "text").toString() +
               "'");
   feedPropertiesDialog->setWindowTitle(str);
-
-  FEED_PROPERTIES properties;
-  FEED_PROPERTIES properties_tmp;
 
   properties.general.text =
       feedsTreeModel_->dataField(index, "text").toString();
@@ -5336,9 +5338,6 @@ void RSSListing::showFeedPropertiesDlg()
 
   feedPropertiesDialog->setFeedProperties(properties);
   properties_tmp = properties;
-
-  connect(feedPropertiesDialog, SIGNAL(signalLoadTitle(QString,QString)),
-          this, SIGNAL(faviconRequestUrl(QString,QString)));
 
   int result = feedPropertiesDialog->exec();
   if (result == QDialog::Rejected) {
@@ -5566,20 +5565,21 @@ void RSSListing::showFeedPropertiesDlg()
     updateFeedsTimeCount_.remove(feedId);
   }
 
-  if (feedsTreeView_->currentIndex() == index) {
-    QPixmap iconTab;
-    byteArray = feedsTreeModel_->dataField(index, "image").toByteArray();
-    if (!isFeed) {
-      iconTab.load(":/images/folder");
-    } else {
-      if (byteArray.isNull() || defaultIconFeeds_) {
-        iconTab.load(":/images/feed");
-      } else if (isFeed) {
-        iconTab.loadFromData(QByteArray::fromBase64(byteArray));
+  if (properties.general.image != properties_tmp.general.image) {
+    q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
+    q.addBindValue(properties.general.image.toBase64());
+    q.addBindValue(feedId);
+    q.exec();
+    slotIconFeedUpdate(feedId, feedParentId, properties.general.image);
+  }
+
+  if (properties.general.text != properties_tmp.general.text) {
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+      if (widget->feedId_ == feedId) {
+        widget->setTextTab(properties.general.text);
       }
     }
-    currentNewsTab->newsIconTitle_->setPixmap(iconTab);
-    currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
   }
 }
 
@@ -5755,7 +5755,6 @@ void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray 
         iconTab.load(":/images/feed");
       }
       widget->newsIconTitle_->setPixmap(iconTab);
-      break;
     }
   }
   if (currentNewsTab->type_ < TAB_WEB)

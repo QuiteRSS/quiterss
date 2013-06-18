@@ -29,6 +29,7 @@ typedef struct {
     QString title; //!< Title field from feed-xml
     QString url; //!< URL field from feed-xml
     QString homepage; //!< Homepage field from feed-xml
+    QByteArray image;
     bool updateEnable; //!< Flag enabling autoupdate
     int updateInterval; //!< Update interval
     int intervalType; //!< Update interval type (sec, min, day)
@@ -118,14 +119,19 @@ public:
   FEED_PROPERTIES getFeedProperties(); //!< Get feed properties from dialog
   void setFeedProperties(FEED_PROPERTIES properties); //!< Set feed properties into dialog
 
+public slots:
+  void slotFaviconUpdate(const QString &feedUrl, const QByteArray &faviconData);
+
 signals:
-  void signalLoadTitle(const QString &urlString, const QString &feedUrl);
+  void signalLoadIcon(const QString &urlString, const QString &feedUrl);
 
 protected:
   virtual void showEvent(QShowEvent *event);
 
 private slots:
-  void slotLoadTitle();
+  void setDefaultTitle();
+  void loadDefaultIcon();
+  void selectIcon();
   void slotCurrentColumnChanged(QTreeWidgetItem *current, QTreeWidgetItem *);
   void showMenuAddButton();
   void addColumn(QAction *action);
@@ -141,6 +147,7 @@ private:
   LineEdit *editURL; //!< Feed URL
   LineEdit *editTitle; //!< Feed title
   QLabel *labelHomepage; //!< Link to feed's homepage
+  QToolButton *selectIconButton_;
   QCheckBox *updateEnable_;
   QSpinBox *updateInterval_;
   QComboBox *updateIntervalType_;

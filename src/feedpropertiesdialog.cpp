@@ -41,6 +41,11 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
   buttonBox->addButton(QDialogButtonBox::Ok);
   buttonBox->addButton(QDialogButtonBox::Cancel);
   connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+
+  connect(this, SIGNAL(signalLoadIcon(QString,QString)),
+          parent, SIGNAL(faviconRequestUrl(QString,QString)));
+  connect(parent, SIGNAL(signalIconFeedReady(QString, const QByteArray&)),
+          this, SLOT(slotFaviconUpdate(QString, const QByteArray&)));
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateGeneralTab()
@@ -54,12 +59,26 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   QHBoxLayout *layoutGeneralTitle = new QHBoxLayout();
   editTitle = new LineEdit();
-  QPushButton *btnLoadTitle = new QPushButton(QIcon(":/images/updateFeed"), "");
-  btnLoadTitle->setToolTip(tr("Load Feed Title"));
-  btnLoadTitle->setIconSize(QSize(16, 16));
-  btnLoadTitle->setFocusPolicy(Qt::NoFocus);
+  QToolButton *loadTitleButton = new QToolButton();
+  loadTitleButton->setIcon(QIcon(":/images/updateFeed"));
+  loadTitleButton->setIconSize(QSize(16, 16));
+  loadTitleButton->setToolTip(tr("Load Title"));
+  loadTitleButton->setFocusPolicy(Qt::NoFocus);
+
+  QMenu *selectIconMenu = new QMenu();
+  selectIconMenu->addAction(tr("Load Favicon"));
+  selectIconMenu->addSeparator();
+  selectIconMenu->addAction(tr("Select Icon..."));
+  selectIconButton_ = new QToolButton(this);
+  selectIconButton_->setIconSize(QSize(16, 16));
+  selectIconButton_->setToolTip(tr("Select Icon"));
+  selectIconButton_->setFocusPolicy(Qt::NoFocus);
+  selectIconButton_->setPopupMode(QToolButton::MenuButtonPopup);
+  selectIconButton_->setMenu(selectIconMenu);
+
   layoutGeneralTitle->addWidget(editTitle, 1);
-  layoutGeneralTitle->addWidget(btnLoadTitle);
+  layoutGeneralTitle->addWidget(loadTitleButton);
+  layoutGeneralTitle->addWidget(selectIconButton_);
   editURL = new LineEdit();
 
   updateEnable_ = new QCheckBox(tr("Automatically update every"));
@@ -112,10 +131,17 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addWidget(duplicateNewsMode_);
   layoutGeneralMain->addStretch();
 
-  connect(btnLoadTitle, SIGNAL(clicked()), this, SLOT(slotLoadTitle()));
+  connect(loadTitleButton, SIGNAL(clicked()), this, SLOT(setDefaultTitle()));
+  connect(selectIconButton_, SIGNAL(clicked()),
+          selectIconButton_, SLOT(showMenu()));
+  connect(selectIconMenu->actions().at(0), SIGNAL(triggered()),
+          this, SLOT(loadDefaultIcon()));
+  connect(selectIconMenu->actions().at(2), SIGNAL(triggered()),
+          this, SLOT(selectIcon()));
 
   if (!isFeed_) {
-    btnLoadTitle->hide();
+    loadTitleButton->hide();
+    selectIconButton_->hide();
     labelURLCapt->hide();
     editURL->hide();
     labelHomepageCapt->hide();
@@ -287,6 +313,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   editURL->selectAll();
   editURL->setFocus();
   labelHomepage->setText(QString("<a href='%1'>%1</a>").arg(feedProperties.general.homepage));
+  selectIconButton_->setIcon(windowIcon());
 
   updateEnable_->setChecked(feedProperties.general.updateEnable);
   updateInterval_->setValue(feedProperties.general.updateInterval);
@@ -337,10 +364,62 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
                       arg(tr("unread")));
 }
 //------------------------------------------------------------------------------
-void FeedPropertiesDialog::slotLoadTitle()
+void FeedPropertiesDialog::setDefaultTitle()
 {
   editTitle->setText(feedProperties.general.title);
-  emit signalLoadTitle(feedProperties.general.homepage, feedProperties.general.url);
+}
+
+void FeedPropertiesDialog::loadDefaultIcon()
+{
+  emit signalLoadIcon(feedProperties.general.homepage, feedProperties.general.url);
+}
+
+void FeedPropertiesDialog::selectIcon()
+{
+  QString fileName = QFileDialog::getOpenFileName(this, tr("Select Image"),
+                                                  QDir::homePath(),
+                                                  tr("Image files (*.jpg *.jpeg *.png *.bmp)"));
+
+  if (fileName.isNull()) return;
+
+  QFile file(fileName);
+  if (!file.open(QIODevice::ReadOnly)) {
+    QMessageBox msgBox;
+    msgBox.setText(tr("Load icon: can't open a file"));
+    msgBox.exec();
+    return;
+  }
+
+  QPixmap pixmap;
+  if (pixmap.loadFromData(file.readAll())) {
+    pixmap = pixmap.scaled(16, 16, Qt::IgnoreAspectRatio,
+                           Qt::SmoothTransformation);
+    QByteArray faviconData;
+    QBuffer    buffer(&faviconData);
+    buffer.open(QIODevice::WriteOnly);
+    if (pixmap.save(&buffer, "ICO")) {
+      slotFaviconUpdate(feedProperties.general.url, faviconData);
+    }
+  }
+
+  file.close();
+}
+
+void FeedPropertiesDialog::slotFaviconUpdate(const QString &feedUrl, const QByteArray &faviconData)
+{
+  if (feedUrl == feedProperties.general.url) {
+    feedProperties.general.image = faviconData;
+    if (!faviconData.isNull()) {
+      QPixmap icon;
+      icon.loadFromData(faviconData);
+      setWindowIcon(icon);
+    } else if (isFeed_) {
+      setWindowIcon(QPixmap(":/images/feed"));
+    } else {
+      setWindowIcon(QPixmap(":/images/folder"));
+    }
+    selectIconButton_->setIcon(windowIcon());
+  }
 }
 //------------------------------------------------------------------------------
 FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
