@@ -343,8 +343,8 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   progressBar_->setMaximum(0);
   progressBar_->setVisible(false);
 
-  maxDayCleanUp_->setValue(0);
-  maxNewsCleanUp_->setValue(0);
+  maxDayCleanUp_->setValue(30);
+  maxNewsCleanUp_->setValue(200);
   dayCleanUpOn_->setChecked(true);
   newsCleanUpOn_->setChecked(true);
   readCleanUp_->setChecked(false);
@@ -352,7 +352,7 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   neverStarCleanUp_->setChecked(true);
   neverLabelCleanUp_->setChecked(true);
   cleanUpDeleted_->setChecked(true);
-  fullCleanUp_->setChecked(true);
+  fullCleanUp_->setChecked(false);
 
   QVBoxLayout *layout = new QVBoxLayout(page);
   layout->addLayout(cleanUpFeedsLayout);
