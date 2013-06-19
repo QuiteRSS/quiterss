@@ -252,6 +252,7 @@ void OptionsDialog::createGeneralWidget()
   reopenFeedStartup_ = new QCheckBox(tr("Reopen last opened feeds on startup"));
   openNewTabNextToActive_ = new QCheckBox(tr("Open new tab next to active"));
   hideFeedsOpenTab_ = new QCheckBox(tr("Hide feeds tree when opening tabs"));
+  showToggleFeedsTree_ = new QCheckBox(tr("Show feeds tree toggle at edge of window"));
   defaultIconFeeds_ = new QCheckBox(tr("Show default rss-icon instead of favourite one"));
   autocollapseFolder_ = new QCheckBox(tr("Automatically collapse folders"));
 
@@ -263,6 +264,7 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(reopenFeedStartup_);
   generalLayout->addWidget(openNewTabNextToActive_);
   generalLayout->addWidget(hideFeedsOpenTab_);
+  generalLayout->addWidget(showToggleFeedsTree_);
   generalLayout->addWidget(defaultIconFeeds_);
   generalLayout->addWidget(autocollapseFolder_);
   generalLayout->addStretch();

@@ -217,6 +217,7 @@ public:
   NetworkManager *networkManager_;
 
   bool hideFeedsOpenTab_;
+  bool showToggleFeedsTree_;
   bool defaultIconFeeds_;
 
   int openNewsTab_;

@@ -48,6 +48,7 @@ public:
   QCheckBox *reopenFeedStartup_;
   QCheckBox *openNewTabNextToActive_;
   QCheckBox *hideFeedsOpenTab_;
+  QCheckBox *showToggleFeedsTree_;
   QCheckBox *defaultIconFeeds_;
   QCheckBox *autocollapseFolder_;
   QCheckBox *updateCheckEnabled_;

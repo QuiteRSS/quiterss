@@ -2028,6 +2028,8 @@ void RSSListing::readSettings()
   updateCheckEnabled_ = settings_->value("updateCheckEnabled", true).toBool();
 
   hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", false).toBool();
+  showToggleFeedsTree_ = settings_->value("showToggleFeedsTree", true).toBool();
+  pushButtonNull_->setVisible(showToggleFeedsTree_);
 
   defaultIconFeeds_ = settings_->value("defaultIconFeeds", false).toBool();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
@@ -2224,6 +2226,7 @@ void RSSListing::writeSettings()
   settings_->setValue("updateCheckEnabled", updateCheckEnabled_);
 
   settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
+  settings_->setValue("showToggleFeedsTree", showToggleFeedsTree_);
 
   settings_->setValue("defaultIconFeeds", defaultIconFeeds_);
   settings_->setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
@@ -3526,6 +3529,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
   optionsDialog->openNewTabNextToActive_->setChecked(openNewTabNextToActive_);
   optionsDialog->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
+  optionsDialog->showToggleFeedsTree_->setChecked(showToggleFeedsTree_);
   optionsDialog->defaultIconFeeds_->setChecked(defaultIconFeeds_);
   optionsDialog->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
 
@@ -3781,9 +3785,12 @@ void RSSListing::showOptionDlg()
   reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
   openNewTabNextToActive_ = optionsDialog->openNewTabNextToActive_->isChecked();
   hideFeedsOpenTab_ = optionsDialog->hideFeedsOpenTab_->isChecked();
+  showToggleFeedsTree_ = optionsDialog->showToggleFeedsTree_->isChecked();
   defaultIconFeeds_ = optionsDialog->defaultIconFeeds_->isChecked();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
   feedsTreeView_->autocollapseFolder_ = optionsDialog->autocollapseFolder_->isChecked();
+
+  pushButtonNull_->setVisible(showToggleFeedsTree_);
 
   updateCheckEnabled_ = optionsDialog->updateCheckEnabled_->isChecked();
   storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
