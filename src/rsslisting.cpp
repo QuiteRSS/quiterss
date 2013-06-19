@@ -2058,6 +2058,10 @@ void RSSListing::readSettings()
   authorColor_ = settings_->value("authorColor", "#666666").toString();
   newsTitleBackgroundColor_ = settings_->value("newsTitleBackgroundColor", "#FFFFFF").toString();
   newsBackgroundColor_ = settings_->value("newsBackgroundColor", "#FFFFFF").toString();
+  feedsTreeModel_->feedWithNewNewsColor_ =
+      settings_->value("feedWithNewNewsColor", qApp->palette().brush(QPalette::Link).color().name()).toString();
+  feedsTreeModel_->countNewsUnreadColor_ =
+      settings_->value("countNewsUnreadColor", qApp->palette().brush(QPalette::Link).color().name()).toString();
   settings_->endGroup();
 
   resize(800, 600);
@@ -2246,6 +2250,8 @@ void RSSListing::writeSettings()
   settings_->setValue("authorColor", authorColor_);
   settings_->setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
   settings_->setValue("newsBackgroundColor", newsBackgroundColor_);
+  settings_->setValue("feedWithNewNewsColor", feedsTreeModel_->feedWithNewNewsColor_);
+  settings_->setValue("countNewsUnreadColor", feedsTreeModel_->countNewsUnreadColor_);
   settings_->endGroup();
 
   settings_->beginGroup("ClickToFlash");
@@ -3695,9 +3701,14 @@ void RSSListing::showOptionDlg()
   pixmapColor.fill(newsBackgroundColor_);
   optionsDialog->colorsTree_->topLevelItem(11)->setIcon(0, pixmapColor);
   optionsDialog->colorsTree_->topLevelItem(11)->setText(1, newsBackgroundColor_);
+  pixmapColor.fill(feedsTreeModel_->feedWithNewNewsColor_);
+  optionsDialog->colorsTree_->topLevelItem(12)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(12)->setText(1, feedsTreeModel_->feedWithNewNewsColor_);
+  pixmapColor.fill(feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog->colorsTree_->topLevelItem(13)->setIcon(0, pixmapColor);
+  optionsDialog->colorsTree_->topLevelItem(13)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
 
   optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
-
 
   // Display setting dialog
 
@@ -3978,6 +3989,8 @@ void RSSListing::showOptionDlg()
   authorColor_ = optionsDialog->colorsTree_->topLevelItem(9)->text(1);
   newsTitleBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(10)->text(1);
   newsBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(11)->text(1);
+  feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog->colorsTree_->topLevelItem(12)->text(1);
+  feedsTreeModel_->countNewsUnreadColor_ = optionsDialog->colorsTree_->topLevelItem(13)->text(1);
 
   delete optionsDialog;
 

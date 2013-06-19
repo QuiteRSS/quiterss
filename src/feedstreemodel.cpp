@@ -81,10 +81,10 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
     QBrush brush;
     brush = QColor(textColor_);
     if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
-      brush = qApp->palette().brush(QPalette::Link);
+      brush = QColor(countNewsUnreadColor_);
     } else if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
       if (indexSibling(index, "newCount").data(Qt::EditRole).toInt() > 0) {
-        brush = qApp->palette().brush(QPalette::Link);
+        brush = QColor(feedWithNewNewsColor_);
       }
     }
     return brush;

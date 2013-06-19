@@ -42,6 +42,8 @@ public:
   bool defaultIconFeeds_;
   QString textColor_;
   QString backgroundColor_;
+  QString feedWithNewNewsColor_;
+  QString countNewsUnreadColor_;
 
 private:
   QyurSqlTreeView *view_;

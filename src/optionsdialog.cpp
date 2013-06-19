@@ -1375,6 +1375,12 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem.clear();
   treeItem << tr("News background");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Feed with new news");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Count of news unread in feeds tree");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
 
@@ -1631,6 +1637,8 @@ void OptionsDialog::slotColorReset()
   case 8: case 9: colorName = "#666666";
     break;
   case 10: case 11: colorName = "#FFFFFF";
+    break;
+  case 12: case 13: colorName = qApp->palette().brush(QPalette::Link).color().name();
     break;
   }
   QPixmap pixmapColor(14, 14);
