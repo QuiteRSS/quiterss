@@ -26,11 +26,8 @@
 WebPluginFactory::WebPluginFactory(WebPage *page, QObject *parent)
   : QWebPluginFactory(page)
   , page_(page)
+  , parent_(parent)
 {
-  parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
 }
 
 QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,

@@ -156,20 +156,8 @@ void ClickToFlash::findElement()
   if (!loadButton_)
     return;
 
-  QWidget* parent = parentWidget();
-  QWebView* view = 0;
-  while (parent) {
-    if (QWebView* aView = qobject_cast<QWebView*>(parent)) {
-      view = aView;
-      break;
-    }
-    parent = parent->parentWidget();
-  }
-  if (!view)
-    return;
-
-  QPoint objectPos = view->mapFromGlobal(loadButton_->mapToGlobal(loadButton_->pos()));
-  QWebFrame* objectFrame = view->page()->frameAt(objectPos);
+  QPoint objectPos = page_->view()->mapFromGlobal(loadButton_->mapToGlobal(loadButton_->pos()));
+  QWebFrame* objectFrame = page_->frameAt(objectPos);
   QWebHitTestResult hitResult;
   QWebElement hitElement;
 
@@ -189,7 +177,7 @@ void ClickToFlash::findElement()
 
   QList<QWebFrame*> frames;
   frames.append(objectFrame);
-  frames.append(view->page()->mainFrame());
+  frames.append(page_->mainFrame());
 
   while (!frames.isEmpty()) {
     QWebFrame* frame = frames.takeFirst();
@@ -225,11 +213,11 @@ void ClickToFlash::load()
 
     element_.setAttribute("type", "application/futuresplash");
 
-    QString js = "var qz_c2f_clone=this.cloneNode(true);var qz_c2f_parentNode=this.parentNode;"
-        "var qz_c2f_substituteElement=document.createElement(this.tagName);"
-        "qz_c2f_substituteElement.width=this.width;qz_c2f_substituteElement.height=this.height;"
-        "this.parentNode.replaceChild(qz_c2f_substituteElement,this);setTimeout(function(){"
-        "qz_c2f_parentNode.replaceChild(qz_c2f_clone,qz_c2f_substituteElement);},250);";
+    QString js = "var c2f_clone=this.cloneNode(true);var c2f_parentNode=this.parentNode;"
+        "var c2f_substituteElement=document.createElement(this.tagName);"
+        "c2f_substituteElement.width=this.width;c2f_substituteElement.height=this.height;"
+        "this.parentNode.replaceChild(c2f_substituteElement,this);setTimeout(function(){"
+        "c2f_parentNode.replaceChild(c2f_clone,c2f_substituteElement);},250);";
 
     element_.evaluateJavaScript(js);
   }

@@ -35,7 +35,7 @@ WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
 
   setNetworkAccessManager(networkManager);
 
-  setPluginFactory(new WebPluginFactory(this, parent));
+  setPluginFactory(new WebPluginFactory(this, rssl_));
   setForwardUnsupportedContent(true);
 
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
