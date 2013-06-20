@@ -22,6 +22,8 @@
 #include <QtCore>
 #include <QtSql>
 
+#include "VersionNo.h"
+
 QString kDbName    = "feeds.db";  ///< DB filename
 QString kDbVersion = "0.12.1";    ///< Current DB version
 
@@ -390,16 +392,16 @@ void initLabelsTable(QSqlDatabase *db)
   }
 }
 
-/** Create backup copy of DB-file
+/** Create backup copy of file
  *
  *  Backup filename format:
- *  <oldname>.backup_<DB-version>_<backup-creation-time>
- * @param dbFileName absolute path of DB-file
- * @param dbVersion DB-version
+ *  <old-filename>_<file-version>_<backup-creation-time>.bak
+ * @param oldFilename absolute path of file to backup
+ * @param oldVersion version of file to backup
  *----------------------------------------------------------------------------*/
-void createDBBackup(const QString &dbFileName, const QString &dbVersion)
+void createFileBackup(const QString &oldFilename, const QString &oldVersion)
 {
-  QFileInfo fi(dbFileName);
+  QFileInfo fi(oldFilename);
 
   // Create backup folder inside DB-file folder
   QDir backupDir(fi.absoluteDir());
@@ -408,13 +410,12 @@ void createDBBackup(const QString &dbFileName, const QString &dbVersion)
   backupDir.cd("backup");
 
   // Create backup
-  QString dbBackupName(backupDir.absolutePath() + '/' + fi.fileName());
-  dbBackupName.append(QString("[%1_%2].old")
-          .arg(dbVersion)
+  QString backupFilename(backupDir.absolutePath() + '/' + fi.fileName());
+  backupFilename.append(QString("_%1_%2.bak")
+          .arg(oldVersion)
           .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
-  QFile::copy(dbFileName, dbBackupName);
+  QFile::copy(oldFilename, backupFilename);
 }
-
 
 //-----------------------------------------------------------------------------
 QString initDB(const QString &dbFileName, QSettings *settings)
@@ -476,6 +477,18 @@ QString initDB(const QString &dbFileName, QSettings *settings)
     q.exec("SELECT value FROM info WHERE name='version'");
     if (q.next())
       dbVersionString = q.value(0).toString();
+
+    QString appVersionString;
+    q.exec("SELECT value FROM info WHERE name='appVersion'");
+    if (q.next())
+      appVersionString = q.value(0).toString();
+
+    // Create backups for DB and Settings
+    if (appVersionString != STRPRODUCTVER) {
+        createFileBackup(dbFileName, STRPRODUCTVER);
+        createFileBackup(settings->fileName(), STRPRODUCTVER);
+    }
+
     if (!dbVersionString.isEmpty()) {
       // DB-version 1.0 (0.1.0 indeed)
       if (dbVersionString == "1.0") {
@@ -725,7 +738,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
         else {
           qDebug() << "dbversion =" << dbVersionString << ": rowToParentCorrected_0.12.3 = true";
 
-          createDBBackup(dbFileName, dbVersionString);
+          createFileBackup(dbFileName, dbVersionString);
 
           q.exec("INSERT OR REPLACE INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
 
@@ -764,6 +777,13 @@ QString initDB(const QString &dbFileName, QSettings *settings)
         }   // if (rowToParentCorrected) {
       } // DB-version last
     }
+
+    // Update appVersion anyway
+    q.prepare("INSERT OR REPLACE INTO info(name, value) "
+              "VALUES('appVersion', :appVersion)");
+    q.bindValue(":appVersion", STRPRODUCTVER);
+    q.exec();
+
     q.finish();
 
     db.commit();
