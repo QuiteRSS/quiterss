@@ -378,7 +378,7 @@ void FeedPropertiesDialog::selectIcon()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select Image"),
                                                   QDir::homePath(),
-                                                  tr("Image files (*.jpg *.jpeg *.png *.bmp *.tif *.tiff)"));
+                                                  tr("Image files (*.bmp *.gif *.ico *.jpg *.jpeg *.mng *.png *.pbm *.pgm *.ppm *.tif *.tiff *tga *.svg *xbm *xpm)"));
 
   if (fileName.isNull()) return;
 
