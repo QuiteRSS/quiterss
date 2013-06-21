@@ -133,7 +133,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   connect(loadTitleButton, SIGNAL(clicked()), this, SLOT(setDefaultTitle()));
   connect(selectIconButton_, SIGNAL(clicked()),
-          selectIconButton_, SLOT(showMenu()));
+          this, SLOT(selectIcon()));
   connect(selectIconMenu->actions().at(0), SIGNAL(triggered()),
           this, SLOT(loadDefaultIcon()));
   connect(selectIconMenu->actions().at(2), SIGNAL(triggered()),
