@@ -138,9 +138,16 @@ void LabelDialog::selectIcon(QAction *action)
 
 void LabelDialog::loadIcon()
 {
+  QString filter;
+  foreach (QByteArray imageFormat, QImageReader::supportedImageFormats()) {
+    if (!filter.isEmpty()) filter.append(" ");
+    filter.append("*.").append(imageFormat);
+  }
+  filter = tr("Image files") + QString(" (%1)").arg(filter);
+
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select Image"),
                                                   QDir::homePath(),
-                                                  tr("Image files (*.bmp *.gif *.ico *.jpg *.jpeg *.mng *.png *.pbm *.pgm *.ppm *.tif *.tiff *.tga *.svg *.xbm *.xpm)"));
+                                                  filter);
 
   if (fileName.isNull()) return;
 
