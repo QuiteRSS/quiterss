@@ -140,7 +140,7 @@ void LabelDialog::loadIcon()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select Image"),
                                                   QDir::homePath(),
-                                                  tr("Image files (*.jpg *.jpeg *.png *.bmp)"));
+                                                  tr("Image files (*.jpg *.jpeg *.png *.bmp *.tif *.tiff)"));
 
   if (fileName.isNull()) return;
 
