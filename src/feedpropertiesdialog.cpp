@@ -382,10 +382,12 @@ void FeedPropertiesDialog::selectIcon()
 
   if (fileName.isNull()) return;
 
+  QMessageBox msgBox;
+  msgBox.setText(tr("Load icon: can't open a file!"));
+  msgBox.setIcon(QMessageBox::Warning);
+
   QFile file(fileName);
   if (!file.open(QIODevice::ReadOnly)) {
-    QMessageBox msgBox;
-    msgBox.setText(tr("Load icon: can't open a file"));
     msgBox.exec();
     return;
   }
@@ -400,6 +402,8 @@ void FeedPropertiesDialog::selectIcon()
     if (pixmap.save(&buffer, "ICO")) {
       slotFaviconUpdate(feedProperties.general.url, faviconData);
     }
+  } else {
+    msgBox.exec();
   }
 
   file.close();

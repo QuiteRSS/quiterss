@@ -144,18 +144,21 @@ void LabelDialog::loadIcon()
 
   if (fileName.isNull()) return;
 
+  QMessageBox msgBox;
+  msgBox.setText(tr("Load icon: can't open a file!"));
+  msgBox.setIcon(QMessageBox::Warning);
+
   QFile file(fileName);
   if (!file.open(QIODevice::ReadOnly)) {
-    QMessageBox msgBox;
-    msgBox.setText(tr("Load icon: can't open a file"));
     msgBox.exec();
     return;
   }
 
   QPixmap pixmap;
   if (pixmap.loadFromData(file.readAll())) {
-    pixmap = pixmap.scaled(16, 16, Qt::IgnoreAspectRatio,
-                           Qt::SmoothTransformation);
+    pixmap = pixmap.scaled(16, 16, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+  } else {
+    msgBox.exec();
   }
   icon_.addPixmap(pixmap);
   iconButton_->setIcon(icon_);
