@@ -259,7 +259,7 @@ const QString kCreateNewsTableQuery_v0_1_0(
                                            //   for purpose not to display after next update.
                                            //   News are deleted by cleanup process only
     "attachment varchar, "                 // Links to attachments (tabs separated)
-    "comments varchar, "                   // News comments page URL-link 
+    "comments varchar, "                   // News comments page URL-link
     "enclosure_length, "                   // Media-object, associated to news:
     "enclosure_type, "                     //   length, type,
     "enclosure_url, "                      //   URL-address
@@ -297,7 +297,7 @@ const QString kCreateNewsTableQuery(
                                            //   for purpose not to display after next update.
                                            //   News are deleted by cleanup process only
     "attachment varchar, "                 // Links to attachments (tabs separated)
-    "comments varchar, "                   // News comments page URL-link 
+    "comments varchar, "                   // News comments page URL-link
     "enclosure_length, "                   // Media-object, associated to news:
     "enclosure_type, "                     //   length, type,
     "enclosure_url, "                      //   URL-address
@@ -409,12 +409,24 @@ void createFileBackup(const QString &oldFilename, const QString &oldVersion)
     backupDir.mkpath("backup");
   backupDir.cd("backup");
 
+  // Delete old files
+  QStringList fileNameList = backupDir.entryList(QStringList(QString("%1*").arg(fi.fileName())),
+                                                 QDir::Files, QDir::Time);
+  int count = 0;
+  foreach (QString fileName, fileNameList) {
+    count++;
+    if (count >= 3) {
+      QFile::remove(backupDir.absolutePath() + '/' + fileName);
+    }
+  }
+
   // Create backup
   QString backupFilename(backupDir.absolutePath() + '/' + fi.fileName());
   backupFilename.append(QString("_%1_%2.bak")
           .arg(oldVersion)
           .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
   QFile::copy(oldFilename, backupFilename);
+
 }
 
 //-----------------------------------------------------------------------------
