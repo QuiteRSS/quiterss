@@ -1892,6 +1892,8 @@ void RSSListing::readSettings()
   notDeleteLabeled_ = settings_->value("notDeleteLabeled", false).toBool();
   markIdenticalNewsRead_ = settings_->value("markIdenticalNewsRead", true).toBool();
 
+  mainNewsFilter_ = settings_->value("mainNewsFilter", "filterNewsAll_").toString();
+
   cleanupOnShutdown_ = settings_->value("cleanupOnShutdown", true).toBool();
   maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
   maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
@@ -2171,6 +2173,8 @@ void RSSListing::writeSettings()
   settings_->setValue("notDeleteStarred", notDeleteStarred_);
   settings_->setValue("notDeleteLabeled", notDeleteLabeled_);
   settings_->setValue("markIdenticalNewsRead", markIdenticalNewsRead_);
+
+  settings_->setValue("mainNewsFilter", mainNewsFilter_);
 
   settings_->setValue("cleanupOnShutdown", cleanupOnShutdown_);
   settings_->setValue("maxDayClearUp", maxDayCleanUp_);
@@ -3618,6 +3622,13 @@ void RSSListing::showOptionDlg()
   optionsDialog->notDeleteLabeled_->setChecked(notDeleteLabeled_);
   optionsDialog->markIdenticalNewsRead_->setChecked(markIdenticalNewsRead_);
 
+  for (int i = 0; i < optionsDialog->mainNewsFilter_->count(); i++) {
+    if (optionsDialog->mainNewsFilter_->itemData(i).toString() == mainNewsFilter_) {
+      optionsDialog->mainNewsFilter_->setCurrentIndex(i);
+      break;
+    }
+  }
+
   optionsDialog->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
   optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
   optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
@@ -3924,6 +3935,9 @@ void RSSListing::showOptionDlg()
   notDeleteStarred_ = optionsDialog->notDeleteStarred_->isChecked();
   notDeleteLabeled_ = optionsDialog->notDeleteLabeled_->isChecked();
   markIdenticalNewsRead_ = optionsDialog->markIdenticalNewsRead_->isChecked();
+
+  mainNewsFilter_ = optionsDialog->mainNewsFilter_->itemData(
+        optionsDialog->mainNewsFilter_->currentIndex()).toString();
 
   cleanupOnShutdown_ = optionsDialog->cleanupOnShutdownBox_->isChecked();
   dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
@@ -4432,7 +4446,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
   // Store filter to enable it as "last used filter"
-  if (pAct->objectName() != "filterNewsAll_")
+  if (pAct->objectName() != mainNewsFilter_)
     newsFilterAction_ = pAct;
 }
 
@@ -4694,7 +4708,7 @@ void RSSListing::slotFeedsFilter()
 // ----------------------------------------------------------------------------
 void RSSListing::slotNewsFilter()
 {
-  if (newsFilterGroup_->checkedAction()->objectName() == "filterNewsAll_") {
+  if (newsFilterGroup_->checkedAction()->objectName() == mainNewsFilter_) {
     if (newsFilterAction_ != NULL) {
       newsFilterAction_->setChecked(true);
       setNewsFilter(newsFilterAction_);
@@ -4719,8 +4733,13 @@ void RSSListing::slotNewsFilter()
       }
     }
   } else {
-    filterNewsAll_->setChecked(true);
-    setNewsFilter(filterNewsAll_);
+    foreach(QAction *action, newsFilterGroup_->actions()) {
+      if (action->objectName() == mainNewsFilter_) {
+        action->setChecked(true);
+        setNewsFilter(action);
+        break;
+      }
+    }
   }
 }
 // ----------------------------------------------------------------------------

@@ -694,6 +694,28 @@ void OptionsDialog::createFeedsWidget()
   alternatingRowColorsNews_ = new QCheckBox(tr("Alternating row background colors"));
   simplifiedDateTime_ = new QCheckBox(tr("Simplified representation of date and time"));
 
+  itemList.clear();
+  itemList << tr("Show All")  << tr("Show New") << tr("Show Unread")
+           << tr("Show Starred") << tr("Show Not Starred")
+           << tr("Show Unread or Starred") << tr("Show Last Day")
+           << tr("Show Last 7 Days");
+  mainNewsFilter_ = new QComboBox(this);
+  mainNewsFilter_->addItems(itemList);
+  mainNewsFilter_->setItemData(0, "filterNewsAll_");
+  mainNewsFilter_->setItemData(1, "filterNewsNew_");
+  mainNewsFilter_->setItemData(2, "filterNewsUnread_");
+  mainNewsFilter_->setItemData(3, "filterNewsStar_");
+  mainNewsFilter_->setItemData(4, "filterNewsNotStarred_");
+  mainNewsFilter_->setItemData(5, "filterNewsUnreadStar_");
+  mainNewsFilter_->setItemData(6, "filterNewsLastDay_");
+  mainNewsFilter_->setItemData(7, "filterNewsLastWeek_");
+
+  QHBoxLayout *mainNewsFilterLayout = new QHBoxLayout();
+  mainNewsFilterLayout->setMargin(0);
+  mainNewsFilterLayout->addWidget(new QLabel(tr("Main news filter:")));
+  mainNewsFilterLayout->addWidget(mainNewsFilter_);
+  mainNewsFilterLayout->addStretch();
+
   QVBoxLayout *generalFeedsLayout = new QVBoxLayout();
   generalFeedsLayout->addWidget(updateFeedsStartUp_);
   generalFeedsLayout->addLayout(updateFeedsLayout);
@@ -704,6 +726,8 @@ void OptionsDialog::createFeedsWidget()
   generalFeedsLayout->addSpacing(10);
   generalFeedsLayout->addWidget(simplifiedDateTime_);
   generalFeedsLayout->addLayout(formatDateLayout);
+  generalFeedsLayout->addSpacing(10);
+  generalFeedsLayout->addLayout(mainNewsFilterLayout);
   generalFeedsLayout->addStretch();
 
   QWidget *generalFeedsWidget = new QWidget();

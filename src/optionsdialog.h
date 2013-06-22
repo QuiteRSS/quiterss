@@ -121,6 +121,8 @@ public:
   QCheckBox *alternatingRowColorsNews_;
   QCheckBox *simplifiedDateTime_;
 
+  QComboBox *mainNewsFilter_;
+
   QCheckBox *changeBehaviorActionNUN_;
   QCheckBox *notDeleteStarred_;
   QCheckBox *notDeleteLabeled_;

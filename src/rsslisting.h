@@ -548,6 +548,7 @@ private:
 
   QAction *feedsFilterAction_; //!< Filter name storage, needed to enable last used filter
   QAction *newsFilterAction_;  //!< Filter name storege, needed to enable last used filter
+  QString mainNewsFilter_;
 
   QAction *showUnreadCount_;
   QAction *showUndeleteCount_;
