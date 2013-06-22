@@ -682,6 +682,8 @@ private:
 
   bool recountCategoryCountsOn_;
 
+  QString diskCacheDirPathDefault_;
+
 };
 
 #endif

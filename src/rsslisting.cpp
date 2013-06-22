@@ -122,18 +122,19 @@ RSSListing::RSSListing(QSettings *settings,
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
   if (useDiskCache) {
     diskCache_ = new QNetworkDiskCache(this);
-    QString diskCacheDirPath;
 #if defined(Q_OS_UNIX)
 #ifdef HAVE_QT5
-    diskCacheDirPath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    diskCacheDirPathDefault_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 #else
-    diskCacheDirPath = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
+    diskCacheDirPathDefault_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 #endif
 #else
-    diskCacheDirPath = dataDirPath_ + "/cache";
+    diskCacheDirPathDefault_ = dataDirPath_ + "/cache";
 #endif
-    diskCacheDirPath = settings_->value(
-          "Settings/dirDiskCache", QDir::toNativeSeparators(diskCacheDirPath)).toString();
+    QString diskCacheDirPath = settings_->value(
+          "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
+    if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
+
     bool cleanDiskCache = settings_->value("Settings/cleanDiskCache", true).toBool();
     if (cleanDiskCache) {
       removePath(diskCacheDirPath);
@@ -3569,9 +3570,10 @@ void RSSListing::showOptionDlg()
   optionsDialog->maxPagesInCache_->setValue(maxPagesInCache_);
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
   optionsDialog->diskCacheOn_->setChecked(useDiskCache);
-  QString dirDiskCache = settings_->value(
-        "Settings/dirDiskCache", QDir::toNativeSeparators(dataDirPath_+ "/cache")).toString();
-  optionsDialog->dirDiskCacheEdit_->setText(dirDiskCache);
+  QString diskCacheDirPath = settings_->value(
+        "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
+  if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
+  optionsDialog->dirDiskCacheEdit_->setText(diskCacheDirPath);
   int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
   optionsDialog->maxDiskCache_->setValue(maxDiskCache);
 
@@ -3861,19 +3863,19 @@ void RSSListing::showOptionDlg()
   maxDiskCache = optionsDialog->maxDiskCache_->value();
   settings_->setValue("Settings/maxDiskCache", maxDiskCache);
 
-  if (dirDiskCache != optionsDialog->dirDiskCacheEdit_->text()) {
-    if (diskCache_ != NULL)
-      diskCache_->clear();
+  if (diskCacheDirPath != optionsDialog->dirDiskCacheEdit_->text()) {
+    removePath(diskCacheDirPath);
   }
-  dirDiskCache = optionsDialog->dirDiskCacheEdit_->text();
-  settings_->setValue("Settings/dirDiskCache", dirDiskCache);
+  diskCacheDirPath = optionsDialog->dirDiskCacheEdit_->text();
+  if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
+  settings_->setValue("Settings/dirDiskCache", diskCacheDirPath);
 
   if (useDiskCache) {
     if (diskCache_ == NULL) {
       diskCache_ = new QNetworkDiskCache(this);
       networkManager_->setCache(diskCache_);
     }
-    diskCache_->setCacheDirectory(dirDiskCache);
+    diskCache_->setCacheDirectory(diskCacheDirPath);
     diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
   } else {
     if (diskCache_ != NULL) {
