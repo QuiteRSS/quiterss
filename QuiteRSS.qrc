@@ -121,6 +121,7 @@
         <file alias="download">images/download.png</file>
         <file alias="list_clear">images/list_clear.png</file>
         <file alias="flag_AR">images/flag_arab.png</file>
+        <file>images/share_gplus.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>

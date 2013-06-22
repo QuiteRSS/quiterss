@@ -1325,6 +1325,12 @@ void RSSListing::createActions()
   evernoteShareAct_->setIcon(QIcon(":/images/images/share_evernote.png"));
   shareGroup_->addAction(evernoteShareAct_);
 
+  gplusShareAct_ = new QAction(this);
+  gplusShareAct_->setObjectName("gplusShareAct");
+  gplusShareAct_->setText("Google+");
+  gplusShareAct_->setIcon(QIcon(":/images/images/share_gplus.png"));
+  shareGroup_->addAction(gplusShareAct_);
+
   facebookShareAct_ = new QAction(this);
   facebookShareAct_->setObjectName("facebookShareAct");
   facebookShareAct_->setText("Facebook");

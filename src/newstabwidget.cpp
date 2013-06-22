@@ -1973,7 +1973,8 @@ void NewsTabWidget::slotShareNews(QAction *action)
       url.addQueryItem("body", linkString.simplified());
 #endif
       openUrl(url);
-    } else {
+    }
+    else {
       if (action->objectName() == "evernoteShareAct") {
         url.setUrl("https://www.evernote.com/clip.action");
 #ifdef HAVE_QT5
@@ -1985,7 +1986,18 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
 #endif
-      } else if (action->objectName() == "facebookShareAct") {
+      }
+      else if (action->objectName() == "gplusShareAct") {
+        url.setUrl("https://plus.google.com/share");
+#ifdef HAVE_QT5
+        QUrlQuery urlQuery;
+        urlQuery.addQueryItem("url", linkString.simplified());
+        url.setQuery(urlQuery);
+#else
+        url.addQueryItem("url", linkString.simplified());
+#endif
+      }
+      else if (action->objectName() == "facebookShareAct") {
         url.setUrl("https://www.facebook.com/sharer.php");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -1996,7 +2008,8 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("u", linkString.simplified());
         url.addQueryItem("t", title);
 #endif
-      } else if (action->objectName() == "livejournalShareAct") {
+      }
+      else if (action->objectName() == "livejournalShareAct") {
         url.setUrl("http://www.livejournal.com/update.bml");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2007,7 +2020,8 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("event", linkString.simplified());
         url.addQueryItem("subject", title);
 #endif
-      } else if (action->objectName() == "pocketShareAct") {
+      }
+      else if (action->objectName() == "pocketShareAct") {
         url.setUrl("https://getpocket.com/save");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2018,7 +2032,8 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("title", title);
 #endif
-      } else if (action->objectName() == "twitterShareAct") {
+      }
+      else if (action->objectName() == "twitterShareAct") {
         url.setUrl("https://twitter.com/share");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
@@ -2029,7 +2044,8 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.addQueryItem("url", linkString.simplified());
         url.addQueryItem("text", title);
 #endif
-      } else if (action->objectName() == "vkShareAct") {
+      }
+      else if (action->objectName() == "vkShareAct") {
         url.setUrl("https://vk.com/share.php");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
