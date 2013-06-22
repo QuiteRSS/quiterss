@@ -21,17 +21,27 @@
 #include <QDateTime>
 #include <QDir>
 
-CookieJar::CookieJar(QString dataDirPath, QObject *parent)
-  : QNetworkCookieJar(parent),
-    dataDirPath_(dataDirPath)
+CookieJar::CookieJar(QString dataDirPath, int saveCookies, QObject *parent)
+  : QNetworkCookieJar(parent)
+  , saveCookies_(saveCookies)
+  , dataDirPath_(dataDirPath)
 {
   loadCookies();
+}
+
+bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
+{
+  if (saveCookies_ == 0)
+    return false;
+  return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
 
 /** @brief Load cookies from file
  *----------------------------------------------------------------------------*/
 void CookieJar::loadCookies()
 {
+  if (saveCookies_ != 1) return;
+
   if (!QFile::exists(dataDirPath_ + QDir::separator() + "cookies.dat")) {
     return;
   }
@@ -68,6 +78,8 @@ void CookieJar::loadCookies()
  *----------------------------------------------------------------------------*/
 void CookieJar::saveCookies()
 {
+  if (saveCookies_ != 1) return;
+
   QList<QNetworkCookie> allCookies = getAllCookies();
 
   QFile file(dataDirPath_ + QDir::separator() + "cookies.dat");

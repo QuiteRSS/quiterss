@@ -88,6 +88,11 @@ public:
   QLineEdit *dirDiskCacheEdit_;
   QPushButton *dirDiskCacheButton_;
 
+  QRadioButton *saveCookies_;
+  QRadioButton *deleteCookiesOnClose_;
+  QRadioButton *blockCookies_;
+  QPushButton *clearCookies_;
+
   LineEdit *downloadLocationEdit_;
   QCheckBox *askDownloadLocation_;
 

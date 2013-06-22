@@ -404,6 +404,8 @@ void OptionsDialog::createNetworkConnectionsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createBrowserWidget()
 {
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+
   //! tab "General"
   embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
   externalBrowserOn_ = new QRadioButton(tr("Use external browser"));
@@ -528,6 +530,32 @@ void OptionsDialog::createBrowserWidget()
   QWidget *historyBrowserWidget_ = new QWidget();
   historyBrowserWidget_->setLayout(historyMainLayout);
 
+  //! tab "Privacy"
+  saveCookies_ = new QRadioButton(tr("Allow local data to by set (recommended)"));
+  deleteCookiesOnClose_ = new QRadioButton(tr("Keep local data only until quit applicationn"));
+  blockCookies_ = new QRadioButton(tr("Block sites from setting any data"));
+  clearCookies_ = new QPushButton(tr("Clear"));
+  connect(clearCookies_, SIGNAL(clicked()), rssl_->cookieJar_, SLOT(clearCookies()));
+
+  QGridLayout *cookiesLayout = new QGridLayout();
+  cookiesLayout->setContentsMargins(15, 0, 5, 10);
+  cookiesLayout->addWidget(saveCookies_, 0, 0);
+  cookiesLayout->addWidget(deleteCookiesOnClose_, 1, 0);
+  cookiesLayout->addWidget(blockCookies_, 2, 0);
+  cookiesLayout->addWidget(clearCookies_, 3, 0, Qt::AlignLeft);
+  QButtonGroup *cookiesBox = new QButtonGroup();
+  cookiesBox->addButton(saveCookies_);
+  cookiesBox->addButton(deleteCookiesOnClose_);
+  cookiesBox->addButton(blockCookies_);
+
+  QVBoxLayout *privacyMainLayout = new QVBoxLayout();
+  privacyMainLayout->addWidget(new QLabel(tr("Cookies:")));
+  privacyMainLayout->addLayout(cookiesLayout);
+  privacyMainLayout->addStretch();
+
+  QWidget *privacyWidget_ = new QWidget();
+  privacyWidget_->setLayout(privacyMainLayout);
+
   //! tab "Click to Flash"
   QLabel *c2fInfo = new QLabel(tr("Click To Flash is a plugin which blocks auto loading of "
                                  "Flash content at page. You can always load it manually "
@@ -576,7 +604,6 @@ void OptionsDialog::createBrowserWidget()
   QWidget *click2FlashWidget_ = new QWidget(this);
   click2FlashWidget_->setLayout(click2FlashLayout);
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   c2fEnabled_->setChecked(rssl_->c2fEnabled_);
   foreach(const QString & site, rssl_->c2fWhitelist_) {
     QTreeWidgetItem* item = new QTreeWidgetItem(c2fWhitelist_);
@@ -608,6 +635,7 @@ void OptionsDialog::createBrowserWidget()
   browserWidget_ = new QTabWidget();
   browserWidget_->addTab(generalBrowserWidget, tr("General"));
   browserWidget_->addTab(historyBrowserWidget_, tr("History"));
+  browserWidget_->addTab(privacyWidget_, tr("Privacy"));
   browserWidget_->addTab(click2FlashWidget_, tr("Click to Flash"));
   browserWidget_->addTab(downloadsWidget, tr("Downloads"));
 }

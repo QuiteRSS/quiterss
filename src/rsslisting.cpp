@@ -116,7 +116,9 @@ RSSListing::RSSListing(QSettings *settings,
   connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
-  cookieJar_ = new CookieJar(dataDirPath_, this);
+  int saveCookies = settings_->value("Settings/saveCookies", 1).toInt();
+  cookieJar_ = new CookieJar(dataDirPath_, saveCookies, this);
+
   networkManager_->setCookieJar(cookieJar_);
 
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
@@ -2201,6 +2203,7 @@ void RSSListing::writeSettings()
   settings_->setValue("userStyleBrowser", userStyleBrowser_);
   settings_->setValue("maxPagesInCache", maxPagesInCache_);
   settings_->setValue("downloadLocation", downloadLocation_);
+  settings_->setValue("saveCookies", cookieJar_->saveCookies_);
   settings_->setValue("askDownloadLocation", askDownloadLocation_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
@@ -3587,6 +3590,10 @@ void RSSListing::showOptionDlg()
   int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
   optionsDialog->maxDiskCache_->setValue(maxDiskCache);
 
+  optionsDialog->saveCookies_->setChecked(cookieJar_->saveCookies_ == 1);
+  optionsDialog->deleteCookiesOnClose_->setChecked(cookieJar_->saveCookies_ == 2);
+  optionsDialog->blockCookies_->setChecked(cookieJar_->saveCookies_ == 0);
+
   optionsDialog->downloadLocationEdit_->setText(downloadLocation_);
   optionsDialog->askDownloadLocation_->setChecked(askDownloadLocation_);
 
@@ -3900,6 +3907,14 @@ void RSSListing::showOptionDlg()
       diskCache_->clear();
     }
   }
+
+  if (optionsDialog->deleteCookiesOnClose_->isChecked())
+    cookieJar_->saveCookies_ = 2;
+  else if (optionsDialog->blockCookies_->isChecked())
+    cookieJar_->saveCookies_ = 0;
+  else
+    cookieJar_->saveCookies_ = 1;
+
   downloadLocation_ = optionsDialog->downloadLocationEdit_->text();
   askDownloadLocation_ = optionsDialog->askDownloadLocation_->isChecked();
 
