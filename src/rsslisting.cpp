@@ -1938,6 +1938,7 @@ void RSSListing::readSettings()
   countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
   widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
   timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
+  fullscreenModeNotify_ = settings_->value("fullscreenModeNotify", true).toBool();
   onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
 
   toolBarLockAct_->setChecked(settings_->value("mainToolbarLock", true).toBool());
@@ -2213,6 +2214,7 @@ void RSSListing::writeSettings()
   settings_->setValue("countShowNewsNotify", countShowNewsNotify_);
   settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
   settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
+  settings_->setValue("fullscreenModeNotify", fullscreenModeNotify_);
   settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
   settings_->setValue("mainToolbarLock", toolBarLockAct_->isChecked());
@@ -3661,6 +3663,7 @@ void RSSListing::showOptionDlg()
   optionsDialog->countShowNewsNotify_->setValue(countShowNewsNotify_);
   optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
   optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
+  optionsDialog->fullscreenModeNotify_->setChecked(fullscreenModeNotify_);
   optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
 
   optionsDialog->setLanguage(langFileName_);
@@ -3979,6 +3982,7 @@ void RSSListing::showOptionDlg()
   countShowNewsNotify_ = optionsDialog->countShowNewsNotify_->value();
   widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
   timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
+  fullscreenModeNotify_ = optionsDialog->fullscreenModeNotify_->isChecked();
   onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
 
   if (langFileName_ != optionsDialog->language()) {
@@ -6470,6 +6474,23 @@ void RSSListing::showNotification()
     idFeedList_.clear();
     cntNewNewsList_.clear();
     return;
+  }
+
+  if (fullscreenModeNotify_) {
+#if defined(Q_OS_WIN)
+    HWND hWnd = GetForegroundWindow();
+    RECT appBounds;
+    RECT rc;
+    GetWindowRect(GetDesktopWindow(), &rc);
+
+    if((hWnd != GetDesktopWindow()) && (hWnd != GetShellWindow())) {
+      GetWindowRect(hWnd, &appBounds);
+      if ((rc.top == appBounds.top) && (rc.bottom == appBounds.bottom) &&
+          (rc.left == appBounds.left) && (rc.right == appBounds.right)) {
+        return;
+      }
+    }
+#endif
   }
 
   if (notificationWidget) delete notificationWidget;

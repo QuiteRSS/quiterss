@@ -629,6 +629,7 @@ private:
   QString soundNotifyPath_;
   bool playSoundNewNews_;
   bool showNotifyOn_;
+  bool fullscreenModeNotify_;
   bool onlySelectedFeeds_;
 
   UpdateAppDialog *updateAppDialog_;

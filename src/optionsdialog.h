@@ -160,6 +160,7 @@ public:
   QSpinBox *timeShowNewsNotify_;
   QSpinBox *widthTitleNewsNotify_;
 
+  QCheckBox *fullscreenModeNotify_;
   QCheckBox *onlySelectedFeeds_;
   QTreeWidget *feedsTreeNotify_;
   bool itemNotChecked_;

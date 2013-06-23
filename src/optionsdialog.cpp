@@ -994,6 +994,13 @@ void OptionsDialog::createNotifierWidget()
   notifierLayout3->addWidget(timeShowNewsNotify_);
   notifierLayout3->addWidget(new QLabel(tr("seconds")), 1);
 
+  fullscreenModeNotify_ = new QCheckBox(tr("Do not show notification in fullscreen mode"));
+#if defined(Q_OS_WIN)
+  fullscreenModeNotify_->show();
+#else
+  fullscreenModeNotify_->hide();
+#endif
+
   onlySelectedFeeds_ = new QCheckBox(tr("Only show selected feeds:"));
 
   feedsTreeNotify_ = new QTreeWidget(this);
@@ -1022,6 +1029,7 @@ void OptionsDialog::createNotifierWidget()
   notificationLayout->addLayout(notifierLayout1);
   notificationLayout->addLayout(notifierLayout2);
   notificationLayout->addLayout(notifierLayout3);
+  notificationLayout->addWidget(fullscreenModeNotify_);
   notificationLayout->addWidget(onlySelectedFeeds_);
   notificationLayout->addWidget(feedsTreeNotify_, 1);
 
