@@ -6342,7 +6342,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
 void RSSListing::slotOpenNewsWebView()
 {
   if (!newsView_->hasFocus()) return;
-  currentNewsTab->slotNewsViewClicked(newsView_->currentIndex());
+  currentNewsTab->slotNewsViewSelected(newsView_->currentIndex());
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotNewsUpPressed()
@@ -7325,6 +7325,7 @@ void RSSListing::restoreLastNews()
 void RSSListing::nextUnreadNews()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
+  newsView_->clearSelection();
 
   int newsRow = currentNewsTab->findUnreadNews(true);
 
@@ -7365,6 +7366,7 @@ void RSSListing::nextUnreadNews()
 void RSSListing::prevUnreadNews()
 {
   if (currentNewsTab->type_ >= TAB_WEB) return;
+  newsView_->clearSelection();
 
   int newsRow = currentNewsTab->findUnreadNews(false);
 
