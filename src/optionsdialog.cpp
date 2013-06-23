@@ -531,7 +531,7 @@ void OptionsDialog::createBrowserWidget()
   historyBrowserWidget_->setLayout(historyMainLayout);
 
   //! tab "Privacy"
-  saveCookies_ = new QRadioButton(tr("Allow local data to be set (recommended)"));
+  saveCookies_ = new QRadioButton(tr("Allow local data to be set"));
   deleteCookiesOnClose_ = new QRadioButton(tr("Keep local data only until quit application"));
   blockCookies_ = new QRadioButton(tr("Block sites from setting any data"));
   clearCookies_ = new QPushButton(tr("Clear"));
