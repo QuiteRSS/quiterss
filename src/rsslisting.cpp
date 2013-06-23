@@ -6483,7 +6483,11 @@ void RSSListing::showNotification()
     RECT rc;
     GetWindowRect(GetDesktopWindow(), &rc);
 
-    if((hWnd != GetDesktopWindow()) && (hWnd != GetShellWindow())) {
+    if((hWnd != GetDesktopWindow())
+   #ifdef HAVE_QT5
+       && (hWnd != GetShellWindow())
+   #endif
+       ) {
       GetWindowRect(hWnd, &appBounds);
       if ((rc.top == appBounds.top) && (rc.bottom == appBounds.bottom) &&
           (rc.left == appBounds.left) && (rc.right == appBounds.right)) {
