@@ -76,11 +76,12 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
 
     restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
   } else {
-    page_ = new QWebPage(this);
-    page_->setNetworkAccessManager(networkManager_);
-    page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
-    connect(page_, SIGNAL(loadFinished(bool)),
-            this, SLOT(renderStatistics()));
+    renderStatistics();
+//    page_ = new QWebPage(this);
+//    page_->setNetworkAccessManager(networkManager_);
+//    page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
+//    connect(page_, SIGNAL(loadFinished(bool)),
+//            this, SLOT(renderStatistics()));
   }
 }
 
