@@ -1285,7 +1285,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "tg_TJ" << QString::fromUtf8("Тоҷикӣ [tg_TJ]")
            << QString(STRPRODUCTVER)
-           << QString::fromUtf8("") << "";
+           << QString::fromUtf8("Kobilov Iskandar") << "kabilov.iskandar@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_TJ"));
   languageFileList_->addTopLevelItem(languageItem);
