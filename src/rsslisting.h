@@ -464,7 +464,6 @@ private:
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;
 
-  bool updateCheckTech_;
   bool updateCheckEnabled_;
 
   bool closeApp_;

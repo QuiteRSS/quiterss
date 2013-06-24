@@ -2036,7 +2036,6 @@ void RSSListing::readSettings()
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
-  updateCheckTech_ = settings_->value("updateCheck", true).toBool();
   updateCheckEnabled_ = settings_->value("updateCheckEnabled", true).toBool();
 
   hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", false).toBool();
@@ -2242,7 +2241,6 @@ void RSSListing::writeSettings()
 
   settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
 
-  settings_->setValue("updateCheck", updateCheckTech_);
   settings_->setValue("updateCheckEnabled", updateCheckEnabled_);
 
   settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
@@ -5875,7 +5873,7 @@ void RSSListing::showFilterRulesDlg()
 // ----------------------------------------------------------------------------
 void RSSListing::slotUpdateAppCheck()
 {
-  if (!updateCheckTech_) return;
+  if (!updateCheckEnabled_) return;
 
   updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
@@ -5885,8 +5883,6 @@ void RSSListing::slotUpdateAppCheck()
 void RSSListing::slotNewVersion(const QString &newVersion)
 {
   delete updateAppDialog_;
-
-  if (!updateCheckEnabled_) return;
 
   if (!newVersion.isEmpty()) {
     traySystem->showMessage(tr("Check for updates"),
