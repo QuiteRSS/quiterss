@@ -202,6 +202,7 @@ win32-g++ {
 win32-msvc* {
   LIBS += -lpsapi
   LIBS += -lShell32
+  LIBS += -lUser32
 
   QMAKE_CXXFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
   QMAKE_CFLAGS += -D__PRETTY_FUNCTION__=__FUNCTION__
