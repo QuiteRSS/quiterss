@@ -55,7 +55,6 @@ private slots:
 private:
   int requestTimeout_;
   QTimer *getUrlTimer_;
-  QElapsedTimer timer_;
 
   QQueue<QString> feedsQueue_;
   QQueue<QDateTime> dateQueue_;

@@ -49,8 +49,6 @@ UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
           SLOT(slotHead(QUrl,QString,QDateTime,int)));
   connect(this, SIGNAL(signalGet(QUrl,QString,QDateTime,int)),
           SLOT(slotGet(QUrl,QString,QDateTime,int)));
-
-  timer_.start();
 }
 
 /** @brief Put URL in request queue
@@ -77,7 +75,7 @@ void UpdateObject::getQueuedUrl()
   }
 
   if (!feedsQueue_.isEmpty()) {
-    getUrlTimer_->start();
+    getUrlTimer_->start(50);
 
     QString feedUrl = feedsQueue_.dequeue();
     QUrl getUrl = QUrl::fromEncoded(feedUrl.toUtf8());
