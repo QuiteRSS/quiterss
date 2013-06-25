@@ -24,7 +24,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
   : Dialog(parent)
   , notificationWidget_(NULL)
 {
-  setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
+  setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Options"));
 
   db_ = QSqlDatabase::database();
@@ -995,9 +995,7 @@ void OptionsDialog::createNotifierWidget()
   notifierLayout3->addWidget(new QLabel(tr("seconds")), 1);
 
   fullscreenModeNotify_ = new QCheckBox(tr("Do not show notification in fullscreen mode"));
-#if defined(Q_OS_WIN)
-  fullscreenModeNotify_->show();
-#else
+#if !defined(Q_OS_WIN)
   fullscreenModeNotify_->hide();
 #endif
 
