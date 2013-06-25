@@ -1,1 +1,1 @@
-lupdate . -no-obsolete -ts lang/quiterss_en.ts
+lupdate .. -no-obsolete -ts quiterss_en.ts
