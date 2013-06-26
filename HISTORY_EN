@@ -8,7 +8,7 @@
 <LI>Added: Ability to specify feed's icon</LI>
 <LI>Added: Option "Automatically mark identical news as read"</LI>
 <LI>Added: Option "Open new tab next to active"</LI>
-<LI>Added: Options: "Enable cleanup on shutdown", "Enable DB optimization"</LI>
+<LI>Added: Options "Enable cleanup on shutdown", "Enable DB optimization"</LI>
 <LI>Added: Option "Show feeds toggle at edge of the window"</LI>
 <LI>Added: Option "Main news filter"</LI>
 <LI>Added: Option "Do not show notifications in fullscreen mode" (Windows)</LI>
@@ -16,8 +16,8 @@
 <LI>Added: Removing news from "Deleted" with categories pop up menu</LI>
 <LI>Added: Share news with Google+</LI>
 <LI>Added: Backup DB-file and setting-file before application upgrade</LI>
-<LI>Added: Arabic</LI>
-<LI>Added: Tajik</LI>
+<LI>Added: Language: Arabic</LI>
+<LI>Added: Language: Tajik</LI>
 
 <LI>Changed: GUI. Visual tweaks</LI>
 <LI>Changed: Categories could be opened in tabs as feeds</LI>
