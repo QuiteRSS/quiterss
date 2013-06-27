@@ -2241,4 +2241,188 @@
     <source>Automatically update every</source>
     <target>Автоматическое обновление каждые</target>
 </phrase>
+<phrase>
+    <source>Clean Up...</source>
+    <target>Очистка...</target>
+</phrase>
+<phrase>
+    <source>Not connected</source>
+    <target>Соединение не установлено</target>
+</phrase>
+<phrase>
+    <source>Host %1 not found</source>
+    <target>Узел %1 не найден</target>
+</phrase>
+<phrase>
+    <source>Connection refused to host %1</source>
+    <target>В соединении с узлом %1 отказано</target>
+</phrase>
+<phrase>
+    <source>Connection timed out to host %1</source>
+    <target>Время на соединение с узлом %1 истекло</target>
+</phrase>
+<phrase>
+    <source>Connected to host %1</source>
+    <target>Установлено соединение с узлом %1</target>
+</phrase>
+<phrase>
+    <source>Connection refused for data connection</source>
+    <target>Отказ в соединении для передачи данных</target>
+</phrase>
+<phrase>
+    <source>Unknown error</source>
+    <target>Неизвестная ошибка</target>
+</phrase>
+<phrase>
+    <source>Connecting to host failed:
+%1</source>
+    <target>Не удалось соединиться с узлом:
+%1</target>
+</phrase>
+<phrase>
+    <source>Login failed:
+%1</source>
+    <target>Не удалось авторизоваться:
+%1</target>
+</phrase>
+<phrase>
+    <source>Listing directory failed:
+%1</source>
+    <target>Не удалось прочитать каталог:
+%1</target>
+</phrase>
+<phrase>
+    <source>Changing directory failed:
+%1</source>
+    <target>Не удалось сменить каталог:
+%1</target>
+</phrase>
+<phrase>
+    <source>Downloading file failed:
+%1</source>
+    <target>Не удалось загрузить файл:
+%1</target>
+</phrase>
+<phrase>
+    <source>Uploading file failed:
+%1</source>
+    <target>Не удалось отгрузить файл:
+%1</target>
+</phrase>
+<phrase>
+    <source>Removing file failed:
+%1</source>
+    <target>Не удалось удалить файл:
+%1</target>
+</phrase>
+<phrase>
+    <source>Creating directory failed:
+%1</source>
+    <target>Не удалось создать каталог:
+%1</target>
+</phrase>
+<phrase>
+    <source>Removing directory failed:
+%1</source>
+    <target>Не удалось удалить каталог:
+%1</target>
+</phrase>
+<phrase>
+    <source>Connection closed</source>
+    <target>Соединение закрыто</target>
+</phrase>
+<phrase>
+    <source>Clear &apos;Deleted&apos;</source>
+    <target>Очистить &apos;Удалённые&apos;</target>
+</phrase>
+<phrase>
+    <source>Clean up &apos;Deleted&apos;</source>
+    <target>Очищать &apos;Удалённые&apos;</target>
+</phrase>
+<phrase>
+    <source>Choose Feeds</source>
+    <target>Выберите ленты</target>
+</phrase>
+<phrase>
+    <source>Clean Up Options</source>
+    <target>Опции очистки</target>
+</phrase>
+<phrase>
+    <source>Purge DB</source>
+    <target>Очищать БД</target>
+</phrase>
+<phrase>
+    <source>Totally remove records that had marked &apos;deleted&apos; from DB.
+Ancient news could reappear</source>
+    <target>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
+Удаленные новости могут загрузится снова</target>
+</phrase>
+<phrase>
+    <source>Canceled!</source>
+    <target>Отменен!</target>
+</phrase>
+<phrase>
+    <source>Image files</source>
+    <target>Файлы изображений</target>
+</phrase>
+<phrase>
+    <source>Load Favicon</source>
+    <target>Загрузить favicon</target>
+</phrase>
+<phrase>
+    <source>Load Title</source>
+    <target>Загрузить заголовок</target>
+</phrase>
+<phrase>
+    <source>Select Icon</source>
+    <target>Выбор иконки</target>
+</phrase>
+<phrase>
+    <source>Select Icon...</source>
+    <target>Выбрать иконку...</target>
+</phrase>
+<phrase>
+    <source>Allow local data to be set</source>
+    <target>Разрешить сохранение локальных данных</target>
+</phrase>
+<phrase>
+    <source>Block sites from setting any data</source>
+    <target>Не разрешать сайтам сохранять локальные данные</target>
+</phrase>
+<phrase>
+    <source>Cookies:</source>
+    <target>Файлы сookies:</target>
+</phrase>
+<phrase>
+    <source>Count of news unread in feeds tree</source>
+    <target>Счётчик непрочитанных новостей в дереве лент</target>
+</phrase>
+<phrase>
+    <source>Enable cleanup on shutdown</source>
+    <target>Включить очистку при завершении</target>
+</phrase>
+<phrase>
+    <source>Keep local data only until quit application</source>
+    <target>Сохранять локальные данные только до закрытия программы</target>
+</phrase>
+<phrase>
+    <source>Main news filter:</source>
+    <target>Основной фильтр новостей:</target>
+</phrase>
+<phrase>
+    <source>Open new tab next to active</source>
+    <target>Открывать новую вкладку рядом с активной</target>
+</phrase>
+<phrase>
+    <source>Show feeds tree toggle at edge of window</source>
+    <target>Показывать переключатель дерева лент</target>
+</phrase>
+<phrase>
+    <source>Privacy</source>
+    <target>Конфиденциальность</target>
+</phrase>
+<phrase>
+    <source>Do not show notification in fullscreen mode</source>
+    <target>Не показывать уведомления в полноэкранном режиме</target>
+</phrase>
 </QPH>
