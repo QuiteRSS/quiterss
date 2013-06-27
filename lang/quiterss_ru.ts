@@ -2063,7 +2063,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1464"/>
         <source>Count of news unread in feeds tree</source>
-        <translation>Счётчик непрочитанных новостей в дереве лент</translation>
+        <translation>Количество непрочитанных новостей в дереве лент</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1490"/>

@@ -2355,7 +2355,7 @@
     <source>Totally remove records that had marked &apos;deleted&apos; from DB.
 Ancient news could reappear</source>
     <target>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
-Удаленные новости могут загрузится снова</target>
+Возможно, удалённые новости загрузятся снова</target>
 </phrase>
 <phrase>
     <source>Canceled!</source>
@@ -2395,7 +2395,7 @@ Ancient news could reappear</source>
 </phrase>
 <phrase>
     <source>Count of news unread in feeds tree</source>
-    <target>Счётчик непрочитанных новостей в дереве лент</target>
+    <target>Количество непрочитанных новостей в дереве лент</target>
 </phrase>
 <phrase>
     <source>Enable cleanup on shutdown</source>
