@@ -1251,7 +1251,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "pt_PT" << QString::fromUtf8("Português (Portugal) [pt_PT]")
            << QString(STRPRODUCTVER)
-           << QString::fromUtf8("Sérgio Marques") << "";
+           << QString::fromUtf8("Sérgio Marques") << "smarquespt@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_PT"));
   languageFileList_->addTopLevelItem(languageItem);
