@@ -69,7 +69,7 @@ void FaviconObject::getQueuedUrl()
   }
 
   if (!urlsQueue_.isEmpty()) {
-    getUrlTimer_->start();
+    getUrlTimer_->start(50);
 
     QString urlString = urlsQueue_.dequeue();
     QString feedUrl = feedsQueue_.dequeue();
