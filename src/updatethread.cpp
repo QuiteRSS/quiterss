@@ -28,7 +28,7 @@ UpdateThread::UpdateThread(QObject *parent, int requestTimeout)
   qDebug() << "UpdateThread::constructor";
 
   setObjectName("updateFeedsThread_");
-  start();
+  start(LowPriority);
 }
 
 UpdateThread::~UpdateThread()
