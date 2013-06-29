@@ -1299,7 +1299,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "tr" << QString::fromUtf8("Türkçe [TR]")
            << "0.12.5"
-           << QString::fromUtf8("Hasan Akgöz") << "";
+           << QString::fromUtf8("") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/images/flag_TR"));
   languageFileList_->addTopLevelItem(languageItem);
