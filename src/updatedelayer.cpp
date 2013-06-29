@@ -70,7 +70,7 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
   // Protect from starting while timeout is being processed
   if ((feedUrlList_.size() == 1) && nextUpdateFeed_) {
     nextUpdateFeed_ = false;
-    delayTimer_->start(0);
+    delayTimer_->start(10);
 
     if (!updateModelTimer_->isActive()) {
       updateModelTimer_->start(MIN_UPDATE_INTERVAL);

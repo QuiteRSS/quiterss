@@ -20,9 +20,40 @@
 
 #include <QtSql>
 #include <QDateTime>
+#include <QDomDocument>
 #include <QQueue>
 #include <QObject>
 #include <QUrl>
+
+struct FeedItemStruct {
+  QString title;
+  QString updated;
+  QString link;
+  QString linkBase;
+  QString language;
+  QString author;
+  QString authorUri;
+  QString authorEmail;
+  QString description;
+};
+
+struct NewsItemStruct {
+  QString id;
+  QString title;
+  QString updated;
+  QString link;
+  QString linkAlternate;
+  QString language;
+  QString author;
+  QString authorUri;
+  QString authorEmail;
+  QString description;
+  QString content;
+  QString category;
+  QString eUrl;
+  QString eType;
+  QString eLength;
+};
 
 struct FeedCountStruct{
   int feedId;
@@ -54,6 +85,8 @@ public slots:
 signals:
   void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
                         const QDateTime &dtReply);
+  void signalAddAtomNewsIntoBase(NewsItemStruct &newsItem);
+  void signalAddRssNewsIntoBase(NewsItemStruct &newsItem);
   void feedUpdated(const QString &feedUrl, const bool &changed, int newCount);
   void feedCountsUpdate(FeedCountStruct counts);
 
@@ -61,8 +94,13 @@ private slots:
   void getQueuedXml();
   void slotParse(const QByteArray &xmlData, const QString &feedUrl,
                  const QDateTime &dtReply);
+  void addAtomNewsIntoBase(NewsItemStruct &newsItem);
+  void addRssNewsIntoBase(NewsItemStruct &newsItem);
 
 private:
+  void parseAtom(const QString &feedUrl, const QDomDocument &doc);
+  void parseRss(const QString &feedUrl, const QDomDocument &doc);
+  QString toPlainText(const QString &text);
   QString parseDate(const QString &dateString, const QString &urlString);
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
@@ -75,6 +113,10 @@ private:
   QQueue<QString> feedsQueue_;
   QQueue<QByteArray> xmlsQueue_;
   QQueue<QDateTime> dtReadyQueue_;
+
+  int parseFeedId_;
+  bool duplicateNewsMode_;
+  bool feedChanged_;
 
 };
 
