@@ -250,7 +250,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>選擇 Feeds</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
@@ -295,18 +295,19 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>清除「刪除的」</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>清除資料庫(DB)</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>從資料庫中完全刪除已標記為「已刪除」的記錄。
+舊的訊息可能會再次出現</translation>
     </message>
 </context>
 <context>
@@ -721,7 +722,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="384"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>圖片檔案</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="386"/>
@@ -751,7 +752,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>載入 Favicon</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
@@ -1127,7 +1128,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>圖片檔案</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="148"/>
@@ -1137,7 +1138,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="155"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>載入圖示：無法開啟檔案！</translation>
     </message>
 </context>
 <context>
@@ -1471,7 +1472,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>在視窗邊緣顯示 Feeds 樹切換</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1660,17 +1661,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>允許本機資料設定</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>僅在退出應用程式之前保留本機資料</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>從設定任何資料封鎖網站</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
@@ -1680,7 +1681,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="552"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Cookies：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="560"/>
@@ -1720,7 +1721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>私人</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="639"/>
@@ -1810,7 +1811,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>主要新聞篩選器：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="765"/>
@@ -1840,7 +1841,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>關閉時啟用清理</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
@@ -1850,12 +1851,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>清除「刪除的」</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>啟用資料庫(DB)最佳化 (關閉速度較慢)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
@@ -1945,7 +1946,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>在全螢幕模式下不顯示提醒</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1068"/>
@@ -2055,12 +2056,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Feed 的新消息</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>在 Feeds 樹狀目錄中的未讀訊息數</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2433,32 +2434,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>沒有連線</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>找不到主機 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>主機 %1 拒絕連線</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>主機 %1 連線逾時</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>連線到主機 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>資料連線被拒絕</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
@@ -2469,60 +2470,69 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>連線到主機失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>登入失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>列出目錄失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>變更目錄失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>檔案下載失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>檔案上傳失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>檔案移除失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>建立目錄失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>移除目錄失敗：
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>連線已關閉</translation>
     </message>
 </context>
 <context>

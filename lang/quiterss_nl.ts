@@ -270,7 +270,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation>Maximun aantal dagen dat je het nieuws wilt bewaren:</translation>
+        <translation>Maximum aantal dagen dat je het nieuws wilt bewaren:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
@@ -1636,7 +1636,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="493"/>
         <source>Maximum pages in cache</source>
-        <translation>Maximale pagina&apos;s in cache</translation>
+        <translation>Maximum pagina&apos;s in cache</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="504"/>
@@ -1646,7 +1646,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="512"/>
         <source>Maximum size of disk cache</source>
-        <translation>Maximale grootte van schijf cache</translation>
+        <translation>Maximum grootte van schijf cache</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
@@ -1856,7 +1856,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>Schakelen DB optimalisatie in (Sluit trager)</translation>
+        <translation>Schakel DB optimalisatie in (Sluit trager)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>

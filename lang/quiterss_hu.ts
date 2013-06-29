@@ -295,18 +295,19 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>A &apos;Törölt&apos; eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Adatbázis törlése</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>A &apos;törölt&apos;-ként megjelölt bejegyzések eltávolítása az adatbázisból.⏎
+ A régi hírek ismét megjelenhetnek</translation>
     </message>
 </context>
 <context>
@@ -731,7 +732,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Ikon betöltése: a fájl nem nyitható meg!</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="277"/>
@@ -1471,7 +1472,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Hírcsatorna faszerkezet váltó megjelenítése az ablak szélén</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1660,17 +1661,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Helyi adat beállítások engedélyezése</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>A helyi adatok megőrzése csak addig, amíg az alkalmazás kilép</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Oldalak blokkolása bármilyen adat beállításból</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
@@ -1720,7 +1721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Adatvédelem</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="639"/>
@@ -1840,7 +1841,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Tisztítás engedélyezése leállításnál</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
@@ -1850,12 +1851,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>A &apos;Törölt&apos; eltávolítása</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>DB optimalizálás engedélyezése (lassabb leállítás)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
@@ -1945,7 +1946,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Ne jelenjen meg értesítés a teljes képernyős módban</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1068"/>
@@ -2055,12 +2056,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Hírcsatorna új hírekkel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Olvasatlan hírek száma a hírcsatorna fában</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2443,22 +2444,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Elutasított hoszt kapcsolat: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Hoszt kapcsolat túllépés: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Csatlakozva a %1 hoszthoz</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Adatkapcsolat csatlakozás elutasítva</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>

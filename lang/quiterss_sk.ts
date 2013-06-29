@@ -11,17 +11,17 @@
         <location filename="../src/aboutdialog.cpp" line="54"/>
         <location filename="../src/aboutdialog.cpp" line="120"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Verzia</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="46"/>
         <source>Revision</source>
-        <translation type="unfinished"/>
+        <translation>Revízia</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="58"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation type="unfinished"/>
+        <translation>QuiteRSS je open-source multi-platformná RSS/Atom čítačka</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="59"/>
@@ -36,12 +36,12 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="122"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>História</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="123"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Licencia</translation>
     </message>
 </context>
 <context>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="104"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Server vyžaduje prihlásenie:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="113"/>
@@ -128,7 +128,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="524"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Server vyžaduje prihlásenie!</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="526"/>
@@ -212,27 +212,27 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Neprečítané</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Vymazané</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Štítky</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="132"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť na novej karte</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="135"/>
@@ -332,24 +332,24 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="30"/>
         <source>Customize Main Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Upraviť hlavný panel nástrojov</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="32"/>
         <source>Customize Feeds Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Upraviť panel nástrojov kanálov</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="34"/>
         <source>Customize News Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Upraviť panel nástrojov noviniek</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="74"/>
         <location filename="../src/customizetoolbardialog.cpp" line="351"/>
         <location filename="../src/customizetoolbardialog.cpp" line="454"/>
         <source>Load images</source>
-        <translation type="unfinished"/>
+        <translation>Načítať obrázky</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="82"/>
@@ -406,7 +406,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="139"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Pridať</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="146"/>
@@ -576,7 +576,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť ako...</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
@@ -609,7 +609,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
@@ -659,12 +659,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="184"/>
         <source>Sort by:</source>
-        <translation type="unfinished"/>
+        <translation>Radiť podľa:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Pridať</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="205"/>
@@ -689,7 +689,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
         <source>Server requires authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Server vyžaduje prihlásenie:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="254"/>
@@ -739,7 +739,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="26"/>
         <source>Properties</source>
-        <translation type="unfinished"/>
+        <translation>Vlastnosti</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
@@ -874,7 +874,7 @@ Ancient news could reappear</source>
         <location filename="../src/findtext.cpp" line="89"/>
         <location filename="../src/findtext.cpp" line="104"/>
         <source>Find in News</source>
-        <translation type="unfinished"/>
+        <translation>Nájsť v novinkách</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
@@ -1073,12 +1073,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <source>To Do</source>
-        <translation type="unfinished"/>
+        <translation>Úlohy</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <source>Later</source>
-        <translation type="unfinished"/>
+        <translation>Neskôr</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
@@ -1454,7 +1454,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>Po spustení znovu otvoriť posledné kanály</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
@@ -1464,7 +1464,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"/>
+        <translation>Skryť strom kanálov pri otváraní kariet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
@@ -1474,22 +1474,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky zatvárať priečinky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky kontrolovať dostupnosť aktualizácií</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="260"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"/>
+        <translation>Ukladať databázu do pamäte (vyžaduje reštart programu)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="273"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation type="unfinished"/>
+        <translation>Spustiť QuiteRSS pri spustení Windowsu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
@@ -1693,7 +1693,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="577"/>
         <source>Add...</source>
-        <translation type="unfinished"/>
+        <translation>Pridať...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="579"/>
@@ -1713,7 +1713,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="637"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>História</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
@@ -1728,12 +1728,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Sťahovania</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="674"/>
         <source>Position on unread news</source>
-        <translation type="unfinished"/>
+        <translation>Na mieste prvej neprečítanej novinky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="691"/>
@@ -1748,7 +1748,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="715"/>
         <source>Display format for date:</source>
-        <translation type="unfinished"/>
+        <translation>Formát zobrazenia dátumu:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="718"/>
@@ -1758,52 +1758,52 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="722"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"/>
+        <translation>Striedať farby pozadia riadkov</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="723"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"/>
+        <translation>Zjednodušená reprezentácia dátumu a času</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť všetko</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť nové</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť neprečítané</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť neoznačené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť neprečítané alebo označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť za posledný deň</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť za posledných 7 dní</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
@@ -1868,7 +1868,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="899"/>
         <source>Delete...</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="903"/>
@@ -1913,7 +1913,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="977"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>Umiestnenie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="983"/>
@@ -1963,7 +1963,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1085"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1087"/>
@@ -2125,17 +2125,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="672"/>
         <source>Position on last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Na mieste poslednej otvorenej novinky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="673"/>
         <source>Position at top of list news</source>
-        <translation type="unfinished"/>
+        <translation>Na prvom mieste zoznamu noviniek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="675"/>
         <source>Open news</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť novinku</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="676"/>
@@ -2145,7 +2145,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="751"/>
         <source>Opening feed:</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť kanál:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="660"/>
@@ -2164,7 +2164,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Show splash screen on startup</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazovať štartovaciu obrazovku pri spúšťaní</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
@@ -2174,7 +2174,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
         <source>Automatically update the feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky aktualizovať kanály po spustení</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
@@ -2234,12 +2234,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="876"/>
         <source>Reading</source>
-        <translation type="unfinished"/>
+        <translation>Čítanie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="877"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Upratovanie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="939"/>
@@ -2254,7 +2254,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1121"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Verzia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="64"/>
@@ -2269,7 +2269,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="256"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť východziu RSS ikonku namiesto obľúbenej</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="774"/>
@@ -2408,7 +2408,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5128"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Zatvoriť</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5129"/>
@@ -2553,7 +2553,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5138"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5139"/>
@@ -2612,7 +2612,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5146"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5147"/>
@@ -2645,7 +2645,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5159"/>
         <source>&amp;Next &gt;</source>
-        <translation type="unfinished"/>
+        <translation>Ď&amp;alej &gt;</translation>
     </message>
 </context>
 <context>
@@ -2678,7 +2678,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4899"/>
         <source>&amp;Delete...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vymazať...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4908"/>
@@ -2688,27 +2688,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4942"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Filtrovať kanály</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4948"/>
         <source>Filter News</source>
-        <translation type="unfinished"/>
+        <translation>Filtrovať novinky</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4952"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4953"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť neoznačené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4954"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť neprečítané alebo označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4968"/>
@@ -2718,44 +2718,44 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4986"/>
         <source>Mark Read</source>
-        <translation type="unfinished"/>
+        <translation>Označiť ako prečítané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4988"/>
         <location filename="../src/rsslisting.cpp" line="4989"/>
         <source>Properties</source>
-        <translation type="unfinished"/>
+        <translation>Vlastnosti</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5000"/>
         <location filename="../src/rsslisting.cpp" line="5075"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Hlavný panel nástrojov</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5001"/>
         <source>Customize Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Upraviť panel nástrojov</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5002"/>
         <source>Main Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Hlavný panel nástrojov...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5003"/>
         <source>Customize Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Upraviť panel nástrojov...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5004"/>
         <source>Feeds Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Panel nástrojov kanálov...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5005"/>
         <source>News Toolbar...</source>
-        <translation type="unfinished"/>
+        <translation>Panel nástrojov noviniek...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5008"/>
@@ -2765,7 +2765,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5019"/>
         <source>Browser Position</source>
-        <translation type="unfinished"/>
+        <translation>Umiestnenie prehliadača</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5025"/>
@@ -2810,22 +2810,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5048"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5053"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť odsadenie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5058"/>
         <source>Zoom</source>
-        <translation type="unfinished"/>
+        <translation>Priblíženie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5059"/>
         <source>Zoom In</source>
-        <translation type="unfinished"/>
+        <translation>Priblížiť</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5060"/>
@@ -2835,7 +2835,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5061"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"/>
+        <translation>Oddialiť</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5062"/>
@@ -2855,7 +2855,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5066"/>
         <source>Print...</source>
-        <translation type="unfinished"/>
+        <translation>Tlačiť...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5067"/>
@@ -2865,7 +2865,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5068"/>
         <source>Print Preview...</source>
-        <translation type="unfinished"/>
+        <translation>Ukážka pred tlačou...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5069"/>
@@ -2875,7 +2875,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5071"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť ako...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5072"/>
@@ -2885,17 +2885,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5076"/>
         <source>Feeds Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Panel nástrojov kanálov</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5077"/>
         <source>News Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Panel nástrojov noviniek</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5078"/>
         <source>Browser Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Panel nástrojov prehliadača</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5081"/>
@@ -2937,7 +2937,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5892"/>
         <source>Check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5893"/>
@@ -2958,12 +2958,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5104"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Vymazané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5103"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5093"/>
@@ -2994,45 +2994,45 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4926"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Označiť ako prečítané/neprečítané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4939"/>
         <source>Options...</source>
-        <translation type="unfinished"/>
+        <translation>Možnosti...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4943"/>
         <location filename="../src/rsslisting.cpp" line="4949"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť všetko</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4944"/>
         <location filename="../src/rsslisting.cpp" line="4950"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť nové</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4945"/>
         <location filename="../src/rsslisting.cpp" line="4951"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť neprečítané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4958"/>
         <source>About...</source>
-        <translation type="unfinished"/>
+        <translation>O programe...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4973"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>Označiť hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4975"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4991"/>
@@ -3154,7 +3154,7 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="4885"/>
         <location filename="../src/rsslisting.cpp" line="5678"/>
         <source>Unread News: %1</source>
-        <translation type="unfinished"/>
+        <translation>Neprečítané novinky: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4889"/>
@@ -3166,7 +3166,7 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="4897"/>
         <location filename="../src/rsslisting.cpp" line="4969"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť na novej karte</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4900"/>
@@ -3202,7 +3202,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5102"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Neprečítané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5105"/>
@@ -3227,7 +3227,7 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="6200"/>
         <location filename="../src/rsslisting.cpp" line="7095"/>
         <source>Unread: %1</source>
-        <translation type="unfinished"/>
+        <translation>Neprečítané: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="3213"/>
@@ -3242,7 +3242,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4888"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"/>
+        <translation>Prid&amp;ať</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4895"/>
@@ -3262,7 +3262,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4921"/>
         <source>Update All</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovať všetko</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4922"/>
@@ -3272,7 +3272,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4924"/>
         <source>Mark All Feeds Read</source>
-        <translation type="unfinished"/>
+        <translation>Označiť všetky kanály ako prečítané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4927"/>
@@ -3283,7 +3283,7 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="4929"/>
         <location filename="../src/rsslisting.cpp" line="4930"/>
         <source>Mark All News Read</source>
-        <translation type="unfinished"/>
+        <translation>Označiť všetky novinky ako prečítané</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4932"/>
@@ -3291,7 +3291,7 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="7744"/>
         <location filename="../src/rsslisting.cpp" line="7754"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Sťahovania</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4934"/>
@@ -3306,7 +3306,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4937"/>
         <source>Filter News...</source>
-        <translation type="unfinished"/>
+        <translation>Filtrovať novinky...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4940"/>
@@ -3316,17 +3316,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4946"/>
         <source>Show Starred Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť kanály označené hviezdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4955"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť za posledný deň</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4956"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť za posledných 7 dní</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4959"/>
@@ -3336,7 +3336,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4961"/>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie..</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4962"/>
@@ -3346,7 +3346,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4964"/>
         <source>Open News</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť novinky</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4965"/>
@@ -3356,12 +3356,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4966"/>
         <source>Open in Browser</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť v prehliadači</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4967"/>
         <source>Open in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť v externom prehliadači</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4970"/>
@@ -3391,7 +3391,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4977"/>
         <source>Delete All News</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať všetky novinky</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4978"/>
@@ -3431,7 +3431,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4996"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Prehliadač</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5007"/>
@@ -3441,7 +3441,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5010"/>
         <source>Application Style</source>
-        <translation type="unfinished"/>
+        <translation>Vzhľad programu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5012"/>
@@ -3521,12 +3521,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Show/Hide</source>
-        <translation type="unfinished"/>
+        <translation>Panely</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5079"/>
         <source>Panel Categories</source>
-        <translation type="unfinished"/>
+        <translation>Panel kategórií</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5096"/>
@@ -3556,7 +3556,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5113"/>
         <source>Sorted by Name</source>
-        <translation type="unfinished"/>
+        <translation>Zoradené podľa názvu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5114"/>
@@ -3586,12 +3586,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5120"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>Zdieľať</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Sort By</source>
-        <translation type="unfinished"/>
+        <translation>Radiť podľa</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5123"/>
@@ -3626,12 +3626,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5166"/>
         <source>To Do</source>
-        <translation type="unfinished"/>
+        <translation>Úlohy</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5166"/>
         <source>Later</source>
-        <translation type="unfinished"/>
+        <translation>Neskôr</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5166"/>
@@ -3641,7 +3641,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="7274"/>
         <source>Save As</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť ako</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="7276"/>
@@ -3664,12 +3664,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="37"/>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="42"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="47"/>

@@ -440,7 +440,7 @@ Ancient news could reappear</source>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation>Fehler: Kann in Datei nicht schreiben!</translation>
+        <translation>Fehler: Kann Datei nicht erstellen!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
@@ -506,7 +506,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation>Die heruntergeladene Datei auch löschen?</translation>
+        <translation>Heruntergeladene Datei auch löschen?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="365"/>
@@ -553,7 +553,7 @@ Ancient news could reappear</source>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation>Die Datei %1  wurde leider nicht gefunden!</translation>
+        <translation>Datei %1  wurde leider nicht gefunden!</translation>
     </message>
 </context>
 <context>
@@ -1380,7 +1380,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications.cpp" line="137"/>
         <source>Incoming News: %1</source>
-        <translation>Eingehende Nachricht: %1</translation>
+        <translation>Eingehende Nachrichten: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="242"/>
@@ -1514,7 +1514,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Change icon for incoming new news</source>
-        <translation>Programmsymbol bei eingehender neuer Nachricht ändern</translation>
+        <translation>Programmsymbol bei eingehenden neuen Nachrichten ändern</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="307"/>
@@ -1673,7 +1673,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
         <source>Clear</source>
-        <translation>Leere</translation>
+        <translation>Leeren</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="552"/>
@@ -2299,7 +2299,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="813"/>
         <source>Prevent accidental deletion of:</source>
-        <translation>Verhindern Sie unbeabsichtigtes Löschen von:</translation>
+        <translation>Unbeabsichtigtes Löschen verhindern:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1004"/>
@@ -2467,55 +2467,55 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation>Verbindung zu Host gescheitert:⏎ %1</translation>
+        <translation>Verbindung zu Host fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation>Login gescheitert:⏎ %1</translation>
+        <translation>Login fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation>Auflistung des Verzeichnisses gescheitert:⏎ %1</translation>
+        <translation>Auflistung des Verzeichnisses fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation>Wechsel zum Verzeichnis gescheitert:⏎ %1</translation>
+        <translation>Wechsel zum Verzeichnis fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation>Datei-Download gescheitert:⏎ %1</translation>
+        <translation>Datei-Download fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation>Datei-Upload gescheitert:⏎ %1</translation>
+        <translation>Datei-Upload fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation>Entfernen der Datei gescheitert:⏎ %1</translation>
+        <translation>Entfernen der Datei fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation>Erstellen des Verzeichnisses gescheitert:⏎ %1</translation>
+        <translation>Erstellen des Verzeichnisses fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation>Entfernen des Verzeichnisses gescheitert:⏎ %1</translation>
+        <translation>Entfernen des Verzeichnisses fehlgeschlagen:⏎ %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>

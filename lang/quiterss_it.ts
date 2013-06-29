@@ -306,7 +306,7 @@
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Rimuovere totalmente le registrazioni che sono state segnate come 'cancellate' dal DataBase.
+        <translation>Rimuovere totalmente le registrazioni che sono state segnate come &apos;cancellate&apos; dal DataBase.
 Le notizie vecchie potrebbero riapparire</translation>
     </message>
 </context>
@@ -1472,7 +1472,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation>Mostra l'interruttore dell'albero dei feed sul bordo della finestra</translation>
+        <translation>Mostra l&apos;interruttore dell&apos;albero dei feed sul bordo della finestra</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1666,7 +1666,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation>Conserva i dati locali solo fino alla chiusura dell'applicazione</translation>
+        <translation>Conserva i dati locali solo fino alla chiusura dell&apos;applicazione</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
@@ -2061,7 +2061,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation>Conta le notizie non lette nell'albero dei feed</translation>
+        <translation>Conta le notizie non lette nell&apos;albero dei feed</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2444,17 +2444,17 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation>Connessione rifiutata dall'host %1</translation>
+        <translation>Connessione rifiutata dall&apos;host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation>Connessione scaduta per l'host %1</translation>
+        <translation>Connessione scaduta per l&apos;host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation>Connesso all'host %1</translation>
+        <translation>Connesso all&apos;host %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
@@ -2470,7 +2470,7 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation>Connessione all'host fallita:
+        <translation>Connessione all&apos;host fallita:
 %1</translation>
     </message>
     <message>

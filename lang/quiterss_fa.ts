@@ -212,32 +212,32 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>خوانده نشده</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>ستاره دار</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>حذف شده</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>برچسب ها</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="132"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>بازکردن در تب جدید</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="135"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>پاکسازی &apos;حذف شده&apos;</translation>
     </message>
 </context>
 <context>
@@ -245,68 +245,69 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>پاکسازی</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>فیدها را انتخاب کنید</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>تمام فیدها</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>گزینه های پاکسازی</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>حداکثر سن اخبار در روز برای حفظ کردن:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>حداکثر تعداد اخبار برای حفظ کردن:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>حذف اخبار خوانده شده</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>هرگز اخبار خوانده نشده را پاک نکن</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="316"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>هرگز اخبار ستاره دار شده را پاک نکن</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>هرگز برچسب اخبار را حذف نکن</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>پاکسازی &apos;حذف شده&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>تهی کردن پایگاه داده</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>حذف کلی رکوردهایی که در پایگاه داده بعنوان &apos;حذف شده&apos; نشانه گذاری شده است
+ممکن است اخبار قدیمی مجددا ظاهر شود</translation>
     </message>
 </context>
 <context>
@@ -526,7 +527,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
         <source>Cancel Downloading</source>
-        <translation type="unfinished"/>
+        <translation>لغو دانلود</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
@@ -721,17 +722,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="384"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>فایل های عکس</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="386"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>انتخاب عکس</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>بارگیری آیکون:فایل را نمیتوان باز کرد</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="277"/>
@@ -746,27 +747,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation type="unfinished"/>
+        <translation>بارگیری عنوان</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>بارگیری آیکون وبسایت</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation type="unfinished"/>
+        <translation>انتخاب آیکون...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation type="unfinished"/>
+        <translation>انتخاب آیکون</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"/>
+        <translation>بروزرسانی خودکار هر</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
@@ -909,7 +910,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="464"/>
         <source>Canceled!</source>
-        <translation type="unfinished"/>
+        <translation>لغو شده!</translation>
     </message>
 </context>
 <context>
@@ -1127,7 +1128,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>فایل عکس</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="148"/>
@@ -1137,7 +1138,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="155"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>بارگیری آیکون:فایل را نمیتوان باز کرد</translation>
     </message>
 </context>
 <context>
@@ -1461,7 +1462,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Open new tab next to active</source>
-        <translation type="unfinished"/>
+        <translation>بازکردن تب جدید کنار تب فعال</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
@@ -1471,7 +1472,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>نمایش ضامن فید درختی در لبه پنجره</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1660,27 +1661,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>اجازه به تنظیم داده محلی</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>حفظ داده محلی فقط تا خروج از برنامه</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>مسدودسازی سایت های از تنظیم هرگونه داده</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>پاکسازی</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="552"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>کوکی:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="560"/>
@@ -1720,7 +1721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>پوشیدگی</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="639"/>
@@ -1770,47 +1771,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>نمايش همه</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>نمایش جدید</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>نمایش خوانده نشده</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>نمایش ستاره دار</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>نمایش بی ستاره ها</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>نمایش خوانده نشده یا ستاره دار</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>نمایش روز گذشته</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>نمایش 7 روز گذشته</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>فیلتر اخبار اصلی:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="765"/>
@@ -1835,12 +1836,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="786"/>
         <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"/>
+        <translation>نشانه گذاری خودکار اخبار همسان بعنوان خوانده شده</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>فعالسازی پاکسازی در شات دان</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
@@ -1850,12 +1851,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>پاکسازی &apos;حذف شده&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>فعالسازی بهسازی پایگاه داده (شات دان آهسته تر)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
@@ -1945,7 +1946,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>اطلاع رسانی را درحالت تمام صفحه نشان نده</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1068"/>
@@ -2055,12 +2056,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>فید با اخبار جدید</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>شمردن اخبار خوانده نشده در فید درختی</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2433,96 +2434,105 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>متصل نشده است</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>میزبان %1 یافت نشد</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>ارتباط رد شده با میزبان %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>خطای تایم اوت به میزبان %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>اتصال به میزبان %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>ارتباط برای داده ارتباطی رد میکند</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>خطای ناشناخته</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به اتصال به میزبان نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به ورود نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به لیست گیری دایرکتوری نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به تغییر دایرکتوری نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به دانلود فایل نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به آپلود فایل نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به حذف فایل نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به ایجاد دایرکتوری نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>موفق به حذف دایرکتوری نشد:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>ارتباط بسته شده است</translation>
     </message>
 </context>
 <context>
@@ -3298,7 +3308,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4934"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>پاکسازی...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4936"/>

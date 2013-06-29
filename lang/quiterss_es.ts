@@ -212,32 +212,32 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Sin leer</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Destacados</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Eliminado</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Etiquetas</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="132"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Abrir en una nueva pestaña</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="135"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar &apos;Eliminados&apos;</translation>
     </message>
 </context>
 <context>
@@ -245,68 +245,69 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar Canales</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Todos los canales</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar Opciones</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Numero máximo de días a mantener las noticias:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Numero máximo de noticias a conservar:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar noticias leidas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Nunca eliminar noticias sin leer</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="316"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Nunca eliminar noticias destacadas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Nunca eliminar noticias etiquetadas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar &apos;Eliminados&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Purgar Base de Datos</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>Remover completamente registros marcados como &apos;Eliminados&apos;
+Noticias antiguas podrían reaparecer.</translation>
     </message>
 </context>
 <context>
@@ -526,7 +527,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
         <source>Cancel Downloading</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar Descarga</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
@@ -721,17 +722,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="384"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Archivos de imagen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="386"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar Imagen</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Cargar icono: ¡No puede abrir el archivo!</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="277"/>
@@ -746,22 +747,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation type="unfinished"/>
+        <translation>Cargar Tabla</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>Cargar Favicon</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar icono...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar icono</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
@@ -909,7 +910,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="464"/>
         <source>Canceled!</source>
-        <translation type="unfinished"/>
+        <translation>¡Cancelado!</translation>
     </message>
 </context>
 <context>
@@ -1127,7 +1128,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Archivos de imagen</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="148"/>
@@ -1137,7 +1138,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="155"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Cargar icono: ¡no puede abrir el archivo!</translation>
     </message>
 </context>
 <context>
@@ -1461,7 +1462,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Open new tab next to active</source>
-        <translation type="unfinished"/>
+        <translation>Abrir una nueva pestaña contigua a la actual</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
@@ -1471,7 +1472,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar árbol de canales alternado al borde de la ventana</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1660,27 +1661,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Permitir que se establezcan datos locales</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Mantener datos locales unicamente hasta que se cierre la aplicacion</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>No permitir que los sitios establescan ningun dato</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="552"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Cookies:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="560"/>
@@ -1720,7 +1721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Privacidad</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="639"/>
@@ -1770,47 +1771,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar todos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar Nuevos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar no leídos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar Destacados</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar No Destacados</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar destacados o sin leer</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar Noticias del ultimo día</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar noticias de los ultimos 7 dias</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Filtro De Noticias Principal:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="765"/>
@@ -1835,12 +1836,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="786"/>
         <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"/>
+        <translation>Marcar automaticamente como leídas las noticias idénticas </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar limpieza al apagar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
@@ -1850,12 +1851,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar &apos;Eliminados&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar la optimización de la BD (Apagado lento)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
@@ -1945,7 +1946,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>No mostrar notificaciones en modo Pantalla Completa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1068"/>
@@ -2055,12 +2056,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Canales con noticias nuevas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Conteo de noticias sin leer en el arbol de canales</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2433,96 +2434,105 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>No connectado</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Servidor %1 no encontrado</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Conexión rechazada desde el servidor %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Expiro el tiempo al conectar a %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Conectado al servidor %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Conexion reusada para datos</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Error desconocido</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>A fallado la conexion al servidor:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>A fallado la autenticación:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>A fallado el listar directorio:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar directorio a fallado:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Descargar archivo a fallado:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Cargar archicho a fallado:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar archivo a fallado:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Crear directorio a fallado:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar directorio a fallado:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>Conexion cerrada</translation>
     </message>
 </context>
 <context>
@@ -3298,7 +3308,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4934"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>Limpiar...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4936"/>

@@ -55,7 +55,7 @@
         <location filename="../src/addfeedwizard.cpp" line="91"/>
         <location filename="../src/addfeedwizard.cpp" line="165"/>
         <source>Create New Feed</source>
-        <translation>Vytvořit nový kanál</translation>
+        <translation>Přidat nový kanál</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="100"/>
@@ -212,32 +212,32 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Nepřečteno</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Označené hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Smazané</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Štítky</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="132"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Otevřít v nové záložce</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="135"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistit &apos;Smazané&apos;</translation>
     </message>
 </context>
 <context>
@@ -245,68 +245,69 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Úklid</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Výběr kanálů</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Všechny kanály</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>Nastavení úklidu</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Maximální stáří uchovávaných novinek ve dnech:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Maximální počet uchovávaných novinek:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>Smazat přečtené novinky</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Nikdy nemazat nepřečtené novinky</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="316"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Nikdy nemazat novinky označené hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Nikdy nemazat novinky označené štítkem</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistit &apos;Smazané&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistit DB</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>Úplně odstranit záznamy označené &apos;Smazané&apos; z DB.
+Staré zprávy se mohou znovu objevit</translation>
     </message>
 </context>
 <context>
@@ -596,7 +597,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="106"/>
         <source>Starred</source>
-        <translation>Označit hvězdičkou</translation>
+        <translation>Označené hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
@@ -721,17 +722,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="384"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Obrázky</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="386"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat obrázek</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Výběr ikonky: soubor nelze otevřít</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="277"/>
@@ -746,22 +747,22 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation type="unfinished"/>
+        <translation>Načíst název</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>Načíst ikonku</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat ikonku...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat ikonku</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
@@ -776,7 +777,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="110"/>
         <source>Automatically delete duplicate news</source>
-        <translation>Automaticky smazat duplicitní novinky</translation>
+        <translation>Automaticky odstranit duplicitní novinky</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="353"/>
@@ -1090,7 +1091,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="37"/>
         <source>Load icon...</source>
-        <translation>Načíst ikonku...</translation>
+        <translation>Vybrat ikonku...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="46"/>
@@ -1127,7 +1128,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Obrázky</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="148"/>
@@ -1137,7 +1138,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="155"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Výběr ikonky: soubor nelze otevřít</translation>
     </message>
 </context>
 <context>
@@ -1424,7 +1425,7 @@ nebyl nalezen!</translation>
         <location filename="../src/optionsdialog.cpp" line="79"/>
         <location filename="../src/optionsdialog.cpp" line="1571"/>
         <source>Notifications</source>
-        <translation>Upozornění</translation>
+        <translation>Oznámení</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="82"/>
@@ -1466,17 +1467,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>Skrýt strom kanálů při otevření záložky</translation>
+        <translation>Po otevření záložky skrýt seznam kanálů</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit přepínání seznamu kanálů v rohu okna</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
         <source>Automatically collapse folders</source>
-        <translation>Automaticky sbalit složky</translation>
+        <translation>Automaticky sbalit složky v seznamu kanálů</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
@@ -1591,7 +1592,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Use embedded browser</source>
-        <translation>Použít interní prohlížeč</translation>
+        <translation>Použít integrovaný prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="416"/>
@@ -1615,12 +1616,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="421"/>
         <source>Open links in embedded browser in background</source>
-        <translation>Otevírat odkazy v prohlížeči na pozadí</translation>
+        <translation>Odkazy v integrovaném prohlížeči otevírat na pozadí</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="422"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>Otevírat odkazy v externím prohlížeči na pozadí (experimentální)</translation>
+        <translation>Odkazy v externím prohlížeči otevírat na pozadí (experimentální)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
@@ -1660,27 +1661,27 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Povolit nastavení dat daného webu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Uchovat data daného webu jen do ukončení aplikace</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Zakázat webům nastavit jakákoli data</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Vymazat</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="552"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Cookies:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="560"/>
@@ -1720,7 +1721,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Soukromí</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="639"/>
@@ -1770,47 +1771,47 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit vše</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit nové</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit nepřečtené</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit označené hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit neoznačené hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit nepřečtené nebo označené hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit za poslední den</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazit za posledních 7 dní</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Hlavní filtr novinek:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="765"/>
@@ -1830,7 +1831,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>Změna chování akce &apos;Další nepřečtené novinky&apos;</translation>
+        <translation>Změnit chování akce &apos;Další nepřečtené novinky&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="786"/>
@@ -1840,7 +1841,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Povolit čištění při vypínání</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
@@ -1850,12 +1851,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistit &apos;Smazané&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Povolit optimalizaci DB (pomalejší vypínání)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
@@ -1885,7 +1886,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="956"/>
         <source>Display notification for incoming news</source>
-        <translation>Zobrazovat upozornění pro nově příchozí novinky</translation>
+        <translation>Zobrazit oznámení pro nově příchozí novinky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="962"/>
@@ -1910,7 +1911,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="973"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Náhled</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="977"/>
@@ -1925,12 +1926,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="985"/>
         <source>news on page notification</source>
-        <translation>novinek v okně upozornění</translation>
+        <translation>novinek v okně oznámení</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Width news list</source>
-        <translation>Šírka okna upozornění</translation>
+        <translation>Šírka okna</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
@@ -1940,12 +1941,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="993"/>
         <source>Close notification after</source>
-        <translation>Zavřít okno upozornění po</translation>
+        <translation>Zavřít okno po</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Nezobrazovat oznámení v režimu celé obrazovky</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1068"/>
@@ -1990,7 +1991,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1367"/>
         <source>Notification font</source>
-        <translation>Písmo okna upozornění</translation>
+        <translation>Písmo okna oznámení</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1419"/>
@@ -2055,12 +2056,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Kanál s novou novinkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Počet nepřečtených novinek v seznamu kanálů</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2154,7 +2155,7 @@ nebyl nalezen!</translation>
         <location filename="../src/optionsdialog.cpp" line="792"/>
         <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>seconds</source>
-        <translation>sekund</translation>
+        <translation>sekundách</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="61"/>
@@ -2166,7 +2167,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Show splash screen on startup</source>
-        <translation>Zobrazovat startovací obrazovku při spouštění</translation>
+        <translation>Při spuštění zobrazit startovací obrazovku</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
@@ -2196,12 +2197,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="412"/>
         <source>Default external browser</source>
-        <translation>Výchozí externí prohlížeč</translation>
+        <translation>Použít výchozí externí prohlížeč</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Following external browser:</source>
-        <translation>Následující externí prohlížeč:</translation>
+        <translation>Použít vybraný externí prohlížeč:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="458"/>
@@ -2246,7 +2247,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="939"/>
         <source>Play sound for incoming new news</source>
-        <translation>Přehrát zvuk při přijení nové novinky:</translation>
+        <translation>Přehrát zvuk při přijení novinky:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1332"/>
@@ -2271,7 +2272,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="256"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>Zobrazit výchozí RSS ikonku místo oblíbené</translation>
+        <translation>Zobrazovat výchozí RSS ikonku místo oblíbené</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="774"/>
@@ -2433,96 +2434,105 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Nepřipojeno</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Hostitel %1 nenalezen</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Spojení odmítnuto hostitelem %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Vypršel časový limit připojení k hostiteli %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Připojeno k hostiteli %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Spojení odmítnuto datovým připojením</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Neznámá chyba</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Připojení k hostiteli selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Přihlášení selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Výpis adresáře selhal: 
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Změna adresáře selhala:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Stažení souboru selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nahrání souboru selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Smazání souboru selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Vytvoření adresáře selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Smazání adresáře selhalo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>Spojení ukončeno</translation>
     </message>
 </context>
 <context>
@@ -2797,7 +2807,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5042"/>
         <source>Show/Hide Tree Feeds</source>
-        <translation>Zobrazit/skrýt strom kanálů</translation>
+        <translation>Zobrazit/skrýt seznam kanálů</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5044"/>
@@ -3029,7 +3039,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4973"/>
         <source>Star</source>
-        <translation>Hvězdička</translation>
+        <translation>Označit hvězdičkou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4975"/>
@@ -3298,7 +3308,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4934"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>Úklid...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4936"/>
@@ -3493,7 +3503,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5037"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation>Přepnout na další panel (Strom kanálů, Seznam novinek, Prohlížeč)</translation>
+        <translation>Přepnout na další panel (Seznam kanálů, Seznam novinek, Prohlížeč)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5038"/>
@@ -3503,7 +3513,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5040"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation>Přepnout na předchozí panel (Strom kanálů, Seznam novinek, Prohlížeč)</translation>
+        <translation>Přepnout na předchozí panel (Seznam kanálů, Seznam novinek, Prohlížeč)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5049"/>
