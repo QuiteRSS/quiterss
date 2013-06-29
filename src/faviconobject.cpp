@@ -122,11 +122,11 @@ void FaviconObject::finished(QNetworkReply *reply)
           QString str = QString::fromUtf8(data);
           if (str.contains("<html", Qt::CaseInsensitive)) {
             QString linkFavicon;
-            QRegExp rx("<link[^>]+rel=\"shortcut icon\"[^>]+>",
-                       Qt::CaseInsensitive, QRegExp::RegExp2);
+            QRegExp rx("<link[^>]+rel=\"icon\"[^>]+>",
+                     Qt::CaseInsensitive, QRegExp::RegExp2);
             int pos = rx.indexIn(str);
             if (pos == -1) {
-              rx = QRegExp("<link[^>]+rel=\"icon\"[^>]+>",
+              rx = QRegExp("<link[^>]+rel=\"shortcut icon\"[^>]+>",
                            Qt::CaseInsensitive, QRegExp::RegExp2);
               pos = rx.indexIn(str);
             }
