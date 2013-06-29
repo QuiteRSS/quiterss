@@ -259,17 +259,20 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   QPoint point;
   switch(position_) {
   case 0:
-    point = QPoint(1, 1);
+    point = QPoint(QApplication::desktop()->availableGeometry(0).topLeft().x()+1,
+                   QApplication::desktop()->availableGeometry(0).topLeft().y()+1);
     break;
   case 1:
-    point = QPoint(QApplication::desktop()->availableGeometry(0).width()-width()-1, 1);
+    point = QPoint(QApplication::desktop()->availableGeometry(0).topRight().x()-width()-1,
+                   QApplication::desktop()->availableGeometry(0).topRight().y()+1);
     break;
   case 2:
-    point = QPoint(1, QApplication::desktop()->availableGeometry(0).height()-height()-1);
+    point = QPoint(QApplication::desktop()->availableGeometry(0).bottomLeft().x()+1,
+                   QApplication::desktop()->availableGeometry(0).bottomLeft().y()-height()-1);
     break;
   default:
-    point = QPoint(QApplication::desktop()->availableGeometry(0).width()-width()-1,
-                   QApplication::desktop()->availableGeometry(0).height()-height()-1);
+    point = QPoint(QApplication::desktop()->availableGeometry(0).bottomRight().x()-width()-1,
+                   QApplication::desktop()->availableGeometry(0).bottomRight().y()-height()-1);
     break;
   }
   move(point);
