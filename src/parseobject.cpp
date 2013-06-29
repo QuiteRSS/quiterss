@@ -69,7 +69,7 @@ void ParseObject::getQueuedXml()
   if (!currentFeedUrl_.isEmpty()) return;
 
   if (feedsQueue_.count()) {
-    parseTimer_->start(50);
+    parseTimer_->start(0);
 
     currentFeedUrl_ = feedsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();
@@ -396,13 +396,6 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
-  int ms = 3;
-#if defined(Q_OS_WIN)
-  Sleep(DWORD(ms));
-#else
-  struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
-  nanosleep(&ts, NULL);
-#endif
 }
 
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
@@ -554,13 +547,6 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
-  int ms = 3;
-#if defined(Q_OS_WIN)
-  Sleep(DWORD(ms));
-#else
-  struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
-  nanosleep(&ts, NULL);
-#endif
 }
 
 QString ParseObject::toPlainText(const QString &text)
