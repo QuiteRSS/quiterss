@@ -75,18 +75,18 @@ void UpdateObject::getQueuedUrl()
   }
 
   if (!feedsQueue_.isEmpty()) {
+    getUrlTimer_->start(50);
     QString feedUrl = feedsQueue_.head();
-    int count = 0;
-    foreach (QString url, currentFeeds_) {
-      if (QUrl(url).host() == QUrl(feedUrl).host()) {
-        if (++count > 1) {
-          getUrlTimer_->start();
-          return;
+    if (hostList_.contains(QUrl(feedUrl).host())) {
+      int count = 0;
+      foreach (QString url, currentFeeds_) {
+        if (QUrl(url).host() == QUrl(feedUrl).host()) {
+          if (++count > 1) {
+            return;
+          }
         }
       }
     }
-
-    getUrlTimer_->start(50);
 
     feedUrl = feedsQueue_.dequeue();
     QUrl getUrl = QUrl::fromEncoded(feedUrl.toUtf8());
@@ -183,7 +183,16 @@ void UpdateObject::finished(QNetworkReply *reply)
       if (!headOk) {
         if (reply->error() == QNetworkReply::AuthenticationRequiredError)
           emit getUrlDone(-2, feedUrl);
+        else if (reply->error() == QNetworkReply::ContentNotFoundError)
+          emit getUrlDone(-5, feedUrl);
         else {
+          if (reply->errorString().contains("Service Temporarily Unavailable")) {
+            if (!hostList_.contains(QUrl(feedUrl).host())) {
+              hostList_.append(QUrl(feedUrl).host());
+              count--;
+            }
+          }
+
           if (count < 2) {
             emit signalGet(replyUrl, feedUrl, feedDate, count);
           } else {

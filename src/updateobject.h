@@ -68,6 +68,7 @@ private:
   QList<int> currentTime_;
   QList<QUrl> requestUrl_;
   QList<QNetworkReply*> networkReply_;
+  QList<QString> hostList_;
 
 };
 
