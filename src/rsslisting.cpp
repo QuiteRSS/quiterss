@@ -1912,7 +1912,7 @@ void RSSListing::readSettings()
   neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
   neverLabelCleanUp_ = settings_->value("neverLabelClearUp", true).toBool();
   cleanUpDeleted_ = settings_->value("cleanUpDeleted", false).toBool();
-  optimizeDB_ = settings_->value("optimizeDB", true).toBool();
+  optimizeDB_ = settings_->value("optimizeDB", false).toBool();
 
   externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
   externalBrowser_ = settings_->value("externalBrowser", "").toString();
