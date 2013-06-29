@@ -1313,6 +1313,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "vi" << QString::fromUtf8("Tiếng Việt [VI]")
+           << "0.12.5"
+           << QString::fromUtf8("") << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/images/flag_VI"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "zh_CN" << QString::fromUtf8("中文 (China) [zh_CN]")
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("wwj402") << "";

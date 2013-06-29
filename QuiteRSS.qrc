@@ -125,6 +125,7 @@
         <file alias="flag_SK">images/flag_slovakia.png</file>
         <file alias="flag_TJ">images/flag_tajikistan.png</file>
         <file alias="flag_PT">images/flag_portugal.png</file>
+        <file alias="flag_VI">images/flag_vietnam.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
