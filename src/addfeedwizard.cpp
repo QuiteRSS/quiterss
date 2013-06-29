@@ -526,6 +526,8 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
       textWarning->setText(tr("Request timeout!"));
     else if (result == -4)
       textWarning->setText(tr("Redirect error!"));
+    else if (result == -5)
+      textWarning->setText(tr("Server replied: Not Found!"));
     else
       textWarning->setText(tr("Request failed!"));
     warningWidget_->setVisible(true);
