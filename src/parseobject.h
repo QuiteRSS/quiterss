@@ -85,8 +85,6 @@ public slots:
 signals:
   void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
                         const QDateTime &dtReply);
-  void signalAddAtomNewsIntoBase(NewsItemStruct &newsItem);
-  void signalAddRssNewsIntoBase(NewsItemStruct &newsItem);
   void feedUpdated(const QString &feedUrl, const bool &changed, int newCount);
   void feedCountsUpdate(FeedCountStruct counts);
 

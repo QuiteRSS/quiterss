@@ -44,10 +44,6 @@ ParseObject::ParseObject(QObject *parent) : QObject(0)
 
   connect(this, SIGNAL(signalReadyParse(QByteArray,QString,QDateTime)),
           SLOT(slotParse(QByteArray,QString,QDateTime)));
-  connect(this, SIGNAL(signalAddAtomNewsIntoBase(NewsItemStruct&)),
-          SLOT(addAtomNewsIntoBase(NewsItemStruct&)));
-  connect(this, SIGNAL(signalAddRssNewsIntoBase(NewsItemStruct&)),
-          SLOT(addRssNewsIntoBase(NewsItemStruct&)));
 }
 
 /** @brief Queueing xml-data
