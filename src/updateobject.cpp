@@ -70,16 +70,19 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
 void UpdateObject::getQueuedUrl()
 {
   if (REPLY_MAX_COUNT <= currentFeeds_.size()) {
-    getUrlTimer_->start();
+    getUrlTimer_->start(10);
     return;
   }
 
   if (!feedsQueue_.isEmpty()) {
     QString feedUrl = feedsQueue_.head();
+    int count = 0;
     foreach (QString url, currentFeeds_) {
       if (QUrl(url).host() == QUrl(feedUrl).host()) {
-        getUrlTimer_->start();
-        return;
+        if (++count > 1) {
+          getUrlTimer_->start(10);
+          return;
+        }
       }
     }
 
