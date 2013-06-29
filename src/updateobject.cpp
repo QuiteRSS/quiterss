@@ -75,9 +75,17 @@ void UpdateObject::getQueuedUrl()
   }
 
   if (!feedsQueue_.isEmpty()) {
+    QString feedUrl = feedsQueue_.head();
+    foreach (QString url, currentFeeds_) {
+      if (QUrl(url).host() == QUrl(feedUrl).host()) {
+        getUrlTimer_->start();
+        return;
+      }
+    }
+
     getUrlTimer_->start(50);
 
-    QString feedUrl = feedsQueue_.dequeue();
+    feedUrl = feedsQueue_.dequeue();
     QUrl getUrl = QUrl::fromEncoded(feedUrl.toUtf8());
     QString userInfo = userInfo_.dequeue();
     if (!userInfo.isEmpty()) {
@@ -212,7 +220,7 @@ void UpdateObject::finished(QNetworkReply *reply)
           emit signalGet(replyUrl, feedUrl, feedDate);
         }
         else {
-          QByteArray data = reply->readAll();
+          QByteArray data = reply->readAll().trimmed();
 
           emit getUrlDone(feedsQueue_.count(), feedUrl, data, replyLocalDate);
         }
