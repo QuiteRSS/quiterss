@@ -4033,14 +4033,14 @@ void RSSListing::showOptionDlg()
 
   delete optionsDialog;
 
+  writeSettings();
+  saveActionShortcuts();
+
   if (currentNewsTab != NULL) {
     if (currentNewsTab->type_ < TAB_WEB)
       currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
     currentNewsTab->setSettings();
   }
-
-  writeSettings();
-  saveActionShortcuts();
 }
 
 // ----------------------------------------------------------------------------
