@@ -245,7 +245,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation>Bereinige</translation>
+        <translation>Bereinigen</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
@@ -306,7 +306,8 @@
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Als gelöscht markierte Einträge endgültig aus DB entfernen.⏎ Ältere Nachrichten könnten erneut angezeigt werden</translation>
+        <translation>Als gelöscht markierte Einträge endgültig aus DB entfernen.
+Ältere Nachrichten könnten erneut angezeigt werden</translation>
     </message>
 </context>
 <context>
@@ -1683,7 +1684,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="560"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation>Das Click To Flash-Plugin unterbindet das automatische Laden von Flashinhalten einer Seite . Durch Klick auf das &apos;Play&apos;-Icon können Flashinhalte wieder aktiviert werden.</translation>
+        <translation>Das Click To Flash-Plugin unterbindet das automatische Laden von Flashinhalten einer Seite. Durch Klick auf das &apos;Play&apos;-Icon können Flashinhalte wieder aktiviert werden.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
@@ -2239,7 +2240,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="877"/>
         <source>Clean Up</source>
-        <translation>Aufräumen</translation>
+        <translation>Bereinigen</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="939"/>
@@ -2548,7 +2549,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5137"/>
         <source>&amp;Paste</source>
-        <translation>Einf&amp;ügen</translation>
+        <translation>&amp;Einfügen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5138"/>
@@ -2592,7 +2593,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5142"/>
         <source>&amp;Redo</source>
-        <translation>Wieder&amp;herstellen</translation>
+        <translation>&amp;Wiederherstellen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5143"/>
@@ -2607,7 +2608,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5145"/>
         <source>&amp;Paste</source>
-        <translation>Einf&amp;ügen</translation>
+        <translation>&amp;Einfügen</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5146"/>
@@ -3042,7 +3043,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4992"/>
         <source>&amp;Edit</source>
-        <translation>B&amp;earbeiten</translation>
+        <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4993"/>

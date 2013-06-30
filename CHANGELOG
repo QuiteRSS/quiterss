@@ -1,3 +1,40 @@
+Version 0.13.1 (30 Jun 2013)
+  * Added: Cleanup wizard
+  * Added: Ability to specify feed's icon
+  * Added: Option "Automatically mark identical news as read"
+  * Added: Option "Open new tab next to active"
+  * Added: Options "Enable cleanup on shutdown", "Enable DB optimization"
+  * Added: Option "Show feeds toggle at edge of the window"
+  * Added: Option "Main news filter"
+  * Added: Option "Do not show notifications in fullscreen mode" (Windows)
+  * Added: Cookies managing options
+  * Added: Removing news from "Deleted" with categories pop up menu
+  * Added: Share news with Google+
+  * Added: Backup DB-file and setting-file before application upgrade
+  * Added: Language: Arabic
+  * Added: Language: Tajik
+  * Added: Language: Portuguese (Portugal)
+  * Changed: GUI. Visual tweaks
+  * Changed: Feed loading: CPU load is reduced
+  * Changed: Categories could be opened in tabs as feeds
+  * Changed: Additional colors options
+  * Changed: Restore categories tree collapse/expand state
+  * Changed: Support links prefix "feed://"
+  * Changed: Feed parsing is reworked
+  * Fixed: Release news selection after mark them Read/Unread
+  * Fixed: Restoring columns' widths
+  * Fixed: Updating some kind of feeds
+  * Fixed: Support RTL in news description
+  * Fixed: Recounting feeds counters when news
+  * Fixed: OPML-file while exporting feeds with large nesting structure
+  * Fixed: Displaying news list while clicking on some categories
+  * Fixed: Restore splitter position between news list and browser
+  * Fixed: Loading 512 news after news list sort mode is changed
+  * Fixed: After feed has added its news is displayed as not new
+  * Fixed: Incorrect behavior some of shortcuts
+  * Fixed: Restore cache's default path if it is not specified
+  * Fixed: Notification window coordinates were miscalculated
+
 Version 0.13.0 (30 May 2013)
   * Main: Increase application performance
   * Added: Individual feed update interval (feed properties)

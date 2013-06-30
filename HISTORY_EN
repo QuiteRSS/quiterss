@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<P><B>Version 0.13.0+</B> (30 Jun 2013)
+<P><B>Version 0.13.1</B> (30 Jun 2013)
 <UL>
 <LI>Added: Cleanup wizard</LI>
 <LI>Added: Ability to specify feed's icon</LI>
@@ -18,12 +18,15 @@
 <LI>Added: Backup DB-file and setting-file before application upgrade</LI>
 <LI>Added: Language: Arabic</LI>
 <LI>Added: Language: Tajik</LI>
+<LI>Added: Language: Portuguese (Portugal)</LI>
 
 <LI>Changed: GUI. Visual tweaks</LI>
+<LI>Changed: Feed loading: CPU load is reduced</LI>
 <LI>Changed: Categories could be opened in tabs as feeds</LI>
 <LI>Changed: Additional colors options</LI>
 <LI>Changed: Restore categories tree collapse/expand state</LI>
 <LI>Changed: Support links prefix "feed://"</LI>
+<LI>Changed: Feed parsing is reworked</LI>
 
 <LI>Fixed: Release news selection after mark them Read/Unread</LI>
 <LI>Fixed: Restoring columns' widths</LI>
@@ -37,6 +40,7 @@
 <LI>Fixed: After feed has added its news is displayed as not new</LI>
 <LI>Fixed: Incorrect behavior some of shortcuts</LI>
 <LI>Fixed: Restore cache's default path if it is not specified</LI>
+<LI>Fixed: Notification window coordinates were miscalculated</LI>
 </UL>
 <!---------------------------------------------------------------------------->
 <P><B>Version 0.13.0</B> (30 May 2013)

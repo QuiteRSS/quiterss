@@ -1494,62 +1494,62 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>starting QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>spustení QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>minimizing QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>minimalizovaní QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="298"/>
         <source>closing QuiteRSS</source>
-        <translation type="unfinished"/>
+        <translation>zatvorení QuiteRSS</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="305"/>
         <source>Show static icon</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť statickú ikonku</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Change icon for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Zmeniť ikonku pri stiahnutí nových noviniek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="307"/>
         <source>Show count of new news</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť počet novo prijatých noviniek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="308"/>
         <source>Show count of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Zobraziť počet neprečítaných noviniek</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="317"/>
         <source>Single click instead of double click for show window</source>
-        <translation type="unfinished"/>
+        <translation>Jedno kliknutie namiesto dvoch pre zobrazenie okna</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="318"/>
         <source>Clear status new on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Vynulovať počet nových noviniek pri minimalizovaní do tray lišty</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="319"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Vyprázdniť pracovnú sadu pri minimalizovaní do tray lišty</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="322"/>
         <source>Move to the system tray when:</source>
-        <translation type="unfinished"/>
+        <translation>Minimalizovať do tray lišty pri:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="324"/>
         <source>Tray icon behavior:</source>
-        <translation type="unfinished"/>
+        <translation>Správanie tray ikony</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="346"/>
@@ -1613,37 +1613,37 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="421"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"/>
+        <translation>Otvárať odkazy v integrovanom prehliadači otvárať na pozadí</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="422"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Otvárať odkazy v externom prehliadači otvárať na pozadí (experimentálne)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>External browser:</source>
-        <translation type="unfinished"/>
+        <translation>Externý prehliadač:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="464"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"/>
+        <translation>Vlastné štýly:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="493"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"/>
+        <translation>Maximálny počet stránok v medzipamäti</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="504"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"/>
+        <translation>Ukladať keš do:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="512"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Maximálna veľkosť medzipamäte</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
@@ -1653,7 +1653,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="520"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Použiť keš</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
@@ -2169,7 +2169,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Zobrazovať tray ikonu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
@@ -2189,22 +2189,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="411"/>
         <source>Use external browser</source>
-        <translation type="unfinished"/>
+        <translation>Použiť externý prehliadač</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="412"/>
         <source>Default external browser</source>
-        <translation type="unfinished"/>
+        <translation>Použiť východzí externý prehliadač</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <translation>Nasledujúci externý prehliadač:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="458"/>
         <source>Browser selection:</source>
-        <translation type="unfinished"/>
+        <translation>Výber prehliadača:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="462"/>
