@@ -7369,6 +7369,7 @@ void RSSListing::nextUnreadNews()
       slotFeedClicked(indexPrevUnread);
       openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
     }
+    newsView_->setCurrentIndex(newsView_->currentIndex());
     return;
   }
 
@@ -7403,6 +7404,7 @@ void RSSListing::prevUnreadNews()
       slotFeedClicked(indexNextUnread);
       openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
     }
+    newsView_->setCurrentIndex(newsView_->currentIndex());
     return;
   }
 

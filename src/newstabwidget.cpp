@@ -645,7 +645,10 @@ void NewsTabWidget::slotNewsUpPressed()
   }
 
   int row = newsView_->currentIndex().row();
-  if (row == 0) return;
+  if (row == 0) {
+    newsView_->setCurrentIndex(newsView_->currentIndex());
+    return;
+  }
   else row--;
 
   int value = newsView_->verticalScrollBar()->value();
@@ -673,7 +676,10 @@ void NewsTabWidget::slotNewsDownPressed()
   }
 
   int row = newsView_->currentIndex().row();
-  if ((row+1) == newsModel_->rowCount()) return;
+  if ((row+1) == newsModel_->rowCount()) {
+    newsView_->setCurrentIndex(newsView_->currentIndex());
+    return;
+  }
   else row++;
 
   int value = newsView_->verticalScrollBar()->value();
