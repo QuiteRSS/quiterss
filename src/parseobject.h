@@ -53,6 +53,7 @@ struct NewsItemStruct {
   QString eUrl;
   QString eType;
   QString eLength;
+  QString comments;
 };
 
 struct FeedCountStruct{

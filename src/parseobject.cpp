@@ -275,6 +275,8 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
           newsItem.link = linksList.at(j).toElement().attribute("href");
         if (linksList.at(j).toElement().attribute("rel") == "alternate")
           newsItem.linkAlternate = linksList.at(j).toElement().attribute("href");
+        if (linksList.at(j).toElement().attribute("rel") == "replies")
+          newsItem.comments = linksList.at(j).toElement().attribute("href");
       } else if (newsItem.linkAlternate.isEmpty()) {
         if (!(linksList.at(j).toElement().attribute("rel") == "self"))
           newsItem.linkAlternate = linksList.at(j).toElement().attribute("href");
@@ -347,9 +349,9 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       qStr = QString("INSERT INTO news("
                      "feedId, description, content, guid, title, author_name, "
                      "author_uri, author_email, published, received, "
-                     "link_href, link_alternate, category, "
+                     "link_href, link_alternate, category, comments, "
                      "enclosure_url, enclosure_type, enclosure_length, new, read) "
-                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(parseFeedId_);
       q.addBindValue(newsItem.description);
@@ -366,6 +368,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(newsItem.link);
       q.addBindValue(newsItem.linkAlternate);
       q.addBindValue(newsItem.category);
+      q.addBindValue(newsItem.comments);
       q.addBindValue(newsItem.eUrl);
       q.addBindValue(newsItem.eType);
       q.addBindValue(newsItem.eLength);
@@ -386,6 +389,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       qDebug() << "       " << newsItem.link;
       qDebug() << "       " << newsItem.linkAlternate;
       qDebug() << "       " << newsItem.category;
+      qDebug() << "       " << newsItem.comments;
       qDebug() << "       " << newsItem.eUrl;
       qDebug() << "       " << newsItem.eType;
       qDebug() << "       " << newsItem.eLength;
@@ -440,6 +444,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
       if (!newsItem.category.isEmpty()) newsItem.category.append(", ");
       newsItem.category.append(toPlainText(categoryElem.at(j).toElement().text()));
     }
+    newsItem.comments = newsList.item(i).namedItem("comments").toElement().text();
     QDomElement enclosureElem = newsList.item(i).namedItem("enclosure").toElement();
     newsItem.eUrl = enclosureElem.attribute("url");
     newsItem.eType = enclosureElem.attribute("type");
@@ -504,9 +509,9 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
 
       qStr = QString("INSERT INTO news("
                      "feedId, description, content, guid, title, author_name, "
-                     "published, received, link_href, category, "
+                     "published, received, link_href, category, comments, "
                      "enclosure_url, enclosure_type, enclosure_length, new, read) "
-                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       q.prepare(qStr);
       q.addBindValue(parseFeedId_);
       q.addBindValue(newsItem.description);
@@ -520,6 +525,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(QDateTime::currentDateTime().toString(Qt::ISODate));
       q.addBindValue(newsItem.link);
       q.addBindValue(newsItem.category);
+      q.addBindValue(newsItem.comments);
       q.addBindValue(newsItem.eUrl);
       q.addBindValue(newsItem.eType);
       q.addBindValue(newsItem.eLength);
@@ -537,6 +543,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       qDebug() << "       " << QDateTime::currentDateTime().toString();
       qDebug() << "       " << newsItem.link;
       qDebug() << "       " << newsItem.category;
+      qDebug() << "       " << newsItem.comments;
       qDebug() << "       " << newsItem.eUrl;
       qDebug() << "       " << newsItem.eType;
       qDebug() << "       " << newsItem.eLength;
