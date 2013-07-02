@@ -1325,7 +1325,15 @@ void NewsTabWidget::updateWebView(QModelIndex index)
             arg(tr("Link to")).arg(type);
       }
     }
-    content = enclosureStr+content;
+
+    QString commentsStr;
+    QString commentsUrl = newsModel_->record(index.row()).field("comments").value().toString();
+    if (!commentsUrl.isEmpty()) {
+        commentsStr = QString("<p><a href=\"%1\" class=\"enclosure\"> %2</a>").
+            arg(commentsUrl).arg(tr("Comments"));
+    }
+
+    content = enclosureStr + content + commentsStr;
 
     if (!linkString.isEmpty())
         titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString).arg(titleString);
