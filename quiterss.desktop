@@ -9,4 +9,5 @@ Comment=QuiteRSS is a RSS/Atom feed reader written in C++/Qt4
 Comment[pt]=O Quite RSS é um leitor de fontes RSS/Atom desenvolvido em C++/Qt4
 Terminal=false
 Categories=Qt;Network;News;
+MimeType=application/rss+xml;application/atom+xml;application/rdf+xml;
 X-DBUS-StartupType=none
