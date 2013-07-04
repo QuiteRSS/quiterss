@@ -27,7 +27,6 @@
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
-#include "optionsdialog.h"
 #include "webpage.h"
 
 #if defined(Q_OS_WIN)
@@ -85,6 +84,7 @@ RSSListing::RSSListing(QSettings *settings,
   , feedIdOld_(-2)
   , importFeedStart_(false)
   , recountCategoryCountsOn_(false)
+  , optionsDialog_(NULL)
 {
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
@@ -3544,208 +3544,211 @@ void RSSListing::showOptionDlg()
 {
   static int index = 0;
 
-  OptionsDialog *optionsDialog = new OptionsDialog(this);
+  if (optionsDialog_) return;
 
-  optionsDialog->showSplashScreen_->setChecked(showSplashScreen_);
-  optionsDialog->reopenFeedStartup_->setChecked(reopenFeedStartup_);
-  optionsDialog->openNewTabNextToActive_->setChecked(openNewTabNextToActive_);
-  optionsDialog->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
-  optionsDialog->showToggleFeedsTree_->setChecked(showToggleFeedsTree_);
-  optionsDialog->defaultIconFeeds_->setChecked(defaultIconFeeds_);
-  optionsDialog->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
+  optionsDialog_ = new OptionsDialog(this);
 
-  optionsDialog->updateCheckEnabled_->setChecked(updateCheckEnabled_);
-  optionsDialog->storeDBMemory_->setChecked(storeDBMemoryT_);
+  optionsDialog_->showSplashScreen_->setChecked(showSplashScreen_);
+  optionsDialog_->reopenFeedStartup_->setChecked(reopenFeedStartup_);
+  optionsDialog_->openNewTabNextToActive_->setChecked(openNewTabNextToActive_);
+  optionsDialog_->hideFeedsOpenTab_->setChecked(hideFeedsOpenTab_);
+  optionsDialog_->showToggleFeedsTree_->setChecked(showToggleFeedsTree_);
+  optionsDialog_->defaultIconFeeds_->setChecked(defaultIconFeeds_);
+  optionsDialog_->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
 
-  optionsDialog->showTrayIconBox_->setChecked(showTrayIcon_);
-  optionsDialog->startingTray_->setChecked(startingTray_);
-  optionsDialog->minimizingTray_->setChecked(minimizingTray_);
-  optionsDialog->closingTray_->setChecked(closingTray_);
-  optionsDialog->setBehaviorIconTray(behaviorIconTray_);
-  optionsDialog->singleClickTray_->setChecked(singleClickTray_);
-  optionsDialog->clearStatusNew_->setChecked(clearStatusNew_);
-  optionsDialog->emptyWorking_->setChecked(emptyWorking_);
+  optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled_);
+  optionsDialog_->storeDBMemory_->setChecked(storeDBMemoryT_);
 
-  optionsDialog->setProxy(networkProxy_);
+  optionsDialog_->showTrayIconBox_->setChecked(showTrayIcon_);
+  optionsDialog_->startingTray_->setChecked(startingTray_);
+  optionsDialog_->minimizingTray_->setChecked(minimizingTray_);
+  optionsDialog_->closingTray_->setChecked(closingTray_);
+  optionsDialog_->setBehaviorIconTray(behaviorIconTray_);
+  optionsDialog_->singleClickTray_->setChecked(singleClickTray_);
+  optionsDialog_->clearStatusNew_->setChecked(clearStatusNew_);
+  optionsDialog_->emptyWorking_->setChecked(emptyWorking_);
 
-  optionsDialog->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
-  optionsDialog->externalBrowserOn_->setChecked(externalBrowserOn_ >= 1);
-  optionsDialog->defaultExternalBrowserOn_->setChecked((externalBrowserOn_ == 0) ||
+  optionsDialog_->setProxy(networkProxy_);
+
+  optionsDialog_->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
+  optionsDialog_->externalBrowserOn_->setChecked(externalBrowserOn_ >= 1);
+  optionsDialog_->defaultExternalBrowserOn_->setChecked((externalBrowserOn_ == 0) ||
                                                        (externalBrowserOn_ == 1));
-  optionsDialog->otherExternalBrowserOn_->setChecked((externalBrowserOn_ == -1) ||
+  optionsDialog_->otherExternalBrowserOn_->setChecked((externalBrowserOn_ == -1) ||
                                                      (externalBrowserOn_ == 2));
-  optionsDialog->otherExternalBrowserEdit_->setText(externalBrowser_);
-  optionsDialog->javaScriptEnable_->setChecked(javaScriptEnable_);
-  optionsDialog->pluginsEnable_->setChecked(pluginsEnable_);
-  optionsDialog->openLinkInBackground_->setChecked(openLinkInBackground_);
-  optionsDialog->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
-  optionsDialog->userStyleBrowserEdit_->setText(userStyleBrowser_);
+  optionsDialog_->otherExternalBrowserEdit_->setText(externalBrowser_);
+  optionsDialog_->javaScriptEnable_->setChecked(javaScriptEnable_);
+  optionsDialog_->pluginsEnable_->setChecked(pluginsEnable_);
+  optionsDialog_->openLinkInBackground_->setChecked(openLinkInBackground_);
+  optionsDialog_->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
+  optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser_);
 
-  optionsDialog->maxPagesInCache_->setValue(maxPagesInCache_);
+  optionsDialog_->maxPagesInCache_->setValue(maxPagesInCache_);
   bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
-  optionsDialog->diskCacheOn_->setChecked(useDiskCache);
+  optionsDialog_->diskCacheOn_->setChecked(useDiskCache);
   QString diskCacheDirPath = settings_->value(
         "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
   if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
-  optionsDialog->dirDiskCacheEdit_->setText(diskCacheDirPath);
+  optionsDialog_->dirDiskCacheEdit_->setText(diskCacheDirPath);
   int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
-  optionsDialog->maxDiskCache_->setValue(maxDiskCache);
+  optionsDialog_->maxDiskCache_->setValue(maxDiskCache);
 
-  optionsDialog->saveCookies_->setChecked(cookieJar_->saveCookies_ == 1);
-  optionsDialog->deleteCookiesOnClose_->setChecked(cookieJar_->saveCookies_ == 2);
-  optionsDialog->blockCookies_->setChecked(cookieJar_->saveCookies_ == 0);
+  optionsDialog_->saveCookies_->setChecked(cookieJar_->saveCookies_ == 1);
+  optionsDialog_->deleteCookiesOnClose_->setChecked(cookieJar_->saveCookies_ == 2);
+  optionsDialog_->blockCookies_->setChecked(cookieJar_->saveCookies_ == 0);
 
-  optionsDialog->downloadLocationEdit_->setText(downloadLocation_);
-  optionsDialog->askDownloadLocation_->setChecked(askDownloadLocation_);
+  optionsDialog_->downloadLocationEdit_->setText(downloadLocation_);
+  optionsDialog_->askDownloadLocation_->setChecked(askDownloadLocation_);
 
-  optionsDialog->updateFeedsStartUp_->setChecked(updateFeedsStartUp_);
-  optionsDialog->updateFeedsEnable_->setChecked(updateFeedsEnable_);
-  optionsDialog->updateIntervalType_->setCurrentIndex(updateFeedsIntervalType_+1);
-  optionsDialog->updateFeedsInterval_->setValue(updateFeedsInterval_);
+  optionsDialog_->updateFeedsStartUp_->setChecked(updateFeedsStartUp_);
+  optionsDialog_->updateFeedsEnable_->setChecked(updateFeedsEnable_);
+  optionsDialog_->updateIntervalType_->setCurrentIndex(updateFeedsIntervalType_+1);
+  optionsDialog_->updateFeedsInterval_->setValue(updateFeedsInterval_);
 
-  optionsDialog->setOpeningFeed(openingFeedAction_);
-  optionsDialog->openNewsWebViewOn_->setChecked(openNewsWebViewOn_);
+  optionsDialog_->setOpeningFeed(openingFeedAction_);
+  optionsDialog_->openNewsWebViewOn_->setChecked(openNewsWebViewOn_);
 
-  optionsDialog->markNewsReadOn_->setChecked(markNewsReadOn_);
-  optionsDialog->markCurNewsRead_->setChecked(markCurNewsRead_);
-  optionsDialog->markNewsReadTime_->setValue(markNewsReadTime_);
-  optionsDialog->markPrevNewsRead_->setChecked(markPrevNewsRead_);
-  optionsDialog->markReadSwitchingFeed_->setChecked(markReadSwitchingFeed_);
-  optionsDialog->markReadClosingTab_->setChecked(markReadClosingTab_);
-  optionsDialog->markReadMinimize_->setChecked(markReadMinimize_);
+  optionsDialog_->markNewsReadOn_->setChecked(markNewsReadOn_);
+  optionsDialog_->markCurNewsRead_->setChecked(markCurNewsRead_);
+  optionsDialog_->markNewsReadTime_->setValue(markNewsReadTime_);
+  optionsDialog_->markPrevNewsRead_->setChecked(markPrevNewsRead_);
+  optionsDialog_->markReadSwitchingFeed_->setChecked(markReadSwitchingFeed_);
+  optionsDialog_->markReadClosingTab_->setChecked(markReadClosingTab_);
+  optionsDialog_->markReadMinimize_->setChecked(markReadMinimize_);
 
-  optionsDialog->showDescriptionNews_->setChecked(showDescriptionNews_);
+  optionsDialog_->showDescriptionNews_->setChecked(showDescriptionNews_);
 
-  for (int i = 0; i < optionsDialog->formatDate_->count(); i++) {
-    if (optionsDialog->formatDate_->itemData(i).toString() == formatDate_) {
-      optionsDialog->formatDate_->setCurrentIndex(i);
+  for (int i = 0; i < optionsDialog_->formatDate_->count(); i++) {
+    if (optionsDialog_->formatDate_->itemData(i).toString() == formatDate_) {
+      optionsDialog_->formatDate_->setCurrentIndex(i);
       break;
     }
   }
-  for (int i = 0; i < optionsDialog->formatTime_->count(); i++) {
-    if (optionsDialog->formatTime_->itemData(i).toString() == formatTime_) {
-      optionsDialog->formatTime_->setCurrentIndex(i);
-      break;
-    }
-  }
-
-  optionsDialog->alternatingRowColorsNews_->setChecked(alternatingRowColorsNews_);
-  optionsDialog->changeBehaviorActionNUN_->setChecked(changeBehaviorActionNUN_);
-  optionsDialog->simplifiedDateTime_->setChecked(simplifiedDateTime_);
-  optionsDialog->notDeleteStarred_->setChecked(notDeleteStarred_);
-  optionsDialog->notDeleteLabeled_->setChecked(notDeleteLabeled_);
-  optionsDialog->markIdenticalNewsRead_->setChecked(markIdenticalNewsRead_);
-
-  for (int i = 0; i < optionsDialog->mainNewsFilter_->count(); i++) {
-    if (optionsDialog->mainNewsFilter_->itemData(i).toString() == mainNewsFilter_) {
-      optionsDialog->mainNewsFilter_->setCurrentIndex(i);
+  for (int i = 0; i < optionsDialog_->formatTime_->count(); i++) {
+    if (optionsDialog_->formatTime_->itemData(i).toString() == formatTime_) {
+      optionsDialog_->formatTime_->setCurrentIndex(i);
       break;
     }
   }
 
-  optionsDialog->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
-  optionsDialog->dayCleanUpOn_->setChecked(dayCleanUpOn_);
-  optionsDialog->maxDayCleanUp_->setValue(maxDayCleanUp_);
-  optionsDialog->newsCleanUpOn_->setChecked(newsCleanUpOn_);
-  optionsDialog->maxNewsCleanUp_->setValue(maxNewsCleanUp_);
-  optionsDialog->readCleanUp_->setChecked(readCleanUp_);
-  optionsDialog->neverUnreadCleanUp_->setChecked(neverUnreadCleanUp_);
-  optionsDialog->neverStarCleanUp_->setChecked(neverStarCleanUp_);
-  optionsDialog->neverLabelCleanUp_->setChecked(neverLabelCleanUp_);
-  optionsDialog->cleanUpDeleted_->setChecked(cleanUpDeleted_);
-  optionsDialog->optimizeDB_->setChecked(optimizeDB_);
+  optionsDialog_->alternatingRowColorsNews_->setChecked(alternatingRowColorsNews_);
+  optionsDialog_->changeBehaviorActionNUN_->setChecked(changeBehaviorActionNUN_);
+  optionsDialog_->simplifiedDateTime_->setChecked(simplifiedDateTime_);
+  optionsDialog_->notDeleteStarred_->setChecked(notDeleteStarred_);
+  optionsDialog_->notDeleteLabeled_->setChecked(notDeleteLabeled_);
+  optionsDialog_->markIdenticalNewsRead_->setChecked(markIdenticalNewsRead_);
 
-  optionsDialog->soundNewNews_->setChecked(soundNewNews_);
-  optionsDialog->editSoundNotifer_->setText(soundNotifyPath_);
-  optionsDialog->showNotifyOn_->setChecked(showNotifyOn_);
-  optionsDialog->positionNotify_->setCurrentIndex(positionNotify_);
-  optionsDialog->countShowNewsNotify_->setValue(countShowNewsNotify_);
-  optionsDialog->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
-  optionsDialog->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
-  optionsDialog->fullscreenModeNotify_->setChecked(fullscreenModeNotify_);
-  optionsDialog->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
+  for (int i = 0; i < optionsDialog_->mainNewsFilter_->count(); i++) {
+    if (optionsDialog_->mainNewsFilter_->itemData(i).toString() == mainNewsFilter_) {
+      optionsDialog_->mainNewsFilter_->setCurrentIndex(i);
+      break;
+    }
+  }
 
-  optionsDialog->setLanguage(langFileName_);
+  optionsDialog_->cleanupOnShutdownBox_->setChecked(cleanupOnShutdown_);
+  optionsDialog_->dayCleanUpOn_->setChecked(dayCleanUpOn_);
+  optionsDialog_->maxDayCleanUp_->setValue(maxDayCleanUp_);
+  optionsDialog_->newsCleanUpOn_->setChecked(newsCleanUpOn_);
+  optionsDialog_->maxNewsCleanUp_->setValue(maxNewsCleanUp_);
+  optionsDialog_->readCleanUp_->setChecked(readCleanUp_);
+  optionsDialog_->neverUnreadCleanUp_->setChecked(neverUnreadCleanUp_);
+  optionsDialog_->neverStarCleanUp_->setChecked(neverStarCleanUp_);
+  optionsDialog_->neverLabelCleanUp_->setChecked(neverLabelCleanUp_);
+  optionsDialog_->cleanUpDeleted_->setChecked(cleanUpDeleted_);
+  optionsDialog_->optimizeDB_->setChecked(optimizeDB_);
+
+  optionsDialog_->soundNewNews_->setChecked(soundNewNews_);
+  optionsDialog_->editSoundNotifer_->setText(soundNotifyPath_);
+  optionsDialog_->showNotifyOn_->setChecked(showNotifyOn_);
+  optionsDialog_->positionNotify_->setCurrentIndex(positionNotify_);
+  optionsDialog_->countShowNewsNotify_->setValue(countShowNewsNotify_);
+  optionsDialog_->widthTitleNewsNotify_->setValue(widthTitleNewsNotify_);
+  optionsDialog_->timeShowNewsNotify_->setValue(timeShowNewsNotify_);
+  optionsDialog_->fullscreenModeNotify_->setChecked(fullscreenModeNotify_);
+  optionsDialog_->onlySelectedFeeds_->setChecked(onlySelectedFeeds_);
+
+  optionsDialog_->setLanguage(langFileName_);
 
   QString strFont = QString("%1, %2").
       arg(feedsTreeView_->font().family()).
       arg(feedsTreeView_->font().pointSize());
-  optionsDialog->fontsTree_->topLevelItem(0)->setText(2, strFont);
+  optionsDialog_->fontsTree_->topLevelItem(0)->setText(2, strFont);
   strFont = QString("%1, %2").arg(newsListFontFamily_).arg(newsListFontSize_);
-  optionsDialog->fontsTree_->topLevelItem(1)->setText(2, strFont);
+  optionsDialog_->fontsTree_->topLevelItem(1)->setText(2, strFont);
   strFont = QString("%1, %2").arg(newsTitleFontFamily_).arg(newsTitleFontSize_);
-  optionsDialog->fontsTree_->topLevelItem(2)->setText(2, strFont);
+  optionsDialog_->fontsTree_->topLevelItem(2)->setText(2, strFont);
   strFont = QString("%1, %2").arg(newsTextFontFamily_).arg(newsTextFontSize_);
-  optionsDialog->fontsTree_->topLevelItem(3)->setText(2, strFont);
+  optionsDialog_->fontsTree_->topLevelItem(3)->setText(2, strFont);
   strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
-  optionsDialog->fontsTree_->topLevelItem(4)->setText(2, strFont);
+  optionsDialog_->fontsTree_->topLevelItem(4)->setText(2, strFont);
 
-  optionsDialog->browserMinFontSize_->setValue(browserMinFontSize_);
-  optionsDialog->browserMinLogFontSize_->setValue(browserMinLogFontSize_);
+  optionsDialog_->browserMinFontSize_->setValue(browserMinFontSize_);
+  optionsDialog_->browserMinLogFontSize_->setValue(browserMinLogFontSize_);
 
   QPixmap pixmapColor(14, 14);
   pixmapColor.fill(feedsTreeModel_->textColor_);
-  optionsDialog->colorsTree_->topLevelItem(0)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(0)->setText(1, feedsTreeModel_->textColor_);
+  optionsDialog_->colorsTree_->topLevelItem(0)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(0)->setText(1, feedsTreeModel_->textColor_);
   if (feedsTreeModel_->backgroundColor_.isEmpty())
     pixmapColor.fill(QColor(0, 0, 0, 0));
   else
     pixmapColor.fill(feedsTreeModel_->backgroundColor_);
-  optionsDialog->colorsTree_->topLevelItem(1)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(1)->setText(1, feedsTreeModel_->backgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(1)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(1)->setText(1, feedsTreeModel_->backgroundColor_);
   pixmapColor.fill(newsListTextColor_);
-  optionsDialog->colorsTree_->topLevelItem(2)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(2)->setText(1, newsListTextColor_);
+  optionsDialog_->colorsTree_->topLevelItem(2)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(2)->setText(1, newsListTextColor_);
   if (newsListBackgroundColor_.isEmpty())
     pixmapColor.fill(QColor(0, 0, 0, 0));
   else
     pixmapColor.fill(newsListBackgroundColor_);
-  optionsDialog->colorsTree_->topLevelItem(3)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(3)->setText(1, newsListBackgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(3)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(3)->setText(1, newsListBackgroundColor_);
   pixmapColor.fill(focusedNewsTextColor_);
-  optionsDialog->colorsTree_->topLevelItem(4)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(4)->setText(1, focusedNewsTextColor_);
+  optionsDialog_->colorsTree_->topLevelItem(4)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(4)->setText(1, focusedNewsTextColor_);
   if (focusedNewsBGColor_.isEmpty())
     pixmapColor.fill(QColor(0, 0, 0, 0));
   else
     pixmapColor.fill(focusedNewsBGColor_);
-  optionsDialog->colorsTree_->topLevelItem(5)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(5)->setText(1, focusedNewsBGColor_);
+  optionsDialog_->colorsTree_->topLevelItem(5)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(5)->setText(1, focusedNewsBGColor_);
   pixmapColor.fill(linkColor_);
-  optionsDialog->colorsTree_->topLevelItem(6)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(6)->setText(1, linkColor_);
+  optionsDialog_->colorsTree_->topLevelItem(6)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(6)->setText(1, linkColor_);
   pixmapColor.fill(titleColor_);
-  optionsDialog->colorsTree_->topLevelItem(7)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(7)->setText(1, titleColor_);
+  optionsDialog_->colorsTree_->topLevelItem(7)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(7)->setText(1, titleColor_);
   pixmapColor.fill(dateColor_);
-  optionsDialog->colorsTree_->topLevelItem(8)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(8)->setText(1, dateColor_);
+  optionsDialog_->colorsTree_->topLevelItem(8)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(8)->setText(1, dateColor_);
   pixmapColor.fill(authorColor_);
-  optionsDialog->colorsTree_->topLevelItem(9)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(9)->setText(1, authorColor_);
+  optionsDialog_->colorsTree_->topLevelItem(9)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(9)->setText(1, authorColor_);
   pixmapColor.fill(newsTitleBackgroundColor_);
-  optionsDialog->colorsTree_->topLevelItem(10)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(10)->setText(1, newsTitleBackgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(10)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(10)->setText(1, newsTitleBackgroundColor_);
   pixmapColor.fill(newsBackgroundColor_);
-  optionsDialog->colorsTree_->topLevelItem(11)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(11)->setText(1, newsBackgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(11)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(11)->setText(1, newsBackgroundColor_);
   pixmapColor.fill(feedsTreeModel_->feedWithNewNewsColor_);
-  optionsDialog->colorsTree_->topLevelItem(12)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(12)->setText(1, feedsTreeModel_->feedWithNewNewsColor_);
+  optionsDialog_->colorsTree_->topLevelItem(12)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(12)->setText(1, feedsTreeModel_->feedWithNewNewsColor_);
   pixmapColor.fill(feedsTreeModel_->countNewsUnreadColor_);
-  optionsDialog->colorsTree_->topLevelItem(13)->setIcon(0, pixmapColor);
-  optionsDialog->colorsTree_->topLevelItem(13)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog_->colorsTree_->topLevelItem(13)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(13)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
 
-  optionsDialog->loadActionShortcut(listActions_, &listDefaultShortcut_);
+  optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
   // Display setting dialog
 
-  optionsDialog->setCurrentItem(index);
-  int result = optionsDialog->exec();
-  index = optionsDialog->currentIndex();
+  optionsDialog_->setCurrentItem(index);
+  int result = optionsDialog_->exec();
+  index = optionsDialog_->currentIndex();
 
   if (result == QDialog::Rejected) {
-    delete optionsDialog;
+    delete optionsDialog_;
+    optionsDialog_ = NULL;
     return;
   }
 
@@ -3758,7 +3761,7 @@ void RSSListing::showOptionDlg()
       delete action;
     }
   }
-  optionsDialog->saveActionShortcut(listActions_, newsLabelGroup_);
+  optionsDialog_->saveActionShortcut(listActions_, newsLabelGroup_);
   listActions_.append(newsLabelGroup_->actions());
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
   this->addActions(newsLabelGroup_->actions());
@@ -3768,7 +3771,7 @@ void RSSListing::showOptionDlg()
     newsLabelAction_->setData(newsLabelGroup_->actions().at(0)->data());
   }
 
-  if (optionsDialog->idLabels_.count()) {
+  if (optionsDialog_->idLabels_.count()) {
     QTreeWidgetItem *labelTreeItem = categoriesTree_->topLevelItem(3);
     while (labelTreeItem->childCount()) {
       labelTreeItem->removeChild(labelTreeItem->child(0));
@@ -3820,25 +3823,25 @@ void RSSListing::showOptionDlg()
     }
   }
 
-  showSplashScreen_ = optionsDialog->showSplashScreen_->isChecked();
-  reopenFeedStartup_ = optionsDialog->reopenFeedStartup_->isChecked();
-  openNewTabNextToActive_ = optionsDialog->openNewTabNextToActive_->isChecked();
-  hideFeedsOpenTab_ = optionsDialog->hideFeedsOpenTab_->isChecked();
-  showToggleFeedsTree_ = optionsDialog->showToggleFeedsTree_->isChecked();
-  defaultIconFeeds_ = optionsDialog->defaultIconFeeds_->isChecked();
+  showSplashScreen_ = optionsDialog_->showSplashScreen_->isChecked();
+  reopenFeedStartup_ = optionsDialog_->reopenFeedStartup_->isChecked();
+  openNewTabNextToActive_ = optionsDialog_->openNewTabNextToActive_->isChecked();
+  hideFeedsOpenTab_ = optionsDialog_->hideFeedsOpenTab_->isChecked();
+  showToggleFeedsTree_ = optionsDialog_->showToggleFeedsTree_->isChecked();
+  defaultIconFeeds_ = optionsDialog_->defaultIconFeeds_->isChecked();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
-  feedsTreeView_->autocollapseFolder_ = optionsDialog->autocollapseFolder_->isChecked();
+  feedsTreeView_->autocollapseFolder_ = optionsDialog_->autocollapseFolder_->isChecked();
 
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
-  updateCheckEnabled_ = optionsDialog->updateCheckEnabled_->isChecked();
-  storeDBMemoryT_ = optionsDialog->storeDBMemory_->isChecked();
+  updateCheckEnabled_ = optionsDialog_->updateCheckEnabled_->isChecked();
+  storeDBMemoryT_ = optionsDialog_->storeDBMemory_->isChecked();
 
-  showTrayIcon_ = optionsDialog->showTrayIconBox_->isChecked();
-  startingTray_ = optionsDialog->startingTray_->isChecked();
-  minimizingTray_ = optionsDialog->minimizingTray_->isChecked();
-  closingTray_ = optionsDialog->closingTray_->isChecked();
-  behaviorIconTray_ = optionsDialog->behaviorIconTray();
+  showTrayIcon_ = optionsDialog_->showTrayIconBox_->isChecked();
+  startingTray_ = optionsDialog_->startingTray_->isChecked();
+  minimizingTray_ = optionsDialog_->minimizingTray_->isChecked();
+  closingTray_ = optionsDialog_->closingTray_->isChecked();
+  behaviorIconTray_ = optionsDialog_->behaviorIconTray();
   if (behaviorIconTray_ > CHANGE_ICON_TRAY) {
     emit signalRefreshInfoTray();
   } else {
@@ -3848,34 +3851,34 @@ void RSSListing::showOptionDlg()
     traySystem->setIcon(QIcon(":/images/quiterssDebug"));
 #endif
   }
-  singleClickTray_ = optionsDialog->singleClickTray_->isChecked();
-  clearStatusNew_ = optionsDialog->clearStatusNew_->isChecked();
-  emptyWorking_ = optionsDialog->emptyWorking_->isChecked();
+  singleClickTray_ = optionsDialog_->singleClickTray_->isChecked();
+  clearStatusNew_ = optionsDialog_->clearStatusNew_->isChecked();
+  emptyWorking_ = optionsDialog_->emptyWorking_->isChecked();
   if (showTrayIcon_) traySystem->show();
   else traySystem->hide();
 
-  networkProxy_ = optionsDialog->proxy();
+  networkProxy_ = optionsDialog_->proxy();
   setProxy(networkProxy_);
 
-  if (optionsDialog->embeddedBrowserOn_->isChecked()) {
-    if (optionsDialog->defaultExternalBrowserOn_->isChecked())
+  if (optionsDialog_->embeddedBrowserOn_->isChecked()) {
+    if (optionsDialog_->defaultExternalBrowserOn_->isChecked())
       externalBrowserOn_ = 0;
     else
       externalBrowserOn_ = -1;
   } else {
-    if (optionsDialog->defaultExternalBrowserOn_->isChecked())
+    if (optionsDialog_->defaultExternalBrowserOn_->isChecked())
       externalBrowserOn_ = 1;
     else
       externalBrowserOn_ = 2;
   }
 
-  externalBrowser_ = optionsDialog->otherExternalBrowserEdit_->text();
-  javaScriptEnable_ = optionsDialog->javaScriptEnable_->isChecked();
-  pluginsEnable_ = optionsDialog->pluginsEnable_->isChecked();
-  openLinkInBackground_ = optionsDialog->openLinkInBackground_->isChecked();
-  openLinkInBackgroundEmbedded_ = optionsDialog->openLinkInBackgroundEmbedded_->isChecked();
-  userStyleBrowser_ = optionsDialog->userStyleBrowserEdit_->text();
-  maxPagesInCache_ = optionsDialog->maxPagesInCache_->value();
+  externalBrowser_ = optionsDialog_->otherExternalBrowserEdit_->text();
+  javaScriptEnable_ = optionsDialog_->javaScriptEnable_->isChecked();
+  pluginsEnable_ = optionsDialog_->pluginsEnable_->isChecked();
+  openLinkInBackground_ = optionsDialog_->openLinkInBackground_->isChecked();
+  openLinkInBackgroundEmbedded_ = optionsDialog_->openLinkInBackgroundEmbedded_->isChecked();
+  userStyleBrowser_ = optionsDialog_->userStyleBrowserEdit_->text();
+  maxPagesInCache_ = optionsDialog_->maxPagesInCache_->value();
 
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -3884,15 +3887,15 @@ void RSSListing::showOptionDlg()
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
   QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
-  useDiskCache = optionsDialog->diskCacheOn_->isChecked();
+  useDiskCache = optionsDialog_->diskCacheOn_->isChecked();
   settings_->setValue("Settings/useDiskCache", useDiskCache);
-  maxDiskCache = optionsDialog->maxDiskCache_->value();
+  maxDiskCache = optionsDialog_->maxDiskCache_->value();
   settings_->setValue("Settings/maxDiskCache", maxDiskCache);
 
-  if (diskCacheDirPath != optionsDialog->dirDiskCacheEdit_->text()) {
+  if (diskCacheDirPath != optionsDialog_->dirDiskCacheEdit_->text()) {
     removePath(diskCacheDirPath);
   }
-  diskCacheDirPath = optionsDialog->dirDiskCacheEdit_->text();
+  diskCacheDirPath = optionsDialog_->dirDiskCacheEdit_->text();
   if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
   settings_->setValue("Settings/dirDiskCache", diskCacheDirPath);
 
@@ -3910,20 +3913,20 @@ void RSSListing::showOptionDlg()
     }
   }
 
-  if (optionsDialog->deleteCookiesOnClose_->isChecked())
+  if (optionsDialog_->deleteCookiesOnClose_->isChecked())
     cookieJar_->saveCookies_ = 2;
-  else if (optionsDialog->blockCookies_->isChecked())
+  else if (optionsDialog_->blockCookies_->isChecked())
     cookieJar_->saveCookies_ = 0;
   else
     cookieJar_->saveCookies_ = 1;
 
-  downloadLocation_ = optionsDialog->downloadLocationEdit_->text();
-  askDownloadLocation_ = optionsDialog->askDownloadLocation_->isChecked();
+  downloadLocation_ = optionsDialog_->downloadLocationEdit_->text();
+  askDownloadLocation_ = optionsDialog_->askDownloadLocation_->isChecked();
 
-  updateFeedsStartUp_ = optionsDialog->updateFeedsStartUp_->isChecked();
-  updateFeedsEnable_ = optionsDialog->updateFeedsEnable_->isChecked();
-  updateFeedsInterval_ = optionsDialog->updateFeedsInterval_->value();
-  updateFeedsIntervalType_ = optionsDialog->updateIntervalType_->currentIndex()-1;
+  updateFeedsStartUp_ = optionsDialog_->updateFeedsStartUp_->isChecked();
+  updateFeedsEnable_ = optionsDialog_->updateFeedsEnable_->isChecked();
+  updateFeedsInterval_ = optionsDialog_->updateFeedsInterval_->value();
+  updateFeedsIntervalType_ = optionsDialog_->updateIntervalType_->currentIndex()-1;
 
   int updateInterval = updateFeedsInterval_;
   if (updateFeedsIntervalType_ == 0)
@@ -3932,82 +3935,82 @@ void RSSListing::showOptionDlg()
     updateInterval = updateInterval*60*60;
   updateIntervalSec_ = updateInterval;
 
-  openingFeedAction_ = optionsDialog->getOpeningFeed();
-  openNewsWebViewOn_ = optionsDialog->openNewsWebViewOn_->isChecked();
+  openingFeedAction_ = optionsDialog_->getOpeningFeed();
+  openNewsWebViewOn_ = optionsDialog_->openNewsWebViewOn_->isChecked();
 
-  markNewsReadOn_ = optionsDialog->markNewsReadOn_->isChecked();
-  markCurNewsRead_ = optionsDialog->markCurNewsRead_->isChecked();
-  markNewsReadTime_ = optionsDialog->markNewsReadTime_->value();
-  markPrevNewsRead_ = optionsDialog->markPrevNewsRead_->isChecked();
-  markReadSwitchingFeed_ = optionsDialog->markReadSwitchingFeed_->isChecked();
-  markReadClosingTab_ = optionsDialog->markReadClosingTab_->isChecked();
-  markReadMinimize_ = optionsDialog->markReadMinimize_->isChecked();
+  markNewsReadOn_ = optionsDialog_->markNewsReadOn_->isChecked();
+  markCurNewsRead_ = optionsDialog_->markCurNewsRead_->isChecked();
+  markNewsReadTime_ = optionsDialog_->markNewsReadTime_->value();
+  markPrevNewsRead_ = optionsDialog_->markPrevNewsRead_->isChecked();
+  markReadSwitchingFeed_ = optionsDialog_->markReadSwitchingFeed_->isChecked();
+  markReadClosingTab_ = optionsDialog_->markReadClosingTab_->isChecked();
+  markReadMinimize_ = optionsDialog_->markReadMinimize_->isChecked();
 
-  showDescriptionNews_ = optionsDialog->showDescriptionNews_->isChecked();
+  showDescriptionNews_ = optionsDialog_->showDescriptionNews_->isChecked();
 
-  formatDate_ = optionsDialog->formatDate_->itemData(
-        optionsDialog->formatDate_->currentIndex()).toString();
+  formatDate_ = optionsDialog_->formatDate_->itemData(
+        optionsDialog_->formatDate_->currentIndex()).toString();
   feedsTreeModel_->formatDate_ = formatDate_;
-  formatTime_ = optionsDialog->formatTime_->itemData(
-        optionsDialog->formatTime_->currentIndex()).toString();
+  formatTime_ = optionsDialog_->formatTime_->itemData(
+        optionsDialog_->formatTime_->currentIndex()).toString();
   feedsTreeModel_->formatTime_ = formatTime_;
 
-  alternatingRowColorsNews_ = optionsDialog->alternatingRowColorsNews_->isChecked();
-  changeBehaviorActionNUN_ = optionsDialog->changeBehaviorActionNUN_->isChecked();
-  simplifiedDateTime_ = optionsDialog->simplifiedDateTime_->isChecked();
-  notDeleteStarred_ = optionsDialog->notDeleteStarred_->isChecked();
-  notDeleteLabeled_ = optionsDialog->notDeleteLabeled_->isChecked();
-  markIdenticalNewsRead_ = optionsDialog->markIdenticalNewsRead_->isChecked();
+  alternatingRowColorsNews_ = optionsDialog_->alternatingRowColorsNews_->isChecked();
+  changeBehaviorActionNUN_ = optionsDialog_->changeBehaviorActionNUN_->isChecked();
+  simplifiedDateTime_ = optionsDialog_->simplifiedDateTime_->isChecked();
+  notDeleteStarred_ = optionsDialog_->notDeleteStarred_->isChecked();
+  notDeleteLabeled_ = optionsDialog_->notDeleteLabeled_->isChecked();
+  markIdenticalNewsRead_ = optionsDialog_->markIdenticalNewsRead_->isChecked();
 
-  mainNewsFilter_ = optionsDialog->mainNewsFilter_->itemData(
-        optionsDialog->mainNewsFilter_->currentIndex()).toString();
+  mainNewsFilter_ = optionsDialog_->mainNewsFilter_->itemData(
+        optionsDialog_->mainNewsFilter_->currentIndex()).toString();
 
-  cleanupOnShutdown_ = optionsDialog->cleanupOnShutdownBox_->isChecked();
-  dayCleanUpOn_ = optionsDialog->dayCleanUpOn_->isChecked();
-  maxDayCleanUp_ = optionsDialog->maxDayCleanUp_->value();
-  newsCleanUpOn_ = optionsDialog->newsCleanUpOn_->isChecked();
-  maxNewsCleanUp_ = optionsDialog->maxNewsCleanUp_->value();
-  readCleanUp_ = optionsDialog->readCleanUp_->isChecked();
-  neverUnreadCleanUp_ = optionsDialog->neverUnreadCleanUp_->isChecked();
-  neverStarCleanUp_ = optionsDialog->neverStarCleanUp_->isChecked();
-  neverLabelCleanUp_ = optionsDialog->neverLabelCleanUp_->isChecked();
-  cleanUpDeleted_ = optionsDialog->cleanUpDeleted_->isChecked();
-  optimizeDB_ = optionsDialog->optimizeDB_->isChecked();
+  cleanupOnShutdown_ = optionsDialog_->cleanupOnShutdownBox_->isChecked();
+  dayCleanUpOn_ = optionsDialog_->dayCleanUpOn_->isChecked();
+  maxDayCleanUp_ = optionsDialog_->maxDayCleanUp_->value();
+  newsCleanUpOn_ = optionsDialog_->newsCleanUpOn_->isChecked();
+  maxNewsCleanUp_ = optionsDialog_->maxNewsCleanUp_->value();
+  readCleanUp_ = optionsDialog_->readCleanUp_->isChecked();
+  neverUnreadCleanUp_ = optionsDialog_->neverUnreadCleanUp_->isChecked();
+  neverStarCleanUp_ = optionsDialog_->neverStarCleanUp_->isChecked();
+  neverLabelCleanUp_ = optionsDialog_->neverLabelCleanUp_->isChecked();
+  cleanUpDeleted_ = optionsDialog_->cleanUpDeleted_->isChecked();
+  optimizeDB_ = optionsDialog_->optimizeDB_->isChecked();
 
-  soundNewNews_ = optionsDialog->soundNewNews_->isChecked();
-  soundNotifyPath_ = optionsDialog->editSoundNotifer_->text();
-  showNotifyOn_ = optionsDialog->showNotifyOn_->isChecked();
-  positionNotify_ = optionsDialog->positionNotify_->currentIndex();
-  countShowNewsNotify_ = optionsDialog->countShowNewsNotify_->value();
-  widthTitleNewsNotify_ = optionsDialog->widthTitleNewsNotify_->value();
-  timeShowNewsNotify_ = optionsDialog->timeShowNewsNotify_->value();
-  fullscreenModeNotify_ = optionsDialog->fullscreenModeNotify_->isChecked();
-  onlySelectedFeeds_ = optionsDialog->onlySelectedFeeds_->isChecked();
+  soundNewNews_ = optionsDialog_->soundNewNews_->isChecked();
+  soundNotifyPath_ = optionsDialog_->editSoundNotifer_->text();
+  showNotifyOn_ = optionsDialog_->showNotifyOn_->isChecked();
+  positionNotify_ = optionsDialog_->positionNotify_->currentIndex();
+  countShowNewsNotify_ = optionsDialog_->countShowNewsNotify_->value();
+  widthTitleNewsNotify_ = optionsDialog_->widthTitleNewsNotify_->value();
+  timeShowNewsNotify_ = optionsDialog_->timeShowNewsNotify_->value();
+  fullscreenModeNotify_ = optionsDialog_->fullscreenModeNotify_->isChecked();
+  onlySelectedFeeds_ = optionsDialog_->onlySelectedFeeds_->isChecked();
 
-  if (langFileName_ != optionsDialog->language()) {
-    langFileName_ = optionsDialog->language();
+  if (langFileName_ != optionsDialog_->language()) {
+    langFileName_ = optionsDialog_->language();
     appInstallTranslator();
   }
 
   QFont font = feedsTreeView_->font();
   font.setFamily(
-        optionsDialog->fontsTree_->topLevelItem(0)->text(2).section(", ", 0, 0));
+        optionsDialog_->fontsTree_->topLevelItem(0)->text(2).section(", ", 0, 0));
   font.setPointSize(
-        optionsDialog->fontsTree_->topLevelItem(0)->text(2).section(", ", 1).toInt());
+        optionsDialog_->fontsTree_->topLevelItem(0)->text(2).section(", ", 1).toInt());
   feedsTreeView_->setFont(font);
   feedsTreeModel_->font_ = font;
 
-  newsListFontFamily_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 0, 0);
-  newsListFontSize_ = optionsDialog->fontsTree_->topLevelItem(1)->text(2).section(", ", 1).toInt();
-  newsTitleFontFamily_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 0, 0);
-  newsTitleFontSize_ = optionsDialog->fontsTree_->topLevelItem(2)->text(2).section(", ", 1).toInt();
-  newsTextFontFamily_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 0, 0);
-  newsTextFontSize_ = optionsDialog->fontsTree_->topLevelItem(3)->text(2).section(", ", 1).toInt();
-  notificationFontFamily_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
-  notificationFontSize_ = optionsDialog->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
+  newsListFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(1)->text(2).section(", ", 0, 0);
+  newsListFontSize_ = optionsDialog_->fontsTree_->topLevelItem(1)->text(2).section(", ", 1).toInt();
+  newsTitleFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(2)->text(2).section(", ", 0, 0);
+  newsTitleFontSize_ = optionsDialog_->fontsTree_->topLevelItem(2)->text(2).section(", ", 1).toInt();
+  newsTextFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(3)->text(2).section(", ", 0, 0);
+  newsTextFontSize_ = optionsDialog_->fontsTree_->topLevelItem(3)->text(2).section(", ", 1).toInt();
+  notificationFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
+  notificationFontSize_ = optionsDialog_->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
 
-  browserMinFontSize_ = optionsDialog->browserMinFontSize_->value();
-  browserMinLogFontSize_ = optionsDialog->browserMinLogFontSize_->value();
+  browserMinFontSize_ = optionsDialog_->browserMinFontSize_->value();
+  browserMinLogFontSize_ = optionsDialog_->browserMinLogFontSize_->value();
 
   QWebSettings::globalSettings()->setFontFamily(
         QWebSettings::StandardFont, newsTextFontFamily_);
@@ -4016,23 +4019,24 @@ void RSSListing::showOptionDlg()
   QWebSettings::globalSettings()->setFontSize(
         QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
 
-  feedsTreeModel_->textColor_ = optionsDialog->colorsTree_->topLevelItem(0)->text(1);
-  feedsTreeModel_->backgroundColor_ = optionsDialog->colorsTree_->topLevelItem(1)->text(1);
+  feedsTreeModel_->textColor_ = optionsDialog_->colorsTree_->topLevelItem(0)->text(1);
+  feedsTreeModel_->backgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(1)->text(1);
   feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
-  newsListTextColor_ = optionsDialog->colorsTree_->topLevelItem(2)->text(1);
-  newsListBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(3)->text(1);
-  focusedNewsTextColor_ = optionsDialog->colorsTree_->topLevelItem(4)->text(1);
-  focusedNewsBGColor_ = optionsDialog->colorsTree_->topLevelItem(5)->text(1);
-  linkColor_ = optionsDialog->colorsTree_->topLevelItem(6)->text(1);
-  titleColor_ = optionsDialog->colorsTree_->topLevelItem(7)->text(1);
-  dateColor_ = optionsDialog->colorsTree_->topLevelItem(8)->text(1);
-  authorColor_ = optionsDialog->colorsTree_->topLevelItem(9)->text(1);
-  newsTitleBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(10)->text(1);
-  newsBackgroundColor_ = optionsDialog->colorsTree_->topLevelItem(11)->text(1);
-  feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog->colorsTree_->topLevelItem(12)->text(1);
-  feedsTreeModel_->countNewsUnreadColor_ = optionsDialog->colorsTree_->topLevelItem(13)->text(1);
+  newsListTextColor_ = optionsDialog_->colorsTree_->topLevelItem(2)->text(1);
+  newsListBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(3)->text(1);
+  focusedNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(4)->text(1);
+  focusedNewsBGColor_ = optionsDialog_->colorsTree_->topLevelItem(5)->text(1);
+  linkColor_ = optionsDialog_->colorsTree_->topLevelItem(6)->text(1);
+  titleColor_ = optionsDialog_->colorsTree_->topLevelItem(7)->text(1);
+  dateColor_ = optionsDialog_->colorsTree_->topLevelItem(8)->text(1);
+  authorColor_ = optionsDialog_->colorsTree_->topLevelItem(9)->text(1);
+  newsTitleBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(10)->text(1);
+  newsBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(11)->text(1);
+  feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(12)->text(1);
+  feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
 
-  delete optionsDialog;
+  delete optionsDialog_;
+  optionsDialog_ = NULL;
 
   writeSettings();
   saveActionShortcuts();
