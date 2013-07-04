@@ -48,6 +48,7 @@
 #include "notifications.h"
 #include "parsethread.h"
 #include "tabbar.h"
+#include "optionsdialog.h"
 #include "updateappdialog.h"
 #include "updatedelayer.h"
 #include "updatethread.h"
@@ -685,6 +686,8 @@ private:
   bool recountCategoryCountsOn_;
 
   QString diskCacheDirPathDefault_;
+
+  OptionsDialog *optionsDialog_;
 
 };
 
