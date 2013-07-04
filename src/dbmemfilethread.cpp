@@ -19,7 +19,9 @@
 
 #include <QDebug>
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-#if QT_VERSION >= 0x040800
+#if QT_VERSION >= 0x050100
+#include <sqlite_qt51x/sqlite3.h>
+#elif QT_VERSION >= 0x040800
 #include <sqlite_qt48x/sqlite3.h>
 #else
 #include <sqlite_qt47x/sqlite3.h>
