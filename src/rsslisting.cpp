@@ -157,7 +157,8 @@ RSSListing::RSSListing(QSettings *settings,
           this, SLOT(updateInfoDownloads(QString)));
 
   int requestTimeout = settings_->value("Settings/requestTimeout", 30).toInt();
-  persistentUpdateThread_ = new UpdateThread(this, requestTimeout);
+  int replyCount = settings_->value("Settings/replyCount", 10).toInt();
+  persistentUpdateThread_ = new UpdateThread(this, requestTimeout, replyCount);
 
   persistentParseThread_ = new ParseThread(this);
 

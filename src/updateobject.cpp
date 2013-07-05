@@ -27,9 +27,10 @@
 
 #define REPLY_MAX_COUNT 10
 
-UpdateObject::UpdateObject(int requestTimeout, QObject *parent)
+UpdateObject::UpdateObject(int requestTimeout, int replyCount, QObject *parent)
   : QObject(parent)
   , requestTimeout_(requestTimeout)
+  , replyCount_(replyCount)
 {
   setObjectName("updateObject_");
 
@@ -69,7 +70,8 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
  *----------------------------------------------------------------------------*/
 void UpdateObject::getQueuedUrl()
 {
-  if (REPLY_MAX_COUNT <= currentFeeds_.size()) {
+  if ((replyCount_ <= currentFeeds_.size()) &&
+      (REPLY_MAX_COUNT <= currentFeeds_.size())) {
     getUrlTimer_->start();
     return;
   }
