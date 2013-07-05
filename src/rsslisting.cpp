@@ -2722,6 +2722,7 @@ void RSSListing::slotExportFeeds()
     else {
       xml.writeEmptyElement("outline");
       xml.writeAttribute("text",    exportTreeModel.dataField(index, "text").toString());
+      xml.writeAttribute("type",    "rss");
       xml.writeAttribute("htmlUrl", exportTreeModel.dataField(index, "htmlUrl").toString());
       xml.writeAttribute("xmlUrl",  exportTreeModel.dataField(index, "xmlUrl").toString());
     }

@@ -436,7 +436,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.author = toPlainText(newsList.item(i).namedItem("author").toElement().text());
     if (newsItem.author.isEmpty())
       newsItem.author = toPlainText(newsList.item(i).namedItem("dc:creator").toElement().text());
-    newsItem.link = newsList.item(i).namedItem("link").toElement().text();
+    newsItem.link = newsList.item(i).namedItem("link").toElement().text().simplified();
     newsItem.description = newsList.item(i).namedItem("description").toElement().text();
     newsItem.content = newsList.item(i).namedItem("content:encoded").toElement().text();
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
