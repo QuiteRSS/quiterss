@@ -3544,7 +3544,10 @@ void RSSListing::showOptionDlg()
 {
   static int index = 0;
 
-  if (optionsDialog_) return;
+  if (optionsDialog_) {
+    optionsDialog_->activateWindow();
+    return;
+  }
 
   optionsDialog_ = new OptionsDialog(this);
 
