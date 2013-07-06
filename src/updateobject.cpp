@@ -260,14 +260,21 @@ void UpdateObject::slotRequestTimeout()
     if (time <= 0) {
       QUrl url = currentUrls_.takeAt(i);
       QString feedUrl = currentFeeds_.takeAt(i);
+      QDateTime feedDate = currentDates_.takeAt(i);
+      int count = currentCount_.takeAt(i) + 1;
       currentTime_.removeAt(i);
-      currentDates_.removeAt(i);
       currentHead_.removeAt(i);
 
       int replyIndex = requestUrl_.indexOf(url);
-      requestUrl_.removeAt(replyIndex);
+      QUrl replyUrl = requestUrl_.takeAt(replyIndex);
       networkReply_.takeAt(replyIndex)->deleteLater();
-      emit getUrlDone(-3, feedUrl);
+      qCritical() << "*01" << replyUrl.toString();
+      if (count < 2) {
+        emit signalGet(replyUrl, feedUrl, feedDate, count);
+      } else {
+        qCritical() << replyUrl.toString();
+        emit getUrlDone(-3, feedUrl);
+      }
     } else {
       currentTime_.replace(i, time);
     }
