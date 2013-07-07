@@ -4110,25 +4110,12 @@ void RSSListing::slotGetFeed()
         arg(str);
     q.exec(qStr);
     while (q.next()) {
-      if (addFeedInQueue(q.record().value(0).toString())) {
-        updateFeedsCount_ = updateFeedsCount_ + 2;
-        QString userInfo = getUserInfo(q.record().value(0).toString(),
-                                       q.record().value(2).toInt());
-        emit signalRequestUrl(q.record().value(0).toString(),
-                              q.record().value(1).toDateTime(),
-                              userInfo);
-      }
+      addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
     }
   } else {
-    if (addFeedInQueue(feedsTreeModel_->dataField(index, "xmlUrl").toString())) {
-      updateFeedsCount_ = updateFeedsCount_ + 2;
-      QString userInfo = getUserInfo(feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-                                     feedsTreeModel_->dataField(index, "authentication").toInt());
-      emit signalRequestUrl(
-            feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-            QDateTime::fromString(feedsTreeModel_->dataField(index, "lastBuildDate").toString(), Qt::ISODate),
-            userInfo);
-    }
+    addFeedInQueue(feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+                   feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
+                   feedsTreeModel_->dataField(index, "authentication").toInt());
   }
 
   showProgressBar(updateFeedsCount_);
@@ -4141,14 +4128,7 @@ void RSSListing::slotGetAllFeeds()
   QSqlQuery q;
   q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
   while (q.next()) {
-    if (addFeedInQueue(q.record().value(0).toString())) {
-      updateFeedsCount_ = updateFeedsCount_ + 2;
-      QString userInfo = getUserInfo(q.record().value(0).toString(),
-                                     q.record().value(2).toInt());
-      emit signalRequestUrl(q.record().value(0).toString(),
-                            q.record().value(1).toDateTime(),
-                            userInfo);
-    }
+    addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
   }
 
   showProgressBar(updateFeedsCount_);
@@ -4815,14 +4795,7 @@ void RSSListing::slotUpdateFeedsTimer()
       q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds "
              "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
       while (q.next()) {
-        if (addFeedInQueue(q.value(0).toString())) {
-          updateFeedsCount_ = updateFeedsCount_ + 2;
-          QString userInfo = getUserInfo(q.value(0).toString(),
-                                         q.value(2).toInt());
-          emit signalRequestUrl(q.value(0).toString(),
-                                q.value(1).toDateTime(),
-                                userInfo);
-        }
+        addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
       }
       showProgressBar(updateFeedsCount_);
     }
@@ -4842,14 +4815,7 @@ void RSSListing::slotUpdateFeedsTimer()
       q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
              .arg(feedId));
       if (q.next()) {
-        if (addFeedInQueue(q.value(0).toString())) {
-          updateFeedsCount_ = updateFeedsCount_ + 2;
-          QString userInfo = getUserInfo(q.value(0).toString(),
-                                         q.value(2).toInt());
-          emit signalRequestUrl(q.value(0).toString(),
-                                q.value(1).toDateTime(),
-                                userInfo);
-        }
+        addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
       }
       showProgressBar(updateFeedsCount_);
     }
@@ -7613,13 +7579,16 @@ QUrl RSSListing::userStyleSheet(const QString &filePath) const
   return QUrl(dataString);
 }
 // ----------------------------------------------------------------------------
-bool RSSListing::addFeedInQueue(const QString &feedUrl)
+bool RSSListing::addFeedInQueue(const QString &feedUrl, const QDateTime &date, int auth)
 {
   int feedUrlIndex = feedUrlList_.indexOf(feedUrl);
   if (feedUrlIndex > -1) {
     return false;
   } else {
     feedUrlList_.append(feedUrl);
+    updateFeedsCount_ = updateFeedsCount_ + 2;
+    QString userInfo = getUserInfo(feedUrl, auth);
+    emit signalRequestUrl(feedUrl, date, userInfo);
     return true;
   }
 }

@@ -301,7 +301,7 @@ private slots:
   void slotFeedsFilter();
   void slotNewsFilter();
   void slotUpdateFeedsTimer();
-  bool addFeedInQueue(const QString &feedUrl);
+  bool addFeedInQueue(const QString &feedUrl, const QDateTime &date, int auth);
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
