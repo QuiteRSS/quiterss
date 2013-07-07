@@ -2310,7 +2310,6 @@ void RSSListing::writeSettings()
 
   NewsTabWidget* widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   settings_->setValue("feedSettings/currentId", widget->feedId_);
-  settings_->setValue("feedSettings/currentParId", widget->feedParId_);
   settings_->setValue("feedSettings/filterName",
                       feedsFilterGroup_->checkedAction()->objectName());
   settings_->setValue("newsSettings/filterName",
@@ -2357,8 +2356,7 @@ void RSSListing::addFeed()
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   feedsTreeView_->setCurrentIndex(QModelIndex());
   feedsModelReload();
-  QModelIndex index = feedsTreeModel_->getIndexById(addFeedWizard->feedId_,
-                                                    addFeedWizard->feedParentId_);
+  QModelIndex index = feedsTreeModel_->getIndexById(addFeedWizard->feedId_);
   feedsTreeView_->selectIdEn_ = true;
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
@@ -2784,7 +2782,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
       isFolder = true;
   }
 
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
   QModelIndex indexParent = QModelIndex();
   QModelIndex indexUnread;
   QModelIndex indexNew;
@@ -2906,7 +2904,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
         q.exec(qStr);
 
         // Update view of the parent, if it exist
-        QModelIndex index1 = feedsTreeModel_->getIndexById(id, parId);
+        QModelIndex index1 = feedsTreeModel_->getIndexById(id);
         if (index1.isValid()) {
           indexUnread   = feedsTreeModel_->indexSibling(index1, "unread");
           indexNew      = feedsTreeModel_->indexSibling(index1, "newCount");
@@ -2942,11 +2940,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
               arg(l_feedParId);
           q.exec(qStr);
 
-          int parId = 0;
-          q.exec(QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(l_feedParId));
-          if (q.next())
-            parId = q.value(0).toInt();
-          QModelIndex index1 = feedsTreeModel_->getIndexById(l_feedParId, parId);
+          QModelIndex index1 = feedsTreeModel_->getIndexById(l_feedParId);
 
           // Update view, if it exist
           if (index1.isValid()) {
@@ -3024,7 +3018,7 @@ void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
 // ----------------------------------------------------------------------------
 void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
 {
-  QModelIndex index = feedsTreeModel_->getIndexById(counts.feedId, counts.parentId);
+  QModelIndex index = feedsTreeModel_->getIndexById(counts.feedId);
   if (index.isValid()) {
     QModelIndex indexUnread   = feedsTreeModel_->indexSibling(index, "unread");
     QModelIndex indexNew      = feedsTreeModel_->indexSibling(index, "newCount");
@@ -3377,7 +3371,6 @@ void RSSListing::slotUpdateNews()
 void RSSListing::slotFeedClicked(QModelIndex index)
 {
   int feedIdCur = feedsTreeModel_->getIdByIndex(index);
-  int feedParIdCur = feedsTreeModel_->getParidByIndex(index);
 
   if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
@@ -3400,7 +3393,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       updateCurrentTab_ = false;
       tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       updateCurrentTab_ = true;
-      feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
+      feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur));
 
       currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
       newsModel_ = currentNewsTab->newsModel_;
@@ -3412,7 +3405,7 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       categoriesTree_->setCurrentIndex(QModelIndex());
     }
 
-    slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur, feedParIdCur));
+    slotFeedSelected(feedsTreeModel_->getIndexById(feedIdCur));
     feedsTreeView_->repaint();
   } else if (indexTab != -1) {
     tabBar_->setCurrentIndex(indexTab);
@@ -3494,7 +3487,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   // Search feed news that displayed before
   int newsRow = -1;
   if (openingFeedAction_ == 0) {
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
     int newsIdCur = feedsTreeModel_->dataField(feedIndex, "currentNews").toInt();
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsIdCur);
@@ -3533,7 +3526,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
     q.exec(qStr);
 
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
     feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
                              newsId);
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
@@ -4266,7 +4259,6 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   QModelIndex index = feedsTreeView_->currentIndex();
   int feedId = feedsTreeModel_->getIdByIndex(index);
-  int feedParId = feedsTreeModel_->getParidByIndex(index);
   int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
   int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
 
@@ -4341,7 +4333,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
 
   // Restore cursor on previous displayed feed
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
   feedsTreeView_->setCurrentIndex(feedIndex);
 
   if (clicked) {
@@ -4376,7 +4368,6 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   QModelIndex index = newsView_->currentIndex();
 
   int feedId = currentNewsTab->feedId_;
-  int feedParId = currentNewsTab->feedParId_;
   int newsId = newsModel_->index(
         index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
@@ -4391,7 +4382,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   }
 
   // Create filter for category or for feed
-  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
+  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId))) {
     newsFilterStr = QString("(%1) AND ").arg(getIdFeedsString(feedId));
   } else {
     newsFilterStr = QString("feedId=%1 AND ").arg(feedId);
@@ -4579,7 +4570,6 @@ void RSSListing::showContextMenuFeed(const QPoint &pos)
 
   index = feedsTreeView_->currentIndex();
   feedsTreeView_->selectId_ = feedsTreeModel_->getIdByIndex(index);
-  feedsTreeView_->selectParentId_ = feedsTreeModel_->getParidByIndex(index);
 
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
@@ -4648,12 +4638,11 @@ void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
   //* Restore current feed
-  QModelIndex feedIndex;
+  QModelIndex feedIndex = QModelIndex();
   if (reopenFeedStartup_) {
     int feedId = settings_->value("feedSettings/currentId", 0).toInt();
-    int feedParId = settings_->value("feedSettings/currentParId", 0).toInt();
-    feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
-  } else feedIndex = QModelIndex();
+    feedIndex = feedsTreeModel_->getIndexById(feedId);
+  }
   feedsTreeView_->setCurrentIndex(feedIndex);
   updateCurrentTab_ = false;
   slotFeedClicked(feedIndex);
@@ -4677,11 +4666,10 @@ void RSSListing::restoreFeedsOnStartUp()
 void RSSListing::expandNodes()
 {
   QSqlQuery q;
-  q.exec("SELECT id, parentId FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
+  q.exec("SELECT id FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
   while (q.next()) {
-    int feedId    = q.value(0).toInt();
-    int feedParId = q.value(1).toInt();
-    QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+    int feedId = q.value(0).toInt();
+    QModelIndex index = feedsTreeModel_->getIndexById(feedId);
     feedsTreeView_->setExpanded(index, true);
   }
 }
@@ -5224,7 +5212,6 @@ void RSSListing::showFeedPropertiesDlg()
 
   QPersistentModelIndex index = feedsTreeView_->selectIndex();
   int feedId = feedsTreeModel_->getIdByIndex(index);
-  int feedParentId = feedsTreeModel_->getParidByIndex(index);
   bool isFeed = (index.isValid() && feedsTreeModel_->isFolder(index)) ? false : true;
 
   FeedPropertiesDialog *feedPropertiesDialog = new FeedPropertiesDialog(isFeed, this);
@@ -5387,7 +5374,7 @@ void RSSListing::showFeedPropertiesDlg()
   properties = feedPropertiesDialog->getFeedProperties();
   delete feedPropertiesDialog;
 
-  index = feedsTreeModel_->getIndexById(feedId, feedParentId);
+  index = feedsTreeModel_->getIndexById(feedId);
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, label = ?, "
@@ -5441,12 +5428,11 @@ void RSSListing::showFeedPropertiesDlg()
     parentIds.enqueue(feedId);
     while (!parentIds.empty()) {
       int parentId = parentIds.dequeue();
-      q.exec(QString("SELECT id, parentId, xmlUrl FROM feeds WHERE parentId='%1'").
+      q.exec(QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").
              arg(parentId));
       while (q.next()) {
         int id = q.value(0).toInt();
-        int parentId = q.value(1).toInt();
-        QString xmlUrl = q.value(2).toString();
+        QString xmlUrl = q.value(1).toString();
 
         QSqlQuery q1;
         q1.prepare("UPDATE feeds SET columns = ?, sort = ?, sortType = ? WHERE id == ?");
@@ -5456,7 +5442,7 @@ void RSSListing::showFeedPropertiesDlg()
         q1.addBindValue(id);
         q1.exec();
 
-        QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id, parentId);
+        QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id);
         indexColumns = feedsTreeModel_->indexSibling(index1, "columns");
         indexSort = feedsTreeModel_->indexSibling(index1, "sort");
         indexSortType = feedsTreeModel_->indexSibling(index1, "sortType");
@@ -5545,12 +5531,11 @@ void RSSListing::showFeedPropertiesDlg()
       parentIds.enqueue(feedId);
       while (!parentIds.empty()) {
         int parentId = parentIds.dequeue();
-        q.exec(QString("SELECT id, parentId, xmlUrl FROM feeds WHERE parentId='%1'").
+        q.exec(QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").
                arg(parentId));
         while (q.next()) {
           int id = q.value(0).toInt();
-          int parentId = q.value(1).toInt();
-          QString xmlUrl = q.value(2).toString();
+          QString xmlUrl = q.value(1).toString();
 
           QSqlQuery q1;
           q1.prepare("UPDATE feeds SET updateIntervalEnable = ?, updateInterval = ?, "
@@ -5561,7 +5546,7 @@ void RSSListing::showFeedPropertiesDlg()
           q1.addBindValue(id);
           q1.exec();
 
-          QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id, parentId);
+          QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id);
           indexUpdateEnable   = feedsTreeModel_->indexSibling(index1, "updateIntervalEnable");
           indexUpdateInterval = feedsTreeModel_->indexSibling(index1, "updateInterval");
           indexIntervalType   = feedsTreeModel_->indexSibling(index1, "updateIntervalType");
@@ -5609,7 +5594,7 @@ void RSSListing::showFeedPropertiesDlg()
     q.addBindValue(properties.general.image.toBase64());
     q.addBindValue(feedId);
     q.exec();
-    slotIconFeedUpdate(feedId, feedParentId, properties.general.image);
+    slotIconFeedUpdate(feedId, properties.general.image);
   }
 
   if (properties.general.text != properties_tmp.general.text) {
@@ -5773,9 +5758,9 @@ void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray 
 
 /** @brief Update feed icon in model and view
  *---------------------------------------------------------------------------*/
-void RSSListing::slotIconFeedUpdate(int feedId, int feedParId, const QByteArray &faviconData)
+void RSSListing::slotIconFeedUpdate(int feedId, const QByteArray &faviconData)
 {
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
   if (index.isValid()) {
     QModelIndex indexImage = feedsTreeModel_->indexSibling(index, "image");
     feedsTreeModel_->setData(indexImage, faviconData.toBase64());
@@ -6110,7 +6095,7 @@ void RSSListing::slotTabCurrentChanged(int index)
       widget->hide();
     createNewsTab(index);
 
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(widget->feedId_, widget->feedParId_);
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(widget->feedId_);
     feedsTreeView_->setCurrentIndex(feedIndex);
     feedProperties_->setEnabled(feedIndex.isValid());
 
@@ -6258,7 +6243,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
     widget->setTextTab(q.value(0).toString());
 
     QString feedIdFilter;
-    if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId, feedParId))) {
+    if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId))) {
       feedIdFilter = QString("(%1) AND ").arg(getIdFeedsString(feedId));
     } else {
       feedIdFilter = QString("feedId=%1 AND ").arg(feedId);
@@ -6411,12 +6396,11 @@ void RSSListing::feedsModelReload(bool checkFilter)
   int topRow = feedsTreeView_->verticalScrollBar()->value();
 
   int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
-  int feedParId = feedsTreeModel_->getParidByIndex(feedsTreeView_->currentIndex());
 
   feedsTreeModel_->refresh();
   expandNodes();
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
   feedsTreeView_->selectIdEn_ = false;
   feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
@@ -6477,8 +6461,8 @@ void RSSListing::showNotification()
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
   connect(notificationWidget, SIGNAL(signalDelete()),
           this, SLOT(deleteNotification()));
-  connect(notificationWidget, SIGNAL(signalOpenNews(int,int,int)),
-          this, SLOT(slotOpenNew(int,int,int)));
+  connect(notificationWidget, SIGNAL(signalOpenNews(int, int)),
+          this, SLOT(slotOpenNew(int, int)));
   connect(notificationWidget, SIGNAL(signalOpenExternalBrowser(QUrl)),
           this, SLOT(slotOpenNewBrowser(QUrl)));
 
@@ -6495,7 +6479,7 @@ void RSSListing::deleteNotification()
 
 /** @brief Show news on click in notification window
  *---------------------------------------------------------------------------*/
-void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
+void RSSListing::slotOpenNew(int feedId, int newsId)
 {
   deleteNotification();
 
@@ -6506,7 +6490,7 @@ void RSSListing::slotOpenNew(int feedId, int feedParId, int newsId)
   QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
   q.exec(qStr);
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
   feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
                            newsId);
 
@@ -6901,7 +6885,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
   feedsTreeModel_->refresh();
   expandNodes();
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedIdWhat, feedParIdWhere);
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedIdWhat);
   feedsTreeView_->setCurrentIndex(feedIndex);
 
   feedsTreeView_->setCursor(Qt::ArrowCursor);

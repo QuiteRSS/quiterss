@@ -708,7 +708,6 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
 
   FeedCountStruct counts;
   counts.feedId = feedId;
-  counts.parentId = feedParId;
   counts.unreadCount = unreadCount;
   counts.newCount = newNewsCount;
   counts.undeleteCount = undeleteCount;
@@ -748,7 +747,6 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
     q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
     if (q.next()) l_feedParId = q.value(0).toInt();
 
-    counts.parentId = l_feedParId;
     counts.unreadCount = unreadCount;
     counts.newCount = newCount;
     counts.undeleteCount = undeleteCount;

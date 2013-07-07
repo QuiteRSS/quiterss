@@ -493,8 +493,7 @@ void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget
   if (newsTabWidget->type_ == TAB_CAT_DEL) return;
 
   int feedId = newsTabWidget->feedId_;
-  int feedParId = newsTabWidget->feedParId_;
-  QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId, feedParId);
+  QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId);
 
   rssl->settings_->beginGroup("NewsHeader");
   rssl->settings_->setValue("state", saveState());

@@ -455,13 +455,13 @@ bool QyurSqlTreeModel::removeRecords(QModelIndexList& list) {
   return true;
 }
 
-QModelIndex QyurSqlTreeModel::getIndexById(int id, int parentId) const {
+QModelIndex QyurSqlTreeModel::getIndexById(int id) const {
   Q_D(const QyurSqlTreeModel);
-  QModelIndex parentIndex;
-  if (parentId>0)
-    parentIndex= getIndexById(parentId,d->getUserDataById(parentId)->parid);
-  for (int i=0; i<rowCount(parentIndex); i++) {
-    if (getIdByIndex(index(i,0,parentIndex))==id)
+  QModelIndex parentIndex = QModelIndex();
+  if (id > 0)
+    parentIndex = getIndexById(d->getUserDataById(id)->parid);
+  for (int i=0; i < rowCount(parentIndex); i++) {
+    if (getIdByIndex(index(i,0,parentIndex)) == id)
       return index(i,0,parentIndex);
   }
   return QModelIndex();
@@ -522,30 +522,28 @@ void QyurSqlTreeView::slotRemoveExpanded(const QModelIndex& index) {
 
 void QyurSqlTreeView::slotSortByColumnAndSelect(int column) {
   int id= -1;
-  int parid=-1;
   if (selectionModel()->selectedRows().size()>0) {
-    id= selectionModel()->selectedRows()[0].sibling(selectionModel()->selectedRows()[0].row(),((QyurSqlTreeModel*) model())->getFieldPosition(QyurSqlTreeModel::Id)).data().toInt();
-    parid= selectionModel()->selectedRows()[0].sibling(selectionModel()->selectedRows()[0].row(),((QyurSqlTreeModel*) model())->getFieldPosition(QyurSqlTreeModel::ParentId)).data().toInt();
+    id = selectionModel()->selectedRows()[0].sibling(selectionModel()->selectedRows()[0].row(),((QyurSqlTreeModel*) model())->getFieldPosition(QyurSqlTreeModel::Id)).data().toInt();
   }
   QTreeView::sortByColumn(column);
-  restore(parid,id);
+  restore(id);
 }
 
-void QyurSqlTreeView::restore(int parentId, int id) {
+void QyurSqlTreeView::restore(int id) {
   Q_D(QyurSqlTreeView);
   if (id!=-1) {
-    QModelIndex selectedIndex= ((QyurSqlTreeModel*) model())->getIndexById(id,parentId);
+    QModelIndex selectedIndex= ((QyurSqlTreeModel*) model())->getIndexById(id);
     scrollTo(selectedIndex);
     selectionModel()->select(selectedIndex,QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
   }
   foreach(QyurIntPair pair, d->expandedNodeList)
-    setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first,pair.second),true);
+    setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first),true);
 }
 
 void QyurSqlTreeView::restoreExpanded() {
   Q_D(QyurSqlTreeView);
   foreach(QyurIntPair pair, d->expandedNodeList)
-    setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first,pair.second),true);
+    setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first),true);
 }
 
 void QyurSqlTreeView::onInsertRow(QSqlRecord&) {

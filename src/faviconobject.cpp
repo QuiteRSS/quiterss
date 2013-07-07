@@ -211,15 +211,13 @@ void FaviconObject::slotRequestTimeout()
 void FaviconObject::slotIconSave(const QString &feedUrl, const QByteArray &faviconData)
 {
   int feedId = 0;
-  int feedParId = 0;
 
   QSqlQuery q;
-  q.prepare("SELECT id, parentId FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrl);
   q.exec();
   if (q.next()) {
     feedId = q.value(0).toInt();
-    feedParId = q.value(1).toInt();
   }
 
   q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
@@ -227,5 +225,5 @@ void FaviconObject::slotIconSave(const QString &feedUrl, const QByteArray &favic
   q.addBindValue(feedId);
   q.exec();
 
-  emit signalIconUpdate(feedId, feedParId, faviconData);
+  emit signalIconUpdate(feedId, faviconData);
 }

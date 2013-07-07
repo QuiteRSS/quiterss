@@ -30,7 +30,6 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   , dragPos_(QPoint())
   , dragStartPos_(QPoint())
   , selectOldId_(-1)
-  , selectOldParentId_(-1)
 {
   setObjectName("feedsTreeView_");
   setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -291,7 +290,6 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
   if (event->buttons() & Qt::RightButton) {
     if (event->pos().x() >= rectText.x()) {
       selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
-      selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
     }
     return;
   }
@@ -304,7 +302,6 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 
   indexClicked_ = index;
   selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
-  selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
 
   if ((event->buttons() & Qt::MiddleButton)) {
     emit signalMiddleClicked();
@@ -380,7 +377,6 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
   if (selectIdEn_) {
     QModelIndex index = current;
     selectId_ = ((FeedsTreeModel*)model())->getIdByIndex(index);
-    selectParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
   }
   selectIdEn_ = true;
 
@@ -488,9 +484,8 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   if (feedId == selectOldId_) return;
 
   QModelIndex indexCollapsed =
-      ((FeedsTreeModel*)model())->getIndexById(selectOldId_, selectOldParentId_);
+      ((FeedsTreeModel*)model())->getIndexById(selectOldId_);
   selectOldId_ = feedId;
-  selectOldParentId_ = ((FeedsTreeModel*)model())->getParidByIndex(index);
 
   if (!autocollapseFolder_) return;
 
@@ -614,7 +609,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
 // ----------------------------------------------------------------------------
 QPersistentModelIndex FeedsTreeView::selectIndex()
 {
-  return ((FeedsTreeModel*)model())->getIndexById(selectId_, selectParentId_);
+  return ((FeedsTreeModel*)model())->getIndexById(selectId_);
 }
 
 /** @brief Update cursor without list scrolling

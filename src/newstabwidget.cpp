@@ -466,7 +466,7 @@ void NewsTabWidget::setSettings(bool newTab)
   if (type_ < TAB_WEB) {
     newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
 
-    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_);
     newsHeader_->setColumns(rsslisting_, indexFeed);
 
     rsslisting_->slotUpdateStatus(feedId_, false);
@@ -568,7 +568,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_, feedParId_);
+      QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
       feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TAB_CAT_LABEL) {
       QSqlQuery q;

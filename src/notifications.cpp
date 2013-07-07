@@ -143,16 +143,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   int cnt = 0;
   for (int i = 0; i < idFeedList_.count(); i++) {
     int idFeed = idFeedList_[i];
-    QString qStr = QString("SELECT text, image, parentId FROM feeds WHERE id=='%1'").
+    QString qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
         arg(idFeed);
     q.exec(qStr);
     QString titleFeed;
     QPixmap iconFeed;
-    int parIdFeed = -1;
     if (q.next()) {
       titleFeed = q.value(0).toString();
       QByteArray byteArray = q.value(1).toByteArray();
-      parIdFeed = q.value(2).toInt();
       if (!byteArray.isNull()) {
         iconFeed.loadFromData(QByteArray::fromBase64(byteArray));
       }
@@ -176,15 +174,15 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         stackedWidget_->addWidget(pageWidget);
       } else cnt++;
 
-      NewsItem *newsItem = new NewsItem(idFeed, parIdFeed, q.value(0).toInt(),
+      NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(),
                                         widthTitleNews, this);
       if (!iconFeed.isNull())
         newsItem->iconNews_->setPixmap(iconFeed);
       newsItem->iconNews_->setToolTip(titleFeed);
       connect(newsItem, SIGNAL(signalMarkRead(int)),
               this, SLOT(markRead(int)));
-      connect(newsItem, SIGNAL(signalTitleClicked(int, int, int)),
-              this, SIGNAL(signalOpenNews(int, int, int)));
+      connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
+              this, SIGNAL(signalOpenNews(int, int)));
       connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
               this, SIGNAL(signalOpenExternalBrowser(QUrl)));
 
@@ -213,14 +211,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         stackedWidget_->addWidget(pageWidget);
       } else cnt++;
 
-      NewsItem *newsItem = new NewsItem(0, 0, 0, widthTitleNews, this);
+      NewsItem *newsItem = new NewsItem(0, 0, widthTitleNews, this);
 
       newsItem->iconNews_->setPixmap(QPixmap(":/images/feed"));
       newsItem->iconNews_->setToolTip("Title Feed");
       connect(newsItem, SIGNAL(signalMarkRead(int)),
               this, SLOT(markRead(int)));
-      connect(newsItem, SIGNAL(signalTitleClicked(int, int, int)),
-              this, SIGNAL(signalOpenNews(int, int, int)));
+      connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
+              this, SIGNAL(signalOpenNews(int, int)));
       connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
               this, SIGNAL(signalOpenExternalBrowser(QUrl)));
 

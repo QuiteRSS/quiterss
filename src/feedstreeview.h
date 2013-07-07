@@ -31,7 +31,6 @@ class FeedsTreeView : public QyurSqlTreeView
 public:
   explicit FeedsTreeView(QWidget * parent = 0);
   int selectId_;
-  int selectParentId_;
   bool selectIdEn_;
   bool autocollapseFolder_;
 
@@ -80,7 +79,6 @@ private:
   QPoint dragPos_;
   QPoint dragStartPos_;
   int selectOldId_;
-  int selectOldParentId_;
   QModelIndex indexClicked_;
 
   void handleDrop(QDropEvent *e);

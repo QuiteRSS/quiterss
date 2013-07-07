@@ -58,7 +58,6 @@ struct NewsItemStruct {
 
 struct FeedCountStruct{
   int feedId;
-  int parentId;
   int unreadCount;
   int newCount;
   int undeleteCount;

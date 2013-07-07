@@ -72,7 +72,7 @@ public:
   QSqlTableModel* getSourceModel();
 
   int getIdByIndex(const QModelIndex&) const;
-  QModelIndex getIndexById(int id, int parentId = 0) const;
+  QModelIndex getIndexById(int id) const;
   int getParidByIndex(const QModelIndex&) const;
   int getFieldPosition(FieldOrder) const;
   bool removeRecords(QModelIndexList&);
@@ -110,6 +110,6 @@ protected slots:
   //And take care about signals, emitted by QyurSqlTreeModel::getSourceModel() :
   //beforeDelete(int) and beforeUpdate(int, QSqlRecord&), when you need to handle delete and update.
 private:
-  void restore(int parentId=0, int id=-1);
+  void restore(int id=-1);
 };
 #endif
