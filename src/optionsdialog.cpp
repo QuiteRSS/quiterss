@@ -2013,12 +2013,21 @@ void OptionsDialog::loadLabels()
   loadLabelsOk_ = true;
 
   idLabels_.clear();
+  QStringList nameLabels;
+  nameLabels << "Important" << "Work" << "Personal"
+             << "To Do" << "Later" << "Amusingly";
+  QStringList trNameLabels;
+  trNameLabels << tr("Important") << tr("Work") << tr("Personal")
+               << tr("To Do") << tr("Later") << tr("Amusingly");
 
   QSqlQuery q;
   q.exec("SELECT id, name, image, color_text, color_bg, num FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
+    if ((idLabel <= 6) && (nameLabels.at(idLabel-1) == nameLabel)) {
+      nameLabel = trNameLabels.at(idLabel-1);
+    }
     QByteArray byteArray = q.value(2).toByteArray();
     QString colorText = q.value(3).toString();
     QString colorBg = q.value(4).toString();
@@ -2233,6 +2242,12 @@ void OptionsDialog::slotCurrentLabelChanged(QTreeWidgetItem *current,
 //----------------------------------------------------------------------------
 void OptionsDialog::applyLabels()
 {
+  QStringList nameLabels;
+  nameLabels << "Important" << "Work" << "Personal"
+             << "To Do" << "Later" << "Amusingly";
+  QStringList trNameLabels;
+  trNameLabels << tr("Important") << tr("Work") << tr("Personal")
+               << tr("To Do") << tr("Later") << tr("Amusingly");
   db_.transaction();
   QSqlQuery q;
 
@@ -2251,6 +2266,9 @@ void OptionsDialog::applyLabels()
       }
     } else {
       QString nameLabel = treeItems.at(0)->text(1);
+      if ((idLabel.toInt() <= 6) && (trNameLabels.at(idLabel.toInt()-1) == nameLabel)) {
+        nameLabel = nameLabels.at(idLabel.toInt()-1);
+      }
       QPixmap icon = treeItems.at(0)->icon(1).pixmap(16, 16);
       QByteArray iconData;
       QBuffer    buffer(&iconData);

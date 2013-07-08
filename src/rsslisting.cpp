@@ -3984,10 +3984,8 @@ void RSSListing::showOptionDlg()
   fullscreenModeNotify_ = optionsDialog_->fullscreenModeNotify_->isChecked();
   onlySelectedFeeds_ = optionsDialog_->onlySelectedFeeds_->isChecked();
 
-  if (langFileName_ != optionsDialog_->language()) {
-    langFileName_ = optionsDialog_->language();
-    appInstallTranslator();
-  }
+  langFileName_ = optionsDialog_->language();
+  appInstallTranslator();
 
   QFont font = feedsTreeView_->font();
   font.setFamily(
@@ -5125,13 +5123,7 @@ void RSSListing::retranslateStrings()
   QStringList trNameLabels;
   trNameLabels << tr("Important") << tr("Work") << tr("Personal")
                << tr("To Do") << tr("Later") << tr("Amusingly");
-
   QSqlQuery q;
-  for (int i = 0; i < nameLabels.count(); i++) {
-    QString qStr = QString("UPDATE labels SET name='%1' WHERE id <= 6 AND name == '%2'").
-        arg(trNameLabels[i]).arg(nameLabels[i]);
-    q.exec(qStr);
-  }
   q.exec("SELECT id, name FROM labels WHERE id <= 6");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
@@ -5140,8 +5132,23 @@ void RSSListing::retranslateStrings()
     treeItems = categoriesTree_->findItems(QString::number(idLabel),
                                                Qt::MatchFixedString|Qt::MatchRecursive,
                                                2);
-    if (treeItems.count()) {
-      treeItems.at(0)->setText(0, nameLabel);
+    if (treeItems.count() && (nameLabels.at(idLabel-1) == nameLabel)) {
+      treeItems.at(0)->setText(0, trNameLabels.at(idLabel-1));
+      for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
+        if (newsLabelGroup_->actions().at(i)->data().toInt() == idLabel) {
+          newsLabelGroup_->actions().at(i)->setText(trNameLabels.at(idLabel-1));
+          newsLabelGroup_->actions().at(i)->setToolTip(trNameLabels.at(idLabel-1));
+          break;
+        }
+      }
+      for (int i = 0; i < stackedWidget_->count(); i++) {
+        NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+        if (widget->type_ == TAB_CAT_LABEL) {
+          if (widget->labelId_ == idLabel) {
+            widget->setTextTab(trNameLabels.at(idLabel-1));
+          }
+        }
+      }
     }
   }
 
