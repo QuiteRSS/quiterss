@@ -16,6 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "labeldialog.h"
+#include "rsslisting.h"
 
 LabelDialog::LabelDialog(QWidget *parent)
   : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint)
@@ -26,12 +27,9 @@ LabelDialog::LabelDialog(QWidget *parent)
   nameEdit_ = new LineEdit(this);
 
   QMenu *iconMenu = new QMenu();
-  QStringList strNameLabels;
-  strNameLabels << tr("Important") << tr("Work") << tr("Personal")
-                << tr("To Do") << tr("Later") << tr("Amusingly");
   for (int i = 0; i < 6; i++) {
     iconMenu->addAction(QIcon(QString(":/images/label_%1").arg(i+1)),
-                        strNameLabels.at(i));
+                        RSSListing::trNameLabels().at(i));
   }
   iconMenu->addSeparator();
   QAction *newIcon = new QAction(tr("Load icon..."), this);

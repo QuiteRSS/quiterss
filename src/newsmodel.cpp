@@ -16,6 +16,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "newsmodel.h"
+#include "rsslisting.h"
 
 NewsModel::NewsModel(QObject *parent, QTreeView *view)
   : QSqlTableModel(parent)
@@ -154,19 +155,13 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
       QStringList nameLabelList;
       QString strIdLabels = index.data(Qt::EditRole).toString();
-      QStringList nameLabels;
-      nameLabels << "Important" << "Work" << "Personal"
-                 << "To Do" << "Later" << "Amusingly";
-      QStringList trNameLabels;
-      trNameLabels << tr("Important") << tr("Work") << tr("Personal")
-                   << tr("To Do") << tr("Later") << tr("Amusingly");
       QSqlQuery q;
       q.exec("SELECT id, name FROM labels ORDER BY num");
       while (q.next()) {
         int idLabel = q.value(0).toInt();
         if (strIdLabels.contains(QString(",%1,").arg(QString::number(idLabel)))) {
-          if ((idLabel <= 6) && (nameLabels.at(idLabel-1) == q.value(1).toString())) {
-            nameLabelList << trNameLabels.at(idLabel-1);
+          if ((idLabel <= 6) && (RSSListing::nameLabels().at(idLabel-1) == q.value(1).toString())) {
+            nameLabelList << RSSListing::trNameLabels().at(idLabel-1);
           } else {
             nameLabelList << q.value(1).toString();
           }

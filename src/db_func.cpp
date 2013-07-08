@@ -23,6 +23,7 @@
 #include <QtSql>
 
 #include "VersionNo.h"
+#include "rsslisting.h"
 
 QString kDbName    = "feeds.db";  ///< DB filename
 QString kDbVersion = "0.12.1";    ///< Current DB version
@@ -372,13 +373,10 @@ void initLabelsTable(QSqlDatabase *db)
 {
   QSqlQuery q(*db);
   q.exec(kCreateLabelsTable);
-  QStringList strNameLabels;
-  strNameLabels << "Important" << "Work" << "Personal"
-                << "To Do" << "Later" << "Amusingly";
   for (int i = 0; i < 6; i++) {
     q.prepare("INSERT INTO labels(name, image) "
               "VALUES (:name, :image)");
-    q.bindValue(":name", strNameLabels.at(i));
+    q.bindValue(":name", RSSListing::nameLabels().at(i));
 
     QFile file(QString(":/images/label_%1").arg(i+1));
     file.open(QFile::ReadOnly);

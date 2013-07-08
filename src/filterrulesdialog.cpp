@@ -502,20 +502,13 @@ ItemAction *FilterRulesDialog::addAction()
   actionsLayout_->removeItem(actionsLayout_->itemAt(actionsLayout_->count()-1));
   ItemAction *itemAction = new ItemAction(this);
 
-  QStringList nameLabels;
-  nameLabels << "Important" << "Work" << "Personal"
-             << "To Do" << "Later" << "Amusingly";
-  QStringList trNameLabels;
-  trNameLabels << tr("Important") << tr("Work") << tr("Personal")
-               << tr("To Do") << tr("Later") << tr("Amusingly");
-
   QSqlQuery q;
   q.exec("SELECT id, name, image FROM labels ORDER BY num");
   while (q.next()) {
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
-    if ((idLabel <= 6) && (nameLabels.at(idLabel-1) == nameLabel)) {
-      nameLabel = trNameLabels.at(idLabel-1);
+    if ((idLabel <= 6) && (RSSListing::nameLabels().at(idLabel-1) == nameLabel)) {
+      nameLabel = RSSListing::trNameLabels().at(idLabel-1);
     }
     QByteArray byteArray = q.value(2).toByteArray();
     QPixmap imageLabel;

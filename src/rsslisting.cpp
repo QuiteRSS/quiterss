@@ -5119,12 +5119,6 @@ void RSSListing::retranslateStrings()
   QApplication::translate("QWizard", "&Finish");
   QApplication::translate("QWizard", "&Next >");
 
-  QStringList nameLabels;
-  nameLabels << "Important" << "Work" << "Personal"
-             << "To Do" << "Later" << "Amusingly";
-  QStringList trNameLabels;
-  trNameLabels << tr("Important") << tr("Work") << tr("Personal")
-               << tr("To Do") << tr("Later") << tr("Amusingly");
   QSqlQuery q;
   q.exec("SELECT id, name FROM labels WHERE id <= 6");
   while (q.next()) {
@@ -5134,12 +5128,12 @@ void RSSListing::retranslateStrings()
     treeItems = categoriesTree_->findItems(QString::number(idLabel),
                                                Qt::MatchFixedString|Qt::MatchRecursive,
                                                2);
-    if (treeItems.count() && (nameLabels.at(idLabel-1) == nameLabel)) {
-      treeItems.at(0)->setText(0, trNameLabels.at(idLabel-1));
+    if (treeItems.count() && (nameLabels().at(idLabel-1) == nameLabel)) {
+      treeItems.at(0)->setText(0, trNameLabels().at(idLabel-1));
       for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
         if (newsLabelGroup_->actions().at(i)->data().toInt() == idLabel) {
-          newsLabelGroup_->actions().at(i)->setText(trNameLabels.at(idLabel-1));
-          newsLabelGroup_->actions().at(i)->setToolTip(trNameLabels.at(idLabel-1));
+          newsLabelGroup_->actions().at(i)->setText(trNameLabels().at(idLabel-1));
+          newsLabelGroup_->actions().at(i)->setToolTip(trNameLabels().at(idLabel-1));
           break;
         }
       }
@@ -5147,7 +5141,7 @@ void RSSListing::retranslateStrings()
         NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
         if (widget->type_ == TAB_CAT_LABEL) {
           if (widget->labelId_ == idLabel) {
-            widget->setTextTab(trNameLabels.at(idLabel-1));
+            widget->setTextTab(trNameLabels().at(idLabel-1));
           }
         }
       }

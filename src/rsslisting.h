@@ -88,6 +88,19 @@ public:
   void setToolBarStyle(const QString &styleStr);
   void setToolBarIconSize(const QString &iconSizeStr);
 
+  static QStringList nameLabels() {
+    QStringList nameLabels;
+    nameLabels << "Important" << "Work" << "Personal"
+               << "To Do" << "Later" << "Amusingly";
+    return nameLabels;
+  }
+  static QStringList trNameLabels() {
+    QStringList trNameLabels;
+    trNameLabels << tr("Important") << tr("Work") << tr("Personal")
+                 << tr("To Do") << tr("Later") << tr("Amusingly");
+    return trNameLabels;
+  }
+
   QSettings *settings_;
   QString appDataDirPath_;
   QString dataDirPath_;
