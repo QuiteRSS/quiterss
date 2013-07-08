@@ -101,7 +101,9 @@ RSSListing::RSSListing(QSettings *settings,
     db_.setDatabaseName(":memory:");
   else
     db_.setDatabaseName(dbFileName_);
-  db_.open();
+  if (!db_.open()) {
+    QMessageBox::critical(0, tr("Error"), tr("SQLite driver not loaded!"));
+  }
 
   if (storeDBMemory_) {
     dbMemFileThread_ = new DBMemFileThread(dbFileName_, this);
