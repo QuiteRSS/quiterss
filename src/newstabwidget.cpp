@@ -1295,8 +1295,15 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
     }
 
-    if (!authorString.isEmpty())
+    QString category = newsModel_->record(index.row()).field("category").value().toString();
+    if (!authorString.isEmpty()) {
       authorString = QString(tr("Author: %1")).arg(authorString);
+      if (!category.isEmpty())
+        authorString.append(QString(" | %1").arg(category));
+    } else {
+      if (!category.isEmpty())
+        authorString = category;
+    }
 
     QString content = newsModel_->record(index.row()).field("content").value().toString();
     QString description = newsModel_->record(index.row()).field("description").value().toString();
