@@ -134,6 +134,8 @@ public:
   QAction *deleteAllNewsAct_;
   QAction *newsKeyUpAct_;
   QAction *newsKeyDownAct_;
+  QAction *newsKeyPageUpAct_;
+  QAction *newsKeyPageDownAct_;
   QAction *prevUnreadNewsAct_;
   QAction *nextUnreadNewsAct_;
   QAction *autoLoadImagesToggle_;
@@ -347,6 +349,8 @@ private slots:
 
   void slotNewsUpPressed();
   void slotNewsDownPressed();
+  void slotNewsPageUpPressed();
+  void slotNewsPageDownPressed();
   void markNewsRead();
   void markAllNewsRead();
   void markNewsStar();

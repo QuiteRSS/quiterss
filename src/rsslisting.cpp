@@ -1145,10 +1145,15 @@ void RSSListing::createActions()
   newsKeyUpAct_ = new QAction(this);
   newsKeyUpAct_->setObjectName("newsKeyUpAct");
   this->addAction(newsKeyUpAct_);
-
   newsKeyDownAct_ = new QAction(this);
   newsKeyDownAct_->setObjectName("newsKeyDownAct");
   this->addAction(newsKeyDownAct_);
+  newsKeyPageUpAct_ = new QAction(this);
+  newsKeyPageUpAct_->setObjectName("newsKeyPageUpAct");
+  this->addAction(newsKeyPageUpAct_);
+  newsKeyPageDownAct_ = new QAction(this);
+  newsKeyPageDownAct_->setObjectName("newsKeyPageDownAct");
+  this->addAction(newsKeyPageDownAct_);
 
   switchFocusAct_ = new QAction(this);
   switchFocusAct_->setObjectName("switchFocusAct");
@@ -1388,6 +1393,10 @@ void RSSListing::createActions()
           this, SLOT(slotNewsUpPressed()));
   connect(newsKeyDownAct_, SIGNAL(triggered()),
           this, SLOT(slotNewsDownPressed()));
+  connect(newsKeyPageUpAct_, SIGNAL(triggered()),
+          this, SLOT(slotNewsPageUpPressed()));
+  connect(newsKeyPageDownAct_, SIGNAL(triggered()),
+          this, SLOT(slotNewsPageDownPressed()));
 
   connect(openInBrowserAct_, SIGNAL(triggered()),
           this, SLOT(openInBrowserNews()));
@@ -1431,6 +1440,8 @@ void RSSListing::createShortcut()
   listActions_.append(newsKeyUpAct_);
   newsKeyDownAct_->setShortcut(QKeySequence(Qt::Key_Right));
   listActions_.append(newsKeyDownAct_);
+  listActions_.append(newsKeyPageUpAct_);
+  listActions_.append(newsKeyPageDownAct_);
 
   listActions_.append(nextUnreadNewsAct_);
   listActions_.append(prevUnreadNewsAct_);
@@ -4989,6 +5000,8 @@ void RSSListing::retranslateStrings()
   feedKeyDownAct_->setText(tr("Next Feed"));
   newsKeyUpAct_->setText(tr("Previous News"));
   newsKeyDownAct_->setText(tr("Next News"));
+  newsKeyPageUpAct_->setText(tr("News Page Up)"));
+  newsKeyPageDownAct_->setText(tr("News Page Down)"));
 
   nextUnreadNewsAct_->setText(tr("Next Unread News"));
   prevUnreadNewsAct_->setText(tr("Previous Unread News"));
@@ -6316,6 +6329,16 @@ void RSSListing::slotNewsUpPressed()
 void RSSListing::slotNewsDownPressed()
 {
   currentNewsTab->slotNewsDownPressed();
+}
+// ----------------------------------------------------------------------------
+void RSSListing::slotNewsPageUpPressed()
+{
+  currentNewsTab->slotNewsPageUpPressed();
+}
+// ----------------------------------------------------------------------------
+void RSSListing::slotNewsPageDownPressed()
+{
+  currentNewsTab->slotNewsPageDownPressed();
 }
 // ----------------------------------------------------------------------------
 void RSSListing::markNewsRead()
