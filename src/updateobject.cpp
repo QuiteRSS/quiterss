@@ -184,9 +184,9 @@ void UpdateObject::finished(QNetworkReply *reply)
       qDebug() << "  error retrieving RSS feed:" << reply->error() << reply->errorString();
       if (!headOk) {
         if (reply->error() == QNetworkReply::AuthenticationRequiredError)
-          emit getUrlDone(-2, feedUrl);
+          emit getUrlDone(-2, feedUrl, tr("Server requires authentication!"));
         else if (reply->error() == QNetworkReply::ContentNotFoundError)
-          emit getUrlDone(-5, feedUrl);
+          emit getUrlDone(-5, feedUrl, tr("Server replied: Not Found!"));
         else {
           if (reply->errorString().contains("Service Temporarily Unavailable")) {
             if (!hostList_.contains(QUrl(feedUrl).host())) {
@@ -198,7 +198,7 @@ void UpdateObject::finished(QNetworkReply *reply)
           if (count < 2) {
             emit signalGet(replyUrl, feedUrl, feedDate, count);
           } else {
-            emit getUrlDone(-1, feedUrl);
+            emit getUrlDone(-1, feedUrl, tr("Error: %1 (%2)").arg(reply->errorString()).arg(reply->error()));
           }
         }
       } else {
@@ -221,7 +221,7 @@ void UpdateObject::finished(QNetworkReply *reply)
             emit signalGet(redirectionTarget, feedUrl, feedDate, count);
           }
         } else {
-          emit getUrlDone(-4, feedUrl);
+          emit getUrlDone(-4, feedUrl, tr("Redirect error!"));
         }
       } else {
         QDateTime replyDate = reply->header(QNetworkRequest::LastModifiedHeader).toDateTime();
@@ -236,7 +236,7 @@ void UpdateObject::finished(QNetworkReply *reply)
         else {
           QByteArray data = reply->readAll().trimmed();
 
-          emit getUrlDone(feedsQueue_.count(), feedUrl, data, replyLocalDate);
+          emit getUrlDone(feedsQueue_.count(), feedUrl, "", data, replyLocalDate);
         }
       }
     }
@@ -268,12 +268,10 @@ void UpdateObject::slotRequestTimeout()
       int replyIndex = requestUrl_.indexOf(url);
       QUrl replyUrl = requestUrl_.takeAt(replyIndex);
       networkReply_.takeAt(replyIndex)->deleteLater();
-      qCritical() << "*01" << replyUrl.toString();
       if (count < 2) {
         emit signalGet(replyUrl, feedUrl, feedDate, count);
       } else {
-        qCritical() << replyUrl.toString();
-        emit getUrlDone(-3, feedUrl);
+        emit getUrlDone(-3, feedUrl, tr("Request timeout!"));
       }
     } else {
       currentTime_.replace(i, time);

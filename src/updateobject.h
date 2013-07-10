@@ -40,7 +40,7 @@ public slots:
   void slotGet(const QUrl &getUrl, const QString &feedUrl, const QDateTime &date, const int &count);
 
 signals:
-  void getUrlDone(const int &result, const QString &feedUrl = "",
+  void getUrlDone(const int &result, const QString &feedUrl = "", const QString &error = "",
                   const QByteArray &data = NULL, const QDateTime &dtReply = QDateTime());
   void signalHead(const QUrl &getUrl, const QString &feedUrl,
                   const QDateTime &date, const int &count = 0);

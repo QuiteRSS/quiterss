@@ -45,7 +45,7 @@ public:
   int newCount_;
 
 public slots:
-  void getUrlDone(const int &result, const QString &feedUrlStr,
+  void getUrlDone(const int &result, const QString &feedUrlStr, const QString &error,
                   const QByteArray &data, const QDateTime &dtReply);
   void slotUpdateFeed(const QString &feedUrl, const bool &, int newCount);
 

@@ -50,8 +50,8 @@ UpdateThread::~UpdateThread()
 
   connect(parent(), SIGNAL(signalRequestUrl(QString,QDateTime,QString)),
           updateObject_, SLOT(requestUrl(QString,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(getUrlDone(int,QString,QByteArray,QDateTime)),
-          parent(), SLOT(getUrlDone(int,QString,QByteArray,QDateTime)));
+  connect(updateObject_, SIGNAL(getUrlDone(int,QString,QString,QByteArray,QDateTime)),
+          parent(), SLOT(getUrlDone(int,QString,QString,QByteArray,QDateTime)));
   connect(updateObject_->networkManager_,
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           parent(), SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),

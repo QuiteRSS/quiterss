@@ -266,7 +266,7 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void getUrlDone(const int &result, const QString &feedUrlStr,
+  void getUrlDone(const int &result, const QString &feedUrlStr, const QString &error,
                   const QByteArray &data, const QDateTime &dtReply);
   void slotUpdateFeed(const QString &feedUrl, const bool &changed, int newCount);
   void slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed, int newCount);

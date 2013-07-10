@@ -2752,9 +2752,10 @@ void RSSListing::slotExportFeeds()
 /** @brief Process network request completion
  *---------------------------------------------------------------------------*/
 void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
-                            const QByteArray &data, const QDateTime &dtReply)
+                            const QString &error, const QByteArray &data,
+                            const QDateTime &dtReply)
 {
-  qDebug() << "getUrl result = " << result << "url: " << feedUrlStr;
+  qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
 
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
