@@ -20,11 +20,12 @@
 
 #include <QDebug>
 
-UpdateThread::UpdateThread(QObject *parent, int requestTimeout, int replyCount)
+UpdateThread::UpdateThread(QObject *parent, int requestTimeout, int replyCount, int numberRepeats)
   : QThread(parent)
   , updateObject_(NULL)
   , requestTimeout_(requestTimeout)
   , replyCount_(replyCount)
+  , numberRepeats_(numberRepeats)
 {
   qDebug() << "UpdateThread::constructor";
 
@@ -39,7 +40,7 @@ UpdateThread::~UpdateThread()
 
 /*virtual*/ void UpdateThread::run()
 {
-  updateObject_ = new UpdateObject(requestTimeout_, replyCount_);
+  updateObject_ = new UpdateObject(requestTimeout_, replyCount_, numberRepeats_);
 
   QObject *parent_ = parent();
   while(parent_->parent()) {

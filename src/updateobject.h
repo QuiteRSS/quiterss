@@ -31,7 +31,7 @@ class UpdateObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(int requestTimeout, int replyCount, QObject *parent = 0);
+  explicit UpdateObject(int requestTimeout, int replyCount, int numberRepeats, QObject *parent = 0);
   NetworkManager *networkManager_;
 
 public slots:
@@ -55,6 +55,7 @@ private slots:
 private:
   int requestTimeout_;
   int replyCount_;
+  int numberRepeats_;
   QTimer *getUrlTimer_;
 
   QQueue<QString> feedsQueue_;

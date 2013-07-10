@@ -26,7 +26,7 @@ class UpdateThread : public QThread
 {
   Q_OBJECT
 public:
-  explicit UpdateThread(QObject *parent, int requestTimeout = 45, int replyCount = 1);
+  explicit UpdateThread(QObject *parent, int requestTimeout = 45, int replyCount = 1, int numberRepeats = 2);
   ~UpdateThread();
 
   UpdateObject *updateObject_;
@@ -37,6 +37,7 @@ protected:
 private:
   int requestTimeout_;
   int replyCount_;
+  int numberRepeats_;
 
 };
 

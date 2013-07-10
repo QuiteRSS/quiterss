@@ -27,10 +27,11 @@
 
 #define REPLY_MAX_COUNT 10
 
-UpdateObject::UpdateObject(int requestTimeout, int replyCount, QObject *parent)
+UpdateObject::UpdateObject(int requestTimeout, int replyCount, int numberRepeats, QObject *parent)
   : QObject(parent)
   , requestTimeout_(requestTimeout)
   , replyCount_(replyCount)
+  , numberRepeats_(numberRepeats)
 {
   setObjectName("updateObject_");
 
@@ -195,7 +196,7 @@ void UpdateObject::finished(QNetworkReply *reply)
             }
           }
 
-          if (count < 2) {
+          if (count < numberRepeats_) {
             emit signalGet(replyUrl, feedUrl, feedDate, count);
           } else {
             emit getUrlDone(-1, feedUrl, tr("Error: %1 (%2)").arg(reply->errorString()).arg(reply->error()));
@@ -207,7 +208,7 @@ void UpdateObject::finished(QNetworkReply *reply)
     } else {
       QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
       if (redirectionTarget.isValid()) {
-        if (count < 5) {
+        if (count < (numberRepeats_ + 3)) {
           QString host(QUrl::fromEncoded(feedUrl.toUtf8()).host());
           if (reply->operation() == QNetworkAccessManager::HeadOperation) {
             qDebug() << objectName() << "  head redirect...";
@@ -268,7 +269,7 @@ void UpdateObject::slotRequestTimeout()
       int replyIndex = requestUrl_.indexOf(url);
       QUrl replyUrl = requestUrl_.takeAt(replyIndex);
       networkReply_.takeAt(replyIndex)->deleteLater();
-      if (count < 2) {
+      if (count < numberRepeats_) {
         emit signalGet(replyUrl, feedUrl, feedDate, count);
       } else {
         emit getUrlDone(-3, feedUrl, tr("Request timeout!"));

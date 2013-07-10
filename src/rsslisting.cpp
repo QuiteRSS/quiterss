@@ -160,7 +160,8 @@ RSSListing::RSSListing(QSettings *settings,
 
   int requestTimeout = settings_->value("Settings/requestTimeout", 15).toInt();
   int replyCount = settings_->value("Settings/replyCount", 10).toInt();
-  persistentUpdateThread_ = new UpdateThread(this, requestTimeout, replyCount);
+  int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
+  persistentUpdateThread_ = new UpdateThread(this, requestTimeout, replyCount, numberRepeats);
 
   persistentParseThread_ = new ParseThread(this);
 
