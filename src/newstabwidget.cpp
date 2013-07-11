@@ -1295,14 +1295,29 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         authorString.append(QString(" <a href='%1'>page</a>").arg(authorUri));
     }
 
+    QString commentsStr;
+    QString commentsUrl = newsModel_->record(index.row()).field("comments").value().toString();
+    if (!commentsUrl.isEmpty()) {
+      commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl).arg(tr("Comments"));
+    }
+
     QString category = newsModel_->record(index.row()).field("category").value().toString();
+
     if (!authorString.isEmpty()) {
       authorString = QString(tr("Author: %1")).arg(authorString);
+      if (!commentsStr.isEmpty())
+        authorString.append(QString(" | %1").arg(commentsStr));
       if (!category.isEmpty())
         authorString.append(QString(" | %1").arg(category));
     } else {
-      if (!category.isEmpty())
-        authorString = category;
+      if (!commentsStr.isEmpty())
+        authorString.append(commentsStr);
+      if (!category.isEmpty()) {
+        if (!commentsStr.isEmpty())
+          authorString.append(QString(" | %1").arg(category));
+        else
+          authorString.append(category);
+      }
     }
 
     QString content = newsModel_->record(index.row()).field("content").value().toString();
@@ -1333,14 +1348,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       }
     }
 
-    QString commentsStr;
-    QString commentsUrl = newsModel_->record(index.row()).field("comments").value().toString();
-    if (!commentsUrl.isEmpty()) {
-        commentsStr = QString("<p><a href=\"%1\" class=\"enclosure\"> %2</a>").
-            arg(commentsUrl).arg(tr("Comments"));
-    }
-
-    content = enclosureStr + content + commentsStr;
+    content = enclosureStr + content;
 
     if (!linkString.isEmpty())
         titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString).arg(titleString);
