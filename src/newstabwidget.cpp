@@ -1758,41 +1758,43 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
 {
   QMenu menu;
   QMenu *pageMenu = webView_->page()->createStandardContextMenu();
-  menu.addActions(pageMenu->actions());
+  if (pageMenu) {
+    menu.addActions(pageMenu->actions());
 
-  const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
-  if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
-    linkUrl_ = hitTest.linkUrl();
-    if (rsslisting_->externalBrowserOn_ <= 0) {
-      menu.addSeparator();
-      menu.addAction(urlExternalBrowserAct_);
-    }
-  } else if (pageMenu->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
-    if (webView_->title() == "news_descriptions") {
-      webView_->pageAction(QWebPage::Reload)->setVisible(false);
-    } else {
-      webView_->pageAction(QWebPage::Reload)->setVisible(true);
-      menu.addSeparator();
-    }
-    menu.addAction(rsslisting_->autoLoadImagesToggle_);
-    menu.addSeparator();
-    menu.addAction(rsslisting_->printAct_);
-    menu.addAction(rsslisting_->printPreviewAct_);
-    menu.addSeparator();
-    menu.addAction(rsslisting_->savePageAsAct_);
-  } else if (hitTest.isContentEditable()) {
-    for (int i = 0; i < menu.actions().count(); i++) {
-      if ((i <= 1) && (menu.actions().at(i)->text() == "Direction")) {
-        menu.actions().at(i)->setVisible(false);
-        break;
+    const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
+    if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
+      linkUrl_ = hitTest.linkUrl();
+      if (rsslisting_->externalBrowserOn_ <= 0) {
+        menu.addSeparator();
+        menu.addAction(urlExternalBrowserAct_);
       }
+    } else if (pageMenu->actions().indexOf(webView_->pageAction(QWebPage::Reload)) >= 0) {
+      if (webView_->title() == "news_descriptions") {
+        webView_->pageAction(QWebPage::Reload)->setVisible(false);
+      } else {
+        webView_->pageAction(QWebPage::Reload)->setVisible(true);
+        menu.addSeparator();
+      }
+      menu.addAction(rsslisting_->autoLoadImagesToggle_);
+      menu.addSeparator();
+      menu.addAction(rsslisting_->printAct_);
+      menu.addAction(rsslisting_->printPreviewAct_);
+      menu.addSeparator();
+      menu.addAction(rsslisting_->savePageAsAct_);
+    } else if (hitTest.isContentEditable()) {
+      for (int i = 0; i < menu.actions().count(); i++) {
+        if ((i <= 1) && (menu.actions().at(i)->text() == "Direction")) {
+          menu.actions().at(i)->setVisible(false);
+          break;
+        }
+      }
+      menu.insertSeparator(menu.actions().at(0));
+      menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Redo));
+      menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Undo));
     }
-    menu.insertSeparator(menu.actions().at(0));
-    menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Redo));
-    menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Undo));
-  }
 
-  menu.exec(webView_->mapToGlobal(p));
+    menu.exec(webView_->mapToGlobal(p));
+  }
 }
 
 /** @brief Open link in external browser
