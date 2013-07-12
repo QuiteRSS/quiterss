@@ -48,7 +48,6 @@ public:
     readButton_->setIcon(QIcon(":/images/bulletUnread"));
     readButton_->setToolTip(tr("Mark Read/Unread"));
     readButton_->setAutoRaise(true);
-    readButton_->hide();
 
     QToolButton *openExternalBrowserButton = new QToolButton(this);
     openExternalBrowserButton->setIcon(QIcon(":/images/openBrowser"));
@@ -57,9 +56,9 @@ public:
     QHBoxLayout *buttonsLayout = new QHBoxLayout();
     buttonsLayout->setMargin(0);
     buttonsLayout->setSpacing(5);
+    buttonsLayout->addWidget(readButton_);
     buttonsLayout->addWidget(iconNews_);
     buttonsLayout->addWidget(titleNews_, 1);
-    buttonsLayout->addWidget(readButton_);
     buttonsLayout->addWidget(openExternalBrowserButton);
 
     setLayout(buttonsLayout);
@@ -77,8 +76,8 @@ public:
 
 signals:
   void signalOpenExternalBrowser(const QUrl &url);
-  void signalMarkRead(int);
-  void signalTitleClicked(int, int);
+  void signalMarkRead(int feedId, int newsId, int read);
+  void signalTitleClicked(int feedId, int newsId);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event)
@@ -108,12 +107,18 @@ private slots:
 
   void markRead()
   {
+    QFont font = titleNews_->font();
     read_ = !read_;
-    if (read_)
+    if (read_) {
       readButton_->setIcon(QIcon(":/images/bulletRead"));
-    else
+      font.setBold(false);
+    }
+    else {
       readButton_->setIcon(QIcon(":/images/bulletUnread"));
-    emit signalMarkRead(newsId_);
+      font.setBold(true);
+    }
+    titleNews_->setFont(font);
+    emit signalMarkRead(feedId_, newsId_, read_);
   }
 
 private:
@@ -137,6 +142,7 @@ signals:
   void signalDelete();
   void signalOpenNews(int feedId, int newsId);
   void signalOpenExternalBrowser(const QUrl &url);
+  void signalMarkRead(int feedId, int newsId, int read);
 
 protected:
   virtual void showEvent(QShowEvent*);

@@ -6504,6 +6504,8 @@ void RSSListing::showNotification()
           this, SLOT(slotOpenNew(int, int)));
   connect(notificationWidget, SIGNAL(signalOpenExternalBrowser(QUrl)),
           this, SLOT(slotOpenNewBrowser(QUrl)));
+  connect(notificationWidget, SIGNAL(signalMarkRead(int, int, int)),
+          this, SLOT(slotMarkReadNewsInNotification(int, int, int)));
 
   notificationWidget->show();
 }
@@ -6549,6 +6551,53 @@ void RSSListing::slotOpenNewBrowser(const QUrl &url)
 {
   currentNewsTab->openUrl(url);
 }
+
+void RSSListing::slotMarkReadNewsInNotification(int feedId, int newsId, int read)
+{
+  QSqlQuery q;
+  bool showNews = false;
+  if (currentNewsTab->type_ < TAB_WEB) {
+    int cnt = newsModel_->rowCount();
+    for (int i = 0; i < cnt; ++i) {
+      if (newsId == newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt()) {
+        if (read == 1) {
+          if (newsModel_->index(i, newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
+            newsModel_->setData(
+                  newsModel_->index(i, newsModel_->fieldIndex("new")),
+                  0);
+            q.exec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
+          }
+          if (newsModel_->index(i, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+            newsModel_->setData(
+                  newsModel_->index(i, newsModel_->fieldIndex("read")),
+                  1);
+            q.exec(QString("UPDATE news SET read=1 WHERE id=='%1'").arg(newsId));
+          }
+        } else {
+          if (newsModel_->index(i, newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != 0) {
+            newsModel_->setData(
+                  newsModel_->index(i, newsModel_->fieldIndex("read")),
+                  0);
+            q.exec(QString("UPDATE news SET read=0 WHERE id=='%1'").arg(newsId));
+          }
+        }
+
+        newsView_->viewport()->update();
+        showNews = true;
+        break;
+      }
+    }
+  }
+
+  if (!showNews) {
+    q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
+           arg(read).arg(newsId));
+  }
+
+  slotUpdateStatus(feedId);
+  recountCategoryCounts();
+}
+
 // ----------------------------------------------------------------------------
 void RSSListing::slotFindFeeds(QString)
 {

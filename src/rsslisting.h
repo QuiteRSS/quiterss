@@ -370,6 +370,7 @@ private slots:
   void deleteNotification();
   void slotOpenNew(int feedId, int newsId);
   void slotOpenNewBrowser(const QUrl &url);
+  void slotMarkReadNewsInNotification(int feedId, int newsId, int read);
 
   void slotFindFeeds(QString);
   void slotSelectFind();
