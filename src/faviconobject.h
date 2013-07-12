@@ -42,7 +42,8 @@ public slots:
 signals:
   void startTimer();
   void signalGet(const QUrl &getUrl, const QString &feedUrl, const int &cnt);
-  void signalIconRecived(const QString &feedUrl, const QByteArray &byteArray);
+  void signalIconRecived(const QString &feedUrl, const QByteArray &byteArray,
+                         const QString &format);
   void signalIconUpdate(int feedId, const QByteArray &faviconData);
 
 private slots:

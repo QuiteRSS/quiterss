@@ -40,6 +40,7 @@ FaviconObject::FaviconObject(QObject *parent)
 
   getUrlTimer_ = new QTimer();
   getUrlTimer_->setSingleShot(true);
+  getUrlTimer_->setInterval(20);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
   connect(this, SIGNAL(signalGet(QUrl,QString,int)),
@@ -69,7 +70,7 @@ void FaviconObject::getQueuedUrl()
   }
 
   if (!urlsQueue_.isEmpty()) {
-    getUrlTimer_->start(50);
+    getUrlTimer_->start();
 
     QString urlString = urlsQueue_.dequeue();
     QString feedUrl = feedsQueue_.dequeue();
@@ -78,9 +79,7 @@ void FaviconObject::getQueuedUrl()
     if (!url.isValid()) {
       url = QUrl::fromEncoded(feedUrl.toUtf8());
     }
-    QUrl getUrl(QString("%1://%2/favicon.ico").
-                arg(url.scheme()).arg(url.host()));
-    emit signalGet(getUrl, feedUrl, 0);
+    emit signalGet(url, feedUrl, 0);
   }
 }
 
@@ -116,62 +115,74 @@ void FaviconObject::finished(QNetworkReply *reply)
     int cntRequests = currentCntRequests_.takeAt(currentReplyIndex);
 
     if(reply->error() == QNetworkReply::NoError) {
-      QByteArray data = reply->readAll();
-      if (!data.isNull()) {
-        if ((cntRequests == 1) || (cntRequests == 3)) {
-          QString str = QString::fromUtf8(data);
-          if (str.contains("<html", Qt::CaseInsensitive)) {
+      QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+      if (redirectionTarget.isValid()) {
+        if ((cntRequests == 0) || (cntRequests == 1)) {
+          if (redirectionTarget.host().isNull())
+            redirectionTarget.setUrl("http://"+url.host()+redirectionTarget.toString());
+          emit signalGet(redirectionTarget, feedUrl, cntRequests+2);
+        }
+      } else {
+        QByteArray data = reply->readAll();
+        if (!data.isNull()) {
+          if ((cntRequests == 0) || (cntRequests == 2)) {
             QString linkFavicon;
-            QRegExp rx("<link[^>]+rel=\"icon\"[^>]+>",
-                     Qt::CaseInsensitive, QRegExp::RegExp2);
-            int pos = rx.indexIn(str);
-            if (pos == -1) {
-              rx = QRegExp("<link[^>]+rel=\"shortcut icon\"[^>]+>",
-                           Qt::CaseInsensitive, QRegExp::RegExp2);
-              pos = rx.indexIn(str);
-            }
-            if (pos > -1) {
-              str = rx.cap(0);
-              rx.setPattern("href=\"([^\"]+)");
-              pos = rx.indexIn(str);
+            QString str = QString::fromUtf8(data);
+            if (str.contains("<html", Qt::CaseInsensitive)) {
+              QRegExp rx("<link[^>]+rel=['\"]icon['\"][^>]+>",
+                         Qt::CaseInsensitive, QRegExp::RegExp2);
+              int pos = rx.indexIn(str);
+              if (pos == -1) {
+                rx = QRegExp("<link[^>]+rel=['\"]shortcut icon['\"][^>]+>",
+                             Qt::CaseInsensitive, QRegExp::RegExp2);
+                pos = rx.indexIn(str);
+              }
               if (pos > -1) {
-                linkFavicon = rx.cap(1);
-                QUrl urlFavicon(linkFavicon);
-                if (urlFavicon.host().isEmpty()) {
-                  urlFavicon.setHost(url.host());
+                str = rx.cap(0);
+                rx.setPattern("href=\"([^\"]+)");
+                pos = rx.indexIn(str);
+                if (pos == -1) {
+                  rx.setPattern("href='([^']+)");
+                  pos = rx.indexIn(str);
                 }
-                if (urlFavicon.scheme().isEmpty()) {
-                  urlFavicon.setScheme(url.scheme());
+                if (pos > -1) {
+                  linkFavicon = rx.cap(1).simplified();
+                  QUrl urlFavicon(linkFavicon);
+                  if (urlFavicon.host().isEmpty()) {
+                    urlFavicon.setHost(url.host());
+                  }
+                  if (urlFavicon.scheme().isEmpty()) {
+                    urlFavicon.setScheme(url.scheme());
+                  }
+                  linkFavicon = urlFavicon.toString().simplified();
+                  qDebug() << "Favicon URL:" << linkFavicon;
+                  emit signalGet(linkFavicon, feedUrl, cntRequests+1);
                 }
-                linkFavicon = urlFavicon.toString();
-                qDebug() << "Favicon URL:" << linkFavicon;
-                emit signalGet(linkFavicon, feedUrl, cntRequests+1);
               }
             }
-          }
-        } else {
-          QUrl redirectionTarget = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-          if (redirectionTarget.isValid()) {
-            if (cntRequests == 0) {
-              if (redirectionTarget.host().isNull())
-                redirectionTarget.setUrl("http://"+url.host()+redirectionTarget.toString());
-              emit signalGet(redirectionTarget, feedUrl, 2);
+            if (linkFavicon.isEmpty()) {
+              if ((cntRequests == 0) || (cntRequests == 2)) {
+                QString link = QString("%1://%2/favicon.ico").arg(url.scheme()).arg(url.host());
+                emit signalGet(link, feedUrl, cntRequests+1);
+              }
             }
           } else {
             // Emit receiced data in main thread
-            emit signalIconRecived(feedUrl, data);
+            QFileInfo info(url.path());
+            emit signalIconRecived(feedUrl, data, info.suffix());
           }
-        }
-      } else {
-        if ((cntRequests == 0) || (cntRequests == 2)) {
-          QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
-          emit signalGet(link, feedUrl, cntRequests+1);
+        } else {
+          if ((cntRequests == 0) || (cntRequests == 2)) {
+            QString link = QString("%1://%2/favicon.ico").arg(url.scheme()).arg(url.host());
+            emit signalGet(link, feedUrl, cntRequests+1);
+          }
         }
       }
     } else {
-      if ((cntRequests == 0) || (cntRequests == 2)) {
+      if (cntRequests == 0) {
         QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
-        emit signalGet(link, feedUrl, cntRequests+1);
+        emit signalGet(link, feedUrl, 2);
+        qDebug() << "Request Url error: " << reply->url().toString() << reply->errorString();
       }
     }
   } else {
@@ -193,13 +204,17 @@ void FaviconObject::slotRequestTimeout()
     int time = currentTime_.at(i) - 1;
     if (time <= 0) {
       QUrl url = currentUrls_.takeAt(i);
+      QString feedUrl = currentFeeds_.takeAt(i);
+      int cntRequests = currentCntRequests_.takeAt(i);
       currentTime_.removeAt(i);
-      currentFeeds_.removeAt(i);
-      currentCntRequests_.removeAt(i);
 
       int replyIndex = requestUrl_.indexOf(url);
       requestUrl_.removeAt(replyIndex);
       networkReply_.takeAt(replyIndex)->deleteLater();
+
+      if (cntRequests == 0) {
+        emit signalGet(url, feedUrl, 2);
+      }
     } else {
       currentTime_.replace(i, time);
     }

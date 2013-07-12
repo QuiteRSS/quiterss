@@ -5759,10 +5759,21 @@ void RSSListing::markAllFeedsOld()
 
 /** @brief Prepare feed icon for storing in DB
  *---------------------------------------------------------------------------*/
-void RSSListing::slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray)
+void RSSListing::slotIconFeedPreparing(const QString &feedUrl,
+                                       const QByteArray &byteArray,
+                                       const QString &format)
 {
   QPixmap icon;
   if (icon.loadFromData(byteArray)) {
+    icon = icon.scaled(16, 16, Qt::IgnoreAspectRatio,
+                       Qt::SmoothTransformation);
+    QByteArray faviconData;
+    QBuffer    buffer(&faviconData);
+    buffer.open(QIODevice::WriteOnly);
+    if (icon.save(&buffer, "ICO")) {
+      emit signalIconFeedReady(feedUrl, faviconData);
+    }
+  } else if (icon.loadFromData(byteArray, format.toUtf8().data())) {
     icon = icon.scaled(16, 16, Qt::IgnoreAspectRatio,
                        Qt::SmoothTransformation);
     QByteArray faviconData;

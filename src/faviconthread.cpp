@@ -41,12 +41,12 @@ FaviconThread::~FaviconThread()
   faviconObject_ = new FaviconObject();
   connect(parent(), SIGNAL(faviconRequestUrl(QString,QString)),
           faviconObject_, SLOT(requestUrl(QString,QString)));
-  connect(faviconObject_, SIGNAL(signalIconRecived(QString, const QByteArray&)),
-          parent(), SLOT(slotIconFeedPreparing(QString, const QByteArray&)));
-  connect(parent(), SIGNAL(signalIconFeedReady(QString, const QByteArray&)),
-          faviconObject_, SLOT(slotIconSave(QString, const QByteArray&)));
-  connect(faviconObject_, SIGNAL(signalIconUpdate(int, const QByteArray&)),
-          parent(), SLOT(slotIconFeedUpdate(int, const QByteArray&)));
+  connect(faviconObject_, SIGNAL(signalIconRecived(QString,QByteArray,QString)),
+          parent(), SLOT(slotIconFeedPreparing(QString,QByteArray,QString)));
+  connect(parent(), SIGNAL(signalIconFeedReady(QString,QByteArray)),
+          faviconObject_, SLOT(slotIconSave(QString,QByteArray)));
+  connect(faviconObject_, SIGNAL(signalIconUpdate(int,QByteArray)),
+          parent(), SLOT(slotIconFeedUpdate(int,QByteArray)));
 
   exec();
 }

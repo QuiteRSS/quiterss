@@ -323,7 +323,8 @@ private slots:
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
-  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray);
+  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray,
+                             const QString &format);
   void slotIconFeedUpdate(int feedId, const QByteArray &faviconData);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
