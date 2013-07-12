@@ -93,6 +93,13 @@ protected:
 private slots:
   void openExternalBrowser()
   {
+    read_ = 1;
+    readButton_->setIcon(QIcon(":/images/bulletRead"));
+    QFont font = titleNews_->font();
+    font.setBold(false);
+    titleNews_->setFont(font);
+    emit signalMarkRead(feedId_, newsId_, read_);
+
     QString linkString;
     QSqlQuery q;
     q.exec(QString("SELECT link_href, link_alternate FROM news WHERE id=='%1'").arg(newsId_));
