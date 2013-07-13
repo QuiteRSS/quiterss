@@ -101,6 +101,10 @@ void CategoriesTreeWidget::mousePressEvent(QMouseEvent *event)
   QModelIndex index = indexAt(event->pos());
   QRect rectText = visualRect(index);
 
+  if (event->buttons() & Qt::RightButton) {
+    return;
+  }
+
   if (!index.isValid()) return;
   if (!(event->pos().x() >= rectText.x())) {
     QTreeWidget::mousePressEvent(event);
@@ -110,9 +114,6 @@ void CategoriesTreeWidget::mousePressEvent(QMouseEvent *event)
   if ((event->buttons() == Qt::MiddleButton)) {
     setCurrentIndex(index);
     emit signalMiddleClicked();
-  }
-  else if (event->buttons() & Qt::RightButton) {
-    return;
   }
   else if (event->buttons() & Qt::LeftButton) {
     QTreeWidget::mousePressEvent(event);

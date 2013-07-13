@@ -659,7 +659,7 @@ void RSSListing::createFeedsWidget()
   connect(findFeeds_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
 
-  connect(categoriesTree_, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+  connect(categoriesTree_, SIGNAL(itemPressed(QTreeWidgetItem*,int)),
           this, SLOT(slotCategoriesClicked(QTreeWidgetItem*,int)));
   connect(categoriesTree_, SIGNAL(signalMiddleClicked()),
           this, SLOT(slotOpenCategoryNewTab()));
