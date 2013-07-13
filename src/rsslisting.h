@@ -293,6 +293,7 @@ signals:
   void signalRefreshInfoTray();
   void signalNextUpdate();
   void signalRecountCategoryCounts();
+  void loadProgress(int);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -301,7 +302,6 @@ protected:
 
 private slots:
   void slotTimerLinkOpening();
-  void slotProgressBarUpdate();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
   void setFeedRead(int type, int feedId, FeedReedType feedReadType,

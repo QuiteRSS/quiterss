@@ -99,7 +99,6 @@ void UpdateDelayer::slotDelayTimerTimeout()
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotNextUpdateFeed()
 {
-  qApp->processEvents();  // refresh window while being dragged
   if (feedUrlList_.size()) {
     delayTimer_->start(delayValue_);
 

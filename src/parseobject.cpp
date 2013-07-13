@@ -40,6 +40,7 @@ ParseObject::ParseObject(QObject *parent) : QObject(0)
 
   parseTimer_ = new QTimer();
   parseTimer_->setSingleShot(true);
+  parseTimer_->setInterval(10);
   connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
 
   connect(this, SIGNAL(signalReadyParse(QByteArray,QString,QDateTime)),
@@ -65,7 +66,7 @@ void ParseObject::getQueuedXml()
   if (!currentFeedUrl_.isEmpty()) return;
 
   if (feedsQueue_.count()) {
-    parseTimer_->start(0);
+    parseTimer_->start();
 
     currentFeedUrl_ = feedsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();

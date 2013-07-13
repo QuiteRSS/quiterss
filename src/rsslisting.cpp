@@ -707,6 +707,9 @@ void RSSListing::createStatusBar()
   progressBar_->setMaximum(0);
   progressBar_->setValue(0);
   progressBar_->setVisible(false);
+  connect(this, SIGNAL(loadProgress(int)),
+          progressBar_, SLOT(setValue(int)), Qt::QueuedConnection);
+
   statusBar()->setMinimumHeight(22);
 
   QToolButton *loadImagesButton = new QToolButton(this);
@@ -2760,7 +2763,7 @@ void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
 
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
-    progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
+    emit loadProgress(progressBar_->maximum() - updateFeedsCount_);
   }
 
   if (!data.isEmpty()) {
@@ -3247,7 +3250,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
 {
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
-    progressBar_->setValue(progressBar_->maximum() - updateFeedsCount_);
+    emit loadProgress(progressBar_->maximum() - updateFeedsCount_);
   }
   if (updateFeedsCount_ <= 0) {
     emit signalShowNotification();
@@ -4100,7 +4103,6 @@ void RSSListing::showProgressBar(int maximum)
 
   progressBar_->setMaximum(maximum);
   progressBar_->show();
-  QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 
 /** @brief Process update feed action
@@ -4142,14 +4144,6 @@ void RSSListing::slotGetAllFeeds()
   timer_.start();
   //  qCritical() << "Start update";
   //  qCritical() << "------------------------------------------------------------";
-}
-// ----------------------------------------------------------------------------
-void RSSListing::slotProgressBarUpdate()
-{
-  progressBar_->update();
-
-  if (progressBar_->isVisible())
-    QTimer::singleShot(150, this, SLOT(slotProgressBarUpdate()));
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()
