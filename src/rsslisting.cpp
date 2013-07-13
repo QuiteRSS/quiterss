@@ -3342,7 +3342,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
       slotUpdateNews();
       int unreadCount = 0;
       int allCount = 0;
-      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(feedId));
+      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(currentNewsTab->feedId_));
       if (q.next()) {
         unreadCount = q.value(0).toInt();
         allCount    = q.value(1).toInt();
