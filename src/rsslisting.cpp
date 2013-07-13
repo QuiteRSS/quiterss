@@ -3255,8 +3255,8 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
   if (updateFeedsCount_ <= 0) {
     emit signalShowNotification();
     progressBar_->hide();
-    progressBar_->setValue(0);
     progressBar_->setMaximum(0);
+    emit loadProgress(0);
     updateFeedsCount_ = 0;
     importFeedStart_ = false;
     // qCritical() << "Stop update: " << timer_.elapsed();
