@@ -29,6 +29,7 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
 {
   delayTimer_ = new QTimer(this);
   delayTimer_->setSingleShot(true);
+  delayTimer_->setInterval(delayValue_);
   connect(delayTimer_, SIGNAL(timeout()), this, SLOT(slotDelayTimerTimeout()));
 
   updateModelTimer_ = new QTimer(this);
@@ -100,7 +101,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
 void UpdateDelayer::slotNextUpdateFeed()
 {
   if (feedUrlList_.size()) {
-    delayTimer_->start(delayValue_);
+    delayTimer_->start();
 
     if (!updateModelTimer_->isActive())
       updateModelTimer_->start(UPDATE_INTERVAL);
