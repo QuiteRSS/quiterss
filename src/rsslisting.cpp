@@ -3417,8 +3417,12 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       newsModel_ = currentNewsTab->newsModel_;
       newsView_ = currentNewsTab->newsView_;
     } else {
-      // Mark previous feed Read while switching to another feed
-      setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed, 0, feedIdCur);
+      if (stackedWidget_->count() && currentNewsTab->type_ != TAB_FEED) {
+        setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingFeed, currentNewsTab);
+      } else {
+        // Mark previous feed Read while switching to another feed
+        setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed, 0, feedIdCur);
+      }
 
       categoriesTree_->setCurrentIndex(QModelIndex());
     }
@@ -4512,7 +4516,8 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
     QList <int> idNewsList;
     for (int i = 0; i < stackedWidget_->count(); i++) {
       NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
-      if (widget->type_ < TAB_WEB) {
+      if ((widget->type_ < TAB_WEB) &&
+          !((feedReadType == FeedReadSwitchingFeed) && (i == TAB_WIDGET_PERMANENT))) {
         int row = widget->newsView_->currentIndex().row();
         int newsId = widget->newsModel_->index(row, widget->newsModel_->fieldIndex("id")).data().toInt();
         idNewsList.append(newsId);
@@ -7007,6 +7012,9 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
 
   if (indexTab == -1) {
     if (createTab) {
+      setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_,
+                  FeedReadSwitchingTab, currentNewsTab);
+
       NewsTabWidget *widget = new NewsTabWidget(this, type);
       indexTab = addTab(widget);
       createNewsTab(indexTab);
@@ -7016,6 +7024,9 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       feedProperties_->setEnabled(false);
 
       if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
+        setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_,
+                    FeedReadSwitchingTab, currentNewsTab);
+
         QModelIndex curIndex = categoriesTree_->currentIndex();
         updateCurrentTab_ = false;
         tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
@@ -7025,6 +7036,9 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
         currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
         newsModel_ = currentNewsTab->newsModel_;
         newsView_ = currentNewsTab->newsView_;
+      } else {
+        setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_,
+                    FeedReadSwitchingFeed, currentNewsTab);
       }
 
       currentNewsTab->type_ = type;
