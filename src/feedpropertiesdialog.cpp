@@ -362,9 +362,11 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   else
     createdFeed_->setText(tr("Long ago ;-)"));
 
-  lastUpdateFeed_->setText(QString("%1 (%2)").
+  QString lastBuildDate = feedProperties.status.lastBuildDate.toString("dd.MM.yy hh:mm");
+  if (!lastBuildDate.isEmpty()) lastBuildDate = QString(" (%1)").arg(lastBuildDate);
+  lastUpdateFeed_->setText(QString("%1%2").
                            arg(feedProperties.status.lastUpdate.toString("dd.MM.yy hh:mm")).
-                           arg(feedProperties.status.lastBuildDate.toString("dd.MM.yy hh:mm"))
+                           arg(lastBuildDate)
                            );
   newsCount_->setText(QString("%1 (%2 %3, %4 %5)").
                       arg(feedProperties.status.undeleteCount).
