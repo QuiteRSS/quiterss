@@ -47,7 +47,9 @@ public:
 public slots:
   void getUrlDone(const int &result, const QString &feedUrlStr, const QString &error,
                   const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(const QString &feedUrl, const bool &, int newCount);
+  void slotUpdateFeed(const QString &feedUrl, const bool &,
+                      int newCount, const QString &);
+  void setStatusFeed(int feedId, const QString &status);
 
 signals:
   void xmlReadyParse(const QByteArray &data, const QString &feedUrlStr,

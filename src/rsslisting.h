@@ -268,8 +268,10 @@ public slots:
   void myEmptyWorkingSet();
   void getUrlDone(const int &result, const QString &feedUrlStr, const QString &error,
                   const QByteArray &data, const QDateTime &dtReply);
-  void slotUpdateFeed(const QString &feedUrl, const bool &changed, int newCount);
-  void slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed, int newCount);
+  void slotUpdateFeed(const QString &feedUrl, const bool &changed,
+                      int newCount, const QString &status);
+  void slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed,
+                             int newCount, const QString &status);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
@@ -279,6 +281,7 @@ public slots:
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
+  void setStatusFeed(int feedId, const QString &status);
 
 signals:
   void signalPlaceToTray();

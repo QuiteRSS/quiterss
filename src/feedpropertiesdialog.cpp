@@ -270,6 +270,8 @@ QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateStatusTab()
 {
+  statusFeed_ = new QLabel();
+  statusFeed_->setWordWrap(true);
   createdFeed_ = new QLabel();
   lastUpdateFeed_ = new QLabel();
   newsCount_ = new QLabel();
@@ -281,14 +283,16 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
 
   QGridLayout *layoutGrid = new QGridLayout();
   layoutGrid->setColumnStretch(1,1);
-  layoutGrid->addWidget(new QLabel(tr("Created:")), 0, 0);
-  layoutGrid->addWidget(createdFeed_, 0, 1);
-  layoutGrid->addWidget(new QLabel(tr("Last update:")), 1, 0);
-  layoutGrid->addWidget(lastUpdateFeed_, 1, 1);
-  layoutGrid->addWidget(new QLabel(tr("News count:")), 2, 0);
-  layoutGrid->addWidget(newsCount_, 2, 1);
-  layoutGrid->addWidget(descriptionLabel, 3, 0, 1, 1, Qt::AlignTop);
-  layoutGrid->addWidget(descriptionText_, 3, 1, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(new QLabel(tr("Status:")), 0, 0);
+  layoutGrid->addWidget(statusFeed_, 0, 1);
+  layoutGrid->addWidget(new QLabel(tr("Created:")), 1, 0);
+  layoutGrid->addWidget(createdFeed_, 1, 1);
+  layoutGrid->addWidget(new QLabel(tr("Last update:")), 2, 0);
+  layoutGrid->addWidget(lastUpdateFeed_, 2, 1);
+  layoutGrid->addWidget(new QLabel(tr("News count:")), 3, 0);
+  layoutGrid->addWidget(newsCount_, 3, 1);
+  layoutGrid->addWidget(descriptionLabel, 4, 0, 1, 1, Qt::AlignTop);
+  layoutGrid->addWidget(descriptionText_, 4, 1, 1, 1, Qt::AlignTop);
 
   QVBoxLayout *layoutMain = new QVBoxLayout();
   layoutMain->addLayout(layoutGrid);
@@ -345,6 +349,12 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   authentication_->setChecked(feedProperties.authentication.on);
   user_->setText(feedProperties.authentication.user);
   pass_->setText(feedProperties.authentication.pass);
+
+  QString status = feedProperties.status.feedStatus;
+  if (status.isEmpty() || (status == "0"))
+    statusFeed_->setText(tr("Good"));
+  else
+    statusFeed_->setText(status.section(" ", 1));
 
   descriptionText_->setText(feedProperties.status.description);
   if (feedProperties.status.createdTime.isValid())

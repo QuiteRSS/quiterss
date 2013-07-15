@@ -20,6 +20,7 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QPainter>
 
 // ----------------------------------------------------------------------------
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
@@ -93,21 +94,42 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
       if (isFolder(index)) {
         return QPixmap(":/images/folder");
       } else {
-        QString strDate = indexSibling(index, "updated").data(Qt::EditRole).toString();
-        if (strDate.isEmpty())
-          return QPixmap(":/images/feedError");
-
-        if (defaultIconFeeds_)
-          return QPixmap(":/images/feed");
-
-        QByteArray byteArray = indexSibling(index, "image").data(Qt::EditRole).toByteArray();
-        if (!byteArray.isNull()) {
-          QPixmap icon;
-          if (icon.loadFromData(QByteArray::fromBase64(byteArray))) {
-            return icon;
+        if (!defaultIconFeeds_) {
+          QByteArray byteArray = indexSibling(index, "image").data(Qt::EditRole).toByteArray();
+          if (!byteArray.isNull()) {
+            QImage resultImage;
+            if (resultImage.loadFromData(QByteArray::fromBase64(byteArray))) {
+              QString strStatus = indexSibling(index, "status").data(Qt::EditRole).toString();
+              if (strStatus.section(" ", 0, 0).toInt() != 0) {
+                QImage image;
+                if (strStatus.section(" ", 0, 0).toInt() < 0)
+                  image.load(":/images/bulletError");
+                else if (strStatus.section(" ", 0, 0).toInt() == 1)
+                  image.load(":/images/bulletUpdate");
+                QPainter resultPainter(&resultImage);
+                resultPainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+                resultPainter.drawImage(0, 0, image);
+                resultPainter.end();
+              }
+              return resultImage;
+            }
           }
         }
-        return QPixmap(":/images/feed");
+        QImage resultImage(":/images/feed");
+        QString strStatus = indexSibling(index, "status").data(Qt::EditRole).toString();
+        if (strStatus.section(" ", 0, 0).toInt() != 0) {
+          QImage image;
+          if (strStatus.section(" ", 0, 0).toInt() < 0)
+            image.load(":/images/bulletError");
+          else if (strStatus.section(" ", 0, 0).toInt() == 1)
+            image.load(":/images/bulletUpdate");
+
+          QPainter resultPainter(&resultImage);
+          resultPainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+          resultPainter.drawImage(0, 0, image);
+          resultPainter.end();
+        }
+        return resultImage;
       }
     }
   } else if (role == Qt::TextAlignmentRole) {

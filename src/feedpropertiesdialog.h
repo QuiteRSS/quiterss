@@ -179,6 +179,7 @@ private:
   QWidget *CreateAuthenticationTab();
 
   // Tab "Status"
+  QLabel *statusFeed_;
   QTextEdit *descriptionText_;
   QLabel *createdFeed_;
   QLabel *lastUpdateFeed_;

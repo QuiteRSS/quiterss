@@ -108,7 +108,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   // id not found (ex. feed deleted while updating)
   if (0 == parseFeedId_) {
     qDebug() << QString("Feed '%1' not found").arg(feedUrl);
-    emit feedUpdated(feedUrl, false, 0);
+    emit feedUpdated(feedUrl, false, 0, "0");
     return;
   }
 
@@ -182,7 +182,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   QString updated = QLocale::c().toString(QDateTime::currentDateTimeUtc(),
                                           "yyyy-MM-ddTHH:mm:ss");
   QString lastBuildDate = dtReply.toString(Qt::ISODate);
-  q.prepare("UPDATE feeds SET updated=?, lastBuildDate=? WHERE id=?");
+  q.prepare("UPDATE feeds SET updated=?, lastBuildDate=?, status=0 WHERE id=?");
   q.addBindValue(updated);
   q.addBindValue(lastBuildDate);
   q.addBindValue(parseFeedId_);
@@ -194,7 +194,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
 
-  emit feedUpdated(feedUrl, feedChanged_, newCount);
+  emit feedUpdated(feedUrl, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
 }
 

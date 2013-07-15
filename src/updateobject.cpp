@@ -24,6 +24,7 @@
 #else
 #include <qwebkitversion.h>
 #endif
+#include <QtSql>
 
 #define REPLY_MAX_COUNT 10
 
@@ -80,6 +81,15 @@ void UpdateObject::getQueuedUrl()
   if (!feedsQueue_.isEmpty()) {
     getUrlTimer_->start(50);
     QString feedUrl = feedsQueue_.head();
+
+    int feedId = -1;
+    QSqlQuery q;
+    q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+    q.bindValue(":xmlUrl", feedUrl);
+    q.exec();
+    if (q.next()) feedId = q.value(0).toInt();
+    emit setStatusFeed(feedId, "1 Update");
+
     if (hostList_.contains(QUrl(feedUrl).host())) {
       int count = 0;
       foreach (QString url, currentFeeds_) {
@@ -199,7 +209,7 @@ void UpdateObject::finished(QNetworkReply *reply)
           if (count < numberRepeats_) {
             emit signalGet(replyUrl, feedUrl, feedDate, count);
           } else {
-            emit getUrlDone(-1, feedUrl, tr("Error: %1 (%2)").arg(reply->errorString()).arg(reply->error()));
+            emit getUrlDone(-1, feedUrl, QString("%1 (%2)").arg(reply->errorString()).arg(reply->error()));
           }
         }
       } else {

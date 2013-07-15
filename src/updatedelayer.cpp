@@ -44,10 +44,11 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
  * @param feedChanged Flag that indicate changed feed
  * @param newCount (need description)
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged, int newCount)
+void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
+                                int newCount, const QString &status)
 {
   if (!feedChanged) {
-    emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
+    emit signalUpdateNeeded(feedUrl, feedChanged, newCount, status);
     return;
   }
 
@@ -58,6 +59,7 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
     if (feedChanged) {
       feedChangedList_[feedIdIndex] = feedChanged;  // i.e. true
       newCountList_[feedIdIndex] = newCount;
+      statusList_[feedIdIndex] = status;
     }
   }
   // ..., else queueing feed
@@ -65,6 +67,7 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
     feedUrlList_.append(feedUrl);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
+    statusList_.append(status);
   }
 
   // Start timer, if first feed added into queueing
@@ -93,7 +96,8 @@ void UpdateDelayer::slotDelayTimerTimeout()
   QString feedUrl = feedUrlList_.takeFirst();
   bool feedChanged = feedChangedList_.takeFirst();
   int newCount = newCountList_.takeFirst();
-  emit signalUpdateNeeded(feedUrl, feedChanged, newCount);
+  QString status = statusList_.takeFirst();
+  emit signalUpdateNeeded(feedUrl, feedChanged, newCount, status);
 }
 
 /** @brief Start timer if feed presents in queue

@@ -533,7 +533,8 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(const QString &feedUrl, const bool &, int newCount)
+void AddFeedWizard::slotUpdateFeed(const QString &feedUrl, const bool &,
+                                   int newCount, const QString &)
 {
   qDebug() << "ParseDone" << feedUrl;
   selectedPage = true;
@@ -689,5 +690,9 @@ void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *aut
 }
 
 void AddFeedWizard::slotFeedCountsUpdate(FeedCountStruct)
+{
+}
+
+void AddFeedWizard::setStatusFeed(int, const QString &)
 {
 }
