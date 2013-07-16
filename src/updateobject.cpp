@@ -82,14 +82,6 @@ void UpdateObject::getQueuedUrl()
     getUrlTimer_->start(50);
     QString feedUrl = feedsQueue_.head();
 
-    int feedId = -1;
-    QSqlQuery q;
-    q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-    q.bindValue(":xmlUrl", feedUrl);
-    q.exec();
-    if (q.next()) feedId = q.value(0).toInt();
-    emit setStatusFeed(feedId, "1 Update");
-
     if (hostList_.contains(QUrl(feedUrl).host())) {
       int count = 0;
       foreach (QString url, currentFeeds_) {
@@ -100,6 +92,14 @@ void UpdateObject::getQueuedUrl()
         }
       }
     }
+
+    int feedId = -1;
+    QSqlQuery q;
+    q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+    q.bindValue(":xmlUrl", feedUrl);
+    q.exec();
+    if (q.next()) feedId = q.value(0).toInt();
+    emit setStatusFeed(feedId, "1 Update");
 
     feedUrl = feedsQueue_.dequeue();
     QUrl getUrl = QUrl::fromEncoded(feedUrl.toUtf8());
