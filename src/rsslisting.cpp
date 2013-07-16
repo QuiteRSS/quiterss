@@ -4249,20 +4249,36 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
 
   emit signalRefreshInfoTray();
 
-  if ((feedId > 0) && (feedId == currentNewsTab->feedId_)) {
+  if (feedId > 0) {
+    bool folderUpdate = false;
+    int feedParentId = 0;
     QSqlQuery q;
-    int unreadCount = 0;
-    int allCount = 0;
-    QString qStr = QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
-        arg(feedId);
-    q.exec(qStr);
+    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
     if (q.next()) {
-      unreadCount = q.value(0).toInt();
-      allCount    = q.value(1).toInt();
+      feedParentId = q.value(0).toInt();
+      if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
     }
 
-    statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
-    statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+    while (feedParentId && !folderUpdate) {
+      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
+      if (q.next()) {
+        feedParentId = q.value(0).toInt();
+        if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
+      }
+    }
+
+    // Click on feed if it is displayed to update view
+    if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
+      int unreadCount = 0;
+      int allCount = 0;
+      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(currentNewsTab->feedId_));
+      if (q.next()) {
+        unreadCount = q.value(0).toInt();
+        allCount    = q.value(1).toInt();
+      }
+      statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
+      statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
+    }
   }
 }
 
