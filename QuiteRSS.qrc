@@ -90,7 +90,6 @@
         <file alias="label_1">images/label_red.png</file>
         <file alias="label_5">images/label_yellow.png</file>
         <file alias="save_as">images/save_as.png</file>
-        <file alias="feedError">images/feedError.png</file>
         <file alias="flag_UK">images/flag_ukraine.png</file>
         <file alias="flag_CN">images/flag_china.png</file>
         <file alias="flag_CZ">images/flag_czech.png</file>
