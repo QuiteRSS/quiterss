@@ -408,6 +408,8 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.description = channel.namedItem("subtitle").toElement().text();
   feedItem.link = channel.namedItem("link").toElement().text();
   feedItem.updated = channel.namedItem("pubDate").toElement().text();
+  if (feedItem.updated.isEmpty())
+    feedItem.updated = channel.namedItem("pubdate").toElement().text();
   feedItem.updated = parseDate(feedItem.updated, feedUrl);
   feedItem.author = toPlainText(channel.namedItem("author").toElement().text());
   feedItem.language = channel.namedItem("language").toElement().text();
@@ -433,6 +435,8 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.id = newsList.item(i).namedItem("guid").toElement().text();
     newsItem.title = toPlainText(newsList.item(i).namedItem("title").toElement().text());
     newsItem.updated = newsList.item(i).namedItem("pubDate").toElement().text();
+    if (newsItem.updated.isEmpty())
+      newsItem.updated = newsList.item(i).namedItem("pubdate").toElement().text();
     newsItem.updated = parseDate(newsItem.updated, feedUrl);
     newsItem.author = toPlainText(newsList.item(i).namedItem("author").toElement().text());
     if (newsItem.author.isEmpty())
