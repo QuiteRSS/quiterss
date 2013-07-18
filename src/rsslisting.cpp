@@ -23,7 +23,6 @@
 #include "cleanupwizard.h"
 #include "customizetoolbardialog.h"
 #include "db_func.h"
-#include "delegatewithoutfocus.h"
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
@@ -7874,6 +7873,7 @@ void RSSListing::setStatusFeed(int feedId, const QString &status)
   if (index.isValid()) {
     QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
     feedsTreeModel_->setData(indexStatus, status);
+    feedsTreeView_->viewport()->update();
   }
 }
 
