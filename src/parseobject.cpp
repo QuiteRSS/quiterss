@@ -405,7 +405,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   FeedItemStruct feedItem;
 
   feedItem.title = toPlainText(channel.namedItem("title").toElement().text());
-  feedItem.description = channel.namedItem("subtitle").toElement().text();
+  feedItem.description = channel.namedItem("description").toElement().text();
   feedItem.link = channel.namedItem("link").toElement().text();
   feedItem.updated = channel.namedItem("pubDate").toElement().text();
   if (feedItem.updated.isEmpty())
