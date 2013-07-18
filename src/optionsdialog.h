@@ -69,6 +69,10 @@ public:
   QNetworkProxy proxy();
   void setProxy(const QNetworkProxy proxy);
 
+  QSpinBox *timeoutRequest_;
+  QSpinBox *numberRequest_;
+  QSpinBox *numberRepeats_;
+
   // browser
   QRadioButton *embeddedBrowserOn_;
   QRadioButton *externalBrowserOn_;

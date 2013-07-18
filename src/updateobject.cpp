@@ -28,10 +28,10 @@
 
 #define REPLY_MAX_COUNT 10
 
-UpdateObject::UpdateObject(int requestTimeout, int replyCount, int numberRepeats, QObject *parent)
+UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent)
   : QObject(parent)
-  , requestTimeout_(requestTimeout)
-  , replyCount_(replyCount)
+  , timeoutRequest_(timeoutRequest)
+  , numberRequest_(numberRequest)
   , numberRepeats_(numberRepeats)
 {
   setObjectName("updateObject_");
@@ -72,7 +72,7 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
  *----------------------------------------------------------------------------*/
 void UpdateObject::getQueuedUrl()
 {
-  if ((replyCount_ <= currentFeeds_.size()) ||
+  if ((numberRequest_ <= currentFeeds_.size()) ||
       (REPLY_MAX_COUNT <= currentFeeds_.size())) {
     getUrlTimer_->start();
     return;
@@ -136,7 +136,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const QString &feedUrl,
   currentDates_.append(date);
   currentCount_.append(count);
   currentHead_.append(true);
-  currentTime_.append(requestTimeout_);
+  currentTime_.append(timeoutRequest_);
 
   QNetworkReply *reply = networkManager_->head(request);
   requestUrl_.append(reply->url());
@@ -160,7 +160,7 @@ void UpdateObject::slotGet(const QUrl &getUrl, const QString &feedUrl,
   currentDates_.append(date);
   currentCount_.append(count);
   currentHead_.append(false);
-  currentTime_.append(requestTimeout_);
+  currentTime_.append(timeoutRequest_);
 
   QNetworkReply *reply = networkManager_->get(request);
   requestUrl_.append(reply->url());

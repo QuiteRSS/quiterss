@@ -158,10 +158,10 @@ RSSListing::RSSListing(QSettings *settings,
   connect(downloadManager_, SIGNAL(signalUpdateInfo(QString)),
           this, SLOT(updateInfoDownloads(QString)));
 
-  int requestTimeout = settings_->value("Settings/requestTimeout", 15).toInt();
-  int replyCount = settings_->value("Settings/replyCount", 10).toInt();
+  int timeoutRequest = settings_->value("Settings/timeoutRequest", 15).toInt();
+  int numberRequest = settings_->value("Settings/numberRequest", 10).toInt();
   int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
-  persistentUpdateThread_ = new UpdateThread(this, requestTimeout, replyCount, numberRepeats);
+  persistentUpdateThread_ = new UpdateThread(this, timeoutRequest, numberRequest, numberRepeats);
 
   persistentParseThread_ = new ParseThread(this);
 
@@ -3595,6 +3595,13 @@ void RSSListing::showOptionDlg()
 
   optionsDialog_->setProxy(networkProxy_);
 
+  int timeoutRequest = settings_->value("Settings/timeoutRequest", 15).toInt();
+  int numberRequest = settings_->value("Settings/numberRequest", 10).toInt();
+  int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
+  optionsDialog_->timeoutRequest_->setValue(timeoutRequest);
+  optionsDialog_->numberRequest_->setValue(numberRequest);
+  optionsDialog_->numberRepeats_->setValue(numberRepeats);
+
   optionsDialog_->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
   optionsDialog_->externalBrowserOn_->setChecked(externalBrowserOn_ >= 1);
   optionsDialog_->defaultExternalBrowserOn_->setChecked((externalBrowserOn_ == 0) ||
@@ -3884,6 +3891,13 @@ void RSSListing::showOptionDlg()
 
   networkProxy_ = optionsDialog_->proxy();
   setProxy(networkProxy_);
+
+  timeoutRequest = optionsDialog_->timeoutRequest_->value();
+  numberRequest = optionsDialog_->numberRequest_->value();
+  numberRepeats = optionsDialog_->numberRepeats_->value();
+  settings_->setValue("Settings/timeoutRequest", timeoutRequest);
+  settings_->setValue("Settings/numberRequest", numberRequest);
+  settings_->setValue("Settings/numberRepeats", numberRepeats);
 
   if (optionsDialog_->embeddedBrowserOn_->isChecked()) {
     if (optionsDialog_->defaultExternalBrowserOn_->isChecked())
