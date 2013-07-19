@@ -44,14 +44,8 @@
         <file alias="addT">images/add_t.png</file>
         <file alias="deleteT">images/delete_t.png</file>
         <file alias="warning">images/warning.png</file>
-        <file alias="flag_EN">images/flag_great_britain.png</file>
-        <file alias="flag_FR">images/flag_france.png</file>
-        <file alias="flag_DE">images/flag_germany.png</file>
-        <file alias="flag_HU">images/flag_hungary.png</file>
-        <file alias="flag_RU">images/flag_russia.png</file>
         <file alias="close">images/close.png</file>
         <file alias="closeHover">images/close_hover.png</file>
-        <file alias="flag_SV">images/flag_sweden.png</file>
         <file alias="webPage">images/world.png</file>
         <file alias="quiterssDebug">images/quiterss_debug.png</file>
         <file alias="addFolder">images/folder_add.png</file>
@@ -65,20 +59,15 @@
         <file alias="selectFindInBrowser">images/find_in_browser_s.png</file>
         <file alias="findInNews">images/find_in_news.png</file>
         <file alias="selectFindInNews">images/find_in_news_s.png</file>
-        <file alias="flag_SR">images/flag_serbian.png</file>
         <file>images/logo_text.png</file>
         <file>images/findFeed.png</file>
-        <file alias="flag_NL">images/flag_netherlands.png</file>
-        <file alias="flag_FA">images/flag_iran.png</file>
         <file>images/arrow_turn_left.png</file>
-        <file alias="flag_IT">images/flag_italy.png</file>
         <file alias="printer">images/printer.png</file>
         <file alias="zoom">images/zoom.png</file>
         <file alias="zoomIn">images/zoom_in.png</file>
         <file alias="zoomOut">images/zoom_out.png</file>
         <file>images/fullScreen.png</file>
         <file>images/quiterss_debug.ico</file>
-        <file alias="flag_ES">images/flag_spain.png</file>
         <file alias="loading">images/loading.gif</file>
         <file>images/trash.png</file>
         <file>images/panel_hide.png</file>
@@ -90,24 +79,14 @@
         <file alias="label_1">images/label_red.png</file>
         <file alias="label_5">images/label_yellow.png</file>
         <file alias="save_as">images/save_as.png</file>
-        <file alias="flag_UK">images/flag_ukraine.png</file>
-        <file alias="flag_CN">images/flag_china.png</file>
-        <file alias="flag_CZ">images/flag_czech.png</file>
-        <file alias="flag_PL">images/flag_poland.png</file>
         <file>images/share.png</file>
         <file>images/email.png</file>
         <file>images/share_evernote.png</file>
         <file>images/share_facebook.png</file>
         <file>images/share_vk.png</file>
-        <file alias="flag_JA">images/flag_japan.png</file>
         <file>images/share_livejournal.png</file>
         <file>images/share_twitter.png</file>
-        <file alias="flag_KO">images/flag_south_korea.png</file>
         <file>images/share_pocket.png</file>
-        <file alias="flag_BR">images/flag_brazil.png</file>
-        <file alias="flag_LT">images/flag_lithuania.png</file>
-        <file alias="flag_TW">images/flag_taiwan.png</file>
-        <file alias="flag_GR">images/flag_greece.png</file>
         <file>images/tab_go.png</file>
         <file alias="copy">images/page_copy.png</file>
         <file alias="bulletMinus">images/bullet_toggle_minus.png</file>
@@ -116,15 +95,9 @@
         <file>images/flashstart.png</file>
         <file>images/folder_star.png</file>
         <file>images/folder_unread.png</file>
-        <file alias="flag_TR">images/flag_turkey.png</file>
         <file alias="download">images/download.png</file>
         <file alias="list_clear">images/list_clear.png</file>
-        <file alias="flag_AR">images/flag_arab.png</file>
         <file>images/share_gplus.png</file>
-        <file alias="flag_SK">images/flag_slovakia.png</file>
-        <file alias="flag_TJ">images/flag_tajikistan.png</file>
-        <file alias="flag_PT">images/flag_portugal.png</file>
-        <file alias="flag_VI">images/flag_vietnam.png</file>
         <file alias="bulletError">images/bullet_error.png</file>
         <file alias="bulletUpdate">images/bullet_update.png</file>
     </qresource>
@@ -140,5 +113,34 @@
     </qresource>
     <qresource prefix="/html">
         <file alias="description">html/news.html</file>
+    </qresource>
+    <qresource prefix="/flags">
+        <file alias="flag_AR">images/flags/flag_arab.png</file>
+        <file alias="flag_BR">images/flags/flag_brazil.png</file>
+        <file alias="flag_CN">images/flags/flag_china.png</file>
+        <file alias="flag_CZ">images/flags/flag_czech.png</file>
+        <file alias="flag_FR">images/flags/flag_france.png</file>
+        <file alias="flag_DE">images/flags/flag_germany.png</file>
+        <file alias="flag_EN">images/flags/flag_great_britain.png</file>
+        <file alias="flag_GR">images/flags/flag_greece.png</file>
+        <file alias="flag_HU">images/flags/flag_hungary.png</file>
+        <file alias="flag_FA">images/flags/flag_iran.png</file>
+        <file alias="flag_IT">images/flags/flag_italy.png</file>
+        <file alias="flag_JA">images/flags/flag_japan.png</file>
+        <file alias="flag_LT">images/flags/flag_lithuania.png</file>
+        <file alias="flag_NL">images/flags/flag_netherlands.png</file>
+        <file alias="flag_PL">images/flags/flag_poland.png</file>
+        <file alias="flag_PT">images/flags/flag_portugal.png</file>
+        <file alias="flag_RU">images/flags/flag_russia.png</file>
+        <file alias="flag_SR">images/flags/flag_serbian.png</file>
+        <file alias="flag_SK">images/flags/flag_slovakia.png</file>
+        <file alias="flag_KO">images/flags/flag_south_korea.png</file>
+        <file alias="flag_ES">images/flags/flag_spain.png</file>
+        <file alias="flag_SV">images/flags/flag_sweden.png</file>
+        <file alias="flag_TW">images/flags/flag_taiwan.png</file>
+        <file alias="flag_TJ">images/flags/flag_tajikistan.png</file>
+        <file alias="flag_TR">images/flags/flag_turkey.png</file>
+        <file alias="flag_UK">images/flags/flag_ukraine.png</file>
+        <file alias="flag_VI">images/flags/flag_vietnam.png</file>
     </qresource>
 </RCC>

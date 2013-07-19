@@ -1146,7 +1146,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   QTreeWidgetItem *languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_EN"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_EN"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1154,7 +1154,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "ahmadzxc" << "ahmad.almomani5@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_AR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_AR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1162,7 +1162,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Matej Szendi") << "matej.szendi@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_CZ"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_CZ"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1170,7 +1170,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Lyudmila Kremova" << "alis-dcm@yandex.ru";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_DE"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_DE"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1178,7 +1178,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.13.0"
            << "Dimitris Siakavelis" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_GR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_GR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1186,7 +1186,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Cesar Muñoz") << "csarg@live.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_ES"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_ES"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1194,7 +1194,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_FA"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_FA"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1202,7 +1202,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_FR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_FR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1210,7 +1210,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_HU"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_HU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1218,7 +1218,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "ZeroWis" << "lightflash@hotmail.it";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_IT"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_IT"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1226,7 +1226,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Masato Hashimoto" << "cabezon.hashimoto@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_JA"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_JA"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1234,7 +1234,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Yonghee Lee") << "v4321v@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_KO"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_KO"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1242,7 +1242,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.12.4"
            << QString::fromUtf8("keturidu") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_LT"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_LT"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1250,7 +1250,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "TeLLie" << "elbert.pol@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_NL"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_NL"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1258,7 +1258,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.13.0"
            << QString::fromUtf8("Piotr Pecka") << "piotr.pecka@outlook.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_PL"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_PL"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1266,7 +1266,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Marcos M. Ribeiro") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_BR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_BR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1274,7 +1274,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Sérgio Marques") << "smarquespt@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_PT"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_PT"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1282,7 +1282,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_RU"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_RU"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1290,7 +1290,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.12.5"
            << "" << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SK"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_SK"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1298,7 +1298,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << "Ozzii" << "ozzii.translate@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_SR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1306,7 +1306,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Åke Engelbrektson") << "eson57@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_SV"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_SV"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1314,7 +1314,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Kobilov Iskandar") << "kabilov.iskandar@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_TJ"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_TJ"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1322,7 +1322,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.12.5"
            << QString::fromUtf8("") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_TR"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_TR"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1330,7 +1330,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Сергій Левицький") << "leon21sl@myopera.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_UK"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_UK"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1338,7 +1338,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.13.1"
            << QString::fromUtf8("Phan Anh") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_VI"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_VI"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1346,7 +1346,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("wwj402") << "";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_CN"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_CN"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
@@ -1354,7 +1354,7 @@ void OptionsDialog::createLanguageWidget()
            << QString(STRPRODUCTVER)
            << QString::fromUtf8("Hulen (破滅刃)") << "shift0106@hotmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/images/flag_TW"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_TW"));
   languageFileList_->addTopLevelItem(languageItem);
 
   QString linkWikiStr =
