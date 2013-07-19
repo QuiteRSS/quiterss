@@ -142,5 +142,6 @@
         <file alias="flag_TR">images/flags/flag_turkey.png</file>
         <file alias="flag_UK">images/flags/flag_ukraine.png</file>
         <file alias="flag_VI">images/flags/flag_vietnam.png</file>
+        <file alias="flag_RO">images/flags/flag_romania.png</file>
     </qresource>
 </RCC>

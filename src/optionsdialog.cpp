@@ -1278,6 +1278,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "ro_RO" << QString::fromUtf8("Limba română [ro_RO]")
+           << QString(STRPRODUCTVER)
+           << "" << "";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/flags/flag_RO"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "ru" << QString::fromUtf8("Русский [RU]")
            << QString(STRPRODUCTVER)
            << "QuiteRSS Team" << "";
