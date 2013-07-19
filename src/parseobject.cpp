@@ -149,8 +149,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
   } else {
     bool codecOk = false;
     QStringList codecNameList;
-    codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
-                  << "ISO 8859-5" << "IBM 866";
+    codecNameList << "System" << "Windows-1251" << "KOI8-R" << "KOI8-U"
+                  << "ISO 8859-5" << "IBM 866" << "UTF-8";
     foreach (QString codecName, codecNameList) {
       QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
       if (codec->canEncode(xmlData)) {
