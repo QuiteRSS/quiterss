@@ -72,19 +72,10 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
 
   // Start timer, if first feed added into queueing
   // Protect from starting while timeout is being processed
-  if ((feedUrlList_.size() == 1) && nextUpdateFeed_) {
+  if (nextUpdateFeed_) {
     nextUpdateFeed_ = false;
     delayTimer_->start();
-
-    if (!updateModelTimer_->isActive()) {
-      updateModelTimer_->start(MIN_UPDATE_INTERVAL);
-    } else {
-      if (updateModelTimer_->interval() == MIN_UPDATE_INTERVAL) {
-        updateModelTimer_->start(UPDATE_INTERVAL - MIN_UPDATE_INTERVAL);
-      }
-    }
   }
-
 }
 
 /** @brief Process delay timer timeout
@@ -104,6 +95,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotNextUpdateFeed()
 {
+//  qApp->processEvents();
   if (feedUrlList_.size()) {
     delayTimer_->start();
 
@@ -112,7 +104,7 @@ void UpdateDelayer::slotNextUpdateFeed()
   } else {
     nextUpdateFeed_ = true;
 
-   if (!updateModelTimer_->isActive())
+    if (!updateModelTimer_->isActive())
       updateModelTimer_->start(MIN_UPDATE_INTERVAL);
   }
 }

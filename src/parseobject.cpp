@@ -56,7 +56,9 @@ void ParseObject::parseXml(const QByteArray &data, const QString &feedUrl,
   xmlsQueue_.enqueue(data);
   dtReadyQueue_.enqueue(dtReply);
   qDebug() << "xmlsQueue_ <<" << feedUrl << "count=" << xmlsQueue_.count();
-  parseTimer_->start();
+
+  if (!parseTimer_->isActive())
+    parseTimer_->start();
 }
 
 /** @brief Process xml-data queue
@@ -66,8 +68,6 @@ void ParseObject::getQueuedXml()
   if (!currentFeedUrl_.isEmpty()) return;
 
   if (feedsQueue_.count()) {
-    parseTimer_->start();
-
     currentFeedUrl_ = feedsQueue_.dequeue();
     currentXml_ = xmlsQueue_.dequeue();
     currentDtReady_ = dtReadyQueue_.dequeue();
@@ -76,6 +76,7 @@ void ParseObject::getQueuedXml()
     emit signalReadyParse(currentXml_, currentFeedUrl_, currentDtReady_);
 
     currentFeedUrl_.clear();
+    parseTimer_->start();
   }
 }
 
@@ -193,6 +194,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
     setUserFilter(parseFeedId_);
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
+
+  q.finish();
 
   emit feedUpdated(feedUrl, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
@@ -397,6 +400,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
+  q.finish();
 }
 
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
@@ -555,6 +559,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
+  q.finish();
 }
 
 QString ParseObject::toPlainText(const QString &text)
