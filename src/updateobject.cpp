@@ -42,6 +42,7 @@ UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepe
 
   getUrlTimer_ = new QTimer();
   getUrlTimer_->setSingleShot(true);
+  getUrlTimer_->setInterval(50);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
 
   networkManager_ = new NetworkManager(this);
@@ -63,7 +64,8 @@ void UpdateObject::requestUrl(const QString &urlString, const QDateTime &date,
   dateQueue_.enqueue(date);
   userInfo_.enqueue(userInfo);
 
-  getUrlTimer_->start();
+  if (!getUrlTimer_->isActive())
+    getUrlTimer_->start();
 
   qDebug() << "urlsQueue_ <<" << urlString << "count=" << feedsQueue_.count();
 }
@@ -79,7 +81,7 @@ void UpdateObject::getQueuedUrl()
   }
 
   if (!feedsQueue_.isEmpty()) {
-    getUrlTimer_->start(50);
+    getUrlTimer_->start();
     QString feedUrl = feedsQueue_.head();
 
     if (hostList_.contains(QUrl(feedUrl).host())) {
@@ -99,6 +101,7 @@ void UpdateObject::getQueuedUrl()
     q.bindValue(":xmlUrl", feedUrl);
     q.exec();
     if (q.next()) feedId = q.value(0).toInt();
+    q.finish();
     emit setStatusFeed(feedId, "1 Update");
 
     feedUrl = feedsQueue_.dequeue();

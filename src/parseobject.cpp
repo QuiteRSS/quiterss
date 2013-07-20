@@ -153,7 +153,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const QString &feedUrl,
                   << "ISO 8859-5" << "IBM 866" << "UTF-8";
     foreach (QString codecName, codecNameList) {
       QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
-      if (codec->canEncode(xmlData)) {
+      if (codec && codec->canEncode(xmlData)) {
         convertData = codec->toUnicode(xmlData);
         codecOk = true;
         break;
