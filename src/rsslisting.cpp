@@ -6945,8 +6945,6 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
     QList<int> categoriesList;
     categoriesList << feedParIdWhat << feedIdWhere;
     recountFeedCategories(categoriesList);
-
-    feedParIdWhere = feedIdWhere;
   } else if (feedParIdWhat == feedParIdWhere) {
     // Move inside folder
     QList<int> idList;
