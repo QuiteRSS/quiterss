@@ -3357,6 +3357,8 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
     }
   }
 
+  q.finish();
+
   emit signalNextUpdate();
 }
 
