@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="58"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation type="unfinished"/>
+        <translation>QuiteRSS este un program sursă-deschisă multi-platformă Cititor RSS/Atom news</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="59"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="132"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Deschide în tab nou</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="135"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Golire &apos;Şterse&apos;</translation>
     </message>
 </context>
 <context>
@@ -245,7 +245,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Pune în ordine</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>Opţiuni punere în ordine</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
@@ -295,18 +295,19 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pune în ordine &apos;Şterse&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Curăţare BD</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>Elimina complet înregistrările care au fost marcate ca &apos;șterse&apos; din BD.
+Ştiri vechi ar putea reapărea</translation>
     </message>
 </context>
 <context>
@@ -324,7 +325,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Adaugă &apos;%1&apos; la listă albă</translation>
     </message>
 </context>
 <context>
@@ -371,12 +372,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text Beside Icon</source>
-        <translation type="unfinished"/>
+        <translation>Text lîngă icon</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text Under Icon</source>
-        <translation type="unfinished"/>
+        <translation>Text sub icon</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="107"/>
@@ -434,13 +435,13 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="102"/>
         <source>Remaining time unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Timp rămas indisponibil</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation type="unfinished"/>
+        <translation>Eroare: Nu se poate scrie fişierul!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
@@ -563,7 +564,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Golire</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
@@ -646,7 +647,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="109"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Arată descriere noutăţi în loc de încărcarea paginii web</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
@@ -751,7 +752,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>Încărcare icon favorit</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
@@ -771,7 +772,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"/>
+        <translation>Afişare în tab nou la pornire</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="110"/>
@@ -796,7 +797,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
         <source>Homepage:</source>
-        <translation type="unfinished"/>
+        <translation>Pagina de start:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="31"/>
@@ -1065,7 +1066,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="30"/>
         <source>Work</source>
-        <translation type="unfinished"/>
+        <translation>Lucru</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="30"/>
@@ -1085,12 +1086,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="31"/>
         <source>Amusingly</source>
-        <translation type="unfinished"/>
+        <translation>Amuzant</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="37"/>
         <source>Load icon...</source>
-        <translation type="unfinished"/>
+        <translation>Încărcare icon...</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="46"/>
@@ -1299,7 +1300,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="491"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Deschide în tab nou</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="492"/>
@@ -1354,7 +1355,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="511"/>
         <source>Close Tab</source>
-        <translation type="unfinished"/>
+        <translation>Închide tab</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1313"/>
@@ -1382,7 +1383,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/notifications.cpp" line="137"/>
         <source>Incoming News: %1</source>
-        <translation type="unfinished"/>
+        <translation>Sosire noutăţi: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="242"/>
@@ -1440,13 +1441,13 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1483"/>
         <source>Fonts</source>
-        <translation type="unfinished"/>
+        <translation>Font-uri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="227"/>
         <location filename="../src/optionsdialog.cpp" line="1882"/>
         <source>Warning: key is already assigned to</source>
-        <translation type="unfinished"/>
+        <translation>Atenţionare: tasta este deja atribuită către</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
@@ -1456,27 +1457,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>Redeschide ultimele fluxuri deschise la pornire</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Open new tab next to active</source>
-        <translation type="unfinished"/>
+        <translation>Deschide tab nou lîngă cel activ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation type="unfinished"/>
+        <translation>Ascunde arbore fluxuri la deschidere tab-uri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Arată comutator arbore fluxuri la marginea ferestrei</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"/>
+        <translation>Restrînge automat foldere</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
@@ -1486,7 +1487,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="260"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation type="unfinished"/>
+        <translation>Stochează o BD în memorie (necesită repornire program)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="273"/>
@@ -1511,47 +1512,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="305"/>
         <source>Show static icon</source>
-        <translation type="unfinished"/>
+        <translation>Arată icon static</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="306"/>
         <source>Change icon for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Schimbă icon pentru sosire noutăţi noi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="307"/>
         <source>Show count of new news</source>
-        <translation type="unfinished"/>
+        <translation>Arată nr. de noutăţi noi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="308"/>
         <source>Show count of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Arată nr. de noutăţi necitite</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="317"/>
         <source>Single click instead of double click for show window</source>
-        <translation type="unfinished"/>
+        <translation>Clic singular în loc de dublu-clic pentru a arăta fereastra</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="318"/>
         <source>Clear status new on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Ştergere statut nou la minimizare în bară</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="319"/>
         <source>Empty working set on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Golire set de lucru la minimizare în bară</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="322"/>
         <source>Move to the system tray when:</source>
-        <translation type="unfinished"/>
+        <translation>Mutare în bară cînd:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="324"/>
         <source>Tray icon behavior:</source>
-        <translation type="unfinished"/>
+        <translation>Comportament icon din bară:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="346"/>
@@ -1591,7 +1592,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Use embedded browser</source>
-        <translation type="unfinished"/>
+        <translation>Foloseşte browser încorporat</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="416"/>
@@ -1610,7 +1611,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="419"/>
         <source>Enable plug-ins</source>
-        <translation type="unfinished"/>
+        <translation>Activare plug-in-uri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="421"/>
@@ -1630,7 +1631,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="464"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"/>
+        <translation>Stil foaie utilizator:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="493"/>
@@ -1645,7 +1646,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="512"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Mărime maximă cache a discului</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
@@ -1660,22 +1661,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="534"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Permite trimitere date locale</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Păstrare date locale doar pînă la închiderea aplicaţiei</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="536"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Blocare site-uri pentru trimitere orice date</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="537"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Golire</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="552"/>
@@ -1685,7 +1686,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="560"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"/>
+        <translation>Click To Flash este un plugin care blochează încărcarea automată a conţinutului Flash în pagină. Puteți întotdeauna încărca manual, făcînd clic pe pictograma redare Flash.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
@@ -1705,7 +1706,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="619"/>
         <source>Ask where to save each file before downloading</source>
-        <translation type="unfinished"/>
+        <translation>Întreabă unde salvează fiecare fişier înainte de descărcare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="628"/>
@@ -1720,7 +1721,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="638"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Intimitate</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="639"/>
@@ -1735,7 +1736,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="674"/>
         <source>Position on unread news</source>
-        <translation type="unfinished"/>
+        <translation>Poziţia la noutăţi necitite</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="691"/>
@@ -1830,7 +1831,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Schimbă comportamentul acţiunii &apos;Următoarele noutăţi necitite&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="786"/>
@@ -1840,22 +1841,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="825"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Activare punere în ordine la închidere</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="845"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Nu şterge niciodată noutăţile cu etichetă</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="847"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pune în ordine &apos;Şterse&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="848"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Activare optimizare BD (închidere lentă)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="894"/>
@@ -1885,7 +1886,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="956"/>
         <source>Display notification for incoming news</source>
-        <translation type="unfinished"/>
+        <translation>Afişare notificare pentru sosire noutăţi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="962"/>
@@ -1910,7 +1911,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="973"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Revizuire</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="977"/>
@@ -1930,7 +1931,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="988"/>
         <source>Width news list</source>
-        <translation type="unfinished"/>
+        <translation>Lăţime listă noutăţi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="990"/>
@@ -1945,7 +1946,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Nu arată notificăr în mod tot ecranul</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1068"/>
@@ -2015,12 +2016,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1431"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>Culoare noutate focalizată</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1434"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>Culoare fundal noutate focalizată</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1437"/>
@@ -2055,12 +2056,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Flux cu noutăţi noi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Nr. noutăţi necitite în arbore fluxuri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1484"/>
@@ -2080,7 +2081,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1773"/>
         <source>Auto load images to news view</source>
-        <translation type="unfinished"/>
+        <translation>Auto încărcare imagini pentru vizualizare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1937"/>
@@ -2091,7 +2092,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2438"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"/>
+        <translation>Selectare fişier stil foaie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2447"/>
@@ -2102,7 +2103,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2457"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Adaugă site la lista albă</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2458"/>
@@ -2112,7 +2113,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="650"/>
         <source>Automatically update the feeds every</source>
-        <translation type="unfinished"/>
+        <translation>Actualizare atomată fluxuri la fiecare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="660"/>
@@ -2127,12 +2128,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="672"/>
         <source>Position on last opened news</source>
-        <translation type="unfinished"/>
+        <translation>Poziţia la ultimele noutăţi deschise</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="673"/>
         <source>Position at top of list news</source>
-        <translation type="unfinished"/>
+        <translation>Poziţia la partea de sus a listei noutăţilor</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="675"/>
@@ -2166,17 +2167,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Show splash screen on startup</source>
-        <translation type="unfinished"/>
+        <translation>Arată imagine la pornire</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="293"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Arată icon sistem în bară</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
         <source>Automatically update the feeds on startup</source>
-        <translation type="unfinished"/>
+        <translation>Actualizare atomată fluxuri la pornire</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="835"/>
@@ -2201,7 +2202,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <translation>Urmărire browser extern:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="458"/>
@@ -2216,7 +2217,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation type="unfinished"/>
+        <translation>Arată descriere noutăţi în loc de încărcarea paginii web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="842"/>
@@ -2241,12 +2242,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="877"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Pune în ordine</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="939"/>
         <source>Play sound for incoming new news</source>
-        <translation type="unfinished"/>
+        <translation>Redă sunet la sosire noutăţi noi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1332"/>
@@ -2261,7 +2262,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="64"/>
         <source>System Tray</source>
-        <translation type="unfinished"/>
+        <translation>Bară sistem</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="91"/>
@@ -2271,22 +2272,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="256"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation type="unfinished"/>
+        <translation>Arată icon-rss iniţial în loc de cel favorit</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="774"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation type="unfinished"/>
+        <translation>Marcare noutăţi afişate ca citite la comutare fluxuri</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="775"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation type="unfinished"/>
+        <translation>Marcare noutăţi afişate ca citite la închidere tab</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation type="unfinished"/>
+        <translation>Marcare noutăţi afişate ca citite la minimizare</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="783"/>
@@ -2306,7 +2307,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1004"/>
         <source>Only show selected feeds:</source>
-        <translation type="unfinished"/>
+        <translation>Afişare doar fluxuri selectate:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1020"/>
@@ -2359,12 +2360,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1390"/>
         <source>Minimum font size of browser</source>
-        <translation type="unfinished"/>
+        <translation>Mărime maximă a font-ului browser-ului</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1393"/>
         <source>Minimum logical font size of browser</source>
-        <translation type="unfinished"/>
+        <translation>Mărime minim logică a font-ului browser-ului</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1517"/>
@@ -2392,12 +2393,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5150"/>
         <source>&amp;Step up</source>
-        <translation type="unfinished"/>
+        <translation>Mărire</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5151"/>
         <source>Step &amp;down</source>
-        <translation type="unfinished"/>
+        <translation>Micşorare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5152"/>
@@ -2539,17 +2540,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5133"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>An&amp;ulează</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5134"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Reface</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5135"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Taie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5136"/>
@@ -2598,17 +2599,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5141"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>An&amp;ulează</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5142"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Reface</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5143"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Taie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5144"/>
@@ -2651,7 +2652,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5158"/>
         <source>&amp;Finish</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Finalizează</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5159"/>
@@ -2694,7 +2695,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4908"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>Ieşire</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4942"/>
@@ -2811,12 +2812,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5044"/>
         <source>Minimize to Tray</source>
-        <translation type="unfinished"/>
+        <translation>Minimizare în bară</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5046"/>
         <source>Minimize Application to Tray</source>
-        <translation type="unfinished"/>
+        <translation>Minimizare aplicaţie în bară</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5048"/>
@@ -2826,7 +2827,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5053"/>
         <source>Show Indentation</source>
-        <translation type="unfinished"/>
+        <translation>Arată indentare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5058"/>
@@ -2928,12 +2929,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5099"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"/>
+        <translation>Comutare la următorul tab</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5100"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"/>
+        <translation>Comutare la tab anterior</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5107"/>
@@ -3073,7 +3074,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4997"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"/>
+        <translation>Unel&amp;te</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4998"/>
@@ -3177,12 +3178,12 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="4897"/>
         <location filename="../src/rsslisting.cpp" line="4969"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Deschide în tab nou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4900"/>
         <source>Delete Selected Feed</source>
-        <translation type="unfinished"/>
+        <translation>Şterge fluxurile selectate</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4902"/>
@@ -3192,7 +3193,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4903"/>
         <source>Import Feeds from OPML File</source>
-        <translation type="unfinished"/>
+        <translation>Import fluxuri din fişier OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4905"/>
@@ -3202,13 +3203,13 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4906"/>
         <source>Export Feeds to OPML File</source>
-        <translation type="unfinished"/>
+        <translation>Export fluxuri în fişier OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4612"/>
         <location filename="../src/rsslisting.cpp" line="4912"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Auto încărcare imagini pentru vizualizare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5102"/>
@@ -3283,18 +3284,18 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4924"/>
         <source>Mark All Feeds Read</source>
-        <translation type="unfinished"/>
+        <translation>Marchează toate fluxurile ca citite</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4927"/>
         <source>Mark Current News Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>Marchează noutatea curentă ca citită/necitită</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4929"/>
         <location filename="../src/rsslisting.cpp" line="4930"/>
         <source>Mark All News Read</source>
-        <translation type="unfinished"/>
+        <translation>Marchează toate noutăţile ca citite</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4932"/>
@@ -3307,7 +3308,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4934"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>Pune în ordine...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4936"/>
@@ -3362,7 +3363,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4965"/>
         <source>Open Description News</source>
-        <translation type="unfinished"/>
+        <translation>Deschidere descriere noutăţi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4966"/>
@@ -3377,17 +3378,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4970"/>
         <source>Open News in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Deschide noutăţile în tab nou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4971"/>
         <source>Open in Background Tab</source>
-        <translation type="unfinished"/>
+        <translation>Deschide în tab în fundal</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4972"/>
         <source>Open News in Background Tab</source>
-        <translation type="unfinished"/>
+        <translation>Deschide noutăţi în tab în fundal</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4974"/>
@@ -3412,12 +3413,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4979"/>
         <source>Restore</source>
-        <translation type="unfinished"/>
+        <translation>Restaurare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4980"/>
         <source>Restore News</source>
-        <translation type="unfinished"/>
+        <translation>Restaurare noutăţi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4981"/>
@@ -3432,7 +3433,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4984"/>
         <source>Restore last deleted news</source>
-        <translation type="unfinished"/>
+        <translation>Restaurare ultimele noutăţi şterse</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4987"/>
@@ -3487,32 +3488,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5032"/>
         <source>Next Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Următoarele noutăţi necitite</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5033"/>
         <source>Previous Unread News</source>
-        <translation type="unfinished"/>
+        <translation>Noutăţi necitite anterioare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5035"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"/>
+        <translation>Comutare focalizare la următorul panou</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5037"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Comutare focalizare la următorul panou (Arbore fluxuri, liste noutăţi, browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5038"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"/>
+        <translation>Comutare focalizare la panoul anterior</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5040"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"/>
+        <translation>Comutare focalizare la panoul anterior (Arbore fluxuri, liste noutăţi, browser)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5049"/>
@@ -3542,17 +3543,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5096"/>
         <source>Close Tab</source>
-        <translation type="unfinished"/>
+        <translation>Închide tab</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5097"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"/>
+        <translation>Închide celelalte tab-uri</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5098"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"/>
+        <translation>Închide toate tab-urile</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5110"/>
@@ -3562,7 +3563,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5112"/>
         <source>Open Homepage Feed</source>
-        <translation type="unfinished"/>
+        <translation>Deschide flux pagină de start</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5113"/>
@@ -3572,12 +3573,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5114"/>
         <source>Collapse All Folders</source>
-        <translation type="unfinished"/>
+        <translation>Restrînge toate folderele</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5115"/>
         <source>Expand All Folders</source>
-        <translation type="unfinished"/>
+        <translation>Extinde toate folderele</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5116"/>
@@ -3592,7 +3593,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5118"/>
         <source>Expand Folder</source>
-        <translation type="unfinished"/>
+        <translation>Extinde folder</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5120"/>
@@ -3617,7 +3618,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5126"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Golire</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5165"/>
@@ -3627,7 +3628,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5165"/>
         <source>Work</source>
-        <translation type="unfinished"/>
+        <translation>Lucru</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5165"/>
@@ -3647,7 +3648,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5166"/>
         <source>Amusingly</source>
-        <translation type="unfinished"/>
+        <translation>Amuzant</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="7274"/>
@@ -3667,7 +3668,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="7282"/>
         <source>Save As: can&apos;t open a file</source>
-        <translation type="unfinished"/>
+        <translation>Salvare ca: Nu se poate deschide fişierul!</translation>
     </message>
 </context>
 <context>
@@ -3690,7 +3691,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="50"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"/>
+        <translation>Nu aminti despre acestă versiune</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="58"/>
