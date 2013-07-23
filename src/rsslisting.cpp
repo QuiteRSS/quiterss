@@ -5796,10 +5796,8 @@ void RSSListing::markAllFeedsOld()
   }
   recountCategoryCounts();
 
-  if (currentNewsTab != NULL) {
-    int currentRow = newsView_->currentIndex().row();
-    setNewsFilter(newsFilterGroup_->checkedAction(), false);
-    newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
+  if ((currentNewsTab != NULL) && (currentNewsTab->type_ < TAB_WEB)) {
+    slotUpdateNews();
   }
 
   emit signalRefreshInfoTray();
