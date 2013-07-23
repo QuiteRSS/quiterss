@@ -342,15 +342,15 @@ void OptionsDialog::createTraySystemWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createNetworkConnectionsWidget()
 {
-  systemProxyButton_ = new QRadioButton(
-        tr("System proxy configuration (if available)"));
   directConnectionButton_ = new QRadioButton(
         tr("Direct connection to the Internet"));
+  systemProxyButton_ = new QRadioButton(
+        tr("System proxy configuration (if available)"));
   manualProxyButton_ = new QRadioButton(tr("Manual proxy configuration:"));
 
   QVBoxLayout *networkConnectionsLayout = new QVBoxLayout();
-  networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(directConnectionButton_);
+  networkConnectionsLayout->addWidget(systemProxyButton_);
   networkConnectionsLayout->addWidget(manualProxyButton_);
 
   editHost_ = new LineEdit();
