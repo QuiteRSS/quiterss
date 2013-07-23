@@ -37,22 +37,22 @@ class UpdateDelayer : public QObject
   Q_OBJECT
 public:
   explicit UpdateDelayer(QObject *parent = 0, int delayValue = 10);
-  void delayUpdate(const QString &feedUrl, const bool &feedChanged,
-                   int newCount, const QString &status);
+  void delayUpdate(const int &feedId, const bool &feedChanged,
+                   const int &newCount, const QString &status);
 
 public slots:
   void slotNextUpdateFeed();
 
 signals:
-  void signalUpdateNeeded(const QString &feedUrl, const bool &feedChanged,
-                          int newCount, const QString &status);
+  void signalUpdateNeeded(const int &feedId, const bool &feedChanged,
+                          const int &newCount, const QString &status);
   void signalUpdateModel(bool checkFilter = true);
 
 private slots:
   void slotDelayTimerTimeout();
 
 private:
-  QList<QString> feedUrlList_;
+  QList<int> feedIdList_;
   QList<bool> feedChangedList_;
   QList<int> newCountList_;
   QList<QString> statusList_;

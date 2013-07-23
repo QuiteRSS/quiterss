@@ -37,14 +37,16 @@ ParseThread::~ParseThread()
 /*virtual*/ void ParseThread::run()
 {
   parseObject_ = new ParseObject(parent());
-  connect(parent(), SIGNAL(xmlReadyParse(QByteArray,QString,QDateTime)),
-          parseObject_, SLOT(parseXml(QByteArray,QString,QDateTime)));
-  connect(parseObject_, SIGNAL(feedUpdated(QString, bool, int, QString)),
-          parent(), SLOT(slotUpdateFeed(QString, bool, int, QString)));
+  connect(parent(), SIGNAL(xmlReadyParse(QByteArray,int,QDateTime)),
+          parseObject_, SLOT(parseXml(QByteArray,int,QDateTime)));
+  connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString)),
+          parent(), SLOT(slotUpdateFeed(int,bool,int,QString)),
+          Qt::QueuedConnection);
 
   qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
   connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
-          parent(), SLOT(slotFeedCountsUpdate(FeedCountStruct)));
+          parent(), SLOT(slotFeedCountsUpdate(FeedCountStruct)),
+          Qt::QueuedConnection);
 
   exec();
 }

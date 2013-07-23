@@ -40,19 +40,19 @@ UpdateDelayer::UpdateDelayer(QObject *parent, int delayValue)
 /** @brief Process queueing feed
  *
  *  Feed is added to queue. Start timer if is not started yet.
- * @param feedUrl Feed URL
+ * @param feedId Feed Id
  * @param feedChanged Flag that indicate changed feed
  * @param newCount (need description)
  *---------------------------------------------------------------------------*/
-void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
-                                int newCount, const QString &status)
+void UpdateDelayer::delayUpdate(const int &feedId, const bool &feedChanged,
+                                const int &newCount, const QString &status)
 {
   if (!feedChanged) {
-    emit signalUpdateNeeded(feedUrl, feedChanged, newCount, status);
+    emit signalUpdateNeeded(feedId, feedChanged, newCount, status);
     return;
   }
 
-  int feedIdIndex = feedUrlList_.indexOf(feedUrl);
+  int feedIdIndex = feedIdList_.indexOf(feedId);
   // If feed is in list already, ...
   if (-1 < feedIdIndex) {
     // If feed has changed, force enabling flag
@@ -64,7 +64,7 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
   }
   // ..., else queueing feed
   else {
-    feedUrlList_.append(feedUrl);
+    feedIdList_.append(feedId);
     feedChangedList_.append(feedChanged);
     newCountList_.append(newCount);
     statusList_.append(status);
@@ -84,11 +84,11 @@ void UpdateDelayer::delayUpdate(const QString &feedUrl, const bool &feedChanged,
  *---------------------------------------------------------------------------*/
 void UpdateDelayer::slotDelayTimerTimeout()
 {
-  QString feedUrl = feedUrlList_.takeFirst();
+  int feedId = feedIdList_.takeFirst();
   bool feedChanged = feedChangedList_.takeFirst();
   int newCount = newCountList_.takeFirst();
   QString status = statusList_.takeFirst();
-  emit signalUpdateNeeded(feedUrl, feedChanged, newCount, status);
+  emit signalUpdateNeeded(feedId, feedChanged, newCount, status);
 }
 
 /** @brief Start timer if feed presents in queue
@@ -96,7 +96,7 @@ void UpdateDelayer::slotDelayTimerTimeout()
 void UpdateDelayer::slotNextUpdateFeed()
 {
 //  qApp->processEvents();
-  if (feedUrlList_.size()) {
+  if (feedIdList_.size()) {
     delayTimer_->start();
 
     if (!updateModelTimer_->isActive())

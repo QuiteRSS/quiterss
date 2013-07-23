@@ -321,7 +321,8 @@ void AddFeedWizard::addFeed()
   q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
   q.bindValue(":xmlUrl", feedUrlString_);
   q.exec();
-  if (q.next()) duplicateFoundId = q.value(0).toInt();
+  if (q.first())
+    duplicateFoundId = q.value(0).toInt();
 
   if (0 <= duplicateFoundId) {
     textWarning->setText(tr("Duplicate feed!"));
@@ -355,25 +356,18 @@ void AddFeedWizard::addFeed()
     q.bindValue(":authentication", auth);
     q.exec();
 
+    feedId_ = q.lastInsertId().toInt();
     q.finish();
 
-    emit signalRequestUrl(feedUrlString_, QDateTime(), userInfo);
+    emit signalRequestUrl(feedId_, feedUrlString_, QDateTime(), userInfo);
   }
 }
 
 void AddFeedWizard::deleteFeed()
 {
-  int id = -1;
-
   QSqlQuery q;
-  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", feedUrlString_);
-  q.exec();
-  if (q.next()) id = q.value(0).toInt();
-  if (id >= 0) {
-    q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(id));
-    q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(id));
-  }
+  q.exec(QString("DELETE FROM feeds WHERE id='%1'").arg(feedId_));
+  q.exec(QString("DELETE FROM news WHERE feedId='%1'").arg(feedId_));
 
   // Correct rowToParent field
   QList<int> idList;
@@ -385,7 +379,6 @@ void AddFeedWizard::deleteFeed()
     q.exec(QString("UPDATE feeds SET rowToParent='%1' WHERE id=='%2'").
            arg(i).arg(idList.at(i)));
   }
-
   q.finish();
 }
 
@@ -418,9 +411,9 @@ void AddFeedWizard::slotProgressBarUpdate()
     QTimer::singleShot(250, this, SLOT(slotProgressBarUpdate()));
 }
 
-void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
-                               const QString &error, const QByteArray &data,
-                               const QDateTime &dtReply)
+void AddFeedWizard::getUrlDone(const int &result, const int &feedId,
+                               const QString &feedUrlStr, const QString &error,
+                               const QByteArray &data, const QDateTime &dtReply)
 {
   if (!data.isEmpty()) {
     bool isFeed = false;
@@ -463,7 +456,6 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
           }
           linkFeedString = url.toString();
           qDebug() << "Parse feed URL, valid:" << linkFeedString;
-          int parseFeedId = 0;
 
           QSqlQuery q;
           int duplicateFoundId = -1;
@@ -485,20 +477,15 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
             selectedPage = false;
             button(QWizard::CancelButton)->setEnabled(true);
           } else {
-            q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-            q.bindValue(":xmlUrl", feedUrlString_);
-            q.exec();
-            if (q.next()) parseFeedId = q.value(0).toInt();
-
             feedUrlString_ = linkFeedString;
             q.prepare("UPDATE feeds SET xmlUrl = :xmlUrl WHERE id == :id");
             q.bindValue(":xmlUrl", linkFeedString);
-            q.bindValue(":id", parseFeedId);
+            q.bindValue(":id", feedId);
             q.exec();
 
             authentication_->setChecked(false);
 
-            emit signalRequestUrl(linkFeedString, QDateTime(), "");
+            emit signalRequestUrl(feedId, linkFeedString, QDateTime(), "");
           }
         }
       }
@@ -515,7 +502,7 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
       return;
     }
 
-    emit xmlReadyParse(data, feedUrlStr, dtReply);
+    emit xmlReadyParse(data, feedId, dtReply);
   }
 
   if ((result < 0) || data.isEmpty()) {
@@ -533,19 +520,17 @@ void AddFeedWizard::getUrlDone(const int &result, const QString &feedUrlStr,
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(const QString &feedUrl, const bool &,
-                                   int newCount, const QString &)
+void AddFeedWizard::slotUpdateFeed(const int &feedId, const bool &,
+                                   const int &newCount, const QString &)
 {
-  qDebug() << "ParseDone" << feedUrl;
+  qDebug() << "ParseDone: " << feedUrlString_;
   selectedPage = true;
   newCount_ = newCount;
 
   if (titleFeedAsName_->isChecked()) {
     QSqlQuery q;
-    q.prepare("SELECT title FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-    q.bindValue(":xmlUrl", feedUrl);
-    q.exec();
-    if (q.next()) nameFeedEdit_->setText(q.value(0).toString());
+    q.exec(QString("SELECT title FROM feeds WHERE id=='%1'").arg(feedId));
+    if (q.first()) nameFeedEdit_->setText(q.value(0).toString());
     nameFeedEdit_->selectAll();
     nameFeedEdit_->setFocus();
   }
@@ -560,17 +545,12 @@ void AddFeedWizard::slotUpdateFeed(const QString &feedUrl, const bool &,
 
 void AddFeedWizard::finish()
 {
-  int parseFeedId = 0;
   int parentId = 0;
 
   QSqlQuery q;
-  q.prepare("SELECT id, htmlUrl FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", feedUrlString_);
-  q.exec();
-  if (q.next()) {
-    parseFeedId = q.value(0).toInt();
-    htmlUrlString_ = q.value(1).toString();
-  }
+  q.exec(QString("SELECT htmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
+  if (q.first())
+    htmlUrlString_ = q.value(0).toString();
 
   if (foldersTree_->currentItem()->text(1) != "0")
     parentId = foldersTree_->currentItem()->text(1).toInt();
@@ -579,7 +559,7 @@ void AddFeedWizard::finish()
   QList<int> idList;
   q.exec("SELECT id FROM feeds WHERE parentId=0 ORDER BY rowToParent");
   while (q.next()) {
-    if (parseFeedId != q.value(0).toInt())
+    if (feedId_ != q.value(0).toInt())
       idList << q.value(0).toInt();
   }
   for (int i = 0; i < idList.count(); i++) {
@@ -590,7 +570,7 @@ void AddFeedWizard::finish()
   // Calculate row number to insert feed
   int rowToParent = 0;
   q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1' AND id!='%2'").
-         arg(parentId).arg(parseFeedId));
+         arg(parentId).arg(feedId_));
   if (q.next()) rowToParent = q.value(0).toInt();
 
   int auth = 0;
@@ -601,7 +581,7 @@ void AddFeedWizard::finish()
   q.addBindValue(parentId);
   q.addBindValue(rowToParent);
   q.addBindValue(auth);
-  q.addBindValue(parseFeedId);
+  q.addBindValue(feedId_);
   q.exec();
 
   if (auth) {
@@ -621,7 +601,6 @@ void AddFeedWizard::finish()
     }
   }
 
-  feedId_ = parseFeedId;
   feedParentId_ = parentId;
 
   accept();
@@ -646,13 +625,12 @@ void AddFeedWizard::newFolder()
   QString folderText = addFolderDialog->nameFeedEdit_->text();
   int parentId = addFolderDialog->foldersTree_->currentItem()->text(1).toInt();
 
-  QSqlQuery q;
-
   // Calculate row number to insert folder
   int rowToParent = 0;
-  q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-         arg(parentId));
-  if (q.next()) rowToParent = q.value(0).toInt();
+  QSqlQuery q;
+  q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").arg(parentId));
+  if (q.first())
+    rowToParent = q.value(0).toInt();
 
   // Add folder
   q.prepare("INSERT INTO feeds(text, created, parentId, rowToParent) "
@@ -665,6 +643,7 @@ void AddFeedWizard::newFolder()
   q.exec();
 
   folderId = q.lastInsertId().toInt();
+  q.finish();
 
   treeItems = foldersTree_->findItems(QString::number(parentId),
                                       Qt::MatchFixedString | Qt::MatchRecursive,
@@ -693,6 +672,6 @@ void AddFeedWizard::slotFeedCountsUpdate(FeedCountStruct)
 {
 }
 
-void AddFeedWizard::setStatusFeed(int, const QString &)
+void AddFeedWizard::setStatusFeed(const int &, const QString &)
 {
 }

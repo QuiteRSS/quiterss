@@ -79,19 +79,19 @@ public:
   explicit ParseObject(QObject *parent);
 
 public slots:
-  void parseXml(const QByteArray &data, const QString &feedUrl,
+  void parseXml(const QByteArray &data, const int &feedId,
                 const QDateTime &dtReply);
 
 signals:
-  void signalReadyParse(const QByteArray &xml, const QString &feedUrl,
+  void signalReadyParse(const QByteArray &xml, const int &feedId,
                         const QDateTime &dtReply);
-  void feedUpdated(const QString &feedUrl, const bool &changed,
+  void feedUpdated(const int &feedId, const bool &changed,
                    int newCount, const QString &status);
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:
   void getQueuedXml();
-  void slotParse(const QByteArray &xmlData, const QString &feedUrl,
+  void slotParse(const QByteArray &xmlData, const int &feedId,
                  const QDateTime &dtReply);
 
 private:
@@ -106,10 +106,10 @@ private:
 
   RSSListing* rssl_;
   QTimer *parseTimer_;
-  QString currentFeedUrl_;
+  int currentFeedId_;
   QByteArray currentXml_;
   QDateTime currentDtReady_;
-  QQueue<QString> feedsQueue_;
+  QQueue<int> idsQueue_;
   QQueue<QByteArray> xmlsQueue_;
   QQueue<QDateTime> dtReadyQueue_;
 

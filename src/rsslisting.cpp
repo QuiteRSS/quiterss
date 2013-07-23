@@ -239,8 +239,8 @@ RSSListing::RSSListing(QSettings *settings,
           SLOT(slotRecountCategoryCounts()), Qt::QueuedConnection);
 
   updateDelayer_ = new UpdateDelayer(this);
-  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(QString, bool, int, QString)),
-          this, SLOT(slotUpdateFeedDelayed(QString, bool, int, QString)),
+  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int,bool,int,QString)),
+          this, SLOT(slotUpdateFeedDelayed(int,bool,int,QString)),
           Qt::QueuedConnection);
   connect(this, SIGNAL(signalNextUpdate()),
           updateDelayer_, SLOT(slotNextUpdateFeed()));
@@ -249,6 +249,10 @@ RSSListing::RSSListing(QSettings *settings,
 
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
+
+  timerUpdateNews_.setSingleShot(true);
+  connect(&timerUpdateNews_, SIGNAL(timeout()),
+          this, SLOT(slotUpdateNews()));
 
   loadSettingsFeeds();
 
@@ -2378,7 +2382,7 @@ void RSSListing::addFeed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
-  slotUpdateFeedDelayed(addFeedWizard->feedUrlString_, true, addFeedWizard->newCount_, "0");
+  slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0");
 
   delete addFeedWizard;
 }
@@ -2640,7 +2644,7 @@ void RSSListing::slotImportFeeds()
             // qDebug() << q.lastError().number() << ": " << q.lastError().text();
 
             updateFeedsCount_ = updateFeedsCount_ + 2;
-            emit signalRequestUrl(xmlUrlString, QDateTime(), "");
+            emit signalRequestUrl(q.lastInsertId().toInt(), xmlUrlString, QDateTime(), "");
           }
           parentIdsStack.push(q.lastInsertId().toInt());
         }
@@ -2755,9 +2759,9 @@ void RSSListing::slotExportFeeds()
 
 /** @brief Process network request completion
  *---------------------------------------------------------------------------*/
-void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
-                            const QString &error, const QByteArray &data,
-                            const QDateTime &dtReply)
+void RSSListing::getUrlDone(const int &result, const int &feedId,
+                            const QString &feedUrlStr, const QString &error,
+                            const QByteArray &data, const QDateTime &dtReply)
 {
   qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
 
@@ -2767,11 +2771,11 @@ void RSSListing::getUrlDone(const int &result, const QString &feedUrlStr,
   }
 
   if (!data.isEmpty()) {
-    emit xmlReadyParse(data, feedUrlStr, dtReply);
+    emit xmlReadyParse(data, feedId, dtReply);
   } else {
     QString status = "0";
     if (result < 0) status = QString("%1 %2").arg(result).arg(error);
-    slotUpdateFeed(feedUrlStr, false, 0, status);
+    slotUpdateFeed(feedId, false, 0, status);
   }
 }
 
@@ -3237,10 +3241,10 @@ void RSSListing::slotRecountCategoryCounts()
  * @param url URL of updating feed
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(const QString &feedUrl, const bool &changed,
-                                int newCount, const QString &status)
+void RSSListing::slotUpdateFeed(const int &feedId, const bool &changed,
+                                const int &newCount, const QString &status)
 {
-  updateDelayer_->delayUpdate(feedUrl, changed, newCount, status);
+  updateDelayer_->delayUpdate(feedId, changed, newCount, status);
 }
 
 /** @brief Update feed view
@@ -3249,8 +3253,8 @@ void RSSListing::slotUpdateFeed(const QString &feedUrl, const bool &changed,
  * @param feedId Feed identifier to update
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &changed,
-                                       int newCount, const QString &status)
+void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
+                                       const int &newCount, const QString &status)
 {
   if (updateFeedsCount_ > 0) {
     updateFeedsCount_--;
@@ -3267,19 +3271,15 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
     // qCritical() << "------------------------------------------------------------";
   }
 
-  int feedUrlIndex = feedUrlList_.indexOf(feedUrl);
-  if (feedUrlIndex > -1)
-    feedUrlList_.takeAt(feedUrlIndex);
+  int feedIdIndex = feedIdList_.indexOf(feedId);
+  if (feedIdIndex > -1) {
+    feedIdList_.takeAt(feedIdIndex);
+  }
 
-  int feedId = -1;
-  QSqlQuery q;
-  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", feedUrl);
-  q.exec();
-  if (q.next()) feedId = q.value(0).toInt();
   setStatusFeed(feedId, status);
 
   if (!changed) {
+    qCritical() << "*03" << feedId << changed;
     emit signalNextUpdate();
     return;
   }
@@ -3299,13 +3299,13 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
   if (isActiveWindow()) {
     idFeedList_.clear();
     cntNewNewsList_.clear();
-  }
-  if ((newCount > 0) && !isActiveWindow()) {
+  } else if (newCount > 0) {
     int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
+      QSqlQuery q;
       q.exec(QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
              arg(feedId));
-      if (q.next()) {
+      if (q.first()) {
         if (q.value(0).toInt() == 1) {
           if (-1 < feedIdIndex) {
             cntNewNewsList_[feedIdIndex] = newCount;
@@ -3315,6 +3315,7 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
           }
         }
       }
+      q.finish();
     } else {
       if (-1 < feedIdIndex) {
         cntNewNewsList_[feedIdIndex] = newCount;
@@ -3325,18 +3326,20 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
     }
   }
 
-  if (currentNewsTab->type_ == TAB_FEED) {
+  if ((newCount > 0) && (currentNewsTab->type_ == TAB_FEED)) {
     bool folderUpdate = false;
     int feedParentId = 0;
+
+    QSqlQuery q;
     q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
-    if (q.next()) {
+    if (q.first()) {
       feedParentId = q.value(0).toInt();
       if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
     }
 
     while (feedParentId && !folderUpdate) {
       q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
-      if (q.next()) {
+      if (q.first()) {
         feedParentId = q.value(0).toInt();
         if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
       }
@@ -3344,21 +3347,23 @@ void RSSListing::slotUpdateFeedDelayed(const QString &feedUrl, const bool &chang
 
     // Click on feed if it is displayed to update view
     if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
-      slotUpdateNews();
+      if (!timerUpdateNews_.isActive())
+        timerUpdateNews_.start(1000);
+
       int unreadCount = 0;
       int allCount = 0;
       q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(currentNewsTab->feedId_));
-      if (q.next()) {
+      if (q.first()) {
         unreadCount = q.value(0).toInt();
         allCount    = q.value(1).toInt();
       }
       statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
       statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
     }
+    q.finish();
   }
 
-  q.finish();
-
+  qCritical() << "*01" << changed << feedId;
   emit signalNextUpdate();
 }
 
@@ -4139,14 +4144,16 @@ void RSSListing::slotGetFeed()
     QSqlQuery q;
     QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
     str.replace("feedId", "id");
-    QString qStr = QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
+    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
         arg(str);
     q.exec(qStr);
     while (q.next()) {
-      addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
+      addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
+                     q.value(2).toDateTime(), q.value(3).toInt());
     }
   } else {
-    addFeedInQueue(feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+    addFeedInQueue(feedsTreeModel_->dataField(index, "id").toInt(),
+                   feedsTreeModel_->dataField(index, "xmlUrl").toString(),
                    feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
                    feedsTreeModel_->dataField(index, "authentication").toInt());
   }
@@ -4159,9 +4166,10 @@ void RSSListing::slotGetFeed()
 void RSSListing::slotGetAllFeeds()
 {
   QSqlQuery q;
-  q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
+  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
   while (q.next()) {
-    addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
+    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
+                   q.value(2).toDateTime(), q.value(3).toInt());
   }
 
   showProgressBar(updateFeedsCount_);
@@ -4829,10 +4837,11 @@ void RSSListing::slotUpdateFeedsTimer()
       updateTimeCount_ = 0;
 
       QSqlQuery q;
-      q.exec("SELECT xmlUrl, lastBuildDate, authentication FROM feeds "
+      q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds "
              "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
       while (q.next()) {
-        addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
+        addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
+                       q.value(2).toDateTime(), q.value(3).toInt());
       }
       showProgressBar(updateFeedsCount_);
     }
@@ -4852,7 +4861,8 @@ void RSSListing::slotUpdateFeedsTimer()
       q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
              .arg(feedId));
       if (q.next()) {
-        addFeedInQueue(q.value(0).toString(), q.value(1).toDateTime(), q.value(2).toInt());
+        addFeedInQueue(feedId, q.value(0).toString(),
+                       q.value(1).toDateTime(), q.value(2).toInt());
       }
       showProgressBar(updateFeedsCount_);
     }
@@ -7696,16 +7706,17 @@ QUrl RSSListing::userStyleSheet(const QString &filePath) const
   return QUrl(dataString);
 }
 // ----------------------------------------------------------------------------
-bool RSSListing::addFeedInQueue(const QString &feedUrl, const QDateTime &date, int auth)
+bool RSSListing::addFeedInQueue(int feedId, const QString &feedUrl,
+                                const QDateTime &date, int auth)
 {
-  int feedUrlIndex = feedUrlList_.indexOf(feedUrl);
-  if (feedUrlIndex > -1) {
+  int feedIdIndex = feedIdList_.indexOf(feedId);
+  if (feedIdIndex > -1) {
     return false;
   } else {
-    feedUrlList_.append(feedUrl);
+    feedIdList_.append(feedId);
     updateFeedsCount_ = updateFeedsCount_ + 2;
     QString userInfo = getUserInfo(feedUrl, auth);
-    emit signalRequestUrl(feedUrl, date, userInfo);
+    emit signalRequestUrl(feedId, feedUrl, date, userInfo);
     return true;
   }
 }
@@ -7867,7 +7878,7 @@ bool RSSListing::removePath(const QString &path)
     return result;
 }
 
-void RSSListing::setStatusFeed(int feedId, const QString &status)
+void RSSListing::setStatusFeed(const int &feedId, const QString &status)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(feedId);
   if (index.isValid()) {

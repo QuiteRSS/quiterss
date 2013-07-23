@@ -49,10 +49,11 @@ UpdateThread::~UpdateThread()
   RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
   updateObject_->networkManager_->setCookieJar(rssl->cookieJar_);
 
-  connect(parent(), SIGNAL(signalRequestUrl(QString,QDateTime,QString)),
-          updateObject_, SLOT(requestUrl(QString,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(getUrlDone(int,QString,QString,QByteArray,QDateTime)),
-          parent(), SLOT(getUrlDone(int,QString,QString,QByteArray,QDateTime)));
+  connect(parent(), SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
+          updateObject_, SLOT(requestUrl(int,QString,QDateTime,QString)));
+  connect(updateObject_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime)),
+          parent(), SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime)),
+          Qt::QueuedConnection);
   connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
           parent(), SLOT(setStatusFeed(int,QString)));
   connect(updateObject_->networkManager_,
