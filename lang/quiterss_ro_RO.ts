@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="58"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS este un program sursă-deschisă multi-platformă Cititor RSS/Atom news</translation>
+        <translation>QuiteRSS este un program sursă-deschisă, multi-platformă, cititor RSS/Atom news</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="59"/>
@@ -306,7 +306,7 @@
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Elimina complet înregistrările care au fost marcate ca &apos;șterse&apos; din BD.
+        <translation>Elimină complet înregistrările care au fost marcate ca &apos;șterse&apos; din BD.
 Ştiri vechi ar putea reapărea</translation>
     </message>
 </context>
@@ -1547,7 +1547,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="322"/>
         <source>Move to the system tray when:</source>
-        <translation>Mutare în bară cînd:</translation>
+        <translation>Mutare în bară la:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="324"/>
