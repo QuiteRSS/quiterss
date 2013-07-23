@@ -61,9 +61,7 @@ QWebPage *WebPage::createWindow(WebWindowType type)
 {
   Q_UNUSED(type)
 
-  if (rssl_->currentNewsTab->webView_->buttonClick_)
-    return rssl_->createWebTab();
-  else return this;
+  return rssl_->createWebTab();
 }
 
 void WebPage::scheduleAdjustPage()
