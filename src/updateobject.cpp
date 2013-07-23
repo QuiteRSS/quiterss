@@ -149,10 +149,11 @@ void UpdateObject::slotGet(const QUrl &getUrl, const int &id, const QString &fee
 {
   qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
   QNetworkRequest request(getUrl);
+  request.setRawHeader("Accept", "text/xml, text/html, */*");
+  request.setRawHeader("Accept-Language", "en-us, en");
   QString userAgent = QString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/%1 (KHTML, like Gecko) QuiteRSS/%2 Safari/%1").
       arg(qWebKitVersion()).arg(STRPRODUCTVER);
   request.setRawHeader("User-Agent", userAgent.toUtf8());
-  request.setRawHeader("Accept-Language", "en-us,en");
 
   currentUrls_.append(getUrl);
   currentIds_.append(id);
