@@ -297,6 +297,7 @@ signals:
   void signalRefreshInfoTray();
   void signalNextUpdate();
   void signalRecountCategoryCounts();
+  void signalPlaySoundNewNews();
   void loadProgress(int);
 
 protected:
@@ -313,6 +314,7 @@ private slots:
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
   void slotRecountCategoryCounts();
+  void slotPlaySoundNewNews();
 
   void slotShowAboutDlg();
 
@@ -469,7 +471,6 @@ private:
   void loadSettingsFeeds();
   void appInstallTranslator();
   void retranslateStrings();
-  void playSoundNewNews();
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);

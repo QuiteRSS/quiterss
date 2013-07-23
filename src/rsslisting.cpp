@@ -237,6 +237,8 @@ RSSListing::RSSListing(QSettings *settings,
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalRecountCategoryCounts()),
           SLOT(slotRecountCategoryCounts()), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalPlaySoundNewNews()),
+          SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
   updateDelayer_ = new UpdateDelayer(this);
   connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int,bool,int,QString)),
@@ -3279,27 +3281,22 @@ void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
   setStatusFeed(feedId, status);
 
   if (!changed) {
-    qCritical() << "*03" << feedId << changed;
     emit signalNextUpdate();
     return;
   }
 
   // Action after new news has arrived: tray, sound
-  if (!isActiveWindow() && (newCount > 0) &&
-      (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
+  if (!isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
   emit signalRefreshInfoTray();
-  if (newCount > 0) {
-    playSoundNewNews();
-  }
-  recountCategoryCounts();
+  emit signalPlaySoundNewNews();
 
   // Manage notifications
   if (isActiveWindow()) {
     idFeedList_.clear();
     cntNewNewsList_.clear();
-  } else if (newCount > 0) {
+  } else {
     int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
       QSqlQuery q;
@@ -3326,7 +3323,9 @@ void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
     }
   }
 
-  if ((newCount > 0) && (currentNewsTab->type_ == TAB_FEED)) {
+  recountCategoryCounts();
+
+  if (currentNewsTab->type_ == TAB_FEED) {
     bool folderUpdate = false;
     int feedParentId = 0;
 
@@ -3361,9 +3360,11 @@ void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
       statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
     }
     q.finish();
+  } else if (currentNewsTab->type_ < TAB_WEB) {
+    if (!timerUpdateNews_.isActive())
+      timerUpdateNews_.start(1000);
   }
 
-  qCritical() << "*01" << changed << feedId;
   emit signalNextUpdate();
 }
 
@@ -5860,7 +5861,7 @@ void RSSListing::slotIconFeedUpdate(int feedId, const QByteArray &faviconData)
     currentNewsTab->newsView_->viewport()->update();
 }
 // ----------------------------------------------------------------------------
-void RSSListing::playSoundNewNews()
+void RSSListing::slotPlaySoundNewNews()
 {
   if (!playSoundNewNews_ && soundNewNews_) {
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
