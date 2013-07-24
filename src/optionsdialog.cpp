@@ -1384,6 +1384,8 @@ void OptionsDialog::createLanguageWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createFontsColorsWidget()
 {
+  //! tab "Fonts"
+
   fontsTree_ = new QTreeWidget();
   fontsTree_->setObjectName("fontTree");
   fontsTree_->setColumnCount(3);
@@ -1423,32 +1425,14 @@ void OptionsDialog::createFontsColorsWidget()
   fontsButtonLayout->addWidget(fontReset);
   fontsButtonLayout->addStretch(1);
 
-  browserMinFontSize_ = new QSpinBox();
-  browserMinFontSize_->setRange(0, 99);
-  browserMinLogFontSize_ = new QSpinBox();
-  browserMinLogFontSize_->setRange(0, 99);
-
-  QGridLayout *browserFontSizeLayout = new QGridLayout();
-  browserFontSizeLayout->addWidget(
-        new QLabel(tr("Minimum font size of browser")), 0, 0);
-  browserFontSizeLayout->addWidget(browserMinFontSize_, 0, 1);
-  browserFontSizeLayout->addWidget(
-        new QLabel(tr("Minimum logical font size of browser")), 1, 0);
-  browserFontSizeLayout->addWidget(browserMinLogFontSize_, 1, 1);
-  browserFontSizeLayout->setColumnStretch(2, 1);
-
-  QVBoxLayout *fontsLayout = new QVBoxLayout();
-  fontsLayout->setMargin(0);
-  fontsLayout->addWidget(fontsTree_, 1);
-  fontsLayout->addLayout(browserFontSizeLayout);
-
   QHBoxLayout *mainFontsLayout = new QHBoxLayout();
-  mainFontsLayout->addLayout(fontsLayout, 1);
+  mainFontsLayout->addWidget(fontsTree_, 1);
   mainFontsLayout->addLayout(fontsButtonLayout);
 
   QWidget *fontsWidget = new QWidget();
   fontsWidget->setLayout(mainFontsLayout);
 
+  //! tab "Colors"
 
   colorsTree_ = new QTreeWidget(this);
   colorsTree_->setObjectName("colorsTree_");
@@ -1522,8 +1506,66 @@ void OptionsDialog::createFontsColorsWidget()
   QWidget *colorsWidget_ = new QWidget(this);
   colorsWidget_->setLayout(colorsLayout);
 
+  //! tab "Fonts Browser"
+
+  browserStandardFont_ = new QFontComboBox();
+  browserFixedFont_ = new QFontComboBox();
+  browserSerifFont_ = new QFontComboBox();
+  browserSansSerifFont_ = new QFontComboBox();
+  browserCursiveFont_ = new QFontComboBox();
+  browserFantasyFont_ = new QFontComboBox();
+
+  QGridLayout *browserFontFamiliesLayout = new QGridLayout();
+  browserFontFamiliesLayout->setColumnStretch(2, 1);
+  browserFontFamiliesLayout->setContentsMargins(15, 0, 5, 10);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Standard")), 0, 0);
+  browserFontFamiliesLayout->addWidget(browserStandardFont_, 0, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Fixed")), 1, 0);
+  browserFontFamiliesLayout->addWidget(browserFixedFont_, 1, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Serif")), 2, 0);
+  browserFontFamiliesLayout->addWidget(browserSerifFont_, 2, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Sans Serif")), 3, 0);
+  browserFontFamiliesLayout->addWidget(browserSansSerifFont_, 3, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Cursive")), 4, 0);
+  browserFontFamiliesLayout->addWidget(browserCursiveFont_, 4, 1);
+  browserFontFamiliesLayout->addWidget(new QLabel(tr("Fantasy")), 5, 0);
+  browserFontFamiliesLayout->addWidget(browserFantasyFont_, 5, 1);
+
+  browserDefaultFontSize_ = new QSpinBox();
+  browserDefaultFontSize_->setRange(0, 99);
+  browserFixedFontSize_ = new QSpinBox();
+  browserFixedFontSize_->setRange(0, 99);
+  browserMinFontSize_ = new QSpinBox();
+  browserMinFontSize_->setRange(0, 99);
+  browserMinLogFontSize_ = new QSpinBox();
+  browserMinLogFontSize_->setRange(0, 99);
+
+  QGridLayout *browserFontSizesLayout = new QGridLayout();
+  browserFontSizesLayout->setColumnStretch(2, 1);
+  browserFontSizesLayout->setContentsMargins(15, 0, 5, 0);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Default font size")), 0, 0);
+  browserFontSizesLayout->addWidget(browserDefaultFontSize_, 0, 1);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Fixed font size")), 1, 0);
+  browserFontSizesLayout->addWidget(browserFixedFontSize_, 1, 1);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Minimum font size")), 2, 0);
+  browserFontSizesLayout->addWidget(browserMinFontSize_, 2, 1);
+  browserFontSizesLayout->addWidget(new QLabel(tr("Minimum logical font size")), 3, 0);
+  browserFontSizesLayout->addWidget(browserMinLogFontSize_, 3, 1);
+
+  QVBoxLayout *fontsBrowserLayout = new QVBoxLayout();
+  fontsBrowserLayout->addWidget(new QLabel(tr("Font families:")));
+  fontsBrowserLayout->addLayout(browserFontFamiliesLayout);
+  fontsBrowserLayout->addWidget(new QLabel(tr("Font sizes:")));
+  fontsBrowserLayout->addLayout(browserFontSizesLayout);
+  fontsBrowserLayout->addStretch();
+
+  QWidget *fontsBrowserWidget_ = new QWidget(this);
+  fontsBrowserWidget_->setLayout(fontsBrowserLayout);
+
+
   fontsColorsWidget_ = new QTabWidget();
   fontsColorsWidget_->addTab(fontsWidget, tr("Fonts"));
+  fontsColorsWidget_->addTab(fontsBrowserWidget_, tr("Fonts Browser"));
   fontsColorsWidget_->addTab(colorsWidget_, tr("Colors"));
 }
 

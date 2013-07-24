@@ -181,8 +181,6 @@ public:
   int newsTextFontSize_;
   QString notificationFontFamily_;
   int notificationFontSize_;
-  int browserMinFontSize_;
-  int browserMinLogFontSize_;
   QString newsListTextColor_;
   QString newsListBackgroundColor_;
   QString focusedNewsTextColor_;

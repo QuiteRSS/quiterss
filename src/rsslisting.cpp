@@ -1884,15 +1884,48 @@ void RSSListing::readSettings()
   newsTextFontSize_ = settings_->value("/newsTextFontSize", 10).toInt();
   notificationFontFamily_ = settings_->value("/notificationFontFamily", qApp->font().family()).toString();
   notificationFontSize_ = settings_->value("/notificationFontSize", 8).toInt();
-  browserMinFontSize_ = settings_->value("/browserMinFontSize", 0).toInt();
-  browserMinLogFontSize_ = settings_->value("/browserMinLogFontSize", 0).toInt();
+
+  QString browserStandardFont = settings_->value(
+        "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
+  QString browserFixedFont = settings_->value(
+        "browserFixedFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont)).toString();
+  QString browserSerifFont = settings_->value(
+        "browserSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SerifFont)).toString();
+  QString browserSansSerifFont = settings_->value(
+        "browserSansSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SansSerifFont)).toString();
+  QString browserCursiveFont = settings_->value(
+        "browserCursiveFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::CursiveFont)).toString();
+  QString browserFantasyFont = settings_->value(
+        "browserFantasyFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FantasyFont)).toString();
+  int browserDefaultFontSize = settings_->value(
+        "browserDefaultFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFontSize)).toInt();
+  int browserFixedFontSize = settings_->value(
+        "browserFixedFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFixedFontSize)).toInt();
+  int browserMinFontSize = settings_->value(
+        "browserMinFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumFontSize)).toInt();
+  int browserMinLogFontSize = settings_->value(
+        "browserMinLogFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumLogicalFontSize)).toInt();
 
   QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::StandardFont, newsTextFontFamily_);
+        QWebSettings::StandardFont, browserStandardFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::FixedFont, browserFixedFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::SerifFont, browserSerifFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::SansSerifFont, browserSansSerifFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::CursiveFont, browserCursiveFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::FantasyFont, browserFantasyFont);
   QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumFontSize, browserMinFontSize_);
+        QWebSettings::DefaultFontSize, browserDefaultFontSize);
   QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
+        QWebSettings::DefaultFixedFontSize, browserFixedFontSize);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumFontSize, browserMinFontSize);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
 
   updateFeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
   updateFeedsEnable_ = settings_->value("autoUpdatefeeds", false).toBool();
@@ -2175,8 +2208,6 @@ void RSSListing::writeSettings()
   settings_->setValue("/newsTextFontSize", newsTextFontSize_);
   settings_->setValue("/notificationFontFamily", notificationFontFamily_);
   settings_->setValue("/notificationFontSize", notificationFontSize_);
-  settings_->setValue("/browserMinFontSize", browserMinFontSize_);
-  settings_->setValue("/browserMinLogFontSize", browserMinLogFontSize_);
 
   settings_->setValue("autoUpdatefeedsStartUp", updateFeedsStartUp_);
   settings_->setValue("autoUpdatefeeds", updateFeedsEnable_);
@@ -3721,8 +3752,39 @@ void RSSListing::showOptionDlg()
   strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
   optionsDialog_->fontsTree_->topLevelItem(4)->setText(2, strFont);
 
-  optionsDialog_->browserMinFontSize_->setValue(browserMinFontSize_);
-  optionsDialog_->browserMinLogFontSize_->setValue(browserMinLogFontSize_);
+  settings_->beginGroup("Settings");
+  QString browserStandardFont = settings_->value(
+        "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
+  QString browserFixedFont = settings_->value(
+        "browserFixedFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont)).toString();
+  QString browserSerifFont = settings_->value(
+        "browserSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SerifFont)).toString();
+  QString browserSansSerifFont = settings_->value(
+        "browserSansSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SansSerifFont)).toString();
+  QString browserCursiveFont = settings_->value(
+        "browserCursiveFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::CursiveFont)).toString();
+  QString browserFantasyFont = settings_->value(
+        "browserFantasyFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FantasyFont)).toString();
+  int browserDefaultFontSize = settings_->value(
+        "browserDefaultFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFontSize)).toInt();
+  int browserFixedFontSize = settings_->value(
+        "browserFixedFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFixedFontSize)).toInt();
+  int browserMinFontSize = settings_->value(
+        "browserMinFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumFontSize)).toInt();
+  int browserMinLogFontSize = settings_->value(
+        "browserMinLogFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumLogicalFontSize)).toInt();
+  settings_->endGroup();
+
+  optionsDialog_->browserStandardFont_->setCurrentFont(QFont(browserStandardFont));
+  optionsDialog_->browserFixedFont_->setCurrentFont(QFont(browserFixedFont));
+  optionsDialog_->browserSerifFont_->setCurrentFont(QFont(browserSerifFont));
+  optionsDialog_->browserSansSerifFont_->setCurrentFont(QFont(browserSansSerifFont));
+  optionsDialog_->browserCursiveFont_->setCurrentFont(QFont(browserCursiveFont));
+  optionsDialog_->browserFantasyFont_->setCurrentFont(QFont(browserFantasyFont));
+  optionsDialog_->browserDefaultFontSize_->setValue(browserDefaultFontSize);
+  optionsDialog_->browserFixedFontSize_->setValue(browserFixedFontSize);
+  optionsDialog_->browserMinFontSize_->setValue(browserMinFontSize);
+  optionsDialog_->browserMinLogFontSize_->setValue(browserMinLogFontSize);
 
   QPixmap pixmapColor(14, 14);
   pixmapColor.fill(feedsTreeModel_->textColor_);
@@ -4053,15 +4115,50 @@ void RSSListing::showOptionDlg()
   notificationFontFamily_ = optionsDialog_->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
   notificationFontSize_ = optionsDialog_->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
 
-  browserMinFontSize_ = optionsDialog_->browserMinFontSize_->value();
-  browserMinLogFontSize_ = optionsDialog_->browserMinLogFontSize_->value();
+  browserStandardFont = optionsDialog_->browserStandardFont_->currentFont().family();
+  browserFixedFont = optionsDialog_->browserFixedFont_->currentFont().family();
+  browserSerifFont = optionsDialog_->browserSerifFont_->currentFont().family();
+  browserSansSerifFont = optionsDialog_->browserSansSerifFont_->currentFont().family();
+  browserCursiveFont = optionsDialog_->browserCursiveFont_->currentFont().family();
+  browserFantasyFont = optionsDialog_->browserFantasyFont_->currentFont().family();
+  browserDefaultFontSize = optionsDialog_->browserDefaultFontSize_->value();
+  browserFixedFontSize = optionsDialog_->browserFixedFontSize_->value();
+  browserMinFontSize = optionsDialog_->browserMinFontSize_->value();
+  browserMinLogFontSize = optionsDialog_->browserMinLogFontSize_->value();
 
   QWebSettings::globalSettings()->setFontFamily(
-        QWebSettings::StandardFont, newsTextFontFamily_);
+        QWebSettings::StandardFont, browserStandardFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::FixedFont, browserFixedFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::SerifFont, browserSerifFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::SansSerifFont, browserSansSerifFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::CursiveFont, browserCursiveFont);
+  QWebSettings::globalSettings()->setFontFamily(
+        QWebSettings::FantasyFont, browserFantasyFont);
   QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumFontSize, browserMinFontSize_);
+        QWebSettings::DefaultFontSize, browserDefaultFontSize);
   QWebSettings::globalSettings()->setFontSize(
-        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize_);
+        QWebSettings::DefaultFixedFontSize, browserFixedFontSize);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumFontSize, browserMinFontSize);
+  QWebSettings::globalSettings()->setFontSize(
+        QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
+
+  settings_->beginGroup("Settings");
+  settings_->setValue("browserStandardFont", browserStandardFont);
+  settings_->setValue("browserFixedFont", browserFixedFont);
+  settings_->setValue("browserSerifFont", browserSerifFont);
+  settings_->setValue("browserSansSerifFont", browserSansSerifFont);
+  settings_->setValue("browserCursiveFont", browserCursiveFont);
+  settings_->setValue("browserFantasyFont", browserFantasyFont);
+  settings_->setValue("browserDefaultFontSize", browserDefaultFontSize);
+  settings_->setValue("browserFixedFontSize", browserFixedFontSize);
+  settings_->setValue("browserMinFontSize", browserMinFontSize);
+  settings_->setValue("browserMinLogFontSize", browserMinLogFontSize);
+  settings_->endGroup();
 
   feedsTreeModel_->textColor_ = optionsDialog_->colorsTree_->topLevelItem(0)->text(1);
   feedsTreeModel_->backgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(1)->text(1);
