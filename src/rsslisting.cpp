@@ -6575,21 +6575,59 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   openNewsWebViewOn_ = true;
 
   QSqlQuery q;
-  QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
-  q.exec(qStr);
+  q.exec(QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId));
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+  feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
                            newsId);
 
-  feedsTreeView_->setCurrentIndex(feedIndex);
-  slotFeedClicked(feedIndex);
+  if (stackedWidget_->count() && currentNewsTab->type_ < TAB_WEB) {
+    currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
+  }
+
+  // Search open tab containing this feed
+  int indexTab = -1;
+  for (int i = 0; i < stackedWidget_->count(); i++) {
+    NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+    if (widget->feedId_ == feedId) {
+      indexTab = i;
+      break;
+    }
+  }
+
+  if (indexTab == -1) {
+    if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
+      setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
+
+      updateCurrentTab_ = false;
+      tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
+      updateCurrentTab_ = true;
+
+      currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+      newsModel_ = currentNewsTab->newsModel_;
+      newsView_ = currentNewsTab->newsView_;
+    } else {
+      if (stackedWidget_->count() && currentNewsTab->type_ != TAB_FEED) {
+        setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingFeed, currentNewsTab);
+      } else {
+        // Mark previous feed Read while switching to another feed
+        setFeedRead(TAB_FEED, feedIdOld_, FeedReadSwitchingFeed, 0, feedId);
+      }
+
+      categoriesTree_->setCurrentIndex(QModelIndex());
+    }
+  } else {
+    tabBar_->setCurrentIndex(indexTab);
+  }
+  slotFeedSelected(feedIndex);
+  feedsTreeView_->repaint();
+  feedIdOld_ = feedId;
 
   openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
   openNewsWebViewOn_ = settings_->value("/Settings/openNewsWebViewOn", true).toBool();
-  QModelIndex index = newsView_->currentIndex();
   slotShowWindows();
-  newsView_->setCurrentIndex(index);
+  newsView_->setFocus();
 }
 
 /** @brief Open news in external browser on click in notification window
