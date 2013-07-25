@@ -491,6 +491,7 @@ private:
   bool updateCheckEnabled_;
 
   bool closeApp_;
+  bool minimizeToTray_;
 
   QAction *addAct_;
   QAction *addFeedAct_;

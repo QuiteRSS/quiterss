@@ -76,6 +76,7 @@ RSSListing::RSSListing(QSettings *settings,
   , diskCache_(NULL)
   , openNewsTab_(0)
   , closeApp_(false)
+  , minimizeToTray_(false)
   , newsView_(NULL)
   , updateTimeCount_(0)
   , updateFeedsCount_(0)
@@ -412,7 +413,12 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
   // activating had painted
   else if ((deactivateState == 3) && (event->type() == QEvent::Paint)) {
     deactivateState = 0;
+  } else if (event->type() == QEvent::Hide) {
+    if (minimizingTray_  && showTrayIcon_ && !minimizeToTray_) {
+      emit signalPlaceToTray();
+    }
   }
+
   // pass the event on to the parent class
   return QMainWindow::eventFilter(obj, event);
 }
@@ -437,11 +443,6 @@ void RSSListing::slotTimerLinkOpening()
   if(event->type() == QEvent::WindowStateChange) {
     if(isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
-      if (minimizingTray_ && showTrayIcon_) {
-        event->ignore();
-        emit signalPlaceToTray();
-        return;
-      }
     } else {
       oldState = windowState();
     }
@@ -463,7 +464,9 @@ void RSSListing::slotTimerLinkOpening()
  *---------------------------------------------------------------------------*/
 void RSSListing::slotPlaceToTray()
 {
+  minimizeToTray_ = true;
   hide();
+
   if (emptyWorking_)
     QTimer::singleShot(10000, this, SLOT(myEmptyWorkingSet()));
   if (markReadMinimize_)
@@ -480,6 +483,8 @@ void RSSListing::slotPlaceToTray()
     db_.commit();
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
+
+  minimizeToTray_ = false;
 }
 
 /** @brief Process tray event
