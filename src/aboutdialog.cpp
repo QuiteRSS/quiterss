@@ -30,6 +30,11 @@
 #include <sqlite3.h>
 #endif
 #include <qyursqltreeview.h>
+#ifdef HAVE_QT5
+#include <QWebPage>
+#else
+#include <qwebkitversion.h>
+#endif
 
 AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   Dialog(parent, Qt::MSWindowsFixedSizeDialogHint)
@@ -59,9 +64,10 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news reader")
       + "<P>" + tr("Includes:")
-      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3").
+      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3, WebKit-%4").
       arg(QT_VERSION_STR).arg(SQLITE_VERSION).
-      arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value())
+      arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value()).
+      arg(qWebKitVersion())
       + "</P>"
       + QString("<a href=\"%1\">%1</a>").arg("https://code.google.com/p/quite-rss")
       + QString("<br><a href=\"%1\">%1</a>").arg("http://quiterss.ucoz.ru") +
