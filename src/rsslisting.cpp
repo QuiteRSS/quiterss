@@ -304,6 +304,7 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 void RSSListing::slotClose()
 {
   closeApp_ = true;
+  minimizeToTray_ = true;
 
   traySystem->hide();
   hide();
