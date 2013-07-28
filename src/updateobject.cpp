@@ -247,9 +247,14 @@ void UpdateObject::finished(QNetworkReply *reply)
           emit signalGet(replyUrl, feedId, feedUrl, feedDate);
         }
         else {
+          QString codecName;
+          QRegExp rx("charset=([^\t]+)$", Qt::CaseInsensitive, QRegExp::RegExp2);
+          int pos = rx.indexIn(reply->header(QNetworkRequest::ContentTypeHeader).toString());
+          if (pos > -1) {
+            codecName = rx.cap(1);
+          }
           QByteArray data = reply->readAll().trimmed();
-
-          emit getUrlDone(feedsQueue_.count(), feedId, feedUrl, "", data, replyLocalDate);
+          emit getUrlDone(feedsQueue_.count(), feedId, feedUrl, "", data, replyLocalDate, codecName);
         }
       }
     }

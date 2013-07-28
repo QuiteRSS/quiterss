@@ -413,7 +413,8 @@ void AddFeedWizard::slotProgressBarUpdate()
 
 void AddFeedWizard::getUrlDone(const int &result, const int &feedId,
                                const QString &feedUrlStr, const QString &error,
-                               const QByteArray &data, const QDateTime &dtReply)
+                               const QByteArray &data, const QDateTime &dtReply,
+                               const QString &codecName)
 {
   if (!data.isEmpty()) {
     bool isFeed = false;
@@ -502,7 +503,7 @@ void AddFeedWizard::getUrlDone(const int &result, const int &feedId,
       return;
     }
 
-    emit xmlReadyParse(data, feedId, dtReply);
+    emit xmlReadyParse(data, feedId, dtReply, codecName);
   }
 
   if ((result < 0) || data.isEmpty()) {

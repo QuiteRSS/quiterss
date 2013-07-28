@@ -51,8 +51,8 @@ UpdateThread::~UpdateThread()
 
   connect(parent(), SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
           updateObject_, SLOT(requestUrl(int,QString,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime)),
-          parent(), SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime)),
+  connect(updateObject_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+          parent(), SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
           Qt::QueuedConnection);
   connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
           parent(), SLOT(setStatusFeed(int,QString)));

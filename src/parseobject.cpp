@@ -45,18 +45,19 @@ ParseObject::ParseObject(QObject *parent)
   parseTimer_->setInterval(10);
   connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
 
-  connect(this, SIGNAL(signalReadyParse(QByteArray,int,QDateTime)),
-          SLOT(slotParse(QByteArray,int,QDateTime)));
+  connect(this, SIGNAL(signalReadyParse(QByteArray,int,QDateTime,QString)),
+          SLOT(slotParse(QByteArray,int,QDateTime,QString)));
 }
 
 /** @brief Queueing xml-data
  *----------------------------------------------------------------------------*/
 void ParseObject::parseXml(const QByteArray &data, const int &feedId,
-                           const QDateTime &dtReply)
+                           const QDateTime &dtReply, const QString &codecName)
 {
   idsQueue_.enqueue(feedId);
   xmlsQueue_.enqueue(data);
   dtReadyQueue_.enqueue(dtReply);
+  codecNameQueue_.enqueue(codecName);
   qDebug() << "xmlsQueue_ <<" << feedId << "count=" << xmlsQueue_.count();
 
   if (!parseTimer_->isActive())
@@ -71,11 +72,12 @@ void ParseObject::getQueuedXml()
 
   if (idsQueue_.count()) {
     currentFeedId_ = idsQueue_.dequeue();
-    currentXml_ = xmlsQueue_.dequeue();
-    currentDtReady_ = dtReadyQueue_.dequeue();
+    QByteArray currentXml_ = xmlsQueue_.dequeue();
+    QDateTime currentDtReady_ = dtReadyQueue_.dequeue();
+    QString currentCodecName_ = codecNameQueue_.dequeue();
     qDebug() << "xmlsQueue_ >>" << currentFeedId_ << "count=" << xmlsQueue_.count();
 
-    emit signalReadyParse(currentXml_, currentFeedId_, currentDtReady_);
+    emit signalReadyParse(currentXml_, currentFeedId_, currentDtReady_, currentCodecName_);
 
     currentFeedId_ = 0;
     parseTimer_->start();
@@ -85,7 +87,7 @@ void ParseObject::getQueuedXml()
 /** @brief Parse xml-data
  *----------------------------------------------------------------------------*/
 void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
-                            const QDateTime &dtReply)
+                            const QDateTime &dtReply, const QString &codecName)
 {
   if (!rssl_->lastFeedPath_.isEmpty()) {
     QFile file(rssl_->lastFeedPath_ + QDir::separator() + "lastfeed.dat");
@@ -119,6 +121,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   // actually parsing
   feedChanged_ = false;
 
+  bool codecOk = false;
   QString convertData(xmlData);
   QString feedType;
   QDomDocument doc;
@@ -126,41 +129,55 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   int errorLine;
   int errorColumn;
 
-  QRegExp rx("encoding=\"([^\"]+)",
-             Qt::CaseInsensitive, QRegExp::RegExp2);
-  int pos = rx.indexIn(xmlData);
-  if (pos == -1) {
-    rx.setPattern("encoding='([^']+)");
-    pos = rx.indexIn(xmlData);
-  }
-  if (pos > -1) {
-    QString codecName = rx.cap(1);
+  if (!codecName.isEmpty()) {
     qDebug() << "Codec name:" << codecName;
     QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
     if (codec) {
-      qDebug() << "Codec found";
+      qDebug() << "Codec found 1";
       convertData = codec->toUnicode(xmlData);
-    } else {
-      if (codecName.contains("us-ascii", Qt::CaseInsensitive)) {
-        QString str(xmlData);
-        convertData = str.remove(rx.cap(0)+"\"");
-      }
+      codecOk = true;
     }
-  } else {
-    bool codecOk = false;
-    QStringList codecNameList;
-    codecNameList << "System" << "Windows-1251" << "KOI8-R" << "KOI8-U"
-                  << "ISO 8859-5" << "IBM 866" << "UTF-8";
-    foreach (QString codecName, codecNameList) {
-      QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
-      if (codec && codec->canEncode(xmlData)) {
+  }
+
+  if (!codecOk) {
+    QRegExp rx("encoding=\"([^\"]+)",
+               Qt::CaseInsensitive, QRegExp::RegExp2);
+    int pos = rx.indexIn(xmlData);
+    if (pos == -1) {
+      rx.setPattern("encoding='([^']+)");
+      pos = rx.indexIn(xmlData);
+    }
+    if (pos > -1) {
+      QString codecNameT = rx.cap(1);
+      qDebug() << "Codec name:" << codecNameT;
+      QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
+      if (codec) {
+        qDebug() << "Codec found 2";
         convertData = codec->toUnicode(xmlData);
-        codecOk = true;
-        break;
+      } else {
+        if (codecNameT.contains("us-ascii", Qt::CaseInsensitive)) {
+          QString str(xmlData);
+          convertData = str.remove(rx.cap(0)+"\"");
+        }
       }
-    }
-    if (!codecOk) {
-      convertData = QString::fromLocal8Bit(xmlData);
+    } else {
+      codecOk = false;
+      QStringList codecNameList;
+      codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
+                    << "ISO 8859-5" << "IBM 866";
+      foreach (QString codecNameT, codecNameList) {
+        QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
+        if (codec && codec->canEncode(xmlData)) {
+          qDebug() << "Codec name:" << codecNameT;
+          qDebug() << "Codec found 3";
+          convertData = codec->toUnicode(xmlData);
+          codecOk = true;
+          break;
+        }
+      }
+      if (!codecOk) {
+        convertData = QString::fromLocal8Bit(xmlData);
+      }
     }
   }
 

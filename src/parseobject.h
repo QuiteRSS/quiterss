@@ -80,11 +80,11 @@ public:
 
 public slots:
   void parseXml(const QByteArray &data, const int &feedId,
-                const QDateTime &dtReply);
+                const QDateTime &dtReply, const QString &codecName);
 
 signals:
   void signalReadyParse(const QByteArray &xml, const int &feedId,
-                        const QDateTime &dtReply);
+                        const QDateTime &dtReply, const QString &codecName);
   void feedUpdated(const int &feedId, const bool &changed,
                    int newCount, const QString &status);
   void feedCountsUpdate(FeedCountStruct counts);
@@ -92,7 +92,7 @@ signals:
 private slots:
   void getQueuedXml();
   void slotParse(const QByteArray &xmlData, const int &feedId,
-                 const QDateTime &dtReply);
+                 const QDateTime &dtReply, const QString &codecName);
 
 private:
   void parseAtom(const QString &feedUrl, const QDomDocument &doc);
@@ -104,14 +104,13 @@ private:
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
 
-  RSSListing* rssl_;
+  RSSListing *rssl_;
   QTimer *parseTimer_;
   int currentFeedId_;
-  QByteArray currentXml_;
-  QDateTime currentDtReady_;
   QQueue<int> idsQueue_;
   QQueue<QByteArray> xmlsQueue_;
   QQueue<QDateTime> dtReadyQueue_;
+  QQueue<QString> codecNameQueue_;
 
   int parseFeedId_;
   bool duplicateNewsMode_;

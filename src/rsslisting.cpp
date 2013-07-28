@@ -2800,7 +2800,8 @@ void RSSListing::slotExportFeeds()
  *---------------------------------------------------------------------------*/
 void RSSListing::getUrlDone(const int &result, const int &feedId,
                             const QString &feedUrlStr, const QString &error,
-                            const QByteArray &data, const QDateTime &dtReply)
+                            const QByteArray &data, const QDateTime &dtReply,
+                            const QString &codecName)
 {
   qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
 
@@ -2810,7 +2811,7 @@ void RSSListing::getUrlDone(const int &result, const int &feedId,
   }
 
   if (!data.isEmpty()) {
-    emit xmlReadyParse(data, feedId, dtReply);
+    emit xmlReadyParse(data, feedId, dtReply, codecName);
   } else {
     QString status = "0";
     if (result < 0) status = QString("%1 %2").arg(result).arg(error);

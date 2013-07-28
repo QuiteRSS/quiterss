@@ -265,7 +265,8 @@ public slots:
   void slotCloseApp();
   void myEmptyWorkingSet();
   void getUrlDone(const int &result, const int &feedId, const QString &feedUrlStr,
-                  const QString &error, const QByteArray &data, const QDateTime &dtReply);
+                  const QString &error, const QByteArray &data,
+                  const QDateTime &dtReply, const QString &codecName);
   void slotUpdateFeed(const int &feedId, const bool &changed,
                       const int &newCount, const QString &status);
   void slotUpdateFeedDelayed(const int &feedId, const bool &changed,
@@ -287,7 +288,7 @@ signals:
   void signalRequestUrl(int feedId, const QString &urlString,
                         const QDateTime &date, const QString &userInfo);
   void xmlReadyParse(const QByteArray &data, const int &feedId,
-                     const QDateTime &dtReply);
+                     const QDateTime &dtReply, const QString &codecName);
   void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
   void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
