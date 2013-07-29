@@ -470,8 +470,12 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   createMenu();
 
   moveSection(visualIndex(model_->fieldIndex("id")), 0);
-  if ((state != saveState()) && isVisible())
+
+  int tWidth = 0;
+  for (int i = 0; i < count(); i++) tWidth += sectionSize(i);
+  if (((state != saveState()) || (tWidth != size().width())) && isVisible())
     adjustAllColumnsWidths(size().width()+1);
+
   move_ = true;
 }
 
