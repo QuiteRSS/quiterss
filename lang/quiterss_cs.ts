@@ -691,7 +691,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
         <source>Status:</source>
-        <translation type="unfinished"/>
+        <translation>Stav:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
@@ -711,7 +711,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
         <source>Good</source>
-        <translation type="unfinished"/>
+        <translation>Dobrý</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
@@ -1324,7 +1324,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1301"/>
         <source>Comments</source>
-        <translation type="unfinished"/>
+        <translation>Komentáře</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1341"/>
@@ -2085,7 +2085,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>Výchozí velikost písma</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1548"/>
@@ -2095,7 +2095,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1550"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>Minimální velikost písma</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1552"/>
@@ -2105,12 +2105,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1556"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>Písmo:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1558"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>Velikost písma:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1568"/>
@@ -3273,12 +3273,12 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Ovladač SQLite není načten!</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2487"/>
@@ -3798,7 +3798,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/updateobject.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Server vyžaduje přihlášení!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>

@@ -229,22 +229,22 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti šaltinius</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Visi šaltiniai</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti nustatymus</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
@@ -259,32 +259,32 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti perskaitytas naujienas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Niekada nepašalinti neperskaitytu naujienų</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="316"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Niekada nepašalinti mėgstamų naujienų</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Niekada nepašalinti pažymėtas naujienas</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti &apos;Pašalintas&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti DB</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
@@ -424,68 +424,68 @@ Ancient news could reappear</source>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation type="unfinished"/>
+        <translation>Klaida: negaliu įrašyti failą!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
         <source>Error: </source>
-        <translation type="unfinished"/>
+        <translation>Klaida:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="241"/>
         <source>Done - %1</source>
-        <translation type="unfinished"/>
+        <translation>Užbaigta - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="260"/>
         <source>few seconds</source>
-        <translation type="unfinished"/>
+        <translation>Kelios sekundės</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="262"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>sekundės</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="264"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>minutės</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="266"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>valandos</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="273"/>
         <location filename="../src/downloads/downloaditem.cpp" line="317"/>
         <source>Unknown size</source>
-        <translation type="unfinished"/>
+        <translation>Nežinomas dydis</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="290"/>
         <source>Unknown speed</source>
-        <translation type="unfinished"/>
+        <translation>Nežinomas greitis</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="318"/>
         <source>%2 - unknown size (%3)</source>
-        <translation type="unfinished"/>
+        <translation>%2 - nežinomas dydis (%3)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="320"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation type="unfinished"/>
+        <translation>Liko %1 - %2 iš %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="339"/>
         <source>Cancelled - %1</source>
-        <translation type="unfinished"/>
+        <translation>Atšaukta - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Delete file</source>
-        <translation type="unfinished"/>
+        <translation>Ištrinti failą</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
@@ -495,17 +495,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="365"/>
         <source>Open File</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti failą</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="367"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti aplanką</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="369"/>
         <source>Copy Download Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopijuoti siuntinio nuorodą</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
@@ -515,29 +515,31 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Cancelled</source>
-        <translation type="unfinished"/>
+        <translation>Atšaukta</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="399"/>
         <source>Not found</source>
-        <translation type="unfinished"/>
+        <translation>Nerasta</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="399"/>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation type="unfinished"/>
+        <translation>Atsiprašau, failas
+%1
+nerastas!</translation>
     </message>
 </context>
 <context>
@@ -545,22 +547,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="35"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>File %1 (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>Failas %1 (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>All Files (*.*)</source>
-        <translation type="unfinished"/>
+        <translation>Visi failai (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>Išsaugoti kaip...</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
@@ -593,7 +595,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Stulpeliai</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
@@ -613,17 +615,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>sekundės</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>minutės</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
         <source>hours</source>
-        <translation type="unfinished"/>
+        <translation>valandos</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="109"/>
@@ -643,32 +645,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="184"/>
         <source>Sort by:</source>
-        <translation type="unfinished"/>
+        <translation>Lygiuoti pagal:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
         <source>Add</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="205"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="209"/>
         <source>Move up</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti aukščiau</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="212"/>
         <source>Move down</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti žemyn</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Numatytasis</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
@@ -688,7 +690,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
         <source>Status:</source>
-        <translation type="unfinished"/>
+        <translation>Statusas:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
@@ -713,12 +715,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Paveikslėlių failai</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="398"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti paveikslėlį</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="405"/>
@@ -738,7 +740,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti pavadinimą</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
@@ -1089,7 +1091,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="144"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Paveikslėlių failai</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
@@ -1210,12 +1212,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsheader.cpp" line="407"/>
         <source>Title Feed</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinio pavadinimas</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="408"/>
         <source>Link</source>
-        <translation type="unfinished"/>
+        <translation>Nuoroda</translation>
     </message>
 </context>
 <context>
@@ -1271,7 +1273,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="493"/>
         <source>Save Image...</source>
-        <translation type="unfinished"/>
+        <translation>Išsaugoti paveikslėlį...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="494"/>
@@ -1321,7 +1323,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1301"/>
         <source>Comments</source>
-        <translation type="unfinished"/>
+        <translation>Komentarai:</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1341"/>
@@ -1418,7 +1420,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
         <source>Fonts &amp; Colors</source>
-        <translation type="unfinished"/>
+        <translation>Šriftai ir spalvos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
@@ -1448,7 +1450,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai tikrinti ar yra naujinimų</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="260"/>
@@ -1458,7 +1460,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="273"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation type="unfinished"/>
+        <translation>Startuoti QuiteRSS kartu su Windows</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
@@ -1622,27 +1624,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
         <source>Maximum pages in cache</source>
-        <translation type="unfinished"/>
+        <translation>Daugiausiai puslapių podėlyje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="525"/>
         <source>Store cache in:</source>
-        <translation type="unfinished"/>
+        <translation>Saugoti podėlį:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="533"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Maksimalus podėlio dydis diske</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="535"/>
         <source>MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="541"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo disko podėlis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="555"/>
@@ -1662,7 +1664,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="558"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="573"/>
@@ -1682,32 +1684,32 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="598"/>
         <source>Add...</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="600"/>
         <source>Remove...</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Ask where to save each file before downloading</source>
-        <translation type="unfinished"/>
+        <translation>Klausti kur išsaugoti failą prieš atsiunčiant</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
         <source>Download location:</source>
-        <translation type="unfinished"/>
+        <translation>Siuntinių vieta:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="658"/>
         <source>History</source>
-        <translation type="unfinished"/>
+        <translation>Istorija</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="659"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Privatumas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="660"/>
@@ -1717,7 +1719,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="661"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Siuntiniai</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="695"/>
@@ -1757,22 +1759,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti viską</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti naujus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti neskaitytus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti mėgstamus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
@@ -1787,12 +1789,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti paskutinę dieną</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="750"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti paskutines 7 dienas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="764"/>
@@ -1827,7 +1829,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="846"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti išvalymą išjungiant</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="866"/>
@@ -1837,7 +1839,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti &apos;Pašalintas&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="869"/>
@@ -1897,12 +1899,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="994"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Apžvalga</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="998"/>
         <source>Position</source>
-        <translation type="unfinished"/>
+        <translation>Pozicija</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1004"/>
@@ -1982,22 +1984,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1446"/>
         <source>Feeds list color</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinio sąrašo spalva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1449"/>
         <source>Feeds list background</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinio sąrašo pagrindas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1452"/>
         <source>News list color</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų sąrašo spalva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>News list background</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų sarašo pagrindas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
@@ -2012,22 +2014,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1464"/>
         <source>Link color</source>
-        <translation type="unfinished"/>
+        <translation>Nuorodos spalva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1467"/>
         <source>Title color</source>
-        <translation type="unfinished"/>
+        <translation>Pavadinimo spalva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1470"/>
         <source>Date color</source>
-        <translation type="unfinished"/>
+        <translation>Datos spalva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1473"/>
         <source>Author color</source>
-        <translation type="unfinished"/>
+        <translation>Autoriaus spalva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1476"/>
@@ -2057,7 +2059,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1523"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>Fiksuotas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1525"/>
@@ -2122,7 +2124,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1576"/>
         <source>Filter</source>
-        <translation type="unfinished"/>
+        <translation>Filtras</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1853"/>
@@ -2143,23 +2145,23 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2529"/>
         <source>Select Style Sheet File</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti stiliaus failą</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2538"/>
         <location filename="../src/optionsdialog.cpp" line="2567"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti katalogą...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2548"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti svetainę į Baltąjį sąrašą</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2549"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
-        <translation type="unfinished"/>
+        <translation>Svetainė be &apos;http://&apos; (pvz. youtube.com)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="671"/>
@@ -2475,7 +2477,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Neprisijungęs</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
@@ -2505,7 +2507,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Nežinoma klaida</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
@@ -2517,7 +2519,7 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungimas nepavyko: %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
@@ -3261,12 +3263,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Klaida</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>SQLite tvarkyklė neužkrauta!</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2487"/>
@@ -3350,7 +3352,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5052"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5054"/>
@@ -3465,12 +3467,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5099"/>
         <source>Copy Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopijuoti nuorodą</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5100"/>
         <source>Copy Link News</source>
-        <translation type="unfinished"/>
+        <translation>Kopijuoti naujienų nuorodą</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5102"/>
@@ -3490,7 +3492,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5125"/>
         <source>Lock Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Užrakinti įrankinę</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5128"/>
@@ -3595,17 +3597,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5216"/>
         <source>Close Tab</source>
-        <translation type="unfinished"/>
+        <translation>Uždaryti kortelę</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5217"/>
         <source>Close Other Tabs</source>
-        <translation type="unfinished"/>
+        <translation>Uždaryti kitas korteles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5218"/>
         <source>Close All Tabs</source>
-        <translation type="unfinished"/>
+        <translation>Uždaryti visas korteles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5230"/>
@@ -3615,12 +3617,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5232"/>
         <source>Open Homepage Feed</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti šaltinio pagrindinį puslapį</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5233"/>
         <source>Sorted by Name</source>
-        <translation type="unfinished"/>
+        <translation>Lygiuoti pagal pavadinimą</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5234"/>
@@ -3796,7 +3798,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateobject.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>Peradresavimo klaida!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="288"/>

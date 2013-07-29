@@ -1576,7 +1576,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation>Opzioni richieste di rete durante l'aggiornamento dei feed (richiede riavvio del programma):</translation>
+        <translation>Opzioni richieste di rete durante l&apos;aggiornamento dei feed (richiede riavvio del programma):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="431"/>
@@ -3798,7 +3798,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/updateobject.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation>Il server richiede l'autenticazione!</translation>
+        <translation>Il server richiede l&apos;autenticazione!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>

@@ -495,22 +495,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="365"/>
         <source>Open File</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť súbor</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="367"/>
         <source>Open Folder</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť priečinok</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="369"/>
         <source>Copy Download Link</source>
-        <translation type="unfinished"/>
+        <translation>Skopírovať adresu sťahovania</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
         <source>Cancel Downloading</source>
-        <translation type="unfinished"/>
+        <translation>Zrušiť sťahovanie</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
@@ -537,7 +537,7 @@ Ancient news could reappear</source>
         <source>Sorry, the file 
  %1 
  was not found!</source>
-        <translation type="unfinished"/>
+        <translation>Prepáčte, súbor ⏎ %1 ⏎ nebol nájdený!</translation>
     </message>
 </context>
 <context>
@@ -901,7 +901,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="464"/>
         <source>Canceled!</source>
-        <translation type="unfinished"/>
+        <translation>Zrušené!</translation>
     </message>
 </context>
 <context>
@@ -2149,7 +2149,7 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="2538"/>
         <location filename="../src/optionsdialog.cpp" line="2567"/>
         <source>Open Directory...</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť priečinok...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2548"/>
