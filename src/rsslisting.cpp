@@ -3324,17 +3324,19 @@ void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
   }
 
   // Action after new news has arrived: tray, sound
-  if (!isActiveWindow() && (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
+  if (!isActiveWindow() && (newCount > 0) &&
+      (behaviorIconTray_ == CHANGE_ICON_TRAY)) {
     traySystem->setIcon(QIcon(":/images/quiterss16_NewNews"));
   }
   emit signalRefreshInfoTray();
-  emit signalPlaySoundNewNews();
+  if (newCount > 0)
+    emit signalPlaySoundNewNews();
 
   // Manage notifications
   if (isActiveWindow()) {
     idFeedList_.clear();
     cntNewNewsList_.clear();
-  } else {
+  } else if (newCount > 0) {
     int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
       QSqlQuery q;
