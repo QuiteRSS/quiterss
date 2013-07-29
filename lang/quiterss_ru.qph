@@ -2425,4 +2425,84 @@ Ancient news could reappear</source>
     <source>Do not show notification in fullscreen mode</source>
     <target>Не показывать уведомления в полноэкранном режиме</target>
 </phrase>
+<phrase>
+    <source>Good</source>
+    <target>Хорошо</target>
+</phrase>
+<phrase>
+    <source>Comments</source>
+    <target>Комментарии</target>
+</phrase>
+<phrase>
+    <source>SQLite driver not loaded!</source>
+    <target>Драйвер SQLite не загружен!</target>
+</phrase>
+<phrase>
+    <source>News Page Up)</source>
+    <target>Страница новостей вверх</target>
+</phrase>
+<phrase>
+    <source>News Page Down)</source>
+    <target>Страница новостей вниз</target>
+</phrase>
+<phrase>
+    <source>Timeout request:</source>
+    <target>Таймаут запроса:</target>
+</phrase>
+<phrase>
+    <source>Number request:</source>
+    <target>Количество запросов:</target>
+</phrase>
+<phrase>
+    <source>Number repeats:</source>
+    <target>Количество повторов:</target>
+</phrase>
+<phrase>
+    <source>Standard</source>
+    <target>Стандартный</target>
+</phrase>
+<phrase>
+    <source>Fixed</source>
+    <target>Фиксированный</target>
+</phrase>
+<phrase>
+    <source>Serif</source>
+    <target>С засечками</target>
+</phrase>
+<phrase>
+    <source>Sans Serif</source>
+    <target>Без засечек</target>
+</phrase>
+<phrase>
+    <source>Cursive</source>
+    <target>Курсив</target>
+</phrase>
+<phrase>
+    <source>Fantasy</source>
+    <target>Моноширинный</target>
+</phrase>
+<phrase>
+    <source>Fixed font size</source>
+    <target>Фиксированный размер шрифта</target>
+</phrase>
+<phrase>
+    <source>Minimum font size</source>
+    <target>Минимальный размер шрифта</target>
+</phrase>
+<phrase>
+    <source>Minimum logical font size</source>
+    <target>Минимальный логический размер шрифта</target>
+</phrase>
+<phrase>
+    <source>Font families:</source>
+    <target>Семейства шрифтов:</target>
+</phrase>
+<phrase>
+    <source>Font sizes:</source>
+    <target>Размеры шрифтов:</target>
+</phrase>
+<phrase>
+    <source>Fonts Browser</source>
+    <target>Шрифты браузера</target>
+</phrase>
 </QPH>
