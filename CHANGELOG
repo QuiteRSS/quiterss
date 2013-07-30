@@ -1,3 +1,36 @@
+Version 0.13.2 (30 Jul 2013)
+  * Added: Options network requests when updating feeds
+  * Added: Displaying status of an icon feed and in properties
+  * Added: Setting font Browser
+  * Added: Shortcuts to move page by page in the list of news
+  * Added: Displaying links to the comment in line with author name
+  * Added: Displaying categories (labels) in line with author name
+  * Added: Notification window: Button to mark news as read
+  * Added: Association QuiteRSS in unix
+  * Added: Language: Vietnamese
+  * Added: Language: Romanian
+  * Changed: Labels "Default" after changing the language translated (will only work for a new DB)
+  * Changed: Displays an error message if not found SQLite driver
+  * Changed: Receipt icons for feed
+  * Changed: Popup windows in a new tab
+  * Fixed: Application crash while updating feeds!
+  * Fixed: Application crash while context menu scrollbar in browser
+  * Fixed: Application crash while context menu is category tree
+  * Fixed: Updating some kind of feeds
+  * Fixed: Browser position of could change after applying settings
+  * Fixed: In list news would disappear pointer
+  * Fixed: Feeds exported file is not imported into Feedly
+  * Fixed: Reopening settings window from tray
+  * Fixed: Notification window: When open the news in an external browser, the news is not marked as read
+  * Fixed: Notification window: Opening news
+  * Fixed: In status bar is not recalculated counters
+  * Fixed: When switching to category of "unread" can be displayed read news
+  * Fixed: Wrong codepage while parsing feed
+  * Fixed: In some feeds was not description on feed
+  * Fixed: When minimizing program to the system tray, news list in categories cleared
+  * Fixed: When upgrading tapes in the category has not been updated news list
+  * Fixed: Minimize to tray by Win+M/Win+D
+
 Version 0.13.1 (30 Jun 2013)
   * Added: Cleanup wizard
   * Added: Ability to specify feed's icon

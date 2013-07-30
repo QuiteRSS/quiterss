@@ -2,6 +2,43 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.13.2</b> (30 Jul 2013)
+<ul>
+<li>Added: Options network requests when updating feeds</li>
+<li>Added: Displaying status of an icon feed and in properties</li>
+<li>Added: Setting font Browser</li>
+<li>Added: Shortcuts to move page by page in the list of news</li>
+<li>Added: Displaying links to the comment in line with author name</li>
+<li>Added: Displaying categories (labels) in line with author name</li>
+<li>Added: Notification window: Button to mark news as read</li>
+<li>Added: Association QuiteRSS in unix</li>
+<li>Added: Language: Vietnamese</li>
+<li>Added: Language: Romanian</li>
+
+<li>Changed: Labels "Default" after changing the language translated (will only work for a new DB)</li>
+<li>Changed: Displays an error message if not found SQLite driver</li>
+<li>Changed: Receipt icons for feed</li>
+<li>Changed: Popup windows in a new tab</li>
+
+<li>Fixed: Application crash while updating feeds!</li>
+<li>Fixed: Application crash while context menu scrollbar in browser</li>
+<li>Fixed: Application crash while context menu is category tree</li>
+<li>Fixed: Updating some kind of feeds</li>
+<li>Fixed: Browser position of could change after applying settings</li>
+<li>Fixed: In list news would disappear pointer</li>
+<li>Fixed: Feeds exported file is not imported into Feedly</li>
+<li>Fixed: Reopening settings window from tray</li>
+<li>Fixed: Notification window: When open the news in an external browser, the news is not marked as read</li>
+<li>Fixed: Notification window: Opening news</li>
+<li>Fixed: In status bar is not recalculated counters</li>
+<li>Fixed: When switching to category of "unread" can be displayed read news</li>
+<li>Fixed: Wrong codepage while parsing feed</li>
+<li>Fixed: In some feeds was not description on feed</li>
+<li>Fixed: When minimizing program to the system tray, news list in categories cleared</li>
+<li>Fixed: When upgrading tapes in the category has not been updated news list</li>
+<li>Fixed: Minimize to tray by Win+M/Win+D</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.13.1</b> (30 Jun 2013)
 <ul>
 <li>Added: Cleanup wizard</li>
