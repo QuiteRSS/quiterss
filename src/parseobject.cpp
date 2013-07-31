@@ -129,38 +129,37 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   int errorLine;
   int errorColumn;
 
-  if (!codecName.isEmpty()) {
-    qDebug() << "Codec name:" << codecName;
-    QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
+  QRegExp rx("encoding=\"([^\"]+)",
+             Qt::CaseInsensitive, QRegExp::RegExp2);
+  int pos = rx.indexIn(xmlData);
+  if (pos == -1) {
+    rx.setPattern("encoding='([^']+)");
+    pos = rx.indexIn(xmlData);
+  }
+  if (pos > -1) {
+    QString codecNameT = rx.cap(1);
+    qDebug() << "Codec name:" << codecNameT;
+    QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
     if (codec) {
       qDebug() << "Codec found 1";
       convertData = codec->toUnicode(xmlData);
-      codecOk = true;
+    } else {
+      if (codecNameT.contains("us-ascii", Qt::CaseInsensitive)) {
+        QString str(xmlData);
+        convertData = str.remove(rx.cap(0)+"\"");
+      }
     }
-  }
-
-  if (!codecOk) {
-    QRegExp rx("encoding=\"([^\"]+)",
-               Qt::CaseInsensitive, QRegExp::RegExp2);
-    int pos = rx.indexIn(xmlData);
-    if (pos == -1) {
-      rx.setPattern("encoding='([^']+)");
-      pos = rx.indexIn(xmlData);
-    }
-    if (pos > -1) {
-      QString codecNameT = rx.cap(1);
-      qDebug() << "Codec name:" << codecNameT;
-      QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
+  } else {
+    if (!codecName.isEmpty()) {
+      qDebug() << "Codec name:" << codecName;
+      QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
       if (codec) {
         qDebug() << "Codec found 2";
         convertData = codec->toUnicode(xmlData);
-      } else {
-        if (codecNameT.contains("us-ascii", Qt::CaseInsensitive)) {
-          QString str(xmlData);
-          convertData = str.remove(rx.cap(0)+"\"");
-        }
+        codecOk = true;
       }
-    } else {
+    }
+    if (!codecOk) {
       codecOk = false;
       QStringList codecNameList;
       codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
