@@ -103,6 +103,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   QString feedUrl;
   duplicateNewsMode_ = false;
   QSqlQuery q;
+  q.setForwardOnly(true);
   q.exec(QString("SELECT duplicateNewsMode, xmlUrl FROM feeds WHERE id=='%1'").arg(parseFeedId_));
   if (q.first()) {
     duplicateNewsMode_ = q.value(0).toBool();
@@ -246,6 +247,7 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     feedItem.link = feedItem.linkBase + feedItem.link;
 
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr ("UPDATE feeds "
                 "SET title=?, description=?, htmlUrl=?, "
                 "author_name=?, author_email=?, "
@@ -315,6 +317,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
 {
   // search news duplicates in base
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr;
   qDebug() << "atomId:" << newsItem.id;
   qDebug() << "title:" << newsItem.title;
@@ -435,6 +438,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.language = channel.namedItem("language").toElement().text();
 
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr("UPDATE feeds "
                "SET title=?, description=?, htmlUrl=?, "
                "author_name=?, pubdate=?, language=? "
@@ -483,6 +487,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
 {
   // search news duplicates in base
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr;
   QString qStr1;
   qDebug() << "guid:     " << newsItem.id;
@@ -675,6 +680,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
                                    const QString &updated, const QString &lastBuildDate)
 {
   QSqlQuery q;
+  q.setForwardOnly(true);
   QString qStr;
   QString htmlUrl;
   QString title;
