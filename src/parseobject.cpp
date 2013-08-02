@@ -270,7 +270,9 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     NewsItemStruct newsItem;
     newsItem.id = newsList.item(i).namedItem("id").toElement().text();
     newsItem.title = toPlainText(newsList.item(i).namedItem("title").toElement().text());
-    newsItem.updated = newsList.item(i).namedItem("updated").toElement().text();
+    newsItem.updated = newsList.item(i).namedItem("published").toElement().text();
+    if (newsItem.updated.isEmpty())
+      newsItem.updated = newsList.item(i).namedItem("updated").toElement().text();
     newsItem.updated = parseDate(newsItem.updated, feedUrl);
     QDomElement authorElem = newsList.item(i).namedItem("author").toElement();
     if (!authorElem.isNull()) {
