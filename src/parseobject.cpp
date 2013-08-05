@@ -286,7 +286,10 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
     for (int j = 0; j < categoryElem.size(); j++) {
       if (!newsItem.category.isEmpty()) newsItem.category.append(", ");
-      newsItem.category.append(toPlainText(categoryElem.at(j).toElement().attribute("term")));
+      QString category = categoryElem.at(j).toElement().attribute("label");
+      if (category.isEmpty())
+        category = categoryElem.at(j).toElement().attribute("term");
+      newsItem.category.append(toPlainText(category));
     }
     QDomElement enclosureElem = newsList.item(i).namedItem("enclosure").toElement();
     newsItem.eUrl = enclosureElem.attribute("url");
