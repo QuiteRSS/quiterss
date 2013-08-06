@@ -2592,7 +2592,9 @@ void RSSListing::slotImportFeeds()
 
   db_.transaction();
 
-  QXmlStreamReader xml(&file);
+  QByteArray xmlData = file.readAll();
+  xmlData.replace("&", "&#38;");
+  QXmlStreamReader xml(xmlData);
 
   int elementCount = 0;
   int outlineCount = 0;
