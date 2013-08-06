@@ -26,7 +26,7 @@ ParseThread::ParseThread(QObject *parent)
   qDebug() << "ParseThread::constructor";
 
   setObjectName("parseThread_");
-  start(LowestPriority);
+  start();
 }
 
 ParseThread::~ParseThread()
