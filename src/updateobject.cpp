@@ -50,9 +50,11 @@ UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepe
           this, SLOT(finished(QNetworkReply*)));
 
   connect(this, SIGNAL(signalHead(QUrl,int,QString,QDateTime,int)),
-          SLOT(slotHead(QUrl,int,QString,QDateTime,int)));
+          SLOT(slotHead(QUrl,int,QString,QDateTime,int)),
+          Qt::QueuedConnection);
   connect(this, SIGNAL(signalGet(QUrl,int,QString,QDateTime,int)),
-          SLOT(slotGet(QUrl,int,QString,QDateTime,int)));
+          SLOT(slotGet(QUrl,int,QString,QDateTime,int)),
+          Qt::QueuedConnection);
 }
 
 /** @brief Put URL in request queue
