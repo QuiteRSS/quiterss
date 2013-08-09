@@ -2620,38 +2620,24 @@ void RSSListing::slotImportFeeds()
 
         //Folder finded
         if (xmlUrlString.isEmpty()) {
+          int rowToParent = 0;
+          q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
+                 arg(parentIdsStack.top()));
+          if (q.next()) rowToParent = q.value(0).toInt();
 
-          // If this folder exists, then add feeds to it...
-          bool isFolderDuplicated = false;
-          q.prepare("SELECT id FROM feeds WHERE text=:text AND (xmlUrl='' OR xmlUrl IS NULL)");
+          q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, parentId, rowToParent) "
+                    "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :parentId, :rowToParent)");
           q.bindValue(":text", textString);
+          q.bindValue(":title", textString);
+          q.bindValue(":xmlUrl", "");
+          q.bindValue(":feedCreateTime",
+                      QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+          q.bindValue(":parentId", parentIdsStack.top());
+          q.bindValue(":rowToParent", rowToParent);
           q.exec();
-          if (q.next()) {
-            isFolderDuplicated = true;
-            parentIdsStack.push(q.value(0).toInt());
-          }
-
-          // ... If not - create it
-          if (!isFolderDuplicated) {
-            int rowToParent = 0;
-            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                   arg(parentIdsStack.top()));
-            if (q.next()) rowToParent = q.value(0).toInt();
-
-            q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, parentId, rowToParent) "
-                      "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :parentId, :rowToParent)");
-            q.bindValue(":text", textString);
-            q.bindValue(":title", textString);
-            q.bindValue(":xmlUrl", "");
-            q.bindValue(":feedCreateTime",
-                        QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-            q.bindValue(":parentId", parentIdsStack.top());
-            q.bindValue(":rowToParent", rowToParent);
-            q.exec();
-            parentIdsStack.push(q.lastInsertId().toInt());
-            // qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
-            // qDebug() << q.lastError().number() << ": " << q.lastError().text();
-          }
+          parentIdsStack.push(q.lastInsertId().toInt());
+          // qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
+          // qDebug() << q.lastError().number() << ": " << q.lastError().text();
         }
         // Feed finded
         else {
