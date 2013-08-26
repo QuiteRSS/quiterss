@@ -4789,6 +4789,7 @@ void RSSListing::loadSettingsFeeds()
 void RSSListing::restoreFeedsOnStartUp()
 {
   qApp->processEvents();
+
   //* Restore current feed
   QModelIndex feedIndex = QModelIndex();
   if (reopenFeedStartup_) {
@@ -4798,6 +4799,7 @@ void RSSListing::restoreFeedsOnStartUp()
   feedsTreeView_->setCurrentIndex(feedIndex);
   updateCurrentTab_ = false;
   slotFeedClicked(feedIndex);
+  currentNewsTab->webView_->setFocus();
   updateCurrentTab_ = true;
 
   slotUpdateStatus(-1, false);
