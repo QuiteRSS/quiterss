@@ -249,7 +249,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   connect(rightButton_, SIGNAL(clicked()),
           this, SLOT(nextPage()));
 
-  showTimer_->start(timeShowNews_*1000);
+  if (timeShowNews_ != 0)
+    showTimer_->start(timeShowNews_*1000);
 }
 
 /*virtual*/ void NotificationWidget::showEvent(QShowEvent*)
@@ -294,7 +295,8 @@ bool NotificationWidget::eventFilter(QObject *obj, QEvent *event)
 
 /*virtual*/ void NotificationWidget::leaveEvent(QEvent*)
 {
-  showTimer_->start(timeShowNews_*1000);
+  if (timeShowNews_ != 0)
+    showTimer_->start(timeShowNews_*1000);
 }
 
 void NotificationWidget::nextPage()
