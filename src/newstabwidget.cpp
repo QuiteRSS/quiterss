@@ -1296,7 +1296,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
 
     QString commentsStr;
-    QString commentsUrl = newsModel_->record(index.row()).field("comments").value().toString();
+    QString commentsUrl = QUrl::fromPercentEncoding(newsModel_->record(index.row()).field("comments").value().toByteArray());
     if (!commentsUrl.isEmpty()) {
       commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl).arg(tr("Comments"));
     }
@@ -1343,15 +1343,17 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         else type = tr("media");
 
         enclosureStr = QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
-            arg(newsModel_->record(index.row()).field("enclosure_url").value().toString()).
+            arg(QUrl::fromPercentEncoding(newsModel_->record(index.row()).field("enclosure_url").value().toByteArray())).
             arg(tr("Link to")).arg(type);
       }
     }
 
     content = enclosureStr + content;
 
-    if (!linkString.isEmpty())
-        titleString = QString("<a href='%1' class='unread'>%2</a>").arg(linkString).arg(titleString);
+    if (!linkString.isEmpty()) {
+        titleString = QString("<a href='%1' class='unread'>%2</a>").
+            arg(QUrl::fromPercentEncoding(linkString.toUtf8())).arg(titleString);
+    }
 
     QString feedId = newsModel_->index(index.row(),newsModel_->fieldIndex("feedId")).
         data(Qt::EditRole).toString();
