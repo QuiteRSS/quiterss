@@ -69,8 +69,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value()).
       arg(qWebKitVersion())
       + "</P>"
-      + QString("<a href=\"%1\">%1</a>").arg("https://code.google.com/p/quite-rss")
-      + QString("<br><a href=\"%1\">%1</a>").arg("http://quiterss.ucoz.ru") +
+      + QString("<a href=\"%1\">%1</a>").arg("http://quiterss.org") +
       "<P>Copyright &copy; 2011-2013 QuiteRSS Team "
       + QString("<a href=\"%1\">E-mail</a>").arg("mailto:quiterssteam@gmail.com") + "</P>"
       "</CENTER></body></html>";
