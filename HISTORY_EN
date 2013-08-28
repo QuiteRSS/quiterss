@@ -2,6 +2,22 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.13.2+</b> (30 Aug 2013)
+<ul>
+<li>Added: Language: Turkish</li>
+
+<li>Changed: Parsing categories (Atom)</li>
+<li>Changed: Focus on news after application starts</li>
+<li>Changed: Disabling notification disappearing by set notification delay to 0 seconds</li>
+
+<li>Fixed: Codepage while parsing feeds</li>
+<li>Fixed: Wrong news publish date (Atom)</li>
+<li>Fixed: Importing feeds containing character '&'</li>
+<li>Fixed: Memory leak. CPU loading is reduced</li>
+<li>Fixed: Import feeds into present folders</li>
+<li>Fixed: Creating links to attachments (Link to audio)</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.13.2</b> (30 Jul 2013)
 <ul>
 <li>Added: Options network requests when updating feeds</li>
