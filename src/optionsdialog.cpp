@@ -258,6 +258,23 @@ void OptionsDialog::createGeneralWidget()
 
   updateCheckEnabled_ = new QCheckBox(tr("Automatically check for updates"));
   storeDBMemory_ = new QCheckBox(tr("Store a DB in memory (requires program restart)"));
+  storeDBMemory_->setChecked(false);
+  saveDBMemFileInterval_ = new QSpinBox();
+  saveDBMemFileInterval_->setRange(1, 999);
+
+  QHBoxLayout *saveDBMemFileLayout = new QHBoxLayout();
+  saveDBMemFileLayout->setContentsMargins(15, 0, 0, 0);
+  saveDBMemFileLayout->addWidget(new QLabel(tr("Save DB stored in memory to file every")));
+  saveDBMemFileLayout->addWidget(saveDBMemFileInterval_);
+  saveDBMemFileLayout->addWidget(new QLabel(tr("minutes")));
+  saveDBMemFileLayout->addStretch();
+
+  QWidget *saveDBMemFileWidget = new QWidget();
+  saveDBMemFileWidget->setEnabled(false);
+  saveDBMemFileWidget->setLayout(saveDBMemFileLayout);
+
+  connect(storeDBMemory_, SIGNAL(toggled(bool)),
+          saveDBMemFileWidget, SLOT(setEnabled(bool)));
 
   QVBoxLayout *generalLayout = new QVBoxLayout();
   generalLayout->addWidget(showSplashScreen_);
@@ -280,6 +297,7 @@ void OptionsDialog::createGeneralWidget()
 
   generalLayout->addWidget(updateCheckEnabled_);
   generalLayout->addWidget(storeDBMemory_);
+  generalLayout->addWidget(saveDBMemFileWidget);
 
   generalWidget_ = new QFrame();
   generalWidget_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);

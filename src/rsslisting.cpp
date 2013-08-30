@@ -267,6 +267,12 @@ RSSListing::RSSListing(QSettings *settings,
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
+  timerSaveDBMemFile_ = new QTimer(this);
+  if (storeDBMemory_) {
+    timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
+    connect(timerSaveDBMemFile_, SIGNAL(timeout()), this, SLOT(saveDBMemFile()));
+  }
+
   translator_ = new QTranslator(this);
   appInstallTranslator();
 
@@ -480,10 +486,7 @@ void RSSListing::slotPlaceToTray()
   writeSettings();
   cookieJar_->saveCookies();
 
-  if (storeDBMemory_) {
-    db_.commit();
-    dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
-  }
+  saveDBMemFile();
 
   minimizeToTray_ = false;
 }
@@ -1850,6 +1853,8 @@ void RSSListing::readSettings()
   clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
   emptyWorking_ = settings_->value("emptyWorking", true).toBool();
 
+  saveDBMemFileInterval_ = settings_->value("saveDBMemFileInterval", 30).toInt();
+
   QString strLang;
   QString strLocalLang = QLocale::system().name();
   bool findLang = false;
@@ -2198,6 +2203,8 @@ void RSSListing::writeSettings()
   settings_->setValue("singleClickTray", singleClickTray_);
   settings_->setValue("clearStatusNew", clearStatusNew_);
   settings_->setValue("emptyWorking", emptyWorking_);
+
+  settings_->setValue("saveDBMemFileInterval", saveDBMemFileInterval_);
 
   settings_->setValue("langFileName", langFileName_);
 
@@ -3618,6 +3625,7 @@ void RSSListing::showOptionDlg()
 
   optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled_);
   optionsDialog_->storeDBMemory_->setChecked(storeDBMemoryT_);
+  optionsDialog_->saveDBMemFileInterval_->setValue(saveDBMemFileInterval_);
 
   optionsDialog_->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog_->startingTray_->setChecked(startingTray_);
@@ -3934,6 +3942,11 @@ void RSSListing::showOptionDlg()
 
   updateCheckEnabled_ = optionsDialog_->updateCheckEnabled_->isChecked();
   storeDBMemoryT_ = optionsDialog_->storeDBMemory_->isChecked();
+
+  if (saveDBMemFileInterval_ != optionsDialog_->saveDBMemFileInterval_->value()) {
+    saveDBMemFileInterval_ = optionsDialog_->saveDBMemFileInterval_->value();
+    timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
+  }
 
   showTrayIcon_ = optionsDialog_->showTrayIconBox_->isChecked();
   startingTray_ = optionsDialog_->startingTray_->isChecked();
@@ -8018,6 +8031,14 @@ void RSSListing::setStatusFeed(const int &feedId, const QString &status)
     QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
     feedsTreeModel_->setData(indexStatus, status);
     feedsTreeView_->viewport()->update();
+  }
+}
+
+void RSSListing::saveDBMemFile()
+{
+  if (storeDBMemory_) {
+    db_.commit();
+    dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
 }
 

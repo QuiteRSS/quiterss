@@ -53,6 +53,7 @@ public:
   QCheckBox *autocollapseFolder_;
   QCheckBox *updateCheckEnabled_;
   QCheckBox *storeDBMemory_;
+  QSpinBox *saveDBMemFileInterval_;
 
   // systemTray
   void setBehaviorIconTray(int behavior);

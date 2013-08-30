@@ -444,6 +444,8 @@ private slots:
   void cleanUp();
   void cleanUpShutdown();
 
+  void saveDBMemFile();
+
 private:
   UpdateThread *persistentUpdateThread_;
   ParseThread *persistentParseThread_;
@@ -689,6 +691,8 @@ private:
 
   bool storeDBMemory_;
   bool storeDBMemoryT_;
+  int saveDBMemFileInterval_;
+  QTimer *timerSaveDBMemFile_;
 
   int  openingLinkTimeout_;  //!< During this time we'll trying swithing back to apllication
   QTimer timerLinkOpening_;
