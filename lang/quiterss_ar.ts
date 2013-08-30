@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="60"/>
         <source>QuiteRSS is a open-source cross-platform RSS/Atom news reader</source>
-        <translation>QuiteRSS برنامج مفتوح المصدر متعدد المنصات RSS/Atom قارئ خلاصات اخبار</translation>
+        <translation>QuiteRSS برنامج مفتوح المصدر متعدد المنصات قارئ خلاصات اخبار RSS/Atom</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="61"/>
@@ -1140,7 +1140,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="100"/>
         <source>Move up</source>
-        <translation>تحرك لاعلى</translation>
+        <translation>تحريك لاعلى</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="103"/>
@@ -1416,7 +1416,7 @@ Ancient news could reappear</source>
         <location filename="../src/optionsdialog.cpp" line="227"/>
         <location filename="../src/optionsdialog.cpp" line="1967"/>
         <source>Warning: key is already assigned to</source>
-        <translation>تحذير: المفتاح مغين مسبقا الى</translation>
+        <translation>تحذير: المفتاح معين مسبقا الى</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
@@ -1610,7 +1610,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="443"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation>فتح الروابط في متفح خارجي في الخلفيه (تجريبي)</translation>
+        <translation>فتح الروابط في متصفح خارجي في الخلفيه (تجريبي)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="481"/>
@@ -1630,7 +1630,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="525"/>
         <source>Store cache in:</source>
-        <translation>تخزين المؤقت في:</translation>
+        <translation>التخزين المؤقت في:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="533"/>
@@ -2542,7 +2542,8 @@ Ancient news could reappear</source>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation>فشل تحميل ملف:</translation>
+        <translation>فشل تحميل ملف:⏎
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
@@ -2726,7 +2727,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5012"/>
         <source>F&amp;older...</source>
-        <translation>مجلد...</translation>
+        <translation>&amp;مجلد...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5017"/>
@@ -3234,7 +3235,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5021"/>
         <source>Import Feeds from OPML File</source>
-        <translation>استيراد حقولمن ملف OPML</translation>
+        <translation>استيراد حقول من ملف OPML</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5023"/>
@@ -3354,7 +3355,7 @@ Ancient news could reappear</source>
         <location filename="../src/rsslisting.cpp" line="7982"/>
         <location filename="../src/rsslisting.cpp" line="7992"/>
         <source>Downloads</source>
-        <translation>التحميلات</translation>
+        <translation>التنزيلات</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5052"/>

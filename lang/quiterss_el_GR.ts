@@ -196,32 +196,32 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Μη αναγνωσμένο</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Μαρκαρισμένο</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραμμένο</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Ετικέτες</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="133"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα σε νέα καρτέλα</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="136"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρισμός &apos;Διαγραμμένων&apos;</translation>
     </message>
 </context>
 <context>
@@ -229,68 +229,69 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="189"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρισμός</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
         <source>Choose Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή Feeds</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="235"/>
         <source>All Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Όλα τα Feeds</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="298"/>
         <source>Clean Up Options</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές Καθαρισμού</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Ηλικία των νέων σε ημέρες που αποθηκεύονται:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Μέγιστος αριθμός νέων:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Delete read news</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή αναγνωσμένων νέων</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="315"/>
         <source>Never delete unread news</source>
-        <translation type="unfinished"/>
+        <translation>Ποτέ διαγραφή μη αναγνωσμένων νέων</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="316"/>
         <source>Never delete starred news</source>
-        <translation type="unfinished"/>
+        <translation>Ποτέ διαγραφή μαρκαρισμένων νέων</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation type="unfinished"/>
+        <translation>Ποτέ διαγραφή νέων με ετικέτα</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρισμός &apos;διαγραμμένων&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="331"/>
         <source>Purge DB</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή ΒΔ</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>Πλήρης αφαίρεση εγγραφών μαρκαρισμένες ώς &apos;διαγραμμένες&apos; στην ΔΒ.
+Αρχαία νέα μπορεί να επανεμφανιστούν</translation>
     </message>
 </context>
 <context>
@@ -690,7 +691,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
         <source>Status:</source>
-        <translation type="unfinished"/>
+        <translation>Κατάσταση:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
@@ -710,22 +711,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
         <source>Good</source>
-        <translation type="unfinished"/>
+        <translation>Καλή</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία εικόνων</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="398"/>
         <source>Select Image</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή Εικόνας</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="405"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Φόρτωση εικόνας: το αρχείο δεν μπορεί να ανοιχθεί!</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="279"/>
@@ -740,22 +741,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation type="unfinished"/>
+        <translation>Φόρτωση Τίτλου</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>Φόρτωση Favicon</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή Εικόνας...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή Εικόνας</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
@@ -1091,7 +1092,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="144"/>
         <source>Image files</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία εικόνων</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
@@ -1101,7 +1102,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/labeldialog.cpp" line="153"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Φόρτωση εικόνας: δεν μπορεί να ανοιχθεί!</translation>
     </message>
 </context>
 <context>
@@ -1323,7 +1324,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1301"/>
         <source>Comments</source>
-        <translation type="unfinished"/>
+        <translation>Σχόλια</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1341"/>
@@ -1440,7 +1441,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση του κουμπιού εμφάνισης στην άκρη του παραθύρου</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1560,22 +1561,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Timeout request:</source>
-        <translation type="unfinished"/>
+        <translation>Η αίτηση έληξε:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Number request:</source>
-        <translation type="unfinished"/>
+        <translation>Αριθμός αίτησης:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Number repeats:</source>
-        <translation type="unfinished"/>
+        <translation>Αριθμός επαναλήψεων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές δικτύου κατα την ανανέωση των feeds (απαιτεί επανεκκίνηση):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="431"/>
@@ -1649,27 +1650,27 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="555"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Να επιτρέπεται η αποθήκευση δεδομένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="556"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Αποθήκευση δεδομένων μέχρι την έξοδο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="557"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Να μην επιτρέπεται στου ιστοτόπους να αποστέλλουν δεδομένα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="558"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρισμός</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="573"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Cookies:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="581"/>
@@ -1709,7 +1710,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="659"/>
         <source>Privacy</source>
-        <translation type="unfinished"/>
+        <translation>Ιδιωτικότητα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="660"/>
@@ -1759,47 +1760,47 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Όλων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Νέων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μη αναγνωσμένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Μαρκαρισμένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Μη Μαρκαρισμένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση μη αναγνωσμένων ή μαρκαρισμένων</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Τελευταίας Μέρας</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="750"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>Εμφάνιση Τελευταίων 7 Ημερών</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Φίλτρο Νέων:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="786"/>
@@ -1829,7 +1830,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="846"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποίηση του καθαρισμού κατα την έξοδο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="866"/>
@@ -1839,12 +1840,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="868"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρισμός &apos;Διαγραμμένων&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="869"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποίηση βελτιστοποίησης ΒΔ</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="915"/>
@@ -1934,7 +1935,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Απενεργοποίηση εμφάνισης ειδοποιήσεων σε πλήρη οθόνη</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1087"/>
@@ -2044,77 +2045,77 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1482"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Feed με νέα</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1485"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Πλήθος μη αναγνωσμένων νέων στο δέντρο</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1521"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>Προεπιλογή</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1523"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>Σταθερό</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1527"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1529"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>Cursive</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>Fantasy</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>Προεπιλεγμένο μέγεθος γραμματοσειράς</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1548"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>Σταθερό μέγεθος γραμματοσειράς</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1550"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>Ελάχιστο μέγεθος γραμματοσειράς</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1552"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>Ελάχιστο μέγεθος λογικής γραμματοσειράς</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1556"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>Γραμματοσειρές</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1558"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>Μεγέθη γραμματοσειρών:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1568"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>Γραμματοσειρές</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1569"/>
@@ -2477,96 +2478,105 @@ Ancient news could reappear</source>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="877"/>
         <source>Not connected</source>
-        <translation type="unfinished"/>
+        <translation>Μη συνδεδεμένο</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Ο διακομιστής %1 δεν βρέθηκε</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Η σύνδεση με το %1 απορρίφθηκε.</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Η σύνδεση με το %1 έληξε.</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Συνδεδεμένο με το %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Η σύνδεση απορρίφθηκε για δεδομένα</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Άγνωστο σφάλμα</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η σύνδεση με το διακομιστή απέτυχε.
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η είσοδος απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η εμφάνιση λίστας απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η αλλαγή φακέλου απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Το κατέβασμα απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Το ανέβασμα απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η διαγραφή απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η δημιουργία απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Η διαγραφή απέτυχε:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>Η σύνδεση τερματίστηκε</translation>
     </message>
 </context>
 <context>
@@ -3263,12 +3273,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Ο driver της SQLite δεν φορτώθηκε!</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2487"/>
@@ -3352,7 +3362,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5052"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρισμός...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5054"/>
@@ -3532,12 +3542,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5149"/>
         <source>News Page Up)</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενη Σελίδα</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5150"/>
         <source>News Page Down)</source>
-        <translation type="unfinished"/>
+        <translation>Επόμενη Σελίδα</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5152"/>
@@ -3788,22 +3798,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateobject.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Ο διακομιστής απαιτεί στοιχεία!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Ο διακομιστής απάντησε: Δεν Βρέθηκε!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα ανακατεύθυνσης!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="288"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Η αίτηση έληξε!</translation>
     </message>
 </context>
 </TS>

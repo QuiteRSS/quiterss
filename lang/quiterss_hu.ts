@@ -1566,12 +1566,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Number request:</source>
-        <translation type="unfinished"/>
+        <translation>Szám kérése:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Number repeats:</source>
-        <translation type="unfinished"/>
+        <translation>Szám ismétlése:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
@@ -2055,67 +2055,67 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1521"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1523"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>Rögzített</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1527"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1529"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>Kurzív</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>Fantasy</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>Alapértelmezett betűméret</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1548"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>Rögzített betűméret</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1550"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>Legkisebb betűméret</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1552"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>Legkisebb logikai betűméret</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1556"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>Betűcsaládok:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1558"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>Betűméretek:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1568"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>Betűtípus böngésző</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1569"/>
@@ -3273,12 +3273,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Hiba</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Az SQLite illesztő nincs betöltve!</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2487"/>
@@ -3542,12 +3542,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5149"/>
         <source>News Page Up)</source>
-        <translation type="unfinished"/>
+        <translation>Hírek lap fel)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5150"/>
         <source>News Page Down)</source>
-        <translation type="unfinished"/>
+        <translation>Hírek lap le)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5152"/>
@@ -3798,22 +3798,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateobject.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Kiszolgáló hitelesítést igényel!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Kiszolgáló válaszolt: nem található!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>Átirányítási hiba!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="288"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Kérés időtúllépése!</translation>
     </message>
 </context>
 </TS>

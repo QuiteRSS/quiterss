@@ -65,7 +65,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="104"/>
         <source>Server requires authentication:</source>
-        <translation>Sunucu yetki talep ediyor:</translation>
+        <translation>Sunucu yetkilendirilmesi:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="113"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="221"/>
         <source>New Folder...</source>
-        <translation>Yeni Klasör</translation>
+        <translation>Yeni Klasör...</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="236"/>
@@ -105,7 +105,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="238"/>
         <source>Location:</source>
-        <translation>Mekan:</translation>
+        <translation>Yerleşim:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="314"/>
@@ -155,7 +155,7 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="81"/>
         <source>Location:</source>
-        <translation>Mekan:</translation>
+        <translation>Yerleşim:</translation>
     </message>
 </context>
 <context>
@@ -676,7 +676,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
         <source>Server requires authentication:</source>
-        <translation>Sunucu yetki talep ediyor</translation>
+        <translation>Sunucu yetkilendirilmesi:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="254"/>
@@ -761,7 +761,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Automatically update every</source>
-        <translation>Otomatik güncelleme tercihi her </translation>
+        <translation>Otomatik güncelleme sıklığı her:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
@@ -2167,7 +2167,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="671"/>
         <source>Automatically update the feeds every</source>
-        <translation>Her kaynağı otomatik olarak güncelle</translation>
+        <translation>Kaynakları otomatik güncelleme sıklığı her :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="681"/>
@@ -2715,7 +2715,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5009"/>
         <source>&amp;Feed...</source>
-        <translation>&amp;Kaynak</translation>
+        <translation>&amp;Kaynak...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5012"/>
@@ -2954,7 +2954,7 @@ adlı dosya bulunamadı!</translation>
         <location filename="../src/rsslisting.cpp" line="5204"/>
         <location filename="../src/rsslisting.cpp" line="5205"/>
         <source>Stay On Top</source>
-        <translation>Tepede bırak</translation>
+        <translation>Her zaman üstte</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5207"/>
@@ -3488,7 +3488,7 @@ adlı dosya bulunamadı!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5114"/>
         <source>&amp;Browser</source>
-        <translation>%Tarayıcı</translation>
+        <translation>Tarayıcı</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5125"/>

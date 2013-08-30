@@ -711,7 +711,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
         <source>Good</source>
-        <translation type="unfinished"/>
+        <translation>好</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
@@ -1561,22 +1561,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Timeout request:</source>
-        <translation type="unfinished"/>
+        <translation>請求逾時：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Number request:</source>
-        <translation type="unfinished"/>
+        <translation>要求數量：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Number repeats:</source>
-        <translation type="unfinished"/>
+        <translation>重複數量：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>當更新訂閱 feeds 時 (需要重新啟動程式)，請求網路選項：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="431"/>
@@ -2055,67 +2055,67 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1521"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>標準</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1523"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>固定字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>有襯線字型</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1527"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>新細明體</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1529"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>草稿</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>幻想</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>預設字型大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1548"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>固定字型大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1550"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>最小字型大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1552"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>最小邏輯字型大小</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1556"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>字型家族：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1558"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>字形大小：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1568"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>字型瀏覽器</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1569"/>
@@ -3273,12 +3273,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="104"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>沒有載入 SQLite 的驅動程式！</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2487"/>
@@ -3542,12 +3542,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="5149"/>
         <source>News Page Up)</source>
-        <translation type="unfinished"/>
+        <translation>新聞上一頁)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5150"/>
         <source>News Page Down)</source>
-        <translation type="unfinished"/>
+        <translation>新聞下一頁)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5152"/>
@@ -3798,22 +3798,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/updateobject.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>伺服器需要身份驗證！</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>伺服器回應：找不到！</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>重新導向錯誤！</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="288"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>請求逾時！</translation>
     </message>
 </context>
 </TS>

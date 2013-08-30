@@ -1441,7 +1441,7 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation>Voir l&apos;arbre des flux basculer au bord de la fenêtre</translation>
+        <translation>Afficher l&apos;arbre des flux basculer au bord de la fenêtre</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1566,7 +1566,7 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Number request:</source>
-        <translation>Nombre de 	requête :</translation>
+        <translation>Nombre de requêtes :</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
@@ -1660,7 +1660,7 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="557"/>
         <source>Block sites from setting any data</source>
-        <translation>Bloquer les sites depuis le stockage des données</translation>
+        <translation>Interdire aux sites de stocker des données</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="558"/>
@@ -1845,7 +1845,7 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="869"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>Activer l&apos;optimisation de la BD  (arrêt lent)</translation>
+        <translation>Activer l&apos;optimisation de la BD (arrêt lent)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="915"/>
@@ -2521,56 +2521,56 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation>Échec à la connexion :
+        <translation>Échec de la connexion :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation>Échec au listage du répertoire :
+        <translation>Échec du listage du répertoire :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation>Échec au changement du répertoire :
+        <translation>Échec du changement du répertoire :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation>Échec au téléchargement du fichier :
+        <translation>Échec du téléchargement du fichier :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation>Échec au téléchargement du fichier :
+        <translation>Échec du téléchargement du fichier :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation>Échec à la suppression du fichier :
+        <translation>Échec de la suppression du fichier :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation>Échec à la création du répertoire :
+        <translation>Échec de la création du répertoire :
 %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation>Échec à la suppression du répertoire :
+        <translation>Échec de la suppression du répertoire :
 %1</translation>
     </message>
     <message>
@@ -2764,7 +2764,7 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5072"/>
         <source>Show Unread or Starred</source>
-        <translation>Montrer non lus ou étoilés</translation>
+        <translation>Afficher non lus ou étoilés</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5086"/>
@@ -3067,13 +3067,13 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
         <location filename="../src/rsslisting.cpp" line="5062"/>
         <location filename="../src/rsslisting.cpp" line="5068"/>
         <source>Show New</source>
-        <translation>Montrer nouveau(x)</translation>
+        <translation>Afficher nouveau</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5063"/>
         <location filename="../src/rsslisting.cpp" line="5069"/>
         <source>Show Unread</source>
-        <translation>Montrer non lus</translation>
+        <translation>Afficher non lus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5076"/>
@@ -3387,17 +3387,17 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5073"/>
         <source>Show Last Day</source>
-        <translation>Montrer le dernier jour</translation>
+        <translation>Afficher le dernier jour</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5074"/>
         <source>Show Last 7 Days</source>
-        <translation>Montrer les 7 derniers jours</translation>
+        <translation>Afficher les 7 derniers jours</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5077"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation>Voir la boîte de dialogue « À propos »</translation>
+        <translation>Afficher la boite de dialogue « À propos »</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5079"/>

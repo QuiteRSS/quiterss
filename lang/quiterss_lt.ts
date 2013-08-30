@@ -196,32 +196,32 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Neskaitytų</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Mėgstamų</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Ištrintų</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
         <source>Labels</source>
-        <translation type="unfinished"/>
+        <translation>Etiketės</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="133"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti naują aplanką</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="136"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti &quot;Ištrinta&quot;</translation>
     </message>
 </context>
 <context>
@@ -249,12 +249,12 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="300"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Maksimalus laikas kiek naujienos bus saugomos:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum number of news to keep:</source>
-        <translation type="unfinished"/>
+        <translation>Maksimalus laikomų naujienų skaičius:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
@@ -274,7 +274,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="317"/>
         <source>Never delete labeled news</source>
-        <translation>Niekada nepašalinti pažymėtas naujienas</translation>
+        <translation>Niekada nepašalinti pažymėtų naujienų</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="330"/>
@@ -290,7 +290,8 @@
         <location filename="../src/cleanupwizard.cpp" line="334"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation type="unfinished"/>
+        <translation>Visiškai panaikinti įrašus su žyma &quot;Ištrinta&quot; iš DB.
+Gali pasirodyti senos naujienos</translation>
     </message>
 </context>
 <context>
@@ -418,13 +419,13 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="102"/>
         <source>Remaining time unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Likęs laikas nežinomas</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation>Klaida: negaliu įrašyti failą!</translation>
+        <translation>Klaida: negaliu įrašyti bylos!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
@@ -439,7 +440,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="260"/>
         <source>few seconds</source>
-        <translation>Kelios sekundės</translation>
+        <translation>kelios sekundės</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="262"/>
@@ -485,17 +486,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Delete file</source>
-        <translation>Ištrinti failą</translation>
+        <translation>Ištrinti bylą</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation type="unfinished"/>
+        <translation>Ar norite taip pat ištrinti atsisiųstą bylą?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="365"/>
         <source>Open File</source>
-        <translation>Atidaryti failą</translation>
+        <translation>Atidaryti bylą</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="367"/>
@@ -510,7 +511,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
         <source>Cancel Downloading</source>
-        <translation type="unfinished"/>
+        <translation>Nutraukti siuntimą</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
@@ -552,12 +553,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>File %1 (*.%2)</source>
-        <translation>Failas %1 (*.%2)</translation>
+        <translation>Byla %1 (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>All Files (*.*)</source>
-        <translation>Visi failai (*.*)</translation>
+        <translation>Visos bylos (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
@@ -567,12 +568,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="161"/>
         <source>Executable: </source>
-        <translation type="unfinished"/>
+        <translation>Paleidimas:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="162"/>
         <source>Arguments: </source>
-        <translation type="unfinished"/>
+        <translation>Argumentai:</translation>
     </message>
 </context>
 <context>
@@ -580,7 +581,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="106"/>
         <source>Starred</source>
-        <translation>Mėgstamas</translation>
+        <translation>Mėgstamos</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
@@ -635,12 +636,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Didėjimo tvarka</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Mažėjimo tvarka</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="184"/>
@@ -710,12 +711,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
         <source>Good</source>
-        <translation type="unfinished"/>
+        <translation>Gerai</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
         <source>Image files</source>
-        <translation>Paveikslėlių failai</translation>
+        <translation>Paveikslėlių bylos</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="398"/>
@@ -725,7 +726,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="405"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Įkelti ikoną: negaliu atidaryti bylos!</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="279"/>
@@ -740,32 +741,32 @@ nerastas!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation>Naudoti pavadinimą</translation>
+        <translation>Įkelti pavadinimą</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation type="unfinished"/>
+        <translation>Įkelti mėgstamą ikoną</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti ikoną...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti ikoną</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Automatically update every</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai atnaujinti kiekvieną</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
         <source>Display in new tab on startup</source>
-        <translation>Kraunantis rodyti naujame aplanke</translation>
+        <translation>Krovimo metu rodyti naujame aplanke</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="110"/>
@@ -903,7 +904,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="464"/>
         <source>Canceled!</source>
-        <translation type="unfinished"/>
+        <translation>Atšaukta!</translation>
     </message>
 </context>
 <context>
@@ -989,7 +990,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="43"/>
         <source>Starred</source>
-        <translation>Mėgstamas</translation>
+        <translation>Mėgstamos</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="50"/>
@@ -1054,7 +1055,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="35"/>
         <source>Load icon...</source>
-        <translation>Įkrauti ikoną</translation>
+        <translation>Įkelti ikoną</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="44"/>
@@ -1086,7 +1087,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="74"/>
         <source>Color background:</source>
-        <translation>Pagrindo spalva:</translation>
+        <translation>Fono spalva:</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="144"/>
@@ -1101,7 +1102,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="153"/>
         <source>Load icon: can&apos;t open a file!</source>
-        <translation type="unfinished"/>
+        <translation>Pakrauti ikoną: negaliu atidaryti bylos!</translation>
     </message>
 </context>
 <context>
@@ -1415,7 +1416,7 @@ nerastas!</translation>
         <location filename="../src/optionsdialog.cpp" line="227"/>
         <location filename="../src/optionsdialog.cpp" line="1967"/>
         <source>Warning: key is already assigned to</source>
-        <translation type="unfinished"/>
+        <translation>Dėmesio: raktas jau priskirtas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
@@ -1430,7 +1431,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
         <source>Open new tab next to active</source>
-        <translation type="unfinished"/>
+        <translation>Atidaryti naują aplanką šalia aktyvaus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
@@ -1440,12 +1441,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti šaltinių medžio jungtuką lango krašte</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
         <source>Automatically collapse folders</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai suskleisti aplankus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="259"/>
@@ -1460,7 +1461,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="273"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation>Startuoti QuiteRSS kartu su Windows</translation>
+        <translation>Paleisti QuiteRSS kartu su Windows</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
@@ -1560,22 +1561,22 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Timeout request:</source>
-        <translation type="unfinished"/>
+        <translation>Laukimo poreikis:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Number request:</source>
-        <translation type="unfinished"/>
+        <translation>Skaičiaus poreikis:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Number repeats:</source>
-        <translation type="unfinished"/>
+        <translation>Skaičiaus pasikartojimas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>Tinklo kreipimusi nustatymai atnaujinant šaltinius (būtina perkrauti programą):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="431"/>
@@ -1619,7 +1620,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="485"/>
         <source>User style sheet:</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo stilius:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="514"/>
@@ -1649,17 +1650,17 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="555"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Leisti vietinių duomenų nustatymą</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="556"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Išsaugoti vietinius duomenis tik iki programos išjungimo</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="557"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Drausti puslapiams nustatyti duomenis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="558"/>
@@ -1669,17 +1670,17 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="573"/>
         <source>Cookies:</source>
-        <translation type="unfinished"/>
+        <translation>Kukiai:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="581"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Įjungti Flash&quot; yra papildinys, kuris neleidžia Flash turiniui užsikrauti puslapyje. Visada galima pačiam paleisti aplikaciją paspaudus ant &quot;Flash play&quot; ikonos.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="586"/>
         <source>Use Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>Naudokite &quot;Įjungti Flash&quot;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="598"/>
@@ -1694,7 +1695,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="640"/>
         <source>Ask where to save each file before downloading</source>
-        <translation>Klausti kur išsaugoti failą prieš atsiunčiant</translation>
+        <translation>Klausti kur išsaugoti bylą prieš atsiunčiant</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="649"/>
@@ -1714,7 +1715,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="660"/>
         <source>Click to Flash</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti Flash</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="661"/>
@@ -1749,12 +1750,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="743"/>
         <source>Alternating row background colors</source>
-        <translation>Alternatyvios eilučių pagrindo spalvos</translation>
+        <translation>Alternatyvios eilučių fono spalvos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="744"/>
         <source>Simplified representation of date and time</source>
-        <translation type="unfinished"/>
+        <translation>Supaprastinta data ir laikas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="747"/>
@@ -1779,12 +1780,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="748"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti likusius</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti neskaitytus arba mėgstamus</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="749"/>
@@ -1799,7 +1800,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="764"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Pagrindinių naujienų filtrai:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="786"/>
@@ -1819,12 +1820,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="802"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pakeisti &quot;Kitos neperskaitytos naujienos&quot; funkcijas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="807"/>
         <source>Automatically mark identical news as read</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai pažymėti identišką naujieną kaip skaitytą</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="846"/>
@@ -1834,7 +1835,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Never delete labeled news</source>
-        <translation>Niekada netrinti pažymėtas naujienas</translation>
+        <translation>Niekada netrinti pažymėtų naujienų</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="868"/>
@@ -1844,7 +1845,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="869"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Aktyvuoti DB optimizaciją (lėtesnis programos išjungimas)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="915"/>
@@ -1879,22 +1880,22 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="983"/>
         <source>Top Left</source>
-        <translation type="unfinished"/>
+        <translation>Viršutinis kairėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="983"/>
         <source>Top Right</source>
-        <translation type="unfinished"/>
+        <translation>Viršutinis dešinėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>Apatinis kairėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="984"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>Apatinis dešinėje</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="994"/>
@@ -1934,7 +1935,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Do not show notification in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Nerodyti perspėjimų ekrano režime</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1087"/>
@@ -1989,7 +1990,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1449"/>
         <source>Feeds list background</source>
-        <translation>Šaltinio sąrašo pagrindas</translation>
+        <translation>Šaltinio sąrašo fonas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1452"/>
@@ -1999,17 +2000,17 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>News list background</source>
-        <translation>Naujienų sarašo pagrindas</translation>
+        <translation>Naujienų sarašo fonas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>Focused news color</source>
-        <translation type="unfinished"/>
+        <translation>Fokusuotos naujienų spalvos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1461"/>
         <source>Focused news background color</source>
-        <translation type="unfinished"/>
+        <translation>Fokusuotos naujienų fono spalvos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1464"/>
@@ -2034,27 +2035,27 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1476"/>
         <source>News title background</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų pavadinimo fonas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1479"/>
         <source>News background</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų fonas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1482"/>
         <source>Feed with new news</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinis su naujomis naujienomis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1485"/>
         <source>Count of news unread in feeds tree</source>
-        <translation type="unfinished"/>
+        <translation>Neperskaitytų naujienų šaltinių medyje skaičius</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1521"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>Standartinis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1523"/>
@@ -2064,62 +2065,62 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1527"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1529"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>Cursive</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>Fantasy</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>Numatytas šrifto dydis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1548"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>Fiksuotas šrifto dydis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1550"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>Mažiausias galimas šrifto dydis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1552"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>Mažiausias logiškas šrifto dydis</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1556"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>Šriftų rūšys:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1558"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>Šriftų dydžiai:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1568"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>Šriftų naršyklė</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1569"/>
         <source>Colors</source>
-        <translation type="unfinished"/>
+        <translation>Spalvos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1576"/>
@@ -2145,7 +2146,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2529"/>
         <source>Select Style Sheet File</source>
-        <translation>Pasirinkti stiliaus failą</translation>
+        <translation>Pasirinkti stiliaus bylą</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2538"/>
@@ -2345,17 +2346,17 @@ nerastas!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>labeled news</source>
-        <translation type="unfinished"/>
+        <translation>pažymėtos naujienos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="805"/>
         <source>starred news</source>
-        <translation type="unfinished"/>
+        <translation>mėgstamos naujienos</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="834"/>
         <source>Prevent accidental deletion of:</source>
-        <translation type="unfinished"/>
+        <translation>Uždrausti netyčinį ištrynimą:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1023"/>
@@ -2482,27 +2483,27 @@ nerastas!</translation>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Adresas %1 nerastas</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko prisijungti prie %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Išseko prisijungimų prie %1 laikas</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungta prie %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma prisijungti duomenų perdavimui</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
@@ -2513,60 +2514,69 @@ nerastas!</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko prisijungti prie adreso:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
         <source>Login failed:
 %1</source>
-        <translation>Prisijungimas nepavyko: %1</translation>
+        <translation>Prisijungimas nepavyko: 
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Katalogo sąrašo sudarymas nepavyko:⏎
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2431"/>
         <source>Changing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti katalogo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2435"/>
         <source>Downloading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atsisiųsti bylos:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2439"/>
         <source>Uploading file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko išsiųsti bylos:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pašalinti bylos:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2447"/>
         <source>Creating directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti katalogo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2451"/>
         <source>Removing directory failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko ištrinti katalogo:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2481"/>
         <source>Connection closed</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungimas baigtas</translation>
     </message>
 </context>
 <context>
@@ -2620,12 +2630,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko paleisti išorinės programos</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="165"/>
         <source>Cannot start external program! %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko paleisti išorinės programos! %1</translation>
     </message>
 </context>
 <context>
@@ -2963,12 +2973,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5219"/>
         <source>Switch to next tab</source>
-        <translation>Pereiti į sekančią kortelę</translation>
+        <translation>Pereiti į kitą kortelę</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5220"/>
         <source>Switch to previous tab</source>
-        <translation>Pereiti prie ankstesnės kortelės</translation>
+        <translation>Pereiti prie buvusio aplanko</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5227"/>
@@ -3347,7 +3357,7 @@ nerastas!</translation>
         <location filename="../src/rsslisting.cpp" line="7982"/>
         <location filename="../src/rsslisting.cpp" line="7992"/>
         <source>Downloads</source>
-        <translation type="unfinished"/>
+        <translation>Siuntiniai</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5052"/>
@@ -3492,7 +3502,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5125"/>
         <source>Lock Toolbar</source>
-        <translation>Užrakinti įrankinę</translation>
+        <translation>Užrakinti įrankių juostą</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5128"/>
@@ -3532,12 +3542,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5149"/>
         <source>News Page Up)</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų puslapis Up)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5150"/>
         <source>News Page Down)</source>
-        <translation type="unfinished"/>
+        <translation>Naujienų puslapis Down)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5152"/>
@@ -3597,17 +3607,17 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5216"/>
         <source>Close Tab</source>
-        <translation>Uždaryti kortelę</translation>
+        <translation>Uždaryti aplanką</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5217"/>
         <source>Close Other Tabs</source>
-        <translation>Uždaryti kitas korteles</translation>
+        <translation>Uždaryti kitus aplankus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5218"/>
         <source>Close All Tabs</source>
-        <translation>Uždaryti visas korteles</translation>
+        <translation>Uždaryti visus aplankus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5230"/>
@@ -3617,7 +3627,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5232"/>
         <source>Open Homepage Feed</source>
-        <translation>Atidaryti šaltinio pagrindinį puslapį</translation>
+        <translation>Atidaryti pagrindinį šaltinio puslapį</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5233"/>
@@ -3627,27 +3637,27 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5234"/>
         <source>Collapse All Folders</source>
-        <translation type="unfinished"/>
+        <translation>Suskleisti visus aplankus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5235"/>
         <source>Expand All Folders</source>
-        <translation type="unfinished"/>
+        <translation>Išskleisti visus aplankus</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5236"/>
         <source>Next Folder</source>
-        <translation type="unfinished"/>
+        <translation>Kitas aplankas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5237"/>
         <source>Previous Folder</source>
-        <translation type="unfinished"/>
+        <translation>Buvęs aplankas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5238"/>
         <source>Expand Folder</source>
-        <translation type="unfinished"/>
+        <translation>Išskleisti aplanką</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5240"/>
@@ -3657,22 +3667,22 @@ nerastas!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5242"/>
         <source>Sort By</source>
-        <translation type="unfinished"/>
+        <translation>Lygiuoti pagal:</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5243"/>
         <source>Ascending</source>
-        <translation type="unfinished"/>
+        <translation>Didėjimo tvarka</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5244"/>
         <source>Descending</source>
-        <translation type="unfinished"/>
+        <translation>Mažėjimo tvarka</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5246"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="99"/>
@@ -3788,12 +3798,12 @@ nerastas!</translation>
     <message>
         <location filename="../src/updateobject.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Serveris reikalauja prisijungimo vardo!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Serverio atsakymas: nerasta!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="237"/>
@@ -3803,7 +3813,7 @@ nerastas!</translation>
     <message>
         <location filename="../src/updateobject.cpp" line="288"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Užklausos laikas baigėsi!</translation>
     </message>
 </context>
 </TS>
