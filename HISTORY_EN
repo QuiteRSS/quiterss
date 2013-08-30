@@ -2,8 +2,9 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.13.2+</b> (30 Aug 2013)
+<p><b>Version 0.13.3</b> (30 Aug 2013)
 <ul>
+<li>Added: Option "Save DB stored in memory to file every XX minutes"</li>
 <li>Added: Language: Turkish</li>
 
 <li>Changed: Parsing categories (Atom)</li>

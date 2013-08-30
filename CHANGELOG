@@ -1,3 +1,16 @@
+Version 0.13.3 (30 Aug 2013)
+  * Added: Option "Save DB stored in memory to file every XX minutes"
+  * Added: Language: Turkish
+  * Changed: Parsing categories (Atom)
+  * Changed: Focus on news after application starts
+  * Changed: Disabling notification disappearing by set notification delay to 0 seconds
+  * Fixed: Codepage while parsing feeds
+  * Fixed: Wrong news publish date (Atom)
+  * Fixed: Importing feeds containing character '&'
+  * Fixed: Memory leak. CPU loading is reduced
+  * Fixed: Import feeds into present folders
+  * Fixed: Creating links to attachments (Link to audio)
+
 Version 0.13.2 (30 Jul 2013)
   * Added: Options network requests when updating feeds
   * Added: Displaying status of an icon feed and in properties
