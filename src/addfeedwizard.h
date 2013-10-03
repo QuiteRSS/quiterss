@@ -22,6 +22,7 @@
 #include <QtWidgets>
 #else
 #include <QtGui>
+#include <QWizard>
 #endif
 #include <QtSql>
 

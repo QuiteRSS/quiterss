@@ -18,6 +18,7 @@
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
+#include "rsslisting.h"
 
 #include <QDomDocument>
 
@@ -358,6 +359,27 @@ void AddFeedWizard::addFeed()
 
     feedId_ = q.lastInsertId().toInt();
     q.finish();
+
+    if (feedUrlString_.contains("&:COOKIE:", Qt::CaseInsensitive)) {
+      int index = feedUrlString_.lastIndexOf("&:COOKIE:", -1, Qt::CaseInsensitive);
+      QString cookieStr = feedUrlString_.right(feedUrlString_.length() - index - 9);
+      QStringList cookieStrList = cookieStr.split(";");
+
+      RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
+      QList<QNetworkCookie> loadedCookies;
+      foreach (QString cookieStr, cookieStrList) {
+        const QList<QNetworkCookie> &cookieList = QNetworkCookie::parseCookies(cookieStr.toUtf8());
+        if (cookieList.isEmpty()) {
+          continue;
+        }
+        QNetworkCookie cookie = cookieList.at(0);
+        QDateTime date = QDateTime::currentDateTime();
+        date = date.addYears(35);
+        cookie.setExpirationDate(date);
+        loadedCookies.append(cookie);
+      }
+      rssl->cookieJar_->setCookiesFromUrl(loadedCookies, feedUrlString_);
+    }
 
     emit signalRequestUrl(feedId_, feedUrlString_, QDateTime(), userInfo);
   }
