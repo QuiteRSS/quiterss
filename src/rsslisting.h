@@ -189,6 +189,7 @@ public:
   QString titleColor_;
   QString dateColor_;
   QString authorColor_;
+  QString newsTextColor_;
   QString newsTitleBackgroundColor_;
   QString newsBackgroundColor_;
   QString formatDate_;

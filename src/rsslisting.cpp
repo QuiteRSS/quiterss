@@ -2135,6 +2135,7 @@ void RSSListing::readSettings()
   titleColor_ = settings_->value("titleColor", "#0066CC").toString();
   dateColor_ = settings_->value("dateColor", "#666666").toString();
   authorColor_ = settings_->value("authorColor", "#666666").toString();
+  newsTextColor_ = settings_->value("newsTextColor", "#000000").toString();
   newsTitleBackgroundColor_ = settings_->value("newsTitleBackgroundColor", "#FFFFFF").toString();
   newsBackgroundColor_ = settings_->value("newsBackgroundColor", "#FFFFFF").toString();
   feedsTreeModel_->feedWithNewNewsColor_ =
@@ -2330,6 +2331,7 @@ void RSSListing::writeSettings()
   settings_->setValue("titleColor", titleColor_);
   settings_->setValue("dateColor", dateColor_);
   settings_->setValue("authorColor", authorColor_);
+  settings_->setValue("newsTextColor", newsTextColor_);
   settings_->setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
   settings_->setValue("newsBackgroundColor", newsBackgroundColor_);
   settings_->setValue("feedWithNewNewsColor", feedsTreeModel_->feedWithNewNewsColor_);
@@ -3831,18 +3833,21 @@ void RSSListing::showOptionDlg()
   pixmapColor.fill(authorColor_);
   optionsDialog_->colorsTree_->topLevelItem(9)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(9)->setText(1, authorColor_);
-  pixmapColor.fill(newsTitleBackgroundColor_);
+  pixmapColor.fill(newsTextColor_);
   optionsDialog_->colorsTree_->topLevelItem(10)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(10)->setText(1, newsTitleBackgroundColor_);
-  pixmapColor.fill(newsBackgroundColor_);
+  optionsDialog_->colorsTree_->topLevelItem(10)->setText(1, newsTextColor_);
+  pixmapColor.fill(newsTitleBackgroundColor_);
   optionsDialog_->colorsTree_->topLevelItem(11)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(11)->setText(1, newsBackgroundColor_);
-  pixmapColor.fill(feedsTreeModel_->feedWithNewNewsColor_);
+  optionsDialog_->colorsTree_->topLevelItem(11)->setText(1, newsTitleBackgroundColor_);
+  pixmapColor.fill(newsBackgroundColor_);
   optionsDialog_->colorsTree_->topLevelItem(12)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(12)->setText(1, feedsTreeModel_->feedWithNewNewsColor_);
-  pixmapColor.fill(feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog_->colorsTree_->topLevelItem(12)->setText(1, newsBackgroundColor_);
+  pixmapColor.fill(feedsTreeModel_->feedWithNewNewsColor_);
   optionsDialog_->colorsTree_->topLevelItem(13)->setIcon(0, pixmapColor);
-  optionsDialog_->colorsTree_->topLevelItem(13)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog_->colorsTree_->topLevelItem(13)->setText(1, feedsTreeModel_->feedWithNewNewsColor_);
+  pixmapColor.fill(feedsTreeModel_->countNewsUnreadColor_);
+  optionsDialog_->colorsTree_->topLevelItem(14)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(14)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
 
   optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
@@ -4181,10 +4186,11 @@ void RSSListing::showOptionDlg()
   titleColor_ = optionsDialog_->colorsTree_->topLevelItem(7)->text(1);
   dateColor_ = optionsDialog_->colorsTree_->topLevelItem(8)->text(1);
   authorColor_ = optionsDialog_->colorsTree_->topLevelItem(9)->text(1);
-  newsTitleBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(10)->text(1);
-  newsBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(11)->text(1);
-  feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(12)->text(1);
-  feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
+  newsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(10)->text(1);
+  newsTitleBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(11)->text(1);
+  newsBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(12)->text(1);
+  feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
+  feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(14)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;

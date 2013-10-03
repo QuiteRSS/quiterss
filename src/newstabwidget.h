@@ -115,13 +115,6 @@ public:
 
   QAction *separatorRAct_;
 
-  QString linkColor_;
-  QString titleColor_;
-  QString dateColor_;
-  QString authorColor_;
-  QString newsTitleBackgroundColor_;
-  QString newsBackgroundColor_;
-
 public slots:
   void slotNewsViewClicked(QModelIndex index);
   void slotNewsViewSelected(QModelIndex index, bool clicked = false);
