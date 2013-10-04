@@ -144,6 +144,8 @@ void FindTextContent::focusOutEvent(QFocusEvent *event)
 void FindTextContent::updateClearButton(const QString& text)
 {
   clearButton_->setVisible(!text.isEmpty());
+  if (!hasFocus())
+    findLabel_->setVisible(true);
 }
 
 void FindTextContent::slotClear()

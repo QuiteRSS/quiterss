@@ -4531,6 +4531,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     return;
   }
 
+  currentNewsTab->findText_->clear();
+
   QElapsedTimer timer;
   timer.start();
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -7252,6 +7254,8 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
     currentNewsTab->setTextTab(item->text(0));
 
     currentNewsTab->labelId_ = item->text(2).toInt();
+
+    currentNewsTab->findText_->clear();
 
     switch (type) {
     case TAB_CAT_UNREAD:
