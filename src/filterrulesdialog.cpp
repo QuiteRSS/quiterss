@@ -48,7 +48,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   treeItem.clear();
   treeItem << tr("All Feeds") << "0";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(0, Qt::Checked);
+  treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree_->addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q;
