@@ -539,6 +539,7 @@ private:
   QAction *filterFeedsNew_;
   QAction *filterFeedsUnread_;
   QAction *filterFeedsStarred_;
+  QAction *filterFeedsError_;
 
   QAction *filterNewsAll_;
   QAction *filterNewsNew_;

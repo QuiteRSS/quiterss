@@ -1038,6 +1038,9 @@ void RSSListing::createActions()
   filterFeedsStarred_ = new QAction(this);
   filterFeedsStarred_->setObjectName("filterFeedsStarred_");
   filterFeedsStarred_->setCheckable(true);
+  filterFeedsError_ = new QAction(this);
+  filterFeedsError_->setObjectName("filterFeedsError_");
+  filterFeedsError_->setCheckable(true);
 
   newsFilter_ = new QAction(this);
   newsFilter_->setObjectName("newsFilter");
@@ -1675,6 +1678,7 @@ void RSSListing::createMenu()
   feedsFilterGroup_->addAction(filterFeedsNew_);
   feedsFilterGroup_->addAction(filterFeedsUnread_);
   feedsFilterGroup_->addAction(filterFeedsStarred_);
+  feedsFilterGroup_->addAction(filterFeedsError_);
   connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setFeedsFilter(QAction*)));
 
@@ -4462,6 +4466,27 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     }
   } else if (pAct->objectName() == "filterFeedsStarred_") {
     strFilter = QString("label LIKE '%starred%'");
+  } else if (pAct->objectName() == "filterFeedsError_") {
+    strFilter = "";
+    QSqlQuery q;
+    parentIdList.clear();
+    q.exec("SELECT id, parentId, xmlUrl FROM feeds WHERE status!=0 AND status!=''");
+    while (q.next()) {
+      if (!strFilter.isEmpty()) strFilter.append(" OR ");
+      strFilter.append(QString("id=%1").arg(q.value(0).toInt()));
+      int parentId = q.value(1).toInt();
+      if (!parentIdList.contains(parentId)) {
+        while (parentId) {
+          if (!parentIdList.contains(parentId))
+            parentIdList.append(parentId);
+          else break;
+          strFilter.append(QString(" OR id=%1").arg(parentId));
+          QSqlQuery q1;
+          q1.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(parentId));
+          if (q1.next()) parentId = q1.value(0).toInt();
+        }
+      }
+    }
   }
 
   // ... add filter from "search"
@@ -5082,6 +5107,7 @@ void RSSListing::retranslateStrings()
   filterFeedsNew_->setText(tr("Show New"));
   filterFeedsUnread_->setText(tr("Show Unread"));
   filterFeedsStarred_->setText(tr("Show Starred Feeds"));
+  filterFeedsError_->setText(tr("Show Not Working Feeds"));
 
   newsFilter_->setText(tr("Filter News"));
   filterNewsAll_->setText(tr("Show All"));
@@ -8041,6 +8067,11 @@ void RSSListing::setStatusFeed(const int &feedId, const QString &status)
     QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
     feedsTreeModel_->setData(indexStatus, status);
     feedsTreeView_->viewport()->update();
+
+    QSqlQuery q;
+    QString qStr = QString("UPDATE feeds SET status='%1' WHERE id=='%2'").
+        arg(status).arg(feedId);
+    q.exec(qStr);
   }
 }
 
