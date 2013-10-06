@@ -4465,12 +4465,10 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
       strFilter.append(")");
     }
   } else if (pAct->objectName() == "filterFeedsStarred_") {
-    strFilter = QString("label LIKE '%starred%'");
-  } else if (pAct->objectName() == "filterFeedsError_") {
     strFilter = "";
     QSqlQuery q;
     parentIdList.clear();
-    q.exec("SELECT id, parentId, xmlUrl FROM feeds WHERE status!=0 AND status!=''");
+    q.exec("SELECT id, parentId FROM feeds WHERE label LIKE '%starred%'");
     while (q.next()) {
       if (!strFilter.isEmpty()) strFilter.append(" OR ");
       strFilter.append(QString("id=%1").arg(q.value(0).toInt()));
@@ -4487,6 +4485,29 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
         }
       }
     }
+    if (strFilter.isEmpty()) strFilter = "label LIKE '%starred%'";
+  } else if (pAct->objectName() == "filterFeedsError_") {
+    strFilter = "";
+    QSqlQuery q;
+    parentIdList.clear();
+    q.exec("SELECT id, parentId FROM feeds WHERE status!=0 AND status!=''");
+    while (q.next()) {
+      if (!strFilter.isEmpty()) strFilter.append(" OR ");
+      strFilter.append(QString("id=%1").arg(q.value(0).toInt()));
+      int parentId = q.value(1).toInt();
+      if (!parentIdList.contains(parentId)) {
+        while (parentId) {
+          if (!parentIdList.contains(parentId))
+            parentIdList.append(parentId);
+          else break;
+          strFilter.append(QString(" OR id=%1").arg(parentId));
+          QSqlQuery q1;
+          q1.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(parentId));
+          if (q1.next()) parentId = q1.value(0).toInt();
+        }
+      }
+    }
+    if (strFilter.isEmpty()) strFilter = "status!=0 AND status!=''";
   }
 
   // ... add filter from "search"
@@ -4509,14 +4530,14 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   timer.start();
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << strFilter;
 
-  static QString strFilterOld = QString();
+  static QString feedsFilterActionOld = "filterFeedsAll_";
 
-  if (strFilterOld.compare(strFilter) == 0) {
+  if (pAct->objectName() == feedsFilterActionOld) {
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "No filter changes";
     return;
   }
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "Applying new filter";
-  strFilterOld = strFilter;
+  feedsFilterActionOld = pAct->objectName();
 
   // Set filter
   feedsTreeModel_->setFilter(strFilter);
