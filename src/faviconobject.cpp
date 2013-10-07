@@ -53,7 +53,7 @@ FaviconObject::FaviconObject(QObject *parent)
 
 /** @brief Put requested URL in request queue
  *----------------------------------------------------------------------------*/
-void FaviconObject::requestUrl(const QString &urlString, const QString &feedUrl)
+void FaviconObject::requestUrl(QString urlString, QString feedUrl)
 {
   urlsQueue_.enqueue(urlString);
   feedsQueue_.enqueue(feedUrl);
@@ -223,7 +223,7 @@ void FaviconObject::slotRequestTimeout()
 
 /** @brief Save icon in DB and emit signal to update it
  *----------------------------------------------------------------------------*/
-void FaviconObject::slotIconSave(const QString &feedUrl, const QByteArray &faviconData)
+void FaviconObject::slotIconSave(QString feedUrl, QByteArray faviconData)
 {
   int feedId = 0;
 

@@ -59,8 +59,8 @@ UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepe
 
 /** @brief Put URL in request queue
  *----------------------------------------------------------------------------*/
-void UpdateObject::requestUrl(const int &id, const QString &urlString,
-                              const QDateTime &date, const QString	&userInfo)
+void UpdateObject::requestUrl(int id, QString urlString,
+                              QDateTime date, QString userInfo)
 {
   idsQueue_.enqueue(id);
   feedsQueue_.enqueue(urlString);

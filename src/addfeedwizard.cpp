@@ -433,10 +433,9 @@ void AddFeedWizard::slotProgressBarUpdate()
     QTimer::singleShot(250, this, SLOT(slotProgressBarUpdate()));
 }
 
-void AddFeedWizard::getUrlDone(const int &result, const int &feedId,
-                               const QString &feedUrlStr, const QString &error,
-                               const QByteArray &data, const QDateTime &dtReply,
-                               const QString &codecName)
+void AddFeedWizard::getUrlDone(int result, int feedId, QString feedUrlStr,
+                               QString error, QByteArray data,
+                               QDateTime dtReply, QString codecName)
 {
   if (!data.isEmpty()) {
     bool isFeed = false;
@@ -543,8 +542,7 @@ void AddFeedWizard::getUrlDone(const int &result, const int &feedId,
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(const int &feedId, const bool &,
-                                   const int &newCount, const QString &)
+void AddFeedWizard::slotUpdateFeed(int feedId, bool, int newCount, QString)
 {
   qDebug() << "ParseDone: " << feedUrlString_;
   selectedPage = true;
@@ -695,6 +693,6 @@ void AddFeedWizard::slotFeedCountsUpdate(FeedCountStruct)
 {
 }
 
-void AddFeedWizard::setStatusFeed(const int &, const QString &)
+void AddFeedWizard::setStatusFeed(int, QString)
 {
 }

@@ -265,11 +265,10 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void getUrlDone(const int &result, const int &feedId, const QString &feedUrlStr,
-                  const QString &error, const QByteArray &data,
-                  const QDateTime &dtReply, const QString &codecName);
-  void slotUpdateFeed(const int &feedId, const bool &changed,
-                      const int &newCount, const QString &status);
+  void getUrlDone(int result, int feedId, QString feedUrlStr,
+                  QString error, QByteArray data,
+                  QDateTime dtReply, QString codecName);
+  void slotUpdateFeed(int feedId, bool changed, int newCount, QString status);
   void slotUpdateFeedDelayed(const int &feedId, const bool &changed,
                              const int &newCount, const QString &status);
   void slotFeedCountsUpdate(FeedCountStruct counts);
@@ -281,17 +280,17 @@ public slots:
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
-  void setStatusFeed(const int &feedId, const QString &status);
+  void setStatusFeed(int feedId, QString status);
 
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
-  void signalRequestUrl(int feedId, const QString &urlString,
-                        const QDateTime &date, const QString &userInfo);
-  void xmlReadyParse(const QByteArray &data, const int &feedId,
-                     const QDateTime &dtReply, const QString &codecName);
-  void faviconRequestUrl(const QString &urlString, const QString &feedUrl);
-  void signalIconFeedReady(const QString &feedUrl, const QByteArray &faviconData);
+  void signalRequestUrl(int feedId, QString urlString,
+                        QDateTime date, QString userInfo);
+  void xmlReadyParse(QByteArray data, int feedId,
+                     QDateTime dtReply, QString codecName);
+  void faviconRequestUrl(QString urlString, QString feedUrl);
+  void signalIconFeedReady(QString feedUrl, QByteArray faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();
@@ -330,9 +329,8 @@ private slots:
   void slotFeedMenuShow();
   void markAllFeedsRead();
   void markAllFeedsOld();
-  void slotIconFeedPreparing(const QString &feedUrl, const QByteArray &byteArray,
-                             const QString &format);
-  void slotIconFeedUpdate(int feedId, const QByteArray &faviconData);
+  void slotIconFeedPreparing(QString feedUrl, QByteArray byteArray, QString format);
+  void slotIconFeedUpdate(int feedId, QByteArray faviconData);
   void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();

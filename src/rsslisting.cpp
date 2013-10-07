@@ -2792,10 +2792,9 @@ void RSSListing::slotExportFeeds()
 
 /** @brief Process network request completion
  *---------------------------------------------------------------------------*/
-void RSSListing::getUrlDone(const int &result, const int &feedId,
-                            const QString &feedUrlStr, const QString &error,
-                            const QByteArray &data, const QDateTime &dtReply,
-                            const QString &codecName)
+void RSSListing::getUrlDone(int result, int feedId, QString feedUrlStr,
+                            QString error, QByteArray data, QDateTime dtReply,
+                            QString codecName)
 {
   qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
 
@@ -3275,8 +3274,7 @@ void RSSListing::slotRecountCategoryCounts()
  * @param url URL of updating feed
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(const int &feedId, const bool &changed,
-                                const int &newCount, const QString &status)
+void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
 {
   updateDelayer_->delayUpdate(feedId, changed, newCount, status);
 }
@@ -5963,9 +5961,8 @@ void RSSListing::markAllFeedsOld()
 
 /** @brief Prepare feed icon for storing in DB
  *---------------------------------------------------------------------------*/
-void RSSListing::slotIconFeedPreparing(const QString &feedUrl,
-                                       const QByteArray &byteArray,
-                                       const QString &format)
+void RSSListing::slotIconFeedPreparing(QString feedUrl, QByteArray byteArray,
+                                       QString format)
 {
   QPixmap icon;
   if (icon.loadFromData(byteArray)) {
@@ -5991,7 +5988,7 @@ void RSSListing::slotIconFeedPreparing(const QString &feedUrl,
 
 /** @brief Update feed icon in model and view
  *---------------------------------------------------------------------------*/
-void RSSListing::slotIconFeedUpdate(int feedId, const QByteArray &faviconData)
+void RSSListing::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(feedId);
   if (index.isValid()) {
@@ -8074,7 +8071,7 @@ bool RSSListing::removePath(const QString &path)
     return result;
 }
 
-void RSSListing::setStatusFeed(const int &feedId, const QString &status)
+void RSSListing::setStatusFeed(int feedId, QString status)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(feedId);
   if (index.isValid()) {

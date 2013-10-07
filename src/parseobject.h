@@ -79,14 +79,14 @@ public:
   explicit ParseObject(QObject *parent);
 
 public slots:
-  void parseXml(const QByteArray &data, const int &feedId,
-                const QDateTime &dtReply, const QString &codecName);
+  void parseXml(QByteArray data, int feedId,
+                QDateTime dtReply, QString codecName);
 
 signals:
   void signalReadyParse(const QByteArray &xml, const int &feedId,
                         const QDateTime &dtReply, const QString &codecName);
-  void feedUpdated(const int &feedId, const bool &changed,
-                   int newCount, const QString &status);
+  void feedUpdated(int feedId, bool changed,
+                   int newCount, QString status);
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:

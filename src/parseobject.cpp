@@ -51,8 +51,8 @@ ParseObject::ParseObject(QObject *parent)
 
 /** @brief Queueing xml-data
  *----------------------------------------------------------------------------*/
-void ParseObject::parseXml(const QByteArray &data, const int &feedId,
-                           const QDateTime &dtReply, const QString &codecName)
+void ParseObject::parseXml(QByteArray data, int feedId,
+                           QDateTime dtReply, QString codecName)
 {
   idsQueue_.enqueue(feedId);
   xmlsQueue_.enqueue(data);

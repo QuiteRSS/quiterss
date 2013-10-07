@@ -44,8 +44,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
 
   connect(this, SIGNAL(signalLoadIcon(QString,QString)),
           parent, SIGNAL(faviconRequestUrl(QString,QString)));
-  connect(parent, SIGNAL(signalIconFeedReady(QString, const QByteArray&)),
-          this, SLOT(slotFaviconUpdate(QString, const QByteArray&)));
+  connect(parent, SIGNAL(signalIconFeedReady(QString,QByteArray)),
+          this, SLOT(slotFaviconUpdate(QString,QByteArray)));
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateGeneralTab()

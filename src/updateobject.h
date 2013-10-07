@@ -35,23 +35,21 @@ public:
   NetworkManager *networkManager_;
 
 public slots:
-  void requestUrl(const int &id, const QString &urlString, const QDateTime &date,
-                  const QString &userInfo = "");
+  void requestUrl(int id, QString urlString, QDateTime date, QString userInfo = "");
   void slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                 const QDateTime &date, const int &count);
   void slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                const QDateTime &date, const int &count);
 
 signals:
-  void getUrlDone(const int &result, const int &feedId, const QString &feedUrl = "",
-                  const QString &error = "", const QByteArray &data = NULL,
-                  const QDateTime &dtReply = QDateTime(),
-                  const QString &codecName = "");
+  void getUrlDone(int result, int feedId, QString feedUrl = "",
+                  QString error = "", QByteArray data = NULL,
+                  QDateTime dtReply = QDateTime(), QString codecName = "");
   void signalHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                   const QDateTime &date, const int &count = 0);
   void signalGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                  const QDateTime &date, const int &count = 0);
-  void setStatusFeed(const int &feedId, const QString &status);
+  void setStatusFeed(int feedId, QString status);
 
 private slots:
   void getQueuedUrl();
