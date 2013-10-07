@@ -33,6 +33,7 @@ class CleanUpThread : public QThread
   Q_OBJECT
 public:
   explicit CleanUpThread(QObject *parent);
+  ~CleanUpThread();
 
   int maxDayCleanUp_;
   int maxNewsCleanUp_;

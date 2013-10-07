@@ -317,9 +317,9 @@ void RSSListing::slotClose()
   writeSettings();
   cookieJar_->saveCookies();
 
-  persistentUpdateThread_->quit();
-  persistentParseThread_->quit();
-  faviconThread_->quit();
+  delete persistentUpdateThread_;
+  delete persistentParseThread_;
+  delete faviconThread_;
 
   cleanUpShutdown();
 
@@ -335,14 +335,7 @@ void RSSListing::slotClose()
 #endif
     }
   }
-
-  while (persistentUpdateThread_->isRunning());
-  while (persistentParseThread_->isRunning());
-  while (faviconThread_->isRunning());
-
-  db_.close();
-
-  QSqlDatabase::removeDatabase(QString());
+  delete dbMemFileThread_;
 
   emit signalCloseApp();
 }

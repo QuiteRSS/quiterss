@@ -38,6 +38,12 @@ CleanUpThread::CleanUpThread(QObject *parent)
 {
 }
 
+CleanUpThread::~CleanUpThread()
+{
+  exit();
+  wait();
+}
+
 /*virtual*/ void CleanUpThread::run()
 {
   QSqlQuery q;
@@ -208,7 +214,6 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
 
 CleanUpWizard::~CleanUpWizard()
 {
-  while (cleanUpThread_->isRunning());
 }
 
 /*virtual*/ void CleanUpWizard::closeEvent(QCloseEvent* event)

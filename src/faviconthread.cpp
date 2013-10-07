@@ -34,6 +34,9 @@ FaviconThread::FaviconThread(QObject *parent)
 FaviconThread::~FaviconThread()
 {
   qDebug() << "FaviconLoader::~destructor";
+
+  exit();
+  wait();
 }
 
 /*virtual*/ void FaviconThread::run()

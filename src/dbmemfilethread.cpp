@@ -42,6 +42,9 @@ DBMemFileThread::DBMemFileThread(const QString &filename, QObject *parent)
 DBMemFileThread::~DBMemFileThread()
 {
   qDebug() << "DBMemFileThread::~destructor";
+
+  exit();
+  wait();
 }
 
 /*

@@ -32,6 +32,9 @@ ParseThread::ParseThread(QObject *parent)
 ParseThread::~ParseThread()
 {
   qDebug() << "ParseThread::~destructor";
+
+  exit();
+  wait();
 }
 
 /*virtual*/ void ParseThread::run()

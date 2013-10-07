@@ -36,6 +36,9 @@ UpdateThread::UpdateThread(QObject *parent, int timeoutRequest, int numberReques
 UpdateThread::~UpdateThread()
 {
   qDebug() << "UpdateThread::~destructor";
+
+  exit();
+  wait();
 }
 
 /*virtual*/ void UpdateThread::run()
