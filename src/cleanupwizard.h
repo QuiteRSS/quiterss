@@ -48,9 +48,6 @@ public:
   QList<int> feedsIdList_;
   QList<int> foldersIdList_;
 
-signals:
-  void signalFinishCleanUp();
-
 protected:
   virtual void run();
 
@@ -65,10 +62,6 @@ public:
 
 public slots:
   void finishCleanUp();
-
-signals:
-  void signalStartCleanUp();
-  void signalFinish();
 
 protected:
   virtual void closeEvent(QCloseEvent*);

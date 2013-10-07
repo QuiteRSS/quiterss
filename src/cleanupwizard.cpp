@@ -182,8 +182,6 @@ CleanUpThread::~CleanUpThread()
 
   q.exec("VACUUM");
   q.finish();
-
-  emit signalFinishCleanUp();
 }
 
 CleanUpWizard::CleanUpWizard(QWidget *parent)
@@ -202,9 +200,6 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
   addPage(createCleanUpOptionsPage());
 
   cleanUpThread_ = new CleanUpThread(this);
-
-  connect(this, SIGNAL(signalFinish()),
-          SLOT(finishCleanUp()), Qt::QueuedConnection);
 
   connect(button(QWizard::FinishButton), SIGNAL(clicked()),
           this, SLOT(finishButtonClicked()));
@@ -451,7 +446,7 @@ void CleanUpWizard::finishButtonClicked()
   cleanUpThread_->feedsIdList_ = feedsIdList;
   cleanUpThread_->foldersIdList_ = foldersIdList;
 
-  connect(cleanUpThread_, SIGNAL(signalFinishCleanUp()),
+  connect(cleanUpThread_, SIGNAL(finished()),
           this, SLOT(finishCleanUp()));
 
   cleanUpThread_->start();
