@@ -27,8 +27,7 @@
 #include <QtSql>
 
 #include "lineedit.h"
-#include "parsethread.h"
-#include "updatethread.h"
+#include "updatefeeds.h"
 
 class AddFeedWizard : public QWizard
 {
@@ -82,8 +81,7 @@ private:
   void showProgressBar();
   void finish();
 
-  UpdateThread *persistentUpdateThread_;
-  ParseThread *persistentParseThread_;
+  UpdateFeeds *updateFeeds_;
   QWizardPage *createUrlFeedPage();
   QWizardPage *createNameFeedPage();
   QCheckBox *titleFeedAsName_;

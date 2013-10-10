@@ -60,9 +60,7 @@ TEMPLATE = app
 
 HEADERS += \
     src/VersionNo.h \
-    src/updatethread.h \
     src/rsslisting.h \
-    src/parsethread.h \
     src/parseobject.h \
     src/optionsdialog.h \
     src/newsview.h \
@@ -105,12 +103,11 @@ HEADERS += \
     src/downloads/downloaditem.h \
     src/tabbar.h \
     src/categoriestreewidget.h \
-    src/cleanupwizard.h
+    src/cleanupwizard.h \
+    src/updatefeeds.h
 
 SOURCES += \
-    src/updatethread.cpp \
     src/rsslisting.cpp \
-    src/parsethread.cpp \
     src/parseobject.cpp \
     src/optionsdialog.cpp \
     src/newsview.cpp \
@@ -153,7 +150,8 @@ SOURCES += \
     src/downloads/downloaditem.cpp \
     src/tabbar.cpp \
     src/categoriestreewidget.cpp \
-    src/cleanupwizard.cpp
+    src/cleanupwizard.cpp \
+    src/updatefeeds.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

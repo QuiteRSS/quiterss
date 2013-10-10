@@ -21,23 +21,22 @@
 #include <QThread>
 
 #include "updateobject.h"
+#include "parseobject.h"
 
-class UpdateThread : public QThread
+class UpdateFeeds : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateThread(QObject *parent, int timeoutRequest = 45, int numberRequest = 1, int numberRepeats = 2);
-  ~UpdateThread();
+  explicit UpdateFeeds(QObject *parent);
+  ~UpdateFeeds();
 
   UpdateObject *updateObject_;
-
-protected:
-  virtual void run();
+  ParseObject *parseObject_;
+  QThread *getFeedThread_;
+  QThread *parseFeedThread_;
 
 private:
-  int timeoutRequest_;
-  int numberRequest_;
-  int numberRepeats_;
+
 
 };
 

@@ -79,10 +79,18 @@ public:
   explicit ParseObject(QObject *parent);
 
 public slots:
-  void parseXml(QByteArray data, int feedId,
-                QDateTime dtReply, QString codecName);
+  void slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
+  void slotGetFeedsFolder(QString query);
+  void slotGetAllFeeds();
+  void getUrlDone(int result, int feedId, QString feedUrlStr,
+                  QString error, QByteArray data,
+                  QDateTime dtReply, QString codecName);
 
 signals:
+  void showProgressBar(int value);
+  void loadProgress(int value, bool clear = false);
+  void signalRequestUrl(int feedId, QString urlString,
+                        QDateTime date, QString userInfo);
   void signalReadyParse(const QByteArray &xml, const int &feedId,
                         const QDateTime &dtReply, const QString &codecName);
   void feedUpdated(int feedId, bool changed,
@@ -90,11 +98,17 @@ signals:
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:
+  bool addFeedInQueue(int feedId, const QString &feedUrl,
+                      const QDateTime &date, int auth);
   void getQueuedXml();
   void slotParse(const QByteArray &xmlData, const int &feedId,
                  const QDateTime &dtReply, const QString &codecName);
 
 private:
+  void finishUpdate(int feedId, bool changed,
+                    int newCount, QString status);
+  void parseXml(QByteArray data, int feedId,
+                QDateTime dtReply, QString codecName);
   void parseAtom(const QString &feedUrl, const QDomDocument &doc);
   void parseRss(const QString &feedUrl, const QDomDocument &doc);
   void addAtomNewsIntoBase(NewsItemStruct &newsItem);
@@ -105,6 +119,8 @@ private:
                         const QString &updated, const QString &lastBuildDate);
 
   RSSListing *rssl_;
+  QList<int> feedIdList_;
+  int updateFeedsCount_;
   QTimer *parseTimer_;
   int currentFeedId_;
   QQueue<int> idsQueue_;

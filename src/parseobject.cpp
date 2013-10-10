@@ -31,6 +31,7 @@
 ParseObject::ParseObject(QObject *parent)
   : QObject(0)
   , currentFeedId_(0)
+  , updateFeedsCount_(0)
 {
   setObjectName("parseObject_");
 
@@ -47,6 +48,110 @@ ParseObject::ParseObject(QObject *parent)
 
   connect(this, SIGNAL(signalReadyParse(QByteArray,int,QDateTime,QString)),
           SLOT(slotParse(QByteArray,int,QDateTime,QString)));
+}
+
+/** @brief Process update feed action
+ *---------------------------------------------------------------------------*/
+void ParseObject::slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth)
+{
+  addFeedInQueue(feedId, feedUrl, date, auth);
+
+  emit showProgressBar(updateFeedsCount_);
+}
+
+/** @brief Process update feed in folder action
+ *---------------------------------------------------------------------------*/
+void ParseObject::slotGetFeedsFolder(QString query)
+{
+  QSqlQuery q;
+  q.exec(query);
+  while (q.next()) {
+    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
+                   q.value(2).toDateTime(), q.value(3).toInt());
+  }
+
+  emit showProgressBar(updateFeedsCount_);
+}
+
+/** @brief Process update all feeds action
+ *---------------------------------------------------------------------------*/
+void ParseObject::slotGetAllFeeds()
+{
+  QSqlQuery q;
+  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
+  while (q.next()) {
+    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
+                   q.value(2).toDateTime(), q.value(3).toInt());
+  }
+
+  emit showProgressBar(updateFeedsCount_);
+}
+
+// ----------------------------------------------------------------------------
+bool ParseObject::addFeedInQueue(int feedId, const QString &feedUrl,
+                                 const QDateTime &date, int auth)
+{
+  int feedIdIndex = feedIdList_.indexOf(feedId);
+  if (feedIdIndex > -1) {
+    return false;
+  } else {
+    feedIdList_.append(feedId);
+    updateFeedsCount_ = updateFeedsCount_ + 2;
+    QString userInfo;
+    if (auth == 1) {
+      QSqlQuery q;
+      QUrl url(feedUrl);
+      q.prepare("SELECT username, password FROM passwords WHERE server=?");
+      q.addBindValue(url.host());
+      q.exec();
+      if (q.next()) {
+        userInfo = QString("%1:%2").arg(q.value(0).toString()).
+            arg(QString::fromUtf8(QByteArray::fromBase64(q.value(1).toByteArray())));
+      }
+    }
+    emit signalRequestUrl(feedId, feedUrl, date, userInfo);
+    return true;
+  }
+}
+
+/** @brief Process network request completion
+ *---------------------------------------------------------------------------*/
+void ParseObject::getUrlDone(int result, int feedId, QString feedUrlStr,
+                             QString error, QByteArray data, QDateTime dtReply,
+                             QString codecName)
+{
+  qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
+
+  if (updateFeedsCount_ > 0) {
+    updateFeedsCount_--;
+    emit loadProgress(updateFeedsCount_);
+  }
+
+  if (!data.isEmpty()) {
+    parseXml(data, feedId, dtReply, codecName);
+  } else {
+    QString status = "0";
+    if (result < 0) status = QString("%1 %2").arg(result).arg(error);
+    finishUpdate(feedId, false, 0, status);
+  }
+}
+
+void ParseObject::finishUpdate(int feedId, bool changed, int newCount, QString status)
+{
+  if (updateFeedsCount_ > 0) {
+    updateFeedsCount_--;
+    emit loadProgress(updateFeedsCount_);
+  }
+  if (updateFeedsCount_ <= 0) {
+    emit finishUpdateFeed();
+  }
+
+  int feedIdIndex = feedIdList_.indexOf(feedId);
+  if (feedIdIndex > -1) {
+    feedIdList_.takeAt(feedIdIndex);
+  }
+
+  emit feedUpdated(feedId, changed, newCount, status);
 }
 
 /** @brief Queueing xml-data
@@ -214,7 +319,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   q.finish();
 
-  emit feedUpdated(parseFeedId_, feedChanged_, newCount, "0");
+  finishUpdate(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
 }
 

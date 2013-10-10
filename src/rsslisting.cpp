@@ -158,12 +158,7 @@ RSSListing::RSSListing(QSettings *settings,
   connect(downloadManager_, SIGNAL(signalUpdateInfo(QString)),
           this, SLOT(updateInfoDownloads(QString)));
 
-  int timeoutRequest = settings_->value("Settings/timeoutRequest", 15).toInt();
-  int numberRequest = settings_->value("Settings/numberRequest", 10).toInt();
-  int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
-  persistentUpdateThread_ = new UpdateThread(this, timeoutRequest, numberRequest, numberRepeats);
-
-  persistentParseThread_ = new ParseThread(this);
+  updateFeeds_ = new UpdateFeeds(this);
 
   faviconThread_ = new FaviconThread(this);
 
@@ -317,8 +312,7 @@ void RSSListing::slotClose()
   writeSettings();
   cookieJar_->saveCookies();
 
-  delete persistentUpdateThread_;
-  delete persistentParseThread_;
+  delete updateFeeds_;
   delete faviconThread_;
 
   cleanUpShutdown();
@@ -2427,7 +2421,7 @@ void RSSListing::addFeed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
-  slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0");
+  slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0");
 
   delete addFeedWizard;
 }
@@ -2592,10 +2586,6 @@ void RSSListing::slotImportFeeds()
 
   importFeedStart_ = true;
 
-  timer_.start();
-  //  qCritical() << "Start update";
-  //  qCritical() << "------------------------------------------------------------";
-
   db_.transaction();
 
   QByteArray xmlData = file.readAll();
@@ -2703,10 +2693,7 @@ void RSSListing::slotImportFeeds()
 
   showProgressBar(updateFeedsCount_);
 
-  //  qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
-  //  qCritical() << "Start update: " << timer_.elapsed() << updateFeedsCount_;
-  //  qCritical() << "------------------------------------------------------------";
 }
 
 /** @brief Export feeds to OPML-file
@@ -2788,28 +2775,6 @@ void RSSListing::slotExportFeeds()
   xml.writeEndDocument();
 
   file.close();
-}
-
-/** @brief Process network request completion
- *---------------------------------------------------------------------------*/
-void RSSListing::getUrlDone(int result, int feedId, QString feedUrlStr,
-                            QString error, QByteArray data, QDateTime dtReply,
-                            QString codecName)
-{
-  qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
-
-  if (updateFeedsCount_ > 0) {
-    updateFeedsCount_--;
-    emit loadProgress(progressBar_->maximum() - updateFeedsCount_);
-  }
-
-  if (!data.isEmpty()) {
-    emit xmlReadyParse(data, feedId, dtReply, codecName);
-  } else {
-    QString status = "0";
-    if (result < 0) status = QString("%1 %2").arg(result).arg(error);
-    slotUpdateFeed(feedId, false, 0, status);
-  }
 }
 
 /** @brief Update feed counters and all its parents
@@ -3274,9 +3239,18 @@ void RSSListing::slotRecountCategoryCounts()
  * @param url URL of updating feed
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
+//void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
+//{
+//  updateDelayer_->delayUpdate(feedId, changed, newCount, status);
+//}
+
+void RSSListing::finishUpdateFeed()
 {
-  updateDelayer_->delayUpdate(feedId, changed, newCount, status);
+  emit signalShowNotification();
+  progressBar_->hide();
+  progressBar_->setMaximum(0);
+  progressBar_->setValue(0);
+  importFeedStart_ = false;
 }
 
 /** @brief Update feed view
@@ -3285,29 +3259,8 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString 
  * @param feedId Feed identifier to update
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
-                                       const int &newCount, const QString &status)
+void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
 {
-  if (updateFeedsCount_ > 0) {
-    updateFeedsCount_--;
-    emit loadProgress(progressBar_->maximum() - updateFeedsCount_);
-  }
-  if (updateFeedsCount_ <= 0) {
-    emit signalShowNotification();
-    progressBar_->hide();
-    progressBar_->setMaximum(0);
-    emit loadProgress(0);
-    updateFeedsCount_ = 0;
-    importFeedStart_ = false;
-    // qCritical() << "Stop update: " << timer_.elapsed();
-    // qCritical() << "------------------------------------------------------------";
-  }
-
-  int feedIdIndex = feedIdList_.indexOf(feedId);
-  if (feedIdIndex > -1) {
-    feedIdList_.takeAt(feedIdIndex);
-  }
-
   setStatusFeed(feedId, status);
 
   if (!changed) {
@@ -4230,6 +4183,25 @@ void RSSListing::myEmptyWorkingSet()
 #endif
 }
 
+/** @brief Process update feed action
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotGetFeed()
+{
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
+  if (feedsTreeModel_->isFolder(index)) {
+    QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
+    str.replace("feedId", "id");
+    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
+        arg(str);
+    emit signalGetFeedsFolder(qStr);
+  } else {
+    emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
+                       feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+                       feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
+                       feedsTreeModel_->dataField(index, "authentication").toInt());
+  }
+}
+
 /** @brief Show update progress bar after feed update has started
  *---------------------------------------------------------------------------*/
 void RSSListing::showProgressBar(int maximum)
@@ -4243,49 +4215,15 @@ void RSSListing::showProgressBar(int maximum)
   progressBar_->setMaximum(maximum);
   progressBar_->show();
 }
-
-/** @brief Process update feed action
- *---------------------------------------------------------------------------*/
-void RSSListing::slotGetFeed()
+void RSSListing::slotSetValue(int value, bool clear)
 {
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  if (feedsTreeModel_->isFolder(index)) {
-    QSqlQuery q;
-    QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
-    str.replace("feedId", "id");
-    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
-        arg(str);
-    q.exec(qStr);
-    while (q.next()) {
-      addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                     q.value(2).toDateTime(), q.value(3).toInt());
-    }
-  } else {
-    addFeedInQueue(feedsTreeModel_->dataField(index, "id").toInt(),
-                   feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-                   feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
-                   feedsTreeModel_->dataField(index, "authentication").toInt());
+  if (!clear)
+    progressBar_->setValue(progressBar_->maximum() - value);
+  else {
+    progressBar_->setValue(0);
+    progressBar_->hide();
+    progressBar_->setMaximum(0);
   }
-
-  showProgressBar(updateFeedsCount_);
-}
-
-/** @brief Process update all feeds action
- *---------------------------------------------------------------------------*/
-void RSSListing::slotGetAllFeeds()
-{
-  QSqlQuery q;
-  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
-  while (q.next()) {
-    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                   q.value(2).toDateTime(), q.value(3).toInt());
-  }
-
-  showProgressBar(updateFeedsCount_);
-
-  timer_.start();
-  //  qCritical() << "Start update";
-  //  qCritical() << "------------------------------------------------------------";
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()
