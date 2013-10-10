@@ -52,8 +52,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
   parseObject_ = new ParseObject(parent);
   connect(parent, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
           parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
-  connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString)),
-          parent, SLOT(slotUpdateFeed(int,bool,int,QString)),
+  connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString,bool)),
+          parent, SLOT(slotUpdateFeed(int,bool,int,QString,bool)),
           Qt::BlockingQueuedConnection);
 
   qRegisterMetaType<FeedCountStruct>("FeedCountStruct");

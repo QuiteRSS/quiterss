@@ -266,13 +266,8 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void getUrlDone(int result, int feedId, QString feedUrlStr,
-                  QString error, QByteArray data,
-                  QDateTime dtReply, QString codecName);
-  void finishUpdateFeed();
-  void slotUpdateFeed(int feedId, bool changed, int newCount, QString status);
-//  void slotUpdateFeedDelayed(int feedId, bool changed,
-//                             int newCount, QString status);
+  void slotUpdateFeed(int feedId, bool changed, int newCount,
+                      QString status, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
@@ -289,6 +284,7 @@ signals:
   void signalCloseApp();
   void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
   void signalGetFeedsFolder(QString query);
+  void signalGetAllFeeds();
   void signalRequestUrl(int feedId, QString urlString,
                         QDateTime date, QString userInfo);
   void xmlReadyParse(QByteArray data, int feedId,

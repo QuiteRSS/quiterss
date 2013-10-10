@@ -2421,7 +2421,7 @@ void RSSListing::addFeed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
-  slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0");
+  slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0", false);
 
   delete addFeedWizard;
 }
@@ -3232,35 +3232,23 @@ void RSSListing::slotRecountCategoryCounts()
   recountCategoryCountsOn_ = false;
 }
 
-/** @brief Process updating feed view signal
- *
- * Calls after updating or adding feed
- * Actually calls updateing delay
- * @param url URL of updating feed
- * @param changed Flag indicating that feed is updated indeed
- *---------------------------------------------------------------------------*/
-//void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
-//{
-//  updateDelayer_->delayUpdate(feedId, changed, newCount, status);
-//}
-
-void RSSListing::finishUpdateFeed()
-{
-  emit signalShowNotification();
-  progressBar_->hide();
-  progressBar_->setMaximum(0);
-  progressBar_->setValue(0);
-  importFeedStart_ = false;
-}
-
 /** @brief Update feed view
  *
  * Slot is called by UpdateDelayer after some delay
  * @param feedId Feed identifier to update
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
+void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount,
+                                QString status, bool finish)
 {
+  if (finish) {
+    emit signalShowNotification();
+    progressBar_->hide();
+    progressBar_->setMaximum(0);
+    progressBar_->setValue(0);
+    importFeedStart_ = false;
+  }
+
   setStatusFeed(feedId, status);
 
   if (!changed) {
@@ -4200,6 +4188,13 @@ void RSSListing::slotGetFeed()
                        feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
                        feedsTreeModel_->dataField(index, "authentication").toInt());
   }
+}
+
+/** @brief Process update all feeds action
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotGetAllFeeds()
+{
+  emit signalGetAllFeeds();
 }
 
 /** @brief Show update progress bar after feed update has started

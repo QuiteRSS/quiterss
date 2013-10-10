@@ -30,8 +30,8 @@
 
 ParseObject::ParseObject(QObject *parent)
   : QObject(0)
-  , currentFeedId_(0)
   , updateFeedsCount_(0)
+  , currentFeedId_(0)
 {
   setObjectName("parseObject_");
 
@@ -142,8 +142,9 @@ void ParseObject::finishUpdate(int feedId, bool changed, int newCount, QString s
     updateFeedsCount_--;
     emit loadProgress(updateFeedsCount_);
   }
+  bool finish = false;
   if (updateFeedsCount_ <= 0) {
-    emit finishUpdateFeed();
+    finish = true;
   }
 
   int feedIdIndex = feedIdList_.indexOf(feedId);
@@ -151,7 +152,7 @@ void ParseObject::finishUpdate(int feedId, bool changed, int newCount, QString s
     feedIdList_.takeAt(feedIdIndex);
   }
 
-  emit feedUpdated(feedId, changed, newCount, status);
+  emit feedUpdated(feedId, changed, newCount, status, finish);
 }
 
 /** @brief Queueing xml-data
@@ -218,7 +219,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   // id not found (ex. feed deleted while updating)
   if (feedUrl.isEmpty()) {
     qDebug() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
-    emit feedUpdated(parseFeedId_, false, 0, "0");
+    finishUpdate(parseFeedId_, false, 0, "0");
     return;
   }
 

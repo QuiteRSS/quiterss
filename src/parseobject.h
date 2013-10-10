@@ -93,8 +93,9 @@ signals:
                         QDateTime date, QString userInfo);
   void signalReadyParse(const QByteArray &xml, const int &feedId,
                         const QDateTime &dtReply, const QString &codecName);
-  void feedUpdated(int feedId, bool changed,
-                   int newCount, QString status);
+  void finishUpdateFeed();
+  void feedUpdated(int feedId, bool changed, int newCount,
+                   QString status, bool finish);
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:
