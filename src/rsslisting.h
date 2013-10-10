@@ -257,7 +257,7 @@ public slots:
   void slotGetFeed();
   void slotGetAllFeeds();
   void showProgressBar(int addToMaximum);
-  void slotSetValue(int value, bool clear);
+  void slotSetValue(int value);
   void showOptionDlg();
   void receiveMessage(const QString&);
   void slotPlaceToTray();

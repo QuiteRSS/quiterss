@@ -37,11 +37,14 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
   updateObject_ = new UpdateObject(timeoutRequest, numberRequest, numberRepeats);
   updateObject_->networkManager_->setCookieJar(rssl->cookieJar_);
 
-  connect(this, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
+  parseObject_ = new ParseObject(parent);
+
+  connect(parseObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
           updateObject_, SLOT(requestUrl(int,QString,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
-          parent, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
-          Qt::QueuedConnection);
+  connect(updateObject_,
+          SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+          parseObject_,
+          SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)));
   connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
           parent, SLOT(setStatusFeed(int,QString)));
   connect(updateObject_->networkManager_,
@@ -49,7 +52,14 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
           parent, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
 
-  parseObject_ = new ParseObject(parent);
+  connect(parent, SIGNAL(signalGetAllFeeds()),
+          parseObject_, SLOT(slotGetAllFeeds()));
+  connect(parseObject_, SIGNAL(showProgressBar(int)),
+          parent, SLOT(showProgressBar(int)),
+          Qt::QueuedConnection);
+  connect(parseObject_, SIGNAL(loadProgress(int)),
+          parent, SLOT(slotSetValue(int)),
+          Qt::QueuedConnection);
   connect(parent, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
           parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
   connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString,bool)),
@@ -61,8 +71,13 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
           parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)),
           Qt::QueuedConnection);
 
+  getFeedThread_ = new QThread();
+  parseFeedThread_ = new QThread();
+  updateObject_->moveToThread(getFeedThread_);
+  parseObject_->moveToThread(parseFeedThread_);
+
   getFeedThread_->start(QThread::LowPriority);
-  parseFeedThread_->start(QThread::LowPriority);
+  parseFeedThread_->start();
 }
 
 UpdateFeeds::~UpdateFeeds()

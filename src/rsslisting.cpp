@@ -237,9 +237,9 @@ RSSListing::RSSListing(QSettings *settings,
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
   updateDelayer_ = new UpdateDelayer(this);
-  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int,bool,int,QString)),
-          this, SLOT(slotUpdateFeedDelayed(int,bool,int,QString)),
-          Qt::QueuedConnection);
+//  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int,bool,int,QString)),
+//          this, SLOT(slotUpdateFeedDelayed(int,bool,int,QString)),
+//          Qt::QueuedConnection);
   connect(this, SIGNAL(signalNextUpdate()),
           updateDelayer_, SLOT(slotNextUpdateFeed()));
   connect(updateDelayer_, SIGNAL(signalUpdateModel(bool)),
@@ -709,8 +709,6 @@ void RSSListing::createStatusBar()
   progressBar_->setMaximum(0);
   progressBar_->setValue(0);
   progressBar_->setVisible(false);
-  connect(this, SIGNAL(loadProgress(int)),
-          progressBar_, SLOT(setValue(int)), Qt::QueuedConnection);
 
   statusBar()->setMinimumHeight(22);
 
@@ -4210,15 +4208,9 @@ void RSSListing::showProgressBar(int maximum)
   progressBar_->setMaximum(maximum);
   progressBar_->show();
 }
-void RSSListing::slotSetValue(int value, bool clear)
+void RSSListing::slotSetValue(int value)
 {
-  if (!clear)
-    progressBar_->setValue(progressBar_->maximum() - value);
-  else {
-    progressBar_->setValue(0);
-    progressBar_->hide();
-    progressBar_->setMaximum(0);
-  }
+  progressBar_->setValue(progressBar_->maximum() - value);
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()

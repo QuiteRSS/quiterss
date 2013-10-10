@@ -85,6 +85,8 @@ public slots:
   void getUrlDone(int result, int feedId, QString feedUrlStr,
                   QString error, QByteArray data,
                   QDateTime dtReply, QString codecName);
+  void parseXml(QByteArray data, int feedId,
+                QDateTime dtReply, QString codecName);
 
 signals:
   void showProgressBar(int value);
@@ -108,8 +110,7 @@ private slots:
 private:
   void finishUpdate(int feedId, bool changed,
                     int newCount, QString status);
-  void parseXml(QByteArray data, int feedId,
-                QDateTime dtReply, QString codecName);
+
   void parseAtom(const QString &feedUrl, const QDomDocument &doc);
   void parseRss(const QString &feedUrl, const QDomDocument &doc);
   void addAtomNewsIntoBase(NewsItemStruct &newsItem);

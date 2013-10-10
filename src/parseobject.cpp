@@ -41,7 +41,7 @@ ParseObject::ParseObject(QObject *parent)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
-  parseTimer_ = new QTimer();
+  parseTimer_ = new QTimer(this);
   parseTimer_->setSingleShot(true);
   parseTimer_->setInterval(10);
   connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));

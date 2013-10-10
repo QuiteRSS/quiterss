@@ -36,11 +36,11 @@ UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepe
 {
   setObjectName("updateObject_");
 
-  QTimer *timeout = new QTimer();
+  QTimer *timeout = new QTimer(this);
   connect(timeout, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
   timeout->start(1000);
 
-  getUrlTimer_ = new QTimer();
+  getUrlTimer_ = new QTimer(this);
   getUrlTimer_->setSingleShot(true);
   getUrlTimer_->setInterval(50);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
