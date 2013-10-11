@@ -258,6 +258,7 @@ public slots:
   void slotGetAllFeeds();
   void showProgressBar(int addToMaximum);
   void slotSetValue(int value);
+  void showMessageStatusBar(QString message, int timeout = 0);
   void showOptionDlg();
   void receiveMessage(const QString&);
   void slotPlaceToTray();
@@ -285,6 +286,7 @@ signals:
   void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
   void signalGetFeedsFolder(QString query);
   void signalGetAllFeeds();
+  void signalImportFeeds(QByteArray xmlData);
   void signalRequestUrl(int feedId, QString urlString,
                         QDateTime date, QString userInfo);
   void xmlReadyParse(QByteArray data, int feedId,

@@ -82,6 +82,7 @@ public slots:
   void slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
   void slotGetFeedsFolder(QString query);
   void slotGetAllFeeds();
+  void slotImportFeeds(QByteArray xmlData);
   void getUrlDone(int result, int feedId, QString feedUrlStr,
                   QString error, QByteArray data,
                   QDateTime dtReply, QString codecName);
@@ -91,6 +92,8 @@ public slots:
 signals:
   void showProgressBar(int value);
   void loadProgress(int value, bool clear = false);
+  void signalMessageStatusBar(QString message, int timeout = 0);
+  void signalUpdateFeedsModel();
   void signalRequestUrl(int feedId, QString urlString,
                         QDateTime date, QString userInfo);
   void signalReadyParse(const QByteArray &xml, const int &feedId,

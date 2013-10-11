@@ -32,6 +32,8 @@
 #include <windows.h>
 #include <psapi.h>
 #endif
+#include <QMainWindow>
+#include <QStatusBar>
 
 /** @brief Process messages from other application copy
  *---------------------------------------------------------------------------*/
@@ -2582,114 +2584,11 @@ void RSSListing::slotImportFeeds()
     return;
   }
 
-  importFeedStart_ = true;
-
-  db_.transaction();
-
   QByteArray xmlData = file.readAll();
-  xmlData.replace("&", "&#38;");
-  QXmlStreamReader xml(xmlData);
-
-  int elementCount = 0;
-  int outlineCount = 0;
-  QSqlQuery q;
-
-  // Store hierarchy of "outline" tags. Next nested outline is pushed to stack.
-  // When it closes, pop it out from stack. Top of stack is the root outline.
-  QStack<int> parentIdsStack;
-  parentIdsStack.push(0);
-  while (!xml.atEnd()) {
-    xml.readNext();
-    if (xml.isStartElement()) {
-      statusBar()->showMessage(QVariant(elementCount).toString(), 3000);
-      // Search for "outline" only
-      if (xml.name() == "outline") {
-        qDebug() << outlineCount << "+:" << xml.prefix().toString()
-                 << ":" << xml.name().toString();
-
-        QString textString(xml.attributes().value("text").toString());
-        QString titleString(xml.attributes().value("title").toString());
-        QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
-        if (textString.isEmpty()) textString = titleString;
-
-        //Folder finded
-        if (xmlUrlString.isEmpty()) {
-          int rowToParent = 0;
-          q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                 arg(parentIdsStack.top()));
-          if (q.next()) rowToParent = q.value(0).toInt();
-
-          q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, parentId, rowToParent) "
-                    "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :parentId, :rowToParent)");
-          q.bindValue(":text", textString);
-          q.bindValue(":title", textString);
-          q.bindValue(":xmlUrl", "");
-          q.bindValue(":feedCreateTime",
-                      QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-          q.bindValue(":parentId", parentIdsStack.top());
-          q.bindValue(":rowToParent", rowToParent);
-          q.exec();
-          parentIdsStack.push(q.lastInsertId().toInt());
-          // qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
-          // qDebug() << q.lastError().number() << ": " << q.lastError().text();
-        }
-        // Feed finded
-        else {
-          bool isFeedDuplicated = false;
-          q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-          q.bindValue(":xmlUrl", xmlUrlString);
-          q.exec();
-          if (q.next())
-            isFeedDuplicated = true;
-
-          if (isFeedDuplicated) {
-            qDebug() << "duplicate feed:" << xmlUrlString << textString;
-          } else {
-            int rowToParent = 0;
-            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                   arg(parentIdsStack.top()));
-            if (q.next()) rowToParent = q.value(0).toInt();
-
-            q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId, rowToParent) "
-                      "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-            q.addBindValue(textString);
-            q.addBindValue(xml.attributes().value("title").toString());
-            q.addBindValue(xml.attributes().value("description").toString());
-            q.addBindValue(xmlUrlString);
-            q.addBindValue(xml.attributes().value("htmlUrl").toString());
-            q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-            q.addBindValue(parentIdsStack.top());
-            q.addBindValue(rowToParent);
-            q.exec();
-            // qDebug() << q.lastQuery() << q.boundValues();
-            // qDebug() << q.lastError().number() << ": " << q.lastError().text();
-
-            updateFeedsCount_ = updateFeedsCount_ + 2;
-            emit signalRequestUrl(q.lastInsertId().toInt(), xmlUrlString, QDateTime(), "");
-          }
-          parentIdsStack.push(q.lastInsertId().toInt());
-        }
-      }
-    } else if (xml.isEndElement()) {
-      if (xml.name() == "outline") {
-        parentIdsStack.pop();
-        ++outlineCount;
-      }
-      ++elementCount;
-    }
-    qDebug() << parentIdsStack;
-  }
-  if (xml.error()) {
-    statusBar()->showMessage(QString("Import error: Line=%1, ErrorString=%2").
-                             arg(xml.lineNumber()).arg(xml.errorString()), 3000);
-  } else {
-    statusBar()->showMessage(QString("Import: file read done"), 3000);
-  }
-  db_.commit();
-
   file.close();
 
-  showProgressBar(updateFeedsCount_);
+  importFeedStart_ = true;
+  emit signalImportFeeds(xmlData);
 
   feedsModelReload();
 }
@@ -4211,6 +4110,10 @@ void RSSListing::showProgressBar(int maximum)
 void RSSListing::slotSetValue(int value)
 {
   progressBar_->setValue(progressBar_->maximum() - value);
+}
+void RSSListing::showMessageStatusBar(QString message, int timeout)
+{
+  statusBar()->showMessage(message, timeout);
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()
