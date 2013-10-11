@@ -49,7 +49,6 @@ public slots:
                   QString error, QByteArray data,
                   QDateTime dtReply, QString codecName);
   void slotUpdateFeed(int feedId, bool, int newCount, QString, bool);
-  void setStatusFeed(int feedId, QString status);
 
 signals:
   void xmlReadyParse(QByteArray data, int feedId,
@@ -73,7 +72,6 @@ private slots:
   void slotProgressBarUpdate();
   void newFolder();
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
-  void slotFeedCountsUpdate(FeedCountStruct counts);
 
 private:
   void addFeed();

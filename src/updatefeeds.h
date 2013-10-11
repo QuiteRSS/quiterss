@@ -27,7 +27,7 @@ class UpdateFeeds : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateFeeds(QObject *parent);
+  explicit UpdateFeeds(QObject *parent, bool add = false);
   ~UpdateFeeds();
 
   RequestFeed *requestFeed;

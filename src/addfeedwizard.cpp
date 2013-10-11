@@ -37,7 +37,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, int curFolderId)
   addPage(createUrlFeedPage());
   addPage(createNameFeedPage());
 
-  updateFeeds_ = new UpdateFeeds(this);
+  updateFeeds_ = new UpdateFeeds(this, true);
 
   connect(button(QWizard::BackButton), SIGNAL(clicked()),
           this, SLOT(backButtonClicked()));
@@ -683,12 +683,4 @@ void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *aut
     authenticationDialog->exec();
 
   delete authenticationDialog;
-}
-
-void AddFeedWizard::slotFeedCountsUpdate(FeedCountStruct)
-{
-}
-
-void AddFeedWizard::setStatusFeed(int, QString)
-{
 }

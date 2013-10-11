@@ -20,7 +20,7 @@
 
 #include <QDebug>
 
-UpdateFeeds::UpdateFeeds(QObject *parent)
+UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   : QObject(parent)
   , requestFeed(NULL)
 {
@@ -39,46 +39,61 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
 
   parseObject_ = new ParseObject(parent);
 
-  connect(parseObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
-          requestFeed, SLOT(requestUrl(int,QString,QDateTime,QString)));
-  connect(requestFeed, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
-          parseObject_, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)));
-  connect(requestFeed, SIGNAL(setStatusFeed(int,QString)),
-          parent, SLOT(setStatusFeed(int,QString)));
+  if (add) {
+    connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
+            requestFeed, SLOT(requestUrl(int,QString,QDateTime,QString)));
+    connect(requestFeed, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+            parent, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+            Qt::QueuedConnection);
+
+    connect(parent, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
+            parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
+    connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString,bool)),
+            parent, SLOT(slotUpdateFeed(int,bool,int,QString,bool)),
+            Qt::QueuedConnection);
+  } else {
+    connect(parseObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
+            requestFeed, SLOT(requestUrl(int,QString,QDateTime,QString)));
+    connect(requestFeed, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+            parseObject_, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)));
+    connect(requestFeed, SIGNAL(setStatusFeed(int,QString)),
+            parent, SLOT(setStatusFeed(int,QString)));
+
+    connect(parent, SIGNAL(signalGetFeed(int,QString,QDateTime,int)),
+            parseObject_, SLOT(slotGetFeed(int,QString,QDateTime,int)));
+    connect(parent, SIGNAL(signalGetFeedsFolder(QString)),
+            parseObject_, SLOT(slotGetFeedsFolder(QString)));
+    connect(parent, SIGNAL(signalGetAllFeeds()),
+            parseObject_, SLOT(slotGetAllFeeds()));
+    connect(parent, SIGNAL(signalImportFeeds(QByteArray)),
+            parseObject_, SLOT(slotImportFeeds(QByteArray)));
+    connect(parseObject_, SIGNAL(showProgressBar(int)),
+            parent, SLOT(showProgressBar(int)),
+            Qt::QueuedConnection);
+    connect(parseObject_, SIGNAL(loadProgress(int)),
+            parent, SLOT(slotSetValue(int)),
+            Qt::QueuedConnection);
+    connect(parseObject_, SIGNAL(signalMessageStatusBar(QString,int)),
+            parent, SLOT(showMessageStatusBar(QString,int)));
+    connect(parseObject_, SIGNAL(signalUpdateFeedsModel()),
+            parent, SLOT(feedsModelReload()),
+            Qt::BlockingQueuedConnection);
+    connect(parent, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
+            parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
+    connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString,bool)),
+            parent, SLOT(slotUpdateFeed(int,bool,int,QString,bool)),
+            Qt::BlockingQueuedConnection);
+
+    qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
+    connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
+            parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)),
+            Qt::QueuedConnection);
+  }
+
   connect(requestFeed->networkManager_,
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           parent, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
-
-  connect(parent, SIGNAL(signalGetFeed(int,QString,QDateTime,int)),
-          parseObject_, SLOT(slotGetFeed(int,QString,QDateTime,int)));
-  connect(parent, SIGNAL(signalGetFeedsFolder(QString)),
-          parseObject_, SLOT(slotGetFeedsFolder(QString)));
-  connect(parent, SIGNAL(signalGetAllFeeds()),
-          parseObject_, SLOT(slotGetAllFeeds()));
-  connect(parent, SIGNAL(signalImportFeeds(QByteArray)),
-          parseObject_, SLOT(slotImportFeeds(QByteArray)));
-  connect(parseObject_, SIGNAL(showProgressBar(int)),
-          parent, SLOT(showProgressBar(int)),
-          Qt::QueuedConnection);
-  connect(parseObject_, SIGNAL(loadProgress(int)),
-          parent, SLOT(slotSetValue(int)),
-          Qt::QueuedConnection);
-  connect(parseObject_, SIGNAL(signalMessageStatusBar(QString,int)),
-          parent, SLOT(showMessageStatusBar(QString,int)));
-  connect(parseObject_, SIGNAL(signalUpdateFeedsModel()),
-          parent, SLOT(feedsModelReload()),
-          Qt::BlockingQueuedConnection);
-  connect(parent, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
-          parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
-  connect(parseObject_, SIGNAL(feedUpdated(int,bool,int,QString,bool)),
-          parent, SLOT(slotUpdateFeed(int,bool,int,QString,bool)),
-          Qt::BlockingQueuedConnection);
-
-  qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
-  connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
-          parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)),
-          Qt::QueuedConnection);
 
   getFeedThread_ = new QThread();
   parseFeedThread_ = new QThread();
