@@ -15,12 +15,12 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef UPDATETHREAD_H
-#define UPDATETHREAD_H
+#ifndef UPDATEFEEDS_H
+#define UPDATEFEEDS_H
 
 #include <QThread>
 
-#include "updateobject.h"
+#include "requestfeed.h"
 #include "parseobject.h"
 
 class UpdateFeeds : public QObject
@@ -30,7 +30,7 @@ public:
   explicit UpdateFeeds(QObject *parent);
   ~UpdateFeeds();
 
-  UpdateObject *updateObject_;
+  RequestFeed *requestFeed;
   ParseObject *parseObject_;
   QThread *getFeedThread_;
   QThread *parseFeedThread_;
@@ -40,4 +40,4 @@ private:
 
 };
 
-#endif // UPDATETHREAD_H
+#endif // UPDATEFEEDS_H

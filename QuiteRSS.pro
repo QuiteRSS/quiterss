@@ -70,7 +70,6 @@ HEADERS += \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/updateobject.h \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
@@ -104,7 +103,8 @@ HEADERS += \
     src/tabbar.h \
     src/categoriestreewidget.h \
     src/cleanupwizard.h \
-    src/updatefeeds.h
+    src/updatefeeds.h \
+    src/requestfeed.h
 
 SOURCES += \
     src/rsslisting.cpp \
@@ -118,7 +118,6 @@ SOURCES += \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/updateobject.cpp \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
@@ -151,7 +150,8 @@ SOURCES += \
     src/tabbar.cpp \
     src/categoriestreewidget.cpp \
     src/cleanupwizard.cpp \
-    src/updatefeeds.cpp
+    src/updatefeeds.cpp \
+    src/requestfeed.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

@@ -15,8 +15,8 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef UPDATEOBJECT_H
-#define UPDATEOBJECT_H
+#ifndef REQUESTFEED_H
+#define REQUESTFEED_H
 
 #include <QDateTime>
 #include <QObject>
@@ -27,11 +27,11 @@
 
 #include "networkmanager.h"
 
-class UpdateObject : public QObject
+class RequestFeed : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent = 0);
+  explicit RequestFeed(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent = 0);
   NetworkManager *networkManager_;
 
 public slots:
@@ -80,4 +80,4 @@ private:
 
 };
 
-#endif // UPDATEOBJECT_H
+#endif // REQUESTFEED_H

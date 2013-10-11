@@ -15,7 +15,7 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "updateobject.h"
+#include "requestfeed.h"
 #include "VersionNo.h"
 
 #include <QDebug>
@@ -28,7 +28,7 @@
 
 #define REPLY_MAX_COUNT 10
 
-UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent)
+RequestFeed::RequestFeed(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent)
   : QObject(parent)
   , timeoutRequest_(timeoutRequest)
   , numberRequest_(numberRequest)
@@ -59,7 +59,7 @@ UpdateObject::UpdateObject(int timeoutRequest, int numberRequest, int numberRepe
 
 /** @brief Put URL in request queue
  *----------------------------------------------------------------------------*/
-void UpdateObject::requestUrl(int id, QString urlString,
+void RequestFeed::requestUrl(int id, QString urlString,
                               QDateTime date, QString userInfo)
 {
   idsQueue_.enqueue(id);
@@ -75,7 +75,7 @@ void UpdateObject::requestUrl(int id, QString urlString,
 
 /** @brief Process request queue on timer timeouts
  *----------------------------------------------------------------------------*/
-void UpdateObject::getQueuedUrl()
+void RequestFeed::getQueuedUrl()
 {
   if ((numberRequest_ <= currentFeeds_.size()) ||
       (REPLY_MAX_COUNT <= currentFeeds_.size())) {
@@ -121,7 +121,7 @@ void UpdateObject::getQueuedUrl()
 
 /** @brief Prepare and send network request to get head
  *----------------------------------------------------------------------------*/
-void UpdateObject::slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
+void RequestFeed::slotHead(const QUrl &getUrl, const int &id, const QString &feedUrl,
                             const QDateTime &date, const int &count)
 {
   qDebug() << objectName() << "::head:" << getUrl.toEncoded() << "feed:" << feedUrl;
@@ -146,7 +146,7 @@ void UpdateObject::slotHead(const QUrl &getUrl, const int &id, const QString &fe
 
 /** @brief Prepare and send network request to get all data
  *----------------------------------------------------------------------------*/
-void UpdateObject::slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
+void RequestFeed::slotGet(const QUrl &getUrl, const int &id, const QString &feedUrl,
                            const QDateTime &date, const int &count)
 {
   qDebug() << objectName() << "::get:" << getUrl.toEncoded() << "feed:" << feedUrl;
@@ -172,7 +172,7 @@ void UpdateObject::slotGet(const QUrl &getUrl, const int &id, const QString &fee
 
 /** @brief Process network reply
  *----------------------------------------------------------------------------*/
-void UpdateObject::finished(QNetworkReply *reply)
+void RequestFeed::finished(QNetworkReply *reply)
 {
   QUrl replyUrl = reply->url();
 
@@ -273,7 +273,7 @@ void UpdateObject::finished(QNetworkReply *reply)
 
 /** @brief Timeout to delete network requests wich has no answer
  *----------------------------------------------------------------------------*/
-void UpdateObject::slotRequestTimeout()
+void RequestFeed::slotRequestTimeout()
 {
   for (int i = currentTime_.count() - 1; i >= 0; i--) {
     int time = currentTime_.at(i) - 1;

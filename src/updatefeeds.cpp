@@ -22,7 +22,7 @@
 
 UpdateFeeds::UpdateFeeds(QObject *parent)
   : QObject(parent)
-  , updateObject_(NULL)
+  , requestFeed(NULL)
 {
   QObject *parent_ = parent;
   while(parent_->parent()) {
@@ -34,18 +34,18 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
   int numberRequest = rssl->settings_->value("Settings/numberRequest", 10).toInt();
   int numberRepeats = rssl->settings_->value("Settings/numberRepeats", 2).toInt();
 
-  updateObject_ = new UpdateObject(timeoutRequest, numberRequest, numberRepeats);
-  updateObject_->networkManager_->setCookieJar(rssl->cookieJar_);
+  requestFeed = new RequestFeed(timeoutRequest, numberRequest, numberRepeats);
+  requestFeed->networkManager_->setCookieJar(rssl->cookieJar_);
 
   parseObject_ = new ParseObject(parent);
 
   connect(parseObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
-          updateObject_, SLOT(requestUrl(int,QString,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
+          requestFeed, SLOT(requestUrl(int,QString,QDateTime,QString)));
+  connect(requestFeed, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
           parseObject_, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)));
-  connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
+  connect(requestFeed, SIGNAL(setStatusFeed(int,QString)),
           parent, SLOT(setStatusFeed(int,QString)));
-  connect(updateObject_->networkManager_,
+  connect(requestFeed->networkManager_,
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           parent, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
@@ -82,7 +82,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent)
 
   getFeedThread_ = new QThread();
   parseFeedThread_ = new QThread();
-  updateObject_->moveToThread(getFeedThread_);
+  requestFeed->moveToThread(getFeedThread_);
   parseObject_->moveToThread(parseFeedThread_);
 
   getFeedThread_->start(QThread::LowPriority);
