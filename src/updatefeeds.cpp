@@ -67,6 +67,12 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
     connect(requestFeed_, SIGNAL(setStatusFeed(int,QString)),
             parent, SLOT(setStatusFeed(int,QString)));
 
+    connect(parent, SIGNAL(signalGetFeedTimer(int)),
+            updateObject_, SLOT(slotGetFeedTimer(int)));
+    connect(parent, SIGNAL(signalGetAllFeedsTimer()),
+            updateObject_, SLOT(slotGetAllFeedsTimer()));
+    connect(parent, SIGNAL(signalGetAllFeeds()),
+            updateObject_, SLOT(slotGetAllFeeds()));
     connect(parent, SIGNAL(signalGetFeed(int,QString,QDateTime,int)),
             updateObject_, SLOT(slotGetFeed(int,QString,QDateTime,int)));
     connect(parent, SIGNAL(signalGetFeedsFolder(QString)),
@@ -144,6 +150,30 @@ UpdateObject::UpdateObject(QObject *parent)
   updateModelTimer_ = new QTimer(this);
   updateModelTimer_->setSingleShot(true);
   connect(updateModelTimer_, SIGNAL(timeout()), this, SIGNAL(signalUpdateModel()));
+}
+
+void UpdateObject::slotGetFeedTimer(int feedId)
+{
+  QSqlQuery q;
+  q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
+         .arg(feedId));
+  if (q.next()) {
+    addFeedInQueue(feedId, q.value(0).toString(),
+                   q.value(1).toDateTime(), q.value(2).toInt());
+  }
+  emit showProgressBar(updateFeedsCount_);
+}
+
+void UpdateObject::slotGetAllFeedsTimer()
+{
+  QSqlQuery q;
+  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds "
+         "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
+  while (q.next()) {
+    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
+                   q.value(2).toDateTime(), q.value(3).toInt());
+  }
+  emit showProgressBar(updateFeedsCount_);
 }
 
 /** @brief Process update feed action

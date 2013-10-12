@@ -48,6 +48,8 @@ public:
 
 
 public slots:
+  void slotGetFeedTimer(int feedId);
+  void slotGetAllFeedsTimer();
   void slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
   void slotGetFeedsFolder(QString query);
   void slotGetAllFeeds();

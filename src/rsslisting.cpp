@@ -161,7 +161,6 @@ RSSListing::RSSListing(QSettings *settings,
           this, SLOT(updateInfoDownloads(QString)));
 
   updateFeeds_ = new UpdateFeeds(this);
-
   faviconThread_ = new FaviconThread(this);
 
   createFeedsWidget();
@@ -3220,7 +3219,6 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount,
       statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
       statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
     }
-    q.finish();
   } else if (currentNewsTab->type_ < TAB_WEB) {
     if (!timerUpdateNews_.isActive())
       timerUpdateNews_.start(1000);
@@ -4058,7 +4056,61 @@ void RSSListing::myEmptyWorkingSet()
     EmptyWorkingSet(GetCurrentProcess());
 #endif
 }
+// ----------------------------------------------------------------------------
+void RSSListing::initUpdateFeeds()
+{
+  QSqlQuery q;
+  q.exec("SELECT id, updateInterval, updateIntervalType FROM feeds WHERE xmlUrl != '' AND updateIntervalEnable == 1");
+  while (q.next()) {
+    int updateInterval = q.value(1).toInt();
+    int updateIntervalType = q.value(2).toInt();
+    if (updateIntervalType == 0)
+      updateInterval = updateInterval*60;
+    else if (updateIntervalType == 1)
+      updateInterval = updateInterval*60*60;
 
+    updateFeedsIntervalSec_.insert(q.value(0).toInt(), updateInterval);
+    updateFeedsTimeCount_.insert(q.value(0).toInt(), 0);
+  }
+
+  int updateInterval = updateFeedsInterval_;
+  if (updateFeedsIntervalType_ == 0)
+    updateInterval = updateInterval*60;
+  else if (updateFeedsIntervalType_ == 1)
+    updateInterval = updateInterval*60*60;
+  updateIntervalSec_ = updateInterval;
+
+  updateFeedsTimer_ = new QTimer(this);
+  connect(updateFeedsTimer_, SIGNAL(timeout()),
+          this, SLOT(slotGetFeedsTimer()));
+  updateFeedsTimer_->start(1000);
+}
+// ----------------------------------------------------------------------------
+void RSSListing::slotGetFeedsTimer()
+{
+  if (updateFeedsEnable_) {
+    updateTimeCount_++;
+    if (updateTimeCount_ >= updateIntervalSec_) {
+      updateTimeCount_ = 0;
+
+      emit signalGetAllFeedsTimer();
+    }
+  } else {
+    updateTimeCount_ = 0;
+  }
+
+  QMapIterator<int, int> iterator(updateFeedsTimeCount_);
+  while (iterator.hasNext()) {
+    iterator.next();
+    int feedId = iterator.key();
+    updateFeedsTimeCount_[feedId]++;
+    if (updateFeedsTimeCount_[feedId] >= updateFeedsIntervalSec_[feedId]) {
+      updateFeedsTimeCount_[feedId] = 0;
+
+      emit signalGetFeedTimer(feedId);
+    }
+  }
+}
 /** @brief Process update feed action
  *---------------------------------------------------------------------------*/
 void RSSListing::slotGetFeed()
@@ -4770,75 +4822,6 @@ void RSSListing::slotNewsFilter()
         setNewsFilter(action);
         break;
       }
-    }
-  }
-}
-// ----------------------------------------------------------------------------
-void RSSListing::initUpdateFeeds()
-{
-  QSqlQuery q;
-  q.exec("SELECT id, updateInterval, updateIntervalType FROM feeds WHERE xmlUrl != '' AND updateIntervalEnable == 1");
-  while (q.next()) {
-    int updateInterval = q.value(1).toInt();
-    int updateIntervalType = q.value(2).toInt();
-    if (updateIntervalType == 0)
-      updateInterval = updateInterval*60;
-    else if (updateIntervalType == 1)
-      updateInterval = updateInterval*60*60;
-
-    updateFeedsIntervalSec_.insert(q.value(0).toInt(), updateInterval);
-    updateFeedsTimeCount_.insert(q.value(0).toInt(), 0);
-  }
-
-  int updateInterval = updateFeedsInterval_;
-  if (updateFeedsIntervalType_ == 0)
-    updateInterval = updateInterval*60;
-  else if (updateFeedsIntervalType_ == 1)
-    updateInterval = updateInterval*60*60;
-  updateIntervalSec_ = updateInterval;
-
-  updateFeedsTimer_ = new QTimer(this);
-  connect(updateFeedsTimer_, SIGNAL(timeout()),
-          this, SLOT(slotUpdateFeedsTimer()));
-  updateFeedsTimer_->start(1000);
-}
-// ----------------------------------------------------------------------------
-void RSSListing::slotUpdateFeedsTimer()
-{
-  if (updateFeedsEnable_) {
-    updateTimeCount_++;
-    if (updateTimeCount_ >= updateIntervalSec_) {
-      updateTimeCount_ = 0;
-
-      QSqlQuery q;
-      q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds "
-             "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
-      while (q.next()) {
-        addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                       q.value(2).toDateTime(), q.value(3).toInt());
-      }
-      showProgressBar(updateFeedsCount_);
-    }
-  } else {
-    updateTimeCount_ = 0;
-  }
-
-  QMapIterator<int, int> iterator(updateFeedsTimeCount_);
-  while (iterator.hasNext()) {
-    iterator.next();
-    int feedId = iterator.key();
-    updateFeedsTimeCount_[feedId]++;
-    if (updateFeedsTimeCount_[feedId] >= updateFeedsIntervalSec_[feedId]) {
-      updateFeedsTimeCount_[feedId] = 0;
-
-      QSqlQuery q;
-      q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
-             .arg(feedId));
-      if (q.next()) {
-        addFeedInQueue(feedId, q.value(0).toString(),
-                       q.value(1).toDateTime(), q.value(2).toInt());
-      }
-      showProgressBar(updateFeedsCount_);
     }
   }
 }
@@ -7716,21 +7699,6 @@ QUrl RSSListing::userStyleSheet(const QString &filePath) const
   const QString &dataString = QString("data:text/css;charset=utf-8;base64,%1").arg(encodedStyle);
 
   return QUrl(dataString);
-}
-// ----------------------------------------------------------------------------
-bool RSSListing::addFeedInQueue(int feedId, const QString &feedUrl,
-                                const QDateTime &date, int auth)
-{
-  int feedIdIndex = feedIdList_.indexOf(feedId);
-  if (feedIdIndex > -1) {
-    return false;
-  } else {
-    feedIdList_.append(feedId);
-    updateFeedsCount_ = updateFeedsCount_ + 2;
-    QString userInfo = getUserInfo(feedUrl, auth);
-    emit signalRequestUrl(feedId, feedUrl, date, userInfo);
-    return true;
-  }
 }
 // ----------------------------------------------------------------------------
 void RSSListing::showNewsMenu()

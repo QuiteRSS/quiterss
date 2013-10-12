@@ -283,6 +283,8 @@ public slots:
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
+  void signalGetFeedTimer(int feedId);
+  void signalGetAllFeedsTimer();
   void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
   void signalGetFeedsFolder(QString query);
   void signalGetAllFeeds();
@@ -319,9 +321,7 @@ private slots:
   void showContextMenuFeed(const QPoint & pos);
   void slotFeedsFilter();
   void slotNewsFilter();
-  void slotUpdateFeedsTimer();
-  bool addFeedInQueue(int feedId, const QString &feedUrl,
-                      const QDateTime &date, int auth);
+  void slotGetFeedsTimer();
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
