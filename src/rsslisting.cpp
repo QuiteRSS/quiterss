@@ -240,10 +240,6 @@ RSSListing::RSSListing(QSettings *settings,
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
 
-  timerUpdateNews_.setSingleShot(true);
-  connect(&timerUpdateNews_, SIGNAL(timeout()),
-          this, SLOT(slotUpdateNews()));
-
   loadSettingsFeeds();
 
   setStyleSheet("QMainWindow::separator { width: 1px; }");
@@ -3064,6 +3060,7 @@ void RSSListing::slotRecountCategoryCounts()
       deletedCount++;
     }
   }
+
   for (int i = 0; i < labelTreeItem->childCount(); i++) {
     int id = labelTreeItem->child(i)->text(2).toInt();
     QString countStr;
@@ -3159,20 +3156,14 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount,
   } else if (newCount > 0) {
     int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
-      QSqlQuery q;
-      q.exec(QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
-             arg(feedId));
-      if (q.first()) {
-        if (q.value(0).toInt() == 1) {
-          if (-1 < feedIdIndex) {
-            cntNewNewsList_[feedIdIndex] = newCount;
-          } else {
-            idFeedList_.append(feedId);
-            cntNewNewsList_.append(newCount);
-          }
+      if(idFeedsNotifyList_.contains(feedId)) {
+        if (-1 < feedIdIndex) {
+          cntNewNewsList_[feedIdIndex] = newCount;
+        } else {
+          idFeedList_.append(feedId);
+          cntNewNewsList_.append(newCount);
         }
       }
-      q.finish();
     } else {
       if (-1 < feedIdIndex) {
         cntNewNewsList_[feedIdIndex] = newCount;
@@ -3184,45 +3175,6 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount,
   }
 
   recountCategoryCounts();
-
-  if (currentNewsTab->type_ == TAB_FEED) {
-    bool folderUpdate = false;
-    int feedParentId = 0;
-
-    QSqlQuery q;
-    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
-    if (q.first()) {
-      feedParentId = q.value(0).toInt();
-      if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
-    }
-
-    while (feedParentId && !folderUpdate) {
-      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
-      if (q.first()) {
-        feedParentId = q.value(0).toInt();
-        if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
-      }
-    }
-
-    // Click on feed if it is displayed to update view
-    if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
-      if (!timerUpdateNews_.isActive())
-        timerUpdateNews_.start(1000);
-
-      int unreadCount = 0;
-      int allCount = 0;
-      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(currentNewsTab->feedId_));
-      if (q.first()) {
-        unreadCount = q.value(0).toInt();
-        allCount    = q.value(1).toInt();
-      }
-      statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
-      statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
-    }
-  } else if (currentNewsTab->type_ < TAB_WEB) {
-    if (!timerUpdateNews_.isActive())
-      timerUpdateNews_.start(1000);
-  }
 
   emit signalNextUpdate();
 }
@@ -4060,6 +4012,14 @@ void RSSListing::myEmptyWorkingSet()
 void RSSListing::initUpdateFeeds()
 {
   QSqlQuery q;
+
+  if (onlySelectedFeeds_) {
+    q.exec("SELECT feedId FROM feeds_ex WHERE value=1 AND name='showNotification'");
+    while (q.next()) {
+      idFeedsNotifyList_.append(q.value(0).toInt());
+    }
+  }
+
   q.exec("SELECT id, updateInterval, updateIntervalType FROM feeds WHERE xmlUrl != '' AND updateIntervalEnable == 1");
   while (q.next()) {
     int updateInterval = q.value(1).toInt();
@@ -4157,6 +4117,11 @@ void RSSListing::slotSetValue(int value)
 void RSSListing::showMessageStatusBar(QString message, int timeout)
 {
   statusBar()->showMessage(message, timeout);
+}
+void RSSListing::slotCountsStatusBar(int unreadCount, int allCount)
+{
+  statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
+  statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()

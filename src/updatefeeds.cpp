@@ -45,7 +45,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   requestFeed_->networkManager_->setCookieJar(rssl->cookieJar_);
 
   parseObject_ = new ParseObject(parent);
-  updateObject_ = new UpdateObject();
+  updateObject_ = new UpdateObject(parent);
 
   if (add) {
     connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
@@ -110,6 +110,12 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
     connect(updateObject_, SIGNAL(signalUpdateModel(bool)),
             parent, SLOT(feedsModelReload(bool)),
             Qt::QueuedConnection);
+    connect(updateObject_, SIGNAL(signalUpdateNews()),
+            parent, SLOT(slotUpdateNews()),
+            Qt::QueuedConnection);
+    connect(updateObject_, SIGNAL(signalCountsStatusBar(int,int)),
+            parent, SLOT(slotCountsStatusBar(int,int)),
+            Qt::QueuedConnection);
   }
 
   connect(requestFeed_->networkManager_,
@@ -142,14 +148,24 @@ UpdateFeeds::~UpdateFeeds()
 
 //------------------------------------------------------------------------------
 UpdateObject::UpdateObject(QObject *parent)
-  : QObject(parent)
+  : QObject(0)
   , updateFeedsCount_(0)
 {
   setObjectName("updateObject_");
 
+  QObject *parent_ = parent;
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
+  rssl_ = qobject_cast<RSSListing*>(parent_);
+
   updateModelTimer_ = new QTimer(this);
   updateModelTimer_->setSingleShot(true);
   connect(updateModelTimer_, SIGNAL(timeout()), this, SIGNAL(signalUpdateModel()));
+
+  timerUpdateNews_ = new QTimer(this);
+  timerUpdateNews_->setSingleShot(true);
+  connect(timerUpdateNews_, SIGNAL(timeout()), this, SIGNAL(signalUpdateNews()));
 }
 
 void UpdateObject::slotGetFeedTimer(int feedId)
@@ -398,6 +414,47 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
   QString qStr = QString("UPDATE feeds SET status='%1' WHERE id=='%2'").
       arg(status).arg(feedId);
   q.exec(qStr);
+
+  if (changed) {
+    if (rssl_->currentNewsTab->type_ == TAB_FEED) {
+      bool folderUpdate = false;
+      int feedParentId = 0;
+
+      QSqlQuery q;
+      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
+      if (q.first()) {
+        feedParentId = q.value(0).toInt();
+        if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+      }
+
+      while (feedParentId && !folderUpdate) {
+        q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
+        if (q.first()) {
+          feedParentId = q.value(0).toInt();
+          if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+        }
+      }
+
+      // Click on feed if it is displayed to update view
+      if ((feedId == rssl_->currentNewsTab->feedId_) || folderUpdate) {
+        if (!timerUpdateNews_->isActive())
+          timerUpdateNews_->start(1000);
+
+        int unreadCount = 0;
+        int allCount = 0;
+        q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
+               arg(rssl_->currentNewsTab->feedId_));
+        if (q.first()) {
+          unreadCount = q.value(0).toInt();
+          allCount    = q.value(1).toInt();
+        }
+        emit signalCountsStatusBar(unreadCount, allCount);
+      }
+    } else if (rssl_->currentNewsTab->type_ < TAB_WEB) {
+      if (!timerUpdateNews_->isActive())
+        timerUpdateNews_->start(1000);
+    }
+  }
 
   emit feedUpdated(feedId, changed, newCount, status, finish);
 }

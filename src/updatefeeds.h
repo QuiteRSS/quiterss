@@ -24,6 +24,7 @@
 #include "parseobject.h"
 
 class UpdateObject;
+class RSSListing;
 
 class UpdateFeeds : public QObject
 {
@@ -71,15 +72,19 @@ signals:
                      QDateTime dtReply, QString codecName);
   void feedUpdated(int feedId, bool changed, int newCount, QString status, bool finish);
   void signalUpdateModel(bool checkFilter = true);
+  void signalUpdateNews();
+  void signalCountsStatusBar(int unreadCount, int allCount);
 
 private slots:
   bool addFeedInQueue(int feedId, const QString &feedUrl,
                       const QDateTime &date, int auth);
 
 private:
+  RSSListing *rssl_;
   QList<int> feedIdList_;
   int updateFeedsCount_;
   QTimer *updateModelTimer_;
+  QTimer *timerUpdateNews_;
 
 };
 

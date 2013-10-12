@@ -245,6 +245,7 @@ public:
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;
+  QList<int> idFeedsNotifyList_;
 
 public slots:
   void addFeed();
@@ -259,6 +260,7 @@ public slots:
   void showProgressBar(int addToMaximum);
   void slotSetValue(int value);
   void showMessageStatusBar(QString message, int timeout = 0);
+  void slotCountsStatusBar(int unreadCount, int allCount);
   void showOptionDlg();
   void receiveMessage(const QString&);
   void slotPlaceToTray();
@@ -709,8 +711,6 @@ private:
   QString diskCacheDirPathDefault_;
 
   OptionsDialog *optionsDialog_;
-
-  QTimer timerUpdateNews_;
 
 };
 
