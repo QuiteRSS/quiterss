@@ -79,53 +79,31 @@ public:
   explicit ParseObject(QObject *parent);
 
 public slots:
-  void slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
-  void slotGetFeedsFolder(QString query);
-  void slotGetAllFeeds();
-  void slotImportFeeds(QByteArray xmlData);
-  void getUrlDone(int result, int feedId, QString feedUrlStr,
-                  QString error, QByteArray data,
-                  QDateTime dtReply, QString codecName);
   void parseXml(QByteArray data, int feedId,
                 QDateTime dtReply, QString codecName);
 
 signals:
-  void showProgressBar(int value);
-  void loadProgress(int value, bool clear = false);
-  void signalMessageStatusBar(QString message, int timeout = 0);
-  void signalUpdateFeedsModel();
-  void signalRequestUrl(int feedId, QString urlString,
-                        QDateTime date, QString userInfo);
   void signalReadyParse(const QByteArray &xml, const int &feedId,
                         const QDateTime &dtReply, const QString &codecName);
-  void finishUpdateFeed();
-  void feedUpdated(int feedId, bool changed, int newCount,
-                   QString status, bool finish);
+  void signalFinishUpdate(int feedId, bool changed, int newCount, QString status);
   void feedCountsUpdate(FeedCountStruct counts);
 
 private slots:
-  bool addFeedInQueue(int feedId, const QString &feedUrl,
-                      const QDateTime &date, int auth);
   void getQueuedXml();
   void slotParse(const QByteArray &xmlData, const int &feedId,
                  const QDateTime &dtReply, const QString &codecName);
-
-private:
-  void finishUpdate(int feedId, bool changed,
-                    int newCount, QString status);
-
-  void parseAtom(const QString &feedUrl, const QDomDocument &doc);
-  void parseRss(const QString &feedUrl, const QDomDocument &doc);
   void addAtomNewsIntoBase(NewsItemStruct &newsItem);
   void addRssNewsIntoBase(NewsItemStruct &newsItem);
+
+private:
+  void parseAtom(const QString &feedUrl, const QDomDocument &doc);
+  void parseRss(const QString &feedUrl, const QDomDocument &doc);
   QString toPlainText(const QString &text);
   QString parseDate(const QString &dateString, const QString &urlString);
   int recountFeedCounts(int feedId, const QString &feedUrl,
                         const QString &updated, const QString &lastBuildDate);
 
   RSSListing *rssl_;
-  QList<int> feedIdList_;
-  int updateFeedsCount_;
   QTimer *parseTimer_;
   int currentFeedId_;
   QQueue<int> idsQueue_;

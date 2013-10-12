@@ -23,6 +23,8 @@
 #include "requestfeed.h"
 #include "parseobject.h"
 
+class UpdateObject;
+
 class UpdateFeeds : public QObject
 {
   Q_OBJECT
@@ -30,13 +32,52 @@ public:
   explicit UpdateFeeds(QObject *parent, bool add = false);
   ~UpdateFeeds();
 
-  RequestFeed *requestFeed;
+  UpdateObject *updateObject_;
+  RequestFeed *requestFeed_;
   ParseObject *parseObject_;
   QThread *getFeedThread_;
-  QThread *parseFeedThread_;
+  QThread *updateFeedThread_;
+
+};
+
+class UpdateObject : public QObject
+{
+  Q_OBJECT
+public:
+  explicit UpdateObject(QObject *parent = 0);
+
+
+public slots:
+  void slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
+  void slotGetFeedsFolder(QString query);
+  void slotGetAllFeeds();
+  void slotImportFeeds(QByteArray xmlData);
+  void getUrlDone(int result, int feedId, QString feedUrlStr,
+                  QString error, QByteArray data,
+                  QDateTime dtReply, QString codecName);
+  void finishUpdate(int feedId, bool changed, int newCount, QString status);
+  void slotNextUpdateFeed();
+
+signals:
+  void showProgressBar(int value);
+  void loadProgress(int value, bool clear = false);
+  void signalMessageStatusBar(QString message, int timeout = 0);
+  void signalUpdateFeedsModel();
+  void signalRequestUrl(int feedId, QString urlString,
+                        QDateTime date, QString userInfo);
+  void xmlReadyParse(QByteArray data, int feedId,
+                     QDateTime dtReply, QString codecName);
+  void feedUpdated(int feedId, bool changed, int newCount, QString status, bool finish);
+  void signalUpdateModel(bool checkFilter = true);
+
+private slots:
+  bool addFeedInQueue(int feedId, const QString &feedUrl,
+                      const QDateTime &date, int auth);
 
 private:
-
+  QList<int> feedIdList_;
+  int updateFeedsCount_;
+  QTimer *updateModelTimer_;
 
 };
 

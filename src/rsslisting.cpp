@@ -238,15 +238,6 @@ RSSListing::RSSListing(QSettings *settings,
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
-  updateDelayer_ = new UpdateDelayer(this);
-//  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int,bool,int,QString)),
-//          this, SLOT(slotUpdateFeedDelayed(int,bool,int,QString)),
-//          Qt::QueuedConnection);
-  connect(this, SIGNAL(signalNextUpdate()),
-          updateDelayer_, SLOT(slotNextUpdateFeed()));
-  connect(updateDelayer_, SIGNAL(signalUpdateModel(bool)),
-          this, SLOT(feedsModelReload(bool)));
-
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
 

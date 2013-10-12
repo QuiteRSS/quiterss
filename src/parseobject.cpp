@@ -30,7 +30,6 @@
 
 ParseObject::ParseObject(QObject *parent)
   : QObject(0)
-  , updateFeedsCount_(0)
   , currentFeedId_(0)
 {
   setObjectName("parseObject_");
@@ -43,232 +42,11 @@ ParseObject::ParseObject(QObject *parent)
 
   parseTimer_ = new QTimer(this);
   parseTimer_->setSingleShot(true);
-  parseTimer_->setInterval(10);
+  parseTimer_->setInterval(50);
   connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
 
   connect(this, SIGNAL(signalReadyParse(QByteArray,int,QDateTime,QString)),
           SLOT(slotParse(QByteArray,int,QDateTime,QString)));
-}
-
-/** @brief Process update feed action
- *---------------------------------------------------------------------------*/
-void ParseObject::slotGetFeed(int feedId, QString feedUrl, QDateTime date, int auth)
-{
-  addFeedInQueue(feedId, feedUrl, date, auth);
-
-  emit showProgressBar(updateFeedsCount_);
-}
-
-/** @brief Process update feed in folder action
- *---------------------------------------------------------------------------*/
-void ParseObject::slotGetFeedsFolder(QString query)
-{
-  QSqlQuery q;
-  q.exec(query);
-  while (q.next()) {
-    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                   q.value(2).toDateTime(), q.value(3).toInt());
-  }
-
-  emit showProgressBar(updateFeedsCount_);
-}
-
-/** @brief Process update all feeds action
- *---------------------------------------------------------------------------*/
-void ParseObject::slotGetAllFeeds()
-{
-  QSqlQuery q;
-  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
-  while (q.next()) {
-    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                   q.value(2).toDateTime(), q.value(3).toInt());
-  }
-
-  emit showProgressBar(updateFeedsCount_);
-}
-
-/** @brief Import feeds from OPML-file
- *
- * Calls open file system dialog with filter *.opml.
- * Adds all feeds to DB include hierarchy, ignore duplicate feeds
- *---------------------------------------------------------------------------*/
-void ParseObject::slotImportFeeds(QByteArray xmlData)
-{
-  int elementCount = 0;
-  int outlineCount = 0;
-  QSqlQuery q;
-  QList<int> idsList;
-  QList<QString> urlsList;
-
-  xmlData.replace("&", "&#38;");
-  QXmlStreamReader xml(xmlData);
-
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
-
-  // Store hierarchy of "outline" tags. Next nested outline is pushed to stack.
-  // When it closes, pop it out from stack. Top of stack is the root outline.
-  QStack<int> parentIdsStack;
-  parentIdsStack.push(0);
-  while (!xml.atEnd()) {
-    xml.readNext();
-    if (xml.isStartElement()) {
-      // Search for "outline" only
-      if (xml.name() == "outline") {
-        qDebug() << outlineCount << "+:" << xml.prefix().toString()
-                 << ":" << xml.name().toString();
-
-        QString textString(xml.attributes().value("text").toString());
-        QString titleString(xml.attributes().value("title").toString());
-        QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
-        if (textString.isEmpty()) textString = titleString;
-
-        //Folder finded
-        if (xmlUrlString.isEmpty()) {
-          int rowToParent = 0;
-          q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                 arg(parentIdsStack.top()));
-          if (q.next()) rowToParent = q.value(0).toInt();
-
-          q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, parentId, rowToParent) "
-                    "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :parentId, :rowToParent)");
-          q.bindValue(":text", textString);
-          q.bindValue(":title", textString);
-          q.bindValue(":xmlUrl", "");
-          q.bindValue(":feedCreateTime",
-                      QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-          q.bindValue(":parentId", parentIdsStack.top());
-          q.bindValue(":rowToParent", rowToParent);
-          q.exec();
-          parentIdsStack.push(q.lastInsertId().toInt());
-        }
-        // Feed finded
-        else {
-          bool isFeedDuplicated = false;
-          q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-          q.bindValue(":xmlUrl", xmlUrlString);
-          q.exec();
-          if (q.next())
-            isFeedDuplicated = true;
-
-          if (isFeedDuplicated) {
-            qDebug() << "duplicate feed:" << xmlUrlString << textString;
-          } else {
-            int rowToParent = 0;
-            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                   arg(parentIdsStack.top()));
-            if (q.next()) rowToParent = q.value(0).toInt();
-
-            q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId, rowToParent) "
-                      "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-            q.addBindValue(textString);
-            q.addBindValue(xml.attributes().value("title").toString());
-            q.addBindValue(xml.attributes().value("description").toString());
-            q.addBindValue(xmlUrlString);
-            q.addBindValue(xml.attributes().value("htmlUrl").toString());
-            q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-            q.addBindValue(parentIdsStack.top());
-            q.addBindValue(rowToParent);
-            q.exec();
-
-            idsList.append(q.lastInsertId().toInt());
-            urlsList.append(xmlUrlString);
-          }
-          parentIdsStack.push(q.lastInsertId().toInt());
-        }
-      }
-    } else if (xml.isEndElement()) {
-      if (xml.name() == "outline") {
-        parentIdsStack.pop();
-        ++outlineCount;
-      }
-      ++elementCount;
-    }
-    qDebug() << parentIdsStack;
-  }
-  if (xml.error()) {
-    emit signalMessageStatusBar(QString("Import error: Line=%1, ErrorString=%2").
-                                arg(xml.lineNumber()).arg(xml.errorString()), 3000);
-  } else {
-    emit signalMessageStatusBar(QString("Import: file read done"), 3000);
-  }
-  db.commit();
-
-  emit signalUpdateFeedsModel();
-
-  for (int i = 0; i < idsList.count(); i++) {
-    updateFeedsCount_ = updateFeedsCount_ + 2;
-    emit signalRequestUrl(idsList.at(i), urlsList.at(i), QDateTime(), "");
-  }
-  emit showProgressBar(updateFeedsCount_);
-}
-
-// ----------------------------------------------------------------------------
-bool ParseObject::addFeedInQueue(int feedId, const QString &feedUrl,
-                                 const QDateTime &date, int auth)
-{
-  int feedIdIndex = feedIdList_.indexOf(feedId);
-  if (feedIdIndex > -1) {
-    return false;
-  } else {
-    feedIdList_.append(feedId);
-    updateFeedsCount_ = updateFeedsCount_ + 2;
-    QString userInfo;
-    if (auth == 1) {
-      QSqlQuery q;
-      QUrl url(feedUrl);
-      q.prepare("SELECT username, password FROM passwords WHERE server=?");
-      q.addBindValue(url.host());
-      q.exec();
-      if (q.next()) {
-        userInfo = QString("%1:%2").arg(q.value(0).toString()).
-            arg(QString::fromUtf8(QByteArray::fromBase64(q.value(1).toByteArray())));
-      }
-    }
-    emit signalRequestUrl(feedId, feedUrl, date, userInfo);
-    return true;
-  }
-}
-
-/** @brief Process network request completion
- *---------------------------------------------------------------------------*/
-void ParseObject::getUrlDone(int result, int feedId, QString feedUrlStr,
-                             QString error, QByteArray data, QDateTime dtReply,
-                             QString codecName)
-{
-  qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
-
-  if (updateFeedsCount_ > 0) {
-    updateFeedsCount_--;
-    emit loadProgress(updateFeedsCount_);
-  }
-
-  if (!data.isEmpty()) {
-    parseXml(data, feedId, dtReply, codecName);
-  } else {
-    QString status = "0";
-    if (result < 0) status = QString("%1 %2").arg(result).arg(error);
-    finishUpdate(feedId, false, 0, status);
-  }
-}
-
-void ParseObject::finishUpdate(int feedId, bool changed, int newCount, QString status)
-{
-  if (updateFeedsCount_ > 0) {
-    updateFeedsCount_--;
-    emit loadProgress(updateFeedsCount_);
-  }
-  bool finish = false;
-  if (updateFeedsCount_ <= 0) {
-    finish = true;
-  }
-
-  int feedIdIndex = feedIdList_.indexOf(feedId);
-  if (feedIdIndex > -1) {
-    feedIdList_.takeAt(feedIdIndex);
-  }
-
-  emit feedUpdated(feedId, changed, newCount, status, finish);
 }
 
 /** @brief Queueing xml-data
@@ -335,7 +113,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   // id not found (ex. feed deleted while updating)
   if (feedUrl.isEmpty()) {
     qDebug() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
-    finishUpdate(parseFeedId_, false, 0, "0");
+    emit signalFinishUpdate(parseFeedId_, false, 0, "0");
     return;
   }
 
@@ -436,7 +214,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   q.finish();
 
-  finishUpdate(parseFeedId_, feedChanged_, newCount, "0");
+  emit signalFinishUpdate(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
 }
 
@@ -467,6 +245,9 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
   }
   if (QUrl(feedItem.link).host().isEmpty())
     feedItem.link = feedItem.linkBase + feedItem.link;
+
+  QSqlDatabase db = QSqlDatabase::database();
+  db.transaction();
 
   QSqlQuery q;
   q.setForwardOnly(true);
@@ -538,6 +319,8 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
 
     addAtomNewsIntoBase(newsItem);
   }
+
+  db.commit();
 }
 
 void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
@@ -664,6 +447,9 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.author = toPlainText(channel.namedItem("author").toElement().text());
   feedItem.language = channel.namedItem("language").toElement().text();
 
+  QSqlDatabase db = QSqlDatabase::database();
+  db.transaction();
+
   QSqlQuery q;
   q.setForwardOnly(true);
   QString qStr("UPDATE feeds "
@@ -706,8 +492,11 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.eType = enclosureElem.attribute("type");
     newsItem.eLength = enclosureElem.attribute("length");
 
+//    emit signalAddRssNewsIntoBase(newsItem);
     addRssNewsIntoBase(newsItem);
   }
+
+  db.commit();
 }
 
 void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
@@ -807,7 +596,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
-  q.finish();
+//  q.finish();
 }
 
 QString ParseObject::toPlainText(const QString &text)

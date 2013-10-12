@@ -289,8 +289,6 @@ signals:
   void signalImportFeeds(QByteArray xmlData);
   void signalRequestUrl(int feedId, QString urlString,
                         QDateTime date, QString userInfo);
-  void xmlReadyParse(QByteArray data, int feedId,
-                     QDateTime dtReply, QString codecName);
   void faviconRequestUrl(QString urlString, QString feedUrl);
   void signalIconFeedReady(QString feedUrl, QByteArray faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
@@ -451,7 +449,6 @@ private:
   UpdateFeeds *updateFeeds_;
   FaviconThread *faviconThread_;
   DBMemFileThread *dbMemFileThread_;
-  UpdateDelayer *updateDelayer_;
 
   void setProxy(const QNetworkProxy proxy);
   void createFeedsWidget();

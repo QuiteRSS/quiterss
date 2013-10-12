@@ -538,7 +538,7 @@ void AddFeedWizard::getUrlDone(int result, int feedId, QString feedUrlStr,
   }
 }
 
-void AddFeedWizard::slotUpdateFeed(int feedId, bool, int newCount, QString, bool)
+void AddFeedWizard::slotUpdateFeed(int feedId, bool, int newCount, QString)
 {
   qDebug() << "ParseDone: " << feedUrlString_;
   selectedPage = true;
