@@ -2407,7 +2407,7 @@ void RSSListing::addFeed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
-  slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0", false);
+  slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, false);
 
   delete addFeedWizard;
 }
@@ -3122,8 +3122,7 @@ void RSSListing::slotRecountCategoryCounts()
  * @param feedId Feed identifier to update
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount,
-                                QString status, bool finish)
+void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool finish)
 {
   if (finish) {
     emit signalShowNotification();
@@ -3132,8 +3131,6 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount,
     progressBar_->setValue(0);
     importFeedStart_ = false;
   }
-
-  setStatusFeed(feedId, status);
 
   if (!changed) {
     emit signalNextUpdate();

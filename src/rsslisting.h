@@ -269,8 +269,7 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void slotUpdateFeed(int feedId, bool changed, int newCount,
-                      QString status, bool finish);
+  void slotUpdateFeed(int feedId, bool changed, int newCount, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);

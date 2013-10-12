@@ -70,7 +70,8 @@ signals:
                         QDateTime date, QString userInfo);
   void xmlReadyParse(QByteArray data, int feedId,
                      QDateTime dtReply, QString codecName);
-  void feedUpdated(int feedId, bool changed, int newCount, QString status, bool finish);
+  void setStatusFeed(int feedId, QString status);
+  void feedUpdated(int feedId, bool changed, int newCount, bool finish);
   void signalUpdateModel(bool checkFilter = true);
   void signalUpdateNews();
   void signalCountsStatusBar(int unreadCount, int allCount);

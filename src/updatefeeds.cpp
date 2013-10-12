@@ -97,8 +97,10 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
     connect(parseObject_, SIGNAL(signalFinishUpdate(int,bool,int,QString)),
             updateObject_, SLOT(finishUpdate(int,bool,int,QString)));
-    connect(updateObject_, SIGNAL(feedUpdated(int,bool,int,QString,bool)),
-            parent, SLOT(slotUpdateFeed(int,bool,int,QString,bool)));
+    connect(updateObject_, SIGNAL(feedUpdated(int,bool,int,bool)),
+            parent, SLOT(slotUpdateFeed(int,bool,int,bool)));
+    connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
+            parent, SLOT(setStatusFeed(int,QString)));
 
     qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
     connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
@@ -456,7 +458,8 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
     }
   }
 
-  emit feedUpdated(feedId, changed, newCount, status, finish);
+  emit feedUpdated(feedId, changed, newCount, finish);
+  emit setStatusFeed(feedId, status);
 }
 
 /** @brief Start timer if feed presents in queue
