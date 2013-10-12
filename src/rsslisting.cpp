@@ -7865,11 +7865,6 @@ void RSSListing::setStatusFeed(int feedId, QString status)
     QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
     feedsTreeModel_->setData(indexStatus, status);
     feedsTreeView_->viewport()->update();
-
-    QSqlQuery q;
-    QString qStr = QString("UPDATE feeds SET status='%1' WHERE id=='%2'").
-        arg(status).arg(feedId);
-    q.exec(qStr);
   }
 }
 

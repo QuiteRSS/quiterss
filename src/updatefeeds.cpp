@@ -394,6 +394,11 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
     feedIdList_.takeAt(feedIdIndex);
   }
 
+  QSqlQuery q;
+  QString qStr = QString("UPDATE feeds SET status='%1' WHERE id=='%2'").
+      arg(status).arg(feedId);
+  q.exec(qStr);
+
   emit feedUpdated(feedId, changed, newCount, status, finish);
 }
 
