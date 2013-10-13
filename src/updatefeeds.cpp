@@ -35,7 +35,9 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
 
   getFeedThread_ = new QThread();
+  getFeedThread_->setObjectName("getFeedThread_");
   updateFeedThread_ = new QThread();
+  updateFeedThread_->setObjectName("updateFeedThread_");
 
   int timeoutRequest = rssl->settings_->value("Settings/timeoutRequest", 15).toInt();
   int numberRequest = rssl->settings_->value("Settings/numberRequest", 10).toInt();
@@ -89,6 +91,9 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             Qt::QueuedConnection);
     connect(updateObject_, SIGNAL(signalMessageStatusBar(QString,int)),
             parent, SLOT(showMessageStatusBar(QString,int)));
+    connect(parent, SIGNAL(signalRecountCategoryCounts()),
+            updateObject_, SLOT(slotRecountCategoryCounts()),
+            Qt::QueuedConnection);
     connect(updateObject_, SIGNAL(signalUpdateFeedsModel()),
             parent, SLOT(feedsModelReload()),
             Qt::BlockingQueuedConnection);
@@ -117,6 +122,14 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             Qt::QueuedConnection);
     connect(updateObject_, SIGNAL(signalCountsStatusBar(int,int)),
             parent, SLOT(slotCountsStatusBar(int,int)),
+            Qt::QueuedConnection);
+
+    connect(parent, SIGNAL(signalRecountCategoryCounts()),
+            updateObject_, SLOT(slotRecountCategoryCounts()));
+    qRegisterMetaType<QList<int> >("QList<int>");
+    qRegisterMetaType<QList<int> >("QList<int>");
+    connect(updateObject_, SIGNAL(signalRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)),
+            parent, SLOT(slotRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)),
             Qt::QueuedConnection);
   }
 
@@ -468,4 +481,22 @@ void UpdateObject::slotNextUpdateFeed()
 {
   if (!updateModelTimer_->isActive())
     updateModelTimer_->start(UPDATE_INTERVAL);
+}
+
+void UpdateObject::slotRecountCategoryCounts()
+{
+  QList<int> deletedList;
+  QList<int> starredList;
+  QList<int> readList;
+  QStringList labelList;
+  QSqlQuery q;
+  q.exec("SELECT deleted, starred, read, label FROM news WHERE deleted < 2");
+  while (q.next()) {
+    deletedList.append(q.value(0).toInt());
+    starredList.append(q.value(1).toInt());
+    readList.append(q.value(2).toInt());
+    labelList.append(q.value(3).toString());
+  }
+
+  emit signalRecountCategoryCounts(deletedList, starredList, readList, labelList);
 }

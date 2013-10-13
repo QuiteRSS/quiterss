@@ -314,7 +314,8 @@ private slots:
                    NewsTabWidget *widgetTab = 0, int idException = -1);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
-  void slotRecountCategoryCounts();
+  void slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
+                                 QList<int> readList, QStringList labelList);
   void slotPlaySoundNewNews();
 
   void slotShowAboutDlg();

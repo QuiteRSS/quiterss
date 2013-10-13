@@ -60,6 +60,7 @@ public slots:
                   QDateTime dtReply, QString codecName);
   void finishUpdate(int feedId, bool changed, int newCount, QString status);
   void slotNextUpdateFeed();
+  void slotRecountCategoryCounts();
 
 signals:
   void showProgressBar(int value);
@@ -75,6 +76,8 @@ signals:
   void signalUpdateModel(bool checkFilter = true);
   void signalUpdateNews();
   void signalCountsStatusBar(int unreadCount, int allCount);
+  void signalRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
+                                   QList<int> readList, QStringList labelList);
 
 private slots:
   bool addFeedInQueue(int feedId, const QString &feedUrl,

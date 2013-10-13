@@ -232,8 +232,6 @@ RSSListing::RSSListing(QSettings *settings,
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalRefreshInfoTray()),
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
-  connect(this, SIGNAL(signalRecountCategoryCounts()),
-          SLOT(slotRecountCategoryCounts()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
@@ -3007,19 +3005,17 @@ void RSSListing::recountCategoryCounts()
 {
   if (recountCategoryCountsOn_) return;
 
+  if (!categoriesTree_->isVisible()) return;
+
   recountCategoryCountsOn_ = true;
   emit signalRecountCategoryCounts();
 }
 
 /** @brief Process recalculating categories counters
  *----------------------------------------------------------------------------*/
-void RSSListing::slotRecountCategoryCounts()
+void RSSListing::slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
+                                           QList<int> readList, QStringList labelList)
 {
-  if (!categoriesTree_->isVisible()) {
-    recountCategoryCountsOn_ = false;
-    return;
-  }
-
   int allStarredCount = 0;
   int unreadStarredCount = 0;
   int deletedCount = 0;
@@ -3035,28 +3031,26 @@ void RSSListing::slotRecountCategoryCounts()
     unreadCountList.insert(id, 0);
   }
 
-  QSqlQuery q;
-  q.exec("SELECT deleted, starred, read, label FROM news WHERE deleted < 2");
-  while (q.next()) {
-    if (q.value(0).toInt() == 0) {
-      if (q.value(1).toInt() == 1) {
+  for (int i = 0; i < deletedList.count(); ++i) {
+    if (deletedList.at(i) == 0) {
+      if (starredList.at(i) == 1) {
         allStarredCount++;
-        if (q.value(2).toInt() == 0)
+        if (readList.at(i) == 0)
           unreadStarredCount++;
       }
-      QString idString = q.value(3).toString();
+      QString idString = labelList.at(i);
       if (!idString.isEmpty() && idString != ",") {
         QStringList idList = idString.split(",", QString::SkipEmptyParts);
         foreach (QString idStr, idList) {
           int id = idStr.toInt();
           if (allCountList.contains(id)) {
             allCountList[id]++;
-            if (q.value(2).toInt() == 0)
+            if (readList.at(i) == 0)
               unreadCountList[id]++;
           }
         }
       }
-    } else if (q.value(0).toInt() == 1) {
+    } else if (deletedList.at(i) == 1) {
       deletedCount++;
     }
   }
