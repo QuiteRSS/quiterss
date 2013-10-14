@@ -130,6 +130,9 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   int errorLine;
   int errorColumn;
 
+  QSqlDatabase db = QSqlDatabase::database();
+  db.transaction();
+
   QRegExp rx("encoding=\"([^\"]+)",
              Qt::CaseInsensitive, QRegExp::RegExp2);
   int pos = rx.indexIn(xmlData);
@@ -213,6 +216,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   }
 
   q.finish();
+  db.commit();
 
   emit signalFinishUpdate(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
@@ -245,9 +249,6 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
   }
   if (QUrl(feedItem.link).host().isEmpty())
     feedItem.link = feedItem.linkBase + feedItem.link;
-
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
 
   QSqlQuery q;
   q.setForwardOnly(true);
@@ -319,8 +320,6 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
 
     addAtomNewsIntoBase(newsItem);
   }
-
-  db.commit();
 }
 
 void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
@@ -429,7 +428,6 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
-  q.finish();
 }
 
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
@@ -446,9 +444,6 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.updated = parseDate(feedItem.updated, feedUrl);
   feedItem.author = toPlainText(channel.namedItem("author").toElement().text());
   feedItem.language = channel.namedItem("language").toElement().text();
-
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
 
   QSqlQuery q;
   q.setForwardOnly(true);
@@ -492,11 +487,8 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.eType = enclosureElem.attribute("type");
     newsItem.eLength = enclosureElem.attribute("length");
 
-//    emit signalAddRssNewsIntoBase(newsItem);
     addRssNewsIntoBase(newsItem);
   }
-
-  db.commit();
 }
 
 void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
@@ -596,7 +588,6 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
-//  q.finish();
 }
 
 QString ParseObject::toPlainText(const QString &text)
