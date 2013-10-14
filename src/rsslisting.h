@@ -276,7 +276,7 @@ public slots:
   void slotUpdateStatus(int feedId, bool changed = true);
   void setNewsFilter(QAction*, bool clicked = true);
   void slotCloseTab(int index);
-  QWebPage *createWebTab();
+  QWebPage *createWebTab(QUrl url = QUrl());
   void setAutoLoadImages(bool set = true);
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
