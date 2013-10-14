@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
 * QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader
 * Copyright (C) 2011-2013 QuiteRSS Team <quiterssteam@gmail.com>
 *
@@ -1433,8 +1433,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
           rsslisting_->openNewsTab_ = NEW_TAB_BACKGROUND;
       }
 
-      QWebPage *webPage = rsslisting_->createWebTab();
-      qobject_cast<WebView*>(webPage->view())->load(url);
+      rsslisting_->createWebTab(url);
     }
   } else {
     openUrl(url);
@@ -1618,8 +1617,7 @@ void NewsTabWidget::openNewsNewTab()
       url.setHost(hostUrl.host());
     }
 
-    QWebPage *webPage = rsslisting_->createWebTab();
-    qobject_cast<WebView*>(webPage->view())->load(url);
+    rsslisting_->createWebTab(url);
   }
 }
 
@@ -2100,8 +2098,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
 
       if (rsslisting_->externalBrowserOn_ <= 0) {
         rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
-        QWebPage *webPage = rsslisting_->createWebTab();
-        qobject_cast<WebView*>(webPage->view())->load(url);
+        rsslisting_->createWebTab(url);
       } else openUrl(url);
     }
   }

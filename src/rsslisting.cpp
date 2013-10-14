@@ -6187,7 +6187,7 @@ void RSSListing::setBrowserPosition(QAction *action)
 
 /** @brief Create tab with browser only (without news list)
  *---------------------------------------------------------------------------*/
-QWebPage *RSSListing::createWebTab()
+QWebPage *RSSListing::createWebTab(QUrl url)
 {
   NewsTabWidget *widget = new NewsTabWidget(this, TAB_WEB);
   int indexTab = addTab(widget);
@@ -6202,6 +6202,9 @@ QWebPage *RSSListing::createWebTab()
   }
 
   openNewsTab_ = 0;
+
+  if (!url.isEmpty())
+    widget->webView_->load(url);
 
   return widget->webView_->page();
 }
