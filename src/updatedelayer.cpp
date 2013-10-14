@@ -105,6 +105,6 @@ void UpdateDelayer::slotNextUpdateFeed()
     nextUpdateFeed_ = true;
 
     if (!updateModelTimer_->isActive())
-      updateModelTimer_->start(MIN_UPDATE_INTERVAL);
+      updateModelTimer_->start(UPDATE_INTERVAL);
   }
 }

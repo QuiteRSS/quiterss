@@ -2465,6 +2465,9 @@ void OptionsDialog::loadNotifier()
 //----------------------------------------------------------------------------
 void OptionsDialog::applyNotifier()
 {
+  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  rssl_->idFeedsNotifyList_.clear();
+
   feedsTreeNotify_->expandAll();
   QTreeWidgetItem *treeWidgetItem =
       feedsTreeNotify_->itemBelow(feedsTreeNotify_->topLevelItem(0));
@@ -2477,6 +2480,9 @@ void OptionsDialog::applyNotifier()
     QString qStr = QString("UPDATE feeds_ex SET value='%1' WHERE feedId='%2' AND name='showNotification'").
         arg(check).arg(treeWidgetItem->text(1).toInt());
     q.exec(qStr);
+
+    if (check && onlySelectedFeeds_->isChecked())
+      rssl_->idFeedsNotifyList_.append(treeWidgetItem->text(1).toInt());
 
     treeWidgetItem = feedsTreeNotify_->itemBelow(treeWidgetItem);
   }

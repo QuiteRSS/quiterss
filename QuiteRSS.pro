@@ -60,9 +60,7 @@ TEMPLATE = app
 
 HEADERS += \
     src/VersionNo.h \
-    src/updatethread.h \
     src/rsslisting.h \
-    src/parsethread.h \
     src/parseobject.h \
     src/optionsdialog.h \
     src/newsview.h \
@@ -72,7 +70,6 @@ HEADERS += \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/updateobject.h \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
@@ -105,12 +102,12 @@ HEADERS += \
     src/downloads/downloaditem.h \
     src/tabbar.h \
     src/categoriestreewidget.h \
-    src/cleanupwizard.h
+    src/cleanupwizard.h \
+    src/updatefeeds.h \
+    src/requestfeed.h
 
 SOURCES += \
-    src/updatethread.cpp \
     src/rsslisting.cpp \
-    src/parsethread.cpp \
     src/parseobject.cpp \
     src/optionsdialog.cpp \
     src/newsview.cpp \
@@ -121,7 +118,6 @@ SOURCES += \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/updateobject.cpp \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
@@ -153,7 +149,9 @@ SOURCES += \
     src/downloads/downloaditem.cpp \
     src/tabbar.cpp \
     src/categoriestreewidget.cpp \
-    src/cleanupwizard.cpp
+    src/cleanupwizard.cpp \
+    src/updatefeeds.cpp \
+    src/requestfeed.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

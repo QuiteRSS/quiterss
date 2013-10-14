@@ -46,12 +46,11 @@
 #include "newstabwidget.h"
 #include "newsview.h"
 #include "notifications.h"
-#include "parsethread.h"
 #include "tabbar.h"
 #include "optionsdialog.h"
 #include "updateappdialog.h"
 #include "updatedelayer.h"
-#include "updatethread.h"
+#include "updatefeeds.h"
 #include "webview.h"
 
 #define NEW_TAB_FOREGROUND 1
@@ -246,6 +245,7 @@ public:
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;
+  QList<int> idFeedsNotifyList_;
 
 public slots:
   void addFeed();
@@ -257,6 +257,10 @@ public slots:
   void slotFeedSelected(QModelIndex index, bool createTab = false);
   void slotGetFeed();
   void slotGetAllFeeds();
+  void showProgressBar(int addToMaximum);
+  void slotSetValue(int value);
+  void showMessageStatusBar(QString message, int timeout = 0);
+  void slotCountsStatusBar(int unreadCount, int allCount);
   void showOptionDlg();
   void receiveMessage(const QString&);
   void slotPlaceToTray();
@@ -265,12 +269,7 @@ public slots:
   void slotClose();
   void slotCloseApp();
   void myEmptyWorkingSet();
-  void getUrlDone(int result, int feedId, QString feedUrlStr,
-                  QString error, QByteArray data,
-                  QDateTime dtReply, QString codecName);
-  void slotUpdateFeed(int feedId, bool changed, int newCount, QString status);
-  void slotUpdateFeedDelayed(const int &feedId, const bool &changed,
-                             const int &newCount, const QString &status);
+  void slotUpdateFeed(int feedId, bool changed, int newCount, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
   void slotUpdateNews();
   void slotUpdateStatus(int feedId, bool changed = true);
@@ -285,10 +284,14 @@ public slots:
 signals:
   void signalPlaceToTray();
   void signalCloseApp();
+  void signalGetFeedTimer(int feedId);
+  void signalGetAllFeedsTimer();
+  void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
+  void signalGetFeedsFolder(QString query);
+  void signalGetAllFeeds();
+  void signalImportFeeds(QByteArray xmlData);
   void signalRequestUrl(int feedId, QString urlString,
                         QDateTime date, QString userInfo);
-  void xmlReadyParse(QByteArray data, int feedId,
-                     QDateTime dtReply, QString codecName);
   void faviconRequestUrl(QString urlString, QString feedUrl);
   void signalIconFeedReady(QString feedUrl, QByteArray faviconData);
   void signalSetCurrentTab(int index, bool updateTab = false);
@@ -297,7 +300,6 @@ signals:
   void signalNextUpdate();
   void signalRecountCategoryCounts();
   void signalPlaySoundNewNews();
-  void loadProgress(int);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -312,7 +314,8 @@ private slots:
                    NewsTabWidget *widgetTab = 0, int idException = -1);
   void markFeedRead();
   void setFeedsFilter(QAction*, bool clicked = true);
-  void slotRecountCategoryCounts();
+  void slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
+                                 QList<int> readList, QStringList labelList);
   void slotPlaySoundNewNews();
 
   void slotShowAboutDlg();
@@ -320,9 +323,7 @@ private slots:
   void showContextMenuFeed(const QPoint & pos);
   void slotFeedsFilter();
   void slotNewsFilter();
-  void slotUpdateFeedsTimer();
-  bool addFeedInQueue(int feedId, const QString &feedUrl,
-                      const QDateTime &date, int auth);
+  void slotGetFeedsTimer();
   void slotShowUpdateAppDlg();
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
@@ -446,13 +447,12 @@ private slots:
   void saveDBMemFile();
 
 private:
-  UpdateThread *persistentUpdateThread_;
-  ParseThread *persistentParseThread_;
   QNetworkProxy networkProxy_;
-  UpdateDelayer *updateDelayer_;
+  UpdateFeeds *updateFeeds_;
+  FaviconThread *faviconThread_;
+  DBMemFileThread *dbMemFileThread_;
 
   void setProxy(const QNetworkProxy proxy);
-  void showProgressBar(int addToMaximum);
   void createFeedsWidget();
   void createNewsTab(int index);
   void createToolBarNull();
@@ -648,10 +648,6 @@ private:
   int openingFeedAction_;
   bool openNewsWebViewOn_;
 
-  FaviconThread *faviconThread_;
-
-  DBMemFileThread *dbMemFileThread_;
-
   bool soundNewNews_;
   QString soundNotifyPath_;
   bool playSoundNewNews_;
@@ -704,8 +700,6 @@ private:
   QSplitter *feedsSplitter_;
   QByteArray feedsWidgetSplitterState_;
 
-  QElapsedTimer timer_;
-
   qint64 activationStateChangedTime_;
 
   bool importFeedStart_;
@@ -717,8 +711,6 @@ private:
   QString diskCacheDirPathDefault_;
 
   OptionsDialog *optionsDialog_;
-
-  QTimer timerUpdateNews_;
 
 };
 

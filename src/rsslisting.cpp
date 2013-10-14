@@ -32,6 +32,8 @@
 #include <windows.h>
 #include <psapi.h>
 #endif
+#include <QMainWindow>
+#include <QStatusBar>
 
 /** @brief Process messages from other application copy
  *---------------------------------------------------------------------------*/
@@ -158,13 +160,7 @@ RSSListing::RSSListing(QSettings *settings,
   connect(downloadManager_, SIGNAL(signalUpdateInfo(QString)),
           this, SLOT(updateInfoDownloads(QString)));
 
-  int timeoutRequest = settings_->value("Settings/timeoutRequest", 15).toInt();
-  int numberRequest = settings_->value("Settings/numberRequest", 10).toInt();
-  int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
-  persistentUpdateThread_ = new UpdateThread(this, timeoutRequest, numberRequest, numberRepeats);
-
-  persistentParseThread_ = new ParseThread(this);
-
+  updateFeeds_ = new UpdateFeeds(this);
   faviconThread_ = new FaviconThread(this);
 
   createFeedsWidget();
@@ -236,26 +232,11 @@ RSSListing::RSSListing(QSettings *settings,
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalRefreshInfoTray()),
           SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
-  connect(this, SIGNAL(signalRecountCategoryCounts()),
-          SLOT(slotRecountCategoryCounts()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
-  updateDelayer_ = new UpdateDelayer(this);
-  connect(updateDelayer_, SIGNAL(signalUpdateNeeded(int,bool,int,QString)),
-          this, SLOT(slotUpdateFeedDelayed(int,bool,int,QString)),
-          Qt::QueuedConnection);
-  connect(this, SIGNAL(signalNextUpdate()),
-          updateDelayer_, SLOT(slotNextUpdateFeed()));
-  connect(updateDelayer_, SIGNAL(signalUpdateModel(bool)),
-          this, SLOT(feedsModelReload(bool)));
-
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
-
-  timerUpdateNews_.setSingleShot(true);
-  connect(&timerUpdateNews_, SIGNAL(timeout()),
-          this, SLOT(slotUpdateNews()));
 
   loadSettingsFeeds();
 
@@ -317,8 +298,7 @@ void RSSListing::slotClose()
   writeSettings();
   cookieJar_->saveCookies();
 
-  delete persistentUpdateThread_;
-  delete persistentParseThread_;
+  delete updateFeeds_;
   delete faviconThread_;
 
   cleanUpShutdown();
@@ -715,8 +695,6 @@ void RSSListing::createStatusBar()
   progressBar_->setMaximum(0);
   progressBar_->setValue(0);
   progressBar_->setVisible(false);
-  connect(this, SIGNAL(loadProgress(int)),
-          progressBar_, SLOT(setValue(int)), Qt::QueuedConnection);
 
   statusBar()->setMinimumHeight(22);
 
@@ -2427,7 +2405,7 @@ void RSSListing::addFeed()
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
   QApplication::restoreOverrideCursor();
-  slotUpdateFeedDelayed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, "0");
+  slotUpdateFeed(addFeedWizard->feedId_, true, addFeedWizard->newCount_, false);
 
   delete addFeedWizard;
 }
@@ -2590,123 +2568,13 @@ void RSSListing::slotImportFeeds()
     return;
   }
 
-  importFeedStart_ = true;
-
-  timer_.start();
-  //  qCritical() << "Start update";
-  //  qCritical() << "------------------------------------------------------------";
-
-  db_.transaction();
-
   QByteArray xmlData = file.readAll();
-  xmlData.replace("&", "&#38;");
-  QXmlStreamReader xml(xmlData);
-
-  int elementCount = 0;
-  int outlineCount = 0;
-  QSqlQuery q;
-
-  // Store hierarchy of "outline" tags. Next nested outline is pushed to stack.
-  // When it closes, pop it out from stack. Top of stack is the root outline.
-  QStack<int> parentIdsStack;
-  parentIdsStack.push(0);
-  while (!xml.atEnd()) {
-    xml.readNext();
-    if (xml.isStartElement()) {
-      statusBar()->showMessage(QVariant(elementCount).toString(), 3000);
-      // Search for "outline" only
-      if (xml.name() == "outline") {
-        qDebug() << outlineCount << "+:" << xml.prefix().toString()
-                 << ":" << xml.name().toString();
-
-        QString textString(xml.attributes().value("text").toString());
-        QString titleString(xml.attributes().value("title").toString());
-        QString xmlUrlString(xml.attributes().value("xmlUrl").toString());
-        if (textString.isEmpty()) textString = titleString;
-
-        //Folder finded
-        if (xmlUrlString.isEmpty()) {
-          int rowToParent = 0;
-          q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                 arg(parentIdsStack.top()));
-          if (q.next()) rowToParent = q.value(0).toInt();
-
-          q.prepare("INSERT INTO feeds(text, title, xmlUrl, created, f_Expanded, parentId, rowToParent) "
-                    "VALUES (:text, :title, :xmlUrl, :feedCreateTime, 0, :parentId, :rowToParent)");
-          q.bindValue(":text", textString);
-          q.bindValue(":title", textString);
-          q.bindValue(":xmlUrl", "");
-          q.bindValue(":feedCreateTime",
-                      QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-          q.bindValue(":parentId", parentIdsStack.top());
-          q.bindValue(":rowToParent", rowToParent);
-          q.exec();
-          parentIdsStack.push(q.lastInsertId().toInt());
-          // qDebug() << q.lastQuery() << q.boundValues() << q.lastInsertId();
-          // qDebug() << q.lastError().number() << ": " << q.lastError().text();
-        }
-        // Feed finded
-        else {
-          bool isFeedDuplicated = false;
-          q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-          q.bindValue(":xmlUrl", xmlUrlString);
-          q.exec();
-          if (q.next())
-            isFeedDuplicated = true;
-
-          if (isFeedDuplicated) {
-            qDebug() << "duplicate feed:" << xmlUrlString << textString;
-          } else {
-            int rowToParent = 0;
-            q.exec(QString("SELECT count(id) FROM feeds WHERE parentId='%1'").
-                   arg(parentIdsStack.top()));
-            if (q.next()) rowToParent = q.value(0).toInt();
-
-            q.prepare("INSERT INTO feeds(text, title, description, xmlUrl, htmlUrl, created, parentId, rowToParent) "
-                      "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-            q.addBindValue(textString);
-            q.addBindValue(xml.attributes().value("title").toString());
-            q.addBindValue(xml.attributes().value("description").toString());
-            q.addBindValue(xmlUrlString);
-            q.addBindValue(xml.attributes().value("htmlUrl").toString());
-            q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
-            q.addBindValue(parentIdsStack.top());
-            q.addBindValue(rowToParent);
-            q.exec();
-            // qDebug() << q.lastQuery() << q.boundValues();
-            // qDebug() << q.lastError().number() << ": " << q.lastError().text();
-
-            updateFeedsCount_ = updateFeedsCount_ + 2;
-            emit signalRequestUrl(q.lastInsertId().toInt(), xmlUrlString, QDateTime(), "");
-          }
-          parentIdsStack.push(q.lastInsertId().toInt());
-        }
-      }
-    } else if (xml.isEndElement()) {
-      if (xml.name() == "outline") {
-        parentIdsStack.pop();
-        ++outlineCount;
-      }
-      ++elementCount;
-    }
-    qDebug() << parentIdsStack;
-  }
-  if (xml.error()) {
-    statusBar()->showMessage(QString("Import error: Line=%1, ErrorString=%2").
-                             arg(xml.lineNumber()).arg(xml.errorString()), 3000);
-  } else {
-    statusBar()->showMessage(QString("Import: file read done"), 3000);
-  }
-  db_.commit();
-
   file.close();
 
-  showProgressBar(updateFeedsCount_);
+  importFeedStart_ = true;
+  emit signalImportFeeds(xmlData);
 
-  //  qCritical() << "Start update: " << timer_.elapsed();
   feedsModelReload();
-  //  qCritical() << "Start update: " << timer_.elapsed() << updateFeedsCount_;
-  //  qCritical() << "------------------------------------------------------------";
 }
 
 /** @brief Export feeds to OPML-file
@@ -2788,28 +2656,6 @@ void RSSListing::slotExportFeeds()
   xml.writeEndDocument();
 
   file.close();
-}
-
-/** @brief Process network request completion
- *---------------------------------------------------------------------------*/
-void RSSListing::getUrlDone(int result, int feedId, QString feedUrlStr,
-                            QString error, QByteArray data, QDateTime dtReply,
-                            QString codecName)
-{
-  qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
-
-  if (updateFeedsCount_ > 0) {
-    updateFeedsCount_--;
-    emit loadProgress(progressBar_->maximum() - updateFeedsCount_);
-  }
-
-  if (!data.isEmpty()) {
-    emit xmlReadyParse(data, feedId, dtReply, codecName);
-  } else {
-    QString status = "0";
-    if (result < 0) status = QString("%1 %2").arg(result).arg(error);
-    slotUpdateFeed(feedId, false, 0, status);
-  }
 }
 
 /** @brief Update feed counters and all its parents
@@ -3159,19 +3005,17 @@ void RSSListing::recountCategoryCounts()
 {
   if (recountCategoryCountsOn_) return;
 
+  if (!categoriesTree_->isVisible()) return;
+
   recountCategoryCountsOn_ = true;
   emit signalRecountCategoryCounts();
 }
 
 /** @brief Process recalculating categories counters
  *----------------------------------------------------------------------------*/
-void RSSListing::slotRecountCategoryCounts()
+void RSSListing::slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
+                                           QList<int> readList, QStringList labelList)
 {
-  if (!categoriesTree_->isVisible()) {
-    recountCategoryCountsOn_ = false;
-    return;
-  }
-
   int allStarredCount = 0;
   int unreadStarredCount = 0;
   int deletedCount = 0;
@@ -3187,31 +3031,30 @@ void RSSListing::slotRecountCategoryCounts()
     unreadCountList.insert(id, 0);
   }
 
-  QSqlQuery q;
-  q.exec("SELECT deleted, starred, read, label FROM news WHERE deleted < 2");
-  while (q.next()) {
-    if (q.value(0).toInt() == 0) {
-      if (q.value(1).toInt() == 1) {
+  for (int i = 0; i < deletedList.count(); ++i) {
+    if (deletedList.at(i) == 0) {
+      if (starredList.at(i) == 1) {
         allStarredCount++;
-        if (q.value(2).toInt() == 0)
+        if (readList.at(i) == 0)
           unreadStarredCount++;
       }
-      QString idString = q.value(3).toString();
+      QString idString = labelList.at(i);
       if (!idString.isEmpty() && idString != ",") {
         QStringList idList = idString.split(",", QString::SkipEmptyParts);
         foreach (QString idStr, idList) {
           int id = idStr.toInt();
           if (allCountList.contains(id)) {
             allCountList[id]++;
-            if (q.value(2).toInt() == 0)
+            if (readList.at(i) == 0)
               unreadCountList[id]++;
           }
         }
       }
-    } else if (q.value(0).toInt() == 1) {
+    } else if (deletedList.at(i) == 1) {
       deletedCount++;
     }
   }
+
   for (int i = 0; i < labelTreeItem->childCount(); i++) {
     int id = labelTreeItem->child(i)->text(2).toInt();
     QString countStr;
@@ -3267,48 +3110,21 @@ void RSSListing::slotRecountCategoryCounts()
   recountCategoryCountsOn_ = false;
 }
 
-/** @brief Process updating feed view signal
- *
- * Calls after updating or adding feed
- * Actually calls updateing delay
- * @param url URL of updating feed
- * @param changed Flag indicating that feed is updated indeed
- *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, QString status)
-{
-  updateDelayer_->delayUpdate(feedId, changed, newCount, status);
-}
-
 /** @brief Update feed view
  *
  * Slot is called by UpdateDelayer after some delay
  * @param feedId Feed identifier to update
  * @param changed Flag indicating that feed is updated indeed
  *---------------------------------------------------------------------------*/
-void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
-                                       const int &newCount, const QString &status)
+void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool finish)
 {
-  if (updateFeedsCount_ > 0) {
-    updateFeedsCount_--;
-    emit loadProgress(progressBar_->maximum() - updateFeedsCount_);
-  }
-  if (updateFeedsCount_ <= 0) {
+  if (finish) {
     emit signalShowNotification();
     progressBar_->hide();
     progressBar_->setMaximum(0);
-    emit loadProgress(0);
-    updateFeedsCount_ = 0;
+    progressBar_->setValue(0);
     importFeedStart_ = false;
-    // qCritical() << "Stop update: " << timer_.elapsed();
-    // qCritical() << "------------------------------------------------------------";
   }
-
-  int feedIdIndex = feedIdList_.indexOf(feedId);
-  if (feedIdIndex > -1) {
-    feedIdList_.takeAt(feedIdIndex);
-  }
-
-  setStatusFeed(feedId, status);
 
   if (!changed) {
     emit signalNextUpdate();
@@ -3331,20 +3147,14 @@ void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
   } else if (newCount > 0) {
     int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
-      QSqlQuery q;
-      q.exec(QString("SELECT value FROM feeds_ex WHERE feedId='%1' AND name='showNotification'").
-             arg(feedId));
-      if (q.first()) {
-        if (q.value(0).toInt() == 1) {
-          if (-1 < feedIdIndex) {
-            cntNewNewsList_[feedIdIndex] = newCount;
-          } else {
-            idFeedList_.append(feedId);
-            cntNewNewsList_.append(newCount);
-          }
+      if(idFeedsNotifyList_.contains(feedId)) {
+        if (-1 < feedIdIndex) {
+          cntNewNewsList_[feedIdIndex] = newCount;
+        } else {
+          idFeedList_.append(feedId);
+          cntNewNewsList_.append(newCount);
         }
       }
-      q.finish();
     } else {
       if (-1 < feedIdIndex) {
         cntNewNewsList_[feedIdIndex] = newCount;
@@ -3356,46 +3166,6 @@ void RSSListing::slotUpdateFeedDelayed(const int &feedId, const bool &changed,
   }
 
   recountCategoryCounts();
-
-  if (currentNewsTab->type_ == TAB_FEED) {
-    bool folderUpdate = false;
-    int feedParentId = 0;
-
-    QSqlQuery q;
-    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
-    if (q.first()) {
-      feedParentId = q.value(0).toInt();
-      if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
-    }
-
-    while (feedParentId && !folderUpdate) {
-      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
-      if (q.first()) {
-        feedParentId = q.value(0).toInt();
-        if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
-      }
-    }
-
-    // Click on feed if it is displayed to update view
-    if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
-      if (!timerUpdateNews_.isActive())
-        timerUpdateNews_.start(1000);
-
-      int unreadCount = 0;
-      int allCount = 0;
-      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(currentNewsTab->feedId_));
-      if (q.first()) {
-        unreadCount = q.value(0).toInt();
-        allCount    = q.value(1).toInt();
-      }
-      statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
-      statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
-    }
-    q.finish();
-  } else if (currentNewsTab->type_ < TAB_WEB) {
-    if (!timerUpdateNews_.isActive())
-      timerUpdateNews_.start(1000);
-  }
 
   emit signalNextUpdate();
 }
@@ -4229,6 +3999,94 @@ void RSSListing::myEmptyWorkingSet()
     EmptyWorkingSet(GetCurrentProcess());
 #endif
 }
+// ----------------------------------------------------------------------------
+void RSSListing::initUpdateFeeds()
+{
+  QSqlQuery q;
+
+  if (onlySelectedFeeds_) {
+    q.exec("SELECT feedId FROM feeds_ex WHERE value=1 AND name='showNotification'");
+    while (q.next()) {
+      idFeedsNotifyList_.append(q.value(0).toInt());
+    }
+  }
+
+  q.exec("SELECT id, updateInterval, updateIntervalType FROM feeds WHERE xmlUrl != '' AND updateIntervalEnable == 1");
+  while (q.next()) {
+    int updateInterval = q.value(1).toInt();
+    int updateIntervalType = q.value(2).toInt();
+    if (updateIntervalType == 0)
+      updateInterval = updateInterval*60;
+    else if (updateIntervalType == 1)
+      updateInterval = updateInterval*60*60;
+
+    updateFeedsIntervalSec_.insert(q.value(0).toInt(), updateInterval);
+    updateFeedsTimeCount_.insert(q.value(0).toInt(), 0);
+  }
+
+  int updateInterval = updateFeedsInterval_;
+  if (updateFeedsIntervalType_ == 0)
+    updateInterval = updateInterval*60;
+  else if (updateFeedsIntervalType_ == 1)
+    updateInterval = updateInterval*60*60;
+  updateIntervalSec_ = updateInterval;
+
+  updateFeedsTimer_ = new QTimer(this);
+  connect(updateFeedsTimer_, SIGNAL(timeout()),
+          this, SLOT(slotGetFeedsTimer()));
+  updateFeedsTimer_->start(1000);
+}
+// ----------------------------------------------------------------------------
+void RSSListing::slotGetFeedsTimer()
+{
+  if (updateFeedsEnable_) {
+    updateTimeCount_++;
+    if (updateTimeCount_ >= updateIntervalSec_) {
+      updateTimeCount_ = 0;
+
+      emit signalGetAllFeedsTimer();
+    }
+  } else {
+    updateTimeCount_ = 0;
+  }
+
+  QMapIterator<int, int> iterator(updateFeedsTimeCount_);
+  while (iterator.hasNext()) {
+    iterator.next();
+    int feedId = iterator.key();
+    updateFeedsTimeCount_[feedId]++;
+    if (updateFeedsTimeCount_[feedId] >= updateFeedsIntervalSec_[feedId]) {
+      updateFeedsTimeCount_[feedId] = 0;
+
+      emit signalGetFeedTimer(feedId);
+    }
+  }
+}
+/** @brief Process update feed action
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotGetFeed()
+{
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
+  if (feedsTreeModel_->isFolder(index)) {
+    QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
+    str.replace("feedId", "id");
+    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
+        arg(str);
+    emit signalGetFeedsFolder(qStr);
+  } else {
+    emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
+                       feedsTreeModel_->dataField(index, "xmlUrl").toString(),
+                       feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
+                       feedsTreeModel_->dataField(index, "authentication").toInt());
+  }
+}
+
+/** @brief Process update all feeds action
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotGetAllFeeds()
+{
+  emit signalGetAllFeeds();
+}
 
 /** @brief Show update progress bar after feed update has started
  *---------------------------------------------------------------------------*/
@@ -4243,49 +4101,18 @@ void RSSListing::showProgressBar(int maximum)
   progressBar_->setMaximum(maximum);
   progressBar_->show();
 }
-
-/** @brief Process update feed action
- *---------------------------------------------------------------------------*/
-void RSSListing::slotGetFeed()
+void RSSListing::slotSetValue(int value)
 {
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  if (feedsTreeModel_->isFolder(index)) {
-    QSqlQuery q;
-    QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
-    str.replace("feedId", "id");
-    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
-        arg(str);
-    q.exec(qStr);
-    while (q.next()) {
-      addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                     q.value(2).toDateTime(), q.value(3).toInt());
-    }
-  } else {
-    addFeedInQueue(feedsTreeModel_->dataField(index, "id").toInt(),
-                   feedsTreeModel_->dataField(index, "xmlUrl").toString(),
-                   feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
-                   feedsTreeModel_->dataField(index, "authentication").toInt());
-  }
-
-  showProgressBar(updateFeedsCount_);
+  progressBar_->setValue(progressBar_->maximum() - value);
 }
-
-/** @brief Process update all feeds action
- *---------------------------------------------------------------------------*/
-void RSSListing::slotGetAllFeeds()
+void RSSListing::showMessageStatusBar(QString message, int timeout)
 {
-  QSqlQuery q;
-  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
-  while (q.next()) {
-    addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                   q.value(2).toDateTime(), q.value(3).toInt());
-  }
-
-  showProgressBar(updateFeedsCount_);
-
-  timer_.start();
-  //  qCritical() << "Start update";
-  //  qCritical() << "------------------------------------------------------------";
+  statusBar()->showMessage(message, timeout);
+}
+void RSSListing::slotCountsStatusBar(int unreadCount, int allCount)
+{
+  statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
+  statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotVisibledFeedsWidget()
@@ -4422,6 +4249,26 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
  *----------------------------------------------------------------------------*/
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
+  // ... add filter from "search"
+  QString findStr;
+  if (findFeedsWidget_->isVisible() && !findFeeds_->text().isEmpty()) {
+    if (pAct->objectName() != "filterFeedsAll_")
+      findStr.append(" AND ");
+
+    // add categories into filter to display nested feed
+    findStr.append("(");
+    if ((pAct->objectName() != "filterFeedsStarred_") &&
+        (pAct->objectName() != "filterFeedsError_")) {
+      findStr.append(QString("((xmlUrl = '') OR (xmlUrl IS NULL)) OR "));
+    }
+    if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
+      findStr.append(QString("text LIKE '%%1%'").arg(findFeeds_->text()));
+    } else {
+      findStr.append(QString("xmlUrl LIKE '%%1%'").arg(findFeeds_->text()));
+    }
+    findStr.append(")");
+  }
+
   QModelIndex index = feedsTreeView_->currentIndex();
   int feedId = feedsTreeModel_->getIdByIndex(index);
   int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
@@ -4434,104 +4281,92 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   }
 
   // Create feed filter from "filter"
-  QString strFilter;
+  QString filterStr;
   if (pAct->objectName() == "filterFeedsAll_") {
-    strFilter = "";
+    filterStr = findStr;
   } else if (pAct->objectName() == "filterFeedsNew_") {
     if (clicked && !newCount) {
-      strFilter = QString("newCount > 0");
+      filterStr = QString("newCount > 0");
     } else {
-      strFilter = QString("(newCount > 0 OR id=='%1'").arg(feedId);
+      filterStr = QString("(newCount > 0 OR id=='%1'").arg(feedId);
       foreach (int parentId, parentIdList)
-        strFilter.append(QString(" OR id=='%1'").arg(parentId));
-      strFilter.append(")");
+        filterStr.append(QString(" OR id=='%1'").arg(parentId));
+      filterStr.append(")");
     }
+    filterStr.append(findStr);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
     if (clicked && !unRead) {
-      strFilter = QString("unread > 0");
+      filterStr = QString("unread > 0");
     } else {
-      strFilter = QString("(unread > 0 OR id=='%1'").arg(feedId);
+      filterStr = QString("(unread > 0 OR id=='%1'").arg(feedId);
       foreach (int parentId, parentIdList)
-        strFilter.append(QString(" OR id=='%1'").arg(parentId));
-      strFilter.append(")");
+        filterStr.append(QString(" OR id=='%1'").arg(parentId));
+      filterStr.append(")");
     }
+    filterStr.append(findStr);
   } else if (pAct->objectName() == "filterFeedsStarred_") {
-    strFilter = "";
+    filterStr = "";
     QSqlQuery q;
     parentIdList.clear();
-    q.exec("SELECT id, parentId FROM feeds WHERE label LIKE '%starred%'");
+    q.exec(QString("SELECT id, parentId FROM feeds WHERE label LIKE '%starred%'%1").
+           arg(findStr));
     while (q.next()) {
-      if (!strFilter.isEmpty()) strFilter.append(" OR ");
-      strFilter.append(QString("id=%1").arg(q.value(0).toInt()));
+      if (!filterStr.isEmpty()) filterStr.append(" OR ");
+      filterStr.append(QString("id=%1").arg(q.value(0).toInt()));
       int parentId = q.value(1).toInt();
       if (!parentIdList.contains(parentId)) {
         while (parentId) {
           if (!parentIdList.contains(parentId))
             parentIdList.append(parentId);
           else break;
-          strFilter.append(QString(" OR id=%1").arg(parentId));
+          filterStr.append(QString(" OR id=%1").arg(parentId));
           QSqlQuery q1;
           q1.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(parentId));
           if (q1.next()) parentId = q1.value(0).toInt();
         }
       }
     }
-    if (strFilter.isEmpty()) strFilter = "label LIKE '%starred%'";
+    if (filterStr.isEmpty()) filterStr = "id=-1";
   } else if (pAct->objectName() == "filterFeedsError_") {
-    strFilter = "";
+    filterStr = "";
     QSqlQuery q;
     parentIdList.clear();
-    q.exec("SELECT id, parentId FROM feeds WHERE status!=0 AND status!=''");
+    q.exec(QString("SELECT id, parentId FROM feeds WHERE status!=0 AND status!=''%1").
+           arg(findStr));
     while (q.next()) {
-      if (!strFilter.isEmpty()) strFilter.append(" OR ");
-      strFilter.append(QString("id=%1").arg(q.value(0).toInt()));
+      if (!filterStr.isEmpty()) filterStr.append(" OR ");
+      filterStr.append(QString("id=%1").arg(q.value(0).toInt()));
       int parentId = q.value(1).toInt();
       if (!parentIdList.contains(parentId)) {
         while (parentId) {
           if (!parentIdList.contains(parentId))
             parentIdList.append(parentId);
           else break;
-          strFilter.append(QString(" OR id=%1").arg(parentId));
+          filterStr.append(QString(" OR id=%1").arg(parentId));
           QSqlQuery q1;
           q1.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(parentId));
           if (q1.next()) parentId = q1.value(0).toInt();
         }
       }
     }
-    if (strFilter.isEmpty()) strFilter = "status!=0 AND status!=''";
-  }
-
-  // ... add filter from "search"
-  if (findFeedsWidget_->isVisible()) {
-    if (pAct->objectName() != "filterFeedsAll_")
-      strFilter.append(" AND ");
-
-    // add categories into filter to display nested feed
-    strFilter.append("(");
-    strFilter.append(QString("((xmlUrl = '') OR (xmlUrl IS NULL)) OR "));
-    if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
-      strFilter.append(QString("text LIKE '%%1%'").arg(findFeeds_->text()));
-    } else {
-      strFilter.append(QString("xmlUrl LIKE '%%1%'").arg(findFeeds_->text()));
-    }
-    strFilter.append(")");
+    if (filterStr.isEmpty()) filterStr = "id=-1";
   }
 
   QElapsedTimer timer;
   timer.start();
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << strFilter;
+  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << filterStr;
 
-  static QString feedsFilterActionOld = "filterFeedsAll_";
+  static QString strFilterOld = QString();
 
-  if (pAct->objectName() == feedsFilterActionOld) {
+  if (strFilterOld.compare(filterStr) == 0) {
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "No filter changes";
     return;
   }
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "Applying new filter";
-  feedsFilterActionOld = pAct->objectName();
+  strFilterOld = filterStr;
 
   // Set filter
-  feedsTreeModel_->setFilter(strFilter);
+  feedsTreeModel_->setFilter(filterStr);
   expandNodes();
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
@@ -4951,75 +4786,6 @@ void RSSListing::slotNewsFilter()
         setNewsFilter(action);
         break;
       }
-    }
-  }
-}
-// ----------------------------------------------------------------------------
-void RSSListing::initUpdateFeeds()
-{
-  QSqlQuery q;
-  q.exec("SELECT id, updateInterval, updateIntervalType FROM feeds WHERE xmlUrl != '' AND updateIntervalEnable == 1");
-  while (q.next()) {
-    int updateInterval = q.value(1).toInt();
-    int updateIntervalType = q.value(2).toInt();
-    if (updateIntervalType == 0)
-      updateInterval = updateInterval*60;
-    else if (updateIntervalType == 1)
-      updateInterval = updateInterval*60*60;
-
-    updateFeedsIntervalSec_.insert(q.value(0).toInt(), updateInterval);
-    updateFeedsTimeCount_.insert(q.value(0).toInt(), 0);
-  }
-
-  int updateInterval = updateFeedsInterval_;
-  if (updateFeedsIntervalType_ == 0)
-    updateInterval = updateInterval*60;
-  else if (updateFeedsIntervalType_ == 1)
-    updateInterval = updateInterval*60*60;
-  updateIntervalSec_ = updateInterval;
-
-  updateFeedsTimer_ = new QTimer(this);
-  connect(updateFeedsTimer_, SIGNAL(timeout()),
-          this, SLOT(slotUpdateFeedsTimer()));
-  updateFeedsTimer_->start(1000);
-}
-// ----------------------------------------------------------------------------
-void RSSListing::slotUpdateFeedsTimer()
-{
-  if (updateFeedsEnable_) {
-    updateTimeCount_++;
-    if (updateTimeCount_ >= updateIntervalSec_) {
-      updateTimeCount_ = 0;
-
-      QSqlQuery q;
-      q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds "
-             "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
-      while (q.next()) {
-        addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
-                       q.value(2).toDateTime(), q.value(3).toInt());
-      }
-      showProgressBar(updateFeedsCount_);
-    }
-  } else {
-    updateTimeCount_ = 0;
-  }
-
-  QMapIterator<int, int> iterator(updateFeedsTimeCount_);
-  while (iterator.hasNext()) {
-    iterator.next();
-    int feedId = iterator.key();
-    updateFeedsTimeCount_[feedId]++;
-    if (updateFeedsTimeCount_[feedId] >= updateFeedsIntervalSec_[feedId]) {
-      updateFeedsTimeCount_[feedId] = 0;
-
-      QSqlQuery q;
-      q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
-             .arg(feedId));
-      if (q.next()) {
-        addFeedInQueue(feedId, q.value(0).toString(),
-                       q.value(1).toDateTime(), q.value(2).toInt());
-      }
-      showProgressBar(updateFeedsCount_);
     }
   }
 }
@@ -7651,11 +7417,11 @@ void RSSListing::nextUnreadNews()
   if (newsRow == -1) {
     if (currentNewsTab->type_ != TAB_FEED) return;
 
-    QModelIndex indexPrevUnread =
-        feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
+    QModelIndex indexPrevUnread = QModelIndex();
+    if (feedsTreeView_->currentIndex().isValid())
+      indexPrevUnread = feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (!indexPrevUnread.isValid()) {
-      QModelIndex index =
-          feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
+      QModelIndex index = feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
       indexPrevUnread = feedsTreeView_->indexNextUnread(index, 1);
     }
     if (indexPrevUnread.isValid()) {
@@ -7902,21 +7668,6 @@ QUrl RSSListing::userStyleSheet(const QString &filePath) const
   return QUrl(dataString);
 }
 // ----------------------------------------------------------------------------
-bool RSSListing::addFeedInQueue(int feedId, const QString &feedUrl,
-                                const QDateTime &date, int auth)
-{
-  int feedIdIndex = feedIdList_.indexOf(feedId);
-  if (feedIdIndex > -1) {
-    return false;
-  } else {
-    feedIdList_.append(feedId);
-    updateFeedsCount_ = updateFeedsCount_ + 2;
-    QString userInfo = getUserInfo(feedUrl, auth);
-    emit signalRequestUrl(feedId, feedUrl, date, userInfo);
-    return true;
-  }
-}
-// ----------------------------------------------------------------------------
 void RSSListing::showNewsMenu()
 {
   newsSortByMenu_->setEnabled(currentNewsTab->type_ < TAB_WEB);
@@ -8081,11 +7832,6 @@ void RSSListing::setStatusFeed(int feedId, QString status)
     QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
     feedsTreeModel_->setData(indexStatus, status);
     feedsTreeView_->viewport()->update();
-
-    QSqlQuery q;
-    QString qStr = QString("UPDATE feeds SET status='%1' WHERE id=='%2'").
-        arg(status).arg(feedId);
-    q.exec(qStr);
   }
 }
 

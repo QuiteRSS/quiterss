@@ -27,8 +27,7 @@
 #include <QtSql>
 
 #include "lineedit.h"
-#include "parsethread.h"
-#include "updatethread.h"
+#include "updatefeeds.h"
 
 class AddFeedWizard : public QWizard
 {
@@ -50,7 +49,6 @@ public slots:
                   QString error, QByteArray data,
                   QDateTime dtReply, QString codecName);
   void slotUpdateFeed(int feedId, bool, int newCount, QString);
-  void setStatusFeed(int feedId, QString status);
 
 signals:
   void xmlReadyParse(QByteArray data, int feedId,
@@ -74,7 +72,6 @@ private slots:
   void slotProgressBarUpdate();
   void newFolder();
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
-  void slotFeedCountsUpdate(FeedCountStruct counts);
 
 private:
   void addFeed();
@@ -82,8 +79,7 @@ private:
   void showProgressBar();
   void finish();
 
-  UpdateThread *persistentUpdateThread_;
-  ParseThread *persistentParseThread_;
+  UpdateFeeds *updateFeeds_;
   QWizardPage *createUrlFeedPage();
   QWizardPage *createNameFeedPage();
   QCheckBox *titleFeedAsName_;

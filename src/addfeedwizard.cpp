@@ -37,8 +37,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, int curFolderId)
   addPage(createUrlFeedPage());
   addPage(createNameFeedPage());
 
-  persistentUpdateThread_ = new UpdateThread(this);
-  persistentParseThread_ = new ParseThread(this);
+  updateFeeds_ = new UpdateFeeds(this, true);
 
   connect(button(QWizard::BackButton), SIGNAL(clicked()),
           this, SLOT(backButtonClicked()));
@@ -54,10 +53,7 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, int curFolderId)
 
 AddFeedWizard::~AddFeedWizard()
 {
-  persistentUpdateThread_->quit();
-  persistentParseThread_->quit();
-  while (persistentUpdateThread_->isRunning());
-  while (persistentParseThread_->isRunning());
+  delete updateFeeds_;
 }
 
 /*virtual*/ void AddFeedWizard::done(int result)
@@ -687,12 +683,4 @@ void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *aut
     authenticationDialog->exec();
 
   delete authenticationDialog;
-}
-
-void AddFeedWizard::slotFeedCountsUpdate(FeedCountStruct)
-{
-}
-
-void AddFeedWizard::setStatusFeed(int, QString)
-{
 }
