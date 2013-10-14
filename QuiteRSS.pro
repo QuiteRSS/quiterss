@@ -89,7 +89,6 @@ HEADERS += \
     src/addfolderdialog.h \
     src/labeldialog.h \
     src/dialog.h \
-    src/updatedelayer.h \
     src/authenticationdialog.h \
     src/networkmanager.h \
     src/cookiejar.h \
@@ -136,7 +135,6 @@ SOURCES += \
     src/addfolderdialog.cpp \
     src/labeldialog.cpp \
     src/dialog.cpp \
-    src/updatedelayer.cpp \
     src/authenticationdialog.cpp \
     src/networkmanager.cpp \
     src/cookiejar.cpp \

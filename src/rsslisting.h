@@ -49,7 +49,6 @@
 #include "tabbar.h"
 #include "optionsdialog.h"
 #include "updateappdialog.h"
-#include "updatedelayer.h"
 #include "updatefeeds.h"
 #include "webview.h"
 
