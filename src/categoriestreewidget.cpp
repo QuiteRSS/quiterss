@@ -54,22 +54,22 @@ CategoriesTreeWidget::CategoriesTreeWidget(QWidget * parent)
   setHeaderLabels(treeItem);
 
   treeItem.clear();
-  treeItem << tr("Unread") << QString::number(TAB_CAT_UNREAD) << "-1";
+  treeItem << tr("Unread") << QString::number(NewsTabWidget::TabTypeUnread) << "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/images/folder_unread.png"));
   addTopLevelItem(treeWidgetItem);
   treeItem.clear();
-  treeItem << tr("Starred") << QString::number(TAB_CAT_STAR) << "-1";
+  treeItem << tr("Starred") << QString::number(NewsTabWidget::TabTypeStar) << "-1";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/images/folder_star.png"));
   addTopLevelItem(treeWidgetItem);
   treeItem.clear();
-  treeItem << tr("Deleted") << QString::number(TAB_CAT_DEL) << "-1";
+  treeItem << tr("Deleted") << QString::number(NewsTabWidget::TabTypeDel) << "-1";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/images/trash.png"));
   addTopLevelItem(treeWidgetItem);
   treeItem.clear();
-  treeItem << tr("Labels") << QString::number(TAB_CAT_LABEL) << "0";
+  treeItem << tr("Labels") << QString::number(NewsTabWidget::TabTypeLabel) << "0";
   treeWidgetItem = new QTreeWidgetItem(treeItem);
   treeWidgetItem->setIcon(0, QIcon(":/images/label_3"));
   addTopLevelItem(treeWidgetItem);
@@ -85,7 +85,7 @@ CategoriesTreeWidget::CategoriesTreeWidget(QWidget * parent)
     if (!byteArray.isNull())
       imageLabel.loadFromData(byteArray);
     treeItem.clear();
-    treeItem << nameLabel << QString::number(TAB_CAT_LABEL)
+    treeItem << nameLabel << QString::number(NewsTabWidget::TabTypeLabel)
              << QString::number(idLabel) << currentNews;
     QTreeWidgetItem *childItem = new QTreeWidgetItem(treeItem);
     childItem->setIcon(0, QIcon(imageLabel));

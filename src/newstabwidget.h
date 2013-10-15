@@ -41,21 +41,23 @@ class RSSListing;
 #define RIGHT_POSITION  2
 #define LEFT_POSITION   3
 
-#define TAB_FEED       0
-#define TAB_CAT_UNREAD 1
-#define TAB_CAT_STAR   2
-#define TAB_CAT_DEL    3
-#define TAB_CAT_LABEL  4
-#define TAB_WEB        5
-#define TAB_DOWNLOADS  6
-
 #define RESIZESTEP 25   // News list/browser size step
 
 class NewsTabWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit NewsTabWidget(QWidget *parent, int type, int feedId = -1, int feedParId = -1);
+    enum TabType {
+        TabTypeFeed,
+        TabTypeUnread,
+        TabTypeStar,
+        TabTypeDel,
+        TabTypeLabel,
+        TabTypeWeb,
+        TabTypeDownloads
+    };
+
+  explicit NewsTabWidget(QWidget *parent, TabType type, int feedId = -1, int feedParId = -1);
   ~NewsTabWidget();
 
   void retranslateStrings();
@@ -88,7 +90,7 @@ public:
 
   void slotShareNews(QAction *action);
 
-  int type_;
+  TabType type_;
   int feedId_;
   int feedParId_;
   int currentNewsIdOld;
