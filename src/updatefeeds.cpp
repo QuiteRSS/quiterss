@@ -431,7 +431,7 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
   q.exec(qStr);
 
   if (changed) {
-    if (rssl_->currentNewsTab->type_ == TAB_FEED) {
+    if (rssl_->currentNewsTab->type_ == NewsTabWidget::TabTypeFeed) {
       bool folderUpdate = false;
       int feedParentId = 0;
 
@@ -465,7 +465,7 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
         }
         emit signalCountsStatusBar(unreadCount, allCount);
       }
-    } else if (rssl_->currentNewsTab->type_ < TAB_WEB) {
+    } else if (rssl_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
       if (!timerUpdateNews_->isActive())
         timerUpdateNews_->start(1000);
     }

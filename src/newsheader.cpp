@@ -494,7 +494,7 @@ QString NewsHeader::columnsList()
 
 void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget)
 {
-  if (newsTabWidget->type_ == TAB_CAT_DEL) return;
+  if (newsTabWidget->type_ == NewsTabWidget::TabTypeDel) return;
 
   int feedId = newsTabWidget->feedId_;
   QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId);
