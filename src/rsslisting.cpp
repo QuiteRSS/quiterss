@@ -314,8 +314,8 @@ void RSSListing::slotClose()
       nanosleep(&ts, NULL);
 #endif
     }
+    delete dbMemFileThread_;
   }
-  delete dbMemFileThread_;
 
   emit signalCloseApp();
 }
