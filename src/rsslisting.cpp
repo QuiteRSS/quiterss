@@ -314,8 +314,8 @@ void RSSListing::slotClose()
       nanosleep(&ts, NULL);
 #endif
     }
+    delete dbMemFileThread_;
   }
-  delete dbMemFileThread_;
 
   emit signalCloseApp();
 }
@@ -2657,266 +2657,19 @@ void RSSListing::slotExportFeeds()
 
   file.close();
 }
-
-/** @brief Update feed counters and all its parents
- *
- * Update fields: unread news number, new news number,
- *   last update feed timestamp
- * Update only feeds, categories are ignored
- * Update right into DB, update view if feed is visible in feed tree
- * @param feedId Feed identifier
- * @param updateViewport Need viewport update flag
- *----------------------------------------------------------------------------*/
-void RSSListing::recountFeedCounts(int feedId, bool updateViewport)
+// ----------------------------------------------------------------------------
+void RSSListing::slotFeedsViewportUpdate()
 {
-  QSqlQuery q;
-  QString qStr;
-
-  db_.transaction();
-
-  int feedParId = 0;
-  bool isFolder = false;
-  qStr = QString("SELECT parentId, xmlUrl FROM feeds WHERE id=='%1'").
-      arg(feedId);
-  q.exec(qStr);
-  if (q.next()) {
-    feedParId = q.value(0).toInt();
-    if (q.value(1).toString().isEmpty())
-      isFolder = true;
-  }
-
-  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
-  QModelIndex indexParent = QModelIndex();
-  QModelIndex indexUnread;
-  QModelIndex indexNew;
-  QModelIndex indexUndelete;
-  QModelIndex indexUpdated;
-  int undeleteCount = 0;
-  int unreadCount = 0;
-  int newCount = 0;
-
-  if (!isFolder) {
-    // Calculate all news (not mark deleted)
-    qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) undeleteCount = q.value(0).toInt();
-
-    // Calculate unread news
-    qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) unreadCount = q.value(0).toInt();
-
-    // Calculate new news
-    qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) newCount = q.value(0).toInt();
-
-    int unreadCountOld = 0;
-    int newCountOld = 0;
-    int undeleteCountOld = 0;
-    qStr = QString("SELECT unread, newCount, undeleteCount FROM feeds WHERE id=='%1'").
-        arg(feedId);
-    q.exec(qStr);
-    if (q.next()) {
-      unreadCountOld = q.value(0).toInt();
-      newCountOld = q.value(1).toInt();
-      undeleteCountOld = q.value(2).toInt();
-    }
-
-    if ((unreadCount == unreadCountOld) && (newCount == newCountOld) &&
-        (undeleteCount == undeleteCountOld)) {
-      db_.commit();
-      return;
-    }
-
-    // Save unread and new news number for feed
-    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
-                   "WHERE id=='%4'").
-        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(feedId);
-    q.exec(qStr);
-
-    // Update view of the feed, if it exist
-    if (index.isValid()) {
-      indexUnread   = feedsTreeModel_->indexSibling(index, "unread");
-      indexNew      = feedsTreeModel_->indexSibling(index, "newCount");
-      indexUndelete = feedsTreeModel_->indexSibling(index, "undeleteCount");
-      feedsTreeModel_->setData(indexUnread, unreadCount);
-      feedsTreeModel_->setData(indexNew, newCount);
-      feedsTreeModel_->setData(indexUndelete, undeleteCount);
-    }
-  } else {
-    bool changed = false;
-    QList<int> idParList;
-    QList<int> idList = getIdFeedsInList(feedId);
-    if (idList.count()) {
-      foreach (int id, idList) {
-        int parId = 0;
-        q.exec(QString("SELECT parentId FROM feeds WHERE id=='%1'").arg(id));
-        if (q.next())
-          parId = q.value(0).toInt();
-
-        if (parId) {
-          if (idParList.indexOf(parId) == -1) {
-            idParList.append(parId);
-          }
-        }
-
-        // Calculate all news (not mark deleted)
-        qStr = QString("SELECT count(id) FROM news WHERE feedId=='%1' AND deleted==0").
-            arg(id);
-        q.exec(qStr);
-        if (q.next()) undeleteCount = q.value(0).toInt();
-
-        // Calculate unread news
-        qStr = QString("SELECT count(read) FROM news WHERE feedId=='%1' AND read==0 AND deleted==0").
-            arg(id);
-        q.exec(qStr);
-        if (q.next()) unreadCount = q.value(0).toInt();
-
-        // Calculate new news
-        qStr = QString("SELECT count(new) FROM news WHERE feedId=='%1' AND new==1 AND deleted==0").
-            arg(id);
-        q.exec(qStr);
-        if (q.next()) newCount = q.value(0).toInt();
-
-        int unreadCountOld = 0;
-        int newCountOld = 0;
-        int undeleteCountOld = 0;
-        qStr = QString("SELECT unread, newCount, undeleteCount FROM feeds WHERE id=='%1'").
-            arg(id);
-        q.exec(qStr);
-        if (q.next()) {
-          unreadCountOld = q.value(0).toInt();
-          newCountOld = q.value(1).toInt();
-          undeleteCountOld = q.value(2).toInt();
-        }
-
-        if ((unreadCount == unreadCountOld) && (newCount == newCountOld) &&
-            (undeleteCount == undeleteCountOld)) {
-          continue;
-        }
-        changed = true;
-
-        // Save unread and new news number for parent
-        qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3' "
-                       "WHERE id=='%4'").
-            arg(unreadCount).arg(newCount).arg(undeleteCount).arg(id);
-        q.exec(qStr);
-
-        // Update view of the parent, if it exist
-        QModelIndex index1 = feedsTreeModel_->getIndexById(id);
-        if (index1.isValid()) {
-          indexUnread   = feedsTreeModel_->indexSibling(index1, "unread");
-          indexNew      = feedsTreeModel_->indexSibling(index1, "newCount");
-          indexUndelete = feedsTreeModel_->indexSibling(index1, "undeleteCount");
-          feedsTreeModel_->setData(indexUnread, unreadCount);
-          feedsTreeModel_->setData(indexNew, newCount);
-          feedsTreeModel_->setData(indexUndelete, undeleteCount);
-        }
-      }
-
-      if (!changed) {
-        db_.commit();
-        return;
-      }
-
-      foreach (int l_feedParId, idParList) {
-        while (l_feedParId) {
-          QString updated;
-
-          qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), "
-                         "max(updated) FROM feeds WHERE parentId=='%1'").
-              arg(l_feedParId);
-          q.exec(qStr);
-          if (q.next()) {
-            unreadCount   = q.value(0).toInt();
-            newCount      = q.value(1).toInt();
-            undeleteCount = q.value(2).toInt();
-            updated       = q.value(3).toString();
-          }
-          qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', "
-                         "updated='%4' WHERE id=='%5'").
-              arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
-              arg(l_feedParId);
-          q.exec(qStr);
-
-          QModelIndex index1 = feedsTreeModel_->getIndexById(l_feedParId);
-
-          // Update view, if it exist
-          if (index1.isValid()) {
-            indexUnread   = feedsTreeModel_->indexSibling(index1, "unread");
-            indexNew      = feedsTreeModel_->indexSibling(index1, "newCount");
-            indexUndelete = feedsTreeModel_->indexSibling(index1, "undeleteCount");
-            indexUpdated  = feedsTreeModel_->indexSibling(index1, "updated");
-            feedsTreeModel_->setData(indexUnread, unreadCount);
-            feedsTreeModel_->setData(indexNew, newCount);
-            feedsTreeModel_->setData(indexUndelete, undeleteCount);
-            feedsTreeModel_->setData(indexUpdated, updated);
-          }
-
-          if (feedId == l_feedParId) break;
-          q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
-          if (q.next()) l_feedParId = q.value(0).toInt();
-        }
-      }
-    }
-  }
-
-  // Recalculate counters for all parents
-  indexParent = index.parent();
-  int l_feedParId = feedParId;
-  while (l_feedParId) {
-    QString updated;
-
-    qStr = QString("SELECT sum(unread), sum(newCount), sum(undeleteCount), "
-                   "max(updated) FROM feeds WHERE parentId=='%1'").
-        arg(l_feedParId);
-    q.exec(qStr);
-    if (q.next()) {
-      unreadCount   = q.value(0).toInt();
-      newCount      = q.value(1).toInt();
-      undeleteCount = q.value(2).toInt();
-      updated       = q.value(3).toString();
-    }
-    qStr = QString("UPDATE feeds SET unread='%1', newCount='%2', undeleteCount='%3', "
-                   "updated='%4' WHERE id=='%5'").
-        arg(unreadCount).arg(newCount).arg(undeleteCount).arg(updated).
-        arg(l_feedParId);
-    q.exec(qStr);
-
-    // Update view, if it exist
-    if (indexParent.isValid()) {
-      indexUnread   = feedsTreeModel_->indexSibling(indexParent, "unread");
-      indexNew      = feedsTreeModel_->indexSibling(indexParent, "newCount");
-      indexUndelete = feedsTreeModel_->indexSibling(indexParent, "undeleteCount");
-      indexUpdated  = feedsTreeModel_->indexSibling(indexParent, "updated");
-      feedsTreeModel_->setData(indexUnread, unreadCount);
-      feedsTreeModel_->setData(indexNew, newCount);
-      feedsTreeModel_->setData(indexUndelete, undeleteCount);
-      feedsTreeModel_->setData(indexUpdated, updated);
-      indexParent = indexParent.parent();
-    }
-
-    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
-    if (q.next()) l_feedParId = q.value(0).toInt();
-  }
-  db_.commit();
-
-  if (updateViewport) {
-    feedsTreeView_->viewport()->update();
+  feedsTreeView_->viewport()->update();
 #ifdef HAVE_QT5
-    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #else
-    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
+  feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #endif
-  }
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotFeedCountsUpdate(FeedCountStruct counts)
@@ -4203,9 +3956,8 @@ void RSSListing::markFeedRead()
 void RSSListing::slotUpdateStatus(int feedId, bool changed)
 {
   if (changed) {
-    recountFeedCounts(feedId);
+    emit signalRecountFeedCounts(feedId);
   }
-
   emit signalRefreshInfoTray();
 
   if (feedId > 0) {
@@ -4537,7 +4289,7 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
 
     db_.commit();
 
-    recountFeedCounts(feedId, false);
+    emit signalRecountFeedCounts(feedId);
     recountCategoryCounts();
     if (feedReadType != FeedReadPlaceToTray) {
       emit signalRefreshInfoTray();
@@ -4569,7 +4321,7 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
     db_.commit();
 
     if (feedId > -1)
-      recountFeedCounts(feedId, false);
+      emit signalRecountFeedCounts(feedId, false);
   }
 }
 // ----------------------------------------------------------------------------
@@ -5681,7 +5433,7 @@ void RSSListing::markAllFeedsRead()
   q.exec("SELECT id FROM feeds WHERE unread!=0");
   while (q.next()) {
     qApp->processEvents();
-    recountFeedCounts(q.value(0).toInt());
+    emit signalRecountFeedCounts(q.value(0).toInt());
   }
   recountCategoryCounts();
 
@@ -5714,7 +5466,7 @@ void RSSListing::markAllFeedsOld()
   q.exec("SELECT id FROM feeds WHERE newCount!=0");
   while (q.next()) {
     qApp->processEvents();
-    recountFeedCounts(q.value(0).toInt());
+    emit signalRecountFeedCounts(q.value(0).toInt());
   }
   recountCategoryCounts();
 
@@ -6389,16 +6141,7 @@ void RSSListing::slotCopyLinkNews()
 void RSSListing::feedsModelReload(bool checkFilter)
 {
   if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
-    feedsTreeView_->viewport()->update();
-#ifdef HAVE_QT5
-    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setSectionResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
-#else
-    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("unread"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
-    feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
-#endif
+    slotFeedsViewportUpdate();
     return;
   }
 
@@ -7482,37 +7225,11 @@ void RSSListing::prevUnreadNews()
   currentNewsTab->slotNewsViewSelected(index);
 }
 
-/** @brief Get feeds ids list of folder \a idFolder
- *---------------------------------------------------------------------------*/
-QList<int> RSSListing::getIdFeedsInList(int idFolder)
-{
-  QList<int> idList;
-  if (idFolder <= 0) return idList;
-
-  QSqlQuery q;
-  QQueue<int> parentIds;
-  parentIds.enqueue(idFolder);
-  while (!parentIds.empty()) {
-    int parentId = parentIds.dequeue();
-    QString qStr = QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").
-        arg(parentId);
-    q.exec(qStr);
-    while (q.next()) {
-      int feedId = q.value(0).toInt();
-      if (!q.value(1).toString().isEmpty())
-        idList << feedId;
-      if (q.value(1).toString().isEmpty())
-        parentIds.enqueue(feedId);
-    }
-  }
-  return idList;
-}
-
 /** @brief Get feeds ids list string of folder \a idFolder
  *---------------------------------------------------------------------------*/
 QString RSSListing::getIdFeedsString(int idFolder, int idException)
 {
-  QList<int> idList = getIdFeedsInList(idFolder);
+  QList<int> idList = UpdateObject::getIdFeedsInList(idFolder);
   if (idList.count()) {
     QString str;
     foreach (int id, idList) {

@@ -79,7 +79,6 @@ public:
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
   void expandNodes();
-  QList<int> getIdFeedsInList(int idFolder);
   QString getIdFeedsString(int idFolder, int idException = -1);
   void recountCategoryCounts();
 
@@ -298,6 +297,7 @@ signals:
   void signalRefreshInfoTray();
   void signalNextUpdate();
   void signalRecountCategoryCounts();
+  void signalRecountFeedCounts(int feedId, bool update = true);
   void signalPlaySoundNewNews();
 
 protected:
@@ -315,6 +315,7 @@ private slots:
   void setFeedsFilter(QAction*, bool clicked = true);
   void slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
                                  QList<int> readList, QStringList labelList);
+  void slotFeedsViewportUpdate();
   void slotPlaySoundNewNews();
 
   void slotShowAboutDlg();
