@@ -269,6 +269,8 @@ void RequestFeed::finished(QNetworkReply *reply)
     requestUrl_.removeAt(replyIndex);
     networkReply_.removeAt(replyIndex);
   }
+
+  reply->abort();
   reply->deleteLater();
 }
 
@@ -289,7 +291,9 @@ void RequestFeed::slotRequestTimeout()
 
       int replyIndex = requestUrl_.indexOf(url);
       QUrl replyUrl = requestUrl_.takeAt(replyIndex);
-      networkReply_.takeAt(replyIndex)->deleteLater();
+      QNetworkReply *reply = networkReply_.takeAt(replyIndex);
+      reply->deleteLater();
+
       if (count < numberRepeats_) {
         emit signalGet(replyUrl, feedId, feedUrl, feedDate, count);
       } else {

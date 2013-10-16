@@ -192,8 +192,10 @@ void FaviconObject::finished(QNetworkReply *reply)
   int replyIndex = requestUrl_.indexOf(reply->url());
   if (replyIndex >= 0) {
     requestUrl_.removeAt(replyIndex);
-    networkReply_.takeAt(replyIndex)->deleteLater();
+    networkReply_.removeAt(replyIndex);
   }
+  reply->abort();
+  reply->deleteLater();
 }
 
 /** @brief Timeout to delete requests without answer from server
@@ -210,7 +212,8 @@ void FaviconObject::slotRequestTimeout()
 
       int replyIndex = requestUrl_.indexOf(url);
       requestUrl_.removeAt(replyIndex);
-      networkReply_.takeAt(replyIndex)->deleteLater();
+      QNetworkReply *reply = networkReply_.takeAt(replyIndex);
+      reply->deleteLater();
 
       if (cntRequests == 0) {
         emit signalGet(url, feedUrl, 2);
