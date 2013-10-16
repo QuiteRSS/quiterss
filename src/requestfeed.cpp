@@ -267,7 +267,7 @@ void RequestFeed::finished(QNetworkReply *reply)
   int replyIndex = requestUrl_.indexOf(replyUrl);
   if (replyIndex >= 0) {
     requestUrl_.removeAt(replyIndex);
-    networkReply_.takeAt(replyIndex)->deleteLater();
+    networkReply_.removeAt(replyIndex);
   }
   reply->deleteLater();
 }
