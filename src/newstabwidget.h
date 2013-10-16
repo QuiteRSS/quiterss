@@ -90,6 +90,12 @@ public:
 
   void slotShareNews(QAction *action);
 
+  /*! \brief Convert \a countString to unreadCount depending on \a type_
+   * \param countString from categories tree
+   * \return unreadCount for displaying in status
+   */
+  int getUnreadCount(QString countString);
+
   TabType type_;
   int feedId_;
   int feedParId_;

@@ -2109,3 +2109,19 @@ void NewsTabWidget::slotShareNews(QAction *action)
     }
   }
 }
+//-----------------------------------------------------------------------------
+int NewsTabWidget::getUnreadCount(QString countString)
+{
+  if (countString.isEmpty()) return 0;
+
+  countString.remove(QRegExp("[()]"));
+  switch (type_) {
+    case TabTypeUnread:
+      return countString.toInt();
+    case TabTypeStar:
+    case TabTypeLabel:
+      return countString.section("/", 0, 0).toInt();
+    default:
+      return 0;
+  }
+}

@@ -2841,23 +2841,8 @@ void RSSListing::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
   if ((widget->type_ > NewsTabWidget::TabTypeFeed) && (widget->type_ < NewsTabWidget::TabTypeWeb)
         && categoriesTree_->currentIndex().isValid()) {
+    int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
     int allCount = widget->newsModel_->rowCount();
-    int unreadCount = 0;
-    QString countStr = categoriesTree_->currentItem()->text(4);
-    if (!countStr.isEmpty()) {
-      countStr.remove(QRegExp("[()]"));
-      switch (widget->type_) {
-        case NewsTabWidget::TabTypeUnread:
-          unreadCount = countStr.toInt();
-          break;
-        case NewsTabWidget::TabTypeStar:
-        case NewsTabWidget::TabTypeLabel:
-          unreadCount = countStr.section("/", 0, 0).toInt();
-          break;
-        default:
-          ;
-      }
-    }
     statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
   }
@@ -5889,23 +5874,8 @@ void RSSListing::slotTabCurrentChanged(int index)
     slotUpdateNews();
     newsView_->setFocus();
 
+    int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
     int allCount = widget->newsModel_->rowCount();
-    int unreadCount = 0;
-    QString countStr = categoriesTree_->currentItem()->text(4);
-    if (!countStr.isEmpty()) {
-      countStr.remove(QRegExp("[()]"));
-      switch (widget->type_) {
-        case NewsTabWidget::TabTypeUnread:
-          unreadCount = countStr.toInt();
-          break;
-        case NewsTabWidget::TabTypeStar:
-        case NewsTabWidget::TabTypeLabel:
-          unreadCount = countStr.section("/", 0, 0).toInt();
-          break;
-        default:
-          ;
-      }
-    }
     statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
     statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
 
@@ -6887,23 +6857,8 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
     emit signalSetCurrentTab(indexTab, true);
   }
 
+  int unreadCount = currentNewsTab->getUnreadCount(categoriesTree_->currentItem()->text(4));
   int allCount = currentNewsTab->newsModel_->rowCount();
-  int unreadCount = 0;
-  QString countStr = categoriesTree_->currentItem()->text(4);
-  if (!countStr.isEmpty()) {
-    countStr.remove(QRegExp("[()]"));
-    switch (currentNewsTab->type_) {
-      case NewsTabWidget::TabTypeUnread:
-        unreadCount = countStr.toInt();
-        break;
-      case NewsTabWidget::TabTypeStar:
-      case NewsTabWidget::TabTypeLabel:
-        unreadCount = countStr.section("/", 0, 0).toInt();
-        break;
-      default:
-        ;
-    }
-  }
   statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
   statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
 
