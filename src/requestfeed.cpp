@@ -269,6 +269,7 @@ void RequestFeed::finished(QNetworkReply *reply)
     requestUrl_.removeAt(replyIndex);
     networkReply_.takeAt(replyIndex)->deleteLater();
   }
+  reply->deleteLater();
 }
 
 /** @brief Timeout to delete network requests wich has no answer
