@@ -134,6 +134,10 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)));
     connect(updateObject_, SIGNAL(signalFeedsViewportUpdate()),
             parent, SLOT(slotFeedsViewportUpdate()));
+    connect(parent, SIGNAL(signalSetFeedRead(int,int,int,QList<int>)),
+            updateObject_, SLOT(slotSetFeedRead(int,int,int,QList<int>)));
+    connect(updateObject_, SIGNAL(signalRefreshInfoTray()),
+            parent, SLOT(slotRefreshInfoTray()));
   }
 
   connect(requestFeed_->networkManager_,
@@ -365,7 +369,7 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
 
 // ----------------------------------------------------------------------------
 bool UpdateObject::addFeedInQueue(int feedId, const QString &feedUrl,
-                                 const QDateTime &date, int auth)
+                                  const QDateTime &date, int auth)
 {
   int feedIdIndex = feedIdList_.indexOf(feedId);
   if (feedIdIndex > -1) {
@@ -393,8 +397,8 @@ bool UpdateObject::addFeedInQueue(int feedId, const QString &feedUrl,
 /** @brief Process network request completion
  *---------------------------------------------------------------------------*/
 void UpdateObject::getUrlDone(int result, int feedId, QString feedUrlStr,
-                             QString error, QByteArray data, QDateTime dtReply,
-                             QString codecName)
+                              QString error, QByteArray data, QDateTime dtReply,
+                              QString codecName)
 {
   qDebug() << "getUrl result = " << result << "error: " << error << "url: " << feedUrlStr;
 
@@ -741,6 +745,24 @@ void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
   qCritical() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
+/** @brief Get feeds ids list string of folder \a idFolder
+ *---------------------------------------------------------------------------*/
+QString UpdateObject::getIdFeedsString(int idFolder, int idException)
+{
+  QList<int> idList = getIdFeedsInList(idFolder);
+  if (idList.count()) {
+    QString str;
+    foreach (int id, idList) {
+      if (id == idException) continue;
+      if (!str.isEmpty()) str.append(" OR ");
+      str.append(QString("feedId=%1").arg(id));
+    }
+    return str;
+  } else {
+    return QString("feedId=-1");
+  }
+}
+
 /** @brief Get feeds ids list of folder \a idFolder
  *---------------------------------------------------------------------------*/
 QList<int> UpdateObject::getIdFeedsInList(int idFolder)
@@ -765,4 +787,61 @@ QList<int> UpdateObject::getIdFeedsInList(int idFolder)
     }
   }
   return idList;
+}
+
+/** @brief Mark feed Read while clicking on unfocused one
+ *---------------------------------------------------------------------------*/
+void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList)
+{
+  QSqlDatabase db = QSqlDatabase::database();
+  if (readType != FeedReadSwitchingTab) {
+    db.transaction();
+    QSqlQuery q;
+    QString idFeedsStr = getIdFeedsString(feedId, idException);
+    if (((readType == FeedReadSwitchingFeed) && rssl_->markReadSwitchingFeed_) ||
+        ((readType == FeedReadClosingTab) && rssl_->markReadClosingTab_) ||
+        ((readType == FeedReadPlaceToTray) && rssl_->markReadMinimize_)) {
+      if (idFeedsStr == "feedId=-1") {
+        q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
+      } else {
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(idFeedsStr));
+      }
+    } else {
+      if (idFeedsStr == "feedId=-1") {
+        q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").arg(feedId));
+      } else {
+        q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read=1").arg(idFeedsStr));
+      }
+    }
+    if (idFeedsStr == "feedId=-1") {
+      q.exec(QString("UPDATE news SET new=0 WHERE feedId='%1' AND new=1").arg(feedId));
+    } else {
+      q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(idFeedsStr));
+    }
+    if (rssl_->markNewsReadOn_ && rssl_->markPrevNewsRead_)
+      q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
+    db.commit();
+
+    slotRecountFeedCounts(feedId);
+    slotRecountCategoryCounts();
+
+    if (readType != FeedReadPlaceToTray) {
+      emit signalRefreshInfoTray();
+    }
+  } else {
+    QString idStr;
+    foreach (int newsId, idNewsList) {
+      if (!idStr.isEmpty()) idStr.append(" OR ");
+      idStr.append(QString("id='%1'").arg(newsId));
+    }
+
+    db.transaction();
+    QSqlQuery q;
+    q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read==1").arg(idStr));
+    q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new==1").arg(idStr));
+    db.commit();
+
+    if (feedId > -1)
+      slotRecountFeedCounts(feedId, false);
+  }
 }

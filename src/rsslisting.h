@@ -298,6 +298,7 @@ signals:
   void signalNextUpdate();
   void signalRecountCategoryCounts();
   void signalRecountFeedCounts(int feedId, bool update = true);
+  void signalSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
   void signalPlaySoundNewNews();
 
 protected:

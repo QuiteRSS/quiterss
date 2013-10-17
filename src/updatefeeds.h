@@ -48,6 +48,7 @@ public:
   explicit UpdateObject(QObject *parent = 0);
 
   static QList<int> getIdFeedsInList(int idFolder);
+  static QString getIdFeedsString(int idFolder, int idException);
 
 public slots:
   void slotGetFeedTimer(int feedId);
@@ -62,7 +63,8 @@ public slots:
   void finishUpdate(int feedId, bool changed, int newCount, QString status);
   void slotNextUpdateFeed();
   void slotRecountCategoryCounts();
-  void slotRecountFeedCounts(int feedId, bool updateViewport);
+  void slotRecountFeedCounts(int feedId, bool updateViewport = true);
+  void slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
 
 signals:
   void showProgressBar(int value);
@@ -82,6 +84,7 @@ signals:
                                    QList<int> readList, QStringList labelList);
   void feedCountsUpdate(FeedCountStruct counts);
   void signalFeedsViewportUpdate();
+  void signalRefreshInfoTray();
 
 private slots:
   bool addFeedInQueue(int feedId, const QString &feedUrl,
