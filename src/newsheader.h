@@ -23,6 +23,7 @@
 #else
 #include <QtGui>
 #endif
+#include <QHeaderView>
 
 #include "newsmodel.h"
 

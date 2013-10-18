@@ -468,6 +468,7 @@ void NewsTabWidget::setSettings(bool newTab)
     newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
 
     QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_);
+    newsModel_->setFilter("feedId=-1");
     newsHeader_->setColumns(rsslisting_, indexFeed);
 
     rsslisting_->slotUpdateStatus(feedId_, false);
