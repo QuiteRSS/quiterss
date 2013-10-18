@@ -104,6 +104,7 @@ private:
                         const QString &updated, const QString &lastBuildDate);
 
   RSSListing *rssl_;
+  QSqlDatabase db_;
   QTimer *parseTimer_;
   int currentFeedId_;
   QQueue<int> idsQueue_;

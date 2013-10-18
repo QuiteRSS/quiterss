@@ -16,10 +16,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 
-/** @file db_func.h 
+/** @file db_func.h
  *---------------------------------------------------------------------------*/
 #ifndef DB_FUNC_H
 #define DB_FUNC_H
+
+#include <QtCore>
+#include <QtSql>
 
 extern QString kDbName;
 extern QString kDbVersion;
@@ -36,6 +39,6 @@ QString initDB(const QString &dbFileName, QSettings *settings);
  * @param feedId - Feed Id
  * @param filterId - Id of particular filter
  *---------------------------------------------------------------------------*/
-void setUserFilter(int feedId, int filterId = -1);
+void setUserFilter(QSqlDatabase db, int feedId, int filterId = -1);
 
 #endif

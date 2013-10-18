@@ -40,6 +40,15 @@ ParseObject::ParseObject(QObject *parent)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
+  if (rssl_->storeDBMemory_) {
+    db_ = QSqlDatabase::database();
+  }
+  else {
+    db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
+    db_.setDatabaseName(rssl_->dbFileName_);
+    db_.open();
+  }
+
   parseTimer_ = new QTimer(this);
   parseTimer_->setSingleShot(true);
   parseTimer_->setInterval(50);
@@ -102,7 +111,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   parseFeedId_ = feedId;
   QString feedUrl;
   duplicateNewsMode_ = false;
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.setForwardOnly(true);
   q.exec(QString("SELECT duplicateNewsMode, xmlUrl FROM feeds WHERE id=='%1'").arg(parseFeedId_));
   if (q.first()) {
@@ -130,8 +139,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   int errorLine;
   int errorColumn;
 
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
+  db_.transaction();
 
   QRegExp rx("encoding=\"([^\"]+)",
              Qt::CaseInsensitive, QRegExp::RegExp2);
@@ -211,12 +219,12 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   int newCount = 0;
   if (feedChanged_) {
-    setUserFilter(parseFeedId_);
+    setUserFilter(db_, parseFeedId_);
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
 
   q.finish();
-  db.commit();
+  db_.commit();
 
   emit signalFinishUpdate(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
@@ -250,7 +258,7 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
   if (QUrl(feedItem.link).host().isEmpty())
     feedItem.link = feedItem.linkBase + feedItem.link;
 
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.setForwardOnly(true);
   QString qStr ("UPDATE feeds "
                 "SET title=?, description=?, htmlUrl=?, "
@@ -325,7 +333,7 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
 void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
 {
   // search news duplicates in base
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.setForwardOnly(true);
   QString qStr;
   qDebug() << "atomId:" << newsItem.id;
@@ -407,7 +415,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
       q.exec();
-      qDebug() << "q.exec(" << q.lastQuery() << ")";
+//      qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
       qDebug() << "       " << newsItem.description;
       qDebug() << "       " << newsItem.content;
@@ -445,7 +453,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
   feedItem.author = toPlainText(channel.namedItem("author").toElement().text());
   feedItem.language = channel.namedItem("language").toElement().text();
 
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.setForwardOnly(true);
   QString qStr("UPDATE feeds "
                "SET title=?, description=?, htmlUrl=?, "
@@ -494,7 +502,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
 void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
 {
   // search news duplicates in base
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.setForwardOnly(true);
   QString qStr;
   QString qStr1;
@@ -570,7 +578,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
       q.exec();
-      qDebug() << "q.exec(" << q.lastQuery() << ")";
+//      qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
       qDebug() << "       " << newsItem.description;
       qDebug() << "       " << newsItem.content;
@@ -686,7 +694,7 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
 int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
                                    const QString &updated, const QString &lastBuildDate)
 {
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.setForwardOnly(true);
   QString qStr;
   QString htmlUrl;
