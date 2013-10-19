@@ -103,6 +103,8 @@ public:
   QString dataDirPath_;
   QString lastFeedPath_;
   QSqlDatabase db_;
+  QString dbFileName_;
+  bool storeDBMemory_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsTreeView *feedsTreeView_;
   CategoriesTreeWidget *categoriesTree_;
@@ -300,6 +302,7 @@ signals:
   void signalRecountFeedCounts(int feedId, bool update = true);
   void signalSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
   void signalPlaySoundNewNews();
+  void signalUpdateStatus(int feedId, bool changed);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -481,7 +484,6 @@ private:
 
   int addTab(NewsTabWidget *widget);
 
-  QString dbFileName_;
   NewsModel *newsModel_;
   TabBar *tabBar_;
   QSplitter *mainSplitter_;
@@ -686,7 +688,6 @@ private:
 
   int feedIdOld_;
 
-  bool storeDBMemory_;
   bool storeDBMemoryT_;
   int saveDBMemFileInterval_;
   QTimer *timerSaveDBMemFile_;
