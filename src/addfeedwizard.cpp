@@ -301,8 +301,8 @@ void AddFeedWizard::addFeed()
 {
   // Set URL-schema for URL-address "http://" or leave it "https://"
   QUrl feedUrl(urlFeedEdit_->text().simplified());
-  if (feedUrl.scheme().toLower() != "https") {
-    feedUrl.setScheme("http");
+  if (feedUrl.scheme().isEmpty()) {
+    feedUrl.setUrl("http://" % urlFeedEdit_->text().simplified());
   }
   feedUrlString_ = feedUrl.toString();
   urlFeedEdit_->setText(feedUrlString_);
