@@ -300,9 +300,11 @@ signals:
   void signalNextUpdate();
   void signalRecountCategoryCounts();
   void signalRecountFeedCounts(int feedId, bool update = true);
+  void setFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
   void signalSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
   void signalPlaySoundNewNews();
   void signalUpdateStatus(int feedId, bool changed);
+  void signalMarkAllFeedsRead();
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);
@@ -332,7 +334,7 @@ private slots:
   void showContextMenuToolBar(const QPoint &pos);
   void showFeedPropertiesDlg();
   void slotFeedMenuShow();
-  void markAllFeedsRead();
+  void slotRefreshNewsView();
   void markAllFeedsOld();
   void slotIconFeedPreparing(QString feedUrl, QByteArray byteArray, QString format);
   void slotIconFeedUpdate(int feedId, QByteArray faviconData);

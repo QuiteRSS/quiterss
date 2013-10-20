@@ -235,6 +235,10 @@ RSSListing::RSSListing(QSettings *settings,
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
+  connect(this, SIGNAL(setFeedRead(int,int,int,QList<int>)),
+          SIGNAL(signalSetFeedRead(int,int,int,QList<int>)),
+          Qt::QueuedConnection);
+
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
 
@@ -929,7 +933,7 @@ void RSSListing::createActions()
   markAllFeedsRead_->setObjectName("markAllFeedRead");
   markAllFeedsRead_->setIcon(QIcon(":/images/markReadAll"));
   this->addAction(markAllFeedsRead_);
-  connect(markAllFeedsRead_, SIGNAL(triggered()), this, SLOT(markAllFeedsRead()));
+  connect(markAllFeedsRead_, SIGNAL(triggered()), this, SIGNAL(signalMarkAllFeedsRead()));
 
   indentationFeedsTreeAct_ = new QAction(this);
   indentationFeedsTreeAct_->setCheckable(true);
@@ -3872,112 +3876,12 @@ void RSSListing::updateIconToolBarNull(bool feedsWidgetVisible)
   else
     pushButtonNull_->setIcon(QIcon(":/images/images/triangleL.png"));
 }
-// ----------------------------------------------------------------------------
-void RSSListing::markFeedRead()
-{
-  bool openFeed = false;
-  QString qStr;
-  QPersistentModelIndex index = feedsTreeView_->selectIndex();
-  bool isFolder = feedsTreeModel_->isFolder(index);
-  int id = feedsTreeModel_->getIdByIndex(index);
-  if (currentNewsTab->feedId_ == id)
-    openFeed = true;
-
-  db_.transaction();
-  QSqlQuery q;
-  if (isFolder) {
-    if (currentNewsTab->feedParId_ == id)
-      openFeed = true;
-
-    qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND deleted==0 AND (%1)").
-        arg(getIdFeedsString(id));
-    q.exec(qStr);
-    qStr = QString("UPDATE news SET new=0 WHERE new==1 AND (%1)").
-        arg(getIdFeedsString(id));
-    q.exec(qStr);
-  } else {
-    if (openFeed) {
-      qStr = QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read!=2 AND deleted==0").
-          arg(id);
-      q.exec(qStr);
-    } else {
-      QString qStr = QString("UPDATE news SET read=1 WHERE feedId=='%1' AND read==0").
-          arg(id);
-      q.exec(qStr);
-    }
-    qStr = QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").
-        arg(id);
-    q.exec(qStr);
-  }
-  db_.commit();
-  // Update feed view with focus
-  if (openFeed) {
-    if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) &&
-        !isFolder) {
-      QModelIndex indexNextUnread =
-          feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
-      feedsTreeView_->setCurrentIndex(indexNextUnread);
-      slotFeedClicked(indexNextUnread);
-    } else {
-      int currentRow = newsView_->currentIndex().row();
-
-      newsModel_->select();
-      while (newsModel_->canFetchMore())
-        newsModel_->fetchMore();
-
-      newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
-
-      slotUpdateStatus(id);
-      recountCategoryCounts();
-    }
-  }
-  // Update feeds view without focus
-  else {
-    slotUpdateStatus(id);
-    recountCategoryCounts();
-  }
-}
 
 /** @brief Update status of current feed or feed of current tab
  *---------------------------------------------------------------------------*/
 void RSSListing::slotUpdateStatus(int feedId, bool changed)
 {
-  if (changed) {
-    emit signalRecountFeedCounts(feedId);
-  }
-  emit signalRefreshInfoTray();
-
-  if (feedId > 0) {
-    bool folderUpdate = false;
-    int feedParentId = 0;
-    QSqlQuery q;
-    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
-    if (q.next()) {
-      feedParentId = q.value(0).toInt();
-      if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
-    }
-
-    while (feedParentId && !folderUpdate) {
-      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
-      if (q.next()) {
-        feedParentId = q.value(0).toInt();
-        if (feedParentId == currentNewsTab->feedId_) folderUpdate = true;
-      }
-    }
-
-    // Click on feed if it is displayed to update view
-    if ((feedId == currentNewsTab->feedId_) || folderUpdate) {
-      int unreadCount = 0;
-      int allCount = 0;
-      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").arg(currentNewsTab->feedId_));
-      if (q.next()) {
-        unreadCount = q.value(0).toInt();
-        allCount    = q.value(1).toInt();
-      }
-      statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
-      statusAll_->setText(QString(" " + tr("All: %1") + " ").arg(allCount));
-    }
-  }
+  emit signalUpdateStatus(feedId, changed);
 }
 
 /** @brief Set filter for viewing feeds and categories
@@ -4198,7 +4102,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
           arg(currentNewsTab->findText_->text()));
   }
 
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << filterStr;
+  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   newsModel_->setFilter(filterStr);
 
   while (newsModel_->canFetchMore())
@@ -4251,9 +4155,9 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
     if (((feedReadType == FeedReadSwitchingFeed) && markReadSwitchingFeed_) ||
         ((feedReadType == FeedReadClosingTab) && markReadClosingTab_) ||
         ((feedReadType == FeedReadPlaceToTray) && markReadMinimize_)) {
-      emit signalSetFeedRead(feedReadType, feedId, idException, idNewsList);
+      emit setFeedRead(feedReadType, feedId, idException, idNewsList);
     } else {
-      emit signalSetFeedRead(feedReadType, feedId, idException, idNewsList);
+      emit setFeedRead(feedReadType, feedId, idException, idNewsList);
     }
   } else {
     int cnt = widgetTab->newsModel_->rowCount();
@@ -4273,9 +4177,119 @@ void RSSListing::setFeedRead(int type, int feedId, FeedReedType feedReadType,
         idNewsList.removeOne(newsId);
       }
     }
-    emit signalSetFeedRead(FeedReadSwitchingTab, feedId, idException, idNewsList);
+    emit setFeedRead(FeedReadSwitchingTab, feedId, idException, idNewsList);
   }
 }
+
+/** @brief Mark feed read
+ *---------------------------------------------------------------------------*/
+void RSSListing::markFeedRead()
+{
+  bool openFeed = false;
+  QPersistentModelIndex index = feedsTreeView_->selectIndex();
+  bool isFolder = feedsTreeModel_->isFolder(index);
+  int id = feedsTreeModel_->getIdByIndex(index);
+  if (currentNewsTab->feedId_ == id)
+    openFeed = true;
+
+  db_.transaction();
+  QSqlQuery q;
+  QString qStr;
+  if (isFolder) {
+    if (currentNewsTab->feedParId_ == id)
+      openFeed = true;
+    qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND deleted==0 AND (%1)").
+        arg(getIdFeedsString(id));
+    q.exec(qStr);
+    qStr = QString("UPDATE news SET new=0 WHERE new==1 AND (%1)").
+        arg(getIdFeedsString(id));
+    q.exec(qStr);
+  } else {
+    if (openFeed) {
+      qStr = QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read!=2 AND deleted==0").
+          arg(id);
+      q.exec(qStr);
+    } else {
+      QString qStr = QString("UPDATE news SET read=1 WHERE feedId=='%1' AND read==0").
+          arg(id);
+      q.exec(qStr);
+    }
+    qStr = QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").
+        arg(id);
+    q.exec(qStr);
+  }
+  db_.commit();
+
+  // Update feed view with focus
+  if (openFeed) {
+    if ((tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) &&
+        !isFolder) {
+      QModelIndex indexNextUnread =
+          feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex());
+      feedsTreeView_->setCurrentIndex(indexNextUnread);
+      slotFeedClicked(indexNextUnread);
+    } else {
+      int currentRow = newsView_->currentIndex().row();
+
+      newsModel_->select();
+      while (newsModel_->canFetchMore())
+        newsModel_->fetchMore();
+
+      newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
+
+      slotUpdateStatus(id);
+      recountCategoryCounts();
+    }
+  }
+  // Update feeds view without focus
+  else {
+    slotUpdateStatus(id);
+    recountCategoryCounts();
+  }
+}
+
+/** @brief Refresh news view (After mark all feeds read)
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotRefreshNewsView()
+{
+  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
+    QModelIndex index =
+        feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
+    feedsTreeView_->setCurrentIndex(index);
+    slotFeedClicked(index);
+  } else {
+    int currentRow = newsView_->currentIndex().row();
+
+    newsModel_->select();
+
+    while (newsModel_->canFetchMore())
+      newsModel_->fetchMore();
+
+    newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
+  }
+}
+
+/** @brief Mark all feeds Not New
+ *---------------------------------------------------------------------------*/
+void RSSListing::markAllFeedsOld()
+{
+  QSqlQuery q;
+  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
+
+  q.exec("SELECT id FROM feeds WHERE newCount!=0");
+  while (q.next()) {
+    qApp->processEvents();
+    emit signalRecountFeedCounts(q.value(0).toInt());
+  }
+  recountCategoryCounts();
+
+  if ((currentNewsTab != NULL) && (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
+    slotUpdateNews();
+  }
+
+  emit signalRefreshInfoTray();
+}
+
 // ----------------------------------------------------------------------------
 void RSSListing::slotShowAboutDlg()
 {
@@ -5371,62 +5385,6 @@ void RSSListing::slotRefreshInfoTray()
 #endif
     }
   }
-}
-
-/** @brief Mark all feeds read
- *---------------------------------------------------------------------------*/
-void RSSListing::markAllFeedsRead()
-{
-  QSqlQuery q;
-
-  q.exec("UPDATE news SET read=2 WHERE read!=2 AND deleted==0");
-  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
-
-  q.exec("SELECT id FROM feeds WHERE unread!=0");
-  while (q.next()) {
-    qApp->processEvents();
-    emit signalRecountFeedCounts(q.value(0).toInt());
-  }
-  recountCategoryCounts();
-
-  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
-    QModelIndex index =
-        feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
-    feedsTreeView_->setCurrentIndex(index);
-    slotFeedClicked(index);
-  } else {
-    int currentRow = newsView_->currentIndex().row();
-
-    newsModel_->select();
-
-    while (newsModel_->canFetchMore())
-      newsModel_->fetchMore();
-
-    newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
-  }
-
-  emit signalRefreshInfoTray();
-}
-
-/** @brief Mark all feeds Not New
- *---------------------------------------------------------------------------*/
-void RSSListing::markAllFeedsOld()
-{
-  QSqlQuery q;
-  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
-
-  q.exec("SELECT id FROM feeds WHERE newCount!=0");
-  while (q.next()) {
-    qApp->processEvents();
-    emit signalRecountFeedCounts(q.value(0).toInt());
-  }
-  recountCategoryCounts();
-
-  if ((currentNewsTab != NULL) && (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
-    slotUpdateNews();
-  }
-
-  emit signalRefreshInfoTray();
 }
 
 /** @brief Prepare feed icon for storing in DB

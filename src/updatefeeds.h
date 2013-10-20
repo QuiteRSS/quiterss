@@ -19,6 +19,8 @@
 #define UPDATEFEEDS_H
 
 #include <QThread>
+#include <QtSql>
+#include <QQueue>
 
 #include "requestfeed.h"
 #include "parseobject.h"
@@ -48,7 +50,7 @@ public:
   explicit UpdateObject(QObject *parent = 0);
 
   static QList<int> getIdFeedsInList(int idFolder);
-  static QString getIdFeedsString(int idFolder, int idException);
+  static QString getIdFeedsString(int idFolder, int idException = -1);
 
 public slots:
   void slotGetFeedTimer(int feedId);
@@ -65,6 +67,8 @@ public slots:
   void slotRecountCategoryCounts();
   void slotRecountFeedCounts(int feedId, bool updateViewport = true);
   void slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
+  void slotUpdateStatus(int feedId, bool changed);
+  void slotMarkAllFeedsRead();
 
 signals:
   void showProgressBar(int value);
@@ -85,6 +89,7 @@ signals:
   void feedCountsUpdate(FeedCountStruct counts);
   void signalFeedsViewportUpdate();
   void signalRefreshInfoTray();
+  void signalMarkAllFeedsRead();
 
 private slots:
   bool addFeedInQueue(int feedId, const QString &feedUrl,
@@ -92,6 +97,7 @@ private slots:
 
 private:
   RSSListing *rssl_;
+  QSqlDatabase db_;
   QList<int> feedIdList_;
   int updateFeedsCount_;
   QTimer *updateModelTimer_;

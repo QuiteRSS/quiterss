@@ -138,6 +138,12 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             updateObject_, SLOT(slotSetFeedRead(int,int,int,QList<int>)));
     connect(updateObject_, SIGNAL(signalRefreshInfoTray()),
             parent, SLOT(slotRefreshInfoTray()));
+    connect(parent, SIGNAL(signalUpdateStatus(int,bool)),
+            updateObject_, SLOT(slotUpdateStatus(int,bool)));
+    connect(parent, SIGNAL(signalMarkAllFeedsRead()),
+            updateObject_, SLOT(slotMarkAllFeedsRead()));
+    connect(updateObject_, SIGNAL(signalMarkAllFeedsRead()),
+            parent, SLOT(slotRefreshNewsView()));
   }
 
   connect(requestFeed_->networkManager_,
@@ -181,6 +187,20 @@ UpdateObject::UpdateObject(QObject *parent)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
+  if (rssl_->storeDBMemory_) {
+    db_ = QSqlDatabase::database();
+  }
+  else {
+    db_ = QSqlDatabase::database("thirdConnection", false);
+    if (!db_.isValid()) {
+      db_ = QSqlDatabase::addDatabase("QSQLITE", "thirdConnection");
+      db_.setDatabaseName(rssl_->dbFileName_);
+      db_.open();
+    } else {
+      db_ = QSqlDatabase::database();
+    }
+  }
+
   updateModelTimer_ = new QTimer(this);
   updateModelTimer_->setSingleShot(true);
   connect(updateModelTimer_, SIGNAL(timeout()), this, SIGNAL(signalUpdateModel()));
@@ -192,7 +212,7 @@ UpdateObject::UpdateObject(QObject *parent)
 
 void UpdateObject::slotGetFeedTimer(int feedId)
 {
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
          .arg(feedId));
   if (q.next()) {
@@ -204,7 +224,7 @@ void UpdateObject::slotGetFeedTimer(int feedId)
 
 void UpdateObject::slotGetAllFeedsTimer()
 {
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds "
          "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
   while (q.next()) {
@@ -227,7 +247,7 @@ void UpdateObject::slotGetFeed(int feedId, QString feedUrl, QDateTime date, int 
  *---------------------------------------------------------------------------*/
 void UpdateObject::slotGetFeedsFolder(QString query)
 {
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.exec(query);
   while (q.next()) {
     addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
@@ -241,7 +261,7 @@ void UpdateObject::slotGetFeedsFolder(QString query)
  *---------------------------------------------------------------------------*/
 void UpdateObject::slotGetAllFeeds()
 {
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
   while (q.next()) {
     addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
@@ -260,15 +280,14 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
 {
   int elementCount = 0;
   int outlineCount = 0;
-  QSqlQuery q;
+  QSqlQuery q(db_);
   QList<int> idsList;
   QList<QString> urlsList;
 
   xmlData.replace("&", "&#38;");
   QXmlStreamReader xml(xmlData);
 
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
+  db_.transaction();
 
   // Store hierarchy of "outline" tags. Next nested outline is pushed to stack.
   // When it closes, pop it out from stack. Top of stack is the root outline.
@@ -356,7 +375,7 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
   } else {
     emit signalMessageStatusBar(QString("Import: file read done"), 3000);
   }
-  db.commit();
+  db_.commit();
 
   emit signalUpdateFeedsModel();
 
@@ -379,7 +398,7 @@ bool UpdateObject::addFeedInQueue(int feedId, const QString &feedUrl,
     updateFeedsCount_ = updateFeedsCount_ + 2;
     QString userInfo;
     if (auth == 1) {
-      QSqlQuery q;
+      QSqlQuery q(db_);
       QUrl url(feedUrl);
       q.prepare("SELECT username, password FROM passwords WHERE server=?");
       q.addBindValue(url.host());
@@ -432,7 +451,7 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
     feedIdList_.takeAt(feedIdIndex);
   }
 
-  QSqlQuery q;
+  QSqlQuery q(db_);
   QString qStr = QString("UPDATE feeds SET status='%1' WHERE id=='%2'").
       arg(status).arg(feedId);
   q.exec(qStr);
@@ -442,7 +461,7 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
       bool folderUpdate = false;
       int feedParentId = 0;
 
-      QSqlQuery q;
+      QSqlQuery q(db_);
       q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
       if (q.first()) {
         feedParentId = q.value(0).toInt();
@@ -496,7 +515,7 @@ void UpdateObject::slotRecountCategoryCounts()
   QList<int> starredList;
   QList<int> readList;
   QStringList labelList;
-  QSqlQuery q;
+  QSqlQuery q(db_);
   q.exec("SELECT deleted, starred, read, label FROM news WHERE deleted < 2");
   while (q.next()) {
     deletedList.append(q.value(0).toInt());
@@ -519,15 +538,10 @@ void UpdateObject::slotRecountCategoryCounts()
  *----------------------------------------------------------------------------*/
 void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
 {
-  QElapsedTimer timer;
-  timer.start();
-  qCritical() << "--------------------------------";
-  qCritical() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-  QSqlQuery q;
+  QSqlQuery q(db_);
   QString qStr;
 
-  QSqlDatabase db = QSqlDatabase::database();
-  db.transaction();
+  db_.transaction();
 
   int feedParId = 0;
   bool isFolder = false;
@@ -577,8 +591,7 @@ void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
 
     if ((unreadCount == unreadCountOld) && (newCount == newCountOld) &&
         (undeleteCount == undeleteCountOld)) {
-      db.commit();
-      qCritical() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+      db_.commit();
       return;
     }
 
@@ -664,8 +677,7 @@ void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
       }
 
       if (!changed) {
-        db.commit();
-        qCritical() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+        db_.commit();
         return;
       }
 
@@ -739,10 +751,9 @@ void UpdateObject::slotRecountFeedCounts(int feedId, bool updateViewport)
     q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(l_feedParId));
     if (q.next()) l_feedParId = q.value(0).toInt();
   }
-  db.commit();
+  db_.commit();
 
   if (updateViewport) emit signalFeedsViewportUpdate();
-  qCritical() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 /** @brief Get feeds ids list string of folder \a idFolder
@@ -793,10 +804,9 @@ QList<int> UpdateObject::getIdFeedsInList(int idFolder)
  *---------------------------------------------------------------------------*/
 void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList)
 {
-  QSqlDatabase db = QSqlDatabase::database();
   if (readType != FeedReadSwitchingTab) {
-    db.transaction();
-    QSqlQuery q;
+    db_.transaction();
+    QSqlQuery q(db_);
     QString idFeedsStr = getIdFeedsString(feedId, idException);
     if (((readType == FeedReadSwitchingFeed) && rssl_->markReadSwitchingFeed_) ||
         ((readType == FeedReadClosingTab) && rssl_->markReadClosingTab_) ||
@@ -820,7 +830,7 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     }
     if (rssl_->markNewsReadOn_ && rssl_->markPrevNewsRead_)
       q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
-    db.commit();
+    db_.commit();
 
     slotRecountFeedCounts(feedId);
     slotRecountCategoryCounts();
@@ -835,13 +845,73 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
       idStr.append(QString("id='%1'").arg(newsId));
     }
 
-    db.transaction();
-    QSqlQuery q;
+    db_.transaction();
+    QSqlQuery q(db_);
     q.exec(QString("UPDATE news SET read=2 WHERE (%1) AND read==1").arg(idStr));
     q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new==1").arg(idStr));
-    db.commit();
+    db_.commit();
 
     if (feedId > -1)
       slotRecountFeedCounts(feedId, false);
   }
+}
+
+/** @brief Update status of current feed or feed of current tab
+ *---------------------------------------------------------------------------*/
+void UpdateObject::slotUpdateStatus(int feedId, bool changed)
+{
+  if (changed) {
+    slotRecountFeedCounts(feedId);
+  }
+  emit signalRefreshInfoTray();
+
+  if (feedId > 0) {
+    bool folderUpdate = false;
+    int feedParentId = 0;
+    QSqlQuery q(db_);
+    q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
+    if (q.next()) {
+      feedParentId = q.value(0).toInt();
+      if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+    }
+
+    while (feedParentId && !folderUpdate) {
+      q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
+      if (q.next()) {
+        feedParentId = q.value(0).toInt();
+        if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+      }
+    }
+
+    // Click on feed if it is displayed to update view
+    if ((feedId == rssl_->currentNewsTab->feedId_) || folderUpdate) {
+      int unreadCount = 0;
+      int allCount = 0;
+      q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
+             arg(rssl_->currentNewsTab->feedId_));
+      if (q.next()) {
+        unreadCount = q.value(0).toInt();
+        allCount    = q.value(1).toInt();
+      }
+      emit signalCountsStatusBar(unreadCount, allCount);
+    }
+  }
+}
+
+void UpdateObject::slotMarkAllFeedsRead()
+{
+  QSqlQuery q(db_);
+
+  q.exec("UPDATE news SET read=2 WHERE read!=2 AND deleted==0");
+  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
+
+  q.exec("SELECT id FROM feeds WHERE unread!=0");
+  while (q.next()) {
+    slotRecountFeedCounts(q.value(0).toInt());
+  }
+  slotRecountCategoryCounts();
+
+  emit signalRefreshInfoTray();
+
+  emit signalMarkAllFeedsRead();
 }
