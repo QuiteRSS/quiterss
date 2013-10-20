@@ -79,8 +79,6 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             updateObject_, SLOT(slotGetFeed(int,QString,QDateTime,int)));
     connect(parent, SIGNAL(signalGetFeedsFolder(QString)),
             updateObject_, SLOT(slotGetFeedsFolder(QString)));
-    connect(parent, SIGNAL(signalGetAllFeeds()),
-            updateObject_, SLOT(slotGetAllFeeds()));
     connect(parent, SIGNAL(signalImportFeeds(QByteArray)),
             updateObject_, SLOT(slotImportFeeds(QByteArray)));
     connect(updateObject_, SIGNAL(showProgressBar(int)),
@@ -267,7 +265,6 @@ void UpdateObject::slotGetAllFeeds()
     addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
                    q.value(2).toDateTime(), q.value(3).toInt());
   }
-
   emit showProgressBar(updateFeedsCount_);
 }
 
