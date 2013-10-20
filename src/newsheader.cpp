@@ -467,7 +467,8 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   }
   rssl->settings_->endGroup();
 
-  setSortIndicator(sortBy, Qt::SortOrder(sortType));
+  if ((sortBy != sortIndicatorSection()) || (sortType != sortIndicatorOrder()))
+    setSortIndicator(sortBy, Qt::SortOrder(sortType));
 
   createMenu();
 
