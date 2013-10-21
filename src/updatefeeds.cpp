@@ -40,10 +40,11 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   updateFeedThread_->setObjectName("updateFeedThread_");
 
   int timeoutRequest = rssl->settings_->value("Settings/timeoutRequest", 15).toInt();
-  int numberRequest = rssl->settings_->value("Settings/numberRequest", 10).toInt();
+  int numberRequests = rssl->settings_->value("Settings/numberRequest", 10).toInt();
+  int numberRequestsHost = rssl->settings_->value("Settings/numberRequestsHost", 1).toInt();
   int numberRepeats = rssl->settings_->value("Settings/numberRepeats", 2).toInt();
 
-  requestFeed_ = new RequestFeed(timeoutRequest, numberRequest, numberRepeats);
+  requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats, numberRequestsHost);
   requestFeed_->networkManager_->setCookieJar(rssl->cookieJar_);
 
   parseObject_ = new ParseObject(parent);

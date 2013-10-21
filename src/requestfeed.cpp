@@ -28,11 +28,13 @@
 
 #define REPLY_MAX_COUNT 10
 
-RequestFeed::RequestFeed(int timeoutRequest, int numberRequest, int numberRepeats, QObject *parent)
+RequestFeed::RequestFeed(int timeoutRequest, int numberRequests, int numberRepeats,
+                         int numberRequestsHost, QObject *parent)
   : QObject(parent)
   , timeoutRequest_(timeoutRequest)
-  , numberRequest_(numberRequest)
+  , numberRequests_(numberRequests)
   , numberRepeats_(numberRepeats)
+  , numberRequestsHost_(numberRequestsHost)
 {
   setObjectName("updateObject_");
 
@@ -77,7 +79,7 @@ void RequestFeed::requestUrl(int id, QString urlString,
  *----------------------------------------------------------------------------*/
 void RequestFeed::getQueuedUrl()
 {
-  if ((numberRequest_ <= currentFeeds_.size()) ||
+  if ((numberRequests_ <= currentFeeds_.size()) ||
       (REPLY_MAX_COUNT <= currentFeeds_.size())) {
     getUrlTimer_->start();
     return;
@@ -91,7 +93,7 @@ void RequestFeed::getQueuedUrl()
       int count = 0;
       foreach (QString url, currentFeeds_) {
         if (QUrl(url).host() == QUrl(feedUrl).host()) {
-          if (++count > 1) {
+          if (++count >= numberRequestsHost_) {
             return;
           }
         }

@@ -71,7 +71,8 @@ public:
   void setProxy(const QNetworkProxy proxy);
 
   QSpinBox *timeoutRequest_;
-  QSpinBox *numberRequest_;
+  QSpinBox *numberRequests_;
+  QSpinBox *numberRequestsHost_;
   QSpinBox *numberRepeats_;
 
   // browser
