@@ -823,8 +823,8 @@ void OptionsDialog::createFeedsWidget()
 
   changeBehaviorActionNUN_ = new QCheckBox(tr("Change behavior of action 'Next Unread News'"));
 
-  notDeleteStarred_ = new QCheckBox(tr("labeled news"));
-  notDeleteLabeled_ = new QCheckBox(tr("starred news"));
+  notDeleteStarred_ = new QCheckBox(tr("starred news"));
+  notDeleteLabeled_ = new QCheckBox(tr("labeled news"));
 
   markIdenticalNewsRead_ = new QCheckBox(tr("Automatically mark identical news as read"));
 
