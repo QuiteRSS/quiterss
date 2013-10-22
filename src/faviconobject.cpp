@@ -72,8 +72,21 @@ void FaviconObject::getQueuedUrl()
   if (!urlsQueue_.isEmpty()) {
     getUrlTimer_->start();
 
+    QString feedUrl = feedsQueue_.head();
+
+    if (hostList_.contains(QUrl(feedUrl).host())) {
+      int count = 0;
+      foreach (QString url, currentFeeds_) {
+        if (QUrl(url).host() == QUrl(feedUrl).host()) {
+          if (++count >= 1) {
+            return;
+          }
+        }
+      }
+    }
+
     QString urlString = urlsQueue_.dequeue();
-    QString feedUrl = feedsQueue_.dequeue();
+    feedUrl = feedsQueue_.dequeue();
 
     QUrl url = QUrl::fromEncoded(urlString.toUtf8());
     if (!url.isValid()) {
@@ -179,6 +192,12 @@ void FaviconObject::finished(QNetworkReply *reply)
         }
       }
     } else {
+      if (reply->errorString().contains("Service Temporarily Unavailable")) {
+        if (!hostList_.contains(QUrl(feedUrl).host())) {
+          hostList_.append(QUrl(feedUrl).host());
+        }
+      }
+
       if (cntRequests == 0) {
         QString link = QString("%1://%2").arg(url.scheme()).arg(url.host());
         emit signalGet(link, feedUrl, 2);
