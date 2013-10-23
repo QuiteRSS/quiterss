@@ -27,7 +27,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("News Filters"));
   setMinimumWidth(500);
-  setMinimumHeight(250);
+  setMinimumHeight(300);
 
   filtersTree_ = new QTreeWidget(this);
   filtersTree_->setObjectName("filtersTree");
@@ -104,6 +104,11 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   moveDownButton_->setEnabled(false);
   connect(moveDownButton_, SIGNAL(clicked()), this, SLOT(moveDownFilter()));
 
+  runFilterButton_ = new QPushButton(tr("Run Filter"), this);
+  runFilterButton_->setEnabled(false);
+  buttonsLayout->insertWidget(0, runFilterButton_);
+  connect(runFilterButton_, SIGNAL(clicked()), SLOT(applyFilter()));
+
   QVBoxLayout *buttonsVLayout = new QVBoxLayout();
   buttonsVLayout->addWidget(newButton);
   buttonsVLayout->addWidget(editButton_);
@@ -112,6 +117,7 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   buttonsVLayout->addWidget(moveUpButton_);
   buttonsVLayout->addWidget(moveDownButton_);
   buttonsVLayout->addStretch();
+  buttonsVLayout->addWidget(runFilterButton_);
 
   QHBoxLayout *mainlayout = new QHBoxLayout();
   mainlayout->setMargin(0);
@@ -119,11 +125,6 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   mainlayout->addLayout(buttonsVLayout);
 
   pageLayout->addLayout(mainlayout);
-
-  applyFilterButton_ = new QPushButton(tr("Apply Selected Filter"), this);
-  applyFilterButton_->setEnabled(false);
-  buttonsLayout->insertWidget(0, applyFilterButton_);
-  connect(applyFilterButton_, SIGNAL(clicked()), SLOT(applyFilter()));
 
   buttonBox->addButton(QDialogButtonBox::Close);
 
@@ -354,14 +355,14 @@ void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
     deleteButton_->setEnabled(false);
     moveUpButton_->setEnabled(false);
     moveDownButton_->setEnabled(false);
-    applyFilterButton_->setEnabled(false);
+    runFilterButton_->setEnabled(false);
   } else {
     editButton_->setEnabled(true);
     deleteButton_->setEnabled(true);
     if (current->checkState(1) == Qt::Checked)
-      applyFilterButton_->setEnabled(true);
+      runFilterButton_->setEnabled(true);
     else
-      applyFilterButton_->setEnabled(false);
+      runFilterButton_->setEnabled(false);
   }
 }
 
@@ -403,6 +404,6 @@ void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
     q.exec(qStr);
 
     if (filtersTree_->currentItem() == item)
-      applyFilterButton_->setEnabled(enable);
+      runFilterButton_->setEnabled(enable);
   }
 }

@@ -18,6 +18,8 @@
 #ifndef NEWSFILTERSDIALOG_H
 #define NEWSFILTERSDIALOG_H
 
+#include <QTreeWidget>
+
 #include "dialog.h"
 
 class NewsFiltersDialog : public Dialog
@@ -48,7 +50,7 @@ private:
   QPushButton *deleteButton_;
   QPushButton *moveUpButton_;
   QPushButton *moveDownButton_;
-  QPushButton *applyFilterButton_;
+  QPushButton *runFilterButton_;
 
 };
 
