@@ -28,13 +28,12 @@
 
 #define REPLY_MAX_COUNT 10
 
-RequestFeed::RequestFeed(int timeoutRequest, int numberRequests, int numberRepeats,
-                         int numberRequestsHost, QObject *parent)
+RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
+                         int numberRepeats, QObject *parent)
   : QObject(parent)
   , timeoutRequest_(timeoutRequest)
   , numberRequests_(numberRequests)
   , numberRepeats_(numberRepeats)
-  , numberRequestsHost_(numberRequestsHost)
 {
   setObjectName("updateObject_");
 
@@ -90,12 +89,9 @@ void RequestFeed::getQueuedUrl()
     QString feedUrl = feedsQueue_.head();
 
     if (hostList_.contains(QUrl(feedUrl).host())) {
-      int count = 0;
       foreach (QString url, currentFeeds_) {
         if (QUrl(url).host() == QUrl(feedUrl).host()) {
-          if (++count >= numberRequestsHost_) {
-            return;
-          }
+          return;
         }
       }
     }

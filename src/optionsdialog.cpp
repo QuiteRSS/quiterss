@@ -415,8 +415,6 @@ void OptionsDialog::createNetworkConnectionsWidget()
   timeoutRequest_->setRange(0, 300);
   numberRequests_ = new QSpinBox();
   numberRequests_->setRange(1, 10);
-  numberRequestsHost_ = new QSpinBox();
-  numberRequestsHost_->setRange(1, 10);
   numberRepeats_ = new QSpinBox();
   numberRepeats_->setRange(1, 10);
 
@@ -427,10 +425,8 @@ void OptionsDialog::createNetworkConnectionsWidget()
   requestLayout->addWidget(timeoutRequest_, 0, 1, 1, 1, Qt::AlignLeft);
   requestLayout->addWidget(new QLabel(tr("Number requests:")), 1, 0);
   requestLayout->addWidget(numberRequests_, 1, 1, 1, 1, Qt::AlignLeft);
-  requestLayout->addWidget(new QLabel(tr("Number requests to one host:")), 2, 0);
-  requestLayout->addWidget(numberRequestsHost_, 2, 1, 1, 1, Qt::AlignLeft);
-  requestLayout->addWidget(new QLabel(tr("Number repeats:")), 3, 0);
-  requestLayout->addWidget(numberRepeats_, 3, 1, 1, 1, Qt::AlignLeft);
+  requestLayout->addWidget(new QLabel(tr("Number repeats:")), 2, 0);
+  requestLayout->addWidget(numberRepeats_, 2, 1, 1, 1, Qt::AlignLeft);
 
   networkConnectionsLayout->addWidget(new QLabel(tr("Options network requests when updating feeds (requires program restart):")));
   networkConnectionsLayout->addLayout(requestLayout);

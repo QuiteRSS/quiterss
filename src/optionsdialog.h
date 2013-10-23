@@ -72,7 +72,6 @@ public:
 
   QSpinBox *timeoutRequest_;
   QSpinBox *numberRequests_;
-  QSpinBox *numberRequestsHost_;
   QSpinBox *numberRepeats_;
 
   // browser

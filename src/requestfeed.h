@@ -31,8 +31,8 @@ class RequestFeed : public QObject
 {
   Q_OBJECT
 public:
-  explicit RequestFeed(int timeoutRequest, int numberRequests, int numberRepeats,
-                       int numberRequestsHost, QObject *parent = 0);
+  explicit RequestFeed(int timeoutRequest, int numberRequests,
+                       int numberRepeats, QObject *parent = 0);
   NetworkManager *networkManager_;
 
 public slots:
@@ -61,7 +61,6 @@ private:
   int timeoutRequest_;
   int numberRequests_;
   int numberRepeats_;
-  int numberRequestsHost_;
   QTimer *getUrlTimer_;
 
   QQueue<int> idsQueue_;

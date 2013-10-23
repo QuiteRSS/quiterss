@@ -3159,11 +3159,9 @@ void RSSListing::showOptionDlg(int index)
 
   int timeoutRequest = settings_->value("Settings/timeoutRequest", 15).toInt();
   int numberRequests = settings_->value("Settings/numberRequest", 10).toInt();
-  int numberRequestsHost = settings_->value("Settings/numberRequestsHost", 1).toInt();
   int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
   optionsDialog_->timeoutRequest_->setValue(timeoutRequest);
   optionsDialog_->numberRequests_->setValue(numberRequests);
-  optionsDialog_->numberRequestsHost_->setValue(numberRequestsHost);
   optionsDialog_->numberRepeats_->setValue(numberRepeats);
 
   optionsDialog_->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
@@ -3497,11 +3495,9 @@ void RSSListing::showOptionDlg(int index)
 
   timeoutRequest = optionsDialog_->timeoutRequest_->value();
   numberRequests = optionsDialog_->numberRequests_->value();
-  numberRequestsHost = optionsDialog_->numberRequestsHost_->value();
   numberRepeats = optionsDialog_->numberRepeats_->value();
   settings_->setValue("Settings/timeoutRequest", timeoutRequest);
   settings_->setValue("Settings/numberRequest", numberRequests);
-  settings_->setValue("Settings/numberRequestsHost", numberRequestsHost);
   settings_->setValue("Settings/numberRepeats", numberRepeats);
 
   if (optionsDialog_->embeddedBrowserOn_->isChecked()) {
