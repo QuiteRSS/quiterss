@@ -163,6 +163,7 @@ public:
   QAction *closeTabAct_;
   QAction *closeOtherTabsAct_;
   QAction *closeAllTabsAct_;
+  QAction *settingPageLabelsAct_;
 
   QActionGroup *newsFilterGroup_;
   QActionGroup *newsLabelGroup_;
@@ -261,7 +262,7 @@ public slots:
   void slotSetValue(int value);
   void showMessageStatusBar(QString message, int timeout = 0);
   void slotCountsStatusBar(int unreadCount, int allCount);
-  void showOptionDlg();
+  void showOptionDlg(int index = -1);
   void receiveMessage(const QString&);
   void slotPlaceToTray();
   void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
@@ -451,6 +452,8 @@ private slots:
   void cleanUpShutdown();
 
   void saveDBMemFile();
+
+  void showSettingPageLabels();
 
 private:
   QNetworkProxy networkProxy_;

@@ -1317,6 +1317,11 @@ void RSSListing::createActions()
   this->addAction(expandFolderAct_);
   connect(expandFolderAct_, SIGNAL(triggered()), this, SLOT(slotExpandFolder()));
 
+  settingPageLabelsAct_ = new QAction(this);
+  settingPageLabelsAct_->setObjectName("settingPageLabelsAct");
+  this->addAction(settingPageLabelsAct_);
+  connect(settingPageLabelsAct_, SIGNAL(triggered()), this, SLOT(showSettingPageLabels()));
+
   shareGroup_ = new QActionGroup(this);
   shareGroup_->setExclusive(false);
 
@@ -1523,6 +1528,7 @@ void RSSListing::createShortcut()
   listActions_.append(shareGroup_->actions());
 
   // Actions for labels do add at the end
+  listActions_.append(settingPageLabelsAct_);
   listActions_.append(newsLabelGroup_->actions());
 
   loadActionShortcuts();
@@ -3115,9 +3121,11 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 }
 
 // ----------------------------------------------------------------------------
-void RSSListing::showOptionDlg()
+void RSSListing::showOptionDlg(int index)
 {
-  static int index = 0;
+  static int pageIndex = 0;
+
+  if (index != -1) pageIndex = index;
 
   if (optionsDialog_) {
     optionsDialog_->activateWindow();
@@ -3364,9 +3372,9 @@ void RSSListing::showOptionDlg()
 
   // Display setting dialog
 
-  optionsDialog_->setCurrentItem(index);
+  optionsDialog_->setCurrentItem(pageIndex);
   int result = optionsDialog_->exec();
-  index = optionsDialog_->currentIndex();
+  pageIndex = optionsDialog_->currentIndex();
 
   if (result == QDialog::Rejected) {
     delete optionsDialog_;
@@ -3716,6 +3724,11 @@ void RSSListing::showOptionDlg()
       currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
     currentNewsTab->setSettings();
   }
+}
+
+void RSSListing::showSettingPageLabels()
+{
+  showOptionDlg(5);
 }
 
 // ----------------------------------------------------------------------------
@@ -4782,6 +4795,8 @@ void RSSListing::retranslateStrings()
   nextFolderAct_->setText(tr("Next Folder"));
   prevFolderAct_->setText(tr("Previous Folder"));
   expandFolderAct_->setText(tr("Expand Folder"));
+
+  settingPageLabelsAct_->setText(tr("Setting Page: Labels"));
 
   shareMenuAct_->setText(tr("Share"));
 
@@ -7450,4 +7465,3 @@ void RSSListing::saveDBMemFile()
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
 }
-
