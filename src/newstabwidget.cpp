@@ -1926,6 +1926,21 @@ void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
         newsView_->viewport()->mapToGlobal(newsView_->visualRect(index).bottomLeft()));
 }
 
+void NewsTabWidget::showLabelsMenu()
+{
+  if (type_ >= TabTypeWeb) return;
+  if (!newsView_->currentIndex().isValid()) return;
+
+  for (int i = newsHeader_->count()-1; i >= 0; i--) {
+    int lIdx = newsHeader_->logicalIndex(i);
+    if (!newsHeader_->isSectionHidden(lIdx)) {
+      int row = newsView_->currentIndex().row();
+      slotNewslLabelClicked(newsModel_->index(row, lIdx));
+      break;
+    }
+  }
+}
+
 void NewsTabWidget::reduceNewsList()
 {
   if (type_ >= TabTypeWeb) return;

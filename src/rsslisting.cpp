@@ -1250,6 +1250,12 @@ void RSSListing::createActions()
   connect(newsLabelGroup_, SIGNAL(triggered(QAction*)),
           this, SLOT(setLabelNews(QAction*)));
 
+  showLabelsMenuAct_ = new QAction(this);
+  showLabelsMenuAct_->setObjectName("showLabelsMenuAct");
+  this->addAction(showLabelsMenuAct_);
+  connect(showLabelsMenuAct_, SIGNAL(triggered()),
+          this, SLOT(slotShowLabelsMenu()));
+
   closeTabAct_ = new QAction(this);
   closeTabAct_->setObjectName("closeTabAct");
   this->addAction(closeTabAct_);
@@ -1529,6 +1535,7 @@ void RSSListing::createShortcut()
 
   // Actions for labels do add at the end
   listActions_.append(settingPageLabelsAct_);
+  listActions_.append(showLabelsMenuAct_);
   listActions_.append(newsLabelGroup_->actions());
 
   loadActionShortcuts();
@@ -4767,6 +4774,7 @@ void RSSListing::retranslateStrings()
 
   newsLabelMenuAction_->setText(tr("Label"));
   newsLabelAction_->setText(tr("Label"));
+  showLabelsMenuAct_->setText(tr("Show labels menu"));
 
   closeTabAct_->setText(tr("Close Tab"));
   closeOtherTabsAct_->setText(tr("Close Other Tabs"));
@@ -6046,6 +6054,11 @@ void RSSListing::slotOpenNewsBackgroundTab()
 void RSSListing::slotCopyLinkNews()
 {
   currentNewsTab->slotCopyLinkNews();
+}
+
+void RSSListing::slotShowLabelsMenu()
+{
+  currentNewsTab->showLabelsMenu();
 }
 
 /** @brief Reload full model
