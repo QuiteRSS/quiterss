@@ -444,6 +444,8 @@ void NewsTabWidget::setSettings(bool newTab)
       cssFile.close();
     }
 
+    webView_->setZoomFactor(qreal(rsslisting_->defaultZoomPages_)/100.0);
+
     if (rsslisting_->externalBrowserOn_ <= 0) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     } else {

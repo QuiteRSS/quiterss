@@ -77,10 +77,14 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
 /*virtual*/ void WebView::wheelEvent(QWheelEvent *event)
 {
   if (event->modifiers() == Qt::ControlModifier) {
-    if (event->delta() > 0)
-      setZoomFactor(zoomFactor()+0.1);
-    else if (zoomFactor() > 0.1)
-      setZoomFactor(zoomFactor()-0.1);
+    if (event->delta() > 0) {
+      if (zoomFactor() < 5.0)
+        setZoomFactor(zoomFactor()+0.1);
+    }
+    else {
+      if (zoomFactor() > 0.3)
+        setZoomFactor(zoomFactor()-0.1);
+    }
     event->accept();
     return;
   }

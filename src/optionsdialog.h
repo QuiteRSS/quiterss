@@ -83,6 +83,7 @@ public:
   QPushButton *otherExternalBrowserButton_;
   QCheckBox *javaScriptEnable_;
   QCheckBox *pluginsEnable_;
+  QSpinBox *defaultZoomPages_;
   QCheckBox *openLinkInBackground_;
   QCheckBox *openLinkInBackgroundEmbedded_;
   LineEdit *userStyleBrowserEdit_;

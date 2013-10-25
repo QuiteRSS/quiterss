@@ -222,6 +222,7 @@ public:
   int maxPagesInCache_;
   QString downloadLocation_;
   bool askDownloadLocation_;
+  int defaultZoomPages_;
 
   int browserPosition_;
 

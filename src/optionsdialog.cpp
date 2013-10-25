@@ -456,6 +456,10 @@ void OptionsDialog::createBrowserWidget()
 
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
+  defaultZoomPages_ = new QSpinBox();
+  defaultZoomPages_->setMaximum(300);
+  defaultZoomPages_->setMinimum(30);
+  defaultZoomPages_->setSuffix(" %");
 
   openLinkInBackgroundEmbedded_ = new QCheckBox(tr("Open links in embedded browser in background"));
   openLinkInBackground_ = new QCheckBox(tr("Open links in external browser in background (experimental)"));
@@ -483,10 +487,16 @@ void OptionsDialog::createBrowserWidget()
   externalBrowserBox->addButton(defaultExternalBrowserOn_);
   externalBrowserBox->addButton(otherExternalBrowserOn_);
 
+  QHBoxLayout *zoomLayout = new QHBoxLayout();
+  zoomLayout->addWidget(new QLabel(tr("Default zoom on pages:")));
+  zoomLayout->addWidget(defaultZoomPages_);
+  zoomLayout->addStretch();
+
   QVBoxLayout *contentBrowserLayout = new QVBoxLayout();
   contentBrowserLayout->setContentsMargins(15, 0, 5, 10);
   contentBrowserLayout->addWidget(javaScriptEnable_);
   contentBrowserLayout->addWidget(pluginsEnable_);
+  contentBrowserLayout->addLayout(zoomLayout);
 
   QGridLayout *userStyleBrowserLayout = new QGridLayout();
   userStyleBrowserLayout->setContentsMargins(15, 0, 5, 10);

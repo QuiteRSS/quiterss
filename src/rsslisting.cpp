@@ -1982,6 +1982,7 @@ void RSSListing::readSettings()
   maxPagesInCache_ = settings_->value("maxPagesInCache", 3).toInt();
   downloadLocation_ = settings_->value("downloadLocation", "").toString();
   askDownloadLocation_ = settings_->value("askDownloadLocation", true).toBool();
+  defaultZoomPages_ = settings_->value("defaultZoomPages", 100).toInt();
 
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -2266,6 +2267,7 @@ void RSSListing::writeSettings()
   settings_->setValue("downloadLocation", downloadLocation_);
   settings_->setValue("saveCookies", cookieJar_->saveCookies_);
   settings_->setValue("askDownloadLocation", askDownloadLocation_);
+  settings_->setValue("defaultZoomPages", defaultZoomPages_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
   settings_->setValue("soundNotifyPath", soundNotifyPath_);
@@ -3180,6 +3182,7 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->otherExternalBrowserEdit_->setText(externalBrowser_);
   optionsDialog_->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog_->pluginsEnable_->setChecked(pluginsEnable_);
+  optionsDialog_->defaultZoomPages_->setValue(defaultZoomPages_);
   optionsDialog_->openLinkInBackground_->setChecked(openLinkInBackground_);
   optionsDialog_->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
   optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser_);
@@ -3526,6 +3529,7 @@ void RSSListing::showOptionDlg(int index)
   openLinkInBackgroundEmbedded_ = optionsDialog_->openLinkInBackgroundEmbedded_->isChecked();
   userStyleBrowser_ = optionsDialog_->userStyleBrowserEdit_->text();
   maxPagesInCache_ = optionsDialog_->maxPagesInCache_->value();
+  defaultZoomPages_ = optionsDialog_->defaultZoomPages_->value();
 
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -6463,9 +6467,10 @@ void RSSListing::browserZoom(QAction *action)
   if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
 
   if (action->objectName() == "zoomInAct") {
-    currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()+0.1);
+    if (currentNewsTab->webView_->zoomFactor() < 5.0)
+      currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()+0.1);
   } else if (action->objectName() == "zoomOutAct") {
-    if (currentNewsTab->webView_->zoomFactor() > 0.1)
+    if (currentNewsTab->webView_->zoomFactor() > 0.3)
       currentNewsTab->webView_->setZoomFactor(currentNewsTab->webView_->zoomFactor()-0.1);
   } else {
     currentNewsTab->webView_->setZoomFactor(1);
