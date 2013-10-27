@@ -161,7 +161,6 @@ RSSListing::RSSListing(QSettings *settings,
           this, SLOT(updateInfoDownloads(QString)));
 
   updateFeeds_ = new UpdateFeeds(this);
-  faviconThread_ = new FaviconThread(this);
 
   createFeedsWidget();
   createToolBarNull();
@@ -303,7 +302,6 @@ void RSSListing::slotClose()
   cookieJar_->saveCookies();
 
   delete updateFeeds_;
-  delete faviconThread_;
 
   cleanUpShutdown();
 

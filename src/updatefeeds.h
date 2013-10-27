@@ -24,6 +24,7 @@
 
 #include "requestfeed.h"
 #include "parseobject.h"
+#include "faviconobject.h"
 
 class UpdateObject;
 class RSSListing;
@@ -38,8 +39,10 @@ public:
   UpdateObject *updateObject_;
   RequestFeed *requestFeed_;
   ParseObject *parseObject_;
+  FaviconObject *faviconObject_;
   QThread *getFeedThread_;
   QThread *updateFeedThread_;
+  QThread *getFaviconThread_;
 
 };
 
@@ -69,6 +72,7 @@ public slots:
   void slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
   void slotUpdateStatus(int feedId, bool changed);
   void slotMarkAllFeedsRead();
+  void slotIconSave(QString feedUrl, QByteArray faviconData);
 
 signals:
   void showProgressBar(int value);
@@ -90,6 +94,7 @@ signals:
   void signalFeedsViewportUpdate();
   void signalRefreshInfoTray();
   void signalMarkAllFeedsRead();
+  void signalIconUpdate(int feedId, QByteArray faviconData);
 
 private slots:
   bool addFeedInQueue(int feedId, const QString &feedUrl,

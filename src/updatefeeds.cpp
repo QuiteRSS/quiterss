@@ -27,6 +27,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   , updateObject_(NULL)
   , requestFeed_(NULL)
   , parseObject_(NULL)
+  , faviconObject_(NULL)
 {
   QObject *parent_ = parent;
   while(parent_->parent()) {
@@ -38,6 +39,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   getFeedThread_->setObjectName("getFeedThread_");
   updateFeedThread_ = new QThread();
   updateFeedThread_->setObjectName("updateFeedThread_");
+  getFaviconThread_ = new QThread();
+  getFaviconThread_->setObjectName("getFaviconThread_");
 
   int timeoutRequest = rssl->settings_->value("Settings/timeoutRequest", 15).toInt();
   int numberRequests = rssl->settings_->value("Settings/numberRequest", 10).toInt();
@@ -48,6 +51,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
 
   parseObject_ = new ParseObject(parent);
   updateObject_ = new UpdateObject(parent);
+  faviconObject_ = new FaviconObject();
 
   if (add) {
     connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
@@ -142,6 +146,16 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             updateObject_, SLOT(slotMarkAllFeedsRead()));
     connect(updateObject_, SIGNAL(signalMarkAllFeedsRead()),
             parent, SLOT(slotRefreshNewsView()));
+
+    // faviconObject_
+    connect(parent, SIGNAL(faviconRequestUrl(QString,QString)),
+            faviconObject_, SLOT(requestUrl(QString,QString)));
+    connect(faviconObject_, SIGNAL(signalIconRecived(QString,QByteArray,QString)),
+            parent, SLOT(slotIconFeedPreparing(QString,QByteArray,QString)));
+    connect(parent, SIGNAL(signalIconFeedReady(QString,QByteArray)),
+            updateObject_, SLOT(slotIconSave(QString,QByteArray)));
+    connect(updateObject_, SIGNAL(signalIconUpdate(int,QByteArray)),
+            parent, SLOT(slotIconFeedUpdate(int,QByteArray)));
   }
 
   connect(requestFeed_->networkManager_,
@@ -152,8 +166,10 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   requestFeed_->moveToThread(getFeedThread_);
   parseObject_->moveToThread(updateFeedThread_);
   updateObject_->moveToThread(updateFeedThread_);
+  faviconObject_->moveToThread(getFaviconThread_);
 
   getFeedThread_->start(QThread::LowPriority);
+  getFaviconThread_->start(QThread::LowPriority);
   updateFeedThread_->start();
 }
 
@@ -170,6 +186,7 @@ UpdateFeeds::~UpdateFeeds()
   requestFeed_->deleteLater();
   parseObject_->deleteLater();
   updateObject_->deleteLater();
+  faviconObject_->deleteLater();
 }
 
 //------------------------------------------------------------------------------
@@ -911,4 +928,26 @@ void UpdateObject::slotMarkAllFeedsRead()
   emit signalRefreshInfoTray();
 
   emit signalMarkAllFeedsRead();
+}
+
+/** @brief Save icon in DB and emit signal to update it
+ *----------------------------------------------------------------------------*/
+void UpdateObject::slotIconSave(QString feedUrl, QByteArray faviconData)
+{
+  int feedId = 0;
+
+  QSqlQuery q(db_);
+  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
+  q.bindValue(":xmlUrl", feedUrl);
+  q.exec();
+  if (q.next()) {
+    feedId = q.value(0).toInt();
+  }
+
+  q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
+  q.addBindValue(faviconData.toBase64());
+  q.addBindValue(feedId);
+  q.exec();
+
+  emit signalIconUpdate(feedId, faviconData);
 }

@@ -34,11 +34,11 @@ FaviconObject::FaviconObject(QObject *parent)
 {
   setObjectName("faviconObject_");
 
-  QTimer *timeout_ = new QTimer();
+  QTimer *timeout_ = new QTimer(this);
   connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
   timeout_->start(1000);
 
-  getUrlTimer_ = new QTimer();
+  getUrlTimer_ = new QTimer(this);
   getUrlTimer_->setSingleShot(true);
   getUrlTimer_->setInterval(20);
   connect(getUrlTimer_, SIGNAL(timeout()), this, SLOT(getQueuedUrl()));
@@ -241,26 +241,4 @@ void FaviconObject::slotRequestTimeout()
       currentTime_.replace(i, time);
     }
   }
-}
-
-/** @brief Save icon in DB and emit signal to update it
- *----------------------------------------------------------------------------*/
-void FaviconObject::slotIconSave(QString feedUrl, QByteArray faviconData)
-{
-  int feedId = 0;
-
-  QSqlQuery q;
-  q.prepare("SELECT id FROM feeds WHERE xmlUrl LIKE :xmlUrl");
-  q.bindValue(":xmlUrl", feedUrl);
-  q.exec();
-  if (q.next()) {
-    feedId = q.value(0).toInt();
-  }
-
-  q.prepare("UPDATE feeds SET image = ? WHERE id == ?");
-  q.addBindValue(faviconData.toBase64());
-  q.addBindValue(feedId);
-  q.exec();
-
-  emit signalIconUpdate(feedId, faviconData);
 }

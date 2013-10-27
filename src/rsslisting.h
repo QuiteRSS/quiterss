@@ -36,7 +36,6 @@
 #include "cookiejar.h"
 #include "dbmemfilethread.h"
 #include "downloadmanager.h"
-#include "faviconthread.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
@@ -458,7 +457,6 @@ private slots:
 private:
   QNetworkProxy networkProxy_;
   UpdateFeeds *updateFeeds_;
-  FaviconThread *faviconThread_;
   DBMemFileThread *dbMemFileThread_;
 
   void setProxy(const QNetworkProxy proxy);

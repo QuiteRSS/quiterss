@@ -92,7 +92,6 @@ HEADERS += \
     src/authenticationdialog.h \
     src/networkmanager.h \
     src/cookiejar.h \
-    src/faviconthread.h \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
     src/plugins/webpluginfactory.h \
@@ -138,7 +137,6 @@ SOURCES += \
     src/authenticationdialog.cpp \
     src/networkmanager.cpp \
     src/cookiejar.cpp \
-    src/faviconthread.cpp \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
     src/plugins/webpluginfactory.cpp \
