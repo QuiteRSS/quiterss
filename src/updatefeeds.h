@@ -33,7 +33,7 @@ class UpdateFeeds : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateFeeds(QObject *parent, bool add = false);
+  explicit UpdateFeeds(QObject *parent, bool addFeed = false);
   ~UpdateFeeds();
 
   UpdateObject *updateObject_;
@@ -44,13 +44,16 @@ public:
   QThread *updateFeedThread_;
   QThread *getFaviconThread_;
 
+private:
+  bool addFeed_;
+
 };
 
 class UpdateObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(QObject *parent = 0);
+  explicit UpdateObject(QObject *parent, bool addFeed);
 
   static QList<int> getIdFeedsInList(int idFolder);
   static QString getIdFeedsString(int idFolder, int idException = -1);

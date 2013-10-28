@@ -22,12 +22,15 @@
 
 #define UPDATE_INTERVAL 5000
 
-UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
+UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   : QObject(parent)
   , updateObject_(NULL)
   , requestFeed_(NULL)
   , parseObject_(NULL)
   , faviconObject_(NULL)
+  , updateFeedThread_(NULL)
+  , getFaviconThread_(NULL)
+  , addFeed_(addFeed)
 {
   QObject *parent_ = parent;
   while(parent_->parent()) {
@@ -39,8 +42,6 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   getFeedThread_->setObjectName("getFeedThread_");
   updateFeedThread_ = new QThread();
   updateFeedThread_->setObjectName("updateFeedThread_");
-  getFaviconThread_ = new QThread();
-  getFaviconThread_->setObjectName("getFaviconThread_");
 
   int timeoutRequest = rssl->settings_->value("Settings/timeoutRequest", 15).toInt();
   int numberRequests = rssl->settings_->value("Settings/numberRequest", 10).toInt();
@@ -49,11 +50,9 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
   requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats);
   requestFeed_->networkManager_->setCookieJar(rssl->cookieJar_);
 
-  parseObject_ = new ParseObject(parent);
-  updateObject_ = new UpdateObject(parent);
-  faviconObject_ = new FaviconObject();
+  parseObject_ = new ParseObject(parent, addFeed_);
 
-  if (add) {
+  if (addFeed_) {
     connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
             requestFeed_, SLOT(requestUrl(int,QString,QDateTime,QString)));
     connect(requestFeed_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
@@ -66,6 +65,12 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             parent, SLOT(slotUpdateFeed(int,bool,int,QString)),
             Qt::QueuedConnection);
   } else {
+    getFaviconThread_ = new QThread();
+    getFaviconThread_->setObjectName("getFaviconThread_");
+
+    updateObject_ = new UpdateObject(parent, addFeed);
+    faviconObject_ = new FaviconObject();
+
     connect(updateObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
             requestFeed_, SLOT(requestUrl(int,QString,QDateTime,QString)));
     connect(requestFeed_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
@@ -156,6 +161,11 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
             updateObject_, SLOT(slotIconSave(QString,QByteArray)));
     connect(updateObject_, SIGNAL(signalIconUpdate(int,QByteArray)),
             parent, SLOT(slotIconFeedUpdate(int,QByteArray)));
+
+    updateObject_->moveToThread(updateFeedThread_);
+    faviconObject_->moveToThread(getFaviconThread_);
+
+    getFaviconThread_->start(QThread::LowPriority);
   }
 
   connect(requestFeed_->networkManager_,
@@ -165,11 +175,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool add)
 
   requestFeed_->moveToThread(getFeedThread_);
   parseObject_->moveToThread(updateFeedThread_);
-  updateObject_->moveToThread(updateFeedThread_);
-  faviconObject_->moveToThread(getFaviconThread_);
 
   getFeedThread_->start(QThread::LowPriority);
-  getFaviconThread_->start(QThread::LowPriority);
   updateFeedThread_->start();
 }
 
@@ -185,12 +192,19 @@ UpdateFeeds::~UpdateFeeds()
 
   requestFeed_->deleteLater();
   parseObject_->deleteLater();
-  updateObject_->deleteLater();
-  faviconObject_->deleteLater();
+
+  if (!addFeed_) {
+    getFaviconThread_->exit();
+    getFaviconThread_->wait();
+    getFaviconThread_->deleteLater();
+
+    updateObject_->deleteLater();
+    faviconObject_->deleteLater();
+  }
 }
 
 //------------------------------------------------------------------------------
-UpdateObject::UpdateObject(QObject *parent)
+UpdateObject::UpdateObject(QObject *parent, bool addFeed)
   : QObject(0)
   , updateFeedsCount_(0)
 {
@@ -206,13 +220,15 @@ UpdateObject::UpdateObject(QObject *parent)
     db_ = QSqlDatabase::database();
   }
   else {
-    db_ = QSqlDatabase::database("thirdConnection", false);
-    if (!db_.isValid()) {
-      db_ = QSqlDatabase::addDatabase("QSQLITE", "thirdConnection");
-      db_.setDatabaseName(rssl_->dbFileName_);
-      db_.open();
-    } else {
+    if (addFeed) {
       db_ = QSqlDatabase::database();
+    } else {
+      db_ = QSqlDatabase::database("secondConnection", true);
+      if (!db_.isValid()) {
+        db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
+        db_.setDatabaseName(rssl_->dbFileName_);
+        db_.open();
+      }
     }
   }
 
