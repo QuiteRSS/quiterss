@@ -28,7 +28,7 @@
 #include <windows.h>
 #endif
 
-ParseObject::ParseObject(QObject *parent)
+ParseObject::ParseObject(QObject *parent, bool addFeed)
   : QObject(0)
   , currentFeedId_(0)
 {
@@ -44,20 +44,23 @@ ParseObject::ParseObject(QObject *parent)
     db_ = QSqlDatabase::database();
   }
   else {
-    db_ = QSqlDatabase::database("secondConnection", false);
-    if (!db_.isValid()) {
-      db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-      db_.setDatabaseName(rssl_->dbFileName_);
-      db_.open();
-    } else {
+    if (addFeed) {
       db_ = QSqlDatabase::database();
+    } else {
+      db_ = QSqlDatabase::database("secondConnection", true);
+      if (!db_.isValid()) {
+        db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
+        db_.setDatabaseName(rssl_->dbFileName_);
+        db_.open();
+      }
     }
   }
 
   parseTimer_ = new QTimer(this);
   parseTimer_->setSingleShot(true);
   parseTimer_->setInterval(50);
-  connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()));
+  connect(parseTimer_, SIGNAL(timeout()), this, SLOT(getQueuedXml()),
+          Qt::QueuedConnection);
 
   connect(this, SIGNAL(signalReadyParse(QByteArray,int,QDateTime,QString)),
           SLOT(slotParse(QByteArray,int,QDateTime,QString)));
@@ -112,6 +115,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   qDebug() << "=================== parseXml:start ============================";
 
+  db_.transaction();
+
   // extract feed id and duplicate news mode from feed table
   parseFeedId_ = feedId;
   QString feedUrl;
@@ -128,6 +133,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   if (feedUrl.isEmpty()) {
     qDebug() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
     emit signalFinishUpdate(parseFeedId_, false, 0, "0");
+    db_.commit();
     return;
   }
 
@@ -143,8 +149,6 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   QString errorStr;
   int errorLine;
   int errorColumn;
-
-  db_.transaction();
 
   QRegExp rx("encoding=\"([^\"]+)",
              Qt::CaseInsensitive, QRegExp::RegExp2);
@@ -225,11 +229,13 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   int newCount = 0;
   if (feedChanged_) {
     setUserFilter(db_, parseFeedId_);
+    qApp->processEvents();
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
 
   q.finish();
   db_.commit();
+  qApp->processEvents();
 
   emit signalFinishUpdate(parseFeedId_, feedChanged_, newCount, "0");
   qDebug() << "=================== parseXml:finish ===========================";
@@ -419,8 +425,9 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(newsItem.eLength);
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
-      q.exec();
-//      qDebug() << "q.exec(" << q.lastQuery() << ")";
+      if (!q.exec())
+        qCritical() << __LINE__ << "q.lastError(): " << q.lastError().text();
+      qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
       qDebug() << "       " << newsItem.description;
       qDebug() << "       " << newsItem.content;
@@ -441,6 +448,8 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
+  q.finish();
+  qApp->processEvents();
 }
 
 void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
@@ -582,8 +591,9 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(newsItem.eLength);
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
-      q.exec();
-//      qDebug() << "q.exec(" << q.lastQuery() << ")";
+      if (!q.exec())
+        qCritical() << __LINE__ << "q.lastError(): " << q.lastError().text();
+      qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
       qDebug() << "       " << newsItem.description;
       qDebug() << "       " << newsItem.content;
@@ -601,6 +611,8 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       feedChanged_ = true;
     }
   }
+  q.finish();
+  qApp->processEvents();
 }
 
 QString ParseObject::toPlainText(const QString &text)
@@ -749,6 +761,7 @@ int ParseObject::recountFeedCounts(int feedId, const QString &feedUrl,
 
   if ((unreadCount == unreadCountOld) && (newNewsCount == newCountOld) &&
       (undeleteCount == undeleteCountOld)) {
+    qCritical() << "Error count: " << feedId << unreadCount << newNewsCount << undeleteCount;
     return 0;
   }
 
