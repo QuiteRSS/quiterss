@@ -183,6 +183,7 @@ public:
   int notificationFontSize_;
   QString newsListTextColor_;
   QString newsListBackgroundColor_;
+  QString newNewsTextColor_;
   QString focusedNewsTextColor_;
   QString focusedNewsBGColor_;
   QString linkColor_;

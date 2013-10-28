@@ -2120,6 +2120,7 @@ void RSSListing::readSettings()
   feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
   newsListTextColor_ = settings_->value("newsListTextColor", windowTextColor).toString();
   newsListBackgroundColor_ = settings_->value("newsListBackgroundColor", "").toString();
+  newNewsTextColor_ = settings_->value("newNewsTextColor", windowTextColor).toString();
   focusedNewsTextColor_ = settings_->value("focusedNewsTextColor", windowTextColor).toString();
   focusedNewsBGColor_ = settings_->value("focusedNewsBGColor", "").toString();
   linkColor_ = settings_->value("linkColor", "#0066CC").toString();
@@ -2317,6 +2318,7 @@ void RSSListing::writeSettings()
   settings_->setValue("feedsListBackgroundColor", feedsTreeModel_->backgroundColor_);
   settings_->setValue("newsListTextColor", newsListTextColor_);
   settings_->setValue("newsListBackgroundColor", newsListBackgroundColor_);
+  settings_->setValue("newNewsTextColor", newNewsTextColor_);
   settings_->setValue("focusedNewsTextColor", focusedNewsTextColor_);
   settings_->setValue("focusedNewsBGColor", focusedNewsBGColor_);
   settings_->setValue("linkColor", linkColor_);
@@ -3331,6 +3333,7 @@ void RSSListing::showOptionDlg(int index)
   pixmapColor.fill(newsListTextColor_);
   optionsDialog_->colorsTree_->topLevelItem(2)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(2)->setText(1, newsListTextColor_);
+
   if (newsListBackgroundColor_.isEmpty())
     pixmapColor.fill(QColor(0, 0, 0, 0));
   else
@@ -3373,6 +3376,10 @@ void RSSListing::showOptionDlg(int index)
   pixmapColor.fill(feedsTreeModel_->countNewsUnreadColor_);
   optionsDialog_->colorsTree_->topLevelItem(14)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(14)->setText(1, feedsTreeModel_->countNewsUnreadColor_);
+
+  pixmapColor.fill(newNewsTextColor_);
+  optionsDialog_->colorsTree_->topLevelItem(15)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(15)->setText(1, newNewsTextColor_);
 
   optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
@@ -3717,6 +3724,7 @@ void RSSListing::showOptionDlg(int index)
   newsBackgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(12)->text(1);
   feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
   feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(14)->text(1);
+  newNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(15)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;

@@ -45,6 +45,7 @@ public:
   QString formatTime_;
   bool simplifiedDateTime_;
   QString textColor_;
+  QString newNewsTextColor_;
   QString focusedNewsTextColor_;
   QString focusedNewsBGColor_;
 

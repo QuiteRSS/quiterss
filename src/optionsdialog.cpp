@@ -1515,6 +1515,9 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem.clear();
   treeItem << tr("Count of news unread in feeds tree");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Text color of new news ");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
 
@@ -1819,7 +1822,7 @@ void OptionsDialog::slotColorReset()
   QString colorName;
   int row = colorsTree_->currentIndex().row();
   switch (row) {
-  case 0: case 2: case 4:
+  case 0: case 2: case 4: case 15:
     colorName = qApp->palette().brush(QPalette::WindowText).color().name();
     break;
   case 1: case 3: case 5: colorName = "";
