@@ -75,12 +75,9 @@ void FaviconObject::getQueuedUrl()
     QString feedUrl = feedsQueue_.head();
 
     if (hostList_.contains(QUrl(feedUrl).host())) {
-      int count = 0;
       foreach (QString url, currentFeeds_) {
         if (QUrl(url).host() == QUrl(feedUrl).host()) {
-          if (++count >= 1) {
-            return;
-          }
+          return;
         }
       }
     }
