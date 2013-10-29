@@ -2572,7 +2572,8 @@ void RSSListing::slotImportFeeds()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Select OPML-File"),
                                                   QDir::homePath(),
-                                                  tr("OPML-Files (*.opml *.xml)"));
+                                                  QString(tr("OPML-Files (*.%1 *.%2)"))
+                                                  .arg("opml").arg("xml"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Import canceled"), 3000);
@@ -2602,7 +2603,8 @@ void RSSListing::slotExportFeeds()
 {
   QString fileName = QFileDialog::getSaveFileName(this, tr("Select OPML-File"),
                                                   QDir::homePath(),
-                                                  tr("OPML-Files (*.opml)"));
+                                                  QString(tr("OPML-Files (*.%1)"))
+                                                  .arg("opml"));
 
   if (fileName.isNull()) {
     statusBar()->showMessage(tr("Export canceled"), 3000);
@@ -7002,8 +7004,8 @@ void RSSListing::slotSavePageAs()
   fileName = QDir::toNativeSeparators(QDir::homePath() + "/" + fileName);
   fileName = QFileDialog::getSaveFileName(this, tr("Save As"),
                                           fileName,
-                                          tr("HTML-Files (*.html)")+ ";;" +
-                                          tr("Text files (*.txt)"));
+                                          QString(tr("HTML-Files (*.%1)") + ";;" + tr("Text files (*.%2)"))
+                                          .arg("html").arg("txt"));
   if (fileName.isNull()) return;
 
   QFile file(fileName);
