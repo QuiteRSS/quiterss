@@ -75,6 +75,7 @@ public:
   bool showSplashScreen_;
   bool showTrayIcon_;
   bool startingTray_;
+  bool minimizeToTray_;
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
   void expandNodes();
@@ -503,7 +504,6 @@ private:
   bool updateCheckEnabled_;
 
   bool closeApp_;
-  bool minimizeToTray_;
 
   QAction *addAct_;
   QAction *addFeedAct_;

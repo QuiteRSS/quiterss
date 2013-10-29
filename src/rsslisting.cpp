@@ -70,6 +70,7 @@ RSSListing::RSSListing(QSettings *settings,
                        const QString &dataDirPath,
                        QWidget *parent)
   : QMainWindow(parent)
+  , minimizeToTray_(true)
   , settings_(settings)
   , appDataDirPath_(appDataDirPath)
   , dataDirPath_(dataDirPath)
@@ -78,7 +79,6 @@ RSSListing::RSSListing(QSettings *settings,
   , diskCache_(NULL)
   , openNewsTab_(0)
   , closeApp_(false)
-  , minimizeToTray_(false)
   , newsView_(NULL)
   , updateTimeCount_(0)
   , updateFeedsCount_(0)

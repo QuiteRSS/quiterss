@@ -165,6 +165,7 @@ int main(int argc, char **argv)
 
   if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
+  rsslisting.minimizeToTray_ = false;
 
   if (rsslisting.showTrayIcon_) {
     qApp->processEvents();
