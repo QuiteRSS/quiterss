@@ -1430,6 +1430,8 @@ void RSSListing::createShortcut()
   listActions_.append(openHomeFeedAct_);
   listActions_.append(showDownloadManagerAct_);
   listActions_.append(showCleanUpWizardAct_);
+  listActions_.append(setNewsFiltersAct_);
+  listActions_.append(setFilterNewsAct_);
   optionsAct_->setShortcut(QKeySequence(Qt::Key_F8));
   listActions_.append(optionsAct_);
   deleteNewsAct_->setShortcut(QKeySequence(Qt::Key_Delete));
