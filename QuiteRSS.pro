@@ -102,7 +102,8 @@ HEADERS += \
     src/categoriestreewidget.h \
     src/cleanupwizard.h \
     src/updatefeeds.h \
-    src/requestfeed.h
+    src/requestfeed.h \
+    src/logfile.h
 
 SOURCES += \
     src/rsslisting.cpp \
@@ -147,7 +148,8 @@ SOURCES += \
     src/categoriestreewidget.cpp \
     src/cleanupwizard.cpp \
     src/updatefeeds.cpp \
-    src/requestfeed.cpp
+    src/requestfeed.cpp \
+    src/logfile.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

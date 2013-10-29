@@ -26,6 +26,7 @@
 #include "VersionNo.h"
 #include "rsslisting.h"
 #include "splashscreen.h"
+#include "logfile.h"
 
 int main(int argc, char **argv)
 {
@@ -99,13 +100,16 @@ int main(int argc, char **argv)
   d.mkpath(dataDirPath);
 #endif
 
-  bool  showSplashScreen_ = settings->value("Settings/showSplashScreen", true).toBool();
-
   QString appDataDirPath;
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   appDataDirPath = QCoreApplication::applicationDirPath();
 #else
   appDataDirPath = DATA_DIR_PATH;
+#endif
+
+#if defined(QT_NO_DEBUG_OUTPUT)
+  qInstallMsgHandler(LogFile::msgHandler);
+  qCritical() << "Start application!";
 #endif
 
   QString styleActionStr = settings->value(
@@ -126,7 +130,6 @@ int main(int argc, char **argv)
   } else {
     fileString.append("/style/green.qss");
   }
-
   QFile file(fileString);
   if (!file.open(QFile::ReadOnly)) {
     file.setFileName(":/style/systemStyle");
@@ -135,6 +138,7 @@ int main(int argc, char **argv)
   app.setStyleSheet(QLatin1String(file.readAll()));
   file.close();
 
+  bool  showSplashScreen_ = settings->value("Settings/showSplashScreen", true).toBool();
   QString versionDB = settings->value("versionDB", "1.0").toString();
   if ((versionDB != kDbVersion) && QFile(settings->fileName()).exists())
     showSplashScreen_ = true;
