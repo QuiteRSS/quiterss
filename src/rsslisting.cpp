@@ -7489,3 +7489,8 @@ void RSSListing::saveDBMemFile()
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
 }
+
+void RSSListing::sqlQueryExec(QString query)
+{
+  emit signalSqlQueryExec(query);
+}

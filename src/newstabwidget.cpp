@@ -567,21 +567,19 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
     if (type_ == TabTypeFeed) {
       // Write current news to feed
-      QSqlQuery q;
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).arg(feedId_);
-      q.exec(qStr);
+      rsslisting_->sqlQueryExec(qStr);
 
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
       QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
       feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TabTypeLabel) {
-      QSqlQuery q;
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).
           arg(rsslisting_->categoriesTree_->currentItem()->text(2).toInt());
-      q.exec(qStr);
+      rsslisting_->sqlQueryExec(qStr);
 
       rsslisting_->categoriesTree_->currentItem()->setText(3, QString::number(newsId));
     }
@@ -760,20 +758,19 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 
   bool changed = false;
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  QSqlQuery q;
 
   if (read == 1) {
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
             0);
-      q.exec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
+      rsslisting_->sqlQueryExec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
     }
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             1);
-      q.exec(QString("UPDATE news SET read=1 WHERE id=='%1'").arg(newsId));
+      rsslisting_->sqlQueryExec(QString("UPDATE news SET read=1 WHERE id=='%1'").arg(newsId));
       changed = true;
     }
   } else {
@@ -781,7 +778,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             0);
-      q.exec(QString("UPDATE news SET read=0 WHERE id=='%1'").arg(newsId));
+      rsslisting_->sqlQueryExec(QString("UPDATE news SET read=0 WHERE id=='%1'").arg(newsId));
       changed = true;
     }
   }
@@ -804,9 +801,8 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
   newsModel_->setData(index, starred);
 
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  QSqlQuery q;
-  q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
-         arg(starred).arg(newsId));
+  rsslisting_->sqlQueryExec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
+                            arg(starred).arg(newsId));
   rsslisting_->recountCategoryCounts();
 }
 

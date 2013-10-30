@@ -152,6 +152,9 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(updateObject_, SIGNAL(signalMarkAllFeedsRead()),
             parent, SLOT(slotRefreshNewsView()));
 
+    connect(parent, SIGNAL(signalSqlQueryExec(QString)),
+            updateObject_, SLOT(slotSqlQueryExec(QString)));
+
     // faviconObject_
     connect(parent, SIGNAL(faviconRequestUrl(QString,QString)),
             faviconObject_, SLOT(requestUrl(QString,QString)));
@@ -966,4 +969,11 @@ void UpdateObject::slotIconSave(QString feedUrl, QByteArray faviconData)
   q.exec();
 
   emit signalIconUpdate(feedId, faviconData);
+}
+
+void UpdateObject::slotSqlQueryExec(QString query)
+{
+  QSqlQuery q(db_);
+  if (!q.exec(query))
+    qCritical() << __PRETTY_FUNCTION__ << __LINE__ << "q.lastError(): " << q.lastError().text();
 }

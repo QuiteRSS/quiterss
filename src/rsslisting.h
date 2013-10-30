@@ -85,6 +85,8 @@ public:
   void setToolBarStyle(const QString &styleStr);
   void setToolBarIconSize(const QString &iconSizeStr);
 
+  void sqlQueryExec(QString query);
+
   static QStringList nameLabels() {
     QStringList nameLabels;
     nameLabels << "Important" << "Work" << "Personal"
@@ -309,6 +311,8 @@ signals:
   void signalPlaySoundNewNews();
   void signalUpdateStatus(int feedId, bool changed);
   void signalMarkAllFeedsRead();
+
+  void signalSqlQueryExec(QString query);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *ev);

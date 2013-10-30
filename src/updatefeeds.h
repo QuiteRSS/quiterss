@@ -76,6 +76,7 @@ public slots:
   void slotUpdateStatus(int feedId, bool changed);
   void slotMarkAllFeedsRead();
   void slotIconSave(QString feedUrl, QByteArray faviconData);
+  void slotSqlQueryExec(QString query);
 
 signals:
   void showProgressBar(int value);
