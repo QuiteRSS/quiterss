@@ -108,7 +108,8 @@ private slots:
                << tr("is") << tr("isn't");
       comboBox2_->addItems(itemList);
     } else if (str == tr("Category")) {
-      itemList << tr("is") << tr("isn't")
+      itemList << tr("contains") << tr("doesn't contains")
+               << tr("is") << tr("isn't")
                << tr("begins with") << tr("ends with");
       comboBox2_->addItems(itemList);
     } else if (str == tr("Status")) {
