@@ -831,7 +831,7 @@ void setUserFilter(QSqlDatabase db, int feedId, int filterId)
   }
 
   while (q.next()) {
-    if (q.value(0).toInt() == 0) continue;
+    if ((q.value(0).toInt() == 0) && onlyNew) continue;
 
     if (onlyNew)
       filterId = q.value(2).toInt();

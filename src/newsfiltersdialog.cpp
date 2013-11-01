@@ -128,6 +128,8 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
 
   buttonBox->addButton(QDialogButtonBox::Close);
 
+  filtersTree_->setCurrentIndex(QModelIndex());
+
   connect(filtersTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
   connect(filtersTree_, SIGNAL(doubleClicked(QModelIndex)),
@@ -359,10 +361,7 @@ void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
   } else {
     editButton_->setEnabled(true);
     deleteButton_->setEnabled(true);
-    if (current->checkState(1) == Qt::Checked)
-      runFilterButton_->setEnabled(true);
-    else
-      runFilterButton_->setEnabled(false);
+    runFilterButton_->setEnabled(true);
   }
 }
 
@@ -402,8 +401,5 @@ void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
     QString qStr = QString("UPDATE filters SET enable='%1' WHERE id=='%2'").
         arg(enable).arg(item->text(0).toInt());
     q.exec(qStr);
-
-    if (filtersTree_->currentItem() == item)
-      runFilterButton_->setEnabled(enable);
   }
 }
