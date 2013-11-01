@@ -994,7 +994,10 @@ void setUserFilter(QSqlDatabase db, int feedId, int filterId)
       }
       qStr.append(qStr1).append(")");
     }
-    q1.exec(qStr);
-//    qCritical() << qStr;
+    if (!q1.exec(qStr)) {
+      qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                  << "q.lastError(): " << q1.lastError().text();
+      qCritical() << qStr;
+    }
   }
 }

@@ -975,5 +975,6 @@ void UpdateObject::slotSqlQueryExec(QString query)
 {
   QSqlQuery q(db_);
   if (!q.exec(query))
-    qCritical() << __PRETTY_FUNCTION__ << __LINE__ << "q.lastError(): " << q.lastError().text();
+    qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                << "q.lastError(): " << q.lastError().text();
 }

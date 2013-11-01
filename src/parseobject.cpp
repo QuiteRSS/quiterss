@@ -425,8 +425,10 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(newsItem.eLength);
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
-      if (!q.exec())
-        qCritical() << __LINE__ << "q.lastError(): " << q.lastError().text();
+      if (!q.exec()) {
+        qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                    << "q.lastError(): " << q.lastError().text();
+      }
       qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
       qDebug() << "       " << newsItem.description;
@@ -591,8 +593,10 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
       q.addBindValue(newsItem.eLength);
       q.addBindValue(read ? 0 : 1);
       q.addBindValue(read ? 2 : 0);
-      if (!q.exec())
-        qCritical() << __LINE__ << "q.lastError(): " << q.lastError().text();
+      if (!q.exec()) {
+        qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                    << "q.lastError(): " << q.lastError().text();
+      }
       qDebug() << "q.exec(" << q.lastQuery() << ")";
       qDebug() << "       " << parseFeedId_;
       qDebug() << "       " << newsItem.description;
