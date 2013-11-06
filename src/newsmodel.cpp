@@ -23,6 +23,12 @@ NewsModel::NewsModel(QObject *parent, QTreeView *view)
   , simplifiedDateTime_(true)
   , view_(view)
 {
+  QObject *parent_ = parent;
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
+  rssl_ = qobject_cast<RSSListing*>(parent_);
+
   setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
@@ -48,24 +54,38 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return icon;
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       QPixmap icon;
-      QByteArray byteArray;
-      bool isFeed = true;
+//      QByteArray byteArray;
+//      bool isFeed = true;
+      int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
+      QModelIndex index1 = rssl_->feedsTreeModel_->getIndexById(feedId);
+      bool isFeed = (index1.isValid() && rssl_->feedsTreeModel_->isFolder(index1)) ? false : true;
 
-      QSqlQuery q;
-      q.exec(QString("SELECT image, xmlUrl FROM feeds WHERE id=='%1'").
-             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
-      if (q.next()) {
-        byteArray = q.value(0).toByteArray();
-        if (q.value(1).toString().isEmpty())
-          isFeed = false;
+      if (index1.isValid()) {
+        QByteArray byteArray = rssl_->feedsTreeModel_->dataField(index1, "image").toByteArray();
+        if (!byteArray.isNull()) {
+          icon.loadFromData(QByteArray::fromBase64(byteArray));
+        } else if (isFeed) {
+          icon.load(":/images/feed");
+        } else {
+          icon.load(":/images/folder");
+        }
       }
-      if (!byteArray.isNull()) {
-        icon.loadFromData(QByteArray::fromBase64(byteArray));
-      } else if (isFeed) {
-        icon.load(":/images/feed");
-      } else {
-        icon.load(":/images/folder");
-      }
+
+//      QSqlQuery q;
+//      q.exec(QString("SELECT image, xmlUrl FROM feeds WHERE id=='%1'").
+//             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
+//      if (q.next()) {
+//        byteArray = q.value(0).toByteArray();
+//        if (q.value(1).toString().isEmpty())
+//          isFeed = false;
+//      }
+//      if (!byteArray.isNull()) {
+//        icon.loadFromData(QByteArray::fromBase64(byteArray));
+//      } else if (isFeed) {
+//        icon.load(":/images/feed");
+//      } else {
+//        icon.load(":/images/folder");
+//      }
 
       return icon;
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {

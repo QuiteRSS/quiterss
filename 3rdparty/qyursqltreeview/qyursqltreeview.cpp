@@ -198,6 +198,9 @@ QyurSqlTreeModel::QyurSqlTreeModel(const QString& tableName,
   }
   d->proxyColumn2Original[0] = d->sourceModel.record().indexOf(fieldNames[0]);
   d->proxyColumn2Original[d->sourceModel.record().indexOf(fieldNames[0])] = 0;
+
+  d->sourceModel.setSort(d->indexOfParid ,Qt::AscendingOrder);
+  refresh();
 }
 
 int QyurSqlTreeModel::originalColumnByProxy(int proxyColumn) const {
@@ -495,35 +498,40 @@ QyurSqlTreeViewPrivate::QyurSqlTreeViewPrivate()
 }
 
 QyurSqlTreeView::QyurSqlTreeView(QWidget * parent)
-  : QTreeView(parent),d_ptr(new QyurSqlTreeViewPrivate)
+  : QTreeView(parent)
+  , d_ptr(new QyurSqlTreeViewPrivate)
+  , sourceModel_(0)
 {
   setSortingEnabled(false);
   disconnect(header(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
   connect(header(), SIGNAL(sectionClicked(int)), SLOT(slotSortByColumnAndSelect(int)));
   setContextMenuPolicy(Qt::CustomContextMenu);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
-//  QObject::connect(this,SIGNAL(expanded(const QModelIndex&)),SLOT(slotAddExpanded(const QModelIndex&)));
-//  QObject::connect(this,SIGNAL(collapsed(const QModelIndex&)),SLOT(slotRemoveExpanded(const QModelIndex&)));
 }
 
 QyurSqlTreeView::~QyurSqlTreeView() {
   delete d_ptr;
 }
 
+void QyurSqlTreeView::setSourceModel(QyurSqlTreeModel *model)
+{
+  sourceModel_ = model;
+}
+
 void QyurSqlTreeView::slotAddExpanded(const QModelIndex& index) {
   Q_D(QyurSqlTreeView);
-  d->expandedNodeList.append(QyurIntPair( ((QyurSqlTreeModel*) model())->getIdByIndex(index), ((QyurSqlTreeModel*) model())->getParidByIndex(index)) );
+  d->expandedNodeList.append(QyurIntPair(sourceModel_->getIdByIndex(index), sourceModel_->getParidByIndex(index)));
 }
 
 void QyurSqlTreeView::slotRemoveExpanded(const QModelIndex& index) {
   Q_D(QyurSqlTreeView);
-  d->expandedNodeList.removeAll(QyurIntPair( ((QyurSqlTreeModel*) model())->getIdByIndex(index), ((QyurSqlTreeModel*) model())->getParidByIndex(index)) );
+  d->expandedNodeList.removeAll(QyurIntPair(sourceModel_->getIdByIndex(index), sourceModel_->getParidByIndex(index)));
 }
 
 void QyurSqlTreeView::slotSortByColumnAndSelect(int column) {
   int id= -1;
   if (selectionModel()->selectedRows().size()>0) {
-    id = selectionModel()->selectedRows()[0].sibling(selectionModel()->selectedRows()[0].row(),((QyurSqlTreeModel*) model())->getFieldPosition(QyurSqlTreeModel::Id)).data().toInt();
+    id = selectionModel()->selectedRows()[0].sibling(selectionModel()->selectedRows()[0].row(),sourceModel_->getFieldPosition(QyurSqlTreeModel::Id)).data().toInt();
   }
   QTreeView::sortByColumn(column);
   restore(id);
@@ -532,18 +540,18 @@ void QyurSqlTreeView::slotSortByColumnAndSelect(int column) {
 void QyurSqlTreeView::restore(int id) {
   Q_D(QyurSqlTreeView);
   if (id!=-1) {
-    QModelIndex selectedIndex= ((QyurSqlTreeModel*) model())->getIndexById(id);
+    QModelIndex selectedIndex= sourceModel_->getIndexById(id);
     scrollTo(selectedIndex);
     selectionModel()->select(selectedIndex,QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
   }
   foreach(QyurIntPair pair, d->expandedNodeList)
-    setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first),true);
+    setExpanded(sourceModel_->getIndexById(pair.first),true);
 }
 
 void QyurSqlTreeView::restoreExpanded() {
   Q_D(QyurSqlTreeView);
   foreach(QyurIntPair pair, d->expandedNodeList)
-    setExpanded(((QyurSqlTreeModel*) model())->getIndexById(pair.first),true);
+    setExpanded(sourceModel_->getIndexById(pair.first),true);
 }
 
 void QyurSqlTreeView::onInsertRow(QSqlRecord&) {
@@ -551,11 +559,10 @@ void QyurSqlTreeView::onInsertRow(QSqlRecord&) {
 }
 
 void QyurSqlTreeView::setColumnHidden(const QString& column, bool hide) {
-  //QTreeView::setColumnHidden(((QyurSqlTreeModel*) model())->proxyColumnByOriginal(column),hide);
   QTreeView::setColumnHidden(columnIndex(column),hide);
 }
 
 int QyurSqlTreeView::columnIndex(const QString& fieldName) const {
-  return ((QyurSqlTreeModel*) model())->proxyColumnByOriginal(fieldName);
+  return sourceModel_->proxyColumnByOriginal(fieldName);
 }
 #include "qyursqltreeview.moc"

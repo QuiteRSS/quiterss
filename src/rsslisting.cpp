@@ -523,15 +523,23 @@ void RSSListing::slotShowWindows(bool trayClick)
 // ---------------------------------------------------------------------------
 void RSSListing::createFeedsWidget()
 {
-  feedsTreeView_ = new FeedsTreeView(this);
-  feedsTreeView_->setFrameStyle(QFrame::NoFrame);
-
   feedsTreeModel_ = new FeedsTreeModel("feeds",
                                        QStringList() << "" << "" << "" << "",
                                        QStringList() << "text" << "unread" << "undeleteCount" << "updated",
                                        0,
-                                       feedsTreeView_);
-  feedsTreeView_->setModel(feedsTreeModel_);
+                                       this);
+  feedsTreeModel_->setObjectName("feedsTreeModel_");
+
+  feedsProxyModel_ = new FeedsProxyModel(feedsTreeModel_);
+  feedsProxyModel_->setObjectName("feedsProxyModel_");
+  feedsProxyModel_->setSourceModel(feedsTreeModel_);
+  qCritical() << feedsTreeModel_->sourceModel()->rowCount() << feedsTreeModel_->rowCount() << feedsProxyModel_->rowCount();
+
+  feedsTreeView_ = new FeedsTreeView(this);
+  feedsTreeView_->setModel(feedsProxyModel_);
+  feedsTreeView_->setSourceModel(feedsTreeModel_);
+  feedsTreeModel_->setView(feedsTreeView_);
+
   for (int i = 0; i < feedsTreeModel_->columnCount(); ++i)
     feedsTreeView_->hideColumn(i);
   feedsTreeView_->showColumn(feedsTreeModel_->proxyColumnByOriginal("text"));
@@ -546,7 +554,9 @@ void RSSListing::createFeedsWidget()
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #endif
-  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("rowToParent"),Qt::AscendingOrder);
+//  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("rowToParent"),Qt::AscendingOrder);
+
+//  feedsTreeModel_->refresh();
 
   feedsToolBar_ = new QToolBar(this);
   feedsToolBar_->setObjectName("feedsToolBar");
@@ -2966,7 +2976,7 @@ void RSSListing::slotUpdateNews()
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedClicked(QModelIndex index)
 {
-  int feedIdCur = feedsTreeModel_->getIdByIndex(index);
+  int feedIdCur = feedsTreeModel_->getIdByIndex(feedsProxyModel_->mapToSource(index));
 
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
@@ -3024,6 +3034,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   int feedId = feedsTreeModel_->getIdByIndex(index);
   int feedParId = feedsTreeModel_->getParidByIndex(index);
+  qCritical() << "*011" << feedId << feedParId;
 
   // Open or create feed tab
   if (!stackedWidget_->count() || createTab) {
@@ -4043,7 +4054,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   strFilterOld = filterStr;
 
   // Set filter
-  feedsTreeModel_->setFilter(filterStr);
+  feedsProxyModel_->setFilter(findFeeds_->text());
   expandNodes();
 
   qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
@@ -4059,7 +4070,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
     if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
-      slotFeedClicked(feedIndex);
+      slotFeedClicked(feedsProxyModel_->mapFromSource(feedIndex));
     }
   }
 
@@ -4439,7 +4450,7 @@ void RSSListing::restoreFeedsOnStartUp()
   QModelIndex feedIndex = QModelIndex();
   if (reopenFeedStartup_) {
     int feedId = settings_->value("feedSettings/currentId", 0).toInt();
-    feedIndex = feedsTreeModel_->getIndexById(feedId);
+    feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(feedId));
   }
   feedsTreeView_->setCurrentIndex(feedIndex);
   updateCurrentTab_ = false;
@@ -4469,7 +4480,7 @@ void RSSListing::expandNodes()
   while (q.next()) {
     int feedId = q.value(0).toInt();
     QModelIndex index = feedsTreeModel_->getIndexById(feedId);
-    feedsTreeView_->setExpanded(index, true);
+    feedsTreeView_->setExpanded(feedsProxyModel_->mapFromSource(index), true);
   }
 }
 // ----------------------------------------------------------------------------
@@ -5556,7 +5567,7 @@ void RSSListing::slotFeedUpPressed()
 
   // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
-    indexAfter = feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+    indexAfter = feedsProxyModel_->mapFromSource(feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text")));
   else
     indexAfter = feedsTreeView_->indexAbove(indexBefore);
 
@@ -5576,7 +5587,7 @@ void RSSListing::slotFeedDownPressed()
 
   // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
-    indexAfter = feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text"));
+    indexAfter = feedsProxyModel_->mapFromSource(feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text")));
   else
     indexAfter = feedsTreeView_->indexBelow(indexBefore);
 
@@ -6080,6 +6091,7 @@ void RSSListing::slotShowLabelsMenu()
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsModelReload(bool checkFilter)
 {
+  qCritical() << "*03";
   if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
     slotFeedsViewportUpdate();
     return;

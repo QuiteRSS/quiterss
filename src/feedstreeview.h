@@ -23,7 +23,7 @@
 #else
 #include <QtGui>
 #endif
-#include <qyursqltreeview.h>
+#include <feedstreemodel.h>
 
 class FeedsTreeView : public QyurSqlTreeView
 {
@@ -34,6 +34,7 @@ public:
   bool selectIdEn_;
   bool autocollapseFolder_;
 
+  void setSourceModel(FeedsTreeModel *model);
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int nextCondition = 0);
   QModelIndex firstFeedInFolder(const QModelIndex &indexFolder);
   QModelIndex lastFeedInFolder(const QModelIndex &indexFolder);
@@ -76,6 +77,7 @@ private slots:
   void slotCollapsed(const QModelIndex&index);
 
 private:
+  FeedsTreeModel *sourceModel_;
   QPoint dragPos_;
   QPoint dragStartPos_;
   int selectOldId_;

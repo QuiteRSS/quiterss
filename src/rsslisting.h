@@ -108,6 +108,7 @@ public:
   QString dbFileName_;
   bool storeDBMemory_;
   FeedsTreeModel *feedsTreeModel_;
+  FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
   CategoriesTreeWidget *categoriesTree_;
 #define TAB_WIDGET_PERMANENT 0

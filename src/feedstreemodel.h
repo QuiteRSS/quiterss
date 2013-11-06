@@ -18,7 +18,24 @@
 #ifndef FEEDSTREEMODEL_H
 #define FEEDSTREEMODEL_H
 
+#include <QSortFilterProxyModel>
+#include <QSqlTableModel>
 #include <qyursqltreeview.h>
+
+class FeedsProxyModel : public QSortFilterProxyModel
+{
+  Q_OBJECT
+public:
+  FeedsProxyModel(QObject *parent = 0);
+  ~FeedsProxyModel();
+  void setFilter(const QString &filter);
+  QString filterStr;
+
+private:
+  bool filterAcceptsRow(int source_row, const QModelIndex &sourceParent) const;
+
+};
+
 
 class FeedsTreeModel : public QyurSqlTreeModel
 {
@@ -28,10 +45,11 @@ public:
       const QStringList &captions,
       const QStringList &fieldNames,
       int rootParentId = 0,
-      QyurSqlTreeView *parent = 0);
-  virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
+      QObject* parent = 0);
+  void setView(QyurSqlTreeView *view);
+  QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
   QVariant dataField(const QModelIndex &index, const QString &fieldName) const;
-  virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+  bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
   Qt::ItemFlags flags(const QModelIndex &index) const;
   Qt::DropActions supportedDropActions() const;
   bool isFolder(const QModelIndex &index) const;

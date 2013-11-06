@@ -22,15 +22,44 @@
 #include <QDebug>
 #include <QPainter>
 
+FeedsProxyModel::FeedsProxyModel(QObject *parent)
+  : QSortFilterProxyModel(parent)
+{
+
+}
+
+FeedsProxyModel::~FeedsProxyModel()
+{
+
+}
+
+void FeedsProxyModel::setFilter(const QString &filter)
+{
+  filterStr = filter;
+  invalidateFilter();
+}
+
+bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+{
+  QModelIndex index0 = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+  return (sourceModel()->data(index0).toString().contains(filterStr));
+//  return true;
+}
+
 // ----------------------------------------------------------------------------
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
                                const QStringList& captions,
                                const QStringList& fieldNames,
                                int rootParentId,
-                               QyurSqlTreeView *parent)
+                               QObject *parent)
   : QyurSqlTreeModel(tableName, captions, fieldNames, rootParentId, parent)
-  , view_(parent)
+  , view_(0)
 {
+}
+
+void FeedsTreeModel::setView(QyurSqlTreeView *view)
+{
+  view_ = view;
 }
 
 // ----------------------------------------------------------------------------
