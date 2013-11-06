@@ -35,15 +35,17 @@ FeedsProxyModel::~FeedsProxyModel()
 
 void FeedsProxyModel::setFilter(const QString &filter)
 {
-  filterStr = filter;
+  filter_ = filter;
   invalidateFilter();
 }
 
 bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-  QModelIndex index0 = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
-  return (sourceModel()->data(index0).toString().contains(filterStr));
-//  return true;
+  QModelIndex index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+  bool accept = sourceModel()->data(index).toString().contains(filter_, Qt::CaseInsensitive);
+  if (sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent).data().toString().isEmpty())
+    accept = true;
+  return accept;
 }
 
 // ----------------------------------------------------------------------------

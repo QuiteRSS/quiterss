@@ -29,7 +29,7 @@ public:
   FeedsProxyModel(QObject *parent = 0);
   ~FeedsProxyModel();
   void setFilter(const QString &filter);
-  QString filterStr;
+  QString filter_;
 
 private:
   bool filterAcceptsRow(int source_row, const QModelIndex &sourceParent) const;
