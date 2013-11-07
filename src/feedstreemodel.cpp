@@ -24,6 +24,7 @@
 
 FeedsProxyModel::FeedsProxyModel(QObject *parent)
   : QSortFilterProxyModel(parent)
+  , filter_("")
 {
 
 }
