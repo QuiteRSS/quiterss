@@ -28,11 +28,15 @@ class FeedsProxyModel : public QSortFilterProxyModel
 public:
   FeedsProxyModel(QObject *parent = 0);
   ~FeedsProxyModel();
-  void setFilter(const QString &filter);
-  QString filter_;
+  void setFilter(const QString &filterAct, const QList<int> &idList,
+                 const QString &findAct, const QString &findText);
 
 private:
   bool filterAcceptsRow(int source_row, const QModelIndex &sourceParent) const;
+  QString filterAct_;
+  QList<int> idList_;
+  QString findAct_;
+  QString findText_;
 
 };
 

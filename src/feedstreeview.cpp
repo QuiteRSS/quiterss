@@ -297,6 +297,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 
   if (event->buttons() & Qt::RightButton) {
     if (event->pos().x() >= rectText.x()) {
+      index = ((QSortFilterProxyModel*)model())->mapToSource(index);
       selectId_ = sourceModel_->getIdByIndex(index);
     }
     return;
@@ -309,6 +310,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
   }
 
   indexClicked_ = index;
+  index = ((QSortFilterProxyModel*)model())->mapToSource(index);
   selectId_ = sourceModel_->getIdByIndex(index);
 
   if ((event->buttons() & Qt::MiddleButton)) {

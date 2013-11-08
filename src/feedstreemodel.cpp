@@ -24,7 +24,6 @@
 
 FeedsProxyModel::FeedsProxyModel(QObject *parent)
   : QSortFilterProxyModel(parent)
-  , filter_("")
 {
 
 }
@@ -34,18 +33,61 @@ FeedsProxyModel::~FeedsProxyModel()
 
 }
 
-void FeedsProxyModel::setFilter(const QString &filter)
+void FeedsProxyModel::setFilter(const QString &filterAct, const QList<int> &idList,
+                                const QString &findAct, const QString &findText)
 {
-  filter_ = filter;
+  filterAct_ = filterAct;
+  findAct_ = findAct;
+  findText_ = findText;
+  idList_ = idList;
+
   invalidateFilter();
 }
 
 bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-  QModelIndex index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
-  bool accept = sourceModel()->data(index).toString().contains(filter_, Qt::CaseInsensitive);
-  if (sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent).data().toString().isEmpty())
-    accept = true;
+  bool accept = false;
+  QModelIndex index;
+  if (filterAct_ == "filterFeedsAll_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent);
+    if (sourceModel()->data(index, Qt::EditRole).toString().isEmpty())
+      accept = true;
+    else {
+      index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+      accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
+    }
+  } else if (filterAct_ == "filterFeedsNew_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("newCount"), sourceParent);
+    if (sourceModel()->data(index, Qt::EditRole).toInt() > 0) {
+      index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent);
+      if (sourceModel()->data(index, Qt::EditRole).toString().isEmpty())
+        accept = true;
+      else {
+        index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+        accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
+      }
+    }
+  } else if (filterAct_ == "filterFeedsUnread_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("unread"), sourceParent);
+    if (sourceModel()->data(index, Qt::EditRole).toInt() > 0) {
+      index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent);
+      if (sourceModel()->data(index, Qt::EditRole).toString().isEmpty())
+        accept = true;
+      else {
+        index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("text"), sourceParent);
+        accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
+      }
+    }
+  } else if (filterAct_ == "filterFeedsStarred_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("id"), sourceParent);
+    if (idList_.contains(sourceModel()->data(index, Qt::EditRole).toInt()))
+      accept = true;
+  } else if (filterAct_ == "filterFeedsError_") {
+    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("id"), sourceParent);
+    if (idList_.contains(sourceModel()->data(index, Qt::EditRole).toInt()))
+      accept = true;
+  }
+
   return accept;
 }
 

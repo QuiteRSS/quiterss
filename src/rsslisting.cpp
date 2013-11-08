@@ -533,7 +533,6 @@ void RSSListing::createFeedsWidget()
   feedsProxyModel_ = new FeedsProxyModel(feedsTreeModel_);
   feedsProxyModel_->setObjectName("feedsProxyModel_");
   feedsProxyModel_->setSourceModel(feedsTreeModel_);
-  qCritical() << feedsTreeModel_->sourceModel()->rowCount() << feedsTreeModel_->rowCount() << feedsProxyModel_->rowCount();
 
   feedsTreeView_ = new FeedsTreeView(this);
   feedsTreeView_->setModel(feedsProxyModel_);
@@ -2432,6 +2431,7 @@ void RSSListing::addFeed()
   feedsTreeView_->setCurrentIndex(QModelIndex());
   feedsModelReload();
   QModelIndex index = feedsTreeModel_->getIndexById(addFeedWizard->feedId_);
+  index = feedsProxyModel_->mapFromSource(index);
   feedsTreeView_->selectIdEn_ = true;
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
@@ -3937,144 +3937,73 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
  *----------------------------------------------------------------------------*/
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
-  // ... add filter from "search"
-  QString findStr;
-  if (findFeedsWidget_->isVisible() && !findFeeds_->text().isEmpty()) {
-    if (pAct->objectName() != "filterFeedsAll_")
-      findStr.append(" AND ");
+  QList<int> idList;
 
-    // add categories into filter to display nested feed
-    findStr.append("(");
-    if ((pAct->objectName() != "filterFeedsStarred_") &&
-        (pAct->objectName() != "filterFeedsError_")) {
-      findStr.append(QString("((xmlUrl = '') OR (xmlUrl IS NULL)) OR "));
+  if (pAct->objectName() == "filterFeedsNew_") {
+    QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+    int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
+    if (!(clicked && !newCount)) {
+      while (index.parent().isValid()) {
+        idList << feedsTreeModel_->getParidByIndex(index);
+        index = index.parent();
+      }
     }
-    if (findFeeds_->findGroup_->checkedAction()->objectName() == "findNameAct") {
-      findStr.append(QString("text LIKE '%%1%'").arg(findFeeds_->text()));
-    } else {
-      findStr.append(QString("xmlUrl LIKE '%%1%'").arg(findFeeds_->text()));
-    }
-    findStr.append(")");
-  }
-
-  QModelIndex index = feedsTreeView_->currentIndex();
-  int feedId = feedsTreeModel_->getIdByIndex(index);
-  int newCount = feedsTreeModel_->dataField(index, "newCount").toInt();
-  int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
-
-  QList<int> parentIdList;  //*< feed parent list
-  while (index.parent().isValid()) {
-    parentIdList << feedsTreeModel_->getParidByIndex(index);
-    index = index.parent();
-  }
-
-  // Create feed filter from "filter"
-  QString filterStr;
-  if (pAct->objectName() == "filterFeedsAll_") {
-    filterStr = findStr;
-  } else if (pAct->objectName() == "filterFeedsNew_") {
-    if (clicked && !newCount) {
-      filterStr = QString("newCount > 0");
-    } else {
-      filterStr = QString("(newCount > 0 OR id=='%1'").arg(feedId);
-      foreach (int parentId, parentIdList)
-        filterStr.append(QString(" OR id=='%1'").arg(parentId));
-      filterStr.append(")");
-    }
-    filterStr.append(findStr);
   } else if (pAct->objectName() == "filterFeedsUnread_") {
-    if (clicked && !unRead) {
-      filterStr = QString("unread > 0");
-    } else {
-      filterStr = QString("(unread > 0 OR id=='%1'").arg(feedId);
-      foreach (int parentId, parentIdList)
-        filterStr.append(QString(" OR id=='%1'").arg(parentId));
-      filterStr.append(")");
+    QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+    int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
+    if (!(clicked && !unRead)) {
+      while (index.parent().isValid()) {
+        idList << feedsTreeModel_->getParidByIndex(index);
+        index = index.parent();
+      }
     }
-    filterStr.append(findStr);
   } else if (pAct->objectName() == "filterFeedsStarred_") {
-    filterStr = "";
     QSqlQuery q;
-    parentIdList.clear();
-    q.exec(QString("SELECT id, parentId FROM feeds WHERE label LIKE '%starred%'%1").
-           arg(findStr));
+    q.exec(QString("SELECT id, parentId FROM feeds WHERE label LIKE '%starred%'"));
     while (q.next()) {
-      if (!filterStr.isEmpty()) filterStr.append(" OR ");
-      filterStr.append(QString("id=%1").arg(q.value(0).toInt()));
+      idList.append(q.value(0).toInt());
       int parentId = q.value(1).toInt();
-      if (!parentIdList.contains(parentId)) {
+      if (!idList.contains(parentId)) {
         while (parentId) {
-          if (!parentIdList.contains(parentId))
-            parentIdList.append(parentId);
+          if (!idList.contains(parentId))
+            idList.append(parentId);
           else break;
-          filterStr.append(QString(" OR id=%1").arg(parentId));
           QSqlQuery q1;
           q1.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(parentId));
           if (q1.next()) parentId = q1.value(0).toInt();
         }
       }
     }
-    if (filterStr.isEmpty()) filterStr = "id=-1";
   } else if (pAct->objectName() == "filterFeedsError_") {
-    filterStr = "";
     QSqlQuery q;
-    parentIdList.clear();
-    q.exec(QString("SELECT id, parentId FROM feeds WHERE status!=0 AND status!=''%1").
-           arg(findStr));
+    q.exec(QString("SELECT id, parentId FROM feeds WHERE status!=0 AND status!=''"));
     while (q.next()) {
-      if (!filterStr.isEmpty()) filterStr.append(" OR ");
-      filterStr.append(QString("id=%1").arg(q.value(0).toInt()));
+      idList.append(q.value(0).toInt());
       int parentId = q.value(1).toInt();
-      if (!parentIdList.contains(parentId)) {
+      if (!idList.contains(parentId)) {
         while (parentId) {
-          if (!parentIdList.contains(parentId))
-            parentIdList.append(parentId);
+          if (!idList.contains(parentId))
+            idList.append(parentId);
           else break;
-          filterStr.append(QString(" OR id=%1").arg(parentId));
           QSqlQuery q1;
           q1.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(parentId));
           if (q1.next()) parentId = q1.value(0).toInt();
         }
       }
     }
-    if (filterStr.isEmpty()) filterStr = "id=-1";
   }
-
-  QElapsedTimer timer;
-  timer.start();
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << filterStr;
-
-  static QString strFilterOld = QString();
-
-  if (strFilterOld.compare(filterStr) == 0) {
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "No filter changes";
-    return;
-  }
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed() << "Applying new filter";
-  strFilterOld = filterStr;
 
   // Set filter
-  feedsProxyModel_->setFilter(findFeeds_->text());
-  expandNodes();
+  feedsProxyModel_->setFilter(pAct->objectName(), idList,
+                              findFeeds_->findGroup_->checkedAction()->objectName(),
+                              findFeeds_->text());
 
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
+  if (clicked && (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)) {
+    slotFeedClicked(feedsTreeView_->currentIndex());
+  }
 
   if (pAct->objectName() == "filterFeedsAll_") feedsFilter_->setIcon(QIcon(":/images/filterOff"));
   else feedsFilter_->setIcon(QIcon(":/images/filterOn"));
-
-  // Restore cursor on previous displayed feed
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-  feedsTreeView_->setCurrentIndex(feedIndex);
-
-  if (clicked) {
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-
-    if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
-      slotFeedClicked(feedsProxyModel_->mapFromSource(feedIndex));
-    }
-  }
-
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   // Store filter to enable it as "last used filter"
   if (pAct->objectName() != "filterFeedsAll_")
@@ -6091,20 +6020,22 @@ void RSSListing::slotShowLabelsMenu()
  *---------------------------------------------------------------------------*/
 void RSSListing::feedsModelReload(bool checkFilter)
 {
-  qCritical() << "*03";
-  if (checkFilter && feedsTreeModel_->filter().isEmpty()) {
+  if (checkFilter) {
+    if (feedsFilterGroup_->checkedAction()->objectName() != "filterFeedsNew_") {
+      setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
+    }
     slotFeedsViewportUpdate();
     return;
   }
-
+  qCritical() << "*02";
   int topRow = feedsTreeView_->verticalScrollBar()->value();
-
-  int feedId = feedsTreeModel_->getIdByIndex(feedsTreeView_->currentIndex());
+  QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+  int feedId = feedsTreeModel_->getIdByIndex(feedIndex);
 
   feedsTreeModel_->refresh();
   expandNodes();
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
+  feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(feedId));
   feedsTreeView_->selectIdEn_ = false;
   feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
