@@ -54,14 +54,12 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return icon;
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       QPixmap icon;
-//      QByteArray byteArray;
-//      bool isFeed = true;
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex index1 = rssl_->feedsTreeModel_->getIndexById(feedId);
-      bool isFeed = (index1.isValid() && rssl_->feedsTreeModel_->isFolder(index1)) ? false : true;
+      QModelIndex feedIndex = rssl_->feedsTreeModel_->getIndexById(feedId);
+      bool isFeed = (feedIndex.isValid() && rssl_->feedsTreeModel_->isFolder(feedIndex)) ? false : true;
 
-      if (index1.isValid()) {
-        QByteArray byteArray = rssl_->feedsTreeModel_->dataField(index1, "image").toByteArray();
+      if (feedIndex.isValid()) {
+        QByteArray byteArray = rssl_->feedsTreeModel_->dataField(feedIndex, "image").toByteArray();
         if (!byteArray.isNull()) {
           icon.loadFromData(QByteArray::fromBase64(byteArray));
         } else if (isFeed) {
@@ -70,22 +68,6 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
           icon.load(":/images/folder");
         }
       }
-
-//      QSqlQuery q;
-//      q.exec(QString("SELECT image, xmlUrl FROM feeds WHERE id=='%1'").
-//             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt()));
-//      if (q.next()) {
-//        byteArray = q.value(0).toByteArray();
-//        if (q.value(1).toString().isEmpty())
-//          isFeed = false;
-//      }
-//      if (!byteArray.isNull()) {
-//        icon.loadFromData(QByteArray::fromBase64(byteArray));
-//      } else if (isFeed) {
-//        icon.load(":/images/feed");
-//      } else {
-//        icon.load(":/images/folder");
-//      }
 
       return icon;
     } else if (QSqlTableModel::fieldIndex("label") == index.column()) {
@@ -112,11 +94,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     }
   } else if (role == Qt::ToolTipRole) {
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
-      QSqlQuery q;
-      q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
-             arg(index.data(Qt::EditRole).toInt()));
-      if (q.next())
-        return q.value(0).toString();
+      int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
+      QModelIndex feedIndex = rssl_->feedsTreeModel_->getIndexById(feedId);
+      return rssl_->feedsTreeModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
       QString title = index.data(Qt::EditRole).toString();
       if ((view_->header()->sectionSize(index.column()) - 14) < view_->header()->fontMetrics().width(title))
@@ -131,12 +111,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("rights") == index.column()) {
-      QSqlQuery q;
-      q.exec(QString("SELECT text FROM feeds WHERE id=='%1'").
-             arg(QSqlTableModel::index(index.row(), fieldIndex("feedId")).
-                 data(Qt::EditRole).toInt()));
-      if (q.next())
-        return q.value(0).toString();
+      int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
+      QModelIndex feedIndex = rssl_->feedsTreeModel_->getIndexById(feedId);
+      return rssl_->feedsTreeModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;
       QString strDate = index.data(Qt::EditRole).toString();
@@ -293,7 +270,7 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   return QSqlTableModel::headerData(section, orientation, role);
 }
 
-/*virtual*/ bool	NewsModel::setData(const QModelIndex &index, const QVariant &value, int role)
+/*virtual*/ bool NewsModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   return QSqlTableModel::setData(index, value, role);
 }
