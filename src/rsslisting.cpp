@@ -5727,7 +5727,7 @@ void RSSListing::slotTabCurrentChanged(int index)
       widget->hide();
     createNewsTab(index);
 
-    QModelIndex feedIndex = feedsTreeModel_->getIndexById(widget->feedId_);
+    QModelIndex feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(widget->feedId_));
     feedsTreeView_->setCurrentIndex(feedIndex);
     feedProperties_->setEnabled(feedIndex.isValid());
 
