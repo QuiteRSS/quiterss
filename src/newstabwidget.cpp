@@ -455,29 +455,22 @@ void NewsTabWidget::setSettings(bool newTab)
     }
   }
 
-  if (type_ == TabTypeFeed) {
-    QSqlQuery q;
-    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
-           arg(feedId_));
-    if (q.next()) autoLoadImages_ = q.value(0).toInt();
-  }
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
 
+  if (type_ == TabTypeFeed) {
+    autoLoadImages_ = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
+  }
   webView_->settings()->setAttribute(
         QWebSettings::AutoLoadImages, autoLoadImages_);
-
   rssl_->autoLoadImages_ = !autoLoadImages_;
   rssl_->setAutoLoadImages(false);
 
   if (type_ < TabTypeWeb) {
     newsView_->setAlternatingRowColors(rssl_->alternatingRowColorsNews_);
-
-    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_);
     if (!newTab)
       newsModel_->setFilter("feedId=-1");
-    newsHeader_->setColumns(rssl_, indexFeed);
-
+    newsHeader_->setColumns(rssl_, feedIndex);
     rssl_->slotUpdateStatus(feedId_, false);
-
     rssl_->newsFilter_->setEnabled(type_ == TabTypeFeed);
     separatorRAct_->setVisible(type_ == TabTypeDel);
     rssl_->restoreNewsAct_->setVisible(type_ == TabTypeDel);
@@ -1196,14 +1189,10 @@ void NewsTabWidget::slotCopyLinkNews()
 void NewsTabWidget::slotSort(int column, int order)
 {
   QString strId;
-  QSqlQuery q;
-  q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
-  if (q.next()) {
-    if (q.value(0).toString().isEmpty()) {
-      strId = QString("(%1)").arg(rssl_->getIdFeedsString(feedId_));
-    } else {
-      strId = QString("feedId='%1'").arg(feedId_);
-    }
+  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId_))) {
+    strId = QString("(%1)").arg(rssl_->getIdFeedsString(feedId_));
+  } else {
+    strId = QString("feedId='%1'").arg(feedId_);
   }
 
   QString qStr;
@@ -1213,6 +1202,7 @@ void NewsTabWidget::slotSort(int column, int order)
   else if (column == newsModel_->fieldIndex("starred")) {
     qStr = QString("UPDATE news SET rights=starred WHERE %1").arg(strId);
   }
+  QSqlQuery q;
   q.exec(qStr);
   newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }

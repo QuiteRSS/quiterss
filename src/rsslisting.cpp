@@ -3024,11 +3024,6 @@ void RSSListing::slotFeedClicked(QModelIndex index)
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 {
-  QElapsedTimer timer;
-  timer.start();
-  qDebug() << "--------------------------------";
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-
   int feedId = feedsTreeModel_->getIdByIndex(index);
   int feedParId = feedsTreeModel_->getParidByIndex(index);
 
@@ -3080,16 +3075,10 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   feedProperties_->setEnabled(index.isValid());
 
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-
   // Set filter to make current feed visible when filter for feeds changes
   setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
 
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-
   setNewsFilter(newsFilterGroup_->checkedAction(), false);
-
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
 
   // Search feed news that displayed before
   int newsRow = -1;
@@ -3114,29 +3103,20 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
     if (!indexList.isEmpty()) newsRow = indexList.last().row();
   }
 
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-
   // Focus feed news that displayed before
   newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
   if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
 
-  qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-
   if ((openingFeedAction_ != 2) && openNewsWebViewOn_) {
     currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
   } else {
     currentNewsTab->slotNewsViewSelected(newsModel_->index(-1, newsModel_->fieldIndex("title")));
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
-    QSqlQuery q;
     int newsId = newsModel_->index(newsRow, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
     QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId);
-    q.exec(qStr);
-
+    sqlQueryExec(qStr);
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
     feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
                              newsId);
-    qDebug() << __PRETTY_FUNCTION__ << __LINE__ << timer.elapsed();
   }
 }
 
@@ -4034,8 +4014,7 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
   if (clicked) {
     QString qStr = QString("UPDATE news SET read=2 WHERE feedId='%1' AND read=1").
         arg(feedId);
-    QSqlQuery q;
-    q.exec(qStr);
+    sqlQueryExec(qStr);
   }
 
   // Create filter for category or for feed
@@ -6598,8 +6577,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
   feedsTreeModel_->refresh();
   expandNodes();
 
-  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedIdWhat);
-  feedsTreeView_->setCurrentIndex(feedIndex);
+  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIdWhat));
 
   feedsTreeView_->setCursor(Qt::ArrowCursor);
 }
