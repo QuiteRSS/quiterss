@@ -175,7 +175,7 @@ private:
   void createNewsList();
   void createWebWidget();
 
-  RSSListing *rsslisting_;
+  RSSListing *rssl_;
   QSqlDatabase db_;
   QWidget *newsWidget_;
 
