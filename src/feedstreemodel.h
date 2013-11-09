@@ -30,6 +30,10 @@ public:
   ~FeedsProxyModel();
   void setFilter(const QString &filterAct, const QList<int> &idList,
                  const QString &findAct, const QString &findText);
+  QModelIndex mapFromSource(const QModelIndex & sourceIndex) const;
+  QModelIndex mapFromSource(int id) const;
+  QModelIndex index(int row, int column, const QModelIndex & parent = QModelIndex()) const;
+  QModelIndex index(int row, const QString &fieldName, const QModelIndex & parent = QModelIndex()) const;
 
 private:
   bool filterAcceptsRow(int source_row, const QModelIndex &sourceParent) const;

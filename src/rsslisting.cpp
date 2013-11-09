@@ -2430,8 +2430,7 @@ void RSSListing::addFeed()
   QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
   feedsTreeView_->setCurrentIndex(QModelIndex());
   feedsModelReload();
-  QModelIndex index = feedsTreeModel_->getIndexById(addFeedWizard->feedId_);
-  index = feedsProxyModel_->mapFromSource(index);
+  QModelIndex index = feedsProxyModel_->mapFromSource(addFeedWizard->feedId_);
   feedsTreeView_->selectIdEn_ = true;
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
@@ -2499,7 +2498,8 @@ void RSSListing::deleteItemFeedsTree()
   int feedParentId = feedsTreeModel_->getParidByIndex(index);
 
   QPersistentModelIndex currentIndex = feedsTreeView_->currentIndex();
-  int feedCurrentId = feedsTreeModel_->getIdByIndex(currentIndex);
+  int feedCurrentId = feedsTreeModel_->getIdByIndex(
+        feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex()));
 
   QMessageBox msgBox;
   msgBox.setIcon(QMessageBox::Question);
@@ -2999,7 +2999,8 @@ void RSSListing::slotFeedClicked(QModelIndex index)
       updateCurrentTab_ = false;
       tabBar_->setCurrentIndex(TAB_WIDGET_PERMANENT);
       updateCurrentTab_ = true;
-      feedsTreeView_->setCurrentIndex(feedsTreeModel_->getIndexById(feedIdCur));
+      QModelIndex currentIndex = feedsProxyModel_->mapFromSource(feedIdCur);
+      feedsTreeView_->setCurrentIndex(currentIndex);
 
       currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
       newsModel_ = currentNewsTab->newsModel_;
@@ -4227,8 +4228,7 @@ void RSSListing::markFeedRead()
 void RSSListing::slotRefreshNewsView()
 {
   if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT) {
-    QModelIndex index =
-        feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
+    QModelIndex index = feedsProxyModel_->index(-1, "text");
     feedsTreeView_->setCurrentIndex(index);
     slotFeedClicked(index);
   } else {
@@ -4305,7 +4305,7 @@ void RSSListing::showContextMenuFeed(const QPoint &pos)
     menu.exec(feedsTreeView_->viewport()->mapToGlobal(pos));
   }
 
-  index = feedsTreeView_->currentIndex();
+  index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
   feedsTreeView_->selectId_ = feedsTreeModel_->getIdByIndex(index);
 
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
@@ -4379,7 +4379,7 @@ void RSSListing::restoreFeedsOnStartUp()
   QModelIndex feedIndex = QModelIndex();
   if (reopenFeedStartup_) {
     int feedId = settings_->value("feedSettings/currentId", 0).toInt();
-    feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(feedId));
+    feedIndex = feedsProxyModel_->mapFromSource(feedId);
   }
   feedsTreeView_->setCurrentIndex(feedIndex);
   updateCurrentTab_ = false;
@@ -4408,8 +4408,7 @@ void RSSListing::expandNodes()
   q.exec("SELECT id FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
   while (q.next()) {
     int feedId = q.value(0).toInt();
-    QModelIndex index = feedsTreeModel_->getIndexById(feedId);
-    feedsTreeView_->setExpanded(feedsProxyModel_->mapFromSource(index), true);
+    feedsTreeView_->setExpanded(feedsProxyModel_->mapFromSource(feedId), true);
   }
 }
 // ----------------------------------------------------------------------------
@@ -5496,7 +5495,7 @@ void RSSListing::slotFeedUpPressed()
 
   // Jump to bottom in case of the most top index
   if (!indexBefore.isValid())
-    indexAfter = feedsProxyModel_->mapFromSource(feedsTreeModel_->index(feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text")));
+    indexAfter = feedsProxyModel_->index(feedsProxyModel_->rowCount()-1, "text");
   else
     indexAfter = feedsTreeView_->indexAbove(indexBefore);
 
@@ -5516,7 +5515,7 @@ void RSSListing::slotFeedDownPressed()
 
   // Jump to top in case of the most bottom index
   if (!indexBefore.isValid())
-    indexAfter = feedsProxyModel_->mapFromSource(feedsTreeModel_->index(0, feedsTreeView_->columnIndex("text")));
+    indexAfter = feedsProxyModel_->index(0, "text");
   else
     indexAfter = feedsTreeView_->indexBelow(indexBefore);
 
@@ -5662,7 +5661,7 @@ void RSSListing::slotOpenFeedNewTab()
   }
 
   feedsTreeView_->selectIdEn_ = false;
-  feedsTreeView_->setCurrentIndex(feedsTreeView_->selectIndex());
+  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedsTreeView_->selectIndex()));
   slotFeedSelected(feedsTreeView_->selectIndex(), true);
 }
 
@@ -6035,7 +6034,7 @@ void RSSListing::feedsModelReload(bool checkFilter)
   feedsTreeModel_->refresh();
   expandNodes();
 
-  feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(feedId));
+  feedIndex = feedsProxyModel_->mapFromSource(feedId);
   feedsTreeView_->selectIdEn_ = false;
   feedsTreeView_->setCurrentIndex(feedIndex);
   feedsTreeView_->verticalScrollBar()->setValue(topRow);
@@ -6127,7 +6126,7 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   q.exec(QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").arg(newsId).arg(feedId));
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId);
-  feedsTreeView_->setCurrentIndex(feedIndex);
+  feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIndex));
   feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"),
                            newsId);
 

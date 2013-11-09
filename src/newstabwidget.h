@@ -180,6 +180,7 @@ private:
   QWidget *newsWidget_;
 
   FeedsTreeModel *feedsTreeModel_;
+  FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
 
   QFrame *lineWebWidget;

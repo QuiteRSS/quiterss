@@ -297,7 +297,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
 
   if (event->buttons() & Qt::RightButton) {
     if (event->pos().x() >= rectText.x()) {
-      index = ((QSortFilterProxyModel*)model())->mapToSource(index);
+      index = ((FeedsProxyModel*)model())->mapToSource(index);
       selectId_ = sourceModel_->getIdByIndex(index);
     }
     return;
@@ -310,7 +310,7 @@ void FeedsTreeView::mousePressEvent(QMouseEvent *event)
   }
 
   indexClicked_ = index;
-  index = ((QSortFilterProxyModel*)model())->mapToSource(index);
+  index = ((FeedsProxyModel*)model())->mapToSource(index);
   selectId_ = sourceModel_->getIdByIndex(index);
 
   if ((event->buttons() & Qt::MiddleButton)) {
@@ -358,7 +358,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
   if (!index.isValid()) return;
   if (!(event->pos().x() >= rectText.x()) ||
-      (sourceModel_->isFolder(((QSortFilterProxyModel*)model())->mapToSource(index)))) {
+      (sourceModel_->isFolder(((FeedsProxyModel*)model())->mapToSource(index)))) {
     QyurSqlTreeView::mouseDoubleClickEvent(event);
     return;
   }
@@ -385,7 +385,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
                                            const QModelIndex &previous)
 {
   if (selectIdEn_) {
-    QModelIndex index = ((QSortFilterProxyModel*)model())->mapToSource(current);
+    QModelIndex index = ((FeedsProxyModel*)model())->mapToSource(current);
     selectId_ = sourceModel_->getIdByIndex(index);
   }
   selectIdEn_ = true;
@@ -487,15 +487,14 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   QModelIndex indexExpanded = model()->index(index.row(), columnIndex("f_Expanded"), index.parent());
   model()->setData(indexExpanded, 1);
 
-  int feedId = sourceModel_->getIdByIndex(((QSortFilterProxyModel*)model())->mapToSource(indexExpanded));
+  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(indexExpanded));
 
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%2'").arg(feedId));
 
   if (feedId == selectOldId_) return;
 
-  QModelIndex indexCollapsed = ((QSortFilterProxyModel*)model())->mapFromSource(
-        sourceModel_->getIndexById(selectOldId_));
+  QModelIndex indexCollapsed = ((FeedsProxyModel*)model())->mapFromSource(selectOldId_);
   selectOldId_ = feedId;
 
   if (!autocollapseFolder_) return;
@@ -520,7 +519,7 @@ void FeedsTreeView::slotCollapsed(const QModelIndex &index)
   QModelIndex indexExpanded = model()->index(index.row(), columnIndex("f_Expanded"), index.parent());
   model()->setData(indexExpanded, 0);
 
-  int feedId = sourceModel_->getIdByIndex(((QSortFilterProxyModel*)model())->mapToSource(indexExpanded));
+  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(indexExpanded));
   QSqlQuery q;
   q.exec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%2'").arg(feedId));
 }

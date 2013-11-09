@@ -91,6 +91,27 @@ bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
   return accept;
 }
 
+QModelIndex FeedsProxyModel::mapFromSource(const QModelIndex & sourceIndex) const
+{
+  return QSortFilterProxyModel::mapFromSource(sourceIndex);
+}
+
+QModelIndex FeedsProxyModel::mapFromSource(int id) const
+{
+  return QSortFilterProxyModel::mapFromSource(((QyurSqlTreeModel*)sourceModel())->getIndexById(id));
+}
+
+QModelIndex FeedsProxyModel::index(int row, int column, const QModelIndex & parent) const
+{
+  return QSortFilterProxyModel::index(row, column, parent);
+}
+
+QModelIndex FeedsProxyModel::index(int row, const QString& fieldName, const QModelIndex & parent) const
+{
+  int column = ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal(fieldName);
+  return QSortFilterProxyModel::index(row, column, parent);
+}
+
 // ----------------------------------------------------------------------------
 FeedsTreeModel::FeedsTreeModel(const QString& tableName,
                                const QStringList& captions,

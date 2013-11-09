@@ -34,6 +34,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   db_ = QSqlDatabase::database();
   feedsTreeView_ = rsslisting_->feedsTreeView_;
   feedsTreeModel_ = rsslisting_->feedsTreeModel_;
+  feedsProxyModel_ = rsslisting_->feedsProxyModel_;
 
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
@@ -1233,8 +1234,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
   bool showDescriptionNews_ = rsslisting_->showDescriptionNews_;
 
-  QVariant displayNews =
-      feedsTreeModel_->dataField(feedsTreeView_->currentIndex(), "displayNews");
+  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+  QVariant displayNews = feedsTreeModel_->dataField(currentIndex, "displayNews");
   if (!displayNews.toString().isEmpty())
     showDescriptionNews_ = !displayNews.toInt();
 
@@ -1284,7 +1285,6 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     // @note(arhohryakov:2012.01.03) Author is got from current feed, because
     //   news is belong to it
     if (authorString.isEmpty()) {
-      QModelIndex currentIndex = feedsTreeView_->currentIndex();
       authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
       authorEmail = feedsTreeModel_->dataField(currentIndex, "author_email").toString();
       authorUri   = feedsTreeModel_->dataField(currentIndex, "author_uri").toString();
@@ -1408,7 +1408,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
   }
 
   if (url.host().isEmpty()) {
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
     QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
 
     url.setScheme(hostUrl.scheme());
@@ -1823,7 +1823,7 @@ void NewsTabWidget::openUrlInExternalBrowser()
   }
 
   if (linkUrl_.host().isEmpty()) {
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
     QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
 
     linkUrl_.setScheme(hostUrl.scheme());
