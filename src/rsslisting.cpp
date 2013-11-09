@@ -3035,7 +3035,6 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 
   int feedId = feedsTreeModel_->getIdByIndex(index);
   int feedParId = feedsTreeModel_->getParidByIndex(index);
-  qCritical() << "*011" << feedId << feedParId;
 
   // Open or create feed tab
   if (!stackedWidget_->count() || createTab) {
@@ -6024,7 +6023,7 @@ void RSSListing::feedsModelReload(bool checkFilter)
     slotFeedsViewportUpdate();
     return;
   }
-  qCritical() << "*02";
+
   int topRow = feedsTreeView_->verticalScrollBar()->value();
   QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
   int feedId = feedsTreeModel_->getIdByIndex(feedIndex);
