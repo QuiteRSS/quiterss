@@ -5570,8 +5570,7 @@ void RSSListing::slotFeedNext()
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedHomePressed()
 {
-  QModelIndex index = feedsTreeModel_->index(
-        0, feedsTreeView_->columnIndex("text"));
+  QModelIndex index = feedsProxyModel_->index(0, "text");
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
@@ -5580,8 +5579,7 @@ void RSSListing::slotFeedHomePressed()
  *---------------------------------------------------------------------------*/
 void RSSListing::slotFeedEndPressed()
 {
-  QModelIndex index = feedsTreeModel_->index(
-        feedsTreeModel_->rowCount()-1, feedsTreeView_->columnIndex("text"));
+  QModelIndex index = feedsProxyModel_->index(feedsProxyModel_->rowCount()-1, "text");
   feedsTreeView_->setCurrentIndex(index);
   slotFeedClicked(index);
 }
@@ -7036,7 +7034,7 @@ void RSSListing::nextUnreadNews()
     if (feedsTreeView_->currentIndex().isValid())
       indexPrevUnread = feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (!indexPrevUnread.isValid()) {
-      QModelIndex index = feedsTreeModel_->index(-1, feedsTreeView_->columnIndex("text"));
+      QModelIndex index = feedsProxyModel_->index(-1, "text");
       indexPrevUnread = feedsTreeView_->indexNextUnread(index, 1);
     }
     if (indexPrevUnread.isValid()) {

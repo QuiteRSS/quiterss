@@ -65,6 +65,11 @@ void FeedsTreeView::setSourceModel(FeedsTreeModel *model)
   QyurSqlTreeView::setSourceModel(sourceModel_);
 }
 
+bool FeedsTreeView::isFolder(const QModelIndex &index) const
+{
+  return sourceModel_->isFolder(((FeedsProxyModel*)model())->mapToSource(index));
+}
+
 /** @brief Find index of next unread (by meaning) feed
  * @details Find unread feed with condition.
  * @param indexCur Index to start search from
@@ -80,7 +85,7 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next
     // find next
     QModelIndex index = indexNext(indexCur);
     while (index.isValid()) {
-      int feedUnreadCount = sourceModel_->dataField(index, "unread").toInt();
+      int feedUnreadCount = sourceModel_->dataField(((FeedsProxyModel*)model())->mapToSource(index), "unread").toInt();
       if (0 < feedUnreadCount)
         return index;  // ok
 
@@ -92,7 +97,7 @@ QModelIndex FeedsTreeView::indexNextUnread(const QModelIndex &indexCur, int next
     // find previous
     QModelIndex index = indexPrevious(indexCur);
     while (index.isValid()) {
-      int feedUnreadCount = sourceModel_->dataField(index, "unread").toInt();
+      int feedUnreadCount = sourceModel_->dataField(((FeedsProxyModel*)model())->mapToSource(index), "unread").toInt();
       if (0 < feedUnreadCount)
         return index;  // ok
 
@@ -111,7 +116,7 @@ QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
 
   for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
     index = indexFolder.child(i, indexFolder.column());
-    if (sourceModel_->isFolder(index))
+    if (isFolder(index))
       index = lastFeedInFolder(index);
     if (index.isValid())
       break;
@@ -128,7 +133,7 @@ QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
 QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
-  if (sourceModel_->isFolder(indexCur) && !isParent) {
+  if (isFolder(indexCur) && !isParent) {
     index = lastFeedInFolder(indexCur);
     if (index.isValid())
       return index;
@@ -136,7 +141,7 @@ QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isPar
 
   for(int i = indexCur.row()-1; i >= 0; --i) {
     index = model()->index(i, indexCur.column(), indexCur.parent());
-    if (sourceModel_->isFolder(index))
+    if (isFolder(index))
       index = lastFeedInFolder(index);
     if (index.isValid())
       return index;
@@ -156,7 +161,7 @@ QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
 
   for(int i = 0; i < model()->rowCount(indexFolder); i++) {
     index = indexFolder.child(i, indexFolder.column());
-    if (sourceModel_->isFolder(index))
+    if (isFolder(index))
       index = firstFeedInFolder(index);
     if (index.isValid())
       break;
@@ -173,7 +178,7 @@ QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
 QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
-  if (sourceModel_->isFolder(indexCur) && !isParent) {
+  if (isFolder(indexCur) && !isParent) {
     index = firstFeedInFolder(indexCur);
     if (index.isValid())
       return index;
@@ -183,7 +188,7 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
 
   for(int i = indexCur.row()+1; i < rowCount; i++) {
     index = model()->index(i, indexCur.column(), indexCur.parent());
-    if (sourceModel_->isFolder(index))
+    if (isFolder(index))
       index = firstFeedInFolder(index);
     if (index.isValid())
       return index;
@@ -202,14 +207,14 @@ QModelIndex FeedsTreeView::lastFolderInFolder(const QModelIndex &indexFolder)
   if (indexFolder.isValid()) {
     for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
       QModelIndex index = indexFolder.child(i, indexFolder.column());
-      if (sourceModel_->isFolder(index)) {
+      if (isFolder(index)) {
         return index;
       }
     }
   } else {
     for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
       QModelIndex index = model()->index(i, columnIndex("text"));
-      if (sourceModel_->isFolder(index))
+      if (isFolder(index))
         return index;
     }
   }
@@ -224,7 +229,7 @@ QModelIndex FeedsTreeView::indexPreviousFolder(const QModelIndex &indexCur)
 
   for(int i = indexCur.row()-1; i >= 0; --i) {
     index = model()->index(i, indexCur.column(), indexCur.parent());
-    if (sourceModel_->isFolder(index))
+    if (isFolder(index))
       return index;
   }
 
@@ -241,14 +246,14 @@ QModelIndex FeedsTreeView::firstFolderInFolder(const QModelIndex &indexFolder)
   if (indexFolder.isValid()) {
     for(int i = 0; i < model()->rowCount(indexFolder); i++) {
       QModelIndex index = indexFolder.child(i, indexFolder.column());
-      if (sourceModel_->isFolder(index)) {
+      if (isFolder(index)) {
         return index;
       }
     }
   } else {
     for(int i = 0; i < model()->rowCount(indexFolder); i++) {
       QModelIndex index = model()->index(i, columnIndex("text"));
-      if (sourceModel_->isFolder(index))
+      if (isFolder(index))
         return index;
     }
   }
@@ -260,7 +265,7 @@ QModelIndex FeedsTreeView::firstFolderInFolder(const QModelIndex &indexFolder)
 QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isParent)
 {
   QModelIndex index = QModelIndex();
-  if ((sourceModel_->isFolder(indexCur) && !isParent)) {
+  if ((isFolder(indexCur) && !isParent)) {
     index = firstFolderInFolder(indexCur);
     if (index.isValid()) {
       return index;
@@ -270,7 +275,7 @@ QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isP
   int rowCount = model()->rowCount(indexCur.parent());
   for(int i = indexCur.row()+1; i < rowCount; i++) {
     index = model()->index(i, indexCur.column(), indexCur.parent());
-    if (sourceModel_->isFolder(index))
+    if (isFolder(index))
       return index;
   }
 
@@ -358,7 +363,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
   if (!index.isValid()) return;
   if (!(event->pos().x() >= rectText.x()) ||
-      (sourceModel_->isFolder(((FeedsProxyModel*)model())->mapToSource(index)))) {
+      (isFolder(((FeedsProxyModel*)model())->mapToSource(index)))) {
     QyurSqlTreeView::mouseDoubleClickEvent(event);
     return;
   }
@@ -422,7 +427,7 @@ void FeedsTreeView::dragMoveEvent(QDragMoveEvent *event)
   QModelIndex dragIndex = indexAt(dragPos_);
 
   // Process categories
-  if (sourceModel_->isFolder(dragIndex)) {
+  if (isFolder(dragIndex)) {
     if (dragIndex == currentIndex().parent())
       event->ignore();  // drag-to-category is parent already dragged one
     else if (dragIndex == currentIndex())
@@ -545,7 +550,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   QModelIndex dragIndex = indexAt(dragPos_);
 
   // Process folders
-  if (sourceModel_->isFolder(dragIndex)) {
+  if (isFolder(dragIndex)) {
     if ((dragIndex == currentIndex().parent()) ||
         (dragIndex == currentIndex()))
       return;
@@ -599,7 +604,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
                      viewport()->width()-2, rectText.bottom()+2);
   }
   else {
-    if (!sourceModel_->isFolder(dragIndex))
+    if (!isFolder(dragIndex))
       return;
 
     painter.begin(this->viewport());
@@ -648,7 +653,7 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
   } else if (qAbs(rectText.bottom() - e->pos().y()) < 3) {
     how = 1;
   } else {
-    if (sourceModel_->isFolder(dropIndex)) {
+    if (isFolder(dropIndex)) {
       how = 2;
     } else {
       dropIndex = model()->index(dropIndex.row()+1,

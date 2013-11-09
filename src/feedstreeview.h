@@ -35,6 +35,7 @@ public:
   bool autocollapseFolder_;
 
   void setSourceModel(FeedsTreeModel *model);
+  bool isFolder(const QModelIndex &index) const;
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int nextCondition = 0);
   QModelIndex firstFeedInFolder(const QModelIndex &indexFolder);
   QModelIndex lastFeedInFolder(const QModelIndex &indexFolder);
