@@ -3950,7 +3950,7 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
     }
   } else if (pAct->objectName() == "filterFeedsUnread_") {
     QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
-    int unRead   = feedsTreeModel_->dataField(index, "unread").toInt();
+    int unRead = feedsTreeModel_->dataField(index, "unread").toInt();
     if (!(clicked && !unRead)) {
       while (index.parent().isValid()) {
         idList << feedsTreeModel_->getParidByIndex(index);
