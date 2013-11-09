@@ -553,9 +553,6 @@ void RSSListing::createFeedsWidget()
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("undeleteCount"), QHeaderView::ResizeToContents);
   feedsTreeView_->header()->setResizeMode(feedsTreeModel_->proxyColumnByOriginal("updated"), QHeaderView::ResizeToContents);
 #endif
-//  feedsTreeView_->sortByColumn(feedsTreeView_->columnIndex("rowToParent"),Qt::AscendingOrder);
-
-//  feedsTreeModel_->refresh();
 
   feedsToolBar_ = new QToolBar(this);
   feedsToolBar_->setObjectName("feedsToolBar");
@@ -2649,7 +2646,6 @@ void RSSListing::slotExportFeeds()
                                  0);
   FeedsTreeView exportTreeView(this);
   exportTreeView.setModel(&exportTreeModel);
-  exportTreeView.sortByColumn(exportTreeView.columnIndex("rowToParent"), Qt::AscendingOrder);
   exportTreeView.expandAll();
 
   QModelIndex index = exportTreeModel.index(0, 0);

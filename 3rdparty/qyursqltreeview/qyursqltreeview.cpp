@@ -199,7 +199,8 @@ QyurSqlTreeModel::QyurSqlTreeModel(const QString& tableName,
   d->proxyColumn2Original[0] = d->sourceModel.record().indexOf(fieldNames[0]);
   d->proxyColumn2Original[d->sourceModel.record().indexOf(fieldNames[0])] = 0;
 
-  d->sourceModel.setSort(d->indexOfParid ,Qt::AscendingOrder);
+  d->sourceModel.setSort(d->indexOfParid, (Qt::SortOrder)DROP_MULTIORDER);
+  d->sourceModel.setSort(d->sourceModel.fieldIndex("rowToParent"), Qt::AscendingOrder);
   refresh();
 }
 
