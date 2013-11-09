@@ -574,7 +574,7 @@ void FeedsTreeView::paintEvent(QPaintEvent *event)
   }
 
   QModelIndex indexText = model()->index(dragIndex.row(),
-                                         ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                                         columnIndex("text"),
                                          dragIndex.parent());
 
   QRect rectText = visualRect(indexText);
@@ -657,11 +657,12 @@ void FeedsTreeView::handleDrop(QDropEvent *e)
       how = 2;
     } else {
       dropIndex = model()->index(dropIndex.row()+1,
-                                  ((QyurSqlTreeModel*)model())->proxyColumnByOriginal("text"),
+                                  columnIndex("text"),
                                   dropIndex.parent());
       if (!dropIndex.isValid()) how = 1;
     }
   }
-
+  indexWhat = ((FeedsProxyModel*)model())->mapToSource(indexWhat);
+  indexWhere = ((FeedsProxyModel*)model())->mapToSource(indexWhere);
   emit signalDropped(indexWhat, indexWhere, how);
 }
