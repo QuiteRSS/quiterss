@@ -96,7 +96,7 @@ RSSListing::RSSListing(QSettings *settings,
   QString versionDB = initDB(dbFileName_, settings_);
   settings_->setValue("VersionDB", versionDB);
 
-  storeDBMemory_ = settings_->value("Settings/storeDBMemory", false).toBool();
+  storeDBMemory_ = settings_->value("Settings/storeDBMemory", true).toBool();
   storeDBMemoryT_ = storeDBMemory_;
 
   db_ = QSqlDatabase::addDatabase("QSQLITE");
