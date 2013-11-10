@@ -494,6 +494,7 @@ private:
   QString getUserInfo(QUrl url, int auth);
   QUrl userStyleSheet(const QString &filePath) const;
   void initUpdateFeeds();
+  void addOurFeed();
 
   int addTab(NewsTabWidget *widget);
 

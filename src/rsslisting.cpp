@@ -92,6 +92,7 @@ RSSListing::RSSListing(QSettings *settings,
   setContextMenuPolicy(Qt::CustomContextMenu);
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
+  bool dbExists = QFile(dbFileName_).exists();
   QString versionDB = initDB(dbFileName_, settings_);
   settings_->setValue("VersionDB", versionDB);
 
@@ -246,6 +247,9 @@ RSSListing::RSSListing(QSettings *settings,
   setStyleSheet("QMainWindow::separator { width: 1px; }");
 
   readSettings();
+
+  if (!dbExists)
+    addOurFeed();
 
   initUpdateFeeds();
 
@@ -7406,4 +7410,33 @@ void RSSListing::saveDBMemFile()
 void RSSListing::sqlQueryExec(QString query)
 {
   emit signalSqlQueryExec(query);
+}
+
+void RSSListing::addOurFeed()
+{
+  QPixmap icon(":/images/quiterss16");
+  QByteArray iconData;
+  QBuffer buffer(&iconData);
+  buffer.open(QIODevice::WriteOnly);
+  icon.save(&buffer, "PNG");
+  buffer.close();
+
+  QString xmlUrl = "http://quiterss.org/en/rss.xml";
+  if (langFileName_ == "ru")
+    xmlUrl = "http://quiterss.org/ru/rss.xml";
+
+  QSqlQuery q;
+  q.prepare("INSERT INTO feeds(text, title, xmlUrl, htmlUrl, created, parentId, rowToParent, image) "
+            "VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+  q.addBindValue("QuiteRSS");
+  q.addBindValue("QuiteRSS");
+  q.addBindValue(xmlUrl);
+  q.addBindValue("http://quiterss.org");
+  q.addBindValue(QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+  q.addBindValue(0);
+  q.addBindValue(0);
+  q.addBindValue(iconData.toBase64());
+  q.exec();
+
+  feedsModelReload();
 }
