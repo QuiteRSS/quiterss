@@ -108,6 +108,7 @@ public:
   QString dbFileName_;
   bool storeDBMemory_;
   FeedsTreeModel *feedsTreeModel_;
+  FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
   CategoriesTreeWidget *categoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
@@ -493,6 +494,7 @@ private:
   QString getUserInfo(QUrl url, int auth);
   QUrl userStyleSheet(const QString &filePath) const;
   void initUpdateFeeds();
+  void addOurFeed();
 
   int addTab(NewsTabWidget *widget);
 

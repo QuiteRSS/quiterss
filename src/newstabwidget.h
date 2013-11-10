@@ -175,11 +175,12 @@ private:
   void createNewsList();
   void createWebWidget();
 
-  RSSListing *rsslisting_;
+  RSSListing *rssl_;
   QSqlDatabase db_;
   QWidget *newsWidget_;
 
   FeedsTreeModel *feedsTreeModel_;
+  FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
 
   QFrame *lineWebWidget;

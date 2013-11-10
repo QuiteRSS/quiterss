@@ -30,10 +30,11 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   , currentNewsIdOld(-1)
   , autoLoadImages_(true)
 {
-  rsslisting_ = qobject_cast<RSSListing*>(parent);
+  rssl_ = qobject_cast<RSSListing*>(parent);
   db_ = QSqlDatabase::database();
-  feedsTreeView_ = rsslisting_->feedsTreeView_;
-  feedsTreeModel_ = rsslisting_->feedsTreeModel_;
+  feedsTreeView_ = rssl_->feedsTreeView_;
+  feedsTreeModel_ = rssl_->feedsTreeModel_;
+  feedsProxyModel_ = rssl_->feedsProxyModel_;
 
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
@@ -73,7 +74,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
     if (type_ != TabTypeWeb) {
       createNewsList();
     } else {
-      autoLoadImages_ = rsslisting_->autoLoadImages_;
+      autoLoadImages_ = rssl_->autoLoadImages_;
     }
     createWebWidget();
 
@@ -81,8 +82,8 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
       newsTabWidgetSplitter_ = new QSplitter(this);
       newsTabWidgetSplitter_->setObjectName("newsTabWidgetSplitter");
 
-      if ((rsslisting_->browserPosition_ == TOP_POSITION) ||
-          (rsslisting_->browserPosition_ == LEFT_POSITION)) {
+      if ((rssl_->browserPosition_ == TOP_POSITION) ||
+          (rssl_->browserPosition_ == LEFT_POSITION)) {
         newsTabWidgetSplitter_->addWidget(webWidget_);
         newsTabWidgetSplitter_->addWidget(newsWidget_);
       } else {
@@ -96,7 +97,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   layout->setMargin(0);
   layout->setSpacing(0);
   if (type_ == TabTypeDownloads)
-    layout->addWidget(rsslisting_->downloadManager_);
+    layout->addWidget(rssl_->downloadManager_);
   else if (type_ != TabTypeWeb)
     layout->addWidget(newsTabWidgetSplitter_);
   else
@@ -106,8 +107,8 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   if (type_ < TabTypeWeb) {
     newsTabWidgetSplitter_->setHandleWidth(1);
 
-    if ((rsslisting_->browserPosition_ == RIGHT_POSITION) ||
-        (rsslisting_->browserPosition_ == LEFT_POSITION)) {
+    if ((rssl_->browserPosition_ == RIGHT_POSITION) ||
+        (rssl_->browserPosition_ == LEFT_POSITION)) {
       newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
       newsTabWidgetSplitter_->setStyleSheet(
             QString("QSplitter::handle {background: qlineargradient("
@@ -124,14 +125,14 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   }
 
   connect(this, SIGNAL(signalSetTextTab(QString,NewsTabWidget*)),
-          rsslisting_, SLOT(setTextTitle(QString,NewsTabWidget*)));
+          rssl_, SLOT(setTextTitle(QString,NewsTabWidget*)));
 }
 
 NewsTabWidget::~NewsTabWidget()
 {
   if (type_ == TabTypeDownloads) {
-    rsslisting_->downloadManager_->hide();
-    rsslisting_->downloadManager_->setParent(rsslisting_);
+    rssl_->downloadManager_->hide();
+    rssl_->downloadManager_->setParent(rssl_);
   }
 }
 
@@ -160,13 +161,13 @@ void NewsTabWidget::createNewsList()
       "newsLabelAction,shareMenuAct,openInExternalBrowserAct,Separator,"
       "nextUnreadNewsAct,prevUnreadNewsAct,Separator,"
       "newsFilter,Separator,deleteNewsAct";
-  QString str = rsslisting_->settings_->value("Settings/newsToolBar", actionListStr).toString();
+  QString str = rssl_->settings_->value("Settings/newsToolBar", actionListStr).toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
     if (actionStr == "Separator") {
       newsToolBar_->addSeparator();
     } else {
-      QListIterator<QAction *> iter(rsslisting_->actions());
+      QListIterator<QAction *> iter(rssl_->actions());
       while (iter.hasNext()) {
         QAction *pAction = iter.next();
         if (!pAction->icon().isNull()) {
@@ -180,7 +181,7 @@ void NewsTabWidget::createNewsList()
   }
   separatorRAct_ = newsToolBar_->addSeparator();
   separatorRAct_->setObjectName("separatorRAct");
-  newsToolBar_->addAction(rsslisting_->restoreNewsAct_);
+  newsToolBar_->addAction(rssl_->restoreNewsAct_);
 
   findText_ = new FindTextContent(this);
   findText_->setFixedWidth(200);
@@ -199,7 +200,7 @@ void NewsTabWidget::createNewsList()
         arg(qApp->palette().color(QPalette::Dark).name()));
 
   newsPanelWidget_->setLayout(newsPanelLayout);
-  if (!rsslisting_->newsToolbarToggle_->isChecked())
+  if (!rssl_->newsToolbarToggle_->isChecked())
     newsPanelWidget_->hide();
 
   QVBoxLayout *newsLayout = new QVBoxLayout();
@@ -252,7 +253,7 @@ void NewsTabWidget::createNewsList()
   connect(findText_, SIGNAL(returnPressed()),
           this, SLOT(slotSelectFind()));
 
-  connect(rsslisting_->newsToolbarToggle_, SIGNAL(toggled(bool)),
+  connect(rssl_->newsToolbarToggle_, SIGNAL(toggled(bool)),
           newsPanelWidget_, SLOT(setVisible(bool)));
 }
 
@@ -263,24 +264,24 @@ void NewsTabWidget::showContextMenuNews(const QPoint &pos)
   if (!newsView_->currentIndex().isValid()) return;
 
   QMenu menu;
-  menu.addAction(rsslisting_->restoreNewsAct_);
+  menu.addAction(rssl_->restoreNewsAct_);
   menu.addSeparator();
-  menu.addAction(rsslisting_->openInBrowserAct_);
-  menu.addAction(rsslisting_->openInExternalBrowserAct_);
-  menu.addAction(rsslisting_->openNewsNewTabAct_);
+  menu.addAction(rssl_->openInBrowserAct_);
+  menu.addAction(rssl_->openInExternalBrowserAct_);
+  menu.addAction(rssl_->openNewsNewTabAct_);
   menu.addSeparator();
-  menu.addAction(rsslisting_->markNewsRead_);
-  menu.addAction(rsslisting_->markAllNewsRead_);
+  menu.addAction(rssl_->markNewsRead_);
+  menu.addAction(rssl_->markAllNewsRead_);
   menu.addSeparator();
-  menu.addAction(rsslisting_->markStarAct_);
-  menu.addAction(rsslisting_->newsLabelMenuAction_);
-  menu.addAction(rsslisting_->shareMenuAct_);
-  menu.addAction(rsslisting_->copyLinkAct_);
+  menu.addAction(rssl_->markStarAct_);
+  menu.addAction(rssl_->newsLabelMenuAction_);
+  menu.addAction(rssl_->shareMenuAct_);
+  menu.addAction(rssl_->copyLinkAct_);
   menu.addSeparator();
-  menu.addAction(rsslisting_->updateFeedAct_);
+  menu.addAction(rssl_->updateFeedAct_);
   menu.addSeparator();
-  menu.addAction(rsslisting_->deleteNewsAct_);
-  menu.addAction(rsslisting_->deleteAllNewsAct_);
+  menu.addAction(rssl_->deleteNewsAct_);
+  menu.addAction(rssl_->deleteAllNewsAct_);
 
   menu.exec(newsView_->viewport()->mapToGlobal(pos));
 }
@@ -289,7 +290,7 @@ void NewsTabWidget::showContextMenuNews(const QPoint &pos)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::createWebWidget()
 {
-  webView_ = new WebView(this, rsslisting_->networkManager_);
+  webView_ = new WebView(this, rssl_->networkManager_);
 
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
@@ -393,9 +394,9 @@ void NewsTabWidget::createWebWidget()
 
   connect(webView_->page()->networkAccessManager(),
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          rsslisting_, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+          rssl_, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
-  connect(rsslisting_->browserToolbarToggle_, SIGNAL(triggered()),
+  connect(rssl_->browserToolbarToggle_, SIGNAL(triggered()),
           this, SLOT(setWebToolbarVisible()));
 }
 
@@ -408,78 +409,71 @@ void NewsTabWidget::setSettings(bool newTab)
   if (newTab) {
     if (type_ < TabTypeWeb) {
       newsTabWidgetSplitter_->restoreState(
-            rsslisting_->settings_->value("NewsTabSplitterState").toByteArray());
+            rssl_->settings_->value("NewsTabSplitterState").toByteArray());
 
       newsView_->setFont(
-            QFont(rsslisting_->newsListFontFamily_, rsslisting_->newsListFontSize_));
-      newsModel_->formatDate_ = rsslisting_->formatDate_;
-      newsModel_->formatTime_ = rsslisting_->formatTime_;
-      newsModel_->simplifiedDateTime_ = rsslisting_->simplifiedDateTime_;
+            QFont(rssl_->newsListFontFamily_, rssl_->newsListFontSize_));
+      newsModel_->formatDate_ = rssl_->formatDate_;
+      newsModel_->formatTime_ = rssl_->formatTime_;
+      newsModel_->simplifiedDateTime_ = rssl_->simplifiedDateTime_;
 
-      newsModel_->textColor_ = rsslisting_->newsListTextColor_;
-      newsView_->setStyleSheet(QString("#newsView_ {background: %1;}").arg(rsslisting_->newsListBackgroundColor_));
-      newsModel_->newNewsTextColor_ = rsslisting_->newNewsTextColor_;
-      newsModel_->focusedNewsTextColor_ = rsslisting_->focusedNewsTextColor_;
-      newsModel_->focusedNewsBGColor_ = rsslisting_->focusedNewsBGColor_;
+      newsModel_->textColor_ = rssl_->newsListTextColor_;
+      newsView_->setStyleSheet(QString("#newsView_ {background: %1;}").arg(rssl_->newsListBackgroundColor_));
+      newsModel_->newNewsTextColor_ = rssl_->newNewsTextColor_;
+      newsModel_->focusedNewsTextColor_ = rssl_->focusedNewsTextColor_;
+      newsModel_->focusedNewsBGColor_ = rssl_->focusedNewsBGColor_;
 
       QFile cssFile;
-      cssFile.setFileName(rsslisting_->appDataDirPath_+ "/style/news.css");
+      cssFile.setFileName(rssl_->appDataDirPath_+ "/style/news.css");
       if (!cssFile.open(QFile::ReadOnly)) {
         cssFile.setFileName(":/style/newsStyle");
         cssFile.open(QFile::ReadOnly);
       }
       cssString_ = QString::fromUtf8(cssFile.readAll()).
-          arg(rsslisting_->newsTextFontFamily_).
-          arg(rsslisting_->newsTextFontSize_).
-          arg(rsslisting_->newsTitleFontFamily_).
-          arg(rsslisting_->newsTitleFontSize_).
+          arg(rssl_->newsTextFontFamily_).
+          arg(rssl_->newsTextFontSize_).
+          arg(rssl_->newsTitleFontFamily_).
+          arg(rssl_->newsTitleFontSize_).
           arg(0).
           arg(qApp->palette().color(QPalette::Dark).name()). // color separator
-          arg(rsslisting_->newsBackgroundColor_). // news background
-          arg(rsslisting_->newsTitleBackgroundColor_). // title background
-          arg(rsslisting_->linkColor_). // link color
-          arg(rsslisting_->titleColor_). // title color
-          arg(rsslisting_->dateColor_). // date color
-          arg(rsslisting_->authorColor_). // author color
-          arg(rsslisting_->newsTextColor_); // text color
+          arg(rssl_->newsBackgroundColor_). // news background
+          arg(rssl_->newsTitleBackgroundColor_). // title background
+          arg(rssl_->linkColor_). // link color
+          arg(rssl_->titleColor_). // title color
+          arg(rssl_->dateColor_). // date color
+          arg(rssl_->authorColor_). // author color
+          arg(rssl_->newsTextColor_); // text color
       cssFile.close();
     }
 
-    webView_->setZoomFactor(qreal(rsslisting_->defaultZoomPages_)/100.0);
+    webView_->setZoomFactor(qreal(rssl_->defaultZoomPages_)/100.0);
 
-    if (rsslisting_->externalBrowserOn_ <= 0) {
+    if (rssl_->externalBrowserOn_ <= 0) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     } else {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     }
   }
 
-  if (type_ == TabTypeFeed) {
-    QSqlQuery q;
-    q.exec(QString("SELECT displayEmbeddedImages FROM feeds WHERE id=='%1'").
-           arg(feedId_));
-    if (q.next()) autoLoadImages_ = q.value(0).toInt();
-  }
+  QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
 
+  if (type_ == TabTypeFeed) {
+    autoLoadImages_ = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
+  }
   webView_->settings()->setAttribute(
         QWebSettings::AutoLoadImages, autoLoadImages_);
-
-  rsslisting_->autoLoadImages_ = !autoLoadImages_;
-  rsslisting_->setAutoLoadImages(false);
+  rssl_->autoLoadImages_ = !autoLoadImages_;
+  rssl_->setAutoLoadImages(false);
 
   if (type_ < TabTypeWeb) {
-    newsView_->setAlternatingRowColors(rsslisting_->alternatingRowColorsNews_);
-
-    QModelIndex indexFeed = feedsTreeModel_->getIndexById(feedId_);
+    newsView_->setAlternatingRowColors(rssl_->alternatingRowColorsNews_);
     if (!newTab)
       newsModel_->setFilter("feedId=-1");
-    newsHeader_->setColumns(rsslisting_, indexFeed);
-
-    rsslisting_->slotUpdateStatus(feedId_, false);
-
-    rsslisting_->newsFilter_->setEnabled(type_ == TabTypeFeed);
+    newsHeader_->setColumns(rssl_, feedIndex);
+    rssl_->slotUpdateStatus(feedId_, false);
+    rssl_->newsFilter_->setEnabled(type_ == TabTypeFeed);
     separatorRAct_->setVisible(type_ == TabTypeDel);
-    rsslisting_->restoreNewsAct_->setVisible(type_ == TabTypeDel);
+    rssl_->restoreNewsAct_->setVisible(type_ == TabTypeDel);
   }
 }
 
@@ -535,7 +529,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
 
-  if (rsslisting_->markNewsReadOn_ && rsslisting_->markPrevNewsRead_ &&
+  if (rssl_->markNewsReadOn_ && rssl_->markPrevNewsRead_ &&
       (newsId != currentNewsIdOld)) {
     QModelIndex startIndex = newsModel_->index(0, newsModel_->fieldIndex("id"));
     QModelIndexList indexList = newsModel_->match(startIndex, Qt::EditRole, currentNewsIdOld);
@@ -557,11 +551,11 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_->stop();
-    if (rsslisting_->markNewsReadOn_ && rsslisting_->markCurNewsRead_) {
-      if (rsslisting_->markNewsReadTime_ == 0) {
+    if (rssl_->markNewsReadOn_ && rssl_->markCurNewsRead_) {
+      if (rssl_->markNewsReadTime_ == 0) {
         slotSetItemRead(newsView_->currentIndex(), 1);
       } else {
-        markNewsReadTimer_->start(rsslisting_->markNewsReadTime_*1000);
+        markNewsReadTimer_->start(rssl_->markNewsReadTime_*1000);
       }
     }
 
@@ -569,7 +563,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       // Write current news to feed
       QString qStr = QString("UPDATE feeds SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).arg(feedId_);
-      rsslisting_->sqlQueryExec(qStr);
+      rssl_->sqlQueryExec(qStr);
 
       qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -578,10 +572,10 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
     } else if (type_ == TabTypeLabel) {
       QString qStr = QString("UPDATE labels SET currentNews='%1' WHERE id=='%2'").
           arg(newsId).
-          arg(rsslisting_->categoriesTree_->currentItem()->text(2).toInt());
-      rsslisting_->sqlQueryExec(qStr);
+          arg(rssl_->categoriesTree_->currentItem()->text(2).toInt());
+      rssl_->sqlQueryExec(qStr);
 
-      rsslisting_->categoriesTree_->currentItem()->setText(3, QString::number(newsId));
+      rssl_->categoriesTree_->currentItem()->setText(3, QString::number(newsId));
     }
 
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
@@ -613,7 +607,7 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
 
-  if (rsslisting_->markNewsReadOn_ && rsslisting_->markCurNewsRead_)
+  if (rssl_->markNewsReadOn_ && rssl_->markCurNewsRead_)
     slotSetItemRead(index, 1);
 
   QString linkString = newsModel_->record(
@@ -764,13 +758,13 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
             0);
-      rsslisting_->sqlQueryExec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
+      rssl_->sqlQueryExec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
     }
     if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             1);
-      rsslisting_->sqlQueryExec(QString("UPDATE news SET read=1 WHERE id=='%1'").arg(newsId));
+      rssl_->sqlQueryExec(QString("UPDATE news SET read=1 WHERE id=='%1'").arg(newsId));
       changed = true;
     }
   } else {
@@ -778,7 +772,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             0);
-      rsslisting_->sqlQueryExec(QString("UPDATE news SET read=0 WHERE id=='%1'").arg(newsId));
+      rssl_->sqlQueryExec(QString("UPDATE news SET read=0 WHERE id=='%1'").arg(newsId));
       changed = true;
     }
   }
@@ -787,8 +781,8 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
     newsView_->viewport()->update();
     int feedId = newsModel_->index(index.row(), newsModel_->fieldIndex("feedId")).
         data(Qt::EditRole).toInt();
-    rsslisting_->slotUpdateStatus(feedId);
-    rsslisting_->recountCategoryCounts();
+    rssl_->slotUpdateStatus(feedId);
+    rssl_->recountCategoryCounts();
   }
 }
 
@@ -801,9 +795,9 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
   newsModel_->setData(index, starred);
 
   int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
-  rsslisting_->sqlQueryExec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
+  rssl_->sqlQueryExec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
                             arg(starred).arg(newsId));
-  rsslisting_->recountCategoryCounts();
+  rssl_->recountCategoryCounts();
 }
 
 void NewsTabWidget::slotMarkReadTimeout()
@@ -863,9 +857,9 @@ void NewsTabWidget::markNewsRead()
     db_.commit();
 
     foreach (QString feedId, feedIdList) {
-      rsslisting_->slotUpdateStatus(feedId.toInt());
+      rssl_->slotUpdateStatus(feedId.toInt());
     }
-    rsslisting_->recountCategoryCounts();
+    rssl_->recountCategoryCounts();
     newsView_->viewport()->update();
   }
 }
@@ -904,9 +898,9 @@ void NewsTabWidget::markAllNewsRead()
   newsView_->setCurrentIndex(newsModel_->index(currentRow, newsModel_->fieldIndex("title")));
 
   foreach (QString feedId, feedIdList) {
-    rsslisting_->slotUpdateStatus(feedId.toInt());
+    rssl_->slotUpdateStatus(feedId.toInt());
   }
-  rsslisting_->recountCategoryCounts();
+  rssl_->recountCategoryCounts();
 }
 
 /** @brief Mark selected news Starred
@@ -950,7 +944,7 @@ void NewsTabWidget::markNewsStar()
     }
     db_.commit();
 
-    rsslisting_->recountCategoryCounts();
+    rssl_->recountCategoryCounts();
   }
 }
 
@@ -972,11 +966,11 @@ void NewsTabWidget::deleteNews()
     if (cnt == 1) {
       curIndex = indexes.at(0);
       if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
-          rsslisting_->notDeleteStarred_)
+          rssl_->notDeleteStarred_)
         return;
       QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
           data(Qt::EditRole).toString();
-      if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+      if (!(labelStr.isEmpty() || (labelStr == ",")) && rssl_->notDeleteLabeled_)
         return;
 
       slotSetItemRead(curIndex, 1);
@@ -995,11 +989,11 @@ void NewsTabWidget::deleteNews()
       for (int i = cnt-1; i >= 0; --i) {
         curIndex = indexes.at(i);
         if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
-            rsslisting_->notDeleteStarred_)
+            rssl_->notDeleteStarred_)
           continue;
         QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
             data(Qt::EditRole).toString();
-        if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+        if (!(labelStr.isEmpty() || (labelStr == ",")) && rssl_->notDeleteLabeled_)
           continue;
 
         int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
@@ -1048,9 +1042,9 @@ void NewsTabWidget::deleteNews()
   slotNewsViewSelected(curIndex);
 
   foreach (QString feedId, feedIdList) {
-    rsslisting_->slotUpdateStatus(feedId.toInt());
+    rssl_->slotUpdateStatus(feedId.toInt());
   }
-  rsslisting_->recountCategoryCounts();
+  rssl_->recountCategoryCounts();
 }
 
 /** @brief Delete all news of the feed
@@ -1071,10 +1065,10 @@ void NewsTabWidget::deleteAllNewsList()
 
     if (type_ != TabTypeDel) {
       if (newsModel_->index(i, newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
-          rsslisting_->notDeleteStarred_)
+          rssl_->notDeleteStarred_)
         continue;
       QString labelStr = newsModel_->index(i, newsModel_->fieldIndex("label")).data(Qt::EditRole).toString();
-      if (!(labelStr.isEmpty() || (labelStr == ",")) && rsslisting_->notDeleteLabeled_)
+      if (!(labelStr.isEmpty() || (labelStr == ",")) && rssl_->notDeleteLabeled_)
         continue;
 
       q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
@@ -1099,9 +1093,9 @@ void NewsTabWidget::deleteAllNewsList()
   slotNewsViewSelected(QModelIndex());
 
   foreach (QString feedId, feedIdList) {
-    rsslisting_->slotUpdateStatus(feedId.toInt());
+    rssl_->slotUpdateStatus(feedId.toInt());
   }
-  rsslisting_->recountCategoryCounts();
+  rssl_->recountCategoryCounts();
 }
 
 /** @brief Restore deleted news
@@ -1155,13 +1149,13 @@ void NewsTabWidget::restoreNews()
   else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
-  rsslisting_->slotUpdateStatus(feedId_);
-  rsslisting_->recountCategoryCounts();
+  rssl_->slotUpdateStatus(feedId_);
+  rssl_->recountCategoryCounts();
 
   foreach (QString feedId, feedIdList) {
-    rsslisting_->slotUpdateStatus(feedId.toInt());
+    rssl_->slotUpdateStatus(feedId.toInt());
   }
-  rsslisting_->recountCategoryCounts();
+  rssl_->recountCategoryCounts();
 }
 
 /** @brief Copy news link
@@ -1195,14 +1189,10 @@ void NewsTabWidget::slotCopyLinkNews()
 void NewsTabWidget::slotSort(int column, int order)
 {
   QString strId;
-  QSqlQuery q;
-  q.exec(QString("SELECT xmlUrl FROM feeds WHERE id=='%1'").arg(feedId_));
-  if (q.next()) {
-    if (q.value(0).toString().isEmpty()) {
-      strId = QString("(%1)").arg(rsslisting_->getIdFeedsString(feedId_));
-    } else {
-      strId = QString("feedId='%1'").arg(feedId_);
-    }
+  if (feedsTreeModel_->isFolder(feedsTreeModel_->getIndexById(feedId_))) {
+    strId = QString("(%1)").arg(rssl_->getIdFeedsString(feedId_));
+  } else {
+    strId = QString("feedId='%1'").arg(feedId_);
   }
 
   QString qStr;
@@ -1212,6 +1202,7 @@ void NewsTabWidget::slotSort(int column, int order)
   else if (column == newsModel_->fieldIndex("starred")) {
     qStr = QString("UPDATE news SET rights=starred WHERE %1").arg(strId);
   }
+  QSqlQuery q;
   q.exec(qStr);
   newsModel_->sort(newsModel_->fieldIndex("rights"), (Qt::SortOrder)order);
 }
@@ -1231,10 +1222,10 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   linkString = linkString.simplified();
   QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
 
-  bool showDescriptionNews_ = rsslisting_->showDescriptionNews_;
+  bool showDescriptionNews_ = rssl_->showDescriptionNews_;
 
-  QVariant displayNews =
-      feedsTreeModel_->dataField(feedsTreeView_->currentIndex(), "displayNews");
+  QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
+  QVariant displayNews = feedsTreeModel_->dataField(currentIndex, "displayNews");
   if (!displayNews.toString().isEmpty())
     showDescriptionNews_ = !displayNews.toInt();
 
@@ -1264,9 +1255,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
             Qt::ISODate);
     }
     if (QDateTime::currentDateTime().date() <= dtLocal.date())
-      dateString = dtLocal.toString(rsslisting_->formatTime_);
+      dateString = dtLocal.toString(rssl_->formatTime_);
     else
-      dateString = dtLocal.toString(rsslisting_->formatDate_ + " " + rsslisting_->formatTime_);
+      dateString = dtLocal.toString(rssl_->formatDate_ + " " + rssl_->formatTime_);
 
     // Create author panel from news author
     QString authorString;
@@ -1284,7 +1275,6 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     // @note(arhohryakov:2012.01.03) Author is got from current feed, because
     //   news is belong to it
     if (authorString.isEmpty()) {
-      QModelIndex currentIndex = feedsTreeView_->currentIndex();
       authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
       authorEmail = feedsTreeModel_->dataField(currentIndex, "author_email").toString();
       authorUri   = feedsTreeModel_->dataField(currentIndex, "author_uri").toString();
@@ -1408,13 +1398,13 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
   }
 
   if (url.host().isEmpty()) {
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
     QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
 
     url.setScheme(hostUrl.scheme());
     url.setHost(hostUrl.host());
   }
-  if ((rsslisting_->externalBrowserOn_ <= 0) &&
+  if ((rssl_->externalBrowserOn_ <= 0) &&
       (webView_->buttonClick_ != LEFT_BUTTON_ALT)) {
     if (webView_->buttonClick_ == LEFT_BUTTON) {
       if (!webControlPanel_->isVisible())
@@ -1423,18 +1413,18 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
     } else {
       if ((webView_->buttonClick_ == MIDDLE_BUTTON) ||
           (webView_->buttonClick_ == LEFT_BUTTON_CTRL)) {
-        rsslisting_->openNewsTab_ = NEW_TAB_BACKGROUND;
+        rssl_->openNewsTab_ = NEW_TAB_BACKGROUND;
       } else {
-        rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
+        rssl_->openNewsTab_ = NEW_TAB_FOREGROUND;
       }
-      if (!rsslisting_->openLinkInBackgroundEmbedded_) {
-        if (rsslisting_->openNewsTab_ == NEW_TAB_BACKGROUND)
-          rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
+      if (!rssl_->openLinkInBackgroundEmbedded_) {
+        if (rssl_->openNewsTab_ == NEW_TAB_BACKGROUND)
+          rssl_->openNewsTab_ = NEW_TAB_FOREGROUND;
         else
-          rsslisting_->openNewsTab_ = NEW_TAB_BACKGROUND;
+          rssl_->openNewsTab_ = NEW_TAB_BACKGROUND;
       }
 
-      rsslisting_->createWebTab(url);
+      rssl_->createWebTab(url);
     }
   } else {
     openUrl(url);
@@ -1444,7 +1434,7 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
 //----------------------------------------------------------------------------
 void NewsTabWidget::slotLinkHovered(const QString &link, const QString &, const QString &)
 {
-  rsslisting_->statusBar()->showMessage(link.simplified(), 3000);
+  rssl_->statusBar()->showMessage(link.simplified(), 3000);
 }
 //----------------------------------------------------------------------------
 void NewsTabWidget::slotSetValue(int value)
@@ -1503,10 +1493,10 @@ void NewsTabWidget::openInBrowserNews()
 {
   if (type_ >= TabTypeWeb) return;
 
-  int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
-  rsslisting_->externalBrowserOn_ = 0;
+  int externalBrowserOn_ = rssl_->externalBrowserOn_;
+  rssl_->externalBrowserOn_ = 0;
   slotNewsViewDoubleClicked(newsView_->currentIndex());
-  rsslisting_->externalBrowserOn_ = externalBrowserOn_;
+  rssl_->externalBrowserOn_ = externalBrowserOn_;
 }
 
 /** @brief Open news in external browser
@@ -1543,7 +1533,7 @@ void NewsTabWidget::setBrowserPosition()
 
   int idx = newsTabWidgetSplitter_->indexOf(webWidget_);
 
-  switch (rsslisting_->browserPosition_) {
+  switch (rssl_->browserPosition_) {
   case TOP_POSITION: case LEFT_POSITION:
     newsTabWidgetSplitter_->insertWidget(0, newsTabWidgetSplitter_->widget(idx));
     break;
@@ -1551,7 +1541,7 @@ void NewsTabWidget::setBrowserPosition()
     newsTabWidgetSplitter_->insertWidget(1, newsTabWidgetSplitter_->widget(idx));
   }
 
-  switch (rsslisting_->browserPosition_) {
+  switch (rssl_->browserPosition_) {
   case RIGHT_POSITION: case LEFT_POSITION:
     newsTabWidgetSplitter_->setOrientation(Qt::Horizontal);
     newsTabWidgetSplitter_->setStyleSheet(
@@ -1573,7 +1563,7 @@ void NewsTabWidget::setBrowserPosition()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::slotTabClose()
 {
-  rsslisting_->slotCloseTab(rsslisting_->stackedWidget_->indexOf(this));
+  rssl_->slotCloseTab(rssl_->stackedWidget_->indexOf(this));
 }
 
 /** @brief Display browser open page title on tab
@@ -1599,7 +1589,7 @@ void NewsTabWidget::openNewsNewTab()
   for (int i = cnt-1; i >= 0; --i) {
     QModelIndex index = indexes.at(i);
     int row = index.row();
-    if (rsslisting_->markNewsReadOn_ && rsslisting_->markCurNewsRead_)
+    if (rssl_->markNewsReadOn_ && rssl_->markCurNewsRead_)
       slotSetItemRead(index, 1);
 
     QString linkString = newsModel_->record(row).field("link_href").value().toString();
@@ -1618,7 +1608,7 @@ void NewsTabWidget::openNewsNewTab()
       url.setHost(hostUrl.host());
     }
 
-    rsslisting_->createWebTab(url);
+    rssl_->createWebTab(url);
   }
 }
 
@@ -1633,8 +1623,8 @@ void NewsTabWidget::openLink()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::openLinkInNewTab()
 {
-  int externalBrowserOn_ = rsslisting_->externalBrowserOn_;
-  rsslisting_->externalBrowserOn_ = 0;
+  int externalBrowserOn_ = rssl_->externalBrowserOn_;
+  rssl_->externalBrowserOn_ = 0;
 
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
     webView_->buttonClick_ = MIDDLE_BUTTON;
@@ -1643,7 +1633,7 @@ void NewsTabWidget::openLinkInNewTab()
   }
 
   slotLinkClicked(linkUrl_);
-  rsslisting_->externalBrowserOn_ = externalBrowserOn_;
+  rssl_->externalBrowserOn_ = externalBrowserOn_;
 }
 
 inline static bool launch(const QUrl &url, const QString &client)
@@ -1661,12 +1651,12 @@ bool NewsTabWidget::openUrl(const QUrl &url)
   if (url.scheme() == QLatin1String("mailto"))
       return QDesktopServices::openUrl(url);
 
-  rsslisting_->openingLink_ = true;
-  if ((rsslisting_->externalBrowserOn_ == 2) || (rsslisting_->externalBrowserOn_ == -1)) {
+  rssl_->openingLink_ = true;
+  if ((rssl_->externalBrowserOn_ == 2) || (rssl_->externalBrowserOn_ == -1)) {
 #if defined(Q_OS_WIN)
     quintptr returnValue = (quintptr)ShellExecute(
           0, 0,
-          (wchar_t *)QString::fromUtf8(rsslisting_->externalBrowser_.toUtf8()).utf16(),
+          (wchar_t *)QString::fromUtf8(rssl_->externalBrowser_.toUtf8()).utf16(),
           (wchar_t *)QString::fromUtf8(url.toEncoded().constData()).utf16(),
           0, SW_SHOWNORMAL);
     if (returnValue > 32)
@@ -1698,7 +1688,7 @@ void NewsTabWidget::slotFindText(const QString &text)
         filterStr = categoryFilterStr_;
         break;
       default:
-        filterStr = rsslisting_->newsFilterStr;
+        filterStr = rssl_->newsFilterStr;
     }
 
     if (!text.isEmpty()) {
@@ -1754,7 +1744,7 @@ void NewsTabWidget::slotSelectFind()
         filterStr = categoryFilterStr_;
         break;
       default:
-        filterStr = rsslisting_->newsFilterStr;
+        filterStr = rssl_->newsFilterStr;
     }
     newsModel_->setFilter(filterStr);
 
@@ -1780,7 +1770,7 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
     const QWebHitTestResult &hitTest = webView_->page()->mainFrame()->hitTestContent(p);
     if (!hitTest.linkUrl().isEmpty() && hitTest.linkUrl().scheme() != "javascript") {
       linkUrl_ = hitTest.linkUrl();
-      if (rsslisting_->externalBrowserOn_ <= 0) {
+      if (rssl_->externalBrowserOn_ <= 0) {
         menu.addSeparator();
         menu.addAction(urlExternalBrowserAct_);
       }
@@ -1791,12 +1781,12 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
         webView_->pageAction(QWebPage::Reload)->setVisible(true);
         menu.addSeparator();
       }
-      menu.addAction(rsslisting_->autoLoadImagesToggle_);
+      menu.addAction(rssl_->autoLoadImagesToggle_);
       menu.addSeparator();
-      menu.addAction(rsslisting_->printAct_);
-      menu.addAction(rsslisting_->printPreviewAct_);
+      menu.addAction(rssl_->printAct_);
+      menu.addAction(rssl_->printPreviewAct_);
       menu.addSeparator();
-      menu.addAction(rsslisting_->savePageAsAct_);
+      menu.addAction(rssl_->savePageAsAct_);
     } else if (hitTest.isContentEditable()) {
       for (int i = 0; i < menu.actions().count(); i++) {
         if ((i <= 1) && (menu.actions().at(i)->text() == "Direction")) {
@@ -1823,7 +1813,7 @@ void NewsTabWidget::openUrlInExternalBrowser()
   }
 
   if (linkUrl_.host().isEmpty()) {
-    QModelIndex currentIndex = feedsTreeView_->currentIndex();
+    QModelIndex currentIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
     QUrl hostUrl = feedsTreeModel_->dataField(currentIndex, "htmlUrl").toString();
 
     linkUrl_.setScheme(hostUrl.scheme());
@@ -1836,7 +1826,7 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
 {
   if (!checked) webToolbarShow_ = show;
   webControlPanel_->setVisible(webToolbarShow_ &
-                               rsslisting_->browserToolbarToggle_->isChecked());
+                               rssl_->browserToolbarToggle_->isChecked());
 }
 
 /** @brief Set label for selected news
@@ -1911,7 +1901,7 @@ void NewsTabWidget::setLabelNews(int labelId)
   }
   newsView_->viewport()->update();
 
-  rsslisting_->recountCategoryCounts();
+  rssl_->recountCategoryCounts();
 }
 
 void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
@@ -1921,7 +1911,7 @@ void NewsTabWidget::slotNewslLabelClicked(QModelIndex index)
     newsView_->selectionModel()->select(
           index, QItemSelectionModel::Select|QItemSelectionModel::Rows);
   }
-  rsslisting_->newsLabelMenu_->popup(
+  rssl_->newsLabelMenu_->popup(
         newsView_->viewport()->mapToGlobal(newsView_->visualRect(index).bottomLeft()));
 }
 
@@ -2118,9 +2108,9 @@ void NewsTabWidget::slotShareNews(QAction *action)
 #endif
       }
 
-      if (rsslisting_->externalBrowserOn_ <= 0) {
-        rsslisting_->openNewsTab_ = NEW_TAB_FOREGROUND;
-        rsslisting_->createWebTab(url);
+      if (rssl_->externalBrowserOn_ <= 0) {
+        rssl_->openNewsTab_ = NEW_TAB_FOREGROUND;
+        rssl_->createWebTab(url);
       } else openUrl(url);
     }
   }

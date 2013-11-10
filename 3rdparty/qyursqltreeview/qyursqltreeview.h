@@ -97,6 +97,7 @@ class QyurSqlTreeView: public QTreeView {
 public:
   QyurSqlTreeView(QWidget * parent = 0);
   ~QyurSqlTreeView();
+  void setSourceModel(QyurSqlTreeModel *model);
   void setColumnHidden(const QString& column, bool hide);
   int columnIndex(const QString& fieldName) const;
   void restoreExpanded();
@@ -111,5 +112,6 @@ protected slots:
   //beforeDelete(int) and beforeUpdate(int, QSqlRecord&), when you need to handle delete and update.
 private:
   void restore(int id=-1);
+  QyurSqlTreeModel *sourceModel_;
 };
 #endif
