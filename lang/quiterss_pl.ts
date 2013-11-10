@@ -586,7 +586,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
         <source>Load images</source>
-        <translation>Wczytaj zdjęcie</translation>
+        <translation>Wczytaj obrazy</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="56"/>
@@ -611,7 +611,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
         <source>Feed URL:</source>
-        <translation>Kanał URL:</translation>
+        <translation>Adres kanału:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
@@ -781,12 +781,12 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="374"/>
         <source>new</source>
-        <translation>nowy</translation>
+        <translation>nowych</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="376"/>
         <source>unread</source>
-        <translation>nieprzeczytane</translation>
+        <translation>nieprzeczytanych</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
@@ -796,7 +796,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="31"/>
         <source>General</source>
-        <translation>Ogólny</translation>
+        <translation>Ogólne</translation>
     </message>
 </context>
 <context>
@@ -849,7 +849,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="318"/>
         <source>Please enter search condition for the news filter.</source>
-        <translation>Wpisz regułę wyszukiwania dla filtra wiadomości.</translation>
+        <translation>Proszę wpisać regułę wyszukiwania dla filtra wiadomości.</translation>
     </message>
 </context>
 <context>
@@ -917,7 +917,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="145"/>
         <source>Add Star</source>
-        <translation>Dodaj gwiazdę</translation>
+        <translation>Dodaj gwiazdkę</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="146"/>
@@ -1007,14 +1007,14 @@ Ancient news could reappear</translation>
         <location filename="../src/filterrulesdialog.h" line="104"/>
         <location filename="../src/filterrulesdialog.h" line="107"/>
         <source>contains</source>
-        <translation>warunki</translation>
+        <translation>zawiera</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="99"/>
         <location filename="../src/filterrulesdialog.h" line="104"/>
         <location filename="../src/filterrulesdialog.h" line="107"/>
         <source>doesn&apos;t contains</source>
-        <translation>brak warunków</translation>
+        <translation>nie zawiera</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="100"/>
@@ -1022,7 +1022,7 @@ Ancient news could reappear</translation>
         <location filename="../src/filterrulesdialog.h" line="111"/>
         <location filename="../src/filterrulesdialog.h" line="115"/>
         <source>is</source>
-        <translation>jest</translation>
+        <translation>równa się</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="100"/>
@@ -1030,19 +1030,19 @@ Ancient news could reappear</translation>
         <location filename="../src/filterrulesdialog.h" line="111"/>
         <location filename="../src/filterrulesdialog.h" line="115"/>
         <source>isn&apos;t</source>
-        <translation>nie jest</translation>
+        <translation>nie równa się</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="101"/>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <source>begins with</source>
-        <translation>zaczynaj z</translation>
+        <translation>zaczyna się</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="101"/>
         <location filename="../src/filterrulesdialog.h" line="112"/>
         <source>ends with</source>
-        <translation>kończ z</translation>
+        <translation>kończy się</translation>
     </message>
 </context>
 <context>
@@ -1178,12 +1178,12 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="400"/>
         <source>Published</source>
-        <translation>Opublikowany</translation>
+        <translation>Opublikowano</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="401"/>
         <source>Received</source>
-        <translation>Odebrane</translation>
+        <translation>Odebrano</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="402"/>
@@ -1234,7 +1234,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="484"/>
         <source>Loading... (%p%)</source>
-        <translation>Ładowanie... (%p%)</translation>
+        <translation>Wczytywanie... (%p%)</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1307"/>
@@ -2701,7 +2701,7 @@ Ancient news could reappear</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5279"/>
         <source>&amp;Next &gt;</source>
-        <translation>&amp;Dalejt &gt;</translation>
+        <translation>&amp;Dalej &gt;</translation>
     </message>
 </context>
 <context>

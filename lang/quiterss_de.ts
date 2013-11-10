@@ -419,7 +419,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="102"/>
         <source>Remaining time unavailable</source>
-        <translation>Verbleibende Zeit nicht verfügbar</translation>
+        <translation>Restzeit nicht verfügbar</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
@@ -476,7 +476,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="320"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation>Verbleibend %1 - %2 von %3 (%4)</translation>
+        <translation>Restzeit %1 - %2 von %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="339"/>

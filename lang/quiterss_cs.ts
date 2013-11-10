@@ -317,17 +317,17 @@ Staré zprávy se mohou znovu objevit</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="30"/>
         <source>Customize Main Toolbar</source>
-        <translation>Upravit hlavní nástrojovou lištu</translation>
+        <translation>Upravit hlavní lištu</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="32"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>Upravit nástrojovou lištu kanálů</translation>
+        <translation>Upravit lištu kanálů</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="34"/>
         <source>Customize News Toolbar</source>
-        <translation>Upravit nástrojovou lištu novinek</translation>
+        <translation>Upravit lištu novinek</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="74"/>
@@ -1561,22 +1561,22 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Timeout request:</source>
-        <translation type="unfinished"/>
+        <translation>Časový limit vypršení požadavku:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
         <source>Number request:</source>
-        <translation type="unfinished"/>
+        <translation>Počet požadavků:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="410"/>
         <source>Number repeats:</source>
-        <translation type="unfinished"/>
+        <translation>Počet opakování:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="413"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>Možnosti požadavků během aktualizace kanálů (vyžaduje restartování programu);</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="431"/>
@@ -2055,32 +2055,32 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1521"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>Standardní</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1523"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>S pevnou šířkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>Patkové</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1527"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>Bezpatkové</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1529"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>Kurzíva</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>Fantasy</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
@@ -2090,7 +2090,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1548"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>Velikost písma s pevnou šířkou</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1550"/>
@@ -2100,7 +2100,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1552"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>Minimální logická velikost písma</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1556"/>
@@ -2115,7 +2115,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1568"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>Písma v prohlížeči</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1569"/>
@@ -2786,37 +2786,37 @@ nebyl nalezen!</translation>
         <location filename="../src/rsslisting.cpp" line="5118"/>
         <location filename="../src/rsslisting.cpp" line="5195"/>
         <source>Main Toolbar</source>
-        <translation>Hlavní nástrojovou lištu </translation>
+        <translation>Hlavní lišta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5119"/>
         <source>Customize Toolbar</source>
-        <translation>Upravit nástrojovou lištu</translation>
+        <translation>Upravit lištu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5120"/>
         <source>Main Toolbar...</source>
-        <translation>Hlavní nástrojovou lištu...</translation>
+        <translation>Hlavní lišta...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5121"/>
         <source>Customize Toolbar...</source>
-        <translation>Upravit nástrojovou lištu...</translation>
+        <translation>Upravit lištu...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5122"/>
         <source>Feeds Toolbar...</source>
-        <translation>Nástrojovou lištu kanálů...</translation>
+        <translation>Lišta kanálů...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5123"/>
         <source>News Toolbar...</source>
-        <translation>Nástrojovou lištu novinek...</translation>
+        <translation>Lišta novinek...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5126"/>
         <source>Hide Toolbar</source>
-        <translation>Skrýt nástrojovou lištu</translation>
+        <translation>Skrýt lištu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5137"/>
@@ -2941,17 +2941,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5196"/>
         <source>Feeds Toolbar</source>
-        <translation>Nástrojovou lištu kanálů</translation>
+        <translation>Lišta kanálů</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5197"/>
         <source>News Toolbar</source>
-        <translation>Nástrojovou lištu novinek</translation>
+        <translation>Lišta novinek</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5198"/>
         <source>Browser Toolbar</source>
-        <translation>Nástrojovou lištu prohlížeče</translation>
+        <translation>Lišta prohlížeče</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5201"/>
@@ -3502,7 +3502,7 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5125"/>
         <source>Lock Toolbar</source>
-        <translation>Uzamknout nástrojovou lištu</translation>
+        <translation>Uzamknout lištu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5128"/>
@@ -3803,17 +3803,17 @@ nebyl nalezen!</translation>
     <message>
         <location filename="../src/updateobject.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Odpoveď serveru: Nenalezeno!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>Chyba přesměrování!</translation>
     </message>
     <message>
         <location filename="../src/updateobject.cpp" line="288"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Časový limit požadavku vypršel!</translation>
     </message>
 </context>
 </TS>
