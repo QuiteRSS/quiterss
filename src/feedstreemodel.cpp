@@ -33,6 +33,11 @@ FeedsProxyModel::~FeedsProxyModel()
 
 }
 
+void FeedsProxyModel::reset()
+{
+  QSortFilterProxyModel::reset();
+}
+
 void FeedsProxyModel::setFilter(const QString &filterAct, const QList<int> &idList,
                                 const QString &findAct, const QString &findText)
 {

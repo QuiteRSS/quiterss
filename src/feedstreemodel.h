@@ -28,6 +28,7 @@ class FeedsProxyModel : public QSortFilterProxyModel
 public:
   FeedsProxyModel(QObject *parent = 0);
   ~FeedsProxyModel();
+  void reset();
   void setFilter(const QString &filterAct, const QList<int> &idList,
                  const QString &findAct, const QString &findText);
   QModelIndex mapFromSource(const QModelIndex & sourceIndex) const;

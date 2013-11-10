@@ -6008,6 +6008,7 @@ void RSSListing::feedsModelReload(bool checkFilter)
   int feedId = feedsTreeModel_->getIdByIndex(feedIndex);
 
   feedsTreeModel_->refresh();
+  feedsProxyModel_->reset();
   expandNodes();
 
   feedIndex = feedsProxyModel_->mapFromSource(feedId);
