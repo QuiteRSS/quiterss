@@ -84,7 +84,7 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDow
   QString fileName(getFileName(reply));
   fileName = rssl_->downloadLocation_ + QDir::separator() + fileName;
   QFileInfo fileInfo(fileName);
-  if (askDownloadLocation || rssl_->downloadLocation_.isEmpty() || fileInfo.exists()) {
+  if (askDownloadLocation || !QFile::exists(rssl_->downloadLocation_) || fileInfo.exists()) {
     QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
         arg(fileInfo.suffix().toUpper()).
         arg(fileInfo.suffix().toLower());
