@@ -7402,8 +7402,7 @@ void RSSListing::setStatusFeed(int feedId, QString status)
 
 void RSSListing::saveDBMemFile()
 {
-  if (storeDBMemory_) {
-    db_.commit();
+  if (storeDBMemory_ && !dbMemFileThread_->isRunning()) {
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
 }
