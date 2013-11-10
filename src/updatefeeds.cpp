@@ -50,7 +50,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats);
   requestFeed_->networkManager_->setCookieJar(rssl->cookieJar_);
 
-  parseObject_ = new ParseObject(parent, addFeed_);
+  parseObject_ = new ParseObject(parent);
 
   if (addFeed_) {
     connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
@@ -68,7 +68,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     getFaviconThread_ = new QThread();
     getFaviconThread_->setObjectName("getFaviconThread_");
 
-    updateObject_ = new UpdateObject(parent, addFeed);
+    updateObject_ = new UpdateObject(parent);
     faviconObject_ = new FaviconObject();
 
     connect(updateObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
@@ -207,7 +207,7 @@ UpdateFeeds::~UpdateFeeds()
 }
 
 //------------------------------------------------------------------------------
-UpdateObject::UpdateObject(QObject *parent, bool addFeed)
+UpdateObject::UpdateObject(QObject *parent)
   : QObject(0)
   , updateFeedsCount_(0)
 {
@@ -223,15 +223,11 @@ UpdateObject::UpdateObject(QObject *parent, bool addFeed)
     db_ = QSqlDatabase::database();
   }
   else {
-    if (addFeed) {
-      db_ = QSqlDatabase::database();
-    } else {
-      db_ = QSqlDatabase::database("secondConnection", true);
-      if (!db_.isValid()) {
-        db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-        db_.setDatabaseName(rssl_->dbFileName_);
-        db_.open();
-      }
+    db_ = QSqlDatabase::database("secondConnection", true);
+    if (!db_.isValid()) {
+      db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
+      db_.setDatabaseName(rssl_->dbFileName_);
+      db_.open();
     }
   }
 
@@ -408,6 +404,7 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
   } else {
     emit signalMessageStatusBar(QString("Import: file read done"), 3000);
   }
+
   db_.commit();
 
   emit signalUpdateFeedsModel();

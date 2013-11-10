@@ -76,7 +76,7 @@ class ParseObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit ParseObject(QObject *parent, bool addFeed);
+  explicit ParseObject(QObject *parent);
 
 public slots:
   void parseXml(QByteArray data, int feedId,

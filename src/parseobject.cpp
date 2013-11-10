@@ -28,7 +28,7 @@
 #include <windows.h>
 #endif
 
-ParseObject::ParseObject(QObject *parent, bool addFeed)
+ParseObject::ParseObject(QObject *parent)
   : QObject(0)
   , currentFeedId_(0)
 {
@@ -44,15 +44,11 @@ ParseObject::ParseObject(QObject *parent, bool addFeed)
     db_ = QSqlDatabase::database();
   }
   else {
-    if (addFeed) {
-      db_ = QSqlDatabase::database();
-    } else {
-      db_ = QSqlDatabase::database("secondConnection", true);
-      if (!db_.isValid()) {
-        db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-        db_.setDatabaseName(rssl_->dbFileName_);
-        db_.open();
-      }
+    db_ = QSqlDatabase::database("secondConnection", true);
+    if (!db_.isValid()) {
+      db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
+      db_.setDatabaseName(rssl_->dbFileName_);
+      db_.open();
     }
   }
 

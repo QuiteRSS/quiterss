@@ -53,7 +53,7 @@ class UpdateObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(QObject *parent, bool addFeed);
+  explicit UpdateObject(QObject *parent);
 
   static QList<int> getIdFeedsInList(int idFolder);
   static QString getIdFeedsString(int idFolder, int idException = -1);
