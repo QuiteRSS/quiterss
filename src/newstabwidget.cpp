@@ -1662,7 +1662,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
     if (returnValue > 32)
       return true;
 #elif defined(HAVE_X11)
-    if (launch(url, rsslisting_->externalBrowser_.toUtf8()))
+    if (launch(url, rssl_->externalBrowser_.toUtf8()))
       return true;
 #endif
   }
