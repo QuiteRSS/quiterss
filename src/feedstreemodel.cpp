@@ -53,6 +53,7 @@ bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
 {
   bool accept = false;
   QModelIndex index;
+
   if (filterAct_ == "filterFeedsAll_") {
     accept = true;
   } else if (filterAct_ == "filterFeedsNew_") {

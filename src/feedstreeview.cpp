@@ -18,6 +18,7 @@
 #include "feedstreeview.h"
 #include "feedstreemodel.h"
 #include "delegatewithoutfocus.h"
+#include "rsslisting.h"
 
 #include <QSqlTableModel>
 #include <QSqlQuery>
@@ -30,7 +31,7 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   , sourceModel_(0)
   , dragPos_(QPoint())
   , dragStartPos_(QPoint())
-  , selectOldId_(-1)
+  , expandedOldId_(-1)
 {
   setObjectName("feedsTreeView_");
   setFrameStyle(QFrame::NoFrame);
@@ -55,19 +56,107 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   setAcceptDrops(true);
   setDropIndicatorShown(true);
 
-  connect(this, SIGNAL(expanded(const QModelIndex&)), SLOT(slotExpanded(const QModelIndex&)));
-  connect(this, SIGNAL(collapsed(const QModelIndex&)), SLOT(slotCollapsed(const QModelIndex&)));
+  QObject *parent_ = parent;
+  while(parent_->parent()) {
+    parent_ = parent_->parent();
+  }
+  rssl_ = qobject_cast<RSSListing*>(parent_);
+
+  connect(this, SIGNAL(expanded(QModelIndex)), SLOT(slotExpanded(QModelIndex)));
+  connect(this, SIGNAL(collapsed(QModelIndex)), SLOT(slotCollapsed(QModelIndex)));
 }
 
-void FeedsTreeView::setSourceModel(FeedsTreeModel *model)
+void FeedsTreeView::setSourceModel(FeedsTreeModel *sourceModel)
 {
-  sourceModel_ = model;
+  sourceModel_ = sourceModel;
   QyurSqlTreeView::setSourceModel(sourceModel_);
+
+  QSqlQuery q;
+  q.exec("SELECT id FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
+  while (q.next()) {
+    int feedId = q.value(0).toInt();
+    expandedList.append(feedId);
+  }
+}
+
+void FeedsTreeView::refresh()
+{
+  sourceModel_->refresh();
+  ((FeedsProxyModel*)model())->reset();
+  restoreExpanded();
 }
 
 bool FeedsTreeView::isFolder(const QModelIndex &index) const
 {
   return sourceModel_->isFolder(((FeedsProxyModel*)model())->mapToSource(index));
+}
+
+void FeedsTreeView::restoreExpanded()
+{
+  foreach (int id, expandedList) {
+    setExpanded(((FeedsProxyModel*)model())->mapFromSource(id), true);
+  }
+}
+
+/** @brief Process item expanding
+ *----------------------------------------------------------------------------*/
+void FeedsTreeView::slotExpanded(const QModelIndex &index)
+{
+  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
+  if (!expandedList.contains(feedId)) {
+    expandedList.append(feedId);
+    rssl_->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%1'").arg(feedId));
+  }
+
+  if (!autocollapseFolder_ || (feedId == expandedOldId_))
+    return;
+
+  QModelIndex indexCollapsed = ((FeedsProxyModel*)model())->mapFromSource(expandedOldId_);
+  expandedOldId_ = feedId;
+
+  if (index.parent() != indexCollapsed)
+    collapse(indexCollapsed);
+
+  int value = index.row();
+  QModelIndex parent = index.parent();
+  if (parent.isValid()) value = value + 1;
+  while (parent.isValid()) {
+    value = value + parent.row();
+    parent = parent.parent();
+  }
+  verticalScrollBar()->setValue(value);
+}
+
+/** @brief Process item collapsing
+ *----------------------------------------------------------------------------*/
+void FeedsTreeView::slotCollapsed(const QModelIndex &index)
+{
+  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
+  expandedList.removeOne(feedId);
+  rssl_->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%1'").arg(feedId));
+}
+
+void FeedsTreeView::expandAll()
+{
+  expandedList.clear();
+  QyurSqlTreeView::expandAll();
+
+
+  QSqlQuery q;
+  q.exec("SELECT id FROM feeds WHERE (xmlUrl='' OR xmlUrl IS NULL)");
+  while (q.next()) {
+    int feedId = q.value(0).toInt();
+    expandedList.append(feedId);
+  }
+  rssl_->sqlQueryExec("UPDATE feeds SET f_Expanded=1 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
+}
+
+void FeedsTreeView::collapseAll()
+{
+  expandedList.clear();
+  QyurSqlTreeView::collapseAll();
+
+  rssl_->sqlQueryExec("UPDATE feeds SET f_Expanded=0 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
 }
 
 /** @brief Find index of next unread (by meaning) feed
@@ -483,50 +572,6 @@ bool FeedsTreeView::shouldAutoScroll(const QPoint &pos) const
         || (area.bottom() - pos.y() < autoScrollMargin())
         || (pos.x() - area.left() < autoScrollMargin())
         || (area.right() - pos.x() < autoScrollMargin());
-}
-
-/** @brief Process item expanding
- *----------------------------------------------------------------------------*/
-void FeedsTreeView::slotExpanded(const QModelIndex &index)
-{
-  QModelIndex indexExpanded = model()->index(index.row(), columnIndex("f_Expanded"), index.parent());
-  model()->setData(indexExpanded, 1);
-
-  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(indexExpanded));
-
-  QSqlQuery q;
-  q.exec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%2'").arg(feedId));
-
-  if (feedId == selectOldId_) return;
-
-  QModelIndex indexCollapsed = ((FeedsProxyModel*)model())->mapFromSource(selectOldId_);
-  selectOldId_ = feedId;
-
-  if (!autocollapseFolder_) return;
-
-  if (indexExpanded.parent() != indexCollapsed)
-    collapse(indexCollapsed);
-
-  int value = index.row();
-  QModelIndex parent = index.parent();
-  if (parent.isValid()) value = value + 1;
-  while (parent.isValid()) {
-    value = value + parent.row();
-    parent = parent.parent();
-  }
-  verticalScrollBar()->setValue(value);
-}
-
-/** @brief Process item collapsing
- *----------------------------------------------------------------------------*/
-void FeedsTreeView::slotCollapsed(const QModelIndex &index)
-{
-  QModelIndex indexExpanded = model()->index(index.row(), columnIndex("f_Expanded"), index.parent());
-  model()->setData(indexExpanded, 0);
-
-  int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(indexExpanded));
-  QSqlQuery q;
-  q.exec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%2'").arg(feedId));
 }
 
 // ----------------------------------------------------------------------------

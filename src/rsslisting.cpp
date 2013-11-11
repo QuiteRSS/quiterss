@@ -2606,8 +2606,6 @@ void RSSListing::slotImportFeeds()
 
   importFeedStart_ = true;
   emit signalImportFeeds(xmlData);
-
-  feedsModelReload();
 }
 
 /** @brief Export feeds to OPML-file
@@ -3978,6 +3976,8 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
                               findFeeds_->findGroup_->checkedAction()->objectName(),
                               findFeeds_->text());
 
+  feedsTreeView_->restoreExpanded();
+
   if (clicked && (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)) {
     slotFeedClicked(feedsTreeView_->currentIndex());
   }
@@ -4376,18 +4376,6 @@ void RSSListing::restoreFeedsOnStartUp()
   }
 
   if (updateFeedsStartUp_) slotGetAllFeeds();
-}
-
-/** @brief Expanding items with corresponding flag in DB
- *---------------------------------------------------------------------------*/
-void RSSListing::expandNodes()
-{
-  QSqlQuery q;
-  q.exec("SELECT id FROM feeds WHERE f_Expanded=1 AND (xmlUrl='' OR xmlUrl IS NULL)");
-  while (q.next()) {
-    int feedId = q.value(0).toInt();
-    feedsTreeView_->setExpanded(feedsProxyModel_->mapFromSource(feedId), true);
-  }
 }
 // ----------------------------------------------------------------------------
 void RSSListing::slotFeedsFilter()
@@ -6007,9 +5995,7 @@ void RSSListing::feedsModelReload(bool checkFilter)
   QModelIndex feedIndex = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
   int feedId = feedsTreeModel_->getIdByIndex(feedIndex);
 
-  feedsTreeModel_->refresh();
-  feedsProxyModel_->reset();
-  expandNodes();
+  feedsTreeView_->refresh();
 
   feedIndex = feedsProxyModel_->mapFromSource(feedId);
   feedsTreeView_->selectIdEn_ = false;
@@ -6579,8 +6565,7 @@ void RSSListing::slotMoveIndex(QModelIndex &indexWhat, QModelIndex &indexWhere, 
     recountFeedCategories(categoriesList);
   }
 
-  feedsTreeModel_->refresh();
-  expandNodes();
+  feedsTreeView_->refresh();
 
   feedsTreeView_->setCurrentIndex(feedsProxyModel_->mapFromSource(feedIdWhat));
 

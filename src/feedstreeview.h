@@ -25,6 +25,8 @@
 #endif
 #include <feedstreemodel.h>
 
+class RSSListing;
+
 class FeedsTreeView : public QyurSqlTreeView
 {
   Q_OBJECT
@@ -34,7 +36,8 @@ public:
   bool selectIdEn_;
   bool autocollapseFolder_;
 
-  void setSourceModel(FeedsTreeModel *model);
+  void setSourceModel(FeedsTreeModel *sourceModel);
+  void refresh();
   bool isFolder(const QModelIndex &index) const;
   QModelIndex indexNextUnread(const QModelIndex &indexCur, int nextCondition = 0);
   QModelIndex firstFeedInFolder(const QModelIndex &indexFolder);
@@ -47,6 +50,9 @@ public:
   QModelIndex indexNextFolder(const QModelIndex &indexCur, bool isParent = false);
 
 public slots:
+  void restoreExpanded();
+  void expandAll();
+  void collapseAll();
   QPersistentModelIndex selectIndex();
   void updateCurrentIndex(const QModelIndex &index);
 
@@ -78,10 +84,12 @@ private slots:
   void slotCollapsed(const QModelIndex&index);
 
 private:
+  RSSListing *rssl_;
   FeedsTreeModel *sourceModel_;
   QPoint dragPos_;
   QPoint dragStartPos_;
-  int selectOldId_;
+  QList<int> expandedList;
+  int expandedOldId_;
   QModelIndex indexClicked_;
 
   void handleDrop(QDropEvent *e);

@@ -78,7 +78,6 @@ public:
   bool minimizeToTray_;
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
-  void expandNodes();
   QString getIdFeedsString(int idFolder, int idException = -1);
   void recountCategoryCounts();
 

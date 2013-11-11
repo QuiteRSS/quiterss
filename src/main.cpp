@@ -161,8 +161,6 @@ int main(int argc, char **argv)
   if (showSplashScreen_)
     splashScreen->loadModules();
 
-  rsslisting.expandNodes();
-
   if (!rsslisting.startingTray_ || !rsslisting.showTrayIcon_)
     rsslisting.show();
   rsslisting.minimizeToTray_ = false;
