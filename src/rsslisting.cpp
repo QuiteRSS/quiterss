@@ -4627,8 +4627,8 @@ void RSSListing::retranslateStrings()
   feedKeyDownAct_->setText(tr("Next Feed"));
   newsKeyUpAct_->setText(tr("Previous News"));
   newsKeyDownAct_->setText(tr("Next News"));
-  newsKeyPageUpAct_->setText(tr("News Page Up)"));
-  newsKeyPageDownAct_->setText(tr("News Page Down)"));
+  newsKeyPageUpAct_->setText(tr("News Page Up"));
+  newsKeyPageDownAct_->setText(tr("News Page Down"));
 
   nextUnreadNewsAct_->setText(tr("Next Unread News"));
   prevUnreadNewsAct_->setText(tr("Previous Unread News"));
