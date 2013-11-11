@@ -55,7 +55,9 @@ public:
   rootParentId-	parentId value for top level nodes.
   decoratedField-	makes this field expandedable, i.e. move it to first column.
   */
-  QyurSqlTreeModel(const QString& tableName, const QStringList& captions, const QStringList& fieldNames, int rootParentId= 0, QObject* parent=0);
+  QyurSqlTreeModel(const QString& tableName, const QStringList& captions,
+                   const QStringList& fieldNames, int rootParentId = 0,
+                   QObject* parent = 0);
   ~QyurSqlTreeModel();
   QModelIndex mapFromSource(const QModelIndex& sourceIndex) const;
   QModelIndex mapToSource(const QModelIndex& proxyIndex) const;
@@ -80,8 +82,10 @@ public:
   int originalColumnByProxy(int proxyColumn) const;
   int proxyColumnByOriginal(int originalColumn) const;
   int proxyColumnByOriginal(const QString& field) const;
+
 public slots:
   void refresh();
+
 };
 
 class QyurSqlTreeViewPrivate;
@@ -100,18 +104,13 @@ public:
   void setSourceModel(QyurSqlTreeModel *model);
   void setColumnHidden(const QString& column, bool hide);
   int columnIndex(const QString& fieldName) const;
-  void restoreExpanded();
-private slots:
-  void slotSortByColumnAndSelect(int);
-  void slotAddExpanded(const QModelIndex&);
-  void slotRemoveExpanded(const QModelIndex&);
+
 protected slots:
   //Use this handle when row inserted.
   virtual void onInsertRow(QSqlRecord&);
-  //And take care about signals, emitted by QyurSqlTreeModel::getSourceModel() :
-  //beforeDelete(int) and beforeUpdate(int, QSqlRecord&), when you need to handle delete and update.
+
 private:
-  void restore(int id=-1);
   QyurSqlTreeModel *sourceModel_;
+
 };
 #endif

@@ -111,6 +111,9 @@ class QyurSqlTreeModelPrivate {
   mutable QMap<int,UserData*> id2UserData;
   mutable QMap<QModelIndex,QModelIndex> proxy2source;
   mutable QMap<int,int> proxyColumn2Original;
+
+  QMap<QObject*,QSet<int> > expandedSet;
+
 public:
   QSqlTableModelEx sourceModel;
   int indexOfId, indexOfParid, rootParentId;
@@ -491,7 +494,6 @@ int QyurSqlTreeModel::getRootParentId() const {
 class QyurSqlTreeViewPrivate {
 public:
   QyurSqlTreeViewPrivate();
-  QList<QyurIntPair> expandedNodeList;
 };
 
 QyurSqlTreeViewPrivate::QyurSqlTreeViewPrivate()
@@ -504,13 +506,12 @@ QyurSqlTreeView::QyurSqlTreeView(QWidget * parent)
   , sourceModel_(0)
 {
   setSortingEnabled(false);
-  disconnect(header(), SIGNAL(sectionClicked(int)), this, SLOT(sortByColumn(int)));
-  connect(header(), SIGNAL(sectionClicked(int)), SLOT(slotSortByColumnAndSelect(int)));
   setContextMenuPolicy(Qt::CustomContextMenu);
   setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
-QyurSqlTreeView::~QyurSqlTreeView() {
+QyurSqlTreeView::~QyurSqlTreeView()
+{
   delete d_ptr;
 }
 
@@ -519,51 +520,19 @@ void QyurSqlTreeView::setSourceModel(QyurSqlTreeModel *model)
   sourceModel_ = model;
 }
 
-void QyurSqlTreeView::slotAddExpanded(const QModelIndex& index) {
-  Q_D(QyurSqlTreeView);
-  d->expandedNodeList.append(QyurIntPair(sourceModel_->getIdByIndex(index), sourceModel_->getParidByIndex(index)));
-}
-
-void QyurSqlTreeView::slotRemoveExpanded(const QModelIndex& index) {
-  Q_D(QyurSqlTreeView);
-  d->expandedNodeList.removeAll(QyurIntPair(sourceModel_->getIdByIndex(index), sourceModel_->getParidByIndex(index)));
-}
-
-void QyurSqlTreeView::slotSortByColumnAndSelect(int column) {
-  int id= -1;
-  if (selectionModel()->selectedRows().size()>0) {
-    id = selectionModel()->selectedRows()[0].sibling(selectionModel()->selectedRows()[0].row(),sourceModel_->getFieldPosition(QyurSqlTreeModel::Id)).data().toInt();
-  }
-  QTreeView::sortByColumn(column);
-  restore(id);
-}
-
-void QyurSqlTreeView::restore(int id) {
-  Q_D(QyurSqlTreeView);
-  if (id!=-1) {
-    QModelIndex selectedIndex= sourceModel_->getIndexById(id);
-    scrollTo(selectedIndex);
-    selectionModel()->select(selectedIndex,QItemSelectionModel::ClearAndSelect|QItemSelectionModel::Rows);
-  }
-  foreach(QyurIntPair pair, d->expandedNodeList)
-    setExpanded(sourceModel_->getIndexById(pair.first),true);
-}
-
-void QyurSqlTreeView::restoreExpanded() {
-  Q_D(QyurSqlTreeView);
-  foreach(QyurIntPair pair, d->expandedNodeList)
-    setExpanded(sourceModel_->getIndexById(pair.first),true);
-}
-
-void QyurSqlTreeView::onInsertRow(QSqlRecord&) {
+void QyurSqlTreeView::onInsertRow(QSqlRecord&)
+{
 
 }
 
-void QyurSqlTreeView::setColumnHidden(const QString& column, bool hide) {
+void QyurSqlTreeView::setColumnHidden(const QString& column, bool hide)
+{
   QTreeView::setColumnHidden(columnIndex(column),hide);
 }
 
-int QyurSqlTreeView::columnIndex(const QString& fieldName) const {
+int QyurSqlTreeView::columnIndex(const QString& fieldName) const
+{
   return sourceModel_->proxyColumnByOriginal(fieldName);
 }
+
 #include "qyursqltreeview.moc"
