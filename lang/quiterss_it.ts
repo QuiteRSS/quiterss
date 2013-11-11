@@ -1154,7 +1154,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Esegui Filtro</translation>
     </message>
     <message>
         <source>Apply Selected Filter</source>
@@ -1469,7 +1469,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva database memorizzato su file ogni</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -1627,7 +1627,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom predefinito nelle pagine:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
@@ -1917,7 +1917,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1022"/>
         <source>Review</source>
-        <translation>Rivedi</translation>
+        <translation>Anteprima</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1026"/>
@@ -2052,7 +2052,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News text color</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore del testo della notizia</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1507"/>
@@ -2077,7 +2077,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Text color of new news </source>
-        <translation type="unfinished"></translation>
+        <translation>Colore del testo delle notizie nuove</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1555"/>
@@ -2384,7 +2384,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Number requests:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di richieste:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="862"/>
@@ -3319,12 +3319,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="2588"/>
         <source>OPML-Files (*.%1 *.%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>File OPML (*.%1 *.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2619"/>
         <source>OPML-Files (*.%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>File OPML (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2879"/>
@@ -3426,7 +3426,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4557"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra Feed Non Funzionanti</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4566"/>
@@ -3651,7 +3651,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4708"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra menu etichette</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4710"/>
@@ -3711,7 +3711,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4734"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione Pagina: Etichette</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4736"/>
@@ -3741,12 +3741,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="6927"/>
         <source>HTML-Files (*.%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>File HTML (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6927"/>
         <source>Text files (*.%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>File di Testo (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="98"/>
@@ -3802,22 +3802,22 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished">Il server richiede l&apos;autenticazione!</translation>
+        <translation>Il server richiede l&apos;autenticazione!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished">Risposta server: Non trovata!</translation>
+        <translation>Risposta server: Non trovata!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished">Reindirizzamento errore!</translation>
+        <translation>Reindirizzamento errore!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="298"/>
         <source>Request timeout!</source>
-        <translation type="unfinished">Timeout della richiesta!</translation>
+        <translation>Timeout della richiesta!</translation>
     </message>
 </context>
 <context>
