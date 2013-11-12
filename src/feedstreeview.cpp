@@ -62,8 +62,6 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
-  connect(this, SIGNAL(signalExpanded(QModelIndex)), SLOT(expand(QModelIndex)),
-          Qt::QueuedConnection);
   connect(this, SIGNAL(expanded(QModelIndex)), SLOT(slotExpanded(QModelIndex)));
   connect(this, SIGNAL(collapsed(QModelIndex)), SLOT(slotCollapsed(QModelIndex)));
 }
@@ -96,7 +94,7 @@ bool FeedsTreeView::isFolder(const QModelIndex &index) const
 void FeedsTreeView::restoreExpanded()
 {
   foreach (int id, expandedList) {
-    emit signalExpanded(((FeedsProxyModel*)model())->mapFromSource(id));
+    setExpanded(((FeedsProxyModel*)model())->mapFromSource(id), true);
   }
 }
 
