@@ -3916,6 +3916,10 @@ void RSSListing::slotUpdateStatus(int feedId, bool changed)
 void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
 {
   QList<int> idList;
+  static bool setFilter = false;
+
+  if (setFilter) return;
+  setFilter = true;
 
   if (pAct->objectName() == "filterFeedsNew_") {
     QModelIndex index = feedsProxyModel_->mapToSource(feedsTreeView_->currentIndex());
@@ -3988,6 +3992,8 @@ void RSSListing::setFeedsFilter(QAction* pAct, bool clicked)
   // Store filter to enable it as "last used filter"
   if (pAct->objectName() != "filterFeedsAll_")
     feedsFilterAction_ = pAct;
+
+  setFilter = false;
 }
 
 /** @brief Set filter for news list
@@ -5984,7 +5990,7 @@ void RSSListing::slotShowLabelsMenu()
 void RSSListing::feedsModelReload(bool checkFilter)
 {
   if (checkFilter) {
-    if (feedsFilterGroup_->checkedAction()->objectName() != "filterFeedsNew_") {
+    if (feedsFilterGroup_->checkedAction()->objectName() != "filterFeedsAll_") {
       setFeedsFilter(feedsFilterGroup_->checkedAction(), false);
     }
     slotFeedsViewportUpdate();
