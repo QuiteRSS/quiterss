@@ -94,7 +94,9 @@ bool FeedsTreeView::isFolder(const QModelIndex &index) const
 void FeedsTreeView::restoreExpanded()
 {
   foreach (int id, expandedList) {
-    setExpanded(((FeedsProxyModel*)model())->mapFromSource(id), true);
+    QModelIndex index = ((FeedsProxyModel*)model())->mapFromSource(id);
+    if (!isExpanded(index))
+      setExpanded(index, true);
   }
 }
 

@@ -41,12 +41,15 @@ void FeedsProxyModel::reset()
 void FeedsProxyModel::setFilter(const QString &filterAct, const QList<int> &idList,
                                 const QString &findAct, const QString &findText)
 {
-  filterAct_ = filterAct;
-  findAct_ = findAct;
-  findText_ = findText;
-  idList_ = idList;
+  if (("filterFeedsAll_" != filterAct) || (findAct_ != findAct) ||
+      (findText_ != findText) || (idList_ != idList)) {
+    filterAct_ = filterAct;
+    findAct_ = findAct;
+    findText_ = findText;
+    idList_ = idList;
 
-  invalidateFilter();
+    invalidateFilter();
+  }
 }
 
 bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
