@@ -454,7 +454,7 @@ void FeedsTreeView::mouseReleaseEvent(QMouseEvent *event)
 
   if (!index.isValid()) return;
   if (!(event->pos().x() >= rectText.x()) ||
-      (isFolder(((FeedsProxyModel*)model())->mapToSource(index)))) {
+      (isFolder(index))) {
     QyurSqlTreeView::mouseDoubleClickEvent(event);
     return;
   }
