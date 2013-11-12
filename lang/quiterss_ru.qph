@@ -2505,4 +2505,44 @@ Ancient news could reappear</source>
     <source>Fonts Browser</source>
     <target>Шрифты браузера</target>
 </phrase>
+<phrase>
+    <source>OPML-Files (*.%1)</source>
+    <target>OPML-файлы (*.%1)</target>
+</phrase>
+<phrase>
+    <source>OPML-Files (*.%1 *.%2)</source>
+    <target>OPML-файлы (*.%1 *.%2)</target>
+</phrase>
+<phrase>
+    <source>Show Not Working Feeds</source>
+    <target>Показать не рабочие ленты</target>
+</phrase>
+<phrase>
+    <source>Show labels menu</source>
+    <target>Показать меню меток</target>
+</phrase>
+<phrase>
+    <source>Setting Page: Labels</source>
+    <target>Страница настроек: метки</target>
+</phrase>
+<phrase>
+    <source>HTML-Files (*.%1)</source>
+    <target>HTML-файлы (*.%1)</target>
+</phrase>
+<phrase>
+    <source>Save DB stored in memory to file every</source>
+    <target>Сохранять БД из памяти в файл каждые</target>
+</phrase>
+<phrase>
+    <source>Default zoom on pages:</source>
+    <target>Масштабирование страницы по умолчанию:</target>
+</phrase>
+<phrase>
+    <source>News text color</source>
+    <target>Цвет текста новости</target>
+</phrase>
+<phrase>
+    <source>Text color of new news </source>
+    <target>Цвет текста новых новостей в списке</target>
+</phrase>
 </QPH>
