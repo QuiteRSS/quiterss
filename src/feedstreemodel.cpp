@@ -24,6 +24,7 @@
 
 FeedsProxyModel::FeedsProxyModel(QObject *parent)
   : QSortFilterProxyModel(parent)
+  , filterAct_("filterFeedsAll_")
 {
 
 }
@@ -41,7 +42,7 @@ void FeedsProxyModel::reset()
 void FeedsProxyModel::setFilter(const QString &filterAct, const QList<int> &idList,
                                 const QString &findAct, const QString &findText)
 {
-  if (("filterFeedsAll_" != filterAct) || (findAct_ != findAct) ||
+  if ((filterAct_ != filterAct) || (findAct_ != findAct) ||
       (findText_ != findText) || (idList_ != idList)) {
     filterAct_ = filterAct;
     findAct_ = findAct;
