@@ -68,21 +68,17 @@ bool FeedsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceP
     index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("unread"), sourceParent);
     if (sourceModel()->data(index, Qt::EditRole).toInt() > 0)
       accept = true;
-  } else if (filterAct_ == "filterFeedsStarred_") {
-    index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("id"), sourceParent);
-    if (idList_.contains(sourceModel()->data(index, Qt::EditRole).toInt()))
-      accept = true;
-  } else if (filterAct_ == "filterFeedsError_") {
+  }
+
+  if (idList_.count()) {
     index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("id"), sourceParent);
     if (idList_.contains(sourceModel()->data(index, Qt::EditRole).toInt()))
       accept = true;
   }
 
-  if (accept) {
+  if (accept && !findText_.isEmpty()) {
     index = sourceModel()->index(sourceRow, ((QyurSqlTreeModel*)sourceModel())->proxyColumnByOriginal("xmlUrl"), sourceParent);
-    if (sourceModel()->data(index, Qt::EditRole).toString().isEmpty()) {
-      accept = true;
-    } else {
+    if (!sourceModel()->data(index, Qt::EditRole).toString().isEmpty()) {
       if (findAct_ == "findLinkAct") {
         accept = sourceModel()->data(index, Qt::EditRole).toString().contains(findText_, Qt::CaseInsensitive);
       } else {
