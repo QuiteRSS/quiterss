@@ -1,3 +1,25 @@
+Vervion 0.14.0 (15 Nov 2013)
+  * Main: Increase application performance
+  * Main: Feed filter is case-insensitive now
+  * Added: Support for feeds with uTorrent-authorization
+  * Added: Feed filter "Show broken feeds"
+  * Added: Application option "Default page zoom"
+  * Added: User filters. Conditions for categories has been added
+  * Added: More shortcuts
+  * Added: More color settings
+  * Changed: GUI. Some visual tweaks
+  * Fixed: Application crash
+  * Fixed: Application crash while using JavaScript (Windows)
+  * Fixed: Application crash while using "Next unread news"
+  * Fixed: Application crash while starting by desktop shortcut
+  * Fixed: Tip "All feeds" while creating new filter
+  * Fixed: Clearing news filter on switching between feeds
+  * Fixed: Autoreplacement "http://" on adding feed
+  * Fixed: Confuse options names "Don't delete starred news", "Don't delete labeled news"
+  * Fixed: User filters with apostrophe didn't work
+  * Fixed: Files extension in save/open dialogs
+  * Fixed: Startup. Request file storing path, if specified path isn't found
+
 Version 0.13.3 (30 Aug 2013)
   * Added: Option "Save DB stored in memory to file every XX minutes"
   * Added: Language: Turkish

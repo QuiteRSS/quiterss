@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Vervion 0.13.3+</b> (15 Nov 2013)
+<p><b>Vervion 0.14.0</b> (15 Nov 2013)
 <ul>
 <li>Main: Increase application performance</li>
 <li>Main: Feed filter is case-insensitive now</li>
@@ -14,7 +14,7 @@
 <li>Added: More shortcuts</li>
 <li>Added: More color settings</li>
 
-<li>Changed: GUI. Visual tweaks</li>
+<li>Changed: GUI. Some visual tweaks</li>
 
 <li>Fixed: Application crash</li>
 <li>Fixed: Application crash while using JavaScript (Windows)</li>
