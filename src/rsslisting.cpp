@@ -2898,7 +2898,7 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
   }
 
   if (!changed) {
-    emit signalNextUpdate();
+    emit signalNextUpdate(finish);
     return;
   }
 
@@ -2938,7 +2938,7 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
   recountCategoryCounts();
 
-  emit signalNextUpdate();
+  emit signalNextUpdate(finish);
 }
 
 /** @brief Process updating news list

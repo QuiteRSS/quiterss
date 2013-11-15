@@ -20,7 +20,8 @@
 
 #include <QDebug>
 
-#define UPDATE_INTERVAL 5000
+#define UPDATE_INTERVAL 3000
+#define UPDATE_INTERVAL_MIN 500
 
 UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   : QObject(parent)
@@ -117,8 +118,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)),
             Qt::QueuedConnection);
 
-    connect(parent, SIGNAL(signalNextUpdate()),
-            updateObject_, SLOT(slotNextUpdateFeed()));
+    connect(parent, SIGNAL(signalNextUpdate(bool)),
+            updateObject_, SLOT(slotNextUpdateFeed(bool)));
     connect(updateObject_, SIGNAL(signalUpdateModel(bool)),
             parent, SLOT(feedsModelReload(bool)),
             Qt::QueuedConnection);
@@ -533,10 +534,14 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
 
 /** @brief Start timer if feed presents in queue
  *---------------------------------------------------------------------------*/
-void UpdateObject::slotNextUpdateFeed()
+void UpdateObject::slotNextUpdateFeed(bool finish)
 {
-  if (!updateModelTimer_->isActive())
-    updateModelTimer_->start(UPDATE_INTERVAL);
+  if (!updateModelTimer_->isActive()) {
+    if (finish)
+      updateModelTimer_->start(UPDATE_INTERVAL_MIN);
+    else
+      updateModelTimer_->start(UPDATE_INTERVAL);
+  }
 }
 
 void UpdateObject::slotRecountCategoryCounts()

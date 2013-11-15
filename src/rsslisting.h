@@ -303,7 +303,7 @@ signals:
   void signalSetCurrentTab(int index, bool updateTab = false);
   void signalShowNotification();
   void signalRefreshInfoTray();
-  void signalNextUpdate();
+  void signalNextUpdate(bool finish);
   void signalRecountCategoryCounts();
   void signalRecountFeedCounts(int feedId, bool update = true);
   void setFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);

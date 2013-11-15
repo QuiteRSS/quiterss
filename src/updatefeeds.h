@@ -69,7 +69,7 @@ public slots:
                   QString error, QByteArray data,
                   QDateTime dtReply, QString codecName);
   void finishUpdate(int feedId, bool changed, int newCount, QString status);
-  void slotNextUpdateFeed();
+  void slotNextUpdateFeed(bool finish);
   void slotRecountCategoryCounts();
   void slotRecountFeedCounts(int feedId, bool updateViewport = true);
   void slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
