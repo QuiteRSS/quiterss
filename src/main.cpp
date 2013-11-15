@@ -108,8 +108,8 @@ int main(int argc, char **argv)
 #endif
 
 #if defined(QT_NO_DEBUG_OUTPUT)
-  qInstallMsgHandler(LogFile::msgHandler);
-  qCritical() << "Start application!";
+//  qInstallMsgHandler(LogFile::msgHandler);
+  qWarning() << "Start application!";
 #endif
 
   QString styleActionStr = settings->value(
