@@ -4,17 +4,17 @@
 <!---------------------------------------------------------------------------->
 <p><b>Vervion 0.13.3+</b> (15 Nov 2013)
 <ul>
-<li>Main: Increase application perfomance</li>
+<li>Main: Increase application performance</li>
 <li>Main: Feed filter is case-insensitive now</li>
 
 <li>Added: Support for feeds with uTorrent-authorization</li>
 <li>Added: Feed filter "Show broken feeds"</li>
 <li>Added: Application option "Default page zoom"</li>
+<li>Added: User filters. Conditions for categories has been added</li>
 <li>Added: More shortcuts</li>
+<li>Added: More color settings</li>
 
 <li>Changed: GUI. Visual tweaks</li>
-<li>Changed: More color settings</li>
-<li>Changed: User filters. Conditions for categories has been added</li>
 
 <li>Fixed: Application crash</li>
 <li>Fixed: Application crash while using JavaScript (Windows)</li>
@@ -25,7 +25,7 @@
 <li>Fixed: Autoreplacement "http://" on adding feed</li>
 <li>Fixed: Confuse options names "Don't delete starred news", "Don't delete labeled news"</li>
 <li>Fixed: User filters with apostrophe didn't work</li>
-<li>Fixed: Files extention in save/open dialogs</li>
+<li>Fixed: Files extension in save/open dialogs</li>
 <li>Fixed: Startup. Request file storing path, if specified path isn't found</li>
 </ul>
 <!---------------------------------------------------------------------------->
