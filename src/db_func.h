@@ -35,10 +35,4 @@ extern QString kDbVersion;
  *---------------------------------------------------------------------------*/
 QString initDB(const QString &dbFileName, QSettings *settings);
 
-/** @brief Apply user filters
- * @param feedId - Feed Id
- * @param filterId - Id of particular filter
- *---------------------------------------------------------------------------*/
-void setUserFilter(QSqlDatabase db, int feedId, int filterId = -1);
-
 #endif

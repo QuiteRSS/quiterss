@@ -76,7 +76,10 @@ class ParseObject : public QObject
 {
   Q_OBJECT
 public:
+  static void setUserFilter(QSqlDatabase db, int feedId, int filterId = -1);
+
   explicit ParseObject(QObject *parent);
+
 
 public slots:
   void parseXml(QByteArray data, int feedId,

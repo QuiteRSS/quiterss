@@ -18,7 +18,7 @@
 #include "newsfiltersdialog.h"
 #include "filterrulesdialog.h"
 #include "rsslisting.h"
-#include "db_func.h"
+#include "parseobject.h"
 
 NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
   : Dialog(parent)
@@ -367,6 +367,8 @@ void NewsFiltersDialog::slotCurrentItemChanged(QTreeWidgetItem *current,
 
 void NewsFiltersDialog::applyFilter()
 {
+  QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+
   int filterRow = filtersTree_->currentIndex().row();
   int filterId = filtersTree_->topLevelItem(filterRow)->text(0).toInt();
   int feedId = -1;
@@ -379,7 +381,7 @@ void NewsFiltersDialog::applyFilter()
   if (q.next()) {
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     foreach (QString strIdFeed, strIdFeeds) {
-      setUserFilter(rssl_->db_, strIdFeed.toInt(), filterId);
+      ParseObject::setUserFilter(rssl_->db_, strIdFeed.toInt(), filterId);
       NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
@@ -389,6 +391,8 @@ void NewsFiltersDialog::applyFilter()
     rssl_->slotUpdateNews();
   rssl_->slotUpdateStatus(feedId);
   rssl_->recountCategoryCounts();
+
+  QApplication::restoreOverrideCursor();
 }
 
 void NewsFiltersDialog::slotItemChanged(QTreeWidgetItem *item, int column)
