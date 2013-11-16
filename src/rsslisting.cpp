@@ -7111,6 +7111,7 @@ void RSSListing::showCustomizeToolbarDlg(QAction *action)
   if (action->objectName() == "customizeFeedsToolbarAct") {
     toolbar = feedsToolBar_;
   } else if (action->objectName() == "customizeNewsToolbarAct") {
+    if (currentNewsTab->type_ == NewsTabWidget::TabTypeWeb) return;
     if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
     toolbar = currentNewsTab->newsToolBar_;
   }
