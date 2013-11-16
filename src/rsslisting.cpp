@@ -7158,6 +7158,7 @@ void RSSListing::slotOpenHomeFeed()
 {
   QModelIndex index = feedsTreeView_->currentIndex();
   if (!index.isValid()) return;
+  index = feedsProxyModel_->mapToSource(index);
 
   QString homePage = feedsTreeModel_->dataField(index, "htmlUrl").toString();
   QDesktopServices::openUrl(homePage);
