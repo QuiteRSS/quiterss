@@ -240,6 +240,9 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     if (1 == QSqlTableModel::index(index.row(), fieldIndex("new")).data(Qt::EditRole).toInt())
       return QColor(newNewsTextColor_);
 
+    if (0 == QSqlTableModel::index(index.row(), fieldIndex("read")).data(Qt::EditRole).toInt())
+      return QColor(unreadNewsTextColor_);
+
     return QColor(textColor_);
   }
   return QSqlTableModel::data(index, role);

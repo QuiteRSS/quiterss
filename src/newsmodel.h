@@ -48,6 +48,7 @@ public:
   bool simplifiedDateTime_;
   QString textColor_;
   QString newNewsTextColor_;
+  QString unreadNewsTextColor_;
   QString focusedNewsTextColor_;
   QString focusedNewsBGColor_;
 

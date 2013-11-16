@@ -187,6 +187,7 @@ public:
   QString newsListTextColor_;
   QString newsListBackgroundColor_;
   QString newNewsTextColor_;
+  QString unreadNewsTextColor_;
   QString focusedNewsTextColor_;
   QString focusedNewsBGColor_;
   QString linkColor_;

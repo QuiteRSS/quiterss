@@ -1518,6 +1518,9 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem.clear();
   treeItem << tr("Text color of new news ");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
+  treeItem.clear();
+  treeItem << tr("Text color of unread news ");
+  colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
 
   colorsTree_->setCurrentItem(colorsTree_->topLevelItem(0));
 
@@ -1822,21 +1825,26 @@ void OptionsDialog::slotColorReset()
   QString colorName;
   int row = colorsTree_->currentIndex().row();
   switch (row) {
-  case 0: case 2: case 4: case 15:
+  case 1: case 3: case 5:
+    colorName = "";
+    break;
+  case 6: case 7:
+    colorName = "#0066CC";
+    break;
+  case 8: case 9:
+    colorName = "#666666";
+    break;
+  case 10:
+    colorName = "#000000";
+    break;
+  case 11: case 12:
+    colorName = "#FFFFFF";
+    break;
+  case 13: case 14:
+    colorName = qApp->palette().brush(QPalette::Link).color().name();
+    break;
+  default:
     colorName = qApp->palette().brush(QPalette::WindowText).color().name();
-    break;
-  case 1: case 3: case 5: colorName = "";
-    break;
-  case 6: case 7: colorName = "#0066CC";
-    break;
-  case 8: case 9: colorName = "#666666";
-    break;
-  case 10: colorName = "#000000";
-    break;
-  case 11: case 12: colorName = "#FFFFFF";
-    break;
-  case 13: case 14: colorName = qApp->palette().brush(QPalette::Link).color().name();
-    break;
   }
   QPixmap pixmapColor(14, 14);
   if (colorName.isEmpty())

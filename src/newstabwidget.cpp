@@ -420,6 +420,7 @@ void NewsTabWidget::setSettings(bool newTab)
       newsModel_->textColor_ = rssl_->newsListTextColor_;
       newsView_->setStyleSheet(QString("#newsView_ {background: %1;}").arg(rssl_->newsListBackgroundColor_));
       newsModel_->newNewsTextColor_ = rssl_->newNewsTextColor_;
+      newsModel_->unreadNewsTextColor_ = rssl_->unreadNewsTextColor_;
       newsModel_->focusedNewsTextColor_ = rssl_->focusedNewsTextColor_;
       newsModel_->focusedNewsBGColor_ = rssl_->focusedNewsBGColor_;
 

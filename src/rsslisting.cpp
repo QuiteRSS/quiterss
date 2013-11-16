@@ -2133,6 +2133,7 @@ void RSSListing::readSettings()
   newsListTextColor_ = settings_->value("newsListTextColor", windowTextColor).toString();
   newsListBackgroundColor_ = settings_->value("newsListBackgroundColor", "").toString();
   newNewsTextColor_ = settings_->value("newNewsTextColor", windowTextColor).toString();
+  unreadNewsTextColor_ = settings_->value("unreadNewsTextColor", windowTextColor).toString();
   focusedNewsTextColor_ = settings_->value("focusedNewsTextColor", windowTextColor).toString();
   focusedNewsBGColor_ = settings_->value("focusedNewsBGColor", "").toString();
   linkColor_ = settings_->value("linkColor", "#0066CC").toString();
@@ -2331,6 +2332,7 @@ void RSSListing::writeSettings()
   settings_->setValue("newsListTextColor", newsListTextColor_);
   settings_->setValue("newsListBackgroundColor", newsListBackgroundColor_);
   settings_->setValue("newNewsTextColor", newNewsTextColor_);
+  settings_->setValue("unreadNewsTextColor", unreadNewsTextColor_);
   settings_->setValue("focusedNewsTextColor", focusedNewsTextColor_);
   settings_->setValue("focusedNewsBGColor", focusedNewsBGColor_);
   settings_->setValue("linkColor", linkColor_);
@@ -3373,6 +3375,9 @@ void RSSListing::showOptionDlg(int index)
   pixmapColor.fill(newNewsTextColor_);
   optionsDialog_->colorsTree_->topLevelItem(15)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(15)->setText(1, newNewsTextColor_);
+  pixmapColor.fill(unreadNewsTextColor_);
+  optionsDialog_->colorsTree_->topLevelItem(16)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(16)->setText(1, unreadNewsTextColor_);
 
   optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
@@ -3718,6 +3723,7 @@ void RSSListing::showOptionDlg(int index)
   feedsTreeModel_->feedWithNewNewsColor_ = optionsDialog_->colorsTree_->topLevelItem(13)->text(1);
   feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(14)->text(1);
   newNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(15)->text(1);
+  unreadNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(16)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;
