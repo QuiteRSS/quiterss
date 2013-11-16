@@ -7003,7 +7003,7 @@ void RSSListing::nextUnreadNews()
     if (feedsTreeView_->currentIndex().isValid())
       indexPrevUnread = feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (!indexPrevUnread.isValid()) {
-      QModelIndex index = feedsProxyModel_->index(-1, "text");
+      QModelIndex index = feedsProxyModel_->index(0, "text");
       indexPrevUnread = feedsTreeView_->indexNextUnread(index, 1);
     }
     if (indexPrevUnread.isValid()) {
@@ -7013,6 +7013,27 @@ void RSSListing::nextUnreadNews()
         openingFeedAction_ = 3;
       feedsTreeView_->setCurrentIndex(indexPrevUnread);
       slotFeedClicked(indexPrevUnread);
+
+      if (tabBar_->currentIndex() != TAB_WIDGET_PERMANENT) {
+        QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("read"));
+        QModelIndexList indexList;
+        if ((newsView_->header()->sortIndicatorOrder() == Qt::DescendingOrder) &&
+            (openingFeedAction_ != 4))
+          indexList = newsModel_->match(index, Qt::EditRole, 0, -1);
+        else
+          indexList = newsModel_->match(index, Qt::EditRole, 0);
+
+        if (!indexList.isEmpty()) newsRow = indexList.last().row();
+
+        // Focus feed news that displayed before
+        newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+        if (newsRow == -1) newsView_->verticalScrollBar()->setValue(newsRow);
+
+        if (openNewsWebViewOn_) {
+          currentNewsTab->slotNewsViewSelected(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
+        }
+      }
+
       openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
     }
     newsView_->setCurrentIndex(newsView_->currentIndex());
