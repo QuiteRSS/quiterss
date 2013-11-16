@@ -88,6 +88,8 @@ void FeedsTreeView::refresh()
 
 bool FeedsTreeView::isFolder(const QModelIndex &index) const
 {
+  if (!index.isValid())
+    return false;
   return sourceModel_->isFolder(((FeedsProxyModel*)model())->mapToSource(index));
 }
 
