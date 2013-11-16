@@ -27,6 +27,7 @@
 UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
                                  QWidget *parent, bool show)
   : Dialog(parent)
+  , lang_(lang)
   , settings_(settings)
   , showDialog_(show)
 {
@@ -66,7 +67,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     renderStatistics();
 
     QString urlHistory;
-    if (lang.contains("ru", Qt::CaseInsensitive))
+    if (lang_.contains("ru", Qt::CaseInsensitive))
       urlHistory = "https://quite-rss.googlecode.com/hg/HISTORY_RU";
     else urlHistory = "https://quite-rss.googlecode.com/hg/HISTORY_EN";
     historyReply_ = networkManager_->get(QNetworkRequest(QUrl(urlHistory)));
@@ -116,11 +117,16 @@ void UpdateAppDialog::finishUpdatesChecking()
           tr("You already have the latest version") +
           "</a>";
     } else {
+      QString urlDownloads;
+      if (lang_.contains("ru", Qt::CaseInsensitive))
+        urlDownloads = "http://quiterss.org/ru/download";
+      else urlDownloads = "http://quiterss.org/en/download";
+
       str =
           "<a><font color=#FF8040>" +
           tr("A new version of QuiteRSS is available!") + "</a>"
           "<p>" + QString("<a href=\"%1\">%2</a>").
-          arg("https://code.google.com/p/quite-rss/downloads/list").
+          arg(urlDownloads).
           arg(tr("Click here to go to the download page"));
       newVersion = curVersion;
     }
