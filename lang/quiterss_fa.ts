@@ -691,7 +691,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
         <source>Status:</source>
-        <translation type="unfinished"/>
+        <translation>وضعيت:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
@@ -711,7 +711,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
         <source>Good</source>
-        <translation type="unfinished"/>
+        <translation>خوب</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
@@ -1152,7 +1152,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"/>
+        <translation>اجرای فیلتر</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="257"/>
@@ -1326,7 +1326,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1293"/>
         <source>Comments</source>
-        <translation type="unfinished"/>
+        <translation>نظرات</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1333"/>
@@ -1463,7 +1463,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>ذخیره پایگاه داده ذخیره شده در حافظه در فایل هر</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -1568,17 +1568,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="424"/>
         <source>Timeout request:</source>
-        <translation type="unfinished"/>
+        <translation>درخواست تایم اوت</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="428"/>
         <source>Number repeats:</source>
-        <translation type="unfinished"/>
+        <translation>تعداد تکرارها:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="431"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>گزینه های درخواست شبکه هنگام بروزرسانی فیدها،برنامه باید ریستارت شود</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="449"/>
@@ -1617,7 +1617,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>زوم پیش فرض در صفحات</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
@@ -2042,7 +2042,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News text color</source>
-        <translation type="unfinished"/>
+        <translation>رنگ متن اخبار</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1507"/>
@@ -2067,72 +2067,72 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Text color of new news </source>
-        <translation type="unfinished"/>
+        <translation>رنگ متن اخبار جدید</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1555"/>
         <source>Standard</source>
-        <translation type="unfinished"/>
+        <translation>استاندارد</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1557"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>ثابت شده</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1559"/>
         <source>Serif</source>
-        <translation type="unfinished"/>
+        <translation>Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1561"/>
         <source>Sans Serif</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1563"/>
         <source>Cursive</source>
-        <translation type="unfinished"/>
+        <translation>خط شکسته</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1565"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>فانتزی</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1580"/>
         <source>Default font size</source>
-        <translation type="unfinished"/>
+        <translation>اندازه پیش فرض فونت</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1582"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>اندازه فونت ثابت شده</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1584"/>
         <source>Minimum font size</source>
-        <translation type="unfinished"/>
+        <translation>حداقل اندازه فونت</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1586"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>حداقل اندازه منطقی فونت</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1590"/>
         <source>Font families:</source>
-        <translation type="unfinished"/>
+        <translation>خانواده فونت:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1592"/>
         <source>Font sizes:</source>
-        <translation type="unfinished"/>
+        <translation>اندازه فونت:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1602"/>
         <source>Fonts Browser</source>
-        <translation type="unfinished"/>
+        <translation>مرورگر فونت</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1603"/>
@@ -2374,7 +2374,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Number requests:</source>
-        <translation type="unfinished"/>
+        <translation>تعداد درخواست ها:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="862"/>
@@ -2874,12 +2874,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>اخبار به بالای صفحه</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>اخبار به پایین صفحه</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
@@ -3296,12 +3296,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="108"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>خطا</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="108"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>درایور اِس کیولایت یافت نشد!</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2509"/>
@@ -3311,12 +3311,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="2588"/>
         <source>OPML-Files (*.%1 *.%2)</source>
-        <translation type="unfinished"/>
+        <translation>فایل های اُ پی اِم اِل (*.%1 *.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2617"/>
         <source>OPML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>فایل های اُ پی اِم اِل (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2877"/>
@@ -3418,7 +3418,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"/>
+        <translation>نمایش فیدهایی که کار نمیکند</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -3633,7 +3633,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4696"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"/>
+        <translation>نمایش منوی برچسب ها</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4698"/>
@@ -3693,7 +3693,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>تنظیمات صفحه:برچسب ها</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4724"/>
@@ -3723,12 +3723,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>HTML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>فایل های اِچ تی اِم اِل (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Text files (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>فایل های متنی (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="97"/>
@@ -3776,22 +3776,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>سرور نیاز به مجوز دارد!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>پاسخ سرور:یافت نشد!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>خطای تغییر مسیر!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="298"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>درخواست تایم اوت!</translation>
     </message>
 </context>
 <context>

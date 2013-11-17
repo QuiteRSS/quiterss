@@ -2863,12 +2863,12 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Posunúť stránku správ vyššie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Posunúť stránku správ nižšie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
@@ -3015,7 +3015,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="5448"/>
         <source>Check for updates</source>
-        <translation>Skontrolovať aktualizácie</translation>
+        <translation>Kontrola aktualizácií</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5449"/>
@@ -3788,7 +3788,7 @@ Staré správy sa môžu znova objaviť</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="37"/>
         <source>Check for Updates</source>
-        <translation>Skontrolovať aktualizácie</translation>
+        <translation>Kontrola aktualizácií</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="42"/>

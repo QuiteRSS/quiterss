@@ -1152,7 +1152,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"/>
+        <translation>Lọc dữ liệu</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="257"/>
@@ -1463,7 +1463,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>Lưu cơ sở dữ liệu trong bộ nhớ vào tập tin sau mỗi</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -1617,7 +1617,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>Mặc định phóng to trên các trang:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
@@ -2042,7 +2042,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News text color</source>
-        <translation type="unfinished"/>
+        <translation>Màu sắc hiển thị của tin tức</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1507"/>
@@ -2067,7 +2067,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Text color of new news </source>
-        <translation type="unfinished"/>
+        <translation>Màu sắc đoạn văn bản hiển thị tin tức mới</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1555"/>
@@ -2374,7 +2374,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Number requests:</source>
-        <translation type="unfinished"/>
+        <translation>Số lượng các yêu cầu:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="862"/>
@@ -2874,12 +2874,12 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Di chuyển trang tin lên trên</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Di chuyển trang tin xuống dưới</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
@@ -3311,12 +3311,12 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="2588"/>
         <source>OPML-Files (*.%1 *.%2)</source>
-        <translation type="unfinished"/>
+        <translation>OPML-Files (*.%1 *.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2617"/>
         <source>OPML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>OPML-Files (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2877"/>
@@ -3418,7 +3418,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Hiển thị các feed không hoạt động</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -3633,7 +3633,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4696"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"/>
+        <translation>Hiển thị phần nhãn tên của menu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4698"/>
@@ -3693,7 +3693,7 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>Trang thiết lập: Nhãn dữ liệu</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4724"/>
@@ -3723,12 +3723,12 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>HTML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>HTML-Files (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Text files (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>Tập tin văn bản (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="97"/>
@@ -3776,22 +3776,22 @@ không được tìm thấy!</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>Phía máy chủ yêu cầu cần có xác nhận!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>Phản hồi từ phía máy chủ: Không tìm thấy!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>Gặp lỗi khi chuyển tiếp!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="298"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Yêu cầu đã hết hạn!</translation>
     </message>
 </context>
 <context>
