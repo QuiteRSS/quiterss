@@ -21,6 +21,49 @@ LogFile::LogFile()
 {
 }
 
+#ifdef HAVE_QT5
+void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
+{
+  QFile file;
+  file.setFileName(QCoreApplication::applicationDirPath() + "/debug.log");
+  QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
+
+  if (file.exists() && file.size() < maxLogFileSize) {
+    if (!msg.contains("Start application!"))
+      openMode |= QIODevice::Append;
+  }
+
+  file.open(openMode);
+
+  QTextStream stream;
+  stream.setDevice(&file);
+  stream.setCodec("UTF-8");
+
+  if (file.isOpen()) {
+    QString currentDateTime = QDateTime::currentDateTime().toString("dd.MM.yyyy hh:mm:ss.zzz");
+    switch (type) {
+    case QtDebugMsg:
+      stream << currentDateTime << " DEBUG: " << msg << "\n";
+      break;
+    case QtWarningMsg:
+      stream << currentDateTime << " WARNING: " << msg << "\n";
+      break;
+    case QtCriticalMsg:
+      stream << currentDateTime << " CRITICAL: " << msg << "\n";
+      break;
+    case QtFatalMsg:
+      stream << currentDateTime << " FATAL: " << msg << "\n";
+      qApp->exit(EXIT_FAILURE);
+    default:
+      break;
+    }
+
+    stream.flush();
+    file.flush();
+    file.close();
+  }
+}
+#else
 void LogFile::msgHandler(QtMsgType type, const char *msg)
 {
   QFile file;
@@ -62,4 +105,4 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
     file.close();
   }
 }
-
+#endif
