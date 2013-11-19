@@ -5397,14 +5397,20 @@ void RSSListing::slotIconFeedUpdate(int feedId, QByteArray faviconData)
     currentNewsTab->newsView_->viewport()->update();
 }
 // ----------------------------------------------------------------------------
+void RSSListing::slotPlaySound(const QString &soundPath)
+{
+  qCritical() << soundPath;
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+  QSound::play(soundPath);
+#else
+  QProcess::startDetached(QString("play %1").arg(soundPath));
+#endif
+}
+
 void RSSListing::slotPlaySoundNewNews()
 {
   if (!playSoundNewNews_ && soundNewNews_) {
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-    QSound::play(soundNotifyPath_);
-#else
-    QProcess::startDetached(QString("play %1").arg(soundNotifyPath_));
-#endif
+    slotPlaySound(soundNotifyPath_);
     playSoundNewNews_ = true;
   }
 }
@@ -7459,4 +7465,9 @@ void RSSListing::addOurFeed()
   q.exec();
 
   feedsModelReload();
+}
+
+void RSSListing::runUserFilter(int feedId, int filterId)
+{
+  updateFeeds_->parseObject_->runUserFilter(feedId, filterId);
 }

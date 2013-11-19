@@ -86,6 +86,8 @@ public:
 
   void sqlQueryExec(QString query);
 
+  void runUserFilter(int feedId, int filterId);
+
   static QStringList nameLabels() {
     QStringList nameLabels;
     nameLabels << "Important" << "Work" << "Personal"
@@ -268,6 +270,7 @@ public slots:
   void slotSetValue(int value);
   void showMessageStatusBar(QString message, int timeout = 0);
   void slotCountsStatusBar(int unreadCount, int allCount);
+  void slotPlaySound(const QString &soundPath);
   void showOptionDlg(int index = -1);
   void receiveMessage(const QString&);
   void slotPlaceToTray();

@@ -223,7 +223,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   int newCount = 0;
   if (feedChanged_) {
-    setUserFilter(db_, parseFeedId_);
+    runUserFilter(parseFeedId_);
     qApp->processEvents();
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
   }
@@ -703,9 +703,9 @@ QString ParseObject::parseDate(const QString &dateString, const QString &urlStri
  * @param feedId - Feed Id
  * @param filterId - Id of particular filter
  *---------------------------------------------------------------------------*/
-void ParseObject::setUserFilter(QSqlDatabase db, int feedId, int filterId)
+void ParseObject::runUserFilter(int feedId, int filterId)
 {
-  QSqlQuery q(db);
+  QSqlQuery q(db_);
   bool onlyNew = true;
 
   if (filterId != -1) {
@@ -728,8 +728,10 @@ void ParseObject::setUserFilter(QSqlDatabase db, int feedId, int filterId)
     QString qStr1;
     QString qStr2;
     QString str;
+    QString whereStr;
+    QStringList soundList;
 
-    QSqlQuery q1(db);
+    QSqlQuery q1(db_);
     q1.exec(QString("SELECT action, params FROM filterActions "
                     "WHERE idFilter=='%1'").arg(filterId));
     while (q1.next()) {
@@ -751,20 +753,25 @@ void ParseObject::setUserFilter(QSqlDatabase db, int feedId, int filterId)
       case 3: // action -> Add Label
         qStr2.append(QString("%1,").arg(q1.value(1).toInt()));
         break;
+      case 4: // action -> Play Sound
+        soundList.append(q1.value(1).toString());
+        break;
       }
     }
-
-    if (qStr1.isEmpty() && qStr2.isEmpty())
-      continue;
 
     if (!qStr2.isEmpty()) {
       if (!qStr1.isNull()) qStr1.append(",");
       qStr1.append(QString(" label=',%1'").arg(qStr2));
     }
-    qStr.append(qStr1);
-    qStr.append(QString(" WHERE feedId='%1' AND deleted=0").arg(feedId));
 
-    if (onlyNew) qStr.append(" AND new=1");
+    if (qStr1.isEmpty())
+      qStr.clear();
+    else
+      qStr.append(qStr1);
+
+    whereStr = QString(" WHERE feedId='%1' AND deleted=0").arg(feedId);
+
+    if (onlyNew) whereStr.append(" AND new=1");
 
     qStr2.clear();
     switch (filterType) {
@@ -777,7 +784,7 @@ void ParseObject::setUserFilter(QSqlDatabase db, int feedId, int filterId)
     }
 
     if ((filterType == 1) || (filterType == 2)) {
-      qStr.append(" AND ( ");
+      whereStr.append(" AND ( ");
       qStr1.clear();
 
       q1.exec(QString("SELECT field, condition, content FROM filterConditions "
@@ -888,13 +895,30 @@ void ParseObject::setUserFilter(QSqlDatabase db, int feedId, int filterId)
           break;
         }
       }
-      qStr.append(qStr1).append(")");
+      whereStr.append(qStr1).append(")");
     }
-    if (!q1.exec(qStr)) {
-      qCritical() << __PRETTY_FUNCTION__ << __LINE__
-                  << "q.lastError(): " << q1.lastError().text();
-      qCritical() << qStr;
+
+    if (!qStr.isEmpty()) {
+      qStr.append(whereStr);
+      if (!q1.exec(qStr)) {
+        qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                    << "q.lastError(): " << q1.lastError().text();
+      }
     }
+
+    if (!soundList.isEmpty()) {
+      qStr = "SELECT * FROM news";
+      qStr.append(whereStr);
+      if (q1.exec(qStr)) {
+        if (q1.first()) {
+          emit signalPlaySound(soundList.at(0));
+        }
+      } else {
+        qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                    << "q.lastError(): " << q1.lastError().text();
+      }
+    }
+
   }
 }
 

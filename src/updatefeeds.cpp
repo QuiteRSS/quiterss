@@ -118,6 +118,9 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)),
             Qt::QueuedConnection);
 
+    connect(parseObject_, SIGNAL(signalPlaySound(QString)),
+            parent, SLOT(slotPlaySound(QString)));
+
     connect(parent, SIGNAL(signalNextUpdate(bool)),
             updateObject_, SLOT(slotNextUpdateFeed(bool)));
     connect(updateObject_, SIGNAL(signalUpdateModel(bool)),

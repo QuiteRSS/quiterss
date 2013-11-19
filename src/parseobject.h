@@ -24,6 +24,7 @@
 #include <QQueue>
 #include <QObject>
 #include <QUrl>
+#include <QSound>
 
 struct FeedItemStruct {
   QString title;
@@ -76,20 +77,19 @@ class ParseObject : public QObject
 {
   Q_OBJECT
 public:
-  static void setUserFilter(QSqlDatabase db, int feedId, int filterId = -1);
-
   explicit ParseObject(QObject *parent);
-
 
 public slots:
   void parseXml(QByteArray data, int feedId,
                 QDateTime dtReply, QString codecName);
+  void runUserFilter(int feedId, int filterId = -1);
 
 signals:
   void signalReadyParse(const QByteArray &xml, const int &feedId,
                         const QDateTime &dtReply, const QString &codecName);
   void signalFinishUpdate(int feedId, bool changed, int newCount, QString status);
   void feedCountsUpdate(FeedCountStruct counts);
+  void signalPlaySound(const QString &soundPath);
 
 private slots:
   void getQueuedXml();

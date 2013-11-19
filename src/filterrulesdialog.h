@@ -144,11 +144,32 @@ public:
     comboBox1_ = new QComboBox(this);
     itemList /*<< tr("Move News to")  << tr("Copy News to")*/
              << tr("Mark News as Read") << tr("Add Star")
-             << tr("Delete") << tr("Add Label");
+             << tr("Delete") << tr("Add Label")
+             << tr("Play a Sound") << tr("Show News in Notifier");
     comboBox1_->addItems(itemList);
 
     comboBox2_ = new QComboBox(this);
     comboBox2_->setVisible(false);
+
+    soundPathEdit_ = new LineEdit(this);
+    selectionSound_ = new QToolButton(this);
+    selectionSound_->setText("...");
+    selectionSound_->setToolTip(tr("Browse"));
+    QHBoxLayout *soundLayout = new QHBoxLayout();
+    soundLayout->setMargin(0);
+    soundLayout->addWidget(soundPathEdit_, 1);
+    soundLayout->addWidget(selectionSound_);
+    soundWidget_ = new QWidget(this);
+    soundWidget_->setLayout(soundLayout);
+    soundWidget_->setVisible(false);
+
+    colorButton_ = new QToolButton(this);
+    colorButton_->setIconSize(QSize(16, 16));
+    colorButton_->setToolTip("#000000");
+    QPixmap pixmap(14, 14);
+    pixmap.fill(QColor("#000000"));
+    colorButton_->setIcon(pixmap);
+    colorButton_->setVisible(false);
 
     addButton_ = new QToolButton(this);
     addButton_->setIcon(QIcon(":/images/addT"));
@@ -165,6 +186,8 @@ public:
     buttonsLayout->setSpacing(5);
     buttonsLayout->addWidget(comboBox1_);
     buttonsLayout->addWidget(comboBox2_);
+    buttonsLayout->addWidget(soundWidget_, 1);
+    buttonsLayout->addWidget(colorButton_);
     buttonsLayout->addStretch();
     buttonsLayout->addWidget(addButton_);
     buttonsLayout->addWidget(deleteButton_);
@@ -174,10 +197,17 @@ public:
     connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteFilterAction()));
     connect(comboBox1_, SIGNAL(currentIndexChanged(int)),
             this, SLOT(currentIndexChanged(int)));
+    connect(selectionSound_, SIGNAL(clicked()), this, SLOT(selectionSound()));
+    connect(colorButton_, SIGNAL(clicked()), this, SLOT(selectColorText()));
   }
 
   QComboBox *comboBox1_;
   QComboBox *comboBox2_;
+  QWidget *soundWidget_;
+  LineEdit *soundPathEdit_;
+  QToolButton *selectionSound_;
+  QToolButton *colorButton_;
+
   QToolButton *addButton_;
 
 signals:
@@ -193,6 +223,43 @@ private slots:
   {
     if (index == 3) comboBox2_->setVisible(true);
     else comboBox2_->setVisible(false);
+    if (index == 4) soundWidget_->setVisible(true);
+    else soundWidget_->setVisible(false);
+    if (index == 5) colorButton_->setVisible(true);
+    else colorButton_->setVisible(false);
+  }
+
+  void selectionSound()
+  {
+    QString path;
+
+    QFileInfo file(soundPathEdit_->text());
+    if (file.isFile()) path = soundPathEdit_->text();
+    else path = file.path();
+
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Open File..."),
+                                                    path, "*.wav");
+    if (!fileName.isEmpty())
+      soundPathEdit_->setText(fileName);
+  }
+
+  void selectColorText()
+  {
+    QColorDialog *colorDialog = new QColorDialog(this);
+
+    if (colorDialog->exec() == QDialog::Rejected) {
+      delete colorDialog;
+      return;
+    }
+
+    QColor color = colorDialog->selectedColor();
+    delete colorDialog;
+
+    colorButton_->setToolTip(color.name());
+    QPixmap pixmap(14, 14);
+    pixmap.fill(color);
+    colorButton_->setIcon(pixmap);
   }
 
 private:
