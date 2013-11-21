@@ -24,7 +24,6 @@
 #include <QQueue>
 #include <QObject>
 #include <QUrl>
-#include <QSound>
 
 struct FeedItemStruct {
   QString title;

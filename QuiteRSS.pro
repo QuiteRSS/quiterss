@@ -51,7 +51,7 @@ isEqual(QT_MAJOR_VERSION, 5) {
   QT += widgets webkitwidgets network xml printsupport sql multimedia
   DEFINES += HAVE_QT5
 } else {
-  QT += core gui network xml webkit sql
+  QT += core gui network xml webkit sql phonon
 }
 
 unix:!mac:DEFINES += HAVE_X11

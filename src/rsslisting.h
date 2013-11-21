@@ -20,8 +20,12 @@
 
 #ifdef HAVE_QT5
 #include <QtWidgets>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #else
 #include <QtGui>
+#include <Phonon/AudioOutput>
+#include <Phonon/MediaObject>
 #endif
 #include <QtSql>
 #include <QtWebKit>
@@ -30,7 +34,6 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
-#include <QSound>
 
 #include "categoriestreewidget.h"
 #include "cookiejar.h"
@@ -335,6 +338,10 @@ private slots:
                                  QList<int> readList, QStringList labelList);
   void slotFeedsViewportUpdate();
   void slotPlaySoundNewNews();
+
+#ifdef HAVE_QT5
+  void mediaStatusChanged(const QMediaPlayer::MediaStatus &status);
+#endif
 
   void slotShowAboutDlg();
 
@@ -666,6 +673,14 @@ private:
 
   int openingFeedAction_;
   bool openNewsWebViewOn_;
+
+#ifdef HAVE_QT5
+  QMediaPlayer *mediaPlayer_;
+  QMediaPlaylist *playlist_;
+#else
+  Phonon::MediaObject *mediaPlayer_;
+  Phonon::AudioOutput *audioOutput_;
+#endif
 
   bool soundNewNews_;
   QString soundNotifyPath_;

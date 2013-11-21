@@ -81,6 +81,7 @@ RSSListing::RSSListing(QSettings *settings,
   , closeApp_(false)
   , newsView_(NULL)
   , updateTimeCount_(0)
+  , mediaPlayer_(NULL)
   , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
@@ -5399,13 +5400,43 @@ void RSSListing::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 // ----------------------------------------------------------------------------
 void RSSListing::slotPlaySound(const QString &soundPath)
 {
-  qCritical() << soundPath;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
-  QSound::play(soundPath);
+#ifdef HAVE_QT5
+  if (mediaPlayer_ == NULL) {
+    playlist_ = new QMediaPlaylist(this);
+    mediaPlayer_ = new QMediaPlayer(this);
+    mediaPlayer_->setPlaylist(playlist_);
+    connect(mediaPlayer_, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),
+            this, SLOT(mediaStatusChanged(QMediaPlayer::MediaStatus)));
+  }
+
+  playlist_->addMedia(QUrl::fromLocalFile(soundPath));
+  if (playlist_->currentIndex() == -1) {
+    playlist_->setCurrentIndex(1);
+    mediaPlayer_->play();
+  }
 #else
-  QProcess::startDetached(QString("play %1").arg(soundPath));
+  if (mediaPlayer_ == NULL) {
+    mediaPlayer_ = new Phonon::MediaObject(this);
+    audioOutput_ = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+    Phonon::createPath(mediaPlayer_, audioOutput_);
+  }
+
+  if (mediaPlayer_->state() != Phonon::PausedState)
+    mediaPlayer_->enqueue(soundPath);
+  else
+    mediaPlayer_->setCurrentSource(soundPath);
+  mediaPlayer_->play();
 #endif
 }
+
+#ifdef HAVE_QT5
+void RSSListing::mediaStatusChanged(const QMediaPlayer::MediaStatus &status)
+{
+  if (status == QMediaPlayer::EndOfMedia) {
+    playlist_->removeMedia(0);
+  }
+}
+#endif
 
 void RSSListing::slotPlaySoundNewNews()
 {
@@ -5414,6 +5445,7 @@ void RSSListing::slotPlaySoundNewNews()
     playSoundNewNews_ = true;
   }
 }
+
 // ----------------------------------------------------------------------------
 void RSSListing::showNewsFiltersDlg(bool newFilter)
 {
