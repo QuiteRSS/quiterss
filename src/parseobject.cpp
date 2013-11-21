@@ -730,6 +730,7 @@ void ParseObject::runUserFilter(int feedId, int filterId)
     QString str;
     QString whereStr;
     QStringList soundList;
+    QStringList colorList;
 
     QSqlQuery q1(db_);
     q1.exec(QString("SELECT action, params FROM filterActions "
@@ -755,6 +756,9 @@ void ParseObject::runUserFilter(int feedId, int filterId)
         break;
       case 4: // action -> Play Sound
         soundList.append(q1.value(1).toString());
+        break;
+      case 5: // action -> Show News in Notifier
+        colorList.append(q1.value(1).toString());
         break;
       }
     }
@@ -912,6 +916,19 @@ void ParseObject::runUserFilter(int feedId, int filterId)
       if (q1.exec(qStr)) {
         if (q1.first()) {
           emit signalPlaySound(soundList.at(0));
+        }
+      } else {
+        qCritical() << __PRETTY_FUNCTION__ << __LINE__
+                    << "q.lastError(): " << q1.lastError().text();
+      }
+    }
+
+    if (!colorList.isEmpty()) {
+      qStr = "SELECT id FROM news";
+      qStr.append(whereStr);
+      if (q1.exec(qStr)) {
+        while (q1.next()) {
+          emit signalAddColorList(q1.value(0).toInt(), colorList.at(0));
         }
       } else {
         qCritical() << __PRETTY_FUNCTION__ << __LINE__

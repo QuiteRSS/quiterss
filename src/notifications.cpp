@@ -21,10 +21,11 @@
 
 NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QList<int> cntNewNewsList,
-                                       QWidget *parentWidget, QWidget *parent)
+                                       QList<int> idColorList,
+                                       QStringList colorList,
+                                       QWidget *parentWidget,
+                                       QWidget *parent)
   : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
-  , idFeedList_(idFeedList)
-  , cntNewNewsList_(cntNewNewsList)
 {
   setAttribute(Qt::WA_TranslucentBackground);
   setFocusPolicy(Qt::NoFocus);
@@ -35,7 +36,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   QString fontFamily;
   int fontSize;
 
-  if (idFeedList_.count()) {
+  if (idFeedList.count()) {
     RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget);
     position_ = rssl_->positionNotify_;
     timeShowNews_ = rssl_->timeShowNewsNotify_;
@@ -52,7 +53,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     fontFamily = options->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
     fontSize = options->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
 
-    cntNewNewsList_ << 100;
+    cntNewNewsList << 100;
   }
 
   iconTitle_ = new QLabel(this);
@@ -131,7 +132,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   setLayout(layout);
 
   int cntAllNews = 0;
-  foreach (int cntNews, cntNewNewsList_) {
+  foreach (int cntNews, cntNewNewsList) {
     cntAllNews = cntAllNews + cntNews;
   }
   textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews));
@@ -141,8 +142,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   QSqlQuery q;
   int cnt = 0;
-  for (int i = 0; i < idFeedList_.count(); i++) {
-    int idFeed = idFeedList_[i];
+  for (int i = 0; i < idFeedList.count(); i++) {
+    int idFeed = idFeedList[i];
     QString qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
         arg(idFeed);
     q.exec(qStr);
@@ -161,7 +162,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         arg(idFeed);
     q.exec(qStr);
     while (q.next()) {
-      if (cntNews >= cntNewNewsList_[i]) break;
+      if (cntNews >= cntNewNewsList[i]) break;
       else cntNews++;
 
       if (cnt >= countShowNews) {
@@ -195,12 +196,21 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
             q.value(1).toString(), Qt::ElideRight, newsItem->titleNews_->sizeHint().width());
       newsItem->titleNews_->setText(titleStr);
       newsItem->titleNews_->setToolTip(q.value(1).toString());
+
+      int index = idColorList.indexOf(q.value(0).toInt());
+      if (index != -1) {
+        newsItem->titleNews_->setStyleSheet(QString(
+                                              "QLabel:hover {color: #1155CC;}"
+                                              "QLabel {color: %1;}").
+                                            arg(colorList.at(index)));
+      }
+
       pageLayout_->addWidget(newsItem);
     }
   }
 
-  if (idFeedList_.isEmpty()) {
-    for (int i = 0; i < cntNewNewsList_.at(0); i++) {
+  if (idFeedList.isEmpty()) {
+    for (int i = 0; i < cntNewNewsList.at(0); i++) {
       if (cnt >= countShowNews) {
         cnt = 1;
         pageLayout_ = new QVBoxLayout();

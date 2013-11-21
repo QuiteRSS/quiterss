@@ -276,6 +276,7 @@ public slots:
   void showMessageStatusBar(QString message, int timeout = 0);
   void slotCountsStatusBar(int unreadCount, int allCount);
   void slotPlaySound(const QString &soundPath);
+  void slotAddColorList(int id, const QString &color);
   void showOptionDlg(int index = -1);
   void receiveMessage(const QString&);
   void slotPlaceToTray();
@@ -402,6 +403,7 @@ private slots:
 
   void showNotification();
   void deleteNotification();
+  void clearNotification();
   void slotOpenNew(int feedId, int newsId);
   void slotOpenNewBrowser(const QUrl &url);
   void slotMarkReadNewsInNotification(int feedId, int newsId, int read);
@@ -710,6 +712,8 @@ private:
   int updateFeedsCount_;
   QList<int> idFeedList_;
   QList<int> cntNewNewsList_;
+  QList<int> idColorList_;
+  QStringList colorList_;
 
   bool reopenFeedStartup_;
   bool openNewTabNextToActive_;

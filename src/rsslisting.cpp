@@ -462,8 +462,7 @@ void RSSListing::slotPlaceToTray()
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray, currentNewsTab);
   if (clearStatusNew_)
     markAllFeedsOld();
-  idFeedList_.clear();
-  cntNewNewsList_.clear();
+  clearNotification();
 
   writeSettings();
   cookieJar_->saveCookies();
@@ -2918,8 +2917,7 @@ void RSSListing::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
 
   // Manage notifications
   if (isActiveWindow()) {
-    idFeedList_.clear();
-    cntNewNewsList_.clear();
+    clearNotification();
   } else if (newCount > 0) {
     int feedIdIndex = idFeedList_.indexOf(feedId);
     if (onlySelectedFeeds_) {
@@ -6077,8 +6075,7 @@ void RSSListing::findText()
 void RSSListing::showNotification()
 {
   if (idFeedList_.isEmpty() || isActiveWindow() || !showNotifyOn_) {
-    idFeedList_.clear();
-    cntNewNewsList_.clear();
+    clearNotification();
     return;
   }
 
@@ -6104,10 +6101,10 @@ void RSSListing::showNotification()
   }
 
   if (notificationWidget) delete notificationWidget;
-  notificationWidget = new NotificationWidget(idFeedList_, cntNewNewsList_, this);
+  notificationWidget = new NotificationWidget(idFeedList_, cntNewNewsList_,
+                                              idColorList_, colorList_, this);
 
-  idFeedList_.clear();
-  cntNewNewsList_.clear();
+  clearNotification();
 
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
   connect(notificationWidget, SIGNAL(signalDelete()),
@@ -6128,6 +6125,20 @@ void RSSListing::deleteNotification()
 {
   notificationWidget->deleteLater();
   notificationWidget = NULL;
+}
+
+void RSSListing::clearNotification()
+{
+  idFeedList_.clear();
+  cntNewNewsList_.clear();
+  idColorList_.clear();
+  colorList_.clear();
+}
+
+void RSSListing::slotAddColorList(int id, const QString &color)
+{
+  idColorList_.append(id);
+  colorList_.append(color);
 }
 
 /** @brief Show news on click in notification window

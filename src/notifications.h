@@ -142,7 +142,10 @@ class NotificationWidget : public QWidget
 public:
   NotificationWidget(QList<int> idFeedList,
                      QList<int> cntNewNewsList,
-                     QWidget *parentWidget, QWidget *parent = 0);
+                     QList<int> idColorList,
+                     QStringList colorList,
+                     QWidget *parentWidget,
+                     QWidget *parent = 0);
 
 signals:
   void signalShow();
@@ -163,9 +166,6 @@ private slots:
   void markRead(int id);
 
 private:
-  QList<int> idFeedList_;
-  QList<int> cntNewNewsList_;
-
   QLabel *iconTitle_;
   QLabel *textTitle_;
   QToolButton *closeButton_;

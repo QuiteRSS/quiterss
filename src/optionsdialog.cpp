@@ -2517,7 +2517,11 @@ void OptionsDialog::showNotification()
   if (notificationWidget_) delete notificationWidget_;
   QList<int> idFeedList;
   QList<int> cntNewNewsList;
-  notificationWidget_ = new NotificationWidget(idFeedList, cntNewNewsList, this, this);
+  QList<int> idColorList;
+  QStringList colorList;
+  notificationWidget_ = new NotificationWidget(idFeedList, cntNewNewsList,
+                                               idColorList, colorList,
+                                               this, this);
 
   connect(notificationWidget_, SIGNAL(signalDelete()),
           this, SLOT(deleteNotification()));

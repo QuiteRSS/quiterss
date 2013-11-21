@@ -89,6 +89,7 @@ signals:
   void signalFinishUpdate(int feedId, bool changed, int newCount, QString status);
   void feedCountsUpdate(FeedCountStruct counts);
   void signalPlaySound(const QString &soundPath);
+  void signalAddColorList(int id, const QString &color);
 
 private slots:
   void getQueuedXml();

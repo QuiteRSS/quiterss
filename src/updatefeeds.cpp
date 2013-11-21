@@ -120,6 +120,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
 
     connect(parseObject_, SIGNAL(signalPlaySound(QString)),
             parent, SLOT(slotPlaySound(QString)));
+    connect(parseObject_, SIGNAL(signalAddColorList(int,QString)),
+            parent, SLOT(slotAddColorList(int,QString)));
 
     connect(parent, SIGNAL(signalNextUpdate(bool)),
             updateObject_, SLOT(slotNextUpdateFeed(bool)));
