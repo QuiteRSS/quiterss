@@ -24,8 +24,8 @@
 #include <QMediaPlaylist>
 #else
 #include <QtGui>
-#include <Phonon/AudioOutput>
-#include <Phonon/MediaObject>
+#include <phonon/audiooutput.h>
+#include <phonon/mediaobject.h>
 #endif
 #include <QtSql>
 #include <QtWebKit>
