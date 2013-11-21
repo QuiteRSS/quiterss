@@ -53,8 +53,8 @@ isEqual(QT_MAJOR_VERSION, 5) {
 } else {
   QT += core gui network xml webkit sql
   isEmpty(DISABLE_PHONON) {
-  QT += phonon
-  DEFINES += HAVE_PHONON
+    QT += phonon
+    DEFINES += HAVE_PHONON
   }
 }
 
