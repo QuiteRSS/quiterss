@@ -81,7 +81,9 @@ RSSListing::RSSListing(QSettings *settings,
   , closeApp_(false)
   , newsView_(NULL)
   , updateTimeCount_(0)
+#if defined(HAVE_QT5) || defined(HAVE_PHONON)
   , mediaPlayer_(NULL)
+#endif
   , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
@@ -5415,6 +5417,7 @@ void RSSListing::slotPlaySound(const QString &soundPath)
     mediaPlayer_->play();
   }
 #else
+#ifdef HAVE_PHONON
   if (mediaPlayer_ == NULL) {
     mediaPlayer_ = new Phonon::MediaObject(this);
     audioOutput_ = new Phonon::AudioOutput(Phonon::MusicCategory, this);
@@ -5426,6 +5429,7 @@ void RSSListing::slotPlaySound(const QString &soundPath)
   else
     mediaPlayer_->setCurrentSource(soundPath);
   mediaPlayer_->play();
+#endif
 #endif
 }
 

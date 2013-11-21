@@ -24,8 +24,10 @@
 #include <QMediaPlaylist>
 #else
 #include <QtGui>
+#ifdef HAVE_PHONON
 #include <phonon/audiooutput.h>
 #include <phonon/mediaobject.h>
+#endif
 #endif
 #include <QtSql>
 #include <QtWebKit>
@@ -678,8 +680,10 @@ private:
   QMediaPlayer *mediaPlayer_;
   QMediaPlaylist *playlist_;
 #else
+#ifdef HAVE_PHONON
   Phonon::MediaObject *mediaPlayer_;
   Phonon::AudioOutput *audioOutput_;
+#endif
 #endif
 
   bool soundNewNews_;
