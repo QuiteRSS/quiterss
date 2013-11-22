@@ -330,11 +330,13 @@ void NewsTabWidget::createWebWidget()
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   webToolBar_->addAction(webExternalBrowserAct_);
 
+  locationBar_ = new LineEdit(this);
+
   QHBoxLayout *webControlPanelLayout = new QHBoxLayout();
   webControlPanelLayout->setMargin(2);
   webControlPanelLayout->setSpacing(2);
   webControlPanelLayout->addWidget(webToolBar_);
-  webControlPanelLayout->addStretch(1);
+  webControlPanelLayout->addWidget(locationBar_, 1);
 
   webControlPanel_ = new QWidget(this);
   webControlPanel_->setObjectName("webControlPanel_");
@@ -398,6 +400,10 @@ void NewsTabWidget::createWebWidget()
 
   connect(rssl_->browserToolbarToggle_, SIGNAL(triggered()),
           this, SLOT(setWebToolbarVisible()));
+
+  connect(locationBar_, SIGNAL(returnPressed()),this, SLOT(slotUrlEnter()));
+  connect(webView_, SIGNAL(urlChanged(QUrl)),
+          this, SLOT(slotUrlChanged(QUrl)), Qt::QueuedConnection);
 }
 
 /** @brief Read settings from ini-file
@@ -1468,6 +1474,25 @@ void NewsTabWidget::slotLoadFinished(bool)
   }
 
   webViewProgress_->hide();
+}
+
+void NewsTabWidget::slotUrlEnter()
+{
+  webView_->setFocus();
+
+  if (!locationBar_->text().startsWith("http://") &&
+      !locationBar_->text().startsWith("https://")) {
+    locationBar_->setText("http://" + locationBar_->text());
+  }
+  locationBar_->setCursorPosition(0);
+
+  webView_->load(QUrl(locationBar_->text()));
+}
+
+void NewsTabWidget::slotUrlChanged(const QUrl &url)
+{
+  locationBar_->setText(url.toString());
+  locationBar_->setCursorPosition(0);
 }
 
 /** @brief Go to short news content

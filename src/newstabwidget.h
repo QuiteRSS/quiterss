@@ -29,6 +29,7 @@
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findtext.h"
+#include "lineedit.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newsview.h"
@@ -114,6 +115,7 @@ public:
   QSplitter *newsTabWidgetSplitter_;
 
   WebView *webView_;
+  LineEdit *locationBar_;
   QWidget *webControlPanel_;
 
   QLabel *newsIconTitle_;
@@ -156,6 +158,8 @@ private slots:
   void slotSetValue(int value);
   void slotLoadStarted();
   void slotLoadFinished(bool);
+  void slotUrlEnter();
+  void slotUrlChanged(const QUrl &url);
   void showContextWebPage(const QPoint &p);
   void openUrlInExternalBrowser();
 
