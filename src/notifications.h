@@ -163,7 +163,7 @@ protected:
 private slots:
   void nextPage();
   void previousPage();
-  void markRead(int id);
+  void slotMarkRead(int feedId, int newsId, int read);
 
 private:
   QLabel *iconTitle_;
@@ -177,6 +177,8 @@ private:
   QTimer *showTimer_;
   int timeShowNews_;
   int position_;
+  int cntAllNews_;
+  int cntReadNews_;
 
 };
 

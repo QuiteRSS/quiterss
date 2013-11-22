@@ -26,6 +26,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QWidget *parentWidget,
                                        QWidget *parent)
   : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+  , cntAllNews_(0)
+  , cntReadNews_(0)
 {
   setAttribute(Qt::WA_TranslucentBackground);
   setFocusPolicy(Qt::NoFocus);
@@ -131,13 +133,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   setLayout(layout);
 
-  int cntAllNews = 0;
   foreach (int cntNews, cntNewNewsList) {
-    cntAllNews = cntAllNews + cntNews;
+    cntAllNews_ = cntAllNews_ + cntNews;
   }
-  textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews));
+  textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews_));
 
-  if (cntAllNews > countShowNews) rightButton_->setEnabled(true);
+  if (cntAllNews_ > countShowNews) rightButton_->setEnabled(true);
   else rightButton_->setEnabled(false);
 
   QSqlQuery q;
@@ -181,7 +182,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         newsItem->iconNews_->setPixmap(iconFeed);
       newsItem->iconNews_->setToolTip(titleFeed);
       connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
-              this, SIGNAL(signalMarkRead(int, int, int)));
+              this, SLOT(slotMarkRead(int, int, int)));
       connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
               this, SIGNAL(signalOpenNews(int, int)));
       connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
@@ -225,13 +226,6 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
       newsItem->iconNews_->setPixmap(QPixmap(":/images/feed"));
       newsItem->iconNews_->setToolTip("Title Feed");
-      connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
-              this, SIGNAL(signalMarkRead(int, int, int)));
-      connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
-              this, SIGNAL(signalOpenNews(int, int)));
-      connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
-              this, SIGNAL(signalOpenExternalBrowser(QUrl)));
-
       newsItem->titleNews_->setFont(QFont(fontFamily, fontSize));
 
       QFont font = newsItem->titleNews_->font();
@@ -333,10 +327,12 @@ void NotificationWidget::previousPage()
                             arg(stackedWidget_->count())));
 }
 
-void NotificationWidget::markRead(int id)
+void NotificationWidget::slotMarkRead(int feedId, int newsId, int read)
 {
-  int read = 1;
-  QSqlQuery q;
-  q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
-         arg(read).arg(id));
+  if (read) cntReadNews_++;
+  else cntReadNews_--;
+  if (cntReadNews_ == cntAllNews_) {
+    emit signalDelete();
+  }
+  emit signalMarkRead(feedId, newsId, read);
 }
