@@ -321,6 +321,7 @@ signals:
   void signalPlaySoundNewNews();
   void signalUpdateStatus(int feedId, bool changed);
   void signalMarkAllFeedsRead();
+  void signalNumberTabsChanged();
 
   void signalSqlQueryExec(QString query);
 
@@ -378,6 +379,7 @@ private slots:
   void slotOpenCategoryNewTab();
   void slotTabCurrentChanged(int index);
   void slotTabMoved(int fromIndex, int toIndex);
+  void slotNumberTabsChanged();
   void feedsColumnVisible(QAction *action);
   void setBrowserPosition(QAction *action);
   void slotOpenNewsWebView();
@@ -752,6 +754,8 @@ private:
   QString diskCacheDirPathDefault_;
 
   OptionsDialog *optionsDialog_;
+
+  bool hideTabBar_;
 
 };
 

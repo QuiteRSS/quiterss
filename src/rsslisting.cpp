@@ -186,6 +186,7 @@ RSSListing::RSSListing(QSettings *settings,
 
   QWidget *tabBarWidget = new QWidget(this);
   tabBarWidget->setObjectName("tabBarWidget");
+  tabBarWidget->setMinimumHeight(1);
   tabBarWidget->setLayout(tabBarLayout);
 
   stackedWidget_ = new QStackedWidget(this);
@@ -755,6 +756,11 @@ void RSSListing::createTray()
 void RSSListing::createTabBar()
 {
   tabBar_ = new TabBar(this);
+
+  hideTabBar_ = settings_->value("Settings/hideTabBar", false).toBool();
+  if (hideTabBar_)
+    tabBar_->hide();
+
   connect(tabBar_, SIGNAL(closeTab(int)),
           this, SLOT(slotCloseTab(int)));
   connect(tabBar_, SIGNAL(currentChanged(int)),
@@ -763,6 +769,8 @@ void RSSListing::createTabBar()
           SLOT(slotTabMoved(int,int)));
   connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
+  connect(this, SIGNAL(signalNumberTabsChanged()),
+          SLOT(slotNumberTabsChanged()), Qt::QueuedConnection);
 
   connect(closeTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotCloseTab()));
   connect(closeOtherTabsAct_, SIGNAL(triggered()),
@@ -3146,6 +3154,7 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->showToggleFeedsTree_->setChecked(showToggleFeedsTree_);
   optionsDialog_->defaultIconFeeds_->setChecked(defaultIconFeeds_);
   optionsDialog_->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
+  optionsDialog_->hideTabBar_->setChecked(hideTabBar_);
 
   optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled_);
   optionsDialog_->storeDBMemory_->setChecked(storeDBMemoryT_);
@@ -3473,6 +3482,10 @@ void RSSListing::showOptionDlg(int index)
   defaultIconFeeds_ = optionsDialog_->defaultIconFeeds_->isChecked();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
   feedsTreeView_->autocollapseFolder_ = optionsDialog_->autocollapseFolder_->isChecked();
+
+  hideTabBar_ = optionsDialog_->hideTabBar_->isChecked();
+  settings_->setValue("Settings/hideTabBar", hideTabBar_);
+  slotNumberTabsChanged();
 
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
@@ -5699,6 +5712,8 @@ void RSSListing::slotCloseTab(int index)
     tabBar_->removeTab(index);
     widget->newsTitleLabel_->deleteLater();
     widget->deleteLater();
+
+    emit signalNumberTabsChanged();
   }
 }
 
@@ -5806,6 +5821,15 @@ void RSSListing::slotTabCurrentChanged(int index)
 void RSSListing::slotTabMoved(int fromIndex, int toIndex)
 {
   stackedWidget_->insertWidget(toIndex, stackedWidget_->widget(fromIndex));
+}
+
+void RSSListing::slotNumberTabsChanged()
+{
+  if ((tabBar_->count() == 1) && hideTabBar_) {
+    tabBar_->hide();
+  } else {
+    tabBar_->show();
+  }
 }
 
 /** @brief Manage displaying columns in feed tree
@@ -6931,6 +6955,9 @@ int RSSListing::addTab(NewsTabWidget *widget)
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
+
+  emit signalNumberTabsChanged();
+
   return indexTab;
 }
 

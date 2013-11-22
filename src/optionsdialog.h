@@ -51,6 +51,7 @@ public:
   QCheckBox *showToggleFeedsTree_;
   QCheckBox *defaultIconFeeds_;
   QCheckBox *autocollapseFolder_;
+  QCheckBox *hideTabBar_;
   QCheckBox *updateCheckEnabled_;
   QCheckBox *storeDBMemory_;
   QSpinBox *saveDBMemFileInterval_;
