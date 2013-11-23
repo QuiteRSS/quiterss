@@ -202,6 +202,7 @@ private:
   int webDefaultFixedFontSize_;
 
   QUrl linkUrl_;
+  QString linkNewsString_;
 
   QWidget *newsPanelWidget_;
   bool webToolbarShow_;

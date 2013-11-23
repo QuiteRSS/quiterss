@@ -588,6 +588,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 
     updateWebView(index);
 
+    rssl_->statusBar()->showMessage(linkNewsString_, 3000);
+
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
   currentNewsIdOld = newsId;
@@ -1204,7 +1206,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     return;
   }
 
-  QString linkString = getLinkNews(index.row());
+  linkNewsString_ = getLinkNews(index.row());
+  QString linkString = linkNewsString_;
   QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
 
   bool showDescriptionNews_ = rssl_->showDescriptionNews_;
