@@ -51,7 +51,7 @@ CleanUpThread::~CleanUpThread()
   QSqlDatabase db = QSqlDatabase::database();
   db.transaction();
 
-  foreach (int feedId, feedsIdList_) {
+  foreach (QString feedId, feedsIdList_) {
     int cntT = 0;
     int cntNews = 0;
 
@@ -222,7 +222,8 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
   QWizardPage *page = new QWizardPage;
   page->setTitle(tr("Choose Feeds"));
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
+  QStringList feedsIdList = rssl->settings_->value("CleanUpWizard/feedsIdList").toStringList();
 
   feedsTree_ = new QTreeWidget(this);
   feedsTree_->setObjectName("feedsTreeFR");
@@ -234,7 +235,10 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
   QStringList treeItem;
   treeItem << tr("All Feeds") << "0"<< "-1";
   QTreeWidgetItem *treeWidgetItem = new QTreeWidgetItem(treeItem);
-  treeWidgetItem->setCheckState(0, Qt::Checked);
+  if (feedsIdList.isEmpty())
+    treeWidgetItem->setCheckState(0, Qt::Checked);
+  else
+    treeWidgetItem->setCheckState(0, Qt::Unchecked);
   feedsTree_->addTopLevelItem(treeWidgetItem);
 
   QSqlQuery q;
@@ -247,22 +251,25 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
     q.exec(qStr);
     while (q.next()) {
       QString feedText = q.value(0).toString();
-      QString feedIdT = q.value(1).toString();
+      QString feedIdStr = q.value(1).toString();
       QByteArray byteArray = q.value(2).toByteArray();
       QString xmlUrl = q.value(3).toString();
 
       treeItem.clear();
-      treeItem << feedText << feedIdT << (xmlUrl.isEmpty() ? "0" : "1");
+      treeItem << feedText << feedIdStr << (xmlUrl.isEmpty() ? "0" : "1");
       treeWidgetItem = new QTreeWidgetItem(treeItem);
 
-      treeWidgetItem->setCheckState(0, Qt::Checked);
+      if (feedsIdList.contains(feedIdStr) || feedsIdList.isEmpty())
+        treeWidgetItem->setCheckState(0, Qt::Checked);
+      else
+        treeWidgetItem->setCheckState(0, Qt::Unchecked);
 
       QPixmap iconItem;
       if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
       }
       else {
-        if (byteArray.isNull() || rssl_->defaultIconFeeds_) {
+        if (byteArray.isNull() || rssl->defaultIconFeeds_) {
           iconItem.load(":/images/feed");
         }
         else {
@@ -277,7 +284,7 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
                                1);
       treeItems.at(0)->addChild(treeWidgetItem);
       if (xmlUrl.isEmpty())
-        parentIds.enqueue(feedIdT.toInt());
+        parentIds.enqueue(feedIdStr.toInt());
     }
   }
   feedsTree_->expandAll();
@@ -343,16 +350,19 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   progressBar_->setMaximum(0);
   progressBar_->setVisible(false);
 
-  maxDayCleanUp_->setValue(30);
-  maxNewsCleanUp_->setValue(200);
-  dayCleanUpOn_->setChecked(true);
-  newsCleanUpOn_->setChecked(true);
-  readCleanUp_->setChecked(false);
-  neverUnreadCleanUp_->setChecked(true);
-  neverStarCleanUp_->setChecked(true);
-  neverLabelCleanUp_->setChecked(true);
-  cleanUpDeleted_->setChecked(true);
-  fullCleanUp_->setChecked(false);
+  QSettings *settings = qobject_cast<RSSListing*>(parentWidget())->settings_;
+  settings->beginGroup("CleanUpWizard");
+  maxDayCleanUp_->setValue(settings->value("maxDay", 30).toInt());
+  maxNewsCleanUp_->setValue(settings->value("maxNews", 200).toInt());
+  dayCleanUpOn_->setChecked(settings->value("maxDayOn", true).toBool());
+  newsCleanUpOn_->setChecked(settings->value("maxNewsOn", true).toBool());
+  readCleanUp_->setChecked(settings->value("readCleanUp", false).toBool());
+  neverUnreadCleanUp_->setChecked(settings->value("neverUnread", true).toBool());
+  neverStarCleanUp_->setChecked(settings->value("neverStar", true).toBool());
+  neverLabelCleanUp_->setChecked(settings->value("neverLabel", true).toBool());
+  cleanUpDeleted_->setChecked(settings->value("cleanUpDeleted", true).toBool());
+  fullCleanUp_->setChecked(settings->value("fullCleanUp", false).toBool());
+  settings->endGroup();
 
   QVBoxLayout *layout = new QVBoxLayout(page);
   layout->addLayout(cleanUpFeedsLayout);
@@ -422,12 +432,12 @@ void CleanUpWizard::finishButtonClicked()
 
   feedsTree_->expandAll();
 
-  QList<int> feedsIdList;
+  QStringList feedsIdList;
   QList<int> foldersIdList;
   QTreeWidgetItem *treeItem = feedsTree_->itemBelow(feedsTree_->topLevelItem(0));
   while (treeItem) {
     if (treeItem->checkState(0) == Qt::Checked)
-      feedsIdList << treeItem->text(1).toInt();
+      feedsIdList << treeItem->text(1);
     if (treeItem->text(2).toInt() == 0)
       foldersIdList << treeItem->text(1).toInt();
     treeItem = feedsTree_->itemBelow(treeItem);
@@ -472,6 +482,21 @@ void CleanUpWizard::finishCleanUp()
 
   rssl->feedsModelReload();
   rssl->recountCategoryCounts();
+
+  QSettings *settings = qobject_cast<RSSListing*>(parentWidget())->settings_;
+  settings->beginGroup("CleanUpWizard");
+  settings->setValue("feedsIdList", cleanUpThread_->feedsIdList_);
+  settings->setValue("maxDay", maxDayCleanUp_->value());
+  settings->setValue("maxNews", maxNewsCleanUp_->value());
+  settings->setValue("maxDayOn", dayCleanUpOn_->isChecked());
+  settings->setValue("maxNewsOn", newsCleanUpOn_->isChecked());
+  settings->setValue("readCleanUp", readCleanUp_->isChecked());
+  settings->setValue("neverUnread", neverUnreadCleanUp_->isChecked());
+  settings->setValue("neverStar", neverStarCleanUp_->isChecked());
+  settings->setValue("neverLabel", neverLabelCleanUp_->isChecked());
+  settings->setValue("cleanUpDeleted", cleanUpDeleted_->isChecked());
+  settings->setValue("fullCleanUp", fullCleanUp_->isChecked());
+  settings->endGroup();
 
   selectedPage_ = true;
   accept();

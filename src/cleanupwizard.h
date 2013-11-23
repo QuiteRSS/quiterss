@@ -45,7 +45,7 @@ public:
   bool neverLabelCleanUp_;
   bool cleanUpDeleted_;
   bool fullCleanUp_;
-  QList<int> feedsIdList_;
+  QStringList feedsIdList_;
   QList<int> foldersIdList_;
 
 protected:
