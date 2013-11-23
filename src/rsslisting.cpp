@@ -6993,7 +6993,7 @@ void RSSListing::slotSavePageAs()
   QString fileName = currentNewsTab->webView_->title();
   if (fileName == "news_descriptions") {
     int row = currentNewsTab->newsView_->currentIndex().row();
-    fileName = currentNewsTab->newsModel_->record(row).field("title").value().toString();
+    fileName = currentNewsTab->newsModel_->dataField(row, "title").toString();
   }
 
   fileName = fileName.trimmed();

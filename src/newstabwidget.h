@@ -80,8 +80,8 @@ public:
   void openNewsNewTab();
 
   void updateWebView(QModelIndex index);
-
   void hideWebContent();
+  QString getLinkNews(int row);
 
   void reduceNewsList();
   void increaseNewsList();

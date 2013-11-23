@@ -532,9 +532,8 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 {
   QElapsedTimer timer;
   timer.start();
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
-  int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int newsId = newsModel_->dataField(index.row(), "id").toInt();
 
   if (rssl_->markNewsReadOn_ && rssl_->markPrevNewsRead_ &&
       (newsId != currentNewsIdOld)) {
@@ -553,7 +552,7 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   }
 
   if (!((newsId == currentNewsIdOld) &&
-        newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() >= 1) ||
+        newsModel_->dataField(index.row(), "read").toInt() >= 1) ||
         clicked) {
     qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
@@ -600,12 +599,7 @@ void NewsTabWidget::slotNewsViewDoubleClicked(QModelIndex index)
 {
   if (!index.isValid()) return;
 
-  QString linkString = newsModel_->record(
-        index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
-  QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
+  QUrl url = QUrl::fromEncoded(getLinkNews(index.row()).toUtf8());
   slotLinkClicked(url);
 }
 
@@ -617,11 +611,6 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
   if (rssl_->markNewsReadOn_ && rssl_->markCurNewsRead_)
     slotSetItemRead(index, 1);
 
-  QString linkString = newsModel_->record(
-        index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-
   if (QApplication::keyboardModifiers() == Qt::NoModifier) {
     webView_->buttonClick_ = MIDDLE_BUTTON;
   } else if (QApplication::keyboardModifiers() == Qt::AltModifier) {
@@ -630,7 +619,7 @@ void NewsTabWidget::slotNewsMiddleClicked(QModelIndex index)
     webView_->buttonClick_ = MIDDLE_BUTTON_MOD;
   }
 
-  QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
+  QUrl url = QUrl::fromEncoded(getLinkNews(index.row()).toUtf8());
   slotLinkClicked(url);
 }
 
@@ -758,16 +747,16 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
   if (!index.isValid() || (newsModel_->rowCount() == 0)) return;
 
   bool changed = false;
-  int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int newsId = newsModel_->dataField(index.row(), "id").toInt();
 
   if (read == 1) {
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("new")).data(Qt::EditRole).toInt() == 1) {
+    if (newsModel_->dataField(index.row(), "new").toInt() == 1) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("new")),
             0);
       rssl_->sqlQueryExec(QString("UPDATE news SET new=0 WHERE id=='%1'").arg(newsId));
     }
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+    if (newsModel_->dataField(index.row(), "read").toInt() == 0) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             1);
@@ -775,7 +764,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
       changed = true;
     }
   } else {
-    if (newsModel_->index(index.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() != 0) {
+    if (newsModel_->dataField(index.row(), "read").toInt() != 0) {
       newsModel_->setData(
             newsModel_->index(index.row(), newsModel_->fieldIndex("read")),
             0);
@@ -786,8 +775,7 @@ void NewsTabWidget::slotSetItemRead(QModelIndex index, int read)
 
   if (changed) {
     newsView_->viewport()->update();
-    int feedId = newsModel_->index(index.row(), newsModel_->fieldIndex("feedId")).
-        data(Qt::EditRole).toInt();
+    int feedId = newsModel_->dataField(index.row(), "feedId").toInt();
     rssl_->slotUpdateStatus(feedId);
     rssl_->recountCategoryCounts();
   }
@@ -801,7 +789,7 @@ void NewsTabWidget::slotSetItemStar(QModelIndex index, int starred)
 
   newsModel_->setData(index, starred);
 
-  int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+  int newsId = newsModel_->dataField(index.row(), "id").toInt();
   rssl_->sqlQueryExec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
                             arg(starred).arg(newsId));
   rssl_->recountCategoryCounts();
@@ -827,7 +815,7 @@ void NewsTabWidget::markNewsRead()
 
   if (cnt == 1) {
     curIndex = indexes.at(0);
-    if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+    if (newsModel_->dataField(curIndex.row(), "read").toInt() == 0) {
       slotSetItemRead(curIndex, 1);
     } else {
       slotSetItemRead(curIndex, 0);
@@ -838,7 +826,7 @@ void NewsTabWidget::markNewsRead()
     bool markRead = false;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")).data(Qt::EditRole).toInt() == 0) {
+      if (newsModel_->dataField(curIndex.row(), "read").toInt() == 0) {
         markRead = true;
         break;
       }
@@ -855,10 +843,10 @@ void NewsTabWidget::markNewsRead()
                   newsModel_->index(curIndex.row(), newsModel_->fieldIndex("read")),
                   markRead);
 
-      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
       q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
              arg(markRead).arg(newsId));
-      QString feedId = newsModel_->index(i, newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+      QString feedId = newsModel_->dataField(i, "feedId").toString();
       if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
     }
     db_.commit();
@@ -886,11 +874,11 @@ void NewsTabWidget::markAllNewsRead()
   db_.transaction();
   QSqlQuery q;
   for (int i = cnt-1; i >= 0; --i) {
-    int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
+    int newsId = newsModel_->dataField(i, "id").toInt();
     q.exec(QString("UPDATE news SET read=1 WHERE id=='%1' AND read=0").arg(newsId));
     q.exec(QString("UPDATE news SET new=0 WHERE id=='%1' AND new=1").arg(newsId));
 
-    QString feedId = newsModel_->index(i, newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+    QString feedId = newsModel_->dataField(i, "feedId").toString();
     if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
   }
   db_.commit();
@@ -944,7 +932,7 @@ void NewsTabWidget::markNewsStar()
     for (int i = cnt-1; i >= 0; --i) {
       newsModel_->setData(indexes.at(i), markStar);
 
-      int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+      int newsId = newsModel_->dataField(i, "id").toInt();
       QSqlQuery q;
       q.exec(QString("UPDATE news SET starred='%1' WHERE id=='%2'").
              arg(markStar).arg(newsId));
@@ -972,11 +960,10 @@ void NewsTabWidget::deleteNews()
   if (type_ != TabTypeDel) {
     if (cnt == 1) {
       curIndex = indexes.at(0);
-      if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+      if (newsModel_->dataField(curIndex.row(), "starred").toInt() &&
           rssl_->notDeleteStarred_)
         return;
-      QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
-          data(Qt::EditRole).toString();
+      QString labelStr = newsModel_->dataField(curIndex.row(), "label").toString();
       if (!(labelStr.isEmpty() || (labelStr == ",")) && rssl_->notDeleteLabeled_)
         return;
 
@@ -986,7 +973,7 @@ void NewsTabWidget::deleteNews()
       newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")),
                           QDateTime::currentDateTime().toString(Qt::ISODate));
 
-      QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+      QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
       if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
 
       newsModel_->submitAll();
@@ -995,20 +982,19 @@ void NewsTabWidget::deleteNews()
       QSqlQuery q;
       for (int i = cnt-1; i >= 0; --i) {
         curIndex = indexes.at(i);
-        if (newsModel_->index(curIndex.row(), newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+        if (newsModel_->dataField(curIndex.row(), "starred").toInt() &&
             rssl_->notDeleteStarred_)
           continue;
-        QString labelStr = newsModel_->index(curIndex.row(),newsModel_->fieldIndex("label")).
-            data(Qt::EditRole).toString();
+        QString labelStr = newsModel_->dataField(curIndex.row(), "label").toString();
         if (!(labelStr.isEmpty() || (labelStr == ",")) && rssl_->notDeleteLabeled_)
           continue;
 
-        int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+        int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
         q.exec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
                arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
                arg(newsId));
 
-        QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+        QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
         if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
       }
       db_.commit();
@@ -1022,14 +1008,14 @@ void NewsTabWidget::deleteNews()
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
 
-      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
       q.exec(QString("UPDATE news SET description='', content='', received='', "
                      "author_name='', author_uri='', author_email='', "
                      "category='', new='', read='', starred='', label='', "
                      "deleteDate='', feedParentId='', deleted=2 WHERE id=='%1'").
              arg(newsId));
 
-      QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+      QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
       if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
     }
     db_.commit();
@@ -1044,7 +1030,8 @@ void NewsTabWidget::deleteNews()
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
   else if (curIndex.row() > newsModel_->rowCount())
     curIndex = newsModel_->index(newsModel_->rowCount()-1, newsModel_->fieldIndex("title"));
-  else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
+  else
+    curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
 
@@ -1068,13 +1055,13 @@ void NewsTabWidget::deleteAllNewsList()
   db_.transaction();
   QSqlQuery q;
   for (int i = cnt-1; i >= 0; --i) {
-    int newsId = newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt();
+    int newsId = newsModel_->dataField(i, "id").toInt();
 
     if (type_ != TabTypeDel) {
-      if (newsModel_->index(i, newsModel_->fieldIndex("starred")).data(Qt::EditRole).toInt() &&
+      if (newsModel_->dataField(i, "starred").toInt() &&
           rssl_->notDeleteStarred_)
         continue;
-      QString labelStr = newsModel_->index(i, newsModel_->fieldIndex("label")).data(Qt::EditRole).toString();
+      QString labelStr = newsModel_->dataField(i, "label").toString();
       if (!(labelStr.isEmpty() || (labelStr == ",")) && rssl_->notDeleteLabeled_)
         continue;
 
@@ -1090,7 +1077,7 @@ void NewsTabWidget::deleteAllNewsList()
              arg(newsId));
     }
 
-    QString feedId = newsModel_->index(i, newsModel_->fieldIndex("feedId")).data(Qt::EditRole).toString();
+    QString feedId = newsModel_->dataField(i, "feedId").toString();
     if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
   }
   db_.commit();
@@ -1125,20 +1112,18 @@ void NewsTabWidget::restoreNews()
     newsModel_->setData(newsModel_->index(curIndex.row(), newsModel_->fieldIndex("deleteDate")), "");
     newsModel_->submitAll();
 
-    QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).
-        data(Qt::EditRole).toString();
+    QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
     if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
   } else {
     db_.transaction();
     QSqlQuery q;
     for (int i = cnt-1; i >= 0; --i) {
       curIndex = indexes.at(i);
-      int newsId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("id")).data().toInt();
+      int newsId = newsModel_->dataField(curIndex.row(), "id").toInt();
       q.exec(QString("UPDATE news SET deleted=0, deleteDate='' WHERE id=='%1'").
              arg(newsId));
 
-      QString feedId = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("feedId")).
-          data(Qt::EditRole).toString();
+      QString feedId = newsModel_->dataField(curIndex.row(), "feedId").toString();
       if (!feedIdList.contains(feedId)) feedIdList.append(feedId);
     }
     db_.commit();
@@ -1153,7 +1138,8 @@ void NewsTabWidget::restoreNews()
     curIndex = newsModel_->index(curIndex.row()-1, newsModel_->fieldIndex("title"));
   else if (curIndex.row() > newsModel_->rowCount())
     curIndex = newsModel_->index(newsModel_->rowCount()-1, newsModel_->fieldIndex("title"));
-  else curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
+  else
+    curIndex = newsModel_->index(curIndex.row(), newsModel_->fieldIndex("title"));
   newsView_->setCurrentIndex(curIndex);
   slotNewsViewSelected(curIndex);
   rssl_->slotUpdateStatus(feedId_);
@@ -1179,12 +1165,7 @@ void NewsTabWidget::slotCopyLinkNews()
   QString copyStr;
   for (int i = cnt-1; i >= 0; --i) {
     if (!copyStr.isEmpty()) copyStr.append("\n");
-
-    QModelIndex index = indexes.at(i);
-    QString linkString = newsModel_->record(index.row()).field("link_href").value().toString();
-    if (linkString.isEmpty())
-      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-    copyStr.append(linkString.simplified());
+    copyStr.append(getLinkNews(indexes.at(i).row()));
   }
 
   QClipboard *clipboard = QApplication::clipboard();
@@ -1223,10 +1204,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     return;
   }
 
-  QString linkString = newsModel_->record(index.row()).field("link_href").value().toString();
-  if (linkString.isEmpty())
-    linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-  linkString = linkString.simplified();
+  QString linkString = getLinkNews(index.row());
   QUrl newsUrl = QUrl::fromEncoded(linkString.toUtf8());
 
   bool showDescriptionNews_ = rssl_->showDescriptionNews_;
@@ -1245,10 +1223,10 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   } else {
     setWebToolbarVisible(false, false);
 
-    QString titleString = newsModel_->record(index.row()).field("title").value().toString();
+    QString titleString = newsModel_->dataField(index.row(), "title").toString();
 
     QDateTime dtLocal;
-    QString dateString = newsModel_->record(index.row()).field("published").value().toString();
+    QString dateString = newsModel_->dataField(index.row(), "published").toString();
     if (!dateString.isNull()) {
       QDateTime dtLocalTime = QDateTime::currentDateTime();
       QDateTime dtUTC = QDateTime(dtLocalTime.date(), dtLocalTime.time(), Qt::UTC);
@@ -1258,7 +1236,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       dtLocal = dt.addSecs(nTimeShift);
     } else {
       dtLocal = QDateTime::fromString(
-            newsModel_->record(index.row()).field("received").value().toString(),
+            newsModel_->dataField(index.row(), "received").toString(),
             Qt::ISODate);
     }
     if (QDateTime::currentDateTime().date() <= dtLocal.date())
@@ -1268,9 +1246,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
 
     // Create author panel from news author
     QString authorString;
-    QString authorName = newsModel_->record(index.row()).field("author_name").value().toString();
-    QString authorEmail = newsModel_->record(index.row()).field("author_email").value().toString();
-    QString authorUri = newsModel_->record(index.row()).field("author_uri").value().toString();
+    QString authorName = newsModel_->dataField(index.row(), "author_name").toString();
+    QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
+    QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
     //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
     authorString = authorName;
     if (!authorEmail.isEmpty())
@@ -1295,12 +1273,12 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
 
     QString commentsStr;
-    QString commentsUrl = QUrl::fromPercentEncoding(newsModel_->record(index.row()).field("comments").value().toByteArray());
+    QString commentsUrl = QUrl::fromPercentEncoding(newsModel_->dataField(index.row(), "comments").toByteArray());
     if (!commentsUrl.isEmpty()) {
       commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl).arg(tr("Comments"));
     }
 
-    QString category = newsModel_->record(index.row()).field("category").value().toString();
+    QString category = newsModel_->dataField(index.row(), "category").toString();
 
     if (!authorString.isEmpty()) {
       authorString = QString(tr("Author: %1")).arg(authorString);
@@ -1319,19 +1297,18 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       }
     }
 
-    QString content = newsModel_->record(index.row()).field("content").value().toString();
-    QString description = newsModel_->record(index.row()).field("description").value().toString();
+    QString content = newsModel_->dataField(index.row(), "content").toString();
+    QString description = newsModel_->dataField(index.row(), "description").toString();
     if (content.isEmpty() || (description.length() > content.length())) {
       content = description;
     }
 
     QString enclosureStr;
-    QString enclosureUrl = newsModel_->record(index.row()).field("enclosure_url").value().toString();
+    QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
     if (!enclosureUrl.isEmpty()) {
-      QString type = newsModel_->record(index.row()).field("enclosure_type").value().toString();
+      QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
       if (type.contains("image")) {
-        QString imgUrl = newsModel_->record(index.row()).
-            field("enclosure_url").value().toString();
+        QString imgUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
         if (!content.contains(imgUrl)) {
           enclosureStr = QString("<IMG SRC=\"%1\" class=\"enclosureImg\"><p>").
               arg(imgUrl);
@@ -1342,7 +1319,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         else type = tr("media");
 
         enclosureStr = QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
-            arg(QUrl::fromPercentEncoding(newsModel_->record(index.row()).field("enclosure_url").value().toByteArray())).
+            arg(QUrl::fromPercentEncoding(newsModel_->dataField(index.row(), "enclosure_url").toByteArray())).
             arg(tr("Link to")).arg(type);
       }
     }
@@ -1354,8 +1331,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
             arg(QUrl::fromPercentEncoding(linkString.toUtf8())).arg(titleString);
     }
 
-    QString feedId = newsModel_->index(index.row(),newsModel_->fieldIndex("feedId")).
-        data(Qt::EditRole).toString();
+    QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
 
     QString languageString;
     QSqlQuery q;
@@ -1538,12 +1514,7 @@ void NewsTabWidget::openInExternalBrowserNews()
     if (cnt == 0) return;
 
     for (int i = cnt-1; i >= 0; --i) {
-      QModelIndex index = indexes.at(i);
-      QString linkString = newsModel_->record(
-            index.row()).field("link_href").value().toString();
-      if (linkString.isEmpty())
-        linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
-      QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
+      QUrl url = QUrl::fromEncoded(getLinkNews(indexes.at(i).row()).toUtf8());
       openUrl(url);
     }
   } else {
@@ -1618,11 +1589,7 @@ void NewsTabWidget::openNewsNewTab()
     if (rssl_->markNewsReadOn_ && rssl_->markCurNewsRead_)
       slotSetItemRead(index, 1);
 
-    QString linkString = newsModel_->record(row).field("link_href").value().toString();
-    if (linkString.isEmpty())
-      linkString = newsModel_->record(row).field("link_alternate").value().toString();
-
-    QUrl url = QUrl::fromEncoded(linkString.simplified().toUtf8());
+    QUrl url = QUrl::fromEncoded(getLinkNews(row).toUtf8());
     if (url.host().isEmpty()) {
       int feedId = newsModel_->dataField(row, "feedId").toInt();
       QUrl hostUrl;
@@ -1702,8 +1669,7 @@ void NewsTabWidget::slotFindText(const QString &text)
     webView_->findText("", QWebPage::HighlightAllOccurrences);
     webView_->findText(text, QWebPage::HighlightAllOccurrences);
   } else {
-    int newsId = newsModel_->index(
-          newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+    int newsId = newsModel_->dataField(newsView_->currentIndex().row(), "id").toInt();
 
     QString filterStr;
     switch (type_) {
@@ -1758,8 +1724,7 @@ void NewsTabWidget::slotSelectFind()
   if (findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct")
     webView_->findText("", QWebPage::HighlightAllOccurrences);
   else {
-    int newsId = newsModel_->index(
-          newsView_->currentIndex().row(), newsModel_->fieldIndex("id")).data(Qt::EditRole).toInt();
+    int newsId = newsModel_->dataField(newsView_->currentIndex().row(), "id").toInt();
 
     QString filterStr;
     switch (type_) {
@@ -1879,8 +1844,7 @@ void NewsTabWidget::setLabelNews(int labelId)
     }
     newsModel_->setData(index, strIdLabels);
 
-    int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).
-        data(Qt::EditRole).toInt();
+    int newsId = newsModel_->dataField(index.row(), "id").toInt();
     QSqlQuery q;
     q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
            arg(strIdLabels).arg(newsId));
@@ -1913,8 +1877,7 @@ void NewsTabWidget::setLabelNews(int labelId)
       }
       newsModel_->setData(index, strIdLabels);
 
-      int newsId = newsModel_->index(index.row(), newsModel_->fieldIndex("id")).
-          data(Qt::EditRole).toInt();
+      int newsId = newsModel_->dataField(index.row(), "id").toInt();
       QSqlQuery q;
       q.exec(QString("UPDATE news SET label='%1' WHERE id=='%2'").
              arg(strIdLabels).arg(newsId));
@@ -2024,13 +1987,8 @@ void NewsTabWidget::slotShareNews(QAction *action)
   if (cnt == 0) return;
 
   for (int i = cnt-1; i >= 0; --i) {
-    QModelIndex index = indexes.at(i);
-    QString title = newsModel_->record(
-          index.row()).field("title").value().toString();
-    QString linkString = newsModel_->record(
-          index.row()).field("link_href").value().toString();
-    if (linkString.isEmpty())
-      linkString = newsModel_->record(index.row()).field("link_alternate").value().toString();
+    QString title = newsModel_->dataField(indexes.at(i).row(), "title").toString();
+    QString linkString = getLinkNews(indexes.at(i).row());
 
     QUrl url;
     if (action->objectName() == "emailShareAct") {
@@ -2038,11 +1996,11 @@ void NewsTabWidget::slotShareNews(QAction *action)
 #ifdef HAVE_QT5
       QUrlQuery urlQuery;
       urlQuery.addQueryItem("subject", title);
-      urlQuery.addQueryItem("body", linkString.simplified());
+      urlQuery.addQueryItem("body", linkString);
       url.setQuery(urlQuery);
 #else
       url.addQueryItem("subject", title);
-      url.addQueryItem("body", linkString.simplified());
+      url.addQueryItem("body", linkString);
 #endif
       openUrl(url);
     }
@@ -2051,11 +2009,11 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("https://www.evernote.com/clip.action");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("url", linkString);
         urlQuery.addQueryItem("title", title);
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
 #endif
       }
@@ -2063,21 +2021,21 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("https://plus.google.com/share");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("url", linkString);
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("url", linkString);
 #endif
       }
       else if (action->objectName() == "facebookShareAct") {
         url.setUrl("https://www.facebook.com/sharer.php");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("u", linkString.simplified());
+        urlQuery.addQueryItem("u", linkString);
         urlQuery.addQueryItem("t", title);
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("u", linkString.simplified());
+        url.addQueryItem("u", linkString);
         url.addQueryItem("t", title);
 #endif
       }
@@ -2085,11 +2043,11 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("http://www.livejournal.com/update.bml");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("event", linkString.simplified());
+        urlQuery.addQueryItem("event", linkString);
         urlQuery.addQueryItem("subject", title);
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("event", linkString.simplified());
+        url.addQueryItem("event", linkString);
         url.addQueryItem("subject", title);
 #endif
       }
@@ -2097,11 +2055,11 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("https://getpocket.com/save");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("url", linkString);
         urlQuery.addQueryItem("title", title);
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
 #endif
       }
@@ -2109,11 +2067,11 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("https://twitter.com/share");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("url", linkString);
         urlQuery.addQueryItem("text", title);
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("url", linkString);
         url.addQueryItem("text", title);
 #endif
       }
@@ -2121,13 +2079,13 @@ void NewsTabWidget::slotShareNews(QAction *action)
         url.setUrl("https://vk.com/share.php");
 #ifdef HAVE_QT5
         QUrlQuery urlQuery;
-        urlQuery.addQueryItem("url", linkString.simplified());
+        urlQuery.addQueryItem("url", linkString);
         urlQuery.addQueryItem("title", title);
         urlQuery.addQueryItem("description", "");
         urlQuery.addQueryItem("image", "");
         url.setQuery(urlQuery);
 #else
-        url.addQueryItem("url", linkString.simplified());
+        url.addQueryItem("url", linkString);
         url.addQueryItem("title", title);
         url.addQueryItem("description", "");
         url.addQueryItem("image", "");
@@ -2156,4 +2114,12 @@ int NewsTabWidget::getUnreadCount(QString countString)
     default:
       return 0;
   }
+}
+
+QString NewsTabWidget::getLinkNews(int row)
+{
+  QString linkString = newsModel_->dataField(row, "link_href").toString();
+  if (linkString.isEmpty())
+    linkString = newsModel_->dataField(row, "link_alternate").toString();
+  return linkString.simplified();
 }
