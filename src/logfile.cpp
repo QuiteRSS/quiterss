@@ -29,8 +29,7 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
   if (file.exists() && file.size() < maxLogFileSize) {
-    if (!msg.contains("Start application!"))
-      openMode |= QIODevice::Append;
+    openMode |= QIODevice::Append;
   }
 
   file.open(openMode);
