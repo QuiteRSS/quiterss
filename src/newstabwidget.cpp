@@ -1321,7 +1321,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     if (!enclosureUrl.isEmpty()) {
       QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
       if (type.contains("image")) {
-        if (!content.contains(enclosureUrl)) {
+        if (!content.contains(enclosureUrl) && autoLoadImages_) {
           enclosureStr = QString("<IMG SRC=\"%1\" class=\"enclosureImg\"><p>").
               arg(enclosureUrl);
         }
@@ -1362,6 +1362,10 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     QString cssStr = cssString_.
         arg(ltr ? "left" : "right"). // text-align
         arg(ltr ? "ltr" : "rtl"); // direction
+    if (!autoLoadImages_) {
+      QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
+      content = content.remove(reg);
+    }
 
     QString htmlStr = htmlString_.
         arg(cssStr).
