@@ -113,6 +113,8 @@
     </qresource>
     <qresource prefix="/html">
         <file alias="description">html/news.html</file>
+        <file alias="audioplayer">html/audioplayer.html</file>
+        <file alias="videoplayer">html/videoplayer.html</file>
     </qresource>
     <qresource prefix="/flags">
         <file alias="flag_AR">images/flags/flag_arab.png</file>

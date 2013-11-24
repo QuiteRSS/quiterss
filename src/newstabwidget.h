@@ -209,6 +209,8 @@ private:
 
   QString htmlString_;
   QString cssString_;
+  QString audioPlayerHtml_;
+  QString videoPlayerHtml_;
 
 };
 

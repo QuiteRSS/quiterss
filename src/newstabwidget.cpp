@@ -430,13 +430,13 @@ void NewsTabWidget::setSettings(bool newTab)
       newsModel_->focusedNewsTextColor_ = rssl_->focusedNewsTextColor_;
       newsModel_->focusedNewsBGColor_ = rssl_->focusedNewsBGColor_;
 
-      QFile cssFile;
-      cssFile.setFileName(rssl_->appDataDirPath_+ "/style/news.css");
-      if (!cssFile.open(QFile::ReadOnly)) {
-        cssFile.setFileName(":/style/newsStyle");
-        cssFile.open(QFile::ReadOnly);
+      QFile file;
+      file.setFileName(rssl_->appDataDirPath_+ "/style/news.css");
+      if (!file.open(QFile::ReadOnly)) {
+        file.setFileName(":/style/newsStyle");
+        file.open(QFile::ReadOnly);
       }
-      cssString_ = QString::fromUtf8(cssFile.readAll()).
+      cssString_ = QString::fromUtf8(file.readAll()).
           arg(rssl_->newsTextFontFamily_).
           arg(rssl_->newsTextFontSize_).
           arg(rssl_->newsTitleFontFamily_).
@@ -450,7 +450,17 @@ void NewsTabWidget::setSettings(bool newTab)
           arg(rssl_->dateColor_). // date color
           arg(rssl_->authorColor_). // author color
           arg(rssl_->newsTextColor_); // text color
-      cssFile.close();
+      file.close();
+
+      file.setFileName(":/html/audioplayer");
+      file.open(QFile::ReadOnly);
+      audioPlayerHtml_ = QString::fromUtf8(file.readAll());
+      file.close();
+
+      file.setFileName(":/html/videoplayer");
+      file.open(QFile::ReadOnly);
+      videoPlayerHtml_ = QString::fromUtf8(file.readAll());
+      file.close();
     }
 
     webView_->setZoomFactor(qreal(rssl_->defaultZoomPages_)/100.0);
@@ -1307,23 +1317,29 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
 
     QString enclosureStr;
-    QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
+    QString enclosureUrl = QUrl::fromPercentEncoding(newsModel_->dataField(index.row(), "enclosure_url").toByteArray());
     if (!enclosureUrl.isEmpty()) {
       QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
       if (type.contains("image")) {
-        QString imgUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
-        if (!content.contains(imgUrl)) {
+        if (!content.contains(enclosureUrl)) {
           enclosureStr = QString("<IMG SRC=\"%1\" class=\"enclosureImg\"><p>").
-              arg(imgUrl);
+              arg(enclosureUrl);
         }
       } else {
-        if (type.contains("audio")) type = tr("audio");
-        else if (type.contains("video")) type = tr("video");
+        if (type.contains("audio")) {
+          type = tr("audio");
+          enclosureStr = audioPlayerHtml_.arg(enclosureUrl);
+          enclosureStr.append("<p>");
+        }
+        else if (type.contains("video")) {
+          type = tr("video");
+          enclosureStr = videoPlayerHtml_.arg(enclosureUrl);
+          enclosureStr.append("<p>");
+        }
         else type = tr("media");
 
-        enclosureStr = QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
-            arg(QUrl::fromPercentEncoding(newsModel_->dataField(index.row(), "enclosure_url").toByteArray())).
-            arg(tr("Link to")).arg(type);
+        enclosureStr.append(QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
+            arg(enclosureUrl).arg(tr("Link to")).arg(type));
       }
     }
 
