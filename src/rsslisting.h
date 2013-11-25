@@ -269,6 +269,7 @@ public slots:
   void slotExportFeeds();
   void slotFeedClicked(QModelIndex index);
   void slotFeedSelected(QModelIndex index, bool createTab = false);
+  void setFeedsFilter(bool clicked = true);
   void slotGetFeed();
   void slotGetAllFeeds();
   void showProgressBar(int addToMaximum);
@@ -322,6 +323,8 @@ signals:
   void signalUpdateStatus(int feedId, bool changed);
   void signalMarkAllFeedsRead();
   void signalNumberTabsChanged();
+  void signalMarkFeedRead(int id, bool isFolder, bool openFeed);
+  void signalSetFeedsFilter(bool clicked = false);
 
   void signalSqlQueryExec(QString query);
 
@@ -337,7 +340,6 @@ private slots:
   void setFeedRead(int type, int feedId, FeedReedType feedReadType,
                    NewsTabWidget *widgetTab = 0, int idException = -1);
   void markFeedRead();
-  void setFeedsFilter(QAction*, bool clicked = true);
   void slotRecountCategoryCounts(QList<int> deletedList, QList<int> starredList,
                                  QList<int> readList, QStringList labelList);
   void slotFeedsViewportUpdate();

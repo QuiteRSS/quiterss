@@ -73,10 +73,12 @@ public slots:
   void slotRecountCategoryCounts();
   void slotRecountFeedCounts(int feedId, bool updateViewport = true);
   void slotSetFeedRead(int readType, int feedId, int idException, QList<int> idNewsList);
+  void slotMarkFeedRead(int id, bool isFolder, bool openFeed);
   void slotUpdateStatus(int feedId, bool changed);
   void slotMarkAllFeedsRead();
   void slotIconSave(QString feedUrl, QByteArray faviconData);
   void slotSqlQueryExec(QString query);
+//  void slotSetFeedsFilter(QAction *action);
 
 signals:
   void showProgressBar(int value);
@@ -99,6 +101,7 @@ signals:
   void signalRefreshInfoTray();
   void signalMarkAllFeedsRead();
   void signalIconUpdate(int feedId, QByteArray faviconData);
+  void signalSetFeedsFilter(bool clicked = false);
 
 private slots:
   bool addFeedInQueue(int feedId, const QString &feedUrl,

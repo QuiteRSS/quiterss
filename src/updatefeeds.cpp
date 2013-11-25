@@ -57,14 +57,12 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
             requestFeed_, SLOT(requestUrl(int,QString,QDateTime,QString)));
     connect(requestFeed_, SIGNAL(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
-            parent, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)),
-            Qt::QueuedConnection);
+            parent, SLOT(getUrlDone(int,int,QString,QString,QByteArray,QDateTime,QString)));
 
     connect(parent, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
             parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
     connect(parseObject_, SIGNAL(signalFinishUpdate(int,bool,int,QString)),
-            parent, SLOT(slotUpdateFeed(int,bool,int,QString)),
-            Qt::QueuedConnection);
+            parent, SLOT(slotUpdateFeed(int,bool,int,QString)));
   } else {
     getFaviconThread_ = new QThread();
     getFaviconThread_->setObjectName("getFaviconThread_");
@@ -98,8 +96,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(updateObject_, SIGNAL(signalMessageStatusBar(QString,int)),
             parent, SLOT(showMessageStatusBar(QString,int)));
     connect(parent, SIGNAL(signalRecountCategoryCounts()),
-            updateObject_, SLOT(slotRecountCategoryCounts()),
-            Qt::QueuedConnection);
+            updateObject_, SLOT(slotRecountCategoryCounts()));
     connect(updateObject_, SIGNAL(signalUpdateFeedsModel()),
             parent, SLOT(feedsModelReload()),
             Qt::BlockingQueuedConnection);
@@ -115,8 +112,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
 
     qRegisterMetaType<FeedCountStruct>("FeedCountStruct");
     connect(parseObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
-            parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)),
-            Qt::QueuedConnection);
+            parent, SLOT(slotFeedCountsUpdate(FeedCountStruct)));
 
     connect(parseObject_, SIGNAL(signalPlaySound(QString)),
             parent, SLOT(slotPlaySound(QString)));
@@ -126,21 +122,17 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(parent, SIGNAL(signalNextUpdate(bool)),
             updateObject_, SLOT(slotNextUpdateFeed(bool)));
     connect(updateObject_, SIGNAL(signalUpdateModel(bool)),
-            parent, SLOT(feedsModelReload(bool)),
-            Qt::QueuedConnection);
+            parent, SLOT(feedsModelReload(bool)));
     connect(updateObject_, SIGNAL(signalUpdateNews()),
-            parent, SLOT(slotUpdateNews()),
-            Qt::QueuedConnection);
+            parent, SLOT(slotUpdateNews()));
     connect(updateObject_, SIGNAL(signalCountsStatusBar(int,int)),
-            parent, SLOT(slotCountsStatusBar(int,int)),
-            Qt::QueuedConnection);
+            parent, SLOT(slotCountsStatusBar(int,int)));
 
     connect(parent, SIGNAL(signalRecountCategoryCounts()),
             updateObject_, SLOT(slotRecountCategoryCounts()));
     qRegisterMetaType<QList<int> >("QList<int>");
     connect(updateObject_, SIGNAL(signalRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)),
-            parent, SLOT(slotRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)),
-            Qt::QueuedConnection);
+            parent, SLOT(slotRecountCategoryCounts(QList<int>,QList<int>,QList<int>,QStringList)));
     connect(parent, SIGNAL(signalRecountFeedCounts(int,bool)),
             updateObject_, SLOT(slotRecountFeedCounts(int,bool)));
     connect(updateObject_, SIGNAL(feedCountsUpdate(FeedCountStruct)),
@@ -149,6 +141,8 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             parent, SLOT(slotFeedsViewportUpdate()));
     connect(parent, SIGNAL(signalSetFeedRead(int,int,int,QList<int>)),
             updateObject_, SLOT(slotSetFeedRead(int,int,int,QList<int>)));
+    connect(parent, SIGNAL(signalMarkFeedRead(int,bool,bool)),
+            updateObject_, SLOT(slotMarkFeedRead(int,bool,bool)));
     connect(updateObject_, SIGNAL(signalRefreshInfoTray()),
             parent, SLOT(slotRefreshInfoTray()));
     connect(parent, SIGNAL(signalUpdateStatus(int,bool)),
@@ -157,6 +151,11 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotMarkAllFeedsRead()));
     connect(updateObject_, SIGNAL(signalMarkAllFeedsRead()),
             parent, SLOT(slotRefreshNewsView()));
+
+    connect(parent, SIGNAL(signalSetFeedsFilter(bool)),
+            updateObject_, SIGNAL(signalSetFeedsFilter(bool)));
+    connect(updateObject_, SIGNAL(signalSetFeedsFilter(bool)),
+            parent, SLOT(setFeedsFilter(bool)));
 
     connect(parent, SIGNAL(signalSqlQueryExec(QString)),
             updateObject_, SLOT(slotSqlQueryExec(QString)));
@@ -894,6 +893,37 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     if (feedId > -1)
       slotRecountFeedCounts(feedId, false);
   }
+
+  emit signalSetFeedsFilter();
+}
+
+void UpdateObject::slotMarkFeedRead(int id, bool isFolder, bool openFeed)
+{
+  db_.transaction();
+  QSqlQuery q(db_);
+  QString qStr;
+  if (isFolder) {
+    qStr = QString("UPDATE news SET read=2 WHERE read!=2 AND deleted==0 AND (%1)").
+        arg(getIdFeedsString(id));
+    q.exec(qStr);
+    qStr = QString("UPDATE news SET new=0 WHERE new==1 AND (%1)").
+        arg(getIdFeedsString(id));
+    q.exec(qStr);
+  } else {
+    if (openFeed) {
+      qStr = QString("UPDATE news SET read=2 WHERE feedId=='%1' AND read!=2 AND deleted==0").
+          arg(id);
+      q.exec(qStr);
+    } else {
+      QString qStr = QString("UPDATE news SET read=1 WHERE feedId=='%1' AND read==0").
+          arg(id);
+      q.exec(qStr);
+    }
+    qStr = QString("UPDATE news SET new=0 WHERE feedId=='%1' AND new==1").
+        arg(id);
+    q.exec(qStr);
+  }
+  db_.commit();
 }
 
 /** @brief Update status of current feed or feed of current tab
