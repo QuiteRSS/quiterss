@@ -1236,6 +1236,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
   } else {
     setWebToolbarVisible(false, false);
 
+    QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
+    QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
+
     QString titleString = newsModel_->dataField(index.row(), "title").toString();
 
     QDateTime dtLocal;
@@ -1273,9 +1276,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     // @note(arhohryakov:2012.01.03) Author is got from current feed, because
     //   news is belong to it
     if (authorString.isEmpty()) {
-      authorName  = feedsTreeModel_->dataField(currentIndex, "author_name").toString();
-      authorEmail = feedsTreeModel_->dataField(currentIndex, "author_email").toString();
-      authorUri   = feedsTreeModel_->dataField(currentIndex, "author_uri").toString();
+      authorName  = feedsTreeModel_->dataField(feedIndex, "author_name").toString();
+      authorEmail = feedsTreeModel_->dataField(feedIndex, "author_email").toString();
+      authorUri   = feedsTreeModel_->dataField(feedIndex, "author_uri").toString();
 
       //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
       authorString = authorName;
@@ -1350,12 +1353,8 @@ void NewsTabWidget::updateWebView(QModelIndex index)
             arg(QUrl::fromPercentEncoding(linkString.toUtf8())).arg(titleString);
     }
 
-    QString feedId = newsModel_->dataField(index.row(), "feedId").toString();
-
-    QString languageString;
-    QSqlQuery q;
-    q.exec(QString("SELECT language FROM feeds WHERE id=='%1'").arg(feedId));
-    if (q.next()) languageString = q.value(0).toString().toLower();
+    QString languageString = feedsTreeModel_->dataField(feedIndex, "language").
+        toString().toLower();
     bool ltr = true;
     if (languageString == "ar") ltr = false;
 
