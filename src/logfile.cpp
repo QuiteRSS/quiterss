@@ -28,7 +28,7 @@ void LogFile::msgHandler(QtMsgType type, const QMessageLogContext &, const QStri
   file.setFileName(QCoreApplication::applicationDirPath() + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
-  if (file.exists() && file.size() < maxLogFileSize) {
+  if (file.exists() && (file.size() < maxLogFileSize)) {
     openMode |= QIODevice::Append;
   }
 
@@ -69,9 +69,8 @@ void LogFile::msgHandler(QtMsgType type, const char *msg)
   file.setFileName(QCoreApplication::applicationDirPath() + "/debug.log");
   QIODevice::OpenMode openMode = QIODevice::WriteOnly | QIODevice::Text;
 
-  if (file.exists() && file.size() < maxLogFileSize) {
-    if (!QString::fromUtf8(msg).contains("Start application!"))
-      openMode |= QIODevice::Append;
+  if (file.exists() && (file.size() < maxLogFileSize)) {
+    openMode |= QIODevice::Append;
   }
 
   file.open(openMode);
