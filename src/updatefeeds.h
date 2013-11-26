@@ -78,7 +78,8 @@ public slots:
   void slotMarkAllFeedsRead();
   void slotIconSave(QString feedUrl, QByteArray faviconData);
   void slotSqlQueryExec(QString query);
-//  void slotSetFeedsFilter(QAction *action);
+  void slotMarkAllFeedsOld();
+  void slotRefreshInfoTray();
 
 signals:
   void showProgressBar(int value);
@@ -98,7 +99,7 @@ signals:
                                    QList<int> readList, QStringList labelList);
   void feedCountsUpdate(FeedCountStruct counts);
   void signalFeedsViewportUpdate();
-  void signalRefreshInfoTray();
+  void signalRefreshInfoTray(int newCount, int unreadCount);
   void signalMarkAllFeedsRead();
   void signalIconUpdate(int feedId, QByteArray faviconData);
   void signalSetFeedsFilter(bool clicked = false);

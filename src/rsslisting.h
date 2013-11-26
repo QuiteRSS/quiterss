@@ -325,6 +325,7 @@ signals:
   void signalNumberTabsChanged();
   void signalMarkFeedRead(int id, bool isFolder, bool openFeed);
   void signalSetFeedsFilter(bool clicked = false);
+  void signalMarkAllFeedsOld();
 
   void signalSqlQueryExec(QString query);
 
@@ -360,7 +361,6 @@ private slots:
   void showFeedPropertiesDlg();
   void slotFeedMenuShow();
   void slotRefreshNewsView();
-  void markAllFeedsOld();
   void slotIconFeedPreparing(QString feedUrl, QByteArray byteArray, QString format);
   void slotIconFeedUpdate(int feedId, QByteArray faviconData);
   void slotCommitDataRequest(QSessionManager&);
@@ -429,7 +429,7 @@ private slots:
 
   void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere, int how);
 
-  void slotRefreshInfoTray();
+  void slotRefreshInfoTray(int newCount, int unreadCount);
 
   void slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTab = false);
   void clearDeleted();
@@ -509,7 +509,6 @@ private:
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
-  QString getUserInfo(QUrl url, int auth);
   QUrl userStyleSheet(const QString &filePath) const;
   void initUpdateFeeds();
   void addOurFeed();

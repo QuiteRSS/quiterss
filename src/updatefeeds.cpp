@@ -143,14 +143,18 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             updateObject_, SLOT(slotSetFeedRead(int,int,int,QList<int>)));
     connect(parent, SIGNAL(signalMarkFeedRead(int,bool,bool)),
             updateObject_, SLOT(slotMarkFeedRead(int,bool,bool)));
-    connect(updateObject_, SIGNAL(signalRefreshInfoTray()),
-            parent, SLOT(slotRefreshInfoTray()));
+    connect(parent, SIGNAL(signalRefreshInfoTray()),
+            updateObject_, SLOT(slotRefreshInfoTray()));
+    connect(updateObject_, SIGNAL(signalRefreshInfoTray(int,int)),
+            parent, SLOT(slotRefreshInfoTray(int,int)));
     connect(parent, SIGNAL(signalUpdateStatus(int,bool)),
             updateObject_, SLOT(slotUpdateStatus(int,bool)));
     connect(parent, SIGNAL(signalMarkAllFeedsRead()),
             updateObject_, SLOT(slotMarkAllFeedsRead()));
     connect(updateObject_, SIGNAL(signalMarkAllFeedsRead()),
             parent, SLOT(slotRefreshNewsView()));
+    connect(parent, SIGNAL(signalMarkAllFeedsOld()),
+            updateObject_, SLOT(slotMarkAllFeedsOld()));
 
     connect(parent, SIGNAL(signalSetFeedsFilter(bool)),
             updateObject_, SIGNAL(signalSetFeedsFilter(bool)));
@@ -875,7 +879,7 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     slotRecountCategoryCounts();
 
     if (readType != FeedReadPlaceToTray) {
-      emit signalRefreshInfoTray();
+      slotRefreshInfoTray();
     }
   } else {
     QString idStr;
@@ -933,7 +937,7 @@ void UpdateObject::slotUpdateStatus(int feedId, bool changed)
   if (changed) {
     slotRecountFeedCounts(feedId);
   }
-  emit signalRefreshInfoTray();
+  slotRefreshInfoTray();
 
   if (feedId > 0) {
     bool folderUpdate = false;
@@ -981,7 +985,7 @@ void UpdateObject::slotMarkAllFeedsRead()
   }
   slotRecountCategoryCounts();
 
-  emit signalRefreshInfoTray();
+  slotRefreshInfoTray();
 
   emit signalMarkAllFeedsRead();
 }
@@ -1014,4 +1018,41 @@ void UpdateObject::slotSqlQueryExec(QString query)
   if (!q.exec(query))
     qCritical() << __PRETTY_FUNCTION__ << __LINE__
                 << "q.lastError(): " << q.lastError().text();
+}
+
+/** @brief Mark all feeds Not New
+ *---------------------------------------------------------------------------*/
+void UpdateObject::slotMarkAllFeedsOld()
+{
+  QSqlQuery q(db_);
+  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
+
+  q.exec("SELECT id FROM feeds WHERE newCount!=0");
+  while (q.next()) {
+    slotRecountFeedCounts(q.value(0).toInt());
+  }
+  slotRecountCategoryCounts();
+
+  if ((rssl_->currentNewsTab != NULL) && (rssl_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
+    emit signalUpdateNews();
+  }
+
+  slotRefreshInfoTray();
+}
+
+void UpdateObject::slotRefreshInfoTray()
+{
+  if (!rssl_->showTrayIcon_) return;
+
+  // Calculate new and unread news number
+  int newCount = 0;
+  int unreadCount = 0;
+  QSqlQuery q(db_);
+  q.exec("SELECT sum(newCount), sum(unread) FROM feeds WHERE xmlUrl!=''");
+  if (q.first()) {
+    newCount    = q.value(0).toInt();
+    unreadCount = q.value(1).toInt();
+  }
+
+  emit signalRefreshInfoTray(newCount, unreadCount);
 }

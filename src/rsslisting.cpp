@@ -234,8 +234,6 @@ RSSListing::RSSListing(QSettings *settings,
 
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
-  connect(this, SIGNAL(signalRefreshInfoTray()),
-          SLOT(slotRefreshInfoTray()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
           SLOT(slotPlaySoundNewNews()), Qt::QueuedConnection);
 
@@ -462,7 +460,7 @@ void RSSListing::slotPlaceToTray()
   if (markReadMinimize_)
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadPlaceToTray, currentNewsTab);
   if (clearStatusNew_)
-    markAllFeedsOld();
+    emit signalMarkAllFeedsOld();
   clearNotification();
 
   writeSettings();
@@ -3044,6 +3042,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   if (!stackedWidget_->count() || createTab) {
     NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeFeed, feedId, feedParId);
     int indexTab = addTab(widget);
+
     createNewsTab(indexTab);
 
     if (indexTab == 0)
@@ -3059,7 +3058,6 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
     currentNewsTab->setSettings(false);
     currentNewsTab->setVisible(index.isValid());
   }
-
   statusUnread_->setVisible(index.isValid());
   statusAll_->setVisible(index.isValid());
 
@@ -4230,27 +4228,6 @@ void RSSListing::slotRefreshNewsView()
   }
 }
 
-/** @brief Mark all feeds Not New
- *---------------------------------------------------------------------------*/
-void RSSListing::markAllFeedsOld()
-{
-  QSqlQuery q;
-  q.exec("UPDATE news SET new=0 WHERE new==1 AND deleted==0");
-
-  q.exec("SELECT id FROM feeds WHERE newCount!=0");
-  while (q.next()) {
-    qApp->processEvents();
-    emit signalRecountFeedCounts(q.value(0).toInt());
-  }
-  recountCategoryCounts();
-
-  if ((currentNewsTab != NULL) && (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
-    slotUpdateNews();
-  }
-
-  emit signalRefreshInfoTray();
-}
-
 // ----------------------------------------------------------------------------
 void RSSListing::slotShowAboutDlg()
 {
@@ -5266,20 +5243,8 @@ void RSSListing::showFeedPropertiesDlg()
 
 /** @brief Update tray information: icon and tooltip text
  *---------------------------------------------------------------------------*/
-void RSSListing::slotRefreshInfoTray()
+void RSSListing::slotRefreshInfoTray(int newCount, int unreadCount)
 {
-  if (!showTrayIcon_) return;
-
-  // Calculate new and unread news number
-  int newCount = 0;
-  int unreadCount = 0;
-  QSqlQuery q;
-  q.exec("SELECT sum(newCount), sum(unread) FROM feeds WHERE xmlUrl!=''");
-  if (q.next()) {
-    newCount    = q.value(0).toInt();
-    unreadCount = q.value(1).toInt();
-  }
-
   if (!unreadCount)
     categoriesTree_->topLevelItem(0)->setText(4, "");
   else
@@ -7003,26 +6968,6 @@ void RSSListing::slotSavePageAs()
     file.write(codec->fromUnicode(html));
   }
   file.close();
-}
-
-/** @brief Get user login adn password form DB
- * @param url Site URL
- * @param auth Enable authorization flag
- *---------------------------------------------------------------------------*/
-QString RSSListing::getUserInfo(QUrl url, int auth)
-{
-  QString userInfo;
-  if (auth == 1) {
-    QSqlQuery q;
-    q.prepare("SELECT username, password FROM passwords WHERE server=?");
-    q.addBindValue(url.host());
-    q.exec();
-    if (q.next()) {
-      userInfo = QString("%1:%2").arg(q.value(0).toString()).
-          arg(QString::fromUtf8(QByteArray::fromBase64(q.value(1).toByteArray())));
-    }
-  }
-  return userInfo;
 }
 
 /** @brief Restore last deleted news
