@@ -540,9 +540,6 @@ void NewsTabWidget::slotNewsViewClicked(QModelIndex index)
 // ----------------------------------------------------------------------------
 void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
 {
-  QElapsedTimer timer;
-  timer.start();
-
   int newsId = newsModel_->dataField(index.row(), "id").toInt();
 
   if (rssl_->markNewsReadOn_ && rssl_->markPrevNewsRead_ &&
@@ -557,14 +554,12 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
   if (!index.isValid()) {
     hideWebContent();
     currentNewsIdOld = newsId;
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed() << "(invalid index)";
     return;
   }
 
   if (!((newsId == currentNewsIdOld) &&
         newsModel_->dataField(index.row(), "read").toInt() >= 1) ||
         clicked) {
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 
     markNewsReadTimer_->stop();
     if (rssl_->markNewsReadOn_ && rssl_->markCurNewsRead_) {
@@ -581,8 +576,6 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
           arg(newsId).arg(feedId_);
       rssl_->sqlQueryExec(qStr);
 
-      qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
       QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
       feedsTreeModel_->setData(feedsTreeModel_->indexSibling(feedIndex, "currentNews"), newsId);
     } else if (type_ == TabTypeLabel) {
@@ -594,16 +587,11 @@ void NewsTabWidget::slotNewsViewSelected(QModelIndex index, bool clicked)
       rssl_->categoriesTree_->currentItem()->setText(3, QString::number(newsId));
     }
 
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
-
     updateWebView(index);
 
     rssl_->statusBar()->showMessage(linkNewsString_, 3000);
-
-    qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
   }
   currentNewsIdOld = newsId;
-  qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
 }
 
 // ----------------------------------------------------------------------------
