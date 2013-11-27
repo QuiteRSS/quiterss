@@ -1326,7 +1326,7 @@ void OptionsDialog::createLanguageWidget()
   treeItem.clear();
   treeItem << "sk" << QString::fromUtf8("Slovenčina [SK]")
            << "0.14.0"
-           << "" << "";
+           << QString::fromUtf8("DAG Software (Ďanovský Ján)") << "dagsoftware@yahoo.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_SK"));
   languageFileList_->addTopLevelItem(languageItem);
