@@ -61,6 +61,7 @@ private:
   int timeoutRequest_;
   int numberRequests_;
   int numberRepeats_;
+  QTimer *timeout_;
   QTimer *getUrlTimer_;
 
   QQueue<int> idsQueue_;

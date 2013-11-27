@@ -37,9 +37,9 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
 {
   setObjectName("updateObject_");
 
-  QTimer *timeout = new QTimer(this);
-  connect(timeout, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
-  timeout->start(1000);
+  timeout_ = new QTimer(this);
+  timeout_->setInterval(1000);
+  connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
 
   getUrlTimer_ = new QTimer(this);
   getUrlTimer_->setSingleShot(true);
@@ -63,6 +63,9 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
 void RequestFeed::requestUrl(int id, QString urlString,
                               QDateTime date, QString userInfo)
 {
+  if (!timeout_->isActive())
+    timeout_->start();
+
   idsQueue_.enqueue(id);
   feedsQueue_.enqueue(urlString);
   dateQueue_.enqueue(date);

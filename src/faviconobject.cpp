@@ -34,9 +34,9 @@ FaviconObject::FaviconObject(QObject *parent)
 {
   setObjectName("faviconObject_");
 
-  QTimer *timeout_ = new QTimer(this);
+  timeout_ = new QTimer(this);
+  timeout_->setInterval(1000);
   connect(timeout_, SIGNAL(timeout()), this, SLOT(slotRequestTimeout()));
-  timeout_->start(1000);
 
   getUrlTimer_ = new QTimer(this);
   getUrlTimer_->setSingleShot(true);
@@ -55,9 +55,14 @@ FaviconObject::FaviconObject(QObject *parent)
  *----------------------------------------------------------------------------*/
 void FaviconObject::requestUrl(QString urlString, QString feedUrl)
 {
+  if (!timeout_->isActive())
+    timeout_->start();
+
   urlsQueue_.enqueue(urlString);
   feedsQueue_.enqueue(feedUrl);
-  getUrlTimer_->start();
+
+  if (!getUrlTimer_->isActive())
+    getUrlTimer_->start();
 }
 
 /** @brief Process request queue by timer

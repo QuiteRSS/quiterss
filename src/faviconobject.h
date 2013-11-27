@@ -52,6 +52,7 @@ private:
   QQueue<QString> urlsQueue_;
   QQueue<QString> feedsQueue_;
 
+  QTimer *timeout_;
   QTimer *getUrlTimer_;
   QList<QUrl> currentUrls_;
   QList<QString> currentFeeds_;
