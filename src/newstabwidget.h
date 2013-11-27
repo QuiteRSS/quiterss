@@ -115,7 +115,7 @@ public:
   QSplitter *newsTabWidgetSplitter_;
 
   WebView *webView_;
-  LineEdit *locationBar_;
+  QLineEdit *locationBar_;
   QWidget *webControlPanel_;
 
   QLabel *newsIconTitle_;

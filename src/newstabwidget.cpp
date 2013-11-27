@@ -330,7 +330,7 @@ void NewsTabWidget::createWebWidget()
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   webToolBar_->addAction(webExternalBrowserAct_);
 
-  locationBar_ = new LineEdit(this);
+  locationBar_ = new QLineEdit(this);
 
   QHBoxLayout *webControlPanelLayout = new QHBoxLayout();
   webControlPanelLayout->setMargin(2);
