@@ -541,6 +541,8 @@ ItemAction *FilterRulesDialog::addAction()
   actionsLayout_->addWidget(itemAction);
   actionsLayout_->addStretch();
   actionsLayout_->addSpacing(25);
+  connect(itemAction, SIGNAL(signalPlaySound(QString)),
+          this, SIGNAL(signalPlaySound(QString)));
   connect(itemAction->addButton_, SIGNAL(clicked()), this, SLOT(addAction()));
   connect(itemAction, SIGNAL(signalDeleteAction(ItemAction*)),
           this, SLOT(deleteAction(ItemAction*)));

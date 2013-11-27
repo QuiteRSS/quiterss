@@ -151,6 +151,9 @@ void NewsFiltersDialog::newFilter()
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         parentWidget(), -1);
 
+  connect(filterRulesDialog, SIGNAL(signalPlaySound(QString)),
+          parent(), SLOT(slotPlaySound(QString)));
+
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
     delete filterRulesDialog;
@@ -212,6 +215,9 @@ void NewsFiltersDialog::editFilter()
 
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         parentWidget(), filterId);
+
+  connect(filterRulesDialog, SIGNAL(signalPlaySound(QString)),
+          parent(), SLOT(slotPlaySound(QString)));
 
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {

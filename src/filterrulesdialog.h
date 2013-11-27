@@ -151,14 +151,21 @@ public:
     comboBox2_ = new QComboBox(this);
     comboBox2_->setVisible(false);
 
-    soundPathEdit_ = new LineEdit(this);
+    soundPathEdit_ = new QLineEdit(this);
     selectionSound_ = new QToolButton(this);
     selectionSound_->setText("...");
     selectionSound_->setToolTip(tr("Browse"));
+    selectionSound_->setAutoRaise(true);
+    playSound_ = new QToolButton(this);
+    playSound_->setIcon(QIcon(":/images/play"));
+    playSound_->setToolTip(tr("Play"));
+    playSound_->setAutoRaise(true);
     QHBoxLayout *soundLayout = new QHBoxLayout();
     soundLayout->setMargin(0);
+    soundLayout->setSpacing(1);
     soundLayout->addWidget(soundPathEdit_, 1);
     soundLayout->addWidget(selectionSound_);
+    soundLayout->addWidget(playSound_);
     soundWidget_ = new QWidget(this);
     soundWidget_->setLayout(soundLayout);
     soundWidget_->setVisible(false);
@@ -194,6 +201,7 @@ public:
 
     setLayout(buttonsLayout);
 
+    connect(playSound_, SIGNAL(clicked()), this, SLOT(slotPlaySound()));
     connect(deleteButton_, SIGNAL(clicked()), this, SLOT(deleteFilterAction()));
     connect(comboBox1_, SIGNAL(currentIndexChanged(int)),
             this, SLOT(currentIndexChanged(int)));
@@ -204,14 +212,16 @@ public:
   QComboBox *comboBox1_;
   QComboBox *comboBox2_;
   QWidget *soundWidget_;
-  LineEdit *soundPathEdit_;
+  QLineEdit *soundPathEdit_;
   QToolButton *selectionSound_;
+  QToolButton *playSound_;
   QToolButton *colorButton_;
 
   QToolButton *addButton_;
 
 signals:
   void signalDeleteAction(ItemAction *item);
+  void signalPlaySound(const QString &soundPath);
 
 private slots:
   void deleteFilterAction()
@@ -242,6 +252,12 @@ private slots:
                                                     path, "*.wav");
     if (!fileName.isEmpty())
       soundPathEdit_->setText(fileName);
+  }
+
+  void slotPlaySound()
+  {
+    if (!soundPathEdit_->text().isEmpty())
+      emit signalPlaySound(soundPathEdit_->text());
   }
 
   void selectColorText()
@@ -275,6 +291,9 @@ public:
 
   int filterId_;
   bool itemNotChecked_;
+
+signals:
+  void signalPlaySound(const QString &soundPath);
 
 private slots:
   void feedItemChanged(QTreeWidgetItem *item, int column);
