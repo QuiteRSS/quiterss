@@ -223,6 +223,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   int newCount = 0;
   if (feedChanged_) {
+    qApp->processEvents();
     runUserFilter(parseFeedId_);
     qApp->processEvents();
     newCount = recountFeedCounts(parseFeedId_, feedUrl, updated, lastBuildDate);
@@ -385,7 +386,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
     if (!q.first()) {
       bool read = false;
       if (rssl_->markIdenticalNewsRead_) {
-        q.prepare("SELECT * FROM news WHERE feedId!=:id AND title LIKE :title");
+        q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
         q.bindValue(":id", parseFeedId_);
         q.bindValue(":title", newsItem.title);
         q.exec();
@@ -557,7 +558,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
     if (!q.first()) {
       bool read = false;
       if (rssl_->markIdenticalNewsRead_) {
-        q.prepare("SELECT * FROM news WHERE feedId!=:id AND title LIKE :title");
+        q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
         q.bindValue(":id", parseFeedId_);
         q.bindValue(":title", newsItem.title);
         q.exec();

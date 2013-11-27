@@ -102,9 +102,11 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             Qt::BlockingQueuedConnection);
 
     connect(updateObject_, SIGNAL(xmlReadyParse(QByteArray,int,QDateTime,QString)),
-            parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)));
+            parseObject_, SLOT(parseXml(QByteArray,int,QDateTime,QString)),
+            Qt::QueuedConnection);
     connect(parseObject_, SIGNAL(signalFinishUpdate(int,bool,int,QString)),
-            updateObject_, SLOT(finishUpdate(int,bool,int,QString)));
+            updateObject_, SLOT(finishUpdate(int,bool,int,QString)),
+            Qt::QueuedConnection);
     connect(updateObject_, SIGNAL(feedUpdated(int,bool,int,bool)),
             parent, SLOT(slotUpdateFeed(int,bool,int,bool)));
     connect(updateObject_, SIGNAL(setStatusFeed(int,QString)),
@@ -189,7 +191,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   parseObject_->moveToThread(updateFeedThread_);
 
   getFeedThread_->start(QThread::LowPriority);
-  updateFeedThread_->start();
+  updateFeedThread_->start(QThread::LowPriority);
 }
 
 UpdateFeeds::~UpdateFeeds()

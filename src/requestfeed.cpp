@@ -35,7 +35,7 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   , numberRequests_(numberRequests)
   , numberRepeats_(numberRepeats)
 {
-  setObjectName("updateObject_");
+  setObjectName("requestFeed_");
 
   timeout_ = new QTimer(this);
   timeout_->setInterval(1000);
