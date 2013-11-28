@@ -2,6 +2,29 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.14.0+</b> (30 Nov 2013)
+<ul>
+<li>Main: Increase application performance</li>
+
+<li>Added: Audio/video player for podcasts</li>
+<li>Added: User filters. Sound playing (phonon)</li>
+<li>Added: User filters. HIghlight news in notification</li>
+<li>Added: Option "Hide tab panel if only one tab is opened"</li>
+<li>Added: Address field in browser toolbar</li>
+<li>Added: Display news link in status bar for 3 second while switching news</li>
+<li>Added: More color settings</li>
+
+<li>Changed: Close notification if all news have been read</li>
+<li>Changed: Store cleanup wizard settings</li>
+<li>Changed: If images are switched off no images are displayed in news description</li>
+
+<li>Fixed: Application crash while clicking "Customize news toolbar"</li>
+<li>Fixed: Application crash while using "Next unread news"</li>
+<li>Fixed: Can't to open feed homepage</li>
+<li>Fixed: Switch on next unread news even if no feed is selected</li>
+<li>Fixed: Mark feed read (while filter is enabled)</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Vervion 0.14.0</b> (15 Nov 2013)
 <ul>
 <li>Main: Increase application performance</li>
