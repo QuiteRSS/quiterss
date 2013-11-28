@@ -5361,6 +5361,8 @@ void RSSListing::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 // ----------------------------------------------------------------------------
 void RSSListing::slotPlaySound(const QString &soundPath)
 {
+  if (!QFile::exists(soundPath)) return;
+
 #ifdef HAVE_QT5
   if (mediaPlayer_ == NULL) {
     playlist_ = new QMediaPlaylist(this);
@@ -5382,6 +5384,9 @@ void RSSListing::slotPlaySound(const QString &soundPath)
     audioOutput_ = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     Phonon::createPath(mediaPlayer_, audioOutput_);
   }
+
+  if (mediaPlayer_->state() == Phonon::ErrorState)
+    mediaPlayer_->clear();
 
   if (mediaPlayer_->state() != Phonon::PausedState)
     mediaPlayer_->enqueue(soundPath);
