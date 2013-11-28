@@ -8,7 +8,7 @@
 
 <li>Added: Audio/video player for podcasts</li>
 <li>Added: User filters. Sound playing (phonon)</li>
-<li>Added: User filters. HIghlight news in notification</li>
+<li>Added: User filters. Highlight news in notification</li>
 <li>Added: Option "Hide tab panel if only one tab is opened"</li>
 <li>Added: Address field in browser toolbar</li>
 <li>Added: Display news link in status bar for 3 second while switching news</li>
