@@ -991,18 +991,27 @@ void OptionsDialog::createNotifierWidget()
   soundNewNews_->setChecked(true);
   editSoundNotifer_ = new LineEdit();
   selectionSoundNotifer_ = new QPushButton(tr("Browse..."));
+  playSoundNotifer_ = new QPushButton(tr("Play"));
 
   connect(soundNewNews_, SIGNAL(toggled(bool)),
           editSoundNotifer_, SLOT(setEnabled(bool)));
   connect(soundNewNews_, SIGNAL(toggled(bool)),
           selectionSoundNotifer_, SLOT(setEnabled(bool)));
+  connect(soundNewNews_, SIGNAL(toggled(bool)),
+          playSoundNotifer_, SLOT(setEnabled(bool)));
   connect(selectionSoundNotifer_, SIGNAL(clicked()),
           this, SLOT(selectionSoundNotifer()));
+  connect(playSoundNotifer_, SIGNAL(clicked()), this, SLOT(slotPlaySoundNotifer()));
+  connect(this, SIGNAL(signalPlaySound(QString)), parent(), SLOT(slotPlaySound(QString)));
 
-  QHBoxLayout *notifierLayout0 = new QHBoxLayout();
+  QHBoxLayout *notifierLayout5 = new QHBoxLayout();
+  notifierLayout5->addWidget(editSoundNotifer_, 1);
+  notifierLayout5->addWidget(selectionSoundNotifer_);
+  notifierLayout5->addWidget(playSoundNotifer_);
+
+  QVBoxLayout *notifierLayout0 = new QVBoxLayout();
   notifierLayout0->addWidget(soundNewNews_);
-  notifierLayout0->addWidget(editSoundNotifer_, 1);
-  notifierLayout0->addWidget(selectionSoundNotifer_);
+  notifierLayout0->addLayout(notifierLayout5);
 
   showNotifyOn_ = new QGroupBox(tr("Display notification for incoming news"));
   showNotifyOn_->setCheckable(true);
@@ -2095,6 +2104,13 @@ void OptionsDialog::selectionSoundNotifer()
   if (!fileName.isEmpty())
     editSoundNotifer_->setText(fileName);
 }
+
+void OptionsDialog::slotPlaySoundNotifer()
+{
+  if (!editSoundNotifer_->text().isEmpty())
+    emit signalPlaySound(editSoundNotifer_->text());
+}
+
 //----------------------------------------------------------------------------
 void OptionsDialog::feedsTreeNotifyItemChanged(QTreeWidgetItem *item, int column)
 {

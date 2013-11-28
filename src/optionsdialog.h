@@ -160,6 +160,7 @@ public:
   QCheckBox *soundNewNews_;
   QLineEdit *editSoundNotifer_;
   QPushButton *selectionSoundNotifer_;
+  QPushButton *playSoundNotifer_;
 
   QGroupBox *showNotifyOn_;
   QComboBox *positionNotify_;
@@ -197,6 +198,7 @@ public:
 signals:
   void signalCategoriesTreeKeyUpDownPressed();
   void signalShortcutTreeUpDownPressed();
+  void signalPlaySound(const QString &soundPath);
 
 protected:
   bool eventFilter(QObject *obj, QEvent *event);
@@ -220,6 +222,7 @@ private slots:
   void filterShortcutChanged(const QString &text);
   void selectionBrowser();
   void selectionSoundNotifer();
+  void slotPlaySoundNotifer();
   void feedsTreeNotifyItemChanged(QTreeWidgetItem* item,int column);
   void setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state);
   void showNotification();
