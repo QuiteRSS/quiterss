@@ -289,6 +289,7 @@ class FilterRulesDialog : public Dialog
 public:
   explicit FilterRulesDialog(QWidget *parent, int filterId, int feedId = -1);
 
+  LineEdit *filterName_;
   int filterId_;
   bool itemNotChecked_;
 
@@ -312,7 +313,6 @@ private:
   void setData();
 
   QSettings *settings_;
-  LineEdit *filterName_;
   QTreeWidget *feedsTree_;
 
   QComboBox *matchComboBox_;

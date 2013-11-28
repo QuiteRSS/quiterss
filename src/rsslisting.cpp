@@ -5433,6 +5433,10 @@ void RSSListing::showFilterRulesDlg()
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         this, -1, feedId);
 
+  QModelIndex index = feedsTreeModel_->getIndexById(feedId);
+  QString text = feedsTreeModel_->dataField(index, "text").toString();
+  filterRulesDialog->filterName_->setText(QString("'%1'").arg(text));
+
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
     delete filterRulesDialog;
