@@ -5433,9 +5433,6 @@ void RSSListing::showFilterRulesDlg()
   FilterRulesDialog *filterRulesDialog = new FilterRulesDialog(
         this, -1, feedId);
 
-  connect(filterRulesDialog, SIGNAL(signalPlaySound(QString)),
-          this, SLOT(slotPlaySound(QString)));
-
   int result = filterRulesDialog->exec();
   if (result == QDialog::Rejected) {
     delete filterRulesDialog;

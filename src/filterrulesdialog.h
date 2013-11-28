@@ -292,9 +292,6 @@ public:
   int filterId_;
   bool itemNotChecked_;
 
-signals:
-  void signalPlaySound(const QString &soundPath);
-
 private slots:
   void feedItemChanged(QTreeWidgetItem *item, int column);
   void setCheckStateItem(QTreeWidgetItem *item, Qt::CheckState state);
