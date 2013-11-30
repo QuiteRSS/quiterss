@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.14.0+</b> (30 Nov 2013)
+<p><b>Version 0.14.1</b> (30 Nov 2013)
 <ul>
 <li>Main: Increase application performance</li>
 

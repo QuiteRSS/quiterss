@@ -1,3 +1,21 @@
+Version 0.14.1 (30 Nov 2013)
+  * Main: Increase application performance
+  * Added: Audio/video player for podcasts
+  * Added: User filters. Sound playing (phonon)
+  * Added: User filters. Highlight news in notification
+  * Added: Option "Hide tab panel if only one tab is opened"
+  * Added: Address field in browser toolbar
+  * Added: Display news link in status bar for 3 second while switching news
+  * Added: More color settings
+  * Changed: Close notification if all news have been read
+  * Changed: Store cleanup wizard settings
+  * Changed: If images are switched off no images are displayed in news description
+  * Fixed: Application crash while clicking "Customize news toolbar"
+  * Fixed: Application crash while using "Next unread news"
+  * Fixed: Can't to open feed homepage
+  * Fixed: Switch on next unread news even if no feed is selected
+  * Fixed: Mark feed read (while filter is enabled)
+
 Vervion 0.14.0 (15 Nov 2013)
   * Main: Increase application performance
   * Main: Feed filter is case-insensitive now
