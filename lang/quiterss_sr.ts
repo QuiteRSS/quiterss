@@ -2874,12 +2874,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Страница вести горе</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Страница вести доле</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>

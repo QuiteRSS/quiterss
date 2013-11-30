@@ -1152,7 +1152,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"/>
+        <translation>تشغيل مرشح</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="257"/>
@@ -1463,7 +1463,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>حفظ قاعدة البيانات المخزنة في الذاكرة الى ملف كل</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -1617,7 +1617,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>التقريب الافتراضي في الصفحات:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
@@ -2042,7 +2042,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News text color</source>
-        <translation type="unfinished"/>
+        <translation>لون خط الخبر</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1507"/>
@@ -2067,7 +2067,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Text color of new news </source>
-        <translation type="unfinished"/>
+        <translation>لون النص للخبر الجديد</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1555"/>
@@ -2374,7 +2374,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Number requests:</source>
-        <translation type="unfinished"/>
+        <translation>الارقام المطلوبة:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="862"/>
@@ -2872,12 +2872,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>صفحة اخبار للاعلى</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>صفحة اخبار للاسفل</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
@@ -3309,12 +3309,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="2588"/>
         <source>OPML-Files (*.%1 *.%2)</source>
-        <translation type="unfinished"/>
+        <translation>ملفات-OPML (*.1% *.2%(</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2617"/>
         <source>OPML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>OPML-ملفات </translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2877"/>
@@ -3416,7 +3416,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"/>
+        <translation>اظهار الحقول اللتي لا تعمل</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -3631,7 +3631,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4696"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"/>
+        <translation>اظهار قائمة الملصقات</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4698"/>
@@ -3691,7 +3691,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>اعداد الصفحة: الملصقات</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4724"/>
@@ -3721,12 +3721,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>HTML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>HTML-ملفات </translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Text files (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>ملفات نصية </translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="97"/>
@@ -3774,22 +3774,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>الخادم يحتاج  الى مصادقة!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>استجابة الخادم: غير موجود!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>خطاء في اعادة التوجية!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="298"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>انتهاء وقت الطلب!</translation>
     </message>
 </context>
 <context>

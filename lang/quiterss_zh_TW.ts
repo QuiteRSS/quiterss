@@ -1152,7 +1152,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"/>
+        <translation>執行篩選器</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="257"/>
@@ -1463,7 +1463,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="267"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>記憶體中的 DB 儲存到檔案，每</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -1617,7 +1617,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="491"/>
         <source>Default zoom on pages:</source>
-        <translation type="unfinished"/>
+        <translation>頁面的預設縮放：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="509"/>
@@ -2042,7 +2042,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News text color</source>
-        <translation type="unfinished"/>
+        <translation>訊息文字顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1507"/>
@@ -2067,7 +2067,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Text color of new news </source>
-        <translation type="unfinished"/>
+        <translation>新訊息的文字顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1555"/>
@@ -2374,7 +2374,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Number requests:</source>
-        <translation type="unfinished"/>
+        <translation>數量要求：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="862"/>
@@ -2874,12 +2874,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>訊息向上翻頁</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>訊息向下翻頁</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
@@ -3311,12 +3311,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="2588"/>
         <source>OPML-Files (*.%1 *.%2)</source>
-        <translation type="unfinished"/>
+        <translation>OPML 檔案 (*.%1 *.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2617"/>
         <source>OPML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>OPML 檔案 (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2877"/>
@@ -3418,7 +3418,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"/>
+        <translation>顯示沒有工作的 Feeds</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4554"/>
@@ -3633,7 +3633,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4696"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"/>
+        <translation>顯示標籤選單</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4698"/>
@@ -3693,7 +3693,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>設定頁面：標籤</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4724"/>
@@ -3723,12 +3723,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>HTML-Files (*.%1)</source>
-        <translation type="unfinished"/>
+        <translation>HTML 檔案 (*.%1)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Text files (*.%2)</source>
-        <translation type="unfinished"/>
+        <translation>文字檔案 (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="97"/>
@@ -3776,22 +3776,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="200"/>
         <source>Server requires authentication!</source>
-        <translation type="unfinished"/>
+        <translation>伺服器要求身份驗證！</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="202"/>
         <source>Server replied: Not Found!</source>
-        <translation type="unfinished"/>
+        <translation>伺服器回應：找不到！</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="237"/>
         <source>Redirect error!</source>
-        <translation type="unfinished"/>
+        <translation>重新導向錯誤！</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="298"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>請求逾時！</translation>
     </message>
 </context>
 <context>

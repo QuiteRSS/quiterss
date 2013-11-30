@@ -2874,12 +2874,12 @@ Les nouvelles anciennes pourrait réapparaitre</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4630"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Page suivante articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Page précédente articles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>

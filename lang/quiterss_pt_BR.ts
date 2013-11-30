@@ -1152,7 +1152,7 @@ não foi encontrado!</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation type="unfinished"/>
+        <translation>Executar Filtro</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="257"/>
