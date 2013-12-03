@@ -461,6 +461,7 @@ void AddFeedWizard::getUrlDone(int result, int feedId, QString feedUrlStr,
         pos = rx.indexIn(str);
         if (pos > -1) {
           QString linkFeedString = rx.cap(1);
+          linkFeedString.replace("&amp;", "&", Qt::CaseInsensitive);
           QUrl url(linkFeedString);
           QUrl feedUrl(feedUrlStr);
           if (url.host().isEmpty()) {
