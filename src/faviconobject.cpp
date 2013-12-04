@@ -94,6 +94,7 @@ void FaviconObject::getQueuedUrl()
     if (!url.isValid()) {
       url = QUrl::fromEncoded(feedUrl.toUtf8());
     }
+    url.setUrl(QString("%1://%2").arg(url.scheme()).arg(url.host()));
     emit signalGet(url, feedUrl, 0);
   }
 }
