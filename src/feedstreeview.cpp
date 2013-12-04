@@ -167,8 +167,8 @@ void FeedsTreeView::collapseAll()
  * @details Find unread feed with condition.
  * @param indexCur Index to start search from
  * @param nextCondition Find condition:
- *  1 - find previous,
- *  2 - find next,
+ *  2 - find previous,
+ *  1 - find next,
  *  0 - find next. If fails, find previous (default)
  * @return finded index or QModelIndex()
  *---------------------------------------------------------------------------*/
@@ -208,7 +208,7 @@ QModelIndex FeedsTreeView::lastFeedInFolder(const QModelIndex &indexFolder)
   QModelIndex index = QModelIndex();
 
   for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
-    index = indexFolder.child(i, indexFolder.column());
+    index = indexFolder.child(i, columnIndex("text"));
     if (isFolder(index))
       index = lastFeedInFolder(index);
     if (index.isValid())
@@ -233,7 +233,7 @@ QModelIndex FeedsTreeView::indexPrevious(const QModelIndex &indexCur, bool isPar
   }
 
   for(int i = indexCur.row()-1; i >= 0; --i) {
-    index = model()->index(i, indexCur.column(), indexCur.parent());
+    index = model()->index(i, columnIndex("text"), indexCur.parent());
     if (isFolder(index))
       index = lastFeedInFolder(index);
     if (index.isValid())
@@ -253,7 +253,7 @@ QModelIndex FeedsTreeView::firstFeedInFolder(const QModelIndex &indexFolder)
   QModelIndex index = QModelIndex();
 
   for(int i = 0; i < model()->rowCount(indexFolder); i++) {
-    index = indexFolder.child(i, indexFolder.column());
+    index = indexFolder.child(i, columnIndex("text"));
     if (isFolder(index))
       index = firstFeedInFolder(index);
     if (index.isValid())
@@ -280,7 +280,7 @@ QModelIndex FeedsTreeView::indexNext(const QModelIndex &indexCur, bool isParent)
   int rowCount = model()->rowCount(indexCur.parent());
 
   for(int i = indexCur.row()+1; i < rowCount; i++) {
-    index = model()->index(i, indexCur.column(), indexCur.parent());
+    index = model()->index(i, columnIndex("text"), indexCur.parent());
     if (isFolder(index))
       index = firstFeedInFolder(index);
     if (index.isValid())
@@ -299,7 +299,7 @@ QModelIndex FeedsTreeView::lastFolderInFolder(const QModelIndex &indexFolder)
 {
   if (indexFolder.isValid()) {
     for(int i = model()->rowCount(indexFolder)-1; i >= 0; --i) {
-      QModelIndex index = indexFolder.child(i, indexFolder.column());
+      QModelIndex index = indexFolder.child(i, columnIndex("text"));
       if (isFolder(index)) {
         return index;
       }
@@ -321,7 +321,7 @@ QModelIndex FeedsTreeView::indexPreviousFolder(const QModelIndex &indexCur)
   QModelIndex index = QModelIndex();
 
   for(int i = indexCur.row()-1; i >= 0; --i) {
-    index = model()->index(i, indexCur.column(), indexCur.parent());
+    index = model()->index(i, columnIndex("text"), indexCur.parent());
     if (isFolder(index))
       return index;
   }
@@ -338,7 +338,7 @@ QModelIndex FeedsTreeView::firstFolderInFolder(const QModelIndex &indexFolder)
 {
   if (indexFolder.isValid()) {
     for(int i = 0; i < model()->rowCount(indexFolder); i++) {
-      QModelIndex index = indexFolder.child(i, indexFolder.column());
+      QModelIndex index = indexFolder.child(i, columnIndex("text"));
       if (isFolder(index)) {
         return index;
       }
@@ -367,7 +367,7 @@ QModelIndex FeedsTreeView::indexNextFolder(const QModelIndex &indexCur, bool isP
 
   int rowCount = model()->rowCount(indexCur.parent());
   for(int i = indexCur.row()+1; i < rowCount; i++) {
-    index = model()->index(i, indexCur.column(), indexCur.parent());
+    index = model()->index(i, columnIndex("text"), indexCur.parent());
     if (isFolder(index))
       return index;
   }

@@ -7026,8 +7026,7 @@ void RSSListing::nextUnreadNews()
     if (feedsTreeView_->currentIndex().isValid())
       indexPrevUnread = feedsTreeView_->indexNextUnread(feedsTreeView_->currentIndex(), 1);
     if (!indexPrevUnread.isValid()) {
-      QModelIndex index = feedsProxyModel_->index(0, "text");
-      indexPrevUnread = feedsTreeView_->indexNextUnread(index, 1);
+      indexPrevUnread = feedsTreeView_->indexNextUnread(QModelIndex(), 1);
     }
     if (indexPrevUnread.isValid()) {
       if (changeBehaviorActionNUN_)
