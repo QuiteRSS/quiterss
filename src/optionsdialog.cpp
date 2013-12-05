@@ -1237,6 +1237,14 @@ void OptionsDialog::createLanguageWidget()
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();
+  treeItem << "fi" << QString::fromUtf8("Suomi [FI]")
+           << QString(STRPRODUCTVER)
+           << "J. S. Tuomisto" << "jstuomisto@gmail.com";
+  languageItem = new QTreeWidgetItem(treeItem);
+  languageItem->setIcon(1, QIcon(":/flags/flag_FI"));
+  languageFileList_->addTopLevelItem(languageItem);
+
+  treeItem.clear();
   treeItem << "fr" << QString::fromUtf8("Français [FR]")
            << QString(STRPRODUCTVER)
            << "Glad Deschrijver" << "glad.deschrijver@gmail.com";
