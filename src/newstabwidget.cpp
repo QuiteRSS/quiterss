@@ -1216,6 +1216,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     showDescriptionNews_ = !displayNews.toInt();
 
   if (!showDescriptionNews_) {
+    locationBar_->setText(newsUrl.toString());
     setWebToolbarVisible(true, false);
 
     webView_->history()->setMaximumItemCount(0);
@@ -1400,8 +1401,10 @@ void NewsTabWidget::slotLinkClicked(QUrl url)
   if ((rssl_->externalBrowserOn_ <= 0) &&
       (webView_->buttonClick_ != LEFT_BUTTON_ALT)) {
     if (webView_->buttonClick_ == LEFT_BUTTON) {
-      if (!webControlPanel_->isVisible())
+      if (!webControlPanel_->isVisible()) {
+        locationBar_->setText(url.toString());
         setWebToolbarVisible(true, false);
+      }
       webView_->load(url);
     } else {
       if ((webView_->buttonClick_ == MIDDLE_BUTTON) ||
@@ -1828,6 +1831,7 @@ void NewsTabWidget::setWebToolbarVisible(bool show, bool checked)
   if (!checked) webToolbarShow_ = show;
   webControlPanel_->setVisible(webToolbarShow_ &
                                rssl_->browserToolbarToggle_->isChecked());
+
 }
 
 /** @brief Set label for selected news

@@ -5841,8 +5841,10 @@ QWebPage *RSSListing::createWebTab(QUrl url)
 
   openNewsTab_ = 0;
 
-  if (!url.isEmpty())
+  if (!url.isEmpty()) {
+    widget->locationBar_->setText(url.toString());
     widget->webView_->load(url);
+  }
 
   return widget->webView_->page();
 }
