@@ -2135,6 +2135,7 @@ void RSSListing::readSettings()
 
   settings_->beginGroup("Color");
   QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
+  QString linkTextColor = qApp->palette().brush(QPalette::Link).color().name();
   feedsTreeModel_->textColor_ = settings_->value("feedsListTextColor", windowTextColor).toString();
   feedsTreeModel_->backgroundColor_ = settings_->value("feedsListBackgroundColor", "").toString();
   feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
@@ -2151,10 +2152,10 @@ void RSSListing::readSettings()
   newsTextColor_ = settings_->value("newsTextColor", "#000000").toString();
   newsTitleBackgroundColor_ = settings_->value("newsTitleBackgroundColor", "#FFFFFF").toString();
   newsBackgroundColor_ = settings_->value("newsBackgroundColor", "#FFFFFF").toString();
-  feedsTreeModel_->feedWithNewNewsColor_ =
-      settings_->value("feedWithNewNewsColor", qApp->palette().brush(QPalette::Link).color().name()).toString();
-  feedsTreeModel_->countNewsUnreadColor_ =
-      settings_->value("countNewsUnreadColor", qApp->palette().brush(QPalette::Link).color().name()).toString();
+  feedsTreeModel_->feedWithNewNewsColor_ = settings_->value("feedWithNewNewsColor", linkTextColor).toString();
+  feedsTreeModel_->countNewsUnreadColor_ = settings_->value("countNewsUnreadColor", linkTextColor).toString();
+  feedsTreeModel_->focusedFeedTextColor_ = settings_->value("focusedFeedTextColor", windowTextColor).toString();
+  feedsTreeModel_->focusedFeedBGColor_ = settings_->value("focusedFeedBGColor", "").toString();
   settings_->endGroup();
 
   resize(800, 600);
@@ -2352,6 +2353,8 @@ void RSSListing::writeSettings()
   settings_->setValue("newsBackgroundColor", newsBackgroundColor_);
   settings_->setValue("feedWithNewNewsColor", feedsTreeModel_->feedWithNewNewsColor_);
   settings_->setValue("countNewsUnreadColor", feedsTreeModel_->countNewsUnreadColor_);
+  settings_->setValue("focusedFeedTextColor", feedsTreeModel_->focusedFeedTextColor_);
+  settings_->setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
   settings_->endGroup();
 
   settings_->beginGroup("ClickToFlash");
@@ -3384,6 +3387,16 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->colorsTree_->topLevelItem(16)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(16)->setText(1, unreadNewsTextColor_);
 
+  pixmapColor.fill(feedsTreeModel_->focusedFeedTextColor_);
+  optionsDialog_->colorsTree_->topLevelItem(17)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(17)->setText(1, feedsTreeModel_->focusedFeedTextColor_);
+  if (feedsTreeModel_->focusedFeedBGColor_.isEmpty())
+    pixmapColor.fill(QColor(0, 0, 0, 0));
+  else
+    pixmapColor.fill(feedsTreeModel_->focusedFeedBGColor_);
+  optionsDialog_->colorsTree_->topLevelItem(18)->setIcon(0, pixmapColor);
+  optionsDialog_->colorsTree_->topLevelItem(18)->setText(1, feedsTreeModel_->focusedFeedBGColor_);
+
   optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
   // Display setting dialog
@@ -3733,6 +3746,8 @@ void RSSListing::showOptionDlg(int index)
   feedsTreeModel_->countNewsUnreadColor_ = optionsDialog_->colorsTree_->topLevelItem(14)->text(1);
   newNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(15)->text(1);
   unreadNewsTextColor_ = optionsDialog_->colorsTree_->topLevelItem(16)->text(1);
+  feedsTreeModel_->focusedFeedTextColor_ = optionsDialog_->colorsTree_->topLevelItem(17)->text(1);
+  feedsTreeModel_->focusedFeedBGColor_ = optionsDialog_->colorsTree_->topLevelItem(18)->text(1);
 
   delete optionsDialog_;
   optionsDialog_ = NULL;

@@ -179,16 +179,30 @@ QVariant FeedsTreeModel::data(const QModelIndex &index, int role) const
       }
     }
   } else if (role == Qt::TextColorRole) {
-    QBrush brush;
-    brush = QColor(textColor_);
     if (QyurSqlTreeModel::proxyColumnByOriginal("unread") == index.column()) {
-      brush = QColor(countNewsUnreadColor_);
-    } else if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
+      return QColor(countNewsUnreadColor_);
+    }
+
+    QModelIndex currentIndex = ((FeedsProxyModel*)view_->model())->mapToSource(view_->currentIndex());
+    if ((index.row() == currentIndex.row()) && (index.parent() == currentIndex.parent()) &&
+        view_->selectionModel()->selectedRows(0).count()) {
+      return QColor(focusedFeedTextColor_);
+    }
+
+    if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
       if (indexSibling(index, "newCount").data(Qt::EditRole).toInt() > 0) {
-        brush = QColor(feedWithNewNewsColor_);
+        return QColor(feedWithNewNewsColor_);
       }
     }
-    return brush;
+
+    return QColor(textColor_);
+  } else if (role == Qt::BackgroundRole) {
+    QModelIndex currentIndex = ((FeedsProxyModel*)view_->model())->mapToSource(view_->currentIndex());
+    if ((index.row() == currentIndex.row()) && (index.parent() == currentIndex.parent()) &&
+        view_->selectionModel()->selectedRows(0).count()) {
+      if (!focusedFeedBGColor_.isEmpty())
+        return QColor(focusedFeedBGColor_);
+    }
   } else if (role == Qt::DecorationRole) {
     if (QyurSqlTreeModel::proxyColumnByOriginal("text") == index.column()) {
       if (isFolder(index)) {
