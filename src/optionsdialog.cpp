@@ -1535,10 +1535,10 @@ void OptionsDialog::createFontsColorsWidget()
   treeItem << tr("Count of news unread in feeds tree");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << tr("Text color of new news ");
+  treeItem << tr("Text color of new news");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
-  treeItem << tr("Text color of unread news ");
+  treeItem << tr("Text color of unread news");
   colorsTree_->addTopLevelItem(new QTreeWidgetItem(treeItem));
   treeItem.clear();
   treeItem << tr("Focused feed color");
