@@ -154,12 +154,12 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   }
   if (pos > -1) {
     QString codecNameT = rx.cap(1);
-    qDebug() << "Codec name:" << codecNameT;
+    qDebug() << "Codec name (1):" << codecNameT;
     QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
     if (codec) {
-      qDebug() << "Codec found 1";
       convertData = codec->toUnicode(xmlData);
     } else {
+      qWarning() << "Codec not found (1): " << codecNameT << feedUrl;
       if (codecNameT.contains("us-ascii", Qt::CaseInsensitive)) {
         QString str(xmlData);
         convertData = str.remove(rx.cap(0)+"\"");
@@ -167,12 +167,13 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
     }
   } else {
     if (!codecName.isEmpty()) {
-      qDebug() << "Codec name:" << codecName;
+      qDebug() << "Codec name (2):" << codecName;
       QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
       if (codec) {
-        qDebug() << "Codec found 2";
         convertData = codec->toUnicode(xmlData);
         codecOk = true;
+      } else {
+        qWarning() << "Codec not found (2): " << codecName << feedUrl;
       }
     }
     if (!codecOk) {
@@ -183,8 +184,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
       foreach (QString codecNameT, codecNameList) {
         QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
         if (codec && codec->canEncode(xmlData)) {
-          qDebug() << "Codec name:" << codecNameT;
-          qDebug() << "Codec found 3";
+          qDebug() << "Codec name (3):" << codecNameT;
           convertData = codec->toUnicode(xmlData);
           codecOk = true;
           break;
