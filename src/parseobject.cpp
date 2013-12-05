@@ -489,6 +489,8 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.updated = newsList.item(i).namedItem("pubDate").toElement().text();
     if (newsItem.updated.isEmpty())
       newsItem.updated = newsList.item(i).namedItem("pubdate").toElement().text();
+    if (newsItem.updated.isEmpty())
+      newsItem.updated = newsList.item(i).namedItem("dc:date").toElement().text();
     newsItem.updated = parseDate(newsItem.updated, feedUrl);
     newsItem.author = toPlainText(newsList.item(i).namedItem("author").toElement().text());
     if (newsItem.author.isEmpty())
