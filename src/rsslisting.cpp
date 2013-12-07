@@ -374,6 +374,10 @@ bool RSSListing::eventFilter(QObject *obj, QEvent *event)
       showNewsCategoriesTree();
     }
     return false;
+  } else if (obj == categoriesTree_) {
+    if (event->type() == QEvent::Show) {
+      recountCategoryCounts();
+    }
   }
   // Process  open link in browser in background
   else if (event->type() == QEvent::WindowDeactivate) {
@@ -672,6 +676,7 @@ void RSSListing::createFeedsWidget()
           this, SLOT(feedsSplitterMoved(int,int)));
 
   categoriesLabel_->installEventFilter(this);
+  categoriesTree_->installEventFilter(this);
 }
 // ---------------------------------------------------------------------------
 void RSSListing::createToolBarNull()
@@ -6823,7 +6828,6 @@ void RSSListing::showNewsCategoriesTree()
     showCategoriesButton_->setToolTip(tr("Hide Categories"));
     categoriesTree_->show();
     feedsSplitter_->restoreState(feedsWidgetSplitterState_);
-    recountCategoryCounts();
   } else {
     feedsWidgetSplitterState_ = feedsSplitter_->saveState();
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_show.png"));
