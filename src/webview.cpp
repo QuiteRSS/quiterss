@@ -46,7 +46,10 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
   if (event->button() & Qt::RightButton) {
     int posX2 = event->pos().x();
     if (posX_ > posX2+5) {
-      back();
+      if (history()->canGoBack())
+        back();
+      else
+        emit signalGoHome();
     } else if (posX_+5 < posX2) {
       forward();
     } else {

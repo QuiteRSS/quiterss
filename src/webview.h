@@ -19,6 +19,7 @@
 #define WEBVIEW_H
 
 #include <QWebView>
+#include <QWebHistory>
 
 #define LEFT_BUTTON 0
 #define MIDDLE_BUTTON 1
@@ -37,6 +38,7 @@ public:
 
 signals:
   void showContextMenu(const QPoint &);
+  void signalGoHome();
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);

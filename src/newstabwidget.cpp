@@ -393,6 +393,8 @@ void NewsTabWidget::createWebWidget()
 
   connect(webView_, SIGNAL(showContextMenu(QPoint)),
           this, SLOT(showContextWebPage(QPoint)), Qt::QueuedConnection);
+  connect(webView_, SIGNAL(signalGoHome()),
+          this, SLOT(webHomePage()));
 
   connect(webView_->page()->networkAccessManager(),
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
