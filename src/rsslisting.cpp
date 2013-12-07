@@ -2807,7 +2807,7 @@ void RSSListing::recountCategoryCounts()
 {
   if (recountCategoryCountsOn_) return;
 
-  if (!categoriesTree_->isVisible()) return;
+  if (!categoriesTree_->isVisible() || !stackedWidget_->count()) return;
 
   recountCategoryCountsOn_ = true;
   emit signalRecountCategoryCounts();

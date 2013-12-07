@@ -95,8 +95,6 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
             parent, SLOT(slotSetValue(int)));
     connect(updateObject_, SIGNAL(signalMessageStatusBar(QString,int)),
             parent, SLOT(showMessageStatusBar(QString,int)));
-    connect(parent, SIGNAL(signalRecountCategoryCounts()),
-            updateObject_, SLOT(slotRecountCategoryCounts()));
     connect(updateObject_, SIGNAL(signalUpdateFeedsModel()),
             parent, SLOT(feedsModelReload()),
             Qt::BlockingQueuedConnection);
