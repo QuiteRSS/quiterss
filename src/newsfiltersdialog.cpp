@@ -378,8 +378,9 @@ void NewsFiltersDialog::applyFilter()
   QString qStr = QString("SELECT feeds FROM filters WHERE id='%1'").
       arg(filterId);
   q.exec(qStr);
-  if (q.next()) {
+  if (q.first()) {
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
+    q.finish();
     foreach (QString strIdFeed, strIdFeeds) {
       rssl_->runUserFilter(strIdFeed.toInt(), filterId);
       NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
