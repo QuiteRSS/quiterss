@@ -110,7 +110,8 @@ HEADERS += \
     src/cleanupwizard.h \
     src/updatefeeds.h \
     src/requestfeed.h \
-    src/logfile.h
+    src/logfile.h \
+    src/locationbar.h
 
 SOURCES += \
     src/rsslisting.cpp \
@@ -156,7 +157,8 @@ SOURCES += \
     src/cleanupwizard.cpp \
     src/updatefeeds.cpp \
     src/requestfeed.cpp \
-    src/logfile.cpp
+    src/logfile.cpp \
+    src/locationbar.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

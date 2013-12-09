@@ -30,6 +30,7 @@
 #include "feedstreeview.h"
 #include "findtext.h"
 #include "lineedit.h"
+#include "locationbar.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newsview.h"
@@ -115,7 +116,7 @@ public:
   QSplitter *newsTabWidgetSplitter_;
 
   WebView *webView_;
-  QLineEdit *locationBar_;
+  LocationBar *locationBar_;
   QWidget *webControlPanel_;
 
   QLabel *newsIconTitle_;
