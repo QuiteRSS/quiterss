@@ -406,7 +406,7 @@ void DownloadItem::openFolder()
   QString winFileName = fileName_;
   winFileName.replace(QLatin1Char('/'), "\\");
   QString shExArg = "/e,/select,\"" + winFileName + "\"";
-  ShellExecute(NULL, NULL, TEXT("explorer.exe"), shExArg.toStdWString().c_str(), NULL, SW_SHOW);
+  ShellExecute(NULL, NULL, TEXT("explorer.exe"), (wchar_t*)shExArg.utf16(), NULL, SW_SHOW);
 #else
   QFileInfo info(fileName_);
   QDesktopServices::openUrl(QUrl::fromLocalFile(info.path()));
