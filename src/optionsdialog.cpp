@@ -456,6 +456,7 @@ void OptionsDialog::createBrowserWidget()
   otherExternalBrowserEdit_ = new LineEdit();
   otherExternalBrowserButton_ = new QPushButton(tr("Browse..."));
 
+  autoLoadImages_ = new QCheckBox(tr("Load images"));
   javaScriptEnable_ = new QCheckBox(tr("Enable JavaScript"));
   pluginsEnable_ = new QCheckBox(tr("Enable plug-ins"));
   defaultZoomPages_ = new QSpinBox();
@@ -496,6 +497,7 @@ void OptionsDialog::createBrowserWidget()
 
   QVBoxLayout *contentBrowserLayout = new QVBoxLayout();
   contentBrowserLayout->setContentsMargins(15, 0, 5, 10);
+  contentBrowserLayout->addWidget(autoLoadImages_);
   contentBrowserLayout->addWidget(javaScriptEnable_);
   contentBrowserLayout->addWidget(pluginsEnable_);
   contentBrowserLayout->addLayout(zoomLayout);

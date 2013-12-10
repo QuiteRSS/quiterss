@@ -105,6 +105,7 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
+  loadImagesOn->setTristate(true);
   displayOnStartup = new QCheckBox(tr("Display in new tab on startup"));
   showDescriptionNews_ = new QCheckBox(tr("Show news' description instead of loading web page"));
   duplicateNewsMode_ = new QCheckBox(tr("Automatically delete duplicate news"));
@@ -325,7 +326,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
 
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
-  loadImagesOn->setChecked(feedProperties.display.displayEmbeddedImages);
+  loadImagesOn->setCheckState((Qt::CheckState)feedProperties.display.displayEmbeddedImages);
   showDescriptionNews_->setChecked(!feedProperties.display.displayNews);
   duplicateNewsMode_->setChecked(feedProperties.general.duplicateNewsMode);
 
@@ -458,7 +459,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
 
   feedProperties.general.displayOnStartup = displayOnStartup->isChecked();
   feedProperties.general.starred = starredOn_->isChecked();
-  feedProperties.display.displayEmbeddedImages = loadImagesOn->isChecked();
+  feedProperties.display.displayEmbeddedImages = loadImagesOn->checkState();
   feedProperties.display.displayNews = !showDescriptionNews_->isChecked();
   feedProperties.general.duplicateNewsMode = duplicateNewsMode_->isChecked();
 

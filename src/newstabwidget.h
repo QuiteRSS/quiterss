@@ -63,7 +63,7 @@ public:
   ~NewsTabWidget();
 
   void retranslateStrings();
-  void setSettings(bool newTab = true);
+  void setSettings(bool init = true, bool newTab = true);
   void setBrowserPosition();
   void markNewsRead();
   void markAllNewsRead();
@@ -128,6 +128,7 @@ public:
   QAction *separatorRAct_;
 
 public slots:
+  void setAutoLoadImages(bool apply = true);
   void slotNewsViewClicked(QModelIndex index);
   void slotNewsViewSelected(QModelIndex index, bool clicked = false);
   void slotNewsViewDoubleClicked(QModelIndex index);

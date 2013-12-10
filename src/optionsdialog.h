@@ -82,6 +82,7 @@ public:
   QRadioButton *otherExternalBrowserOn_;
   LineEdit *otherExternalBrowserEdit_;
   QPushButton *otherExternalBrowserButton_;
+  QCheckBox *autoLoadImages_;
   QCheckBox *javaScriptEnable_;
   QCheckBox *pluginsEnable_;
   QSpinBox *defaultZoomPages_;

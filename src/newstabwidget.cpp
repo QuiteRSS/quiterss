@@ -400,6 +400,8 @@ void NewsTabWidget::createWebWidget()
           SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           rssl_, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
+  connect(rssl_->autoLoadImagesToggle_, SIGNAL(triggered()),
+          this, SLOT(setAutoLoadImages()));
   connect(rssl_->browserToolbarToggle_, SIGNAL(triggered()),
           this, SLOT(setWebToolbarVisible()));
 
@@ -410,7 +412,7 @@ void NewsTabWidget::createWebWidget()
 
 /** @brief Read settings from ini-file
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::setSettings(bool newTab)
+void NewsTabWidget::setSettings(bool init, bool newTab)
 {
   if (type_ == TabTypeDownloads) return;
 
@@ -476,13 +478,24 @@ void NewsTabWidget::setSettings(bool newTab)
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
 
-  if (type_ == TabTypeFeed) {
-    autoLoadImages_ = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
+  if (rssl_->currentNewsTab == this) {
+    if (init) {
+      if (type_ == TabTypeFeed) {
+        int displayEmbeddedImages = feedsTreeModel_->dataField(feedIndex, "displayEmbeddedImages").toInt();
+        if (displayEmbeddedImages == 2) {
+          autoLoadImages_ = true;
+        } else if (displayEmbeddedImages == 1) {
+          autoLoadImages_ = rssl_->autoLoadImages_;
+        } else {
+          autoLoadImages_ = false;
+        }
+      } else {
+        autoLoadImages_ = rssl_->autoLoadImages_;
+      }
+      webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
+    }
+    setAutoLoadImages(false);
   }
-  webView_->settings()->setAttribute(
-        QWebSettings::AutoLoadImages, autoLoadImages_);
-  rssl_->autoLoadImages_ = !autoLoadImages_;
-  rssl_->setAutoLoadImages(false);
 
   if (type_ < TabTypeWeb) {
     newsView_->setAlternatingRowColors(rssl_->alternatingRowColorsNews_);
@@ -525,9 +538,48 @@ void NewsTabWidget::retranslateStrings() {
       findText_->retranslateStrings();
       newsHeader_->retranslateStrings();
     }
+
+    if (rssl_->currentNewsTab == this) {
+      if (autoLoadImages_) {
+        rssl_->autoLoadImagesToggle_->setText(tr("Load Images"));
+        rssl_->autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
+      } else {
+        rssl_->autoLoadImagesToggle_->setText(tr("No Load Images"));
+        rssl_->autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
+      }
+    }
   }
 
   closeButton_->setToolTip(tr("Close Tab"));
+}
+
+void NewsTabWidget::setAutoLoadImages(bool apply)
+{
+  if (type_ == NewsTabWidget::TabTypeDownloads) return;
+  if (rssl_->currentNewsTab != this) return;
+
+  if (apply)
+    autoLoadImages_ = !autoLoadImages_;
+
+  if (autoLoadImages_) {
+    rssl_->autoLoadImagesToggle_->setText(tr("Load Images"));
+    rssl_->autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
+    rssl_->autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
+  } else {
+    rssl_->autoLoadImagesToggle_->setText(tr("No Load Images"));
+    rssl_->autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
+    rssl_->autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
+  }
+
+  if (apply) {
+    webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
+    if (autoLoadImages_) {
+      if ((webView_->title() == "news_descriptions") &&
+          (type_ == NewsTabWidget::TabTypeFeed))
+        updateWebView(newsView_->currentIndex());
+      else webView_->reload();
+    }
+  }
 }
 
 /** @brief Process mouse click in news list

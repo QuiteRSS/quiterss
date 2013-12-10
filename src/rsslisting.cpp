@@ -906,8 +906,6 @@ void RSSListing::createActions()
   autoLoadImagesToggle_->setObjectName("autoLoadImagesToggle");
   autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
   this->addAction(autoLoadImagesToggle_);
-  connect(autoLoadImagesToggle_, SIGNAL(triggered()),
-          this, SLOT(setAutoLoadImages()));
 
   printAct_ = new QAction(this);
   printAct_->setObjectName("printAct");
@@ -2006,6 +2004,7 @@ void RSSListing::readSettings()
   downloadLocation_ = settings_->value("downloadLocation", "").toString();
   askDownloadLocation_ = settings_->value("askDownloadLocation", true).toBool();
   defaultZoomPages_ = settings_->value("defaultZoomPages", 100).toInt();
+  autoLoadImages_ = settings_->value("autoLoadImages", true).toBool();
 
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -2294,6 +2293,7 @@ void RSSListing::writeSettings()
   settings_->setValue("saveCookies", cookieJar_->saveCookies_);
   settings_->setValue("askDownloadLocation", askDownloadLocation_);
   settings_->setValue("defaultZoomPages", defaultZoomPages_);
+  settings_->setValue("autoLoadImages", autoLoadImages_);
 
   settings_->setValue("soundNewNews", soundNewNews_);
   settings_->setValue("soundNotifyPath", soundNotifyPath_);
@@ -3063,7 +3063,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
     currentNewsTab->type_ = NewsTabWidget::TabTypeFeed;
     currentNewsTab->feedId_ = feedId;
     currentNewsTab->feedParId_ = feedParId;
-    currentNewsTab->setSettings(false);
+    currentNewsTab->setSettings(true, false);
     currentNewsTab->setVisible(index.isValid());
   }
   statusUnread_->setVisible(index.isValid());
@@ -3188,6 +3188,7 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->otherExternalBrowserOn_->setChecked((externalBrowserOn_ == -1) ||
                                                      (externalBrowserOn_ == 2));
   optionsDialog_->otherExternalBrowserEdit_->setText(externalBrowser_);
+  optionsDialog_->autoLoadImages_->setChecked(autoLoadImages_);
   optionsDialog_->javaScriptEnable_->setChecked(javaScriptEnable_);
   optionsDialog_->pluginsEnable_->setChecked(pluginsEnable_);
   optionsDialog_->defaultZoomPages_->setValue(defaultZoomPages_);
@@ -3553,6 +3554,7 @@ void RSSListing::showOptionDlg(int index)
   }
 
   externalBrowser_ = optionsDialog_->otherExternalBrowserEdit_->text();
+  autoLoadImages_ = optionsDialog_->autoLoadImages_->isChecked();
   javaScriptEnable_ = optionsDialog_->javaScriptEnable_->isChecked();
   pluginsEnable_ = optionsDialog_->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog_->openLinkInBackground_->isChecked();
@@ -3763,7 +3765,7 @@ void RSSListing::showOptionDlg(int index)
   if (currentNewsTab != NULL) {
     if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
       currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
-    currentNewsTab->setSettings();
+    currentNewsTab->setSettings(false);
   }
 }
 
@@ -4300,34 +4302,6 @@ void RSSListing::slotFeedMenuShow()
   feedProperties_->setEnabled(feedsTreeView_->selectIndex().isValid());
 }
 // ----------------------------------------------------------------------------
-void RSSListing::setAutoLoadImages(bool set)
-{
-  if (currentNewsTab->type_ == NewsTabWidget::TabTypeDownloads) return;
-
-  autoLoadImages_ = !autoLoadImages_;
-  if (autoLoadImages_) {
-    autoLoadImagesToggle_->setText(tr("Load Images"));
-    autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
-    autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOn"));
-  } else {
-    autoLoadImagesToggle_->setText(tr("No Load Images"));
-    autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
-    autoLoadImagesToggle_->setIcon(QIcon(":/images/imagesOff"));
-  }
-
-  if (set) {
-    currentNewsTab->autoLoadImages_ = autoLoadImages_;
-    currentNewsTab->webView_->settings()->setAttribute(
-          QWebSettings::AutoLoadImages, autoLoadImages_);
-    if (autoLoadImages_) {
-      if ((currentNewsTab->webView_->title() == "news_descriptions") &&
-          (currentNewsTab->type_ == NewsTabWidget::TabTypeFeed))
-        currentNewsTab->updateWebView(newsView_->currentIndex());
-      else currentNewsTab->webView_->reload();
-    }
-  }
-}
-// ----------------------------------------------------------------------------
 void RSSListing::loadSettingsFeeds()
 {
   markCurNewsRead_ = false;
@@ -4510,14 +4484,6 @@ void RSSListing::retranslateStrings()
   exportFeedsAct_->setToolTip(tr("Export Feeds to OPML File"));
 
   exitAct_->setText(tr("E&xit"));
-
-  if (autoLoadImages_) {
-    autoLoadImagesToggle_->setText(tr("Load Images"));
-    autoLoadImagesToggle_->setToolTip(tr("Auto Load Images to News View"));
-  } else {
-    autoLoadImagesToggle_->setText(tr("No Load Images"));
-    autoLoadImagesToggle_->setToolTip(tr("No Load Images to News View"));
-  }
 
   updateFeedAct_->setText(tr("Update Feed"));
   updateFeedAct_->setToolTip(tr("Update Current Feed"));
@@ -5735,7 +5701,13 @@ void RSSListing::slotTabCurrentChanged(int index)
   if (widget->type_ == NewsTabWidget::TabTypeFeed) {
     if (widget->feedId_ == 0)
       widget->hide();
-    createNewsTab(index);
+    currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(index);
+    currentNewsTab->setSettings(false);
+    currentNewsTab->retranslateStrings();
+    currentNewsTab->setBrowserPosition();
+
+    newsModel_ = currentNewsTab->newsModel_;
+    newsView_ = currentNewsTab->newsView_;
 
     QModelIndex feedIndex = feedsProxyModel_->mapFromSource(feedsTreeModel_->getIndexById(widget->feedId_));
     feedsTreeView_->setCurrentIndex(feedIndex);
@@ -5755,7 +5727,7 @@ void RSSListing::slotTabCurrentChanged(int index)
     statusUnread_->setVisible(false);
     statusAll_->setVisible(false);
     currentNewsTab = widget;
-    currentNewsTab->setSettings();
+    currentNewsTab->setSettings(false);
     currentNewsTab->retranslateStrings();
     currentNewsTab->webView_->setFocus();
   } else if (widget->type_ == NewsTabWidget::TabTypeDownloads) {
@@ -5834,15 +5806,15 @@ QWebPage *RSSListing::createWebTab(QUrl url)
 {
   NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeWeb);
   int indexTab = addTab(widget);
-
   widget->setTextTab(tr("Loading..."));
-  widget->setSettings();
-  widget->retranslateStrings();
 
   if (openNewsTab_ == NEW_TAB_FOREGROUND) {
     currentNewsTab = widget;
     emit signalSetCurrentTab(indexTab);
   }
+
+  widget->setSettings();
+  widget->retranslateStrings();
 
   openNewsTab_ = 0;
 
@@ -5863,7 +5835,7 @@ void RSSListing::creatFeedTab(int feedId, int feedParId)
   if (q.next()) {
     NewsTabWidget *widget = new NewsTabWidget(this, NewsTabWidget::TabTypeFeed, feedId, feedParId);
     addTab(widget);
-    widget->setSettings();
+    widget->setSettings(false);
     widget->retranslateStrings();
     widget->setBrowserPosition();
 
@@ -6707,7 +6679,7 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
       currentNewsTab->type_ = tabType;
       currentNewsTab->feedId_ = -1;
       currentNewsTab->feedParId_ = -1;
-      currentNewsTab->setSettings(false);
+      currentNewsTab->setSettings(true, false);
       currentNewsTab->setVisible(true);
     }
 
