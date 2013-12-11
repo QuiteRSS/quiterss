@@ -5347,7 +5347,10 @@ void RSSListing::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 // ----------------------------------------------------------------------------
 void RSSListing::slotPlaySound(const QString &soundPath)
 {
-  if (!QFile::exists(soundPath)) return;
+  if (!QFile::exists(soundPath)) {
+    qWarning() << QString("Error playing sound: not find path!");
+    return;
+  }
 
 #ifdef HAVE_QT5
   if (mediaPlayer_ == NULL) {
@@ -5369,6 +5372,8 @@ void RSSListing::slotPlaySound(const QString &soundPath)
     mediaPlayer_ = new Phonon::MediaObject(this);
     audioOutput_ = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     Phonon::createPath(mediaPlayer_, audioOutput_);
+    connect(mediaPlayer_, SIGNAL(stateChanged(Phonon::State,Phonon::State)),
+            this, SLOT(mediaStateChanged(Phonon::State,Phonon::State)));
   }
 
   if (mediaPlayer_->state() == Phonon::ErrorState)
@@ -5388,6 +5393,15 @@ void RSSListing::mediaStatusChanged(const QMediaPlayer::MediaStatus &status)
 {
   if (status == QMediaPlayer::EndOfMedia) {
     playlist_->removeMedia(0);
+  }
+}
+#endif
+
+#ifdef HAVE_PHONON
+void RSSListing::mediaStateChanged(Phonon::State newstate, Phonon::State)
+{
+  if (newstate == Phonon::ErrorState) {
+    qCritical() << QString("Error Phonon: %1 - %2").arg(mediaPlayer_->errorType()).arg(mediaPlayer_->errorString());
   }
 }
 #endif
