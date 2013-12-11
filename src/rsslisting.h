@@ -36,6 +36,7 @@
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
+#include <QSound>
 
 #include "categoriestreewidget.h"
 #include "cookiejar.h"

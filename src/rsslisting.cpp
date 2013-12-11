@@ -5348,44 +5348,61 @@ void RSSListing::slotIconFeedUpdate(int feedId, QByteArray faviconData)
 void RSSListing::slotPlaySound(const QString &soundPath)
 {
   if (!QFile::exists(soundPath)) {
-    qWarning() << QString("Error playing sound: not find path!");
+    qWarning() << QString("Error playing sound: %1").arg(soundPath);
     return;
   }
 
-#ifdef HAVE_QT5
-  if (mediaPlayer_ == NULL) {
-    playlist_ = new QMediaPlaylist(this);
-    mediaPlayer_ = new QMediaPlayer(this);
-    mediaPlayer_->setPlaylist(playlist_);
-    connect(mediaPlayer_, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),
-            this, SLOT(mediaStatusChanged(QMediaPlayer::MediaStatus)));
-  }
+  bool playing = false;
+  bool useMediaPlayer = settings_->value("Settings/useMediaPlayer", true).toBool();
 
-  playlist_->addMedia(QUrl::fromLocalFile(soundPath));
-  if (playlist_->currentIndex() == -1) {
-    playlist_->setCurrentIndex(1);
-    mediaPlayer_->play();
-  }
+  if (useMediaPlayer) {
+#ifdef HAVE_QT5
+    if (mediaPlayer_ == NULL) {
+      playlist_ = new QMediaPlaylist(this);
+      mediaPlayer_ = new QMediaPlayer(this);
+      mediaPlayer_->setPlaylist(playlist_);
+      connect(mediaPlayer_, SIGNAL(mediaStatusChanged(QMediaPlayer::MediaStatus)),
+              this, SLOT(mediaStatusChanged(QMediaPlayer::MediaStatus)));
+    }
+
+    playlist_->addMedia(QUrl::fromLocalFile(soundPath));
+    if (playlist_->currentIndex() == -1) {
+      playlist_->setCurrentIndex(1);
+      mediaPlayer_->play();
+    }
+
+    playing = true;
 #else
 #ifdef HAVE_PHONON
-  if (mediaPlayer_ == NULL) {
-    mediaPlayer_ = new Phonon::MediaObject(this);
-    audioOutput_ = new Phonon::AudioOutput(Phonon::MusicCategory, this);
-    Phonon::createPath(mediaPlayer_, audioOutput_);
-    connect(mediaPlayer_, SIGNAL(stateChanged(Phonon::State,Phonon::State)),
-            this, SLOT(mediaStateChanged(Phonon::State,Phonon::State)));
+    if (mediaPlayer_ == NULL) {
+      mediaPlayer_ = new Phonon::MediaObject(this);
+      audioOutput_ = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+      Phonon::createPath(mediaPlayer_, audioOutput_);
+      connect(mediaPlayer_, SIGNAL(stateChanged(Phonon::State,Phonon::State)),
+              this, SLOT(mediaStateChanged(Phonon::State,Phonon::State)));
+    }
+
+    if (mediaPlayer_->state() == Phonon::ErrorState)
+      mediaPlayer_->clear();
+
+    if (mediaPlayer_->state() != Phonon::PausedState)
+      mediaPlayer_->enqueue(soundPath);
+    else
+      mediaPlayer_->setCurrentSource(soundPath);
+    mediaPlayer_->play();
+
+    playing = true;
+#endif
+#endif
   }
 
-  if (mediaPlayer_->state() == Phonon::ErrorState)
-    mediaPlayer_->clear();
-
-  if (mediaPlayer_->state() != Phonon::PausedState)
-    mediaPlayer_->enqueue(soundPath);
-  else
-    mediaPlayer_->setCurrentSource(soundPath);
-  mediaPlayer_->play();
+  if (!playing) {
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+    QSound::play(soundPath);
+#else
+    QProcess::startDetached(QString("play %1").arg(soundPath));
 #endif
-#endif
+  }
 }
 
 #ifdef HAVE_QT5
