@@ -4014,6 +4014,24 @@ void RSSListing::setFeedsFilter(bool clicked)
     }
   }
 
+  if ((filterAct->objectName() == "filterFeedsNew_") ||
+      (filterAct->objectName() == "filterFeedsUnread_")) {
+    for (int i = 0; i < stackedWidget_->count(); i++) {
+      if ((i == 0) && clicked && (stackedWidget_->currentIndex() == 0)) continue;
+      NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
+      if (!idList.contains(widget->feedId_)) {
+        idList.append(widget->feedId_);
+        QModelIndex index = feedsTreeModel_->getIndexById(widget->feedId_).parent();
+        while (index.isValid()) {
+          int id = feedsTreeModel_->getIdByIndex(index);
+          if (!idList.contains(id))
+            idList.append(id);
+          index = index.parent();
+        }
+      }
+    }
+  }
+
   // Set filter
   feedsProxyModel_->setFilter(filterAct->objectName(), idList,
                               findFeeds_->findGroup_->checkedAction()->objectName(),
