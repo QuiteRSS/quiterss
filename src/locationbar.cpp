@@ -23,7 +23,8 @@ LocationBar::LocationBar(QWidget *parent)
   : QLineEdit(parent)
   , focus_(false)
 {
-
+  setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+  setStyleSheet("QLineEdit {margin-bottom: 1px; padding: 0px 3px 0px 3px;}");
 }
 
 void LocationBar::mouseReleaseEvent(QMouseEvent *event)
