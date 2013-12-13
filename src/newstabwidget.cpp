@@ -1751,27 +1751,30 @@ void NewsTabWidget::slotFindText(const QString &text)
     }
 
     if (!text.isEmpty()) {
+      QString findText = text;
+      findText = findText.replace("'", "''");
       if (objectName == "findTitleAct") {
         filterStr.append(
-              QString(" AND title LIKE '%%1%'").arg(text));
+              QString(" AND title LIKE '%%1%'").arg(findText));
       } else if (objectName == "findAuthorAct") {
         filterStr.append(
-              QString(" AND author_name LIKE '%%1%'").arg(text));
+              QString(" AND author_name LIKE '%%1%'").arg(findText));
       } else if (objectName == "findCategoryAct") {
         filterStr.append(
-              QString(" AND category LIKE '%%1%'").arg(text));
+              QString(" AND category LIKE '%%1%'").arg(findText));
       } else if (objectName == "findContentAct") {
         filterStr.append(
               QString(" AND (content LIKE '%%1%' OR description LIKE '%%1%')").
-              arg(text));
+              arg(findText));
       } else {
         filterStr.append(
               QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' "
                       "OR category LIKE '%%1%' OR content LIKE '%%1%' "
                       "OR description LIKE '%%1%')").
-              arg(text));
+              arg(findText));
       }
     }
+
     newsModel_->setFilter(filterStr);
 
     QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
@@ -1788,33 +1791,7 @@ void NewsTabWidget::slotFindText(const QString &text)
 //----------------------------------------------------------------------------
 void NewsTabWidget::slotSelectFind()
 {
-  if (findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct")
-    webView_->findText("", QWebPage::HighlightAllOccurrences);
-  else {
-    int newsId = newsModel_->dataField(newsView_->currentIndex().row(), "id").toInt();
-
-    QString filterStr;
-    switch (type_) {
-      case TabTypeUnread:
-      case TabTypeStar:
-      case TabTypeDel:
-      case TabTypeLabel:
-        filterStr = categoryFilterStr_;
-        break;
-      default:
-        filterStr = rssl_->newsFilterStr;
-    }
-    newsModel_->setFilter(filterStr);
-
-    QModelIndex index = newsModel_->index(0, newsModel_->fieldIndex("id"));
-    QModelIndexList indexList = newsModel_->match(index, Qt::EditRole, newsId);
-    if (indexList.count()) {
-      int newsRow = indexList.first().row();
-      newsView_->setCurrentIndex(newsModel_->index(newsRow, newsModel_->fieldIndex("title")));
-    } else {
-      currentNewsIdOld = newsId;
-    }
-  }
+  webView_->findText("", QWebPage::HighlightAllOccurrences);
   slotFindText(findText_->text());
 }
 //----------------------------------------------------------------------------
