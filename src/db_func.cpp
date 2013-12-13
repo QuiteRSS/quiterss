@@ -26,7 +26,7 @@
 #include "rsslisting.h"
 
 QString kDbName    = "feeds.db";  ///< DB filename
-QString kDbVersion = "0.12.1";    ///< Current DB version
+QString kDbVersion = "14";    ///< Current DB version
 
 const QString kCreateFeedsTableQuery_v0_1_0(
     "CREATE TABLE feeds("
@@ -228,7 +228,10 @@ const QString kCreateFeedsTableQuery(
     "flags text, "                    // more flags (example "focused", "hidden")
     "authentication integer default 0, "    // enable authentification, sets on feed creation
     "duplicateNewsMode integer default 0, " // news duplicates process mode
-    "typeFeed integer default 0 "           // reserved for future purposes
+    "typeFeed integer default 0, "          // reserved for future purposes
+    "showNotification integer default 0, "  //
+    "disableUpdate integer default 0, "     // disable update feed
+    "javaScriptEnable integer default 1 "   //
 
     // -- changed in v0.10.0 -- corrected above
     // "displayEmbeddedImages integer default 1, "  // display images embedded in news
@@ -479,14 +482,17 @@ QString initDB(const QString &dbFileName, QSettings *settings)
     db.close();
   } else {
     QString dbVersionString;
+    int dbVersion = 0;
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
     db.setDatabaseName(dbFileName);
     db.open();
     db.transaction();
     QSqlQuery q(db);
     q.exec("SELECT value FROM info WHERE name='version'");
-    if (q.next())
+    if (q.next()) {
       dbVersionString = q.value(0).toString();
+      dbVersion = q.value(0).toInt();
+    }
 
     QString appVersionString;
     q.exec("SELECT id, value FROM info WHERE name='appVersion'");
@@ -792,6 +798,17 @@ QString initDB(const QString &dbFileName, QSettings *settings)
             }
           }
         }   // if (rowToParentCorrected) {
+
+        if (dbVersion < 14) {
+          q.exec("ALTER TABLE feeds ADD COLUMN showNotification integer default 0");
+          q.exec("ALTER TABLE feeds ADD COLUMN disableUpdate integer default 0");
+          q.exec("ALTER TABLE feeds ADD COLUMN javaScriptEnable integer default 1");
+
+          q.prepare("UPDATE info SET value=:version WHERE name='version'");
+          q.bindValue(":version", kDbVersion);
+          q.exec();
+        }
+
       } // DB-version last
     }
 
