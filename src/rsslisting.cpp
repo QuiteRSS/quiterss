@@ -4063,7 +4063,8 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
     return;
   }
 
-  currentNewsTab->findText_->clear();
+  if (!clicked)
+    currentNewsTab->findText_->clear();
 
   QElapsedTimer timer;
   timer.start();
@@ -4112,10 +4113,32 @@ void RSSListing::setNewsFilter(QAction* pAct, bool clicked)
 
   // ... add filter from "search"
   QString filterStr = newsFilterStr;
-  if (currentNewsTab->findText_->findGroup_->checkedAction()->objectName() == "findInNewsAct") {
-    filterStr.append(
-          QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' OR category LIKE '%%1%')").
-          arg(currentNewsTab->findText_->text()));
+  QString objectName = currentNewsTab->findText_->findGroup_->checkedAction()->objectName();
+  if (objectName != "findInBrowserAct") {
+    QString findText = currentNewsTab->findText_->text();
+    if (!findText.isEmpty()) {
+      findText = findText.replace("'", "''");
+      if (objectName == "findTitleAct") {
+        filterStr.append(
+              QString(" AND title LIKE '%%1%'").arg(findText));
+      } else if (objectName == "findAuthorAct") {
+        filterStr.append(
+              QString(" AND author_name LIKE '%%1%'").arg(findText));
+      } else if (objectName == "findCategoryAct") {
+        filterStr.append(
+              QString(" AND category LIKE '%%1%'").arg(findText));
+      } else if (objectName == "findContentAct") {
+        filterStr.append(
+              QString(" AND (content LIKE '%%1%' OR description LIKE '%%1%')").
+              arg(findText));
+      } else {
+        filterStr.append(
+              QString(" AND (title LIKE '%%1%' OR author_name LIKE '%%1%' "
+                      "OR category LIKE '%%1%' OR content LIKE '%%1%' "
+                      "OR description LIKE '%%1%')").
+              arg(findText));
+      }
+    }
   }
 
   qDebug() << __FUNCTION__ << __LINE__ << timer.elapsed();
