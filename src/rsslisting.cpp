@@ -3874,10 +3874,10 @@ void RSSListing::slotGetFeed()
   if (feedsTreeModel_->isFolder(index)) {
     QString str = getIdFeedsString(feedsTreeModel_->dataField(index, "id").toInt());
     str.replace("feedId", "id");
-    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1)").
+    QString qStr = QString("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE (%1) AND disableUpdate=0").
         arg(str);
     emit signalGetFeedsFolder(qStr);
-  } else {
+  } else if (!feedsTreeModel_->dataField(index, "disableUpdate").toBool()) {
     emit signalGetFeed(feedsTreeModel_->dataField(index, "id").toInt(),
                        feedsTreeModel_->dataField(index, "xmlUrl").toString(),
                        feedsTreeModel_->dataField(index, "lastBuildDate").toDateTime(),
@@ -4914,6 +4914,9 @@ void RSSListing::showFeedPropertiesDlg()
     properties.display.displayNews =
         feedsTreeModel_->dataField(index, "displayNews").toInt();
 
+  properties.general.disableUpdate =
+      feedsTreeModel_->dataField(index, "disableUpdate").toBool();
+
   if (feedsTreeModel_->dataField(index, "updateIntervalEnable").isNull() ||
       (feedsTreeModel_->dataField(index, "updateIntervalEnable").toInt() == -1)) {
     properties.general.updateEnable = updateFeedsEnable_;
@@ -5039,7 +5042,8 @@ void RSSListing::showFeedPropertiesDlg()
 
   q.prepare("UPDATE feeds SET text = ?, xmlUrl = ?, displayOnStartup = ?, "
             "displayEmbeddedImages = ?, displayNews = ?, label = ?, "
-            "duplicateNewsMode = ?, authentication = ? WHERE id == ?");
+            "duplicateNewsMode = ?, authentication = ?, disableUpdate = ? "
+            "WHERE id == ?");
   q.addBindValue(properties.general.text);
   q.addBindValue(properties.general.url);
   q.addBindValue(properties.general.displayOnStartup);
@@ -5051,6 +5055,7 @@ void RSSListing::showFeedPropertiesDlg()
     q.addBindValue("");
   q.addBindValue(properties.general.duplicateNewsMode ? 1 : 0);
   q.addBindValue(properties.authentication.on ? 1 : 0);
+  q.addBindValue(properties.general.disableUpdate ? 1 : 0);
   q.addBindValue(feedId);
   q.exec();
 
@@ -5152,6 +5157,7 @@ void RSSListing::showFeedPropertiesDlg()
   QModelIndex indexLabel   = feedsTreeModel_->indexSibling(index, "label");
   QModelIndex indexDuplicate = feedsTreeModel_->indexSibling(index, "duplicateNewsMode");
   QModelIndex indexAuthentication = feedsTreeModel_->indexSibling(index, "authentication");
+  QModelIndex indexDisableUpdate = feedsTreeModel_->indexSibling(index, "disableUpdate");
   feedsTreeModel_->setData(indexText, properties.general.text);
   feedsTreeModel_->setData(indexUrl, properties.general.url);
   feedsTreeModel_->setData(indexStartup, properties.general.displayOnStartup);
@@ -5160,6 +5166,7 @@ void RSSListing::showFeedPropertiesDlg()
   feedsTreeModel_->setData(indexLabel, properties.general.starred ? "starred" : "");
   feedsTreeModel_->setData(indexDuplicate, properties.general.duplicateNewsMode ? 1 : 0);
   feedsTreeModel_->setData(indexAuthentication, properties.authentication.on ? 1 : 0);
+  feedsTreeModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
 
   if (!properties.general.updateEnable ||
       (properties.general.updateEnable != updateFeedsEnable_) ||
@@ -5263,6 +5270,33 @@ void RSSListing::showFeedPropertiesDlg()
       NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(i);
       if (widget->feedId_ == feedId) {
         widget->setTextTab(properties.general.text);
+      }
+    }
+  }
+
+  if ((properties.general.disableUpdate != properties_tmp.general.disableUpdate) &&
+      !isFeed) {
+    QQueue<int> parentIds;
+    parentIds.enqueue(feedId);
+    while (!parentIds.empty()) {
+      int parentId = parentIds.dequeue();
+      q.exec(QString("SELECT id, xmlUrl FROM feeds WHERE parentId='%1'").arg(parentId));
+      while (q.next()) {
+        int id = q.value(0).toInt();
+        QString xmlUrl = q.value(1).toString();
+
+        QSqlQuery q1;
+        q1.prepare("UPDATE feeds SET disableUpdate = ? WHERE id == ?");
+        q1.addBindValue(properties.general.disableUpdate);
+        q1.addBindValue(id);
+        q1.exec();
+
+        QPersistentModelIndex index1 = feedsTreeModel_->getIndexById(id);
+        indexDisableUpdate = feedsTreeModel_->indexSibling(index1, "disableUpdate");
+        feedsTreeModel_->setData(indexDisableUpdate, properties.general.disableUpdate ? 1 : 0);
+
+        if (xmlUrl.isEmpty())
+          parentIds.enqueue(id);
       }
     }
   }

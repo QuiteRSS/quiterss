@@ -30,6 +30,7 @@ typedef struct {
     QString url; //!< URL field from feed-xml
     QString homepage; //!< Homepage field from feed-xml
     QByteArray image;
+    bool disableUpdate;
     bool updateEnable; //!< Flag enabling autoupdate
     int updateInterval; //!< Update interval
     int intervalType; //!< Update interval type (sec, min, day)
@@ -148,6 +149,7 @@ private:
   LineEdit *editTitle; //!< Feed title
   QLabel *labelHomepage; //!< Link to feed's homepage
   QToolButton *selectIconButton_;
+  QCheckBox *disableUpdate_;
   QCheckBox *updateEnable_;
   QSpinBox *updateInterval_;
   QComboBox *updateIntervalType_;

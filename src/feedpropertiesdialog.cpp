@@ -81,6 +81,9 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralTitle->addWidget(selectIconButton_);
   editURL = new LineEdit();
 
+  disableUpdate_ = new QCheckBox(tr("Disable update"));
+  disableUpdate_->setChecked(false);
+
   updateEnable_ = new QCheckBox(tr("Automatically update every"));
   updateInterval_ = new QSpinBox();
   updateInterval_->setEnabled(false);
@@ -103,6 +106,13 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   updateFeedsLayout->addWidget(updateIntervalType_);
   updateFeedsLayout->addStretch();
 
+  connect(disableUpdate_, SIGNAL(toggled(bool)),
+          updateEnable_, SLOT(setDisabled(bool)));
+  connect(disableUpdate_, SIGNAL(toggled(bool)),
+          updateInterval_, SLOT(setDisabled(bool)));
+  connect(disableUpdate_, SIGNAL(toggled(bool)),
+          updateIntervalType_, SLOT(setDisabled(bool)));
+
   starredOn_ = new QCheckBox(tr("Starred"));
   loadImagesOn = new QCheckBox(tr("Load images"));
   loadImagesOn->setTristate(true);
@@ -124,7 +134,9 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralMain->addLayout(layoutGeneralGrid);
   layoutGeneralMain->addLayout(layoutGeneralHomepage);
   layoutGeneralMain->addSpacing(15);
+  layoutGeneralMain->addWidget(disableUpdate_);
   layoutGeneralMain->addLayout(updateFeedsLayout);
+  layoutGeneralMain->addSpacing(15);
   layoutGeneralMain->addWidget(starredOn_);
   layoutGeneralMain->addWidget(loadImagesOn);
   layoutGeneralMain->addWidget(displayOnStartup);
@@ -323,6 +335,7 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   updateEnable_->setChecked(feedProperties.general.updateEnable);
   updateInterval_->setValue(feedProperties.general.updateInterval);
   updateIntervalType_->setCurrentIndex(feedProperties.general.intervalType + 1);
+  disableUpdate_->setChecked(feedProperties.general.disableUpdate);
 
   displayOnStartup->setChecked(feedProperties.general.displayOnStartup);
   starredOn_->setChecked(feedProperties.general.starred);
@@ -453,6 +466,7 @@ FEED_PROPERTIES FeedPropertiesDialog::getFeedProperties()
   feedProperties.general.text = editTitle->text();
   feedProperties.general.url = editURL->text();
 
+  feedProperties.general.disableUpdate = disableUpdate_->isChecked();
   feedProperties.general.updateEnable = updateEnable_->isChecked();
   feedProperties.general.updateInterval = updateInterval_->value();
   feedProperties.general.intervalType = updateIntervalType_->currentIndex() - 1;

@@ -252,7 +252,7 @@ UpdateObject::UpdateObject(QObject *parent)
 void UpdateObject::slotGetFeedTimer(int feedId)
 {
   QSqlQuery q(db_);
-  q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1'")
+  q.exec(QString("SELECT xmlUrl, lastBuildDate, authentication FROM feeds WHERE id=='%1' AND disableUpdate=0")
          .arg(feedId));
   if (q.next()) {
     addFeedInQueue(feedId, q.value(0).toString(),
@@ -265,7 +265,8 @@ void UpdateObject::slotGetAllFeedsTimer()
 {
   QSqlQuery q(db_);
   q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds "
-         "WHERE xmlUrl!='' AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
+         "WHERE xmlUrl!='' AND disableUpdate=0 "
+         "AND (updateIntervalEnable==-1 OR updateIntervalEnable IS NULL)");
   while (q.next()) {
     addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
                    q.value(2).toDateTime(), q.value(3).toInt());
@@ -301,7 +302,7 @@ void UpdateObject::slotGetFeedsFolder(QString query)
 void UpdateObject::slotGetAllFeeds()
 {
   QSqlQuery q(db_);
-  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!=''");
+  q.exec("SELECT id, xmlUrl, lastBuildDate, authentication FROM feeds WHERE xmlUrl!='' AND disableUpdate=0");
   while (q.next()) {
     addFeedInQueue(q.value(0).toInt(), q.value(1).toString(),
                    q.value(2).toDateTime(), q.value(3).toInt());
