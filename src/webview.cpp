@@ -19,7 +19,6 @@
 #include "webpage.h"
 
 #include <QApplication>
-#include <QClipboard>
 #include <QInputEvent>
 
 WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
@@ -93,14 +92,4 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
     return;
   }
   QWebView::wheelEvent(event);
-}
-
-void WebView::keyPressEvent(QKeyEvent *e)
-{
-    if ((e->modifiers().testFlag(Qt::ControlModifier)) && (e->key() == Qt::Key_C))
-    {
-        QApplication::clipboard()->setText(selectedText());
-        return;
-    }
-    QWebView::keyPressEvent(e);
 }
