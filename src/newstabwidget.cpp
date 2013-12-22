@@ -474,6 +474,10 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     } else {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
     }
+
+    webView_->page()->action(QWebPage::Back)->setShortcut(rssl_->backWebPageAct_->shortcut());
+    webView_->page()->action(QWebPage::Forward)->setShortcut(rssl_->forwardWebPageAct_->shortcut());
+    webView_->page()->action(QWebPage::Reload)->setShortcut(rssl_->reloadWebPageAct_->shortcut());
   }
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);

@@ -1347,6 +1347,13 @@ void RSSListing::createActions()
   this->addAction(settingPageLabelsAct_);
   connect(settingPageLabelsAct_, SIGNAL(triggered()), this, SLOT(showSettingPageLabels()));
 
+  backWebPageAct_ = new QAction(this);
+  backWebPageAct_->setObjectName("backWebPageAct");
+  forwardWebPageAct_ = new QAction(this);
+  forwardWebPageAct_->setObjectName("forwardWebPageAct");
+  reloadWebPageAct_ = new QAction(this);
+  reloadWebPageAct_->setObjectName("reloadWebPageAct");
+
   shareGroup_ = new QActionGroup(this);
   shareGroup_->setExclusive(false);
 
@@ -1551,6 +1558,10 @@ void RSSListing::createShortcut()
   listActions_.append(findTextAct_);
 
   listActions_.append(copyLinkAct_);
+
+  listActions_.append(backWebPageAct_);
+  listActions_.append(forwardWebPageAct_);
+  listActions_.append(reloadWebPageAct_);
 
   listActions_.append(shareGroup_->actions());
 
@@ -3402,6 +3413,21 @@ void RSSListing::showOptionDlg(int index)
     pixmapColor.fill(feedsTreeModel_->focusedFeedBGColor_);
   optionsDialog_->colorsTree_->topLevelItem(18)->setIcon(0, pixmapColor);
   optionsDialog_->colorsTree_->topLevelItem(18)->setText(1, feedsTreeModel_->focusedFeedBGColor_);
+
+  backWebPageAct_->setText(currentNewsTab->webView_->page()->action(QWebPage::Back)->text());
+  backWebPageAct_->setToolTip(currentNewsTab->webView_->page()->action(QWebPage::Back)->toolTip() + " " + tr("(Browser)"));
+  backWebPageAct_->setIcon(currentNewsTab->webView_->page()->action(QWebPage::Back)->icon());
+  backWebPageAct_->setShortcut(currentNewsTab->webView_->page()->action(QWebPage::Back)->shortcut());
+
+  forwardWebPageAct_->setText(currentNewsTab->webView_->page()->action(QWebPage::Forward)->text());
+  forwardWebPageAct_->setToolTip(currentNewsTab->webView_->page()->action(QWebPage::Forward)->toolTip() + " " + tr("(Browser)"));
+  forwardWebPageAct_->setIcon(currentNewsTab->webView_->page()->action(QWebPage::Forward)->icon());
+  forwardWebPageAct_->setShortcut(currentNewsTab->webView_->page()->action(QWebPage::Forward)->shortcut());
+
+  reloadWebPageAct_->setText(currentNewsTab->webView_->page()->action(QWebPage::Reload)->text());
+  reloadWebPageAct_->setToolTip(currentNewsTab->webView_->page()->action(QWebPage::Reload)->toolTip() + " " + tr("(Browser)"));
+  reloadWebPageAct_->setIcon(currentNewsTab->webView_->page()->action(QWebPage::Reload)->icon());
+  reloadWebPageAct_->setShortcut(currentNewsTab->webView_->page()->action(QWebPage::Reload)->shortcut());
 
   optionsDialog_->loadActionShortcut(listActions_, &listDefaultShortcut_);
 
