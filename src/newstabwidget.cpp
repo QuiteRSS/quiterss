@@ -2035,6 +2035,16 @@ void NewsTabWidget::slotShareNews(QAction *action)
     QString title = newsModel_->dataField(indexes.at(i).row(), "title").toString();
     QString linkString = getLinkNews(indexes.at(i).row());
 
+    QString content = newsModel_->dataField(indexes.at(i).row(), "content").toString();
+    QString description = newsModel_->dataField(indexes.at(i).row(), "description").toString();
+    if (content.isEmpty() || (description.length() > content.length())) {
+      content = description;
+    }
+    QTextDocumentFragment textDocument = QTextDocumentFragment::fromHtml(content);
+    content = textDocument.toPlainText();
+    content = content.replace("\n", "%0A");
+    content = content.replace("\"", "%22");
+
     QUrl url;
     if (action->objectName() == "emailShareAct") {
       url.setUrl("mailto:");
@@ -2045,7 +2055,7 @@ void NewsTabWidget::slotShareNews(QAction *action)
       url.setQuery(urlQuery);
 #else
       url.addQueryItem("subject", title);
-      url.addQueryItem("body", linkString);
+      url.addQueryItem("body", linkString + "%0A%0A" + content);
 #endif
       openUrl(url);
     }
