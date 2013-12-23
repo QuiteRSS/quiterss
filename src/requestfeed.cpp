@@ -256,7 +256,16 @@ void RequestFeed::finished(QNetworkReply *reply)
           if (pos > -1) {
             codecName = rx.cap(1);
           }
-          QByteArray data = reply->readAll().trimmed();
+
+          QByteArray data = reply->readAll();
+          data = data.trimmed();
+          if (data.indexOf("</rss>") > 0)
+            data.resize(data.indexOf("</rss>") + 6);
+          if (data.indexOf("</feed>") > 0)
+            data.resize(data.indexOf("</feed>") + 7);
+          if (data.indexOf("</rdf:RDF>") > 0)
+            data.resize(data.indexOf("</rdf:RDF>") + 10);
+
           emit getUrlDone(feedsQueue_.count(), feedId, feedUrl, "", data, replyLocalDate, codecName);
         }
       }
