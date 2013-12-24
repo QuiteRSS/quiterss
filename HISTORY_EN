@@ -2,6 +2,29 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.14.1+</b> (30 Dec 2013)
+<ul>
+<li>Added: Option "Options->Browser->Load images"</li>
+<li>Added: Feed property "Disable update"</li>
+<li>Added: Shortcuts for main browser actions</li>
+<li>Added: Setting for text and background colors of focused feed</li>
+<li>Added: Finnish</li>
+
+<li>Changed: Load feed's favicon from main webpage</li>
+<li>Changed: Process "dc:date" while parsing feed</li>
+<li>Changed: Mouse gestures. Jump to news description if there is no previous page on back-action</li>
+<li>Changed: Address bar appearance</li>
+<li>Changed: Send whole new's text when share news by e-mail</li>
+
+<li>Fixed: Adding feeds that contains "amp;"</li>
+<li>Fixed: Parsing of some feeds</li>
+<li>Fixed: Action "Next unread news"</li>
+<li>Fixed: Recounting and displaying counters in categories tree</li>
+<li>Fixed: Manual run of filter when option "Store DB in memory" is disabled</li>
+<li>Fixed: Displaying focused feed, while switching tabs</li>
+<li>Fixed: Taking account of filter text when switching news filter</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.14.1</b> (30 Nov 2013)
 <ul>
 <li>Main: Increase application performance</li>
