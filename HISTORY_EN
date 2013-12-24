@@ -5,10 +5,10 @@
 <p><b>Version 0.14.1+</b> (30 Dec 2013)
 <ul>
 <li>Added: Option "Options->Browser->Load images"</li>
-<li>Added: Feed property "Disable update"</li>
+<li>Added: Feed option "Disable update"</li>
 <li>Added: Shortcuts for main browser actions</li>
 <li>Added: Setting for text and background colors of focused feed</li>
-<li>Added: Finnish</li>
+<li>Added: Language: Finnish</li>
 
 <li>Changed: Load feed's favicon from main webpage</li>
 <li>Changed: Process "dc:date" while parsing feed</li>
