@@ -21,7 +21,7 @@
 <li>Fixed: Action "Next unread news"</li>
 <li>Fixed: Recounting and displaying counters in categories tree</li>
 <li>Fixed: Manual run of filter when option "Store DB in memory" is disabled</li>
-<li>Fixed: Displaying focused feed, while switching tabs</li>
+<li>Fixed: Displaying focused feed, while switching tabs with enabled filter</li>
 <li>Fixed: Taking account of filter text when switching news filter</li>
 </ul>
 <!---------------------------------------------------------------------------->
