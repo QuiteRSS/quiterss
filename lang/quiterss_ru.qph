@@ -2545,4 +2545,36 @@ Ancient news could reappear</source>
     <source>Text color of new news </source>
     <target>Цвет текста новых новостей в списке</target>
 </phrase>
+<phrase>
+    <source>Disable update</source>
+    <target>Отключить обновление</target>
+</phrase>
+<phrase>
+    <source>Play a Sound</source>
+    <target>Воспроизвести звук</target>
+</phrase>
+<phrase>
+    <source>Show News in Notifier</source>
+    <target>Показать новость в уведомлении</target>
+</phrase>
+<phrase>
+    <source>Browse</source>
+    <target>Обзор</target>
+</phrase>
+<phrase>
+    <source>Hide tab bar if only have one tab open</source>
+    <target>Скрыть панель вкладок, если открыта только одна вкладка</target>
+</phrase>
+<phrase>
+    <source>Text color of unread news</source>
+    <target>Цвет текста непрочитанных новостей в списке</target>
+</phrase>
+<phrase>
+    <source>Focused feed color</source>
+    <target>Цвет текста ленты под курсором</target>
+</phrase>
+<phrase>
+    <source>Focused feed background color</source>
+    <target>Цвет фона ленты под курсором</target>
+</phrase>
 </QPH>

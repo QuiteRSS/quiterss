@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="ru">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutDialog</name>
@@ -288,7 +290,7 @@
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="341"/>
-        <source>Totally remove records that had marked 'deleted' from DB.
+        <source>Totally remove records that had marked &apos;deleted&apos; from DB.
 Ancient news could reappear</source>
         <translation>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
 Возможно, удалённые новости загрузятся снова</translation>
@@ -616,7 +618,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>Отключить обновление</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -937,22 +939,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Play a Sound</source>
-        <translation type="unfinished"/>
+        <translation>Воспроизвести звук</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Показать новость в уведомлении</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Обзор</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Воспроизвести</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="183"/>
@@ -967,7 +969,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="251"/>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>Открыть файл...</translation>
     </message>
 </context>
 <context>
@@ -1352,25 +1354,25 @@ Ancient news could reappear</source>
         <location filename="../src/newstabwidget.cpp" line="544"/>
         <location filename="../src/newstabwidget.cpp" line="565"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Загружать изображения</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="545"/>
         <location filename="../src/newstabwidget.cpp" line="566"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Автоматическая загрузка изображений</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <location filename="../src/newstabwidget.cpp" line="569"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Не загружать изображения</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="548"/>
         <location filename="../src/newstabwidget.cpp" line="570"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Не загружать изображения</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="553"/>
@@ -1597,7 +1599,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="258"/>
         <source>Hide tab bar if only have one tab open</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть панель вкладок, если открыта только одна вкладка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1941,7 +1943,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="996"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Воспроизвести</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
@@ -2497,22 +2499,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1540"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>Цвет текста новых новостей в списке</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1543"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Цвет текста непрочитанных новостей в списке</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>Цвет текста ленты под курсором</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1549"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>Цвет фона ленты под курсором</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1666"/>
