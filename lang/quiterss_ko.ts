@@ -114,18 +114,18 @@
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="325"/>
-        <location filename="../src/addfeedwizard.cpp" line="487"/>
+        <location filename="../src/addfeedwizard.cpp" line="488"/>
         <source>Duplicate feed!</source>
         <translation>피드 주소가 중복입니다!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="489"/>
-        <location filename="../src/addfeedwizard.cpp" line="511"/>
+        <location filename="../src/addfeedwizard.cpp" line="490"/>
+        <location filename="../src/addfeedwizard.cpp" line="512"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>피드 주소를 찾을수 없습니다!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="530"/>
+        <location filename="../src/addfeedwizard.cpp" line="531"/>
         <source>Request failed!</source>
         <translation>요청 실패!</translation>
     </message>
@@ -237,57 +237,57 @@
         <translation>피드 선택</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="235"/>
+        <location filename="../src/cleanupwizard.cpp" line="236"/>
         <source>All Feeds</source>
         <translation>모든 피드</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="298"/>
+        <location filename="../src/cleanupwizard.cpp" line="305"/>
         <source>Clean Up Options</source>
         <translation>옵션 초기화</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="300"/>
+        <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>최대 뉴스 보유 기간:</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="307"/>
+        <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Maximum number of news to keep:</source>
         <translation>최대 뉴스 보유 건수:</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="314"/>
+        <location filename="../src/cleanupwizard.cpp" line="321"/>
         <source>Delete read news</source>
         <translation>읽은 뉴스를 삭제</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="315"/>
+        <location filename="../src/cleanupwizard.cpp" line="322"/>
         <source>Never delete unread news</source>
         <translation>읽지 않은 뉴스를 삭제하시 않는다</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="316"/>
+        <location filename="../src/cleanupwizard.cpp" line="323"/>
         <source>Never delete starred news</source>
         <translation>별표 뉴스를 삭제하시 않는다</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="317"/>
+        <location filename="../src/cleanupwizard.cpp" line="324"/>
         <source>Never delete labeled news</source>
         <translation>라벨 뉴스는 삭제하지 않는다</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="330"/>
+        <location filename="../src/cleanupwizard.cpp" line="337"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>삭제항목 정리</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="331"/>
+        <location filename="../src/cleanupwizard.cpp" line="338"/>
         <source>Purge DB</source>
         <translation>DB 제거</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="334"/>
+        <location filename="../src/cleanupwizard.cpp" line="341"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>데이터베이스에서 삭제 표시된 항목을 제거합니다.
@@ -579,12 +579,12 @@ Ancient news could reappear</source>
 <context>
     <name>FeedPropertiesDialog</name>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="106"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="116"/>
         <source>Starred</source>
         <translation>별표 추가</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
         <source>Load images</source>
         <translation>이미지 표시</translation>
     </message>
@@ -614,122 +614,127 @@ Ancient news could reappear</source>
         <translation>피드 주소:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
+        <source>Disable update</source>
+        <translation>업데이트 비활성화</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>seconds</source>
         <translation>초</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>minutes</source>
         <translation>분</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>hours</source>
         <translation>시</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="109"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>웹페이지를 불러오지 않고 뉴스 설명을 표시</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="192"/>
         <source>Ascending</source>
         <translation>오름차순</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="192"/>
         <source>Descending</source>
         <translation>내림차순</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="184"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="197"/>
         <source>Sort by:</source>
         <translation>정렬 : </translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="211"/>
         <source>Add</source>
         <translation>추가</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="205"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="218"/>
         <source>Remove</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="209"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="222"/>
         <source>Move up</source>
         <translation>위로 이동</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="212"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="225"/>
         <source>Move down</source>
         <translation>아래로 이동</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="229"/>
         <source>Default</source>
         <translation>기본값</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="258"/>
         <source>Server requires authentication:</source>
         <translation>서버 인증이 필요:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="254"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="267"/>
         <source>Username:</source>
         <translation>사용자명:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="256"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="269"/>
         <source>Password:</source>
         <translation>비밀번호:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="299"/>
         <source>Status:</source>
         <translation>상태:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="301"/>
         <source>Created:</source>
         <translation>작성:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="290"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="303"/>
         <source>Last update:</source>
         <translation>최종갱신:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="305"/>
         <source>News count:</source>
         <translation>뉴스 건수:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="369"/>
         <source>Good</source>
         <translation>Good</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="410"/>
         <source>Image files</source>
         <translation>이미지 파일</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="398"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="412"/>
         <source>Select Image</source>
         <translation>이미지 선택</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="405"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="419"/>
         <source>Load icon: can&apos;t open a file!</source>
         <translation>아이콘 불러오기: 파일을 열수 없습니다!</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="279"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
         <source>Description:</source>
         <translation>설명:</translation>
     </message>
@@ -759,32 +764,32 @@ Ancient news could reappear</source>
         <translation>아이콘 선택</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
         <source>Automatically update every</source>
         <translation>자동으로 업데이트 </translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Display in new tab on startup</source>
         <translation>시작시 새탭으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="110"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
         <source>Automatically delete duplicate news</source>
         <translation>중복 뉴스 자동 삭제</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="363"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="377"/>
         <source>Long ago ;-)</source>
         <translation>예전 ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="374"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="388"/>
         <source>new</source>
         <translation>새 피드</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="376"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="390"/>
         <source>unread</source>
         <translation>읽지 않음</translation>
     </message>
@@ -842,12 +847,12 @@ Ancient news could reappear</source>
         <translation>아래 작업을 실행:</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="306"/>
+        <location filename="../src/filterrulesdialog.cpp" line="312"/>
         <source>Please enter name for the filter.</source>
         <translation>필터 이름을 입력해주세요.</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="318"/>
+        <location filename="../src/filterrulesdialog.cpp" line="324"/>
         <source>Please enter search condition for the news filter.</source>
         <translation>뉴스 필터의 검색 조건을 입력해주세요.</translation>
     </message>
@@ -930,14 +935,39 @@ Ancient news could reappear</source>
         <translation>라벨 추가</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="155"/>
+        <location filename="../src/filterrulesdialog.h" line="148"/>
+        <source>Play a Sound</source>
+        <translation>소리 재생</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="148"/>
+        <source>Show News in Notifier</source>
+        <translation>뉴스 알림 보기</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="157"/>
+        <source>Browse</source>
+        <translation>브라우저</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="161"/>
+        <source>Play</source>
+        <translation>재생</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="183"/>
         <source>Add Action</source>
         <translation>작업 추가</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="159"/>
+        <location filename="../src/filterrulesdialog.h" line="187"/>
         <source>Delete Action</source>
         <translation>작업 삭제</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="251"/>
+        <source>Open File...</source>
+        <translation>파일 열기...</translation>
     </message>
 </context>
 <context>
@@ -1234,117 +1264,141 @@ Ancient news could reappear</source>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="484"/>
+        <location filename="../src/newstabwidget.cpp" line="516"/>
         <source>Loading... (%p%)</source>
         <translation>불러오는중... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1299"/>
+        <location filename="../src/newstabwidget.cpp" line="1343"/>
         <source>Author: %1</source>
         <translation>작성자: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="486"/>
+        <location filename="../src/newstabwidget.cpp" line="518"/>
         <source>Home</source>
         <translation>홈</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="487"/>
+        <location filename="../src/newstabwidget.cpp" line="519"/>
         <source>Open Page in External Browser</source>
         <translation>외부 브라우저로 페이지 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="488"/>
+        <location filename="../src/newstabwidget.cpp" line="520"/>
         <source>Open Link in External Browser</source>
         <translation>외부 브라우저로 링크 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="490"/>
+        <location filename="../src/newstabwidget.cpp" line="522"/>
         <source>Open Link</source>
         <translation>링크 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="491"/>
+        <location filename="../src/newstabwidget.cpp" line="523"/>
         <source>Open in New Tab</source>
         <translation>새 탭으로 열기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="492"/>
+        <location filename="../src/newstabwidget.cpp" line="524"/>
         <source>Save Link...</source>
         <translation>링크 저장...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="493"/>
+        <location filename="../src/newstabwidget.cpp" line="525"/>
         <source>Save Image...</source>
         <translation>이미지 저장...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="494"/>
+        <location filename="../src/newstabwidget.cpp" line="526"/>
         <source>Copy Link</source>
         <translation>링크 복사</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="495"/>
+        <location filename="../src/newstabwidget.cpp" line="527"/>
         <source>Copy</source>
         <translation>복사</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="496"/>
+        <location filename="../src/newstabwidget.cpp" line="528"/>
         <source>Go Back</source>
         <translation>뒤로</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="497"/>
+        <location filename="../src/newstabwidget.cpp" line="529"/>
         <source>Go Forward</source>
         <translation>앞으로</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="498"/>
+        <location filename="../src/newstabwidget.cpp" line="530"/>
         <source>Stop</source>
         <translation>정지</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="499"/>
+        <location filename="../src/newstabwidget.cpp" line="531"/>
         <source>Reload</source>
         <translation>새로 불러오기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="500"/>
+        <location filename="../src/newstabwidget.cpp" line="532"/>
         <source>Copy Image</source>
         <translation>이미지 저장</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="502"/>
+        <location filename="../src/newstabwidget.cpp" line="534"/>
         <source>Copy Image Address</source>
         <translation>이미지 주소 저장</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="511"/>
+        <location filename="../src/newstabwidget.cpp" line="544"/>
+        <location filename="../src/newstabwidget.cpp" line="565"/>
+        <source>Load Images</source>
+        <translation>이미지 표시</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="545"/>
+        <location filename="../src/newstabwidget.cpp" line="566"/>
+        <source>Auto Load Images to News View</source>
+        <translation>뉴스 보기에서 이미지를 자동으로 불러들입니다</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="547"/>
+        <location filename="../src/newstabwidget.cpp" line="569"/>
+        <source>No Load Images</source>
+        <translation>이미지 표시안함</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="548"/>
+        <location filename="../src/newstabwidget.cpp" line="570"/>
+        <source>No Load Images to News View</source>
+        <translation>뉴스 보기에서 이미지 표시안함</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="553"/>
         <source>Close Tab</source>
         <translation>탭 닫기</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1293"/>
+        <location filename="../src/newstabwidget.cpp" line="1337"/>
         <source>Comments</source>
         <translation>Comments</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1333"/>
+        <location filename="../src/newstabwidget.cpp" line="1376"/>
         <source>audio</source>
         <translation>오디오</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1334"/>
+        <location filename="../src/newstabwidget.cpp" line="1381"/>
         <source>video</source>
         <translation>비디오</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1335"/>
+        <location filename="../src/newstabwidget.cpp" line="1385"/>
         <source>media</source>
         <translation>미디어</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1339"/>
+        <location filename="../src/newstabwidget.cpp" line="1388"/>
         <source>Link to</source>
         <translation>링크</translation>
     </message>
@@ -1352,14 +1406,14 @@ Ancient news could reappear</source>
 <context>
     <name>NotificationWidget</name>
     <message>
-        <location filename="../src/notifications.cpp" line="137"/>
+        <location filename="../src/notifications.cpp" line="139"/>
         <source>Incoming News: %1</source>
         <translation>수신뉴스 : %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications.cpp" line="240"/>
-        <location filename="../src/notifications.cpp" line="309"/>
-        <location filename="../src/notifications.cpp" line="321"/>
+        <location filename="../src/notifications.cpp" line="244"/>
+        <location filename="../src/notifications.cpp" line="313"/>
+        <location filename="../src/notifications.cpp" line="325"/>
         <source>Page %1 of %2</source>
         <translation>페이지 %1 / %2</translation>
     </message>
@@ -1388,13 +1442,13 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="76"/>
-        <location filename="../src/optionsdialog.cpp" line="1688"/>
+        <location filename="../src/optionsdialog.cpp" line="1718"/>
         <source>Labels</source>
         <translation>라벨</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="79"/>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1720"/>
         <source>Notifications</source>
         <translation>알림</translation>
     </message>
@@ -1405,18 +1459,18 @@ Ancient news could reappear</source>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="85"/>
-        <location filename="../src/optionsdialog.cpp" line="1168"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1601"/>
+        <location filename="../src/optionsdialog.cpp" line="1631"/>
         <source>Fonts</source>
         <translation>글꼴</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="227"/>
-        <location filename="../src/optionsdialog.cpp" line="2003"/>
+        <location filename="../src/optionsdialog.cpp" line="2038"/>
         <source>Warning: key is already assigned to</source>
         <translation>경고 : 키가 이미 다음 기능에 활당되어 있습니다</translation>
     </message>
@@ -1451,788 +1505,794 @@ Ancient news could reappear</source>
         <translation>자동으로 폴더 접기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="259"/>
+        <location filename="../src/optionsdialog.cpp" line="260"/>
         <source>Automatically check for updates</source>
         <translation>자동 업데이트 검사</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="260"/>
+        <location filename="../src/optionsdialog.cpp" line="261"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>DB를 메모리에 불러옴 (프로그램 재시작 필요)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>Save DB stored in memory to file every</source>
         <translation>메모리를 일정시간 마다 DB로 저장</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="290"/>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>윈도우 시작시 QuiteRss 실행</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="314"/>
+        <location filename="../src/optionsdialog.cpp" line="316"/>
         <source>starting QuiteRSS</source>
         <translation>QuiteRss 시작시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="315"/>
+        <location filename="../src/optionsdialog.cpp" line="317"/>
         <source>minimizing QuiteRSS</source>
         <translation>QuiteRss 최소화시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="316"/>
+        <location filename="../src/optionsdialog.cpp" line="318"/>
         <source>closing QuiteRSS</source>
         <translation>QuiteRss 닫을때</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="323"/>
+        <location filename="../src/optionsdialog.cpp" line="325"/>
         <source>Show static icon</source>
         <translation>기본 아이콘 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="324"/>
+        <location filename="../src/optionsdialog.cpp" line="326"/>
         <source>Change icon for incoming new news</source>
         <translation>새 뉴스 수신시 아이콘 변경</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="325"/>
+        <location filename="../src/optionsdialog.cpp" line="327"/>
         <source>Show count of new news</source>
         <translation>새 뉴스 건수 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="326"/>
+        <location filename="../src/optionsdialog.cpp" line="328"/>
         <source>Show count of unread news</source>
         <translation>읽지 않은 뉴스 건수를 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="335"/>
+        <location filename="../src/optionsdialog.cpp" line="337"/>
         <source>Single click instead of double click for show window</source>
         <translation>클릭과 더블클릭으로 윈도우 보이기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="336"/>
+        <location filename="../src/optionsdialog.cpp" line="338"/>
         <source>Clear status new on minimize to tray</source>
         <translation>트레이로 최소화시 상태를 클리어</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="337"/>
+        <location filename="../src/optionsdialog.cpp" line="339"/>
         <source>Empty working set on minimize to tray</source>
         <translation>트레이로 최소화시 작업집합 비우기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="340"/>
+        <location filename="../src/optionsdialog.cpp" line="342"/>
         <source>Move to the system tray when:</source>
         <translation>시스템 트레이로 최소화:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="342"/>
+        <location filename="../src/optionsdialog.cpp" line="344"/>
         <source>Tray icon behavior:</source>
         <translation>트레이 아이콘 동작:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="366"/>
+        <location filename="../src/optionsdialog.cpp" line="368"/>
         <source>System proxy configuration (if available)</source>
         <translation>시스템 프록시 설정 (가능한 경우)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="364"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>Direct connection to the Internet</source>
         <translation>인터넷에 직접 연결</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="367"/>
+        <location filename="../src/optionsdialog.cpp" line="258"/>
+        <source>Hide tab bar if only have one tab open</source>
+        <translation>한 개의 탭이 있을때 탭 표시줄 자동숨김</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="369"/>
         <source>Manual proxy configuration:</source>
         <translation>수동으로 프록시 설정:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="383"/>
+        <location filename="../src/optionsdialog.cpp" line="385"/>
         <source>Proxy server:</source>
         <translation>프록시 서버:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="385"/>
+        <location filename="../src/optionsdialog.cpp" line="387"/>
         <source>Port:</source>
         <translation>포트:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="393"/>
+        <location filename="../src/optionsdialog.cpp" line="395"/>
         <source>Username:</source>
         <translation>사용자명:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="395"/>
+        <location filename="../src/optionsdialog.cpp" line="397"/>
         <source>Password:</source>
         <translation>비밀번호:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="424"/>
+        <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Timeout request:</source>
         <translation>Timeout request:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="428"/>
+        <location filename="../src/optionsdialog.cpp" line="430"/>
         <source>Number repeats:</source>
         <translation>Number repeats:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="431"/>
+        <location filename="../src/optionsdialog.cpp" line="433"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
         <translation>옵션 네트워크 요청 피드를 업데이트 (프로그램 재시작 필요) :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="449"/>
+        <location filename="../src/optionsdialog.cpp" line="451"/>
         <source>Use embedded browser</source>
         <translation>내장 브라우저 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="455"/>
-        <location filename="../src/optionsdialog.cpp" line="468"/>
-        <location filename="../src/optionsdialog.cpp" line="547"/>
-        <location filename="../src/optionsdialog.cpp" line="664"/>
-        <location filename="../src/optionsdialog.cpp" line="991"/>
+        <location filename="../src/optionsdialog.cpp" line="457"/>
+        <location filename="../src/optionsdialog.cpp" line="471"/>
+        <location filename="../src/optionsdialog.cpp" line="551"/>
+        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Browse...</source>
         <translation>브라우저...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="457"/>
+        <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>Enable JavaScript</source>
         <translation>javaScript 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="458"/>
+        <location filename="../src/optionsdialog.cpp" line="461"/>
         <source>Enable plug-ins</source>
         <translation>플러그인 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="464"/>
+        <location filename="../src/optionsdialog.cpp" line="467"/>
         <source>Open links in embedded browser in background</source>
         <translation>링크를 내장브라우저 백그라운드로 열기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="465"/>
+        <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>링크를 외부 브라우저 백그라운드로 열기 (실험기능)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="491"/>
+        <location filename="../src/optionsdialog.cpp" line="494"/>
         <source>Default zoom on pages:</source>
         <translation>기본 페이지 확대 : </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="509"/>
+        <location filename="../src/optionsdialog.cpp" line="513"/>
         <source>External browser:</source>
         <translation>외부 브라우저:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="513"/>
+        <location filename="../src/optionsdialog.cpp" line="517"/>
         <source>User style sheet:</source>
         <translation>사용자 스타일 시트 :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="542"/>
+        <location filename="../src/optionsdialog.cpp" line="546"/>
         <source>Maximum pages in cache</source>
         <translation>최대 캐쉬 페이지 수</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="553"/>
+        <location filename="../src/optionsdialog.cpp" line="557"/>
         <source>Store cache in:</source>
         <translation>캐쉬 대상 :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="561"/>
+        <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>Maximum size of disk cache</source>
         <translation>디스크 캐쉬 최대 용량</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="563"/>
+        <location filename="../src/optionsdialog.cpp" line="567"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="569"/>
+        <location filename="../src/optionsdialog.cpp" line="573"/>
         <source>Use disk cache</source>
         <translation>디스크 캐쉬 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="583"/>
+        <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Allow local data to be set</source>
         <translation>로컬데이터 설정 허용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="584"/>
+        <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Keep local data only until quit application</source>
         <translation>응용프로그램 종료전까지 로컬데이터 유지</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="585"/>
+        <location filename="../src/optionsdialog.cpp" line="589"/>
         <source>Block sites from setting any data</source>
         <translation>데이터 차단사이트 설정 </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="586"/>
+        <location filename="../src/optionsdialog.cpp" line="590"/>
         <source>Clear</source>
         <translation>정리</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="601"/>
+        <location filename="../src/optionsdialog.cpp" line="605"/>
         <source>Cookies:</source>
         <translation>쿠키:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="613"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>Click To Flash는 페이지의 플래쉬 컨텐츠 자동 로딩을 차단하는 플러그인입니다. 플래쉬 재생 아이콘을 클릭하면 재생합니다.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="614"/>
+        <location filename="../src/optionsdialog.cpp" line="618"/>
         <source>Use Click to Flash</source>
         <translation>Click To Flash 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="626"/>
+        <location filename="../src/optionsdialog.cpp" line="630"/>
         <source>Add...</source>
         <translation>추가...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="628"/>
+        <location filename="../src/optionsdialog.cpp" line="632"/>
         <source>Remove...</source>
         <translation>삭제...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <location filename="../src/optionsdialog.cpp" line="672"/>
         <source>Ask where to save each file before downloading</source>
         <translation>다운로드시 저장위치 묻기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="677"/>
+        <location filename="../src/optionsdialog.cpp" line="681"/>
         <source>Download location:</source>
         <translation>다운로드 경로 :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="686"/>
+        <location filename="../src/optionsdialog.cpp" line="690"/>
         <source>History</source>
         <translation>이력</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="687"/>
+        <location filename="../src/optionsdialog.cpp" line="691"/>
         <source>Privacy</source>
         <translation>프라이버시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="688"/>
+        <location filename="../src/optionsdialog.cpp" line="692"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="689"/>
+        <location filename="../src/optionsdialog.cpp" line="693"/>
         <source>Downloads</source>
         <translation>다운로드</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="723"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Position on unread news</source>
         <translation>읽지않은 뉴스에 위치</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="740"/>
+        <location filename="../src/optionsdialog.cpp" line="744"/>
         <source>Dec</source>
         <translation>Dec</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="741"/>
+        <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>December</source>
         <translation>December</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="764"/>
+        <location filename="../src/optionsdialog.cpp" line="768"/>
         <source>Display format for date:</source>
         <translation>날짜 표시 형식:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="767"/>
+        <location filename="../src/optionsdialog.cpp" line="771"/>
         <source>time:</source>
         <translation>시간:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="771"/>
+        <location filename="../src/optionsdialog.cpp" line="775"/>
         <source>Alternating row background colors</source>
         <translation>행 배경색상 번갈아가며 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Simplified representation of date and time</source>
         <translation>시간/날짜를 간소화 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show All</source>
         <translation>모두 보기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show New</source>
         <translation>새 뉴스 보기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show Unread</source>
         <translation>읽지 않음 보기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Show Starred</source>
         <translation>별표 보기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Show Not Starred</source>
         <translation>미별표 보기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Unread or Starred</source>
         <translation>읽지않음/별표 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Last Day</source>
         <translation>최근 하루 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="778"/>
+        <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Show Last 7 Days</source>
         <translation>최근 일주일 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="792"/>
+        <location filename="../src/optionsdialog.cpp" line="796"/>
         <source>Main news filter:</source>
         <translation>메인 뉴스 필터:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="814"/>
+        <location filename="../src/optionsdialog.cpp" line="818"/>
         <source>Mark news as read:</source>
         <translation>뉴스 읽음 표시 :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="816"/>
+        <location filename="../src/optionsdialog.cpp" line="820"/>
         <source>on selecting. With timeout</source>
         <translation>선택시 - 타임아웃</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="821"/>
         <source>after switching to another news</source>
         <translation>다른 뉴스로 이동시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="830"/>
+        <location filename="../src/optionsdialog.cpp" line="834"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>읽지않음 다음 뉴스의 행동을 변경</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Automatically mark identical news as read</source>
         <translation>동일 뉴스 자동으로 읽음으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="874"/>
+        <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Enable cleanup on shutdown</source>
         <translation>정리 후 종료</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="894"/>
+        <location filename="../src/optionsdialog.cpp" line="898"/>
         <source>Never delete labeled news</source>
         <translation>라벨 뉴스는 삭제하지 않는다</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>삭제항목 정리</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="897"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>데이터 최적화 사용 (종료시 느림)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="943"/>
+        <location filename="../src/optionsdialog.cpp" line="947"/>
         <source>New...</source>
         <translation>신규...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="945"/>
+        <location filename="../src/optionsdialog.cpp" line="949"/>
         <source>Edit...</source>
         <translation>편집...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="948"/>
+        <location filename="../src/optionsdialog.cpp" line="952"/>
         <source>Delete...</source>
         <translation>삭제...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="952"/>
+        <location filename="../src/optionsdialog.cpp" line="956"/>
         <source>Move up</source>
         <translation>위로 이동</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="955"/>
+        <location filename="../src/optionsdialog.cpp" line="959"/>
         <source>Move down</source>
         <translation>아래로 이동</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1005"/>
+        <location filename="../src/optionsdialog.cpp" line="996"/>
+        <source>Play</source>
+        <translation>재생</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1018"/>
         <source>Display notification for incoming news</source>
         <translation>뉴스 수신시 알람표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1011"/>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Top Left</source>
         <translation>외쪽 상단</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1011"/>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Top Right</source>
         <translation>오른쪽 상단</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1012"/>
+        <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Left</source>
         <translation>왼쪽 하단</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1012"/>
+        <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Right</source>
         <translation>오른쪽 하단</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1022"/>
+        <location filename="../src/optionsdialog.cpp" line="1035"/>
         <source>Review</source>
         <translation>리뷰</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1026"/>
+        <location filename="../src/optionsdialog.cpp" line="1039"/>
         <source>Position</source>
         <translation>위치</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1032"/>
+        <location filename="../src/optionsdialog.cpp" line="1045"/>
         <source>Show maximum of</source>
         <translation>알람 1페이지 마다</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1034"/>
+        <location filename="../src/optionsdialog.cpp" line="1047"/>
         <source>news on page notification</source>
         <translation>건의 뉴스를 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1037"/>
+        <location filename="../src/optionsdialog.cpp" line="1050"/>
         <source>Width news list</source>
         <translation>뉴스 리스트의 폭</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1039"/>
+        <location filename="../src/optionsdialog.cpp" line="1052"/>
         <source>pixels</source>
         <translation>픽셀</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1055"/>
         <source>Close notification after</source>
         <translation>다음 시간후 알림 닫기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1046"/>
+        <location filename="../src/optionsdialog.cpp" line="1059"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>전체화면 모드에서 알림 보지 않음</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Site</source>
         <translation>사이트</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>User</source>
         <translation>사용자</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Password</source>
         <translation>비밀번호</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1132"/>
+        <location filename="../src/optionsdialog.cpp" line="1145"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1134"/>
+        <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Delete All</source>
         <translation>모두 삭제</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1136"/>
+        <location filename="../src/optionsdialog.cpp" line="1149"/>
         <source>Show Passwords</source>
         <translation>비밀번호 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1434"/>
+        <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>News title font</source>
         <translation>뉴스 제목 글꼴</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1437"/>
+        <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>News text font</source>
         <translation>뉴스  내용 글꼴</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1440"/>
+        <location filename="../src/optionsdialog.cpp" line="1461"/>
         <source>Notification font</source>
         <translation>알림 폰트</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1474"/>
+        <location filename="../src/optionsdialog.cpp" line="1495"/>
         <source>Feeds list color</source>
         <translation>피드 목록 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1477"/>
+        <location filename="../src/optionsdialog.cpp" line="1498"/>
         <source>Feeds list background</source>
         <translation>피드 목록 배경색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1480"/>
+        <location filename="../src/optionsdialog.cpp" line="1501"/>
         <source>News list color</source>
         <translation>뉴스 목록 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1483"/>
+        <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News list background</source>
         <translation>뉴스 목록 배경색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1486"/>
+        <location filename="../src/optionsdialog.cpp" line="1507"/>
         <source>Focused news color</source>
         <translation>선택 뉴스 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1489"/>
+        <location filename="../src/optionsdialog.cpp" line="1510"/>
         <source>Focused news background color</source>
         <translation>선택 뉴스 배경색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1492"/>
+        <location filename="../src/optionsdialog.cpp" line="1513"/>
         <source>Link color</source>
         <translation>링크 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1495"/>
+        <location filename="../src/optionsdialog.cpp" line="1516"/>
         <source>Title color</source>
         <translation>제목 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1498"/>
+        <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Date color</source>
         <translation>날짜 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1501"/>
+        <location filename="../src/optionsdialog.cpp" line="1522"/>
         <source>Author color</source>
         <translation>작성자 색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1504"/>
+        <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>News text color</source>
         <translation>뉴스 내용 글자색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1507"/>
+        <location filename="../src/optionsdialog.cpp" line="1528"/>
         <source>News title background</source>
         <translation>뉴스 제목 배경색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1510"/>
+        <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>News background</source>
         <translation>뉴스 배경색</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1513"/>
+        <location filename="../src/optionsdialog.cpp" line="1534"/>
         <source>Feed with new news</source>
         <translation>새 뉴스피드</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1516"/>
+        <location filename="../src/optionsdialog.cpp" line="1537"/>
         <source>Count of news unread in feeds tree</source>
         <translation>피드목록에 읽지않은 뉴스 건수 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1519"/>
-        <source>Text color of new news </source>
-        <translation>새로운 뉴스 글자색</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1555"/>
+        <location filename="../src/optionsdialog.cpp" line="1585"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1557"/>
+        <location filename="../src/optionsdialog.cpp" line="1587"/>
         <source>Fixed</source>
         <translation>Fixed</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1559"/>
+        <location filename="../src/optionsdialog.cpp" line="1589"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1561"/>
+        <location filename="../src/optionsdialog.cpp" line="1591"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1563"/>
+        <location filename="../src/optionsdialog.cpp" line="1593"/>
         <source>Cursive</source>
         <translation>Cursive</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1565"/>
+        <location filename="../src/optionsdialog.cpp" line="1595"/>
         <source>Fantasy</source>
         <translation>Fantasy</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1580"/>
+        <location filename="../src/optionsdialog.cpp" line="1610"/>
         <source>Default font size</source>
         <translation>기본 글꼴 크기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1582"/>
+        <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Fixed font size</source>
         <translation>고정글꼴 크기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1584"/>
+        <location filename="../src/optionsdialog.cpp" line="1614"/>
         <source>Minimum font size</source>
         <translation>최소 글꼴 크기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1586"/>
+        <location filename="../src/optionsdialog.cpp" line="1616"/>
         <source>Minimum logical font size</source>
         <translation>논리적 최소 글꼴 크기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1590"/>
+        <location filename="../src/optionsdialog.cpp" line="1620"/>
         <source>Font families:</source>
         <translation>폰트 패밀리:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1592"/>
+        <location filename="../src/optionsdialog.cpp" line="1622"/>
         <source>Font sizes:</source>
         <translation>폰트 크기:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1602"/>
+        <location filename="../src/optionsdialog.cpp" line="1632"/>
         <source>Fonts Browser</source>
         <translation>브라우저 폰트</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1603"/>
+        <location filename="../src/optionsdialog.cpp" line="1633"/>
         <source>Colors</source>
         <translation>색깔</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1610"/>
+        <location filename="../src/optionsdialog.cpp" line="1640"/>
         <source>Filter</source>
         <translation>필터</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1889"/>
+        <location filename="../src/optionsdialog.cpp" line="459"/>
+        <location filename="../src/optionsdialog.cpp" line="1924"/>
         <source>Load images</source>
         <translation>이미지 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1894"/>
+        <location filename="../src/optionsdialog.cpp" line="1929"/>
         <source>Auto load images to news view</source>
-        <translation>자동으로 이미지를 불러 뉴스 표시</translation>
+        <translation>뉴스 보기에서 이미지를 자동으로 불러들입니다</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2058"/>
-        <location filename="../src/optionsdialog.cpp" line="2083"/>
+        <location filename="../src/optionsdialog.cpp" line="2093"/>
+        <location filename="../src/optionsdialog.cpp" line="2118"/>
         <source>Open File...</source>
         <translation>파일 열기...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2571"/>
+        <location filename="../src/optionsdialog.cpp" line="2617"/>
         <source>Select Style Sheet File</source>
         <translation>스타일 시트 파일 선택</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2580"/>
-        <location filename="../src/optionsdialog.cpp" line="2609"/>
+        <location filename="../src/optionsdialog.cpp" line="2626"/>
+        <location filename="../src/optionsdialog.cpp" line="2655"/>
         <source>Open Directory...</source>
         <translation>폴더 열기...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2590"/>
+        <location filename="../src/optionsdialog.cpp" line="2636"/>
         <source>Add site to whitelist</source>
         <translation>허용목록 사이트 추가</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2591"/>
+        <location filename="../src/optionsdialog.cpp" line="2637"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>사이트 이름에 &apos;http://&apos;는 사용하지 마세요 (예 : youtube.com)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="699"/>
+        <location filename="../src/optionsdialog.cpp" line="703"/>
         <source>Automatically update the feeds every</source>
         <translation>자동으로 뉴스피드를 갱신함 - 갱신간격</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="269"/>
-        <location filename="../src/optionsdialog.cpp" line="709"/>
+        <location filename="../src/optionsdialog.cpp" line="270"/>
+        <location filename="../src/optionsdialog.cpp" line="713"/>
         <source>minutes</source>
         <translation>분</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="709"/>
+        <location filename="../src/optionsdialog.cpp" line="713"/>
         <source>hours</source>
         <translation>시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="721"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Position on last opened news</source>
         <translation>마지막으로 열었던 뉴스에 위치</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="722"/>
+        <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Position at top of list news</source>
         <translation>맨위 뉴스에 위치</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="724"/>
+        <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Open news</source>
         <translation>뉴스 열기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="725"/>
+        <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Nothing to do</source>
         <translation>뉴스를 열지 않음</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="800"/>
+        <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Opening feed:</source>
         <translation>피드를 열때:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="709"/>
-        <location filename="../src/optionsdialog.cpp" line="841"/>
-        <location filename="../src/optionsdialog.cpp" line="1044"/>
+        <location filename="../src/optionsdialog.cpp" line="713"/>
+        <location filename="../src/optionsdialog.cpp" line="845"/>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
         <source>seconds</source>
         <translation>초</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="61"/>
-        <location filename="../src/optionsdialog.cpp" line="685"/>
-        <location filename="../src/optionsdialog.cpp" line="924"/>
+        <location filename="../src/optionsdialog.cpp" line="689"/>
+        <location filename="../src/optionsdialog.cpp" line="928"/>
         <source>General</source>
         <translation>일반</translation>
     </message>
@@ -2242,92 +2302,92 @@ Ancient news could reappear</source>
         <translation>시작시 스프래쉬 스크린 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="311"/>
+        <location filename="../src/optionsdialog.cpp" line="313"/>
         <source>Show system tray icon</source>
         <translation>시스템 아이콘 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="698"/>
+        <location filename="../src/optionsdialog.cpp" line="702"/>
         <source>Automatically update the feeds on startup</source>
         <translation>시작시 뉴스피드를 갱신</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="884"/>
+        <location filename="../src/optionsdialog.cpp" line="888"/>
         <source>Maximum number of news to keep:</source>
         <translation>최대 뉴스 보유 건수:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="877"/>
+        <location filename="../src/optionsdialog.cpp" line="881"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>최대 뉴스 보유 기간:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="450"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Use external browser</source>
         <translation>외부 브라우저 사용</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="451"/>
+        <location filename="../src/optionsdialog.cpp" line="453"/>
         <source>Default external browser</source>
         <translation>기본 외부 브라우저</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="452"/>
+        <location filename="../src/optionsdialog.cpp" line="454"/>
         <source>Following external browser:</source>
         <translation>외부 브라우저 선택:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="507"/>
+        <location filename="../src/optionsdialog.cpp" line="511"/>
         <source>Browser selection:</source>
         <translation>브라우저 선택:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="511"/>
+        <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Content:</source>
         <translation>콘텐츠:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="828"/>
+        <location filename="../src/optionsdialog.cpp" line="832"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>웹페이지를 불러오지 않고 뉴스 설명을 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="891"/>
+        <location filename="../src/optionsdialog.cpp" line="895"/>
         <source>Delete read news</source>
         <translation>읽은 뉴스를 삭제</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Never delete unread news</source>
         <translation>읽지 않은 뉴스를 삭제하시 않는다</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="893"/>
+        <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Never delete starred news</source>
         <translation>별표 뉴스를 삭제하시 않는다</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="925"/>
+        <location filename="../src/optionsdialog.cpp" line="929"/>
         <source>Reading</source>
         <translation>읽음 설정</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="926"/>
+        <location filename="../src/optionsdialog.cpp" line="930"/>
         <source>Clean Up</source>
         <translation>뉴스 정리</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="988"/>
+        <location filename="../src/optionsdialog.cpp" line="992"/>
         <source>Play sound for incoming new news</source>
         <translation>새 뉴스 수신시 소리 알림</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1403"/>
+        <location filename="../src/optionsdialog.cpp" line="1424"/>
         <source>Choose language:</source>
         <translation>언어 선택:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1168"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
         <source>Version</source>
         <translation>버전</translation>
     </message>
@@ -2347,110 +2407,130 @@ Ancient news could reappear</source>
         <translation>피드 목록 아이콘을 기본 RSS아이콘으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="823"/>
+        <location filename="../src/optionsdialog.cpp" line="827"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>목록에 표시된 뉴스를 피드이동시 모두 읽음으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="824"/>
+        <location filename="../src/optionsdialog.cpp" line="828"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>목록에 표시된 뉴스를 탭을 닫았을때 모두 읽음으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="825"/>
+        <location filename="../src/optionsdialog.cpp" line="829"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>목록에 표시된 뉴스를 최소화시 모두 읽음으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="833"/>
+        <location filename="../src/optionsdialog.cpp" line="837"/>
         <source>labeled news</source>
         <translation>라벨 뉴스들</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>starred news</source>
         <translation>별표 뉴스들</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="426"/>
+        <location filename="../src/optionsdialog.cpp" line="428"/>
         <source>Number requests:</source>
         <translation>요청 수 : </translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="862"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Prevent accidental deletion of:</source>
         <translation>실수로 삭제되는것을 방지 :</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <location filename="../src/optionsdialog.cpp" line="1064"/>
         <source>Only show selected feeds:</source>
         <translation>선택된 피드만 표시:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1067"/>
+        <location filename="../src/optionsdialog.cpp" line="1080"/>
         <source>All Feeds</source>
         <translation>모든 피드</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1169"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Author</source>
         <translation>작성자</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1169"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Contact</source>
         <translation>연락처</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1424"/>
+        <location filename="../src/optionsdialog.cpp" line="1445"/>
         <source>Type</source>
         <translation>타입</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1424"/>
+        <location filename="../src/optionsdialog.cpp" line="1445"/>
         <source>Font</source>
         <translation>폰트</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1428"/>
+        <location filename="../src/optionsdialog.cpp" line="1449"/>
         <source>Feeds list font</source>
         <translation>피드목록 폰트</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1431"/>
+        <location filename="../src/optionsdialog.cpp" line="1452"/>
         <source>News list font</source>
         <translation>뉴스 목록 폰트</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1447"/>
-        <location filename="../src/optionsdialog.cpp" line="1527"/>
+        <location filename="../src/optionsdialog.cpp" line="1468"/>
+        <location filename="../src/optionsdialog.cpp" line="1557"/>
         <source>Change...</source>
         <translation>변경...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1449"/>
-        <location filename="../src/optionsdialog.cpp" line="1529"/>
-        <location filename="../src/optionsdialog.cpp" line="1641"/>
+        <location filename="../src/optionsdialog.cpp" line="1470"/>
+        <location filename="../src/optionsdialog.cpp" line="1559"/>
+        <location filename="../src/optionsdialog.cpp" line="1671"/>
         <source>Reset</source>
         <translation>초기화</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1636"/>
+        <location filename="../src/optionsdialog.cpp" line="1540"/>
+        <source>Text color of new news</source>
+        <translation>새로운 뉴스 글자색</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1543"/>
+        <source>Text color of unread news</source>
+        <translation>읽지않은 뉴스 글자색</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1546"/>
+        <source>Focused feed color</source>
+        <translation>활성 피드 색</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1549"/>
+        <source>Focused feed background color</source>
+        <translation>활성 피드 배경색</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Action</source>
         <translation>작업</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1636"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Description</source>
         <translation>설명</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1636"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Shortcut</source>
         <translation>바로가기</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1644"/>
+        <location filename="../src/optionsdialog.cpp" line="1674"/>
         <source>Shortcut:</source>
         <translation>바로가기:</translation>
     </message>
@@ -2458,17 +2538,17 @@ Ancient news could reappear</source>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4754"/>
+        <location filename="../src/rsslisting.cpp" line="4767"/>
         <source>&amp;Step up</source>
         <translation>스텝 업(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4755"/>
+        <location filename="../src/rsslisting.cpp" line="4768"/>
         <source>Step &amp;down</source>
         <translation>스텝 다운(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4756"/>
+        <location filename="../src/rsslisting.cpp" line="4769"/>
         <source>&amp;Select All</source>
         <translation>모두 선택(&amp;S)</translation>
     </message>
@@ -2476,22 +2556,22 @@ Ancient news could reappear</source>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4732"/>
+        <location filename="../src/rsslisting.cpp" line="4745"/>
         <source>Close</source>
         <translation>닫기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4733"/>
+        <location filename="../src/rsslisting.cpp" line="4746"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4734"/>
+        <location filename="../src/rsslisting.cpp" line="4747"/>
         <source>&amp;Yes</source>
         <translation>예(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4735"/>
+        <location filename="../src/rsslisting.cpp" line="4748"/>
         <source>&amp;No</source>
         <translation>아니요(&amp;N)</translation>
     </message>
@@ -2605,37 +2685,37 @@ Ancient news could reappear</source>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4737"/>
+        <location filename="../src/rsslisting.cpp" line="4750"/>
         <source>&amp;Undo</source>
         <translation>실행취소(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4738"/>
+        <location filename="../src/rsslisting.cpp" line="4751"/>
         <source>&amp;Redo</source>
         <translation>다시실행(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4739"/>
+        <location filename="../src/rsslisting.cpp" line="4752"/>
         <source>Cu&amp;t</source>
         <translation>잘라내기(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4740"/>
+        <location filename="../src/rsslisting.cpp" line="4753"/>
         <source>&amp;Copy</source>
         <translation>복사(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4741"/>
+        <location filename="../src/rsslisting.cpp" line="4754"/>
         <source>&amp;Paste</source>
         <translation>붙여넣기(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4742"/>
+        <location filename="../src/rsslisting.cpp" line="4755"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4743"/>
+        <location filename="../src/rsslisting.cpp" line="4756"/>
         <source>Select All</source>
         <translation>모두 선택</translation>
     </message>
@@ -2643,7 +2723,7 @@ Ancient news could reappear</source>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4758"/>
+        <location filename="../src/rsslisting.cpp" line="4771"/>
         <source>Select IM</source>
         <translation>IM 선택</translation>
     </message>
@@ -2664,42 +2744,42 @@ Ancient news could reappear</source>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4745"/>
+        <location filename="../src/rsslisting.cpp" line="4758"/>
         <source>&amp;Undo</source>
         <translation>실행취소(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4746"/>
+        <location filename="../src/rsslisting.cpp" line="4759"/>
         <source>&amp;Redo</source>
         <translation>다시실행(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4747"/>
+        <location filename="../src/rsslisting.cpp" line="4760"/>
         <source>Cu&amp;t</source>
         <translation>잘라내기(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4748"/>
+        <location filename="../src/rsslisting.cpp" line="4761"/>
         <source>&amp;Copy</source>
         <translation>복사(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4749"/>
+        <location filename="../src/rsslisting.cpp" line="4762"/>
         <source>&amp;Paste</source>
         <translation>붙여넣기(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4750"/>
+        <location filename="../src/rsslisting.cpp" line="4763"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4751"/>
+        <location filename="../src/rsslisting.cpp" line="4764"/>
         <source>Select All</source>
         <translation>모두 선택</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4752"/>
+        <location filename="../src/rsslisting.cpp" line="4765"/>
         <source>Copy &amp;Link Location</source>
         <translation>링크 위치 복사(&amp;L)</translation>
     </message>
@@ -2707,22 +2787,22 @@ Ancient news could reappear</source>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4760"/>
+        <location filename="../src/rsslisting.cpp" line="4773"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4761"/>
+        <location filename="../src/rsslisting.cpp" line="4774"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; 이전 (&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4762"/>
+        <location filename="../src/rsslisting.cpp" line="4775"/>
         <source>&amp;Finish</source>
         <translation>완료(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4763"/>
+        <location filename="../src/rsslisting.cpp" line="4776"/>
         <source>&amp;Next &gt;</source>
         <translation>다음(&amp;N) &gt;</translation>
     </message>
@@ -2730,1043 +2810,1019 @@ Ancient news could reappear</source>
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2513"/>
+        <location filename="../src/rsslisting.cpp" line="2531"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>피드 &apos;%1&apos; 를 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2592"/>
+        <location filename="../src/rsslisting.cpp" line="2610"/>
         <source>Import canceled</source>
         <translation>불러오기를 취소했습니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2600"/>
+        <location filename="../src/rsslisting.cpp" line="2618"/>
         <source>Import: can&apos;t open a file</source>
         <translation>불러오기: 파일을 열수없습니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4489"/>
+        <location filename="../src/rsslisting.cpp" line="4510"/>
         <source>&amp;Feed...</source>
         <translation>피드(&amp;F)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4492"/>
+        <location filename="../src/rsslisting.cpp" line="4513"/>
         <source>F&amp;older...</source>
         <translation>폴더(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4497"/>
+        <location filename="../src/rsslisting.cpp" line="4518"/>
         <source>&amp;Delete...</source>
         <translation>삭제(&amp;D)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4506"/>
+        <location filename="../src/rsslisting.cpp" line="4527"/>
         <source>E&amp;xit</source>
         <translation>종료(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4540"/>
+        <location filename="../src/rsslisting.cpp" line="4553"/>
         <source>Filter Feeds</source>
         <translation>피드 필터</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4547"/>
+        <location filename="../src/rsslisting.cpp" line="4560"/>
         <source>Filter News</source>
         <translation>뉴스 필터</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4551"/>
+        <location filename="../src/rsslisting.cpp" line="4564"/>
         <source>Show Starred</source>
         <translation>별표 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4552"/>
+        <location filename="../src/rsslisting.cpp" line="4565"/>
         <source>Show Not Starred</source>
         <translation>미별표 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4553"/>
+        <location filename="../src/rsslisting.cpp" line="4566"/>
         <source>Show Unread or Starred</source>
         <translation>읽지않음/별표 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4567"/>
+        <location filename="../src/rsslisting.cpp" line="4580"/>
         <source>Open News in External Browser</source>
         <translation>뉴스 외부 브라우저로 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4585"/>
+        <location filename="../src/rsslisting.cpp" line="4598"/>
         <source>Mark Read</source>
         <translation>읽음으로 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4587"/>
-        <location filename="../src/rsslisting.cpp" line="4588"/>
+        <location filename="../src/rsslisting.cpp" line="4600"/>
+        <location filename="../src/rsslisting.cpp" line="4601"/>
         <source>Properties</source>
         <translation>속성</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4599"/>
-        <location filename="../src/rsslisting.cpp" line="4676"/>
+        <location filename="../src/rsslisting.cpp" line="4612"/>
+        <location filename="../src/rsslisting.cpp" line="4689"/>
         <source>Main Toolbar</source>
         <translation>메인 도구상자</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4600"/>
+        <location filename="../src/rsslisting.cpp" line="4613"/>
         <source>Customize Toolbar</source>
         <translation>도구 모음 수정</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4601"/>
+        <location filename="../src/rsslisting.cpp" line="4614"/>
         <source>Main Toolbar...</source>
         <translation>메인 도구모음...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4602"/>
+        <location filename="../src/rsslisting.cpp" line="4615"/>
         <source>Customize Toolbar...</source>
         <translation>도구 모음 수정...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4603"/>
+        <location filename="../src/rsslisting.cpp" line="4616"/>
         <source>Feeds Toolbar...</source>
         <translation>피드 도구모음...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4604"/>
+        <location filename="../src/rsslisting.cpp" line="4617"/>
         <source>News Toolbar...</source>
         <translation>뉴스 도구모음...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4607"/>
+        <location filename="../src/rsslisting.cpp" line="4620"/>
         <source>Hide Toolbar</source>
         <translation>도구모음 숨기기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4618"/>
+        <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>Browser Position</source>
         <translation>브라우저 위치</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4624"/>
+        <location filename="../src/rsslisting.cpp" line="4637"/>
         <source>Show Window</source>
         <translation>윈도우 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4626"/>
+        <location filename="../src/rsslisting.cpp" line="4639"/>
         <source>Previous Feed</source>
         <translation>이전 피드</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4627"/>
+        <location filename="../src/rsslisting.cpp" line="4640"/>
         <source>Next Feed</source>
         <translation>다음 피드</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4628"/>
+        <location filename="../src/rsslisting.cpp" line="4641"/>
         <source>Previous News</source>
         <translation>이전 뉴스</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4629"/>
+        <location filename="../src/rsslisting.cpp" line="4642"/>
         <source>Next News</source>
         <translation>다음 뉴스</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4630"/>
+        <location filename="../src/rsslisting.cpp" line="4643"/>
         <source>News Page Up</source>
         <translation>뉴스페이지 위로</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4631"/>
+        <location filename="../src/rsslisting.cpp" line="4644"/>
         <source>News Page Down</source>
         <translation>뉴스페이지 아래로</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4643"/>
+        <location filename="../src/rsslisting.cpp" line="4656"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>피드 목록 표시/숨기기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4645"/>
+        <location filename="../src/rsslisting.cpp" line="4658"/>
         <source>Minimize to Tray</source>
         <translation>트레이로 최소화</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4647"/>
+        <location filename="../src/rsslisting.cpp" line="4660"/>
         <source>Minimize Application to Tray</source>
         <translation>애플리케이션 트레이로 최소화</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4649"/>
+        <location filename="../src/rsslisting.cpp" line="4662"/>
         <source>Columns</source>
         <translation>피드 열표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4654"/>
+        <location filename="../src/rsslisting.cpp" line="4667"/>
         <source>Show Indentation</source>
         <translation>들여쓰기 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4659"/>
+        <location filename="../src/rsslisting.cpp" line="4672"/>
         <source>Zoom</source>
         <translation>확대/축소</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4660"/>
+        <location filename="../src/rsslisting.cpp" line="4673"/>
         <source>Zoom In</source>
         <translation>확대</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4661"/>
+        <location filename="../src/rsslisting.cpp" line="4674"/>
         <source>Zoom in in browser</source>
         <translation>브라우저 안을 확대합니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4662"/>
+        <location filename="../src/rsslisting.cpp" line="4675"/>
         <source>Zoom Out</source>
         <translation>축소</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4663"/>
+        <location filename="../src/rsslisting.cpp" line="4676"/>
         <source>Zoom out in browser</source>
         <translation>브라우저 안을 축소합니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4664"/>
+        <location filename="../src/rsslisting.cpp" line="4677"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4665"/>
+        <location filename="../src/rsslisting.cpp" line="4678"/>
         <source>Reset zoom in browser</source>
         <translation>브라우저 내의 확대/축소를 초기화</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4667"/>
+        <location filename="../src/rsslisting.cpp" line="4680"/>
         <source>Print...</source>
         <translation>인쇄...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4668"/>
+        <location filename="../src/rsslisting.cpp" line="4681"/>
         <source>Print Web page</source>
         <translation>웹 페이지 인쇄</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4669"/>
+        <location filename="../src/rsslisting.cpp" line="4682"/>
         <source>Print Preview...</source>
         <translation>인쇄 미리보기...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4670"/>
+        <location filename="../src/rsslisting.cpp" line="4683"/>
         <source>Preview Web page</source>
         <translation>웹페이지 미리보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4672"/>
+        <location filename="../src/rsslisting.cpp" line="4685"/>
         <source>Save As...</source>
         <translation>다른 이름으로 저장...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4673"/>
+        <location filename="../src/rsslisting.cpp" line="4686"/>
         <source>Save Page As...</source>
         <translation>다른 이름으로 페이지 저장...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4677"/>
+        <location filename="../src/rsslisting.cpp" line="4690"/>
         <source>Feeds Toolbar</source>
         <translation>피드 도구모음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4678"/>
+        <location filename="../src/rsslisting.cpp" line="4691"/>
         <source>News Toolbar</source>
         <translation>뉴스 도구모음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4679"/>
+        <location filename="../src/rsslisting.cpp" line="4692"/>
         <source>Browser Toolbar</source>
         <translation>브라우저 도구모음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4682"/>
-        <location filename="../src/rsslisting.cpp" line="4683"/>
+        <location filename="../src/rsslisting.cpp" line="4695"/>
+        <location filename="../src/rsslisting.cpp" line="4696"/>
         <source>Full Screen</source>
         <translation>전체화면</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4685"/>
-        <location filename="../src/rsslisting.cpp" line="4686"/>
+        <location filename="../src/rsslisting.cpp" line="4698"/>
+        <location filename="../src/rsslisting.cpp" line="4699"/>
         <source>Stay On Top</source>
         <translation>항상 위에 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4688"/>
+        <location filename="../src/rsslisting.cpp" line="4701"/>
         <source>Categories</source>
         <translation>분류</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4701"/>
+        <location filename="../src/rsslisting.cpp" line="4714"/>
         <source>Switch to next tab</source>
         <translation>다음 탭으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4702"/>
+        <location filename="../src/rsslisting.cpp" line="4715"/>
         <source>Switch to previous tab</source>
         <translation>이전 탭으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4709"/>
+        <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Decrease news list/increase browser</source>
         <translation>뉴스목록을 좁게/브라우저를 넑게</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4710"/>
+        <location filename="../src/rsslisting.cpp" line="4723"/>
         <source>Increase news list/decrease browser</source>
         <translation>뉴스목록을 넑게/브라우저를 좁게</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5448"/>
+        <location filename="../src/rsslisting.cpp" line="5562"/>
         <source>Check for updates</source>
         <translation>업데이트 확인</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5449"/>
+        <location filename="../src/rsslisting.cpp" line="5563"/>
         <source>A new version of QuiteRSS...</source>
         <translation>새로운 버전의 QuiteRss가 있습니다...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6409"/>
-        <location filename="../src/rsslisting.cpp" line="6423"/>
+        <location filename="../src/rsslisting.cpp" line="6555"/>
+        <location filename="../src/rsslisting.cpp" line="6569"/>
         <source>Web Page</source>
         <translation>웹페이지</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2621"/>
+        <location filename="../src/rsslisting.cpp" line="2639"/>
         <source>Export canceled</source>
         <translation>내보내기 취소했습니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4706"/>
+        <location filename="../src/rsslisting.cpp" line="4719"/>
         <source>Deleted</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4705"/>
+        <location filename="../src/rsslisting.cpp" line="4718"/>
         <source>Starred</source>
         <translation>별표</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4694"/>
-        <location filename="../src/rsslisting.cpp" line="4695"/>
+        <location filename="../src/rsslisting.cpp" line="4707"/>
+        <location filename="../src/rsslisting.cpp" line="4708"/>
         <source>Label</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2164"/>
-        <location filename="../src/rsslisting.cpp" line="4692"/>
-        <location filename="../src/rsslisting.cpp" line="6760"/>
-        <location filename="../src/rsslisting.cpp" line="6783"/>
+        <location filename="../src/rsslisting.cpp" line="2178"/>
+        <location filename="../src/rsslisting.cpp" line="4705"/>
+        <location filename="../src/rsslisting.cpp" line="6906"/>
+        <location filename="../src/rsslisting.cpp" line="6928"/>
         <source>Hide Categories</source>
         <translation>분류 숨기기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2168"/>
-        <location filename="../src/rsslisting.cpp" line="4690"/>
-        <location filename="../src/rsslisting.cpp" line="6767"/>
+        <location filename="../src/rsslisting.cpp" line="2182"/>
+        <location filename="../src/rsslisting.cpp" line="4703"/>
+        <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Show Categories</source>
         <translation>분류 보이기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2627"/>
+        <location filename="../src/rsslisting.cpp" line="2645"/>
         <source>Export: can&apos;t open a file</source>
         <translation>내보내기: 파일을 열수없습니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4524"/>
+        <location filename="../src/rsslisting.cpp" line="4537"/>
         <source>Mark Read/Unread</source>
         <translation>읽음/읽지 않음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4537"/>
+        <location filename="../src/rsslisting.cpp" line="4550"/>
         <source>Options...</source>
         <translation>설정...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4541"/>
-        <location filename="../src/rsslisting.cpp" line="4548"/>
+        <location filename="../src/rsslisting.cpp" line="4554"/>
+        <location filename="../src/rsslisting.cpp" line="4561"/>
         <source>Show All</source>
         <translation>모두 보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4542"/>
-        <location filename="../src/rsslisting.cpp" line="4549"/>
+        <location filename="../src/rsslisting.cpp" line="4555"/>
+        <location filename="../src/rsslisting.cpp" line="4562"/>
         <source>Show New</source>
         <translation>새 뉴스 보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4543"/>
-        <location filename="../src/rsslisting.cpp" line="4550"/>
+        <location filename="../src/rsslisting.cpp" line="4556"/>
+        <location filename="../src/rsslisting.cpp" line="4563"/>
         <source>Show Unread</source>
         <translation>읽지 않음 보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4557"/>
+        <location filename="../src/rsslisting.cpp" line="4570"/>
         <source>About...</source>
         <translation>QuiteRSS 정보...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4572"/>
+        <location filename="../src/rsslisting.cpp" line="4585"/>
         <source>Star</source>
         <translation>별표</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4574"/>
+        <location filename="../src/rsslisting.cpp" line="4587"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4590"/>
+        <location filename="../src/rsslisting.cpp" line="4603"/>
         <source>&amp;File</source>
         <translation>파일(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4591"/>
+        <location filename="../src/rsslisting.cpp" line="4604"/>
         <source>&amp;Edit</source>
         <translation>편집(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4592"/>
+        <location filename="../src/rsslisting.cpp" line="4605"/>
         <source>&amp;View</source>
         <translation>보기(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4593"/>
+        <location filename="../src/rsslisting.cpp" line="4606"/>
         <source>Fee&amp;ds</source>
         <translation>피드(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4594"/>
+        <location filename="../src/rsslisting.cpp" line="4607"/>
         <source>&amp;News</source>
         <translation>뉴스(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4596"/>
+        <location filename="../src/rsslisting.cpp" line="4609"/>
         <source>&amp;Tools</source>
         <translation>도구(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4597"/>
+        <location filename="../src/rsslisting.cpp" line="4610"/>
         <source>&amp;Help</source>
         <translation>도움말(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4610"/>
+        <location filename="../src/rsslisting.cpp" line="4623"/>
         <source>System</source>
         <translation>시스템</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4619"/>
+        <location filename="../src/rsslisting.cpp" line="4632"/>
         <source>Top</source>
         <translation>위</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4620"/>
+        <location filename="../src/rsslisting.cpp" line="4633"/>
         <source>Bottom</source>
         <translation>아래</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4621"/>
+        <location filename="../src/rsslisting.cpp" line="4634"/>
         <source>Right</source>
         <translation>오른쪽</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4622"/>
+        <location filename="../src/rsslisting.cpp" line="4635"/>
         <source>Left</source>
         <translation>왼쪽</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4656"/>
-        <location filename="../src/rsslisting.cpp" line="4657"/>
+        <location filename="../src/rsslisting.cpp" line="4669"/>
+        <location filename="../src/rsslisting.cpp" line="4670"/>
         <source>Search Feed</source>
         <translation>피트 검색</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5785"/>
+        <location filename="../src/rsslisting.cpp" line="5915"/>
         <source>Loading...</source>
         <translation>불러오는중...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2512"/>
+        <location filename="../src/rsslisting.cpp" line="2530"/>
         <source>Delete Feed</source>
         <translation>피드 삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2586"/>
-        <location filename="../src/rsslisting.cpp" line="2615"/>
+        <location filename="../src/rsslisting.cpp" line="2604"/>
+        <location filename="../src/rsslisting.cpp" line="2633"/>
         <source>Select OPML-File</source>
         <translation>OPML 파일 선택</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4303"/>
-        <location filename="../src/rsslisting.cpp" line="4509"/>
-        <source>Load Images</source>
-        <translation>이미지 표시</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4307"/>
-        <location filename="../src/rsslisting.cpp" line="4512"/>
-        <source>No Load Images</source>
-        <translation>이미지 표시안함</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4308"/>
-        <location filename="../src/rsslisting.cpp" line="4513"/>
-        <source>No Load Images to News View</source>
-        <translation>뉴스 보기에서 이미지 표시안함</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4481"/>
-        <location filename="../src/rsslisting.cpp" line="5282"/>
+        <location filename="../src/rsslisting.cpp" line="4502"/>
+        <location filename="../src/rsslisting.cpp" line="5317"/>
         <source>New News: %1</source>
         <translation>새 뉴스: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4483"/>
-        <location filename="../src/rsslisting.cpp" line="5284"/>
+        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <location filename="../src/rsslisting.cpp" line="5319"/>
         <source>Unread News: %1</source>
         <translation>읽지 않은 뉴스: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4487"/>
-        <location filename="../src/rsslisting.cpp" line="4490"/>
+        <location filename="../src/rsslisting.cpp" line="4508"/>
+        <location filename="../src/rsslisting.cpp" line="4511"/>
         <source>Add New Feed</source>
         <translation>새 피드를 추가</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4495"/>
-        <location filename="../src/rsslisting.cpp" line="4568"/>
+        <location filename="../src/rsslisting.cpp" line="4516"/>
+        <location filename="../src/rsslisting.cpp" line="4581"/>
         <source>Open in New Tab</source>
         <translation>새 탭에서 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4498"/>
+        <location filename="../src/rsslisting.cpp" line="4519"/>
         <source>Delete Selected Feed</source>
         <translation>선택된 피드 삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4500"/>
+        <location filename="../src/rsslisting.cpp" line="4521"/>
         <source>&amp;Import Feeds...</source>
         <translation>피드 불러오기(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4501"/>
+        <location filename="../src/rsslisting.cpp" line="4522"/>
         <source>Import Feeds from OPML File</source>
         <translation>OPML 파일로 피드를 불러옵니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4503"/>
+        <location filename="../src/rsslisting.cpp" line="4524"/>
         <source>&amp;Export Feeds...</source>
         <translation>피드 내보내기(&amp;E)...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <location filename="../src/rsslisting.cpp" line="4525"/>
         <source>Export Feeds to OPML File</source>
         <translation>피드를 OPML 파일로 내보냅니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4304"/>
-        <location filename="../src/rsslisting.cpp" line="4510"/>
-        <source>Auto Load Images to News View</source>
-        <translation>뉴스 보기에서 이미지를 자동으로 불러들입니다</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4704"/>
+        <location filename="../src/rsslisting.cpp" line="4717"/>
         <source>Unread</source>
         <translation>읽지 않음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4707"/>
+        <location filename="../src/rsslisting.cpp" line="4720"/>
         <source>Labels</source>
         <translation>라벨</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2508"/>
+        <location filename="../src/rsslisting.cpp" line="2526"/>
         <source>Delete Folder</source>
         <translation>폴더 삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="108"/>
+        <location filename="../src/rsslisting.cpp" line="111"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="108"/>
+        <location filename="../src/rsslisting.cpp" line="111"/>
         <source>SQLite driver not loaded!</source>
         <translation>SQLite 드라이버가 로드 되지 않았습니다!</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2509"/>
+        <location filename="../src/rsslisting.cpp" line="2527"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>피드 &apos;%1&apos;를 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2588"/>
+        <location filename="../src/rsslisting.cpp" line="2606"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML 파일 (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2617"/>
+        <location filename="../src/rsslisting.cpp" line="2635"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML 파일 (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2877"/>
-        <location filename="../src/rsslisting.cpp" line="3881"/>
-        <location filename="../src/rsslisting.cpp" line="4473"/>
-        <location filename="../src/rsslisting.cpp" line="5742"/>
-        <location filename="../src/rsslisting.cpp" line="6731"/>
+        <location filename="../src/rsslisting.cpp" line="2895"/>
+        <location filename="../src/rsslisting.cpp" line="3918"/>
+        <location filename="../src/rsslisting.cpp" line="4494"/>
+        <location filename="../src/rsslisting.cpp" line="5864"/>
+        <location filename="../src/rsslisting.cpp" line="6877"/>
         <source>Unread: %1</source>
         <translation>읽지않음: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2878"/>
-        <location filename="../src/rsslisting.cpp" line="3882"/>
-        <location filename="../src/rsslisting.cpp" line="4476"/>
-        <location filename="../src/rsslisting.cpp" line="5743"/>
-        <location filename="../src/rsslisting.cpp" line="6732"/>
+        <location filename="../src/rsslisting.cpp" line="2896"/>
+        <location filename="../src/rsslisting.cpp" line="3919"/>
+        <location filename="../src/rsslisting.cpp" line="4497"/>
+        <location filename="../src/rsslisting.cpp" line="5865"/>
+        <location filename="../src/rsslisting.cpp" line="6878"/>
         <source>All: %1</source>
         <translation>모두: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4486"/>
+        <location filename="../src/rsslisting.cpp" line="4507"/>
         <source>&amp;Add</source>
         <translation>추가(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4493"/>
+        <location filename="../src/rsslisting.cpp" line="4514"/>
         <source>Add New Folder</source>
         <translation>새 폴더 추가</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4516"/>
+        <location filename="../src/rsslisting.cpp" line="4529"/>
         <source>Update Feed</source>
         <translation>피드 갱신</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4517"/>
+        <location filename="../src/rsslisting.cpp" line="4530"/>
         <source>Update Current Feed</source>
         <translation>현재 피드 갱신</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4519"/>
+        <location filename="../src/rsslisting.cpp" line="4532"/>
         <source>Update All</source>
         <translation>모두 갱신</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4520"/>
+        <location filename="../src/rsslisting.cpp" line="4533"/>
         <source>Update All Feeds</source>
         <translation>모든 피드 갱신</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4522"/>
+        <location filename="../src/rsslisting.cpp" line="4535"/>
         <source>Mark All Feeds Read</source>
         <translation>모든 피드 읽음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4525"/>
+        <location filename="../src/rsslisting.cpp" line="4538"/>
         <source>Mark Current News Read/Unread</source>
         <translation>현재의 뉴스 읽음/읽지 않음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4527"/>
-        <location filename="../src/rsslisting.cpp" line="4528"/>
+        <location filename="../src/rsslisting.cpp" line="4540"/>
+        <location filename="../src/rsslisting.cpp" line="4541"/>
         <source>Mark All News Read</source>
         <translation>모든 뉴스 읽음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4530"/>
-        <location filename="../src/rsslisting.cpp" line="7339"/>
-        <location filename="../src/rsslisting.cpp" line="7345"/>
-        <location filename="../src/rsslisting.cpp" line="7355"/>
+        <location filename="../src/rsslisting.cpp" line="4543"/>
+        <location filename="../src/rsslisting.cpp" line="7489"/>
+        <location filename="../src/rsslisting.cpp" line="7495"/>
+        <location filename="../src/rsslisting.cpp" line="7505"/>
         <source>Downloads</source>
         <translation>다운로드</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4532"/>
+        <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Clean Up...</source>
         <translation>뉴스 정리...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4534"/>
+        <location filename="../src/rsslisting.cpp" line="4547"/>
         <source>News Filters...</source>
         <translation>뉴스 필터...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4535"/>
+        <location filename="../src/rsslisting.cpp" line="4548"/>
         <source>Filter News...</source>
         <translation>뉴스 필터...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4538"/>
+        <location filename="../src/rsslisting.cpp" line="4551"/>
         <source>Open Options Dialog</source>
         <translation>설정창 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4544"/>
+        <location filename="../src/rsslisting.cpp" line="4557"/>
         <source>Show Starred Feeds</source>
         <translation>별표 피드 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4545"/>
+        <location filename="../src/rsslisting.cpp" line="4558"/>
         <source>Show Not Working Feeds</source>
         <translation>작동하지 않는 피드 보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4554"/>
+        <location filename="../src/rsslisting.cpp" line="4567"/>
         <source>Show Last Day</source>
         <translation>최근 하루 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4555"/>
+        <location filename="../src/rsslisting.cpp" line="4568"/>
         <source>Show Last 7 Days</source>
         <translation>최근 일주일 표시</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4558"/>
+        <location filename="../src/rsslisting.cpp" line="4571"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>QuiteRSS 정보창 보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4560"/>
+        <location filename="../src/rsslisting.cpp" line="4573"/>
         <source>Check for Updates...</source>
         <translation>업데이트 확인...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4561"/>
+        <location filename="../src/rsslisting.cpp" line="4574"/>
         <source>Report a Problem...</source>
         <translation>문제를 보고...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4563"/>
+        <location filename="../src/rsslisting.cpp" line="4576"/>
         <source>Open News</source>
         <translation>뉴스 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4564"/>
+        <location filename="../src/rsslisting.cpp" line="4577"/>
         <source>Open Description News</source>
         <translation>뉴스 설명을 엽니다</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4565"/>
+        <location filename="../src/rsslisting.cpp" line="4578"/>
         <source>Open in Browser</source>
         <translation>브라우저를 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4566"/>
+        <location filename="../src/rsslisting.cpp" line="4579"/>
         <source>Open in External Browser</source>
         <translation>외부 브라우저로 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4569"/>
+        <location filename="../src/rsslisting.cpp" line="4582"/>
         <source>Open News in New Tab</source>
         <translation>뉴스를 새탭으로 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4570"/>
+        <location filename="../src/rsslisting.cpp" line="4583"/>
         <source>Open in Background Tab</source>
         <translation>탭을 백그라운로 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4571"/>
+        <location filename="../src/rsslisting.cpp" line="4584"/>
         <source>Open News in Background Tab</source>
         <translation>백그라운드 탭으로 뉴스를 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4573"/>
+        <location filename="../src/rsslisting.cpp" line="4586"/>
         <source>Mark News Star</source>
         <translation>뉴스 별표</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4575"/>
+        <location filename="../src/rsslisting.cpp" line="4588"/>
         <source>Delete Selected News</source>
         <translation>선택 뉴스 삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4576"/>
+        <location filename="../src/rsslisting.cpp" line="4589"/>
         <source>Delete All News</source>
         <translation>모든 뉴스 삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4577"/>
+        <location filename="../src/rsslisting.cpp" line="4590"/>
         <source>Delete All News from List</source>
         <translation>리스트의 모든 뉴스 삭제</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4578"/>
+        <location filename="../src/rsslisting.cpp" line="4591"/>
         <source>Restore</source>
         <translation>복원</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4579"/>
+        <location filename="../src/rsslisting.cpp" line="4592"/>
         <source>Restore News</source>
         <translation>뉴스 복원</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4580"/>
+        <location filename="../src/rsslisting.cpp" line="4593"/>
         <source>Copy Link</source>
         <translation>링크 복사</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4581"/>
+        <location filename="../src/rsslisting.cpp" line="4594"/>
         <source>Copy Link News</source>
         <translation>뉴스링크 복사</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4583"/>
+        <location filename="../src/rsslisting.cpp" line="4596"/>
         <source>Restore last deleted news</source>
         <translation>마지막 삭제 뉴스 복구</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4586"/>
+        <location filename="../src/rsslisting.cpp" line="4599"/>
         <source>Mark Feed Read</source>
         <translation>피드를 읽음</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4595"/>
+        <location filename="../src/rsslisting.cpp" line="4608"/>
         <source>&amp;Browser</source>
         <translation>브라우저(&amp;B)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4606"/>
+        <location filename="../src/rsslisting.cpp" line="4619"/>
         <source>Lock Toolbar</source>
         <translation>도구모음 잠금</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4609"/>
+        <location filename="../src/rsslisting.cpp" line="4622"/>
         <source>Application Style</source>
         <translation>애플리케이션 스타일</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4611"/>
+        <location filename="../src/rsslisting.cpp" line="4624"/>
         <source>System2</source>
         <translation>시스템2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4612"/>
+        <location filename="../src/rsslisting.cpp" line="4625"/>
         <source>Green</source>
         <translation>그린</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4613"/>
+        <location filename="../src/rsslisting.cpp" line="4626"/>
         <source>Orange</source>
         <translation>오렌지</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4614"/>
+        <location filename="../src/rsslisting.cpp" line="4627"/>
         <source>Purple</source>
         <translation>퍼플</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4615"/>
+        <location filename="../src/rsslisting.cpp" line="4628"/>
         <source>Pink</source>
         <translation>핑크</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4616"/>
+        <location filename="../src/rsslisting.cpp" line="4629"/>
         <source>Gray</source>
         <translation>그레이</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4633"/>
+        <location filename="../src/rsslisting.cpp" line="4646"/>
         <source>Next Unread News</source>
         <translation>읽지 않은 다음 뉴스</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4634"/>
+        <location filename="../src/rsslisting.cpp" line="4647"/>
         <source>Previous Unread News</source>
         <translation>읽지 않은 이전 뉴스</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4636"/>
+        <location filename="../src/rsslisting.cpp" line="4649"/>
         <source>Switch Focus to Next Panel</source>
         <translation>다음 표시창으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4638"/>
+        <location filename="../src/rsslisting.cpp" line="4651"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>다음 표시창으로 이동 (피드목록, 뉴스목록, 브라우저)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4639"/>
+        <location filename="../src/rsslisting.cpp" line="4652"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>이전 표시창으로 이동</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4641"/>
+        <location filename="../src/rsslisting.cpp" line="4654"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>이전 표시창으로 이동 (피드목록, 브라우저, 뉴스목록)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4650"/>
+        <location filename="../src/rsslisting.cpp" line="4663"/>
         <source>Count News Unread</source>
         <translation>읽지 않음 건수</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4651"/>
+        <location filename="../src/rsslisting.cpp" line="4664"/>
         <source>Count News All</source>
         <translation>모든 뉴스 건수</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4652"/>
+        <location filename="../src/rsslisting.cpp" line="4665"/>
         <source>Last Updated</source>
         <translation>최종 갱신</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4675"/>
+        <location filename="../src/rsslisting.cpp" line="4688"/>
         <source>Show/Hide</source>
         <translation>보기/숨기기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4680"/>
+        <location filename="../src/rsslisting.cpp" line="4693"/>
         <source>Panel Categories</source>
         <translation>분류 표시창</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4696"/>
+        <location filename="../src/rsslisting.cpp" line="4709"/>
         <source>Show labels menu</source>
         <translation>라벨 메뉴 보기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4698"/>
+        <location filename="../src/rsslisting.cpp" line="4711"/>
         <source>Close Tab</source>
         <translation>탭 닫기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4699"/>
+        <location filename="../src/rsslisting.cpp" line="4712"/>
         <source>Close Other Tabs</source>
         <translation>다른 탭 모두 닫기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4700"/>
+        <location filename="../src/rsslisting.cpp" line="4713"/>
         <source>Close All Tabs</source>
         <translation>모든 탭 닫기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4712"/>
+        <location filename="../src/rsslisting.cpp" line="4725"/>
         <source>Find</source>
         <translation>검색</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4714"/>
+        <location filename="../src/rsslisting.cpp" line="4727"/>
         <source>Open Homepage Feed</source>
         <translation>피드 홈페이지 열기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4715"/>
+        <location filename="../src/rsslisting.cpp" line="4728"/>
         <source>Sorted by Name</source>
         <translation>이름으로 정렬</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4716"/>
+        <location filename="../src/rsslisting.cpp" line="4729"/>
         <source>Collapse All Folders</source>
         <translation>모든 폴더 닫기</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4717"/>
+        <location filename="../src/rsslisting.cpp" line="4730"/>
         <source>Expand All Folders</source>
         <translation>모든 폴더 확장</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4718"/>
+        <location filename="../src/rsslisting.cpp" line="4731"/>
         <source>Next Folder</source>
         <translation>다음 폴더</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4719"/>
+        <location filename="../src/rsslisting.cpp" line="4732"/>
         <source>Previous Folder</source>
         <translation>이전 폴더</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4720"/>
+        <location filename="../src/rsslisting.cpp" line="4733"/>
         <source>Expand Folder</source>
         <translation>폴더 확장</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4722"/>
+        <location filename="../src/rsslisting.cpp" line="4735"/>
         <source>Setting Page: Labels</source>
         <translation>페이지 설정: 라벨</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4724"/>
+        <location filename="../src/rsslisting.cpp" line="4737"/>
         <source>Share</source>
         <translation>공유</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4726"/>
+        <location filename="../src/rsslisting.cpp" line="4739"/>
         <source>Sort By</source>
         <translation>정렬</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4727"/>
+        <location filename="../src/rsslisting.cpp" line="4740"/>
         <source>Ascending</source>
         <translation>오름차순</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4728"/>
+        <location filename="../src/rsslisting.cpp" line="4741"/>
         <source>Descending</source>
         <translation>내림차순</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4730"/>
+        <location filename="../src/rsslisting.cpp" line="4743"/>
         <source>Clear</source>
         <translation>정리</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6912"/>
+        <location filename="../src/rsslisting.cpp" line="7060"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML 파일 (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6912"/>
+        <location filename="../src/rsslisting.cpp" line="7060"/>
         <source>Text files (*.%2)</source>
         <translation>텍스트 파일 (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="97"/>
+        <location filename="../src/rsslisting.h" line="105"/>
         <source>Important</source>
         <translation>중요</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="97"/>
+        <location filename="../src/rsslisting.h" line="105"/>
         <source>Work</source>
         <translation>업무</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="97"/>
+        <location filename="../src/rsslisting.h" line="105"/>
         <source>Personal</source>
         <translation>개인</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="98"/>
+        <location filename="../src/rsslisting.h" line="106"/>
         <source>To Do</source>
         <translation>할일</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="98"/>
+        <location filename="../src/rsslisting.h" line="106"/>
         <source>Later</source>
         <translation>다음에</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="98"/>
+        <location filename="../src/rsslisting.h" line="106"/>
         <source>Amusingly</source>
         <translation>재미있는것</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6910"/>
+        <location filename="../src/rsslisting.cpp" line="7058"/>
         <source>Save As</source>
         <translation>다른 이름으로 저장</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6918"/>
+        <location filename="../src/rsslisting.cpp" line="7066"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>다른 이름으로 저장: 파일을 열수 없습니다</translation>
     </message>
@@ -3774,22 +3830,22 @@ Ancient news could reappear</source>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="200"/>
+        <location filename="../src/requestfeed.cpp" line="203"/>
         <source>Server requires authentication!</source>
         <translation>서버에서 인증을 요청하였습니다!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="202"/>
+        <location filename="../src/requestfeed.cpp" line="205"/>
         <source>Server replied: Not Found!</source>
         <translation>서버 응답 없음!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="237"/>
+        <location filename="../src/requestfeed.cpp" line="240"/>
         <source>Redirect error!</source>
         <translation>리디렉션 오류!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="298"/>
+        <location filename="../src/requestfeed.cpp" line="301"/>
         <source>Request timeout!</source>
         <translation>대기시간 초과!</translation>
     </message>
@@ -3797,57 +3853,57 @@ Ancient news could reappear</source>
 <context>
     <name>UpdateAppDialog</name>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="37"/>
+        <location filename="../src/updateappdialog.cpp" line="38"/>
         <source>Check for Updates</source>
         <translation>업데이트 확인</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="42"/>
+        <location filename="../src/updateappdialog.cpp" line="43"/>
         <source>Checking for updates...</source>
         <translation>업데이트를 확인중입니다...</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="47"/>
+        <location filename="../src/updateappdialog.cpp" line="48"/>
         <source>Loading history...</source>
         <translation>이력을 불러오고 있습니다...</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="50"/>
+        <location filename="../src/updateappdialog.cpp" line="51"/>
         <source>Don&apos;t remind about this version</source>
         <translation>이 버전은 무시 합니다</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="58"/>
+        <location filename="../src/updateappdialog.cpp" line="59"/>
         <source>&amp;Install</source>
         <translation>설치(&amp;I)</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="116"/>
+        <location filename="../src/updateappdialog.cpp" line="117"/>
         <source>You already have the latest version</source>
         <translation>이미 최신버전을 사용중입니다</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="121"/>
+        <location filename="../src/updateappdialog.cpp" line="127"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>새로운 버전의 QuiteRss가 있습니다!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="124"/>
+        <location filename="../src/updateappdialog.cpp" line="130"/>
         <source>Click here to go to the download page</source>
         <translation>여기를 클릭하시면 다운로드 페이지로 이동합니다</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="129"/>
+        <location filename="../src/updateappdialog.cpp" line="135"/>
         <source>Your version is:</source>
         <translation>현재버전 :</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="131"/>
+        <location filename="../src/updateappdialog.cpp" line="137"/>
         <source>Current version is:</source>
         <translation>최신버전:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="137"/>
+        <location filename="../src/updateappdialog.cpp" line="143"/>
         <source>Error checking updates</source>
         <translation>업데이트 확인시 에러가 발생하였습니다</translation>
     </message>

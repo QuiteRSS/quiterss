@@ -114,18 +114,18 @@
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="325"/>
-        <location filename="../src/addfeedwizard.cpp" line="487"/>
+        <location filename="../src/addfeedwizard.cpp" line="488"/>
         <source>Duplicate feed!</source>
         <translation>Syöte on jo listallasi!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="489"/>
-        <location filename="../src/addfeedwizard.cpp" line="511"/>
+        <location filename="../src/addfeedwizard.cpp" line="490"/>
+        <location filename="../src/addfeedwizard.cpp" line="512"/>
         <source>Can&apos;t find feed URL!</source>
         <translation>Syötteen URL:ia ei löytynyt!</translation>
     </message>
     <message>
-        <location filename="../src/addfeedwizard.cpp" line="530"/>
+        <location filename="../src/addfeedwizard.cpp" line="531"/>
         <source>Request failed!</source>
         <translation>Pyyntö epäonnistui!</translation>
     </message>
@@ -237,57 +237,57 @@
         <translation>Valitse syötteet</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="235"/>
+        <location filename="../src/cleanupwizard.cpp" line="236"/>
         <source>All Feeds</source>
         <translation>Kaikki syötteet</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="298"/>
+        <location filename="../src/cleanupwizard.cpp" line="305"/>
         <source>Clean Up Options</source>
         <translation>Siivouksen asetukset</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="300"/>
+        <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Kuinka monen päivän vanhoja uutisia säilytetään:</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="307"/>
+        <location filename="../src/cleanupwizard.cpp" line="314"/>
         <source>Maximum number of news to keep:</source>
         <translation>Kuinka monta uutista säilytetään:</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="314"/>
+        <location filename="../src/cleanupwizard.cpp" line="321"/>
         <source>Delete read news</source>
         <translation>Poista luetut uutiset</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="315"/>
+        <location filename="../src/cleanupwizard.cpp" line="322"/>
         <source>Never delete unread news</source>
         <translation>Älä koskaan poista lukemattomia uutisia</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="316"/>
+        <location filename="../src/cleanupwizard.cpp" line="323"/>
         <source>Never delete starred news</source>
         <translation>Älä koskaan poista tähdellä merkittyjä uutisia</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="317"/>
+        <location filename="../src/cleanupwizard.cpp" line="324"/>
         <source>Never delete labeled news</source>
         <translation>Älä koskaan poista nimikkeellisiä uutisia</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="330"/>
+        <location filename="../src/cleanupwizard.cpp" line="337"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>Siivoa &apos;Poistetut&apos;</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="331"/>
+        <location filename="../src/cleanupwizard.cpp" line="338"/>
         <source>Purge DB</source>
         <translation>Puhdista tietokanta</translation>
     </message>
     <message>
-        <location filename="../src/cleanupwizard.cpp" line="334"/>
+        <location filename="../src/cleanupwizard.cpp" line="341"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Poista &apos;poistettu&apos; merkintä tietueista tietokannassa.
@@ -579,12 +579,12 @@ ei löydetty!</translation>
 <context>
     <name>FeedPropertiesDialog</name>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="106"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="116"/>
         <source>Starred</source>
-        <translation>Tähdellä merkitty</translation>
+        <translation>Merkitse tähdellä</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="107"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
         <source>Load images</source>
         <translation>Lataa kuvat</translation>
     </message>
@@ -614,122 +614,127 @@ ei löydetty!</translation>
         <translation>Syötteen URL:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
+        <source>Disable update</source>
+        <translation>Älä päivitä</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>seconds</source>
         <translation>sekunti</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>minutes</source>
         <translation>minuutti</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="94"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
         <source>hours</source>
         <translation>tunti</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="109"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Näytä uutisten kuvaus verkkosivun lautauksen sijaan</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="192"/>
         <source>Ascending</source>
         <translation>Nouseva</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="179"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="192"/>
         <source>Descending</source>
         <translation>Laskeva</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="184"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="197"/>
         <source>Sort by:</source>
         <translation>Järjestä:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="198"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="211"/>
         <source>Add</source>
         <translation>Lisää</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="205"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="218"/>
         <source>Remove</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="209"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="222"/>
         <source>Move up</source>
         <translation>Siirrä ylös</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="212"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="225"/>
         <source>Move down</source>
         <translation>Siirrä alas</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="216"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="229"/>
         <source>Default</source>
         <translation>Oletus</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="245"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="258"/>
         <source>Server requires authentication:</source>
         <translation>Palvelin vaatii kirjautumisen:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="254"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="267"/>
         <source>Username:</source>
         <translation>Käyttäjänimi:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="256"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="269"/>
         <source>Password:</source>
         <translation>Salasana:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="286"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="299"/>
         <source>Status:</source>
         <translation>Tila:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="288"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="301"/>
         <source>Created:</source>
         <translation>Luotu:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="290"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="303"/>
         <source>Last update:</source>
         <translation>Viimeisin päivitys:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="305"/>
         <source>News count:</source>
         <translation>Uutisten määrä:</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="355"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="369"/>
         <source>Good</source>
         <translation>Hyvä</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="396"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="410"/>
         <source>Image files</source>
         <translation>Kuvatiedostot</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="398"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="412"/>
         <source>Select Image</source>
         <translation>Valitse kuva</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="405"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="419"/>
         <source>Load icon: can&apos;t open a file!</source>
         <translation>Lataa kuvake: tiedosta ei voitu avata!</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="279"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="292"/>
         <source>Description:</source>
         <translation>Kuvaus:</translation>
     </message>
@@ -759,34 +764,34 @@ ei löydetty!</translation>
         <translation>Valitse kuvake</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
         <source>Automatically update every</source>
         <translation>Päivitä automaattisesti joka</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="108"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Display in new tab on startup</source>
         <translation>Näytä uudessa välilehdessä käynnistyessä</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="110"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
         <source>Automatically delete duplicate news</source>
         <translation>Poista uutisten kopiot automaattisesti</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="363"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="377"/>
         <source>Long ago ;-)</source>
         <translation>Kauan sitten ;-)</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="374"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="388"/>
         <source>new</source>
-        <translation>uusi</translation>
+        <translation>uutta</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="376"/>
+        <location filename="../src/feedpropertiesdialog.cpp" line="390"/>
         <source>unread</source>
-        <translation>lukematon</translation>
+        <translation>lukematonta</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
@@ -842,12 +847,12 @@ ei löydetty!</translation>
         <translation>Suorita nämä toiminnot:</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="306"/>
+        <location filename="../src/filterrulesdialog.cpp" line="312"/>
         <source>Please enter name for the filter.</source>
         <translation>Anna suodattimelle nimi.</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.cpp" line="318"/>
+        <location filename="../src/filterrulesdialog.cpp" line="324"/>
         <source>Please enter search condition for the news filter.</source>
         <translation>Anna uutissuodattimelle hakuehto.</translation>
     </message>
@@ -917,7 +922,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="146"/>
         <source>Add Star</source>
-        <translation>Lisää tähti</translation>
+        <translation>Merkitse tähdellä</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="147"/>
@@ -930,14 +935,39 @@ ei löydetty!</translation>
         <translation>Lisää nimike</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="155"/>
+        <location filename="../src/filterrulesdialog.h" line="148"/>
+        <source>Play a Sound</source>
+        <translation>Toista ääni</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="148"/>
+        <source>Show News in Notifier</source>
+        <translation>Näytä uutiset ilmoituslaatikossa</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="157"/>
+        <source>Browse</source>
+        <translation>Selaa</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="161"/>
+        <source>Play</source>
+        <translation>Toista</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="183"/>
         <source>Add Action</source>
         <translation>Lisää toiminto</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="159"/>
+        <location filename="../src/filterrulesdialog.h" line="187"/>
         <source>Delete Action</source>
         <translation>Poista toiminto</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="251"/>
+        <source>Open File...</source>
+        <translation>Avaa tiedosto...</translation>
     </message>
 </context>
 <context>
@@ -1234,117 +1264,141 @@ ei löydetty!</translation>
 <context>
     <name>NewsTabWidget</name>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="484"/>
+        <location filename="../src/newstabwidget.cpp" line="516"/>
         <source>Loading... (%p%)</source>
         <translation>Ladataan... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1299"/>
+        <location filename="../src/newstabwidget.cpp" line="1343"/>
         <source>Author: %1</source>
         <translation>Tekijä: %1</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="486"/>
+        <location filename="../src/newstabwidget.cpp" line="518"/>
         <source>Home</source>
         <translation>Koti</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="487"/>
+        <location filename="../src/newstabwidget.cpp" line="519"/>
         <source>Open Page in External Browser</source>
         <translation>Avaa sivu ulkoisessa selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="488"/>
+        <location filename="../src/newstabwidget.cpp" line="520"/>
         <source>Open Link in External Browser</source>
         <translation>Avaa linkki ulkoisessa selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="490"/>
+        <location filename="../src/newstabwidget.cpp" line="522"/>
         <source>Open Link</source>
         <translation>Avaa linkki</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="491"/>
+        <location filename="../src/newstabwidget.cpp" line="523"/>
         <source>Open in New Tab</source>
         <translation>Avaa uudessa välilehdessä</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="492"/>
+        <location filename="../src/newstabwidget.cpp" line="524"/>
         <source>Save Link...</source>
         <translation>Tallenna linkki...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="493"/>
+        <location filename="../src/newstabwidget.cpp" line="525"/>
         <source>Save Image...</source>
         <translation>Tallenna kuva...</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="494"/>
+        <location filename="../src/newstabwidget.cpp" line="526"/>
         <source>Copy Link</source>
         <translation>Kopioi linkki</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="495"/>
+        <location filename="../src/newstabwidget.cpp" line="527"/>
         <source>Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="496"/>
+        <location filename="../src/newstabwidget.cpp" line="528"/>
         <source>Go Back</source>
         <translation>Takaisin</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="497"/>
+        <location filename="../src/newstabwidget.cpp" line="529"/>
         <source>Go Forward</source>
         <translation>Eteenpäin</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="498"/>
+        <location filename="../src/newstabwidget.cpp" line="530"/>
         <source>Stop</source>
-        <translation>Lopeta</translation>
+        <translation>Pysäytä</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="499"/>
+        <location filename="../src/newstabwidget.cpp" line="531"/>
         <source>Reload</source>
         <translation>Lataa uudelleen</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="500"/>
+        <location filename="../src/newstabwidget.cpp" line="532"/>
         <source>Copy Image</source>
         <translation>Kopioi kuva</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="502"/>
+        <location filename="../src/newstabwidget.cpp" line="534"/>
         <source>Copy Image Address</source>
         <translation>Kopioi kuvan osoite</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="511"/>
+        <location filename="../src/newstabwidget.cpp" line="544"/>
+        <location filename="../src/newstabwidget.cpp" line="565"/>
+        <source>Load Images</source>
+        <translation>Lataa kuvat</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="545"/>
+        <location filename="../src/newstabwidget.cpp" line="566"/>
+        <source>Auto Load Images to News View</source>
+        <translation>Lataa kuvat automaattisesti uutisnäkymään</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="547"/>
+        <location filename="../src/newstabwidget.cpp" line="569"/>
+        <source>No Load Images</source>
+        <translation>Älä lataa kuvia</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="548"/>
+        <location filename="../src/newstabwidget.cpp" line="570"/>
+        <source>No Load Images to News View</source>
+        <translation>Älä lataa kuvia uutisnäkymään</translation>
+    </message>
+    <message>
+        <location filename="../src/newstabwidget.cpp" line="553"/>
         <source>Close Tab</source>
         <translation>Sulje välilehti</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1293"/>
+        <location filename="../src/newstabwidget.cpp" line="1337"/>
         <source>Comments</source>
         <translation>Kommentit</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1333"/>
+        <location filename="../src/newstabwidget.cpp" line="1376"/>
         <source>audio</source>
         <translation>ääni</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1334"/>
+        <location filename="../src/newstabwidget.cpp" line="1381"/>
         <source>video</source>
         <translation>video</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1335"/>
+        <location filename="../src/newstabwidget.cpp" line="1385"/>
         <source>media</source>
         <translation>media</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1339"/>
+        <location filename="../src/newstabwidget.cpp" line="1388"/>
         <source>Link to</source>
         <translation>Linkitä</translation>
     </message>
@@ -1352,14 +1406,14 @@ ei löydetty!</translation>
 <context>
     <name>NotificationWidget</name>
     <message>
-        <location filename="../src/notifications.cpp" line="137"/>
+        <location filename="../src/notifications.cpp" line="139"/>
         <source>Incoming News: %1</source>
-        <translation>Saapuvat uutiset: %1</translation>
+        <translation>Uusimmat uutiset: %1</translation>
     </message>
     <message>
-        <location filename="../src/notifications.cpp" line="240"/>
-        <location filename="../src/notifications.cpp" line="309"/>
-        <location filename="../src/notifications.cpp" line="321"/>
+        <location filename="../src/notifications.cpp" line="244"/>
+        <location filename="../src/notifications.cpp" line="313"/>
+        <location filename="../src/notifications.cpp" line="325"/>
         <source>Page %1 of %2</source>
         <translation>Sivu %1 / %2</translation>
     </message>
@@ -1388,13 +1442,13 @@ ei löydetty!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="76"/>
-        <location filename="../src/optionsdialog.cpp" line="1688"/>
+        <location filename="../src/optionsdialog.cpp" line="1718"/>
         <source>Labels</source>
         <translation>Nimikkeet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="79"/>
-        <location filename="../src/optionsdialog.cpp" line="1690"/>
+        <location filename="../src/optionsdialog.cpp" line="1720"/>
         <source>Notifications</source>
         <translation>Ilmoitukset</translation>
     </message>
@@ -1405,18 +1459,18 @@ ei löydetty!</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="85"/>
-        <location filename="../src/optionsdialog.cpp" line="1168"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
         <source>Language</source>
         <translation>Kieli</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1601"/>
+        <location filename="../src/optionsdialog.cpp" line="1631"/>
         <source>Fonts</source>
         <translation>Kirjasimet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="227"/>
-        <location filename="../src/optionsdialog.cpp" line="2003"/>
+        <location filename="../src/optionsdialog.cpp" line="2038"/>
         <source>Warning: key is already assigned to</source>
         <translation>Varoitus: näppäin on jo asetettu</translation>
     </message>
@@ -1451,788 +1505,794 @@ ei löydetty!</translation>
         <translation>Pienennä kansiot automaattisesti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="259"/>
+        <location filename="../src/optionsdialog.cpp" line="260"/>
         <source>Automatically check for updates</source>
         <translation>Tarkista päivitykset automaattisesti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="260"/>
+        <location filename="../src/optionsdialog.cpp" line="261"/>
         <source>Store a DB in memory (requires program restart)</source>
         <translation>Säilytä tietokanta muistissa (vaatii uudelleenkäynnistyksen)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="267"/>
+        <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>Save DB stored in memory to file every</source>
         <translation>Tallenna tietokanta tiedostoon joka</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="290"/>
+        <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>Suorita QuiteRSS Windowsin käynnistyessä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="314"/>
-        <source>starting QuiteRSS</source>
-        <translation>käynnistetään QuiteRSS</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="315"/>
-        <source>minimizing QuiteRSS</source>
-        <translation>pienennetään QuiteRSS</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="316"/>
-        <source>closing QuiteRSS</source>
-        <translation>suljetaan QuiteRSS</translation>
+        <source>starting QuiteRSS</source>
+        <translation>QuiteRSS käynnistetään</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="323"/>
+        <location filename="../src/optionsdialog.cpp" line="317"/>
+        <source>minimizing QuiteRSS</source>
+        <translation>QuiteRSS pienennetään</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="318"/>
+        <source>closing QuiteRSS</source>
+        <translation>QuiteRSS suljetaan</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="325"/>
         <source>Show static icon</source>
         <translation>Näytä staattinen kuvake</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="324"/>
+        <location filename="../src/optionsdialog.cpp" line="326"/>
         <source>Change icon for incoming new news</source>
-        <translation>Muuta kuvake saapuville uusille uutisille</translation>
+        <translation>Näytä erilainen kuvake kun uusia uutisia on saatavilla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="325"/>
+        <location filename="../src/optionsdialog.cpp" line="327"/>
         <source>Show count of new news</source>
         <translation>Näytä uusien uutisten määrä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="326"/>
+        <location filename="../src/optionsdialog.cpp" line="328"/>
         <source>Show count of unread news</source>
         <translation>Näytä lukemattomien uutisten määrä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="335"/>
+        <location filename="../src/optionsdialog.cpp" line="337"/>
         <source>Single click instead of double click for show window</source>
         <translation>Yksi klikkaus kahden sijaan näyttääksesi ikkunan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="336"/>
+        <location filename="../src/optionsdialog.cpp" line="338"/>
         <source>Clear status new on minimize to tray</source>
-        <translation>Tyhjennä uusi -tila pienennettäessä järjestelmäpalkkiin</translation>
+        <translation>Aseta uutiset luetuiksi pienennettäessä järjestelmäpalkkiin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="337"/>
+        <location filename="../src/optionsdialog.cpp" line="339"/>
         <source>Empty working set on minimize to tray</source>
         <translation>Tyhjennä työjoukko pienennettäessä järjestelmäpalkkiin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="340"/>
+        <location filename="../src/optionsdialog.cpp" line="342"/>
         <source>Move to the system tray when:</source>
-        <translation>Siirrä järjestelmäpalkkiin kun:</translation>
+        <translation>Pienennä järjestelmäpalkkiin kun:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="342"/>
+        <location filename="../src/optionsdialog.cpp" line="344"/>
         <source>Tray icon behavior:</source>
         <translation>Järjestelmäpalkin kuvakkeen käytös:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="366"/>
+        <location filename="../src/optionsdialog.cpp" line="368"/>
         <source>System proxy configuration (if available)</source>
         <translation>Järjestelmän välityspalvelinasetukset (jos saatavilla)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="364"/>
+        <location filename="../src/optionsdialog.cpp" line="366"/>
         <source>Direct connection to the Internet</source>
         <translation>Suora yhteys Internettiin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="367"/>
-        <source>Manual proxy configuration:</source>
-        <translation>Omat välityspalvelinasetukset:</translation>
+        <location filename="../src/optionsdialog.cpp" line="258"/>
+        <source>Hide tab bar if only have one tab open</source>
+        <translation>Piilota välilehtipalkki kun vain yksi välilehti on auki</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="383"/>
+        <location filename="../src/optionsdialog.cpp" line="369"/>
+        <source>Manual proxy configuration:</source>
+        <translation>Mukautetut välityspalvelinasetukset:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="385"/>
         <source>Proxy server:</source>
         <translation>Välityspalvelin:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="385"/>
+        <location filename="../src/optionsdialog.cpp" line="387"/>
         <source>Port:</source>
         <translation>Portti:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="393"/>
+        <location filename="../src/optionsdialog.cpp" line="395"/>
         <source>Username:</source>
         <translation>Käyttäjänimi:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="395"/>
+        <location filename="../src/optionsdialog.cpp" line="397"/>
         <source>Password:</source>
         <translation>Salasana:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="424"/>
+        <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Timeout request:</source>
         <translation>Aikakatkaisu:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="428"/>
+        <location filename="../src/optionsdialog.cpp" line="430"/>
         <source>Number repeats:</source>
         <translation>Uudelleenyritykset:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="431"/>
+        <location filename="../src/optionsdialog.cpp" line="433"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
         <translation>Yhteysasetukset syötteiden päivitykselle (vaatii uudelleenkäynnistyksen):</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="449"/>
+        <location filename="../src/optionsdialog.cpp" line="451"/>
         <source>Use embedded browser</source>
         <translation>Käytä sisäistä selainta</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="455"/>
-        <location filename="../src/optionsdialog.cpp" line="468"/>
-        <location filename="../src/optionsdialog.cpp" line="547"/>
-        <location filename="../src/optionsdialog.cpp" line="664"/>
-        <location filename="../src/optionsdialog.cpp" line="991"/>
+        <location filename="../src/optionsdialog.cpp" line="457"/>
+        <location filename="../src/optionsdialog.cpp" line="471"/>
+        <location filename="../src/optionsdialog.cpp" line="551"/>
+        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Browse...</source>
         <translation>Selaa...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="457"/>
+        <location filename="../src/optionsdialog.cpp" line="460"/>
         <source>Enable JavaScript</source>
         <translation>Salli JavaScript</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="458"/>
+        <location filename="../src/optionsdialog.cpp" line="461"/>
         <source>Enable plug-ins</source>
         <translation>Salli liitännäiset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="464"/>
+        <location filename="../src/optionsdialog.cpp" line="467"/>
         <source>Open links in embedded browser in background</source>
         <translation>Avaa linkit sisäisessä selaimessa taustalla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="465"/>
+        <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Open links in external browser in background (experimental)</source>
         <translation>Avaa linkit ulkoisessa selaimessa taustalla (kokeellinen)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="491"/>
+        <location filename="../src/optionsdialog.cpp" line="494"/>
         <source>Default zoom on pages:</source>
         <translation>Oletussuurennus sivuilla:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="509"/>
+        <location filename="../src/optionsdialog.cpp" line="513"/>
         <source>External browser:</source>
         <translation>Ulkoinen selain:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="513"/>
+        <location filename="../src/optionsdialog.cpp" line="517"/>
         <source>User style sheet:</source>
         <translation>Käyttäjän tyylisivu:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="542"/>
+        <location filename="../src/optionsdialog.cpp" line="546"/>
         <source>Maximum pages in cache</source>
-        <translation>Sivuja enimmillään välimuistissa</translation>
+        <translation>Sivuja enintään välimuistissa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="553"/>
+        <location filename="../src/optionsdialog.cpp" line="557"/>
         <source>Store cache in:</source>
         <translation>Säilytä välimuisti:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="561"/>
+        <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>Maximum size of disk cache</source>
         <translation>Levyvälimuistin enimmäiskoko</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="563"/>
+        <location filename="../src/optionsdialog.cpp" line="567"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="569"/>
+        <location filename="../src/optionsdialog.cpp" line="573"/>
         <source>Use disk cache</source>
         <translation>Käytä levyvälimuistia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="583"/>
+        <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Allow local data to be set</source>
         <translation>Salli paikallisen datan asettaminen</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="584"/>
+        <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Keep local data only until quit application</source>
         <translation>Poista paikallinen data kun sovellus suljetaan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="585"/>
+        <location filename="../src/optionsdialog.cpp" line="589"/>
         <source>Block sites from setting any data</source>
         <translation>Estä sivuja asettamasta mitään dataa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="586"/>
+        <location filename="../src/optionsdialog.cpp" line="590"/>
         <source>Clear</source>
         <translation>Tyhjennä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="601"/>
+        <location filename="../src/optionsdialog.cpp" line="605"/>
         <source>Cookies:</source>
         <translation>Keksit:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="609"/>
+        <location filename="../src/optionsdialog.cpp" line="613"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
         <translation>Click To Flash on liitännäinen joka estää Flash-sisällön automaattisen lataamisen. Voit ladata sisällön manuaalisesti painamalla kuvaketta.</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="614"/>
+        <location filename="../src/optionsdialog.cpp" line="618"/>
         <source>Use Click to Flash</source>
         <translation>Käytä Click To Flash -liitännäistä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="626"/>
+        <location filename="../src/optionsdialog.cpp" line="630"/>
         <source>Add...</source>
         <translation>Lisää...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="628"/>
+        <location filename="../src/optionsdialog.cpp" line="632"/>
         <source>Remove...</source>
         <translation>Poista...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="668"/>
+        <location filename="../src/optionsdialog.cpp" line="672"/>
         <source>Ask where to save each file before downloading</source>
         <translation>Kysy minne tiedosto tallennetaan ennen latausta</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="677"/>
+        <location filename="../src/optionsdialog.cpp" line="681"/>
         <source>Download location:</source>
         <translation>Latausten sijainti:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="686"/>
+        <location filename="../src/optionsdialog.cpp" line="690"/>
         <source>History</source>
         <translation>Historia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="687"/>
+        <location filename="../src/optionsdialog.cpp" line="691"/>
         <source>Privacy</source>
         <translation>Yksityisyys</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="688"/>
+        <location filename="../src/optionsdialog.cpp" line="692"/>
         <source>Click to Flash</source>
         <translation>Click to Flash</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="689"/>
+        <location filename="../src/optionsdialog.cpp" line="693"/>
         <source>Downloads</source>
         <translation>Lataukset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="723"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Position on unread news</source>
         <translation>Siirry lukemattomiin uutisiin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="740"/>
+        <location filename="../src/optionsdialog.cpp" line="744"/>
         <source>Dec</source>
         <translation>Joulu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="741"/>
+        <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>December</source>
         <translation>Joulukuu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="764"/>
+        <location filename="../src/optionsdialog.cpp" line="768"/>
         <source>Display format for date:</source>
         <translation>Päivämäärän muotoilu:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="767"/>
+        <location filename="../src/optionsdialog.cpp" line="771"/>
         <source>time:</source>
         <translation>aika:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="771"/>
+        <location filename="../src/optionsdialog.cpp" line="775"/>
         <source>Alternating row background colors</source>
         <translation>Vaihteleva rivien taustaväri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="772"/>
+        <location filename="../src/optionsdialog.cpp" line="776"/>
         <source>Simplified representation of date and time</source>
         <translation>Päivämäärän ja ajan yksinkertaistettu esitys</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show All</source>
         <translation>Näytä kaikki</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show New</source>
         <translation>Näytä uudet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="775"/>
+        <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show Unread</source>
         <translation>Näytä lukemattomat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Show Starred</source>
         <translation>Näytä tähdellä merkityt</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="776"/>
+        <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Show Not Starred</source>
         <translation>Näytä tähdettömät</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Unread or Starred</source>
         <translation>Näytä lukemattomat tai tähdellä merkityt</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="777"/>
+        <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Last Day</source>
         <translation>Näytä päivä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="778"/>
+        <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Show Last 7 Days</source>
         <translation>Näytä viimeiset 7 päivää</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="792"/>
+        <location filename="../src/optionsdialog.cpp" line="796"/>
         <source>Main news filter:</source>
         <translation>Pääuutissuodatin:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="814"/>
+        <location filename="../src/optionsdialog.cpp" line="818"/>
         <source>Mark news as read:</source>
         <translation>Merkitse uutiset luetuksi:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="816"/>
+        <location filename="../src/optionsdialog.cpp" line="820"/>
         <source>on selecting. With timeout</source>
         <translation>valittaessa, viiveellä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="817"/>
+        <location filename="../src/optionsdialog.cpp" line="821"/>
         <source>after switching to another news</source>
         <translation>vaihdettaessa toiseen uutiseen</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="830"/>
+        <location filename="../src/optionsdialog.cpp" line="834"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Vaihda toiminnon &apos;Seuraava lukematon uutinen&apos; käytöstä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="835"/>
+        <location filename="../src/optionsdialog.cpp" line="839"/>
         <source>Automatically mark identical news as read</source>
         <translation>Merkitse identtiset uutiset luetuksi automaattisesti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="874"/>
+        <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Enable cleanup on shutdown</source>
         <translation>Siivoa suljettaessa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="894"/>
+        <location filename="../src/optionsdialog.cpp" line="898"/>
         <source>Never delete labeled news</source>
         <translation>Älä koskaan poista nimikkeellisiä uutisia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="896"/>
+        <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Clean up &apos;Deleted&apos;</source>
         <translation>Siivoa &apos;Poistetut&apos;</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="897"/>
+        <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>Tietokannan optimointi (hitaampi sammutus)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="943"/>
+        <location filename="../src/optionsdialog.cpp" line="947"/>
         <source>New...</source>
         <translation>Uusi...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="945"/>
+        <location filename="../src/optionsdialog.cpp" line="949"/>
         <source>Edit...</source>
         <translation>Muokkaa...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="948"/>
+        <location filename="../src/optionsdialog.cpp" line="952"/>
         <source>Delete...</source>
         <translation>Poista...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="952"/>
+        <location filename="../src/optionsdialog.cpp" line="956"/>
         <source>Move up</source>
         <translation>Siirrä ylös</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="955"/>
+        <location filename="../src/optionsdialog.cpp" line="959"/>
         <source>Move down</source>
         <translation>Siirrä alas</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1005"/>
-        <source>Display notification for incoming news</source>
-        <translation>Näytä ilmoitus saapuville uutisille</translation>
+        <location filename="../src/optionsdialog.cpp" line="996"/>
+        <source>Play</source>
+        <translation>Toista</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1011"/>
+        <location filename="../src/optionsdialog.cpp" line="1018"/>
+        <source>Display notification for incoming news</source>
+        <translation>Näytä ilmoitus kun uusia uutisia on saatavilla</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Top Left</source>
         <translation>Ylhäällä vasemmalla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1011"/>
+        <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Top Right</source>
         <translation>Ylhäällä oikealla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1012"/>
+        <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Left</source>
         <translation>Alhaalla vasemmalla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1012"/>
+        <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Right</source>
         <translation>Alhaalla oikealla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1022"/>
+        <location filename="../src/optionsdialog.cpp" line="1035"/>
         <source>Review</source>
         <translation>Esikatselu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1026"/>
+        <location filename="../src/optionsdialog.cpp" line="1039"/>
         <source>Position</source>
         <translation>Sijainti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1032"/>
+        <location filename="../src/optionsdialog.cpp" line="1045"/>
         <source>Show maximum of</source>
-        <translation>Näytä enimmillään</translation>
+        <translation>Näytä enintään</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1034"/>
+        <location filename="../src/optionsdialog.cpp" line="1047"/>
         <source>news on page notification</source>
         <translation>uutista ilmoituksessa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1037"/>
+        <location filename="../src/optionsdialog.cpp" line="1050"/>
         <source>Width news list</source>
         <translation>Uutislistan leveys</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1039"/>
+        <location filename="../src/optionsdialog.cpp" line="1052"/>
         <source>pixels</source>
         <translation>pikseliä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1042"/>
+        <location filename="../src/optionsdialog.cpp" line="1055"/>
         <source>Close notification after</source>
-        <translation>Sulje ilmoitus</translation>
+        <translation>Näytä ilmoitus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1046"/>
+        <location filename="../src/optionsdialog.cpp" line="1059"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Älä näytä ilmoituksia kokoruututilassa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Site</source>
         <translation>Sivu</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>User</source>
         <translation>Käyttäjä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1115"/>
+        <location filename="../src/optionsdialog.cpp" line="1128"/>
         <source>Password</source>
         <translation>Salasana</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1132"/>
+        <location filename="../src/optionsdialog.cpp" line="1145"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1134"/>
+        <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Delete All</source>
         <translation>Poista kaikki</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1136"/>
+        <location filename="../src/optionsdialog.cpp" line="1149"/>
         <source>Show Passwords</source>
         <translation>Näytä salasanat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1434"/>
+        <location filename="../src/optionsdialog.cpp" line="1455"/>
         <source>News title font</source>
         <translation>Uutisotsikon kirjasin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1437"/>
+        <location filename="../src/optionsdialog.cpp" line="1458"/>
         <source>News text font</source>
         <translation>Uutistekstin kirjasin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1440"/>
+        <location filename="../src/optionsdialog.cpp" line="1461"/>
         <source>Notification font</source>
         <translation>Ilmoituksen kirjasin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1474"/>
+        <location filename="../src/optionsdialog.cpp" line="1495"/>
         <source>Feeds list color</source>
         <translation>Syötelistan väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1477"/>
+        <location filename="../src/optionsdialog.cpp" line="1498"/>
         <source>Feeds list background</source>
         <translation>Syötelistan taustaväri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1480"/>
+        <location filename="../src/optionsdialog.cpp" line="1501"/>
         <source>News list color</source>
         <translation>Uutislistan väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1483"/>
+        <location filename="../src/optionsdialog.cpp" line="1504"/>
         <source>News list background</source>
         <translation>Uutislistan taustaväri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1486"/>
+        <location filename="../src/optionsdialog.cpp" line="1507"/>
         <source>Focused news color</source>
-        <translation>Kohdistettujen uutisten väri</translation>
+        <translation>Kohdistetun uutisen väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1489"/>
+        <location filename="../src/optionsdialog.cpp" line="1510"/>
         <source>Focused news background color</source>
-        <translation>Kohdistettujen uutisten taustaväri</translation>
+        <translation>Kohdistetun uutisen taustaväri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1492"/>
+        <location filename="../src/optionsdialog.cpp" line="1513"/>
         <source>Link color</source>
         <translation>Linkin väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1495"/>
+        <location filename="../src/optionsdialog.cpp" line="1516"/>
         <source>Title color</source>
         <translation>Otsikon väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1498"/>
+        <location filename="../src/optionsdialog.cpp" line="1519"/>
         <source>Date color</source>
         <translation>Päivämäärän väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1501"/>
+        <location filename="../src/optionsdialog.cpp" line="1522"/>
         <source>Author color</source>
         <translation>Tekijän väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1504"/>
+        <location filename="../src/optionsdialog.cpp" line="1525"/>
         <source>News text color</source>
         <translation>Uutistekstin väri</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1507"/>
+        <location filename="../src/optionsdialog.cpp" line="1528"/>
         <source>News title background</source>
         <translation>Uutisotsikon tausta</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1510"/>
+        <location filename="../src/optionsdialog.cpp" line="1531"/>
         <source>News background</source>
         <translation>Uutisen tausta</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1513"/>
+        <location filename="../src/optionsdialog.cpp" line="1534"/>
         <source>Feed with new news</source>
         <translation>Syöte jossa uusia uutisia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1516"/>
+        <location filename="../src/optionsdialog.cpp" line="1537"/>
         <source>Count of news unread in feeds tree</source>
         <translation>Lukemattomien uutisten määrä syötelistassa</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1519"/>
-        <source>Text color of new news </source>
-        <translation>Uusien uutisten tekstin väri</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1555"/>
+        <location filename="../src/optionsdialog.cpp" line="1585"/>
         <source>Standard</source>
         <translation>Normaali</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1557"/>
+        <location filename="../src/optionsdialog.cpp" line="1587"/>
         <source>Fixed</source>
         <translation>Tasalevyinen</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1559"/>
+        <location filename="../src/optionsdialog.cpp" line="1589"/>
         <source>Serif</source>
         <translation>Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1561"/>
+        <location filename="../src/optionsdialog.cpp" line="1591"/>
         <source>Sans Serif</source>
         <translation>Sans Serif</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1563"/>
+        <location filename="../src/optionsdialog.cpp" line="1593"/>
         <source>Cursive</source>
         <translation>Kursiivi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1565"/>
+        <location filename="../src/optionsdialog.cpp" line="1595"/>
         <source>Fantasy</source>
         <translation>Fantasia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1580"/>
+        <location filename="../src/optionsdialog.cpp" line="1610"/>
         <source>Default font size</source>
         <translation>Oletus fonttikoko</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1582"/>
+        <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Fixed font size</source>
         <translation>Tasalevyisen fontin koko</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1584"/>
+        <location filename="../src/optionsdialog.cpp" line="1614"/>
         <source>Minimum font size</source>
         <translation>Minimi fonttikoko</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1586"/>
+        <location filename="../src/optionsdialog.cpp" line="1616"/>
         <source>Minimum logical font size</source>
         <translation>Minimi looginen fonttikoko</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1590"/>
+        <location filename="../src/optionsdialog.cpp" line="1620"/>
         <source>Font families:</source>
         <translation>Fonttiryhmät:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1592"/>
+        <location filename="../src/optionsdialog.cpp" line="1622"/>
         <source>Font sizes:</source>
         <translation>Fonttikoot:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1602"/>
+        <location filename="../src/optionsdialog.cpp" line="1632"/>
         <source>Fonts Browser</source>
         <translation>Fonttiselain</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1603"/>
+        <location filename="../src/optionsdialog.cpp" line="1633"/>
         <source>Colors</source>
         <translation>Värit</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1610"/>
+        <location filename="../src/optionsdialog.cpp" line="1640"/>
         <source>Filter</source>
         <translation>Suodatin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1889"/>
+        <location filename="../src/optionsdialog.cpp" line="459"/>
+        <location filename="../src/optionsdialog.cpp" line="1924"/>
         <source>Load images</source>
         <translation>Lataa kuvat</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1894"/>
+        <location filename="../src/optionsdialog.cpp" line="1929"/>
         <source>Auto load images to news view</source>
         <translation>Lataa kuvat automaattisesti uutisnäkymään</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2058"/>
-        <location filename="../src/optionsdialog.cpp" line="2083"/>
+        <location filename="../src/optionsdialog.cpp" line="2093"/>
+        <location filename="../src/optionsdialog.cpp" line="2118"/>
         <source>Open File...</source>
         <translation>Avaa tiedosto...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2571"/>
+        <location filename="../src/optionsdialog.cpp" line="2617"/>
         <source>Select Style Sheet File</source>
         <translation>Valitse tyylitiedosto</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2580"/>
-        <location filename="../src/optionsdialog.cpp" line="2609"/>
+        <location filename="../src/optionsdialog.cpp" line="2626"/>
+        <location filename="../src/optionsdialog.cpp" line="2655"/>
         <source>Open Directory...</source>
         <translation>Avaa kansio...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2590"/>
+        <location filename="../src/optionsdialog.cpp" line="2636"/>
         <source>Add site to whitelist</source>
         <translation>Lisää sivu sallittujen listalle</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="2591"/>
+        <location filename="../src/optionsdialog.cpp" line="2637"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Sivu ilman protokollaa (esim. youtube.com)</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="699"/>
+        <location filename="../src/optionsdialog.cpp" line="703"/>
         <source>Automatically update the feeds every</source>
         <translation>Päivitä syötteet automaattisesti joka</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="269"/>
-        <location filename="../src/optionsdialog.cpp" line="709"/>
+        <location filename="../src/optionsdialog.cpp" line="270"/>
+        <location filename="../src/optionsdialog.cpp" line="713"/>
         <source>minutes</source>
         <translation>minuutti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="709"/>
+        <location filename="../src/optionsdialog.cpp" line="713"/>
         <source>hours</source>
         <translation>tunti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="721"/>
+        <location filename="../src/optionsdialog.cpp" line="725"/>
         <source>Position on last opened news</source>
         <translation>Siirry viimeksi avattuihin uutisiin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="722"/>
+        <location filename="../src/optionsdialog.cpp" line="726"/>
         <source>Position at top of list news</source>
         <translation>Siirry listan alkuun</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="724"/>
+        <location filename="../src/optionsdialog.cpp" line="728"/>
         <source>Open news</source>
         <translation>Avaa uutiset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="725"/>
+        <location filename="../src/optionsdialog.cpp" line="729"/>
         <source>Nothing to do</source>
         <translation>Älä tee mitään</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="800"/>
+        <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Opening feed:</source>
         <translation>Avattaessa syötettä:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="709"/>
-        <location filename="../src/optionsdialog.cpp" line="841"/>
-        <location filename="../src/optionsdialog.cpp" line="1044"/>
+        <location filename="../src/optionsdialog.cpp" line="713"/>
+        <location filename="../src/optionsdialog.cpp" line="845"/>
+        <location filename="../src/optionsdialog.cpp" line="1057"/>
         <source>seconds</source>
-        <translation>sekunti</translation>
+        <translation>sekunti(a)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="61"/>
-        <location filename="../src/optionsdialog.cpp" line="685"/>
-        <location filename="../src/optionsdialog.cpp" line="924"/>
+        <location filename="../src/optionsdialog.cpp" line="689"/>
+        <location filename="../src/optionsdialog.cpp" line="928"/>
         <source>General</source>
         <translation>Yleiset</translation>
     </message>
@@ -2242,92 +2302,92 @@ ei löydetty!</translation>
         <translation>Näytä aloitusruutu käynnistyksessä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="311"/>
+        <location filename="../src/optionsdialog.cpp" line="313"/>
         <source>Show system tray icon</source>
         <translation>Näytä järjestelmäpalkin kuvake</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="698"/>
+        <location filename="../src/optionsdialog.cpp" line="702"/>
         <source>Automatically update the feeds on startup</source>
         <translation>Päivitä syötteet automaattisesti käynnistyksessä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="884"/>
+        <location filename="../src/optionsdialog.cpp" line="888"/>
         <source>Maximum number of news to keep:</source>
         <translation>Kuinka monta uutista säilytetään:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="877"/>
+        <location filename="../src/optionsdialog.cpp" line="881"/>
         <source>Maximum age of news in days to keep:</source>
         <translation>Kuinka monen päivän vanhoja uutisia säilytetään:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="450"/>
+        <location filename="../src/optionsdialog.cpp" line="452"/>
         <source>Use external browser</source>
         <translation>Käytä ulkoista selainta</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="451"/>
+        <location filename="../src/optionsdialog.cpp" line="453"/>
         <source>Default external browser</source>
         <translation>Oletusselain</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="452"/>
+        <location filename="../src/optionsdialog.cpp" line="454"/>
         <source>Following external browser:</source>
         <translation>Muu selain:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="507"/>
+        <location filename="../src/optionsdialog.cpp" line="511"/>
         <source>Browser selection:</source>
         <translation>Selaimen valinta:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="511"/>
+        <location filename="../src/optionsdialog.cpp" line="515"/>
         <source>Content:</source>
         <translation>Sisältö:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="828"/>
+        <location filename="../src/optionsdialog.cpp" line="832"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Näytä uutisten kuvaus verkkosivun lautauksen sijaan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="891"/>
+        <location filename="../src/optionsdialog.cpp" line="895"/>
         <source>Delete read news</source>
         <translation>Poista luetut uutiset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="892"/>
+        <location filename="../src/optionsdialog.cpp" line="896"/>
         <source>Never delete unread news</source>
         <translation>Älä koskaan poista lukemattomia uutisia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="893"/>
+        <location filename="../src/optionsdialog.cpp" line="897"/>
         <source>Never delete starred news</source>
         <translation>Älä koskaan poista tähdellä merkittyjä uutisia</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="925"/>
+        <location filename="../src/optionsdialog.cpp" line="929"/>
         <source>Reading</source>
         <translation>Lukeminen</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="926"/>
+        <location filename="../src/optionsdialog.cpp" line="930"/>
         <source>Clean Up</source>
         <translation>Siivous</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="988"/>
+        <location filename="../src/optionsdialog.cpp" line="992"/>
         <source>Play sound for incoming new news</source>
-        <translation>Toista ääni saapuville uutisille</translation>
+        <translation>Toista ääni kun uusia uutisia on saatavilla</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1403"/>
+        <location filename="../src/optionsdialog.cpp" line="1424"/>
         <source>Choose language:</source>
         <translation>Valitse kieli:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1168"/>
+        <location filename="../src/optionsdialog.cpp" line="1181"/>
         <source>Version</source>
         <translation>Versio</translation>
     </message>
@@ -2347,110 +2407,130 @@ ei löydetty!</translation>
         <translation>Näytä oletus rss-kuvake suosikin sijaan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="823"/>
+        <location filename="../src/optionsdialog.cpp" line="827"/>
         <source>Mark displayed news as read when switching feeds</source>
         <translation>Merkitse uutiset luetuksi kun syötettä vaihdetaan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="824"/>
+        <location filename="../src/optionsdialog.cpp" line="828"/>
         <source>Mark displayed news as read when closing tab</source>
         <translation>Merkitse uutiset luetuksi kun välilehti suljetaan</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="825"/>
+        <location filename="../src/optionsdialog.cpp" line="829"/>
         <source>Mark displayed news as read on minimize</source>
         <translation>Merkitse uutiset luetuksi pienennettäessä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="833"/>
+        <location filename="../src/optionsdialog.cpp" line="837"/>
         <source>labeled news</source>
         <translation>nimikkeelliset uutiset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="832"/>
+        <location filename="../src/optionsdialog.cpp" line="836"/>
         <source>starred news</source>
         <translation>tähdellä merkityt uutiset</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="426"/>
+        <location filename="../src/optionsdialog.cpp" line="428"/>
         <source>Number requests:</source>
         <translation>Pyyntöjen määrä:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="862"/>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Prevent accidental deletion of:</source>
         <translation>Estä tahaton poistaminen:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1051"/>
+        <location filename="../src/optionsdialog.cpp" line="1064"/>
         <source>Only show selected feeds:</source>
         <translation>Näytä vain valitut syötteet:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1067"/>
+        <location filename="../src/optionsdialog.cpp" line="1080"/>
         <source>All Feeds</source>
         <translation>Kaikki syötteet</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1169"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Author</source>
         <translation>Tekijä</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1169"/>
+        <location filename="../src/optionsdialog.cpp" line="1182"/>
         <source>Contact</source>
         <translation>Kontakti</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1424"/>
+        <location filename="../src/optionsdialog.cpp" line="1445"/>
         <source>Type</source>
         <translation>Tyyppi</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1424"/>
+        <location filename="../src/optionsdialog.cpp" line="1445"/>
         <source>Font</source>
         <translation>Kirjasin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1428"/>
+        <location filename="../src/optionsdialog.cpp" line="1449"/>
         <source>Feeds list font</source>
         <translation>Syötelistan kirjasin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1431"/>
+        <location filename="../src/optionsdialog.cpp" line="1452"/>
         <source>News list font</source>
         <translation>Uutislistan kirjasin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1447"/>
-        <location filename="../src/optionsdialog.cpp" line="1527"/>
+        <location filename="../src/optionsdialog.cpp" line="1468"/>
+        <location filename="../src/optionsdialog.cpp" line="1557"/>
         <source>Change...</source>
         <translation>Vaihda...</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1449"/>
-        <location filename="../src/optionsdialog.cpp" line="1529"/>
-        <location filename="../src/optionsdialog.cpp" line="1641"/>
+        <location filename="../src/optionsdialog.cpp" line="1470"/>
+        <location filename="../src/optionsdialog.cpp" line="1559"/>
+        <location filename="../src/optionsdialog.cpp" line="1671"/>
         <source>Reset</source>
         <translation>Palauta</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1636"/>
+        <location filename="../src/optionsdialog.cpp" line="1540"/>
+        <source>Text color of new news</source>
+        <translation>Uusien uutisten tekstin väri</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1543"/>
+        <source>Text color of unread news</source>
+        <translation>Lukemattomien uutisten tekstin väri</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1546"/>
+        <source>Focused feed color</source>
+        <translation>Kohdistetun syötteen väri</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1549"/>
+        <source>Focused feed background color</source>
+        <translation>Kohdistetun syötteen taustaväri</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Action</source>
         <translation>Toiminto</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1636"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Description</source>
         <translation>Kuvaus</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1636"/>
+        <location filename="../src/optionsdialog.cpp" line="1666"/>
         <source>Shortcut</source>
         <translation>Pikanäppäin</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1644"/>
+        <location filename="../src/optionsdialog.cpp" line="1674"/>
         <source>Shortcut:</source>
         <translation>Pikanäppäin:</translation>
     </message>
@@ -2458,17 +2538,17 @@ ei löydetty!</translation>
 <context>
     <name>QAbstractSpinBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4754"/>
+        <location filename="../src/rsslisting.cpp" line="4767"/>
         <source>&amp;Step up</source>
         <translation>Siirrä ylös</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4755"/>
+        <location filename="../src/rsslisting.cpp" line="4768"/>
         <source>Step &amp;down</source>
         <translation>Siirrä alas</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4756"/>
+        <location filename="../src/rsslisting.cpp" line="4769"/>
         <source>&amp;Select All</source>
         <translation>Valitse kaikki</translation>
     </message>
@@ -2476,22 +2556,22 @@ ei löydetty!</translation>
 <context>
     <name>QDialogButtonBox</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4732"/>
+        <location filename="../src/rsslisting.cpp" line="4745"/>
         <source>Close</source>
         <translation>Sulje</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4733"/>
+        <location filename="../src/rsslisting.cpp" line="4746"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4734"/>
+        <location filename="../src/rsslisting.cpp" line="4747"/>
         <source>&amp;Yes</source>
         <translation>Kyllä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4735"/>
+        <location filename="../src/rsslisting.cpp" line="4748"/>
         <source>&amp;No</source>
         <translation>Ei</translation>
     </message>
@@ -2605,37 +2685,37 @@ ei löydetty!</translation>
 <context>
     <name>QLineEdit</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4737"/>
+        <location filename="../src/rsslisting.cpp" line="4750"/>
         <source>&amp;Undo</source>
         <translation>Kumoa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4738"/>
+        <location filename="../src/rsslisting.cpp" line="4751"/>
         <source>&amp;Redo</source>
         <translation>Toista</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4739"/>
+        <location filename="../src/rsslisting.cpp" line="4752"/>
         <source>Cu&amp;t</source>
         <translation>Leikkaa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4740"/>
+        <location filename="../src/rsslisting.cpp" line="4753"/>
         <source>&amp;Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4741"/>
+        <location filename="../src/rsslisting.cpp" line="4754"/>
         <source>&amp;Paste</source>
         <translation>Liitä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4742"/>
+        <location filename="../src/rsslisting.cpp" line="4755"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4743"/>
+        <location filename="../src/rsslisting.cpp" line="4756"/>
         <source>Select All</source>
         <translation>Valitse kaikki</translation>
     </message>
@@ -2643,7 +2723,7 @@ ei löydetty!</translation>
 <context>
     <name>QMultiInputContext</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4758"/>
+        <location filename="../src/rsslisting.cpp" line="4771"/>
         <source>Select IM</source>
         <translation>Valitse IM</translation>
     </message>
@@ -2664,42 +2744,42 @@ ei löydetty!</translation>
 <context>
     <name>QTextControl</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4745"/>
+        <location filename="../src/rsslisting.cpp" line="4758"/>
         <source>&amp;Undo</source>
         <translation>Kumoa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4746"/>
+        <location filename="../src/rsslisting.cpp" line="4759"/>
         <source>&amp;Redo</source>
         <translation>Toista</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4747"/>
+        <location filename="../src/rsslisting.cpp" line="4760"/>
         <source>Cu&amp;t</source>
         <translation>Leikkaa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4748"/>
+        <location filename="../src/rsslisting.cpp" line="4761"/>
         <source>&amp;Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4749"/>
+        <location filename="../src/rsslisting.cpp" line="4762"/>
         <source>&amp;Paste</source>
         <translation>Liitä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4750"/>
+        <location filename="../src/rsslisting.cpp" line="4763"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4751"/>
+        <location filename="../src/rsslisting.cpp" line="4764"/>
         <source>Select All</source>
         <translation>Valitse kaikki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4752"/>
+        <location filename="../src/rsslisting.cpp" line="4765"/>
         <source>Copy &amp;Link Location</source>
         <translation>Kopioi &amp;linkin sijainti</translation>
     </message>
@@ -2707,22 +2787,22 @@ ei löydetty!</translation>
 <context>
     <name>QWizard</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4760"/>
+        <location filename="../src/rsslisting.cpp" line="4773"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4761"/>
+        <location filename="../src/rsslisting.cpp" line="4774"/>
         <source>&lt; &amp;Back</source>
         <translation>&lt; &amp;Edellinen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4762"/>
+        <location filename="../src/rsslisting.cpp" line="4775"/>
         <source>&amp;Finish</source>
         <translation>&amp;Lopeta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4763"/>
+        <location filename="../src/rsslisting.cpp" line="4776"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;Seuraava &gt;</translation>
     </message>
@@ -2730,1043 +2810,1019 @@ ei löydetty!</translation>
 <context>
     <name>RSSListing</name>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2513"/>
+        <location filename="../src/rsslisting.cpp" line="2531"/>
         <source>Are you sure to delete the feed &apos;%1&apos;?</source>
         <translation>Haluatko varmasti poistaa syötteen &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2592"/>
+        <location filename="../src/rsslisting.cpp" line="2610"/>
         <source>Import canceled</source>
         <translation>Tuonti peruutettiin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2600"/>
+        <location filename="../src/rsslisting.cpp" line="2618"/>
         <source>Import: can&apos;t open a file</source>
         <translation>Tuonti: tiedostoa ei voitu avata</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4489"/>
+        <location filename="../src/rsslisting.cpp" line="4510"/>
         <source>&amp;Feed...</source>
         <translation>&amp;Syöte...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4492"/>
+        <location filename="../src/rsslisting.cpp" line="4513"/>
         <source>F&amp;older...</source>
         <translation>&amp;Kansio...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4497"/>
+        <location filename="../src/rsslisting.cpp" line="4518"/>
         <source>&amp;Delete...</source>
         <translation>&amp;Poista...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4506"/>
+        <location filename="../src/rsslisting.cpp" line="4527"/>
         <source>E&amp;xit</source>
         <translation>&amp;Poistu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4540"/>
+        <location filename="../src/rsslisting.cpp" line="4553"/>
         <source>Filter Feeds</source>
         <translation>Suodata syötteitä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4547"/>
+        <location filename="../src/rsslisting.cpp" line="4560"/>
         <source>Filter News</source>
         <translation>Suodata uutisia</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4551"/>
+        <location filename="../src/rsslisting.cpp" line="4564"/>
         <source>Show Starred</source>
         <translation>Näytä tähdellä merkityt</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4552"/>
+        <location filename="../src/rsslisting.cpp" line="4565"/>
         <source>Show Not Starred</source>
         <translation>Näytä tähdettömät</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4553"/>
+        <location filename="../src/rsslisting.cpp" line="4566"/>
         <source>Show Unread or Starred</source>
         <translation>Näytä lukemattomat tai tähdellä merkityt</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4567"/>
+        <location filename="../src/rsslisting.cpp" line="4580"/>
         <source>Open News in External Browser</source>
         <translation>Avaa uutiset ulkoisessa selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4585"/>
+        <location filename="../src/rsslisting.cpp" line="4598"/>
         <source>Mark Read</source>
         <translation>Merkitse luetuksi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4587"/>
-        <location filename="../src/rsslisting.cpp" line="4588"/>
+        <location filename="../src/rsslisting.cpp" line="4600"/>
+        <location filename="../src/rsslisting.cpp" line="4601"/>
         <source>Properties</source>
         <translation>Ominaisuudet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4599"/>
-        <location filename="../src/rsslisting.cpp" line="4676"/>
+        <location filename="../src/rsslisting.cpp" line="4612"/>
+        <location filename="../src/rsslisting.cpp" line="4689"/>
         <source>Main Toolbar</source>
         <translation>Päätyökalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4600"/>
+        <location filename="../src/rsslisting.cpp" line="4613"/>
         <source>Customize Toolbar</source>
         <translation>Muokkaa työkalupalkkia</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4601"/>
+        <location filename="../src/rsslisting.cpp" line="4614"/>
         <source>Main Toolbar...</source>
         <translation>Päätyökalupalkki...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4602"/>
+        <location filename="../src/rsslisting.cpp" line="4615"/>
         <source>Customize Toolbar...</source>
         <translation>Muokkaa työkalupalkkia...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4603"/>
+        <location filename="../src/rsslisting.cpp" line="4616"/>
         <source>Feeds Toolbar...</source>
         <translation>Syötetyökalupalkki...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4604"/>
+        <location filename="../src/rsslisting.cpp" line="4617"/>
         <source>News Toolbar...</source>
         <translation>Uutistyökalupalkki...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4607"/>
+        <location filename="../src/rsslisting.cpp" line="4620"/>
         <source>Hide Toolbar</source>
         <translation>Piilota työkalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4618"/>
+        <location filename="../src/rsslisting.cpp" line="4631"/>
         <source>Browser Position</source>
         <translation>Selaimen sijainti</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4624"/>
+        <location filename="../src/rsslisting.cpp" line="4637"/>
         <source>Show Window</source>
         <translation>Näytä ikkuna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4626"/>
+        <location filename="../src/rsslisting.cpp" line="4639"/>
         <source>Previous Feed</source>
         <translation>Edellinen syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4627"/>
+        <location filename="../src/rsslisting.cpp" line="4640"/>
         <source>Next Feed</source>
         <translation>Seuraava syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4628"/>
+        <location filename="../src/rsslisting.cpp" line="4641"/>
         <source>Previous News</source>
         <translation>Edelliset uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4629"/>
+        <location filename="../src/rsslisting.cpp" line="4642"/>
         <source>Next News</source>
         <translation>Seuraavat uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4630"/>
+        <location filename="../src/rsslisting.cpp" line="4643"/>
         <source>News Page Up</source>
         <translation>Uutislistassa sivu ylöspäin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4631"/>
+        <location filename="../src/rsslisting.cpp" line="4644"/>
         <source>News Page Down</source>
         <translation>Uutislistassa sivu alaspäin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4643"/>
+        <location filename="../src/rsslisting.cpp" line="4656"/>
         <source>Show/Hide Tree Feeds</source>
         <translation>Näytä/piilota syötteet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4645"/>
+        <location filename="../src/rsslisting.cpp" line="4658"/>
         <source>Minimize to Tray</source>
         <translation>Pienennä järjestelmäpalkkiin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4647"/>
+        <location filename="../src/rsslisting.cpp" line="4660"/>
         <source>Minimize Application to Tray</source>
         <translation>Pienennä sovellus järjestelmäpalkkiin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4649"/>
+        <location filename="../src/rsslisting.cpp" line="4662"/>
         <source>Columns</source>
         <translation>Sarakkeet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4654"/>
+        <location filename="../src/rsslisting.cpp" line="4667"/>
         <source>Show Indentation</source>
         <translation>Näytä sisennys</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4659"/>
+        <location filename="../src/rsslisting.cpp" line="4672"/>
         <source>Zoom</source>
         <translation>Suurennuslasi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4660"/>
+        <location filename="../src/rsslisting.cpp" line="4673"/>
         <source>Zoom In</source>
         <translation>Suurenna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4661"/>
+        <location filename="../src/rsslisting.cpp" line="4674"/>
         <source>Zoom in in browser</source>
         <translation>Suurenna selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4662"/>
+        <location filename="../src/rsslisting.cpp" line="4675"/>
         <source>Zoom Out</source>
         <translation>Pienennä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4663"/>
+        <location filename="../src/rsslisting.cpp" line="4676"/>
         <source>Zoom out in browser</source>
         <translation>Pienennä selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4664"/>
+        <location filename="../src/rsslisting.cpp" line="4677"/>
         <source>100%</source>
         <translation>100%</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4665"/>
+        <location filename="../src/rsslisting.cpp" line="4678"/>
         <source>Reset zoom in browser</source>
         <translation>Palauta selaimeen normaali koko</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4667"/>
+        <location filename="../src/rsslisting.cpp" line="4680"/>
         <source>Print...</source>
         <translation>Tulosta...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4668"/>
+        <location filename="../src/rsslisting.cpp" line="4681"/>
         <source>Print Web page</source>
         <translation>Tulosta verkkosivu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4669"/>
+        <location filename="../src/rsslisting.cpp" line="4682"/>
         <source>Print Preview...</source>
         <translation>Tulostuksen esikatselu...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4670"/>
+        <location filename="../src/rsslisting.cpp" line="4683"/>
         <source>Preview Web page</source>
         <translation>Esikatsele verkkosivua</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4672"/>
+        <location filename="../src/rsslisting.cpp" line="4685"/>
         <source>Save As...</source>
         <translation>Tallenna nimellä...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4673"/>
+        <location filename="../src/rsslisting.cpp" line="4686"/>
         <source>Save Page As...</source>
         <translation>Tallenna sivu nimellä...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4677"/>
+        <location filename="../src/rsslisting.cpp" line="4690"/>
         <source>Feeds Toolbar</source>
         <translation>Syötetyökalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4678"/>
+        <location filename="../src/rsslisting.cpp" line="4691"/>
         <source>News Toolbar</source>
         <translation>Uutistyökalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4679"/>
+        <location filename="../src/rsslisting.cpp" line="4692"/>
         <source>Browser Toolbar</source>
         <translation>Selaintyökalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4682"/>
-        <location filename="../src/rsslisting.cpp" line="4683"/>
+        <location filename="../src/rsslisting.cpp" line="4695"/>
+        <location filename="../src/rsslisting.cpp" line="4696"/>
         <source>Full Screen</source>
         <translation>Koko näyttö</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4685"/>
-        <location filename="../src/rsslisting.cpp" line="4686"/>
+        <location filename="../src/rsslisting.cpp" line="4698"/>
+        <location filename="../src/rsslisting.cpp" line="4699"/>
         <source>Stay On Top</source>
         <translation>Pysy päällimmäisenä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4688"/>
+        <location filename="../src/rsslisting.cpp" line="4701"/>
         <source>Categories</source>
         <translation>Ryhmät</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4701"/>
+        <location filename="../src/rsslisting.cpp" line="4714"/>
         <source>Switch to next tab</source>
         <translation>Siirry seuraavaan välilehteen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4702"/>
+        <location filename="../src/rsslisting.cpp" line="4715"/>
         <source>Switch to previous tab</source>
         <translation>Siirry edelliseen välilehteen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4709"/>
+        <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Decrease news list/increase browser</source>
         <translation>Pienennä uutislistaa/suurenna selainta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4710"/>
+        <location filename="../src/rsslisting.cpp" line="4723"/>
         <source>Increase news list/decrease browser</source>
         <translation>Suurenna uutislistaa/pienennä selainta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5448"/>
+        <location filename="../src/rsslisting.cpp" line="5562"/>
         <source>Check for updates</source>
         <translation>Tarkista päivitykset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5449"/>
+        <location filename="../src/rsslisting.cpp" line="5563"/>
         <source>A new version of QuiteRSS...</source>
         <translation>Uusi versio QuiteRSS:stä...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6409"/>
-        <location filename="../src/rsslisting.cpp" line="6423"/>
+        <location filename="../src/rsslisting.cpp" line="6555"/>
+        <location filename="../src/rsslisting.cpp" line="6569"/>
         <source>Web Page</source>
         <translation>Verkkosivu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2621"/>
+        <location filename="../src/rsslisting.cpp" line="2639"/>
         <source>Export canceled</source>
         <translation>Vienti peruutettiin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4706"/>
+        <location filename="../src/rsslisting.cpp" line="4719"/>
         <source>Deleted</source>
         <translation>Poistettu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4705"/>
+        <location filename="../src/rsslisting.cpp" line="4718"/>
         <source>Starred</source>
         <translation>Tähdellä merkityt</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4694"/>
-        <location filename="../src/rsslisting.cpp" line="4695"/>
+        <location filename="../src/rsslisting.cpp" line="4707"/>
+        <location filename="../src/rsslisting.cpp" line="4708"/>
         <source>Label</source>
         <translation>Nimike</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2164"/>
-        <location filename="../src/rsslisting.cpp" line="4692"/>
-        <location filename="../src/rsslisting.cpp" line="6760"/>
-        <location filename="../src/rsslisting.cpp" line="6783"/>
+        <location filename="../src/rsslisting.cpp" line="2178"/>
+        <location filename="../src/rsslisting.cpp" line="4705"/>
+        <location filename="../src/rsslisting.cpp" line="6906"/>
+        <location filename="../src/rsslisting.cpp" line="6928"/>
         <source>Hide Categories</source>
         <translation>Piilota ryhmät</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2168"/>
-        <location filename="../src/rsslisting.cpp" line="4690"/>
-        <location filename="../src/rsslisting.cpp" line="6767"/>
+        <location filename="../src/rsslisting.cpp" line="2182"/>
+        <location filename="../src/rsslisting.cpp" line="4703"/>
+        <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Show Categories</source>
         <translation>Näytä ryhmät</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2627"/>
+        <location filename="../src/rsslisting.cpp" line="2645"/>
         <source>Export: can&apos;t open a file</source>
         <translation>Vienti: tiedostoa ei voitu avata</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4524"/>
+        <location filename="../src/rsslisting.cpp" line="4537"/>
         <source>Mark Read/Unread</source>
         <translation>Merkitse luetuksi/lukemattomaksi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4537"/>
+        <location filename="../src/rsslisting.cpp" line="4550"/>
         <source>Options...</source>
         <translation>Asetukset...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4541"/>
-        <location filename="../src/rsslisting.cpp" line="4548"/>
+        <location filename="../src/rsslisting.cpp" line="4554"/>
+        <location filename="../src/rsslisting.cpp" line="4561"/>
         <source>Show All</source>
         <translation>Näytä kaikki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4542"/>
-        <location filename="../src/rsslisting.cpp" line="4549"/>
+        <location filename="../src/rsslisting.cpp" line="4555"/>
+        <location filename="../src/rsslisting.cpp" line="4562"/>
         <source>Show New</source>
         <translation>Näytä uudet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4543"/>
-        <location filename="../src/rsslisting.cpp" line="4550"/>
+        <location filename="../src/rsslisting.cpp" line="4556"/>
+        <location filename="../src/rsslisting.cpp" line="4563"/>
         <source>Show Unread</source>
         <translation>Näytä lukemattomat</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4557"/>
+        <location filename="../src/rsslisting.cpp" line="4570"/>
         <source>About...</source>
         <translation>Tietoja...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4572"/>
+        <location filename="../src/rsslisting.cpp" line="4585"/>
         <source>Star</source>
         <translation>Merkitse tähdellä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4574"/>
+        <location filename="../src/rsslisting.cpp" line="4587"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4590"/>
+        <location filename="../src/rsslisting.cpp" line="4603"/>
         <source>&amp;File</source>
         <translation>&amp;Tiedosto</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4591"/>
+        <location filename="../src/rsslisting.cpp" line="4604"/>
         <source>&amp;Edit</source>
         <translation>&amp;Muokkaa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4592"/>
+        <location filename="../src/rsslisting.cpp" line="4605"/>
         <source>&amp;View</source>
         <translation>&amp;Näkymä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4593"/>
+        <location filename="../src/rsslisting.cpp" line="4606"/>
         <source>Fee&amp;ds</source>
         <translation>&amp;Syötteet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4594"/>
+        <location filename="../src/rsslisting.cpp" line="4607"/>
         <source>&amp;News</source>
         <translation>&amp;Uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4596"/>
+        <location filename="../src/rsslisting.cpp" line="4609"/>
         <source>&amp;Tools</source>
         <translation>Työ&amp;kalut</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4597"/>
+        <location filename="../src/rsslisting.cpp" line="4610"/>
         <source>&amp;Help</source>
         <translation>&amp;Ohje</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4610"/>
+        <location filename="../src/rsslisting.cpp" line="4623"/>
         <source>System</source>
         <translation>Järjestelmä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4619"/>
+        <location filename="../src/rsslisting.cpp" line="4632"/>
         <source>Top</source>
         <translation>Ylhäällä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4620"/>
+        <location filename="../src/rsslisting.cpp" line="4633"/>
         <source>Bottom</source>
         <translation>Alhaalla</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4621"/>
+        <location filename="../src/rsslisting.cpp" line="4634"/>
         <source>Right</source>
         <translation>Oikealla</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4622"/>
+        <location filename="../src/rsslisting.cpp" line="4635"/>
         <source>Left</source>
         <translation>Vasemmalla</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4656"/>
-        <location filename="../src/rsslisting.cpp" line="4657"/>
+        <location filename="../src/rsslisting.cpp" line="4669"/>
+        <location filename="../src/rsslisting.cpp" line="4670"/>
         <source>Search Feed</source>
         <translation>Etsi syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="5785"/>
+        <location filename="../src/rsslisting.cpp" line="5915"/>
         <source>Loading...</source>
         <translation>Ladataan...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2512"/>
+        <location filename="../src/rsslisting.cpp" line="2530"/>
         <source>Delete Feed</source>
         <translation>Poista syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2586"/>
-        <location filename="../src/rsslisting.cpp" line="2615"/>
+        <location filename="../src/rsslisting.cpp" line="2604"/>
+        <location filename="../src/rsslisting.cpp" line="2633"/>
         <source>Select OPML-File</source>
         <translation>Valitse OPML-tiedosto</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4303"/>
-        <location filename="../src/rsslisting.cpp" line="4509"/>
-        <source>Load Images</source>
-        <translation>Lataa kuvat</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4307"/>
-        <location filename="../src/rsslisting.cpp" line="4512"/>
-        <source>No Load Images</source>
-        <translation>Älä lataa kuvia</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4308"/>
-        <location filename="../src/rsslisting.cpp" line="4513"/>
-        <source>No Load Images to News View</source>
-        <translation>Älä lataa kuvia uutisnäkymään</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4481"/>
-        <location filename="../src/rsslisting.cpp" line="5282"/>
+        <location filename="../src/rsslisting.cpp" line="4502"/>
+        <location filename="../src/rsslisting.cpp" line="5317"/>
         <source>New News: %1</source>
         <translation>Uusia uutisia: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4483"/>
-        <location filename="../src/rsslisting.cpp" line="5284"/>
+        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <location filename="../src/rsslisting.cpp" line="5319"/>
         <source>Unread News: %1</source>
         <translation>Lukemattomia uutisia: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4487"/>
-        <location filename="../src/rsslisting.cpp" line="4490"/>
+        <location filename="../src/rsslisting.cpp" line="4508"/>
+        <location filename="../src/rsslisting.cpp" line="4511"/>
         <source>Add New Feed</source>
         <translation>Lisää uusi syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4495"/>
-        <location filename="../src/rsslisting.cpp" line="4568"/>
+        <location filename="../src/rsslisting.cpp" line="4516"/>
+        <location filename="../src/rsslisting.cpp" line="4581"/>
         <source>Open in New Tab</source>
         <translation>Avaa uudessa välilehdessä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4498"/>
+        <location filename="../src/rsslisting.cpp" line="4519"/>
         <source>Delete Selected Feed</source>
         <translation>Poista valittu syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4500"/>
+        <location filename="../src/rsslisting.cpp" line="4521"/>
         <source>&amp;Import Feeds...</source>
         <translation>Tuo syötte&amp;itä...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4501"/>
+        <location filename="../src/rsslisting.cpp" line="4522"/>
         <source>Import Feeds from OPML File</source>
         <translation>Tuo syötteitä OPML-tiedostosta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4503"/>
+        <location filename="../src/rsslisting.cpp" line="4524"/>
         <source>&amp;Export Feeds...</source>
         <translation>Vie syött&amp;eitä...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4504"/>
+        <location filename="../src/rsslisting.cpp" line="4525"/>
         <source>Export Feeds to OPML File</source>
         <translation>Vie syötteitä OPML-tiedostoon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4304"/>
-        <location filename="../src/rsslisting.cpp" line="4510"/>
-        <source>Auto Load Images to News View</source>
-        <translation>Lataa kuvat automaattisesti uutisnäkymään</translation>
-    </message>
-    <message>
-        <location filename="../src/rsslisting.cpp" line="4704"/>
+        <location filename="../src/rsslisting.cpp" line="4717"/>
         <source>Unread</source>
         <translation>Lukematon</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4707"/>
+        <location filename="../src/rsslisting.cpp" line="4720"/>
         <source>Labels</source>
         <translation>Nimikkeet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2508"/>
+        <location filename="../src/rsslisting.cpp" line="2526"/>
         <source>Delete Folder</source>
         <translation>Poista kansio</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="108"/>
+        <location filename="../src/rsslisting.cpp" line="111"/>
         <source>Error</source>
         <translation>Virhe</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="108"/>
+        <location filename="../src/rsslisting.cpp" line="111"/>
         <source>SQLite driver not loaded!</source>
         <translation>SQLite -ajuria ei ladattu!</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2509"/>
+        <location filename="../src/rsslisting.cpp" line="2527"/>
         <source>Are you sure to delete the folder &apos;%1&apos;?</source>
         <translation>Haluatko varmasti poistaa kansion &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2588"/>
+        <location filename="../src/rsslisting.cpp" line="2606"/>
         <source>OPML-Files (*.%1 *.%2)</source>
         <translation>OPML-tiedostot (*.%1 *.%2)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2617"/>
+        <location filename="../src/rsslisting.cpp" line="2635"/>
         <source>OPML-Files (*.%1)</source>
         <translation>OPML-tiedostot (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2877"/>
-        <location filename="../src/rsslisting.cpp" line="3881"/>
-        <location filename="../src/rsslisting.cpp" line="4473"/>
-        <location filename="../src/rsslisting.cpp" line="5742"/>
-        <location filename="../src/rsslisting.cpp" line="6731"/>
+        <location filename="../src/rsslisting.cpp" line="2895"/>
+        <location filename="../src/rsslisting.cpp" line="3918"/>
+        <location filename="../src/rsslisting.cpp" line="4494"/>
+        <location filename="../src/rsslisting.cpp" line="5864"/>
+        <location filename="../src/rsslisting.cpp" line="6877"/>
         <source>Unread: %1</source>
         <translation>Lukemattomia: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="2878"/>
-        <location filename="../src/rsslisting.cpp" line="3882"/>
-        <location filename="../src/rsslisting.cpp" line="4476"/>
-        <location filename="../src/rsslisting.cpp" line="5743"/>
-        <location filename="../src/rsslisting.cpp" line="6732"/>
+        <location filename="../src/rsslisting.cpp" line="2896"/>
+        <location filename="../src/rsslisting.cpp" line="3919"/>
+        <location filename="../src/rsslisting.cpp" line="4497"/>
+        <location filename="../src/rsslisting.cpp" line="5865"/>
+        <location filename="../src/rsslisting.cpp" line="6878"/>
         <source>All: %1</source>
         <translation>Kaikkiaan: %1</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4486"/>
+        <location filename="../src/rsslisting.cpp" line="4507"/>
         <source>&amp;Add</source>
         <translation>&amp;Lisää</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4493"/>
+        <location filename="../src/rsslisting.cpp" line="4514"/>
         <source>Add New Folder</source>
         <translation>Lisää uusi kansio</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4516"/>
+        <location filename="../src/rsslisting.cpp" line="4529"/>
         <source>Update Feed</source>
         <translation>Päivitä syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4517"/>
+        <location filename="../src/rsslisting.cpp" line="4530"/>
         <source>Update Current Feed</source>
         <translation>Päivitä nykyinen syöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4519"/>
+        <location filename="../src/rsslisting.cpp" line="4532"/>
         <source>Update All</source>
         <translation>Päivitä kaikki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4520"/>
+        <location filename="../src/rsslisting.cpp" line="4533"/>
         <source>Update All Feeds</source>
         <translation>Päivitä kaikki syötteet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4522"/>
+        <location filename="../src/rsslisting.cpp" line="4535"/>
         <source>Mark All Feeds Read</source>
         <translation>Merkitse kaikki syötteet luetuksi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4525"/>
+        <location filename="../src/rsslisting.cpp" line="4538"/>
         <source>Mark Current News Read/Unread</source>
         <translation>Merkitse nykyinen uutinen luetuksi/lukemattomaksi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4527"/>
-        <location filename="../src/rsslisting.cpp" line="4528"/>
+        <location filename="../src/rsslisting.cpp" line="4540"/>
+        <location filename="../src/rsslisting.cpp" line="4541"/>
         <source>Mark All News Read</source>
         <translation>Merkitse kaikki uutiset luetuiksi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4530"/>
-        <location filename="../src/rsslisting.cpp" line="7339"/>
-        <location filename="../src/rsslisting.cpp" line="7345"/>
-        <location filename="../src/rsslisting.cpp" line="7355"/>
+        <location filename="../src/rsslisting.cpp" line="4543"/>
+        <location filename="../src/rsslisting.cpp" line="7489"/>
+        <location filename="../src/rsslisting.cpp" line="7495"/>
+        <location filename="../src/rsslisting.cpp" line="7505"/>
         <source>Downloads</source>
         <translation>Lataukset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4532"/>
+        <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Clean Up...</source>
         <translation>Siivoa...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4534"/>
+        <location filename="../src/rsslisting.cpp" line="4547"/>
         <source>News Filters...</source>
         <translation>Uutissuodattimet...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4535"/>
+        <location filename="../src/rsslisting.cpp" line="4548"/>
         <source>Filter News...</source>
         <translation>Suodata uutisia...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4538"/>
+        <location filename="../src/rsslisting.cpp" line="4551"/>
         <source>Open Options Dialog</source>
         <translation>Avaa Asetus-ikkuna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4544"/>
+        <location filename="../src/rsslisting.cpp" line="4557"/>
         <source>Show Starred Feeds</source>
         <translation>Näytä tähdellä merkityt syötteet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4545"/>
+        <location filename="../src/rsslisting.cpp" line="4558"/>
         <source>Show Not Working Feeds</source>
         <translation>Näytä ei-toimivat syötteet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4554"/>
+        <location filename="../src/rsslisting.cpp" line="4567"/>
         <source>Show Last Day</source>
         <translation>Näytä päivä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4555"/>
+        <location filename="../src/rsslisting.cpp" line="4568"/>
         <source>Show Last 7 Days</source>
         <translation>Näytä viimeiset 7 päivää</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4558"/>
+        <location filename="../src/rsslisting.cpp" line="4571"/>
         <source>Show &apos;About&apos; Dialog</source>
         <translation>Näytä Tietoja-ikkuna</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4560"/>
+        <location filename="../src/rsslisting.cpp" line="4573"/>
         <source>Check for Updates...</source>
         <translation>Tarkista päivitykset...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4561"/>
+        <location filename="../src/rsslisting.cpp" line="4574"/>
         <source>Report a Problem...</source>
         <translation>Ilmoita ongelmasta...</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4563"/>
+        <location filename="../src/rsslisting.cpp" line="4576"/>
         <source>Open News</source>
         <translation>Avaa uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4564"/>
+        <location filename="../src/rsslisting.cpp" line="4577"/>
         <source>Open Description News</source>
         <translation>Avaa uutisten kuvaukset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4565"/>
+        <location filename="../src/rsslisting.cpp" line="4578"/>
         <source>Open in Browser</source>
         <translation>Avaa selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4566"/>
+        <location filename="../src/rsslisting.cpp" line="4579"/>
         <source>Open in External Browser</source>
         <translation>Avaa ulkoisessa selaimessa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4569"/>
+        <location filename="../src/rsslisting.cpp" line="4582"/>
         <source>Open News in New Tab</source>
         <translation>Avaa uutiset uudessa välilehdessä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4570"/>
+        <location filename="../src/rsslisting.cpp" line="4583"/>
         <source>Open in Background Tab</source>
         <translation>Avaa taustavälilehdessä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4571"/>
+        <location filename="../src/rsslisting.cpp" line="4584"/>
         <source>Open News in Background Tab</source>
         <translation>Avaa uutiset taustavälilehdessä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4573"/>
+        <location filename="../src/rsslisting.cpp" line="4586"/>
         <source>Mark News Star</source>
         <translation>Merkitse tähdellä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4575"/>
+        <location filename="../src/rsslisting.cpp" line="4588"/>
         <source>Delete Selected News</source>
         <translation>Poista valitut uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4576"/>
+        <location filename="../src/rsslisting.cpp" line="4589"/>
         <source>Delete All News</source>
         <translation>Poista kaikki uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4577"/>
+        <location filename="../src/rsslisting.cpp" line="4590"/>
         <source>Delete All News from List</source>
         <translation>Poista kaikki uutiset listalta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4578"/>
+        <location filename="../src/rsslisting.cpp" line="4591"/>
         <source>Restore</source>
         <translation>Palauta</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4579"/>
+        <location filename="../src/rsslisting.cpp" line="4592"/>
         <source>Restore News</source>
         <translation>Palauta uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4580"/>
+        <location filename="../src/rsslisting.cpp" line="4593"/>
         <source>Copy Link</source>
         <translation>Kopioi linkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4581"/>
+        <location filename="../src/rsslisting.cpp" line="4594"/>
         <source>Copy Link News</source>
         <translation>Kopioi uutisen linkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4583"/>
+        <location filename="../src/rsslisting.cpp" line="4596"/>
         <source>Restore last deleted news</source>
         <translation>Palauta viimeksi poistetut uutiset</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4586"/>
+        <location filename="../src/rsslisting.cpp" line="4599"/>
         <source>Mark Feed Read</source>
         <translation>Merkitse syöte luetuksi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4595"/>
+        <location filename="../src/rsslisting.cpp" line="4608"/>
         <source>&amp;Browser</source>
         <translation>S&amp;elain</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4606"/>
+        <location filename="../src/rsslisting.cpp" line="4619"/>
         <source>Lock Toolbar</source>
         <translation>Lukitse työkalupalkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4609"/>
+        <location filename="../src/rsslisting.cpp" line="4622"/>
         <source>Application Style</source>
         <translation>Sovelluksen tyyli</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4611"/>
+        <location filename="../src/rsslisting.cpp" line="4624"/>
         <source>System2</source>
         <translation>Järjestelmä 2</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4612"/>
+        <location filename="../src/rsslisting.cpp" line="4625"/>
         <source>Green</source>
         <translation>Vihreä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4613"/>
+        <location filename="../src/rsslisting.cpp" line="4626"/>
         <source>Orange</source>
         <translation>Oranssi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4614"/>
+        <location filename="../src/rsslisting.cpp" line="4627"/>
         <source>Purple</source>
         <translation>Violetti</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4615"/>
+        <location filename="../src/rsslisting.cpp" line="4628"/>
         <source>Pink</source>
         <translation>Pinkki</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4616"/>
+        <location filename="../src/rsslisting.cpp" line="4629"/>
         <source>Gray</source>
         <translation>Harma</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4633"/>
+        <location filename="../src/rsslisting.cpp" line="4646"/>
         <source>Next Unread News</source>
         <translation>Seuraava lukematon uutinen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4634"/>
+        <location filename="../src/rsslisting.cpp" line="4647"/>
         <source>Previous Unread News</source>
         <translation>Edellinen lukematon uutinen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4636"/>
+        <location filename="../src/rsslisting.cpp" line="4649"/>
         <source>Switch Focus to Next Panel</source>
         <translation>Siirrä kohdistus seuraavaan paneeliin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4638"/>
+        <location filename="../src/rsslisting.cpp" line="4651"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
         <translation>Siirrä kohdistus seuraavaan paneeliin (Syötteet, Uutislista, Selain)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4639"/>
+        <location filename="../src/rsslisting.cpp" line="4652"/>
         <source>Switch Focus to Previous Panel</source>
         <translation>Siirrä kohdistus edelliseen paneeliin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4641"/>
+        <location filename="../src/rsslisting.cpp" line="4654"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
         <translation>Siirrä kohdistus edelliseen paneeliin (Syötteet, Selain, Uutislista)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4650"/>
+        <location filename="../src/rsslisting.cpp" line="4663"/>
         <source>Count News Unread</source>
         <translation>Lukemattomien uutisten määrä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4651"/>
+        <location filename="../src/rsslisting.cpp" line="4664"/>
         <source>Count News All</source>
         <translation>Uutisten määrä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4652"/>
+        <location filename="../src/rsslisting.cpp" line="4665"/>
         <source>Last Updated</source>
         <translation>Viimeksi päivitetty</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4675"/>
+        <location filename="../src/rsslisting.cpp" line="4688"/>
         <source>Show/Hide</source>
         <translation>Näytä/Piilota</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4680"/>
+        <location filename="../src/rsslisting.cpp" line="4693"/>
         <source>Panel Categories</source>
-        <translation>Paaneliryhmät</translation>
+        <translation>Ryhmät -paneeli</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4696"/>
+        <location filename="../src/rsslisting.cpp" line="4709"/>
         <source>Show labels menu</source>
         <translation>Näytä nimikevalikko</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4698"/>
+        <location filename="../src/rsslisting.cpp" line="4711"/>
         <source>Close Tab</source>
         <translation>Sulje välilehti</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4699"/>
+        <location filename="../src/rsslisting.cpp" line="4712"/>
         <source>Close Other Tabs</source>
         <translation>Sulje muut välilehdet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4700"/>
+        <location filename="../src/rsslisting.cpp" line="4713"/>
         <source>Close All Tabs</source>
         <translation>Sulje kaikki välilehdet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4712"/>
+        <location filename="../src/rsslisting.cpp" line="4725"/>
         <source>Find</source>
         <translation>Etsi</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4714"/>
+        <location filename="../src/rsslisting.cpp" line="4727"/>
         <source>Open Homepage Feed</source>
         <translation>Avaa kotisivusyöte</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4715"/>
+        <location filename="../src/rsslisting.cpp" line="4728"/>
         <source>Sorted by Name</source>
         <translation>Järjestetty nimen mukaan</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4716"/>
+        <location filename="../src/rsslisting.cpp" line="4729"/>
         <source>Collapse All Folders</source>
         <translation>Pienennä kansiot</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4717"/>
+        <location filename="../src/rsslisting.cpp" line="4730"/>
         <source>Expand All Folders</source>
         <translation>Laajenna kansiot</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4718"/>
+        <location filename="../src/rsslisting.cpp" line="4731"/>
         <source>Next Folder</source>
         <translation>Seuraava kansio</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4719"/>
+        <location filename="../src/rsslisting.cpp" line="4732"/>
         <source>Previous Folder</source>
         <translation>Edellinen kansio</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4720"/>
+        <location filename="../src/rsslisting.cpp" line="4733"/>
         <source>Expand Folder</source>
         <translation>Laajenna kansio</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4722"/>
+        <location filename="../src/rsslisting.cpp" line="4735"/>
         <source>Setting Page: Labels</source>
         <translation>Asetussivu: Nimikkeet</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4724"/>
+        <location filename="../src/rsslisting.cpp" line="4737"/>
         <source>Share</source>
         <translation>Jaa</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4726"/>
+        <location filename="../src/rsslisting.cpp" line="4739"/>
         <source>Sort By</source>
         <translation>Järjestä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4727"/>
+        <location filename="../src/rsslisting.cpp" line="4740"/>
         <source>Ascending</source>
         <translation>Nouseva</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4728"/>
+        <location filename="../src/rsslisting.cpp" line="4741"/>
         <source>Descending</source>
         <translation>Laskeva</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="4730"/>
+        <location filename="../src/rsslisting.cpp" line="4743"/>
         <source>Clear</source>
         <translation>Tyhjennä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6912"/>
+        <location filename="../src/rsslisting.cpp" line="7060"/>
         <source>HTML-Files (*.%1)</source>
         <translation>HTML-tiedostot (*.%1)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6912"/>
+        <location filename="../src/rsslisting.cpp" line="7060"/>
         <source>Text files (*.%2)</source>
         <translation>Tekstitiedostot (*.%2)</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="97"/>
+        <location filename="../src/rsslisting.h" line="105"/>
         <source>Important</source>
         <translation>Tärkeä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="97"/>
+        <location filename="../src/rsslisting.h" line="105"/>
         <source>Work</source>
         <translation>Työ</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="97"/>
+        <location filename="../src/rsslisting.h" line="105"/>
         <source>Personal</source>
         <translation>Henkilökohtainen</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="98"/>
+        <location filename="../src/rsslisting.h" line="106"/>
         <source>To Do</source>
         <translation>To do</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="98"/>
+        <location filename="../src/rsslisting.h" line="106"/>
         <source>Later</source>
         <translation>Myöhemmin</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.h" line="98"/>
+        <location filename="../src/rsslisting.h" line="106"/>
         <source>Amusingly</source>
         <translation>Hassu</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6910"/>
+        <location filename="../src/rsslisting.cpp" line="7058"/>
         <source>Save As</source>
         <translation>Tallenna nimellä</translation>
     </message>
     <message>
-        <location filename="../src/rsslisting.cpp" line="6918"/>
+        <location filename="../src/rsslisting.cpp" line="7066"/>
         <source>Save As: can&apos;t open a file</source>
         <translation>Tallenna nimellä: tiedostoa ei voitu avata</translation>
     </message>
@@ -3774,22 +3830,22 @@ ei löydetty!</translation>
 <context>
     <name>RequestFeed</name>
     <message>
-        <location filename="../src/requestfeed.cpp" line="200"/>
+        <location filename="../src/requestfeed.cpp" line="203"/>
         <source>Server requires authentication!</source>
         <translation>Palvelin vaatii kirjautumisen!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="202"/>
+        <location filename="../src/requestfeed.cpp" line="205"/>
         <source>Server replied: Not Found!</source>
         <translation>Palvelin vastasi: Ei löytynyt!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="237"/>
+        <location filename="../src/requestfeed.cpp" line="240"/>
         <source>Redirect error!</source>
         <translation>Uudelleenohjaus -virhe!</translation>
     </message>
     <message>
-        <location filename="../src/requestfeed.cpp" line="298"/>
+        <location filename="../src/requestfeed.cpp" line="301"/>
         <source>Request timeout!</source>
         <translation>Pyyntö aikakatkaistiin!</translation>
     </message>
@@ -3797,57 +3853,57 @@ ei löydetty!</translation>
 <context>
     <name>UpdateAppDialog</name>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="37"/>
+        <location filename="../src/updateappdialog.cpp" line="38"/>
         <source>Check for Updates</source>
         <translation>Tarkista päivitykset</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="42"/>
+        <location filename="../src/updateappdialog.cpp" line="43"/>
         <source>Checking for updates...</source>
         <translation>Tarkistetaan päivityksiä...</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="47"/>
+        <location filename="../src/updateappdialog.cpp" line="48"/>
         <source>Loading history...</source>
         <translation>Ladataan historiaa...</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="50"/>
+        <location filename="../src/updateappdialog.cpp" line="51"/>
         <source>Don&apos;t remind about this version</source>
         <translation>Älä muistuta tästä versiosta</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="58"/>
+        <location filename="../src/updateappdialog.cpp" line="59"/>
         <source>&amp;Install</source>
         <translation>&amp;Asenna</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="116"/>
+        <location filename="../src/updateappdialog.cpp" line="117"/>
         <source>You already have the latest version</source>
         <translation>Sinulla on jo uusin versio</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="121"/>
+        <location filename="../src/updateappdialog.cpp" line="127"/>
         <source>A new version of QuiteRSS is available!</source>
         <translation>Uusi versio QuiteRSS:stä on saatavilla!</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="124"/>
+        <location filename="../src/updateappdialog.cpp" line="130"/>
         <source>Click here to go to the download page</source>
         <translation>Klikkaa tästä avataksesi lataussivun</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="129"/>
+        <location filename="../src/updateappdialog.cpp" line="135"/>
         <source>Your version is:</source>
         <translation>Sinun versiosi:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="131"/>
+        <location filename="../src/updateappdialog.cpp" line="137"/>
         <source>Current version is:</source>
         <translation>Nykyinen versio:</translation>
     </message>
     <message>
-        <location filename="../src/updateappdialog.cpp" line="137"/>
+        <location filename="../src/updateappdialog.cpp" line="143"/>
         <source>Error checking updates</source>
         <translation>Virhe tarkistettaessa päivityksiä</translation>
     </message>
