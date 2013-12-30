@@ -2,7 +2,7 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
-<p><b>Version 0.14.1+</b> (30 Dec 2013)
+<p><b>Version 0.14.2</b> (30 Dec 2013)
 <ul>
 <li>Added: Option "Options->Browser->Load images"</li>
 <li>Added: Feed option "Disable update"</li>

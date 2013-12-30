@@ -1232,7 +1232,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "fa" << QString::fromUtf8("فارسی [FA]")
-           << "0.14.1"
+           << "0.14.2"
            << "H.Mohamadi" << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_FA"));
@@ -1256,7 +1256,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "hu" << QString::fromUtf8("Magyar [HU]")
-           << "0.13.3"
+           << "0.14.1"
            << "ZityiSoft" << "zityisoft@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_HU"));
@@ -1344,7 +1344,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "sk" << QString::fromUtf8("Slovenčina [SK]")
-           << "0.14.1"
+           << "0.14.2"
            << QString::fromUtf8("DAG Software (Ďanovský Ján)") << "dagsoftware@yahoo.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_SK"));
@@ -1352,7 +1352,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "sr" << QString::fromUtf8("Српски [SR]")
-           << QString(STRPRODUCTVER)
+           << "0.14.1"
            << "Ozzii" << "ozzii.translate@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_SR"));
@@ -1368,7 +1368,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "tg_TJ" << QString::fromUtf8("Тоҷикӣ [tg_TJ]")
-           << "0.14.1"
+           << "0.14.2"
            << QString::fromUtf8("Kobilov Iskandar") << "kabilov.iskandar@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_TJ"));
@@ -1400,7 +1400,7 @@ void OptionsDialog::createLanguageWidget()
 
   treeItem.clear();
   treeItem << "zh_CN" << QString::fromUtf8("中文 (China) [zh_CN]")
-           << "0.14.1"
+           << "0.14.2"
            << QString::fromUtf8("wwj402") << "";
   languageItem = new QTreeWidgetItem(treeItem);
   languageItem->setIcon(1, QIcon(":/flags/flag_CN"));

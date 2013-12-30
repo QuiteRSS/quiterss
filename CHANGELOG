@@ -1,3 +1,22 @@
+Version 0.14.2 (30 Dec 2013)
+  * Added: Option "Options->Browser->Load images"
+  * Added: Feed option "Disable update"
+  * Added: Shortcuts for main browser actions
+  * Added: Setting for text and background colors of focused feed
+  * Added: Language: Finnish
+  * Changed: Load feed's favicon from main webpage
+  * Changed: Process "dc:date" while parsing feed
+  * Changed: Mouse gestures. Jump to news description if there is no previous page on back-action
+  * Changed: Address bar appearance
+  * Changed: Send whole new's text when share news by e-mail
+  * Fixed: Adding feeds that contains "amp;"
+  * Fixed: Parsing of some feeds
+  * Fixed: Action "Next unread news"
+  * Fixed: Recounting and displaying counters in categories tree
+  * Fixed: Manual run of filter when option "Store DB in memory" is disabled
+  * Fixed: Displaying focused feed, while switching tabs with enabled filter
+  * Fixed: Taking account of filter text when switching news filter
+
 Version 0.14.1 (30 Nov 2013)
   * Main: Increase application performance
   * Added: Audio/video player for podcasts
