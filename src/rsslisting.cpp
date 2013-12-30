@@ -2677,6 +2677,7 @@ void RSSListing::slotExportFeeds()
                                  0);
   FeedsTreeView exportTreeView(this);
   exportTreeView.setModel(&exportTreeModel);
+  exportTreeModel.setView(feedsTreeView_);
   exportTreeView.expandAll();
 
   QModelIndex index = exportTreeModel.index(0, 0);
