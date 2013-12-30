@@ -616,7 +616,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>Zet update uit</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -937,22 +937,22 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Play a Sound</source>
-        <translation type="unfinished"/>
+        <translation>Speel een geluid</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Toon nieuws in melder</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Blader</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Speel</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="183"/>
@@ -967,7 +967,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="251"/>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>Open Bestand</translation>
     </message>
 </context>
 <context>
@@ -1352,25 +1352,25 @@ werd niet gevonden</translation>
         <location filename="../src/newstabwidget.cpp" line="544"/>
         <location filename="../src/newstabwidget.cpp" line="565"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Laadt afbeeldingen</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="545"/>
         <location filename="../src/newstabwidget.cpp" line="566"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Toon Automatisch Afbeeldingen van het Nieuws</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <location filename="../src/newstabwidget.cpp" line="569"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Laadt geen afbeeldingen</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="548"/>
         <location filename="../src/newstabwidget.cpp" line="570"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Laat geen afbeeldingen zien van nieuws </translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="553"/>
@@ -1597,7 +1597,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="258"/>
         <source>Hide tab bar if only have one tab open</source>
-        <translation type="unfinished"/>
+        <translation>Verberg tabblad balk als er maar een tabblad open is</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1651,7 +1651,7 @@ werd niet gevonden</translation>
         <location filename="../src/optionsdialog.cpp" line="668"/>
         <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Browse...</source>
-        <translation>Browse...</translation>
+        <translation>Blader...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
@@ -1941,7 +1941,7 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="996"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Speel</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
@@ -2497,22 +2497,22 @@ werd niet gevonden</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1540"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>Tekstkleur van nieuw nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1543"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Tekstkleur van ongelezen nieuws</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>Gerichte feed kleur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1549"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>Gerichte feed achtergrond kleur</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1666"/>

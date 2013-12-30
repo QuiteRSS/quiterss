@@ -249,7 +249,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Antiguidade máxima das notícias a guardar:</translation>
+        <translation>Guardar notícias durante este número de dias:</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="314"/>
@@ -291,7 +291,7 @@
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Remover da base de dados os registos marcados como lidos.
-As notícias antigas poderão aparecer</translation>
+As notícias antigas poderão reaparecer.</translation>
     </message>
 </context>
 <context>
@@ -1517,12 +1517,12 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>Save DB stored in memory to file every</source>
-        <translation>Gravar base de dados do ficheiro a cada</translation>
+        <translation>Gravar base de dados para um ficheiro a cada</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation>Executar QuiteRSS ao iniciar o Windows</translation>
+        <translation>Iniciar QuiteRSS ao arrancar o Windows</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="316"/>
@@ -1651,7 +1651,7 @@ não existe!</translation>
         <location filename="../src/optionsdialog.cpp" line="668"/>
         <location filename="../src/optionsdialog.cpp" line="995"/>
         <source>Browse...</source>
-        <translation>Navegar...</translation>
+        <translation>Procurar...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="460"/>
@@ -1791,7 +1791,7 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="727"/>
         <source>Position on unread news</source>
-        <translation>Posição das notícias não lidas</translation>
+        <translation>Posicionar nas notícias não lidas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="744"/>
@@ -1896,7 +1896,7 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Enable cleanup on shutdown</source>
-        <translation>Ativar limpeza ao desligar</translation>
+        <translation>Ativar limpeza ao encerrar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -1971,7 +1971,7 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1035"/>
         <source>Review</source>
-        <translation>Revisão</translation>
+        <translation>Pré-visualizar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1039"/>
@@ -2280,7 +2280,7 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="804"/>
         <source>Opening feed:</source>
-        <translation>Abrir fonte:</translation>
+        <translation>Abertura de fontes:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="713"/>
@@ -2319,7 +2319,7 @@ não existe!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="881"/>
         <source>Maximum age of news in days to keep:</source>
-        <translation>Antiguidade máxima das notícias a guardar:</translation>
+        <translation>Guardar notícias durante este número de dias:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="452"/>
@@ -2954,12 +2954,12 @@ não existe!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Notícias - 1 página acima</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4644"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Notícias - 1 página abaixo</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4656"/>
@@ -2969,7 +2969,7 @@ não existe!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4658"/>
         <source>Minimize to Tray</source>
-        <translation>MInimizar para a bandeja</translation>
+        <translation>Minimizar para a bandeja</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4660"/>
@@ -3101,7 +3101,7 @@ não existe!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4723"/>
         <source>Increase news list/decrease browser</source>
-        <translation>AUmentar lista de notícias/diminuir navegador</translation>
+        <translation>Aumentar lista de notícias/diminuir navegador</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5562"/>
@@ -3749,7 +3749,7 @@ não existe!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4735"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>Definições de classificações</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4737"/>

@@ -70,7 +70,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="110"/>
         <source>Username:</source>
-        <translation>Nome Utente:</translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="112"/>
@@ -196,17 +196,17 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="57"/>
         <source>Unread</source>
-        <translation>Non Letti</translation>
+        <translation>Non lette</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="62"/>
         <source>Starred</source>
-        <translation>Segnati con una stella</translation>
+        <translation>Segnate con una stella</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="67"/>
         <source>Deleted</source>
-        <translation>Eliminati</translation>
+        <translation>Eliminate</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="72"/>
@@ -216,12 +216,12 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="133"/>
         <source>Open in New Tab</source>
-        <translation>Apri in una Nuova Scheda</translation>
+        <translation>Apri in una nuova scheda</translation>
     </message>
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="136"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation>Pulisci &apos;Eliminati&apos;</translation>
+        <translation>Pulisci &apos;Eliminate&apos;</translation>
     </message>
 </context>
 <context>
@@ -244,7 +244,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="305"/>
         <source>Clean Up Options</source>
-        <translation>Opzioni di Pulizia</translation>
+        <translation>Opzioni di pulizia</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="307"/>
@@ -279,19 +279,19 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="337"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Pulizia &apos;Eliminati&apos;</translation>
+        <translation>Pulizia &apos;Eliminate&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="338"/>
         <source>Purge DB</source>
-        <translation>Pulisci DataBase</translation>
+        <translation>Pulisci database</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="341"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Rimuove totalmente le registrazioni che sono state segnate come &apos;cancellate&apos; dal DataBase.
-Le notizie vecchie potrebbero riapparire</translation>
+        <translation>Rimuove totalmente dal database le voci che sono state segnate come &apos;eliminate&apos;.
+Le notizie vecchie potrebbero riapparire.</translation>
     </message>
 </context>
 <context>
@@ -317,17 +317,17 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="30"/>
         <source>Customize Main Toolbar</source>
-        <translation>Personalizza Barra Principale</translation>
+        <translation>Personalizza barra principale</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="32"/>
         <source>Customize Feeds Toolbar</source>
-        <translation>Personalizza la barra delle fonti</translation>
+        <translation>Personalizza barra delle fonti</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="34"/>
         <source>Customize News Toolbar</source>
-        <translation>Personalizza Barra delle Notizie</translation>
+        <translation>Personalizza barra delle notizie</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="74"/>
@@ -356,12 +356,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text Beside Icon</source>
-        <translation>Testo Accanto all&apos;Icona</translation>
+        <translation>Testo accanto all&apos;icona</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="92"/>
         <source>Text Under Icon</source>
-        <translation>Testo Sotto l&apos;Icona</translation>
+        <translation>Testo sotto l&apos;icona</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="107"/>
@@ -386,7 +386,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="123"/>
         <source>Icon Size:</source>
-        <translation>Dimensione Icona</translation>
+        <translation>Dimensione icona</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="139"/>
@@ -401,12 +401,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="150"/>
         <source>Move up</source>
-        <translation>Sposta Su</translation>
+        <translation>Sposta su</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="153"/>
         <source>Move down</source>
-        <translation>Sposta Giù</translation>
+        <translation>Sposta giù</translation>
     </message>
     <message>
         <location filename="../src/customizetoolbardialog.cpp" line="157"/>
@@ -425,12 +425,12 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation>Errore: Impossibile scrivere il file!</translation>
+        <translation>Errore: impossibile scrivere il file!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
         <source>Error: </source>
-        <translation>Errore: </translation>
+        <translation>Errore:</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="241"/>
@@ -491,27 +491,27 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
         <source>Do you want to also delete dowloaded file?</source>
-        <translation>Vuoi eliminare anche file scaricato?</translation>
+        <translation>Vuoi eliminare anche il file scaricato?</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="365"/>
         <source>Open File</source>
-        <translation>Apri File</translation>
+        <translation>Apri file</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="367"/>
         <source>Open Folder</source>
-        <translation>Apri Cartella</translation>
+        <translation>Apri cartella</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="369"/>
         <source>Copy Download Link</source>
-        <translation>Copia Collegamento Download</translation>
+        <translation>Copia collegamento download</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="371"/>
         <source>Cancel Downloading</source>
-        <translation>Annulla Download</translation>
+        <translation>Annulla download</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="372"/>
@@ -558,7 +558,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="88"/>
         <source>All Files (*.*)</source>
-        <translation>Tutti i File (*.*)</translation>
+        <translation>Tutti i file (*.*)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="91"/>
@@ -616,7 +616,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>Disattiva aggiornamento</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -646,7 +646,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="192"/>
         <source>Descending</source>
-        <translation>Derescente</translation>
+        <translation>Decrescente</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="197"/>
@@ -666,12 +666,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="222"/>
         <source>Move up</source>
-        <translation>Sposta Su</translation>
+        <translation>Sposta su</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="225"/>
         <source>Move down</source>
-        <translation>Sposta Giù</translation>
+        <translation>Sposta giù</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="229"/>
@@ -686,7 +686,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="267"/>
         <source>Username:</source>
-        <translation>Nome Utente:</translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="269"/>
@@ -726,7 +726,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="412"/>
         <source>Select Image</source>
-        <translation>Seleziona Immagine</translation>
+        <translation>Seleziona immagine</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="419"/>
@@ -746,22 +746,22 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
         <source>Load Title</source>
-        <translation>Carica Titolo</translation>
+        <translation>Carica titolo</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation>Carica Favicon</translation>
+        <translation>Carica favicon</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
         <source>Select Icon...</source>
-        <translation>Seleziona Icona...</translation>
+        <translation>Seleziona icona...</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
         <source>Select Icon</source>
-        <translation>Seleziona Icona</translation>
+        <translation>Seleziona icona</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
@@ -876,27 +876,27 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/findtext.cpp" line="89"/>
         <location filename="../src/findtext.cpp" line="104"/>
         <source>Find in News</source>
-        <translation>Trova in Notizie</translation>
+        <translation>Trova tra le notizie</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find Title</source>
-        <translation>Trova Titolo</translation>
+        <translation>Trova titolo</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find Authors</source>
-        <translation>Trova Autori</translation>
+        <translation>Trova autori</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find Category</source>
-        <translation>Trova Categoria</translation>
+        <translation>Trova categoria</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
         <source>Find in Content</source>
-        <translation>Trova nel Contenuto</translation>
+        <translation>Trova nel contenuto</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="109"/>
@@ -942,17 +942,17 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Mostra le notizie nelle notifiche</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Sfoglia</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Riproduci</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="183"/>
@@ -1015,7 +1015,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="43"/>
         <source>Read</source>
-        <translation>Letta</translation>
+        <translation>Letto</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="43"/>
@@ -1182,7 +1182,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="107"/>
         <source>Run Filter</source>
-        <translation>Esegui Filtro</translation>
+        <translation>Esegui filtro</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="257"/>
@@ -1306,7 +1306,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="525"/>
         <source>Save Image...</source>
-        <translation>Salva Immagine...</translation>
+        <translation>Salva immagine...</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="526"/>
@@ -1352,25 +1352,25 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/newstabwidget.cpp" line="544"/>
         <location filename="../src/newstabwidget.cpp" line="565"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Immagini attive</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="545"/>
         <location filename="../src/newstabwidget.cpp" line="566"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Carica automaticamente le immagini nella vista notizie</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <location filename="../src/newstabwidget.cpp" line="569"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Immagini non attive</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="548"/>
         <location filename="../src/newstabwidget.cpp" line="570"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Non caricare le immagini nella vista notizie</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="553"/>
@@ -1477,7 +1477,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="88"/>
         <source>Fonts &amp; Colors</source>
-        <translation>Caratteri &amp; Colori</translation>
+        <translation>Caratteri e colori</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
@@ -1597,7 +1597,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="258"/>
         <source>Hide tab bar if only have one tab open</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi la barra delle schede quando ce n&apos;è solo una aperta</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1826,42 +1826,42 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show All</source>
-        <translation>Mostra Tutto</translation>
+        <translation>Mostra tutto</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show New</source>
-        <translation>Mostra Nuovi</translation>
+        <translation>Mostra nuove</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="779"/>
         <source>Show Unread</source>
-        <translation>Mostra Non Letti</translation>
+        <translation>Mostra non lette</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Show Starred</source>
-        <translation>Mostra segnati con la stella</translation>
+        <translation>Mostra segnate con la stella</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="780"/>
         <source>Show Not Starred</source>
-        <translation>Mostra non segnati con la stella</translation>
+        <translation>Mostra non segnate con la stella</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Unread or Starred</source>
-        <translation>Mostra non letti o segnati con la stella</translation>
+        <translation>Mostra non lette o segnate con la stella</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Last Day</source>
-        <translation>Mostra Ultimo Giorno</translation>
+        <translation>Mostra ultimo giorno</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
         <source>Show Last 7 Days</source>
-        <translation>Mostra Ultimi 7 Giorni</translation>
+        <translation>Mostra ultimi 7 giorni</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="796"/>
@@ -1886,7 +1886,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="834"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
-        <translation>Cambiare il comportamento dell&apos;azione &apos;Notizia Non Letta Successiva&apos;</translation>
+        <translation>Cambia il comportamento dell&apos;azione &apos;notizia non letta successiva&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="839"/>
@@ -1906,12 +1906,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Pulizia &apos;Eliminati&apos;</translation>
+        <translation>Pulizia &apos;Eliminate&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>Attiva ottimizzazione del DataBase (spegnimento più lento)</translation>
+        <translation>Attiva ottimizzazione del database (spegnimento più lento)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="947"/>
@@ -1941,7 +1941,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="996"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Riproduci</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
@@ -1951,22 +1951,22 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Top Left</source>
-        <translation>In Alto a Sinistra</translation>
+        <translation>In alto a sinistra</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1024"/>
         <source>Top Right</source>
-        <translation>In Alto a Destra</translation>
+        <translation>In alto a destra</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Left</source>
-        <translation>In Basso a Sinistra</translation>
+        <translation>In basso a sinistra</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Right</source>
-        <translation>In Basso a Destra</translation>
+        <translation>In basso a destra</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1035"/>
@@ -2031,12 +2031,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1147"/>
         <source>Delete All</source>
-        <translation>Elimina Tutto</translation>
+        <translation>Elimina tutto</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1149"/>
         <source>Show Passwords</source>
-        <translation>Mostra Password</translation>
+        <translation>Mostra password</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1455"/>
@@ -2223,13 +2223,13 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2617"/>
         <source>Select Style Sheet File</source>
-        <translation>Seleziona Foglio di Stile File</translation>
+        <translation>Seleziona il file del foglio di stile</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2626"/>
         <location filename="../src/optionsdialog.cpp" line="2655"/>
         <source>Open Directory...</source>
-        <translation>Apri Cartella...</translation>
+        <translation>Apri cartella...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2636"/>
@@ -2497,12 +2497,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1540"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>Colore del testo nelle nuove notizie</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1543"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Colore del testo delle notizie non lette</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
@@ -2659,7 +2659,7 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2443"/>
         <source>Removing file failed:
 %1</source>
-        <translation>Rimozione del file fallta:
+        <translation>Rimozione del file fallita:
 %1</translation>
     </message>
     <message>
@@ -2847,12 +2847,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4553"/>
         <source>Filter Feeds</source>
-        <translation>Filtra fonti</translation>
+        <translation>Filtro fonti</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4560"/>
         <source>Filter News</source>
-        <translation>Filtro Notizie</translation>
+        <translation>Filtro notizie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4564"/>
@@ -2877,7 +2877,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4598"/>
         <source>Mark Read</source>
-        <translation>Segna come Letto</translation>
+        <translation>Segna come letta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4600"/>
@@ -2899,12 +2899,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4614"/>
         <source>Main Toolbar...</source>
-        <translation>Barra Principale...</translation>
+        <translation>Barra principale...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4615"/>
         <source>Customize Toolbar...</source>
-        <translation>Barra Personalizzata...</translation>
+        <translation>Barra personalizzata...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4616"/>
@@ -2914,7 +2914,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4617"/>
         <source>News Toolbar...</source>
-        <translation>Barra delle Notizie...</translation>
+        <translation>Barra delle notizie...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4620"/>
@@ -2954,12 +2954,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Pagina delle notizie su</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4644"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Pagina delle notizie giù</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4656"/>
@@ -2984,7 +2984,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4667"/>
         <source>Show Indentation</source>
-        <translation>Mostra Indentazione (rientro)</translation>
+        <translation>Mostra rientro</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4672"/>
@@ -3049,7 +3049,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4686"/>
         <source>Save Page As...</source>
-        <translation>Salva Pagina come...</translation>
+        <translation>Salva pagina come...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4690"/>
@@ -3096,12 +3096,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Decrease news list/increase browser</source>
-        <translation>Diminuisci elenco notizie/Aumenta browser</translation>
+        <translation>Diminuisci elenco notizie/aumenta browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4723"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Aumenta elenco notizie/Diminuisci browser</translation>
+        <translation>Aumenta elenco notizie/diminuisci browser</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5562"/>
@@ -3127,12 +3127,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4719"/>
         <source>Deleted</source>
-        <translation>Eliminati</translation>
+        <translation>Eliminate</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4718"/>
         <source>Starred</source>
-        <translation>Segnati con una stella</translation>
+        <translation>Segnate con una stella</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4707"/>
@@ -3146,14 +3146,14 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/rsslisting.cpp" line="6906"/>
         <location filename="../src/rsslisting.cpp" line="6928"/>
         <source>Hide Categories</source>
-        <translation>Nascondi Categorie</translation>
+        <translation>Nascondi categorie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2182"/>
         <location filename="../src/rsslisting.cpp" line="4703"/>
         <location filename="../src/rsslisting.cpp" line="6912"/>
         <source>Show Categories</source>
-        <translation>Mostra Categorie</translation>
+        <translation>Mostra categorie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2645"/>
@@ -3163,7 +3163,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4537"/>
         <source>Mark Read/Unread</source>
-        <translation>Segna come Letto/Non Letto</translation>
+        <translation>Segna come letta/non letta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4550"/>
@@ -3186,7 +3186,7 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/rsslisting.cpp" line="4556"/>
         <location filename="../src/rsslisting.cpp" line="4563"/>
         <source>Show Unread</source>
-        <translation>Mostra Non Letti</translation>
+        <translation>Mostra non lette</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4570"/>
@@ -3295,7 +3295,7 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/rsslisting.cpp" line="4504"/>
         <location filename="../src/rsslisting.cpp" line="5319"/>
         <source>Unread News: %1</source>
-        <translation>Notizie Non Lette: %1</translation>
+        <translation>Notizie non lette: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4508"/>
@@ -3337,7 +3337,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4717"/>
         <source>Unread</source>
-        <translation>Non Letto</translation>
+        <translation>Non letta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4720"/>
@@ -3381,7 +3381,7 @@ Le notizie vecchie potrebbero riapparire</translation>
         <location filename="../src/rsslisting.cpp" line="5864"/>
         <location filename="../src/rsslisting.cpp" line="6877"/>
         <source>Unread: %1</source>
-        <translation>Non Letto: %1</translation>
+        <translation>Non lette: %1</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2896"/>
@@ -3430,13 +3430,13 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4538"/>
         <source>Mark Current News Read/Unread</source>
-        <translation>Segna il Feed Corrente come Letto/Non Letto</translation>
+        <translation>Segna la fonte attuale come letta/non letta</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4540"/>
         <location filename="../src/rsslisting.cpp" line="4541"/>
         <source>Mark All News Read</source>
-        <translation>Segna Tutte le Notizie come Lette</translation>
+        <translation>Segna tutte le notizie come lette</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4543"/>
@@ -3479,12 +3479,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4567"/>
         <source>Show Last Day</source>
-        <translation>Mostra Ultimo Giorno</translation>
+        <translation>Mostra ultimo giorno</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4568"/>
         <source>Show Last 7 Days</source>
-        <translation>Mostra Ultimi 7 Giorni</translation>
+        <translation>Mostra ultimi 7 giorni</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4571"/>
@@ -3504,12 +3504,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4576"/>
         <source>Open News</source>
-        <translation>Apri Notizie</translation>
+        <translation>Apri notizie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4577"/>
         <source>Open Description News</source>
-        <translation>Apri Descrizione Notizie</translation>
+        <translation>Apri descrizione notizie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4578"/>
@@ -3569,12 +3569,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4593"/>
         <source>Copy Link</source>
-        <translation>Copia Collegamento</translation>
+        <translation>Copia collegamento</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4594"/>
         <source>Copy Link News</source>
-        <translation>Copia Collegamento Notizia</translation>
+        <translation>Copia collegamento notizia</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4596"/>
@@ -3594,7 +3594,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4619"/>
         <source>Lock Toolbar</source>
-        <translation>Blocca Barra degli Strumenti</translation>
+        <translation>Blocca barra degli strumenti</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4622"/>
@@ -3634,17 +3634,17 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4646"/>
         <source>Next Unread News</source>
-        <translation>Notizia Non Letta Successiva</translation>
+        <translation>Notizia non letta successiva</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4647"/>
         <source>Previous Unread News</source>
-        <translation>Notizia Non Letta Precedente</translation>
+        <translation>Notizia non letta precedente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4649"/>
         <source>Switch Focus to Next Panel</source>
-        <translation>Sposta la Selezione al Riquadro Successivo</translation>
+        <translation>Sposta la selezione al riquadro successivo</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4651"/>
@@ -3654,7 +3654,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4652"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation>Sposta la Selezione al Riquadro Precedente</translation>
+        <translation>Sposta la selezione al riquadro precedente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4654"/>
@@ -3664,7 +3664,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4663"/>
         <source>Count News Unread</source>
-        <translation>Numero delle Notizie Non Lette</translation>
+        <translation>Numero delle notizie non lette</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4664"/>
@@ -3679,12 +3679,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4688"/>
         <source>Show/Hide</source>
-        <translation>Mostra/Nascondi</translation>
+        <translation>Mostra/nascondi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4693"/>
         <source>Panel Categories</source>
-        <translation>Pannello Categorie</translation>
+        <translation>Pannello categorie</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4709"/>
@@ -3694,17 +3694,17 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4711"/>
         <source>Close Tab</source>
-        <translation>Chiudi Scheda</translation>
+        <translation>Chiudi scheda</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4712"/>
         <source>Close Other Tabs</source>
-        <translation>Chiudi le Altre Schede</translation>
+        <translation>Chiudi le altre schede</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4713"/>
         <source>Close All Tabs</source>
-        <translation>Chiudi Tutte le Schede</translation>
+        <translation>Chiudi tutte le schede</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4725"/>
@@ -3719,32 +3719,32 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4728"/>
         <source>Sorted by Name</source>
-        <translation>Ordinato per Nome</translation>
+        <translation>Ordinate per nome</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4729"/>
         <source>Collapse All Folders</source>
-        <translation>Chiudi Tutte le Cartelle</translation>
+        <translation>Chiudi tutte le cartelle</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4730"/>
         <source>Expand All Folders</source>
-        <translation>Apri Tutte le Cartelle</translation>
+        <translation>Apri tutte le cartelle</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4731"/>
         <source>Next Folder</source>
-        <translation>Cartella Precedente</translation>
+        <translation>Cartella successiva</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4732"/>
         <source>Previous Folder</source>
-        <translation>Cartella Successiva</translation>
+        <translation>Cartella precedente</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4733"/>
         <source>Expand Folder</source>
-        <translation>Apri Cartella</translation>
+        <translation>Apri cartella</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4735"/>
@@ -3804,12 +3804,12 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/rsslisting.h" line="106"/>
         <source>To Do</source>
-        <translation>Da Fare</translation>
+        <translation>Da fare</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="106"/>
         <source>Later</source>
-        <translation>Più Tardi</translation>
+        <translation>Più tardi</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.h" line="106"/>
@@ -3842,7 +3842,7 @@ Le notizie vecchie potrebbero riapparire</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="240"/>
         <source>Redirect error!</source>
-        <translation>Reindirizzamento errore!</translation>
+        <translation>Errore di reindirizzamento!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="301"/>

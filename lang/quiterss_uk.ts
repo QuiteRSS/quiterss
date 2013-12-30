@@ -614,7 +614,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>Вимкнути оновлення</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -935,22 +935,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Play a Sound</source>
-        <translation type="unfinished"/>
+        <translation>Відтворити звук</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Показати новину в сповіщенні</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Огляд</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Відтворити</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="183"/>
@@ -965,7 +965,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="251"/>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити файл...</translation>
     </message>
 </context>
 <context>
@@ -1350,25 +1350,25 @@ Ancient news could reappear</source>
         <location filename="../src/newstabwidget.cpp" line="544"/>
         <location filename="../src/newstabwidget.cpp" line="565"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Завантажувати зображення</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="545"/>
         <location filename="../src/newstabwidget.cpp" line="566"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Автоматичне завантаження зображень</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <location filename="../src/newstabwidget.cpp" line="569"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>Не завантажувати зображення</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="548"/>
         <location filename="../src/newstabwidget.cpp" line="570"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>Не завантажувати зображення в списку новин</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="553"/>
@@ -1595,7 +1595,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="258"/>
         <source>Hide tab bar if only have one tab open</source>
-        <translation type="unfinished"/>
+        <translation>Приховати панель вкладок, якщо відкрита тільки одна вкладка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1939,7 +1939,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="996"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>Відтворити</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
@@ -2495,22 +2495,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1540"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>Колір тексту нових новин в списку</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1543"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>Колір тексту непрочитаних новин в списку</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>Колір тексту стрічки під курсором</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1549"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>Колір стрічки під курсором</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1666"/>
