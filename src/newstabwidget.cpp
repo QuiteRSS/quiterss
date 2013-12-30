@@ -1313,7 +1313,14 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
     QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
     //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
+
+    QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
+    int pos = reg.indexIn(authorName);
+    if (pos > -1) {
+      authorName.replace(reg.cap(1), QString(" <a href='mailto:%1'>%1</a>").arg(reg.cap(1)));
+    }
     authorString = authorName;
+
     if (!authorEmail.isEmpty())
       authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
     if (!authorUri.isEmpty())
