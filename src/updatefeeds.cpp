@@ -322,9 +322,30 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
   QSqlQuery q(db_);
   QList<int> idsList;
   QList<QString> urlsList;
+  QXmlStreamReader xml;
+  QString convertData;
+  bool codecLocal = false;
 
   xmlData.replace("&", "&#38;");
-  QXmlStreamReader xml(xmlData);
+
+  QRegExp rx("encoding=\"([^\"]+)", Qt::CaseInsensitive, QRegExp::RegExp2);
+  int pos = rx.indexIn(xmlData);
+  if (pos == -1) {
+    rx.setPattern("encoding='([^']+)");
+    pos = rx.indexIn(xmlData);
+  }
+  if (pos == -1) {
+    QTextCodec *codec = QTextCodec::codecForLocale();
+    if (codec && codec->canEncode(xmlData)) {
+      convertData = codec->toUnicode(xmlData);
+      codecLocal = true;
+    }
+  }
+  if (codecLocal) {
+    xml.addData(convertData);
+  } else {
+    xml.addData(xmlData);
+  }
 
   db_.transaction();
 
@@ -409,8 +430,10 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
     qDebug() << parentIdsStack;
   }
   if (xml.error()) {
-    emit signalMessageStatusBar(QString("Import error: Line=%1, ErrorString=%2").
-                                arg(xml.lineNumber()).arg(xml.errorString()), 3000);
+    QString error = QString("Import error: Line = %1, Column = %2; Error = %3").
+        arg(xml.lineNumber()).arg(xml.columnNumber()).arg(xml.errorString());
+    qCritical() << error;
+    emit signalMessageStatusBar(error, 3000);
   } else {
     emit signalMessageStatusBar(QString("Import: file read done"), 3000);
   }
