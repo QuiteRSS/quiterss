@@ -494,6 +494,8 @@ void UpdateObject::getUrlDone(int result, int feedId, QString feedUrlStr,
   } else {
     QString status = "0";
     if (result < 0) status = QString("%1 %2").arg(result).arg(error);
+    qWarning() << QString("Request failed: result - %1, error - %2, url - %3").
+                  arg(result).arg(error).arg(feedUrlStr);
     finishUpdate(feedId, false, 0, status);
   }
 }
