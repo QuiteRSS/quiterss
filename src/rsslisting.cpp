@@ -7049,7 +7049,19 @@ int RSSListing::addTab(NewsTabWidget *widget)
 void RSSListing::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
 {
   AuthenticationDialog *authenticationDialog =
-      new AuthenticationDialog(this, reply->url(), auth);
+      new AuthenticationDialog(reply->url(), auth);
+
+  if (!authenticationDialog->save_->isChecked())
+    authenticationDialog->exec();
+
+  delete authenticationDialog;
+}
+/** @brief Request proxy authentification
+ *---------------------------------------------------------------------------*/
+void RSSListing::slotProxyAuthentication(const QNetworkProxy &proxy, QAuthenticator *auth)
+{
+  AuthenticationDialog *authenticationDialog =
+      new AuthenticationDialog(proxy.hostName(), auth);
 
   if (!authenticationDialog->save_->isChecked())
     authenticationDialog->exec();

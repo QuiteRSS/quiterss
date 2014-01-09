@@ -676,14 +676,3 @@ void AddFeedWizard::newFolder()
 
   delete addFolderDialog;
 }
-
-void AddFeedWizard::slotAuthentication(QNetworkReply *reply, QAuthenticator *auth)
-{
-  AuthenticationDialog *authenticationDialog =
-      new AuthenticationDialog(this, reply->url(), auth);
-
-  if (!authenticationDialog->save_->isChecked())
-    authenticationDialog->exec();
-
-  delete authenticationDialog;
-}

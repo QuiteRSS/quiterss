@@ -19,8 +19,9 @@
 
 #include <QSqlQuery>
 
-AuthenticationDialog::AuthenticationDialog(QWidget *parent, const QUrl &url,
-                                           QAuthenticator *auth)
+AuthenticationDialog::AuthenticationDialog(const QUrl &url,
+                                           QAuthenticator *auth,
+                                           QWidget *parent)
   : Dialog(parent, Qt::MSWindowsFixedSizeDialogHint),
     auth_(auth)
 {

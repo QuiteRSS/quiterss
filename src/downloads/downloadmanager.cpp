@@ -229,7 +229,7 @@ void DownloadManager::updateInfo()
 void DownloadManager::ftpAuthentication(const QUrl &url, QAuthenticator *auth)
 {
   AuthenticationDialog *authenticationDialog =
-      new AuthenticationDialog(this, url, auth);
+      new AuthenticationDialog(url, auth);
 
   if (!authenticationDialog->save_->isChecked())
     authenticationDialog->exec();

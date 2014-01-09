@@ -33,7 +33,7 @@ class RequestFeed : public QObject
 public:
   explicit RequestFeed(int timeoutRequest, int numberRequests,
                        int numberRepeats, QObject *parent = 0);
-  NetworkManager *networkManager_;
+  void setCookieJar(QNetworkCookieJar *cookieJar);
 
 public slots:
   void requestUrl(int id, QString urlString, QDateTime date, QString userInfo = "");
@@ -52,12 +52,17 @@ signals:
                  const QDateTime &date, const int &count = 0);
   void setStatusFeed(int feedId, QString status);
 
+  void authenticationRequired(QNetworkReply*,QAuthenticator*);
+  void proxyAuthenticationRequired(const QNetworkProxy&,QAuthenticator*);
+
 private slots:
   void getQueuedUrl();
   void finished(QNetworkReply *reply);
   void slotRequestTimeout();
 
 private:
+  NetworkManager *networkManager_;
+
   int timeoutRequest_;
   int numberRequests_;
   int numberRepeats_;

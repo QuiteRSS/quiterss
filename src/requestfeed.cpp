@@ -49,6 +49,10 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   networkManager_ = new NetworkManager(this);
   connect(networkManager_, SIGNAL(finished(QNetworkReply*)),
           this, SLOT(finished(QNetworkReply*)));
+  connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+          this, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)));
+  connect(networkManager_, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
+          this, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)));
 
   connect(this, SIGNAL(signalHead(QUrl,int,QString,QDateTime,int)),
           SLOT(slotHead(QUrl,int,QString,QDateTime,int)),
@@ -56,6 +60,11 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
   connect(this, SIGNAL(signalGet(QUrl,int,QString,QDateTime,int)),
           SLOT(slotGet(QUrl,int,QString,QDateTime,int)),
           Qt::QueuedConnection);
+}
+
+void RequestFeed::setCookieJar(QNetworkCookieJar *cookieJar)
+{
+  networkManager_->setCookieJar(cookieJar);
 }
 
 /** @brief Put URL in request queue

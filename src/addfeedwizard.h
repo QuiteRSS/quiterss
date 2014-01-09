@@ -71,7 +71,6 @@ private slots:
   void titleFeedAsNameStateChanged(int);
   void slotProgressBarUpdate();
   void newFolder();
-  void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
 
 private:
   void addFeed();

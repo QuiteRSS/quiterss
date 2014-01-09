@@ -49,7 +49,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   int numberRepeats = rssl->settings_->value("Settings/numberRepeats", 2).toInt();
 
   requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats);
-  requestFeed_->networkManager_->setCookieJar(rssl->cookieJar_);
+  requestFeed_->setCookieJar(rssl->cookieJar_);
 
   parseObject_ = new ParseObject(parent);
 
@@ -180,9 +180,11 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     getFaviconThread_->start(QThread::LowPriority);
   }
 
-  connect(requestFeed_->networkManager_,
-          SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          parent, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
+  connect(requestFeed_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+          rssl, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
+          Qt::BlockingQueuedConnection);
+  connect(requestFeed_, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
+          rssl, SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
 
   requestFeed_->moveToThread(getFeedThread_);

@@ -298,6 +298,7 @@ public slots:
   void slotCloseTab(int index);
   QWebPage *createWebTab(QUrl url = QUrl());
   void slotAuthentication(QNetworkReply *reply, QAuthenticator *auth);
+  void slotProxyAuthentication(const QNetworkProxy &proxy, QAuthenticator *auth);
   void feedsModelReload(bool checkFilter = false);
   void setStatusFeed(int feedId, QString status);
 
