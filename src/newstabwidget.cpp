@@ -467,8 +467,6 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       file.close();
     }
 
-    webView_->setZoomFactor(qreal(rssl_->defaultZoomPages_)/100.0);
-
     if (rssl_->externalBrowserOn_ <= 0) {
       webView_->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     } else {
@@ -497,6 +495,8 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
         autoLoadImages_ = rssl_->autoLoadImages_;
       }
       webView_->settings()->setAttribute(QWebSettings::AutoLoadImages, autoLoadImages_);
+
+      webView_->setZoomFactor(qreal(rssl_->defaultZoomPages_)/100.0);
     }
     setAutoLoadImages(false);
   }
