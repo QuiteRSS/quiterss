@@ -1,6 +1,6 @@
 /* ============================================================
 * QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader
-* Copyright (C) 2011-2013 QuiteRSS Team <quiterssteam@gmail.com>
+* Copyright (C) 2011-2014 QuiteRSS Team <quiterssteam@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       arg(qWebKitVersion())
       + "</P>"
       + QString("<a href=\"%1\">%1</a>").arg("http://quiterss.org") +
-      "<P>Copyright &copy; 2011-2013 QuiteRSS Team "
+      "<P>Copyright &copy; 2011-2014 QuiteRSS Team "
       + QString("<a href=\"%1\">E-mail</a>").arg("mailto:quiterssteam@gmail.com") + "</P>"
       "</CENTER></body></html>";
   QLabel *infoLabel = new QLabel(appInfo);
