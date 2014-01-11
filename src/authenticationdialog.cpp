@@ -30,7 +30,7 @@ AuthenticationDialog::AuthenticationDialog(const QUrl &url,
 
   server_ = url.host();
   if (server_.isEmpty()) {
-      server_ = url.toString();
+    server_ = url.toString();
   }
 
   QSqlQuery q;
@@ -47,12 +47,13 @@ AuthenticationDialog::AuthenticationDialog(const QUrl &url,
     setMinimumWidth(400);
 
     user_ = new LineEdit(this);
+    user_->setText(auth->user());
     pass_ = new LineEdit(this);
     pass_->setEchoMode(QLineEdit::Password);
 
     QGridLayout *layout = new QGridLayout();
     layout->addWidget(new QLabel(tr("Server:")), 0, 0);
-    layout->addWidget(new QLabel(url.host()), 0, 1);
+    layout->addWidget(new QLabel(server_), 0, 1);
     layout->addWidget(new QLabel(tr("Message:")), 1, 0);
     layout->addWidget(new QLabel(auth->realm()), 1, 1);
     layout->addWidget(new QLabel(tr("Username:")), 2, 0);
