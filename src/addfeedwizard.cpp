@@ -530,7 +530,7 @@ void AddFeedWizard::getUrlDone(int result, int feedId, QString feedUrlStr,
     else
       textWarning->setText(tr("Request failed!"));
     warningWidget_->setVisible(true);
-    qWarning() << QString("Request failed: result - %1, error - %2, url - %3").
+    qWarning() << QString("Request failed: result = %1, error - %2, url - %3").
                   arg(result).arg(error).arg(feedUrlStr);
 
     deleteFeed();
