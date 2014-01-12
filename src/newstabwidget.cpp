@@ -1410,7 +1410,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     QString languageString = feedsTreeModel_->dataField(feedIndex, "language").
         toString().toLower();
     bool ltr = true;
-    if (languageString == "ar") ltr = false;
+    if ((languageString == "ar") || (languageString == "fa")) ltr = false;
 
     QString cssStr = cssString_.
         arg(ltr ? "left" : "right"). // text-align

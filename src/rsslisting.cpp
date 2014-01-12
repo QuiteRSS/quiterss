@@ -4512,6 +4512,16 @@ void RSSListing::appInstallTranslator()
                                      QString("/lang/quiterss_%1").arg(langFileName_));
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
+
+  if ((langFileName_ == "ar") || (langFileName_ == "fa")) {
+    QApplication::setLayoutDirection(Qt::RightToLeft);
+  } else {
+    QApplication::setLayoutDirection(Qt::LeftToRight);
+  }
+
+  /** Hack **/
+  int indexTab = tabBar_->addTab("");
+  tabBar_->removeTab(indexTab);
 }
 // ----------------------------------------------------------------------------
 void RSSListing::retranslateStrings()
