@@ -1287,6 +1287,10 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId.toInt());
 
     QString titleString = newsModel_->dataField(index.row(), "title").toString();
+    if (!linkString.isEmpty()) {
+      titleString = QString("<a href='%1' class='unread'>%2</a>").
+          arg(linkString, titleString);
+    }
 
     QDateTime dtLocal;
     QString dateString = newsModel_->dataField(index.row(), "published").toString();
@@ -1312,7 +1316,6 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     QString authorName = newsModel_->dataField(index.row(), "author_name").toString();
     QString authorEmail = newsModel_->dataField(index.row(), "author_email").toString();
     QString authorUri = newsModel_->dataField(index.row(), "author_uri").toString();
-    //  qDebug() << "author_news:" << authorName << authorEmail << authorUri;
 
     QRegExp reg("(^\\S+@\\S+\\.\\S+)", Qt::CaseInsensitive, QRegExp::RegExp2);
     int pos = reg.indexIn(authorName);
@@ -1334,7 +1337,6 @@ void NewsTabWidget::updateWebView(QModelIndex index)
       authorEmail = feedsTreeModel_->dataField(feedIndex, "author_email").toString();
       authorUri   = feedsTreeModel_->dataField(feedIndex, "author_uri").toString();
 
-      //    qDebug() << "author_feed:" << authorName << authorEmail << authorUri;
       authorString = authorName;
       if (!authorEmail.isEmpty())
         authorString.append(QString(" <a href='mailto:%1'>e-mail</a>").arg(authorEmail));
@@ -1343,9 +1345,9 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
 
     QString commentsStr;
-    QString commentsUrl = QUrl::fromPercentEncoding(newsModel_->dataField(index.row(), "comments").toByteArray());
+    QString commentsUrl = newsModel_->dataField(index.row(), "comments").toString();
     if (!commentsUrl.isEmpty()) {
-      commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl).arg(tr("Comments"));
+      commentsStr = QString("<a href=\"%1\"> %2</a>").arg(commentsUrl, tr("Comments"));
     }
 
     QString category = newsModel_->dataField(index.row(), "category").toString();
@@ -1374,7 +1376,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
 
     QString enclosureStr;
-    QString enclosureUrl = QUrl::fromPercentEncoding(newsModel_->dataField(index.row(), "enclosure_url").toByteArray());
+    QString enclosureUrl = newsModel_->dataField(index.row(), "enclosure_url").toString();
     if (!enclosureUrl.isEmpty()) {
       QString type = newsModel_->dataField(index.row(), "enclosure_type").toString();
       if (type.contains("image")) {
@@ -1396,16 +1398,11 @@ void NewsTabWidget::updateWebView(QModelIndex index)
         else type = tr("media");
 
         enclosureStr.append(QString("<a href=\"%1\" class=\"enclosure\"> %2 %3 </a><p>").
-            arg(enclosureUrl).arg(tr("Link to")).arg(type));
+            arg(enclosureUrl, tr("Link to"), type));
       }
     }
 
     content = enclosureStr + content;
-
-    if (!linkString.isEmpty()) {
-        titleString = QString("<a href='%1' class='unread'>%2</a>").
-            arg(QUrl::fromPercentEncoding(linkString.toUtf8())).arg(titleString);
-    }
 
     QString languageString = feedsTreeModel_->dataField(feedIndex, "language").
         toString().toLower();
@@ -1421,11 +1418,7 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     }
 
     QString htmlStr = htmlString_.
-        arg(cssStr).
-        arg(titleString).
-        arg(dateString).
-        arg(authorString).
-        arg(content);
+        arg(cssStr, titleString, dateString, authorString, content);
 
     QUrl url;
     url.setScheme(newsUrl.scheme());
