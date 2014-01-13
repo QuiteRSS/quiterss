@@ -440,7 +440,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="260"/>
         <source>few seconds</source>
-        <translation>einige sekunden</translation>
+        <translation>einige Sekunden</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="262"/>
@@ -749,7 +749,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
         <source>Load Favicon</source>
-        <translation>Bevorzugtes Symbol wählen</translation>
+        <translation>Bevorzugtes Symbol laden</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="71"/>

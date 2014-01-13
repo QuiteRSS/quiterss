@@ -279,7 +279,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="337"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Siivoa &apos;Poistetut&apos;</translation>
+        <translation>Siivoa poistetut</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="338"/>
@@ -290,8 +290,8 @@
         <location filename="../src/cleanupwizard.cpp" line="341"/>
         <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
-        <translation>Poista &apos;poistettu&apos; merkintä tietueista tietokannassa.
-Erittäin vanhoja uutisia saattaa ilmestyä uudelleen</translation>
+        <translation>Poista lopullisesti poistetuksi merkityt uutiset tietokannasta.
+Erittäin vanhoja uutisia saattaa ilmestyä uudelleen.</translation>
     </message>
 </context>
 <context>
@@ -771,7 +771,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Display in new tab on startup</source>
-        <translation>Näytä uudessa välilehdessä käynnistyessä</translation>
+        <translation>Näytä käynnistettäessä uudessa välilehdessä</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
@@ -862,12 +862,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/findfeed.cpp" line="79"/>
         <source>Find Name</source>
-        <translation>Etsi nimi</translation>
+        <translation>Hae nimiä</translation>
     </message>
     <message>
         <location filename="../src/findfeed.cpp" line="80"/>
         <source>Find Link</source>
-        <translation>Etsi linkki</translation>
+        <translation>Hae linkkejä</translation>
     </message>
 </context>
 <context>
@@ -876,32 +876,32 @@ ei löydetty!</translation>
         <location filename="../src/findtext.cpp" line="89"/>
         <location filename="../src/findtext.cpp" line="104"/>
         <source>Find in News</source>
-        <translation>Etsi uutisista</translation>
+        <translation>Hae uutisia</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="105"/>
         <source>Find Title</source>
-        <translation>Etsi otsikko</translation>
+        <translation>Hae otsikoita</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="106"/>
         <source>Find Authors</source>
-        <translation>Etsi tekijät</translation>
+        <translation>Hae tekijöitä</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="107"/>
         <source>Find Category</source>
-        <translation>Etsi ryhmä</translation>
+        <translation>Hae ryhmistä</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="108"/>
         <source>Find in Content</source>
-        <translation>Etsi sisällöstä</translation>
+        <translation>Hae sisällöstä</translation>
     </message>
     <message>
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in Browser</source>
-        <translation>Etsi selaimesta</translation>
+        <translation>Hae selaimesta</translation>
     </message>
 </context>
 <context>
@@ -1408,7 +1408,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/notifications.cpp" line="139"/>
         <source>Incoming News: %1</source>
-        <translation>Uusimmat uutiset: %1</translation>
+        <translation>Uusia uutisia: %1</translation>
     </message>
     <message>
         <location filename="../src/notifications.cpp" line="244"/>
@@ -1482,7 +1482,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="252"/>
         <source>Reopen last opened feeds on startup</source>
-        <translation>Avaa viimeksi avatut syötteet käynnistyksessä</translation>
+        <translation>Avaa käynnistyessä viimeksi avatut syötteet</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="253"/>
@@ -1492,7 +1492,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="254"/>
         <source>Hide feeds tree when opening tabs</source>
-        <translation>Piilota syötteet kun välilehti avataan</translation>
+        <translation>Piilota syötteet kun uusi välilehti avataan</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
@@ -1522,7 +1522,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
         <source>Run QuiteRSS at Windows startup</source>
-        <translation>Suorita QuiteRSS Windowsin käynnistyessä</translation>
+        <translation>Suorita QuiteRSS Windowsin käynnistyksessä</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="316"/>
@@ -1696,7 +1696,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="557"/>
         <source>Store cache in:</source>
-        <translation>Säilytä välimuisti:</translation>
+        <translation>Välimuistin sijainti:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
@@ -1796,12 +1796,12 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="744"/>
         <source>Dec</source>
-        <translation>Joulu</translation>
+        <translation>joulu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="745"/>
         <source>December</source>
-        <translation>Joulukuu</translation>
+        <translation>joulukuu</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="768"/>
@@ -1856,7 +1856,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="781"/>
         <source>Show Last Day</source>
-        <translation>Näytä päivä</translation>
+        <translation>Näytä tämänpäiväiset</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
@@ -1866,7 +1866,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="796"/>
         <source>Main news filter:</source>
-        <translation>Pääuutissuodatin:</translation>
+        <translation>Oletus uutissuodatin:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="818"/>
@@ -1906,7 +1906,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation>Siivoa &apos;Poistetut&apos;</translation>
+        <translation>Siivoa poistetut</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
@@ -2299,7 +2299,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="251"/>
         <source>Show splash screen on startup</source>
-        <translation>Näytä aloitusruutu käynnistyksessä</translation>
+        <translation>Näytä aloitusruutu käynnistyessä</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="313"/>
@@ -2309,7 +2309,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="702"/>
         <source>Automatically update the feeds on startup</source>
-        <translation>Päivitä syötteet automaattisesti käynnistyksessä</translation>
+        <translation>Päivitä syötteet ohjelman käynnistyessä</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="888"/>
@@ -2842,7 +2842,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4527"/>
         <source>E&amp;xit</source>
-        <translation>&amp;Poistu</translation>
+        <translation>&amp;Sulje</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4553"/>
@@ -3479,7 +3479,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4567"/>
         <source>Show Last Day</source>
-        <translation>Näytä päivä</translation>
+        <translation>Näytä tämänpäiväiset</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4568"/>
@@ -3629,7 +3629,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4629"/>
         <source>Gray</source>
-        <translation>Harma</translation>
+        <translation>Harmaa</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4646"/>
@@ -3719,7 +3719,7 @@ ei löydetty!</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4728"/>
         <source>Sorted by Name</source>
-        <translation>Järjestetty nimen mukaan</translation>
+        <translation>Järjestä nimen mukaan</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4729"/>
