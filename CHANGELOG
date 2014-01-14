@@ -1,3 +1,11 @@
+Version 0.14.3 (14 Jan 2014)
+  * Fixed: Application crash while exporting feeds
+  * Fixed: Importing feeds from opml-file failure in some cases
+  * Fixed: Reset zoom on switching tabs
+  * Fixed: Processing authorization request from proxy
+  * Fixed: RTL for arabic and persian
+  * Fixed: Creating links in news
+
 Version 0.14.2 (30 Dec 2013)
   * Added: Option "Options->Browser->Load images"
   * Added: Feed option "Disable update"
