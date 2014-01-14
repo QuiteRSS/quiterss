@@ -326,7 +326,7 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
   QList<QString> urlsList;
   QXmlStreamReader xml;
   QString convertData;
-  bool codecLocal = false;
+  bool codecOk = false;
 
   xmlData.replace("&", "&#38;");
 
@@ -337,13 +337,19 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
     pos = rx.indexIn(xmlData);
   }
   if (pos == -1) {
-    QTextCodec *codec = QTextCodec::codecForLocale();
-    if (codec && codec->canEncode(xmlData)) {
-      convertData = codec->toUnicode(xmlData);
-      codecLocal = true;
+    QStringList codecNameList;
+    codecNameList << "UTF-8" << "Windows-1251" << "KOI8-R" << "KOI8-U"
+                  << "ISO 8859-5" << "IBM 866";
+    foreach (QString codecNameT, codecNameList) {
+      QTextCodec *codec = QTextCodec::codecForName(codecNameT.toUtf8());
+      if (codec && codec->canEncode(xmlData)) {
+        convertData = codec->toUnicode(xmlData);
+        codecOk = true;
+        break;
+      }
     }
   }
-  if (codecLocal) {
+  if (codecOk) {
     xml.addData(convertData);
   } else {
     xml.addData(xmlData);
