@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "newstabwidget.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
@@ -157,11 +158,12 @@ void NewsTabWidget::createNewsList()
   newsToolBar_->setStyleSheet("QToolBar { border: none; padding: 0px; }");
   newsToolBar_->setIconSize(QSize(18, 18));
 
+  Settings settings;
   QString actionListStr = "markNewsRead,markAllNewsRead,Separator,markStarAct,"
       "newsLabelAction,shareMenuAct,openInExternalBrowserAct,Separator,"
       "nextUnreadNewsAct,prevUnreadNewsAct,Separator,"
       "newsFilter,Separator,deleteNewsAct";
-  QString str = rssl_->settings_->value("Settings/newsToolBar", actionListStr).toString();
+  QString str = settings.value("Settings/newsToolBar", actionListStr).toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
     if (actionStr == "Separator") {
@@ -418,8 +420,8 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
 
   if (newTab) {
     if (type_ < TabTypeWeb) {
-      newsTabWidgetSplitter_->restoreState(
-            rssl_->settings_->value("NewsTabSplitterState").toByteArray());
+      Settings settings;
+      newsTabWidgetSplitter_->restoreState(settings.value("NewsTabSplitterState").toByteArray());
 
       newsView_->setFont(
             QFont(rssl_->newsListFontFamily_, rssl_->newsListFontSize_));

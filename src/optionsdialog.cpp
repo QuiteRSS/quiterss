@@ -19,6 +19,7 @@
 #include "labeldialog.h"
 #include "VersionNo.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent)
   : Dialog(parent)
@@ -152,8 +153,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
   resize(700, 500);
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  restoreGeometry(rssl_->settings_->value("options/geometry").toByteArray());
+  Settings settings;
+  restoreGeometry(settings.value("options/geometry").toByteArray());
 }
 
 void OptionsDialog::acceptDialog()
@@ -175,8 +176,8 @@ void OptionsDialog::acceptDialog()
 
 void OptionsDialog::closeDialog()
 {
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  rssl_->settings_->setValue("options/geometry", saveGeometry());
+  Settings settings;
+  settings.setValue("options/geometry", saveGeometry());
 }
 
 bool OptionsDialog::eventFilter(QObject *obj, QEvent *event)

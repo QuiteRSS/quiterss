@@ -27,6 +27,7 @@
 #include "rsslisting.h"
 #include "splashscreen.h"
 #include "logfile.h"
+#include "settings.h"
 
 int main(int argc, char **argv)
 {
@@ -59,7 +60,6 @@ int main(int argc, char **argv)
   app.setQuitOnLastWindowClosed(false);
 
   QString dataDirPath;
-  QSettings *settings;
 
 #if defined(PORTABLE)
   bool portable = true;
@@ -74,12 +74,9 @@ int main(int argc, char **argv)
   }
 
   if (portable) {
-    settings = new QSettings(
-          dataDirPath + QDir::separator() + QCoreApplication::applicationName() + ".ini",
-          QSettings::IniFormat);
+    Settings::createSettings(fileName);
   } else {
-    settings = new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                              QCoreApplication::organizationName(), QCoreApplication::applicationName());
+    Settings::createSettings();
 #ifdef HAVE_QT5
     dataDirPath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
@@ -89,8 +86,7 @@ int main(int argc, char **argv)
     d.mkpath(dataDirPath);
   }
 #else
-  settings = new QSettings(QSettings::IniFormat, QSettings::UserScope,
-                            QCoreApplication::organizationName(), QCoreApplication::applicationName());
+  Settings::createSettings();
 #ifdef HAVE_QT5
   dataDirPath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
@@ -116,7 +112,8 @@ int main(int argc, char **argv)
   qWarning() << "Start application!";
 #endif
 
-  QString styleActionStr = settings->value(
+  Settings settings;
+  QString styleActionStr = settings.value(
         "Settings/styleApplication", "greenStyle_").toString();
   QString fileString(appDataDirPath);
   if (styleActionStr == "systemStyle_") {
@@ -142,21 +139,21 @@ int main(int argc, char **argv)
   app.setStyleSheet(QLatin1String(file.readAll()));
   file.close();
 
-  bool  showSplashScreen_ = settings->value("Settings/showSplashScreen", true).toBool();
-  QString versionDB = settings->value("versionDB", "1.0").toString();
-  if ((versionDB != kDbVersion) && QFile(settings->fileName()).exists())
+  bool  showSplashScreen_ = settings.value("Settings/showSplashScreen", true).toBool();
+  QString versionDB = settings.value("versionDB", "1.0").toString();
+  if ((versionDB != kDbVersion) && QFile(settings.fileName()).exists())
     showSplashScreen_ = true;
 
   SplashScreen *splashScreen = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
   if (showSplashScreen_) {
     splashScreen->show();
-    if ((versionDB != kDbVersion) && QFile(settings->fileName()).exists())
+    if ((versionDB != kDbVersion) && QFile(settings.fileName()).exists())
       splashScreen->showMessage(QString("Converting database to version %1...").
                           arg(kDbVersion),
                           Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
   }
 
-  RSSListing rsslisting(settings, appDataDirPath, dataDirPath);
+  RSSListing rsslisting(appDataDirPath, dataDirPath);
 
   app.setActivationWindow(&rsslisting, true);
   QObject::connect(&app, SIGNAL(messageReceived(const QString&)),

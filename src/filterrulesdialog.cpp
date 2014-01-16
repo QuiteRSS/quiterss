@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "filterrulesdialog.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   : Dialog(parent)
@@ -25,9 +26,6 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("Filter Rules"));
   setMinimumHeight(300);
-
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  settings_ = rssl_->settings_;
 
   feedsTree_ = new QTreeWidget(this);
   feedsTree_->setObjectName("feedsTreeFR");
@@ -78,6 +76,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
       if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
       } else {
+        RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
         if (byteArray.isNull() || rssl_->defaultIconFeeds_) {
           iconItem.load(":/images/feed");
         } else {
@@ -223,7 +222,8 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
   filterName_->setFocus();
   filterName_->selectAll();
 
-  restoreGeometry(settings_->value("filterRulesDlg/geometry").toByteArray());
+  Settings settings;
+  restoreGeometry(settings.value("filterRulesDlg/geometry").toByteArray());
 
   connect(filterName_, SIGNAL(textChanged(QString)),
           this, SLOT(filterNameChanged(QString)));
@@ -302,7 +302,8 @@ void FilterRulesDialog::setData()
 
 void FilterRulesDialog::closeDialog()
 {
-  settings_->setValue("filterRulesDlg/geometry", saveGeometry());
+  Settings settings;
+  settings.setValue("filterRulesDlg/geometry", saveGeometry());
 }
 
 void FilterRulesDialog::acceptDialog()

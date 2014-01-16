@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "cleanupwizard.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
@@ -66,9 +67,9 @@ CleanUpThread::~CleanUpThread()
       q.exec(QString("DELETE FROM news WHERE feedId=='%1' AND deleted >= 2").arg(feedId));
 
     QString qStr1 = QString("UPDATE news SET description='', content='', received='', "
-                         "author_name='', author_uri='', author_email='', "
-                         "category='', new='', read='', starred='', label='', "
-                         "deleteDate='', feedParentId='', deleted=2");
+                            "author_name='', author_uri='', author_email='', "
+                            "category='', new='', read='', starred='', label='', "
+                            "deleteDate='', feedParentId='', deleted=2");
 
     qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted = 0").arg(feedId);
     if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
@@ -199,16 +200,20 @@ CleanUpWizard::CleanUpWizard(QWidget *parent)
   addPage(createChooseFeedsPage());
   addPage(createCleanUpOptionsPage());
 
+  Settings settings;
+  restoreGeometry(settings.value("CleanUpWizard/geometry").toByteArray());
+
   cleanUpThread_ = new CleanUpThread(this);
 
   connect(button(QWizard::FinishButton), SIGNAL(clicked()),
           this, SLOT(finishButtonClicked()));
-  connect(this, SIGNAL(currentIdChanged(int)),
-          SLOT(currentIdChanged(int)));
+  connect(this, SIGNAL(currentIdChanged(int)), SLOT(currentIdChanged(int)));
 }
 
 CleanUpWizard::~CleanUpWizard()
 {
+  Settings settings;
+  settings.setValue("CleanUpWizard/geometry", saveGeometry());
 }
 
 /*virtual*/ void CleanUpWizard::closeEvent(QCloseEvent* event)
@@ -222,8 +227,8 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
   QWizardPage *page = new QWizardPage;
   page->setTitle(tr("Choose Feeds"));
 
-  RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
-  QStringList feedsIdList = rssl->settings_->value("CleanUpWizard/feedsIdList").toStringList();
+  Settings settings;
+  QStringList feedsIdList = settings.value("CleanUpWizard/feedsIdList").toStringList();
 
   feedsTree_ = new QTreeWidget(this);
   feedsTree_->setObjectName("feedsTreeFR");
@@ -269,6 +274,7 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
         iconItem.load(":/images/folder");
       }
       else {
+        RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
         if (byteArray.isNull() || rssl->defaultIconFeeds_) {
           iconItem.load(":/images/feed");
         }
@@ -280,8 +286,8 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
 
       QList<QTreeWidgetItem *> treeItems =
           feedsTree_->findItems(QString::number(parentId),
-                               Qt::MatchFixedString | Qt::MatchRecursive,
-                               1);
+                                Qt::MatchFixedString | Qt::MatchRecursive,
+                                1);
       treeItems.at(0)->addChild(treeWidgetItem);
       if (xmlUrl.isEmpty())
         parentIds.enqueue(feedIdStr.toInt());
@@ -338,9 +344,9 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   fullCleanUp_ = new QCheckBox(tr("Purge DB"));
   QVBoxLayout *fullCleanUpDescriptionLayout = new QVBoxLayout;
   fullCleanUpDescriptionLayout->setContentsMargins(15, 0, 0, 0);
-  fullCleanUpDescriptionLayout->addWidget(new QLabel(tr(
-        "Totally remove records that had marked 'deleted' from DB.\n"
-        "Ancient news could reappear")));
+  fullCleanUpDescriptionLayout->addWidget(
+        new QLabel(tr("Totally remove records that had marked 'deleted' from DB.\n"
+                      "Ancient news could reappear")));
 
   progressBar_ = new QProgressBar(this);
   progressBar_->setObjectName("progressBar_");
@@ -350,19 +356,19 @@ QWizardPage *CleanUpWizard::createCleanUpOptionsPage()
   progressBar_->setMaximum(0);
   progressBar_->setVisible(false);
 
-  QSettings *settings = qobject_cast<RSSListing*>(parentWidget())->settings_;
-  settings->beginGroup("CleanUpWizard");
-  maxDayCleanUp_->setValue(settings->value("maxDay", 30).toInt());
-  maxNewsCleanUp_->setValue(settings->value("maxNews", 200).toInt());
-  dayCleanUpOn_->setChecked(settings->value("maxDayOn", true).toBool());
-  newsCleanUpOn_->setChecked(settings->value("maxNewsOn", true).toBool());
-  readCleanUp_->setChecked(settings->value("readCleanUp", false).toBool());
-  neverUnreadCleanUp_->setChecked(settings->value("neverUnread", true).toBool());
-  neverStarCleanUp_->setChecked(settings->value("neverStar", true).toBool());
-  neverLabelCleanUp_->setChecked(settings->value("neverLabel", true).toBool());
-  cleanUpDeleted_->setChecked(settings->value("cleanUpDeleted", true).toBool());
-  fullCleanUp_->setChecked(settings->value("fullCleanUp", false).toBool());
-  settings->endGroup();
+  Settings settings;
+  settings.beginGroup("CleanUpWizard");
+  maxDayCleanUp_->setValue(settings.value("maxDay", 30).toInt());
+  maxNewsCleanUp_->setValue(settings.value("maxNews", 200).toInt());
+  dayCleanUpOn_->setChecked(settings.value("maxDayOn", true).toBool());
+  newsCleanUpOn_->setChecked(settings.value("maxNewsOn", true).toBool());
+  readCleanUp_->setChecked(settings.value("readCleanUp", false).toBool());
+  neverUnreadCleanUp_->setChecked(settings.value("neverUnread", true).toBool());
+  neverStarCleanUp_->setChecked(settings.value("neverStar", true).toBool());
+  neverLabelCleanUp_->setChecked(settings.value("neverLabel", true).toBool());
+  cleanUpDeleted_->setChecked(settings.value("cleanUpDeleted", true).toBool());
+  fullCleanUp_->setChecked(settings.value("fullCleanUp", false).toBool());
+  settings.endGroup();
 
   QVBoxLayout *layout = new QVBoxLayout(page);
   layout->addLayout(cleanUpFeedsLayout);
@@ -483,20 +489,20 @@ void CleanUpWizard::finishCleanUp()
   rssl->feedsModelReload();
   rssl->recountCategoryCounts();
 
-  QSettings *settings = qobject_cast<RSSListing*>(parentWidget())->settings_;
-  settings->beginGroup("CleanUpWizard");
-  settings->setValue("feedsIdList", cleanUpThread_->feedsIdList_);
-  settings->setValue("maxDay", maxDayCleanUp_->value());
-  settings->setValue("maxNews", maxNewsCleanUp_->value());
-  settings->setValue("maxDayOn", dayCleanUpOn_->isChecked());
-  settings->setValue("maxNewsOn", newsCleanUpOn_->isChecked());
-  settings->setValue("readCleanUp", readCleanUp_->isChecked());
-  settings->setValue("neverUnread", neverUnreadCleanUp_->isChecked());
-  settings->setValue("neverStar", neverStarCleanUp_->isChecked());
-  settings->setValue("neverLabel", neverLabelCleanUp_->isChecked());
-  settings->setValue("cleanUpDeleted", cleanUpDeleted_->isChecked());
-  settings->setValue("fullCleanUp", fullCleanUp_->isChecked());
-  settings->endGroup();
+  Settings settings;
+  settings.beginGroup("CleanUpWizard");
+  settings.setValue("feedsIdList", cleanUpThread_->feedsIdList_);
+  settings.setValue("maxDay", maxDayCleanUp_->value());
+  settings.setValue("maxNews", maxNewsCleanUp_->value());
+  settings.setValue("maxDayOn", dayCleanUpOn_->isChecked());
+  settings.setValue("maxNewsOn", newsCleanUpOn_->isChecked());
+  settings.setValue("readCleanUp", readCleanUp_->isChecked());
+  settings.setValue("neverUnread", neverUnreadCleanUp_->isChecked());
+  settings.setValue("neverStar", neverStarCleanUp_->isChecked());
+  settings.setValue("neverLabel", neverLabelCleanUp_->isChecked());
+  settings.setValue("cleanUpDeleted", cleanUpDeleted_->isChecked());
+  settings.setValue("fullCleanUp", fullCleanUp_->isChecked());
+  settings.endGroup();
 
   selectedPage_ = true;
   accept();

@@ -18,17 +18,16 @@
 #include "updateappdialog.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
+#include "settings.h"
 
 #include <QNetworkCookie>
 #if defined(Q_OS_WIN)
 #include <qt_windows.h>
 #endif
 
-UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
-                                 QWidget *parent, bool show)
+UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show)
   : Dialog(parent)
   , lang_(lang)
-  , settings_(settings)
   , showDialog_(show)
 {
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
@@ -40,6 +39,8 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     setObjectName("UpdateAppDialog");
     resize(450, 350);
 
+    Settings settings;
+
     infoLabel = new QLabel(tr("Checking for updates..."), this);
     infoLabel->setOpenExternalLinks(true);
 
@@ -49,7 +50,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
     history_->setOpenExternalLinks(true);
 
     remindAboutVersion_ = new QCheckBox(tr("Don't remind about this version"), this);
-    remindAboutVersion_->setChecked(settings_->value("remindAboutVersion", false).toBool());
+    remindAboutVersion_->setChecked(settings.value("remindAboutVersion", false).toBool());
     remindAboutVersion_->hide();
 
     pageLayout->addWidget(infoLabel, 0);
@@ -75,7 +76,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QSettings *settings,
 
     connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
-    restoreGeometry(settings_->value("updateAppDlg/geometry").toByteArray());
+    restoreGeometry(settings.value("updateAppDlg/geometry").toByteArray());
   } else {
     renderStatistics();
 //    page_ = new QWebPage(this);
@@ -92,8 +93,9 @@ UpdateAppDialog::~UpdateAppDialog()
 
 void UpdateAppDialog::closeDialog()
 {
-  settings_->setValue("remindAboutVersion", remindAboutVersion_->isChecked());
-  settings_->setValue("updateAppDlg/geometry", saveGeometry());
+  Settings settings;
+  settings.setValue("remindAboutVersion", remindAboutVersion_->isChecked());
+  settings.setValue("updateAppDlg/geometry", saveGeometry());
 }
 
 void UpdateAppDialog::finishUpdatesChecking()
@@ -145,13 +147,14 @@ void UpdateAppDialog::finishUpdatesChecking()
       history_->setText("");
   }
 
-  bool remind = settings_->value("remindAboutVersion", false).toBool();
-  QString currentVersion = settings_->value("currentVersionApp", "").toString();
+  Settings settings;
+  bool remind = settings.value("remindAboutVersion", false).toBool();
+  QString currentVersion = settings.value("currentVersionApp", "").toString();
   if (!showDialog_) {
     if (!newVersion.isEmpty()) {
       if (currentVersion != newVersion) {
-        settings_->setValue("currentVersionApp", newVersion);
-        settings_->setValue("remindAboutVersion", false);
+        settings.setValue("currentVersionApp", newVersion);
+        settings.setValue("remindAboutVersion", false);
       } else if (remind) {
           newVersion = "";
       }
@@ -169,8 +172,8 @@ void UpdateAppDialog::finishUpdatesChecking()
 
     if (!newVersion.isEmpty()) {
       if (currentVersion != newVersion) {
-        settings_->setValue("currentVersionApp", newVersion);
-        settings_->setValue("remindAboutVersion", false);
+        settings.setValue("currentVersionApp", newVersion);
+        settings.setValue("remindAboutVersion", false);
         remindAboutVersion_->setChecked(false);
         remindAboutVersion_->show();
       } else if (!remind) {

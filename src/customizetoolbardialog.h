@@ -41,7 +41,6 @@ private slots:
 
 private:
   QToolBar *toolbar_;
-  QSettings *settings_;
   QTreeWidget *shortcutTree_;
 
   QComboBox *styleBox_;

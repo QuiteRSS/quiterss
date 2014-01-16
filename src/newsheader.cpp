@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "newsheader.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 NewsHeader::NewsHeader(NewsModel *model, QWidget *parent)
   : QHeaderView(Qt::Horizontal, parent)
@@ -423,15 +424,16 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
   if (count() == 0) return;
 
   move_ = false;
-  rssl->settings_->beginGroup("NewsHeader");
+  Settings settings;
+  settings.beginGroup("NewsHeader");
 
-  QByteArray state = rssl->settings_->value("state").toByteArray();
-  QString indexColumnsStr = rssl->settings_->value("columns").toString();
+  QByteArray state = settings.value("state").toByteArray();
+  QString indexColumnsStr = settings.value("columns").toString();
   if (indexColumnsStr.isEmpty()) {
-    rssl->settings_->setValue("state", saveState());
-    rssl->settings_->setValue("columns", columnsList());
-    rssl->settings_->setValue("sortBy", model_->fieldIndex("published"));
-    rssl->settings_->setValue("sortOrder", Qt::DescendingOrder);
+    settings.setValue("state", saveState());
+    settings.setValue("columns", columnsList());
+    settings.setValue("sortBy", model_->fieldIndex("published"));
+    settings.setValue("sortOrder", Qt::DescendingOrder);
   } else if (state != saveState()) {
     restoreState(state);
   }
@@ -452,7 +454,7 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
     sortBy = rssl->feedsTreeModel_->dataField(indexFeed, "sort").toInt();
     sortType = rssl->feedsTreeModel_->dataField(indexFeed, "sortType").toInt();
   } else {
-    indexColumnsStr = rssl->settings_->value("columns").toString();
+    indexColumnsStr = settings.value("columns").toString();
     QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
     for (int i = 0; i < count(); ++i) {
       bool show = indexColumnsList.contains(QString::number(logicalIndex(i)));
@@ -462,10 +464,10 @@ void NewsHeader::setColumns(RSSListing *rssl, const QModelIndex &indexFeed)
       QString indexStr = indexColumnsList.at(i);
       moveSection(visualIndex(indexStr.toInt()), i);
     }
-    sortBy = rssl->settings_->value("sortBy", model_->fieldIndex("published")).toInt();
-    sortType = rssl->settings_->value("sortOrder", Qt::DescendingOrder).toInt();
+    sortBy = settings.value("sortBy", model_->fieldIndex("published")).toInt();
+    sortType = settings.value("sortOrder", Qt::DescendingOrder).toInt();
   }
-  rssl->settings_->endGroup();
+  settings.endGroup();
 
   if ((sortBy != sortIndicatorSection()) || (sortType != sortIndicatorOrder()))
     setSortIndicator(sortBy, Qt::SortOrder(sortType));
@@ -502,12 +504,13 @@ void NewsHeader::saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget
   int feedId = newsTabWidget->feedId_;
   QModelIndex indexOld = rssl->feedsTreeModel_->getIndexById(feedId);
 
-  rssl->settings_->beginGroup("NewsHeader");
-  rssl->settings_->setValue("state", saveState());
+  Settings settings;
+  settings.beginGroup("NewsHeader");
+  settings.setValue("state", saveState());
   if (rssl->feedsTreeModel_->dataField(indexOld, "columns").toString().isEmpty()) {
-    rssl->settings_->setValue("columns", columnsList());
-    rssl->settings_->setValue("sortBy", sortIndicatorSection());
-    rssl->settings_->setValue("sortOrder", sortIndicatorOrder());
+    settings.setValue("columns", columnsList());
+    settings.setValue("sortBy", sortIndicatorSection());
+    settings.setValue("sortOrder", sortIndicatorOrder());
   }
-  rssl->settings_->endGroup();
+  settings.endGroup();
 }

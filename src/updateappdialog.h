@@ -28,8 +28,7 @@ class UpdateAppDialog : public Dialog
 {
   Q_OBJECT
 public:
-  explicit UpdateAppDialog(const QString &lang, QSettings *settings,
-                           QWidget *parent, bool show = true);
+  explicit UpdateAppDialog(const QString &lang, QWidget *parent, bool show = true);
   ~UpdateAppDialog();
 
 signals:
@@ -44,7 +43,6 @@ private slots:
 
 private:
   QString lang_;
-  QSettings *settings_;
   bool showDialog_;
 
   QWebPage *page_;

@@ -27,6 +27,7 @@
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
 #include "webpage.h"
+#include "settings.h"
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
@@ -65,13 +66,11 @@ void RSSListing::receiveMessage(const QString& message)
 }
 
 // ---------------------------------------------------------------------------
-RSSListing::RSSListing(QSettings *settings,
-                       const QString &appDataDirPath,
+RSSListing::RSSListing(const QString &appDataDirPath,
                        const QString &dataDirPath,
                        QWidget *parent)
   : QMainWindow(parent)
   , minimizeToTray_(true)
-  , settings_(settings)
   , appDataDirPath_(appDataDirPath)
   , dataDirPath_(dataDirPath)
   , currentNewsTab(NULL)
@@ -96,10 +95,11 @@ RSSListing::RSSListing(QSettings *settings,
 
   dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
   bool dbExists = QFile(dbFileName_).exists();
-  QString versionDB = initDB(dbFileName_, settings_);
-  settings_->setValue("VersionDB", versionDB);
+  QString versionDB = initDB(dbFileName_);
+  Settings settings;
+  settings.setValue("VersionDB", versionDB);
 
-  storeDBMemory_ = settings_->value("Settings/storeDBMemory", true).toBool();
+  storeDBMemory_ = settings.value("Settings/storeDBMemory", true).toBool();
   storeDBMemoryT_ = storeDBMemory_;
 
   db_ = QSqlDatabase::addDatabase("QSQLITE");
@@ -117,19 +117,19 @@ RSSListing::RSSListing(QSettings *settings,
     while(dbMemFileThread_->isRunning()) qApp->processEvents();
   }
 
-  if (settings_->value("Settings/createLastFeed", false).toBool())
+  if (settings.value("Settings/createLastFeed", false).toBool())
     lastFeedPath_ = dataDirPath_;
 
   networkManager_ = new NetworkManager(parent);
   connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
-  int saveCookies = settings_->value("Settings/saveCookies", 1).toInt();
+  int saveCookies = settings.value("Settings/saveCookies", 1).toInt();
   cookieJar_ = new CookieJar(dataDirPath_, saveCookies, this);
 
   networkManager_->setCookieJar(cookieJar_);
 
-  bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
+  bool useDiskCache = settings.value("Settings/useDiskCache", true).toBool();
   if (useDiskCache) {
     diskCache_ = new QNetworkDiskCache(this);
 #if defined(Q_OS_UNIX)
@@ -141,18 +141,18 @@ RSSListing::RSSListing(QSettings *settings,
 #else
     diskCacheDirPathDefault_ = dataDirPath_ + "/cache";
 #endif
-    QString diskCacheDirPath = settings_->value(
+    QString diskCacheDirPath = settings.value(
           "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
     if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
 
-    bool cleanDiskCache = settings_->value("Settings/cleanDiskCache", true).toBool();
+    bool cleanDiskCache = settings.value("Settings/cleanDiskCache", true).toBool();
     if (cleanDiskCache) {
       removePath(diskCacheDirPath);
-      settings_->setValue("Settings/cleanDiskCache", false);
+      settings.setValue("Settings/cleanDiskCache", false);
     }
 
     diskCache_->setCacheDirectory(diskCacheDirPath);
-    int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
+    int maxDiskCache = settings.value("Settings/maxDiskCache", 50).toInt();
     diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
 
     networkManager_->setCache(diskCache_);
@@ -519,7 +519,8 @@ void RSSListing::slotShowWindows(bool trayClick)
       showMaximized();
     } else {
       showNormal();
-      restoreGeometry(settings_->value("GeometryState").toByteArray());
+      Settings settings;
+      restoreGeometry(settings.value("GeometryState").toByteArray());
     }
     activateWindow();
   } else {
@@ -760,7 +761,8 @@ void RSSListing::createTabBar()
 {
   tabBar_ = new TabBar(this);
 
-  hideTabBar_ = settings_->value("Settings/hideTabBar", false).toBool();
+  Settings settings;
+  hideTabBar_ = settings.value("Settings/hideTabBar", false).toBool();
   if (hideTabBar_)
     tabBar_->hide();
 
@@ -1575,7 +1577,8 @@ void RSSListing::createShortcut()
 // ---------------------------------------------------------------------------
 void RSSListing::loadActionShortcuts()
 {
-  settings_->beginGroup("/Shortcuts");
+  Settings settings;
+  settings.beginGroup("/Shortcuts");
 
   QListIterator<QAction *> iter(listActions_);
   while (iter.hasNext()) {
@@ -1586,16 +1589,17 @@ void RSSListing::loadActionShortcuts()
     listDefaultShortcut_.append(pAction->shortcut().toString());
 
     const QString& sKey = '/' + pAction->objectName();
-    const QString& sValue = settings_->value('/' + sKey, pAction->shortcut().toString()).toString();
+    const QString& sValue = settings.value('/' + sKey, pAction->shortcut().toString()).toString();
     pAction->setShortcut(QKeySequence(sValue));
   }
 
-  settings_->endGroup();
+  settings.endGroup();
 }
 // ---------------------------------------------------------------------------
 void RSSListing::saveActionShortcuts()
 {
-  settings_->beginGroup("/Shortcuts/");
+  Settings settings;
+  settings.beginGroup("/Shortcuts/");
 
   QListIterator<QAction *> iter(listActions_);
   while (iter.hasNext()) {
@@ -1605,10 +1609,10 @@ void RSSListing::saveActionShortcuts()
 
     const QString& sKey = '/' + pAction->objectName();
     const QString& sValue = QString(pAction->shortcut().toString());
-    settings_->setValue(sKey, sValue);
+    settings.setValue(sKey, sValue);
   }
 
-  settings_->endGroup();
+  settings.endGroup();
 }
 // ---------------------------------------------------------------------------
 void RSSListing::createMenu()
@@ -1863,21 +1867,22 @@ void RSSListing::createToolBar()
  *---------------------------------------------------------------------------*/
 void RSSListing::readSettings()
 {
-  settings_->beginGroup("/Settings");
+  Settings settings;
+  settings.beginGroup("/Settings");
 
-  showSplashScreen_ = settings_->value("showSplashScreen", true).toBool();
-  reopenFeedStartup_ = settings_->value("reopenFeedStartup", true).toBool();
-  openNewTabNextToActive_ = settings_->value("openNewTabNextToActive", false).toBool();
+  showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
+  reopenFeedStartup_ = settings.value("reopenFeedStartup", true).toBool();
+  openNewTabNextToActive_ = settings.value("openNewTabNextToActive", false).toBool();
 
-  showTrayIcon_ = settings_->value("showTrayIcon", true).toBool();
-  startingTray_ = settings_->value("startingTray", false).toBool();
-  minimizingTray_ = settings_->value("minimizingTray", true).toBool();
-  closingTray_ = settings_->value("closingTray", false).toBool();
-  singleClickTray_ = settings_->value("singleClickTray", false).toBool();
-  clearStatusNew_ = settings_->value("clearStatusNew", true).toBool();
-  emptyWorking_ = settings_->value("emptyWorking", true).toBool();
+  showTrayIcon_ = settings.value("showTrayIcon", true).toBool();
+  startingTray_ = settings.value("startingTray", false).toBool();
+  minimizingTray_ = settings.value("minimizingTray", true).toBool();
+  closingTray_ = settings.value("closingTray", false).toBool();
+  singleClickTray_ = settings.value("singleClickTray", false).toBool();
+  clearStatusNew_ = settings.value("clearStatusNew", true).toBool();
+  emptyWorking_ = settings.value("emptyWorking", true).toBool();
 
-  saveDBMemFileInterval_ = settings_->value("saveDBMemFileInterval", 30).toInt();
+  saveDBMemFileInterval_ = settings.value("saveDBMemFileInterval", 30).toInt();
 
   QString strLang;
   QString strLocalLang = QLocale::system().name();
@@ -1904,41 +1909,41 @@ void RSSListing::readSettings()
   }
   if (!findLang) strLang = "en";
 
-  langFileName_ = settings_->value("langFileName", strLang).toString();
+  langFileName_ = settings.value("langFileName", strLang).toString();
 
-  QString fontFamily = settings_->value("/feedsFontFamily", qApp->font().family()).toString();
-  int fontSize = settings_->value("/feedsFontSize", 8).toInt();
+  QString fontFamily = settings.value("/feedsFontFamily", qApp->font().family()).toString();
+  int fontSize = settings.value("/feedsFontSize", 8).toInt();
   feedsTreeView_->setFont(QFont(fontFamily, fontSize));
   feedsTreeModel_->font_ = feedsTreeView_->font();
 
-  newsListFontFamily_ = settings_->value("/newsFontFamily", qApp->font().family()).toString();
-  newsListFontSize_ = settings_->value("/newsFontSize", 8).toInt();
-  newsTitleFontFamily_ = settings_->value("/newsTitleFontFamily", qApp->font().family()).toString();
-  newsTitleFontSize_ = settings_->value("/newsTitleFontSize", 10).toInt();
-  newsTextFontFamily_ = settings_->value("/newsTextFontFamily", qApp->font().family()).toString();
-  newsTextFontSize_ = settings_->value("/newsTextFontSize", 10).toInt();
-  notificationFontFamily_ = settings_->value("/notificationFontFamily", qApp->font().family()).toString();
-  notificationFontSize_ = settings_->value("/notificationFontSize", 8).toInt();
+  newsListFontFamily_ = settings.value("/newsFontFamily", qApp->font().family()).toString();
+  newsListFontSize_ = settings.value("/newsFontSize", 8).toInt();
+  newsTitleFontFamily_ = settings.value("/newsTitleFontFamily", qApp->font().family()).toString();
+  newsTitleFontSize_ = settings.value("/newsTitleFontSize", 10).toInt();
+  newsTextFontFamily_ = settings.value("/newsTextFontFamily", qApp->font().family()).toString();
+  newsTextFontSize_ = settings.value("/newsTextFontSize", 10).toInt();
+  notificationFontFamily_ = settings.value("/notificationFontFamily", qApp->font().family()).toString();
+  notificationFontSize_ = settings.value("/notificationFontSize", 8).toInt();
 
-  QString browserStandardFont = settings_->value(
+  QString browserStandardFont = settings.value(
         "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
-  QString browserFixedFont = settings_->value(
+  QString browserFixedFont = settings.value(
         "browserFixedFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont)).toString();
-  QString browserSerifFont = settings_->value(
+  QString browserSerifFont = settings.value(
         "browserSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SerifFont)).toString();
-  QString browserSansSerifFont = settings_->value(
+  QString browserSansSerifFont = settings.value(
         "browserSansSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SansSerifFont)).toString();
-  QString browserCursiveFont = settings_->value(
+  QString browserCursiveFont = settings.value(
         "browserCursiveFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::CursiveFont)).toString();
-  QString browserFantasyFont = settings_->value(
+  QString browserFantasyFont = settings.value(
         "browserFantasyFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FantasyFont)).toString();
-  int browserDefaultFontSize = settings_->value(
+  int browserDefaultFontSize = settings.value(
         "browserDefaultFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFontSize)).toInt();
-  int browserFixedFontSize = settings_->value(
+  int browserFixedFontSize = settings.value(
         "browserFixedFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFixedFontSize)).toInt();
-  int browserMinFontSize = settings_->value(
+  int browserMinFontSize = settings.value(
         "browserMinFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumFontSize)).toInt();
-  int browserMinLogFontSize = settings_->value(
+  int browserMinLogFontSize = settings.value(
         "browserMinLogFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumLogicalFontSize)).toInt();
 
   QWebSettings::globalSettings()->setFontFamily(
@@ -1962,60 +1967,60 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setFontSize(
         QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
 
-  updateFeedsStartUp_ = settings_->value("autoUpdatefeedsStartUp", false).toBool();
-  updateFeedsEnable_ = settings_->value("autoUpdatefeeds", false).toBool();
-  updateFeedsInterval_ = settings_->value("autoUpdatefeedsTime", 10).toInt();
-  updateFeedsIntervalType_ = settings_->value("autoUpdatefeedsInterval", 0).toInt();
+  updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
+  updateFeedsEnable_ = settings.value("autoUpdatefeeds", false).toBool();
+  updateFeedsInterval_ = settings.value("autoUpdatefeedsTime", 10).toInt();
+  updateFeedsIntervalType_ = settings.value("autoUpdatefeedsInterval", 0).toInt();
 
-  openingFeedAction_ = settings_->value("openingFeedAction", 0).toInt();
-  openNewsWebViewOn_ = settings_->value("openNewsWebViewOn", true).toBool();
+  openingFeedAction_ = settings.value("openingFeedAction", 0).toInt();
+  openNewsWebViewOn_ = settings.value("openNewsWebViewOn", true).toBool();
 
-  markNewsReadOn_ = settings_->value("markNewsReadOn", true).toBool();
-  markCurNewsRead_ = settings_->value("markCurNewsRead", true).toBool();
-  markNewsReadTime_ = settings_->value("markNewsReadTime", 0).toInt();
-  markPrevNewsRead_= settings_->value("markPrevNewsRead", false).toBool();
-  markReadSwitchingFeed_ = settings_->value("markReadSwitchingFeed", false).toBool();
-  markReadClosingTab_ = settings_->value("markReadClosingTab", false).toBool();
-  markReadMinimize_ = settings_->value("markReadMinimize", false).toBool();
+  markNewsReadOn_ = settings.value("markNewsReadOn", true).toBool();
+  markCurNewsRead_ = settings.value("markCurNewsRead", true).toBool();
+  markNewsReadTime_ = settings.value("markNewsReadTime", 0).toInt();
+  markPrevNewsRead_= settings.value("markPrevNewsRead", false).toBool();
+  markReadSwitchingFeed_ = settings.value("markReadSwitchingFeed", false).toBool();
+  markReadClosingTab_ = settings.value("markReadClosingTab", false).toBool();
+  markReadMinimize_ = settings.value("markReadMinimize", false).toBool();
 
-  showDescriptionNews_ = settings_->value("showDescriptionNews", true).toBool();
+  showDescriptionNews_ = settings.value("showDescriptionNews", true).toBool();
 
-  formatDate_ = settings_->value("formatData", "dd.MM.yy").toString();
-  formatTime_ = settings_->value("formatTime", "hh:mm").toString();
+  formatDate_ = settings.value("formatData", "dd.MM.yy").toString();
+  formatTime_ = settings.value("formatTime", "hh:mm").toString();
   feedsTreeModel_->formatDate_ = formatDate_;
   feedsTreeModel_->formatTime_ = formatTime_;
 
-  alternatingRowColorsNews_ = settings_->value("alternatingColorsNews", false).toBool();
-  changeBehaviorActionNUN_ = settings_->value("changeBehaviorActionNUN", false).toBool();
-  simplifiedDateTime_ = settings_->value("simplifiedDateTime", true).toBool();
-  notDeleteStarred_ = settings_->value("notDeleteStarred", false).toBool();
-  notDeleteLabeled_ = settings_->value("notDeleteLabeled", false).toBool();
-  markIdenticalNewsRead_ = settings_->value("markIdenticalNewsRead", true).toBool();
+  alternatingRowColorsNews_ = settings.value("alternatingColorsNews", false).toBool();
+  changeBehaviorActionNUN_ = settings.value("changeBehaviorActionNUN", false).toBool();
+  simplifiedDateTime_ = settings.value("simplifiedDateTime", true).toBool();
+  notDeleteStarred_ = settings.value("notDeleteStarred", false).toBool();
+  notDeleteLabeled_ = settings.value("notDeleteLabeled", false).toBool();
+  markIdenticalNewsRead_ = settings.value("markIdenticalNewsRead", true).toBool();
 
-  mainNewsFilter_ = settings_->value("mainNewsFilter", "filterNewsAll_").toString();
+  mainNewsFilter_ = settings.value("mainNewsFilter", "filterNewsAll_").toString();
 
-  cleanupOnShutdown_ = settings_->value("cleanupOnShutdown", true).toBool();
-  maxDayCleanUp_ = settings_->value("maxDayClearUp", 30).toInt();
-  maxNewsCleanUp_ = settings_->value("maxNewsClearUp", 200).toInt();
-  dayCleanUpOn_ = settings_->value("dayClearUpOn", true).toBool();
-  newsCleanUpOn_ = settings_->value("newsClearUpOn", true).toBool();
-  readCleanUp_ = settings_->value("readClearUp", false).toBool();
-  neverUnreadCleanUp_ = settings_->value("neverUnreadClearUp", true).toBool();
-  neverStarCleanUp_ = settings_->value("neverStarClearUp", true).toBool();
-  neverLabelCleanUp_ = settings_->value("neverLabelClearUp", true).toBool();
-  cleanUpDeleted_ = settings_->value("cleanUpDeleted", false).toBool();
-  optimizeDB_ = settings_->value("optimizeDB", false).toBool();
+  cleanupOnShutdown_ = settings.value("cleanupOnShutdown", true).toBool();
+  maxDayCleanUp_ = settings.value("maxDayClearUp", 30).toInt();
+  maxNewsCleanUp_ = settings.value("maxNewsClearUp", 200).toInt();
+  dayCleanUpOn_ = settings.value("dayClearUpOn", true).toBool();
+  newsCleanUpOn_ = settings.value("newsClearUpOn", true).toBool();
+  readCleanUp_ = settings.value("readClearUp", false).toBool();
+  neverUnreadCleanUp_ = settings.value("neverUnreadClearUp", true).toBool();
+  neverStarCleanUp_ = settings.value("neverStarClearUp", true).toBool();
+  neverLabelCleanUp_ = settings.value("neverLabelClearUp", true).toBool();
+  cleanUpDeleted_ = settings.value("cleanUpDeleted", false).toBool();
+  optimizeDB_ = settings.value("optimizeDB", false).toBool();
 
-  externalBrowserOn_ = settings_->value("externalBrowserOn", 0).toInt();
-  externalBrowser_ = settings_->value("externalBrowser", "").toString();
-  javaScriptEnable_ = settings_->value("javaScriptEnable", true).toBool();
-  pluginsEnable_ = settings_->value("pluginsEnable", true).toBool();
-  userStyleBrowser_ = settings_->value("userStyleBrowser", "").toString();
-  maxPagesInCache_ = settings_->value("maxPagesInCache", 3).toInt();
-  downloadLocation_ = settings_->value("downloadLocation", "").toString();
-  askDownloadLocation_ = settings_->value("askDownloadLocation", true).toBool();
-  defaultZoomPages_ = settings_->value("defaultZoomPages", 100).toInt();
-  autoLoadImages_ = settings_->value("autoLoadImages", true).toBool();
+  externalBrowserOn_ = settings.value("externalBrowserOn", 0).toInt();
+  externalBrowser_ = settings.value("externalBrowser", "").toString();
+  javaScriptEnable_ = settings.value("javaScriptEnable", true).toBool();
+  pluginsEnable_ = settings.value("pluginsEnable", true).toBool();
+  userStyleBrowser_ = settings.value("userStyleBrowser", "").toString();
+  maxPagesInCache_ = settings.value("maxPagesInCache", 3).toInt();
+  downloadLocation_ = settings.value("downloadLocation", "").toString();
+  askDownloadLocation_ = settings.value("askDownloadLocation", true).toBool();
+  defaultZoomPages_ = settings.value("defaultZoomPages", 100).toInt();
+  autoLoadImages_ = settings.value("autoLoadImages", true).toBool();
 
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::JavascriptEnabled, javaScriptEnable_);
@@ -2024,25 +2029,25 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
   QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
-  soundNewNews_ = settings_->value("soundNewNews", true).toBool();
+  soundNewNews_ = settings.value("soundNewNews", true).toBool();
   QString soundNotifyPathStr = appDataDirPath_ + "/sound/notification.wav";
-  soundNotifyPath_ = settings_->value("soundNotifyPath", soundNotifyPathStr).toString();
-  showNotifyOn_ = settings_->value("showNotifyOn", true).toBool();
-  positionNotify_ = settings_->value("positionNotify", 3).toInt();
-  countShowNewsNotify_ = settings_->value("countShowNewsNotify", 10).toInt();
-  widthTitleNewsNotify_ = settings_->value("widthTitleNewsNotify", 300).toInt();
-  timeShowNewsNotify_ = settings_->value("timeShowNewsNotify", 10).toInt();
-  fullscreenModeNotify_ = settings_->value("fullscreenModeNotify", true).toBool();
-  onlySelectedFeeds_ = settings_->value("onlySelectedFeeds", false).toBool();
+  soundNotifyPath_ = settings.value("soundNotifyPath", soundNotifyPathStr).toString();
+  showNotifyOn_ = settings.value("showNotifyOn", true).toBool();
+  positionNotify_ = settings.value("positionNotify", 3).toInt();
+  countShowNewsNotify_ = settings.value("countShowNewsNotify", 10).toInt();
+  widthTitleNewsNotify_ = settings.value("widthTitleNewsNotify", 300).toInt();
+  timeShowNewsNotify_ = settings.value("timeShowNewsNotify", 10).toInt();
+  fullscreenModeNotify_ = settings.value("fullscreenModeNotify", true).toBool();
+  onlySelectedFeeds_ = settings.value("onlySelectedFeeds", false).toBool();
 
-  toolBarLockAct_->setChecked(settings_->value("mainToolbarLock", true).toBool());
+  toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
   lockMainToolbar(toolBarLockAct_->isChecked());
 
-  mainToolbarToggle_->setChecked(settings_->value("mainToolbarShow", true).toBool());
-  feedsToolbarToggle_->setChecked(settings_->value("feedsToolbarShow", true).toBool());
-  newsToolbarToggle_->setChecked(settings_->value("newsToolbarShow", true).toBool());
-  browserToolbarToggle_->setChecked(settings_->value("browserToolbarShow", true).toBool());
-  categoriesPanelToggle_->setChecked(settings_->value("categoriesPanelShow", true).toBool());
+  mainToolbarToggle_->setChecked(settings.value("mainToolbarShow", true).toBool());
+  feedsToolbarToggle_->setChecked(settings.value("feedsToolbarShow", true).toBool());
+  newsToolbarToggle_->setChecked(settings.value("newsToolbarShow", true).toBool());
+  browserToolbarToggle_->setChecked(settings.value("browserToolbarShow", true).toBool());
+  categoriesPanelToggle_->setChecked(settings.value("categoriesPanelShow", true).toBool());
   categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
 
   if (!mainToolbarToggle_->isChecked())
@@ -2050,9 +2055,9 @@ void RSSListing::readSettings()
   if (!feedsToolbarToggle_->isChecked())
     feedsPanel_->hide();
 
-  QString str = settings_->value("mainToolBar",
-                                 "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
-                                 "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
+  QString str = settings.value("mainToolBar",
+                               "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
+                               "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
     if (actionStr == "Separator") {
@@ -2071,7 +2076,7 @@ void RSSListing::readSettings()
     }
   }
 
-  str = settings_->value("feedsToolBar", "findFeedAct,feedsFilter").toString();
+  str = settings.value("feedsToolBar", "findFeedAct,feedsFilter").toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
     if (actionStr == "Separator") {
@@ -2090,10 +2095,10 @@ void RSSListing::readSettings()
     }
   }
 
-  setToolBarStyle(settings_->value("toolBarStyle", "toolBarStyleTuI_").toString());
-  setToolBarIconSize(settings_->value("toolBarIconSize", "toolBarIconNormal_").toString());
+  setToolBarStyle(settings.value("toolBarStyle", "toolBarStyleTuI_").toString());
+  setToolBarIconSize(settings.value("toolBarIconSize", "toolBarIconNormal_").toString());
 
-  str = settings_->value("styleApplication", "defaultStyle_").toString();
+  str = settings.value("styleApplication", "defaultStyle_").toString();
   QList<QAction*> listActions = styleGroup_->actions();
   foreach(QAction *action, listActions) {
     if (action->objectName() == str) {
@@ -2102,17 +2107,17 @@ void RSSListing::readSettings()
     }
   }
 
-  showUnreadCount_->setChecked(settings_->value("showUnreadCount", true).toBool());
-  showUndeleteCount_->setChecked(settings_->value("showUndeleteCount", false).toBool());
-  showLastUpdated_->setChecked(settings_->value("showLastUpdated", false).toBool());
+  showUnreadCount_->setChecked(settings.value("showUnreadCount", true).toBool());
+  showUndeleteCount_->setChecked(settings.value("showUndeleteCount", false).toBool());
+  showLastUpdated_->setChecked(settings.value("showLastUpdated", false).toBool());
   feedsColumnVisible(showUnreadCount_);
   feedsColumnVisible(showUndeleteCount_);
   feedsColumnVisible(showLastUpdated_);
 
-  indentationFeedsTreeAct_->setChecked(settings_->value("indentationFeedsTree", true).toBool());
+  indentationFeedsTreeAct_->setChecked(settings.value("indentationFeedsTree", true).toBool());
   slotIndentationFeedsTree();
 
-  browserPosition_ = settings_->value("browserPosition", BOTTOM_POSITION).toInt();
+  browserPosition_ = settings.value("browserPosition", BOTTOM_POSITION).toInt();
   switch (browserPosition_) {
   case TOP_POSITION:   topBrowserPositionAct_->setChecked(true); break;
   case RIGHT_POSITION: rightBrowserPositionAct_->setChecked(true); break;
@@ -2120,69 +2125,69 @@ void RSSListing::readSettings()
   default: bottomBrowserPositionAct_->setChecked(true);
   }
 
-  openLinkInBackground_ = settings_->value("openLinkInBackground", true).toBool();
-  openLinkInBackgroundEmbedded_ = settings_->value("openLinkInBackgroundEmbedded", true).toBool();
-  openingLinkTimeout_ = settings_->value("openingLinkTimeout", 1000).toInt();
+  openLinkInBackground_ = settings.value("openLinkInBackground", true).toBool();
+  openLinkInBackgroundEmbedded_ = settings.value("openLinkInBackgroundEmbedded", true).toBool();
+  openingLinkTimeout_ = settings.value("openingLinkTimeout", 1000).toInt();
 
-  stayOnTopAct_->setChecked(settings_->value("stayOnTop", false).toBool());
+  stayOnTopAct_->setChecked(settings.value("stayOnTop", false).toBool());
   if (stayOnTopAct_->isChecked())
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
   else
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
-  updateCheckEnabled_ = settings_->value("updateCheckEnabled", true).toBool();
+  updateCheckEnabled_ = settings.value("updateCheckEnabled", true).toBool();
 
-  hideFeedsOpenTab_ = settings_->value("hideFeedsOpenTab", false).toBool();
-  showToggleFeedsTree_ = settings_->value("showToggleFeedsTree", true).toBool();
+  hideFeedsOpenTab_ = settings.value("hideFeedsOpenTab", false).toBool();
+  showToggleFeedsTree_ = settings.value("showToggleFeedsTree", true).toBool();
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
-  defaultIconFeeds_ = settings_->value("defaultIconFeeds", false).toBool();
+  defaultIconFeeds_ = settings.value("defaultIconFeeds", false).toBool();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
   feedsTreeView_->autocollapseFolder_ =
-      settings_->value("autocollapseFolder", false).toBool();
+      settings.value("autocollapseFolder", false).toBool();
 
-  settings_->endGroup();
+  settings.endGroup();
 
-  settings_->beginGroup("ClickToFlash");
-  c2fWhitelist_ = settings_->value("whitelist", QStringList()).toStringList();
-  c2fEnabled_ = settings_->value("enabled", true).toBool();
-  settings_->endGroup();
+  settings.beginGroup("ClickToFlash");
+  c2fWhitelist_ = settings.value("whitelist", QStringList()).toStringList();
+  c2fEnabled_ = settings.value("enabled", true).toBool();
+  settings.endGroup();
 
-  settings_->beginGroup("Color");
+  settings.beginGroup("Color");
   QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
   QString linkTextColor = qApp->palette().brush(QPalette::Link).color().name();
-  feedsTreeModel_->textColor_ = settings_->value("feedsListTextColor", windowTextColor).toString();
-  feedsTreeModel_->backgroundColor_ = settings_->value("feedsListBackgroundColor", "").toString();
+  feedsTreeModel_->textColor_ = settings.value("feedsListTextColor", windowTextColor).toString();
+  feedsTreeModel_->backgroundColor_ = settings.value("feedsListBackgroundColor", "").toString();
   feedsTreeView_->setStyleSheet(QString("#feedsTreeView_ {background: %1;}").arg(feedsTreeModel_->backgroundColor_));
-  newsListTextColor_ = settings_->value("newsListTextColor", windowTextColor).toString();
-  newsListBackgroundColor_ = settings_->value("newsListBackgroundColor", "").toString();
-  newNewsTextColor_ = settings_->value("newNewsTextColor", windowTextColor).toString();
-  unreadNewsTextColor_ = settings_->value("unreadNewsTextColor", windowTextColor).toString();
-  focusedNewsTextColor_ = settings_->value("focusedNewsTextColor", windowTextColor).toString();
-  focusedNewsBGColor_ = settings_->value("focusedNewsBGColor", "").toString();
-  linkColor_ = settings_->value("linkColor", "#0066CC").toString();
-  titleColor_ = settings_->value("titleColor", "#0066CC").toString();
-  dateColor_ = settings_->value("dateColor", "#666666").toString();
-  authorColor_ = settings_->value("authorColor", "#666666").toString();
-  newsTextColor_ = settings_->value("newsTextColor", "#000000").toString();
-  newsTitleBackgroundColor_ = settings_->value("newsTitleBackgroundColor", "#FFFFFF").toString();
-  newsBackgroundColor_ = settings_->value("newsBackgroundColor", "#FFFFFF").toString();
-  feedsTreeModel_->feedWithNewNewsColor_ = settings_->value("feedWithNewNewsColor", linkTextColor).toString();
-  feedsTreeModel_->countNewsUnreadColor_ = settings_->value("countNewsUnreadColor", linkTextColor).toString();
-  feedsTreeModel_->focusedFeedTextColor_ = settings_->value("focusedFeedTextColor", windowTextColor).toString();
-  feedsTreeModel_->focusedFeedBGColor_ = settings_->value("focusedFeedBGColor", "").toString();
-  settings_->endGroup();
+  newsListTextColor_ = settings.value("newsListTextColor", windowTextColor).toString();
+  newsListBackgroundColor_ = settings.value("newsListBackgroundColor", "").toString();
+  newNewsTextColor_ = settings.value("newNewsTextColor", windowTextColor).toString();
+  unreadNewsTextColor_ = settings.value("unreadNewsTextColor", windowTextColor).toString();
+  focusedNewsTextColor_ = settings.value("focusedNewsTextColor", windowTextColor).toString();
+  focusedNewsBGColor_ = settings.value("focusedNewsBGColor", "").toString();
+  linkColor_ = settings.value("linkColor", "#0066CC").toString();
+  titleColor_ = settings.value("titleColor", "#0066CC").toString();
+  dateColor_ = settings.value("dateColor", "#666666").toString();
+  authorColor_ = settings.value("authorColor", "#666666").toString();
+  newsTextColor_ = settings.value("newsTextColor", "#000000").toString();
+  newsTitleBackgroundColor_ = settings.value("newsTitleBackgroundColor", "#FFFFFF").toString();
+  newsBackgroundColor_ = settings.value("newsBackgroundColor", "#FFFFFF").toString();
+  feedsTreeModel_->feedWithNewNewsColor_ = settings.value("feedWithNewNewsColor", linkTextColor).toString();
+  feedsTreeModel_->countNewsUnreadColor_ = settings.value("countNewsUnreadColor", linkTextColor).toString();
+  feedsTreeModel_->focusedFeedTextColor_ = settings.value("focusedFeedTextColor", windowTextColor).toString();
+  feedsTreeModel_->focusedFeedBGColor_ = settings.value("focusedFeedBGColor", "").toString();
+  settings.endGroup();
 
   resize(800, 600);
-  restoreGeometry(settings_->value("GeometryState").toByteArray());
-  restoreState(settings_->value("ToolBarsState").toByteArray());
+  restoreGeometry(settings.value("GeometryState").toByteArray());
+  restoreState(settings.value("ToolBarsState").toByteArray());
 
-  mainSplitter_->restoreState(settings_->value("MainSplitterState").toByteArray());
-  feedsWidgetVisibleAct_->setChecked(settings_->value("FeedsWidgetVisible", true).toBool());
+  mainSplitter_->restoreState(settings.value("MainSplitterState").toByteArray());
+  feedsWidgetVisibleAct_->setChecked(settings.value("FeedsWidgetVisible", true).toBool());
   slotVisibledFeedsWidget();
 
-  feedsWidgetSplitterState_ = settings_->value("FeedsWidgetSplitterState").toByteArray();
-  bool showCategories = settings_->value("NewsCategoriesTreeVisible", true).toBool();
+  feedsWidgetSplitterState_ = settings.value("FeedsWidgetSplitterState").toByteArray();
+  bool showCategories = settings.value("NewsCategoriesTreeVisible", true).toBool();
   categoriesTree_->setVisible(showCategories);
   if (showCategories) {
     showCategoriesButton_->setIcon(QIcon(":/images/images/panel_hide.png"));
@@ -2195,19 +2200,19 @@ void RSSListing::readSettings()
     sizes << QApplication::desktop()->height() << 20;
     feedsSplitter_->setSizes(sizes);
   }
-  bool expandCategories = settings_->value("categoriesTreeExpanded", true).toBool();
+  bool expandCategories = settings.value("categoriesTreeExpanded", true).toBool();
   if (expandCategories)
-      categoriesTree_->expandAll();
+    categoriesTree_->expandAll();
 
   if (isFullScreen())
     menuBar()->hide();
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
-                          settings_->value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
-  networkProxy_.setHostName(settings_->value("networkProxy/hostName", "").toString());
-  networkProxy_.setPort(    settings_->value("networkProxy/port",     "").toUInt());
-  networkProxy_.setUser(    settings_->value("networkProxy/user",     "").toString());
-  networkProxy_.setPassword(settings_->value("networkProxy/password", "").toString());
+                          settings.value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
+  networkProxy_.setHostName(settings.value("networkProxy/hostName", "").toString());
+  networkProxy_.setPort(    settings.value("networkProxy/port",     "").toUInt());
+  networkProxy_.setUser(    settings.value("networkProxy/user",     "").toString());
+  networkProxy_.setPassword(settings.value("networkProxy/password", "").toString());
   setProxy(networkProxy_);
 }
 
@@ -2215,184 +2220,185 @@ void RSSListing::readSettings()
  *---------------------------------------------------------------------------*/
 void RSSListing::writeSettings()
 {
-  settings_->beginGroup("/Settings");
+  Settings settings;
+  settings.beginGroup("/Settings");
 
-  settings_->setValue("showSplashScreen", showSplashScreen_);
-  settings_->setValue("reopenFeedStartup", reopenFeedStartup_);
-  settings_->setValue("openNewTabNextToActive", openNewTabNextToActive_);
+  settings.setValue("showSplashScreen", showSplashScreen_);
+  settings.setValue("reopenFeedStartup", reopenFeedStartup_);
+  settings.setValue("openNewTabNextToActive", openNewTabNextToActive_);
 
-  settings_->setValue("storeDBMemory", storeDBMemoryT_);
+  settings.setValue("storeDBMemory", storeDBMemoryT_);
 
-  settings_->setValue("createLastFeed", !lastFeedPath_.isEmpty());
+  settings.setValue("createLastFeed", !lastFeedPath_.isEmpty());
 
-  settings_->setValue("showTrayIcon", showTrayIcon_);
-  settings_->setValue("startingTray", startingTray_);
-  settings_->setValue("minimizingTray", minimizingTray_);
-  settings_->setValue("closingTray", closingTray_);
-  settings_->setValue("behaviorIconTray", behaviorIconTray_);
-  settings_->setValue("singleClickTray", singleClickTray_);
-  settings_->setValue("clearStatusNew", clearStatusNew_);
-  settings_->setValue("emptyWorking", emptyWorking_);
+  settings.setValue("showTrayIcon", showTrayIcon_);
+  settings.setValue("startingTray", startingTray_);
+  settings.setValue("minimizingTray", minimizingTray_);
+  settings.setValue("closingTray", closingTray_);
+  settings.setValue("behaviorIconTray", behaviorIconTray_);
+  settings.setValue("singleClickTray", singleClickTray_);
+  settings.setValue("clearStatusNew", clearStatusNew_);
+  settings.setValue("emptyWorking", emptyWorking_);
 
-  settings_->setValue("saveDBMemFileInterval", saveDBMemFileInterval_);
+  settings.setValue("saveDBMemFileInterval", saveDBMemFileInterval_);
 
-  settings_->setValue("langFileName", langFileName_);
+  settings.setValue("langFileName", langFileName_);
 
   QString fontFamily = feedsTreeView_->font().family();
-  settings_->setValue("/feedsFontFamily", fontFamily);
+  settings.setValue("/feedsFontFamily", fontFamily);
   int fontSize = feedsTreeView_->font().pointSize();
-  settings_->setValue("/feedsFontSize", fontSize);
+  settings.setValue("/feedsFontSize", fontSize);
 
-  settings_->setValue("/newsFontFamily", newsListFontFamily_);
-  settings_->setValue("/newsFontSize", newsListFontSize_);
-  settings_->setValue("/newsTitleFontFamily", newsTitleFontFamily_);
-  settings_->setValue("/newsTitleFontSize", newsTitleFontSize_);
-  settings_->setValue("/newsTextFontFamily", newsTextFontFamily_);
-  settings_->setValue("/newsTextFontSize", newsTextFontSize_);
-  settings_->setValue("/notificationFontFamily", notificationFontFamily_);
-  settings_->setValue("/notificationFontSize", notificationFontSize_);
+  settings.setValue("/newsFontFamily", newsListFontFamily_);
+  settings.setValue("/newsFontSize", newsListFontSize_);
+  settings.setValue("/newsTitleFontFamily", newsTitleFontFamily_);
+  settings.setValue("/newsTitleFontSize", newsTitleFontSize_);
+  settings.setValue("/newsTextFontFamily", newsTextFontFamily_);
+  settings.setValue("/newsTextFontSize", newsTextFontSize_);
+  settings.setValue("/notificationFontFamily", notificationFontFamily_);
+  settings.setValue("/notificationFontSize", notificationFontSize_);
 
-  settings_->setValue("autoUpdatefeedsStartUp", updateFeedsStartUp_);
-  settings_->setValue("autoUpdatefeeds", updateFeedsEnable_);
-  settings_->setValue("autoUpdatefeedsTime", updateFeedsInterval_);
-  settings_->setValue("autoUpdatefeedsInterval", updateFeedsIntervalType_);
+  settings.setValue("autoUpdatefeedsStartUp", updateFeedsStartUp_);
+  settings.setValue("autoUpdatefeeds", updateFeedsEnable_);
+  settings.setValue("autoUpdatefeedsTime", updateFeedsInterval_);
+  settings.setValue("autoUpdatefeedsInterval", updateFeedsIntervalType_);
 
-  settings_->setValue("openingFeedAction", openingFeedAction_);
-  settings_->setValue("openNewsWebViewOn", openNewsWebViewOn_);
+  settings.setValue("openingFeedAction", openingFeedAction_);
+  settings.setValue("openNewsWebViewOn", openNewsWebViewOn_);
 
-  settings_->setValue("markNewsReadOn", markNewsReadOn_);
-  settings_->setValue("markCurNewsRead", markCurNewsRead_);
-  settings_->setValue("markNewsReadTime", markNewsReadTime_);
-  settings_->setValue("markPrevNewsRead", markPrevNewsRead_);
-  settings_->setValue("markReadSwitchingFeed", markReadSwitchingFeed_);
-  settings_->setValue("markReadClosingTab", markReadClosingTab_);
-  settings_->setValue("markReadMinimize", markReadMinimize_);
+  settings.setValue("markNewsReadOn", markNewsReadOn_);
+  settings.setValue("markCurNewsRead", markCurNewsRead_);
+  settings.setValue("markNewsReadTime", markNewsReadTime_);
+  settings.setValue("markPrevNewsRead", markPrevNewsRead_);
+  settings.setValue("markReadSwitchingFeed", markReadSwitchingFeed_);
+  settings.setValue("markReadClosingTab", markReadClosingTab_);
+  settings.setValue("markReadMinimize", markReadMinimize_);
 
-  settings_->setValue("showDescriptionNews", showDescriptionNews_);
+  settings.setValue("showDescriptionNews", showDescriptionNews_);
 
-  settings_->setValue("formatData", formatDate_);
-  settings_->setValue("formatTime", formatTime_);
+  settings.setValue("formatData", formatDate_);
+  settings.setValue("formatTime", formatTime_);
 
-  settings_->setValue("alternatingColorsNews", alternatingRowColorsNews_);
-  settings_->setValue("changeBehaviorActionNUN", changeBehaviorActionNUN_);
-  settings_->setValue("simplifiedDateTime", simplifiedDateTime_);
-  settings_->setValue("notDeleteStarred", notDeleteStarred_);
-  settings_->setValue("notDeleteLabeled", notDeleteLabeled_);
-  settings_->setValue("markIdenticalNewsRead", markIdenticalNewsRead_);
+  settings.setValue("alternatingColorsNews", alternatingRowColorsNews_);
+  settings.setValue("changeBehaviorActionNUN", changeBehaviorActionNUN_);
+  settings.setValue("simplifiedDateTime", simplifiedDateTime_);
+  settings.setValue("notDeleteStarred", notDeleteStarred_);
+  settings.setValue("notDeleteLabeled", notDeleteLabeled_);
+  settings.setValue("markIdenticalNewsRead", markIdenticalNewsRead_);
 
-  settings_->setValue("mainNewsFilter", mainNewsFilter_);
+  settings.setValue("mainNewsFilter", mainNewsFilter_);
 
-  settings_->setValue("cleanupOnShutdown", cleanupOnShutdown_);
-  settings_->setValue("maxDayClearUp", maxDayCleanUp_);
-  settings_->setValue("maxNewsClearUp", maxNewsCleanUp_);
-  settings_->setValue("dayClearUpOn", dayCleanUpOn_);
-  settings_->setValue("newsClearUpOn", newsCleanUpOn_);
-  settings_->setValue("readClearUp", readCleanUp_);
-  settings_->setValue("neverUnreadClearUp", neverUnreadCleanUp_);
-  settings_->setValue("neverStarClearUp", neverStarCleanUp_);
-  settings_->setValue("neverLabelClearUp", neverLabelCleanUp_);
-  settings_->setValue("cleanUpDeleted", cleanUpDeleted_);
-  settings_->setValue("optimizeDB", optimizeDB_);
+  settings.setValue("cleanupOnShutdown", cleanupOnShutdown_);
+  settings.setValue("maxDayClearUp", maxDayCleanUp_);
+  settings.setValue("maxNewsClearUp", maxNewsCleanUp_);
+  settings.setValue("dayClearUpOn", dayCleanUpOn_);
+  settings.setValue("newsClearUpOn", newsCleanUpOn_);
+  settings.setValue("readClearUp", readCleanUp_);
+  settings.setValue("neverUnreadClearUp", neverUnreadCleanUp_);
+  settings.setValue("neverStarClearUp", neverStarCleanUp_);
+  settings.setValue("neverLabelClearUp", neverLabelCleanUp_);
+  settings.setValue("cleanUpDeleted", cleanUpDeleted_);
+  settings.setValue("optimizeDB", optimizeDB_);
 
-  settings_->setValue("externalBrowserOn", externalBrowserOn_);
-  settings_->setValue("externalBrowser", externalBrowser_);
-  settings_->setValue("javaScriptEnable", javaScriptEnable_);
-  settings_->setValue("pluginsEnable", pluginsEnable_);
-  settings_->setValue("userStyleBrowser", userStyleBrowser_);
-  settings_->setValue("maxPagesInCache", maxPagesInCache_);
-  settings_->setValue("downloadLocation", downloadLocation_);
-  settings_->setValue("saveCookies", cookieJar_->saveCookies_);
-  settings_->setValue("askDownloadLocation", askDownloadLocation_);
-  settings_->setValue("defaultZoomPages", defaultZoomPages_);
-  settings_->setValue("autoLoadImages", autoLoadImages_);
+  settings.setValue("externalBrowserOn", externalBrowserOn_);
+  settings.setValue("externalBrowser", externalBrowser_);
+  settings.setValue("javaScriptEnable", javaScriptEnable_);
+  settings.setValue("pluginsEnable", pluginsEnable_);
+  settings.setValue("userStyleBrowser", userStyleBrowser_);
+  settings.setValue("maxPagesInCache", maxPagesInCache_);
+  settings.setValue("downloadLocation", downloadLocation_);
+  settings.setValue("saveCookies", cookieJar_->saveCookies_);
+  settings.setValue("askDownloadLocation", askDownloadLocation_);
+  settings.setValue("defaultZoomPages", defaultZoomPages_);
+  settings.setValue("autoLoadImages", autoLoadImages_);
 
-  settings_->setValue("soundNewNews", soundNewNews_);
-  settings_->setValue("soundNotifyPath", soundNotifyPath_);
-  settings_->setValue("showNotifyOn", showNotifyOn_);
-  settings_->setValue("positionNotify", positionNotify_);
-  settings_->setValue("countShowNewsNotify", countShowNewsNotify_);
-  settings_->setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
-  settings_->setValue("timeShowNewsNotify", timeShowNewsNotify_);
-  settings_->setValue("fullscreenModeNotify", fullscreenModeNotify_);
-  settings_->setValue("onlySelectedFeeds", onlySelectedFeeds_);
+  settings.setValue("soundNewNews", soundNewNews_);
+  settings.setValue("soundNotifyPath", soundNotifyPath_);
+  settings.setValue("showNotifyOn", showNotifyOn_);
+  settings.setValue("positionNotify", positionNotify_);
+  settings.setValue("countShowNewsNotify", countShowNewsNotify_);
+  settings.setValue("widthTitleNewsNotify", widthTitleNewsNotify_);
+  settings.setValue("timeShowNewsNotify", timeShowNewsNotify_);
+  settings.setValue("fullscreenModeNotify", fullscreenModeNotify_);
+  settings.setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
-  settings_->setValue("mainToolbarLock", toolBarLockAct_->isChecked());
+  settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
-  settings_->setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
-  settings_->setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
-  settings_->setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
-  settings_->setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
-  settings_->setValue("categoriesPanelShow", categoriesPanelToggle_->isChecked());
+  settings.setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
+  settings.setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
+  settings.setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
+  settings.setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
+  settings.setValue("categoriesPanelShow", categoriesPanelToggle_->isChecked());
 
-  settings_->setValue("styleApplication",
-                      styleGroup_->checkedAction()->objectName());
+  settings.setValue("styleApplication",
+                    styleGroup_->checkedAction()->objectName());
 
-  settings_->setValue("showUnreadCount", showUnreadCount_->isChecked());
-  settings_->setValue("showUndeleteCount", showUndeleteCount_->isChecked());
-  settings_->setValue("showLastUpdated", showLastUpdated_->isChecked());
+  settings.setValue("showUnreadCount", showUnreadCount_->isChecked());
+  settings.setValue("showUndeleteCount", showUndeleteCount_->isChecked());
+  settings.setValue("showLastUpdated", showLastUpdated_->isChecked());
 
-  settings_->setValue("indentationFeedsTree", indentationFeedsTreeAct_->isChecked());
+  settings.setValue("indentationFeedsTree", indentationFeedsTreeAct_->isChecked());
 
-  settings_->setValue("browserPosition", browserPosition_);
+  settings.setValue("browserPosition", browserPosition_);
 
-  settings_->setValue("openLinkInBackground", openLinkInBackground_);
-  settings_->setValue("openLinkInBackgroundEmbedded", openLinkInBackgroundEmbedded_);
-  settings_->setValue("openingLinkTimeout", openingLinkTimeout_);
+  settings.setValue("openLinkInBackground", openLinkInBackground_);
+  settings.setValue("openLinkInBackgroundEmbedded", openLinkInBackgroundEmbedded_);
+  settings.setValue("openingLinkTimeout", openingLinkTimeout_);
 
-  settings_->setValue("stayOnTop", stayOnTopAct_->isChecked());
+  settings.setValue("stayOnTop", stayOnTopAct_->isChecked());
 
-  settings_->setValue("updateCheckEnabled", updateCheckEnabled_);
+  settings.setValue("updateCheckEnabled", updateCheckEnabled_);
 
-  settings_->setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
-  settings_->setValue("showToggleFeedsTree", showToggleFeedsTree_);
+  settings.setValue("hideFeedsOpenTab", hideFeedsOpenTab_);
+  settings.setValue("showToggleFeedsTree", showToggleFeedsTree_);
 
-  settings_->setValue("defaultIconFeeds", defaultIconFeeds_);
-  settings_->setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
+  settings.setValue("defaultIconFeeds", defaultIconFeeds_);
+  settings.setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
 
-  settings_->endGroup();
+  settings.endGroup();
 
-  settings_->beginGroup("Color");
-  settings_->setValue("feedsListTextColor", feedsTreeModel_->textColor_);
-  settings_->setValue("feedsListBackgroundColor", feedsTreeModel_->backgroundColor_);
-  settings_->setValue("newsListTextColor", newsListTextColor_);
-  settings_->setValue("newsListBackgroundColor", newsListBackgroundColor_);
-  settings_->setValue("newNewsTextColor", newNewsTextColor_);
-  settings_->setValue("unreadNewsTextColor", unreadNewsTextColor_);
-  settings_->setValue("focusedNewsTextColor", focusedNewsTextColor_);
-  settings_->setValue("focusedNewsBGColor", focusedNewsBGColor_);
-  settings_->setValue("linkColor", linkColor_);
-  settings_->setValue("titleColor", titleColor_);
-  settings_->setValue("dateColor", dateColor_);
-  settings_->setValue("authorColor", authorColor_);
-  settings_->setValue("newsTextColor", newsTextColor_);
-  settings_->setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
-  settings_->setValue("newsBackgroundColor", newsBackgroundColor_);
-  settings_->setValue("feedWithNewNewsColor", feedsTreeModel_->feedWithNewNewsColor_);
-  settings_->setValue("countNewsUnreadColor", feedsTreeModel_->countNewsUnreadColor_);
-  settings_->setValue("focusedFeedTextColor", feedsTreeModel_->focusedFeedTextColor_);
-  settings_->setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
-  settings_->endGroup();
+  settings.beginGroup("Color");
+  settings.setValue("feedsListTextColor", feedsTreeModel_->textColor_);
+  settings.setValue("feedsListBackgroundColor", feedsTreeModel_->backgroundColor_);
+  settings.setValue("newsListTextColor", newsListTextColor_);
+  settings.setValue("newsListBackgroundColor", newsListBackgroundColor_);
+  settings.setValue("newNewsTextColor", newNewsTextColor_);
+  settings.setValue("unreadNewsTextColor", unreadNewsTextColor_);
+  settings.setValue("focusedNewsTextColor", focusedNewsTextColor_);
+  settings.setValue("focusedNewsBGColor", focusedNewsBGColor_);
+  settings.setValue("linkColor", linkColor_);
+  settings.setValue("titleColor", titleColor_);
+  settings.setValue("dateColor", dateColor_);
+  settings.setValue("authorColor", authorColor_);
+  settings.setValue("newsTextColor", newsTextColor_);
+  settings.setValue("newsTitleBackgroundColor", newsTitleBackgroundColor_);
+  settings.setValue("newsBackgroundColor", newsBackgroundColor_);
+  settings.setValue("feedWithNewNewsColor", feedsTreeModel_->feedWithNewNewsColor_);
+  settings.setValue("countNewsUnreadColor", feedsTreeModel_->countNewsUnreadColor_);
+  settings.setValue("focusedFeedTextColor", feedsTreeModel_->focusedFeedTextColor_);
+  settings.setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
+  settings.endGroup();
 
-  settings_->beginGroup("ClickToFlash");
-  settings_->setValue("whitelist", c2fWhitelist_);
-  settings_->setValue("enabled", c2fEnabled_);
-  settings_->endGroup();
+  settings.beginGroup("ClickToFlash");
+  settings.setValue("whitelist", c2fWhitelist_);
+  settings.setValue("enabled", c2fEnabled_);
+  settings.endGroup();
 
-  settings_->setValue("GeometryState", saveGeometry());
-  settings_->setValue("ToolBarsState", saveState());
+  settings.setValue("GeometryState", saveGeometry());
+  settings.setValue("ToolBarsState", saveState());
 
-  settings_->setValue("MainSplitterState", mainSplitter_->saveState());
-  settings_->setValue("FeedsWidgetVisible", showFeedsTabPermanent_);
+  settings.setValue("MainSplitterState", mainSplitter_->saveState());
+  settings.setValue("FeedsWidgetVisible", showFeedsTabPermanent_);
 
   bool newsCategoriesTreeVisible = true;
   if (categoriesWidget_->height() <= (categoriesPanel_->height()+2)) {
     newsCategoriesTreeVisible = false;
-    settings_->setValue("FeedsWidgetSplitterState", feedsWidgetSplitterState_);
+    settings.setValue("FeedsWidgetSplitterState", feedsWidgetSplitterState_);
   } else {
-    settings_->setValue("FeedsWidgetSplitterState", feedsSplitter_->saveState());
+    settings.setValue("FeedsWidgetSplitterState", feedsSplitter_->saveState());
   }
-  settings_->setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
-  settings_->setValue("categoriesTreeExpanded", categoriesTree_->topLevelItem(3)->isExpanded());
+  settings.setValue("NewsCategoriesTreeVisible", newsCategoriesTreeVisible);
+  settings.setValue("categoriesTreeExpanded", categoriesTree_->topLevelItem(3)->isExpanded());
 
   if (stackedWidget_->count()) {
     NewsTabWidget *widget;
@@ -2402,22 +2408,22 @@ void RSSListing::writeSettings()
       widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
 
     widget->newsHeader_->saveStateColumns(this, widget);
-    settings_->setValue("NewsTabSplitterState",
-                        widget->newsTabWidgetSplitter_->saveState());
+    settings.setValue("NewsTabSplitterState",
+                      widget->newsTabWidgetSplitter_->saveState());
   }
 
-  settings_->setValue("networkProxy/type",     networkProxy_.type());
-  settings_->setValue("networkProxy/hostName", networkProxy_.hostName());
-  settings_->setValue("networkProxy/port",     networkProxy_.port());
-  settings_->setValue("networkProxy/user",     networkProxy_.user());
-  settings_->setValue("networkProxy/password", networkProxy_.password());
+  settings.setValue("networkProxy/type",     networkProxy_.type());
+  settings.setValue("networkProxy/hostName", networkProxy_.hostName());
+  settings.setValue("networkProxy/port",     networkProxy_.port());
+  settings.setValue("networkProxy/user",     networkProxy_.user());
+  settings.setValue("networkProxy/password", networkProxy_.password());
 
   NewsTabWidget* widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
-  settings_->setValue("feedSettings/currentId", widget->feedId_);
-  settings_->setValue("feedSettings/filterName",
-                      feedsFilterGroup_->checkedAction()->objectName());
-  settings_->setValue("newsSettings/filterName",
-                      newsFilterGroup_->checkedAction()->objectName());
+  settings.setValue("feedSettings/currentId", widget->feedId_);
+  settings.setValue("feedSettings/filterName",
+                    feedsFilterGroup_->checkedAction()->objectName());
+  settings.setValue("newsSettings/filterName",
+                    newsFilterGroup_->checkedAction()->objectName());
 }
 // ---------------------------------------------------------------------------
 void RSSListing::setProxy(const QNetworkProxy proxy)
@@ -2442,10 +2448,8 @@ void RSSListing::addFeed()
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(this, curFolderId);
-  addFeedWizard->restoreGeometry(settings_->value("addFeedWizard/geometry").toByteArray());
 
   int result = addFeedWizard->exec();
-  settings_->setValue("addFeedWizard/geometry", addFeedWizard->saveGeometry());
   if (result == QDialog::Rejected) {
     delete addFeedWizard;
     return;
@@ -2901,7 +2905,7 @@ void RSSListing::slotRecountCategoryCounts(QList<int> deletedList, QList<int> st
 
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(stackedWidget_->currentIndex());
   if ((widget->type_ > NewsTabWidget::TabTypeFeed) && (widget->type_ < NewsTabWidget::TabTypeWeb)
-        && categoriesTree_->currentIndex().isValid()) {
+      && categoriesTree_->currentIndex().isValid()) {
     int unreadCount = widget->getUnreadCount(categoriesTree_->currentItem()->text(4));
     int allCount = widget->newsModel_->rowCount();
     statusUnread_->setText(QString(" " + tr("Unread: %1") + " ").arg(unreadCount));
@@ -3152,6 +3156,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
 void RSSListing::showOptionDlg(int index)
 {
   static int pageIndex = 0;
+  Settings settings;
 
   if (index != -1) pageIndex = index;
 
@@ -3186,9 +3191,9 @@ void RSSListing::showOptionDlg(int index)
 
   optionsDialog_->setProxy(networkProxy_);
 
-  int timeoutRequest = settings_->value("Settings/timeoutRequest", 15).toInt();
-  int numberRequests = settings_->value("Settings/numberRequest", 10).toInt();
-  int numberRepeats = settings_->value("Settings/numberRepeats", 2).toInt();
+  int timeoutRequest = settings.value("Settings/timeoutRequest", 15).toInt();
+  int numberRequests = settings.value("Settings/numberRequest", 10).toInt();
+  int numberRepeats = settings.value("Settings/numberRepeats", 2).toInt();
   optionsDialog_->timeoutRequest_->setValue(timeoutRequest);
   optionsDialog_->numberRequests_->setValue(numberRequests);
   optionsDialog_->numberRepeats_->setValue(numberRepeats);
@@ -3196,9 +3201,9 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->embeddedBrowserOn_->setChecked(externalBrowserOn_ <= 0);
   optionsDialog_->externalBrowserOn_->setChecked(externalBrowserOn_ >= 1);
   optionsDialog_->defaultExternalBrowserOn_->setChecked((externalBrowserOn_ == 0) ||
-                                                       (externalBrowserOn_ == 1));
+                                                        (externalBrowserOn_ == 1));
   optionsDialog_->otherExternalBrowserOn_->setChecked((externalBrowserOn_ == -1) ||
-                                                     (externalBrowserOn_ == 2));
+                                                      (externalBrowserOn_ == 2));
   optionsDialog_->otherExternalBrowserEdit_->setText(externalBrowser_);
   optionsDialog_->autoLoadImages_->setChecked(autoLoadImages_);
   optionsDialog_->javaScriptEnable_->setChecked(javaScriptEnable_);
@@ -3209,13 +3214,13 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser_);
 
   optionsDialog_->maxPagesInCache_->setValue(maxPagesInCache_);
-  bool useDiskCache = settings_->value("Settings/useDiskCache", true).toBool();
+  bool useDiskCache = settings.value("Settings/useDiskCache", true).toBool();
   optionsDialog_->diskCacheOn_->setChecked(useDiskCache);
-  QString diskCacheDirPath = settings_->value(
+  QString diskCacheDirPath = settings.value(
         "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
   if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
   optionsDialog_->dirDiskCacheEdit_->setText(diskCacheDirPath);
-  int maxDiskCache = settings_->value("Settings/maxDiskCache", 50).toInt();
+  int maxDiskCache = settings.value("Settings/maxDiskCache", 50).toInt();
   optionsDialog_->maxDiskCache_->setValue(maxDiskCache);
 
   optionsDialog_->saveCookies_->setChecked(cookieJar_->saveCookies_ == 1);
@@ -3307,28 +3312,28 @@ void RSSListing::showOptionDlg(int index)
   strFont = QString("%1, %2").arg(notificationFontFamily_).arg(notificationFontSize_);
   optionsDialog_->fontsTree_->topLevelItem(4)->setText(2, strFont);
 
-  settings_->beginGroup("Settings");
-  QString browserStandardFont = settings_->value(
+  settings.beginGroup("Settings");
+  QString browserStandardFont = settings.value(
         "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
-  QString browserFixedFont = settings_->value(
+  QString browserFixedFont = settings.value(
         "browserFixedFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FixedFont)).toString();
-  QString browserSerifFont = settings_->value(
+  QString browserSerifFont = settings.value(
         "browserSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SerifFont)).toString();
-  QString browserSansSerifFont = settings_->value(
+  QString browserSansSerifFont = settings.value(
         "browserSansSerifFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::SansSerifFont)).toString();
-  QString browserCursiveFont = settings_->value(
+  QString browserCursiveFont = settings.value(
         "browserCursiveFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::CursiveFont)).toString();
-  QString browserFantasyFont = settings_->value(
+  QString browserFantasyFont = settings.value(
         "browserFantasyFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::FantasyFont)).toString();
-  int browserDefaultFontSize = settings_->value(
+  int browserDefaultFontSize = settings.value(
         "browserDefaultFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFontSize)).toInt();
-  int browserFixedFontSize = settings_->value(
+  int browserFixedFontSize = settings.value(
         "browserFixedFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::DefaultFixedFontSize)).toInt();
-  int browserMinFontSize = settings_->value(
+  int browserMinFontSize = settings.value(
         "browserMinFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumFontSize)).toInt();
-  int browserMinLogFontSize = settings_->value(
+  int browserMinLogFontSize = settings.value(
         "browserMinLogFontSize", QWebSettings::globalSettings()->fontSize(QWebSettings::MinimumLogicalFontSize)).toInt();
-  settings_->endGroup();
+  settings.endGroup();
 
   optionsDialog_->browserStandardFont_->setCurrentFont(QFont(browserStandardFont));
   optionsDialog_->browserFixedFont_->setCurrentFont(QFont(browserFixedFont));
@@ -3525,7 +3530,7 @@ void RSSListing::showOptionDlg(int index)
   feedsTreeView_->autocollapseFolder_ = optionsDialog_->autocollapseFolder_->isChecked();
 
   hideTabBar_ = optionsDialog_->hideTabBar_->isChecked();
-  settings_->setValue("Settings/hideTabBar", hideTabBar_);
+  settings.setValue("Settings/hideTabBar", hideTabBar_);
   slotNumberTabsChanged();
 
   pushButtonNull_->setVisible(showToggleFeedsTree_);
@@ -3564,9 +3569,9 @@ void RSSListing::showOptionDlg(int index)
   timeoutRequest = optionsDialog_->timeoutRequest_->value();
   numberRequests = optionsDialog_->numberRequests_->value();
   numberRepeats = optionsDialog_->numberRepeats_->value();
-  settings_->setValue("Settings/timeoutRequest", timeoutRequest);
-  settings_->setValue("Settings/numberRequest", numberRequests);
-  settings_->setValue("Settings/numberRepeats", numberRepeats);
+  settings.setValue("Settings/timeoutRequest", timeoutRequest);
+  settings.setValue("Settings/numberRequest", numberRequests);
+  settings.setValue("Settings/numberRepeats", numberRepeats);
 
   if (optionsDialog_->embeddedBrowserOn_->isChecked()) {
     if (optionsDialog_->defaultExternalBrowserOn_->isChecked())
@@ -3598,16 +3603,16 @@ void RSSListing::showOptionDlg(int index)
   QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
   useDiskCache = optionsDialog_->diskCacheOn_->isChecked();
-  settings_->setValue("Settings/useDiskCache", useDiskCache);
+  settings.setValue("Settings/useDiskCache", useDiskCache);
   maxDiskCache = optionsDialog_->maxDiskCache_->value();
-  settings_->setValue("Settings/maxDiskCache", maxDiskCache);
+  settings.setValue("Settings/maxDiskCache", maxDiskCache);
 
   if (diskCacheDirPath != optionsDialog_->dirDiskCacheEdit_->text()) {
     removePath(diskCacheDirPath);
   }
   diskCacheDirPath = optionsDialog_->dirDiskCacheEdit_->text();
   if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
-  settings_->setValue("Settings/dirDiskCache", diskCacheDirPath);
+  settings.setValue("Settings/dirDiskCache", diskCacheDirPath);
 
   if (useDiskCache) {
     if (diskCache_ == NULL) {
@@ -3749,18 +3754,18 @@ void RSSListing::showOptionDlg(int index)
   QWebSettings::globalSettings()->setFontSize(
         QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
 
-  settings_->beginGroup("Settings");
-  settings_->setValue("browserStandardFont", browserStandardFont);
-  settings_->setValue("browserFixedFont", browserFixedFont);
-  settings_->setValue("browserSerifFont", browserSerifFont);
-  settings_->setValue("browserSansSerifFont", browserSansSerifFont);
-  settings_->setValue("browserCursiveFont", browserCursiveFont);
-  settings_->setValue("browserFantasyFont", browserFantasyFont);
-  settings_->setValue("browserDefaultFontSize", browserDefaultFontSize);
-  settings_->setValue("browserFixedFontSize", browserFixedFontSize);
-  settings_->setValue("browserMinFontSize", browserMinFontSize);
-  settings_->setValue("browserMinLogFontSize", browserMinLogFontSize);
-  settings_->endGroup();
+  settings.beginGroup("Settings");
+  settings.setValue("browserStandardFont", browserStandardFont);
+  settings.setValue("browserFixedFont", browserFixedFont);
+  settings.setValue("browserSerifFont", browserSerifFont);
+  settings.setValue("browserSansSerifFont", browserSansSerifFont);
+  settings.setValue("browserCursiveFont", browserCursiveFont);
+  settings.setValue("browserFantasyFont", browserFantasyFont);
+  settings.setValue("browserDefaultFontSize", browserDefaultFontSize);
+  settings.setValue("browserFixedFontSize", browserFixedFontSize);
+  settings.setValue("browserMinFontSize", browserMinFontSize);
+  settings.setValue("browserMinLogFontSize", browserMinLogFontSize);
+  settings.endGroup();
 
   feedsTreeModel_->textColor_ = optionsDialog_->colorsTree_->topLevelItem(0)->text(1);
   feedsTreeModel_->backgroundColor_ = optionsDialog_->colorsTree_->topLevelItem(1)->text(1);
@@ -4373,9 +4378,10 @@ void RSSListing::slotFeedMenuShow()
 void RSSListing::loadSettingsFeeds()
 {
   markCurNewsRead_ = false;
-  behaviorIconTray_ = settings_->value("Settings/behaviorIconTray", NEW_COUNT_ICON_TRAY).toInt();
+  Settings settings;
+  behaviorIconTray_ = settings.value("Settings/behaviorIconTray", NEW_COUNT_ICON_TRAY).toInt();
 
-  QString filterName = settings_->value("feedSettings/filterName", "filterFeedsAll_").toString();
+  QString filterName = settings.value("feedSettings/filterName", "filterFeedsAll_").toString();
   QList<QAction*> listActions = feedsFilterGroup_->actions();
   foreach(QAction *action, listActions) {
     if (action->objectName() == filterName) {
@@ -4383,7 +4389,7 @@ void RSSListing::loadSettingsFeeds()
       break;
     }
   }
-  filterName = settings_->value("newsSettings/filterName", "filterNewsAll_").toString();
+  filterName = settings.value("newsSettings/filterName", "filterNewsAll_").toString();
   listActions = newsFilterGroup_->actions();
   foreach(QAction *action, listActions) {
     if (action->objectName() == filterName) {
@@ -4404,7 +4410,8 @@ void RSSListing::restoreFeedsOnStartUp()
   //* Restore current feed
   QModelIndex feedIndex = QModelIndex();
   if (reopenFeedStartup_) {
-    int feedId = settings_->value("feedSettings/currentId", 0).toInt();
+    Settings settings;
+    int feedId = settings.value("feedSettings/currentId", 0).toInt();
     feedIndex = feedsProxyModel_->mapFromSource(feedId);
   }
   feedsTreeView_->setCurrentIndex(feedIndex);
@@ -4497,8 +4504,7 @@ void RSSListing::slotNewsFilter()
 // ----------------------------------------------------------------------------
 void RSSListing::slotShowUpdateAppDlg()
 {
-  UpdateAppDialog *updateAppDialog = new UpdateAppDialog(langFileName_,
-                                                         settings_, this);
+  UpdateAppDialog *updateAppDialog = new UpdateAppDialog(langFileName_, this);
   updateAppDialog->activateWindow();
   updateAppDialog->exec();
   delete updateAppDialog;
@@ -4819,8 +4825,8 @@ void RSSListing::retranslateStrings()
     QString nameLabel = q.value(1).toString();
     QList<QTreeWidgetItem *> treeItems;
     treeItems = categoriesTree_->findItems(QString::number(idLabel),
-                                               Qt::MatchFixedString|Qt::MatchRecursive,
-                                               2);
+                                           Qt::MatchFixedString|Qt::MatchRecursive,
+                                           2);
     if (treeItems.count() && (nameLabels().at(idLabel-1) == nameLabel)) {
       treeItems.at(0)->setText(0, trNameLabels().at(idLabel-1));
       for (int i = 0; i < newsLabelGroup_->actions().count(); i++) {
@@ -4976,18 +4982,19 @@ void RSSListing::showFeedPropertiesDlg()
   properties.general.duplicateNewsMode =
       feedsTreeModel_->dataField(index, "duplicateNewsMode").toBool();
 
-  settings_->beginGroup("NewsHeader");
-  QString indexColumnsStr = settings_->value("columns").toString();
+  Settings settings;
+  settings.beginGroup("NewsHeader");
+  QString indexColumnsStr = settings.value("columns").toString();
   QStringList indexColumnsList = indexColumnsStr.split(",", QString::SkipEmptyParts);
   foreach (QString indexStr, indexColumnsList) {
     properties.columnDefault.columns.append(indexStr.toInt());
   }
   NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
-  int sortBy = settings_->value("sortBy", widget->newsModel_->fieldIndex("published")).toInt();
+  int sortBy = settings.value("sortBy", widget->newsModel_->fieldIndex("published")).toInt();
   properties.columnDefault.sortBy = sortBy;
-  int sortType = settings_->value("sortOrder", Qt::DescendingOrder).toInt();
+  int sortType = settings.value("sortOrder", Qt::DescendingOrder).toInt();
   properties.columnDefault.sortType = sortType;
-  settings_->endGroup();
+  settings.endGroup();
 
   if (feedsTreeModel_->dataField(index, "columns").toString().isEmpty()) {
     widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
@@ -5465,7 +5472,8 @@ void RSSListing::slotPlaySound(const QString &soundPath)
   }
 
   bool playing = false;
-  bool useMediaPlayer = settings_->value("Settings/useMediaPlayer", true).toBool();
+  Settings settings;
+  bool useMediaPlayer = settings.value("Settings/useMediaPlayer", true).toBool();
 
   if (useMediaPlayer) {
 #ifdef HAVE_QT5
@@ -5546,7 +5554,7 @@ void RSSListing::slotPlaySoundNewNews()
 // ----------------------------------------------------------------------------
 void RSSListing::showNewsFiltersDlg(bool newFilter)
 {
-  NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this, settings_);
+  NewsFiltersDialog *newsFiltersDialog = new NewsFiltersDialog(this);
   if (newFilter) {
     newsFiltersDialog->filtersTree_->setCurrentItem(
           newsFiltersDialog->filtersTree_->topLevelItem(
@@ -5586,7 +5594,7 @@ void RSSListing::slotUpdateAppCheck()
 {
   if (!updateCheckEnabled_) return;
 
-  updateAppDialog_ = new UpdateAppDialog(langFileName_, settings_, this, false);
+  updateAppDialog_ = new UpdateAppDialog(langFileName_, this, false);
   connect(updateAppDialog_, SIGNAL(signalNewVersion(QString)),
           this, SLOT(slotNewVersion(QString)), Qt::QueuedConnection);
 }
@@ -5771,8 +5779,8 @@ void RSSListing::slotOpenFeedNewTab()
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
-    settings_->setValue("NewsTabSplitterState",
-                        currentNewsTab->newsTabWidgetSplitter_->saveState());
+    Settings settings;
+    settings.setValue("NewsTabSplitterState", currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
   feedsTreeView_->selectIdEn_ = false;
@@ -5837,8 +5845,8 @@ void RSSListing::slotTabCurrentChanged(int index)
     setFeedRead(currentNewsTab->type_, currentNewsTab->feedId_, FeedReadSwitchingTab, currentNewsTab);
 
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
-    settings_->setValue("NewsTabSplitterState",
-                        currentNewsTab->newsTabWidgetSplitter_->saveState());
+    Settings settings;
+    settings.setValue("NewsTabSplitterState", currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
   if (widget->type_ == NewsTabWidget::TabTypeFeed) {
@@ -5883,12 +5891,12 @@ void RSSListing::slotTabCurrentChanged(int index)
     QList<QTreeWidgetItem *> treeItems;
     if (widget->type_ == NewsTabWidget::TabTypeLabel) {
       treeItems = categoriesTree_->findItems(QString::number(widget->labelId_),
-                                                 Qt::MatchFixedString|Qt::MatchRecursive,
-                                                 2);
+                                             Qt::MatchFixedString|Qt::MatchRecursive,
+                                             2);
     } else {
       treeItems = categoriesTree_->findItems(QString::number(widget->type_),
-                                                 Qt::MatchFixedString,
-                                                 1);
+                                             Qt::MatchFixedString,
+                                             1);
     }
     categoriesTree_->setCurrentItem(treeItems.at(0));
 
@@ -6318,8 +6326,9 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   feedsTreeView_->repaint();
   feedIdOld_ = feedId;
 
-  openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
-  openNewsWebViewOn_ = settings_->value("/Settings/openNewsWebViewOn", true).toBool();
+  Settings settings;
+  openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
+  openNewsWebViewOn_ = settings.value("/Settings/openNewsWebViewOn", true).toBool();
   slotShowWindows();
   newsView_->setFocus();
 }
@@ -6407,11 +6416,7 @@ void RSSListing::findFeedVisible(bool visible)
 void RSSListing::cleanUp()
 {
   CleanUpWizard *cleanUpWizard = new CleanUpWizard(this);
-  cleanUpWizard->restoreGeometry(settings_->value("CleanUpWizard/geometry").toByteArray());
-
   cleanUpWizard->exec();
-  settings_->setValue("CleanUpWizard/geometry", cleanUpWizard->saveGeometry());
-
   delete cleanUpWizard;
 }
 
@@ -6451,9 +6456,9 @@ void RSSListing::cleanUpShutdown()
       if (q.next()) countAllNews = q.value(0).toInt();
 
       QString qStr1 = QString("UPDATE news SET description='', content='', received='', "
-                           "author_name='', author_uri='', author_email='', "
-                           "category='', new='', read='', starred='', label='', "
-                           "deleteDate='', feedParentId='', deleted=2");
+                              "author_name='', author_uri='', author_email='', "
+                              "category='', new='', read='', starred='', label='', "
+                              "deleteDate='', feedParentId='', deleted=2");
 
       qStr = QString("SELECT id, received FROM news WHERE feedId=='%1' AND deleted == 0").
           arg(feedId);
@@ -6643,7 +6648,8 @@ void RSSListing::setStayOnTop()
     setWindowFlags(windowFlags() & ~Qt::WindowStaysOnTopHint);
 
   if ((state & Qt::WindowFullScreen) || (state & Qt::WindowMaximized)) {
-    restoreGeometry(settings_->value("GeometryState").toByteArray());
+    Settings settings;
+    restoreGeometry(settings.value("GeometryState").toByteArray());
   }
   setWindowState((Qt::WindowState)state);
   show();
@@ -6762,8 +6768,8 @@ void RSSListing::slotCategoriesClicked(QTreeWidgetItem *item, int, bool createTa
 {
   if (stackedWidget_->count() && currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
     currentNewsTab->newsHeader_->saveStateColumns(this, currentNewsTab);
-    settings_->setValue("NewsTabSplitterState",
-                        currentNewsTab->newsTabWidgetSplitter_->saveState());
+    Settings settings;
+    settings.setValue("NewsTabSplitterState", currentNewsTab->newsTabWidgetSplitter_->saveState());
   }
 
   int type = item->text(1).toInt();
@@ -7204,7 +7210,8 @@ void RSSListing::nextUnreadNews()
         }
       }
 
-      openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
+      Settings settings;
+      openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
     }
     newsView_->setCurrentIndex(newsView_->currentIndex());
     return;
@@ -7239,7 +7246,8 @@ void RSSListing::prevUnreadNews()
       openingFeedAction_ = 3;
       feedsTreeView_->setCurrentIndex(indexNextUnread);
       slotFeedClicked(indexNextUnread);
-      openingFeedAction_ = settings_->value("/Settings/openingFeedAction", 0).toInt();
+      Settings settings;
+      openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
     }
     newsView_->setCurrentIndex(newsView_->currentIndex());
     return;
@@ -7559,19 +7567,19 @@ void RSSListing::updateInfoDownloads(const QString &text)
 
 bool RSSListing::removePath(const QString &path)
 {
-    bool result = true;
-    QFileInfo info(path);
-    if (info.isDir()) {
-        QDir dir(path);
-        foreach (const QString &entry, dir.entryList(QDir::AllDirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
-            result &= removePath(dir.absoluteFilePath(entry));
-        }
-        if (!info.dir().rmdir(info.fileName()))
-            return false;
-    } else {
-        result = QFile::remove(path);
+  bool result = true;
+  QFileInfo info(path);
+  if (info.isDir()) {
+    QDir dir(path);
+    foreach (const QString &entry, dir.entryList(QDir::AllDirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
+      result &= removePath(dir.absoluteFilePath(entry));
     }
-    return result;
+    if (!info.dir().rmdir(info.fileName()))
+      return false;
+  } else {
+    result = QFile::remove(path);
+  }
+  return result;
 }
 
 void RSSListing::setStatusFeed(int feedId, QString status)

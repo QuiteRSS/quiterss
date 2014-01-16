@@ -19,10 +19,10 @@
 #include "filterrulesdialog.h"
 #include "rsslisting.h"
 #include "parseobject.h"
+#include "settings.h"
 
-NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
+NewsFiltersDialog::NewsFiltersDialog(QWidget *parent)
   : Dialog(parent)
-  , settings_(settings)
 {
   setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setWindowTitle(tr("News Filters"));
@@ -138,12 +138,14 @@ NewsFiltersDialog::NewsFiltersDialog(QWidget *parent, QSettings *settings)
           this, SLOT(slotItemChanged(QTreeWidgetItem*,int)));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
-  restoreGeometry(settings_->value("newsFiltersDlg/geometry").toByteArray());
+  Settings settings;
+  restoreGeometry(settings.value("newsFiltersDlg/geometry").toByteArray());
 }
 
 void NewsFiltersDialog::closeDialog()
 {
-  settings_->setValue("newsFiltersDlg/geometry", saveGeometry());
+  Settings settings;
+  settings.setValue("newsFiltersDlg/geometry", saveGeometry());
 }
 
 void NewsFiltersDialog::newFilter()

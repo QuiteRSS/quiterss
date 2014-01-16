@@ -72,8 +72,9 @@ class RSSListing : public QMainWindow
 {
   Q_OBJECT
 public:
-  RSSListing(QSettings *settings, const QString &appDataDirPath,
-             const QString &dataDirPath, QWidget *parent = 0);
+  RSSListing(const QString &appDataDirPath,
+             const QString &dataDirPath,
+             QWidget *parent = 0);
   ~RSSListing();
 
   static bool removePath(const QString &path);
@@ -107,7 +108,6 @@ public:
     return trNameLabels;
   }
 
-  QSettings *settings_;
   QString appDataDirPath_;
   QString dataDirPath_;
   QString lastFeedPath_;

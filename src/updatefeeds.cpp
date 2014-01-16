@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "updatefeeds.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 #include <QDebug>
 
@@ -44,9 +45,10 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   updateFeedThread_ = new QThread();
   updateFeedThread_->setObjectName("updateFeedThread_");
 
-  int timeoutRequest = rssl->settings_->value("Settings/timeoutRequest", 15).toInt();
-  int numberRequests = rssl->settings_->value("Settings/numberRequest", 10).toInt();
-  int numberRepeats = rssl->settings_->value("Settings/numberRepeats", 2).toInt();
+  Settings settings;
+  int timeoutRequest = settings.value("Settings/timeoutRequest", 15).toInt();
+  int numberRequests = settings.value("Settings/numberRequest", 10).toInt();
+  int numberRepeats = settings.value("Settings/numberRepeats", 2).toInt();
 
   requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats);
   requestFeed_->setCookieJar(rssl->cookieJar_);

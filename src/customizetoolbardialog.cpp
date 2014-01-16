@@ -17,6 +17,7 @@
 * ============================================================ */
 #include "customizetoolbardialog.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolbar)
   : Dialog(parent),
@@ -32,9 +33,6 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
     setWindowTitle(tr("Customize Feeds Toolbar"));
   else if (toolbar_->objectName() == "newsToolBar")
     setWindowTitle(tr("Customize News Toolbar"));
-
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  settings_ = rssl_->settings_;
 
   shortcutTree_ = new QTreeWidget(this);
   shortcutTree_->setObjectName("actionTree");
@@ -91,7 +89,8 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   treeItem.clear();
   treeItem << tr("Icon") << tr("Text") << tr("Text Beside Icon") << tr("Text Under Icon");
   styleBox_->addItems(treeItem);
-  QString styleStr = settings_->value("Settings/toolBarStyle", "toolBarStyleTuI_").toString();
+  Settings settings;
+  QString styleStr = settings.value("Settings/toolBarStyle", "toolBarStyleTuI_").toString();
   if (styleStr == "toolBarStyleI_") {
     styleBox_->setCurrentIndex(0);
   } else if (styleStr == "toolBarStyleT_") {
@@ -106,7 +105,7 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
   treeItem.clear();
   treeItem << tr("Big") << tr("Normal") << tr("Small");
   iconBox_->addItems(treeItem);
-  QString iconStr = settings_->value("Settings/toolBarIconSize", "toolBarIconNormal_").toString();
+  QString iconStr = settings.value("Settings/toolBarIconSize", "toolBarIconNormal_").toString();
   if (iconStr == "toolBarIconBig_") {
     iconBox_->setCurrentIndex(0);
   } else if (iconStr == "toolBarIconSmall_") {
@@ -182,11 +181,12 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
           this, SLOT(slotCurrentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
   connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
 
-  restoreGeometry(settings_->value("customizeToolbarDlg/geometry").toByteArray());
+  restoreGeometry(settings.value("customizeToolbarDlg/geometry").toByteArray());
 }
 
 void CustomizeToolbarDialog::acceptDialog()
 {
+  Settings settings;
   RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
 
   if (toolbar_->objectName() == "newsToolBar") {
@@ -253,7 +253,7 @@ void CustomizeToolbarDialog::acceptDialog()
   }
 
   if (toolbar_->objectName() == "ToolBar_General") {
-    settings_->setValue("Settings/mainToolBar", str);
+    settings.setValue("Settings/mainToolBar", str);
 
     switch (styleBox_->currentIndex()) {
     case 0: str = "toolBarStyleI_"; break;
@@ -261,7 +261,7 @@ void CustomizeToolbarDialog::acceptDialog()
     case 2: str = "toolBarStyleTbI_"; break;
     default: str = "toolBarStyleTuI_";
     }
-    settings_->setValue("Settings/toolBarStyle", str);
+    settings.setValue("Settings/toolBarStyle", str);
     rssl_->setToolBarStyle(str);
 
     switch (iconBox_->currentIndex()) {
@@ -269,12 +269,12 @@ void CustomizeToolbarDialog::acceptDialog()
     case 2: str = "toolBarIconSmall_"; break;
     default: str = "toolBarIconNormal_";
     }
-    settings_->setValue("Settings/toolBarIconSize", str);
+    settings.setValue("Settings/toolBarIconSize", str);
     rssl_->setToolBarIconSize(str);
   } else if (toolbar_->objectName() == "feedsToolBar") {
-    settings_->setValue("Settings/feedsToolBar", str);
+    settings.setValue("Settings/feedsToolBar", str);
   } else if (toolbar_->objectName() == "newsToolBar") {
-    settings_->setValue("Settings/newsToolBar", str);
+    settings.setValue("Settings/newsToolBar", str);
 
     for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
       NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
@@ -304,7 +304,8 @@ void CustomizeToolbarDialog::acceptDialog()
 
 void CustomizeToolbarDialog::closeDialog()
 {
-  settings_->setValue("customizeToolbarDlg/geometry", saveGeometry());
+  Settings settings;
+  settings.setValue("customizeToolbarDlg/geometry", saveGeometry());
 }
 
 void CustomizeToolbarDialog::slotCurrentItemChanged(QTreeWidgetItem *current,

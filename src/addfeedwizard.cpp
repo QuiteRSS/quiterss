@@ -19,6 +19,7 @@
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 #include <QDomDocument>
 
@@ -49,10 +50,16 @@ AddFeedWizard::AddFeedWizard(QWidget *parent, int curFolderId)
           SLOT(slotCurrentIdChanged(int)),
           Qt::QueuedConnection);
   resize(400, 300);
+
+  Settings settings;
+  restoreGeometry(settings.value("addFeedWizard/geometry").toByteArray());
 }
 
 AddFeedWizard::~AddFeedWizard()
 {
+  Settings settings;
+  settings.setValue("addFeedWizard/geometry", saveGeometry());
+
   delete updateFeeds_;
 }
 

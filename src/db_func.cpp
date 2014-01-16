@@ -24,6 +24,7 @@
 
 #include "VersionNo.h"
 #include "rsslisting.h"
+#include "settings.h"
 
 QString kDbName    = "feeds.db";  ///< DB filename
 QString kDbVersion = "14";    ///< Current DB version
@@ -424,14 +425,14 @@ void createFileBackup(const QString &oldFilename, const QString &oldVersion)
   // Create backup
   QString backupFilename(backupDir.absolutePath() + '/' + fi.fileName());
   backupFilename.append(QString("_%1_%2.bak")
-          .arg(oldVersion)
-          .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
+                        .arg(oldVersion)
+                        .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
   QFile::copy(oldFilename, backupFilename);
 
 }
 
 //-----------------------------------------------------------------------------
-QString initDB(const QString &dbFileName, QSettings *settings)
+QString initDB(const QString &dbFileName)
 {
   if (!QFile(dbFileName).exists()) {  // DB-init
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
@@ -445,27 +446,27 @@ QString initDB(const QString &dbFileName, QSettings *settings)
 
     // Create extra feeds table just in case
     db.exec("CREATE TABLE feeds_ex(id integer primary key, "
-        "feedId integer, "  // feed Id
-        "name varchar, "    // parameter name
-        "value varchar "    // parameter value
-        ")");
+            "feedId integer, "  // feed Id
+            "name varchar, "    // parameter name
+            "value varchar "    // parameter value
+            ")");
     // Create extra news table just in case
     db.exec("CREATE TABLE news_ex(id integer primary key, "
-        "feedId integer, "  // feed Id
-        "newsId integer, "  // news Id
-        "name varchar, "    // parameter name
-        "value varchar "    // parameter value
-        ")");
+            "feedId integer, "  // feed Id
+            "newsId integer, "  // news Id
+            "name varchar, "    // parameter name
+            "value varchar "    // parameter value
+            ")");
     // Create filters table
     db.exec(kCreateFiltersTable);
     db.exec(kCreateFilterConditionsTable);
     db.exec(kCreateFilterActionsTable);
     // Create extra filters just in case
     db.exec("CREATE TABLE filters_ex(id integer primary key, "
-        "idFilter integer, "  // filter Id
-        "name text, "         // parameter name
-        "value text"          // parameter value
-        ")");
+            "idFilter integer, "  // filter Id
+            "name text, "         // parameter name
+            "value text"          // parameter value
+            ")");
     // Create labels table
     initLabelsTable(&db);
     // Create password table
@@ -481,6 +482,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
     db.commit();
     db.close();
   } else {
+    Settings settings;
     QString dbVersionString;
     int dbVersion = 0;
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
@@ -508,8 +510,8 @@ QString initDB(const QString &dbFileName, QSettings *settings)
 
     // Create backups for DB and Settings
     if (appVersionString != STRPRODUCTVER) {
-        createFileBackup(dbFileName, STRPRODUCTVER);
-        createFileBackup(settings->fileName(), STRPRODUCTVER);
+      createFileBackup(dbFileName, STRPRODUCTVER);
+      createFileBackup(settings.fileName(), STRPRODUCTVER);
     }
 
     if (!dbVersionString.isEmpty()) {
@@ -518,18 +520,18 @@ QString initDB(const QString &dbFileName, QSettings *settings)
         //-- Convert feeds table
         // Create temporary table for version 0.10.0
         q.exec(QString(kCreateFeedsTableQuery)
-            .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
+               .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
         // Copy only fields than was used before
         q.exec("INSERT "
-            "INTO feeds_temp("
+               "INTO feeds_temp("
                "id, text, title, description, xmlUrl, htmlUrl, "
                "author_name, author_email, author_uri, pubdate, lastBuildDate, "
                "image, unread, newCount, currentNews"
-            ") SELECT "
-            "id, text, title, description, xmlUrl, htmlUrl, "
-            "author_name, author_email, author_uri, pubdate, lastBuildDate, "
-            "image, unread, newCount, currentNews "
-            "FROM feeds");
+               ") SELECT "
+               "id, text, title, description, xmlUrl, htmlUrl, "
+               "author_name, author_email, author_uri, pubdate, lastBuildDate, "
+               "image, unread, newCount, currentNews "
+               "FROM feeds");
         // Bury old table
         q.exec("DROP TABLE feeds");
 
@@ -567,20 +569,20 @@ QString initDB(const QString &dbFileName, QSettings *settings)
           idList << feedId;
           QSqlQuery q2(db);
           q2.exec(QString("SELECT "
-              "guid, guidislink, description, content, title, published, received, "  // 0..6
-              "author_name, author_uri, author_email, category, "                     // 7..10
-              "new, read, sticky, deleted, "                                          // 11..14
-              "link_href "                                                            // 15
-              "FROM feed_%1").arg(feedId));
+                          "guid, guidislink, description, content, title, published, received, "  // 0..6
+                          "author_name, author_uri, author_email, category, "                     // 7..10
+                          "new, read, sticky, deleted, "                                          // 11..14
+                          "link_href "                                                            // 15
+                          "FROM feed_%1").arg(feedId));
           while (q2.next()) {
             QSqlQuery q3(db);
             q3.prepare(QString("INSERT INTO news("
-                  "feedId, "
-                  "guid, guidislink, description, content, title, published, received, "
-                  "author_name, author_uri, author_email, category, "
-                  "new, read, starred, deleted, "
-                  "link_href "
-                  ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+                               "feedId, "
+                               "guid, guidislink, description, content, title, published, received, "
+                               "author_name, author_uri, author_email, category, "
+                               "new, read, starred, deleted, "
+                               "link_href "
+                               ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
             q3.addBindValue(feedId);
             q3.addBindValue(q2.value(0));
             q3.addBindValue(q2.value(1));
@@ -611,17 +613,17 @@ QString initDB(const QString &dbFileName, QSettings *settings)
 
         // Create extra feeds table just in case
         q.exec("CREATE TABLE feeds_ex(id integer primary key, "
-            "feedId integer, "  // feed Id
-            "name varchar, "    // parameter mane
-            "value varchar "    // parameter value
-            ")");
+               "feedId integer, "  // feed Id
+               "name varchar, "    // parameter mane
+               "value varchar "    // parameter value
+               ")");
         // Create extra news tables just in case
         q.exec("CREATE TABLE news_ex(id integer primary key, "
-            "feedId integer, "  // feed Id
-            "newsId integer, "  // news Id
-            "name varchar, "    // parameter mane
-            "value varchar "    // parameter value
-            ")");
+               "feedId integer, "  // feed Id
+               "newsId integer, "  // news Id
+               "name varchar, "    // parameter mane
+               "value varchar "    // parameter value
+               ")");
 
         // Create filters tables
         q.exec(kCreateFiltersTable);
@@ -629,10 +631,10 @@ QString initDB(const QString &dbFileName, QSettings *settings)
         q.exec(kCreateFilterActionsTable);
         // Create extra filter tables just in case
         q.exec("CREATE TABLE filters_ex(id integer primary key, "
-            "idFilter integer, "  // filter Id
-            "name text, "         // parameter mane
-            "value text"          // parameter value
-            ")");
+               "idFilter integer, "  // filter Id
+               "name text, "         // parameter mane
+               "value text"          // parameter value
+               ")");
 
         // Update information table
         q.prepare("UPDATE info SET value=:version WHERE name='version'");
@@ -646,20 +648,20 @@ QString initDB(const QString &dbFileName, QSettings *settings)
         //-- Convert table feeds
         // Create temporary table for version 0.10.0
         q.exec(QString(kCreateFeedsTableQuery)
-            .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
+               .replace("TABLE feeds", "TEMP TABLE feeds_temp"));
         // Copy only fields than was used before
         q.exec("INSERT "
-            "INTO feeds_temp("
+               "INTO feeds_temp("
                "id, text, title, description, xmlUrl, htmlUrl, "
                "author_name, author_email, author_uri, pubdate, lastBuildDate, "
                "image, unread, newCount, currentNews, undeleteCount, updated, "
                "displayOnStartup, displayEmbeddedImages "
-            ") SELECT "
-            "id, text, title, description, xmlUrl, htmlUrl, "
-            "author_name, author_email, author_uri, pubdate, lastBuildDate, "
-            "image, unread, newCount, currentNews, undeleteCount, updated, "
-            "displayOnStartup, displayEmbeddedImages "
-            "FROM feeds");
+               ") SELECT "
+               "id, text, title, description, xmlUrl, htmlUrl, "
+               "author_name, author_email, author_uri, pubdate, lastBuildDate, "
+               "image, unread, newCount, currentNews, undeleteCount, updated, "
+               "displayOnStartup, displayEmbeddedImages "
+               "FROM feeds");
         // Bury old table
         q.exec("DROP TABLE feeds");
 
@@ -694,10 +696,10 @@ QString initDB(const QString &dbFileName, QSettings *settings)
 
         // Create extra filter tables just in case
         q.exec("CREATE TABLE filters_ex(id integer primary key, "
-            "idFilter integer, "  // filter Id
-            "name text, "         // parameter mane
-            "value text"          // parameter value
-            ")");
+               "idFilter integer, "  // filter Id
+               "name text, "         // parameter mane
+               "value text"          // parameter value
+               ")");
 
         // Update information table
         q.prepare("UPDATE info SET value=:version WHERE name='version'");
@@ -766,7 +768,7 @@ QString initDB(const QString &dbFileName, QSettings *settings)
           q.exec("INSERT INTO info(name, value) VALUES ('rowToParentCorrected_0.12.3', 'true')");
 
           // Start search from prospective parent number 0 (from root)
-          bool sortFeeds = settings->value("Settings/sortFeeds", false).toBool();
+          bool sortFeeds = settings.value("Settings/sortFeeds", false).toBool();
           QString sortStr("id");
           if (sortFeeds) sortStr = "text";
 
