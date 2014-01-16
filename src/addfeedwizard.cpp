@@ -81,7 +81,8 @@ void AddFeedWizard::changeEvent(QEvent *event)
     if (clipboardStr.contains("http://", Qt::CaseInsensitive) ||
         clipboardStr.contains("https://", Qt::CaseInsensitive) ||
         clipboardStr.contains("www.", Qt::CaseInsensitive) ||
-        clipboardStr.contains("feed://", Qt::CaseInsensitive)) {
+        clipboardStr.contains("feed://", Qt::CaseInsensitive) ||
+        clipboardStr.contains("file://", Qt::CaseInsensitive)) {
       urlFeedEdit_->setText(clipboard_->text());
       urlFeedEdit_->selectAll();
       urlFeedEdit_->setFocus();
@@ -314,7 +315,7 @@ void AddFeedWizard::addFeed()
   feedUrlString_ = feedUrl.toString();
   urlFeedEdit_->setText(feedUrlString_);
 
-  if (feedUrl.host().isEmpty()) {
+  if (feedUrl.host().isEmpty() && !feedUrl.isLocalFile()) {
     textWarning->setText(tr("URL error!"));
     warningWidget_->setVisible(true);
     return;
