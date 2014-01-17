@@ -6465,6 +6465,7 @@ void RSSListing::cleanUpShutdown()
       if (neverUnreadCleanUp_) qStr.append(" AND read!=0");
       if (neverStarCleanUp_) qStr.append(" AND starred==0");
       if (neverLabelCleanUp_) qStr.append(" AND (label=='' OR label==',' OR label IS NULL)");
+      qStr.append(" ORDER BY published");
       q.exec(qStr);
       while (q.next()) {
         int newsId = q.value(0).toInt();
