@@ -74,7 +74,7 @@ int main(int argc, char **argv)
   }
 
   if (portable) {
-    Settings::createSettings(fileName);
+    Settings::createSettings(dataDirPath + QDir::separator() + QCoreApplication::applicationName() + ".ini");
   } else {
     Settings::createSettings();
 #ifdef HAVE_QT5
