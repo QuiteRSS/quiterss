@@ -315,7 +315,11 @@ void AddFeedWizard::addFeed()
   feedUrlString_ = feedUrl.toString();
   urlFeedEdit_->setText(feedUrlString_);
 
+#if QT_VERSION >= 0x040800
   if (feedUrl.host().isEmpty() && !feedUrl.isLocalFile()) {
+#else
+  if (feedUrl.host().isEmpty() && (feedUrl.scheme() != "file")) {
+#endif
     textWarning->setText(tr("URL error!"));
     warningWidget_->setVisible(true);
     return;
