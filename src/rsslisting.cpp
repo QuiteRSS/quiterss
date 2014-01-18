@@ -285,6 +285,7 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
 // ---------------------------------------------------------------------------
 /*virtual*/ void RSSListing::closeEvent(QCloseEvent* event)
 {
+  openingLink_ = false;
   event->ignore();
 
   if (closingTray_ && showTrayIcon_) {
@@ -433,6 +434,7 @@ void RSSListing::slotTimerLinkOpening()
 /*virtual*/ void RSSListing::changeEvent(QEvent *event)
 {
   if(event->type() == QEvent::WindowStateChange) {
+    openingLink_ = false;
     if(isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
     } else {
@@ -512,7 +514,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
  *---------------------------------------------------------------------------*/
 void RSSListing::slotShowWindows(bool trayClick)
 {
-  if (!trayClick || isHidden()){
+  if (!trayClick || isHidden()) {
     if (oldState & Qt::WindowFullScreen) {
       show();
     } else if (oldState & Qt::WindowMaximized) {
