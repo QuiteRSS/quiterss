@@ -59,7 +59,6 @@ QTabWidget::pane {
 }
 
 QTabWidget::tab-bar {
-	left: 2px;
 	bottom: -1px;
 }
 
@@ -71,31 +70,29 @@ QTabBar::tab {
 	border-top-right-radius: 4px;
 	min-width: 20px;
 	padding: 4px 12px 4px 12px;
-	margin-right: 1px;
+	margin-right: -1px;
 }
 
-QTabBar::tab:selected, QTabBar::tab:hover {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #ffffff, stop: 0.4 #fafafa,
-								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
-	color: #000000;
+QTabBar::tab:last {
+	margin-right: 0px;
 }
 
 QTabBar::tab:selected {
+	background: #ffffff;
+	color: #000000;
 	border-bottom: none;
 	padding-bottom: 5px;
 }
 
 QTabBar::tab:hover:!selected {
+	background: #f8f8f8;
+	color: #000000;
 	border-bottom: 1px solid gray;
 }
 
 QTabBar QToolButton {
 	border: 1px solid gray;
 	border-radius: 2px;
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-								stop: 0 #ffffff, stop: 0.4 #fafafa,
-								stop: 0.5 #f4f4f4, stop: 1.0 #ffffff);
 }
 
 #tabBar_::tab {
