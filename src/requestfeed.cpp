@@ -267,7 +267,7 @@ void RequestFeed::finished(QNetworkReply *reply)
           }
 
           QByteArray data = reply->readAll();
-          data.replace("&", "&#38;");
+          data.replace(" & ", " &#38; ");
           data = data.trimmed();
           if (data.indexOf("</rss>") > 0)
             data.resize(data.indexOf("</rss>") + 6);
