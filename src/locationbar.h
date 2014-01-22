@@ -19,18 +19,29 @@
 #define LOCATIONBAR_H
 
 #include <QLineEdit>
+#include <QToolButton>
+
+class WebView;
 
 class LocationBar : public QLineEdit
 {
   Q_OBJECT
 public:
-  LocationBar(QWidget *parent = 0);
+  LocationBar(WebView *view, QWidget *parent = 0);
+
+public slots:
+  void showRssIcon(bool show);
+
+private slots:
+  void rssIconClicked();
 
 private:
   void mouseReleaseEvent(QMouseEvent*);
   void focusInEvent(QFocusEvent *event);
 
+  WebView *view_;
   bool focus_;
+  QToolButton *rssButton_;
 
 };
 

@@ -112,7 +112,8 @@ HEADERS += \
     src/requestfeed.h \
     src/logfile.h \
     src/locationbar.h \
-    src/settings.h
+    src/settings.h \
+    src/rssdetectionwidget.h
 
 SOURCES += \
     src/rsslisting.cpp \
@@ -160,7 +161,8 @@ SOURCES += \
     src/requestfeed.cpp \
     src/logfile.cpp \
     src/locationbar.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/rssdetectionwidget.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \

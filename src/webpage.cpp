@@ -25,7 +25,6 @@
 
 WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
   : QWebPage(parent)
-  , isLoading_(false)
 {
   QObject *parent_ = parent;
   while(parent_->parent()) {
@@ -41,7 +40,6 @@ WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
   action(QWebPage::OpenImageInNewWindow)->setVisible(false);
 
-  connect(this, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
   connect(this, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished()));
 
   connect(this, SIGNAL(unsupportedContent(QNetworkReply*)),
@@ -71,7 +69,7 @@ void WebPage::scheduleAdjustPage()
     return;
   }
 
-  if (isLoading_) {
+  if (webView->isLoading()) {
     adjustingScheduled_ = true;
   } else {
     const QSize &originalSize = webView->size();
@@ -82,15 +80,8 @@ void WebPage::scheduleAdjustPage()
   }
 }
 
-void WebPage::slotLoadStarted()
-{
-  isLoading_ = true;
-}
-
 void WebPage::slotLoadFinished()
 {
-  isLoading_ = false;
-
   if (adjustingScheduled_) {
     adjustingScheduled_ = false;
 

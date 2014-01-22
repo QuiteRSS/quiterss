@@ -34,16 +34,14 @@ public:
                                NavigationType type);
   void scheduleAdjustPage();
 
-  bool isLoading_;
   bool adjustingScheduled_;
 
 protected slots:
   QWebPage *createWindow(WebWindowType type);
-  void slotLoadStarted();
-  void slotLoadFinished();
   void handleUnsupportedContent(QNetworkReply* reply);
 
 private slots:
+  void slotLoadFinished();
   void downloadRequested(const QNetworkRequest &request);
 
 private:

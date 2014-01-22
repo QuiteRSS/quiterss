@@ -332,7 +332,7 @@ void NewsTabWidget::createWebWidget()
   webExternalBrowserAct_->setIcon(QIcon(":/images/openBrowser"));
   webToolBar_->addAction(webExternalBrowserAct_);
 
-  locationBar_ = new LocationBar(this);
+  locationBar_ = new LocationBar(webView_, this);
 
   QHBoxLayout *webControlPanelLayout = new QHBoxLayout();
   webControlPanelLayout->setMargin(2);
@@ -408,6 +408,7 @@ void NewsTabWidget::createWebWidget()
           this, SLOT(setWebToolbarVisible()));
 
   connect(locationBar_, SIGNAL(returnPressed()),this, SLOT(slotUrlEnter()));
+  connect(webView_, SIGNAL(rssChanged(bool)), locationBar_, SLOT(showRssIcon(bool)));
   connect(webView_, SIGNAL(urlChanged(QUrl)),
           this, SLOT(slotUrlChanged(QUrl)), Qt::QueuedConnection);
 }

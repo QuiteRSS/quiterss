@@ -20,6 +20,9 @@
 
 #include <QWebView>
 #include <QWebHistory>
+#include <QWebPage>
+#include <QWebFrame>
+#include <QWebElement>
 
 #define LEFT_BUTTON 0
 #define MIDDLE_BUTTON 1
@@ -36,16 +39,29 @@ public:
 
   int buttonClick_;
 
+  bool isLoading() { return isLoading_; }
+  bool hasRss() { return hasRss_; }
+
 signals:
   void showContextMenu(const QPoint &);
   void signalGoHome();
+  void rssChanged(bool);
 
 protected:
   virtual void mousePressEvent(QMouseEvent*);
   virtual void mouseReleaseEvent(QMouseEvent*);
   virtual void wheelEvent(QWheelEvent*);
 
+private slots:
+  void slotLoadStarted();
+  void slotLoadProgress(int value);
+  void slotLoadFinished();
+  void checkRss();
+
 private:
+  bool isLoading_;
+  bool rssChecked_;
+  bool hasRss_;
   int posX_;
 
 };

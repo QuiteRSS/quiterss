@@ -20,16 +20,24 @@
 
 #include <QApplication>
 #include <QInputEvent>
+#include <QDebug>
 
 WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
   : QWebView(parent)
   , buttonClick_(0)
+  , isLoading_(false)
+  , rssChecked_(false)
+  , hasRss_(false)
 {
   setContextMenuPolicy(Qt::CustomContextMenu);
   setPage(new WebPage(this, networkManager));
   QPalette pal(qApp->palette());
   pal.setColor(QPalette::Base, Qt::white);
   setPalette(pal);
+
+  connect(this, SIGNAL(loadStarted()), this, SLOT(slotLoadStarted()));
+  connect(this, SIGNAL(loadProgress(int)), this, SLOT(slotLoadProgress(int)));
+  connect(this, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished()));
 }
 
 /*virtual*/ void WebView::mousePressEvent(QMouseEvent *event)
@@ -92,4 +100,38 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
     return;
   }
   QWebView::wheelEvent(event);
+}
+
+void WebView::slotLoadStarted()
+{
+  isLoading_ = true;
+
+  rssChecked_ = false;
+  emit rssChanged(false);
+}
+
+void WebView::slotLoadProgress(int value)
+{
+  if (value > 60) {
+    checkRss();
+  }
+}
+
+void WebView::slotLoadFinished()
+{
+  isLoading_ = false;
+}
+
+void WebView::checkRss()
+{
+  if (rssChecked_) {
+    return;
+  }
+
+  rssChecked_ = true;
+  QWebFrame* frame = page()->mainFrame();
+  const QWebElementCollection links = frame->findAllElements("link[type=\"application/rss+xml\"]");
+
+  hasRss_ = links.count() != 0;
+  emit rssChanged(hasRss_);
 }
