@@ -50,14 +50,16 @@ void RSSListing::receiveMessage(const QString& message)
       }
       if (param == "--exit") slotClose();
       if (param.contains("feed:", Qt::CaseInsensitive)) {
+        QClipboard *clipboard = QApplication::clipboard();
         if (param.contains("https://", Qt::CaseInsensitive)) {
           param.remove(0, 5);
+          clipboard->setText(param);
         } else {
           param.remove(0, 7);
-          param = "http://" + param;
+          clipboard->setText("http://" + param);
         }
         activateWindow();
-        addFeed(param);
+        addFeed();
       }
     }
   }
@@ -2437,7 +2439,7 @@ void RSSListing::setProxy(const QNetworkProxy proxy)
 
 /** @brief Add feed to feed list
  *---------------------------------------------------------------------------*/
-void RSSListing::addFeed(const QString &feedUrl)
+void RSSListing::addFeed()
 {
   int curFolderId = 0;
   QPersistentModelIndex curIndex = feedsTreeView_->selectIndex();
@@ -2448,8 +2450,6 @@ void RSSListing::addFeed(const QString &feedUrl)
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(this, curFolderId);
-  if (!feedUrl.isEmpty())
-    addFeedWizard->setUrlFeed(feedUrl);
 
   int result = addFeedWizard->exec();
   if (result == QDialog::Rejected) {

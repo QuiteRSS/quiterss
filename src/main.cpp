@@ -176,7 +176,7 @@ int main(int argc, char **argv)
 
   rsslisting.restoreFeedsOnStartUp();
 
-  if (message.contains("feed://", Qt::CaseInsensitive))
+  if (message.contains("feed:", Qt::CaseInsensitive))
     rsslisting.receiveMessage(message);
 
   return app.exec();

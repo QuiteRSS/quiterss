@@ -107,12 +107,15 @@ void RSSDetectionWidget::addRss()
       return;
     }
 
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(url.toString());
+
     QObject *parent_ = parent();
     while(parent_->parent()) {
       parent_ = parent_->parent();
     }
     RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
-    rssl->addFeed(url.toString());
+    rssl->addFeed();
 
     close();
   }
