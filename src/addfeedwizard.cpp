@@ -252,6 +252,11 @@ QWizardPage *AddFeedWizard::createNameFeedPage()
   return page;
 }
 
+void AddFeedWizard::setUrlFeed(const QString &feedUrl)
+{
+  urlFeedEdit_->setText(feedUrl);
+}
+
 void AddFeedWizard::urlFeedEditChanged(const QString& text)
 {
   button(QWizard::NextButton)->setEnabled(

@@ -1,5 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
+* QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader
+* Copyright (C) 2011-2014 QuiteRSS Team <quiterssteam@gmail.com>
 * Copyright (C) 2010-2013  David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
@@ -15,8 +16,8 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef RSSWIDGET_H
-#define RSSWIDGET_H
+#ifndef RSSDETECTIONWIDGET_H
+#define RSSDETECTIONWIDGET_H
 
 #include <QFrame>
 #include <QLayout>
@@ -39,8 +40,8 @@ private slots:
 
 private:
   WebView* view_;
-  QGridLayout *gridLayout_;
+  QGridLayout* gridLayout_;
 
 };
 
-#endif // RSSWIDGET_H
+#endif // RSSDETECTIONWIDGET_H

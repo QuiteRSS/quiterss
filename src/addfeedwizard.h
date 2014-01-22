@@ -36,6 +36,8 @@ public:
   explicit AddFeedWizard(QWidget *parent, int curFolderId);
   ~AddFeedWizard();
 
+  void setUrlFeed(const QString &feedUrl);
+
   LineEdit *nameFeedEdit_;
   LineEdit *urlFeedEdit_;
   QString htmlUrlString_;

@@ -2439,7 +2439,7 @@ void RSSListing::setProxy(const QNetworkProxy proxy)
 
 /** @brief Add feed to feed list
  *---------------------------------------------------------------------------*/
-void RSSListing::addFeed()
+void RSSListing::addFeed(const QString &feedUrl)
 {
   int curFolderId = 0;
   QPersistentModelIndex curIndex = feedsTreeView_->selectIndex();
@@ -2450,6 +2450,8 @@ void RSSListing::addFeed()
   }
 
   AddFeedWizard *addFeedWizard = new AddFeedWizard(this, curFolderId);
+  if (!feedUrl.isEmpty())
+    addFeedWizard->setUrlFeed(feedUrl);
 
   int result = addFeedWizard->exec();
   if (result == QDialog::Rejected) {

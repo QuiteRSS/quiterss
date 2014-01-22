@@ -33,9 +33,9 @@ LocationBar::LocationBar(WebView *view, QWidget *parent)
   mainLayout->setContentsMargins(0, 0, 0, 0);
   mainLayout->setSpacing(0);
 
-  QWidget *rightWidget = new QWidget(this);
-  rightWidget->resize(0, 0);
-  QHBoxLayout *rightLayout = new QHBoxLayout(rightWidget);
+  rightWidget_ = new QWidget(this);
+  rightWidget_->resize(0, 0);
+  QHBoxLayout *rightLayout = new QHBoxLayout(rightWidget_);
   rightLayout->setContentsMargins(0, 0, 2, 0);
 
   rssButton_ = new QToolButton(this);
@@ -49,7 +49,7 @@ LocationBar::LocationBar(WebView *view, QWidget *parent)
   rightLayout->addWidget(rssButton_, 0, Qt::AlignVCenter | Qt::AlignRight);
 
   mainLayout->addStretch(1);
-  mainLayout->addWidget(rightWidget, 0, Qt::AlignVCenter | Qt::AlignRight);
+  mainLayout->addWidget(rightWidget_, 0, Qt::AlignVCenter | Qt::AlignRight);
 
   rssButton_->hide();
 
@@ -71,9 +71,20 @@ void LocationBar::focusInEvent(QFocusEvent *event)
   QLineEdit::focusInEvent(event);
 }
 
+void LocationBar::updateTextMargins()
+{
+  int left = 0;
+  int right = rightWidget_->sizeHint().width();
+  int top = 0;
+  int bottom = 0;
+  setTextMargins(left, top, right, bottom);
+}
+
 void LocationBar::showRssIcon(bool show)
 {
   rssButton_->setVisible(show);
+
+  updateTextMargins();
 }
 
 void LocationBar::rssIconClicked()

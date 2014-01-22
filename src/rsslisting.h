@@ -266,7 +266,7 @@ public:
   QList<int> idFeedsNotifyList_;
 
 public slots:
-  void addFeed();
+  void addFeed(const QString &feedUrl = QString());
   void addFolder();
   void deleteItemFeedsTree();
   void slotImportFeeds();

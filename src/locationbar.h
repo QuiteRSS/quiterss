@@ -30,6 +30,7 @@ public:
   LocationBar(WebView *view, QWidget *parent = 0);
 
 public slots:
+  void updateTextMargins();
   void showRssIcon(bool show);
 
 private slots:
@@ -41,6 +42,7 @@ private:
 
   WebView *view_;
   bool focus_;
+  QWidget *rightWidget_;
   QToolButton *rssButton_;
 
 };

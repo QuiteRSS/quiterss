@@ -1,5 +1,6 @@
 /* ============================================================
-* QupZilla - WebKit based browser
+* QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader
+* Copyright (C) 2011-2014 QuiteRSS Team <quiterssteam@gmail.com>
 * Copyright (C) 2010-2013  David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
@@ -16,6 +17,7 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "rssdetectionwidget.h"
+#include "rsslisting.h"
 #include "webview.h"
 
 #include <QToolTip>
@@ -32,7 +34,7 @@ RSSDetectionWidget::RSSDetectionWidget(WebView* view, QWidget* parent)
   setMidLineWidth(2);
 
   gridLayout_ = new QGridLayout(this);
-  gridLayout_->setMargin(0);
+  gridLayout_->setMargin(5);
   gridLayout_->setSpacing(5);
 
   QWebFrame* frame = view_->page()->mainFrame();
@@ -54,13 +56,13 @@ RSSDetectionWidget::RSSDetectionWidget(WebView* view, QWidget* parent)
     }
 
     QPushButton* button = new QPushButton(this);
-    button->setStyleSheet("QPushButton {text-align:left;} QPushButton:hover {color: #1155CC;}");
+    button->setStyleSheet("QPushButton {text-align:left; border: none; padding: 0px;}"
+                          "QPushButton:hover {color: #1155CC;}");
     button->setCursor(Qt::PointingHandCursor);
     button->setText(title);
     button->setToolTip(url.toString());
     button->setProperty("rss-url", url);
     button->setProperty("rss-title", title);
-    button->setFlat(true);
 
     int pos = i % cols > 0 ? (i % cols) * 2 : 0;
 
@@ -105,12 +107,12 @@ void RSSDetectionWidget::addRss()
       return;
     }
 
-    QString title = button->property("rss-title").toString();
-    if (title.isEmpty()) {
-      title = view_->url().host();
+    QObject *parent_ = parent();
+    while(parent_->parent()) {
+      parent_ = parent_->parent();
     }
-
-    // Add feed
+    RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
+    rssl->addFeed(url.toString());
 
     close();
   }
