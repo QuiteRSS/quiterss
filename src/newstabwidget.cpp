@@ -1410,11 +1410,15 @@ void NewsTabWidget::updateWebView(QModelIndex index)
     QString languageString = feedsTreeModel_->dataField(feedIndex, "language").
         toString().toLower();
     bool ltr = true;
-    if ((languageString == "ar") || (languageString == "fa")) ltr = false;
-
+    if ((languageString == "ar") || (languageString == "fa") ||
+        QApplication::isRightToLeft()) {
+      ltr = false;
+    }
     QString cssStr = cssString_.
         arg(ltr ? "left" : "right"). // text-align
         arg(ltr ? "ltr" : "rtl"); // direction
+
+
     if (!autoLoadImages_) {
       QRegExp reg("<img[^>]+>", Qt::CaseInsensitive, QRegExp::RegExp2);
       content = content.remove(reg);
