@@ -3819,6 +3819,7 @@ void RSSListing::createTrayMenu()
   showWindowAct_->setFont(font_);
   trayMenu_->addAction(showWindowAct_);
   trayMenu_->addAction(updateAllFeedsAct_);
+  trayMenu_->addAction(markAllFeedsRead_);
   trayMenu_->addSeparator();
 
   trayMenu_->addAction(optionsAct_);
