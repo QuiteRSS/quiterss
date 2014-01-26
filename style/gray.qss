@@ -269,6 +269,10 @@ QMainWindow::separator {
 	border-bottom-right-radius: 8px;
 }
 
+#feedItemNotification {
+	border-bottom: 1px solid #909090;
+}
+
 #click2flash-frame {
 	border: 1px solid #e4e4e4;
 	background: #f4f4f4;
