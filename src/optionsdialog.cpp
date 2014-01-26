@@ -424,11 +424,11 @@ void OptionsDialog::createNetworkConnectionsWidget()
   QGridLayout *requestLayout = new QGridLayout();
   requestLayout->setColumnStretch(1, 1);
   requestLayout->setContentsMargins(15, 0, 5, 0);
-  requestLayout->addWidget(new QLabel(tr("Timeout request:")), 0, 0);
+  requestLayout->addWidget(new QLabel(tr("Request timeout:")), 0, 0);
   requestLayout->addWidget(timeoutRequest_, 0, 1, 1, 1, Qt::AlignLeft);
-  requestLayout->addWidget(new QLabel(tr("Number requests:")), 1, 0);
+  requestLayout->addWidget(new QLabel(tr("Number of requests:")), 1, 0);
   requestLayout->addWidget(numberRequests_, 1, 1, 1, 1, Qt::AlignLeft);
-  requestLayout->addWidget(new QLabel(tr("Number repeats:")), 2, 0);
+  requestLayout->addWidget(new QLabel(tr("Number of retries:")), 2, 0);
   requestLayout->addWidget(numberRepeats_, 2, 1, 1, 1, Qt::AlignLeft);
 
   networkConnectionsLayout->addWidget(new QLabel(tr("Options network requests when updating feeds (requires program restart):")));
