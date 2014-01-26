@@ -6235,14 +6235,16 @@ void RSSListing::showNotification()
   clearNotification();
 
   connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
-  connect(notificationWidget, SIGNAL(signalDelete()),
+  connect(notificationWidget, SIGNAL(signalClose()),
           this, SLOT(deleteNotification()));
   connect(notificationWidget, SIGNAL(signalOpenNews(int, int)),
           this, SLOT(slotOpenNew(int, int)));
   connect(notificationWidget, SIGNAL(signalOpenExternalBrowser(QUrl)),
           this, SLOT(slotOpenNewBrowser(QUrl)));
-  connect(notificationWidget, SIGNAL(signalMarkRead(int, int, int)),
-          this, SLOT(slotMarkReadNewsInNotification(int, int, int)));
+  connect(notificationWidget, SIGNAL(signalMarkRead(int,int,int)),
+          this, SLOT(slotMarkReadNewsInNotification(int,int,int)));
+  connect(notificationWidget, SIGNAL(signalDeleteNews(int,int)),
+          this, SLOT(slotDeleteNewsInNotification(int,int)));
 
   notificationWidget->show();
 }
@@ -6382,6 +6384,35 @@ void RSSListing::slotMarkReadNewsInNotification(int feedId, int newsId, int read
   if (!showNews) {
     q.exec(QString("UPDATE news SET new=0, read='%1' WHERE id=='%2'").
            arg(read).arg(newsId));
+  }
+
+  slotUpdateStatus(feedId);
+  recountCategoryCounts();
+}
+
+void RSSListing::slotDeleteNewsInNotification(int feedId, int newsId)
+{
+  bool showNews = false;
+  if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+    for (int i = 0; i < newsModel_->rowCount(); ++i) {
+      if (newsId == newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt()) {
+        sqlQueryExec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+                     arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+                     arg(newsId));
+
+        newsModel_->select();
+        while (newsModel_->canFetchMore())
+          newsModel_->fetchMore();
+        showNews = true;
+        break;
+      }
+    }
+  }
+
+  if (!showNews) {
+    sqlQueryExec(QString("UPDATE news SET new=0, read=2, deleted=1, deleteDate='%1' WHERE id=='%2'").
+                 arg(QDateTime::currentDateTime().toString(Qt::ISODate)).
+                 arg(newsId));
   }
 
   slotUpdateStatus(feedId);

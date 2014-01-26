@@ -2558,7 +2558,7 @@ void OptionsDialog::showNotification()
                                                idColorList, colorList,
                                                this, this);
 
-  connect(notificationWidget_, SIGNAL(signalDelete()),
+  connect(notificationWidget_, SIGNAL(signalClose()),
           this, SLOT(deleteNotification()));
 
   notificationWidget_->show();

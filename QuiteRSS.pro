@@ -87,7 +87,6 @@ HEADERS += \
     src/addfeedwizard.h \
     src/newstabwidget.h \
     src/findtext.h \
-    src/notifications.h \
     src/findfeed.h \
     src/feedstreeview.h \
     src/feedstreemodel.h \
@@ -113,7 +112,10 @@ HEADERS += \
     src/logfile.h \
     src/locationbar.h \
     src/settings.h \
-    src/rssdetectionwidget.h
+    src/rssdetectionwidget.h \
+    src/notifications/notificationsfeeditem.h \
+    src/notifications/notificationsnewsitem.h \
+    src/notifications/notificationswidget.h
 
 SOURCES += \
     src/rsslisting.cpp \
@@ -137,7 +139,6 @@ SOURCES += \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
     src/findtext.cpp \
-    src/notifications.cpp \
     src/findfeed.cpp \
     src/feedstreeview.cpp \
     src/feedstreemodel.cpp \
@@ -162,10 +163,14 @@ SOURCES += \
     src/logfile.cpp \
     src/locationbar.cpp \
     src/settings.cpp \
-    src/rssdetectionwidget.cpp
+    src/rssdetectionwidget.cpp \
+    src/notifications/notificationsfeeditem.cpp \
+    src/notifications/notificationsnewsitem.cpp \
+    src/notifications/notificationswidget.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \
+                $$PWD/src/notifications \
                 $$PWD/src \
 
 isEqual(QT_MAJOR_VERSION, 5) {

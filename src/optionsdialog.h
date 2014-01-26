@@ -28,7 +28,7 @@
 
 #include "dialog.h"
 #include "lineedit.h"
-#include "notifications.h"
+#include "notificationswidget.h"
 
 #define STATIC_ICON_TRAY        0
 #define CHANGE_ICON_TRAY        1

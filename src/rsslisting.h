@@ -50,7 +50,7 @@
 #include "newsmodel.h"
 #include "newstabwidget.h"
 #include "newsview.h"
-#include "notifications.h"
+#include "notificationswidget.h"
 #include "tabbar.h"
 #include "optionsdialog.h"
 #include "updateappdialog.h"
@@ -418,6 +418,7 @@ private slots:
   void slotOpenNew(int feedId, int newsId);
   void slotOpenNewBrowser(const QUrl &url);
   void slotMarkReadNewsInNotification(int feedId, int newsId, int read);
+  void slotDeleteNewsInNotification(int feedId, int newsId);
 
   void slotFindFeeds(QString);
   void slotSelectFind();

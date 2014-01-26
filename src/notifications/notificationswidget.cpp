@@ -15,7 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "notifications.h"
+#include "notificationswidget.h"
+#include "notificationsfeeditem.h"
+#include "notificationsnewsitem.h"
 #include "optionsdialog.h"
 #include "rsslisting.h"
 
@@ -33,8 +35,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   setFocusPolicy(Qt::NoFocus);
   setAttribute(Qt::WA_AlwaysShowToolTips);
 
-  int countShowNews;
-  int widthTitleNews;
+  int numberItems;
+  int widthList;
   QString fontFamily;
   int fontSize;
 
@@ -42,20 +44,22 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget);
     position_ = rssl_->positionNotify_;
     timeShowNews_ = rssl_->timeShowNewsNotify_;
-    countShowNews = rssl_->countShowNewsNotify_;
-    widthTitleNews = rssl_->widthTitleNewsNotify_;
+    numberItems = rssl_->countShowNewsNotify_;
+    widthList = rssl_->widthTitleNewsNotify_;
     fontFamily = rssl_->notificationFontFamily_;
     fontSize = rssl_->notificationFontSize_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
     position_ = options->positionNotify_->currentIndex();
     timeShowNews_ = options->timeShowNewsNotify_->value();
-    countShowNews = options->countShowNewsNotify_->value();
-    widthTitleNews = options->widthTitleNewsNotify_->value();
+    numberItems = options->countShowNewsNotify_->value();
+    widthList = options->widthTitleNewsNotify_->value();
     fontFamily = options->fontsTree_->topLevelItem(4)->text(2).section(", ", 0, 0);
     fontSize = options->fontsTree_->topLevelItem(4)->text(2).section(", ", 1).toInt();
 
-    cntNewNewsList << 100;
+    for (int i = 0; i < 10; i++) {
+      cntNewNewsList << 9;
+    }
   }
 
   iconTitle_ = new QLabel(this);
@@ -108,14 +112,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   stackedWidget_ = new QStackedWidget(this);
 
-  QVBoxLayout *pageLayout_ = new QVBoxLayout();
-  pageLayout_->setMargin(5);
-  pageLayout_->setSpacing(0);
-  QWidget *pageWidget = new QWidget(this);
-  pageWidget->setLayout(pageLayout_);
-  stackedWidget_->addWidget(pageWidget);
-
-  QVBoxLayout* mainLayout = new QVBoxLayout();
+  QVBoxLayout *mainLayout = new QVBoxLayout();
   mainLayout->setMargin(2);
   mainLayout->setSpacing(0);
   mainLayout->addWidget(titlePanel_);
@@ -127,7 +124,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   mainWidget->setLayout(mainLayout);
   mainWidget->setMouseTracking(true);
 
-  QVBoxLayout* layout = new QVBoxLayout();
+  QVBoxLayout *layout = new QVBoxLayout();
   layout->setMargin(0);
   layout->addWidget(mainWidget);
 
@@ -138,116 +135,124 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   }
   textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews_));
 
-  if (cntAllNews_ > countShowNews) rightButton_->setEnabled(true);
+  if ((cntAllNews_ + idFeedList.count()) > numberItems) rightButton_->setEnabled(true);
   else rightButton_->setEnabled(false);
 
-  QSqlQuery q;
-  int cnt = 0;
-  for (int i = 0; i < idFeedList.count(); i++) {
-    int idFeed = idFeedList[i];
-    QString qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
-        arg(idFeed);
-    q.exec(qStr);
-    QString titleFeed;
-    QPixmap iconFeed;
-    if (q.next()) {
-      titleFeed = q.value(0).toString();
-      QByteArray byteArray = q.value(1).toByteArray();
-      if (!byteArray.isNull()) {
-        iconFeed.loadFromData(QByteArray::fromBase64(byteArray));
+  addPage(false);
+
+  if (!idFeedList.isEmpty()) {
+    QSqlQuery q;
+    int countItems = 0;
+    for (int i = 0; i < idFeedList.count(); i++) {
+      int idFeed = idFeedList[i];
+      QString qStr = QString("SELECT text, image FROM feeds WHERE id=='%1'").
+          arg(idFeed);
+      q.exec(qStr);
+      QString titleFeed;
+      QPixmap icon;
+      if (q.next()) {
+        titleFeed = q.value(0).toString();
+        QByteArray byteArray = q.value(1).toByteArray();
+        if (!byteArray.isNull()) {
+          icon.loadFromData(QByteArray::fromBase64(byteArray));
+        } else {
+          icon.load(":/images/feed");
+        }
+      }
+
+      if (countItems >= (numberItems - 1)) {
+        countItems = 1;
+        addPage();
+      } else countItems++;
+
+      FeedItem *feedItem = new FeedItem(widthList, this);
+      feedItem->setIcon(icon);
+      feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+      feedItem->setTitle(titleFeed, cntNewNewsList[i]);
+      pageLayout_->addWidget(feedItem);
+
+      int cntNewNews = 0;
+      qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1'").
+          arg(idFeed);
+      q.exec(qStr);
+      while (q.next()) {
+        if (cntNewNews >= cntNewNewsList[i]) break;
+        else cntNewNews++;
+
+        if (countItems >= numberItems) {
+          countItems = 1;
+          addPage();
+
+          FeedItem *feedItem = new FeedItem(widthList, this);
+          feedItem->setIcon(icon);
+          feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+          feedItem->setTitle(titleFeed, cntNewNewsList[i]);
+          pageLayout_->addWidget(feedItem);
+        } else countItems++;
+
+        int idNews = q.value(0).toInt();
+        NewsItem *newsItem = new NewsItem(idFeed, idNews, widthList, this);
+        newsItem->setFontText(QFont(fontFamily, fontSize, QFont::Bold));
+        newsItem->setText(q.value(1).toString());
+        int index = idColorList.indexOf(idNews);
+        if (index != -1)
+          newsItem->setColorText(colorList.at(index));
+        pageLayout_->addWidget(newsItem);
+
+        connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
+                this, SLOT(slotMarkRead(int, int, int)));
+        connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
+                this, SIGNAL(signalOpenNews(int, int)));
+        connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
+                this, SIGNAL(signalOpenExternalBrowser(QUrl)));
+        connect(newsItem, SIGNAL(signalDeleteNews(int,int)),
+                this, SLOT(slotDeleteNews(int, int)));
       }
     }
+  }
+  // Review
+  else {
+    int countItems = 0;
+    for (int i = 0; i < 10; i++) {
+      if (countItems >= (numberItems - 1)) {
+        countItems = 1;
+        addPage();
+      } else countItems++;
 
-    int cntNews = 0;
-    qStr = QString("SELECT id, title FROM news WHERE new=1 AND feedId=='%1'").
-        arg(idFeed);
-    q.exec(qStr);
-    while (q.next()) {
-      if (cntNews >= cntNewNewsList[i]) break;
-      else cntNews++;
+      FeedItem *feedItem = new FeedItem(widthList, this);
+      feedItem->setIcon(QPixmap(":/images/feed"));
+      feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+      feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
+      pageLayout_->addWidget(feedItem);
 
-      if (cnt >= countShowNews) {
-        cnt = 1;
-        pageLayout_ = new QVBoxLayout();
-        pageLayout_->setMargin(5);
-        pageLayout_->setSpacing(0);
-        QWidget *pageWidget = new QWidget(this);
-        pageWidget->setLayout(pageLayout_);
-        stackedWidget_->addWidget(pageWidget);
-      } else cnt++;
+      for (int y = 0; y < cntNewNewsList.at(i); y++) {
+        if (countItems >= numberItems) {
+          countItems = 1;
+          addPage();
 
-      NewsItem *newsItem = new NewsItem(idFeed, q.value(0).toInt(),
-                                        widthTitleNews, this);
-      if (!iconFeed.isNull())
-        newsItem->iconNews_->setPixmap(iconFeed);
-      newsItem->iconNews_->setToolTip(titleFeed);
-      connect(newsItem, SIGNAL(signalMarkRead(int, int, int)),
-              this, SLOT(slotMarkRead(int, int, int)));
-      connect(newsItem, SIGNAL(signalTitleClicked(int, int)),
-              this, SIGNAL(signalOpenNews(int, int)));
-      connect(newsItem, SIGNAL(signalOpenExternalBrowser(QUrl)),
-              this, SIGNAL(signalOpenExternalBrowser(QUrl)));
+          FeedItem *feedItem = new FeedItem(widthList, this);
+          feedItem->setIcon(QPixmap(":/images/feed"));
+          feedItem->setFontTitle(QFont(fontFamily, fontSize, -1, true));
+          feedItem->setTitle(QString("Title Feed %1").arg(i+1), 9);
+          pageLayout_->addWidget(feedItem);
+        } else countItems++;
 
-      newsItem->titleNews_->setFont(QFont(fontFamily, fontSize));
-
-      QFont font = newsItem->titleNews_->font();
-      font.setBold(true);
-      newsItem->titleNews_->setFont(font);
-      QString titleStr = newsItem->titleNews_->fontMetrics().elidedText(
-            q.value(1).toString(), Qt::ElideRight, newsItem->titleNews_->sizeHint().width());
-      newsItem->titleNews_->setText(titleStr);
-      newsItem->titleNews_->setToolTip(q.value(1).toString());
-
-      int index = idColorList.indexOf(q.value(0).toInt());
-      if (index != -1) {
-        newsItem->titleNews_->setStyleSheet(QString(
-                                              "QLabel:hover {color: #1155CC;}"
-                                              "QLabel {color: %1;}").
-                                            arg(colorList.at(index)));
+        NewsItem *newsItem = new NewsItem(0, 0, widthList, this);
+        newsItem->setFontText(QFont(fontFamily, fontSize, QFont::Bold));
+        newsItem->setText("Test News Test News Test News Test News Test News");
+        pageLayout_->addWidget(newsItem);
       }
-
-      pageLayout_->addWidget(newsItem);
     }
   }
 
-  if (idFeedList.isEmpty()) {
-    for (int i = 0; i < cntNewNewsList.at(0); i++) {
-      if (cnt >= countShowNews) {
-        cnt = 1;
-        pageLayout_ = new QVBoxLayout();
-        pageLayout_->setMargin(5);
-        pageLayout_->setSpacing(0);
-        QWidget *pageWidget = new QWidget(this);
-        pageWidget->setLayout(pageLayout_);
-        stackedWidget_->addWidget(pageWidget);
-      } else cnt++;
-
-      NewsItem *newsItem = new NewsItem(0, 0, widthTitleNews, this);
-
-      newsItem->iconNews_->setPixmap(QPixmap(":/images/feed"));
-      newsItem->iconNews_->setToolTip("Title Feed");
-      newsItem->titleNews_->setFont(QFont(fontFamily, fontSize));
-
-      QFont font = newsItem->titleNews_->font();
-      font.setBold(true);
-      newsItem->titleNews_->setFont(font);
-      QString title("Test News Test News Test News Test News Test News");
-      QString titleStr = newsItem->titleNews_->fontMetrics().elidedText(
-            title, Qt::ElideRight, newsItem->titleNews_->sizeHint().width());
-      newsItem->titleNews_->setText(titleStr);
-      newsItem->titleNews_->setToolTip(title);
-      pageLayout_->addWidget(newsItem);
-    }
-  }
-
-  pageLayout_->addStretch(1);
+  pageLayout_->addStretch();
   numPage_->setText(QString(tr("Page %1 of %2").arg("1").arg(stackedWidget_->count())));
 
   showTimer_ = new QTimer(this);
   connect(showTimer_, SIGNAL(timeout()),
-          this, SIGNAL(signalDelete()));
+          this, SIGNAL(signalClose()));
   connect(closeButton_, SIGNAL(clicked()),
-          this, SIGNAL(signalDelete()));
+          this, SIGNAL(signalClose()));
   connect(leftButton_, SIGNAL(clicked()),
           this, SLOT(previousPage()));
   connect(rightButton_, SIGNAL(clicked()),
@@ -257,7 +262,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
     showTimer_->start(timeShowNews_*1000);
 }
 
-/*virtual*/ void NotificationWidget::showEvent(QShowEvent*)
+NotificationWidget::~NotificationWidget()
+{
+
+}
+
+void NotificationWidget::showEvent(QShowEvent*)
 {
   QPoint point;
   switch(position_) {
@@ -285,22 +295,34 @@ bool NotificationWidget::eventFilter(QObject *obj, QEvent *event)
 {
   if(event->type() == QEvent::MouseButtonPress) {
     emit signalShow();
-    emit signalDelete();
+    emit signalClose();
     return true;
   } else {
     return QObject::eventFilter(obj, event);
   }
 }
 
-/*virtual*/ void NotificationWidget::enterEvent(QEvent*)
+void NotificationWidget::enterEvent(QEvent*)
 {
   showTimer_->stop();
 }
 
-/*virtual*/ void NotificationWidget::leaveEvent(QEvent*)
+void NotificationWidget::leaveEvent(QEvent*)
 {
   if (timeShowNews_ != 0)
     showTimer_->start(timeShowNews_*1000);
+}
+
+void NotificationWidget::addPage(bool next)
+{
+  if (next) pageLayout_->addStretch();
+
+  pageLayout_ = new QVBoxLayout();
+  pageLayout_->setMargin(5);
+  pageLayout_->setSpacing(0);
+  QWidget *pageWidget = new QWidget(this);
+  pageWidget->setLayout(pageLayout_);
+  stackedWidget_->addWidget(pageWidget);
 }
 
 void NotificationWidget::nextPage()
@@ -332,7 +354,16 @@ void NotificationWidget::slotMarkRead(int feedId, int newsId, int read)
   if (read) cntReadNews_++;
   else cntReadNews_--;
   if (cntReadNews_ == cntAllNews_) {
-    emit signalDelete();
+    emit signalClose();
   }
   emit signalMarkRead(feedId, newsId, read);
+}
+
+void NotificationWidget::slotDeleteNews(int feedId, int newsId)
+{
+  cntReadNews_++;
+  if (cntReadNews_ == cntAllNews_) {
+    emit signalClose();
+  }
+  emit signalDeleteNews(feedId, newsId);
 }
