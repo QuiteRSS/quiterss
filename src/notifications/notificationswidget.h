@@ -37,6 +37,9 @@ public:
                      QWidget *parent = 0);
   ~NotificationWidget();
 
+  QList<int> idFeedList() { return idFeedList_; }
+  QList<int> idNewsList() { return idNewsList_; }
+
 signals:
   void signalShow();
   void signalClose();
@@ -44,6 +47,7 @@ signals:
   void signalOpenExternalBrowser(const QUrl &url);
   void signalMarkRead(int feedId, int newsId, int read);
   void signalDeleteNews(int feedId, int newsId);
+  void signalMarkAllRead();
 
 protected:
   void showEvent(QShowEvent*);
@@ -56,6 +60,7 @@ private slots:
   void previousPage();
   void slotMarkRead(int feedId, int newsId, int read);
   void slotDeleteNews(int feedId, int newsId);
+  void slotMarkAllRead();
 
 private:
   void addPage(bool next = true);
@@ -66,9 +71,11 @@ private:
   QStackedWidget *stackedWidget_;
   QVBoxLayout *pageLayout_;
   QLabel *numPage_;
-  QToolButton *leftButton_;
-  QToolButton *rightButton_;
+  QToolButton *prevButton_;
+  QToolButton *nextButton_;
 
+  QList<int> idFeedList_;
+  QList<int> idNewsList_;
   QTimer *showTimer_;
   int timeShowNews_;
   int position_;

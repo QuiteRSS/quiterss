@@ -6246,6 +6246,8 @@ void RSSListing::showNotification()
           this, SLOT(slotMarkReadNewsInNotification(int,int,int)));
   connect(notificationWidget, SIGNAL(signalDeleteNews(int,int)),
           this, SLOT(slotDeleteNewsInNotification(int,int)));
+  connect(notificationWidget, SIGNAL(signalMarkAllRead()),
+          this, SLOT(slotMarkAllReadNewsInNotification()));
 
   notificationWidget->show();
 }
@@ -6418,6 +6420,36 @@ void RSSListing::slotDeleteNewsInNotification(int feedId, int newsId)
 
   slotUpdateStatus(feedId);
   recountCategoryCounts();
+}
+
+void RSSListing::slotMarkAllReadNewsInNotification()
+{
+  if (NotificationWidget *notificationWidget = qobject_cast<NotificationWidget*>(sender())) {
+    QList<int> idFeedList = notificationWidget->idFeedList();
+    QList<int> idNewsList = notificationWidget->idNewsList();
+
+    if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+      for (int i = 0; i < newsModel_->rowCount(); ++i) {
+        if (idNewsList.contains(newsModel_->index(i, newsModel_->fieldIndex("id")).data().toInt())) {
+          newsModel_->setData(
+                newsModel_->index(i, newsModel_->fieldIndex("new")), 0);
+          newsModel_->setData(
+                newsModel_->index(i, newsModel_->fieldIndex("read")), 1);
+        }
+      }
+      newsView_->viewport()->update();
+    }
+
+    foreach (int newsId, idNewsList) {
+      sqlQueryExec(QString("UPDATE news SET new=0, read=1 WHERE id=='%1'").
+                   arg(newsId));
+    }
+
+    foreach (int feedId, idFeedList) {
+      slotUpdateStatus(feedId);
+    }
+    recountCategoryCounts();
+  }
 }
 
 // ----------------------------------------------------------------------------

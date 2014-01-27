@@ -28,6 +28,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QWidget *parentWidget,
                                        QWidget *parent)
   : QWidget(parent,  Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint)
+  , idFeedList_(idFeedList)
   , cntAllNews_(0)
   , cntReadNews_(0)
 {
@@ -67,6 +68,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   textTitle_ = new QLabel(this);
 
   closeButton_ = new QToolButton(this);
+  closeButton_->setToolTip(tr("Close"));
   closeButton_->setStyleSheet(
         "QToolButton { border: none; padding: 0px; "
         "image: url(:/images/close); }"
@@ -88,22 +90,30 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
   numPage_ = new QLabel(this);
 
-  leftButton_ = new QToolButton(this);
-  leftButton_->setIcon(QIcon(":/images/moveLeft"));
-  leftButton_->setCursor(Qt::PointingHandCursor);
-  leftButton_->setEnabled(false);
-  rightButton_ = new QToolButton(this);
-  rightButton_->setIcon(QIcon(":/images/moveRight"));
-  rightButton_->setCursor(Qt::PointingHandCursor);
+  QToolButton *markAllReadButton_ = new QToolButton(this);
+  markAllReadButton_->setToolTip(tr("Mark All News Read"));
+  markAllReadButton_->setIcon(QIcon(":/images/markReadAll"));
+  markAllReadButton_->setAutoRaise(true);
+  prevButton_ = new QToolButton(this);
+  prevButton_->setIcon(QIcon(":/images/moveLeft"));
+  prevButton_->setToolTip(tr("Previous Page"));
+  prevButton_->setEnabled(false);
+  prevButton_->setAutoRaise(true);
+  nextButton_ = new QToolButton(this);
+  nextButton_->setIcon(QIcon(":/images/moveRight"));
+  nextButton_->setToolTip(tr("Next Page"));
+  nextButton_->setAutoRaise(true);
 
   QHBoxLayout *bottomLayout = new QHBoxLayout();
   bottomLayout->setMargin(2);
-  bottomLayout->setSpacing(5);
+  bottomLayout->setSpacing(1);
   bottomLayout->addSpacing(3);
   bottomLayout->addWidget(numPage_);
   bottomLayout->addStretch(1);
-  bottomLayout->addWidget(leftButton_);
-  bottomLayout->addWidget(rightButton_);
+  bottomLayout->addWidget(markAllReadButton_);
+  bottomLayout->addSpacing(5);
+  bottomLayout->addWidget(prevButton_);
+  bottomLayout->addWidget(nextButton_);
   bottomLayout->addSpacing(3);
 
   QWidget *bottomPanel_ = new QWidget(this);
@@ -135,8 +145,8 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   }
   textTitle_->setText(QString(tr("Incoming News: %1")).arg(cntAllNews_));
 
-  if ((cntAllNews_ + idFeedList.count()) > numberItems) rightButton_->setEnabled(true);
-  else rightButton_->setEnabled(false);
+  if ((cntAllNews_ + idFeedList.count()) > numberItems) nextButton_->setEnabled(true);
+  else nextButton_->setEnabled(false);
 
   addPage(false);
 
@@ -180,7 +190,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         else cntNewNews++;
 
         if (countItems >= numberItems) {
-          countItems = 1;
+          countItems = 2;
           addPage();
 
           FeedItem *feedItem = new FeedItem(widthList, this);
@@ -191,6 +201,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
         } else countItems++;
 
         int idNews = q.value(0).toInt();
+        idNewsList_.append(idNews);
         NewsItem *newsItem = new NewsItem(idFeed, idNews, widthList, this);
         newsItem->setFontText(QFont(fontFamily, fontSize, QFont::Bold));
         newsItem->setText(q.value(1).toString());
@@ -227,7 +238,7 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
 
       for (int y = 0; y < cntNewNewsList.at(i); y++) {
         if (countItems >= numberItems) {
-          countItems = 1;
+          countItems = 2;
           addPage();
 
           FeedItem *feedItem = new FeedItem(widthList, this);
@@ -253,10 +264,14 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
           this, SIGNAL(signalClose()));
   connect(closeButton_, SIGNAL(clicked()),
           this, SIGNAL(signalClose()));
-  connect(leftButton_, SIGNAL(clicked()),
+  connect(prevButton_, SIGNAL(clicked()),
           this, SLOT(previousPage()));
-  connect(rightButton_, SIGNAL(clicked()),
+  connect(nextButton_, SIGNAL(clicked()),
           this, SLOT(nextPage()));
+  connect(markAllReadButton_, SIGNAL(clicked()),
+          this, SIGNAL(signalMarkAllRead()));
+  connect(markAllReadButton_, SIGNAL(clicked()),
+          this, SIGNAL(signalClose()));
 
   if (timeShowNews_ != 0)
     showTimer_->start(timeShowNews_*1000);
@@ -329,9 +344,9 @@ void NotificationWidget::nextPage()
 {
   stackedWidget_->setCurrentIndex(stackedWidget_->currentIndex()+1);
   if (stackedWidget_->currentIndex()+1 == stackedWidget_->count())
-    rightButton_->setEnabled(false);
+    nextButton_->setEnabled(false);
   if (stackedWidget_->currentIndex() != 0)
-    leftButton_->setEnabled(true);
+    prevButton_->setEnabled(true);
   numPage_->setText(QString(tr("Page %1 of %2").
                             arg(stackedWidget_->currentIndex()+1).
                             arg(stackedWidget_->count())));
@@ -341,9 +356,9 @@ void NotificationWidget::previousPage()
 {
   stackedWidget_->setCurrentIndex(stackedWidget_->currentIndex()-1);
   if (stackedWidget_->currentIndex() == 0)
-    leftButton_->setEnabled(false);
+    prevButton_->setEnabled(false);
   if (stackedWidget_->currentIndex()+1 != stackedWidget_->count())
-    rightButton_->setEnabled(true);
+    nextButton_->setEnabled(true);
   numPage_->setText(QString(tr("Page %1 of %2").
                             arg(stackedWidget_->currentIndex()+1).
                             arg(stackedWidget_->count())));
@@ -365,5 +380,10 @@ void NotificationWidget::slotDeleteNews(int feedId, int newsId)
   if (cntReadNews_ == cntAllNews_) {
     emit signalClose();
   }
+  idNewsList_.removeOne(newsId);
   emit signalDeleteNews(feedId, newsId);
+}
+
+void NotificationWidget::slotMarkAllRead()
+{
 }
