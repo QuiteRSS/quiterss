@@ -1045,10 +1045,10 @@ void OptionsDialog::createNotifierWidget()
   QHBoxLayout *notifierLayout1 = new QHBoxLayout();
   notifierLayout1->addWidget(new QLabel(tr("Show maximum of")));
   notifierLayout1->addWidget(countShowNewsNotify_);
-  notifierLayout1->addWidget(new QLabel(tr("news on page notification")), 1);
+  notifierLayout1->addWidget(new QLabel(tr("item on page notification")), 1);
 
   QHBoxLayout *notifierLayout2 = new QHBoxLayout();
-  notifierLayout2->addWidget(new QLabel(tr("Width news list")));
+  notifierLayout2->addWidget(new QLabel(tr("Width list items")));
   notifierLayout2->addWidget(widthTitleNewsNotify_);
   notifierLayout2->addWidget(new QLabel(tr("pixels")), 1);
 
