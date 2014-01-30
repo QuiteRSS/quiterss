@@ -127,7 +127,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="531"/>
         <source>Request failed!</source>
-        <translation type="unfinished"/>
+        <translation>Erro de solicitude!</translation>
     </message>
 </context>
 <context>
@@ -221,7 +221,7 @@
     <message>
         <location filename="../src/categoriestreewidget.cpp" line="136"/>
         <source>Clear &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Baleirar &apos;Eliminadas&apos;</translation>
     </message>
 </context>
 <context>
@@ -229,7 +229,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="193"/>
         <source>Clean Up</source>
-        <translation type="unfinished"/>
+        <translation>Limpeza</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="223"/>
@@ -279,7 +279,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="337"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Baleirar &apos;Eliminadas&apos;</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="338"/>
@@ -309,7 +309,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/plugins/clicktoflash.cpp" line="132"/>
         <source>Add &apos;%1&apos; to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Sinalar &apos;%1&apos; como confiable</translation>
     </message>
 </context>
 <context>
@@ -419,13 +419,13 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="102"/>
         <source>Remaining time unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Tempo restante non dispoñible</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="165"/>
         <location filename="../src/downloads/downloaditem.cpp" line="192"/>
         <source>Error: Cannot write to file!</source>
-        <translation type="unfinished"/>
+        <translation>Erro: non se pode editar o ficheiro!</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="232"/>
@@ -476,12 +476,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="320"/>
         <source>Remaining %1 - %2 of %3 (%4)</source>
-        <translation type="unfinished"/>
+        <translation>Faltan %1 - %2 de %3 (%4)</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="339"/>
         <source>Cancelled - %1</source>
-        <translation type="unfinished"/>
+        <translation>Cancelado - %1</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="349"/>
@@ -521,7 +521,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
         <source>Cancelled</source>
-        <translation type="unfinished"/>
+        <translation>Cancelado</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="374"/>
@@ -581,7 +581,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="116"/>
         <source>Starred</source>
-        <translation>Favoritos</translation>
+        <translation>Destacadas</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
@@ -616,7 +616,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>Deshabilitar actualizacións</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -771,7 +771,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
         <source>Display in new tab on startup</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar nunha nova lapela ao iniciar</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
@@ -901,7 +901,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/findtext.cpp" line="109"/>
         <source>Find in Browser</source>
-        <translation>Procurar no explorador</translation>
+        <translation>Procurar no navegador</translation>
     </message>
 </context>
 <context>
@@ -942,12 +942,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar novas no notificador</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Explorar</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
@@ -1230,12 +1230,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="404"/>
         <source>Read</source>
-        <translation type="unfinished"/>
+        <translation>Lidas</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="405"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>Destacadas</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="406"/>
@@ -1400,7 +1400,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1388"/>
         <source>Link to</source>
-        <translation type="unfinished"/>
+        <translation>Ligar a</translation>
     </message>
 </context>
 <context>
@@ -1497,7 +1497,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="255"/>
         <source>Show feeds tree toggle at edge of window</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar a opción de alternar a árbore de canles no bordo da pantalla</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="257"/>
@@ -1517,7 +1517,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="268"/>
         <source>Save DB stored in memory to file every</source>
-        <translation type="unfinished"/>
+        <translation>Gardar o ficheiro da base de datos almacenada na memoria cada</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="292"/>
@@ -1567,17 +1567,17 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="338"/>
         <source>Clear status new on minimize to tray</source>
-        <translation type="unfinished"/>
+        <translation>Reiniciar contador de elementos novos ao minimizar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="339"/>
         <source>Empty working set on minimize to tray</source>
-        <translation>Baleirar a área de traballo ao minimizar a bandexa de entrada</translation>
+        <translation>Baleirar a área de traballo ao minimizar á bandexa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="342"/>
         <source>Move to the system tray when:</source>
-        <translation>Mover á bandexa de entrada cando:</translation>
+        <translation>Mover á área de notificacións ou bandexa do sistema cando:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="344"/>
@@ -1627,7 +1627,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="426"/>
         <source>Timeout request:</source>
-        <translation type="unfinished"/>
+        <translation>Peticións vencidas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="430"/>
@@ -1637,7 +1637,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="433"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
-        <translation type="unfinished"/>
+        <translation>Opcións de conexión cando se actualicen as canles (cómpre reiniciar o programa):</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="451"/>
@@ -1666,12 +1666,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="467"/>
         <source>Open links in embedded browser in background</source>
-        <translation type="unfinished"/>
+        <translation>Abrir ligazóns en segundo plano no navegador interno</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Open links in external browser in background (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Abrir ligazóns en segundo plano no navegador externo (experimental)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="494"/>
@@ -1701,32 +1701,32 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="565"/>
         <source>Maximum size of disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño máximo da caché no disco</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="567"/>
         <source>MB</source>
-        <translation type="unfinished"/>
+        <translation>Mb</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="573"/>
         <source>Use disk cache</source>
-        <translation type="unfinished"/>
+        <translation>Usar caché no disco</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="587"/>
         <source>Allow local data to be set</source>
-        <translation type="unfinished"/>
+        <translation>Permitir que se establezan datos locais</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="588"/>
         <source>Keep local data only until quit application</source>
-        <translation type="unfinished"/>
+        <translation>Manter datos locais só ata que se peche o programa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="589"/>
         <source>Block sites from setting any data</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear sitios que queiran establecer calquera dato</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="590"/>
@@ -1741,7 +1741,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="613"/>
         <source>Click To Flash is a plugin which blocks auto loading of Flash content at page. You can always load it manually by clicking on the Flash play icon.</source>
-        <translation type="unfinished"/>
+        <translation>Click To Flash é un complemento que bloquea que se cargue automaticamente contido flash da páxina web. Unha vez bloqueado, sempre poderás cargalo manualmente premendo na icona.</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="618"/>
@@ -1816,7 +1816,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="775"/>
         <source>Alternating row background colors</source>
-        <translation type="unfinished"/>
+        <translation>Cor de fondo alternante nas filas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="776"/>
@@ -1866,7 +1866,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="796"/>
         <source>Main news filter:</source>
-        <translation type="unfinished"/>
+        <translation>Filtro principal de novas:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="818"/>
@@ -1876,12 +1876,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="820"/>
         <source>on selecting. With timeout</source>
-        <translation type="unfinished"/>
+        <translation>ao seleccionar. Agardando</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="821"/>
         <source>after switching to another news</source>
-        <translation type="unfinished"/>
+        <translation>despois de cambiar a outras novas</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="834"/>
@@ -1896,7 +1896,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="878"/>
         <source>Enable cleanup on shutdown</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar limpeza ao pechar</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="898"/>
@@ -1906,12 +1906,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="900"/>
         <source>Clean up &apos;Deleted&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Baleirar &apos;Eliminadas&apos;</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="901"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation type="unfinished"/>
+        <translation>Habilitar optimización da base de datos (pecharase máis lentamente)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="947"/>
@@ -1961,17 +1961,17 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"/>
+        <translation>Inferior á esquerda</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1025"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"/>
+        <translation>Inferior á dereita</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1035"/>
         <source>Review</source>
-        <translation type="unfinished"/>
+        <translation>Revisión</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1039"/>
@@ -2136,7 +2136,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1587"/>
         <source>Fixed</source>
-        <translation type="unfinished"/>
+        <translation>Fixa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1589"/>
@@ -2156,7 +2156,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1595"/>
         <source>Fantasy</source>
-        <translation type="unfinished"/>
+        <translation>Fantasía</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1610"/>
@@ -2166,7 +2166,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1612"/>
         <source>Fixed font size</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño da fonte fixa</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1614"/>
@@ -2176,7 +2176,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1616"/>
         <source>Minimum logical font size</source>
-        <translation type="unfinished"/>
+        <translation>Mínimo tamaño lóxico da fonte</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1620"/>
@@ -2201,7 +2201,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1640"/>
         <source>Filter</source>
-        <translation type="unfinished"/>
+        <translation>Filtro</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="459"/>
@@ -2234,7 +2234,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2636"/>
         <source>Add site to whitelist</source>
-        <translation type="unfinished"/>
+        <translation>Sinalar sitio como confiable</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2637"/>
@@ -2304,7 +2304,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="313"/>
         <source>Show system tray icon</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar icona na área de notificacións ou bandexa do sistema</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="702"/>
@@ -2334,7 +2334,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="454"/>
         <source>Following external browser:</source>
-        <translation type="unfinished"/>
+        <translation>Un navegador externo concreto:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="511"/>
@@ -2394,7 +2394,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="64"/>
         <source>System Tray</source>
-        <translation>Bandexa de entrada</translation>
+        <translation>Bandexa do sistema</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="91"/>
@@ -2540,12 +2540,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4767"/>
         <source>&amp;Step up</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Paso adiante</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4768"/>
         <source>Step &amp;down</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Paso atrás</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4769"/>
@@ -2586,27 +2586,27 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="948"/>
         <source>Host %1 not found</source>
-        <translation type="unfinished"/>
+        <translation>Servidor %1 non atopado</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="953"/>
         <source>Connection refused to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Conexión rexeitada desde o servidor %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="958"/>
         <source>Connection timed out to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Expirou o tempo para conectar ao servidor %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1071"/>
         <source>Connected to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Conectado ao servidor %1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1312"/>
         <source>Connection refused for data connection</source>
-        <translation type="unfinished"/>
+        <translation>Conexión rexeitada para datos</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="1490"/>
@@ -2617,7 +2617,8 @@ As novas antigas poderían reaparecer</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2419"/>
         <source>Connecting to host failed:
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Erro ao conectar ao servidor:
+%1</translation>
     </message>
     <message>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2423"/>
@@ -2846,12 +2847,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4553"/>
         <source>Filter Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Filtrar canles</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4560"/>
         <source>Filter News</source>
-        <translation type="unfinished"/>
+        <translation>Filtrar novas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4564"/>
@@ -2861,7 +2862,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4565"/>
         <source>Show Not Starred</source>
-        <translation>Mostrar non destacadas</translation>
+        <translation>Mostrar as non destacadas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4566"/>
@@ -2943,22 +2944,22 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4641"/>
         <source>Previous News</source>
-        <translation type="unfinished"/>
+        <translation>Nova anterior</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4642"/>
         <source>Next News</source>
-        <translation type="unfinished"/>
+        <translation>Nova seguinte</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4643"/>
         <source>News Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Retroceso da páxina de novas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4644"/>
         <source>News Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Avance da páxina de novas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4656"/>
@@ -2968,12 +2969,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4658"/>
         <source>Minimize to Tray</source>
-        <translation type="unfinished"/>
+        <translation>Minimizar á bandexa</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4660"/>
         <source>Minimize Application to Tray</source>
-        <translation type="unfinished"/>
+        <translation>Minimizar aplicación á bandexa</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4662"/>
@@ -3075,7 +3076,7 @@ As novas antigas poderían reaparecer</translation>
         <location filename="../src/rsslisting.cpp" line="4698"/>
         <location filename="../src/rsslisting.cpp" line="4699"/>
         <source>Stay On Top</source>
-        <translation type="unfinished"/>
+        <translation>Sempre arriba</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4701"/>
@@ -3085,22 +3086,22 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4714"/>
         <source>Switch to next tab</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar á seguinte lapela</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4715"/>
         <source>Switch to previous tab</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar á anterior lapela</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4722"/>
         <source>Decrease news list/increase browser</source>
-        <translation type="unfinished"/>
+        <translation>Reducir listaxe de novas/aumentar navegador</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4723"/>
         <source>Increase news list/decrease browser</source>
-        <translation type="unfinished"/>
+        <translation>Aumentar listaxe de novas/reducir navegador</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="5562"/>
@@ -3126,12 +3127,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4719"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>Eliminadas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4718"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Destacadas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4707"/>
@@ -3195,7 +3196,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4585"/>
         <source>Star</source>
-        <translation type="unfinished"/>
+        <translation>Destacadas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4587"/>
@@ -3356,7 +3357,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="111"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Driver SQLite non cargado!</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="2527"/>
@@ -3448,22 +3449,22 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4545"/>
         <source>Clean Up...</source>
-        <translation type="unfinished"/>
+        <translation>Limpar...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4547"/>
         <source>News Filters...</source>
-        <translation type="unfinished"/>
+        <translation>Filtros de novas...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4548"/>
         <source>Filter News...</source>
-        <translation type="unfinished"/>
+        <translation>Filtrar novas...</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4551"/>
         <source>Open Options Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Abrir diálogo de opcións</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4557"/>
@@ -3473,7 +3474,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4558"/>
         <source>Show Not Working Feeds</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar canles que non están a funcionar</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4567"/>
@@ -3488,7 +3489,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4571"/>
         <source>Show &apos;About&apos; Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar diálogo de información</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4573"/>
@@ -3528,12 +3529,12 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4583"/>
         <source>Open in Background Tab</source>
-        <translation type="unfinished"/>
+        <translation>Abrir nunha lapela secundaria</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4584"/>
         <source>Open News in Background Tab</source>
-        <translation type="unfinished"/>
+        <translation>Abrir novas nunha lapela secundaria</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4586"/>
@@ -3588,7 +3589,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4608"/>
         <source>&amp;Browser</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Navegador</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4619"/>
@@ -3643,22 +3644,22 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4649"/>
         <source>Switch Focus to Next Panel</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar enfoque no seguinte panel</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4651"/>
         <source>Switch Focus to Next Panel (Tree Feeds, List News, Browser)</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar enfoque no seguinte panel (árbore de canles, listaxe de novas, navegador)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4652"/>
         <source>Switch Focus to Previous Panel</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar foco no anterior panel</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4654"/>
         <source>Switch Focus to Previous Panel (Tree Feeds, Browser, List News)</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar foco no anterior panel (árbore de canles, navegador, listaxe de novas)</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4663"/>
@@ -3673,7 +3674,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4665"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>Últimas actualizacións</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4688"/>
@@ -3688,7 +3689,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4709"/>
         <source>Show labels menu</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar menú de etiquetas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4711"/>
@@ -3748,7 +3749,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/rsslisting.cpp" line="4735"/>
         <source>Setting Page: Labels</source>
-        <translation type="unfinished"/>
+        <translation>Axustes de páxina: Etiquetas</translation>
     </message>
     <message>
         <location filename="../src/rsslisting.cpp" line="4737"/>
@@ -3846,7 +3847,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="301"/>
         <source>Request timeout!</source>
-        <translation type="unfinished"/>
+        <translation>Petición vencida!</translation>
     </message>
 </context>
 <context>
@@ -3869,7 +3870,7 @@ As novas antigas poderían reaparecer</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="51"/>
         <source>Don&apos;t remind about this version</source>
-        <translation type="unfinished"/>
+        <translation>Non informar acerca desta versión</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="59"/>
