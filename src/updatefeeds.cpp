@@ -330,10 +330,15 @@ void UpdateObject::slotImportFeeds(QByteArray xmlData)
   QString convertData;
   bool codecOk = false;
 
-  xmlData.replace("&", "&#38;");
+  QRegExp rx("&(?!([a-z0-9#]+;))", Qt::CaseInsensitive, QRegExp::RegExp2);
+  int pos = 0;
+  while ((pos = rx.indexIn(xmlData, pos)) != -1) {
+    xmlData.replace(pos, 1, "&amp;");
+    pos += 1;
+  }
 
-  QRegExp rx("encoding=\"([^\"]+)", Qt::CaseInsensitive, QRegExp::RegExp2);
-  int pos = rx.indexIn(xmlData);
+  rx.setPattern("encoding=\"([^\"]+)");
+  pos = rx.indexIn(xmlData);
   if (pos == -1) {
     rx.setPattern("encoding='([^']+)");
     pos = rx.indexIn(xmlData);
