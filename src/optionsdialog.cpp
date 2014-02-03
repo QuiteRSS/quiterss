@@ -128,10 +128,15 @@ OptionsDialog::OptionsDialog(QWidget *parent)
   contentStack_->addWidget(fontsColorsWidget_);
   contentStack_->addWidget(shortcutWidget_);
 
+  scrollArea_ = new QScrollArea(this);
+  scrollArea_->setWidgetResizable(true);
+  scrollArea_->setFrameStyle(QFrame::NoFrame);
+  scrollArea_->setWidget(contentStack_);
+
   QSplitter *splitter = new QSplitter();
   splitter->setChildrenCollapsible(false);
   splitter->addWidget(categoriesTree_);
-  splitter->addWidget(contentStack_);
+  splitter->addWidget(scrollArea_);
   QList<int> sizes;
   sizes << 150 << 600;
   splitter->setSizes(sizes);
@@ -151,10 +156,32 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
   categoriesTree_->installEventFilter(this);
 
-  resize(700, 500);
+  resize(700, 560);
 
   Settings settings;
   restoreGeometry(settings.value("options/geometry").toByteArray());
+}
+
+void OptionsDialog::showEvent(QShowEvent*event)
+{
+  QDesktopWidget desktopWidget;
+  int desktopWidth = desktopWidget.availableGeometry().width();
+  int desktopHeight = desktopWidget.availableGeometry().height();
+  int maxWidth = desktopWidth - (frameSize().width() - width());
+  int maxHeight = desktopHeight - (frameSize().height() - height());
+
+  if (frameSize().height() >= desktopHeight) {
+    setMinimumSize(700, 500);
+  } else {
+    scrollArea_->setMinimumSize(contentStack_->sizeHint().width()+10, contentStack_->sizeHint().height()+10);
+  }
+  setMaximumSize(maxWidth, maxHeight);
+
+  if (frameSize().height() >= desktopHeight) {
+    move(0, 0);
+  }
+
+  Dialog::showEvent(event);
 }
 
 void OptionsDialog::acceptDialog()
