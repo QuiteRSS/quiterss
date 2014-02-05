@@ -267,8 +267,15 @@ void RequestFeed::finished(QNetworkReply *reply)
           }
 
           QByteArray data = reply->readAll();
-          data.replace(" & ", " &#38; ");
           data = data.trimmed();
+
+          rx.setPattern("&(?!([a-z0-9#]+;))");
+          pos = 0;
+          while ((pos = rx.indexIn(data, pos)) != -1) {
+            data.replace(pos, 1, "&amp;");
+            pos += 1;
+          }
+
           if (data.indexOf("</rss>") > 0)
             data.resize(data.indexOf("</rss>") + 6);
           if (data.indexOf("</feed>") > 0)
