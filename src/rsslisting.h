@@ -60,6 +60,8 @@
 #define NEW_TAB_FOREGROUND 1
 #define NEW_TAB_BACKGROUND 2
 
+#define MAX_TAB_WIDTH 130
+
 enum FeedReedType {
   FeedReadSwitchingFeed,
   FeedReadClosingTab,

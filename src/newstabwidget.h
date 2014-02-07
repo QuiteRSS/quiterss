@@ -89,7 +89,7 @@ public:
 
   int findUnreadNews(bool next);
 
-  void setTextTab(const QString &text, int width = 114);
+  void setTextTab(const QString &text);
 
   void slotShareNews(QAction *action);
 

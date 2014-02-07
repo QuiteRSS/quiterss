@@ -37,11 +37,14 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   feedsTreeModel_ = rssl_->feedsTreeModel_;
   feedsProxyModel_ = rssl_->feedsProxyModel_;
 
+  int maxTextTabWidth = MAX_TAB_WIDTH-4;
+
   newsIconTitle_ = new QLabel();
   newsIconMovie_ = new QMovie(":/images/loading");
   newsIconTitle_->setMovie(newsIconMovie_);
   newsTextTitle_ = new QLabel();
   newsTextTitle_->setObjectName("newsTextTitle_");
+  newsTextTitle_->setFixedWidth(maxTextTabWidth);
 
   closeButton_ = new QToolButton();
   closeButton_->setFixedSize(15, 15);
@@ -67,7 +70,6 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   newsTitleLabel_ = new QWidget();
   newsTitleLabel_->setObjectName("newsTitleLabel_");
   newsTitleLabel_->setMinimumHeight(16);
-  newsTitleLabel_->setFixedWidth(148);
   newsTitleLabel_->setLayout(newsTitleLayout);
   newsTitleLabel_->setVisible(false);
 
@@ -417,11 +419,12 @@ void NewsTabWidget::createWebWidget()
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::setSettings(bool init, bool newTab)
 {
+  Settings settings;
+
   if (type_ == TabTypeDownloads) return;
 
   if (newTab) {
     if (type_ < TabTypeWeb) {
-      Settings settings;
       newsTabWidgetSplitter_->restoreState(settings.value("NewsTabSplitterState").toByteArray());
 
       newsView_->setFont(
@@ -479,6 +482,10 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
     webView_->page()->action(QWebPage::Back)->setShortcut(rssl_->backWebPageAct_->shortcut());
     webView_->page()->action(QWebPage::Forward)->setShortcut(rssl_->forwardWebPageAct_->shortcut());
     webView_->page()->action(QWebPage::Reload)->setShortcut(rssl_->reloadWebPageAct_->shortcut());
+
+    bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
+    if (!showCloseButtonTab)
+      closeButton_->hide();
   }
 
   QModelIndex feedIndex = feedsTreeModel_->getIndexById(feedId_);
@@ -2021,10 +2028,14 @@ int NewsTabWidget::findUnreadNews(bool next)
 
 /** @brief Set tab title
  *----------------------------------------------------------------------------*/
-void NewsTabWidget::setTextTab(const QString &text, int width)
+void NewsTabWidget::setTextTab(const QString &text)
 {
+  int padding = 15;
+  if (closeButton_->isHidden())
+    padding = 0;
+
   QString textTab = newsTextTitle_->fontMetrics().elidedText(
-        text, Qt::ElideRight, width);
+        text, Qt::ElideRight, newsTextTitle_->width() - padding);
   newsTextTitle_->setText(textTab);
   newsTitleLabel_->setToolTip(text);
 

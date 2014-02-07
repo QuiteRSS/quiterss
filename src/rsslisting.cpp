@@ -3104,11 +3104,7 @@ void RSSListing::slotFeedSelected(QModelIndex index, bool createTab)
   currentNewsTab->newsIconTitle_->setPixmap(iconTab);
 
   // Set title for tab has opened
-  int padding = 15;
-  if (tabBar_->currentIndex() == TAB_WIDGET_PERMANENT)
-    padding = 0;
-  currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString(),
-                             currentNewsTab->newsTextTitle_->width() - padding);
+  currentNewsTab->setTextTab(feedsTreeModel_->dataField(index, "text").toString());
 
   feedProperties_->setEnabled(index.isValid());
 
@@ -3177,6 +3173,8 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->defaultIconFeeds_->setChecked(defaultIconFeeds_);
   optionsDialog_->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
   optionsDialog_->hideTabBar_->setChecked(hideTabBar_);
+  bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
+  optionsDialog_->showCloseButtonTab_->setChecked(showCloseButtonTab);
 
   optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled_);
   optionsDialog_->storeDBMemory_->setChecked(storeDBMemoryT_);
@@ -3534,6 +3532,9 @@ void RSSListing::showOptionDlg(int index)
   hideTabBar_ = optionsDialog_->hideTabBar_->isChecked();
   settings.setValue("Settings/hideTabBar", hideTabBar_);
   slotNumberTabsChanged();
+
+  showCloseButtonTab = optionsDialog_->showCloseButtonTab_->isChecked();
+  settings.setValue("Settings/showCloseButtonTab", showCloseButtonTab);
 
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
