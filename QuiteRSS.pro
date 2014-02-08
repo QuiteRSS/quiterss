@@ -198,7 +198,7 @@ isEmpty(SYSTEMQTSA) {
 include(3rdparty/qyursqltreeview/qyursqltreeview.pri)
 include(lang/lang.pri)
 
-os2|win32 {
+os2|win32|mac {
   TARGET = QuiteRSS
 
   include(3rdparty/sqlite.pri)
@@ -282,12 +282,12 @@ unix {
 }
 
 mac {
-  QMAKE_INFO_PLIST = $$PWD/Info.plist
-  ICON = $$PWD/quiterss.icns
+  QMAKE_INFO_PLIST = Info.plist
+  ICON = quiterss.icns
 
   bundle_target.files += $$quote($$DESTDIR/lang)
-  bundle_target.files += $$PWD/sound
-  bundle_target.files += $$PWD/style
+  bundle_target.files += sound
+  bundle_target.files += style
   bundle_target.path = Contents/Resources
 
   QMAKE_BUNDLE_DATA += bundle_target
