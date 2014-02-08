@@ -111,6 +111,7 @@ int main(int argc, char **argv)
 #endif
   qWarning() << "Start application!";
 #endif
+  qWarning() << "Library paths: " << QApplication::libraryPaths();
 
   Settings settings;
   QString styleActionStr = settings.value(

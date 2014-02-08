@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+    <key>CFBundleIconFile</key>
+    <string>@ICON@</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleGetInfoString</key>
+    <string>Created by Qt/QMake</string>
+    <key>CFBundleSignature</key>
+    <string>@TYPEINFO@</string>
+    <key>CFBundleExecutable</key>
+    <string>@EXECUTABLE@</string>
+    <key>CFBundleIdentifier</key>
+    <string>org.quiterss.QuiteRSS</string>    
+    <key>CFBundleDevelopmentRegion</key>
+    <string>English</string>
+    <key>CFBundleName</key>
+    <string>QuiteRSS</string>
+    <key>CFBundleDisplayName</key>
+    <string>QuiteRSS</string>
+</dict>
+</plist>

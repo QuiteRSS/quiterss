@@ -281,6 +281,18 @@ unix {
               translations sound style
 }
 
+mac {
+  QMAKE_INFO_PLIST = $$PWD/Info.plist
+  ICON = $$PWD/quiterss.icns
+
+  bundle_target.files += $$quote($$DESTDIR/lang)
+  bundle_target.files += $$PWD/sound
+  bundle_target.files += $$PWD/style
+  bundle_target.path = Contents/Resources
+
+  QMAKE_BUNDLE_DATA += bundle_target
+}
+
 RESOURCES += \
     QuiteRSS.qrc
 
