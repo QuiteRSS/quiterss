@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 #endif
 
   QString appDataDirPath;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
   appDataDirPath = QCoreApplication::applicationDirPath();
 #else
   appDataDirPath = DATA_DIR_PATH;

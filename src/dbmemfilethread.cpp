@@ -18,7 +18,7 @@
 #include "dbmemfilethread.h"
 
 #include <QDebug>
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
 #if QT_VERSION >= 0x050100
 #include <sqlite_qt51x/sqlite3.h>
 #elif QT_VERSION >= 0x040800

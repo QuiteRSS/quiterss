@@ -4,9 +4,13 @@ QMAKE_DISTCLEAN += $$REVFILE
 # tortoisehg-2.8 running in win32 hangs with 3 \ in sources, but works fine in linux
 THG_WIN32_FIXME = '\\\"'
 exists(.hg) {
-  VERSION_REV = $$system(hg parents --template '{rev}')
+  mac {
+    HG_MAC_PATH ='/usr/local/bin/'
+  }
+
+  VERSION_REV = $$system($${HG_MAC_PATH}hg parents --template '{rev}')
   count(VERSION_REV, 1) {
-    os2|win32 {
+    os2|win32|mac {
       # FIXME
       VERSION_REV = $$VERSION_REV
     } else {
@@ -234,7 +238,7 @@ DISTFILES += \
     AUTHORS \
     CHANGELOG
 
-unix {
+unix:!mac {
   TARGET = quiterss
   CONFIG += link_pkgconfig
   PKGCONFIG += sqlite3
@@ -282,15 +286,22 @@ unix {
 }
 
 mac {
+  CONFIG += app_bundle
+
   QMAKE_INFO_PLIST = Info.plist
   ICON = quiterss.icns
 
-  bundle_target.files += $$quote($$DESTDIR/lang)
   bundle_target.files += sound
   bundle_target.files += style
-  bundle_target.path = Contents/Resources
-
+  bundle_target.path = Contents/MacOS
   QMAKE_BUNDLE_DATA += bundle_target
+
+  translations.files = $$quote($$DESTDIR/lang)
+  translations.path =  Contents/MacOS
+  QMAKE_BUNDLE_DATA += translations
+
+  INSTALLS += bundle_target translations
+  QMAKE_EXTRA_TARGETS += translations
 }
 
 RESOURCES += \

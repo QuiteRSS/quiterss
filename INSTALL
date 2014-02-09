@@ -32,3 +32,10 @@ Instruction for Windows:
   Visual Studio:
     qmake CONFIG-=debug_and_release CONFIG-=debug
     nmake
+
+Instructions for Mac OS:
+  mkdir _build && cd _build
+  qmake -spec macx-g++ CONFIG+=release ../QuiteRSS.pro
+  make -j3
+  cd release/target/
+  macdeployqt quiterss.app/
