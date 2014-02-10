@@ -34,8 +34,10 @@ Instruction for Windows:
     nmake
 
 Instructions for Mac OS:
-  mkdir _build && cd _build
-  qmake -spec macx-g++ CONFIG+=release ../QuiteRSS.pro
+  cd /path_to/build
+  qmake -r -spec macx-g++ CONFIG+=release /path_to/quite-rss/QuiteRSS.pro
   make -j3
-  cd release/target/
-  macdeployqt quiterss.app/
+  make install
+  macdeployqt /path_to/build/release/target/quiterss.app
+
+Instead of -j3 make option you can use -j<number of your CPU cores>.

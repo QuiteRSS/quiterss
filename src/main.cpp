@@ -97,10 +97,14 @@ int main(int argc, char **argv)
 #endif
 
   QString appDataDirPath;
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_OS2)
   appDataDirPath = QCoreApplication::applicationDirPath();
 #else
+#if defined(Q_OS_MAC)
+  appDataDirPath = "../Resources";
+#else
   appDataDirPath = DATA_DIR_PATH;
+#endif
 #endif
 
 #if defined(QT_NO_DEBUG_OUTPUT)

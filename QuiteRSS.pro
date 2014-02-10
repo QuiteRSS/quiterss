@@ -287,21 +287,21 @@ unix:!mac {
 
 mac {
   CONFIG += app_bundle
+  QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
 
   QMAKE_INFO_PLIST = Info.plist
   ICON = quiterss.icns
 
   bundle_target.files += sound
   bundle_target.files += style
-  bundle_target.path = Contents/MacOS
+  bundle_target.path = Contents/Resources
   QMAKE_BUNDLE_DATA += bundle_target
 
   translations.files = $$quote($$DESTDIR/lang)
-  translations.path =  Contents/MacOS
+  translations.path =  Contents/Resources
   QMAKE_BUNDLE_DATA += translations
 
   INSTALLS += bundle_target translations
-  QMAKE_EXTRA_TARGETS += translations
 }
 
 RESOURCES += \
