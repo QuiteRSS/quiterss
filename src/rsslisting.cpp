@@ -7495,7 +7495,8 @@ QUrl RSSListing::userStyleSheet(const QString &filePath) const
 // ----------------------------------------------------------------------------
 void RSSListing::showNewsMenu()
 {
-  newsSortByMenu_->setEnabled(currentNewsTab->type_ < NewsTabWidget::TabTypeWeb);
+  if (currentNewsTab)
+    newsSortByMenu_->setEnabled(currentNewsTab->type_ < NewsTabWidget::TabTypeWeb);
 }
 // ----------------------------------------------------------------------------
 void RSSListing::showNewsSortByMenu()
