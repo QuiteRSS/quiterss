@@ -101,7 +101,9 @@ int main(int argc, char **argv)
   appDataDirPath = QCoreApplication::applicationDirPath();
 #else
 #if defined(Q_OS_MAC)
-  appDataDirPath = "../Resources";
+  d.setPath(QCoreApplication::applicationDirPath());
+  d.cdUp();
+  appDataDirPath = d.path() + "/Resources";
 #else
   appDataDirPath = DATA_DIR_PATH;
 #endif
@@ -115,7 +117,6 @@ int main(int argc, char **argv)
 #endif
   qWarning() << "Start application!";
 #endif
-  qWarning() << "Library paths: " << QApplication::libraryPaths();
 
   Settings settings;
   QString styleActionStr = settings.value(

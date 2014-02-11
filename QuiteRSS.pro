@@ -292,6 +292,10 @@ mac {
   QMAKE_INFO_PLIST = Info.plist
   ICON = quiterss.icns
 
+  bundle_target.files += AUTHORS
+  bundle_target.files += COPYING
+  bundle_target.files += CHANGELOG
+  bundle_target.files += README
   bundle_target.files += sound
   bundle_target.files += style
   bundle_target.path = Contents/Resources
@@ -317,4 +321,5 @@ OTHER_FILES += \
     COPYING \
     AUTHORS \
     CHANGELOG \
-    INSTALL
+    INSTALL \
+    Info.plist
