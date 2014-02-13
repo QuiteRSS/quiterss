@@ -35,7 +35,7 @@ Instruction for Windows:
 
 Instructions for Mac OS:
   cd /path/to/build
-  qmake -r -spec macx-g++ CONFIG+=release CONFIG += x86_64 /path/to/quite-rss/QuiteRSS.pro
+  qmake -recursive -spec macx-g++ CONFIG+=release CONFIG+=x86_64 /path/to/quite-rss/QuiteRSS.pro
   make -j3
   make install
   cd /path/to/build/release/target
