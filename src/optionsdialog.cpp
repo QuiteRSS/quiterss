@@ -1296,7 +1296,7 @@ void OptionsDialog::createLanguageWidget()
            << "0.14.3"
            << QString::fromUtf8("Xesús M. Mosquera Carregal") << "xesusmosquera@gmail.com";
   languageItem = new QTreeWidgetItem(treeItem);
-  languageItem->setIcon(1, QIcon(":/flags/flag_ES"));
+  languageItem->setIcon(1, QIcon(":/flags/flag_GL"));
   languageFileList_->addTopLevelItem(languageItem);
 
   treeItem.clear();

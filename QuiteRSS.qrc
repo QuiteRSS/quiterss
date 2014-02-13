@@ -147,5 +147,6 @@
         <file alias="flag_VI">images/flags/flag_vietnam.png</file>
         <file alias="flag_RO">images/flags/flag_romania.png</file>
         <file alias="flag_FI">images/flags/flag_finland.png</file>
+        <file alias="flag_GL">images/flags/flag_galicia.png</file>
     </qresource>
 </RCC>
