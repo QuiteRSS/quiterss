@@ -51,7 +51,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(bool isFeed, QWidget *parent)
 QWidget *FeedPropertiesDialog::CreateGeneralTab()
 {
   QWidget *tab = new QWidget();
-  QVBoxLayout *layoutGeneralMain = new QVBoxLayout(tab);
+
   QGridLayout *layoutGeneralGrid = new QGridLayout();
   QLabel *labelTitleCapt = new QLabel(tr("Title:"));
   QLabel *labelHomepageCapt = new QLabel(tr("Homepage:"));
@@ -131,18 +131,21 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
   layoutGeneralGrid->addWidget(labelURLCapt, 1, 0);
   layoutGeneralGrid->addWidget(editURL, 1, 1);
 
-  layoutGeneralMain->addLayout(layoutGeneralGrid);
-  layoutGeneralMain->addLayout(layoutGeneralHomepage);
-  layoutGeneralMain->addSpacing(15);
-  layoutGeneralMain->addWidget(disableUpdate_);
-  layoutGeneralMain->addLayout(updateFeedsLayout);
-  layoutGeneralMain->addSpacing(15);
-  layoutGeneralMain->addWidget(starredOn_);
-  layoutGeneralMain->addWidget(loadImagesOn);
-  layoutGeneralMain->addWidget(displayOnStartup);
-  layoutGeneralMain->addWidget(showDescriptionNews_);
-  layoutGeneralMain->addWidget(duplicateNewsMode_);
-  layoutGeneralMain->addStretch();
+  QVBoxLayout *tabLayout = new QVBoxLayout(tab);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
+  tabLayout->addLayout(layoutGeneralGrid);
+  tabLayout->addLayout(layoutGeneralHomepage);
+  tabLayout->addSpacing(15);
+  tabLayout->addWidget(disableUpdate_);
+  tabLayout->addLayout(updateFeedsLayout);
+  tabLayout->addSpacing(15);
+  tabLayout->addWidget(starredOn_);
+  tabLayout->addWidget(loadImagesOn);
+  tabLayout->addWidget(displayOnStartup);
+  tabLayout->addWidget(showDescriptionNews_);
+  tabLayout->addWidget(duplicateNewsMode_);
+  tabLayout->addStretch();
 
   connect(loadTitleButton, SIGNAL(clicked()), this, SLOT(setDefaultTitle()));
   connect(selectIconButton_, SIGNAL(clicked()),
@@ -168,6 +171,8 @@ QWidget *FeedPropertiesDialog::CreateGeneralTab()
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateColumnsTab()
 {
+  QWidget *tab = new QWidget();
+
   columnsTree_ = new QTreeWidget(this);
   columnsTree_->setObjectName("columnsTree");
   columnsTree_->setIndentation(0);
@@ -239,21 +244,22 @@ QWidget *FeedPropertiesDialog::CreateColumnsTab()
   buttonsVLayout->addWidget(defaultButton);
   buttonsVLayout->addStretch();
 
-  QHBoxLayout *mainlayout = new QHBoxLayout();
-  mainlayout->addLayout(mainVLayout);
-  mainlayout->addLayout(buttonsVLayout);
+  QHBoxLayout *tabLayout = new QHBoxLayout(tab);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
+  tabLayout->addLayout(mainVLayout);
+  tabLayout->addLayout(buttonsVLayout);
 
   connect(columnsTree_, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
           this, SLOT(slotCurrentColumnChanged(QTreeWidgetItem*,QTreeWidgetItem*)));
-
-  QWidget *tab = new QWidget();
-  tab->setLayout(mainlayout);
 
   return tab;
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
 {
+  QWidget *tab = new QWidget();
+
   authentication_ = new QGroupBox(this);
   authentication_->setTitle(tr("Server requires authentication:"));
   authentication_->setCheckable(true);
@@ -271,18 +277,19 @@ QWidget *FeedPropertiesDialog::CreateAuthenticationTab()
 
   authentication_->setLayout(authenticationLayout);
 
-  QVBoxLayout *layoutMain = new QVBoxLayout();
-  layoutMain->addWidget(authentication_);
-  layoutMain->addStretch(1);
-
-  QWidget *tab = new QWidget();
-  tab->setLayout(layoutMain);
+  QVBoxLayout *tabLayout = new QVBoxLayout(tab);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
+  tabLayout->addWidget(authentication_);
+  tabLayout->addStretch(1);
 
   return tab;
 }
 //------------------------------------------------------------------------------
 QWidget *FeedPropertiesDialog::CreateStatusTab()
 {
+  QWidget *tab = new QWidget();
+
   statusFeed_ = new QLabel();
   statusFeed_->setWordWrap(true);
   createdFeed_ = new QLabel();
@@ -307,12 +314,11 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   layoutGrid->addWidget(descriptionLabel, 4, 0, 1, 1, Qt::AlignTop);
   layoutGrid->addWidget(descriptionText_, 4, 1, 1, 1, Qt::AlignTop);
 
-  QVBoxLayout *layoutMain = new QVBoxLayout();
-  layoutMain->addLayout(layoutGrid);
-  layoutMain->addStretch(1);
-
-  QWidget *tab = new QWidget();
-  tab->setLayout(layoutMain);
+  QVBoxLayout *tabLayout = new QVBoxLayout(tab);
+  tabLayout->setMargin(10);
+  tabLayout->setSpacing(5);
+  tabLayout->addLayout(layoutGrid);
+  tabLayout->addStretch(1);
 
   if (!isFeed_) {
     descriptionLabel->hide();
@@ -322,9 +328,8 @@ QWidget *FeedPropertiesDialog::CreateStatusTab()
   return tab;
 }
 //------------------------------------------------------------------------------
-/*virtual*/ void FeedPropertiesDialog::showEvent(QShowEvent *event)
+/*virtual*/ void FeedPropertiesDialog::showEvent(QShowEvent *)
 {
-  Q_UNUSED(event)
   editTitle->setText(feedProperties.general.text);
   editURL->setText(feedProperties.general.url);
   editURL->selectAll();

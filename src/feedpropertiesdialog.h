@@ -127,7 +127,7 @@ signals:
   void signalLoadIcon(const QString &urlString, const QString &feedUrl);
 
 protected:
-  virtual void showEvent(QShowEvent *event);
+  virtual void showEvent(QShowEvent *);
 
 private slots:
   void setDefaultTitle();

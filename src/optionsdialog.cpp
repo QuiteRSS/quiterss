@@ -46,6 +46,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
   categoriesTree_ = new QTreeWidget();
   categoriesTree_->setObjectName("categoriesTree");
+  categoriesTree_->setStyleSheet("QTreeWidget::item { min-height: 20px; }"
+                                 "QTreeWidget { padding: 1px; }");
   categoriesTree_->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   categoriesTree_->setHeaderHidden(true);
   categoriesTree_->setColumnCount(3);
