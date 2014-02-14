@@ -276,6 +276,8 @@ void RequestFeed::finished(QNetworkReply *reply)
             pos += 1;
           }
 
+          data.replace("<br>", "<br/>");
+
           if (data.indexOf("</rss>") > 0)
             data.resize(data.indexOf("</rss>") + 6);
           if (data.indexOf("</feed>") > 0)

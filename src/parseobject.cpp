@@ -126,7 +126,7 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
 
   // id not found (ex. feed deleted while updating)
   if (feedUrl.isEmpty()) {
-    qDebug() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
+    qCritical() << QString("Feed with id = '%1' not found").arg(parseFeedId_);
     emit signalFinishUpdate(parseFeedId_, false, 0, "0");
     db_.commit();
     return;
@@ -197,8 +197,8 @@ void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
   }
 
   if (!doc.setContent(convertData, false, &errorStr, &errorLine, &errorColumn)) {
-    qDebug() << QString("Parse data error: line %1, column %2: %3").
-                arg(errorLine).arg(errorColumn).arg(errorStr);
+    qWarning() << QString("Parse data error: line %1, column %2: %3").
+                  arg(errorLine).arg(errorColumn).arg(errorStr);
   } else {
     QDomElement rootElem = doc.documentElement();
     feedType = rootElem.tagName();
