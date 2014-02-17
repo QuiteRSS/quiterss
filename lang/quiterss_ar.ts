@@ -616,7 +616,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>تعطيل التحديثات</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -937,22 +937,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Play a Sound</source>
-        <translation type="unfinished"/>
+        <translation>تشغيل صوت</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>عرض الأخبار في التنبيهات</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>استعراض</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>تشغيل</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="183"/>
@@ -967,7 +967,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="251"/>
         <source>Open File...</source>
-        <translation type="unfinished"/>
+        <translation>فتح ملف...</translation>
     </message>
 </context>
 <context>
@@ -1352,25 +1352,25 @@ Ancient news could reappear</source>
         <location filename="../src/newstabwidget.cpp" line="544"/>
         <location filename="../src/newstabwidget.cpp" line="565"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>تحميل الصور</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="545"/>
         <location filename="../src/newstabwidget.cpp" line="566"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>تحميل تلقائي للصور لعرض الأخبار</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <location filename="../src/newstabwidget.cpp" line="569"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>لا صور محملة</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="548"/>
         <location filename="../src/newstabwidget.cpp" line="570"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>لا صور محملة لعرض الأخبار</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="553"/>
@@ -1597,7 +1597,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="258"/>
         <source>Hide tab bar if only have one tab open</source>
-        <translation type="unfinished"/>
+        <translation>إخفاء شريط التبويبات إذا كان هناك تبويب واحد فقط مفتوح</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="369"/>
@@ -1941,7 +1941,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="996"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>تشغيل</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1018"/>
@@ -2497,22 +2497,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1540"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>لون النص للخبر الجديد</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1543"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>لون الخط للأخبار الغير مقروئه</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1546"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>لون الحقل المحدد</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1549"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>لون خلفية الحقل المحدد</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1666"/>
