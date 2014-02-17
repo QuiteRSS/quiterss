@@ -17,15 +17,19 @@
 * ============================================================ */
 #include "cookiejar.h"
 
+#include "mainapplication.h"
+#include "settings.h"
+
 #include <QNetworkCookie>
 #include <QDateTime>
 #include <QDir>
 
-CookieJar::CookieJar(QString dataDirPath, int saveCookies, QObject *parent)
+CookieJar::CookieJar(QObject *parent)
   : QNetworkCookieJar(parent)
-  , saveCookies_(saveCookies)
-  , dataDirPath_(dataDirPath)
 {
+  Settings settings;
+  saveCookies_ = settings.value("Settings/saveCookies", 1).toInt();
+
   loadCookies();
 }
 
@@ -42,14 +46,14 @@ void CookieJar::loadCookies()
 {
   if (saveCookies_ != 1) return;
 
-  if (!QFile::exists(dataDirPath_ + QDir::separator() + "cookies.dat")) {
+  if (!QFile::exists(mainApp->dataDir() + "/cookies.dat")) {
     return;
   }
 
   QDateTime now = QDateTime::currentDateTime();
 
   QList<QNetworkCookie> loadedCookies;
-  QFile file(dataDirPath_ + QDir::separator() + "cookies.dat");
+  QFile file(mainApp->dataDir() + "/cookies.dat");
   file.open(QIODevice::ReadOnly);
   QDataStream stream(&file);
   int count;
@@ -82,7 +86,7 @@ void CookieJar::saveCookies()
 
   QList<QNetworkCookie> allCookies = getAllCookies();
 
-  QFile file(dataDirPath_ + QDir::separator() + "cookies.dat");
+  QFile file(mainApp->dataDir() + "/cookies.dat");
   file.open(QIODevice::WriteOnly);
   QDataStream stream(&file);
   int count = allCookies.count();

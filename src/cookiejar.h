@@ -26,7 +26,7 @@ class CookieJar : public QNetworkCookieJar
 {
   Q_OBJECT
 public:
-  explicit CookieJar(QString dataDirPath, int saveCookies, QObject *parent);
+  explicit CookieJar(QObject *parent);
 
   bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
 
@@ -40,9 +40,6 @@ public:
 
 public slots:
   void clearCookies();
-
-private:
-  QString dataDirPath_;
 
 };
 

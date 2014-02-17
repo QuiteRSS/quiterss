@@ -112,10 +112,8 @@ public:
 
   QString appDataDirPath_;
   QString dataDirPath_;
-  QString lastFeedPath_;
   QSqlDatabase db_;
   QString dbFileName_;
-  bool storeDBMemory_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
@@ -285,12 +283,10 @@ public slots:
   void slotPlaySound(const QString &soundPath);
   void slotAddColorList(int id, const QString &color);
   void showOptionDlg(int index = -1);
-  void receiveMessage(const QString&);
   void slotPlaceToTray();
   void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
-  void slotShowWindows(bool trayClick = false);
+  void showWindows(bool trayClick = false);
   void slotClose();
-  void slotCloseApp();
   void myEmptyWorkingSet();
   void slotUpdateFeed(int feedId, bool changed, int newCount, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
@@ -306,7 +302,6 @@ public slots:
 
 signals:
   void signalPlaceToTray();
-  void signalCloseApp();
   void signalGetFeedTimer(int feedId);
   void signalGetAllFeedsTimer();
   void signalGetFeed(int feedId, QString feedUrl, QDateTime date, int auth);
@@ -372,7 +367,6 @@ private slots:
   void slotRefreshNewsView();
   void slotIconFeedPreparing(QString feedUrl, QByteArray byteArray, QString format);
   void slotIconFeedUpdate(int feedId, QByteArray faviconData);
-  void slotCommitDataRequest(QSessionManager&);
   void showNewsFiltersDlg(bool newFilter = false);
   void showFilterRulesDlg();
   void slotUpdateAppCheck();
@@ -536,8 +530,6 @@ private:
   QStringList listDefaultShortcut_;
 
   bool updateCheckEnabled_;
-
-  bool closeApp_;
 
   QAction *addAct_;
   QAction *addFeedAct_;

@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "parseobject.h"
+
+#include "mainapplication.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
 
@@ -39,7 +41,7 @@ ParseObject::ParseObject(QObject *parent)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
-  if (rssl_->storeDBMemory_) {
+  if (mainApp->storeDBMemory()) {
     db_ = QSqlDatabase::database();
   }
   else {
@@ -101,8 +103,8 @@ void ParseObject::getQueuedXml()
 void ParseObject::slotParse(const QByteArray &xmlData, const int &feedId,
                             const QDateTime &dtReply, const QString &codecName)
 {
-  if (!rssl_->lastFeedPath_.isEmpty()) {
-    QFile file(rssl_->lastFeedPath_ + QDir::separator() + "lastfeed.dat");
+  if (mainApp->isSaveDataLastFeed()) {
+    QFile file(mainApp->dataDir()  + "/lastfeed.dat");
     file.open(QIODevice::WriteOnly);
     file.write(xmlData);
     file.close();

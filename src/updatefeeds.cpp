@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "updatefeeds.h"
+
+#include "mainapplication.h"
 #include "rsslisting.h"
 #include "settings.h"
 
@@ -232,7 +234,7 @@ UpdateObject::UpdateObject(QObject *parent)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
-  if (rssl_->storeDBMemory_) {
+  if (mainApp->storeDBMemory()) {
     db_ = QSqlDatabase::database();
   }
   else {

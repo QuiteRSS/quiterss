@@ -27,7 +27,7 @@ public:
   explicit Settings();
   ~Settings();
 
-  static void createSettings(const QString &fileName = "");
+  static void createSettings();
   static QSettings* getSettings();
   static void syncSettings();
   QString fileName();

@@ -15,8 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-
 #include "settings.h"
+
+#include "mainapplication.h"
 
 #include <QCoreApplication>
 
@@ -34,15 +35,17 @@ Settings::~Settings()
     settings_->endGroup();
 }
 
-void Settings::createSettings(const QString &fileName)
+void Settings::createSettings()
 {
-  if (!fileName.isEmpty())
+  if (mainApp->isPoratble()) {
+    QString fileName(mainApp->dataDir() + "/" + QCoreApplication::applicationName() + ".ini");
     settings_ = new QSettings(fileName, QSettings::IniFormat);
-  else
+  } else {
     settings_ = new QSettings(QSettings::IniFormat,
                               QSettings::UserScope,
                               QCoreApplication::organizationName(),
                               QCoreApplication::applicationName());
+  }
 }
 
 QSettings* Settings::getSettings()

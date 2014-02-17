@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "rsslisting.h"
+
+#include "mainapplication.h"
 #include "aboutdialog.h"
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
@@ -36,35 +38,6 @@
 #include <QMainWindow>
 #include <QStatusBar>
 
-/** @brief Process messages from other application copy
- *---------------------------------------------------------------------------*/
-void RSSListing::receiveMessage(const QString& message)
-{
-  qDebug() << QString("Received message: '%1'").arg(message);
-  if (!message.isEmpty()){
-    QStringList params = message.split('\n');
-    foreach (QString param, params) {
-      if (param == "--show") {
-        if (closeApp_) return;
-        slotShowWindows();
-      }
-      if (param == "--exit") slotClose();
-      if (param.contains("feed:", Qt::CaseInsensitive)) {
-        QClipboard *clipboard = QApplication::clipboard();
-        if (param.contains("https://", Qt::CaseInsensitive)) {
-          param.remove(0, 5);
-          clipboard->setText(param);
-        } else {
-          param.remove(0, 7);
-          clipboard->setText("http://" + param);
-        }
-        activateWindow();
-        addFeed();
-      }
-    }
-  }
-}
-
 // ---------------------------------------------------------------------------
 RSSListing::RSSListing(const QString &appDataDirPath,
                        const QString &dataDirPath,
@@ -77,7 +50,6 @@ RSSListing::RSSListing(const QString &appDataDirPath,
   , openingLink_(false)
   , diskCache_(NULL)
   , openNewsTab_(0)
-  , closeApp_(false)
   , newsView_(NULL)
   , updateTimeCount_(0)
 #if defined(HAVE_QT5) || defined(HAVE_PHONON)
@@ -99,11 +71,10 @@ RSSListing::RSSListing(const QString &appDataDirPath,
   Settings settings;
   settings.setValue("VersionDB", versionDB);
 
-  storeDBMemory_ = settings.value("Settings/storeDBMemory", true).toBool();
-  storeDBMemoryT_ = storeDBMemory_;
+  storeDBMemoryT_ = mainApp->storeDBMemory();
 
   db_ = QSqlDatabase::addDatabase("QSQLITE");
-  if (storeDBMemory_)
+  if (mainApp->storeDBMemory())
     db_.setDatabaseName(":memory:");
   else
     db_.setDatabaseName(dbFileName_);
@@ -111,21 +82,17 @@ RSSListing::RSSListing(const QString &appDataDirPath,
     QMessageBox::critical(0, tr("Error"), tr("SQLite driver not loaded!"));
   }
 
-  if (storeDBMemory_) {
+  if (mainApp->storeDBMemory()) {
     dbMemFileThread_ = new DBMemFileThread(dbFileName_, this);
     dbMemFileThread_->sqliteDBMemFile(false);
     while(dbMemFileThread_->isRunning()) qApp->processEvents();
   }
 
-  if (settings.value("Settings/createLastFeed", false).toBool())
-    lastFeedPath_ = dataDirPath_;
-
   networkManager_ = new NetworkManager(parent);
   connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
-  int saveCookies = settings.value("Settings/saveCookies", 1).toInt();
-  cookieJar_ = new CookieJar(dataDirPath_, saveCookies, this);
+  cookieJar_ = new CookieJar(this);
 
   networkManager_->setCookieJar(cookieJar_);
 
@@ -227,11 +194,6 @@ RSSListing::RSSListing(const QString &appDataDirPath,
 
   setCentralWidget(centralWidget);
 
-  connect(this, SIGNAL(signalCloseApp()),
-          SLOT(slotCloseApp()), Qt::QueuedConnection);
-  connect(qApp, SIGNAL(commitDataRequest(QSessionManager&)),
-          this, SLOT(slotCommitDataRequest(QSessionManager&)));
-
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
@@ -258,7 +220,7 @@ RSSListing::RSSListing(const QString &appDataDirPath,
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
   timerSaveDBMemFile_ = new QTimer(this);
-  if (storeDBMemory_) {
+  if (mainApp->storeDBMemory()) {
     timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
     connect(timerSaveDBMemFile_, SIGNAL(timeout()), this, SLOT(saveDBMemFile()));
   }
@@ -272,14 +234,7 @@ RSSListing::RSSListing(const QString &appDataDirPath,
 // ---------------------------------------------------------------------------
 RSSListing::~RSSListing()
 {
-  qDebug("App_Closing");
-}
 
-// ---------------------------------------------------------------------------
-void RSSListing::slotCommitDataRequest(QSessionManager &manager)
-{
-  slotClose();
-  manager.release();
 }
 
 // ---------------------------------------------------------------------------
@@ -300,7 +255,7 @@ void RSSListing::slotCommitDataRequest(QSessionManager &manager)
  *---------------------------------------------------------------------------*/
 void RSSListing::slotClose()
 {
-  closeApp_ = true;
+  mainApp->setClosing();
   minimizeToTray_ = true;
 
   traySystem->hide();
@@ -312,7 +267,7 @@ void RSSListing::slotClose()
 
   cleanUpShutdown();
 
-  if (storeDBMemory_) {
+  if (mainApp->storeDBMemory()) {
     dbMemFileThread_->sqliteDBMemFile(true);
     while(dbMemFileThread_->isRunning()) {
       int ms = 100;
@@ -326,13 +281,7 @@ void RSSListing::slotClose()
     delete dbMemFileThread_;
   }
 
-  emit signalCloseApp();
-}
-
-// ---------------------------------------------------------------------------
-void RSSListing::slotCloseApp()
-{
-  qApp->quit();
+  mainApp->quitApplication();
 }
 
 // ---------------------------------------------------------------------------
@@ -494,7 +443,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
       if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 300) ||
           isActiveWindow())
         activated = true;
-      slotShowWindows(activated);
+      showWindows(activated);
     }
     break;
   case QSystemTrayIcon::Trigger:
@@ -502,7 +451,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
       if ((QDateTime::currentMSecsSinceEpoch() - activationStateChangedTime_ < 200) ||
           isActiveWindow())
         activated = true;
-      slotShowWindows(activated);
+      showWindows(activated);
     }
     break;
   case QSystemTrayIcon::MiddleClick:
@@ -512,7 +461,7 @@ void RSSListing::slotActivationTray(QSystemTrayIcon::ActivationReason reason)
 
 /** @brief Show window on event
  *---------------------------------------------------------------------------*/
-void RSSListing::slotShowWindows(bool trayClick)
+void RSSListing::showWindows(bool trayClick)
 {
   if (!trayClick || isHidden()) {
     if (oldState & Qt::WindowFullScreen) {
@@ -2231,7 +2180,7 @@ void RSSListing::writeSettings()
 
   settings.setValue("storeDBMemory", storeDBMemoryT_);
 
-  settings.setValue("createLastFeed", !lastFeedPath_.isEmpty());
+  settings.setValue("createLastFeed", mainApp->isSaveDataLastFeed());
 
   settings.setValue("showTrayIcon", showTrayIcon_);
   settings.setValue("startingTray", startingTray_);
@@ -3814,7 +3763,7 @@ void RSSListing::createTrayMenu()
 {
   trayMenu_ = new QMenu(this);
   showWindowAct_ = new QAction(this);
-  connect(showWindowAct_, SIGNAL(triggered()), this, SLOT(slotShowWindows()));
+  connect(showWindowAct_, SIGNAL(triggered()), this, SLOT(showWindows()));
   QFont font_ = showWindowAct_->font();
   font_.setBold(true);
   showWindowAct_->setFont(font_);
@@ -6236,7 +6185,7 @@ void RSSListing::showNotification()
 
   clearNotification();
 
-  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(slotShowWindows()));
+  connect(notificationWidget, SIGNAL(signalShow()), this, SLOT(showWindows()));
   connect(notificationWidget, SIGNAL(signalClose()),
           this, SLOT(deleteNotification()));
   connect(notificationWidget, SIGNAL(signalOpenNews(int, int)),
@@ -6337,7 +6286,7 @@ void RSSListing::slotOpenNew(int feedId, int newsId)
   Settings settings;
   openingFeedAction_ = settings.value("/Settings/openingFeedAction", 0).toInt();
   openNewsWebViewOn_ = settings.value("/Settings/openNewsWebViewOn", true).toBool();
-  slotShowWindows();
+  showWindows();
   newsView_->setFocus();
 }
 
@@ -7663,7 +7612,7 @@ void RSSListing::setStatusFeed(int feedId, QString status)
 
 void RSSListing::saveDBMemFile()
 {
-  if (storeDBMemory_ && !dbMemFileThread_->isRunning()) {
+  if (mainApp->storeDBMemory() && !dbMemFileThread_->isRunning()) {
     dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
 }

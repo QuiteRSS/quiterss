@@ -113,13 +113,14 @@ HEADERS += \
     src/cleanupwizard.h \
     src/updatefeeds.h \
     src/requestfeed.h \
-    src/logfile.h \
     src/locationbar.h \
-    src/settings.h \
     src/rssdetectionwidget.h \
     src/notifications/notificationsfeeditem.h \
     src/notifications/notificationsnewsitem.h \
-    src/notifications/notificationswidget.h
+    src/notifications/notificationswidget.h \
+    src/app/mainapplication.h \
+    src/app/settings.h \
+    src/app/logfile.h
 
 SOURCES += \
     src/rsslisting.cpp \
@@ -164,17 +165,19 @@ SOURCES += \
     src/cleanupwizard.cpp \
     src/updatefeeds.cpp \
     src/requestfeed.cpp \
-    src/logfile.cpp \
     src/locationbar.cpp \
-    src/settings.cpp \
     src/rssdetectionwidget.cpp \
     src/notifications/notificationsfeeditem.cpp \
     src/notifications/notificationsnewsitem.cpp \
-    src/notifications/notificationswidget.cpp
+    src/notifications/notificationswidget.cpp \
+    src/app/mainapplication.cpp \
+    src/app/settings.cpp \
+    src/app/logfile.cpp
 
 INCLUDEPATH +=  $$PWD/src/downloads \
                 $$PWD/src/plugins \
                 $$PWD/src/notifications \
+                $$PWD/src/app \
                 $$PWD/src \
 
 isEqual(QT_MAJOR_VERSION, 5) {
@@ -247,7 +250,7 @@ unix:!mac {
     PREFIX =   /usr/local
   }
   DATA_DIR = $$PREFIX/share/quiterss
-  DEFINES += DATA_DIR_PATH='\'"$$DATA_DIR"\''
+  DEFINES += RESOURCES_DIR='\\\"$${DATA_DIR}\\\"'
 
   target.path =  $$quote($$PREFIX/bin)
 
