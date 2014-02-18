@@ -28,7 +28,7 @@ CookieJar::CookieJar(QObject *parent)
   : QNetworkCookieJar(parent)
 {
   Settings settings;
-  useCookies_ = settings.value("Settings/saveCookies", SaveCookies).toInt();
+  useCookies_ = (UseCookies)settings.value("Settings/saveCookies", SaveCookies).toInt();
 
   loadCookies();
 }
@@ -125,7 +125,7 @@ void CookieJar::setAllCookies(const QList<QNetworkCookie> &cookieList)
   QNetworkCookieJar::setAllCookies(cookieList);
 }
 
-int CookieJar::useCookies() const
+UseCookies CookieJar::useCookies() const
 {
   return useCookies_;
 }

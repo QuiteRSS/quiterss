@@ -3132,9 +3132,10 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->maxDiskCache_->setValue(maxDiskCache);
   settings.endGroup();
 
-  optionsDialog_->saveCookies_->setChecked(mainApp->cookieJar()->useCookies() == SaveCookies);
-  optionsDialog_->deleteCookiesOnClose_->setChecked(mainApp->cookieJar()->useCookies() == DeleteCookiesOnClose);
-  optionsDialog_->blockCookies_->setChecked(mainApp->cookieJar()->useCookies() == BlockCookies);
+  UseCookies useCookies = mainApp->cookieJar()->useCookies();
+  optionsDialog_->saveCookies_->setChecked(useCookies == SaveCookies);
+  optionsDialog_->deleteCookiesOnClose_->setChecked(useCookies == DeleteCookiesOnClose);
+  optionsDialog_->blockCookies_->setChecked(useCookies == BlockCookies);
 
   optionsDialog_->downloadLocationEdit_->setText(downloadLocation_);
   optionsDialog_->askDownloadLocation_->setChecked(askDownloadLocation_);
@@ -3530,12 +3531,12 @@ void RSSListing::showOptionDlg(int index)
 
   mainApp->setDiskCache();
 
+  useCookies = SaveCookies;
   if (optionsDialog_->deleteCookiesOnClose_->isChecked())
-    mainApp->cookieJar()->setUseCookies(DeleteCookiesOnClose);
+    useCookies = DeleteCookiesOnClose;
   else if (optionsDialog_->blockCookies_->isChecked())
-    mainApp->cookieJar()->setUseCookies(BlockCookies);
-  else
-    mainApp->cookieJar()->setUseCookies(SaveCookies);
+    useCookies = BlockCookies;
+  mainApp->cookieJar()->setUseCookies(useCookies);
 
   downloadLocation_ = optionsDialog_->downloadLocationEdit_->text();
   askDownloadLocation_ = optionsDialog_->askDownloadLocation_->isChecked();

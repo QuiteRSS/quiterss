@@ -42,14 +42,14 @@ public:
   void saveCookies();
   void loadCookies();
 
-  int useCookies() const;
+  UseCookies useCookies() const;
   void setUseCookies(UseCookies value);
 
 public slots:
   void clearCookies();
 
 private:
-  int useCookies_;
+  UseCookies useCookies_;
 
 };
 
