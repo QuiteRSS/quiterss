@@ -74,8 +74,6 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   mainWindow_ = new RSSListing();
 
-
-
   if (showSplashScreen_)
     splashScreen_->loadModules();
 
@@ -342,7 +340,7 @@ NetworkManager *MainApplication::networkManager()
 CookieJar *MainApplication::cookieJar()
 {
   if (!cookieJar_) {
-    cookieJar_ = new CookieJar(mainWindow_);
+    cookieJar_ = new CookieJar(this);
   }
   return cookieJar_;
 }

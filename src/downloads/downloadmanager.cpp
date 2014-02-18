@@ -71,7 +71,7 @@ DownloadManager::DownloadManager(QWidget *parent)
 
 DownloadManager::~DownloadManager()
 {
-  networkManager_->cookieJar()->setParent(mainApp->mainWindow());
+  networkManager_->cookieJar()->setParent(mainApp);
 }
 
 void DownloadManager::download(const QNetworkRequest &request)
