@@ -46,7 +46,6 @@ private:
   bool showDialog_;
 
   QWebPage *page_;
-  QNetworkAccessManager *networkManager_;
   QNetworkReply *reply_;
   QNetworkReply *historyReply_;
 

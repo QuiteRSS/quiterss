@@ -33,7 +33,6 @@ class RequestFeed : public QObject
 public:
   explicit RequestFeed(int timeoutRequest, int numberRequests,
                        int numberRepeats, QObject *parent = 0);
-  void setCookieJar(QNetworkCookieJar *cookieJar);
 
 public slots:
   void requestUrl(int id, QString urlString, QDateTime date, QString userInfo = "");

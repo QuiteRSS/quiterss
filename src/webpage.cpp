@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "webpage.h"
+
+#include "mainapplication.h"
 #include "rsslisting.h"
 #include "webpluginfactory.h"
 
@@ -23,7 +25,7 @@
 #include <QDesktopServices>
 #include <QNetworkRequest>
 
-WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
+WebPage::WebPage(QObject *parent)
   : QWebPage(parent)
 {
   QObject *parent_ = parent;
@@ -32,7 +34,7 @@ WebPage::WebPage(QObject *parent, QNetworkAccessManager *networkManager)
   }
   rssl_ = qobject_cast<RSSListing*>(parent_);
 
-  setNetworkAccessManager(networkManager);
+  setNetworkAccessManager(mainApp->networkManager());
 
   setPluginFactory(new WebPluginFactory(this, rssl_));
   setForwardUnsupportedContent(true);

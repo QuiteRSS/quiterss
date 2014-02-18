@@ -22,7 +22,7 @@
 #include <QInputEvent>
 #include <QDebug>
 
-WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
+WebView::WebView(QWidget *parent)
   : QWebView(parent)
   , buttonClick_(0)
   , isLoading_(false)
@@ -30,7 +30,7 @@ WebView::WebView(QWidget *parent, QNetworkAccessManager *networkManager)
   , hasRss_(false)
 {
   setContextMenuPolicy(Qt::CustomContextMenu);
-  setPage(new WebPage(this, networkManager));
+  setPage(new WebPage(this));
   QPalette pal(qApp->palette());
   pal.setColor(QPalette::Base, Qt::white);
   setPalette(pal);

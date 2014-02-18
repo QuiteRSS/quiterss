@@ -35,7 +35,7 @@ class WebView : public QWebView
 {
   Q_OBJECT
 public:
-  explicit WebView(QWidget *parent, QNetworkAccessManager *networkManager);
+  explicit WebView(QWidget *parent);
 
   int buttonClick_;
 

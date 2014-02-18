@@ -17,6 +17,8 @@
 * ============================================================ */
 #include "networkmanager.h"
 
+#include "mainapplication.h"
+
 #include <QNetworkReply>
 #include <QSslError>
 #include <QDebug>
@@ -24,6 +26,8 @@
 NetworkManager::NetworkManager(QObject* parent)
   : QNetworkAccessManager(parent)
 {
+  setCookieJar(mainApp->cookieJar());
+
   connect(this, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError> &)),
           SLOT(handleSslErrors(QNetworkReply*, const QList<QSslError> &)));
 }

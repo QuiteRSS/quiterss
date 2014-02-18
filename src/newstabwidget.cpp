@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "newstabwidget.h"
+
+#include "mainapplication.h"
 #include "rsslisting.h"
 #include "settings.h"
 
@@ -294,7 +296,7 @@ void NewsTabWidget::showContextMenuNews(const QPoint &pos)
  *----------------------------------------------------------------------------*/
 void NewsTabWidget::createWebWidget()
 {
-  webView_ = new WebView(this, rssl_->networkManager_);
+  webView_ = new WebView(this);
 
   webViewProgress_ = new QProgressBar(this);
   webViewProgress_->setObjectName("webViewProgress_");
@@ -440,8 +442,7 @@ void NewsTabWidget::setSettings(bool init, bool newTab)
       newsModel_->focusedNewsTextColor_ = rssl_->focusedNewsTextColor_;
       newsModel_->focusedNewsBGColor_ = rssl_->focusedNewsBGColor_;
 
-      QFile file;
-      file.setFileName(rssl_->appDataDirPath_+ "/style/news.css");
+      QFile file(mainApp->resourcesDir() + "/style/news.css");
       if (!file.open(QFile::ReadOnly)) {
         file.setFileName(":/style/newsStyle");
         file.open(QFile::ReadOnly);

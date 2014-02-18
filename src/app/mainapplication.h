@@ -26,7 +26,11 @@
 #include <QtGui>
 #endif
 #include <qtsingleapplication.h>
+#include <QNetworkDiskCache>
 
+#include "cookiejar.h"
+
+class NetworkManager;
 class RSSListing;
 class SplashScreen;
 
@@ -37,7 +41,7 @@ public:
   explicit MainApplication(int &argc, char** argv);
   ~MainApplication();
 
-  static MainApplication* getInstance() { return static_cast<MainApplication*>(QCoreApplication::instance()); }
+  static MainApplication *getInstance() { return static_cast<MainApplication*>(QCoreApplication::instance()); }
 
   bool isPoratble() const;
   void setClosing();
@@ -45,11 +49,17 @@ public:
 
   QString resourcesDir() const;
   QString dataDir() const;
+  QString dbFileName() const;
+  QString cacheDefaultDir() const;
 
   bool storeDBMemory() const;
   bool isSaveDataLastFeed() const;
+  bool removePath(const QString &path);
 
-  RSSListing *mainWindow_;
+  RSSListing *mainWindow();
+  NetworkManager *networkManager();
+  CookieJar *cookieJar();
+  void setDiskCache();
 
 public slots:
   void receiveMessage(const QString &message);
@@ -70,13 +80,18 @@ private:
 
   QString resourcesDir_;
   QString dataDir_;
+  QString cacheDir_;
 
   bool storeDBMemory_;
   bool isSaveDataLastFeed_;
   QString styleApplication_;
   bool showSplashScreen_;
 
-  SplashScreen *splashScreen;
+  SplashScreen *splashScreen_;
+  RSSListing *mainWindow_;
+  NetworkManager *networkManager_;
+  CookieJar *cookieJar_;
+  QNetworkDiskCache *diskCache_;
 
 };
 

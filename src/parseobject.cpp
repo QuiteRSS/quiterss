@@ -48,7 +48,7 @@ ParseObject::ParseObject(QObject *parent)
     db_ = QSqlDatabase::database("secondConnection", true);
     if (!db_.isValid()) {
       db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-      db_.setDatabaseName(rssl_->dbFileName_);
+      db_.setDatabaseName(mainApp->dbFileName());
       db_.open();
     }
   }

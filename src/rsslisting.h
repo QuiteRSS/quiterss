@@ -32,20 +32,17 @@
 #include <QtSql>
 #include <QtWebKit>
 #include <QNetworkProxy>
-#include <QNetworkDiskCache>
 #include <QPrintDialog>
 #include <QPrintPreviewDialog>
 #include <QPrinter>
 #include <QSound>
 
 #include "categoriestreewidget.h"
-#include "cookiejar.h"
 #include "dbmemfilethread.h"
 #include "downloadmanager.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
-#include "networkmanager.h"
 #include "newsheader.h"
 #include "newsmodel.h"
 #include "newstabwidget.h"
@@ -74,9 +71,7 @@ class RSSListing : public QMainWindow
 {
   Q_OBJECT
 public:
-  RSSListing(const QString &appDataDirPath,
-             const QString &dataDirPath,
-             QWidget *parent = 0);
+  explicit RSSListing(QWidget *parent = 0);
   ~RSSListing();
 
   static bool removePath(const QString &path);
@@ -110,10 +105,7 @@ public:
     return trNameLabels;
   }
 
-  QString appDataDirPath_;
-  QString dataDirPath_;
   QSqlDatabase db_;
-  QString dbFileName_;
   FeedsTreeModel *feedsTreeModel_;
   FeedsProxyModel *feedsProxyModel_;
   FeedsTreeView *feedsTreeView_;
@@ -244,10 +236,6 @@ public:
   QString newsFilterStr;
 
   int oldState;
-
-  QNetworkDiskCache *diskCache_;
-  CookieJar *cookieJar_;
-  NetworkManager *networkManager_;
 
   bool hideFeedsOpenTab_;
   bool showToggleFeedsTree_;
@@ -754,8 +742,6 @@ private:
   bool changeBehaviorActionNUN_;
 
   bool recountCategoryCountsOn_;
-
-  QString diskCacheDirPathDefault_;
 
   OptionsDialog *optionsDialog_;
 

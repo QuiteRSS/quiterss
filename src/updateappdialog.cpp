@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "updateappdialog.h"
+
+#include "mainapplication.h"
 #include "rsslisting.h"
 #include "VersionNo.h"
 #include "settings.h"
@@ -30,9 +32,6 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
   , lang_(lang)
   , showDialog_(show)
 {
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  networkManager_ = rssl_->networkManager_;
-
   if (showDialog_) {
     setWindowTitle(tr("Check for Updates"));
     setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -71,7 +70,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
     if (lang_.contains("ru", Qt::CaseInsensitive))
       urlHistory = "https://quite-rss.googlecode.com/hg/HISTORY_RU";
     else urlHistory = "https://quite-rss.googlecode.com/hg/HISTORY_EN";
-    historyReply_ = networkManager_->get(QNetworkRequest(QUrl(urlHistory)));
+    historyReply_ = mainApp->networkManager()->get(QNetworkRequest(QUrl(urlHistory)));
     connect(historyReply_, SIGNAL(finished()), this, SLOT(slotFinishHistoryReply()));
 
     connect(this, SIGNAL(finished(int)), this, SLOT(closeDialog()));
@@ -80,7 +79,7 @@ UpdateAppDialog::UpdateAppDialog(const QString &lang, QWidget *parent, bool show
   } else {
     renderStatistics();
 //    page_ = new QWebPage(this);
-//    page_->setNetworkAccessManager(networkManager_);
+//    page_->setNetworkAccessManager(mainApp->networkManager());
 //    page_->mainFrame()->load(QUrl("https://code.google.com/p/quite-rss/wiki/runAplication"));
 //    connect(page_, SIGNAL(loadFinished(bool)),
 //            this, SLOT(renderStatistics()));
@@ -207,6 +206,7 @@ void UpdateAppDialog::updaterRun()
 
 void UpdateAppDialog::renderStatistics()
 {
-  reply_ = networkManager_->get(QNetworkRequest(QUrl("https://quite-rss.googlecode.com/hg/src/VersionNo.h")));
+  QNetworkRequest request(QUrl("https://quite-rss.googlecode.com/hg/src/VersionNo.h"));
+  reply_ = mainApp->networkManager()->get(request);
   connect(reply_, SIGNAL(finished()), this, SLOT(finishUpdatesChecking()));
 }

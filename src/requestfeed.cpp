@@ -62,11 +62,6 @@ RequestFeed::RequestFeed(int timeoutRequest, int numberRequests,
           Qt::QueuedConnection);
 }
 
-void RequestFeed::setCookieJar(QNetworkCookieJar *cookieJar)
-{
-  networkManager_->setCookieJar(cookieJar);
-}
-
 /** @brief Put URL in request queue
  *----------------------------------------------------------------------------*/
 void RequestFeed::requestUrl(int id, QString urlString,

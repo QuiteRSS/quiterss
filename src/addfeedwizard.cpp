@@ -16,9 +16,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "addfeedwizard.h"
+
+#include "mainapplication.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
-#include "rsslisting.h"
 #include "settings.h"
 
 #include <QDomDocument>
@@ -378,7 +379,6 @@ void AddFeedWizard::addFeed()
       QString cookieStr = feedUrlString_.right(feedUrlString_.length() - index - 9);
       QStringList cookieStrList = cookieStr.split(";");
 
-      RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
       QList<QNetworkCookie> loadedCookies;
       foreach (QString cookieStr, cookieStrList) {
         const QList<QNetworkCookie> &cookieList = QNetworkCookie::parseCookies(cookieStr.toUtf8());
@@ -391,7 +391,7 @@ void AddFeedWizard::addFeed()
         cookie.setExpirationDate(date);
         loadedCookies.append(cookie);
       }
-      rssl->cookieJar_->setCookiesFromUrl(loadedCookies, feedUrlString_);
+      mainApp->cookieJar()->setCookiesFromUrl(loadedCookies, feedUrlString_);
     }
 
     emit signalRequestUrl(feedId_, feedUrlString_, QDateTime(), userInfo);

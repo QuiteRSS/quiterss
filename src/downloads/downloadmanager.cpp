@@ -15,8 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-
 #include "downloadmanager.h"
+
+#include "mainapplication.h"
 #include "authenticationdialog.h"
 #include "downloaditem.h"
 #include "rsslisting.h"
@@ -27,7 +28,6 @@ DownloadManager::DownloadManager(QWidget *parent)
   rssl_ = qobject_cast<RSSListing*>(parent);
 
   networkManager_ = new NetworkManager(this);
-  networkManager_->setCookieJar(rssl_->cookieJar_);
 
   listWidget_ = new QListWidget();
   listWidget_->setFrameStyle(QFrame::NoFrame);
@@ -71,7 +71,7 @@ DownloadManager::DownloadManager(QWidget *parent)
 
 DownloadManager::~DownloadManager()
 {
-  networkManager_->cookieJar()->setParent(rssl_);
+  networkManager_->cookieJar()->setParent(mainApp->mainWindow());
 }
 
 void DownloadManager::download(const QNetworkRequest &request)
@@ -82,13 +82,15 @@ void DownloadManager::download(const QNetworkRequest &request)
 void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDownloadLocation)
 {
   QString fileName(getFileName(reply));
-  fileName = rssl_->downloadLocation_ + QDir::separator() + fileName;
+  fileName = rssl_->downloadLocation_ + "/" + fileName;
   QFileInfo fileInfo(fileName);
   if (askDownloadLocation || !QFile::exists(rssl_->downloadLocation_) || fileInfo.exists()) {
     QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
         arg(fileInfo.suffix().toUpper()).
         arg(fileInfo.suffix().toLower());
-    fileName = QFileDialog::getSaveFileName(rssl_, tr("Save As..."), fileName, filter);
+    fileName = QFileDialog::getSaveFileName(mainApp->mainWindow(),
+                                            tr("Save As..."),
+                                            fileName, filter);
   }
   if (fileName.isNull()) {
     reply->abort();

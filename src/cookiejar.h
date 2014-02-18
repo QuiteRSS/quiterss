@@ -22,6 +22,12 @@
 #include <QStringList>
 #include <QNetworkCookieJar>
 
+enum UseCookies {
+  BlockCookies,
+  SaveCookies,
+  DeleteCookiesOnClose
+};
+
 class CookieJar : public QNetworkCookieJar
 {
   Q_OBJECT
@@ -36,10 +42,14 @@ public:
   void saveCookies();
   void loadCookies();
 
-  int saveCookies_;
+  int useCookies() const;
+  void setUseCookies(UseCookies value);
 
 public slots:
   void clearCookies();
+
+private:
+  int useCookies_;
 
 };
 

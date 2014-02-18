@@ -17,15 +17,21 @@
 * ============================================================ */
 #include "mainapplication.h"
 
+#include "cookiejar.h"
 #include "db_func.h"
-#include "VersionNo.h"
+#include "networkmanager.h"
 #include "rsslisting.h"
-#include "splashscreen.h"
 #include "settings.h"
+#include "splashscreen.h"
+#include "VersionNo.h"
 
 MainApplication::MainApplication(int &argc, char **argv)
   : QtSingleApplication(argc, argv)
+  , isPortable_(false)
   , isClosing_(false)
+  , networkManager_(0)
+  , cookieJar_(0)
+  , diskCache_(0)
 {
   QString message = arguments().value(1);
   if (isRunning()) {
@@ -66,10 +72,12 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   showSplashScreen();
 
-  mainWindow_ = new RSSListing(resourcesDir_, dataDir_);
+  mainWindow_ = new RSSListing();
+
+
 
   if (showSplashScreen_)
-    splashScreen->loadModules();
+    splashScreen_->loadModules();
 
   if (!mainWindow_->startingTray_ || !mainWindow_->showTrayIcon_)
     mainWindow_->show();
@@ -81,8 +89,8 @@ MainApplication::MainApplication(int &argc, char **argv)
   }
 
   if (showSplashScreen_) {
-    splashScreen->finish(mainWindow_);
-    splashScreen->deleteLater();
+    splashScreen_->finish(mainWindow_);
+    splashScreen_->deleteLater();
   }
 
   mainWindow_->restoreFeedsOnStartUp();
@@ -135,8 +143,6 @@ void MainApplication::checkPortable()
     if (!QFile::exists(fileName))
       isPortable_ = false;
   }
-#else
-  isPortable_ = false;
 #endif
 }
 
@@ -163,6 +169,16 @@ void MainApplication::checkDir()
   resourcesDir_ = RESOURCES_DIR;
 #endif
 #endif
+
+  if (isPortable_) {
+    cacheDir_ = dataDir_ + "/cache";
+  } else {
+#ifdef HAVE_QT5
+    cacheDir_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+#else
+    cacheDir_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
+#endif
+  }
 }
 
 void MainApplication::loadSettings()
@@ -179,6 +195,8 @@ void MainApplication::loadSettings()
 void MainApplication::quitApplication()
 {
   qWarning() << "Quit application";
+
+  networkManager_->disconnect(networkManager_);
 
   quit();
 }
@@ -208,6 +226,11 @@ QString MainApplication::dataDir() const
   return dataDir_;
 }
 
+QString MainApplication::dbFileName() const
+{
+  return dataDir_ + "/" + kDbName;
+}
+
 bool MainApplication::isSaveDataLastFeed() const
 {
   return isSaveDataLastFeed_;
@@ -216,6 +239,23 @@ bool MainApplication::isSaveDataLastFeed() const
 bool MainApplication::storeDBMemory() const
 {
   return storeDBMemory_;
+}
+
+bool MainApplication::removePath(const QString &path)
+{
+  bool result = true;
+  QFileInfo info(path);
+  if (info.isDir()) {
+    QDir dir(path);
+    foreach (const QString &entry, dir.entryList(QDir::AllDirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
+      result &= removePath(dir.absoluteFilePath(entry));
+    }
+    if (!info.dir().rmdir(info.fileName()))
+      return false;
+  } else {
+    result = QFile::remove(path);
+  }
+  return result;
 }
 
 void MainApplication::setStyleApplication()
@@ -255,10 +295,10 @@ void MainApplication::showSplashScreen()
     showSplashScreen_ = true;
 
   if (showSplashScreen_) {
-    splashScreen = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
-    splashScreen->show();
+    splashScreen_ = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
+    splashScreen_->show();
     if ((versionDB != kDbVersion) && QFile(settings.fileName()).exists()) {
-      splashScreen->showMessage(QString("Converting database to version %1...").
+      splashScreen_->showMessage(QString("Converting database to version %1...").
                                 arg(kDbVersion),
                                 Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
     }
@@ -283,4 +323,66 @@ void MainApplication::commitData(QSessionManager &manager)
     manager.release();
     mainWindow_->slotClose();
   }
+}
+
+RSSListing *MainApplication::mainWindow()
+{
+  return mainWindow_;
+}
+
+NetworkManager *MainApplication::networkManager()
+{
+  if (!networkManager_) {
+    networkManager_ = new NetworkManager(this);
+    setDiskCache();
+  }
+  return networkManager_;
+}
+
+CookieJar *MainApplication::cookieJar()
+{
+  if (!cookieJar_) {
+    cookieJar_ = new CookieJar(mainWindow_);
+  }
+  return cookieJar_;
+}
+
+void MainApplication::setDiskCache()
+{
+  Settings settings;
+  settings.beginGroup("Settings");
+
+  bool useDiskCache = settings.value("useDiskCache", true).toBool();
+  if (useDiskCache) {
+    if (!diskCache_) {
+      diskCache_ = new QNetworkDiskCache(this);
+    }
+
+    QString diskCacheDirPath = settings.value("dirDiskCache", cacheDir_).toString();
+    if (diskCacheDirPath.isEmpty()) diskCacheDirPath = cacheDir_;
+
+    bool cleanDiskCache = settings.value("cleanDiskCache", true).toBool();
+    if (cleanDiskCache) {
+      removePath(diskCacheDirPath);
+      settings.setValue("cleanDiskCache", false);
+    }
+
+    diskCache_->setCacheDirectory(diskCacheDirPath);
+    int maxDiskCache = settings.value("Settings/maxDiskCache", 50).toInt();
+    diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
+
+    networkManager()->setCache(diskCache_);
+  } else {
+    if (diskCache_) {
+      diskCache_->setMaximumCacheSize(0);
+      diskCache_->clear();
+    }
+  }
+
+  settings.endGroup();
+}
+
+QString MainApplication::cacheDefaultDir() const
+{
+  return cacheDir_;
 }

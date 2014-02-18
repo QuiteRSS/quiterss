@@ -53,7 +53,6 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   int numberRepeats = settings.value("Settings/numberRepeats", 2).toInt();
 
   requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats);
-  requestFeed_->setCookieJar(rssl->cookieJar_);
 
   parseObject_ = new ParseObject(parent);
 
@@ -241,7 +240,7 @@ UpdateObject::UpdateObject(QObject *parent)
     db_ = QSqlDatabase::database("secondConnection", true);
     if (!db_.isValid()) {
       db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-      db_.setDatabaseName(rssl_->dbFileName_);
+      db_.setDatabaseName(mainApp->dbFileName());
       db_.open();
     }
   }

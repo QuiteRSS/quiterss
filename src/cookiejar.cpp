@@ -28,14 +28,14 @@ CookieJar::CookieJar(QObject *parent)
   : QNetworkCookieJar(parent)
 {
   Settings settings;
-  saveCookies_ = settings.value("Settings/saveCookies", 1).toInt();
+  useCookies_ = settings.value("Settings/saveCookies", SaveCookies).toInt();
 
   loadCookies();
 }
 
 bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
 {
-  if (saveCookies_ == 0)
+  if (useCookies_ == 0)
     return false;
   return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
@@ -44,7 +44,7 @@ bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const
  *----------------------------------------------------------------------------*/
 void CookieJar::loadCookies()
 {
-  if (saveCookies_ != 1) return;
+  if (useCookies_ != 1) return;
 
   if (!QFile::exists(mainApp->dataDir() + "/cookies.dat")) {
     return;
@@ -82,7 +82,7 @@ void CookieJar::loadCookies()
  *----------------------------------------------------------------------------*/
 void CookieJar::saveCookies()
 {
-  if (saveCookies_ != 1) return;
+  if (useCookies_ != 1) return;
 
   QList<QNetworkCookie> allCookies = getAllCookies();
 
@@ -123,4 +123,14 @@ QList<QNetworkCookie> CookieJar::getAllCookies()
 void CookieJar::setAllCookies(const QList<QNetworkCookie> &cookieList)
 {
   QNetworkCookieJar::setAllCookies(cookieList);
+}
+
+int CookieJar::useCookies() const
+{
+  return useCookies_;
+}
+
+void CookieJar::setUseCookies(UseCookies value)
+{
+  useCookies_ = value;
 }

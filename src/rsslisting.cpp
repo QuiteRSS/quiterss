@@ -39,16 +39,11 @@
 #include <QStatusBar>
 
 // ---------------------------------------------------------------------------
-RSSListing::RSSListing(const QString &appDataDirPath,
-                       const QString &dataDirPath,
-                       QWidget *parent)
+RSSListing::RSSListing(QWidget *parent)
   : QMainWindow(parent)
   , minimizeToTray_(true)
-  , appDataDirPath_(appDataDirPath)
-  , dataDirPath_(dataDirPath)
   , currentNewsTab(NULL)
   , openingLink_(false)
-  , diskCache_(NULL)
   , openNewsTab_(0)
   , newsView_(NULL)
   , updateTimeCount_(0)
@@ -65,9 +60,7 @@ RSSListing::RSSListing(const QString &appDataDirPath,
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
 
-  dbFileName_ = dataDirPath_ + QDir::separator() + kDbName;
-  bool dbExists = QFile(dbFileName_).exists();
-  QString versionDB = initDB(dbFileName_);
+  QString versionDB = initDB(mainApp->dbFileName());
   Settings settings;
   settings.setValue("VersionDB", versionDB);
 
@@ -77,55 +70,19 @@ RSSListing::RSSListing(const QString &appDataDirPath,
   if (mainApp->storeDBMemory())
     db_.setDatabaseName(":memory:");
   else
-    db_.setDatabaseName(dbFileName_);
+    db_.setDatabaseName(mainApp->dbFileName());
   if (!db_.open()) {
     QMessageBox::critical(0, tr("Error"), tr("SQLite driver not loaded!"));
   }
 
   if (mainApp->storeDBMemory()) {
-    dbMemFileThread_ = new DBMemFileThread(dbFileName_, this);
+    dbMemFileThread_ = new DBMemFileThread(mainApp->dbFileName(), this);
     dbMemFileThread_->sqliteDBMemFile(false);
     while(dbMemFileThread_->isRunning()) qApp->processEvents();
   }
 
-  networkManager_ = new NetworkManager(parent);
-  connect(networkManager_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
-
-  cookieJar_ = new CookieJar(this);
-
-  networkManager_->setCookieJar(cookieJar_);
-
-  bool useDiskCache = settings.value("Settings/useDiskCache", true).toBool();
-  if (useDiskCache) {
-    diskCache_ = new QNetworkDiskCache(this);
-#if defined(Q_OS_UNIX)
-#ifdef HAVE_QT5
-    diskCacheDirPathDefault_ = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-#else
-    diskCacheDirPathDefault_ = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
-#endif
-#else
-    diskCacheDirPathDefault_ = dataDirPath_ + "/cache";
-#endif
-    QString diskCacheDirPath = settings.value(
-          "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
-    if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
-
-    bool cleanDiskCache = settings.value("Settings/cleanDiskCache", true).toBool();
-    if (cleanDiskCache) {
-      removePath(diskCacheDirPath);
-      settings.setValue("Settings/cleanDiskCache", false);
-    }
-
-    diskCache_->setCacheDirectory(diskCacheDirPath);
-    int maxDiskCache = settings.value("Settings/maxDiskCache", 50).toInt();
-    diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
-
-    networkManager_->setCache(diskCache_);
-  }
-
   downloadManager_ = new DownloadManager(this);
+
   connect(downloadManager_, SIGNAL(signalShowDownloads(bool)),
           this, SLOT(showDownloadManager(bool)));
   connect(downloadManager_, SIGNAL(signalUpdateInfo(QString)),
@@ -194,6 +151,24 @@ RSSListing::RSSListing(const QString &appDataDirPath,
 
   setCentralWidget(centralWidget);
 
+  loadSettingsFeeds();
+
+  setStyleSheet("QMainWindow::separator { width: 1px; }");
+
+  readSettings();
+
+  addOurFeed();
+
+  initUpdateFeeds();
+
+  QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
+
+  timerSaveDBMemFile_ = new QTimer(this);
+  if (mainApp->storeDBMemory()) {
+    timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
+    connect(timerSaveDBMemFile_, SIGNAL(timeout()), this, SLOT(saveDBMemFile()));
+  }
+
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
@@ -206,24 +181,8 @@ RSSListing::RSSListing(const QString &appDataDirPath,
   connect(&timerLinkOpening_, SIGNAL(timeout()),
           this, SLOT(slotTimerLinkOpening()));
 
-  loadSettingsFeeds();
-
-  setStyleSheet("QMainWindow::separator { width: 1px; }");
-
-  readSettings();
-
-  if (!dbExists)
-    addOurFeed();
-
-  initUpdateFeeds();
-
-  QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
-
-  timerSaveDBMemFile_ = new QTimer(this);
-  if (mainApp->storeDBMemory()) {
-    timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
-    connect(timerSaveDBMemFile_, SIGNAL(timeout()), this, SLOT(saveDBMemFile()));
-  }
+  connect(mainApp->networkManager(), SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
+          this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
 
   translator_ = new QTranslator(this);
   appInstallTranslator();
@@ -261,7 +220,7 @@ void RSSListing::slotClose()
   traySystem->hide();
   hide();
   writeSettings();
-  cookieJar_->saveCookies();
+  mainApp->cookieJar()->saveCookies();
 
   delete updateFeeds_;
 
@@ -419,7 +378,7 @@ void RSSListing::slotPlaceToTray()
   clearNotification();
 
   writeSettings();
-  cookieJar_->saveCookies();
+  mainApp->cookieJar()->saveCookies();
 
   saveDBMemFile();
 
@@ -1838,7 +1797,7 @@ void RSSListing::readSettings()
   QString strLang;
   QString strLocalLang = QLocale::system().name();
   bool findLang = false;
-  QDir langDir = appDataDirPath_ + "/lang";
+  QDir langDir(mainApp->resourcesDir() + "/lang");
   foreach (QString file, langDir.entryList(QStringList("*.qm"), QDir::Files)) {
     strLang = file.section('.', 0, 0).section('_', 1);
     if (strLocalLang == strLang) {
@@ -1981,7 +1940,7 @@ void RSSListing::readSettings()
   QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
   soundNewNews_ = settings.value("soundNewNews", true).toBool();
-  QString soundNotifyPathStr = appDataDirPath_ + "/sound/notification.wav";
+  QString soundNotifyPathStr(mainApp->resourcesDir() + "/sound/notification.wav");
   soundNotifyPath_ = settings.value("soundNotifyPath", soundNotifyPathStr).toString();
   showNotifyOn_ = settings.value("showNotifyOn", true).toBool();
   positionNotify_ = settings.value("positionNotify", 3).toInt();
@@ -2258,7 +2217,7 @@ void RSSListing::writeSettings()
   settings.setValue("userStyleBrowser", userStyleBrowser_);
   settings.setValue("maxPagesInCache", maxPagesInCache_);
   settings.setValue("downloadLocation", downloadLocation_);
-  settings.setValue("saveCookies", cookieJar_->saveCookies_);
+  settings.setValue("saveCookies", mainApp->cookieJar()->useCookies());
   settings.setValue("askDownloadLocation", askDownloadLocation_);
   settings.setValue("defaultZoomPages", defaultZoomPages_);
   settings.setValue("autoLoadImages", autoLoadImages_);
@@ -3163,18 +3122,19 @@ void RSSListing::showOptionDlg(int index)
   optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser_);
 
   optionsDialog_->maxPagesInCache_->setValue(maxPagesInCache_);
-  bool useDiskCache = settings.value("Settings/useDiskCache", true).toBool();
+  settings.beginGroup("Settings");
+  bool useDiskCache = settings.value("useDiskCache", true).toBool();
   optionsDialog_->diskCacheOn_->setChecked(useDiskCache);
-  QString diskCacheDirPath = settings.value(
-        "Settings/dirDiskCache", diskCacheDirPathDefault_).toString();
-  if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
-  optionsDialog_->dirDiskCacheEdit_->setText(diskCacheDirPath);
-  int maxDiskCache = settings.value("Settings/maxDiskCache", 50).toInt();
+  QString diskCacheDir = settings.value("dirDiskCache", mainApp->cacheDefaultDir()).toString();
+  if (diskCacheDir.isEmpty()) diskCacheDir = mainApp->cacheDefaultDir();
+  optionsDialog_->dirDiskCacheEdit_->setText(diskCacheDir);
+  int maxDiskCache = settings.value("maxDiskCache", 50).toInt();
   optionsDialog_->maxDiskCache_->setValue(maxDiskCache);
+  settings.endGroup();
 
-  optionsDialog_->saveCookies_->setChecked(cookieJar_->saveCookies_ == 1);
-  optionsDialog_->deleteCookiesOnClose_->setChecked(cookieJar_->saveCookies_ == 2);
-  optionsDialog_->blockCookies_->setChecked(cookieJar_->saveCookies_ == 0);
+  optionsDialog_->saveCookies_->setChecked(mainApp->cookieJar()->useCookies() == SaveCookies);
+  optionsDialog_->deleteCookiesOnClose_->setChecked(mainApp->cookieJar()->useCookies() == DeleteCookiesOnClose);
+  optionsDialog_->blockCookies_->setChecked(mainApp->cookieJar()->useCookies() == BlockCookies);
 
   optionsDialog_->downloadLocationEdit_->setText(downloadLocation_);
   optionsDialog_->askDownloadLocation_->setChecked(askDownloadLocation_);
@@ -3554,38 +3514,28 @@ void RSSListing::showOptionDlg(int index)
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
   QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
+  settings.beginGroup("Settings");
   useDiskCache = optionsDialog_->diskCacheOn_->isChecked();
-  settings.setValue("Settings/useDiskCache", useDiskCache);
+  settings.setValue("useDiskCache", useDiskCache);
   maxDiskCache = optionsDialog_->maxDiskCache_->value();
-  settings.setValue("Settings/maxDiskCache", maxDiskCache);
+  settings.setValue("maxDiskCache", maxDiskCache);
 
-  if (diskCacheDirPath != optionsDialog_->dirDiskCacheEdit_->text()) {
-    removePath(diskCacheDirPath);
+  if (diskCacheDir != optionsDialog_->dirDiskCacheEdit_->text()) {
+    mainApp->removePath(diskCacheDir);
   }
-  diskCacheDirPath = optionsDialog_->dirDiskCacheEdit_->text();
-  if (diskCacheDirPath.isEmpty()) diskCacheDirPath = diskCacheDirPathDefault_;
-  settings.setValue("Settings/dirDiskCache", diskCacheDirPath);
+  diskCacheDir = optionsDialog_->dirDiskCacheEdit_->text();
+  if (diskCacheDir.isEmpty()) diskCacheDir = mainApp->cacheDefaultDir();
+  settings.setValue("dirDiskCache", diskCacheDir);
+  settings.endGroup();
 
-  if (useDiskCache) {
-    if (diskCache_ == NULL) {
-      diskCache_ = new QNetworkDiskCache(this);
-      networkManager_->setCache(diskCache_);
-    }
-    diskCache_->setCacheDirectory(diskCacheDirPath);
-    diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
-  } else {
-    if (diskCache_ != NULL) {
-      diskCache_->setMaximumCacheSize(0);
-      diskCache_->clear();
-    }
-  }
+  mainApp->setDiskCache();
 
   if (optionsDialog_->deleteCookiesOnClose_->isChecked())
-    cookieJar_->saveCookies_ = 2;
+    mainApp->cookieJar()->setUseCookies(DeleteCookiesOnClose);
   else if (optionsDialog_->blockCookies_->isChecked())
-    cookieJar_->saveCookies_ = 0;
+    mainApp->cookieJar()->setUseCookies(BlockCookies);
   else
-    cookieJar_->saveCookies_ = 1;
+    mainApp->cookieJar()->setUseCookies(SaveCookies);
 
   downloadLocation_ = optionsDialog_->downloadLocationEdit_->text();
   askDownloadLocation_ = optionsDialog_->askDownloadLocation_->isChecked();
@@ -4467,7 +4417,7 @@ void RSSListing::appInstallTranslator()
 {
   bool translatorLoad;
   qApp->removeTranslator(translator_);
-  translatorLoad = translator_->load(appDataDirPath_ +
+  translatorLoad = translator_->load(mainApp->resourcesDir() +
                                      QString("/lang/quiterss_%1").arg(langFileName_));
   if (translatorLoad) qApp->installTranslator(translator_);
   else retranslateStrings();
@@ -5666,24 +5616,24 @@ void RSSListing::slotFeedEndPressed()
  *---------------------------------------------------------------------------*/
 void RSSListing::setStyleApp(QAction *pAct)
 {
-  QString fileString(appDataDirPath_);
+  QString fileName(mainApp->resourcesDir());
   if (pAct->objectName() == "systemStyle_") {
-    fileString.append("/style/system.qss");
+    fileName.append("/style/system.qss");
   } else if (pAct->objectName() == "system2Style_") {
-    fileString.append("/style/system2.qss");
+    fileName.append("/style/system2.qss");
   } else if (pAct->objectName() == "orangeStyle_") {
-    fileString.append("/style/orange.qss");
+    fileName.append("/style/orange.qss");
   } else if (pAct->objectName() == "purpleStyle_") {
-    fileString.append("/style/purple.qss");
+    fileName.append("/style/purple.qss");
   } else if (pAct->objectName() == "pinkStyle_") {
-    fileString.append("/style/pink.qss");
+    fileName.append("/style/pink.qss");
   } else if (pAct->objectName() == "grayStyle_") {
-    fileString.append("/style/gray.qss");
+    fileName.append("/style/gray.qss");
   } else {
-    fileString.append("/style/green.qss");
+    fileName.append("/style/green.qss");
   }
 
-  QFile file(fileString);
+  QFile file(fileName);
   if (!file.open(QFile::ReadOnly)) {
     file.setFileName(":/style/systemStyle");
     file.open(QFile::ReadOnly);
@@ -7583,23 +7533,6 @@ void RSSListing::updateInfoDownloads(const QString &text)
   }
 }
 
-bool RSSListing::removePath(const QString &path)
-{
-  bool result = true;
-  QFileInfo info(path);
-  if (info.isDir()) {
-    QDir dir(path);
-    foreach (const QString &entry, dir.entryList(QDir::AllDirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
-      result &= removePath(dir.absoluteFilePath(entry));
-    }
-    if (!info.dir().rmdir(info.fileName()))
-      return false;
-  } else {
-    result = QFile::remove(path);
-  }
-  return result;
-}
-
 void RSSListing::setStatusFeed(int feedId, QString status)
 {
   QModelIndex index = feedsTreeModel_->getIndexById(feedId);
@@ -7624,6 +7557,8 @@ void RSSListing::sqlQueryExec(QString query)
 
 void RSSListing::addOurFeed()
 {
+  if (QFile::exists(mainApp->dbFileName())) return;
+
   QPixmap icon(":/images/quiterss16");
   QByteArray iconData;
   QBuffer buffer(&iconData);

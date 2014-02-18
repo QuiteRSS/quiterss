@@ -16,10 +16,12 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "optionsdialog.h"
+
+#include "mainapplication.h"
 #include "labeldialog.h"
-#include "VersionNo.h"
 #include "rsslisting.h"
 #include "settings.h"
+#include "VersionNo.h"
 
 OptionsDialog::OptionsDialog(QWidget *parent)
   : Dialog(parent)
@@ -627,7 +629,7 @@ void OptionsDialog::createBrowserWidget()
   deleteCookiesOnClose_ = new QRadioButton(tr("Keep local data only until quit application"));
   blockCookies_ = new QRadioButton(tr("Block sites from setting any data"));
   clearCookies_ = new QPushButton(tr("Clear"));
-  connect(clearCookies_, SIGNAL(clicked()), rssl_->cookieJar_, SLOT(clearCookies()));
+  connect(clearCookies_, SIGNAL(clicked()), mainApp->cookieJar(), SLOT(clearCookies()));
 
   QGridLayout *cookiesLayout = new QGridLayout();
   cookiesLayout->setContentsMargins(15, 0, 5, 10);
