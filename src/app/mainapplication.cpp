@@ -20,15 +20,16 @@
 #include "cookiejar.h"
 #include "db_func.h"
 #include "networkmanager.h"
-#include "rsslisting.h"
 #include "settings.h"
 #include "splashscreen.h"
+#include "updatefeeds.h"
 #include "VersionNo.h"
 
 MainApplication::MainApplication(int &argc, char **argv)
   : QtSingleApplication(argc, argv)
   , isPortable_(false)
   , isClosing_(false)
+  , mainWindow_(0)
   , networkManager_(0)
   , cookieJar_(0)
   , diskCache_(0)
@@ -72,7 +73,9 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   showSplashScreen();
 
-  mainWindow_ = new RSSListing();
+  mainWindow_ = new MainWindow();
+
+  updateFeeds_ = new UpdateFeeds(mainWindow_);
 
   if (showSplashScreen_)
     splashScreen_->loadModules();
@@ -100,6 +103,10 @@ MainApplication::MainApplication(int &argc, char **argv)
 MainApplication::~MainApplication()
 {
 
+}
+
+MainApplication *MainApplication::getInstance() {
+  return static_cast<MainApplication*>(QCoreApplication::instance());
 }
 
 void MainApplication::receiveMessage(const QString &message)
@@ -289,13 +296,13 @@ void MainApplication::showSplashScreen()
 {
   Settings settings;
   QString versionDB = settings.value("versionDB", "1").toString();
-  if ((versionDB != kDbVersion) && QFile(settings.fileName()).exists())
+  if ((versionDB != kDbVersion) && QFile::exists(settings.fileName()))
     showSplashScreen_ = true;
 
   if (showSplashScreen_) {
     splashScreen_ = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
     splashScreen_->show();
-    if ((versionDB != kDbVersion) && QFile(settings.fileName()).exists()) {
+    if ((versionDB != kDbVersion) && QFile::exists(settings.fileName())) {
       splashScreen_->showMessage(QString("Converting database to version %1...").
                                 arg(kDbVersion),
                                 Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
@@ -323,7 +330,7 @@ void MainApplication::commitData(QSessionManager &manager)
   }
 }
 
-RSSListing *MainApplication::mainWindow()
+MainWindow *MainApplication::mainWindow()
 {
   return mainWindow_;
 }
@@ -383,4 +390,19 @@ void MainApplication::setDiskCache()
 QString MainApplication::cacheDefaultDir() const
 {
   return cacheDir_;
+}
+
+UpdateFeeds *MainApplication::updateFeeds()
+{
+  return updateFeeds_;
+}
+
+void MainApplication::runUserFilter(int feedId, int filterId)
+{
+  updateFeeds_->parseObject_->runUserFilter(feedId, filterId);
+}
+
+void MainApplication::sqlQueryExec(const QString &query)
+{
+  emit signalSqlQueryExec(query);
 }

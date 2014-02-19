@@ -16,9 +16,10 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "feedstreeview.h"
+
+#include "mainapplication.h"
 #include "feedstreemodel.h"
 #include "delegatewithoutfocus.h"
-#include "rsslisting.h"
 
 #include <QSqlTableModel>
 #include <QSqlQuery>
@@ -55,12 +56,6 @@ FeedsTreeView::FeedsTreeView(QWidget * parent)
   setDragEnabled(true);
   setAcceptDrops(true);
   setDropIndicatorShown(true);
-
-  QObject *parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  rssl_ = qobject_cast<RSSListing*>(parent_);
 
   connect(this, SIGNAL(expanded(QModelIndex)), SLOT(slotExpanded(QModelIndex)));
   connect(this, SIGNAL(collapsed(QModelIndex)), SLOT(slotCollapsed(QModelIndex)));
@@ -109,7 +104,7 @@ void FeedsTreeView::slotExpanded(const QModelIndex &index)
   int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
   if (!expandedList.contains(feedId)) {
     expandedList.append(feedId);
-    rssl_->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%1'").arg(feedId));
+    mainApp->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=1 WHERE id=='%1'").arg(feedId));
   }
 
   if (!autocollapseFolder_ || (feedId == expandedOldId_))
@@ -137,7 +132,7 @@ void FeedsTreeView::slotCollapsed(const QModelIndex &index)
 {
   int feedId = sourceModel_->getIdByIndex(((FeedsProxyModel*)model())->mapToSource(index));
   expandedList.removeOne(feedId);
-  rssl_->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%1'").arg(feedId));
+  mainApp->sqlQueryExec(QString("UPDATE feeds SET f_Expanded=0 WHERE id=='%1'").arg(feedId));
 }
 
 void FeedsTreeView::expandAll()
@@ -152,7 +147,7 @@ void FeedsTreeView::expandAll()
     int feedId = q.value(0).toInt();
     expandedList.append(feedId);
   }
-  rssl_->sqlQueryExec("UPDATE feeds SET f_Expanded=1 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
+  mainApp->sqlQueryExec("UPDATE feeds SET f_Expanded=1 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
 }
 
 void FeedsTreeView::collapseAll()
@@ -160,7 +155,7 @@ void FeedsTreeView::collapseAll()
   expandedList.clear();
   QyurSqlTreeView::collapseAll();
 
-  rssl_->sqlQueryExec("UPDATE feeds SET f_Expanded=0 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
+  mainApp->sqlQueryExec("UPDATE feeds SET f_Expanded=0 WHERE (xmlUrl='' OR xmlUrl IS NULL)");
 }
 
 /** @brief Find index of next unread (by meaning) feed

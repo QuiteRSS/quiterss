@@ -25,8 +25,6 @@
 #endif
 #include <QtSql>
 
-class RSSListing;
-
 class NewsModel : public QSqlTableModel
 {
   Q_OBJECT
@@ -57,7 +55,6 @@ signals:
 
 private:
   QTreeView *view_;
-  RSSListing *rssl_;
 
 };
 

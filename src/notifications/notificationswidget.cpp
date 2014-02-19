@@ -16,10 +16,11 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "notificationswidget.h"
+
+#include "mainapplication.h"
 #include "notificationsfeeditem.h"
 #include "notificationsnewsitem.h"
 #include "optionsdialog.h"
-#include "rsslisting.h"
 
 NotificationWidget::NotificationWidget(QList<int> idFeedList,
                                        QList<int> cntNewNewsList,
@@ -42,13 +43,12 @@ NotificationWidget::NotificationWidget(QList<int> idFeedList,
   int fontSize;
 
   if (idFeedList.count()) {
-    RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget);
-    position_ = rssl_->positionNotify_;
-    timeShowNews_ = rssl_->timeShowNewsNotify_;
-    numberItems = rssl_->countShowNewsNotify_;
-    widthList = rssl_->widthTitleNewsNotify_;
-    fontFamily = rssl_->notificationFontFamily_;
-    fontSize = rssl_->notificationFontSize_;
+    position_ = mainApp->mainWindow()->positionNotify_;
+    timeShowNews_ = mainApp->mainWindow()->timeShowNewsNotify_;
+    numberItems = mainApp->mainWindow()->countShowNewsNotify_;
+    widthList = mainApp->mainWindow()->widthTitleNewsNotify_;
+    fontFamily = mainApp->mainWindow()->notificationFontFamily_;
+    fontSize = mainApp->mainWindow()->notificationFontSize_;
   } else {
     OptionsDialog *options = qobject_cast<OptionsDialog*>(parentWidget);
     position_ = options->positionNotify_->currentIndex();

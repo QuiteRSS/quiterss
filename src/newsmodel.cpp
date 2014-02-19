@@ -16,19 +16,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "newsmodel.h"
-#include "rsslisting.h"
+
+#include "mainapplication.h"
 
 NewsModel::NewsModel(QObject *parent, QTreeView *view)
   : QSqlTableModel(parent)
   , simplifiedDateTime_(true)
   , view_(view)
 {
-  QObject *parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  rssl_ = qobject_cast<RSSListing*>(parent_);
-
   setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
@@ -36,6 +31,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
 {
   if (index.row() > (view_->verticalScrollBar()->value() + view_->verticalScrollBar()->pageStep()))
     return QSqlTableModel::data(index, role);
+
+  MainWindow *mainWindow = mainApp->mainWindow();
 
   if (role == Qt::DecorationRole) {
     if (QSqlTableModel::fieldIndex("read") == index.column()) {
@@ -55,11 +52,11 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
     } else if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       QPixmap icon;
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = rssl_->feedsTreeModel_->getIndexById(feedId);
-      bool isFeed = (feedIndex.isValid() && rssl_->feedsTreeModel_->isFolder(feedIndex)) ? false : true;
+      QModelIndex feedIndex = mainWindow->feedsTreeModel_->getIndexById(feedId);
+      bool isFeed = (feedIndex.isValid() && mainWindow->feedsTreeModel_->isFolder(feedIndex)) ? false : true;
 
       if (feedIndex.isValid()) {
-        QByteArray byteArray = rssl_->feedsTreeModel_->dataField(feedIndex, "image").toByteArray();
+        QByteArray byteArray = mainWindow->feedsTreeModel_->dataField(feedIndex, "image").toByteArray();
         if (!byteArray.isNull()) {
           icon.loadFromData(QByteArray::fromBase64(byteArray));
         } else if (isFeed) {
@@ -95,8 +92,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
   } else if (role == Qt::ToolTipRole) {
     if (QSqlTableModel::fieldIndex("feedId") == index.column()) {
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = rssl_->feedsTreeModel_->getIndexById(feedId);
-      return rssl_->feedsTreeModel_->dataField(feedIndex, "text").toString();
+      QModelIndex feedIndex = mainWindow->feedsTreeModel_->getIndexById(feedId);
+      return mainWindow->feedsTreeModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("title") == index.column()) {
       QString title = index.data(Qt::EditRole).toString();
       if ((view_->header()->sectionSize(index.column()) - 14) < view_->header()->fontMetrics().width(title))
@@ -112,8 +109,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       return QVariant();
     } else if (QSqlTableModel::fieldIndex("rights") == index.column()) {
       int feedId = QSqlTableModel::index(index.row(), fieldIndex("feedId")).data(Qt::EditRole).toInt();
-      QModelIndex feedIndex = rssl_->feedsTreeModel_->getIndexById(feedId);
-      return rssl_->feedsTreeModel_->dataField(feedIndex, "text").toString();
+      QModelIndex feedIndex = mainWindow->feedsTreeModel_->getIndexById(feedId);
+      return mainWindow->feedsTreeModel_->dataField(feedIndex, "text").toString();
     } else if (QSqlTableModel::fieldIndex("published") == index.column()) {
       QDateTime dtLocal;
       QString strDate = index.data(Qt::EditRole).toString();
@@ -157,8 +154,8 @@ QVariant NewsModel::data(const QModelIndex &index, int role) const
       while (q.next()) {
         int idLabel = q.value(0).toInt();
         if (strIdLabels.contains(QString(",%1,").arg(QString::number(idLabel)))) {
-          if ((idLabel <= 6) && (RSSListing::nameLabels().at(idLabel-1) == q.value(1).toString())) {
-            nameLabelList << RSSListing::trNameLabels().at(idLabel-1);
+          if ((idLabel <= 6) && (MainWindow::nameLabels().at(idLabel-1) == q.value(1).toString())) {
+            nameLabelList << MainWindow::trNameLabels().at(idLabel-1);
           } else {
             nameLabelList << q.value(1).toString();
           }

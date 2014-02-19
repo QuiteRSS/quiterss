@@ -25,8 +25,6 @@
 #endif
 #include <feedstreemodel.h>
 
-class RSSListing;
-
 class FeedsTreeView : public QyurSqlTreeView
 {
   Q_OBJECT
@@ -84,7 +82,6 @@ private slots:
   void slotCollapsed(const QModelIndex&index);
 
 private:
-  RSSListing *rssl_;
   FeedsTreeModel *sourceModel_;
   QPoint dragPos_;
   QPoint dragStartPos_;

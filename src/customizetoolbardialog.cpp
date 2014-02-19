@@ -16,7 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "customizetoolbardialog.h"
-#include "rsslisting.h"
+
+#include "mainapplication.h"
 #include "settings.h"
 
 CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolbar)
@@ -187,11 +188,11 @@ CustomizeToolbarDialog::CustomizeToolbarDialog(QWidget *parent, QToolBar *toolba
 void CustomizeToolbarDialog::acceptDialog()
 {
   Settings settings;
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  MainWindow *mainWindow = mainApp->mainWindow();
 
   if (toolbar_->objectName() == "newsToolBar") {
-    for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
+    for (int i = 0; i < mainWindow->stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)mainWindow->stackedWidget_->widget(i);
       QListIterator<QAction *> iter(widget->newsToolBar_->actions());
       while (iter.hasNext()) {
         QAction *pAction = iter.next();
@@ -221,7 +222,7 @@ void CustomizeToolbarDialog::acceptDialog()
       continue;
     }
 
-    QListIterator<QAction *> iter(rssl_->actions());
+    QListIterator<QAction *> iter(mainWindow->actions());
     while (iter.hasNext()) {
       QAction *pAction = iter.next();
       if (!pAction->icon().isNull()) {
@@ -238,7 +239,7 @@ void CustomizeToolbarDialog::acceptDialog()
       if (actionStr == "Separator") {
         toolbar_->addSeparator();
       } else {
-        QListIterator<QAction *> iter(rssl_->actions());
+        QListIterator<QAction *> iter(mainWindow->actions());
         while (iter.hasNext()) {
           QAction *pAction = iter.next();
           if (!pAction->icon().isNull()) {
@@ -262,7 +263,7 @@ void CustomizeToolbarDialog::acceptDialog()
     default: str = "toolBarStyleTuI_";
     }
     settings.setValue("Settings/toolBarStyle", str);
-    rssl_->setToolBarStyle(str);
+    mainWindow->setToolBarStyle(str);
 
     switch (iconBox_->currentIndex()) {
     case 0: str = "toolBarIconBig_"; break;
@@ -270,19 +271,19 @@ void CustomizeToolbarDialog::acceptDialog()
     default: str = "toolBarIconNormal_";
     }
     settings.setValue("Settings/toolBarIconSize", str);
-    rssl_->setToolBarIconSize(str);
+    mainWindow->setToolBarIconSize(str);
   } else if (toolbar_->objectName() == "feedsToolBar") {
     settings.setValue("Settings/feedsToolBar", str);
   } else if (toolbar_->objectName() == "newsToolBar") {
     settings.setValue("Settings/newsToolBar", str);
 
-    for (int i = 0; i < rssl_->stackedWidget_->count(); i++) {
-      NewsTabWidget *widget = (NewsTabWidget*)rssl_->stackedWidget_->widget(i);
+    for (int i = 0; i < mainWindow->stackedWidget_->count(); i++) {
+      NewsTabWidget *widget = (NewsTabWidget*)mainWindow->stackedWidget_->widget(i);
       foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
         if (actionStr == "Separator") {
           widget->newsToolBar_->addSeparator();
         } else {
-          QListIterator<QAction *> iter(rssl_->actions());
+          QListIterator<QAction *> iter(mainWindow->actions());
           while (iter.hasNext()) {
             QAction *pAction = iter.next();
             if (!pAction->icon().isNull()) {
@@ -295,7 +296,7 @@ void CustomizeToolbarDialog::acceptDialog()
         }
       }
       widget->newsToolBar_->addAction(widget->separatorRAct_);
-      widget->newsToolBar_->addAction(rssl_->restoreNewsAct_);
+      widget->newsToolBar_->addAction(mainWindow->restoreNewsAct_);
     }
   }
 
@@ -332,8 +333,7 @@ void CustomizeToolbarDialog::showMenuAddButton()
 {
   addButtonMenu_->clear();
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  QListIterator<QAction *> iter(rssl_->actions());
+  QListIterator<QAction *> iter(mainApp->mainWindow()->actions());
   while (iter.hasNext()) {
     QAction *pAction = iter.next();
     if ((pAction->objectName() == "restoreNewsAct") ||
@@ -438,8 +438,7 @@ void CustomizeToolbarDialog::defaultShortcut()
       item->setBackground(0, qApp->palette().brush(QPalette::Midlight));
       shortcutTree_->addTopLevelItem(item);
     } else {
-      RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-      QListIterator<QAction *> iter(rssl_->actions());
+      QListIterator<QAction *> iter(mainApp->mainWindow()->actions());
       while (iter.hasNext()) {
         QAction *pAction = iter.next();
         if (!pAction->icon().isNull()) {

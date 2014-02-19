@@ -28,14 +28,13 @@
 #include "networkmanager.h"
 
 class DownloadItem;
-class RSSListing;
 
 class DownloadManager : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit DownloadManager(QWidget *parent);
+  explicit DownloadManager(QWidget *parent = 0);
   ~DownloadManager();
 
   void download(const QNetworkRequest &request);
@@ -61,7 +60,6 @@ private slots:
   void updateInfo();
 
 private:
-  RSSListing *rssl_;
   QListWidget *listWidget_;
   QTimer updateInfoTimer_;
 

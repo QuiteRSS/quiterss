@@ -18,7 +18,6 @@
 #include "updateappdialog.h"
 
 #include "mainapplication.h"
-#include "rsslisting.h"
 #include "VersionNo.h"
 #include "settings.h"
 

@@ -36,7 +36,7 @@
 #include "newsview.h"
 #include "webview.h"
 
-class RSSListing;
+class MainWindow;
 
 #define TOP_POSITION    0
 #define BOTTOM_POSITION 1
@@ -181,7 +181,7 @@ private:
   void createNewsList();
   void createWebWidget();
 
-  RSSListing *rssl_;
+  MainWindow *mainWindow_;
   QSqlDatabase db_;
   QWidget *newsWidget_;
 

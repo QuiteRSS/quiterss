@@ -16,7 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "filterrulesdialog.h"
-#include "rsslisting.h"
+
+#include "mainapplication.h"
 #include "settings.h"
 
 FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
@@ -76,8 +77,7 @@ FilterRulesDialog::FilterRulesDialog(QWidget *parent, int filterId, int feedId)
       if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
       } else {
-        RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-        if (byteArray.isNull() || rssl_->defaultIconFeeds_) {
+        if (byteArray.isNull() || mainApp->mainWindow()->defaultIconFeeds_) {
           iconItem.load(":/images/feed");
         } else {
           iconItem.loadFromData(QByteArray::fromBase64(byteArray));
@@ -528,8 +528,8 @@ ItemAction *FilterRulesDialog::addAction()
   while (q.next()) {
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
-    if ((idLabel <= 6) && (RSSListing::nameLabels().at(idLabel-1) == nameLabel)) {
-      nameLabel = RSSListing::trNameLabels().at(idLabel-1);
+    if ((idLabel <= 6) && (MainWindow::nameLabels().at(idLabel-1) == nameLabel)) {
+      nameLabel = MainWindow::trNameLabels().at(idLabel-1);
     }
     QByteArray byteArray = q.value(2).toByteArray();
     QPixmap imageLabel;

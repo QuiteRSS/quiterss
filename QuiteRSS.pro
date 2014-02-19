@@ -71,7 +71,6 @@ TEMPLATE = app
 
 HEADERS += \
     src/VersionNo.h \
-    src/rsslisting.h \
     src/parseobject.h \
     src/optionsdialog.h \
     src/newsview.h \
@@ -120,16 +119,15 @@ HEADERS += \
     src/notifications/notificationswidget.h \
     src/app/mainapplication.h \
     src/app/settings.h \
-    src/app/logfile.h
+    src/app/logfile.h \
+    src/app/mainwindow.h
 
 SOURCES += \
-    src/rsslisting.cpp \
     src/parseobject.cpp \
     src/optionsdialog.cpp \
     src/newsview.cpp \
     src/newsmodel.cpp \
     src/newsheader.cpp \
-    src/main.cpp \
     src/delegatewithoutfocus.cpp \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
@@ -172,13 +170,17 @@ SOURCES += \
     src/notifications/notificationswidget.cpp \
     src/app/mainapplication.cpp \
     src/app/settings.cpp \
-    src/app/logfile.cpp
+    src/app/logfile.cpp \
+    src/app/mainwindow.cpp \
+    src/main/main.cpp
 
-INCLUDEPATH +=  $$PWD/src/downloads \
-                $$PWD/src/plugins \
-                $$PWD/src/notifications \
+INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/app \
-                $$PWD/src \
+                $$PWD/src/main \
+                $$PWD/src/downloads \
+                $$PWD/src/notifications \
+                $$PWD/src/plugins \
+
 
 isEqual(QT_MAJOR_VERSION, 5) {
   include(3rdparty/qftp/qftp.pri)

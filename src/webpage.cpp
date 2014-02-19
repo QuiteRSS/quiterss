@@ -18,7 +18,6 @@
 #include "webpage.h"
 
 #include "mainapplication.h"
-#include "rsslisting.h"
 #include "webpluginfactory.h"
 
 #include <QAction>
@@ -28,15 +27,9 @@
 WebPage::WebPage(QObject *parent)
   : QWebPage(parent)
 {
-  QObject *parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  rssl_ = qobject_cast<RSSListing*>(parent_);
-
   setNetworkAccessManager(mainApp->networkManager());
 
-  setPluginFactory(new WebPluginFactory(this, rssl_));
+  setPluginFactory(new WebPluginFactory(this));
   setForwardUnsupportedContent(true);
 
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
@@ -61,7 +54,7 @@ QWebPage *WebPage::createWindow(WebWindowType type)
 {
   Q_UNUSED(type)
 
-  return rssl_->createWebTab();
+  return mainApp->mainWindow()->createWebTab();
 }
 
 void WebPage::scheduleAdjustPage()
@@ -98,7 +91,7 @@ void WebPage::slotLoadFinished()
 
 void WebPage::downloadRequested(const QNetworkRequest &request)
 {
-  rssl_->downloadManager_->download(request);
+  mainApp->mainWindow()->downloadManager_->download(request);
 }
 
 void WebPage::handleUnsupportedContent(QNetworkReply* reply)
@@ -123,7 +116,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
           return;
         }
       }
-      rssl_->downloadManager_->handleUnsupportedContent(reply, rssl_->askDownloadLocation_);
+      mainApp->mainWindow()->downloadManager_->handleUnsupportedContent(reply, mainApp->mainWindow()->askDownloadLocation_);
       return;
     }
 

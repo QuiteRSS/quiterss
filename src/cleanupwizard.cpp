@@ -16,7 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "cleanupwizard.h"
-#include "rsslisting.h"
+
+#include "mainapplication.h"
 #include "settings.h"
 
 #if defined(Q_OS_WIN)
@@ -275,8 +276,8 @@ QWizardPage *CleanUpWizard::createChooseFeedsPage()
         iconItem.load(":/images/folder");
       }
       else {
-        RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
-        if (byteArray.isNull() || rssl->defaultIconFeeds_) {
+        MainWindow *mainWindow = mainApp->mainWindow();
+        if (byteArray.isNull() || mainWindow->defaultIconFeeds_) {
           iconItem.load(":/images/feed");
         }
         else {
@@ -471,24 +472,24 @@ void CleanUpWizard::finishButtonClicked()
 
 void CleanUpWizard::finishCleanUp()
 {
-  RSSListing *rssl = qobject_cast<RSSListing*>(parentWidget());
   int feedId = -1;
+  MainWindow *mainWindow = mainApp->mainWindow();
 
   feedsTree_->expandAll();
   QTreeWidgetItem *treeItem = feedsTree_->itemBelow(feedsTree_->topLevelItem(0));
   while (treeItem) {
     if (treeItem->checkState(0) == Qt::Checked) {
-      if (rssl->currentNewsTab->feedId_ == treeItem->text(1).toInt())
+      if (mainWindow->currentNewsTab->feedId_ == treeItem->text(1).toInt())
         feedId = treeItem->text(1).toInt();
     }
     treeItem = feedsTree_->itemBelow(treeItem);
   }
   if (feedId != -1)
-    rssl->slotUpdateNews();
-  rssl->slotUpdateStatus(feedId, false);
+    mainWindow->slotUpdateNews();
+  mainWindow->slotUpdateStatus(feedId, false);
 
-  rssl->feedsModelReload();
-  rssl->recountCategoryCounts();
+  mainWindow->feedsModelReload();
+  mainWindow->recountCategoryCounts();
 
   Settings settings;
   settings.beginGroup("CleanUpWizard");

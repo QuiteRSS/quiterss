@@ -21,8 +21,6 @@
 #include <QNetworkAccessManager>
 #include <QWebPage>
 
-class RSSListing;
-
 class WebPage : public QWebPage
 {
   Q_OBJECT
@@ -43,9 +41,6 @@ protected slots:
 private slots:
   void slotLoadFinished();
   void downloadRequested(const QNetworkRequest &request);
-
-private:
-  RSSListing *rssl_;
 
 };
 

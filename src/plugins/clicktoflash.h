@@ -75,8 +75,8 @@ class ClickToFlash : public QWidget
 
 public:
   explicit ClickToFlash(const QUrl &pluginUrl, const QStringList &argumentNames,
-                        const QStringList &argumentValues, WebPage* parentPage,
-                        QObject *parent);
+                        const QStringList &argumentValues, WebPage *parentPage,
+                        QWidget *parent = 0);
 
   static bool isAlreadyAccepted(const QUrl &url, const QStringList &argumentNames,
                                 const QStringList &argumentValues);
@@ -109,7 +109,6 @@ private:
   static QStringList acceptedArgValues;
 
   WebPage* page_;
-  QObject *parent_;
 };
 
 #endif // CLICKTOFLASH_H

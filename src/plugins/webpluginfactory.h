@@ -25,7 +25,7 @@ class WebPage;
 class WebPluginFactory : public QWebPluginFactory
 {
 public:
-  WebPluginFactory(WebPage *page, QObject *parent);
+  WebPluginFactory(WebPage *page);
 
   virtual QObject *create(const QString &mimeType, const QUrl &url,
                           const QStringList &argumentNames,
@@ -34,6 +34,6 @@ public:
 
 private:
   WebPage *page_;
-  QObject *parent_;
+
 };
 #endif // WEB_PLUGIN_FACTORY_H

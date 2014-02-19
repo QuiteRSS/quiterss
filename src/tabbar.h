@@ -24,13 +24,11 @@
 #include <QtGui>
 #endif
 
-class RSSListing;
-
 class TabBar : public QTabBar
 {
   Q_OBJECT
 public:
-  explicit TabBar(RSSListing* rssl);
+  explicit TabBar(QWidget *parent = 0);
 
   enum CloseTabsState {
     CloseTabIdle = 0,
@@ -57,7 +55,6 @@ private slots:
   void showContextMenuTabBar(const QPoint &pos);
 
 private:
-  RSSListing* rssl_;
   int indexClickedTab_;
   bool tabFixed_;
 

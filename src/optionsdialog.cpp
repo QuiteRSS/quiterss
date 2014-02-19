@@ -19,7 +19,6 @@
 
 #include "mainapplication.h"
 #include "labeldialog.h"
-#include "rsslisting.h"
 #include "settings.h"
 #include "VersionNo.h"
 
@@ -486,8 +485,6 @@ void OptionsDialog::createNetworkConnectionsWidget()
  *----------------------------------------------------------------------------*/
 void OptionsDialog::createBrowserWidget()
 {
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-
   //! tab "General"
   embeddedBrowserOn_ = new QRadioButton(tr("Use embedded browser"));
   externalBrowserOn_ = new QRadioButton(tr("Use external browser"));
@@ -698,8 +695,8 @@ void OptionsDialog::createBrowserWidget()
   QWidget *click2FlashWidget_ = new QWidget(this);
   click2FlashWidget_->setLayout(click2FlashLayout);
 
-  c2fEnabled_->setChecked(rssl_->c2fEnabled_);
-  foreach(const QString & site, rssl_->c2fWhitelist_) {
+  c2fEnabled_->setChecked(mainApp->mainWindow()->c2fEnabled_);
+  foreach(const QString & site, mainApp->mainWindow()->c2fWhitelist_) {
     QTreeWidgetItem* item = new QTreeWidgetItem(c2fWhitelist_);
     item->setText(0, site);
   }
@@ -2147,11 +2144,10 @@ void OptionsDialog::selectionBrowser()
 //----------------------------------------------------------------------------
 void OptionsDialog::applyWhitelist()
 {
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  rssl_->c2fEnabled_ = c2fEnabled_->isChecked();
-  rssl_->c2fWhitelist_.clear();
+  mainApp->mainWindow()->c2fEnabled_ = c2fEnabled_->isChecked();
+  mainApp->mainWindow()->c2fWhitelist_.clear();
   for (int i = 0; i < c2fWhitelist_->topLevelItemCount(); i++) {
-    rssl_->c2fWhitelist_.append(c2fWhitelist_->topLevelItem(i)->text(0));
+    mainApp->mainWindow()->c2fWhitelist_.append(c2fWhitelist_->topLevelItem(i)->text(0));
   }
 }
 //----------------------------------------------------------------------------
@@ -2217,8 +2213,8 @@ void OptionsDialog::loadLabels()
   while (q.next()) {
     int idLabel = q.value(0).toInt();
     QString nameLabel = q.value(1).toString();
-    if ((idLabel <= 6) && (RSSListing::nameLabels().at(idLabel-1) == nameLabel)) {
-      nameLabel = RSSListing::trNameLabels().at(idLabel-1);
+    if ((idLabel <= 6) && (MainWindow::nameLabels().at(idLabel-1) == nameLabel)) {
+      nameLabel = MainWindow::trNameLabels().at(idLabel-1);
     }
     QByteArray byteArray = q.value(2).toByteArray();
     QString colorText = q.value(3).toString();
@@ -2452,8 +2448,8 @@ void OptionsDialog::applyLabels()
       }
     } else {
       QString nameLabel = treeItems.at(0)->text(1);
-      if ((idLabel.toInt() <= 6) && (RSSListing::trNameLabels().at(idLabel.toInt()-1) == nameLabel)) {
-        nameLabel = RSSListing::nameLabels().at(idLabel.toInt()-1);
+      if ((idLabel.toInt() <= 6) && (MainWindow::trNameLabels().at(idLabel.toInt()-1) == nameLabel)) {
+        nameLabel = MainWindow::nameLabels().at(idLabel.toInt()-1);
       }
       QPixmap icon = treeItems.at(0)->icon(1).pixmap(16, 16);
       QByteArray iconData;
@@ -2507,7 +2503,6 @@ void OptionsDialog::loadNotifier()
 
   itemNotChecked_ = true;
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
   QSqlQuery q;
   QQueue<int> parentIds;
   parentIds.enqueue(0);
@@ -2546,7 +2541,7 @@ void OptionsDialog::loadNotifier()
       if (xmlUrl.isEmpty()) {
         iconItem.load(":/images/folder");
       } else {
-        if (byteArray.isNull() || rssl_->defaultIconFeeds_) {
+        if (byteArray.isNull() || mainApp->mainWindow()->defaultIconFeeds_) {
           iconItem.load(":/images/feed");
         } else {
           iconItem.loadFromData(QByteArray::fromBase64(byteArray));
@@ -2569,8 +2564,7 @@ void OptionsDialog::loadNotifier()
 //----------------------------------------------------------------------------
 void OptionsDialog::applyNotifier()
 {
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
-  rssl_->idFeedsNotifyList_.clear();
+  mainApp->mainWindow()->idFeedsNotifyList_.clear();
 
   feedsTreeNotify_->expandAll();
   QTreeWidgetItem *treeWidgetItem =
@@ -2586,7 +2580,7 @@ void OptionsDialog::applyNotifier()
     q.exec(qStr);
 
     if (check && onlySelectedFeeds_->isChecked())
-      rssl_->idFeedsNotifyList_.append(treeWidgetItem->text(1).toInt());
+      mainApp->mainWindow()->idFeedsNotifyList_.append(treeWidgetItem->text(1).toInt());
 
     treeWidgetItem = feedsTreeNotify_->itemBelow(treeWidgetItem);
   }

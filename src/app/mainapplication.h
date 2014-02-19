@@ -29,10 +29,11 @@
 #include <QNetworkDiskCache>
 
 #include "cookiejar.h"
+#include "mainwindow.h"
 
 class NetworkManager;
-class RSSListing;
 class SplashScreen;
+class UpdateFeeds;
 
 class MainApplication : public QtSingleApplication
 {
@@ -41,7 +42,7 @@ public:
   explicit MainApplication(int &argc, char** argv);
   ~MainApplication();
 
-  static MainApplication *getInstance() { return static_cast<MainApplication*>(QCoreApplication::instance()); }
+  static MainApplication *getInstance();
 
   bool isPoratble() const;
   void setClosing();
@@ -55,15 +56,21 @@ public:
   bool storeDBMemory() const;
   bool isSaveDataLastFeed() const;
   bool removePath(const QString &path);
+  void sqlQueryExec(const QString &query);
 
-  RSSListing *mainWindow();
+  MainWindow *mainWindow();
   NetworkManager *networkManager();
   CookieJar *cookieJar();
   void setDiskCache();
+  UpdateFeeds *updateFeeds();
+  void runUserFilter(int feedId, int filterId);
 
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
+
+signals:
+  void signalSqlQueryExec(const QString &query);
 
 private slots:
   void commitData(QSessionManager &manager);
@@ -88,10 +95,11 @@ private:
   bool showSplashScreen_;
 
   SplashScreen *splashScreen_;
-  RSSListing *mainWindow_;
+  MainWindow *mainWindow_;
   NetworkManager *networkManager_;
   CookieJar *cookieJar_;
   QNetworkDiskCache *diskCache_;
+  UpdateFeeds *updateFeeds_;
 
 };
 

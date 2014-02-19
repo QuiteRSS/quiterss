@@ -55,7 +55,8 @@
 *
 * ============================================================ */
 #include "clicktoflash.h"
-#include "rsslisting.h"
+
+#include "mainapplication.h"
 #include "webpage.h"
 
 #include <QHBoxLayout>
@@ -74,14 +75,14 @@ QStringList ClickToFlash::acceptedArgValues;
 
 ClickToFlash::ClickToFlash(const QUrl &pluginUrl,
                            const QStringList &argumentNames,
-                           const QStringList &argumentValues, WebPage* parentPage,
-                           QObject *parent)
-  : QWidget()
+                           const QStringList &argumentValues,
+                           WebPage *parentPage,
+                           QWidget *parent)
+  : QWidget(parent)
   , argumentNames_(argumentNames)
   , argumentValues_(argumentValues)
   , url_(pluginUrl)
   , page_(parentPage)
-  , parent_(parent)
 {
   frame_ = new QFrame(this);
   frame_->setObjectName("click2flash-frame");
@@ -136,8 +137,7 @@ void ClickToFlash::customContextMenuRequested(const QPoint &pos)
 
 void ClickToFlash::toWhitelist()
 {
-  RSSListing *rss_ = qobject_cast<RSSListing*>(parent_);
-  rss_->c2fWhitelist_.append(url_.host());
+  mainApp->mainWindow()->c2fWhitelist_.append(url_.host());
   load();
 }
 

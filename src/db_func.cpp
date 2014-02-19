@@ -23,7 +23,7 @@
 #include <QtSql>
 
 #include "VersionNo.h"
-#include "rsslisting.h"
+#include "mainwindow.h"
 #include "settings.h"
 
 QString kDbName    = "feeds.db";  ///< DB filename
@@ -380,7 +380,7 @@ void initLabelsTable(QSqlDatabase *db)
   for (int i = 0; i < 6; i++) {
     q.prepare("INSERT INTO labels(name, image) "
               "VALUES (:name, :image)");
-    q.bindValue(":name", RSSListing::nameLabels().at(i));
+    q.bindValue(":name", MainWindow::nameLabels().at(i));
 
     QFile file(QString(":/images/label_%1").arg(i+1));
     file.open(QFile::ReadOnly);

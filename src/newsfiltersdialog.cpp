@@ -16,8 +16,9 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "newsfiltersdialog.h"
+
+#include "mainapplication.h"
 #include "filterrulesdialog.h"
-#include "rsslisting.h"
 #include "parseobject.h"
 #include "settings.h"
 
@@ -375,7 +376,7 @@ void NewsFiltersDialog::applyFilter()
   int filterId = filtersTree_->topLevelItem(filterRow)->text(0).toInt();
   int feedId = -1;
 
-  RSSListing *rssl_ = qobject_cast<RSSListing*>(parentWidget());
+  MainWindow *mainWindow = mainApp->mainWindow();
   QSqlQuery q;
   QString qStr = QString("SELECT feeds FROM filters WHERE id='%1'").
       arg(filterId);
@@ -384,16 +385,16 @@ void NewsFiltersDialog::applyFilter()
     QStringList strIdFeeds = q.value(0).toString().split(",", QString::SkipEmptyParts);
     q.finish();
     foreach (QString strIdFeed, strIdFeeds) {
-      rssl_->runUserFilter(strIdFeed.toInt(), filterId);
-      NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(rssl_->stackedWidget_->currentWidget());
+      mainApp->runUserFilter(strIdFeed.toInt(), filterId);
+      NewsTabWidget *widget = qobject_cast<NewsTabWidget*>(mainWindow->stackedWidget_->currentWidget());
       if (widget->feedId_ == strIdFeed.toInt()) feedId = strIdFeed.toInt();
     }
   }
 
   if (feedId != -1)
-    rssl_->slotUpdateNews();
-  rssl_->slotUpdateStatus(feedId);
-  rssl_->recountCategoryCounts();
+    mainWindow->slotUpdateNews();
+  mainWindow->slotUpdateStatus(feedId);
+  mainWindow->recountCategoryCounts();
 
   QApplication::restoreOverrideCursor();
 }

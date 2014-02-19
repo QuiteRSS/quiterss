@@ -20,13 +20,10 @@
 #include "mainapplication.h"
 #include "authenticationdialog.h"
 #include "downloaditem.h"
-#include "rsslisting.h"
 
 DownloadManager::DownloadManager(QWidget *parent)
-  : QWidget()
+  : QWidget(parent)
 {
-  rssl_ = qobject_cast<RSSListing*>(parent);
-
   networkManager_ = new NetworkManager(this);
 
   listWidget_ = new QListWidget();
@@ -82,9 +79,10 @@ void DownloadManager::download(const QNetworkRequest &request)
 void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDownloadLocation)
 {
   QString fileName(getFileName(reply));
-  fileName = rssl_->downloadLocation_ + "/" + fileName;
+  fileName = mainApp->mainWindow()->downloadLocation_ + "/" + fileName;
   QFileInfo fileInfo(fileName);
-  if (askDownloadLocation || !QFile::exists(rssl_->downloadLocation_) || fileInfo.exists()) {
+  if (askDownloadLocation || fileInfo.exists() ||
+      !QFile::exists(mainApp->mainWindow()->downloadLocation_)) {
     QString filter = QString(tr("File %1 (*.%2)") + ";;" + tr("All Files (*.*)")).
         arg(fileInfo.suffix().toUpper()).
         arg(fileInfo.suffix().toLower());

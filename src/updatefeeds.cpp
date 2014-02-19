@@ -18,7 +18,6 @@
 #include "updatefeeds.h"
 
 #include "mainapplication.h"
-#include "rsslisting.h"
 #include "settings.h"
 
 #include <QDebug>
@@ -36,12 +35,6 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   , getFaviconThread_(NULL)
   , addFeed_(addFeed)
 {
-  QObject *parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
-
   getFeedThread_ = new QThread();
   getFeedThread_->setObjectName("getFeedThread_");
   updateFeedThread_ = new QThread();
@@ -54,7 +47,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
 
   requestFeed_ = new RequestFeed(timeoutRequest, numberRequests, numberRepeats);
 
-  parseObject_ = new ParseObject(parent);
+  parseObject_ = new ParseObject();
 
   if (addFeed_) {
     connect(parent, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
@@ -70,7 +63,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     getFaviconThread_ = new QThread();
     getFaviconThread_->setObjectName("getFaviconThread_");
 
-    updateObject_ = new UpdateObject(parent);
+    updateObject_ = new UpdateObject();
     faviconObject_ = new FaviconObject();
 
     connect(updateObject_, SIGNAL(signalRequestUrl(int,QString,QDateTime,QString)),
@@ -164,7 +157,7 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
     connect(updateObject_, SIGNAL(signalSetFeedsFilter(bool)),
             parent, SLOT(setFeedsFilter(bool)));
 
-    connect(parent, SIGNAL(signalSqlQueryExec(QString)),
+    connect(mainApp, SIGNAL(signalSqlQueryExec(QString)),
             updateObject_, SLOT(slotSqlQueryExec(QString)));
 
     // faviconObject_
@@ -184,10 +177,10 @@ UpdateFeeds::UpdateFeeds(QObject *parent, bool addFeed)
   }
 
   connect(requestFeed_, SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
-          rssl, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
+          mainApp->mainWindow(), SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
   connect(requestFeed_, SIGNAL(proxyAuthenticationRequired(QNetworkProxy,QAuthenticator*)),
-          rssl, SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)),
+          mainApp->mainWindow(), SLOT(slotProxyAuthentication(QNetworkProxy,QAuthenticator*)),
           Qt::BlockingQueuedConnection);
 
   requestFeed_->moveToThread(getFeedThread_);
@@ -222,16 +215,12 @@ UpdateFeeds::~UpdateFeeds()
 
 //------------------------------------------------------------------------------
 UpdateObject::UpdateObject(QObject *parent)
-  : QObject(0)
+  : QObject(parent)
   , updateFeedsCount_(0)
 {
   setObjectName("updateObject_");
 
-  QObject *parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  rssl_ = qobject_cast<RSSListing*>(parent_);
+  mainWindow_ = mainApp->mainWindow();
 
   if (mainApp->storeDBMemory()) {
     db_ = QSqlDatabase::database();
@@ -540,7 +529,7 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
   q.exec(qStr);
 
   if (changed) {
-    if (rssl_->currentNewsTab->type_ == NewsTabWidget::TabTypeFeed) {
+    if (mainWindow_->currentNewsTab->type_ == NewsTabWidget::TabTypeFeed) {
       bool folderUpdate = false;
       int feedParentId = 0;
 
@@ -548,33 +537,35 @@ void UpdateObject::finishUpdate(int feedId, bool changed, int newCount, QString 
       q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
       if (q.first()) {
         feedParentId = q.value(0).toInt();
-        if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+        if (feedParentId == mainWindow_->currentNewsTab->feedId_)
+          folderUpdate = true;
       }
 
       while (feedParentId && !folderUpdate) {
         q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
         if (q.first()) {
           feedParentId = q.value(0).toInt();
-          if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+          if (feedParentId == mainWindow_->currentNewsTab->feedId_)
+            folderUpdate = true;
         }
       }
 
       // Click on feed if it is displayed to update view
-      if ((feedId == rssl_->currentNewsTab->feedId_) || folderUpdate) {
+      if ((feedId == mainWindow_->currentNewsTab->feedId_) || folderUpdate) {
         if (!timerUpdateNews_->isActive())
           timerUpdateNews_->start(1000);
 
         int unreadCount = 0;
         int allCount = 0;
         q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
-               arg(rssl_->currentNewsTab->feedId_));
+               arg(mainWindow_->currentNewsTab->feedId_));
         if (q.first()) {
           unreadCount = q.value(0).toInt();
           allCount    = q.value(1).toInt();
         }
         emit signalCountsStatusBar(unreadCount, allCount);
       }
-    } else if (rssl_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
+    } else if (mainWindow_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb) {
       if (!timerUpdateNews_->isActive())
         timerUpdateNews_->start(1000);
     }
@@ -895,9 +886,9 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     db_.transaction();
     QSqlQuery q(db_);
     QString idFeedsStr = getIdFeedsString(feedId, idException);
-    if (((readType == FeedReadSwitchingFeed) && rssl_->markReadSwitchingFeed_) ||
-        ((readType == FeedReadClosingTab) && rssl_->markReadClosingTab_) ||
-        ((readType == FeedReadPlaceToTray) && rssl_->markReadMinimize_)) {
+    if (((readType == FeedReadSwitchingFeed) && mainWindow_->markReadSwitchingFeed_) ||
+        ((readType == FeedReadClosingTab) && mainWindow_->markReadClosingTab_) ||
+        ((readType == FeedReadPlaceToTray) && mainWindow_->markReadMinimize_)) {
       if (idFeedsStr == "feedId=-1") {
         q.exec(QString("UPDATE news SET read=2 WHERE feedId='%1' AND read!=2").arg(feedId));
       } else {
@@ -915,7 +906,7 @@ void UpdateObject::slotSetFeedRead(int readType, int feedId, int idException, QL
     } else {
       q.exec(QString("UPDATE news SET new=0 WHERE (%1) AND new=1").arg(idFeedsStr));
     }
-    if (rssl_->markNewsReadOn_ && rssl_->markPrevNewsRead_)
+    if (mainWindow_->markNewsReadOn_ && mainWindow_->markPrevNewsRead_)
       q.exec(QString("UPDATE news SET read=2 WHERE id IN (SELECT currentNews FROM feeds WHERE id='%1')").arg(feedId));
     db_.commit();
 
@@ -990,23 +981,23 @@ void UpdateObject::slotUpdateStatus(int feedId, bool changed)
     q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedId));
     if (q.next()) {
       feedParentId = q.value(0).toInt();
-      if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+      if (feedParentId == mainWindow_->currentNewsTab->feedId_) folderUpdate = true;
     }
 
     while (feedParentId && !folderUpdate) {
       q.exec(QString("SELECT parentId FROM feeds WHERE id==%1").arg(feedParentId));
       if (q.next()) {
         feedParentId = q.value(0).toInt();
-        if (feedParentId == rssl_->currentNewsTab->feedId_) folderUpdate = true;
+        if (feedParentId == mainWindow_->currentNewsTab->feedId_) folderUpdate = true;
       }
     }
 
     // Click on feed if it is displayed to update view
-    if ((feedId == rssl_->currentNewsTab->feedId_) || folderUpdate) {
+    if ((feedId == mainWindow_->currentNewsTab->feedId_) || folderUpdate) {
       int unreadCount = 0;
       int allCount = 0;
       q.exec(QString("SELECT unread, undeleteCount FROM feeds WHERE id=='%1'").
-             arg(rssl_->currentNewsTab->feedId_));
+             arg(mainWindow_->currentNewsTab->feedId_));
       if (q.next()) {
         unreadCount = q.value(0).toInt();
         allCount    = q.value(1).toInt();
@@ -1077,7 +1068,7 @@ void UpdateObject::slotMarkAllFeedsOld()
   }
   slotRecountCategoryCounts();
 
-  if ((rssl_->currentNewsTab != NULL) && (rssl_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
+  if ((mainWindow_->currentNewsTab != NULL) && (mainWindow_->currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)) {
     emit signalUpdateNews();
   }
 
@@ -1086,7 +1077,7 @@ void UpdateObject::slotMarkAllFeedsOld()
 
 void UpdateObject::slotRefreshInfoTray()
 {
-  if (!rssl_->showTrayIcon_) return;
+  if (!mainWindow_->showTrayIcon_) return;
 
   // Calculate new and unread news number
   int newCount = 0;

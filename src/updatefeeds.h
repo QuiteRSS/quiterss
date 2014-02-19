@@ -27,7 +27,7 @@
 #include "faviconobject.h"
 
 class UpdateObject;
-class RSSListing;
+class MainWindow;
 
 class UpdateFeeds : public QObject
 {
@@ -53,7 +53,7 @@ class UpdateObject : public QObject
 {
   Q_OBJECT
 public:
-  explicit UpdateObject(QObject *parent);
+  explicit UpdateObject(QObject *parent = 0);
 
   static QList<int> getIdFeedsInList(int idFolder);
   static QString getIdFeedsString(int idFolder, int idException = -1);
@@ -109,7 +109,7 @@ private slots:
                       const QDateTime &date, int auth);
 
 private:
-  RSSListing *rssl_;
+  MainWindow *mainWindow_;
   QSqlDatabase db_;
   QList<int> feedIdList_;
   int updateFeedsCount_;

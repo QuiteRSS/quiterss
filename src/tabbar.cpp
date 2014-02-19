@@ -16,12 +16,12 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "tabbar.h"
-#include "rsslisting.h"
 
-TabBar::TabBar(RSSListing* rssl)
-  : QTabBar()
+#include "mainapplication.h"
+
+TabBar::TabBar(QWidget *parent)
+  : QTabBar(parent)
   , closingTabState_(CloseTabIdle)
-  , rssl_(rssl)
   , indexClickedTab_(-1)
   , tabFixed_(false)
 {
@@ -78,9 +78,9 @@ void TabBar::showContextMenuTabBar(const QPoint &pos)
   if (indexClickedTab_ == -1) return;
 
   QMenu menu;
-  menu.addAction(rssl_->closeTabAct_);
-  menu.addAction(rssl_->closeOtherTabsAct_);
-  menu.addAction(rssl_->closeAllTabsAct_);
+  menu.addAction(mainApp->mainWindow()->closeTabAct_);
+  menu.addAction(mainApp->mainWindow()->closeOtherTabsAct_);
+  menu.addAction(mainApp->mainWindow()->closeAllTabsAct_);
 
   menu.exec(mapToGlobal(pos));
 

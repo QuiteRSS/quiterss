@@ -27,7 +27,6 @@
 
 #include "newsmodel.h"
 
-class RSSListing;
 class NewsTabWidget;
 
 class NewsHeader : public QHeaderView
@@ -39,8 +38,8 @@ public:
 
   void init();
   void retranslateStrings();
-  void setColumns(RSSListing *rssl, const QModelIndex &indexFeed = QModelIndex());
-  void saveStateColumns(RSSListing *rssl, NewsTabWidget *newsTabWidget);
+  void setColumns(const QModelIndex &indexFeed = QModelIndex());
+  void saveStateColumns(NewsTabWidget *newsTabWidget);
 
   QMenu *viewMenu_;
 

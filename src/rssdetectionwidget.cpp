@@ -17,7 +17,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "rssdetectionwidget.h"
-#include "rsslisting.h"
+
+#include "mainapplication.h"
 #include "webview.h"
 
 #include <QToolTip>
@@ -110,12 +111,7 @@ void RSSDetectionWidget::addRss()
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(url.toString());
 
-    QObject *parent_ = parent();
-    while(parent_->parent()) {
-      parent_ = parent_->parent();
-    }
-    RSSListing *rssl = qobject_cast<RSSListing*>(parent_);
-    rssl->addFeed();
+    mainApp->mainWindow()->addFeed();
 
     close();
   }

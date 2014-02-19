@@ -18,7 +18,6 @@
 #include "parseobject.h"
 
 #include "mainapplication.h"
-#include "rsslisting.h"
 #include "VersionNo.h"
 
 #include <QDebug>
@@ -30,16 +29,10 @@
 #endif
 
 ParseObject::ParseObject(QObject *parent)
-  : QObject(0)
+  : QObject(parent)
   , currentFeedId_(0)
 {
   setObjectName("parseObject_");
-
-  QObject *parent_ = parent;
-  while(parent_->parent()) {
-    parent_ = parent_->parent();
-  }
-  rssl_ = qobject_cast<RSSListing*>(parent_);
 
   if (mainApp->storeDBMemory()) {
     db_ = QSqlDatabase::database();
@@ -387,7 +380,7 @@ void ParseObject::addAtomNewsIntoBase(NewsItemStruct &newsItem)
     // if duplicates not found, add news into base
     if (!q.first()) {
       bool read = false;
-      if (rssl_->markIdenticalNewsRead_) {
+      if (mainApp->mainWindow()->markIdenticalNewsRead_) {
         q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
         q.bindValue(":id", parseFeedId_);
         q.bindValue(":title", newsItem.title);
@@ -561,7 +554,7 @@ void ParseObject::addRssNewsIntoBase(NewsItemStruct &newsItem)
     // if duplicates not found, add news into base
     if (!q.first()) {
       bool read = false;
-      if (rssl_->markIdenticalNewsRead_) {
+      if (mainApp->mainWindow()->markIdenticalNewsRead_) {
         q.prepare("SELECT id FROM news WHERE title LIKE :title AND feedId!=:id");
         q.bindValue(":id", parseFeedId_);
         q.bindValue(":title", newsItem.title);
