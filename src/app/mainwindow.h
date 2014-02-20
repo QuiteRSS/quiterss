@@ -74,7 +74,8 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
 
-  static bool removePath(const QString &path);
+  void loadSettings();
+  void saveSettings();
 
   bool showSplashScreen_;
   bool showTrayIcon_;
@@ -239,8 +240,6 @@ public:
 
   int openNewsTab_;
 
-  QStringList c2fWhitelist_;
-  bool c2fEnabled_;
   QString userStyleBrowser_;
 
   int positionNotify_;
@@ -270,7 +269,7 @@ public slots:
   void slotPlaceToTray();
   void slotActivationTray(QSystemTrayIcon::ActivationReason reason);
   void showWindows(bool trayClick = false);
-  void slotClose();
+  void quitApp();
   void myEmptyWorkingSet();
   void slotUpdateFeed(int feedId, bool changed, int newCount, bool finish);
   void slotFeedCountsUpdate(FeedCountStruct counts);
@@ -311,11 +310,6 @@ signals:
   void signalMarkFeedRead(int id, bool isFolder, bool openFeed);
   void signalSetFeedsFilter(bool clicked = false);
   void signalMarkAllFeedsOld();
-
-protected:
-  bool eventFilter(QObject *obj, QEvent *ev);
-  virtual void closeEvent(QCloseEvent*);
-  virtual void changeEvent(QEvent*);
 
 private slots:
   void slotTimerLinkOpening();
@@ -470,6 +464,10 @@ private slots:
   void showSettingPageLabels();
 
 private:
+  void closeEvent(QCloseEvent *event);
+  bool eventFilter(QObject *obj, QEvent *event);
+  void changeEvent(QEvent *event);
+
   QNetworkProxy networkProxy_;
   DBMemFileThread *dbMemFileThread_;
 
@@ -483,8 +481,6 @@ private:
   void saveActionShortcuts();
   void createMenu();
   void createToolBar();
-  void readSettings ();
-  void writeSettings();
   void createTrayMenu();
   void createStatusBar();
   void createTray();

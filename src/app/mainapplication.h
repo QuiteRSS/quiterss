@@ -65,6 +65,14 @@ public:
   UpdateFeeds *updateFeeds();
   void runUserFilter(int feedId, int filterId);
 
+  void c2fLoadSettings();
+  void c2fSaveSettings();
+  bool c2fIsEnabled() const;
+  void c2fSetEnabled(bool enabled);
+  QStringList c2fGetWhitelist();
+  void c2fSetWhitelist(QStringList whitelist);
+  void c2fAddWhitelist(const QString &site);
+
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
@@ -78,6 +86,7 @@ private slots:
 private:
   void checkPortable();
   void checkDir();
+  void createSettings();
   void loadSettings();
   void setStyleApplication();
   void showSplashScreen();
@@ -100,6 +109,9 @@ private:
   CookieJar *cookieJar_;
   QNetworkDiskCache *diskCache_;
   UpdateFeeds *updateFeeds_;
+
+  QStringList c2fWhitelist_;
+  bool c2fEnabled_;
 
 };
 

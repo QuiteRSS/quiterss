@@ -695,8 +695,8 @@ void OptionsDialog::createBrowserWidget()
   QWidget *click2FlashWidget_ = new QWidget(this);
   click2FlashWidget_->setLayout(click2FlashLayout);
 
-  c2fEnabled_->setChecked(mainApp->mainWindow()->c2fEnabled_);
-  foreach(const QString & site, mainApp->mainWindow()->c2fWhitelist_) {
+  c2fEnabled_->setChecked(mainApp->c2fIsEnabled());
+  foreach(const QString & site, mainApp->c2fGetWhitelist()) {
     QTreeWidgetItem* item = new QTreeWidgetItem(c2fWhitelist_);
     item->setText(0, site);
   }
@@ -2144,11 +2144,12 @@ void OptionsDialog::selectionBrowser()
 //----------------------------------------------------------------------------
 void OptionsDialog::applyWhitelist()
 {
-  mainApp->mainWindow()->c2fEnabled_ = c2fEnabled_->isChecked();
-  mainApp->mainWindow()->c2fWhitelist_.clear();
+  mainApp->c2fSetEnabled(c2fEnabled_->isChecked());
+  QStringList whitelist;
   for (int i = 0; i < c2fWhitelist_->topLevelItemCount(); i++) {
-    mainApp->mainWindow()->c2fWhitelist_.append(c2fWhitelist_->topLevelItem(i)->text(0));
+    whitelist.append(c2fWhitelist_->topLevelItem(i)->text(0));
   }
+  mainApp->c2fSetWhitelist(whitelist);
 }
 //----------------------------------------------------------------------------
 void OptionsDialog::selectionSoundNotifer()

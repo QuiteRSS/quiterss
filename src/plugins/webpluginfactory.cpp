@@ -57,12 +57,12 @@ QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
     return 0;
   }
 
-  if (!mainApp->mainWindow()->c2fEnabled_) {
+  if (!mainApp->c2fIsEnabled()) {
     return 0;
   }
 
   // Click2Flash whitelist
-  QStringList whitelist = mainApp->mainWindow()->c2fWhitelist_;
+  QStringList whitelist = mainApp->c2fGetWhitelist();
   if (whitelist.contains(url.host()) || whitelist.contains("www." + url.host()) || whitelist.contains(url.host().remove(QLatin1String("www.")))) {
     return 0;
   }

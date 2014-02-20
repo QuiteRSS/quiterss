@@ -153,7 +153,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   setStyleSheet("QMainWindow::separator { width: 1px; }");
 
-  readSettings();
+  loadSettings();
 
   addOurFeed();
 
@@ -195,30 +195,35 @@ MainWindow::~MainWindow()
 }
 
 // ---------------------------------------------------------------------------
-/*virtual*/ void MainWindow::closeEvent(QCloseEvent* event)
+void MainWindow::closeEvent(QCloseEvent *event)
 {
-  openingLink_ = false;
-  event->ignore();
+  if (mainApp->isClosing())
+    return;
 
   if (closingTray_ && showTrayIcon_) {
+    openingLink_ = false;
+
     oldState = windowState();
     emit signalPlaceToTray();
+
+    event->ignore();
   } else {
-    slotClose();
+    quitApp();
+
+    event->accept();
   }
 }
 
-/** @brief Process close application event
+/** @brief Process quit application
  *---------------------------------------------------------------------------*/
-void MainWindow::slotClose()
+void MainWindow::quitApp()
 {
   mainApp->setClosing();
   minimizeToTray_ = true;
 
   traySystem->hide();
   hide();
-  writeSettings();
-  mainApp->cookieJar()->saveCookies();
+  saveSettings();
 
   delete mainApp->updateFeeds();
 
@@ -238,7 +243,7 @@ void MainWindow::slotClose()
     delete dbMemFileThread_;
   }
 
-  mainApp->quitApplication();
+  QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
 }
 
 // ---------------------------------------------------------------------------
@@ -337,7 +342,7 @@ void MainWindow::slotTimerLinkOpening()
 
 /** @brief Process changing window state
  *---------------------------------------------------------------------------*/
-/*virtual*/ void MainWindow::changeEvent(QEvent *event)
+void MainWindow::changeEvent(QEvent *event)
 {
   if(event->type() == QEvent::WindowStateChange) {
     openingLink_ = false;
@@ -375,8 +380,7 @@ void MainWindow::slotPlaceToTray()
     emit signalMarkAllFeedsOld();
   clearNotification();
 
-  writeSettings();
-  mainApp->cookieJar()->saveCookies();
+  saveSettings();
 
   saveDBMemFile();
 
@@ -742,7 +746,7 @@ void MainWindow::createActions()
   exitAct_ = new QAction(this);
   exitAct_->setObjectName("exitAct");
   this->addAction(exitAct_);
-  connect(exitAct_, SIGNAL(triggered()), this, SLOT(slotClose()));
+  connect(exitAct_, SIGNAL(triggered()), this, SLOT(quitApp()));
 
   mainToolbarToggle_ = new QAction(this);
   mainToolbarToggle_->setCheckable(true);
@@ -1771,12 +1775,12 @@ void MainWindow::createToolBar()
   connect(toolBarHideAct_, SIGNAL(triggered()), this, SLOT(hideMainToolbar()));
 }
 
-/** @brief Read settings from ini-file
+/** @brief Load settings from ini-file
  *---------------------------------------------------------------------------*/
-void MainWindow::readSettings()
+void MainWindow::loadSettings()
 {
   Settings settings;
-  settings.beginGroup("/Settings");
+  settings.beginGroup("Settings");
 
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   reopenFeedStartup_ = settings.value("reopenFeedStartup", true).toBool();
@@ -1819,19 +1823,19 @@ void MainWindow::readSettings()
 
   langFileName_ = settings.value("langFileName", strLang).toString();
 
-  QString fontFamily = settings.value("/feedsFontFamily", qApp->font().family()).toString();
-  int fontSize = settings.value("/feedsFontSize", 8).toInt();
+  QString fontFamily = settings.value("feedsFontFamily", qApp->font().family()).toString();
+  int fontSize = settings.value("feedsFontSize", 8).toInt();
   feedsTreeView_->setFont(QFont(fontFamily, fontSize));
   feedsTreeModel_->font_ = feedsTreeView_->font();
 
-  newsListFontFamily_ = settings.value("/newsFontFamily", qApp->font().family()).toString();
-  newsListFontSize_ = settings.value("/newsFontSize", 8).toInt();
-  newsTitleFontFamily_ = settings.value("/newsTitleFontFamily", qApp->font().family()).toString();
-  newsTitleFontSize_ = settings.value("/newsTitleFontSize", 10).toInt();
-  newsTextFontFamily_ = settings.value("/newsTextFontFamily", qApp->font().family()).toString();
-  newsTextFontSize_ = settings.value("/newsTextFontSize", 10).toInt();
-  notificationFontFamily_ = settings.value("/notificationFontFamily", qApp->font().family()).toString();
-  notificationFontSize_ = settings.value("/notificationFontSize", 8).toInt();
+  newsListFontFamily_ = settings.value("newsFontFamily", qApp->font().family()).toString();
+  newsListFontSize_ = settings.value("newsFontSize", 8).toInt();
+  newsTitleFontFamily_ = settings.value("newsTitleFontFamily", qApp->font().family()).toString();
+  newsTitleFontSize_ = settings.value("newsTitleFontSize", 10).toInt();
+  newsTextFontFamily_ = settings.value("newsTextFontFamily", qApp->font().family()).toString();
+  newsTextFontSize_ = settings.value("newsTextFontSize", 10).toInt();
+  notificationFontFamily_ = settings.value("notificationFontFamily", qApp->font().family()).toString();
+  notificationFontSize_ = settings.value("notificationFontSize", 8).toInt();
 
   QString browserStandardFont = settings.value(
         "browserStandardFont", QWebSettings::globalSettings()->fontFamily(QWebSettings::StandardFont)).toString();
@@ -2056,11 +2060,6 @@ void MainWindow::readSettings()
 
   settings.endGroup();
 
-  settings.beginGroup("ClickToFlash");
-  c2fWhitelist_ = settings.value("whitelist", QStringList()).toStringList();
-  c2fEnabled_ = settings.value("enabled", true).toBool();
-  settings.endGroup();
-
   settings.beginGroup("Color");
   QString windowTextColor = qApp->palette().brush(QPalette::WindowText).color().name();
   QString linkTextColor = qApp->palette().brush(QPalette::Link).color().name();
@@ -2124,12 +2123,12 @@ void MainWindow::readSettings()
   setProxy(networkProxy_);
 }
 
-/** @brief Write settings in ini-file
+/** @brief Save settings in ini-file
  *---------------------------------------------------------------------------*/
-void MainWindow::writeSettings()
+void MainWindow::saveSettings()
 {
   Settings settings;
-  settings.beginGroup("/Settings");
+  settings.beginGroup("Settings");
 
   settings.setValue("showSplashScreen", showSplashScreen_);
   settings.setValue("reopenFeedStartup", reopenFeedStartup_);
@@ -2153,18 +2152,18 @@ void MainWindow::writeSettings()
   settings.setValue("langFileName", langFileName_);
 
   QString fontFamily = feedsTreeView_->font().family();
-  settings.setValue("/feedsFontFamily", fontFamily);
+  settings.setValue("feedsFontFamily", fontFamily);
   int fontSize = feedsTreeView_->font().pointSize();
-  settings.setValue("/feedsFontSize", fontSize);
+  settings.setValue("feedsFontSize", fontSize);
 
-  settings.setValue("/newsFontFamily", newsListFontFamily_);
-  settings.setValue("/newsFontSize", newsListFontSize_);
-  settings.setValue("/newsTitleFontFamily", newsTitleFontFamily_);
-  settings.setValue("/newsTitleFontSize", newsTitleFontSize_);
-  settings.setValue("/newsTextFontFamily", newsTextFontFamily_);
-  settings.setValue("/newsTextFontSize", newsTextFontSize_);
-  settings.setValue("/notificationFontFamily", notificationFontFamily_);
-  settings.setValue("/notificationFontSize", notificationFontSize_);
+  settings.setValue("newsFontFamily", newsListFontFamily_);
+  settings.setValue("newsFontSize", newsListFontSize_);
+  settings.setValue("newsTitleFontFamily", newsTitleFontFamily_);
+  settings.setValue("newsTitleFontSize", newsTitleFontSize_);
+  settings.setValue("newsTextFontFamily", newsTextFontFamily_);
+  settings.setValue("newsTextFontSize", newsTextFontSize_);
+  settings.setValue("notificationFontFamily", notificationFontFamily_);
+  settings.setValue("notificationFontSize", notificationFontSize_);
 
   settings.setValue("autoUpdatefeedsStartUp", updateFeedsStartUp_);
   settings.setValue("autoUpdatefeeds", updateFeedsEnable_);
@@ -2287,11 +2286,6 @@ void MainWindow::writeSettings()
   settings.setValue("focusedFeedBGColor", feedsTreeModel_->focusedFeedBGColor_);
   settings.endGroup();
 
-  settings.beginGroup("ClickToFlash");
-  settings.setValue("whitelist", c2fWhitelist_);
-  settings.setValue("enabled", c2fEnabled_);
-  settings.endGroup();
-
   settings.setValue("GeometryState", saveGeometry());
   settings.setValue("ToolBarsState", saveState());
 
@@ -2326,14 +2320,17 @@ void MainWindow::writeSettings()
   settings.setValue("networkProxy/user",     networkProxy_.user());
   settings.setValue("networkProxy/password", networkProxy_.password());
 
-  NewsTabWidget* widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
+  NewsTabWidget *widget = (NewsTabWidget*)stackedWidget_->widget(TAB_WIDGET_PERMANENT);
   settings.setValue("feedSettings/currentId", widget->feedId_);
   settings.setValue("feedSettings/filterName",
                     feedsFilterGroup_->checkedAction()->objectName());
   settings.setValue("newsSettings/filterName",
                     newsFilterGroup_->checkedAction()->objectName());
+
+  mainApp->cookieJar()->saveCookies();
+  mainApp->c2fSaveSettings();
 }
-// ---------------------------------------------------------------------------
+
 void MainWindow::setProxy(const QNetworkProxy proxy)
 {
   networkProxy_ = proxy;
@@ -3692,7 +3689,7 @@ void MainWindow::showOptionDlg(int index)
   delete optionsDialog_;
   optionsDialog_ = NULL;
 
-  writeSettings();
+  saveSettings();
   saveActionShortcuts();
 
   if (currentNewsTab != NULL) {

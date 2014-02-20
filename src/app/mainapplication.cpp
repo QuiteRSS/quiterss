@@ -63,17 +63,17 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   checkDir();
 
-  Settings::createSettings();
+  createSettings();
 
   qWarning() << "Run application!";
-
-  loadSettings();
 
   setStyleApplication();
 
   showSplashScreen();
 
   mainWindow_ = new MainWindow();
+
+  loadSettings();
 
   updateFeeds_ = new UpdateFeeds(mainWindow_);
 
@@ -121,7 +121,7 @@ void MainApplication::receiveMessage(const QString &message)
           return;
         mainWindow_->showWindows();
       }
-      if (param == "--exit") mainWindow_->slotClose();
+      if (param == "--exit") mainWindow_->quitApp();
       if (param.contains("feed:", Qt::CaseInsensitive)) {
         QClipboard *clipboard = QApplication::clipboard();
         if (param.contains("https://", Qt::CaseInsensitive)) {
@@ -186,8 +186,10 @@ void MainApplication::checkDir()
   }
 }
 
-void MainApplication::loadSettings()
+void MainApplication::createSettings()
 {
+  Settings::createSettings();
+
   Settings settings;
   settings.beginGroup("Settings");
   storeDBMemory_ = settings.value("storeDBMemory", true).toBool();
@@ -195,6 +197,12 @@ void MainApplication::loadSettings()
   styleApplication_ = settings.value("styleApplication", "greenStyle_").toString();
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
   settings.endGroup();
+}
+
+void MainApplication::loadSettings()
+{
+
+  c2fLoadSettings();
 }
 
 void MainApplication::quitApplication()
@@ -319,14 +327,14 @@ void MainApplication::commitData(QSessionManager &manager)
                                      QMessageBox::Yes, QMessageBox::No);
       if (ret == QMessageBox::Yes) {
         manager.release();
-        mainWindow_->slotClose();
+        mainWindow_->quitApp();
       } else {
         manager.cancel();
       }
     }
   } else {
     manager.release();
-    mainWindow_->slotClose();
+    mainWindow_->quitApp();
   }
 }
 
@@ -405,4 +413,49 @@ void MainApplication::runUserFilter(int feedId, int filterId)
 void MainApplication::sqlQueryExec(const QString &query)
 {
   emit signalSqlQueryExec(query);
+}
+
+/** @brief Click to Flash
+ *---------------------------------------------------------------------------*/
+void MainApplication::c2fLoadSettings()
+{
+  Settings settings;
+  settings.beginGroup("ClickToFlash");
+  c2fWhitelist_ = settings.value("whitelist", QStringList()).toStringList();
+  c2fEnabled_ = settings.value("enabled", true).toBool();
+  settings.endGroup();
+}
+
+void MainApplication::c2fSaveSettings()
+{
+  Settings settings;
+  settings.beginGroup("ClickToFlash");
+  settings.setValue("whitelist", c2fWhitelist_);
+  settings.setValue("enabled", c2fEnabled_);
+  settings.endGroup();
+}
+
+bool MainApplication::c2fIsEnabled() const
+{
+  return c2fEnabled_;
+}
+
+void MainApplication::c2fSetEnabled(bool enabled)
+{
+  c2fEnabled_ = enabled;
+}
+
+QStringList MainApplication::c2fGetWhitelist()
+{
+  return c2fWhitelist_;
+}
+
+void MainApplication::c2fSetWhitelist(QStringList whitelist)
+{
+  c2fWhitelist_ = whitelist;
+}
+
+void MainApplication::c2fAddWhitelist(const QString &site)
+{
+  c2fWhitelist_.append(site);
 }
