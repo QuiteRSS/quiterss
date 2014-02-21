@@ -38,6 +38,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   , cookieJar_(0)
   , diskCache_(0)
   , dbMemFileThread_(0)
+  , downloadManager_(0)
 {
   QString message = arguments().value(1);
   if (isRunning()) {

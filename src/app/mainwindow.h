@@ -478,7 +478,8 @@ private:
   void createTrayMenu();
   void createStatusBar();
   void createTray();
-  void createTabBar();
+  void createTabBarWidget();
+  void createCentralWidget();
   void loadSettingsFeeds();
   void appInstallTranslator();
   void retranslateStrings();
@@ -493,9 +494,11 @@ private:
 
   NewsModel *newsModel_;
   TabBar *tabBar_;
+  QWidget *tabBarWidget_;
   QSplitter *mainSplitter_;
   QWidget *feedsPanel_;
   QFrame *feedsWidget_;
+  QWidget *centralWidget_;
 
   QList<QAction *> listActions_;
   QStringList listDefaultShortcut_;

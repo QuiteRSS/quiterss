@@ -72,55 +72,8 @@ MainWindow::MainWindow(QWidget *parent)
   createStatusBar();
   createTray();
 
-  createTabBar();
-
-  QHBoxLayout *tabBarLayout = new QHBoxLayout();
-  tabBarLayout->setContentsMargins(5, 0, 0, 0);
-  tabBarLayout->setSpacing(0);
-  tabBarLayout->addWidget(tabBar_);
-
-  QWidget *tabBarWidget = new QWidget(this);
-  tabBarWidget->setObjectName("tabBarWidget");
-  tabBarWidget->setMinimumHeight(1);
-  tabBarWidget->setLayout(tabBarLayout);
-
-  stackedWidget_ = new QStackedWidget(this);
-  stackedWidget_->setObjectName("stackedWidget_");
-  stackedWidget_->setFrameStyle(QFrame::NoFrame);
-
-  mainSplitter_ = new QSplitter(this);
-  mainSplitter_ ->setFrameStyle(QFrame::NoFrame);
-  mainSplitter_->setHandleWidth(1);
-  mainSplitter_->setStyleSheet(
-        QString("QSplitter::handle {background: qlineargradient("
-                "x1: 0, y1: 0, x2: 0, y2: 1,"
-                "stop: 0 %1, stop: 0.07 %2);}").
-        arg(feedsPanel_->palette().background().color().name()).
-        arg(qApp->palette().color(QPalette::Dark).name()));
-  mainSplitter_->setChildrenCollapsible(false);
-  mainSplitter_->addWidget(feedsWidget_);
-  mainSplitter_->addWidget(stackedWidget_);
-  mainSplitter_->setStretchFactor(1, 1);
-
-#define FEEDS_WIDTH 180
-  QList <int> sizes;
-  sizes << FEEDS_WIDTH << QApplication::desktop()->width();
-  mainSplitter_->setSizes(sizes);
-
-  QHBoxLayout *mainLayout1 = new QHBoxLayout();
-  mainLayout1->addWidget(pushButtonNull_);
-  mainLayout1->addWidget(mainSplitter_, 1);
-
-  QVBoxLayout *mainLayout = new QVBoxLayout();
-  mainLayout->setMargin(0);
-  mainLayout->setSpacing(0);
-  mainLayout->addWidget(tabBarWidget);
-  mainLayout->addLayout(mainLayout1, 1);
-
-  QWidget *centralWidget = new QWidget(this);
-  centralWidget->setLayout(mainLayout);
-
-  setCentralWidget(centralWidget);
+  createTabBarWidget();
+  createCentralWidget();
 
   loadSettingsFeeds();
 
@@ -629,9 +582,19 @@ void MainWindow::createTray()
 
 /** @brief Create tabbar widget
  *---------------------------------------------------------------------------*/
-void MainWindow::createTabBar()
+void MainWindow::createTabBarWidget()
 {
   tabBar_ = new TabBar();
+
+  QHBoxLayout *tabBarLayout = new QHBoxLayout();
+  tabBarLayout->setContentsMargins(5, 0, 0, 0);
+  tabBarLayout->setSpacing(0);
+  tabBarLayout->addWidget(tabBar_);
+
+  tabBarWidget_ = new QWidget(this);
+  tabBarWidget_->setObjectName("tabBarWidget");
+  tabBarWidget_->setMinimumHeight(1);
+  tabBarWidget_->setLayout(tabBarLayout);
 
   Settings settings;
   hideTabBar_ = settings.value("Settings/hideTabBar", false).toBool();
@@ -656,6 +619,47 @@ void MainWindow::createTabBar()
           tabBar_, SLOT(slotCloseAllTab()));
   connect(nextTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotNextTab()));
   connect(prevTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotPrevTab()));
+}
+
+void MainWindow::createCentralWidget()
+{
+  stackedWidget_ = new QStackedWidget(this);
+  stackedWidget_->setObjectName("stackedWidget_");
+  stackedWidget_->setFrameStyle(QFrame::NoFrame);
+
+  mainSplitter_ = new QSplitter(this);
+  mainSplitter_ ->setFrameStyle(QFrame::NoFrame);
+  mainSplitter_->setHandleWidth(1);
+  mainSplitter_->setStyleSheet(
+        QString("QSplitter::handle {background: qlineargradient("
+                "x1: 0, y1: 0, x2: 0, y2: 1,"
+                "stop: 0 %1, stop: 0.07 %2);}").
+        arg(feedsPanel_->palette().background().color().name()).
+        arg(qApp->palette().color(QPalette::Dark).name()));
+  mainSplitter_->setChildrenCollapsible(false);
+  mainSplitter_->addWidget(feedsWidget_);
+  mainSplitter_->addWidget(stackedWidget_);
+  mainSplitter_->setStretchFactor(1, 1);
+
+#define FEEDS_WIDTH 180
+  QList <int> sizes;
+  sizes << FEEDS_WIDTH << QApplication::desktop()->width();
+  mainSplitter_->setSizes(sizes);
+
+  QHBoxLayout *mainLayout1 = new QHBoxLayout();
+  mainLayout1->addWidget(pushButtonNull_);
+  mainLayout1->addWidget(mainSplitter_, 1);
+
+  QVBoxLayout *mainLayout = new QVBoxLayout();
+  mainLayout->setMargin(0);
+  mainLayout->setSpacing(0);
+  mainLayout->addWidget(tabBarWidget_);
+  mainLayout->addLayout(mainLayout1, 1);
+
+  centralWidget_ = new QWidget(this);
+  centralWidget_->setLayout(mainLayout);
+
+  setCentralWidget(centralWidget_);
 }
 
 /** @brief Create actions for main menu and toolbar
