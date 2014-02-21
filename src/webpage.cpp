@@ -91,7 +91,7 @@ void WebPage::slotLoadFinished()
 
 void WebPage::downloadRequested(const QNetworkRequest &request)
 {
-  mainApp->mainWindow()->downloadManager_->download(request);
+  mainApp->downloadManager()->download(request);
 }
 
 void WebPage::handleUnsupportedContent(QNetworkReply* reply)
@@ -116,7 +116,7 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
           return;
         }
       }
-      mainApp->mainWindow()->downloadManager_->handleUnsupportedContent(reply, mainApp->mainWindow()->askDownloadLocation_);
+      mainApp->downloadManager()->handleUnsupportedContent(reply, mainApp->mainWindow()->askDownloadLocation_);
       return;
     }
 

@@ -32,11 +32,11 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-
 #include "downloaditem.h"
-#include "webpage.h"
-#include "downloadmanager.h"
+
+#include "mainapplication.h"
 #include "networkmanager.h"
+#include "webpage.h"
 
 #ifdef Q_OS_WIN
 #include "Shlwapi.h"
@@ -45,15 +45,13 @@
 DownloadItem::DownloadItem(QListWidgetItem *item,
                            QNetworkReply *reply,
                            const QString &fileName,
-                           bool openAfterDownload,
-                           DownloadManager *manager)
+                           bool openAfterDownload)
   : QWidget()
   , item_(item)
   , reply_(reply)
   , ftpDownloader_(0)
   , fileName_(fileName)
   , downloadUrl_(reply->url())
-  , manager_(manager)
   , downloading_(false)
   , openAfterFinish_(openAfterDownload)
   , downloadStopped_(false)
@@ -137,7 +135,7 @@ void DownloadItem::startDownloading()
     reply_->abort();
     reply_->deleteLater();
 
-    reply_ = manager_->networkManager_->get(QNetworkRequest(locationHeader));
+    reply_ = mainApp->networkManager()->get(QNetworkRequest(locationHeader));
   }
 
   reply_->setParent(this);
@@ -172,7 +170,7 @@ void DownloadItem::startDownloadingFromFtp(const QUrl &url)
           this, SLOT(downloadProgress(qint64, qint64)));
   connect(ftpDownloader_, SIGNAL(errorOccured(QFtp::Error)), this, SLOT(error()));
   connect(ftpDownloader_, SIGNAL(ftpAuthenticationRequierd(const QUrl &, QAuthenticator*)),
-          manager_, SLOT(ftpAuthentication(const QUrl &, QAuthenticator*)));
+          mainApp->networkManager(), SLOT(ftpAuthentication(const QUrl &, QAuthenticator*)));
 
   ftpDownloader_->download(url, &outputFile_);
   downloading_ = true;
@@ -220,7 +218,7 @@ void DownloadItem::metaDataChanged()
     reply_->close();
     reply_->deleteLater();
 
-    reply_ = manager_->networkManager_->get(QNetworkRequest(locationHeader));
+    reply_ = mainApp->networkManager()->get(QNetworkRequest(locationHeader));
     startDownloading();
   }
 }
@@ -346,7 +344,10 @@ void DownloadItem::stop(bool askForDeleteFile)
 
   if (askForDeleteFile) {
     QMessageBox::StandardButton button =
-        QMessageBox::question(manager_, tr("Delete file"), tr("Do you want to also delete dowloaded file?"), QMessageBox::Yes | QMessageBox::No);
+        QMessageBox::question(item_->listWidget()->parentWidget(),
+                              tr("Delete file"),
+                              tr("Do you want to also delete dowloaded file?"),
+                              QMessageBox::Yes | QMessageBox::No);
     if (button == QMessageBox::Yes) {
       QFile::remove(outputfile);
     }
@@ -396,7 +397,9 @@ void DownloadItem::openFile()
   if (info.exists()) {
     QDesktopServices::openUrl(QUrl::fromLocalFile(info.absoluteFilePath()));
   } else {
-    QMessageBox::warning(manager_, tr("Not found"), tr("Sorry, the file \n %1 \n was not found!").arg(info.absoluteFilePath()));
+    QMessageBox::warning(item_->listWidget()->parentWidget(),
+                         tr("Not found"),
+                         tr("Sorry, the file \n %1 \n was not found!").arg(info.absoluteFilePath()));
   }
 }
 

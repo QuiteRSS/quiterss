@@ -38,8 +38,6 @@
 #include <QSound>
 
 #include "categoriestreewidget.h"
-#include "dbmemfilethread.h"
-#include "downloadmanager.h"
 #include "feedstreemodel.h"
 #include "feedstreeview.h"
 #include "findfeed.h"
@@ -80,7 +78,7 @@ public:
   bool showSplashScreen_;
   bool showTrayIcon_;
   bool startingTray_;
-  bool minimizeToTray_;
+  bool isMinimizeToTray_;
   QSystemTrayIcon *traySystem;
   void restoreFeedsOnStartUp();
   QString getIdFeedsString(int idFolder, int idException = -1);
@@ -109,7 +107,6 @@ public:
   CategoriesTreeWidget *categoriesTree_;
 #define TAB_WIDGET_PERMANENT 0
   QStackedWidget *stackedWidget_;
-  DownloadManager *downloadManager_;
 
   bool showFeedsTabPermanent_;
 
@@ -216,7 +213,7 @@ public:
 
   bool autoLoadImages_;
   bool openLinkInBackground_;
-  bool openingLink_;  //!< Flag - link is being opened
+  bool isOpeningLink_;  //!< Flag - link is being opened
   bool openLinkInBackgroundEmbedded_;
 
   int externalBrowserOn_;
@@ -459,8 +456,6 @@ private slots:
   void cleanUp();
   void cleanUpShutdown();
 
-  void saveDBMemFile();
-
   void showSettingPageLabels();
 
 private:
@@ -469,7 +464,6 @@ private:
   void changeEvent(QEvent *event);
 
   QNetworkProxy networkProxy_;
-  DBMemFileThread *dbMemFileThread_;
 
   void setProxy(const QNetworkProxy proxy);
   void createFeedsWidget();
@@ -710,10 +704,6 @@ private:
 
   int feedIdOld_;
 
-  bool storeDBMemoryT_;
-  int saveDBMemFileInterval_;
-  QTimer *timerSaveDBMemFile_;
-
   int  openingLinkTimeout_;  //!< During this time we'll trying swithing back to apllication
   QTimer timerLinkOpening_;
 
@@ -726,7 +716,7 @@ private:
 
   qint64 activationStateChangedTime_;
 
-  bool importFeedStart_;
+  bool isStartImportFeed_;
 
   bool changeBehaviorActionNUN_;
 

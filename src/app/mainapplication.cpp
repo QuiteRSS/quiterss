@@ -25,6 +25,10 @@
 #include "updatefeeds.h"
 #include "VersionNo.h"
 
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#endif
+
 MainApplication::MainApplication(int &argc, char **argv)
   : QtSingleApplication(argc, argv)
   , isPortable_(false)
@@ -33,6 +37,7 @@ MainApplication::MainApplication(int &argc, char **argv)
   , networkManager_(0)
   , cookieJar_(0)
   , diskCache_(0)
+  , dbMemFileThread_(0)
 {
   QString message = arguments().value(1);
   if (isRunning()) {
@@ -71,6 +76,8 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   showSplashScreen();
 
+  connectDatabase();
+
   mainWindow_ = new MainWindow();
 
   loadSettings();
@@ -82,7 +89,7 @@ MainApplication::MainApplication(int &argc, char **argv)
 
   if (!mainWindow_->startingTray_ || !mainWindow_->showTrayIcon_)
     mainWindow_->show();
-  mainWindow_->minimizeToTray_ = false;
+  mainWindow_->isMinimizeToTray_ = false;
 
   if (mainWindow_->showTrayIcon_) {
     processEvents();
@@ -105,7 +112,8 @@ MainApplication::~MainApplication()
 
 }
 
-MainApplication *MainApplication::getInstance() {
+MainApplication *MainApplication::getInstance()
+{
   return static_cast<MainApplication*>(QCoreApplication::instance());
 }
 
@@ -199,6 +207,35 @@ void MainApplication::createSettings()
   settings.endGroup();
 }
 
+void MainApplication::connectDatabase()
+{
+  initDatabase(dbFileName());
+
+  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+  if (storeDBMemory_)
+    db.setDatabaseName(":memory:");
+  else
+    db.setDatabaseName(dbFileName());
+  if (!db.open()) {
+    QMessageBox::critical(0, tr("Error"), tr("SQLite driver not loaded!"));
+  }
+
+  if (storeDBMemory_) {
+    dbMemFileThread_ = new DBMemFileThread(dbFileName(), this);
+    dbMemFileThread_->sqliteDBMemFile(false, QThread::NormalPriority);
+    while(dbMemFileThread_->isRunning()) {
+      int ms = 100;
+#if defined(Q_OS_WIN)
+      Sleep(DWORD(ms));
+#else
+      struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+      nanosleep(&ts, NULL);
+#endif
+    }
+    dbMemFileThread_->startSaveTimer();
+  }
+}
+
 void MainApplication::loadSettings()
 {
 
@@ -207,11 +244,43 @@ void MainApplication::loadSettings()
 
 void MainApplication::quitApplication()
 {
+  if (storeDBMemory_) {
+    dbMemFileThread_->sqliteDBMemFile(true, QThread::NormalPriority);
+    while(dbMemFileThread_->isRunning()) {
+      int ms = 100;
+#if defined(Q_OS_WIN)
+      Sleep(DWORD(ms));
+#else
+      struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+      nanosleep(&ts, NULL);
+#endif
+    }
+    delete dbMemFileThread_;
+  }
+
   qWarning() << "Quit application";
 
-  networkManager_->disconnect(networkManager_);
-
   quit();
+}
+
+void MainApplication::commitData(QSessionManager &manager)
+{
+  if (storeDBMemory_) {
+    if (manager.allowsInteraction()) {
+      int ret = QMessageBox::warning(0, tr("Save data"),
+                                     tr("Attention! Need to save data.\nSave?"),
+                                     QMessageBox::Yes, QMessageBox::No);
+      if (ret == QMessageBox::Yes) {
+        manager.release();
+        mainWindow_->quitApp();
+      } else {
+        manager.cancel();
+      }
+    }
+  } else {
+    manager.release();
+    mainWindow_->quitApp();
+  }
 }
 
 bool MainApplication::isPoratble() const
@@ -311,30 +380,9 @@ void MainApplication::showSplashScreen()
     splashScreen_ = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
     splashScreen_->show();
     if ((versionDB != kDbVersion) && QFile::exists(settings.fileName())) {
-      splashScreen_->showMessage(QString("Converting database to version %1...").
-                                arg(kDbVersion),
+      splashScreen_->showMessage(QString("Converting database to version %1...").arg(kDbVersion),
                                 Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
     }
-  }
-}
-
-void MainApplication::commitData(QSessionManager &manager)
-{
-  if (storeDBMemory_) {
-    if (manager.allowsInteraction()) {
-      int ret = QMessageBox::warning(0, tr("Save data"),
-                                     tr("Attention! Need to save data.\nSave?"),
-                                     QMessageBox::Yes, QMessageBox::No);
-      if (ret == QMessageBox::Yes) {
-        manager.release();
-        mainWindow_->quitApp();
-      } else {
-        manager.cancel();
-      }
-    }
-  } else {
-    manager.release();
-    mainWindow_->quitApp();
   }
 }
 
@@ -381,7 +429,7 @@ void MainApplication::setDiskCache()
     }
 
     diskCache_->setCacheDirectory(diskCacheDirPath);
-    int maxDiskCache = settings.value("Settings/maxDiskCache", 50).toInt();
+    int maxDiskCache = settings.value("maxDiskCache", 50).toInt();
     diskCache_->setMaximumCacheSize(maxDiskCache*1024*1024);
 
     networkManager()->setCache(diskCache_);
@@ -459,3 +507,17 @@ void MainApplication::c2fAddWhitelist(const QString &site)
 {
   c2fWhitelist_.append(site);
 }
+
+DBMemFileThread *MainApplication::dbMemFileThread()
+{
+  return dbMemFileThread_;
+}
+
+DownloadManager *MainApplication::downloadManager()
+{
+  if (!downloadManager_) {
+    downloadManager_ = new DownloadManager();
+  }
+  return downloadManager_;
+}
+

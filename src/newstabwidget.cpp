@@ -101,7 +101,7 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
   layout->setMargin(0);
   layout->setSpacing(0);
   if (type_ == TabTypeDownloads)
-    layout->addWidget(mainWindow_->downloadManager_);
+    layout->addWidget(mainApp->downloadManager());
   else if (type_ != TabTypeWeb)
     layout->addWidget(newsTabWidgetSplitter_);
   else
@@ -135,8 +135,8 @@ NewsTabWidget::NewsTabWidget(QWidget *parent, TabType type, int feedId, int feed
 NewsTabWidget::~NewsTabWidget()
 {
   if (type_ == TabTypeDownloads) {
-    mainWindow_->downloadManager_->hide();
-    mainWindow_->downloadManager_->setParent(mainWindow_);
+    mainApp->downloadManager()->hide();
+    mainApp->downloadManager()->setParent(mainWindow_);
   }
 }
 
@@ -1729,7 +1729,7 @@ bool NewsTabWidget::openUrl(const QUrl &url)
   if (url.scheme() == QLatin1String("mailto"))
       return QDesktopServices::openUrl(url);
 
-  mainWindow_->openingLink_ = true;
+  mainWindow_->isOpeningLink_ = true;
   if ((mainWindow_->externalBrowserOn_ == 2) || (mainWindow_->externalBrowserOn_ == -1)) {
 #if defined(Q_OS_WIN)
     quintptr returnValue = (quintptr)ShellExecute(

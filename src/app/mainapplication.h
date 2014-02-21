@@ -29,6 +29,8 @@
 #include <QNetworkDiskCache>
 
 #include "cookiejar.h"
+#include "dbmemfilethread.h"
+#include "downloadmanager.h"
 #include "mainwindow.h"
 
 class NetworkManager;
@@ -64,6 +66,8 @@ public:
   void setDiskCache();
   UpdateFeeds *updateFeeds();
   void runUserFilter(int feedId, int filterId);
+  DBMemFileThread *dbMemFileThread();
+  DownloadManager *downloadManager();
 
   void c2fLoadSettings();
   void c2fSaveSettings();
@@ -87,6 +91,7 @@ private:
   void checkPortable();
   void checkDir();
   void createSettings();
+  void connectDatabase();
   void loadSettings();
   void setStyleApplication();
   void showSplashScreen();
@@ -108,7 +113,9 @@ private:
   NetworkManager *networkManager_;
   CookieJar *cookieJar_;
   QNetworkDiskCache *diskCache_;
+  DBMemFileThread *dbMemFileThread_;
   UpdateFeeds *updateFeeds_;
+  DownloadManager *downloadManager_;
 
   QStringList c2fWhitelist_;
   bool c2fEnabled_;

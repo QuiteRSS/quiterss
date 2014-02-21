@@ -17,6 +17,9 @@
 * ============================================================ */
 #include "dbmemfilethread.h"
 
+#include "mainapplication.h"
+#include "settings.h"
+
 #include <QDebug>
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
 #if QT_VERSION >= 0x050100
@@ -30,13 +33,13 @@
 #include <sqlite3.h>
 #endif
 
-DBMemFileThread::DBMemFileThread(const QString &filename, QObject *parent)
+DBMemFileThread::DBMemFileThread(const QString &fileName, QObject *parent)
   : QThread(parent)
-  , filename_(filename)
+  , fileName_(fileName)
   , save_(false)
+  , saveTimer_(0)
 {
   qDebug() << "DBMemFileThread::constructor";
-  memdb_ = QSqlDatabase::database();
 }
 
 DBMemFileThread::~DBMemFileThread()
@@ -70,7 +73,7 @@ DBMemFileThread::~DBMemFileThread()
   if (save_) qDebug() << "sqliteDBMemFile(): from memory to file";
   else qDebug() << "sqliteDBMemFile(): from file to memory" ;
   int rc = -1;                   /* Function return code */
-  QVariant v = memdb_.driver()->handle();
+  QVariant v = QSqlDatabase::database().driver()->handle();
   if (v.isValid() && qstrcmp(v.typeName(),"sqlite3*") == 0) {
     // v.data() returns a pointer to the handle
     sqlite3 * handle = *static_cast<sqlite3 **>(v.data());
@@ -83,7 +86,7 @@ DBMemFileThread::~DBMemFileThread()
 
       /* Open the database file identified by zFilename. Exit early if this fails
       ** for any reason. */
-      rc = sqlite3_open( filename_.toUtf8().data(), &pFile );
+      rc = sqlite3_open( fileName_.toUtf8().data(), &pFile );
       if (rc == SQLITE_OK) {
 
         /* If this is a 'load' operation (isSave==0), then data is copied
@@ -150,6 +153,20 @@ DBMemFileThread::~DBMemFileThread()
 
 void DBMemFileThread::sqliteDBMemFile(bool save, QThread::Priority priority)
 {
+  if (isRunning()) return;
+
   save_ = save;
   start(priority);
+}
+
+void DBMemFileThread::startSaveTimer()
+{
+  if (!saveTimer_) {
+    saveTimer_ = new QTimer(this);
+    connect(saveTimer_, SIGNAL(timeout()), this, SLOT(sqliteDBMemFile()));
+  }
+
+  Settings settings;
+  saveInterval_ = settings.value("Settings/saveDBMemFileInterval", 30).toInt();
+  saveTimer_->start(saveInterval_*60*1000);
 }

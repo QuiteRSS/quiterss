@@ -27,24 +27,17 @@
 CookieJar::CookieJar(QObject *parent)
   : QNetworkCookieJar(parent)
 {
-  Settings settings;
-  useCookies_ = (UseCookies)settings.value("Settings/saveCookies", SaveCookies).toInt();
-
   loadCookies();
-}
-
-bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
-{
-  if (useCookies_ == 0)
-    return false;
-  return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
 
 /** @brief Load cookies from file
  *----------------------------------------------------------------------------*/
 void CookieJar::loadCookies()
 {
-  if (useCookies_ != 1) return;
+  Settings settings;
+  useCookies_ = (UseCookies)settings.value("Settings/saveCookies", SaveCookies).toInt();
+
+  if (useCookies_ != SaveCookies) return;
 
   if (!QFile::exists(mainApp->dataDir() + "/cookies.dat")) {
     return;
@@ -82,7 +75,10 @@ void CookieJar::loadCookies()
  *----------------------------------------------------------------------------*/
 void CookieJar::saveCookies()
 {
-  if (useCookies_ != 1) return;
+  Settings settings;
+  settings.setValue("Settings/saveCookies", useCookies_);
+
+  if (useCookies_ != SaveCookies) return;
 
   QList<QNetworkCookie> allCookies = getAllCookies();
 
@@ -102,6 +98,13 @@ void CookieJar::saveCookies()
   }
 
   file.close();
+}
+
+bool CookieJar::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
+{
+  if (useCookies_ == BlockCookies)
+    return false;
+  return QNetworkCookieJar::setCookiesFromUrl(cookieList, url);
 }
 
 /** @brief Clear all cookies

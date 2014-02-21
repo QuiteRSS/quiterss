@@ -18,14 +18,13 @@
 #include "downloadmanager.h"
 
 #include "mainapplication.h"
+#include "networkmanager.h"
 #include "authenticationdialog.h"
 #include "downloaditem.h"
 
 DownloadManager::DownloadManager(QWidget *parent)
   : QWidget(parent)
 {
-  networkManager_ = new NetworkManager(this);
-
   listWidget_ = new QListWidget();
   listWidget_->setFrameStyle(QFrame::NoFrame);
 
@@ -68,12 +67,12 @@ DownloadManager::DownloadManager(QWidget *parent)
 
 DownloadManager::~DownloadManager()
 {
-  networkManager_->cookieJar()->setParent(mainApp);
+
 }
 
 void DownloadManager::download(const QNetworkRequest &request)
 {
-  handleUnsupportedContent(networkManager_->get(request), true);
+  handleUnsupportedContent(mainApp->networkManager()->get(request), true);
 }
 
 void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDownloadLocation)
@@ -98,7 +97,7 @@ void DownloadManager::handleUnsupportedContent(QNetworkReply* reply, bool askDow
 
   reply->setProperty("downloadReply", QVariant(true));
   QListWidgetItem *item = new QListWidgetItem(listWidget_);
-  DownloadItem *downItem = new DownloadItem(item, reply, fileName, false, this);
+  DownloadItem *downItem = new DownloadItem(item, reply, fileName, false);
   emit signalItemCreated(item, downItem);
 }
 
@@ -235,4 +234,9 @@ void DownloadManager::ftpAuthentication(const QUrl &url, QAuthenticator *auth)
     authenticationDialog->exec();
 
   delete authenticationDialog;
+}
+
+void DownloadManager::retranslateStrings()
+{
+  listClaerAct_->setText(tr("Clear"));
 }

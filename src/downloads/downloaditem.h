@@ -47,7 +47,6 @@
 #include <QAuthenticator>
 
 class QListWidgetItem;
-class DownloadManager;
 class FtpDownloader;
 
 class DownloadItem : public QWidget
@@ -55,8 +54,7 @@ class DownloadItem : public QWidget
   Q_OBJECT
 public:
   explicit DownloadItem(QListWidgetItem *item, QNetworkReply *reply,
-                        const QString &fileName, bool openAfterDownload,
-                        DownloadManager *manager);
+                        const QString &fileName, bool openAfterDownload);
   ~DownloadItem();
 
   void startDownloading();
@@ -101,7 +99,6 @@ private:
   QTimer updateInfoTimer_;
   QFile outputFile_;
   QUrl downloadUrl_;
-  DownloadManager *manager_;
 
   bool downloading_;
   bool openAfterFinish_;

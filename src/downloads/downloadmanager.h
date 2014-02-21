@@ -25,8 +25,6 @@
 #endif
 #include <QNetworkAccessManager>
 
-#include "networkmanager.h"
-
 class DownloadItem;
 
 class DownloadManager : public QWidget
@@ -40,9 +38,7 @@ public:
   void download(const QNetworkRequest &request);
   void handleUnsupportedContent(QNetworkReply *reply, bool askDownloadLocation);
   void startExternalApp(const QString &executable, const QUrl &url);
-
-  NetworkManager *networkManager_;
-  QAction *listClaerAct_;
+  void retranslateStrings();
 
 public slots:
   void ftpAuthentication(const QUrl &url, QAuthenticator *auth);
@@ -61,6 +57,7 @@ private slots:
 
 private:
   QListWidget *listWidget_;
+  QAction *listClaerAct_;
   QTimer updateInfoTimer_;
 
 };

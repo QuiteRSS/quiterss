@@ -27,15 +27,20 @@ class DBMemFileThread : public QThread
 public:
   explicit DBMemFileThread(const QString &filename, QObject *parent);
   ~DBMemFileThread();
-  void sqliteDBMemFile(bool save, QThread::Priority priority = QThread::NormalPriority);
+
+public slots:
+  void sqliteDBMemFile(bool save = true, QThread::Priority priority = QThread::LowestPriority);
+  void startSaveTimer();
 
 protected:
   virtual void run();
 
 private:
-  QSqlDatabase memdb_;
-  QString filename_;
+  QString fileName_;
   bool save_;
+
+  int saveInterval_;
+  QTimer *saveTimer_;
 
 };
 

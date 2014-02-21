@@ -33,6 +33,6 @@ extern QString kDbVersion;
  * Automatically update DB to current version
  * @param[in] dbFileName Filepath of DB-file
  *---------------------------------------------------------------------------*/
-QString initDB(const QString &dbFileName);
+void initDatabase(const QString &dbFileName);
 
 #endif

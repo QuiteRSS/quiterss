@@ -24,7 +24,6 @@
 #include "authenticationdialog.h"
 #include "cleanupwizard.h"
 #include "customizetoolbardialog.h"
-#include "db_func.h"
 #include "feedpropertiesdialog.h"
 #include "filterrulesdialog.h"
 #include "newsfiltersdialog.h"
@@ -41,9 +40,9 @@
 // ---------------------------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent)
-  , minimizeToTray_(true)
+  , isMinimizeToTray_(true)
   , currentNewsTab(NULL)
-  , openingLink_(false)
+  , isOpeningLink_(false)
   , openNewsTab_(0)
   , newsView_(NULL)
   , updateTimeCount_(0)
@@ -53,40 +52,14 @@ MainWindow::MainWindow(QWidget *parent)
   , updateFeedsCount_(0)
   , notificationWidget(NULL)
   , feedIdOld_(-2)
-  , importFeedStart_(false)
+  , isStartImportFeed_(false)
   , recountCategoryCountsOn_(false)
   , optionsDialog_(NULL)
 {
   setWindowTitle("QuiteRSS");
   setContextMenuPolicy(Qt::CustomContextMenu);
 
-  QString versionDB = initDB(mainApp->dbFileName());
-  Settings settings;
-  settings.setValue("VersionDB", versionDB);
-
-  storeDBMemoryT_ = mainApp->storeDBMemory();
-
-  db_ = QSqlDatabase::addDatabase("QSQLITE");
-  if (mainApp->storeDBMemory())
-    db_.setDatabaseName(":memory:");
-  else
-    db_.setDatabaseName(mainApp->dbFileName());
-  if (!db_.open()) {
-    QMessageBox::critical(0, tr("Error"), tr("SQLite driver not loaded!"));
-  }
-
-  if (mainApp->storeDBMemory()) {
-    dbMemFileThread_ = new DBMemFileThread(mainApp->dbFileName(), this);
-    dbMemFileThread_->sqliteDBMemFile(false);
-    while(dbMemFileThread_->isRunning()) qApp->processEvents();
-  }
-
-  downloadManager_ = new DownloadManager();
-
-  connect(downloadManager_, SIGNAL(signalShowDownloads(bool)),
-          this, SLOT(showDownloadManager(bool)));
-  connect(downloadManager_, SIGNAL(signalUpdateInfo(QString)),
-          this, SLOT(updateInfoDownloads(QString)));
+  db_ = QSqlDatabase::database();
 
   createFeedsWidget();
   createToolBarNull();
@@ -161,12 +134,6 @@ MainWindow::MainWindow(QWidget *parent)
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
-  timerSaveDBMemFile_ = new QTimer(this);
-  if (mainApp->storeDBMemory()) {
-    timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
-    connect(timerSaveDBMemFile_, SIGNAL(timeout()), this, SLOT(saveDBMemFile()));
-  }
-
   connect(this, SIGNAL(signalShowNotification()),
           SLOT(showNotification()), Qt::QueuedConnection);
   connect(this, SIGNAL(signalPlaySoundNewNews()),
@@ -181,6 +148,10 @@ MainWindow::MainWindow(QWidget *parent)
 
   connect(mainApp->networkManager(), SIGNAL(authenticationRequired(QNetworkReply*,QAuthenticator*)),
           this, SLOT(slotAuthentication(QNetworkReply*,QAuthenticator*)));
+  connect(mainApp->downloadManager(), SIGNAL(signalShowDownloads(bool)),
+          this, SLOT(showDownloadManager(bool)));
+  connect(mainApp->downloadManager(), SIGNAL(signalUpdateInfo(QString)),
+          this, SLOT(updateInfoDownloads(QString)));
 
   translator_ = new QTranslator(this);
   appInstallTranslator();
@@ -201,7 +172,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     return;
 
   if (closingTray_ && showTrayIcon_) {
-    openingLink_ = false;
+    isOpeningLink_ = false;
 
     oldState = windowState();
     emit signalPlaceToTray();
@@ -219,29 +190,17 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::quitApp()
 {
   mainApp->setClosing();
-  minimizeToTray_ = true;
+  isMinimizeToTray_ = true;
 
   traySystem->hide();
   hide();
   saveSettings();
 
+  mainApp->networkManager()->disconnect(mainApp->networkManager());
   delete mainApp->updateFeeds();
+  delete mainApp->downloadManager();
 
   cleanUpShutdown();
-
-  if (mainApp->storeDBMemory()) {
-    dbMemFileThread_->sqliteDBMemFile(true);
-    while(dbMemFileThread_->isRunning()) {
-      int ms = 100;
-#if defined(Q_OS_WIN)
-      Sleep(DWORD(ms));
-#else
-      struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
-      nanosleep(&ts, NULL);
-#endif
-    }
-    delete dbMemFileThread_;
-  }
 
   QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
 }
@@ -293,8 +252,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
   }
   // Process  open link in browser in background
   else if (event->type() == QEvent::WindowDeactivate) {
-    if (openingLink_ && openLinkInBackground_) {
-      openingLink_ = false;
+    if (isOpeningLink_ && openLinkInBackground_) {
+      isOpeningLink_ = false;
       timerLinkOpening_.start(openingLinkTimeout_);
       deactivateState = 1;
     }
@@ -318,7 +277,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
   else if ((deactivateState == 3) && (event->type() == QEvent::Paint)) {
     deactivateState = 0;
   } else if (event->type() == QEvent::Hide) {
-    if (minimizingTray_  && showTrayIcon_ && !minimizeToTray_) {
+    if (minimizingTray_  && showTrayIcon_ && !isMinimizeToTray_) {
       emit signalPlaceToTray();
     }
   }
@@ -345,7 +304,7 @@ void MainWindow::slotTimerLinkOpening()
 void MainWindow::changeEvent(QEvent *event)
 {
   if(event->type() == QEvent::WindowStateChange) {
-    openingLink_ = false;
+    isOpeningLink_ = false;
     if(isMinimized()) {
       oldState = ((QWindowStateChangeEvent*)event)->oldState();
     } else {
@@ -369,7 +328,7 @@ void MainWindow::changeEvent(QEvent *event)
  *---------------------------------------------------------------------------*/
 void MainWindow::slotPlaceToTray()
 {
-  minimizeToTray_ = true;
+  isMinimizeToTray_ = true;
   hide();
 
   if (emptyWorking_)
@@ -382,9 +341,10 @@ void MainWindow::slotPlaceToTray()
 
   saveSettings();
 
-  saveDBMemFile();
+  if (mainApp->storeDBMemory())
+    mainApp->dbMemFileThread()->sqliteDBMemFile();
 
-  minimizeToTray_ = false;
+  isMinimizeToTray_ = false;
 }
 
 /** @brief Process tray event
@@ -1794,8 +1754,6 @@ void MainWindow::loadSettings()
   clearStatusNew_ = settings.value("clearStatusNew", true).toBool();
   emptyWorking_ = settings.value("emptyWorking", true).toBool();
 
-  saveDBMemFileInterval_ = settings.value("saveDBMemFileInterval", 30).toInt();
-
   QString strLang;
   QString strLocalLang = QLocale::system().name();
   bool findLang = false;
@@ -2134,8 +2092,6 @@ void MainWindow::saveSettings()
   settings.setValue("reopenFeedStartup", reopenFeedStartup_);
   settings.setValue("openNewTabNextToActive", openNewTabNextToActive_);
 
-  settings.setValue("storeDBMemory", storeDBMemoryT_);
-
   settings.setValue("createLastFeed", mainApp->isSaveDataLastFeed());
 
   settings.setValue("showTrayIcon", showTrayIcon_);
@@ -2146,8 +2102,6 @@ void MainWindow::saveSettings()
   settings.setValue("singleClickTray", singleClickTray_);
   settings.setValue("clearStatusNew", clearStatusNew_);
   settings.setValue("emptyWorking", emptyWorking_);
-
-  settings.setValue("saveDBMemFileInterval", saveDBMemFileInterval_);
 
   settings.setValue("langFileName", langFileName_);
 
@@ -2214,7 +2168,6 @@ void MainWindow::saveSettings()
   settings.setValue("userStyleBrowser", userStyleBrowser_);
   settings.setValue("maxPagesInCache", maxPagesInCache_);
   settings.setValue("downloadLocation", downloadLocation_);
-  settings.setValue("saveCookies", mainApp->cookieJar()->useCookies());
   settings.setValue("askDownloadLocation", askDownloadLocation_);
   settings.setValue("defaultZoomPages", defaultZoomPages_);
   settings.setValue("autoLoadImages", autoLoadImages_);
@@ -2542,7 +2495,7 @@ void MainWindow::slotImportFeeds()
   QByteArray xmlData = file.readAll();
   file.close();
 
-  importFeedStart_ = true;
+  isStartImportFeed_ = true;
   emit signalImportFeeds(xmlData);
 }
 
@@ -2674,7 +2627,7 @@ void MainWindow::slotFeedCountsUpdate(FeedCountStruct counts)
     }
   }
 
-  if (importFeedStart_ && !counts.xmlUrl.isEmpty()) {
+  if (isStartImportFeed_ && !counts.xmlUrl.isEmpty()) {
     emit faviconRequestUrl(counts.htmlUrl, counts.xmlUrl);
   }
 }
@@ -2833,7 +2786,7 @@ void MainWindow::slotUpdateFeed(int feedId, bool changed, int newCount, bool fin
     progressBar_->hide();
     progressBar_->setMaximum(0);
     progressBar_->setValue(0);
-    importFeedStart_ = false;
+    isStartImportFeed_ = false;
   }
 
   if (!changed) {
@@ -3080,8 +3033,11 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->showCloseButtonTab_->setChecked(showCloseButtonTab);
 
   optionsDialog_->updateCheckEnabled_->setChecked(updateCheckEnabled_);
-  optionsDialog_->storeDBMemory_->setChecked(storeDBMemoryT_);
-  optionsDialog_->saveDBMemFileInterval_->setValue(saveDBMemFileInterval_);
+
+  bool storeDBMemory_ = settings.value("Settings/storeDBMemory", true).toBool();
+  optionsDialog_->storeDBMemory_->setChecked(storeDBMemory_);
+  int saveDBMemFileInterval = settings.value("Settings/saveDBMemFileInterval", 30).toInt();
+  optionsDialog_->saveDBMemFileInterval_->setValue(saveDBMemFileInterval);
 
   optionsDialog_->showTrayIconBox_->setChecked(showTrayIcon_);
   optionsDialog_->startingTray_->setChecked(startingTray_);
@@ -3444,11 +3400,14 @@ void MainWindow::showOptionDlg(int index)
   pushButtonNull_->setVisible(showToggleFeedsTree_);
 
   updateCheckEnabled_ = optionsDialog_->updateCheckEnabled_->isChecked();
-  storeDBMemoryT_ = optionsDialog_->storeDBMemory_->isChecked();
 
-  if (saveDBMemFileInterval_ != optionsDialog_->saveDBMemFileInterval_->value()) {
-    saveDBMemFileInterval_ = optionsDialog_->saveDBMemFileInterval_->value();
-    timerSaveDBMemFile_->start(saveDBMemFileInterval_*60*1000);
+  storeDBMemory_ = optionsDialog_->storeDBMemory_->isChecked();
+  settings.setValue("Settings/storeDBMemory", storeDBMemory_);
+  if (saveDBMemFileInterval != optionsDialog_->saveDBMemFileInterval_->value()) {
+    saveDBMemFileInterval = optionsDialog_->saveDBMemFileInterval_->value();
+    settings.setValue("Settings/saveDBMemFileInterval", saveDBMemFileInterval);
+    if (mainApp->storeDBMemory())
+      mainApp->dbMemFileThread()->startSaveTimer();
   }
 
   showTrayIcon_ = optionsDialog_->showTrayIconBox_->isChecked();
@@ -3828,7 +3787,7 @@ void MainWindow::slotGetAllFeeds()
 void MainWindow::showProgressBar(int maximum)
 {
   if (maximum == 0) {
-    importFeedStart_ = false;
+    isStartImportFeed_ = false;
     return;
   }
   playSoundNewNews_ = false;
@@ -4682,8 +4641,6 @@ void MainWindow::retranslateStrings()
   newsSortOrderGroup_->actions().at(0)->setText(tr("Ascending"));
   newsSortOrderGroup_->actions().at(1)->setText(tr("Descending"));
 
-  downloadManager_->listClaerAct_->setText(tr("Clear"));
-
   QApplication::translate("QDialogButtonBox", "Close");
   QApplication::translate("QDialogButtonBox", "Cancel");
   QApplication::translate("QDialogButtonBox", "&Yes");
@@ -4750,6 +4707,7 @@ void MainWindow::retranslateStrings()
     currentNewsTab->retranslateStrings();
   }
   findFeeds_->retranslateStrings();
+  mainApp->downloadManager()->retranslateStrings();
 }
 // ----------------------------------------------------------------------------
 void MainWindow::setToolBarStyle(const QString &styleStr)
@@ -5783,7 +5741,7 @@ void MainWindow::slotTabCurrentChanged(int index)
   } else if (widget->type_ == NewsTabWidget::TabTypeDownloads) {
     statusUnread_->setVisible(false);
     statusAll_->setVisible(false);
-    downloadManager_->show();
+    mainApp->downloadManager()->show();
     currentNewsTab = widget;
     currentNewsTab->retranslateStrings();
   } else {
@@ -7510,7 +7468,7 @@ void MainWindow::showDownloadManager(bool activate)
     currentNewsTab->setTextTab(tr("Downloads"));
     statusUnread_->setVisible(false);
     statusAll_->setVisible(false);
-    downloadManager_->show();
+    mainApp->downloadManager()->show();
     emit signalSetCurrentTab(indexTab);
   } else {
     widget->setTextTab(tr("Downloads"));
@@ -7536,13 +7494,6 @@ void MainWindow::setStatusFeed(int feedId, QString status)
     QModelIndex indexStatus = feedsTreeModel_->indexSibling(index, "status");
     feedsTreeModel_->setData(indexStatus, status);
     feedsTreeView_->viewport()->update();
-  }
-}
-
-void MainWindow::saveDBMemFile()
-{
-  if (mainApp->storeDBMemory() && !dbMemFileThread_->isRunning()) {
-    dbMemFileThread_->sqliteDBMemFile(true, QThread::LowestPriority);
   }
 }
 

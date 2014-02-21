@@ -432,7 +432,7 @@ void createFileBackup(const QString &oldFilename, const QString &oldVersion)
 }
 
 //-----------------------------------------------------------------------------
-QString initDB(const QString &dbFileName)
+void initDatabase(const QString &dbFileName)
 {
   if (!QFile(dbFileName).exists()) {  // DB-init
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "dbFileName_");
@@ -831,5 +831,7 @@ QString initDB(const QString &dbFileName)
     db.close();
   }
   QSqlDatabase::removeDatabase("dbFileName_");
-  return kDbVersion;
+
+  Settings settings;
+  settings.setValue("VersionDB", kDbVersion);
 }
