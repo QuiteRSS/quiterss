@@ -21,26 +21,51 @@
 #include <QNetworkAccessManager>
 #include <QWebPage>
 
+class AdBlockRule;
+
 class WebPage : public QWebPage
 {
   Q_OBJECT
 public:
+  struct AdBlockedEntry {
+    const AdBlockRule* rule;
+    QUrl url;
+
+    bool operator==(const AdBlockedEntry &other) const {
+      return (this->rule == other.rule && this->url == other.url);
+    }
+  };
+
   explicit WebPage(QObject *parent);
+  ~WebPage();
 
   bool acceptNavigationRequest(QWebFrame *frame,
                                const QNetworkRequest &request,
                                NavigationType type);
   void scheduleAdjustPage();
+  bool isLoading() const;
 
-  bool adjustingScheduled_;
+  static bool isPointerSafeToUse(WebPage* page);
+  void addAdBlockRule(const AdBlockRule* rule, const QUrl &url);
+  QVector<AdBlockedEntry> adBlockedEntries() const;
 
 protected slots:
   QWebPage *createWindow(WebWindowType type);
   void handleUnsupportedContent(QNetworkReply* reply);
 
 private slots:
-  void slotLoadFinished();
+  void progress(int prog);
+  void finished();
   void downloadRequested(const QNetworkRequest &request);
+  void cleanBlockedObjects();
+  void urlChanged(const QUrl &url);
+
+private:
+  bool adjustingScheduled_;
+  static QList<WebPage*> livingPages_;
+  QVector<AdBlockedEntry> adBlockedEntries_;
+
+  int loadProgress_;
 
 };
 

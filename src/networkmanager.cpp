@@ -18,6 +18,7 @@
 #include "networkmanager.h"
 
 #include "mainapplication.h"
+#include "adblockmanager.h"
 
 #include <QNetworkReply>
 #include <QSslError>
@@ -25,6 +26,7 @@
 
 NetworkManager::NetworkManager(QObject* parent)
   : QNetworkAccessManager(parent)
+  , adblockManager_(0)
 {
   setCookieJar(mainApp->cookieJar());
 
@@ -36,7 +38,7 @@ NetworkManager::~NetworkManager()
 {
 }
 
-void NetworkManager::handleSslErrors(QNetworkReply* reply,
+void NetworkManager::handleSslErrors(QNetworkReply *reply,
                                      const QList<QSslError> &errors)
 {
   qDebug() << "handleSslErrors: ";
@@ -45,4 +47,27 @@ void NetworkManager::handleSslErrors(QNetworkReply* reply,
   }
 
   reply->ignoreSslErrors();
+}
+
+QNetworkReply *NetworkManager::createRequest(QNetworkAccessManager::Operation op,
+                                             const QNetworkRequest &request,
+                                             QIODevice *outgoingData)
+{
+  if (mainApp->networkManager() == this) {
+    QNetworkReply *reply = 0;
+
+    // Adblock
+    if (op == QNetworkAccessManager::GetOperation) {
+      if (!adblockManager_) {
+        adblockManager_ = AdBlockManager::instance();
+      }
+
+      reply = adblockManager_->block(request);
+      if (reply) {
+        return reply;
+      }
+    }
+  }
+
+  return QNetworkAccessManager::createRequest(op, request, outgoingData);
 }

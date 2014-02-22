@@ -1050,9 +1050,10 @@ void UpdateObject::slotIconSave(QString feedUrl, QByteArray faviconData)
 void UpdateObject::slotSqlQueryExec(QString query)
 {
   QSqlQuery q(db_);
-  if (!q.exec(query))
+  if (!q.exec(query)) {
     qCritical() << __PRETTY_FUNCTION__ << __LINE__
                 << "q.lastError(): " << q.lastError().text();
+  }
 }
 
 /** @brief Mark all feeds Not New

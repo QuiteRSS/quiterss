@@ -120,7 +120,19 @@ HEADERS += \
     src/app/mainapplication.h \
     src/app/settings.h \
     src/app/logfile.h \
-    src/app/mainwindow.h
+    src/app/mainwindow.h \
+    src/adblock/adblocktreewidget.h \
+    src/adblock/adblocksubscription.h \
+    src/adblock/adblocksearchtree.h \
+    src/adblock/adblockrule.h \
+    src/adblock/adblockmanager.h \
+    src/adblock/adblockicon.h \
+    src/adblock/adblockdialog.h \
+    src/adblock/adblockblockednetworkreply.h \
+    src/adblock/adblockaddsubscriptiondialog.h \
+    src/adblock/followredirectreply.h \
+    src/adblock/treewidget.h \
+    src/app/common.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -172,7 +184,19 @@ SOURCES += \
     src/app/settings.cpp \
     src/app/logfile.cpp \
     src/app/mainwindow.cpp \
-    src/main/main.cpp
+    src/main/main.cpp \
+    src/adblock/adblocktreewidget.cpp \
+    src/adblock/adblocksubscription.cpp \
+    src/adblock/adblocksearchtree.cpp \
+    src/adblock/adblockrule.cpp \
+    src/adblock/adblockmanager.cpp \
+    src/adblock/adblockicon.cpp \
+    src/adblock/adblockdialog.cpp \
+    src/adblock/adblockblockednetworkreply.cpp \
+    src/adblock/adblockaddsubscriptiondialog.cpp \
+    src/adblock/followredirectreply.cpp \
+    src/adblock/treewidget.cpp \
+    src/app/common.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/app \
@@ -180,6 +204,7 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/downloads \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \
+                $$PWD/src/adblock \
 
 
 isEqual(QT_MAJOR_VERSION, 5) {
@@ -328,3 +353,7 @@ OTHER_FILES += \
     CHANGELOG \
     INSTALL \
     Info.plist
+
+FORMS += \
+    src/adblock/adblockdialog.ui \
+    src/adblock/adblockaddsubscriptiondialog.ui

@@ -18,11 +18,10 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#ifdef HAVE_QT5
-#include <QtWidgets>
-#else
-#include <QtGui>
-#endif
+#include <QString>
+#include <QDir>
+
+#define ADBLOCK_EASYLIST_URL "https://easylist-downloads.adblockplus.org/easylist.txt"
 
 namespace Common
 {

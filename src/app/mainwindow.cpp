@@ -17,8 +17,11 @@
 * ============================================================ */
 #include "mainwindow.h"
 
+#include "common.h"
 #include "mainapplication.h"
 #include "aboutdialog.h"
+#include "adblockmanager.h"
+#include "adblockicon.h"
 #include "addfeedwizard.h"
 #include "addfolderdialog.h"
 #include "authenticationdialog.h"
@@ -542,6 +545,8 @@ void MainWindow::createStatusBar()
 
   statusBar()->setMinimumHeight(22);
 
+  adblockIcon_ = new AdBlockIcon(this);
+
   QToolButton *loadImagesButton = new QToolButton(this);
   loadImagesButton->setFocusPolicy(Qt::NoFocus);
   loadImagesButton->setDefaultAction(autoLoadImagesToggle_);
@@ -560,6 +565,7 @@ void MainWindow::createStatusBar()
   statusAll_ = new QLabel(this);
   statusAll_->hide();
   statusBar()->addPermanentWidget(statusAll_);
+  statusBar()->addPermanentWidget(adblockIcon_);
   statusBar()->addPermanentWidget(loadImagesButton);
   statusBar()->addPermanentWidget(fullScreenButton);
   statusBar()->setVisible(true);
@@ -1704,6 +1710,8 @@ void MainWindow::createMenu()
   browserMenu_->addAction(printPreviewAct_);
   browserMenu_->addSeparator();
   browserMenu_->addAction(savePageAsAct_);
+  browserMenu_->addSeparator();
+  browserMenu_->addAction(tr("&AdBlock"), AdBlockManager::instance(), SLOT(showDialog()));
 
   toolsMenu_ = new QMenu(this);
   toolsMenu_->addAction(showDownloadManagerAct_);
@@ -1889,7 +1897,6 @@ void MainWindow::loadSettings()
   externalBrowser_ = settings.value("externalBrowser", "").toString();
   javaScriptEnable_ = settings.value("javaScriptEnable", true).toBool();
   pluginsEnable_ = settings.value("pluginsEnable", true).toBool();
-  userStyleBrowser_ = settings.value("userStyleBrowser", "").toString();
   maxPagesInCache_ = settings.value("maxPagesInCache", 3).toInt();
   downloadLocation_ = settings.value("downloadLocation", "").toString();
   askDownloadLocation_ = settings.value("askDownloadLocation", true).toBool();
@@ -1901,7 +1908,6 @@ void MainWindow::loadSettings()
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
   soundNewNews_ = settings.value("soundNewNews", true).toBool();
   QString soundNotifyPathStr(mainApp->resourcesDir() + "/sound/notification.wav");
@@ -2083,6 +2089,8 @@ void MainWindow::loadSettings()
   networkProxy_.setUser(    settings.value("networkProxy/user",     "").toString());
   networkProxy_.setPassword(settings.value("networkProxy/password", "").toString());
   setProxy(networkProxy_);
+
+  adblockIcon_->setEnabled(settings.value("AdBlock/enabled", true).toBool());
 }
 
 /** @brief Save settings in ini-file
@@ -2169,7 +2177,6 @@ void MainWindow::saveSettings()
   settings.setValue("externalBrowser", externalBrowser_);
   settings.setValue("javaScriptEnable", javaScriptEnable_);
   settings.setValue("pluginsEnable", pluginsEnable_);
-  settings.setValue("userStyleBrowser", userStyleBrowser_);
   settings.setValue("maxPagesInCache", maxPagesInCache_);
   settings.setValue("downloadLocation", downloadLocation_);
   settings.setValue("askDownloadLocation", askDownloadLocation_);
@@ -2286,6 +2293,7 @@ void MainWindow::saveSettings()
 
   mainApp->cookieJar()->saveCookies();
   mainApp->c2fSaveSettings();
+  AdBlockManager::instance()->save();
 }
 
 void MainWindow::setProxy(const QNetworkProxy proxy)
@@ -3074,10 +3082,13 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->defaultZoomPages_->setValue(defaultZoomPages_);
   optionsDialog_->openLinkInBackground_->setChecked(openLinkInBackground_);
   optionsDialog_->openLinkInBackgroundEmbedded_->setChecked(openLinkInBackgroundEmbedded_);
-  optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser_);
-
   optionsDialog_->maxPagesInCache_->setValue(maxPagesInCache_);
+
   settings.beginGroup("Settings");
+
+  QString userStyleBrowser = settings.value("userStyleSheet", QString()).toString();
+  optionsDialog_->userStyleBrowserEdit_->setText(userStyleBrowser);
+
   bool useDiskCache = settings.value("useDiskCache", true).toBool();
   optionsDialog_->diskCacheOn_->setChecked(useDiskCache);
   QString diskCacheDir = settings.value("dirDiskCache", mainApp->cacheDefaultDir()).toString();
@@ -3085,6 +3096,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->dirDiskCacheEdit_->setText(diskCacheDir);
   int maxDiskCache = settings.value("maxDiskCache", 50).toInt();
   optionsDialog_->maxDiskCache_->setValue(maxDiskCache);
+
   settings.endGroup();
 
   UseCookies useCookies = mainApp->cookieJar()->useCookies();
@@ -3462,7 +3474,6 @@ void MainWindow::showOptionDlg(int index)
   pluginsEnable_ = optionsDialog_->pluginsEnable_->isChecked();
   openLinkInBackground_ = optionsDialog_->openLinkInBackground_->isChecked();
   openLinkInBackgroundEmbedded_ = optionsDialog_->openLinkInBackgroundEmbedded_->isChecked();
-  userStyleBrowser_ = optionsDialog_->userStyleBrowserEdit_->text();
   maxPagesInCache_ = optionsDialog_->maxPagesInCache_->value();
   defaultZoomPages_ = optionsDialog_->defaultZoomPages_->value();
 
@@ -3471,20 +3482,24 @@ void MainWindow::showOptionDlg(int index)
   QWebSettings::globalSettings()->setAttribute(
         QWebSettings::PluginsEnabled, pluginsEnable_);
   QWebSettings::globalSettings()->setMaximumPagesInCache(maxPagesInCache_);
-  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser_));
 
   settings.beginGroup("Settings");
+
+  userStyleBrowser = optionsDialog_->userStyleBrowserEdit_->text();
+  settings.setValue("userStyleBrowser", userStyleBrowser);
+
   useDiskCache = optionsDialog_->diskCacheOn_->isChecked();
   settings.setValue("useDiskCache", useDiskCache);
   maxDiskCache = optionsDialog_->maxDiskCache_->value();
   settings.setValue("maxDiskCache", maxDiskCache);
 
   if (diskCacheDir != optionsDialog_->dirDiskCacheEdit_->text()) {
-    mainApp->removePath(diskCacheDir);
+    Common::removePath(diskCacheDir);
   }
   diskCacheDir = optionsDialog_->dirDiskCacheEdit_->text();
   if (diskCacheDir.isEmpty()) diskCacheDir = mainApp->cacheDefaultDir();
   settings.setValue("dirDiskCache", diskCacheDir);
+
   settings.endGroup();
 
   mainApp->setDiskCache();
@@ -3654,6 +3669,7 @@ void MainWindow::showOptionDlg(int index)
 
   saveSettings();
   saveActionShortcuts();
+  mainApp->reloadUserStyleSheet();
 
   if (currentNewsTab != NULL) {
     if (currentNewsTab->type_ < NewsTabWidget::TabTypeWeb)
@@ -7328,27 +7344,6 @@ void MainWindow::sortedByTitleFeedsTree()
   QApplication::restoreOverrideCursor();
 }
 
-/** @brief Set user style sheet for browser
- * @param filePath Filepath of user style
- * @return URL-link to user style
- *---------------------------------------------------------------------------*/
-QUrl MainWindow::userStyleSheet(const QString &filePath) const
-{
-  QString userStyle = "html{background-color:white;}";
-
-  QFile file(filePath);
-  if (!filePath.isEmpty() && file.open(QFile::ReadOnly)) {
-    QString fileData = QString::fromUtf8(file.readAll());
-    fileData.remove(QLatin1Char('\n'));
-    userStyle.append(fileData);
-    file.close();
-  }
-
-  const QString &encodedStyle = userStyle.toLatin1().toBase64();
-  const QString &dataString = QString("data:text/css;charset=utf-8;base64,%1").arg(encodedStyle);
-
-  return QUrl(dataString);
-}
 // ----------------------------------------------------------------------------
 void MainWindow::showNewsMenu()
 {

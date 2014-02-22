@@ -18,6 +18,7 @@
 #include "newstabwidget.h"
 
 #include "mainapplication.h"
+#include "adblockicon.h"
 #include "settings.h"
 
 #if defined(Q_OS_WIN)
@@ -1850,6 +1851,11 @@ void NewsTabWidget::showContextWebPage(const QPoint &p)
       menu.insertSeparator(menu.actions().at(0));
       menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Redo));
       menu.insertAction(menu.actions().at(0), webView_->pageAction(QWebPage::Undo));
+    }
+
+    if (!hitTest.isContentEditable() && !hitTest.isContentSelected()) {
+      menu.addSeparator();
+      menu.addAction(mainWindow_->adBlockIcon()->menuAction());
     }
 
     menu.exec(webView_->mapToGlobal(p));

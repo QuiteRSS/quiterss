@@ -19,6 +19,7 @@
 
 #include "clicktoflash.h"
 #include "mainapplication.h"
+#include "adblockmanager.h"
 #include "webpage.h"
 
 #include <QDebug>
@@ -36,6 +37,14 @@ QObject* WebPluginFactory::create(const QString &mimeType, const QUrl &url,
                                   const QStringList &argumentValues) const
 {
   if (url.isEmpty()) {
+    return new QObject();
+  }
+
+  // AdBlock
+  AdBlockManager* manager = AdBlockManager::instance();
+  QNetworkRequest request(url);
+  request.setAttribute(QNetworkRequest::Attribute(QNetworkRequest::User + 150), QString("object"));
+  if (manager->isEnabled() && manager->block(request)) {
     return new QObject();
   }
 

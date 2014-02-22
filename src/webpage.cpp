@@ -20,13 +20,18 @@
 #include "mainapplication.h"
 #include "networkmanager.h"
 #include "webpluginfactory.h"
+#include "adblockicon.h"
+#include "adblockmanager.h"
 
 #include <QAction>
 #include <QDesktopServices>
 #include <QNetworkRequest>
 
+QList<WebPage*> WebPage::livingPages_;
+
 WebPage::WebPage(QObject *parent)
   : QWebPage(parent)
+  , loadProgress_(-1)
 {
   setNetworkAccessManager(mainApp->networkManager());
 
@@ -36,12 +41,20 @@ WebPage::WebPage(QObject *parent)
   action(QWebPage::OpenFrameInNewWindow)->setVisible(false);
   action(QWebPage::OpenImageInNewWindow)->setVisible(false);
 
-  connect(this, SIGNAL(loadFinished(bool)), this, SLOT(slotLoadFinished()));
+  connect(this, SIGNAL(loadProgress(int)), this, SLOT(progress(int)));
+  connect(this, SIGNAL(loadFinished(bool)), this, SLOT(finished()));
 
   connect(this, SIGNAL(unsupportedContent(QNetworkReply*)),
           this, SLOT(handleUnsupportedContent(QNetworkReply*)));
   connect(this, SIGNAL(downloadRequested(QNetworkRequest)),
           this, SLOT(downloadRequested(QNetworkRequest)));
+
+  livingPages_.append(this);
+}
+
+WebPage::~WebPage()
+{
+  livingPages_.removeOne(this);
 }
 
 bool WebPage::acceptNavigationRequest(QWebFrame *frame,
@@ -76,8 +89,29 @@ void WebPage::scheduleAdjustPage()
   }
 }
 
-void WebPage::slotLoadFinished()
+bool WebPage::isLoading() const
 {
+  return loadProgress_ < 100;
+}
+
+void WebPage::urlChanged(const QUrl &url)
+{
+  Q_UNUSED(url)
+
+  if (isLoading()) {
+    adBlockedEntries_.clear();
+  }
+}
+
+void WebPage::progress(int prog)
+{
+  loadProgress_ = prog;
+}
+
+void WebPage::finished()
+{
+  progress(100);
+
   if (adjustingScheduled_) {
     adjustingScheduled_ = false;
 
@@ -88,6 +122,9 @@ void WebPage::slotLoadFinished()
     webView->resize(newSize);
     webView->resize(originalSize);
   }
+
+  // AdBlock
+  cleanBlockedObjects();
 }
 
 void WebPage::downloadRequested(const QNetworkRequest &request)
@@ -134,4 +171,86 @@ void WebPage::handleUnsupportedContent(QNetworkReply* reply)
 
   qDebug() << "WebPage::UnsupportedContent error" << url << reply->errorString();
   reply->deleteLater();
+}
+
+bool WebPage::isPointerSafeToUse(WebPage* page)
+{
+  // Pointer to WebPage is passed with every QNetworkRequest casted to void*
+  // So there is no way to test whether pointer is still valid or not, except
+  // this hack.
+
+  return page == 0 ? false : livingPages_.contains(page);
+}
+
+void WebPage::addAdBlockRule(const AdBlockRule* rule, const QUrl &url)
+{
+  AdBlockedEntry entry;
+  entry.rule = rule;
+  entry.url = url;
+
+  if (!adBlockedEntries_.contains(entry)) {
+    adBlockedEntries_.append(entry);
+  }
+}
+
+QVector<WebPage::AdBlockedEntry> WebPage::adBlockedEntries() const
+{
+  return adBlockedEntries_;
+}
+
+void WebPage::cleanBlockedObjects()
+{
+  AdBlockManager* manager = AdBlockManager::instance();
+  if (!manager->isEnabled()) {
+    return;
+  }
+
+  const QWebElement docElement = mainFrame()->documentElement();
+
+  foreach (const AdBlockedEntry &entry, adBlockedEntries_) {
+    const QString urlString = entry.url.toString();
+    if (urlString.endsWith(QLatin1String(".js")) || urlString.endsWith(QLatin1String(".css"))) {
+      continue;
+    }
+
+    QString urlEnd;
+
+    int pos = urlString.lastIndexOf(QLatin1Char('/'));
+    if (pos > 8) {
+      urlEnd = urlString.mid(pos + 1);
+    }
+
+    if (urlString.endsWith(QLatin1Char('/'))) {
+      urlEnd = urlString.left(urlString.size() - 1);
+    }
+
+    QString selector("img[src$=\"%1\"], iframe[src$=\"%1\"],embed[src$=\"%1\"]");
+    QWebElementCollection elements = docElement.findAll(selector.arg(urlEnd));
+
+    foreach (QWebElement element, elements) {
+      QString src = element.attribute("src");
+      src.remove(QLatin1String("../"));
+
+      if (urlString.contains(src)) {
+        element.setStyleProperty("display", "none");
+      }
+    }
+  }
+
+  // Apply domain-specific element hiding rules
+  QString elementHiding = manager->elementHidingRulesForDomain(mainFrame()->url());
+  if (elementHiding.isEmpty()) {
+    return;
+  }
+
+  elementHiding.append(QLatin1String("\n</style>"));
+
+  QWebElement bodyElement = docElement.findFirst("body");
+  bodyElement.appendInside("<style type=\"text/css\">\n/* AdBlock for QupZilla */\n" + elementHiding);
+
+  // When hiding some elements, scroll position of page will change
+  // If user loaded anchor link in background tab (and didn't show it yet), fix the scroll position
+  if (view() && !view()->isVisible() && !mainFrame()->url().fragment().isEmpty()) {
+    mainFrame()->scrollToAnchor(mainFrame()->url().fragment());
+  }
 }

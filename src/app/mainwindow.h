@@ -65,6 +65,8 @@ enum FeedReedType {
   FeedReadSwitchingTab
 };
 
+class AdBlockIcon;
+
 class MainWindow : public QMainWindow
 {
   Q_OBJECT
@@ -237,13 +239,13 @@ public:
 
   int openNewsTab_;
 
-  QString userStyleBrowser_;
-
   int positionNotify_;
   int countShowNewsNotify_;
   int widthTitleNewsNotify_;
   int timeShowNewsNotify_;
   QList<int> idFeedsNotifyList_;
+
+  AdBlockIcon *adBlockIcon() { return adblockIcon_; }
 
 public slots:
   void addFeed();
@@ -486,7 +488,6 @@ private:
   void recountFeedCounts(int feedId, bool update = true);
   void recountFeedCategories(const QList<int> &categoriesList);
   void creatFeedTab(int feedId, int feedParId);
-  QUrl userStyleSheet(const QString &filePath) const;
   void initUpdateFeeds();
   void addOurFeed();
 
@@ -728,6 +729,8 @@ private:
   OptionsDialog *optionsDialog_;
 
   bool hideTabBar_;
+
+  AdBlockIcon* adblockIcon_;
 
 };
 

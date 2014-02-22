@@ -17,9 +17,11 @@
 * ============================================================ */
 #include "mainapplication.h"
 
+#include "common.h"
 #include "cookiejar.h"
 #include "db_func.h"
 #include "networkmanager.h"
+#include "adblockmanager.h"
 #include "settings.h"
 #include "splashscreen.h"
 #include "updatefeeds.h"
@@ -241,6 +243,7 @@ void MainApplication::loadSettings()
 {
 
   c2fLoadSettings();
+  reloadUserStyleSheet();
 }
 
 void MainApplication::quitApplication()
@@ -322,23 +325,6 @@ bool MainApplication::isSaveDataLastFeed() const
 bool MainApplication::storeDBMemory() const
 {
   return storeDBMemory_;
-}
-
-bool MainApplication::removePath(const QString &path)
-{
-  bool result = true;
-  QFileInfo info(path);
-  if (info.isDir()) {
-    QDir dir(path);
-    foreach (const QString &entry, dir.entryList(QDir::AllDirs | QDir::Files | QDir::Hidden | QDir::NoDotAndDotDot)) {
-      result &= removePath(dir.absoluteFilePath(entry));
-    }
-    if (!info.dir().rmdir(info.fileName()))
-      return false;
-  } else {
-    result = QFile::remove(path);
-  }
-  return result;
 }
 
 void MainApplication::setStyleApplication()
@@ -425,7 +411,7 @@ void MainApplication::setDiskCache()
 
     bool cleanDiskCache = settings.value("cleanDiskCache", true).toBool();
     if (cleanDiskCache) {
-      removePath(diskCacheDirPath);
+      Common::removePath(diskCacheDirPath);
       settings.setValue("cleanDiskCache", false);
     }
 
@@ -522,3 +508,50 @@ DownloadManager *MainApplication::downloadManager()
   return downloadManager_;
 }
 
+void MainApplication::reloadUserStyleSheet()
+{
+  Settings settings;
+  settings.beginGroup("Settings");
+  QString userStyleBrowser = settings.value("userStyleSheet", QString()).toString();
+  QWebSettings::globalSettings()->setUserStyleSheetUrl(userStyleSheet(userStyleBrowser));
+  settings.endGroup();
+}
+
+/** @brief Set user style sheet for browser
+ * @param filePath Filepath of user style
+ * @return URL-link to user style
+ *---------------------------------------------------------------------------*/
+QUrl MainApplication::userStyleSheet(const QString &filePath) const
+{
+  QString userStyle;
+
+#ifndef QZ_WS_X11
+  // Don't grey out selection on losing focus (to prevent graying out found text)
+  QString highlightColor;
+  QString highlightedTextColor;
+#ifdef Q_OS_MAC
+  highlightColor = QLatin1String("#b6d6fc");
+  highlightedTextColor = QLatin1String("#000");
+#else
+  QPalette pal = style()->standardPalette();
+  highlightColor = pal.color(QPalette::Highlight).name();
+  highlightedTextColor = pal.color(QPalette::HighlightedText).name();
+#endif
+  userStyle += QString("::selection {background: %1; color: %2;} ").arg(highlightColor, highlightedTextColor);
+#endif
+
+  userStyle += AdBlockManager::instance()->elementHidingRules();
+
+  QFile file(filePath);
+  if (!filePath.isEmpty() && file.open(QFile::ReadOnly)) {
+    QString fileData = QString::fromUtf8(file.readAll());
+    fileData.remove(QLatin1Char('\n'));
+    userStyle.append(fileData);
+    file.close();
+  }
+
+  const QString &encodedStyle = userStyle.toLatin1().toBase64();
+  const QString &dataString = QString("data:text/css;charset=utf-8;base64,%1").arg(encodedStyle);
+
+  return QUrl(dataString);
+}

@@ -20,15 +20,24 @@
 
 #include <QNetworkAccessManager>
 
+class AdBlockManager;
+
 class NetworkManager : public QNetworkAccessManager
 {
   Q_OBJECT
 public:
-  explicit NetworkManager(QObject* parent = 0);
+  explicit NetworkManager(QObject *parent = 0);
   ~NetworkManager();
 
+  QNetworkReply *createRequest(QNetworkAccessManager::Operation op,
+                               const QNetworkRequest &request,
+                               QIODevice *outgoingData);
+
 private slots:
-  void handleSslErrors(QNetworkReply* reply, const QList<QSslError> &errors);
+  void handleSslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
+
+private:
+  AdBlockManager *adblockManager_;
 
 };
 

@@ -57,7 +57,6 @@ public:
 
   bool storeDBMemory() const;
   bool isSaveDataLastFeed() const;
-  bool removePath(const QString &path);
   void sqlQueryExec(const QString &query);
 
   MainWindow *mainWindow();
@@ -80,6 +79,7 @@ public:
 public slots:
   void receiveMessage(const QString &message);
   void quitApplication();
+  void reloadUserStyleSheet();
 
 signals:
   void signalSqlQueryExec(const QString &query);
@@ -119,6 +119,8 @@ private:
 
   QStringList c2fWhitelist_;
   bool c2fEnabled_;
+
+  QUrl userStyleSheet(const QString &filePath) const;
 
 };
 
