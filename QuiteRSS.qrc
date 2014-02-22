@@ -101,6 +101,9 @@
         <file alias="bulletError">images/bullet_error.png</file>
         <file alias="bulletUpdate">images/bullet_update.png</file>
         <file alias="play">images/control_play.png</file>
+        <file>images/adblock.png</file>
+        <file>images/adblock_big.png</file>
+        <file>images/adblock-disabled.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="systemStyle">style/system.qss</file>
@@ -116,6 +119,7 @@
         <file alias="description">html/news.html</file>
         <file alias="audioplayer">html/audioplayer.html</file>
         <file alias="videoplayer">html/videoplayer.html</file>
+        <file>html/adblockPage.html</file>
     </qresource>
     <qresource prefix="/flags">
         <file alias="flag_AR">images/flags/flag_arab.png</file>
