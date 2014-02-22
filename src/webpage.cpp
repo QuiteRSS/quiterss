@@ -18,6 +18,7 @@
 #include "webpage.h"
 
 #include "mainapplication.h"
+#include "networkmanager.h"
 #include "webpluginfactory.h"
 
 #include <QAction>

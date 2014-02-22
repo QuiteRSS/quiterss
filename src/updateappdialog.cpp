@@ -18,6 +18,7 @@
 #include "updateappdialog.h"
 
 #include "mainapplication.h"
+#include "networkmanager.h"
 #include "VersionNo.h"
 #include "settings.h"
 
