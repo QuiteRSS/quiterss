@@ -53,50 +53,47 @@ QMenuBar::item:pressed {
 	background: white;
 }
 
-QTabWidget::pane {
+#tabBar_ QTabWidget::pane {
 	background: white;
 	border: 1px solid gray;
 }
 
-QTabWidget::tab-bar {
+#tabBar_ QTabWidget::tab-bar {
 	bottom: -1px;
 }
 
-QTabBar::tab {
+#tabBar_::tab {
 	background-color: transparent;
 	border: 1px solid gray;
 	border-bottom: none;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	min-width: 20px;
+	max-width: 130px;
 	padding: 4px 12px 4px 12px;
 	margin-right: -1px;
 }
 
-QTabBar::tab:last {
+#tabBar_::tab:last {
 	margin-right: 0px;
 }
 
-QTabBar::tab:selected {
+#tabBar_::tab:selected {
 	background: #ffffff;
 	color: #000000;
 	border-bottom: none;
 	padding-bottom: 5px;
 }
 
-QTabBar::tab:hover:!selected {
+#tabBar_::tab:hover:!selected {
 	background: #f8f8f8;
 	color: #000000;
 	border-bottom: 1px solid gray;
 }
 
-QTabBar QToolButton {
+#tabBar_ QToolButton {
 	border: 1px solid gray;
 	border-radius: 2px;
-}
-
-#tabBar_::tab {
-	max-width: 130px;
 }
 
 #tabBarWidget {
