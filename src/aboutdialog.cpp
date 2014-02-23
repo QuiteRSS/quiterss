@@ -125,11 +125,14 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
   QWidget *licenseWidget = new QWidget();
   licenseWidget->setLayout(licenseLayout);
 
+  QString portable;
+  if (mainApp->isPoratble())
+    portable = QString("(Portable)");
   Settings settings;
   QString information =
       "<table border=\"0\"><tr>"
       "<td>" + tr("Version") + " </td>"
-      "<td>" + QString("%1.%2 %3").arg(STRPRODUCTVER).arg(VCS_REVISION).arg(STRDATE) + "</td>"
+      "<td>" + QString("%1.%2 %3 %4").arg(STRPRODUCTVER).arg(VCS_REVISION).arg(portable).arg(STRDATE) + "</td>"
       "</tr><tr></tr><tr>"
       "<td>" + tr("Application directory:") + " </td>"
       "<td>" + QCoreApplication::applicationDirPath() + "</td>"
