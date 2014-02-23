@@ -16,6 +16,8 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "aboutdialog.h"
+#include "mainapplication.h"
+#include "settings.h"
 #include "VersionNo.h"
 
 #if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
@@ -120,14 +122,49 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
 
   QHBoxLayout *licenseLayout = new QHBoxLayout();
   licenseLayout->addWidget(licenseTextEdit);
-
   QWidget *licenseWidget = new QWidget();
   licenseWidget->setLayout(licenseLayout);
+
+  Settings settings;
+  QString information =
+      "<table border=\"0\"><tr>"
+      "<td>" + tr("Version") + " </td>"
+      "<td>" + QString("%1.%2 %3").arg(STRPRODUCTVER).arg(VCS_REVISION).arg(STRDATE) + "</td>"
+      "</tr><tr></tr><tr>"
+      "<td>" + tr("Application directory:") + " </td>"
+      "<td>" + QCoreApplication::applicationDirPath() + "</td>"
+      "</tr><tr>"
+      "<td>" + tr("Resource directory:") + " </td>"
+      "<td>" + mainApp->resourcesDir() + "</td>"
+      "</tr><tr>"
+      "<td>" + tr("Data directory:") + " </td>"
+      "<td>" + mainApp->dataDir() + "</td>"
+      "</tr><tr></tr><tr>"
+      "<td>" + tr("Database file:") + " </td>"
+      "<td>" + mainApp->dbFileName() + "</td>"
+      "</tr><tr>"
+      "<td>" + tr("Settings file:") + " </td>"
+      "<td>" + settings.fileName() + "</td>"
+      "</tr><tr>"
+      "<td>" + tr("Log file:") + " </td>"
+      "<td>" + mainApp->dataDir() + "/debug.log" + "</td>"
+      "</tr></table>";
+
+  QTextEdit *informationTextEdit = new QTextEdit();
+  informationTextEdit->setReadOnly(true);
+  informationTextEdit->setText(information);
+
+  QHBoxLayout *informationLayout = new QHBoxLayout();
+  informationLayout->addWidget(informationTextEdit);
+
+  QWidget *informationWidget = new QWidget();
+  informationWidget->setLayout(informationLayout);
 
   tabWidget->addTab(mainWidget, tr("Version"));
   tabWidget->addTab(authorsWidget, tr("Authors"));
   tabWidget->addTab(historyWidget, tr("History"));
   tabWidget->addTab(licenseWidget, tr("License"));
+  tabWidget->addTab(informationWidget, tr("Information"));
 
   pageLayout->addWidget(tabWidget);
 
