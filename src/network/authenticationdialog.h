@@ -15,23 +15,35 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "mainapplication.h"
-#include "logfile.h"
+#ifndef AUTHENTICATIONDIALOG_H
+#define AUTHENTICATIONDIALOG_H
 
-int main(int argc, char **argv)
+#include <QAuthenticator>
+#include <QNetworkReply>
+
+#include "dialog.h"
+#include "lineedit.h"
+
+class AuthenticationDialog : public Dialog
 {
-#if defined(QT_NO_DEBUG_OUTPUT)
-#ifdef HAVE_QT5
-  qInstallMessageHandler(LogFile::msgHandler);
-#else
-  qInstallMsgHandler(LogFile::msgHandler);
-#endif
-#endif
+  Q_OBJECT
 
-  MainApplication app(argc, argv);
+public:
+  explicit AuthenticationDialog(const QUrl &url,
+                                QAuthenticator *auth,
+                                QWidget *parent = 0);
+  QCheckBox* save_;
 
-  if (app.isClosing())
-    return 0;
+private slots:
+  void acceptDialog();
 
-  return app.exec();
-}
+private:
+  QAuthenticator *auth_;
+
+  QString server_;
+  LineEdit *user_;
+  LineEdit *pass_;
+
+};
+
+#endif // AUTHENTICATIONDIALOG_H

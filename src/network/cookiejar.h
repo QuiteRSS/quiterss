@@ -15,23 +15,42 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "mainapplication.h"
-#include "logfile.h"
+#ifndef COOKIEJAR_H
+#define COOKIEJAR_H
 
-int main(int argc, char **argv)
+#include <QFile>
+#include <QStringList>
+#include <QNetworkCookieJar>
+
+enum UseCookies {
+  BlockCookies,
+  SaveCookies,
+  DeleteCookiesOnClose
+};
+
+class CookieJar : public QNetworkCookieJar
 {
-#if defined(QT_NO_DEBUG_OUTPUT)
-#ifdef HAVE_QT5
-  qInstallMessageHandler(LogFile::msgHandler);
-#else
-  qInstallMsgHandler(LogFile::msgHandler);
-#endif
-#endif
+  Q_OBJECT
+public:
+  explicit CookieJar(QObject *parent);
 
-  MainApplication app(argc, argv);
+  bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
 
-  if (app.isClosing())
-    return 0;
+  QList<QNetworkCookie> getAllCookies();
+  void setAllCookies(const QList<QNetworkCookie> &cookieList);
 
-  return app.exec();
-}
+  void saveCookies();
+  void loadCookies();
+
+  UseCookies useCookies() const;
+  void setUseCookies(UseCookies value);
+
+public slots:
+  void clearCookies();
+
+private:
+  UseCookies useCookies_;
+
+};
+
+#endif // COOKIEJAR_H

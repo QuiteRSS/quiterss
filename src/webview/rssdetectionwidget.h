@@ -1,6 +1,7 @@
 /* ============================================================
 * QuiteRSS is a open-source cross-platform RSS/Atom news feeds reader
 * Copyright (C) 2011-2014 QuiteRSS Team <quiterssteam@gmail.com>
+* Copyright (C) 2010-2013  David Rosca <nowrep@gmail.com>
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -15,23 +16,32 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "mainapplication.h"
-#include "logfile.h"
+#ifndef RSSDETECTIONWIDGET_H
+#define RSSDETECTIONWIDGET_H
 
-int main(int argc, char **argv)
+#include <QFrame>
+#include <QLayout>
+#include <QMenu>
+
+class WebView;
+
+class RSSDetectionWidget : public QFrame
 {
-#if defined(QT_NO_DEBUG_OUTPUT)
-#ifdef HAVE_QT5
-  qInstallMessageHandler(LogFile::msgHandler);
-#else
-  qInstallMsgHandler(LogFile::msgHandler);
-#endif
-#endif
+  Q_OBJECT
 
-  MainApplication app(argc, argv);
+public:
+  explicit RSSDetectionWidget(WebView* view, QWidget* parent = 0);
+  ~RSSDetectionWidget();
 
-  if (app.isClosing())
-    return 0;
+  void showAt(QWidget* parent);
 
-  return app.exec();
-}
+private slots:
+  void addRss();
+
+private:
+  WebView* view_;
+  QGridLayout* gridLayout_;
+
+};
+
+#endif // RSSDETECTIONWIDGET_H

@@ -15,23 +15,30 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "mainapplication.h"
-#include "logfile.h"
+#ifndef NETWORKMANAGER_H
+#define NETWORKMANAGER_H
 
-int main(int argc, char **argv)
+#include <QNetworkAccessManager>
+
+class AdBlockManager;
+
+class NetworkManager : public QNetworkAccessManager
 {
-#if defined(QT_NO_DEBUG_OUTPUT)
-#ifdef HAVE_QT5
-  qInstallMessageHandler(LogFile::msgHandler);
-#else
-  qInstallMsgHandler(LogFile::msgHandler);
-#endif
-#endif
+  Q_OBJECT
+public:
+  explicit NetworkManager(QObject *parent = 0);
+  ~NetworkManager();
 
-  MainApplication app(argc, argv);
+  QNetworkReply *createRequest(QNetworkAccessManager::Operation op,
+                               const QNetworkRequest &request,
+                               QIODevice *outgoingData);
 
-  if (app.isClosing())
-    return 0;
+private slots:
+  void handleSslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
 
-  return app.exec();
-}
+private:
+  AdBlockManager *adblockManager_;
+
+};
+
+#endif // NETWORKMANAGER_H

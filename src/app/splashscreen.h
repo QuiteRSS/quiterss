@@ -15,23 +15,30 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#include "mainapplication.h"
-#include "logfile.h"
+#ifndef SPLASHSCREEN_H
+#define SPLASHSCREEN_H
 
-int main(int argc, char **argv)
-{
-#if defined(QT_NO_DEBUG_OUTPUT)
 #ifdef HAVE_QT5
-  qInstallMessageHandler(LogFile::msgHandler);
+#include <QtWidgets>
 #else
-  qInstallMsgHandler(LogFile::msgHandler);
+#include <QtGui>
 #endif
-#endif
 
-  MainApplication app(argc, argv);
+class SplashScreen : public QSplashScreen
+{
+  Q_OBJECT
+public:
+  explicit SplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags flag = 0);
 
-  if (app.isClosing())
-    return 0;
+  void loadModules();
 
-  return app.exec();
-}
+private slots:
+  void slotSplashTimeOut();
+
+private:
+  QTimer *splashTimer_;
+  QProgressBar splashProgress_;
+
+};
+
+#endif // SPLASHSCREEN_H

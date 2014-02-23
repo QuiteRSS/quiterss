@@ -83,10 +83,8 @@ HEADERS += \
     src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
-    src/webpage.h \
     src/lineedit.h \
     src/db_func.h \
-    src/webview.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
     src/findtext.h \
@@ -94,13 +92,9 @@ HEADERS += \
     src/feedstreeview.h \
     src/feedstreemodel.h \
     src/VersionRev.h \
-    src/splashscreen.h \
     src/addfolderdialog.h \
     src/labeldialog.h \
     src/dialog.h \
-    src/authenticationdialog.h \
-    src/networkmanager.h \
-    src/cookiejar.h \
     src/faviconobject.h \
     src/customizetoolbardialog.h \
     src/plugins/webpluginfactory.h \
@@ -112,8 +106,6 @@ HEADERS += \
     src/cleanupwizard.h \
     src/updatefeeds.h \
     src/requestfeed.h \
-    src/locationbar.h \
-    src/rssdetectionwidget.h \
     src/notifications/notificationsfeeditem.h \
     src/notifications/notificationsnewsitem.h \
     src/notifications/notificationswidget.h \
@@ -132,7 +124,15 @@ HEADERS += \
     src/adblock/adblockaddsubscriptiondialog.h \
     src/adblock/followredirectreply.h \
     src/adblock/treewidget.h \
-    src/app/common.h
+    src/app/common.h \
+    src/app/splashscreen.h \
+    src/network/authenticationdialog.h \
+    src/network/cookiejar.h \
+    src/network/networkmanager.h \
+    src/webview/locationbar.h \
+    src/webview/rssdetectionwidget.h \
+    src/webview/webpage.h \
+    src/webview/webview.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -147,23 +147,17 @@ SOURCES += \
     src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
-    src/webpage.cpp \
     src/lineedit.cpp \
     src/db_func.cpp \
-    src/webview.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
     src/findtext.cpp \
     src/findfeed.cpp \
     src/feedstreeview.cpp \
     src/feedstreemodel.cpp \
-    src/splashscreen.cpp \
     src/addfolderdialog.cpp \
     src/labeldialog.cpp \
     src/dialog.cpp \
-    src/authenticationdialog.cpp \
-    src/networkmanager.cpp \
-    src/cookiejar.cpp \
     src/faviconobject.cpp \
     src/customizetoolbardialog.cpp \
     src/plugins/webpluginfactory.cpp \
@@ -175,8 +169,6 @@ SOURCES += \
     src/cleanupwizard.cpp \
     src/updatefeeds.cpp \
     src/requestfeed.cpp \
-    src/locationbar.cpp \
-    src/rssdetectionwidget.cpp \
     src/notifications/notificationsfeeditem.cpp \
     src/notifications/notificationsnewsitem.cpp \
     src/notifications/notificationswidget.cpp \
@@ -196,7 +188,15 @@ SOURCES += \
     src/adblock/adblockaddsubscriptiondialog.cpp \
     src/adblock/followredirectreply.cpp \
     src/adblock/treewidget.cpp \
-    src/app/common.cpp
+    src/app/common.cpp \
+    src/app/splashscreen.cpp \
+    src/network/authenticationdialog.cpp \
+    src/network/cookiejar.cpp \
+    src/network/networkmanager.cpp \
+    src/webview/locationbar.cpp \
+    src/webview/rssdetectionwidget.cpp \
+    src/webview/webpage.cpp \
+    src/webview/webview.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/app \
@@ -205,6 +205,8 @@ INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \
                 $$PWD/src/adblock \
+                $$PWD/src/network \
+                $$PWD/src/webview \
 
 
 isEqual(QT_MAJOR_VERSION, 5) {
