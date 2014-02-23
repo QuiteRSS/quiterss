@@ -2577,4 +2577,186 @@ Ancient news could reappear</source>
     <source>Focused feed background color</source>
     <target>Цвет фона ленты под курсором</target>
 </phrase>
+<phrase>
+    <source>Untitled feed</source>
+    <target>Лента без имени</target>
+</phrase>
+<phrase>
+    <source>Delete News</source>
+    <target>Удалить новость</target>
+</phrase>
+<phrase>
+    <source>Attention! Need to save data.
+Save?</source>
+    <target>Внимание! Необходимо сохранить данные.
+Сохранить?</target>
+</phrase>
+<phrase>
+    <source>Previous Page</source>
+    <target>Предыдущая страница</target>
+</phrase>
+<phrase>
+    <source>Next Page</source>
+    <target>Следующая страница</target>
+</phrase>
+<phrase>
+    <source>Show close button on tab</source>
+    <target>Показать кнопку закрытия на вкладке</target>
+</phrase>
+<phrase>
+    <source>item on page notification</source>
+    <target>элементов на странице уведомления</target>
+</phrase>
+<phrase>
+    <source>Width list items</source>
+    <target>Ширина списка элементов</target>
+</phrase>
+<phrase>
+    <source>Information</source>
+    <target>Информация</target>
+</phrase>
+<phrase>
+    <source>Application directory:</source>
+    <target>Каталог приложения:</target>
+</phrase>
+<phrase>
+    <source>Resource directory:</source>
+    <target>Каталог ресурсов:</target>
+</phrase>
+<phrase>
+    <source>Data directory:</source>
+    <target>Каталог данных:</target>
+</phrase>
+<phrase>
+    <source>Database file:</source>
+    <target>Файл базы данных:</target>
+</phrase>
+<phrase>
+    <source>Settings file:</source>
+    <target>Файл настроек:</target>
+</phrase>
+<phrase>
+    <source>Log file:</source>
+    <target>Файл журнала:</target>
+</phrase>
+<phrase>
+    <source>Add Subscription</source>
+    <target>Добавить подписку</target>
+</phrase>
+<phrase>
+    <source>Address:</source>
+    <target>Адрес:</target>
+</phrase>
+<phrase>
+    <source>Add new subscription to AdBlock:</source>
+    <target>Добавить новую подписку в AdBlock:</target>
+</phrase>
+<phrase>
+    <source>Custom Rules</source>
+    <target>Пользовательские правила</target>
+</phrase>
+<phrase>
+    <source>AdBlock Configuration</source>
+    <target>Настройки AdBlock</target>
+</phrase>
+<phrase>
+    <source>Enable AdBlock</source>
+    <target>Включить AdBlock</target>
+</phrase>
+<phrase>
+    <source>Search...</source>
+    <target>Поиск...</target>
+</phrase>
+<phrase>
+    <source>Use only essential part of EasyList (for performance reasons)</source>
+    <target>Используйте только необходимые части EasyList (из соображений производительности)</target>
+</phrase>
+<phrase>
+    <source>Add Rule</source>
+    <target>Добавить правило</target>
+</phrase>
+<phrase>
+    <source>Remove Rule</source>
+    <target>Удалить правило</target>
+</phrase>
+<phrase>
+    <source>Add Subscription</source>
+    <target>Добавить подписку</target>
+</phrase>
+<phrase>
+    <source>Remove Subscription</source>
+    <target>Удалить подписку</target>
+</phrase>
+<phrase>
+    <source>Update Subscriptions</source>
+    <target>Обновить подписки</target>
+</phrase>
+<phrase>
+    <source>Learn about writing rules...</source>
+    <target>Информация о написании правил...</target>
+</phrase>
+<phrase>
+    <source>EasyList</source>
+    <target>EasyList</target>
+</phrase>
+<phrase>
+    <source>Cannot load subscription!</source>
+    <target>Не удается загрузить подписку!</target>
+</phrase>
+<phrase>
+    <source>%1 (Error: %2)</source>
+    <target>%1 (Ошибка: %2)</target>
+</phrase>
+<phrase>
+    <source>Cannot load subscription!</source>
+    <target>Не удается загрузить подписку!</target>
+</phrase>
+<phrase>
+    <source>Add Custom Rule</source>
+    <target>Добавить пользовательское правило</target>
+</phrase>
+<phrase>
+    <source>Please write your rule here:</source>
+    <target>Пожалуйста, напишите своё правило здесь:</target>
+</phrase>
+<phrase>
+    <source>%1 (recently updated)</source>
+    <target>%1 (недавно обновлено)</target>
+</phrase>
+<phrase>
+    <source>AdBlock lets you block unwanted content on web pages</source>
+    <target>AdBlock позволяет блокировать нежелательное содержимое веб-страниц</target>
+</phrase>
+<phrase>
+    <source>Show AdBlock &amp;Settings</source>
+    <target>Настройки AdBlock</target>
+</phrase>
+<phrase>
+    <source>Disable on %1</source>
+    <target>Отключить на %1</target>
+</phrase>
+<phrase>
+    <source>Disable on %1</source>
+    <target>Отключить на %1</target>
+</phrase>
+<phrase>
+    <source>Disable only on this page</source>
+    <target>Отключить только на этой странице</target>
+</phrase>
+<phrase>
+    <source>Blocked Popup Windows</source>
+    <target>Заблокированные всплывающие окна</target>
+</phrase>
+<phrase>
+    <source>%1 with (%2)</source>
+    <target>%1 из (%2)</target>
+</phrase>
+<phrase>
+    <source>No content blocked</source>
+    <target>Нет заблокированных элементов</target>
+</phrase>
+<phrase>
+    <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
+    <target>Список заблокированного. Кликните, чтобы редактировать правило</target>
+</phrase>
 </QPH>
