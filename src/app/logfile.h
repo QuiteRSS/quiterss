@@ -24,7 +24,7 @@
 #include <QDebug>
 #include <QTextStream>
 
-const size_t maxLogFileSize = 4 * 1024 * 1024; //4 MB
+const size_t maxLogFileSize = 1 * 1024 * 1024; //1 MB
 
 class LogFile
 {
