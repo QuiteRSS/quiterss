@@ -5777,7 +5777,14 @@ void MainWindow::slotTabCurrentChanged(int index)
     }
     categoriesTree_->setCurrentItem(treeItems.at(0));
 
-    createNewsTab(index);
+    currentNewsTab = (NewsTabWidget*)stackedWidget_->widget(index);
+    currentNewsTab->setSettings(false);
+    currentNewsTab->retranslateStrings();
+    currentNewsTab->setBrowserPosition();
+
+    newsModel_ = currentNewsTab->newsModel_;
+    newsView_ = currentNewsTab->newsView_;
+
     slotUpdateNews();
     newsView_->setFocus();
 
