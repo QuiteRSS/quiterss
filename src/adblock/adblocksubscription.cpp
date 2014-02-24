@@ -298,7 +298,11 @@ QString AdBlockSubscription::elementHidingRulesForDomain(const QString &domain) 
       continue;
     }
 
+#if QT_VERSION >= 0x040800
     if (Q_UNLIKELY(addedRulesCount == 1000)) {
+#else
+    if (addedRulesCount == 1000) {
+#endif
       rules.append(rule->cssSelector());
       rules.append("{display:none !important;}\n");
       addedRulesCount = 0;
@@ -431,7 +435,11 @@ void AdBlockSubscription::populateCache()
       if (rule->isDomainRestricted()) {
         m_domainRestrictedCssRules.append(rule);
       }
+#if QT_VERSION >= 0x040800
       else if (Q_UNLIKELY(hidingRulesCount == 1000)) {
+#else
+      else if (hidingRulesCount == 1000) {
+#endif
         m_elementHidingRules.append(rule->cssSelector());
         m_elementHidingRules.append("{display:none !important;} ");
         hidingRulesCount = 0;
