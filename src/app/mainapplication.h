@@ -95,6 +95,8 @@ private:
   void loadSettings();
   void setStyleApplication();
   void showSplashScreen();
+  void closeSplashScreen();
+  void setProgressSplashScreen(int value);
 
   bool isPortable_;
   bool isClosing_;

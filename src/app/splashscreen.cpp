@@ -29,39 +29,19 @@ SplashScreen::SplashScreen(const QPixmap &pixmap, Qt::WindowFlags flag)
   splashProgress_.setObjectName("splashProgress");
   splashProgress_.setTextVisible(false);
   splashProgress_.setFixedHeight(10);
-  splashProgress_.setMaximum(0);
-  splashProgress_.hide();
+  splashProgress_.setMaximum(100);
+  splashProgress_.setValue(10);
 
   QVBoxLayout *layout = new QVBoxLayout();
   layout->addStretch(1);
   layout->addWidget(&splashProgress_);
   setLayout(layout);
-
-  splashTimer_ = new QTimer(this);
-  connect(splashTimer_, SIGNAL(timeout()), this, SLOT(slotSplashTimeOut()));
-//  splashTimer_->start(10);
 }
 
-void SplashScreen::loadModules()
+void SplashScreen::setProgress(int value)
 {
-  QElapsedTimer time;
-  time.start();
-  splashTimer_->stop();
-  splashProgress_.show();
-  splashProgress_.setMaximum(100);
-  for (int i = 0; i < 100; ) {
-    if (time.elapsed() >= 1) {
-      time.start();
-      ++i;
-      qApp->processEvents();
-      splashProgress_.setValue(i);
-      showMessage("Loading: " + QString::number(i) + "%",
-                           Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
-    }
-  }
-}
-
-void SplashScreen::slotSplashTimeOut()
-{
-  splashProgress_.setValue(0);
+  qApp->processEvents();
+  splashProgress_.setValue(value);
+  showMessage("Loading: " + QString::number(value) + "%",
+              Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
 }

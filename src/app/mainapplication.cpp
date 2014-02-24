@@ -80,31 +80,29 @@ MainApplication::MainApplication(int &argc, char **argv)
   showSplashScreen();
 
   connectDatabase();
+  setProgressSplashScreen(30);
 
   mainWindow_ = new MainWindow();
+  setProgressSplashScreen(60);
 
   loadSettings();
 
   updateFeeds_ = new UpdateFeeds(mainWindow_);
-
-  if (showSplashScreen_)
-    splashScreen_->loadModules();
-
-  if (!mainWindow_->startingTray_ || !mainWindow_->showTrayIcon_)
-    mainWindow_->show();
-  mainWindow_->isMinimizeToTray_ = false;
-
-  if (mainWindow_->showTrayIcon_) {
-    processEvents();
-    mainWindow_->traySystem->show();
-  }
-
-  if (showSplashScreen_) {
-    splashScreen_->finish(mainWindow_);
-    splashScreen_->deleteLater();
-  }
+  setProgressSplashScreen(90);
 
   mainWindow_->restoreFeedsOnStartUp();
+  setProgressSplashScreen(100);
+
+  if (!mainWindow_->startingTray_ || !mainWindow_->showTrayIcon_) {
+    mainWindow_->show();
+  }
+  mainWindow_->isMinimizeToTray_ = false;
+
+  closeSplashScreen();
+
+  if (mainWindow_->showTrayIcon_) {
+    QTimer::singleShot(0, mainWindow_->traySystem, SLOT(show()));
+  }
 
   receiveMessage(message);
   connect(this, SIGNAL(messageReceived(QString)), SLOT(receiveMessage(QString)));
@@ -366,11 +364,26 @@ void MainApplication::showSplashScreen()
   if (showSplashScreen_) {
     splashScreen_ = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
     splashScreen_->show();
+    processEvents();
     if ((versionDB != kDbVersion) && QFile::exists(settings.fileName())) {
       splashScreen_->showMessage(QString("Converting database to version %1...").arg(kDbVersion),
                                 Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
     }
   }
+}
+
+void MainApplication::closeSplashScreen()
+{
+  if (showSplashScreen_) {
+    splashScreen_->finish(mainWindow_);
+    splashScreen_->deleteLater();
+  }
+}
+
+void MainApplication::setProgressSplashScreen(int value)
+{
+  if (showSplashScreen_)
+    splashScreen_->setProgress(value);
 }
 
 MainWindow *MainApplication::mainWindow()

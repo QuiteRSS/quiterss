@@ -82,7 +82,7 @@ public:
   bool startingTray_;
   bool isMinimizeToTray_;
   QSystemTrayIcon *traySystem;
-  void restoreFeedsOnStartUp();
+
   QString getIdFeedsString(int idFolder, int idException = -1);
   void recountCategoryCounts();
 
@@ -248,6 +248,7 @@ public:
   AdBlockIcon *adBlockIcon() { return adblockIcon_; }
 
 public slots:
+  void restoreFeedsOnStartUp();
   void addFeed();
   void addFolder();
   void deleteItemFeedsTree();

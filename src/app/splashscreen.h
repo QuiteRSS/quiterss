@@ -30,13 +30,9 @@ class SplashScreen : public QSplashScreen
 public:
   explicit SplashScreen(const QPixmap &pixmap = QPixmap(), Qt::WindowFlags flag = 0);
 
-  void loadModules();
-
-private slots:
-  void slotSplashTimeOut();
+  void setProgress(int value);
 
 private:
-  QTimer *splashTimer_;
   QProgressBar splashProgress_;
 
 };
