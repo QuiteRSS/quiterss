@@ -20,17 +20,6 @@
 #include "settings.h"
 #include "VersionNo.h"
 
-#if defined(Q_OS_WIN) || defined(Q_OS_OS2) || defined(Q_OS_MAC)
-#if QT_VERSION >= 0x050100
-#include <sqlite_qt51x/sqlite3.h>
-#elif QT_VERSION >= 0x040800
-#include <sqlite_qt48x/sqlite3.h>
-#else
-#include <sqlite_qt47x/sqlite3.h>
-#endif
-#else
-#include <sqlite3.h>
-#endif
 #include <qyursqltreeview.h>
 #ifdef HAVE_QT5
 #include <QWebPage>
@@ -66,8 +55,8 @@ AboutDialog::AboutDialog(const QString &lang, QWidget *parent) :
       + "<BR>"
       + tr("QuiteRSS is a open-source cross-platform RSS/Atom news reader")
       + "<P>" + tr("Includes:")
-      + QString(" Qt-%1, SQLite-%2, QyurSqlTreeView-%3, WebKit-%4").
-      arg(QT_VERSION_STR).arg(SQLITE_VERSION).
+      + QString(" Qt-%1, QyurSqlTreeView-%3, WebKit-%4").
+      arg(QT_VERSION_STR).
       arg(treeView.metaObject()->classInfo(treeView.metaObject()->indexOfClassInfo("Version")).value()).
       arg(qWebKitVersion())
       + "</P>"

@@ -56,6 +56,7 @@ public:
   QString cacheDefaultDir() const;
 
   bool storeDBMemory() const;
+  bool dbFileExists() const { return dbFileExists_; }
   bool isSaveDataLastFeed() const;
   void sqlQueryExec(const QString &query);
 
@@ -106,6 +107,7 @@ private:
   QString cacheDir_;
 
   bool storeDBMemory_;
+  bool dbFileExists_;
   bool isSaveDataLastFeed_;
   QString styleApplication_;
   bool showSplashScreen_;

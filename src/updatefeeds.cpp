@@ -18,6 +18,7 @@
 #include "updatefeeds.h"
 
 #include "mainapplication.h"
+#include "database.h"
 #include "settings.h"
 
 #include <QDebug>
@@ -222,17 +223,7 @@ UpdateObject::UpdateObject(QObject *parent)
 
   mainWindow_ = mainApp->mainWindow();
 
-  if (mainApp->storeDBMemory()) {
-    db_ = QSqlDatabase::database();
-  }
-  else {
-    db_ = QSqlDatabase::database("secondConnection", true);
-    if (!db_.isValid()) {
-      db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-      db_.setDatabaseName(mainApp->dbFileName());
-      db_.open();
-    }
-  }
+  db_ = Database::connection("secondConnection");
 
   updateModelTimer_ = new QTimer(this);
   updateModelTimer_->setSingleShot(true);

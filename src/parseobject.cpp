@@ -18,6 +18,7 @@
 #include "parseobject.h"
 
 #include "mainapplication.h"
+#include "database.h"
 #include "VersionNo.h"
 
 #include <QDebug>
@@ -34,17 +35,7 @@ ParseObject::ParseObject(QObject *parent)
 {
   setObjectName("parseObject_");
 
-  if (mainApp->storeDBMemory()) {
-    db_ = QSqlDatabase::database();
-  }
-  else {
-    db_ = QSqlDatabase::database("secondConnection", true);
-    if (!db_.isValid()) {
-      db_ = QSqlDatabase::addDatabase("QSQLITE", "secondConnection");
-      db_.setDatabaseName(mainApp->dbFileName());
-      db_.open();
-    }
-  }
+  db_ = Database::connection("secondConnection");
 
   parseTimer_ = new QTimer(this);
   parseTimer_->setSingleShot(true);

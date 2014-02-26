@@ -80,11 +80,9 @@ HEADERS += \
     src/aboutdialog.h \
     src/updateappdialog.h \
     src/feedpropertiesdialog.h \
-    src/dbmemfilethread.h \
     src/newsfiltersdialog.h \
     src/filterrulesdialog.h \
     src/lineedit.h \
-    src/db_func.h \
     src/addfeedwizard.h \
     src/newstabwidget.h \
     src/findtext.h \
@@ -132,7 +130,9 @@ HEADERS += \
     src/webview/locationbar.h \
     src/webview/rssdetectionwidget.h \
     src/webview/webpage.h \
-    src/webview/webview.h
+    src/webview/webview.h \
+    src/database/database.h \
+    src/database/dbmemfilethread.h
 
 SOURCES += \
     src/parseobject.cpp \
@@ -144,11 +144,9 @@ SOURCES += \
     src/aboutdialog.cpp \
     src/updateappdialog.cpp \
     src/feedpropertiesdialog.cpp \
-    src/dbmemfilethread.cpp \
     src/newsfiltersdialog.cpp \
     src/filterrulesdialog.cpp \
     src/lineedit.cpp \
-    src/db_func.cpp \
     src/addfeedwizard.cpp \
     src/newstabwidget.cpp \
     src/findtext.cpp \
@@ -196,11 +194,14 @@ SOURCES += \
     src/webview/locationbar.cpp \
     src/webview/rssdetectionwidget.cpp \
     src/webview/webpage.cpp \
-    src/webview/webview.cpp
+    src/webview/webview.cpp \
+    src/database/database.cpp \
+    src/database/dbmemfilethread.cpp
 
 INCLUDEPATH +=  $$PWD/src \
                 $$PWD/src/app \
                 $$PWD/src/main \
+                $$PWD/src/database \
                 $$PWD/src/downloads \
                 $$PWD/src/notifications \
                 $$PWD/src/plugins \
@@ -236,8 +237,6 @@ include(lang/lang.pri)
 
 os2|win32|mac {
   TARGET = QuiteRSS
-
-  include(3rdparty/sqlite.pri)
 }
 
 win32 {
@@ -273,7 +272,6 @@ DISTFILES += \
 unix:!mac {
   TARGET = quiterss
   CONFIG += link_pkgconfig
-  PKGCONFIG += sqlite3
 
   isEmpty(PREFIX) {
     PREFIX =   /usr/local

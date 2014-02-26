@@ -17,6 +17,8 @@
 * ============================================================ */
 #include "common.h"
 
+#include <QtCore>
+
 bool Common::removePath(const QString &path)
 {
   bool result = true;
@@ -92,4 +94,40 @@ QString Common::ensureUniqueFilename(const QString &name, const QString &appendF
     i++;
   }
   return tmpFileName;
+}
+
+/** Create backup copy of file
+ *
+ *  Backup filename format:
+ *  <old-filename>_<file-version>_<backup-creation-time>.bak
+ * @param oldFilename absolute path of file to backup
+ * @param oldVersion version of file to backup
+ *----------------------------------------------------------------------------*/
+void Common::createFileBackup(const QString &oldFilename, const QString &oldVersion)
+{
+  QFileInfo fileInfo(oldFilename);
+
+  // Create backup folder inside DB-file folder
+  QDir backupDir(fileInfo.absoluteDir());
+  if (!backupDir.exists("backup"))
+    backupDir.mkpath("backup");
+  backupDir.cd("backup");
+
+  // Delete old files
+  QStringList fileNameList = backupDir.entryList(QStringList(QString("%1*").arg(fileInfo.fileName())),
+                                                 QDir::Files, QDir::Time);
+  int count = 0;
+  foreach (QString fileName, fileNameList) {
+    count++;
+    if (count >= 3) {
+      QFile::remove(backupDir.absolutePath() + '/' + fileName);
+    }
+  }
+
+  // Create backup
+  QString backupFilename(backupDir.absolutePath() + '/' + fileInfo.fileName());
+  backupFilename.append(QString("_%1_%2.bak")
+                        .arg(oldVersion)
+                        .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd_hh-mm-ss")));
+  QFile::copy(oldFilename, backupFilename);
 }

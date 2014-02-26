@@ -19,7 +19,7 @@
 
 #include "common.h"
 #include "cookiejar.h"
-#include "db_func.h"
+#include "database.h"
 #include "networkmanager.h"
 #include "adblockmanager.h"
 #include "settings.h"
@@ -27,14 +27,11 @@
 #include "updatefeeds.h"
 #include "VersionNo.h"
 
-#if defined(Q_OS_WIN)
-#include <windows.h>
-#endif
-
 MainApplication::MainApplication(int &argc, char **argv)
   : QtSingleApplication(argc, argv)
   , isPortable_(false)
   , isClosing_(false)
+  , dbFileExists_(false)
   , mainWindow_(0)
   , networkManager_(0)
   , cookieJar_(0)
@@ -210,29 +207,12 @@ void MainApplication::createSettings()
 
 void MainApplication::connectDatabase()
 {
-  initDatabase(dbFileName());
+  if (QFile(dbFileName()).exists())
+    dbFileExists_ = true;
 
-  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-  if (storeDBMemory_)
-    db.setDatabaseName(":memory:");
-  else
-    db.setDatabaseName(dbFileName());
-  if (!db.open()) {
-    QMessageBox::critical(0, tr("Error"), tr("SQLite driver not loaded!"));
-  }
-
+  Database::initialization();
   if (storeDBMemory_) {
-    dbMemFileThread_ = new DBMemFileThread(dbFileName(), this);
-    dbMemFileThread_->sqliteDBMemFile(false, QThread::NormalPriority);
-    while(dbMemFileThread_->isRunning()) {
-      int ms = 100;
-#if defined(Q_OS_WIN)
-      Sleep(DWORD(ms));
-#else
-      struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
-      nanosleep(&ts, NULL);
-#endif
-    }
+    dbMemFileThread_ = new DBMemFileThread(this);
     dbMemFileThread_->startSaveTimer();
   }
 }
@@ -247,16 +227,7 @@ void MainApplication::loadSettings()
 void MainApplication::quitApplication()
 {
   if (storeDBMemory_) {
-    dbMemFileThread_->sqliteDBMemFile(true, QThread::NormalPriority);
-    while(dbMemFileThread_->isRunning()) {
-      int ms = 100;
-#if defined(Q_OS_WIN)
-      Sleep(DWORD(ms));
-#else
-      struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
-      nanosleep(&ts, NULL);
-#endif
-    }
+    dbMemFileThread_->startSaveMemoryDB(QThread::NormalPriority);
     delete dbMemFileThread_;
   }
 
@@ -312,7 +283,7 @@ QString MainApplication::dataDir() const
 
 QString MainApplication::dbFileName() const
 {
-  return dataDir_ + "/" + kDbName;
+  return dataDir_ + "/feeds.db";
 }
 
 bool MainApplication::isSaveDataLastFeed() const
@@ -357,16 +328,16 @@ void MainApplication::setStyleApplication()
 void MainApplication::showSplashScreen()
 {
   Settings settings;
-  QString versionDB = settings.value("versionDB", "1").toString();
-  if ((versionDB != kDbVersion) && QFile::exists(settings.fileName()))
+  int versionDB = settings.value("versionDB", "1").toInt();
+  if ((versionDB != Database::version()) && QFile::exists(settings.fileName()))
     showSplashScreen_ = true;
 
   if (showSplashScreen_) {
     splashScreen_ = new SplashScreen(QPixmap(":/images/images/splashScreen.png"));
     splashScreen_->show();
     processEvents();
-    if ((versionDB != kDbVersion) && QFile::exists(settings.fileName())) {
-      splashScreen_->showMessage(QString("Converting database to version %1...").arg(kDbVersion),
+    if ((versionDB != Database::version()) && QFile::exists(settings.fileName())) {
+      splashScreen_->showMessage(QString("Converting database to version %1...").arg(Database::version()),
                                 Qt::AlignRight | Qt::AlignTop, Qt::darkGray);
     }
   }

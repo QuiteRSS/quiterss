@@ -298,7 +298,7 @@ void MainWindow::slotPlaceToTray()
   saveSettings();
 
   if (mainApp->storeDBMemory())
-    mainApp->dbMemFileThread()->sqliteDBMemFile();
+    mainApp->dbMemFileThread()->startSaveMemoryDB();
 
   isMinimizeToTray_ = false;
 }
@@ -7505,7 +7505,7 @@ void MainWindow::setStatusFeed(int feedId, QString status)
 
 void MainWindow::addOurFeed()
 {
-  if (QFile::exists(mainApp->dbFileName())) return;
+  if (mainApp->dbFileExists()) return;
 
   QPixmap icon(":/images/quiterss16");
   QByteArray iconData;
