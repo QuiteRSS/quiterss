@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ru">
-<defaultcodec>UTF-8</defaultcodec>
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.0">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -10,16 +7,16 @@
         <translation>О программе</translation>
     </message>
     <message>
+        <location filename="../src/aboutdialog.cpp" line="55"/>
+        <source>Revision</source>
+        <translation>Ревизия</translation>
+    </message>
+    <message>
         <location filename="../src/aboutdialog.cpp" line="63"/>
         <location filename="../src/aboutdialog.cpp" line="134"/>
         <location filename="../src/aboutdialog.cpp" line="166"/>
         <source>Version</source>
         <translation>Версия</translation>
-    </message>
-    <message>
-        <location filename="../src/aboutdialog.cpp" line="55"/>
-        <source>Revision</source>
-        <translation>Ревизия</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="67"/>
@@ -518,7 +515,7 @@
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="350"/>
-        <source>Totally remove records that had marked &apos;deleted&apos; from DB.
+        <source>Totally remove records that had marked 'deleted' from DB.
 Ancient news could reappear</source>
         <translation>Полностью удаляет записи, которые отмечены как &quot;удаленные&quot; из БД.
 Возможно, удалённые новости загрузятся снова</translation>
@@ -810,19 +807,14 @@ Ancient news could reappear</source>
 <context>
     <name>FeedPropertiesDialog</name>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="116"/>
-        <source>Starred</source>
-        <translation>Избранная</translation>
+        <location filename="../src/feedpropertiesdialog.cpp" line="26"/>
+        <source>Properties</source>
+        <translation>Свойства</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
-        <source>Load images</source>
-        <translation>Загружать изображения</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="56"/>
-        <source>Title:</source>
-        <translation>Заголовок:</translation>
+        <location filename="../src/feedpropertiesdialog.cpp" line="31"/>
+        <source>General</source>
+        <translation>Общие</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
@@ -840,14 +832,49 @@ Ancient news could reappear</source>
         <translation>Состояние</translation>
     </message>
     <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="56"/>
+        <source>Title:</source>
+        <translation>Заголовок:</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
+        <source>Homepage:</source>
+        <translation>Домашняя страница:</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="58"/>
         <source>Feed URL:</source>
         <translation>URL ленты:</translation>
     </message>
     <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
+        <source>Load Title</source>
+        <translation>Загрузить заголовок</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
+        <source>Load Favicon</source>
+        <translation>Загрузить favicon</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
+        <source>Select Icon...</source>
+        <translation>Выбрать иконку...</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
+        <source>Select Icon</source>
+        <translation>Выбор иконки</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
         <translation>Отключить обновление</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
+        <source>Automatically update every</source>
+        <translation>Автоматическое обновление каждые</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="97"/>
@@ -865,9 +892,29 @@ Ancient news could reappear</source>
         <translation>часы</translation>
     </message>
     <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="116"/>
+        <source>Starred</source>
+        <translation>Избранная</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="117"/>
+        <source>Load images</source>
+        <translation>Загружать изображения</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
+        <source>Display in new tab on startup</source>
+        <translation>Показывать в новой вкладке при запуске</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
         <source>Show news&apos; description instead of loading web page</source>
         <translation>Показывать описание новости вместо загрузки веб-страницы</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
+        <source>Automatically delete duplicate news</source>
+        <translation>Автоматическое удаление дубликатов новостей</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="197"/>
@@ -925,6 +972,11 @@ Ancient news could reappear</source>
         <translation>Пароль:</translation>
     </message>
     <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="299"/>
+        <source>Description:</source>
+        <translation>Описание:</translation>
+    </message>
+    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="306"/>
         <source>Status:</source>
         <translation>Состояние:</translation>
@@ -950,66 +1002,6 @@ Ancient news could reappear</source>
         <translation>Хорошо</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
-        <source>Image files</source>
-        <translation>Файлы изображений</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="417"/>
-        <source>Select Image</source>
-        <translation>Выберите изображение</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="424"/>
-        <source>Load icon: can&apos;t open a file!</source>
-        <translation>Загрузка иконки: не может открыть файл!</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="299"/>
-        <source>Description:</source>
-        <translation>Описание:</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="26"/>
-        <source>Properties</source>
-        <translation>Свойства</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="65"/>
-        <source>Load Title</source>
-        <translation>Загрузить заголовок</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="69"/>
-        <source>Load Favicon</source>
-        <translation>Загрузить favicon</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="71"/>
-        <source>Select Icon...</source>
-        <translation>Выбрать иконку...</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="74"/>
-        <source>Select Icon</source>
-        <translation>Выбор иконки</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
-        <source>Automatically update every</source>
-        <translation>Автоматическое обновление каждые</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="119"/>
-        <source>Display in new tab on startup</source>
-        <translation>Показывать в новой вкладке при запуске</translation>
-    </message>
-    <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
-        <source>Automatically delete duplicate news</source>
-        <translation>Автоматическое удаление дубликатов новостей</translation>
-    </message>
-    <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="382"/>
         <source>Long ago ;-)</source>
         <translation>Давным-давно ;-)</translation>
@@ -1025,27 +1017,47 @@ Ancient news could reappear</source>
         <translation>непрочитанных</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="57"/>
-        <source>Homepage:</source>
-        <translation>Домашняя страница:</translation>
+        <location filename="../src/feedpropertiesdialog.cpp" line="415"/>
+        <source>Image files</source>
+        <translation>Файлы изображений</translation>
     </message>
     <message>
-        <location filename="../src/feedpropertiesdialog.cpp" line="31"/>
-        <source>General</source>
-        <translation>Общие</translation>
+        <location filename="../src/feedpropertiesdialog.cpp" line="417"/>
+        <source>Select Image</source>
+        <translation>Выберите изображение</translation>
+    </message>
+    <message>
+        <location filename="../src/feedpropertiesdialog.cpp" line="424"/>
+        <source>Load icon: can&apos;t open a file!</source>
+        <translation>Загрузка иконки: не может открыть файл!</translation>
     </message>
 </context>
 <context>
     <name>FilterRulesDialog</name>
+    <message>
+        <location filename="../src/filterrulesdialog.cpp" line="28"/>
+        <source>Filter Rules</source>
+        <translation>Правила фильтрации</translation>
+    </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="44"/>
         <source>Feeds</source>
         <translation>Ленты</translation>
     </message>
     <message>
+        <location filename="../src/filterrulesdialog.cpp" line="48"/>
+        <source>All Feeds</source>
+        <translation>Все ленты</translation>
+    </message>
+    <message>
         <location filename="../src/filterrulesdialog.cpp" line="115"/>
         <source>Filter name:</source>
         <translation>Имя фильтра:</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.cpp" line="121"/>
+        <source>Match all news</source>
+        <translation>Соответствует всем новостям</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="121"/>
@@ -1056,21 +1068,6 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.cpp" line="122"/>
         <source>Match any condition</source>
         <translation>Соответствует любому условию</translation>
-    </message>
-    <message>
-        <location filename="../src/filterrulesdialog.cpp" line="121"/>
-        <source>Match all news</source>
-        <translation>Соответствует всем новостям</translation>
-    </message>
-    <message>
-        <location filename="../src/filterrulesdialog.cpp" line="28"/>
-        <source>Filter Rules</source>
-        <translation>Правила фильтрации</translation>
-    </message>
-    <message>
-        <location filename="../src/filterrulesdialog.cpp" line="48"/>
-        <source>All Feeds</source>
-        <translation>Все ленты</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.cpp" line="173"/>
@@ -1229,19 +1226,14 @@ Ancient news could reappear</source>
         <translation>Категория</translation>
     </message>
     <message>
-        <location filename="../src/filterrulesdialog.h" line="115"/>
-        <source>Status</source>
+        <location filename="../src/filterrulesdialog.h" line="38"/>
+        <source>State</source>
         <translation>Состояние</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="43"/>
         <source>New</source>
         <translation>Новое</translation>
-    </message>
-    <message>
-        <location filename="../src/filterrulesdialog.h" line="38"/>
-        <source>State</source>
-        <translation>Состояние</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="43"/>
@@ -1306,6 +1298,11 @@ Ancient news could reappear</source>
         <location filename="../src/filterrulesdialog.h" line="113"/>
         <source>ends with</source>
         <translation>заканчивается на</translation>
+    </message>
+    <message>
+        <location filename="../src/filterrulesdialog.h" line="115"/>
+        <source>Status</source>
+        <translation>Состояние</translation>
     </message>
 </context>
 <context>
@@ -2419,13 +2416,13 @@ Save?</source>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="47"/>
-        <source>Feeds</source>
-        <translation>Ленты</translation>
+        <source>Name Filter</source>
+        <translation>Имя фильтра</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="47"/>
-        <source>Name Filter</source>
-        <translation>Имя фильтра</translation>
+        <source>Feeds</source>
+        <translation>Ленты</translation>
     </message>
     <message>
         <location filename="../src/newsfiltersdialog.cpp" line="92"/>
@@ -2547,11 +2544,6 @@ Save?</source>
         <translation>Загрузка... (%p%)</translation>
     </message>
     <message>
-        <location filename="../src/newstabwidget.cpp" line="1367"/>
-        <source>Author: %1</source>
-        <translation>Автор: %1</translation>
-    </message>
-    <message>
         <location filename="../src/newstabwidget.cpp" line="533"/>
         <source>Home</source>
         <translation>Домой</translation>
@@ -2661,6 +2653,11 @@ Save?</source>
         <translation>Комментарии</translation>
     </message>
     <message>
+        <location filename="../src/newstabwidget.cpp" line="1367"/>
+        <source>Author: %1</source>
+        <translation>Автор: %1</translation>
+    </message>
+    <message>
         <location filename="../src/newstabwidget.cpp" line="1400"/>
         <source>audio</source>
         <translation>аудио</translation>
@@ -2724,6 +2721,18 @@ Save?</source>
         <translation>Настройки</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="65"/>
+        <location filename="../src/optionsdialog.cpp" line="727"/>
+        <location filename="../src/optionsdialog.cpp" line="966"/>
+        <source>General</source>
+        <translation>Общие</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="68"/>
+        <source>System Tray</source>
+        <translation>Системный трей</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="71"/>
         <source>Network Connections</source>
         <translation>Сетевые подключения</translation>
@@ -2762,9 +2771,14 @@ Save?</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="1677"/>
-        <source>Fonts</source>
-        <translation>Шрифты</translation>
+        <location filename="../src/optionsdialog.cpp" line="92"/>
+        <source>Fonts &amp; Colors</source>
+        <translation>Шрифты и цвета</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="95"/>
+        <source>Keyboard Shortcuts</source>
+        <translation>Горячие клавиши</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="265"/>
@@ -2773,9 +2787,9 @@ Save?</source>
         <translation>Предупреждение: клавиша уже назначена на</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="92"/>
-        <source>Fonts &amp; Colors</source>
-        <translation>Шрифты и цвета</translation>
+        <location filename="../src/optionsdialog.cpp" line="289"/>
+        <source>Show splash screen on startup</source>
+        <translation>Показывать заставку при запуске</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="290"/>
@@ -2798,9 +2812,19 @@ Save?</source>
         <translation>Показывать переключатель дерева лент</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="294"/>
+        <source>Show default rss-icon instead of favourite one</source>
+        <translation>Использовать стандартную иконку для лент вместо уникальной (favicon)</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
         <source>Automatically collapse folders</source>
         <translation>Автоматически сворачивать папки</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="296"/>
+        <source>Hide tab bar if only have one tab open</source>
+        <translation>Скрыть панель вкладок, если открыта только одна вкладка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
@@ -2823,9 +2847,20 @@ Save?</source>
         <translation>Сохранять БД из памяти в файл каждые</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="309"/>
+        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <source>minutes</source>
+        <translation>минуты</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="332"/>
         <source>Run QuiteRSS at Windows startup</source>
         <translation>Запускать QuiteRSS вместе с Windows</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="353"/>
+        <source>Show system tray icon</source>
+        <translation>Показывать иконку в системном трее</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="356"/>
@@ -2888,19 +2923,14 @@ Save?</source>
         <translation>Поведение иконки в трее:</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="408"/>
-        <source>System proxy configuration (if available)</source>
-        <translation>Системные настройки прокси (если имеются)</translation>
-    </message>
-    <message>
         <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Direct connection to the Internet</source>
         <translation>Не использовать прокси</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="296"/>
-        <source>Hide tab bar if only have one tab open</source>
-        <translation>Скрыть панель вкладок, если открыта только одна вкладка</translation>
+        <location filename="../src/optionsdialog.cpp" line="408"/>
+        <source>System proxy configuration (if available)</source>
+        <translation>Системные настройки прокси (если имеются)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="409"/>
@@ -2928,6 +2958,21 @@ Save?</source>
         <translation>Пароль:</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="466"/>
+        <source>Request timeout:</source>
+        <translation>Таймаут запроса:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="468"/>
+        <source>Number of requests:</source>
+        <translation>Количество запросов:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="470"/>
+        <source>Number of retries:</source>
+        <translation>Количество повторов:</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="473"/>
         <source>Options network requests when updating feeds (requires program restart):</source>
         <translation>Параметры сетевых запросов при обновлении лент (требуется перезапуск программы):</translation>
@@ -2938,6 +2983,21 @@ Save?</source>
         <translation>Использовать встроенный браузер</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="490"/>
+        <source>Use external browser</source>
+        <translation>Использовать внешний браузер</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="491"/>
+        <source>Default external browser</source>
+        <translation>Внешний браузер по умолчанию</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="492"/>
+        <source>Following external browser:</source>
+        <translation>Следующий внешний браузер:</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="495"/>
         <location filename="../src/optionsdialog.cpp" line="509"/>
         <location filename="../src/optionsdialog.cpp" line="589"/>
@@ -2945,6 +3005,12 @@ Save?</source>
         <location filename="../src/optionsdialog.cpp" line="1033"/>
         <source>Browse...</source>
         <translation>Обзор...</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="497"/>
+        <location filename="../src/optionsdialog.cpp" line="1970"/>
+        <source>Load images</source>
+        <translation>Загружать изображения</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="498"/>
@@ -2972,9 +3038,19 @@ Save?</source>
         <translation>Масштабирование страницы по умолчанию:</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="549"/>
+        <source>Browser selection:</source>
+        <translation>Выбор браузера:</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="551"/>
         <source>External browser:</source>
         <translation>Внешний браузер:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="553"/>
+        <source>Content:</source>
+        <translation>Содержимое:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="555"/>
@@ -3082,9 +3158,51 @@ Save?</source>
         <translation>Загрузки</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="740"/>
+        <source>Automatically update the feeds on startup</source>
+        <translation>Автоматическое обновление лент при запуске</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="741"/>
+        <source>Automatically update the feeds every</source>
+        <translation>Автоматическое обновление лент каждые</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <location filename="../src/optionsdialog.cpp" line="883"/>
+        <location filename="../src/optionsdialog.cpp" line="1095"/>
+        <source>seconds</source>
+        <translation>секунд</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="751"/>
+        <source>hours</source>
+        <translation>часы</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="763"/>
+        <source>Position on last opened news</source>
+        <translation>Позиционировать на последней открытой новости</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="764"/>
+        <source>Position at top of list news</source>
+        <translation>Позиционировать на начало списка новостей</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="765"/>
         <source>Position on unread news</source>
         <translation>Позиционировать на непрочитанной новости</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="766"/>
+        <source>Open news</source>
+        <translation>Открывать новость</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="767"/>
+        <source>Nothing to do</source>
+        <translation>Ничего не делать</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="782"/>
@@ -3162,6 +3280,11 @@ Save?</source>
         <translation>Основной фильтр новостей:</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="842"/>
+        <source>Opening feed:</source>
+        <translation>Открытие ленты:</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="856"/>
         <source>Mark news as read:</source>
         <translation>Отметить как прочитанной:</translation>
@@ -3177,9 +3300,39 @@ Save?</source>
         <translation>после переключения на другую новость</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="865"/>
+        <source>Mark displayed news as read when switching feeds</source>
+        <translation>Отметить отображаемые новости как прочитанные при переключении ленты</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="866"/>
+        <source>Mark displayed news as read when closing tab</source>
+        <translation>Отметить отображаемые новости как прочитанные при закрытии вкладки</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="867"/>
+        <source>Mark displayed news as read on minimize</source>
+        <translation>Отметить отображаемые новости как прочитанные при минимизации</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="870"/>
+        <source>Show news&apos; description instead of loading web page</source>
+        <translation>Показывать описание новости вместо загрузки веб-страницы</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="872"/>
         <source>Change behavior of action &apos;Next Unread News&apos;</source>
         <translation>Изменить поведение действия &apos;Следующая непрочитанная новость&apos;</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="874"/>
+        <source>starred news</source>
+        <translation>новостей отмеченых звёздочкой</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="875"/>
+        <source>labeled news</source>
+        <translation>новостей с метками</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="877"/>
@@ -3187,9 +3340,39 @@ Save?</source>
         <translation>Автоматически отметить одинаковые новости как прочитанные</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="904"/>
+        <source>Prevent accidental deletion of:</source>
+        <translation>Предотвращать случайное удаление:</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Enable cleanup on shutdown</source>
         <translation>Включить очистку при завершении</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="919"/>
+        <source>Maximum age of news in days to keep:</source>
+        <translation>Максимальный возраст сохраняемых новостей в днях:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="926"/>
+        <source>Maximum number of news to keep:</source>
+        <translation>Максимальное количество сохраняемых новостей:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="933"/>
+        <source>Delete read news</source>
+        <translation>Удалять прочитанные новости</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="934"/>
+        <source>Never delete unread news</source>
+        <translation>Никогда не удалять непрочитанные новости</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="935"/>
+        <source>Never delete starred news</source>
+        <translation>Никогда не удалять новости отмеченные звёздочкой</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="936"/>
@@ -3205,6 +3388,16 @@ Save?</source>
         <location filename="../src/optionsdialog.cpp" line="939"/>
         <source>Enable DB optimization (slower shutdown)</source>
         <translation>Включить оптимизацию БД (медленнее завершение)</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="967"/>
+        <source>Reading</source>
+        <translation>Чтение</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="968"/>
+        <source>Clean Up</source>
+        <translation>Очистка</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="985"/>
@@ -3230,6 +3423,11 @@ Save?</source>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Move down</source>
         <translation>Вниз</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1030"/>
+        <source>Play sound for incoming new news</source>
+        <translation>Воспроизводить звук при входящих новых новостях</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1034"/>
@@ -3277,6 +3475,16 @@ Save?</source>
         <translation>Показывать максимум</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="1085"/>
+        <source>item on page notification</source>
+        <translation>элементов на странице уведомления</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1088"/>
+        <source>Width list items</source>
+        <translation>Ширина списка элементов</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="1090"/>
         <source>pixels</source>
         <translation>пикселей</translation>
@@ -3290,6 +3498,16 @@ Save?</source>
         <location filename="../src/optionsdialog.cpp" line="1097"/>
         <source>Do not show notification in fullscreen mode</source>
         <translation>Не показывать уведомления в полноэкранном режиме</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1102"/>
+        <source>Only show selected feeds:</source>
+        <translation>Показывать новости только выбранных лент:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1118"/>
+        <source>All Feeds</source>
+        <translation>Все ленты</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1166"/>
@@ -3322,6 +3540,46 @@ Save?</source>
         <translation>Показать пароли</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="1219"/>
+        <source>Version</source>
+        <translation>Версия</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1220"/>
+        <source>Author</source>
+        <translation>Автор</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1220"/>
+        <source>Contact</source>
+        <translation>Контакт</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1470"/>
+        <source>Choose language:</source>
+        <translation>Выберите язык:</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1491"/>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1491"/>
+        <source>Font</source>
+        <translation>Шрифт</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1495"/>
+        <source>Feeds list font</source>
+        <translation>Шрифт списка лент</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1498"/>
+        <source>News list font</source>
+        <translation>Шрифт списка новостей</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="1501"/>
         <source>News title font</source>
         <translation>Шрифт заголовка новости</translation>
@@ -3335,6 +3593,19 @@ Save?</source>
         <location filename="../src/optionsdialog.cpp" line="1507"/>
         <source>Notification font</source>
         <translation>Шрифт уведомления</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1514"/>
+        <location filename="../src/optionsdialog.cpp" line="1603"/>
+        <source>Change...</source>
+        <translation>Изменить...</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1516"/>
+        <location filename="../src/optionsdialog.cpp" line="1605"/>
+        <location filename="../src/optionsdialog.cpp" line="1717"/>
+        <source>Reset</source>
+        <translation>Сброс</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1541"/>
@@ -3412,6 +3683,26 @@ Save?</source>
         <translation>Количество непрочитанных новостей в дереве лент</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="1586"/>
+        <source>Text color of new news</source>
+        <translation>Цвет текста новых новостей в списке</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1589"/>
+        <source>Text color of unread news</source>
+        <translation>Цвет текста непрочитанных новостей в списке</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1592"/>
+        <source>Focused feed color</source>
+        <translation>Цвет текста ленты под курсором</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1595"/>
+        <source>Focused feed background color</source>
+        <translation>Цвет фона ленты под курсором</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="1631"/>
         <source>Standard</source>
         <translation>Стандартный</translation>
@@ -3472,6 +3763,11 @@ Save?</source>
         <translation>Размеры шрифтов:</translation>
     </message>
     <message>
+        <location filename="../src/optionsdialog.cpp" line="1677"/>
+        <source>Fonts</source>
+        <translation>Шрифты</translation>
+    </message>
+    <message>
         <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>Fonts Browser</source>
         <translation>Шрифты браузера</translation>
@@ -3487,10 +3783,24 @@ Save?</source>
         <translation>Фильтр</translation>
     </message>
     <message>
-        <location filename="../src/optionsdialog.cpp" line="497"/>
-        <location filename="../src/optionsdialog.cpp" line="1970"/>
-        <source>Load images</source>
-        <translation>Загружать изображения</translation>
+        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <source>Action</source>
+        <translation>Действие</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <source>Description</source>
+        <translation>Описание</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1712"/>
+        <source>Shortcut</source>
+        <translation>Сочетание клавиш</translation>
+    </message>
+    <message>
+        <location filename="../src/optionsdialog.cpp" line="1720"/>
+        <source>Shortcut:</source>
+        <translation>Сочетание клавиш:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1975"/>
@@ -3523,319 +3833,6 @@ Save?</source>
         <location filename="../src/optionsdialog.cpp" line="2681"/>
         <source>Site without &apos;http://&apos; (ex. youtube.com)</source>
         <translation>Сайт без &apos;http://&apos; (например, youtube.com)</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="741"/>
-        <source>Automatically update the feeds every</source>
-        <translation>Автоматическое обновление лент каждые</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="309"/>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
-        <source>minutes</source>
-        <translation>минуты</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
-        <source>hours</source>
-        <translation>часы</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="763"/>
-        <source>Position on last opened news</source>
-        <translation>Позиционировать на последней открытой новости</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="764"/>
-        <source>Position at top of list news</source>
-        <translation>Позиционировать на начало списка новостей</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="766"/>
-        <source>Open news</source>
-        <translation>Открывать новость</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="767"/>
-        <source>Nothing to do</source>
-        <translation>Ничего не делать</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="842"/>
-        <source>Opening feed:</source>
-        <translation>Открытие ленты:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="751"/>
-        <location filename="../src/optionsdialog.cpp" line="883"/>
-        <location filename="../src/optionsdialog.cpp" line="1095"/>
-        <source>seconds</source>
-        <translation>секунд</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="65"/>
-        <location filename="../src/optionsdialog.cpp" line="727"/>
-        <location filename="../src/optionsdialog.cpp" line="966"/>
-        <source>General</source>
-        <translation>Общие</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="289"/>
-        <source>Show splash screen on startup</source>
-        <translation>Показывать заставку при запуске</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="353"/>
-        <source>Show system tray icon</source>
-        <translation>Показывать иконку в системном трее</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="740"/>
-        <source>Automatically update the feeds on startup</source>
-        <translation>Автоматическое обновление лент при запуске</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="926"/>
-        <source>Maximum number of news to keep:</source>
-        <translation>Максимальное количество сохраняемых новостей:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="919"/>
-        <source>Maximum age of news in days to keep:</source>
-        <translation>Максимальный возраст сохраняемых новостей в днях:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="466"/>
-        <source>Request timeout:</source>
-        <translation>Таймаут запроса:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="468"/>
-        <source>Number of requests:</source>
-        <translation>Количество запросов:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="470"/>
-        <source>Number of retries:</source>
-        <translation>Количество повторов:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="490"/>
-        <source>Use external browser</source>
-        <translation>Использовать внешний браузер</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="491"/>
-        <source>Default external browser</source>
-        <translation>Внешний браузер по умолчанию</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="492"/>
-        <source>Following external browser:</source>
-        <translation>Следующий внешний браузер:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="549"/>
-        <source>Browser selection:</source>
-        <translation>Выбор браузера:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="553"/>
-        <source>Content:</source>
-        <translation>Содержимое:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="870"/>
-        <source>Show news&apos; description instead of loading web page</source>
-        <translation>Показывать описание новости вместо загрузки веб-страницы</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="933"/>
-        <source>Delete read news</source>
-        <translation>Удалять прочитанные новости</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="934"/>
-        <source>Never delete unread news</source>
-        <translation>Никогда не удалять непрочитанные новости</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="935"/>
-        <source>Never delete starred news</source>
-        <translation>Никогда не удалять новости отмеченные звёздочкой</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="967"/>
-        <source>Reading</source>
-        <translation>Чтение</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="968"/>
-        <source>Clean Up</source>
-        <translation>Очистка</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1030"/>
-        <source>Play sound for incoming new news</source>
-        <translation>Воспроизводить звук при входящих новых новостях</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1470"/>
-        <source>Choose language:</source>
-        <translation>Выберите язык:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1219"/>
-        <source>Version</source>
-        <translation>Версия</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="68"/>
-        <source>System Tray</source>
-        <translation>Системный трей</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="95"/>
-        <source>Keyboard Shortcuts</source>
-        <translation>Горячие клавиши</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="294"/>
-        <source>Show default rss-icon instead of favourite one</source>
-        <translation>Использовать стандартную иконку для лент вместо уникальной (favicon)</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="865"/>
-        <source>Mark displayed news as read when switching feeds</source>
-        <translation>Отметить отображаемые новости как прочитанные при переключении ленты</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="866"/>
-        <source>Mark displayed news as read when closing tab</source>
-        <translation>Отметить отображаемые новости как прочитанные при закрытии вкладки</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="867"/>
-        <source>Mark displayed news as read on minimize</source>
-        <translation>Отметить отображаемые новости как прочитанные при минимизации</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="875"/>
-        <source>labeled news</source>
-        <translation>новостей с метками</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="874"/>
-        <source>starred news</source>
-        <translation>новостей отмеченых звёздочкой</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="904"/>
-        <source>Prevent accidental deletion of:</source>
-        <translation>Предотвращать случайное удаление:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1085"/>
-        <source>item on page notification</source>
-        <translation>элементов на странице уведомления</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1088"/>
-        <source>Width list items</source>
-        <translation>Ширина списка элементов</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1102"/>
-        <source>Only show selected feeds:</source>
-        <translation>Показывать новости только выбранных лент:</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1118"/>
-        <source>All Feeds</source>
-        <translation>Все ленты</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1220"/>
-        <source>Author</source>
-        <translation>Автор</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1220"/>
-        <source>Contact</source>
-        <translation>Контакт</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1491"/>
-        <source>Type</source>
-        <translation>Тип</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1491"/>
-        <source>Font</source>
-        <translation>Шрифт</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1495"/>
-        <source>Feeds list font</source>
-        <translation>Шрифт списка лент</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1498"/>
-        <source>News list font</source>
-        <translation>Шрифт списка новостей</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1514"/>
-        <location filename="../src/optionsdialog.cpp" line="1603"/>
-        <source>Change...</source>
-        <translation>Изменить...</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1516"/>
-        <location filename="../src/optionsdialog.cpp" line="1605"/>
-        <location filename="../src/optionsdialog.cpp" line="1717"/>
-        <source>Reset</source>
-        <translation>Сброс</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1586"/>
-        <source>Text color of new news</source>
-        <translation>Цвет текста новых новостей в списке</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1589"/>
-        <source>Text color of unread news</source>
-        <translation>Цвет текста непрочитанных новостей в списке</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1592"/>
-        <source>Focused feed color</source>
-        <translation>Цвет текста ленты под курсором</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1595"/>
-        <source>Focused feed background color</source>
-        <translation>Цвет фона ленты под курсором</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
-        <source>Action</source>
-        <translation>Действие</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
-        <source>Description</source>
-        <translation>Описание</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1712"/>
-        <source>Shortcut</source>
-        <translation>Сочетание клавиш</translation>
-    </message>
-    <message>
-        <location filename="../src/optionsdialog.cpp" line="1720"/>
-        <source>Shortcut:</source>
-        <translation>Сочетание клавиш:</translation>
     </message>
 </context>
 <context>
