@@ -6504,12 +6504,12 @@ void MainWindow::cleanUpShutdown()
     }
   }
 
+  q.finish();
   db_.commit();
 
   if (cleanupOnShutdown_ && optimizeDB_) {
-    q.exec("VACUUM");
+    db_.exec("VACUUM");
   }
-  q.finish();
 }
 
 /** @brief Zooming in browser

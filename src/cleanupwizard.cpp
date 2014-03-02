@@ -181,10 +181,10 @@ CleanUpThread::~CleanUpThread()
            "deleteDate='', feedParentId='', deleted=2 WHERE deleted==1");
   }
 
+  q.finish();
   db.commit();
 
-  q.exec("VACUUM");
-  q.finish();
+  db.exec("VACUUM");
 }
 
 CleanUpWizard::CleanUpWizard(QWidget *parent)

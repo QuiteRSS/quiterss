@@ -207,8 +207,16 @@ void MainApplication::createSettings()
 
 void MainApplication::connectDatabase()
 {
-  if (QFile(dbFileName()).exists())
+  if (QFile(dbFileName()).exists()) {
     dbFileExists_ = true;
+  } else {
+    QString fileName(mainApp->dbFileName() % ".tmp");
+    if (QFile(fileName).exists()) {
+      QFile::rename(fileName, mainApp->dbFileName());
+      if (QFile(dbFileName()).exists())
+        dbFileExists_ = true;
+    }
+  }
 
   Database::initialization();
   if (storeDBMemory_) {
@@ -283,7 +291,7 @@ QString MainApplication::dataDir() const
 
 QString MainApplication::dbFileName() const
 {
-  return dataDir_ + "/feeds.db";
+  return dataDir_ % "/feeds.db";
 }
 
 bool MainApplication::isSaveDataLastFeed() const

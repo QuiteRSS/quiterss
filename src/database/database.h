@@ -31,6 +31,7 @@ public:
   static void saveMemoryDatabase();
 
 private:
+  static void setPragma(QSqlDatabase &db);
   static void createTables(QSqlDatabase &db);
   static void prepareDatabase();
   static void createLabelsTable(QSqlDatabase &db);

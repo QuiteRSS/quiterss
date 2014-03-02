@@ -216,40 +216,53 @@ void Database::initialization()
                               "Error: %1").arg(db.lastError().text());
     qCritical() << message;
     QMessageBox::critical(0, QObject::tr("Error"), message);
-  }
-
-  if (!mainApp->dbFileExists()) {
-    {
-      QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "initialization");
-      dbFile.setDatabaseName(mainApp->dbFileName());
-      dbFile.open();
-      createTables(dbFile);
-      dbFile.close();
+  } else {
+    if (!mainApp->dbFileExists()) {
+      {
+        QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "initialization");
+        dbFile.setDatabaseName(mainApp->dbFileName());
+        dbFile.open();
+        createTables(dbFile);
+        dbFile.close();
+      }
+      QSqlDatabase::removeDatabase("initialization");
     }
-    QSqlDatabase::removeDatabase("initialization");
-  }
 
-  if (mainApp->dbFileExists()) {
-    prepareDatabase();
-  }
-
-  if (mainApp->storeDBMemory()) {
-    createTables(db);
-  }
-
-  if (mainApp->storeDBMemory()) {
-    QSqlQuery q(db);
-    q.exec(QString("ATTACH DATABASE '%1' AS 'storage';").arg(mainApp->dbFileName()));
-    foreach (const QString &table, tablesList()) {
-      q.exec(QString("INSERT OR REPLACE INTO main.%1 SELECT * FROM storage.%1;").arg(table));
+    if (mainApp->dbFileExists()) {
+      prepareDatabase();
     }
-    q.exec("DETACH 'storage'");
-    q.finish();
+
+    if (mainApp->storeDBMemory()) {
+      createTables(db);
+    }
+
+    if (mainApp->storeDBMemory()) {
+      QSqlQuery q(db);
+      q.exec(QString("ATTACH DATABASE '%1' AS 'storage';").arg(mainApp->dbFileName()));
+      foreach (const QString &table, tablesList()) {
+        q.exec(QString("INSERT OR REPLACE INTO main.%1 SELECT * FROM storage.%1;").arg(table));
+      }
+      q.exec("DETACH 'storage'");
+      q.finish();
+    }
   }
+}
+
+void Database::setPragma(QSqlDatabase &db)
+{
+  QSqlQuery q(db);
+  q.setForwardOnly(true);
+  q.exec("PRAGMA synchronous = NORMAL");
+  q.exec("PRAGMA journal_mode = MEMORY");
+  q.exec("PRAGMA page_size = 4096");
+  q.exec("PRAGMA cache_size = 16384");
+  q.exec("PRAGMA temp_store = MEMORY");
 }
 
 void Database::createTables(QSqlDatabase &db)
 {
+  setPragma(db);
+
   db.transaction();
 
   db.exec(kCreateFeedsTableQuery);
@@ -307,6 +320,7 @@ void Database::prepareDatabase()
     QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "initialization");
     dbFile.setDatabaseName(mainApp->dbFileName());
     dbFile.open();
+    setPragma(dbFile);
     QSqlQuery q(dbFile);
 
     int dbVersion = 0;
@@ -391,6 +405,7 @@ QSqlDatabase Database::connection(const QString &connectionName)
       db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
       db.setDatabaseName(mainApp->dbFileName());
       db.open();
+      setPragma(db);
     }
   }
   return db;
@@ -398,12 +413,25 @@ QSqlDatabase Database::connection(const QString &connectionName)
 
 void Database::saveMemoryDatabase()
 {
+  QString fileName(mainApp->dbFileName() % ".tmp");
+  {
+    QSqlDatabase dbFile = QSqlDatabase::addDatabase("QSQLITE", "saveMemory");
+    dbFile.setDatabaseName(fileName);
+    dbFile.open();
+    createTables(dbFile);
+    dbFile.close();
+  }
+  QSqlDatabase::removeDatabase("saveMemory");
+
   QSqlDatabase db = QSqlDatabase::database();
   QSqlQuery q(db);
-  q.exec(QString("ATTACH DATABASE '%1' AS 'storage';").arg(mainApp->dbFileName()));
+  q.exec(QString("ATTACH DATABASE '%1' AS 'storage';").arg(fileName));
   foreach (const QString &table, tablesList()) {
-    q.exec(QString("REPLACE INTO storage.%1 SELECT * FROM main.%1;").arg(table));
+    q.exec(QString("INSERT OR REPLACE INTO storage.%1 SELECT * FROM main.%1;").arg(table));
   }
   q.exec("DETACH 'storage'");
   q.finish();
+
+  QFile::remove(mainApp->dbFileName());
+  QFile::rename(fileName, mainApp->dbFileName());
 }
