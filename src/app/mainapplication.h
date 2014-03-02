@@ -111,6 +111,7 @@ private:
   bool isSaveDataLastFeed_;
   QString styleApplication_;
   bool showSplashScreen_;
+  bool updateFeedsStartUp_;
 
   SplashScreen *splashScreen_;
   MainWindow *mainWindow_;

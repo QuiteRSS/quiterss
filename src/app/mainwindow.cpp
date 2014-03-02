@@ -1849,7 +1849,6 @@ void MainWindow::loadSettings()
   QWebSettings::globalSettings()->setFontSize(
         QWebSettings::MinimumLogicalFontSize, browserMinLogFontSize);
 
-  updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
   updateFeedsEnable_ = settings.value("autoUpdatefeeds", false).toBool();
   updateFeedsInterval_ = settings.value("autoUpdatefeedsTime", 10).toInt();
   updateFeedsIntervalType_ = settings.value("autoUpdatefeedsInterval", 0).toInt();
@@ -2131,7 +2130,6 @@ void MainWindow::saveSettings()
   settings.setValue("notificationFontFamily", notificationFontFamily_);
   settings.setValue("notificationFontSize", notificationFontSize_);
 
-  settings.setValue("autoUpdatefeedsStartUp", updateFeedsStartUp_);
   settings.setValue("autoUpdatefeeds", updateFeedsEnable_);
   settings.setValue("autoUpdatefeedsTime", updateFeedsInterval_);
   settings.setValue("autoUpdatefeedsInterval", updateFeedsIntervalType_);
@@ -3033,6 +3031,10 @@ void MainWindow::showOptionDlg(int index)
 
   optionsDialog_ = new OptionsDialog(this);
 
+  settings.beginGroup("Settings");
+  bool updateFeedsStartUp = settings.value("autoUpdatefeedsStartUp", false).toBool();
+  settings.endGroup();
+
   optionsDialog_->showSplashScreen_->setChecked(showSplashScreen_);
   optionsDialog_->reopenFeedStartup_->setChecked(reopenFeedStartup_);
   optionsDialog_->openNewTabNextToActive_->setChecked(openNewTabNextToActive_);
@@ -3107,7 +3109,7 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->downloadLocationEdit_->setText(downloadLocation_);
   optionsDialog_->askDownloadLocation_->setChecked(askDownloadLocation_);
 
-  optionsDialog_->updateFeedsStartUp_->setChecked(updateFeedsStartUp_);
+  optionsDialog_->updateFeedsStartUp_->setChecked(updateFeedsStartUp);
   optionsDialog_->updateFeedsEnable_->setChecked(updateFeedsEnable_);
   optionsDialog_->updateIntervalType_->setCurrentIndex(updateFeedsIntervalType_+1);
   optionsDialog_->updateFeedsInterval_->setValue(updateFeedsInterval_);
@@ -3515,7 +3517,7 @@ void MainWindow::showOptionDlg(int index)
   downloadLocation_ = optionsDialog_->downloadLocationEdit_->text();
   askDownloadLocation_ = optionsDialog_->askDownloadLocation_->isChecked();
 
-  updateFeedsStartUp_ = optionsDialog_->updateFeedsStartUp_->isChecked();
+  updateFeedsStartUp = optionsDialog_->updateFeedsStartUp_->isChecked();
   updateFeedsEnable_ = optionsDialog_->updateFeedsEnable_->isChecked();
   updateFeedsInterval_ = optionsDialog_->updateFeedsInterval_->value();
   updateFeedsIntervalType_ = optionsDialog_->updateIntervalType_->currentIndex()-1;
@@ -3667,6 +3669,10 @@ void MainWindow::showOptionDlg(int index)
 
   delete optionsDialog_;
   optionsDialog_ = NULL;
+
+  settings.beginGroup("Settings");
+  settings.setValue("autoUpdatefeedsStartUp", updateFeedsStartUp);
+  settings.endGroup();
 
   saveSettings();
   saveActionShortcuts();
@@ -4308,8 +4314,6 @@ void MainWindow::restoreFeedsOnStartUp()
   while(q.next()) {
     creatFeedTab(q.value(0).toInt(), q.value(1).toInt());
   }
-
-  if (updateFeedsStartUp_) slotGetAllFeeds();
 }
 // ----------------------------------------------------------------------------
 void MainWindow::slotFeedsFilter()

@@ -639,7 +639,6 @@ private:
   QTimer *updateFeedsTimer_;
   int updateIntervalSec_;
   int updateTimeCount_;
-  bool updateFeedsStartUp_;
   bool updateFeedsEnable_;
   int  updateFeedsInterval_;
   int  updateFeedsIntervalType_;

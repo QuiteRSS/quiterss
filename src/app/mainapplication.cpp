@@ -101,6 +101,10 @@ MainApplication::MainApplication(int &argc, char **argv)
     QTimer::singleShot(0, mainWindow_->traySystem, SLOT(show()));
   }
 
+  if (updateFeedsStartUp_) {
+    QTimer::singleShot(0, mainWindow_, SLOT(slotGetAllFeeds()));
+  }
+
   receiveMessage(message);
   connect(this, SIGNAL(messageReceived(QString)), SLOT(receiveMessage(QString)));
 }
@@ -202,6 +206,7 @@ void MainApplication::createSettings()
   isSaveDataLastFeed_ = settings.value("createLastFeed", false).toBool();
   styleApplication_ = settings.value("styleApplication", "greenStyle_").toString();
   showSplashScreen_ = settings.value("showSplashScreen", true).toBool();
+  updateFeedsStartUp_ = settings.value("autoUpdatefeedsStartUp", false).toBool();
   settings.endGroup();
 }
 
