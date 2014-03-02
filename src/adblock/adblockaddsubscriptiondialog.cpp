@@ -60,7 +60,8 @@ AdBlockAddSubscriptionDialog::AdBlockAddSubscriptionDialog(QWidget* parent)
                        << Subscription("Xfiles (Italian)", "http://mozilla.gfsolone.com/filtri.txt")
                        << Subscription("EasyPrivacy (English)", "http://easylist-downloads.adblockplus.org/easyprivacy.txt")
                        << Subscription("Antisocial (English)", "http://adversity.googlecode.com/hg/Antisocial.txt")
-                       << Subscription("RU Adlist (Russian)", "https://ruadlist.googlecode.com/hg/advblock.txt")
+                       << Subscription("RuAdList+EasyList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/ruadlist+easylist.txt")
+                       << Subscription("RU AdList (Russian, Ukrainian)", "https://easylist-downloads.adblockplus.org/advblock.txt")
                        << Subscription("ABPindo (Indonesian)", "https://indonesianadblockrules.googlecode.com/hg/subscriptions/abpindo.txt")
                        << Subscription("ChinaList (Chinese)", "http://adblock-chinalist.googlecode.com/svn/trunk/adblock.txt");
 
