@@ -2,6 +2,34 @@
 <STYLE>a { color: blue; text-decoration: none; }</STYLE>
 <BODY>
 <!---------------------------------------------------------------------------->
+<p><b>Version 0.14.3+</b> (ХХ Mar 2014)
+<ul>
+<li>Main: Adblock integrated</li>
+
+<li>Added: Support for feeds with local path (file://)</li>
+<li>Added: Embedded browser. Determining and adding feeds from web sites</li>
+<li>Added: Notifications. News grouping - display feeds title</li>
+<li>Added: Notifications. Button to delete news</li>
+<li>Added: Notifications. Button to mark read every news</li>
+<li>Added: System tray. Mane item "Mark All Feeds Read"</li>
+<li>Added: Option "Show close button on tab"</li>
+<li>Added: Tab "Information" to "About" dialog</li>
+<li>Added: Language: Galician</li>
+
+<li>Changed: GUI. Some visual tweaks</li>
+<li>Changed: The process of news deletion is sorted by date of publication</li>
+<li>Changed: RTL-model of news for Arabic and Persian languages</li>
+<li>Changed: Process of displaying of the splash screen</li>
+
+<li>Fixed: Wrong codepage while importing feeds</li>
+<li>Fixed: Processing feeds that contains "&" symbol</li>
+<li>Fixed: Processing some feeds that contains "<br>" tag within the news</li>
+<li>Fixed: Application activation after opening of the link in external browser and minimizing to tray</li>
+<li>Fixed: Options dialog didn't fit monitors with low resolution</li>
+<li>Fixed: Reset options while switching on tab that contains category</li>
+<li>Fixed: Application crash when open "Options" dialog if "Downloads" tab is active</li>
+</ul>
+<!---------------------------------------------------------------------------->
 <p><b>Version 0.14.3</b> (14 Jan 2014)
 <ul>
 <li>Fixed: Application crash while exporting feeds</li>
@@ -568,7 +596,7 @@
 <li>Changed: GUI. Some visual tweaks</li>
 
 <li>Fixed: Improve program startup</li>
-<li>Fixed: Resize splash-screen</li>
+<li>Fixed: Resize splash screen</li>
 <li>Fixed: Open author-URI in embedded browser</li>
 <li>Fixed: Parsing news-URL's and author-URI's</li>
 <li>Fixed: Remove debug messages</li>
