@@ -1570,7 +1570,7 @@ Zapisać?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4448"/>
         <source>E&amp;xit</source>
-        <translation>Wyjście</translation>
+        <translation>&amp;Wyjście</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4450"/>
@@ -1590,7 +1590,7 @@ Zapisać?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4454"/>
         <source>Update All Feeds</source>
-        <translation>Aktualizuj wszystkie kanały</translation>
+        <translation>Uaktualnij wszystkie kanały</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4456"/>
@@ -2263,12 +2263,12 @@ Zapisać?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4643"/>
         <source>Decrease news list/increase browser</source>
-        <translation>Wyłącz listę wiadomości/Włącz przeglądarkę</translation>
+        <translation>Zmniejsz listę wiadomości/powiększ przeglądarkę</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4644"/>
         <source>Increase news list/decrease browser</source>
-        <translation>Włącz listę wiadomości/Wyłącz przeglądarkę</translation>
+        <translation>Powiększ listę wiadomości/zmniejsz przeglądarkę</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4646"/>
@@ -2278,7 +2278,7 @@ Zapisać?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4648"/>
         <source>Open Homepage Feed</source>
-        <translation>Otwórz stronę startową kanału</translation>
+        <translation>Otwórz stronę kanału</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4649"/>
@@ -2318,7 +2318,7 @@ Zapisać?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4658"/>
         <source>Share</source>
-        <translation>Podziel się</translation>
+        <translation>Udostępnij</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4660"/>

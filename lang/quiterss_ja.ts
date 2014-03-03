@@ -31,32 +31,32 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>アプリケーションディレクトリ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="140"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>リソースディレクトリ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>データディレクトリ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="146"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>データベースファイル:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="149"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>設定ファイル:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="152"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>ログファイル:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="167"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="170"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>情報</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>購読するフィルターの追加</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -94,12 +94,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>アドレス:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock で新規に購読するフィルター:</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="476"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>カスタムルール</translation>
     </message>
 </context>
 <context>
@@ -115,17 +115,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock の設定</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock を有効にする</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>検索...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -135,42 +135,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>EasyList の必要最小限の部分のみ使用する (性能上の理由で)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="70"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>ルールの追加</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="71"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>ルールの削除</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>購読フィルターの追加</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>購読フィルターの削除</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>フィルターの更新</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>ルールの書き方について...</translation>
     </message>
 </context>
 <context>
@@ -178,48 +178,48 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="53"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock はウェブページの不要なコンテンツをブロックします</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="125"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock の設定を表示(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 で無効</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="139"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>このページだけ無効</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="149"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>ブロックされたポップアップウィンドウ</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="154"/>
         <location filename="../src/adblock/adblockicon.cpp" line="171"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="165"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>ブロックコンテンツ無し</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="168"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>ブロックされた URL (AdBlock ルール) - クリックでルールを編集</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>EasyList</translation>
     </message>
 </context>
 <context>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>フィルターを読み込めません!</translation>
     </message>
 </context>
 <context>
@@ -243,32 +243,32 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="96"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>ルールの追加</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="98"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>ルールの削除</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>カスタムルールの追加</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>ルールを入力してください:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="195"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (最終更新)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="204"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (エラー: %2)</translation>
     </message>
 </context>
 <context>
@@ -1370,12 +1370,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="223"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>エラー</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="223"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>SQLite ドライバーが読み込まれていません!</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="274"/>
@@ -1395,7 +1395,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="1714"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock&amp;(A)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="2069"/>
@@ -1491,7 +1491,7 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="3306"/>
         <location filename="../src/app/mainwindow.cpp" line="3311"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(ブラウザー)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4423"/>
@@ -1782,7 +1782,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4508"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4509"/>

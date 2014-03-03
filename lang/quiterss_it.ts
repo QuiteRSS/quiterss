@@ -140,7 +140,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>Usa solo la parte essenziale di EasyList (per ragioni di prestazioni)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="70"/>
@@ -170,7 +170,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>Impara come scrivere le regole...</translation>
     </message>
 </context>
 <context>
@@ -178,7 +178,7 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="53"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock ti permette di bloccare il contenuto non desiderato nelle pagine web</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="98"/>
@@ -188,22 +188,22 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="125"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>Mostra le &amp;impostazioni di AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>Disattiva su %1</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="139"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>Disattiva solo su questa pagina</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="149"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>Finestre a comparsa bloccate</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="154"/>
@@ -214,12 +214,12 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="165"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>Nessun contenuto bloccato</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="168"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>URL bloccato (regola di AdBlock) - fai clic per modificare la regola</translation>
     </message>
 </context>
 <context>
@@ -253,17 +253,17 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>Aggiungi regola personalizzata</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Per favore scrivi qui la regola:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="195"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (aggiornate recentemente)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="204"/>
@@ -322,7 +322,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="227"/>
         <source>New Folder...</source>
-        <translation>Nuova Cartella...</translation>
+        <translation>Nuova cartella...</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="242"/>
@@ -362,7 +362,7 @@
     <message>
         <location filename="../src/addfolderdialog.cpp" line="24"/>
         <source>Add Folder</source>
-        <translation>Aggiungi Cartella</translation>
+        <translation>Aggiungi cartella</translation>
     </message>
     <message>
         <location filename="../src/addfolderdialog.cpp" line="37"/>
@@ -410,7 +410,7 @@
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="59"/>
         <source>Username:</source>
-        <translation>Nome Utente:</translation>
+        <translation>Nome utente:</translation>
     </message>
     <message>
         <location filename="../src/network/authenticationdialog.cpp" line="61"/>
@@ -646,7 +646,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="100"/>
         <source>Remaining time unavailable</source>
-        <translation>Tempo residuo non disponibile</translation>
+        <translation>Tempo rimanente non disponibile</translation>
     </message>
     <message>
         <location filename="../src/downloads/downloaditem.cpp" line="163"/>
@@ -909,7 +909,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="120"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Mostra la descrizione della notizia invece di caricare la pagina Web</translation>
+        <translation>Mostra la descrizione della notizia invece di caricare la pagina web</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="121"/>
@@ -1160,7 +1160,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/filterrulesdialog.h" line="147"/>
         <source>Add Label</source>
-        <translation>Aggiungi Etichetta</translation>
+        <translation>Aggiungi etichetta</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
@@ -1310,7 +1310,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="25"/>
         <source>New Label</source>
-        <translation>Nuova Etichetta</translation>
+        <translation>Nuova etichetta</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="35"/>
@@ -1357,7 +1357,7 @@ Le notizie vecchie potrebbero riapparire.</translation>
     <message>
         <location filename="../src/labeldialog.cpp" line="146"/>
         <source>Select Image</source>
-        <translation>Seleziona Immagine</translation>
+        <translation>Seleziona immagine</translation>
     </message>
     <message>
         <location filename="../src/labeldialog.cpp" line="153"/>
@@ -1436,7 +1436,7 @@ Salvare?</translation>
         <location filename="../src/app/mainwindow.cpp" line="2489"/>
         <location filename="../src/app/mainwindow.cpp" line="2518"/>
         <source>Select OPML-File</source>
-        <translation>Seleziona un File OPML</translation>
+        <translation>Seleziona un file OPML</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="2491"/>
@@ -1497,7 +1497,7 @@ Salvare?</translation>
         <location filename="../src/app/mainwindow.cpp" line="4423"/>
         <location filename="../src/app/mainwindow.cpp" line="5238"/>
         <source>New News: %1</source>
-        <translation>Nuove Notizie: %1</translation>
+        <translation>Nuove notizie: %1</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4425"/>
@@ -1529,13 +1529,13 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4435"/>
         <source>Add New Folder</source>
-        <translation>Aggiungi Nuova Cartella</translation>
+        <translation>Aggiungi nuova cartella</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4437"/>
         <location filename="../src/app/mainwindow.cpp" line="4502"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>Apri in una nuova scheda</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4439"/>
@@ -1629,12 +1629,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4468"/>
         <source>News Filters...</source>
-        <translation>Filtri Notizie...</translation>
+        <translation>Filtri notizie...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4469"/>
         <source>Filter News...</source>
-        <translation>Filtra Notizie...</translation>
+        <translation>Filtra notizie...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4471"/>
@@ -1644,7 +1644,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4472"/>
         <source>Open Options Dialog</source>
-        <translation>Apre la Finestra delle Opzioni</translation>
+        <translation>Apre la finestra delle opzioni</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4474"/>
@@ -1722,12 +1722,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4494"/>
         <source>Check for Updates...</source>
-        <translation>Cerca Aggiornamenti...</translation>
+        <translation>Cerca aggiornamenti...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4495"/>
         <source>Report a Problem...</source>
-        <translation>Segnala un Problema...</translation>
+        <translation>Segnala un problema...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4497"/>
@@ -1742,22 +1742,22 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4499"/>
         <source>Open in Browser</source>
-        <translation>Apri nel Browser</translation>
+        <translation>Apri nel browser</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4500"/>
         <source>Open in External Browser</source>
-        <translation>Apri in un Browser Esterno</translation>
+        <translation>Apri in un browser esterno</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4501"/>
         <source>Open News in External Browser</source>
-        <translation>Apri Notizie nel Browser Esterno</translation>
+        <translation>Apri notizie nel browser esterno</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4503"/>
         <source>Open News in New Tab</source>
-        <translation>Apri in una Nuova Scheda</translation>
+        <translation>Apri in una nuova scheda</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4504"/>
@@ -1807,7 +1807,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4513"/>
         <source>Restore News</source>
-        <translation>Ripristina Notizia</translation>
+        <translation>Ripristina notizia</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4514"/>
@@ -1858,7 +1858,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4527"/>
         <source>Fee&amp;ds</source>
-        <translation>Fee&amp;d</translation>
+        <translation>&amp;Fonti</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4528"/>
@@ -2004,12 +2004,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4562"/>
         <source>Previous News</source>
-        <translation>Notizia Precedente</translation>
+        <translation>Notizia precedente</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4563"/>
         <source>Next News</source>
-        <translation>Notizia Successiva</translation>
+        <translation>Notizia successiva</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4564"/>
@@ -2059,12 +2059,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4579"/>
         <source>Minimize to Tray</source>
-        <translation>Riduci all&apos;Area di Notifica</translation>
+        <translation>Riduci nell&apos;area di notifica</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4581"/>
         <source>Minimize Application to Tray</source>
-        <translation>Riduce l&apos;Applicazione all&apos;Area di Notifica</translation>
+        <translation>Riduce l&apos;applicazione nell&apos;area di notifica</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4583"/>
@@ -2079,12 +2079,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4585"/>
         <source>Count News All</source>
-        <translation>Numero di Tutte le Notizie</translation>
+        <translation>Numero di tutte le notizie</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4586"/>
         <source>Last Updated</source>
-        <translation>Ultimo Aggiornamento</translation>
+        <translation>Ultimo aggiornamento</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4588"/>
@@ -2140,17 +2140,17 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4602"/>
         <source>Print Web page</source>
-        <translation>Stampa la Pagina Web</translation>
+        <translation>Stampa la pagina web</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4603"/>
         <source>Print Preview...</source>
-        <translation>Anteprima di Stampa...</translation>
+        <translation>Anteprima di stampa...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4604"/>
         <source>Preview Web page</source>
-        <translation>Anteprima della Pagina Web</translation>
+        <translation>Anteprima della pagina web</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4606"/>
@@ -2313,7 +2313,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4656"/>
         <source>Setting Page: Labels</source>
-        <translation>Configurazione Pagina: Etichette</translation>
+        <translation>Pagina impostazioni: Etichette</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4658"/>
@@ -2338,7 +2338,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="5484"/>
         <source>Check for updates</source>
-        <translation>Cerca Aggiornamenti</translation>
+        <translation>Cerca aggiornamenti</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="5485"/>
@@ -2354,7 +2354,7 @@ Salvare?</translation>
         <location filename="../src/app/mainwindow.cpp" line="6538"/>
         <location filename="../src/app/mainwindow.cpp" line="6552"/>
         <source>Web Page</source>
-        <translation>Pagina Web</translation>
+        <translation>Pagina web</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="7054"/>
@@ -2369,7 +2369,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="7056"/>
         <source>Text files (*.%2)</source>
-        <translation>File di Testo (*.%2)</translation>
+        <translation>File di testo (*.%2)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="7062"/>
@@ -2551,12 +2551,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="534"/>
         <source>Open Page in External Browser</source>
-        <translation>Apri Pagina nel Browser Esterno</translation>
+        <translation>Apri pagina nel browser esterno</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="535"/>
         <source>Open Link in External Browser</source>
-        <translation>Apri Collegamento nel Browser Esterno</translation>
+        <translation>Apri collegamento nel browser esterno</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="537"/>
@@ -2611,12 +2611,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/newstabwidget.cpp" line="547"/>
         <source>Copy Image</source>
-        <translation>Copia Immagine</translation>
+        <translation>Copia immagine</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="549"/>
         <source>Copy Image Address</source>
-        <translation>Copia Indirizzo Immagine</translation>
+        <translation>Copia indirizzo immagine</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="559"/>
@@ -2730,7 +2730,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="68"/>
         <source>System Tray</source>
-        <translation>Area di Notifica</translation>
+        <translation>Area di notifica</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="71"/>
@@ -2778,7 +2778,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="95"/>
         <source>Keyboard Shortcuts</source>
-        <translation>Scorciatoie da Tastiera</translation>
+        <translation>Scorciatoie da tastiera</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="265"/>
@@ -3040,7 +3040,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="549"/>
         <source>Browser selection:</source>
-        <translation>Selezione Browser:</translation>
+        <translation>Selezione del browser:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="551"/>
@@ -3317,7 +3317,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="870"/>
         <source>Show news&apos; description instead of loading web page</source>
-        <translation>Mostra la descrizione della notizia invece di caricare la pagina Web</translation>
+        <translation>Mostra la descrizione della notizia invece di caricare la pagina web</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="872"/>
@@ -3417,12 +3417,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="994"/>
         <source>Move up</source>
-        <translation>Sposta Su</translation>
+        <translation>Sposta su</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="997"/>
         <source>Move down</source>
-        <translation>Sposta Giù</translation>
+        <translation>Sposta giù</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1030"/>
@@ -3770,7 +3770,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1678"/>
         <source>Fonts Browser</source>
-        <translation>Carattere del Browser</translation>
+        <translation>Carattere del browser</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1679"/>
@@ -3811,7 +3811,7 @@ Salvare?</translation>
         <location filename="../src/optionsdialog.cpp" line="2139"/>
         <location filename="../src/optionsdialog.cpp" line="2164"/>
         <source>Open File...</source>
-        <translation>Apri File...</translation>
+        <translation>Apri file...</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="2661"/>
@@ -3850,7 +3850,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4688"/>
         <source>&amp;Select All</source>
-        <translation>&amp;Seleziona Tutto</translation>
+        <translation>&amp;Seleziona tutto</translation>
     </message>
 </context>
 <context>
@@ -3931,7 +3931,7 @@ Salvare?</translation>
         <location filename="../3rdparty/qftp/qftp.cpp" line="2427"/>
         <source>Listing directory failed:
 %1</source>
-        <translation>Elencazione delle directory fallita:
+        <translation>Creazione elenco delle directory fallita:
 %1</translation>
     </message>
     <message>
@@ -4017,7 +4017,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4675"/>
         <source>Select All</source>
-        <translation>Seleziona Tutto</translation>
+        <translation>Seleziona tutto</translation>
     </message>
 </context>
 <context>
@@ -4076,12 +4076,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4683"/>
         <source>Select All</source>
-        <translation>Seleziona Tutto</translation>
+        <translation>Seleziona tutto</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4684"/>
         <source>Copy &amp;Link Location</source>
-        <translation>Copia l&apos;Indirizzo del Co&amp;llegamento</translation>
+        <translation>Copia l&apos;indirizzo del co&amp;llegamento</translation>
     </message>
 </context>
 <context>
@@ -4125,7 +4125,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/requestfeed.cpp" line="209"/>
         <source>Server replied: Not Found!</source>
-        <translation>Risposta server: Non trovata!</translation>
+        <translation>Risposta server: non trovata!</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="244"/>
@@ -4143,7 +4143,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="36"/>
         <source>Check for Updates</source>
-        <translation>Verifica degli Aggiornamenti</translation>
+        <translation>Verifica degli aggiornamenti</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="43"/>
@@ -4173,12 +4173,12 @@ Salvare?</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="128"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation>È disponible una nuova versione di QuiteRSS!</translation>
+        <translation>È disponibile una nuova versione di QuiteRSS!</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="131"/>
         <source>Click here to go to the download page</source>
-        <translation>Clicca qui per andare alla pagina di download</translation>
+        <translation>Fai clic qui per andare alla pagina di download</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="136"/>
@@ -4188,7 +4188,7 @@ Salvare?</translation>
     <message>
         <location filename="../src/updateappdialog.cpp" line="138"/>
         <source>Current version is:</source>
-        <translation>La versione corrente è:</translation>
+        <translation>La versione attuale è:</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="144"/>
