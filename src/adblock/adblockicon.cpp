@@ -50,11 +50,15 @@ AdBlockIcon::AdBlockIcon(MainWindow *window, QWidget *parent)
   , m_timerTicks(0)
   , m_enabled(false)
 {
-  setToolTip(tr("AdBlock lets you block unwanted content on web pages"));
   setFocusPolicy(Qt::NoFocus);
   setStyleSheet("QToolButton { border: none; padding: 0px; }");
 
   connect(this, SIGNAL(clicked(QPoint)), this, SLOT(showMenu(QPoint)));
+}
+
+void AdBlockIcon::retranslateStrings()
+{
+  setToolTip(tr("AdBlock lets you block unwanted content on web pages"));
 }
 
 void AdBlockIcon::popupBlocked(const QString &ruleString, const QUrl &url)

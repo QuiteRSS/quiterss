@@ -50,6 +50,7 @@ public:
   explicit AdBlockIcon(MainWindow *window, QWidget *parent = 0);
   ~AdBlockIcon();
 
+  void retranslateStrings();
   void popupBlocked(const QString &ruleString, const QUrl &url);
   QAction* menuAction();
 

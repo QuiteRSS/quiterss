@@ -4733,6 +4733,7 @@ void MainWindow::retranslateStrings()
   }
   findFeeds_->retranslateStrings();
   mainApp->downloadManager()->retranslateStrings();
+  adblockIcon_->retranslateStrings();
 }
 // ----------------------------------------------------------------------------
 void MainWindow::setToolBarStyle(const QString &styleStr)
