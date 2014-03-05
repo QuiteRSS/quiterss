@@ -1,5 +1,13 @@
 /* QuiteRSS System Style */
 
+#tabBar_ QTabWidget::tab-bar {
+	bottom: -1px;
+}
+
+#tabBarWidget {
+	border-bottom: 1px solid gray;
+}
+
 #feedsTreeView_::item, #newsView_::item, #newsCategoriesTree_::item {
 	min-height: 20px;
 }

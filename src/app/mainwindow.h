@@ -306,12 +306,12 @@ signals:
   void signalPlaySoundNewNews();
   void signalUpdateStatus(int feedId, bool changed);
   void signalMarkAllFeedsRead();
-  void signalNumberTabsChanged();
   void signalMarkFeedRead(int id, bool isFolder, bool openFeed);
   void signalSetFeedsFilter(bool clicked = false);
   void signalMarkAllFeedsOld();
 
 private slots:
+  void showMainMenu();
   void slotTimerLinkOpening();
   void slotVisibledFeedsWidget();
   void updateIconToolBarNull(bool feedsWidgetVisible);
@@ -360,7 +360,6 @@ private slots:
   void slotOpenCategoryNewTab();
   void slotTabCurrentChanged(int index);
   void slotTabMoved(int fromIndex, int toIndex);
-  void slotNumberTabsChanged();
   void feedsColumnVisible(QAction *action);
   void setBrowserPosition(QAction *action);
   void slotOpenNewsWebView();
@@ -407,6 +406,7 @@ private slots:
 
   void setFullScreen();
   void setStayOnTop();
+  void showMenuBar();
 
   void slotMoveIndex(QModelIndex &indexWhat,QModelIndex &indexWhere, int how);
 
@@ -495,6 +495,8 @@ private:
   int addTab(NewsTabWidget *widget);
 
   NewsModel *newsModel_;
+  QMenu *mainMenu_;
+  QToolButton *mainMenuButton_;
   TabBar *tabBar_;
   QWidget *tabBarWidget_;
   QSplitter *mainSplitter_;
@@ -605,9 +607,10 @@ private:
   QAction *reduceNewsListAct_;
   QAction *increaseNewsListAct_;
 
+  QAction *showMenuBarAct_;
+
   QMenu *fileMenu_;
   QMenu *newMenu_;
-  QMenu *editMenu_;
   QMenu *viewMenu_;
   QMenu *toolbarsMenu_;
   QMenu *customizeToolbarMenu_;
@@ -727,8 +730,6 @@ private:
   bool recountCategoryCountsOn_;
 
   OptionsDialog *optionsDialog_;
-
-  bool hideTabBar_;
 
   AdBlockIcon* adblockIcon_;
 

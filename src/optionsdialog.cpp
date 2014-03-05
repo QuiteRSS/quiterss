@@ -293,7 +293,6 @@ void OptionsDialog::createGeneralWidget()
   showToggleFeedsTree_ = new QCheckBox(tr("Show feeds tree toggle at edge of window"));
   defaultIconFeeds_ = new QCheckBox(tr("Show default rss-icon instead of favourite one"));
   autocollapseFolder_ = new QCheckBox(tr("Automatically collapse folders"));
-  hideTabBar_ = new QCheckBox(tr("Hide tab bar if only have one tab open"));
   showCloseButtonTab_ = new QCheckBox(tr("Show close button on tab"));
 
   updateCheckEnabled_ = new QCheckBox(tr("Automatically check for updates"));
@@ -324,7 +323,6 @@ void OptionsDialog::createGeneralWidget()
   generalLayout->addWidget(showToggleFeedsTree_);
   generalLayout->addWidget(defaultIconFeeds_);
   generalLayout->addWidget(autocollapseFolder_);
-  generalLayout->addWidget(hideTabBar_);
   generalLayout->addWidget(showCloseButtonTab_);
   generalLayout->addStretch();
 

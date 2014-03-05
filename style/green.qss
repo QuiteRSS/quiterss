@@ -63,6 +63,7 @@ QMenuBar::item:pressed {
 }
 
 #tabBar_::tab {
+	margin-top: 1px;
 	background-color: transparent;
 	border: 1px solid gray;
 	border-bottom: none;

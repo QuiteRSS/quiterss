@@ -47,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
   , currentNewsTab(NULL)
   , isOpeningLink_(false)
   , openNewsTab_(0)
+  , feedsFilterAction_(NULL)
+  , newsFilterAction_(NULL)
   , newsView_(NULL)
   , updateTimeCount_(0)
 #if defined(HAVE_QT5) || defined(HAVE_PHONON)
@@ -87,6 +89,8 @@ MainWindow::MainWindow(QWidget *parent)
   addOurFeed();
 
   initUpdateFeeds();
+
+
 
   QTimer::singleShot(10000, this, SLOT(slotUpdateAppCheck()));
 
@@ -590,23 +594,25 @@ void MainWindow::createTray()
  *---------------------------------------------------------------------------*/
 void MainWindow::createTabBarWidget()
 {
+  mainMenuButton_ = new QToolButton(this);
+  mainMenuButton_->setObjectName("mainMenuButton");
+  mainMenuButton_->setStyleSheet("QToolButton { border: none; padding: 0px 5px 0px 0px; }");
+  mainMenuButton_->setIcon(QIcon(":/images/menu"));
+
   tabBar_ = new TabBar();
 
   QHBoxLayout *tabBarLayout = new QHBoxLayout();
   tabBarLayout->setContentsMargins(5, 0, 0, 0);
   tabBarLayout->setSpacing(0);
-  tabBarLayout->addWidget(tabBar_);
+  tabBarLayout->addWidget(mainMenuButton_);
+  tabBarLayout->addWidget(tabBar_, 1);
 
   tabBarWidget_ = new QWidget(this);
   tabBarWidget_->setObjectName("tabBarWidget");
   tabBarWidget_->setMinimumHeight(1);
   tabBarWidget_->setLayout(tabBarLayout);
 
-  Settings settings;
-  hideTabBar_ = settings.value("Settings/hideTabBar", false).toBool();
-  if (hideTabBar_)
-    tabBar_->hide();
-
+  connect(mainMenuButton_, SIGNAL(clicked()), this, SLOT(showMainMenu()));
   connect(tabBar_, SIGNAL(closeTab(int)),
           this, SLOT(slotCloseTab(int)));
   connect(tabBar_, SIGNAL(currentChanged(int)),
@@ -615,8 +621,6 @@ void MainWindow::createTabBarWidget()
           SLOT(slotTabMoved(int,int)));
   connect(this, SIGNAL(signalSetCurrentTab(int,bool)),
           SLOT(setCurrentTab(int,bool)), Qt::QueuedConnection);
-  connect(this, SIGNAL(signalNumberTabsChanged()),
-          SLOT(slotNumberTabsChanged()), Qt::QueuedConnection);
 
   connect(closeTabAct_, SIGNAL(triggered()), tabBar_, SLOT(slotCloseTab()));
   connect(closeOtherTabsAct_, SIGNAL(triggered()),
@@ -712,6 +716,10 @@ void MainWindow::createActions()
   exportFeedsAct_->setIcon(QIcon(":/images/exportFeeds"));
   this->addAction(exportFeedsAct_);
   connect(exportFeedsAct_, SIGNAL(triggered()), this, SLOT(slotExportFeeds()));
+
+  showMenuBarAct_ = new QAction(this);
+  showMenuBarAct_->setCheckable(true);
+  connect(showMenuBarAct_, SIGNAL(triggered()), this, SLOT(showMenuBar()));
 
   exitAct_ = new QAction(this);
   exitAct_->setObjectName("exitAct");
@@ -1499,6 +1507,8 @@ void MainWindow::saveActionShortcuts()
 // ---------------------------------------------------------------------------
 void MainWindow::createMenu()
 {
+  mainMenu_ = new QMenu(this);
+
   newMenu_ = new QMenu(this);
   newMenu_->addAction(addFeedAct_);
   newMenu_->addAction(addFolderAct_);
@@ -1510,26 +1520,27 @@ void MainWindow::createMenu()
   fileMenu_->addAction(importFeedsAct_);
   fileMenu_->addAction(exportFeedsAct_);
   fileMenu_->addSeparator();
+  fileMenu_->addAction(showMenuBarAct_);
+  fileMenu_->addSeparator();
   fileMenu_->addAction(exitAct_);
-  menuBar()->addMenu(fileMenu_);
 
-  editMenu_ = new QMenu(this);
-  editMenu_->setVisible(false);
-  //  menuBar()->addMenu(editMenu_);
+  mainMenu_->addAction(addAct_);
+  mainMenu_->addSeparator();
+  mainMenu_->addAction(importFeedsAct_);
+  mainMenu_->addAction(exportFeedsAct_);
+  mainMenu_->addSeparator();
 
   toolbarsMenu_ = new QMenu(this);
-  toolbarsMenu_->addAction(mainToolbarToggle_);
+//  toolbarsMenu_->addAction(mainToolbarToggle_);
   toolbarsMenu_->addAction(feedsToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
   toolbarsMenu_->addAction(browserToolbarToggle_);
   toolbarsMenu_->addAction(categoriesPanelToggle_);
 
   customizeToolbarGroup_ = new QActionGroup(this);
-  customizeToolbarGroup_->addAction(customizeMainToolbarAct_);
+//  customizeToolbarGroup_->addAction(customizeMainToolbarAct_);
   customizeToolbarGroup_->addAction(customizeFeedsToolbarAct_);
   customizeToolbarGroup_->addAction(customizeNewsToolbarAct_);
-  connect(customizeToolbarGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(showCustomizeToolbarDlg(QAction*)));
   customizeToolbarMenu_ = new QMenu(this);
   customizeToolbarMenu_->addActions(customizeToolbarGroup_->actions());
 
@@ -1541,8 +1552,6 @@ void MainWindow::createMenu()
   styleGroup_->addAction(purpleStyle_);
   styleGroup_->addAction(pinkStyle_);
   styleGroup_->addAction(grayStyle_);
-  connect(styleGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(setStyleApp(QAction*)));
 
   styleMenu_ = new QMenu(this);
   styleMenu_->addActions(styleGroup_->actions());
@@ -1552,8 +1561,6 @@ void MainWindow::createMenu()
   browserPositionGroup_->addAction(bottomBrowserPositionAct_);
   browserPositionGroup_->addAction(rightBrowserPositionAct_);
   browserPositionGroup_->addAction(leftBrowserPositionAct_);
-  connect(browserPositionGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(setBrowserPosition(QAction*)));
 
   browserPositionMenu_ = new QMenu(this);
   browserPositionMenu_->addActions(browserPositionGroup_->actions());
@@ -1567,7 +1574,7 @@ void MainWindow::createMenu()
   viewMenu_->addSeparator();
   viewMenu_->addAction(stayOnTopAct_);
   viewMenu_->addAction(fullScreenAct_);
-  menuBar()->addMenu(viewMenu_);
+  mainMenu_->addMenu(viewMenu_);
 
   feedMenu_ = new QMenu(this);
   feedMenu_->addAction(updateFeedAct_);
@@ -1576,7 +1583,7 @@ void MainWindow::createMenu()
   feedMenu_->addAction(markFeedRead_);
   feedMenu_->addAction(markAllFeedsRead_);
   feedMenu_->addSeparator();
-  menuBar()->addMenu(feedMenu_);
+  mainMenu_->addMenu(feedMenu_);
 
   feedsFilterGroup_ = new QActionGroup(this);
   feedsFilterGroup_->setExclusive(true);
@@ -1585,8 +1592,6 @@ void MainWindow::createMenu()
   feedsFilterGroup_->addAction(filterFeedsUnread_);
   feedsFilterGroup_->addAction(filterFeedsStarred_);
   feedsFilterGroup_->addAction(filterFeedsError_);
-  connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(setFeedsFilter()));
 
   feedsFilterMenu_ = new QMenu(this);
   feedsFilterMenu_->addActions(feedsFilterGroup_->actions());
@@ -1594,16 +1599,12 @@ void MainWindow::createMenu()
 
   feedsFilter_->setMenu(feedsFilterMenu_);
   feedMenu_->addAction(feedsFilter_);
-  feedsFilterAction_ = NULL;
-  connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
 
   feedsColumnsGroup_ = new QActionGroup(this);
   feedsColumnsGroup_->setExclusive(false);
   feedsColumnsGroup_->addAction(showUnreadCount_);
   feedsColumnsGroup_->addAction(showUndeleteCount_);
   feedsColumnsGroup_->addAction(showLastUpdated_);
-  connect(feedsColumnsGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(feedsColumnVisible(QAction*)));
 
   feedsColumnsMenu_ = new QMenu(this);
   feedsColumnsMenu_->addActions(feedsColumnsGroup_->actions());
@@ -1617,15 +1618,13 @@ void MainWindow::createMenu()
   feedMenu_->addSeparator();
   feedMenu_->addAction(feedProperties_);
   feedMenu_->addSeparator();
-  //  feedMenu_->addAction(editFeedsTree_);
-  connect(feedMenu_, SIGNAL(aboutToShow()), this, SLOT(slotFeedMenuShow()));
 
   newsMenu_ = new QMenu(this);
   newsMenu_->addAction(markNewsRead_);
   newsMenu_->addAction(markAllNewsRead_);
   newsMenu_->addSeparator();
   newsMenu_->addAction(markStarAct_);
-  menuBar()->addMenu(newsMenu_);
+  mainMenu_->addMenu(newsMenu_);
 
   newsLabelMenu_ = new QMenu(this);
   newsLabelMenu_->addActions(newsLabelGroup_->actions());
@@ -1634,8 +1633,6 @@ void MainWindow::createMenu()
   newsLabelAction_->setMenu(newsLabelMenu_);
   newsLabelMenuAction_->setMenu(newsLabelMenu_);
   newsMenu_->addAction(newsLabelMenuAction_);
-  connect(newsLabelMenu_, SIGNAL(aboutToShow()),
-          this, SLOT(getLabelNews()));
 
   shareMenu_ = new QMenu(this);
   shareMenu_->addActions(shareGroup_->actions());
@@ -1645,9 +1642,6 @@ void MainWindow::createMenu()
   shareMenuAct_->setMenu(shareMenu_);
   newsMenu_->addAction(shareMenuAct_);
   this->addAction(shareMenuAct_);
-
-  connect(shareMenuAct_, SIGNAL(triggered()),
-          this, SLOT(showMenuShareNews()));
 
   newsMenu_->addSeparator();
 
@@ -1661,8 +1655,6 @@ void MainWindow::createMenu()
   newsFilterGroup_->addAction(filterNewsUnreadStar_);
   newsFilterGroup_->addAction(filterNewsLastDay_);
   newsFilterGroup_->addAction(filterNewsLastWeek_);
-  connect(newsFilterGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(setNewsFilter(QAction*)));
 
   newsFilterMenu_ = new QMenu(this);
   newsFilterMenu_->addActions(newsFilterGroup_->actions());
@@ -1671,32 +1663,23 @@ void MainWindow::createMenu()
 
   newsFilter_->setMenu(newsFilterMenu_);
   newsMenu_->addAction(newsFilter_);
-  newsFilterAction_ = NULL;
-  connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
 
   newsSortByMenu_ = new QMenu(this);
   newsSortByMenu_->addSeparator();
   newsSortByMenu_->addActions(newsSortOrderGroup_->actions());
 
   newsMenu_->addMenu(newsSortByMenu_);
-  connect(newsSortByMenu_, SIGNAL(aboutToShow()),
-          this, SLOT(showNewsSortByMenu()));
-
   newsMenu_->addSeparator();
   newsMenu_->addAction(deleteNewsAct_);
   newsMenu_->addAction(deleteAllNewsAct_);
-  connect(newsMenu_, SIGNAL(aboutToShow()),
-          this, SLOT(showNewsMenu()));
 
   browserMenu_ = new QMenu(this);
-  menuBar()->addMenu(browserMenu_);
+  mainMenu_->addMenu(browserMenu_);
 
   browserZoomGroup_ = new QActionGroup(this);
   browserZoomGroup_->addAction(zoomInAct_);
   browserZoomGroup_->addAction(zoomOutAct_);
   browserZoomGroup_->addAction(zoomTo100Act_);
-  connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
-          this, SLOT(browserZoom(QAction*)));
 
   browserZoomMenu_ = new QMenu(this);
   browserZoomMenu_->setIcon(QIcon(":/images/zoom"));
@@ -1713,6 +1696,7 @@ void MainWindow::createMenu()
   browserMenu_->addSeparator();
   browserMenu_->addAction(tr("&AdBlock"), AdBlockManager::instance(), SLOT(showDialog()));
 
+  mainMenu_->addSeparator();
   toolsMenu_ = new QMenu(this);
   toolsMenu_->addAction(showDownloadManagerAct_);
   toolsMenu_->addSeparator();
@@ -1720,14 +1704,53 @@ void MainWindow::createMenu()
   toolsMenu_->addAction(setNewsFiltersAct_);
   toolsMenu_->addSeparator();
   toolsMenu_->addAction(optionsAct_);
-  menuBar()->addMenu(toolsMenu_);
+  mainMenu_->addMenu(toolsMenu_);
 
   helpMenu_ = new QMenu(this);
   helpMenu_->addAction(updateAppAct_);
   helpMenu_->addSeparator();
   helpMenu_->addAction(reportProblemAct_);
   helpMenu_->addAction(aboutAct_);
+
+  mainMenu_->addSeparator();
+  mainMenu_->addMenu(helpMenu_);
+  mainMenu_->addSeparator();
+  mainMenu_->addAction(showMenuBarAct_);
+  mainMenu_->addSeparator();
+  mainMenu_->addAction(exitAct_);
+
+
+  menuBar()->addMenu(fileMenu_);
+  menuBar()->addMenu(viewMenu_);
+  menuBar()->addMenu(feedMenu_);
+  menuBar()->addMenu(newsMenu_);
+  menuBar()->addMenu(browserMenu_);
+  menuBar()->addMenu(toolsMenu_);
   menuBar()->addMenu(helpMenu_);
+
+
+  connect(customizeToolbarGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(showCustomizeToolbarDlg(QAction*)));
+  connect(styleGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setStyleApp(QAction*)));
+  connect(browserPositionGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setBrowserPosition(QAction*)));
+  connect(feedsFilterGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setFeedsFilter()));
+  connect(feedsFilter_, SIGNAL(triggered()), this, SLOT(slotFeedsFilter()));
+  connect(feedsColumnsGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(feedsColumnVisible(QAction*)));
+  connect(feedMenu_, SIGNAL(aboutToShow()), this, SLOT(slotFeedMenuShow()));
+  connect(newsLabelMenu_, SIGNAL(aboutToShow()), this, SLOT(getLabelNews()));
+  connect(shareMenuAct_, SIGNAL(triggered()), this, SLOT(showMenuShareNews()));
+  connect(newsFilterGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(setNewsFilter(QAction*)));
+  connect(newsFilter_, SIGNAL(triggered()), this, SLOT(slotNewsFilter()));
+  connect(newsSortByMenu_, SIGNAL(aboutToShow()),
+          this, SLOT(showNewsSortByMenu()));
+  connect(newsMenu_, SIGNAL(aboutToShow()), this, SLOT(showNewsMenu()));
+  connect(browserZoomGroup_, SIGNAL(triggered(QAction*)),
+          this, SLOT(browserZoom(QAction*)));
 }
 // ---------------------------------------------------------------------------
 void MainWindow::createToolBar()
@@ -1736,15 +1759,15 @@ void MainWindow::createToolBar()
   mainToolbar_->setObjectName("ToolBar_General");
   mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
-  addToolBar(mainToolbar_);
+//  addToolBar(mainToolbar_);
 
-  connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
-          mainToolbar_, SLOT(setVisible(bool)));
-  connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
-          this, SLOT(showContextMenuToolBar(const QPoint &)));
+//  connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
+//          mainToolbar_, SLOT(setVisible(bool)));
+//  connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
+//          this, SLOT(showContextMenuToolBar(const QPoint &)));
 
-  connect(toolBarLockAct_, SIGNAL(toggled(bool)), this, SLOT(lockMainToolbar(bool)));
-  connect(toolBarHideAct_, SIGNAL(triggered()), this, SLOT(hideMainToolbar()));
+//  connect(toolBarLockAct_, SIGNAL(toggled(bool)), this, SLOT(lockMainToolbar(bool)));
+//  connect(toolBarHideAct_, SIGNAL(triggered()), this, SLOT(hideMainToolbar()));
 }
 
 /** @brief Load settings from ini-file
@@ -1929,33 +1952,35 @@ void MainWindow::loadSettings()
   categoriesPanelToggle_->setChecked(settings.value("categoriesPanelShow", true).toBool());
   categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
 
-  if (!mainToolbarToggle_->isChecked())
+//  if (!mainToolbarToggle_->isChecked())
     mainToolbar_->hide();
   if (!feedsToolbarToggle_->isChecked())
     feedsPanel_->hide();
 
-  QString str = settings.value("mainToolBar",
-                               "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
-                               "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
+//  QString str = settings.value("mainToolBar",
+//                               "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
+//                               "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
 
-  foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
-    if (actionStr == "Separator") {
-      mainToolbar_->addSeparator();
-    } else {
-      QListIterator<QAction *> iter(actions());
-      while (iter.hasNext()) {
-        QAction *pAction = iter.next();
-        if (!pAction->icon().isNull()) {
-          if (pAction->objectName() == actionStr) {
-            mainToolbar_->addAction(pAction);
-            break;
-          }
-        }
-      }
-    }
-  }
+//  foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
+//    if (actionStr == "Separator") {
+//      mainToolbar_->addSeparator();
+//    } else {
+//      QListIterator<QAction *> iter(actions());
+//      while (iter.hasNext()) {
+//        QAction *pAction = iter.next();
+//        if (!pAction->icon().isNull()) {
+//          if (pAction->objectName() == actionStr) {
+//            mainToolbar_->addAction(pAction);
+//            break;
+//          }
+//        }
+//      }
+//    }
+//  }
 
-  str = settings.value("feedsToolBar", "findFeedAct,feedsFilter").toString();
+  QString str = settings.value("feedsToolBar",
+                               "newAct,Separator,updateAllFeedsAct,markFeedRead,"
+                               "Separator,feedsFilter,findFeedAct").toString();
 
   foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
     if (actionStr == "Separator") {
@@ -2025,6 +2050,8 @@ void MainWindow::loadSettings()
   feedsTreeView_->autocollapseFolder_ =
       settings.value("autocollapseFolder", false).toBool();
 
+  showMenuBarAct_->setChecked(settings.value("showMenuBar", false).toBool());
+
   settings.endGroup();
 
   settings.beginGroup("Color");
@@ -2078,8 +2105,7 @@ void MainWindow::loadSettings()
   if (expandCategories)
     categoriesTree_->expandAll();
 
-  if (isFullScreen())
-    menuBar()->hide();
+  showMenuBar();
 
   networkProxy_.setType(static_cast<QNetworkProxy::ProxyType>(
                           settings.value("networkProxy/type", QNetworkProxy::DefaultProxy).toInt()));
@@ -2224,6 +2250,8 @@ void MainWindow::saveSettings()
   settings.setValue("defaultIconFeeds", defaultIconFeeds_);
   settings.setValue("autocollapseFolder", feedsTreeView_->autocollapseFolder_);
 
+  settings.setValue("showMenuBar", showMenuBarAct_->isChecked());
+
   settings.endGroup();
 
   settings.beginGroup("Color");
@@ -2301,6 +2329,11 @@ void MainWindow::setProxy(const QNetworkProxy proxy)
     QNetworkProxyFactory::setUseSystemConfiguration(true);
   else
     QNetworkProxy::setApplicationProxy(networkProxy_);
+}
+
+void MainWindow::showMainMenu()
+{
+  mainMenu_->popup(mainMenuButton_->mapToGlobal(QPoint(-5, mainMenuButton_->height())));
 }
 
 /** @brief Add feed to feed list
@@ -3042,7 +3075,6 @@ void MainWindow::showOptionDlg(int index)
   optionsDialog_->showToggleFeedsTree_->setChecked(showToggleFeedsTree_);
   optionsDialog_->defaultIconFeeds_->setChecked(defaultIconFeeds_);
   optionsDialog_->autocollapseFolder_->setChecked(feedsTreeView_->autocollapseFolder_);
-  optionsDialog_->hideTabBar_->setChecked(hideTabBar_);
   bool showCloseButtonTab = settings.value("Settings/showCloseButtonTab", true).toBool();
   optionsDialog_->showCloseButtonTab_->setChecked(showCloseButtonTab);
 
@@ -3408,10 +3440,6 @@ void MainWindow::showOptionDlg(int index)
   defaultIconFeeds_ = optionsDialog_->defaultIconFeeds_->isChecked();
   feedsTreeModel_->defaultIconFeeds_ = defaultIconFeeds_;
   feedsTreeView_->autocollapseFolder_ = optionsDialog_->autocollapseFolder_->isChecked();
-
-  hideTabBar_ = optionsDialog_->hideTabBar_->isChecked();
-  settings.setValue("Settings/hideTabBar", hideTabBar_);
-  slotNumberTabsChanged();
 
   showCloseButtonTab = optionsDialog_->showCloseButtonTab_->isChecked();
   settings.setValue("Settings/showCloseButtonTab", showCloseButtonTab);
@@ -4450,6 +4478,8 @@ void MainWindow::retranslateStrings()
   exportFeedsAct_->setText(tr("&Export Feeds..."));
   exportFeedsAct_->setToolTip(tr("Export Feeds to OPML File"));
 
+  showMenuBarAct_->setText(tr("S&how Menu Bar"));
+
   exitAct_->setText(tr("E&xit"));
 
   updateFeedAct_->setText(tr("Update Feed"));
@@ -4527,7 +4557,6 @@ void MainWindow::retranslateStrings()
   feedProperties_->setToolTip(tr("Properties"));
 
   fileMenu_->setTitle(tr("&File"));
-  editMenu_->setTitle(tr("&Edit"));
   viewMenu_->setTitle(tr("&View"));
   feedMenu_->setTitle(tr("Fee&ds"));
   newsMenu_->setTitle(tr("&News"));
@@ -5689,8 +5718,6 @@ void MainWindow::slotCloseTab(int index)
     tabBar_->removeTab(index);
     widget->newsTitleLabel_->deleteLater();
     widget->deleteLater();
-
-    emit signalNumberTabsChanged();
   }
 }
 
@@ -5811,15 +5838,6 @@ void MainWindow::slotTabCurrentChanged(int index)
 void MainWindow::slotTabMoved(int fromIndex, int toIndex)
 {
   stackedWidget_->insertWidget(toIndex, stackedWidget_->widget(fromIndex));
-}
-
-void MainWindow::slotNumberTabsChanged()
-{
-  if ((tabBar_->count() == 1) && hideTabBar_) {
-    tabBar_->hide();
-  } else {
-    tabBar_->show();
-  }
 }
 
 /** @brief Manage displaying columns in feed tree
@@ -6574,8 +6592,7 @@ void MainWindow::slotPrintPreview()
 void MainWindow::setFullScreen()
 {
   if (!isFullScreen()) {
-    // hide menu & toolbars
-    mainToolbar_->hide();
+    // hide menu
     menuBar()->hide();
 #ifdef HAVE_X11
     show();
@@ -6586,8 +6603,6 @@ void MainWindow::setFullScreen()
 #endif
   } else {
     menuBar()->show();
-    if (mainToolbarToggle_->isChecked())
-      mainToolbar_->show();
     setWindowState(windowState() & ~Qt::WindowFullScreen);
   }
 }
@@ -6607,6 +6622,20 @@ void MainWindow::setStayOnTop()
   }
   setWindowState((Qt::WindowState)state);
   show();
+}
+
+void MainWindow::showMenuBar()
+{
+  if (showMenuBarAct_->isChecked()) {
+    mainMenuButton_->hide();
+    if (isFullScreen())
+      menuBar()->hide();
+    else
+      menuBar()->show();
+  } else {
+    mainMenuButton_->show();
+    menuBar()->hide();
+  }
 }
 
 /** @brief Move index after drag&drop operations
@@ -7008,8 +7037,6 @@ int MainWindow::addTab(NewsTabWidget *widget)
   tabBar_->setTabButton(indexTab,
                         QTabBar::LeftSide,
                         widget->newsTitleLabel_);
-
-  emit signalNumberTabsChanged();
 
   return indexTab;
 }
