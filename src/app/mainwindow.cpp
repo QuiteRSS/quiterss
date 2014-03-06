@@ -2222,7 +2222,7 @@ void MainWindow::saveSettings()
 //  settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
 //  settings.setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
-  settings.setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
+  settings.setValue("feedsToolbarShow2", feedsToolbarToggle_->isChecked());
   settings.setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings.setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
   settings.setValue("categoriesPanelShow", categoriesPanelToggle_->isChecked());

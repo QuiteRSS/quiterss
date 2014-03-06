@@ -273,7 +273,7 @@ void CustomizeToolbarDialog::acceptDialog()
     settings.setValue("Settings/toolBarIconSize", str);
     mainWindow->setToolBarIconSize(str);
   } else if (toolbar_->objectName() == "feedsToolBar") {
-    settings.setValue("Settings/feedsToolBar", str);
+    settings.setValue("Settings/feedsToolBar2", str);
   } else if (toolbar_->objectName() == "newsToolBar") {
     settings.setValue("Settings/newsToolBar", str);
 
