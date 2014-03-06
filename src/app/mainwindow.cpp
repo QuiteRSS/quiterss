@@ -1759,7 +1759,7 @@ void MainWindow::createToolBar()
   mainToolbar_->setObjectName("ToolBar_General");
   mainToolbar_->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
-//  addToolBar(mainToolbar_);
+  addToolBar(mainToolbar_);
 
 //  connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
 //          mainToolbar_, SLOT(setVisible(bool)));
@@ -1942,18 +1942,18 @@ void MainWindow::loadSettings()
   fullscreenModeNotify_ = settings.value("fullscreenModeNotify", true).toBool();
   onlySelectedFeeds_ = settings.value("onlySelectedFeeds", false).toBool();
 
-  toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
-  lockMainToolbar(toolBarLockAct_->isChecked());
+//  toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
+//  lockMainToolbar(toolBarLockAct_->isChecked());
 
-  mainToolbarToggle_->setChecked(settings.value("mainToolbarShow", true).toBool());
-  feedsToolbarToggle_->setChecked(settings.value("feedsToolbarShow", true).toBool());
+//  mainToolbarToggle_->setChecked(settings.value("mainToolbarShow", true).toBool());
+  feedsToolbarToggle_->setChecked(settings.value("feedsToolbarShow2", true).toBool());
   newsToolbarToggle_->setChecked(settings.value("newsToolbarShow", true).toBool());
   browserToolbarToggle_->setChecked(settings.value("browserToolbarShow", true).toBool());
   categoriesPanelToggle_->setChecked(settings.value("categoriesPanelShow", true).toBool());
   categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
 
 //  if (!mainToolbarToggle_->isChecked())
-    mainToolbar_->hide();
+//    mainToolbar_->hide();
   if (!feedsToolbarToggle_->isChecked())
     feedsPanel_->hide();
 
@@ -1978,7 +1978,7 @@ void MainWindow::loadSettings()
 //    }
 //  }
 
-  QString str = settings.value("feedsToolBar",
+  QString str = settings.value("feedsToolBar2",
                                "newAct,Separator,updateAllFeedsAct,markFeedRead,"
                                "Separator,feedsFilter,findFeedAct").toString();
 
@@ -2082,6 +2082,8 @@ void MainWindow::loadSettings()
   resize(800, 600);
   restoreGeometry(settings.value("GeometryState").toByteArray());
   restoreState(settings.value("ToolBarsState").toByteArray());
+
+  mainToolbar_->hide();
 
   mainSplitter_->restoreState(settings.value("MainSplitterState").toByteArray());
   feedsWidgetVisibleAct_->setChecked(settings.value("FeedsWidgetVisible", true).toBool());
@@ -2217,9 +2219,9 @@ void MainWindow::saveSettings()
   settings.setValue("fullscreenModeNotify", fullscreenModeNotify_);
   settings.setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
-  settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
+//  settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
-  settings.setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
+//  settings.setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
   settings.setValue("feedsToolbarShow", feedsToolbarToggle_->isChecked());
   settings.setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings.setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
