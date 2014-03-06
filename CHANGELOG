@@ -1,3 +1,27 @@
+Version 0.15.0 (06 Mar 2014)
+  * Main: Adblock integrated
+  * Added: Support for feeds with local path (file://)
+  * Added: Embedded browser. Determining and adding feeds from web sites
+  * Added: Notifications. News grouping - display feeds title
+  * Added: Notifications. Button to delete news
+  * Added: Notifications. Button to mark read every news
+  * Added: System tray. Mane item "Mark All Feeds Read"
+  * Added: Option "Show close button on tab"
+  * Added: Tab "Information" to "About" dialog
+  * Added: Language: Galician
+  * Changed: GUI. Visual tweaks
+  * Changed: The process of news deletion is sorted by date of publication
+  * Changed: RTL-model of news for Arabic and Persian languages
+  * Changed: Process of displaying of the splash screen
+  * Fixed: Wrong codepage while importing feeds
+  * Fixed: Processing feeds that contains '&' symbol
+  * Fixed: Processing some feeds that contains 'br' tag within the news
+  * Fixed: Application activation after opening of the link in external browser and minimizing to tray
+  * Fixed: Options dialog didn't fit monitors with low resolution
+  * Fixed: Reset options while switching on tab that contains category
+  * Fixed: Application crash when open "Options" dialog if "Downloads" tab is active
+  * Fixed: Feed option "Disable update"
+
 Version 0.14.3 (14 Jan 2014)
   * Fixed: Application crash while exporting feeds
   * Fixed: Importing feeds from opml-file failure in some cases
