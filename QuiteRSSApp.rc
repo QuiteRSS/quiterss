@@ -31,7 +31,7 @@ BEGIN
             VALUE "FileVersion", STRFILEVER_FULL
             VALUE "InternalName", "QuiteRSS\0"
 	    VALUE "OriginalFilename", "QuiteRSS.exe\0"
-            VALUE "LegalCopyright", "Copyright © 2011-2013 QuiteRSS Team\0"
+            VALUE "LegalCopyright", "Copyright © 2011-2014 QuiteRSS Team\0"
             VALUE "ProductName", "QuiteRSS\0"
             VALUE "ProductVersion", STRPRODUCTVER
         END
