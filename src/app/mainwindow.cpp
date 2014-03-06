@@ -5243,7 +5243,7 @@ void MainWindow::showFeedPropertiesDlg()
 
         QSqlQuery q1;
         q1.prepare("UPDATE feeds SET disableUpdate = ? WHERE id == ?");
-        q1.addBindValue(properties.general.disableUpdate);
+        q1.addBindValue(properties.general.disableUpdate ? 1 : 0);
         q1.addBindValue(id);
         q1.exec();
 
