@@ -42,15 +42,16 @@
 #include <QInputDialog>
 
 AdBlockTreeWidget::AdBlockTreeWidget(AdBlockSubscription* subscription, QWidget* parent)
-  : TreeWidget(parent)
+  : QTreeWidget(parent)
   , m_subscription(subscription)
   , m_topItem(0)
   , m_itemChangingBlock(false)
+  , m_refreshAllItemsNeeded(true)
 {
   setContextMenuPolicy(Qt::CustomContextMenu);
-  setDefaultItemShowMode(TreeWidget::ItemsExpanded);
   setHeaderHidden(true);
   setAlternatingRowColors(true);
+  setFrameStyle(QFrame::NoFrame);
 
   connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenuRequested(QPoint)));
   connect(this, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(itemChanged(QTreeWidgetItem*)));
@@ -106,6 +107,8 @@ void AdBlockTreeWidget::contextMenuRequested(const QPoint &pos)
 
 void AdBlockTreeWidget::itemChanged(QTreeWidgetItem* item)
 {
+  m_refreshAllItemsNeeded = true;
+
   if (!item || m_itemChangingBlock) {
     return;
   }
@@ -248,7 +251,7 @@ void AdBlockTreeWidget::keyPressEvent(QKeyEvent* event)
     removeRule();
   }
 
-  TreeWidget::keyPressEvent(event);
+  QTreeWidget::keyPressEvent(event);
 }
 
 void AdBlockTreeWidget::refresh()
@@ -283,4 +286,76 @@ void AdBlockTreeWidget::refresh()
 
   showRule(0);
   m_itemChangingBlock = false;
+}
+
+void AdBlockTreeWidget::clear()
+{
+  QTreeWidget::clear();
+  m_allTreeItems.clear();
+}
+
+void AdBlockTreeWidget::addTopLevelItem(QTreeWidgetItem* item)
+{
+  m_allTreeItems.append(item);
+  QTreeWidget::addTopLevelItem(item);
+}
+
+void AdBlockTreeWidget::iterateAllItems(QTreeWidgetItem* parent)
+{
+  int count = parent ? parent->childCount() : topLevelItemCount();
+
+  for (int i = 0; i < count; i++) {
+    QTreeWidgetItem* item = parent ? parent->child(i) : topLevelItem(i);
+
+    if (item->childCount() == 0) {
+      m_allTreeItems.append(item);
+    }
+
+    iterateAllItems(item);
+  }
+}
+
+QList<QTreeWidgetItem*> AdBlockTreeWidget::allItems()
+{
+  if (m_refreshAllItemsNeeded) {
+    m_allTreeItems.clear();
+    iterateAllItems(0);
+    m_refreshAllItemsNeeded = false;
+  }
+
+  return m_allTreeItems;
+}
+
+void AdBlockTreeWidget::filterString(const QString &string)
+{
+  QList<QTreeWidgetItem*> _allItems = allItems();
+  QList<QTreeWidgetItem*> parents;
+  bool stringIsEmpty = string.isEmpty();
+  foreach (QTreeWidgetItem* item, _allItems) {
+    bool containsString = stringIsEmpty || item->text(0).contains(string, Qt::CaseInsensitive);
+    if (containsString) {
+      item->setHidden(false);
+      if (item->parent()) {
+        if (!parents.contains(item->parent())) {
+          parents << item->parent();
+        }
+      }
+    }
+    else {
+      item->setHidden(true);
+      if (item->parent()) {
+        item->parent()->setHidden(true);
+      }
+    }
+  }
+
+  for (int i = 0; i < parents.size(); ++i) {
+    QTreeWidgetItem* parentItem = parents.at(i);
+    parentItem->setHidden(false);
+    parentItem->setExpanded(true);
+
+    if (parentItem->parent() && !parents.contains(parentItem->parent())) {
+      parents << parentItem->parent();
+    }
+  }
 }

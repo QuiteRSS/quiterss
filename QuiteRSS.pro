@@ -121,7 +121,6 @@ HEADERS += \
     src/adblock/adblockblockednetworkreply.h \
     src/adblock/adblockaddsubscriptiondialog.h \
     src/adblock/followredirectreply.h \
-    src/adblock/treewidget.h \
     src/app/common.h \
     src/app/splashscreen.h \
     src/network/authenticationdialog.h \
@@ -185,7 +184,6 @@ SOURCES += \
     src/adblock/adblockblockednetworkreply.cpp \
     src/adblock/adblockaddsubscriptiondialog.cpp \
     src/adblock/followredirectreply.cpp \
-    src/adblock/treewidget.cpp \
     src/app/common.cpp \
     src/app/splashscreen.cpp \
     src/network/authenticationdialog.cpp \

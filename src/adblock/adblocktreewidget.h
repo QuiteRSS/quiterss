@@ -35,12 +35,12 @@
 #ifndef ADBLOCKTREEWIDGET_H
 #define ADBLOCKTREEWIDGET_H
 
-#include "treewidget.h"
+#include <QTreeWidget>
 
 class AdBlockSubscription;
 class AdBlockRule;
 
-class AdBlockTreeWidget : public TreeWidget
+class AdBlockTreeWidget : public QTreeWidget
 {
   Q_OBJECT
 public:
@@ -54,6 +54,8 @@ public:
 public slots:
   void addRule();
   void removeRule();
+  void filterString(const QString &string);
+  void clear();
 
 private slots:
   void contextMenuRequested(const QPoint &pos);
@@ -66,12 +68,19 @@ private slots:
 private:
   void adjustItemFeatures(QTreeWidgetItem* item, const AdBlockRule* rule);
   void keyPressEvent(QKeyEvent* event);
+  void addTopLevelItem(QTreeWidgetItem* item);
+  QList<QTreeWidgetItem*> allItems();
+  void iterateAllItems(QTreeWidgetItem* parent);
 
   AdBlockSubscription* m_subscription;
   QTreeWidgetItem* m_topItem;
 
   QString m_ruleToBeSelected;
   bool m_itemChangingBlock;
+
+  bool m_refreshAllItemsNeeded;
+  QList<QTreeWidgetItem*> m_allTreeItems;
+
 };
 
 #endif // ADBLOCKTREEWIDGET_H
