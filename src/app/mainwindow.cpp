@@ -1531,14 +1531,14 @@ void MainWindow::createMenu()
   mainMenu_->addSeparator();
 
   toolbarsMenu_ = new QMenu(this);
-//  toolbarsMenu_->addAction(mainToolbarToggle_);
+  toolbarsMenu_->addAction(mainToolbarToggle_);
   toolbarsMenu_->addAction(feedsToolbarToggle_);
   toolbarsMenu_->addAction(newsToolbarToggle_);
   toolbarsMenu_->addAction(browserToolbarToggle_);
   toolbarsMenu_->addAction(categoriesPanelToggle_);
 
   customizeToolbarGroup_ = new QActionGroup(this);
-//  customizeToolbarGroup_->addAction(customizeMainToolbarAct_);
+  customizeToolbarGroup_->addAction(customizeMainToolbarAct_);
   customizeToolbarGroup_->addAction(customizeFeedsToolbarAct_);
   customizeToolbarGroup_->addAction(customizeNewsToolbarAct_);
   customizeToolbarMenu_ = new QMenu(this);
@@ -1761,13 +1761,13 @@ void MainWindow::createToolBar()
   mainToolbar_->setContextMenuPolicy(Qt::CustomContextMenu);
   addToolBar(mainToolbar_);
 
-//  connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
-//          mainToolbar_, SLOT(setVisible(bool)));
-//  connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
-//          this, SLOT(showContextMenuToolBar(const QPoint &)));
+  connect(mainToolbarToggle_, SIGNAL(toggled(bool)),
+          mainToolbar_, SLOT(setVisible(bool)));
+  connect(mainToolbar_, SIGNAL(customContextMenuRequested(QPoint)),
+          this, SLOT(showContextMenuToolBar(const QPoint &)));
 
-//  connect(toolBarLockAct_, SIGNAL(toggled(bool)), this, SLOT(lockMainToolbar(bool)));
-//  connect(toolBarHideAct_, SIGNAL(triggered()), this, SLOT(hideMainToolbar()));
+  connect(toolBarLockAct_, SIGNAL(toggled(bool)), this, SLOT(lockMainToolbar(bool)));
+  connect(toolBarHideAct_, SIGNAL(triggered()), this, SLOT(hideMainToolbar()));
 }
 
 /** @brief Load settings from ini-file
@@ -1942,43 +1942,38 @@ void MainWindow::loadSettings()
   fullscreenModeNotify_ = settings.value("fullscreenModeNotify", true).toBool();
   onlySelectedFeeds_ = settings.value("onlySelectedFeeds", false).toBool();
 
-//  toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
-//  lockMainToolbar(toolBarLockAct_->isChecked());
+  toolBarLockAct_->setChecked(settings.value("mainToolbarLock", true).toBool());
+  lockMainToolbar(toolBarLockAct_->isChecked());
 
-//  mainToolbarToggle_->setChecked(settings.value("mainToolbarShow", true).toBool());
+  mainToolbarToggle_->setChecked(settings.value("mainToolbarShow2", false).toBool());
   feedsToolbarToggle_->setChecked(settings.value("feedsToolbarShow2", true).toBool());
   newsToolbarToggle_->setChecked(settings.value("newsToolbarShow", true).toBool());
   browserToolbarToggle_->setChecked(settings.value("browserToolbarShow", true).toBool());
   categoriesPanelToggle_->setChecked(settings.value("categoriesPanelShow", true).toBool());
   categoriesWidget_->setVisible(categoriesPanelToggle_->isChecked());
 
-//  if (!mainToolbarToggle_->isChecked())
-//    mainToolbar_->hide();
-  if (!feedsToolbarToggle_->isChecked())
-    feedsPanel_->hide();
+  QString str = settings.value("mainToolBar",
+                               "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
+                               "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
 
-//  QString str = settings.value("mainToolBar",
-//                               "newAct,Separator,updateFeedAct,updateAllFeedsAct,"
-//                               "Separator,markFeedRead,Separator,autoLoadImagesToggle").toString();
+  foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
+    if (actionStr == "Separator") {
+      mainToolbar_->addSeparator();
+    } else {
+      QListIterator<QAction *> iter(actions());
+      while (iter.hasNext()) {
+        QAction *pAction = iter.next();
+        if (!pAction->icon().isNull()) {
+          if (pAction->objectName() == actionStr) {
+            mainToolbar_->addAction(pAction);
+            break;
+          }
+        }
+      }
+    }
+  }
 
-//  foreach (QString actionStr, str.split(",", QString::SkipEmptyParts)) {
-//    if (actionStr == "Separator") {
-//      mainToolbar_->addSeparator();
-//    } else {
-//      QListIterator<QAction *> iter(actions());
-//      while (iter.hasNext()) {
-//        QAction *pAction = iter.next();
-//        if (!pAction->icon().isNull()) {
-//          if (pAction->objectName() == actionStr) {
-//            mainToolbar_->addAction(pAction);
-//            break;
-//          }
-//        }
-//      }
-//    }
-//  }
-
-  QString str = settings.value("feedsToolBar2",
+  str = settings.value("feedsToolBar2",
                                "newAct,Separator,updateAllFeedsAct,markFeedRead,"
                                "Separator,feedsFilter,findFeedAct").toString();
 
@@ -2083,7 +2078,10 @@ void MainWindow::loadSettings()
   restoreGeometry(settings.value("GeometryState").toByteArray());
   restoreState(settings.value("ToolBarsState").toByteArray());
 
-  mainToolbar_->hide();
+  if (!mainToolbarToggle_->isChecked())
+    mainToolbar_->hide();
+  if (!feedsToolbarToggle_->isChecked())
+    feedsPanel_->hide();
 
   mainSplitter_->restoreState(settings.value("MainSplitterState").toByteArray());
   feedsWidgetVisibleAct_->setChecked(settings.value("FeedsWidgetVisible", true).toBool());
@@ -2219,9 +2217,9 @@ void MainWindow::saveSettings()
   settings.setValue("fullscreenModeNotify", fullscreenModeNotify_);
   settings.setValue("onlySelectedFeeds", onlySelectedFeeds_);
 
-//  settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
+  settings.setValue("mainToolbarLock", toolBarLockAct_->isChecked());
 
-//  settings.setValue("mainToolbarShow", mainToolbarToggle_->isChecked());
+  settings.setValue("mainToolbarShow2", mainToolbarToggle_->isChecked());
   settings.setValue("feedsToolbarShow2", feedsToolbarToggle_->isChecked());
   settings.setValue("newsToolbarShow", newsToolbarToggle_->isChecked());
   settings.setValue("browserToolbarShow", browserToolbarToggle_->isChecked());
