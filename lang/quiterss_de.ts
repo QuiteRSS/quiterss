@@ -170,7 +170,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Learn about writing rules...</source>
-        <translation>Information zur Filterregel...</translation>
+        <translation>Wie erstelle ich eigene Filter...</translation>
     </message>
 </context>
 <context>

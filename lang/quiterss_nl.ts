@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="476"/>
         <source>Custom Rules</source>
-        <translation>Aangepaste regels</translation>
+        <translation>Personenlijke regels</translation>
     </message>
 </context>
 <context>
@@ -2814,7 +2814,7 @@ Opslaan?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>Toon standaard rss pictogram in plaats van je favotiete</translation>
+        <translation>Toon standaard rss pictogram in plaats van je favoriete</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
@@ -3292,7 +3292,7 @@ Opslaan?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="858"/>
         <source>on selecting. With timeout</source>
-        <translation>het selecteren Met timeout</translation>
+        <translation>het selecteren met timeout</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="859"/>
@@ -3342,7 +3342,7 @@ Opslaan?</translation>
     <message>
         <location filename="../src/optionsdialog.cpp" line="904"/>
         <source>Prevent accidental deletion of:</source>
-        <translation>Voorkomen het per ongeluk verwijderen van:</translation>
+        <translation>Voorkom het per ongeluk verwijderen van:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
