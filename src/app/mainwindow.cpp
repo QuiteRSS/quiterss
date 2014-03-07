@@ -6604,7 +6604,8 @@ void MainWindow::setFullScreen()
     setWindowState(windowState() | Qt::WindowFullScreen);
 #endif
   } else {
-    menuBar()->show();
+    if (showMenuBarAct_->isChecked())
+      menuBar()->show();
     setWindowState(windowState() & ~Qt::WindowFullScreen);
   }
 }
