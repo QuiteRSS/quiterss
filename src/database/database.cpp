@@ -238,7 +238,9 @@ void Database::initialization()
 
     if (mainApp->storeDBMemory()) {
       QSqlQuery q(db);
-      q.exec(QString("ATTACH DATABASE '%1' AS 'storage';").arg(mainApp->dbFileName()));
+      q.prepare("ATTACH DATABASE :file AS 'storage';");
+      q.bindValue(":file", mainApp->dbFileName());
+      q.exec();
       foreach (const QString &table, tablesList()) {
         q.exec(QString("INSERT OR REPLACE INTO main.%1 SELECT * FROM storage.%1;").arg(table));
       }
@@ -425,7 +427,9 @@ void Database::saveMemoryDatabase()
 
   QSqlDatabase db = QSqlDatabase::database();
   QSqlQuery q(db);
-  q.exec(QString("ATTACH DATABASE '%1' AS 'storage';").arg(fileName));
+  q.prepare("ATTACH DATABASE :file AS 'storage';");
+  q.bindValue(":file", fileName);
+  q.exec();
   foreach (const QString &table, tablesList()) {
     q.exec(QString("INSERT OR REPLACE INTO storage.%1 SELECT * FROM main.%1;").arg(table));
   }
