@@ -236,7 +236,13 @@ void DownloadItem::finished()
   updateInfoTimer_.stop();
 
   QString host = downloadUrl_.host();
-  downloadInfo_->setText(tr("Done - %1").arg(host));
+  QString fileSize = fileSizeToString(total_);
+
+  if (fileSize == tr("Unknown size")) {
+    fileSize = fileSizeToString(received_);
+  }
+  downloadInfo_->setText(QString("%1 - %2 - %3").arg(fileSize, host, QDateTime::currentDateTime().time().toString()));
+
   progressFrame_->hide();
   item_->setSizeHint(sizeHint());
   outputFile_.close();
