@@ -250,6 +250,7 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
   }
   if (QUrl(feedItem.link).host().isEmpty())
     feedItem.link = feedItem.linkBase + feedItem.link;
+  feedItem.link = toPlainText(feedItem.link);
 
   QSqlQuery q(db_);
   q.setForwardOnly(true);
@@ -316,8 +317,10 @@ void ParseObject::parseAtom(const QString &feedUrl, const QDomDocument &doc)
     }
     if (!newsItem.link.isEmpty() && QUrl(newsItem.link).host().isEmpty())
       newsItem.link = feedItem.linkBase + newsItem.link;
+    newsItem.link = toPlainText(newsItem.link);
     if (!newsItem.linkAlternate.isEmpty() && QUrl(newsItem.linkAlternate).host().isEmpty())
       newsItem.linkAlternate = feedItem.linkBase + newsItem.linkAlternate;
+    newsItem.linkAlternate = toPlainText(newsItem.linkAlternate);
 
     addAtomNewsIntoBase(newsItem);
   }
@@ -443,7 +446,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
 
   feedItem.title = toPlainText(channel.namedItem("title").toElement().text());
   feedItem.description = channel.namedItem("description").toElement().text();
-  feedItem.link = channel.namedItem("link").toElement().text();
+  feedItem.link = toPlainText(channel.namedItem("link").toElement().text());
   feedItem.updated = channel.namedItem("pubDate").toElement().text();
   if (feedItem.updated.isEmpty())
     feedItem.updated = channel.namedItem("pubdate").toElement().text();
@@ -481,7 +484,7 @@ void ParseObject::parseRss(const QString &feedUrl, const QDomDocument &doc)
     newsItem.author = toPlainText(newsList.item(i).namedItem("author").toElement().text());
     if (newsItem.author.isEmpty())
       newsItem.author = toPlainText(newsList.item(i).namedItem("dc:creator").toElement().text());
-    newsItem.link = newsList.item(i).namedItem("link").toElement().text().simplified();
+    newsItem.link = toPlainText(newsList.item(i).namedItem("link").toElement().text());
     newsItem.description = newsList.item(i).namedItem("description").toElement().text();
     newsItem.content = newsList.item(i).namedItem("content:encoded").toElement().text();
     QDomNodeList categoryElem = newsList.item(i).toElement().elementsByTagName("category");
