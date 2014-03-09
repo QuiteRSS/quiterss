@@ -239,11 +239,6 @@ void MainApplication::loadSettings()
 
 void MainApplication::quitApplication()
 {
-  if (storeDBMemory_) {
-    dbMemFileThread_->startSaveMemoryDB(QThread::NormalPriority);
-    delete dbMemFileThread_;
-  }
-
   qWarning() << "Quit application";
 
   quit();
@@ -251,22 +246,8 @@ void MainApplication::quitApplication()
 
 void MainApplication::commitData(QSessionManager &manager)
 {
-  if (storeDBMemory_) {
-    if (manager.allowsInteraction()) {
-      int ret = QMessageBox::warning(0, tr("Save data"),
-                                     tr("Attention! Need to save data.\nSave?"),
-                                     QMessageBox::Yes, QMessageBox::No);
-      if (ret == QMessageBox::Yes) {
-        manager.release();
-        mainWindow_->quitApp();
-      } else {
-        manager.cancel();
-      }
-    }
-  } else {
-    manager.release();
-    mainWindow_->quitApp();
-  }
+  manager.release();
+  mainWindow_->quitApp();
 }
 
 bool MainApplication::isPoratble() const

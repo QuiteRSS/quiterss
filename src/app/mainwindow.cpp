@@ -19,6 +19,7 @@
 
 #include "common.h"
 #include "mainapplication.h"
+#include "database.h"
 #include "aboutdialog.h"
 #include "adblockmanager.h"
 #include "adblockicon.h"
@@ -152,8 +153,18 @@ void MainWindow::quitApp()
   mainApp->setClosing();
   isMinimizeToTray_ = true;
 
+  QWidget *widget = new QWidget(0, Qt::WindowTitleHint | Qt::WindowStaysOnTopHint);
+  QVBoxLayout *layout = new QVBoxLayout(widget);
+  layout->addWidget(new QLabel(tr("Saving data...")));
+  widget->resize(150, 20);
+  widget->show();
+  widget->move(QApplication::desktop()->availableGeometry(0).width() - widget->frameSize().width(),
+               QApplication::desktop()->availableGeometry(0).height() - widget->frameSize().height());
+  qApp->processEvents();
+
   traySystem->hide();
   hide();
+
   saveSettings();
 
   mainApp->networkManager()->disconnect(mainApp->networkManager());
@@ -161,6 +172,11 @@ void MainWindow::quitApp()
   delete mainApp->downloadManager();
 
   cleanUpShutdown();
+
+  if (mainApp->storeDBMemory()) {
+    mainApp->dbMemFileThread()->startSaveMemoryDB(QThread::NormalPriority);
+    delete mainApp->dbMemFileThread();
+  }
 
   QTimer::singleShot(0, mainApp, SLOT(quitApplication()));
 }
