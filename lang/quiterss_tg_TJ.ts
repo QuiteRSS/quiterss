@@ -31,32 +31,32 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>Суроғаи замима:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="140"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>Суроғаи манбаъ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>Суроғаи маълумот:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="146"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>Суроғаи БМ:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="149"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>Файли танзимот:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="152"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>Файли қайдҳо</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="167"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="170"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Маълумот</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Иловаи обуна</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -94,12 +94,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>Суроға:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>Иловаи обунаи нав ба AdBlock:</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="476"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>Қоида шахсӣ</translation>
     </message>
 </context>
 <context>
@@ -115,17 +115,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Танзимоти AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>Фаъол гардонидани AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>Ҷустуҷӯ...</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -135,7 +135,7 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
@@ -145,27 +145,27 @@
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="70"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Иловаи қоида</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="71"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Хориҷи қоида</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Иловаи обуна</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>Хориҷи обуна</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Азнавкунии обунаҳо</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
@@ -183,12 +183,12 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="125"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди &amp;танзимоти AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
@@ -209,7 +209,7 @@
         <location filename="../src/adblock/adblockicon.cpp" line="154"/>
         <location filename="../src/adblock/adblockicon.cpp" line="171"/>
         <source>%1 with (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 бо (%2)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="165"/>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>EasyList</translation>
     </message>
 </context>
 <context>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>Обуна бор нашуд!</translation>
     </message>
 </context>
 <context>
@@ -243,22 +243,22 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="96"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>Иловаи қоида</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="98"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>Хориҷи қоида</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>Иловаи қоидаи шахси</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>Қоидаи худро дар инҷо нависед:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="195"/>
@@ -268,7 +268,7 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="204"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (Хатогӣ: %2)</translation>
     </message>
 </context>
 <context>
@@ -1370,17 +1370,17 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="223"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Хатогӣ</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="223"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>Драйвери SQLite бор нашудааст!</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="274"/>
         <source>Save data</source>
-        <translation type="unfinished"/>
+        <translation>Сабти маълумот</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="275"/>
@@ -1394,7 +1394,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="1714"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>&amp;AdBlock</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="2069"/>
@@ -1490,7 +1490,7 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="3306"/>
         <location filename="../src/app/mainwindow.cpp" line="3311"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(Браузер)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4423"/>
@@ -1666,7 +1666,7 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="4477"/>
         <location filename="../src/app/mainwindow.cpp" line="4484"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди нахонда</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4478"/>
@@ -1686,17 +1686,17 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4485"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди бо ситорача қайд шуда</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4486"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди қайд нашуда</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4487"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>Нишондоди нахонда ё бо ситорача</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4488"/>
@@ -2207,7 +2207,7 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="4628"/>
         <location filename="../src/app/mainwindow.cpp" line="4629"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Нишона</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4630"/>
@@ -2247,7 +2247,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4639"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>Қайдшуда</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4640"/>
@@ -2532,7 +2532,7 @@ Save?</source>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="43"/>
         <source>Delete News</source>
-        <translation type="unfinished"/>
+        <translation>Хориҷи хабарҳо</translation>
     </message>
 </context>
 <context>
@@ -2692,12 +2692,12 @@ Save?</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="99"/>
         <source>Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>Саҳифаи гузашта</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="104"/>
         <source>Next Page</source>
-        <translation type="unfinished"/>
+        <translation>Саҳифаи оянда</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="146"/>
@@ -2959,17 +2959,17 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="466"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>Таймаути дархост:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>Миқдори дархостҳо:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="470"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>Миқдори такрор:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="473"/>
@@ -3481,7 +3481,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1088"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>Васеъгии рӯйхати элементҳо</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1090"/>
@@ -4111,7 +4111,7 @@ Save?</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>Тасмаи беном</translation>
     </message>
 </context>
 <context>

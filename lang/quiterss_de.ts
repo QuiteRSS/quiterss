@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="106"/>
         <source>Use title of the feed as displayed name</source>
-        <translation>Name des Feeds in Titelleiste anzeigen</translation>
+        <translation>Feed-Titel als Name anzeigen</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="110"/>
@@ -2473,7 +2473,7 @@ Speichern?</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="401"/>
         <source>Title</source>
-        <translation>Feed-Titel</translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="402"/>
@@ -2513,7 +2513,7 @@ Speichern?</translation>
     <message>
         <location filename="../src/newsheader.cpp" line="409"/>
         <source>Title Feed</source>
-        <translation>Feed</translation>
+        <translation>Feed-Titel</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="410"/>

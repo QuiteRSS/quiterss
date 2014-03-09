@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="55"/>
         <source>Revision</source>
-        <translation>修訂</translation>
+        <translation>Revision</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="63"/>
@@ -26,37 +26,37 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="68"/>
         <source>Includes:</source>
-        <translation>包括:</translation>
+        <translation>使用:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="137"/>
         <source>Application directory:</source>
-        <translation type="unfinished"/>
+        <translation>應用程式資料夾:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="140"/>
         <source>Resource directory:</source>
-        <translation type="unfinished"/>
+        <translation>資源資料夾:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="143"/>
         <source>Data directory:</source>
-        <translation type="unfinished"/>
+        <translation>資料存放資料夾:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="146"/>
         <source>Database file:</source>
-        <translation type="unfinished"/>
+        <translation>資料庫檔案:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="149"/>
         <source>Settings file:</source>
-        <translation type="unfinished"/>
+        <translation>設定檔:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="152"/>
         <source>Log file:</source>
-        <translation type="unfinished"/>
+        <translation>記錄檔:</translation>
     </message>
     <message>
         <location filename="../src/aboutdialog.cpp" line="167"/>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../src/aboutdialog.cpp" line="170"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>資訊</translation>
     </message>
 </context>
 <context>
@@ -84,7 +84,7 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="14"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>新增訂月</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="23"/>
@@ -94,12 +94,12 @@
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="33"/>
         <source>Address:</source>
-        <translation type="unfinished"/>
+        <translation>地址:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockaddsubscriptiondialog.ui" line="53"/>
         <source>Add new subscription to AdBlock:</source>
-        <translation type="unfinished"/>
+        <translation>新增 AdBlock 訂閱:</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="476"/>
         <source>Custom Rules</source>
-        <translation type="unfinished"/>
+        <translation>自訂規則</translation>
     </message>
 </context>
 <context>
@@ -115,17 +115,17 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="14"/>
         <source>AdBlock Configuration</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock 設定</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="20"/>
         <source>Enable AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>啟用 AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="32"/>
         <source>Search...</source>
-        <translation type="unfinished"/>
+        <translation>搜尋…</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="68"/>
@@ -135,42 +135,42 @@
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.ui" line="122"/>
         <source>Use only essential part of EasyList (for performance reasons)</source>
-        <translation type="unfinished"/>
+        <translation>僅使用 EasyList 的重要部分 (避免拖慢效能)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="70"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>新增規則</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="71"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>移除規則</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="73"/>
         <source>Add Subscription</source>
-        <translation type="unfinished"/>
+        <translation>新增訂閱</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="74"/>
         <source>Remove Subscription</source>
-        <translation type="unfinished"/>
+        <translation>移除訂閱</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="75"/>
         <source>Update Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>更新訂閱</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockdialog.cpp" line="77"/>
         <source>Learn about writing rules...</source>
-        <translation type="unfinished"/>
+        <translation>了解如何撰寫規則…</translation>
     </message>
 </context>
 <context>
@@ -178,32 +178,32 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="53"/>
         <source>AdBlock lets you block unwanted content on web pages</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock 讓您可以封鎖網頁中不想要的內容</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="98"/>
         <source>AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="125"/>
         <source>Show AdBlock &amp;Settings</source>
-        <translation type="unfinished"/>
+        <translation>顯示 AdBlock 選項 (&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="133"/>
         <source>Disable on %1</source>
-        <translation type="unfinished"/>
+        <translation>在 %1 停用</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="139"/>
         <source>Disable only on this page</source>
-        <translation type="unfinished"/>
+        <translation>僅在此頁面停用</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="149"/>
         <source>Blocked Popup Windows</source>
-        <translation type="unfinished"/>
+        <translation>已封鎖彈出視窗</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="154"/>
@@ -214,12 +214,12 @@
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="165"/>
         <source>No content blocked</source>
-        <translation type="unfinished"/>
+        <translation>未封鎖內容</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblockicon.cpp" line="168"/>
         <source>Blocked URL (AdBlock Rule) - click to edit rule</source>
-        <translation type="unfinished"/>
+        <translation>URL 已封鎖 (依照 AdBlock 規則) - 點擊此處以編輯規則</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     <message>
         <location filename="../src/adblock/adblockmanager.cpp" line="277"/>
         <source>EasyList</source>
-        <translation type="unfinished"/>
+        <translation>EasyList</translation>
     </message>
 </context>
 <context>
@@ -235,7 +235,7 @@
     <message>
         <location filename="../src/adblock/adblocksubscription.cpp" line="190"/>
         <source>Cannot load subscription!</source>
-        <translation type="unfinished"/>
+        <translation>無法載入訂閱！</translation>
     </message>
 </context>
 <context>
@@ -243,32 +243,32 @@
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="96"/>
         <source>Add Rule</source>
-        <translation type="unfinished"/>
+        <translation>新增規則</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="98"/>
         <source>Remove Rule</source>
-        <translation type="unfinished"/>
+        <translation>移除規則</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Add Custom Rule</source>
-        <translation type="unfinished"/>
+        <translation>新增自訂規則</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="157"/>
         <source>Please write your rule here:</source>
-        <translation type="unfinished"/>
+        <translation>請在此撰寫您的規則:</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="195"/>
         <source>%1 (recently updated)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (最近更新)</translation>
     </message>
     <message>
         <location filename="../src/adblock/adblocktreewidget.cpp" line="204"/>
         <source>%1 (Error: %2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (錯誤: %2)</translation>
     </message>
 </context>
 <context>
@@ -287,12 +287,12 @@
     <message>
         <location filename="../src/addfeedwizard.cpp" line="106"/>
         <source>Use title of the feed as displayed name</source>
-        <translation>使用 feed 的標題作為顯示名稱</translation>
+        <translation>使用標題作為顯示名稱</translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="110"/>
         <source>Server requires authentication:</source>
-        <translation>伺服器要求身份驗證: </translation>
+        <translation>伺服器要求驗證: </translation>
     </message>
     <message>
         <location filename="../src/addfeedwizard.cpp" line="119"/>
@@ -456,7 +456,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="196"/>
         <source>Clean Up</source>
-        <translation> 清除</translation>
+        <translation>清除</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="230"/>
@@ -511,7 +511,7 @@
     <message>
         <location filename="../src/cleanupwizard.cpp" line="346"/>
         <source>Purge DB</source>
-        <translation>清除資料庫(DB)</translation>
+        <translation>清理資料庫</translation>
     </message>
     <message>
         <location filename="../src/cleanupwizard.cpp" line="350"/>
@@ -819,12 +819,12 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="32"/>
         <source>Columns</source>
-        <translation>欄</translation>
+        <translation>欄位</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="33"/>
         <source>Authentication</source>
-        <translation>身份驗證</translation>
+        <translation>驗證</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="34"/>
@@ -869,7 +869,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="84"/>
         <source>Disable update</source>
-        <translation type="unfinished"/>
+        <translation>停用更新</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="87"/>
@@ -959,7 +959,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="264"/>
         <source>Server requires authentication:</source>
-        <translation>伺服器要求身份驗證: </translation>
+        <translation>伺服器要求驗證: </translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="273"/>
@@ -979,7 +979,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="306"/>
         <source>Status:</source>
-        <translation> 狀態：</translation>
+        <translation>狀態：</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="308"/>
@@ -989,7 +989,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="310"/>
         <source>Last update:</source>
-        <translation>最近一次更新：</translation>
+        <translation>最近更新：</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="312"/>
@@ -1004,7 +1004,7 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="382"/>
         <source>Long ago ;-)</source>
-        <translation>很久以前;-)</translation>
+        <translation>很久以前 ;-)</translation>
     </message>
     <message>
         <location filename="../src/feedpropertiesdialog.cpp" line="393"/>
@@ -1165,22 +1165,22 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Play a Sound</source>
-        <translation type="unfinished"/>
+        <translation>播放音效</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="148"/>
         <source>Show News in Notifier</source>
-        <translation type="unfinished"/>
+        <translation>在通知器中顯示新聞</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="157"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>瀏覽</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="161"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>播放</translation>
     </message>
     <message>
         <location filename="../src/filterrulesdialog.h" line="183"/>
@@ -1370,23 +1370,24 @@ Ancient news could reappear</source>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="223"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="223"/>
         <source>SQLite driver not loaded!</source>
-        <translation type="unfinished"/>
+        <translation>沒有載入 SQLite 的驅動程式！</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="274"/>
         <source>Save data</source>
-        <translation type="unfinished"/>
+        <translation>儲存資料</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="275"/>
         <source>Attention! Need to save data.
 Save?</source>
-        <translation type="unfinished"/>
+        <translation>注意！需要儲存資料。
+要儲存嗎？</translation>
     </message>
 </context>
 <context>
@@ -1394,7 +1395,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="1714"/>
         <source>&amp;AdBlock</source>
-        <translation type="unfinished"/>
+        <translation>AdBlock (&amp;A)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="2069"/>
@@ -1490,7 +1491,7 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="3306"/>
         <location filename="../src/app/mainwindow.cpp" line="3311"/>
         <source>(Browser)</source>
-        <translation type="unfinished"/>
+        <translation>(瀏覽器)</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4423"/>
@@ -1534,7 +1535,7 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="4437"/>
         <location filename="../src/app/mainwindow.cpp" line="4502"/>
         <source>Open in New Tab</source>
-        <translation type="unfinished"/>
+        <translation>在新分頁開啟</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4439"/>
@@ -1599,7 +1600,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4458"/>
         <source>Mark Read/Unread</source>
-        <translation type="unfinished"/>
+        <translation>標記為已讀/未讀</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4459"/>
@@ -1654,19 +1655,19 @@ Save?</source>
         <location filename="../src/app/mainwindow.cpp" line="4475"/>
         <location filename="../src/app/mainwindow.cpp" line="4482"/>
         <source>Show All</source>
-        <translation type="unfinished"/>
+        <translation>全部顯示</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4476"/>
         <location filename="../src/app/mainwindow.cpp" line="4483"/>
         <source>Show New</source>
-        <translation type="unfinished"/>
+        <translation>顯示新的</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4477"/>
         <location filename="../src/app/mainwindow.cpp" line="4484"/>
         <source>Show Unread</source>
-        <translation type="unfinished"/>
+        <translation>顯示未讀的</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4478"/>
@@ -1686,27 +1687,27 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4485"/>
         <source>Show Starred</source>
-        <translation type="unfinished"/>
+        <translation>顯示標星的</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4486"/>
         <source>Show Not Starred</source>
-        <translation type="unfinished"/>
+        <translation>顯示未標星的</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4487"/>
         <source>Show Unread or Starred</source>
-        <translation type="unfinished"/>
+        <translation>顯示未讀的或者標星的</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4488"/>
         <source>Show Last Day</source>
-        <translation type="unfinished"/>
+        <translation>顯示最近一天</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4489"/>
         <source>Show Last 7 Days</source>
-        <translation type="unfinished"/>
+        <translation>顯示最近 7 天</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4491"/>
@@ -1811,7 +1812,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4514"/>
         <source>Copy Link</source>
-        <translation type="unfinished"/>
+        <translation>複製連結</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4515"/>
@@ -1826,7 +1827,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4519"/>
         <source>Mark Read</source>
-        <translation>標記為 已讀</translation>
+        <translation>標記為已讀</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4520"/>
@@ -1923,7 +1924,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4543"/>
         <source>Application Style</source>
-        <translation>應用樣式</translation>
+        <translation>應用程式樣式</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4544"/>
@@ -2068,7 +2069,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4583"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>列</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4584"/>
@@ -2083,7 +2084,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4586"/>
         <source>Last Updated</source>
-        <translation>最近一次更新</translation>
+        <translation>最近更新</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4588"/>
@@ -2154,7 +2155,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4606"/>
         <source>Save As...</source>
-        <translation type="unfinished"/>
+        <translation>另存為...</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4607"/>
@@ -2242,17 +2243,17 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4638"/>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>未讀</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4639"/>
         <source>Starred</source>
-        <translation type="unfinished"/>
+        <translation>已標星</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4640"/>
         <source>Deleted</source>
-        <translation type="unfinished"/>
+        <translation>已刪除</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="4641"/>
@@ -2342,7 +2343,7 @@ Save?</source>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="5485"/>
         <source>A new version of QuiteRSS...</source>
-        <translation>一個新版本的 QuiteRSS ...</translation>
+        <translation>有新版的 QuiteRSS 可以下載…</translation>
     </message>
     <message>
         <location filename="../src/app/mainwindow.cpp" line="5837"/>
@@ -2479,12 +2480,12 @@ Save?</source>
     <message>
         <location filename="../src/newsheader.cpp" line="402"/>
         <source>Published</source>
-        <translation>發佈</translation>
+        <translation>發佈日期</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="403"/>
         <source>Received</source>
-        <translation>收到</translation>
+        <translation>接收時間</translation>
     </message>
     <message>
         <location filename="../src/newsheader.cpp" line="404"/>
@@ -2532,7 +2533,7 @@ Save?</source>
     <message>
         <location filename="../src/notifications/notificationsnewsitem.cpp" line="43"/>
         <source>Delete News</source>
-        <translation type="unfinished"/>
+        <translation>刪除訊息</translation>
     </message>
 </context>
 <context>
@@ -2540,7 +2541,7 @@ Save?</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="531"/>
         <source>Loading... (%p%)</source>
-        <translation>載入...(%p%)</translation>
+        <translation>載入中…(%p%)</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="533"/>
@@ -2621,25 +2622,25 @@ Save?</source>
         <location filename="../src/newstabwidget.cpp" line="559"/>
         <location filename="../src/newstabwidget.cpp" line="580"/>
         <source>Load Images</source>
-        <translation type="unfinished"/>
+        <translation>載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="560"/>
         <location filename="../src/newstabwidget.cpp" line="581"/>
         <source>Auto Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>自動載入圖片到訊息預覽</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="562"/>
         <location filename="../src/newstabwidget.cpp" line="584"/>
         <source>No Load Images</source>
-        <translation type="unfinished"/>
+        <translation>不載入圖片</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="563"/>
         <location filename="../src/newstabwidget.cpp" line="585"/>
         <source>No Load Images to News View</source>
-        <translation type="unfinished"/>
+        <translation>不載入圖片到訊息預覽</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="568"/>
@@ -2649,7 +2650,7 @@ Save?</source>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1361"/>
         <source>Comments</source>
-        <translation>註解</translation>
+        <translation>迴響</translation>
     </message>
     <message>
         <location filename="../src/newstabwidget.cpp" line="1367"/>
@@ -2692,12 +2693,12 @@ Save?</source>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="99"/>
         <source>Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>上一頁</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="104"/>
         <source>Next Page</source>
-        <translation type="unfinished"/>
+        <translation>下一頁</translation>
     </message>
     <message>
         <location filename="../src/notifications/notificationswidget.cpp" line="146"/>
@@ -2709,7 +2710,7 @@ Save?</source>
         <location filename="../src/notifications/notificationswidget.cpp" line="350"/>
         <location filename="../src/notifications/notificationswidget.cpp" line="362"/>
         <source>Page %1 of %2</source>
-        <translation>頁 %1 共 %2</translation>
+        <translation>第 %1 頁，共 %2 頁</translation>
     </message>
 </context>
 <context>
@@ -2813,7 +2814,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="294"/>
         <source>Show default rss-icon instead of favourite one</source>
-        <translation>顯示預設的 RSS 圖示，而不是最喜歡的一個</translation>
+        <translation>顯示預設的 RSS 圖示，而不是最喜歡的</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="295"/>
@@ -2823,12 +2824,12 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="296"/>
         <source>Hide tab bar if only have one tab open</source>
-        <translation type="unfinished"/>
+        <translation>僅開啟一個分頁時隱藏分頁列</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="297"/>
         <source>Show close button on tab</source>
-        <translation type="unfinished"/>
+        <translation>在分頁標籤中顯示關閉按鈕</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="299"/>
@@ -2838,12 +2839,12 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="300"/>
         <source>Store a DB in memory (requires program restart)</source>
-        <translation>儲存一個資料庫(DB)在記憶體中 (需要程式重新啟動)</translation>
+        <translation>在記憶體中儲存資料庫 (需要重新啟動程式)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="307"/>
         <source>Save DB stored in memory to file every</source>
-        <translation>記憶體中的 DB 儲存到檔案，每</translation>
+        <translation>將記憶體中的資料庫儲存到檔案，每</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="309"/>
@@ -2899,7 +2900,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="377"/>
         <source>Single click instead of double click for show window</source>
-        <translation>按一下代替按兩下顯示視窗</translation>
+        <translation>按一下就顯示視窗</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="378"/>
@@ -2924,7 +2925,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="406"/>
         <source>Direct connection to the Internet</source>
-        <translation>直接連接到 Internet</translation>
+        <translation>直接連線至網際網路</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="408"/>
@@ -2934,7 +2935,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="409"/>
         <source>Manual proxy configuration:</source>
-        <translation>手動組態代理: </translation>
+        <translation>手動設定 Proxy: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="425"/>
@@ -2959,17 +2960,17 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="466"/>
         <source>Request timeout:</source>
-        <translation type="unfinished"/>
+        <translation>請求逾時:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="468"/>
         <source>Number of requests:</source>
-        <translation type="unfinished"/>
+        <translation>請求數量:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="470"/>
         <source>Number of retries:</source>
-        <translation type="unfinished"/>
+        <translation>重試數量:</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="473"/>
@@ -3064,7 +3065,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="595"/>
         <source>Store cache in:</source>
-        <translation>儲存快取：</translation>
+        <translation>儲存快取於：</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="603"/>
@@ -3084,7 +3085,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="625"/>
         <source>Allow local data to be set</source>
-        <translation>允許本機資料設定</translation>
+        <translation>允許在本機設定資料</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="626"/>
@@ -3094,7 +3095,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="627"/>
         <source>Block sites from setting any data</source>
-        <translation>從設定任何資料封鎖網站</translation>
+        <translation>不允許任何網站設定資料</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="628"/>
@@ -3114,7 +3115,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="656"/>
         <source>Use Click to Flash</source>
-        <translation>使用 Click to Flash</translation>
+        <translation>使用 Click to Flash 功能</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="668"/>
@@ -3281,7 +3282,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="842"/>
         <source>Opening feed:</source>
-        <translation>開啟的  feed: </translation>
+        <translation>預設開啟的 feed: </translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="856"/>
@@ -3291,7 +3292,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="858"/>
         <source>on selecting. With timeout</source>
-        <translation>選取時，沒有逾時</translation>
+        <translation>閱讀訊息超過</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="859"/>
@@ -3301,17 +3302,17 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="865"/>
         <source>Mark displayed news as read when switching feeds</source>
-        <translation>切換 feeds 時，標記顯示的訊息為已讀</translation>
+        <translation>切換 feeds 時，將已閱讀的文章標記為已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="866"/>
         <source>Mark displayed news as read when closing tab</source>
-        <translation>關閉標籤時，標記顯示的訊息為已讀</translation>
+        <translation>關閉分頁時，將已閱讀的文章標記為已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="867"/>
         <source>Mark displayed news as read on minimize</source>
-        <translation>最小化時，標記顯示的訊息為已讀</translation>
+        <translation>最小化時，將已閱讀的文章標記為已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="870"/>
@@ -3336,7 +3337,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="877"/>
         <source>Automatically mark identical news as read</source>
-        <translation> 自動標記相同的訊息為已讀</translation>
+        <translation>自動將相同的訊息標記為已讀</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="904"/>
@@ -3346,7 +3347,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="916"/>
         <source>Enable cleanup on shutdown</source>
-        <translation>關閉時啟用清理</translation>
+        <translation>關閉時進行清理</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="919"/>
@@ -3386,7 +3387,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="939"/>
         <source>Enable DB optimization (slower shutdown)</source>
-        <translation>啟用資料庫(DB)最佳化 (關閉速度較慢)</translation>
+        <translation>最佳化資料庫 (關閉速度較慢)</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="967"/>
@@ -3431,7 +3432,7 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1034"/>
         <source>Play</source>
-        <translation type="unfinished"/>
+        <translation>播放</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1056"/>
@@ -3476,12 +3477,12 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1085"/>
         <source>item on page notification</source>
-        <translation type="unfinished"/>
+        <translation>通告頁上的項目</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1088"/>
         <source>Width list items</source>
-        <translation type="unfinished"/>
+        <translation>清單項目寬度</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1090"/>
@@ -3684,22 +3685,22 @@ Save?</source>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1586"/>
         <source>Text color of new news</source>
-        <translation type="unfinished"/>
+        <translation>新訊息的文字顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1589"/>
         <source>Text color of unread news</source>
-        <translation type="unfinished"/>
+        <translation>未讀訊息的文字顏色</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1592"/>
         <source>Focused feed color</source>
-        <translation type="unfinished"/>
+        <translation>焦點 feed 色彩</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1595"/>
         <source>Focused feed background color</source>
-        <translation type="unfinished"/>
+        <translation>焦點 feed 背景色彩</translation>
     </message>
     <message>
         <location filename="../src/optionsdialog.cpp" line="1631"/>
@@ -4037,7 +4038,7 @@ Save?</source>
     <message>
         <location filename="../src/downloads/downloadmanager.cpp" line="164"/>
         <source>Cannot start external program! %1</source>
-        <translation>不能啟動外部程式！%1</translation>
+        <translation>無法啟動外部程式！%1</translation>
     </message>
 </context>
 <context>
@@ -4111,7 +4112,7 @@ Save?</source>
     <message>
         <location filename="../src/webview/rssdetectionwidget.cpp" line="56"/>
         <source>Untitled feed</source>
-        <translation type="unfinished"/>
+        <translation>未命名 feed</translation>
     </message>
 </context>
 <context>
@@ -4119,7 +4120,7 @@ Save?</source>
     <message>
         <location filename="../src/requestfeed.cpp" line="207"/>
         <source>Server requires authentication!</source>
-        <translation>伺服器要求身份驗證！</translation>
+        <translation>伺服器要求驗證！</translation>
     </message>
     <message>
         <location filename="../src/requestfeed.cpp" line="209"/>
@@ -4152,7 +4153,7 @@ Save?</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="48"/>
         <source>Loading history...</source>
-        <translation>正載入歷史...</translation>
+        <translation>載入版本歷史...</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="51"/>
@@ -4172,7 +4173,7 @@ Save?</source>
     <message>
         <location filename="../src/updateappdialog.cpp" line="128"/>
         <source>A new version of QuiteRSS is available!</source>
-        <translation>一個新版本的 QuiteRSS 可用！</translation>
+        <translation>有新版的 QuiteRSS 可以下載！</translation>
     </message>
     <message>
         <location filename="../src/updateappdialog.cpp" line="131"/>
